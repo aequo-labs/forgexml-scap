@@ -1,0 +1,966 @@
+<oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5 https://oval.cisecurity.org/schemas/validator-oval-definitions-5.11.2.xsd">
+   <generator>
+      <oval:product_name>Center for Internet Security - Optimus</oval:product_name>
+      <oval:schema_version>5.11.2</oval:schema_version>
+      <oval:timestamp>2024-08-16T16:01:53.162Z</oval:timestamp>
+   </generator>
+   <definitions>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:def:36307" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Do Not Show Data Extraction Options When Opening Corrupt Workbooks' is set to Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.2.1_L1_Ensure_Do_Not_Show_Data_Extraction_Options_When_Opening_Corrupt_Workbooks_is_set_to_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.2.1_L1_Ensure_Do_Not_Show_Data_Extraction_Options_When_Opening_Corrupt_Workbooks_is_set_to_Enabled"></reference>
+            <description>(L1) Ensure 'Do Not Show Data Extraction Options When Opening Corrupt Workbooks' is set to Enabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36307"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:def:36308" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Load Pictures from Web Pages Not Created in Excel' is set to Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4.1.1.2_L1_Ensure_Load_Pictures_from_Web_Pages_Not_Created_in_Excel_is_set_to_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4.1.1.2_L1_Ensure_Load_Pictures_from_Web_Pages_Not_Created_in_Excel_is_set_to_Disabled"></reference>
+            <description>(L1) Ensure 'Load Pictures from Web Pages Not Created in Excel' is set to Disabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36308"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:def:36309" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Ask to Update Automatic Links' is set to Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4.1.2_L1_Ensure_Ask_to_Update_Automatic_Links_is_set_to_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4.1.2_L1_Ensure_Ask_to_Update_Automatic_Links_is_set_to_Enabled"></reference>
+            <description>(L1) Ensure 'Ask to Update Automatic Links' is set to Enabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36309"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:def:36310" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Internet and Network Paths as Hyperlinks' is set to Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4.5.1.1_L1_Ensure_Internet_and_Network_Paths_as_Hyperlinks_is_set_to_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4.5.1.1_L1_Ensure_Internet_and_Network_Paths_as_Hyperlinks_is_set_to_Disabled"></reference>
+            <description>(L1) Ensure 'Internet and Network Paths as Hyperlinks' is set to Disabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36310"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:def:36311" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Do Not Show AutoRepublish Warning Alert' is set to Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4.6.1_L1_Ensure_Do_Not_Show_AutoRepublish_Warning_Alert_is_set_to_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4.6.1_L1_Ensure_Do_Not_Show_AutoRepublish_Warning_Alert_is_set_to_Disabled"></reference>
+            <description>(L1) Ensure 'Do Not Show AutoRepublish Warning Alert' is set to Disabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36311"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:def:36312" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Default File Format' is set to Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4.6.2_L1_Ensure_Default_File_Format_is_set_to_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4.6.2_L1_Ensure_Default_File_Format_is_set_to_Enabled"></reference>
+            <description>(L1) Ensure 'Default File Format' is set to Enabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36312"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:def:36313" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Disable AutoRepublish' is set to Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4.6.3_L1_Ensure_Disable_AutoRepublish_is_set_to_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4.6.3_L1_Ensure_Disable_AutoRepublish_is_set_to_Enabled"></reference>
+            <description>(L1) Ensure 'Disable AutoRepublish' is set to Enabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36313"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:def:36314" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Excel 2 Macrosheets and Add-in Files' is set to Enabled(Open/Save blocked, use open policy)</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4.7.2.1.1_L1_Ensure_Excel_2_Macrosheets_and_Add-in_Files_is_set_to_EnabledOpenSave_blocked_use_open_policy" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4.7.2.1.1_L1_Ensure_Excel_2_Macrosheets_and_Add-in_Files_is_set_to_EnabledOpenSave_blocked_use_open_policy"></reference>
+            <description>(L1) Ensure 'Excel 2 Macrosheets and Add-in Files' is set to Enabled(Open/Save blocked, use open policy)</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36314"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:def:36315" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Excel 3 Macrosheets and Add-in Files' is set to Enabled(Open/Save blocked, use open policy)</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4.7.2.1.2_L1_Ensure_Excel_3_Macrosheets_and_Add-in_Files_is_set_to_EnabledOpenSave_blocked_use_open_policy" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4.7.2.1.2_L1_Ensure_Excel_3_Macrosheets_and_Add-in_Files_is_set_to_EnabledOpenSave_blocked_use_open_policy"></reference>
+            <description>(L1) Ensure 'Excel 3 Macrosheets and Add-in Files' is set to Enabled(Open/Save blocked, use open policy)</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36315"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:def:36316" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Excel 95-97 Workbooks and Templates'  is set to Enabled(Open/Save Blocked, Use Open Policy)</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4.7.2.1.3_L1_Ensure_Excel_95-97_Workbooks_and_Templates__is_set_to_EnabledOpenSave_Blocked_Use_Open_Policy" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4.7.2.1.3_L1_Ensure_Excel_95-97_Workbooks_and_Templates__is_set_to_EnabledOpenSave_Blocked_Use_Open_Policy"></reference>
+            <description>(L1) Ensure 'Excel 95-97 Workbooks and Templates'  is set to Enabled(Open/Save Blocked, Use Open Policy)</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36316"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:def:36317" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Excel 2 Worksheets' is set to Enabled(Open/Save blocked, use open policy)</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4.7.2.1.4_L1_Ensure_Excel_2_Worksheets_is_set_to_EnabledOpenSave_blocked_use_open_policy" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4.7.2.1.4_L1_Ensure_Excel_2_Worksheets_is_set_to_EnabledOpenSave_blocked_use_open_policy"></reference>
+            <description>(L1) Ensure 'Excel 2 Worksheets' is set to Enabled(Open/Save blocked, use open policy)</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36317"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:def:36318" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Excel 4 Worksheets' is set to Enabled(Open/Save blocked, use open policy)</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4.7.2.1.5_L1_Ensure_Excel_4_Worksheets_is_set_to_EnabledOpenSave_blocked_use_open_policy" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4.7.2.1.5_L1_Ensure_Excel_4_Worksheets_is_set_to_EnabledOpenSave_blocked_use_open_policy"></reference>
+            <description>(L1) Ensure 'Excel 4 Worksheets' is set to Enabled(Open/Save blocked, use open policy)</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36318"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:def:36319" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Excel 3 Worksheets" is set to Enabled (Open/Save blocked, use open policy)</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4.7.2.1.6_L1_Ensure_Excel_3_Worksheets_is_set_to_Enabled_OpenSave_blocked_use_open_policy" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4.7.2.1.6_L1_Ensure_Excel_3_Worksheets_is_set_to_Enabled_OpenSave_blocked_use_open_policy"></reference>
+            <description>(L1) Ensure 'Excel 3 Worksheets" is set to Enabled (Open/Save blocked, use open policy)</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36319"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:def:36320" version="1">
+         <metadata>
+            <title>(L1) Ensure 'dBase III /IV Files' is set to Enable (Open/Save blocked, use open policy)</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4.7.2.1.7_L1_Ensure_dBase_III_IV_Files_is_set_to_Enable_OpenSave_blocked_use_open_policy" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4.7.2.1.7_L1_Ensure_dBase_III_IV_Files_is_set_to_Enable_OpenSave_blocked_use_open_policy"></reference>
+            <description>(L1) Ensure 'dBase III /IV Files' is set to Enable (Open/Save blocked, use open policy)</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36320"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:def:36321" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Web Pages and Excel 2003 XML Spreadsheets' is set to Enabled (Open/Save blocked, use open policy)</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4.7.2.1.8_L1_Ensure_Web_Pages_and_Excel_2003_XML_Spreadsheets_is_set_to_Enabled_OpenSave_blocked_use_open_policy" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4.7.2.1.8_L1_Ensure_Web_Pages_and_Excel_2003_XML_Spreadsheets_is_set_to_Enabled_OpenSave_blocked_use_open_policy"></reference>
+            <description>(L1) Ensure 'Web Pages and Excel 2003 XML Spreadsheets' is set to Enabled (Open/Save blocked, use open policy)</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36321"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:def:36322" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Excel 95 Workbooks' is set to Enabled (Open/Save Blocked, Use Open Policy)</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4.7.2.1.9_L1_Ensure_Excel_95_Workbooks_is_set_to_Enabled_OpenSave_Blocked_Use_Open_Policy" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4.7.2.1.9_L1_Ensure_Excel_95_Workbooks_is_set_to_Enabled_OpenSave_Blocked_Use_Open_Policy"></reference>
+            <description>(L1) Ensure 'Excel 95 Workbooks' is set to Enabled (Open/Save Blocked, Use Open Policy)</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36322"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:def:36323" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Default File Block Behavior' is set to Enabled (Blocked files are not opened)</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4.7.2.1.10_L1_Ensure_Default_File_Block_Behavior_is_set_to_Enabled_Blocked_files_are_not_opened" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4.7.2.1.10_L1_Ensure_Default_File_Block_Behavior_is_set_to_Enabled_Blocked_files_are_not_opened"></reference>
+            <description>(L1) Ensure 'Default File Block Behavior' is set to Enabled (Blocked files are not opened)</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36323"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:def:36324" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Excel 4 Macrosheets and Add-in Files' is set to Enabled (Enabled: Open/Save blocked, use open policy)</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4.7.2.1.11_L1_Ensure_Excel_4_Macrosheets_and_Add-in_Files_is_set_to_Enabled_Enabled_OpenSave_blocked_use_open_policy" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4.7.2.1.11_L1_Ensure_Excel_4_Macrosheets_and_Add-in_Files_is_set_to_Enabled_Enabled_OpenSave_blocked_use_open_policy"></reference>
+            <description>(L1) Ensure 'Excel 4 Macrosheets and Add-in Files' is set to Enabled (Enabled: Open/Save blocked, use open policy)</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36324"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:def:36325" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Excel 4 Workbooks' is set to Enabled (Enabled: Open/Save blocked, use open policy)</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4.7.2.1.12_L1_Ensure_Excel_4_Workbooks_is_set_to_Enabled_Enabled_OpenSave_blocked_use_open_policy" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4.7.2.1.12_L1_Ensure_Excel_4_Workbooks_is_set_to_Enabled_Enabled_OpenSave_blocked_use_open_policy"></reference>
+            <description>(L1) Ensure 'Excel 4 Workbooks' is set to Enabled (Enabled: Open/Save blocked, use open policy)</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36325"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:def:36326" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Dif and Sylk Files' is set to Enabled (Open/Save blocked, use open policy)</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4.7.2.1.13_L1_Ensure_Dif_and_Sylk_Files_is_set_to_Enabled_OpenSave_blocked_use_open_policy" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4.7.2.1.13_L1_Ensure_Dif_and_Sylk_Files_is_set_to_Enabled_OpenSave_blocked_use_open_policy"></reference>
+            <description>(L1) Ensure 'Dif and Sylk Files' is set to Enabled (Open/Save blocked, use open policy)</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36326"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:def:36327" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Turn Off Protected View For Attachments Opened from Outlook' is set to Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4.7.2.2.1_L1_Ensure_Turn_Off_Protected_View_For_Attachments_Opened_from_Outlook_is_set_to_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4.7.2.2.1_L1_Ensure_Turn_Off_Protected_View_For_Attachments_Opened_from_Outlook_is_set_to_Disabled"></reference>
+            <description>(L1) Ensure 'Turn Off Protected View For Attachments Opened from Outlook' is set to Disabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36327"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:def:36328" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Do Not Open Files From The Internet Zone in Protected View' is set to Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4.7.2.2.2_L1_Ensure_Do_Not_Open_Files_From_The_Internet_Zone_in_Protected_View_is_set_to_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4.7.2.2.2_L1_Ensure_Do_Not_Open_Files_From_The_Internet_Zone_in_Protected_View_is_set_to_Disabled"></reference>
+            <description>(L1) Ensure 'Do Not Open Files From The Internet Zone in Protected View' is set to Disabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36328"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:def:36329" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Do Not Open Files in Unsafe Locations in Protected View' is set to Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4.7.2.2.3_L1_Ensure_Do_Not_Open_Files_in_Unsafe_Locations_in_Protected_View_is_set_to_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4.7.2.2.3_L1_Ensure_Do_Not_Open_Files_in_Unsafe_Locations_in_Protected_View_is_set_to_Disabled"></reference>
+            <description>(L1) Ensure 'Do Not Open Files in Unsafe Locations in Protected View' is set to Disabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36329"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:def:36330" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Document Behavior if File Validation Fails' is set to Enabled (Open in Protected View and Unchecked for "Do not allow edit")</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4.7.2.2.4_L1_Ensure_Document_Behavior_if_File_Validation_Fails_is_set_to_Enabled_Open_in_Protected_View_and_Unchecked_for_Do_not_allow_edit" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4.7.2.2.4_L1_Ensure_Document_Behavior_if_File_Validation_Fails_is_set_to_Enabled_Open_in_Protected_View_and_Unchecked_for_Do_not_allow_edit"></reference>
+            <description>(L1) Ensure 'Document Behavior if File Validation Fails' is set to Enabled (Open in Protected View and Unchecked for "Do not allow edit")</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36330"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:def:36331" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Document Behavior if File Validation Fails' is set to Enabled (Open in Protected View and Unchecked for "Do not allow edit")</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4.7.2.2.4_L1_Ensure_Document_Behavior_if_File_Validation_Fails_is_set_to_Enabled_Open_in_Protected_View_and_Unchecked_for_Do_not_allow_edit" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4.7.2.2.4_L1_Ensure_Document_Behavior_if_File_Validation_Fails_is_set_to_Enabled_Open_in_Protected_View_and_Unchecked_for_Do_not_allow_edit"></reference>
+            <description>(L1) Ensure 'Document Behavior if File Validation Fails' is set to Enabled (Open in Protected View and Unchecked for "Do not allow edit")</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36331"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:def:36332" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Allow Trusted Locations on The Network' to Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4.7.2.3.1_L1_Ensure_Allow_Trusted_Locations_on_The_Network_to_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4.7.2.3.1_L1_Ensure_Allow_Trusted_Locations_on_The_Network_to_Disabled"></reference>
+            <description>(L1) Ensure 'Allow Trusted Locations on The Network' to Disabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36332"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:def:36333" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Disabled all Trusted Locations' is set to Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4.7.2.3.2_L1_Ensure_Disabled_all_Trusted_Locations_is_set_to_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4.7.2.3.2_L1_Ensure_Disabled_all_Trusted_Locations_is_set_to_Enabled"></reference>
+            <description>(L1) Ensure 'Disabled all Trusted Locations' is set to Enabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36333"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:def:36334" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Trust Access To Visual Basic Project' is set to Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4.7.2.4_L1_Ensure_Trust_Access_To_Visual_Basic_Project_is_set_to_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4.7.2.4_L1_Ensure_Trust_Access_To_Visual_Basic_Project_is_set_to_Disabled"></reference>
+            <description>(L1) Ensure 'Trust Access To Visual Basic Project' is set to Disabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36334"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:def:36335" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Disable Trust Bar Notification For Unsigned Application Add-ins And Block Them' is set to Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4.7.2.5_L1_Ensure_Disable_Trust_Bar_Notification_For_Unsigned_Application_Add-ins_And_Block_Them_is_set_to_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4.7.2.5_L1_Ensure_Disable_Trust_Bar_Notification_For_Unsigned_Application_Add-ins_And_Block_Them_is_set_to_Enabled"></reference>
+            <description>(L1) Ensure 'Disable Trust Bar Notification For Unsigned Application Add-ins And Block Them' is set to Enabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36335"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:def:36336" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Require That Application Add-ins are Signed By Trusted Publisher' is set to Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4.7.2.6_L1_Ensure_Require_That_Application_Add-ins_are_Signed_By_Trusted_Publisher_is_set_to_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4.7.2.6_L1_Ensure_Require_That_Application_Add-ins_are_Signed_By_Trusted_Publisher_is_set_to_Enabled"></reference>
+            <description>(L1) Ensure 'Require That Application Add-ins are Signed By Trusted Publisher' is set to Enabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36336"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:def:36337" version="1">
+         <metadata>
+            <title>(L1) Ensure 'VBA Macro Notification Settings' is set to Enabled (Disable all Except Digitally Signed Macros)</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4.7.2.7_L1_Ensure_VBA_Macro_Notification_Settings_is_set_to_Enabled_Disable_all_Except_Digitally_Signed_Macros" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4.7.2.7_L1_Ensure_VBA_Macro_Notification_Settings_is_set_to_Enabled_Disable_all_Except_Digitally_Signed_Macros"></reference>
+            <description>(L1) Ensure 'VBA Macro Notification Settings' is set to Enabled (Disable all Except Digitally Signed Macros)</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36337"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:def:36338" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Store Macro In Personal Macro Workbook by Default' is set to Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4.7.2.8_L1_Ensure_Store_Macro_In_Personal_Macro_Workbook_by_Default_is_set_to_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4.7.2.8_L1_Ensure_Store_Macro_In_Personal_Macro_Workbook_by_Default_is_set_to_Enabled"></reference>
+            <description>(L1) Ensure 'Store Macro In Personal Macro Workbook by Default' is set to Enabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36338"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:def:36339" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Turn Off File Validation' is set to Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4.7.3_L1_Ensure_Turn_Off_File_Validation_is_set_to_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4.7.3_L1_Ensure_Turn_Off_File_Validation_is_set_to_Disabled"></reference>
+            <description>(L1) Ensure 'Turn Off File Validation' is set to Disabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36339"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:def:36340" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Force File Extension to Match File Type' is set to Enabled(Always match file type )</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4.7.4_L1_Ensure_Force_File_Extension_to_Match_File_Type_is_set_to_EnabledAlways_match_file_type_" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4.7.4_L1_Ensure_Force_File_Extension_to_Match_File_Type_is_set_to_EnabledAlways_match_file_type_"></reference>
+            <description>(L1) Ensure 'Force File Extension to Match File Type' is set to Enabled(Always match file type )</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36340"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:def:36341" version="1">
+         <metadata>
+            <title>(L1) Ensure' Scan Encrypted Macros in Excel Open XML Workbooks' is set to Enable (Scan encrypted macros (default))</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4.7.5_L1_Ensure_Scan_Encrypted_Macros_in_Excel_Open_XML_Workbooks_is_set_to_Enable_Scan_encrypted_macros_default" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4.7.5_L1_Ensure_Scan_Encrypted_Macros_in_Excel_Open_XML_Workbooks_is_set_to_Enable_Scan_encrypted_macros_default"></reference>
+            <description>(L1) Ensure' Scan Encrypted Macros in Excel Open XML Workbooks' is set to Enable (Scan encrypted macros (default))</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36341"></criterion>
+         </criteria>
+      </definition>
+   </definitions>
+   <tests>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'extractdatadisableui' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36307" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36307"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36307"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'donotloadpictures' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36308" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36308"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36308"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'fupdateext_78_1' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36309" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36309"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36309"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'autohyperlink' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36310" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36310"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36310"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'disableautorepublishwarning' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36311" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36311"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36311"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'defaultformat' is equals to '51'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36312" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36312"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36312"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'disableautorepublish' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36313" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36313"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36313"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'xl2macros' is equals to '2'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36314" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36314"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36314"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'xl3macros' is equals to '2'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36315" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36315"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36315"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'xl9597workbooksandtemplates' is equals to '2'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36316" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36316"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36316"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'xl2worksheets' is equals to '2'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36317" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36317"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36317"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'xl4worksheets' is equals to '2'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36318" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36318"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36318"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'xl3worksheets' is equals to '2'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36319" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36319"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36319"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'dbasefiles' is equals to '2'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36320" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36320"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36320"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'htmlandxmlssfiles' is equals to '2'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36321" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36321"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36321"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'xl95workbooks' is equals to '2'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36322" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36322"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36322"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'openinprotectedview' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36323" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36323"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36323"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'xl4macros' is equals to '2'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36324" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36324"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36324"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'xl4workbooks' is equals to '2'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36325" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36325"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36325"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'difandsylkfiles' is equals to '2'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36326" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36326"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36326"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'disableattachmentsinpv' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36327" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36327"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36327"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'disableinternetfilesinpv' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36328" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36328"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36328"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'disableunsafelocationsinpv' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36329" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36329"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36329"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'disableeditfrompv' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36330" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36330"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36330"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'openinprotectedview' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36331" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36331"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36331"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'allownetworklocations' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36332" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36332"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36332"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'alllocationsdisabled' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36333" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36333"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36333"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'accessvbom' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36334" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36334"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36334"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'notbpromptunsignedaddin' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36335" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36335"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36335"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'requireaddinsig' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36336" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36336"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36336"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'vbawarnings' is equals to '3'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36337" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36337"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36337"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'fglobalsheet_37_1' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36338" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36338"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36338"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'enableonload' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36339" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36339"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36339"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'extensionhardening' is equals to '2'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36340" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36340"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36340"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'excelbypassencryptedmacroscan' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:tst:36341" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36341"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36341"></state>
+      </registry_test>
+   </tests>
+   <objects>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'extractdatadisableui' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36307" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Ee]xcel\\[Oo]ptions</key>
+         <name>extractdatadisableui</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'donotloadpictures' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36308" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Ee]xcel\\[Ii]nternet</key>
+         <name>donotloadpictures</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'fupdateext_78_1' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36309" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Ee]xcel\\[Oo]ptions\\[Bb]inaryoptions</key>
+         <name>fupdateext_78_1</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'autohyperlink' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36310" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Ee]xcel\\[Oo]ptions</key>
+         <name>autohyperlink</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'disableautorepublishwarning' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36311" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Ee]xcel\\[Oo]ptions</key>
+         <name>disableautorepublishwarning</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'defaultformat' is equals to '51'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36312" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Ee]xcel\\[Oo]ptions</key>
+         <name>defaultformat</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'disableautorepublish' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36313" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Ee]xcel\\[Oo]ptions</key>
+         <name>disableautorepublish</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'xl2macros' is equals to '2'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36314" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Ee]xcel\\[Ss]ecurity\\[Ff]ileblock</key>
+         <name>xl2macros</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'xl3macros' is equals to '2'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36315" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Ee]xcel\\[Ss]ecurity\\[Ff]ileblock</key>
+         <name>xl3macros</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'xl9597workbooksandtemplates' is equals to '2'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36316" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Ee]xcel\\[Ss]ecurity\\[Ff]ileblock</key>
+         <name>xl9597workbooksandtemplates</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'xl2worksheets' is equals to '2'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36317" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Ee]xcel\\[Ss]ecurity\\[Ff]ileblock</key>
+         <name>xl2worksheets</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'xl4worksheets' is equals to '2'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36318" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Ee]xcel\\[Ss]ecurity\\[Ff]ileblock</key>
+         <name>xl4worksheets</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'xl3worksheets' is equals to '2'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36319" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Ee]xcel\\[Ss]ecurity\\[Ff]ileblock</key>
+         <name>xl3worksheets</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'dbasefiles' is equals to '2'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36320" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Ee]xcel\\[Ss]ecurity\\[Ff]ileblock</key>
+         <name>dbasefiles</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'htmlandxmlssfiles' is equals to '2'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36321" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Ee]xcel\\[Ss]ecurity\\[Ff]ileblock</key>
+         <name>htmlandxmlssfiles</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'xl95workbooks' is equals to '2'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36322" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Ee]xcel\\[Ss]ecurity\\[Ff]ileblock</key>
+         <name>xl95workbooks</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'openinprotectedview' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36323" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Ee]xcel\\[Ss]ecurity\\[Ff]ileblock</key>
+         <name>openinprotectedview</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'xl4macros' is equals to '2'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36324" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Ee]xcel\\[Ss]ecurity\\[Ff]ileblock</key>
+         <name>xl4macros</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'xl4workbooks' is equals to '2'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36325" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Ee]xcel\\[Ss]ecurity\\[Ff]ileblock</key>
+         <name>xl4workbooks</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'difandsylkfiles' is equals to '2'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36326" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Ee]xcel\\[Ss]ecurity\\[Ff]ileblock</key>
+         <name>difandsylkfiles</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'disableattachmentsinpv' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36327" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Ee]xcel\\[Ss]ecurity\\[Pp]rotectedview</key>
+         <name>disableattachmentsinpv</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'disableinternetfilesinpv' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36328" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Ee]xcel\\[Ss]ecurity\\[Pp]rotectedview</key>
+         <name>disableinternetfilesinpv</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'disableunsafelocationsinpv' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36329" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Ee]xcel\\[Ss]ecurity\\[Pp]rotectedview</key>
+         <name>disableunsafelocationsinpv</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'disableeditfrompv' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36330" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Ee]xcel\\[Ss]ecurity\\[Ff]ilevalidation</key>
+         <name>disableeditfrompv</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'openinprotectedview' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36331" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Ee]xcel\\[Ss]ecurity\\[Ff]ilevalidation</key>
+         <name>openinprotectedview</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'allownetworklocations' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36332" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Ee]xcel\\[Ss]ecurity\\[Tt]rusted locations</key>
+         <name>allownetworklocations</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'alllocationsdisabled' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36333" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Ee]xcel\\[Ss]ecurity\\[Tt]rusted locations</key>
+         <name>alllocationsdisabled</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'accessvbom' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36334" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Ee]xcel\\[Ss]ecurity</key>
+         <name>accessvbom</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'notbpromptunsignedaddin' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36335" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Ee]xcel\\[Ss]ecurity</key>
+         <name>notbpromptunsignedaddin</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'requireaddinsig' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36336" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Ee]xcel\\[Ss]ecurity</key>
+         <name>requireaddinsig</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'vbawarnings' is equals to '3'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36337" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Ee]xcel\\[Ss]ecurity</key>
+         <name>vbawarnings</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'fglobalsheet_37_1' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36338" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Ee]xcel\\[Oo]ptions\\[Bb]inaryoptions</key>
+         <name>fglobalsheet_37_1</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'enableonload' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36339" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Ee]xcel\\[Ss]ecurity\\[Ff]ilevalidation</key>
+         <name>enableonload</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'extensionhardening' is equals to '2'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36340" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Ee]xcel\\[Ss]ecurity</key>
+         <name>extensionhardening</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'excelbypassencryptedmacroscan' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:obj:36341" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Ee]xcel\\[Ss]ecurity</key>
+         <name>excelbypassencryptedmacroscan</name>
+      </registry_object>
+   </objects>
+   <states>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'extractdatadisableui' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36307" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'donotloadpictures' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36308" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'fupdateext_78_1' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36309" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">0</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'autohyperlink' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36310" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">0</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'disableautorepublishwarning' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36311" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">0</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'defaultformat' is equals to '51'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36312" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">51</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'disableautorepublish' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36313" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'xl2macros' is equals to '2'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36314" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">2</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'xl3macros' is equals to '2'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36315" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">2</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'xl9597workbooksandtemplates' is equals to '2'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36316" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">2</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'xl2worksheets' is equals to '2'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36317" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">2</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'xl4worksheets' is equals to '2'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36318" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">2</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'xl3worksheets' is equals to '2'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36319" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">2</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'dbasefiles' is equals to '2'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36320" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">2</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'htmlandxmlssfiles' is equals to '2'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36321" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">2</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'xl95workbooks' is equals to '2'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36322" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">2</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'openinprotectedview' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36323" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">0</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'xl4macros' is equals to '2'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36324" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">2</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'xl4workbooks' is equals to '2'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36325" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">2</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'difandsylkfiles' is equals to '2'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36326" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">2</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'disableattachmentsinpv' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36327" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">0</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'disableinternetfilesinpv' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36328" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">0</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'disableunsafelocationsinpv' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36329" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">0</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'disableeditfrompv' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36330" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'openinprotectedview' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36331" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'allownetworklocations' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36332" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">0</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'alllocationsdisabled' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36333" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'accessvbom' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36334" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">0</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'notbpromptunsignedaddin' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36335" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'requireaddinsig' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36336" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'vbawarnings' is equals to '3'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36337" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">3</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'fglobalsheet_37_1' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36338" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'enableonload' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36339" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'extensionhardening' is equals to '2'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36340" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">2</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'excelbypassencryptedmacroscan' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:ste:36341" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">0</value>
+      </registry_state>
+   </states>
+   <variables>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Do Not Show Data Extraction Options When Opening Corrupt Workbooks' is set to Enabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363071" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Do Not Show Data Extraction Options When Opening Corrupt Workbooks' is set to Enabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363072" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Load Pictures from Web Pages Not Created in Excel' is set to Disabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363081" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Load Pictures from Web Pages Not Created in Excel' is set to Disabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363082" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Ask to Update Automatic Links' is set to Enabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363091" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Ask to Update Automatic Links' is set to Enabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363092" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Internet and Network Paths as Hyperlinks' is set to Disabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363101" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Internet and Network Paths as Hyperlinks' is set to Disabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363102" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Do Not Show AutoRepublish Warning Alert' is set to Disabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363111" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Do Not Show AutoRepublish Warning Alert' is set to Disabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363112" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Default File Format' is set to Enabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363121" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Default File Format' is set to Enabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363122" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Disable AutoRepublish' is set to Enabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363131" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Disable AutoRepublish' is set to Enabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363132" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Excel 2 Macrosheets and Add-in Files' is set to Enabled(Open/Save blocked, use open policy) for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363141" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Excel 2 Macrosheets and Add-in Files' is set to Enabled(Open/Save blocked, use open policy) for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363142" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Excel 3 Macrosheets and Add-in Files' is set to Enabled(Open/Save blocked, use open policy) for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363151" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Excel 3 Macrosheets and Add-in Files' is set to Enabled(Open/Save blocked, use open policy) for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363152" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Excel 95-97 Workbooks and Templates'  is set to Enabled(Open/Save Blocked, Use Open Policy) for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363161" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Excel 95-97 Workbooks and Templates'  is set to Enabled(Open/Save Blocked, Use Open Policy) for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363162" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Excel 2 Worksheets' is set to Enabled(Open/Save blocked, use open policy) for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363171" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Excel 2 Worksheets' is set to Enabled(Open/Save blocked, use open policy) for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363172" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Excel 4 Worksheets' is set to Enabled(Open/Save blocked, use open policy) for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363181" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Excel 4 Worksheets' is set to Enabled(Open/Save blocked, use open policy) for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363182" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Excel 3 Worksheets&quot; is set to Enabled (Open/Save blocked, use open policy) for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363191" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Excel 3 Worksheets&quot; is set to Enabled (Open/Save blocked, use open policy) for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363192" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'dBase III /IV Files' is set to Enable (Open/Save blocked, use open policy) for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363201" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'dBase III /IV Files' is set to Enable (Open/Save blocked, use open policy) for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363202" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Web Pages and Excel 2003 XML Spreadsheets' is set to Enabled (Open/Save blocked, use open policy) for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363211" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Web Pages and Excel 2003 XML Spreadsheets' is set to Enabled (Open/Save blocked, use open policy) for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363212" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Excel 95 Workbooks' is set to Enabled (Open/Save Blocked, Use Open Policy) for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363221" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Excel 95 Workbooks' is set to Enabled (Open/Save Blocked, Use Open Policy) for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363222" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Default File Block Behavior' is set to Enabled (Blocked files are not opened) for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363231" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Default File Block Behavior' is set to Enabled (Blocked files are not opened) for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363232" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Excel 4 Macrosheets and Add-in Files' is set to Enabled (Enabled: Open/Save blocked, use open policy) for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363241" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Excel 4 Macrosheets and Add-in Files' is set to Enabled (Enabled: Open/Save blocked, use open policy) for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363242" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Excel 4 Workbooks' is set to Enabled (Enabled: Open/Save blocked, use open policy) for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363251" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Excel 4 Workbooks' is set to Enabled (Enabled: Open/Save blocked, use open policy) for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363252" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Dif and Sylk Files' is set to Enabled (Open/Save blocked, use open policy) for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363261" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Dif and Sylk Files' is set to Enabled (Open/Save blocked, use open policy) for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363262" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Turn Off Protected View For Attachments Opened from Outlook' is set to Disabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363271" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Turn Off Protected View For Attachments Opened from Outlook' is set to Disabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363272" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Do Not Open Files From The Internet Zone in Protected View' is set to Disabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363281" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Do Not Open Files From The Internet Zone in Protected View' is set to Disabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363282" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Do Not Open Files in Unsafe Locations in Protected View' is set to Disabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363291" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Do Not Open Files in Unsafe Locations in Protected View' is set to Disabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363292" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Document Behavior if File Validation Fails' is set to Enabled (Open in Protected View and Unchecked for &quot;Do not allow edit&quot;) for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363301" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Document Behavior if File Validation Fails' is set to Enabled (Open in Protected View and Unchecked for &quot;Do not allow edit&quot;) for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363302" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Document Behavior if File Validation Fails' is set to Enabled (Open in Protected View and Unchecked for &quot;Do not allow edit&quot;) for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363311" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Document Behavior if File Validation Fails' is set to Enabled (Open in Protected View and Unchecked for &quot;Do not allow edit&quot;) for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363312" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Allow Trusted Locations on The Network' to Disabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363321" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Allow Trusted Locations on The Network' to Disabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363322" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Disabled all Trusted Locations' is set to Enabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363331" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Disabled all Trusted Locations' is set to Enabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363332" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Trust Access To Visual Basic Project' is set to Disabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363341" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Trust Access To Visual Basic Project' is set to Disabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363342" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Disable Trust Bar Notification For Unsigned Application Add-ins And Block Them' is set to Enabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363351" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Disable Trust Bar Notification For Unsigned Application Add-ins And Block Them' is set to Enabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363352" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Require That Application Add-ins are Signed By Trusted Publisher' is set to Enabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363361" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Require That Application Add-ins are Signed By Trusted Publisher' is set to Enabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363362" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'VBA Macro Notification Settings' is set to Enabled (Disable all Except Digitally Signed Macros) for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363371" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'VBA Macro Notification Settings' is set to Enabled (Disable all Except Digitally Signed Macros) for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363372" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Store Macro In Personal Macro Workbook by Default' is set to Enabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363381" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Store Macro In Personal Macro Workbook by Default' is set to Enabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363382" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Turn Off File Validation' is set to Disabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363391" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Turn Off File Validation' is set to Disabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363392" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Force File Extension to Match File Type' is set to Enabled(Always match file type ) for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363401" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Force File Extension to Match File Type' is set to Enabled(Always match file type ) for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363402" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure' Scan Encrypted Macros in Excel Open XML Workbooks' is set to Enable (Scan encrypted macros (default)) for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363411" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure' Scan Encrypted Macros in Excel Open XML Workbooks' is set to Enable (Scan encrypted macros (default)) for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_excel_2016:var:363412" version="1"></external_variable>
+   </variables>
+<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+<ds:SignedInfo>
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"></ds:CanonicalizationMethod>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></ds:SignatureMethod>
+<ds:Reference URI="">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"></ds:Transform>
+<ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"></ds:Transform>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></ds:DigestMethod>
+<ds:DigestValue>Oy1XnWiOv0W7AiSfymgUqq2HNTpLU4b1Sl+VG6MxNoA=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue>
+m8Ur9hwEYqdCBszutAAeJ9yplhllaxELHE0zw/ZuhihdRJRNEMjG8A/gMJ/65YH75DKfBufwWqS9
+O4mqtYorYQeDPO77de7RLkWHGPTalOc6+c/N46jP7OFOK32IOAA336KbYE3PyGkWXafsL5DMM7xq
+T2wiR4J4qCULti7rjrLwvolLwt0lt/5M7KmY5PshjJfndRURC4J9zThfXSEmYCb6u2kSbpZGZ9Bf
+vbN/O39v626vTtET5tpJ3Pr9HqZ1W5OM9FmWq5vNqF56I4rD2zOzXaL+XuFSwJHGq55CMWdB6iik
+FQLy3VPU99DIdg9mlVOVaHE0/h4vFWwUStij/jy0VZCXBui6VXu669/eXppO03+viC61XlSnwzUq
+xWsntoYj0zAdyYr91riaCgmAXS3JUsI7DgdC8dtbW3MDJFrponFak+vr67BkC34aweon48XQpl2H
+rUNibgS/nE0JhmzSdWp3ce6z6NRuSNVUlbYRdKqi+IdktepNLIRZ9164
+</ds:SignatureValue>
+<ds:KeyInfo>
+<ds:X509Data>
+<ds:X509Certificate>
+MIIHbDCCBVSgAwIBAgIQCdceADCnzKkglkQGavVKYzANBgkqhkiG9w0BAQsFADBpMQswCQYDVQQG
+EwJVUzEXMBUGA1UEChMORGlnaUNlcnQsIEluYy4xQTA/BgNVBAMTOERpZ2lDZXJ0IFRydXN0ZWQg
+RzQgQ29kZSBTaWduaW5nIFJTQTQwOTYgU0hBMzg0IDIwMjEgQ0ExMB4XDTIzMTAxODAwMDAwMFoX
+DTI2MTAxODIzNTk1OVowgfQxEzARBgsrBgEEAYI3PAIBAxMCVVMxGTAXBgsrBgEEAYI3PAIBAhMI
+TWFyeWxhbmQxHTAbBgNVBA8MFFByaXZhdGUgT3JnYW5pemF0aW9uMRIwEAYDVQQFEwlEMDYwNTg4
+MTIxCzAJBgNVBAYTAlVTMREwDwYDVQQIEwhOZXcgWW9yazEXMBUGA1UEBxMORWFzdCBHcmVlbmJ1
+c2gxKjAoBgNVBAoTIUNlbnRlciBmb3IgSW50ZXJuZXQgU2VjdXJpdHksIEluYzEqMCgGA1UEAxMh
+Q2VudGVyIGZvciBJbnRlcm5ldCBTZWN1cml0eSwgSW5jMIIBojANBgkqhkiG9w0BAQEFAAOCAY8A
+MIIBigKCAYEAyZwTJr4Kb7QEDnVY3BEkPoS3fn+XoxhCTfFvlMk8zXDcR4pFMgPkXTrZ1KbENUIV
+skIhy1vmnh61vwSL0lcdzesCekKSxLqrEA4xunZk1MB5mLbHXchSSpI1co1vaSzJjkTYP1UsUVQz
+NoOzV0LNCoZdahjGTHSduWvbrHTEeD6/jvUj3AVWrTx6krzgYA3ozAxtUnapK7IrZERuGOSwTrgR
+Lr1aieQdFy8haW1YL+ks5HmLRvcoGp+J68GX/zfMTduvWxhcpXm4txKc4iJqGCRmyBU2XjGjpDBX
+ndxHgT4edRLz5PwWSeZUh8/tWOGFwnVw7njoOa0sFixy96H2BqEn+yPeRALyf59rjtPL66tsXuaA
+ilB63yqbH42mnkxHTX5zcEm337GzTOGRccsYzN/ApVuXDeMfsO+sSUosrimnxm9QTOyKcex5h1As
+rxBVfTw+Zf7jP1YRlmMlGPG1zffK2KjJhD6ivFi2sIDThEQLxIAC8XOjp2ZXvhx87yNTAgMBAAGj
+ggICMIIB/jAfBgNVHSMEGDAWgBRoN+Drtjv4XxGG+/5hewiIZfROQjAdBgNVHQ4EFgQUX2/J9FT5
+5BNF7JqfAl9SJkv3pf0wPQYDVR0gBDYwNDAyBgVngQwBAzApMCcGCCsGAQUFBwIBFhtodHRwOi8v
+d3d3LmRpZ2ljZXJ0LmNvbS9DUFMwDgYDVR0PAQH/BAQDAgeAMBMGA1UdJQQMMAoGCCsGAQUFBwMD
+MIG1BgNVHR8Ega0wgaowU6BRoE+GTWh0dHA6Ly9jcmwzLmRpZ2ljZXJ0LmNvbS9EaWdpQ2VydFRy
+dXN0ZWRHNENvZGVTaWduaW5nUlNBNDA5NlNIQTM4NDIwMjFDQTEuY3JsMFOgUaBPhk1odHRwOi8v
+Y3JsNC5kaWdpY2VydC5jb20vRGlnaUNlcnRUcnVzdGVkRzRDb2RlU2lnbmluZ1JTQTQwOTZTSEEz
+ODQyMDIxQ0ExLmNybDCBlAYIKwYBBQUHAQEEgYcwgYQwJAYIKwYBBQUHMAGGGGh0dHA6Ly9vY3Nw
+LmRpZ2ljZXJ0LmNvbTBcBggrBgEFBQcwAoZQaHR0cDovL2NhY2VydHMuZGlnaWNlcnQuY29tL0Rp
+Z2lDZXJ0VHJ1c3RlZEc0Q29kZVNpZ25pbmdSU0E0MDk2U0hBMzg0MjAyMUNBMS5jcnQwCQYDVR0T
+BAIwADANBgkqhkiG9w0BAQsFAAOCAgEASLOHf1FQ7TrGqEoVXYoeNSkRWdVCUGd1JCDs7Hb9sLd3
+eQuipZ4EorQS/9qMiVMhmlJfF75sNVQhr1K5UtjrDRFMTzYmh78hAyovowzgyVKdGFqiVVr5m+mb
+vVyglLlA4V076LMBaKRknm1Dt8r0/5GSRCrkP2origpYMMaocN+iBX9+MImnh3J1Ehn0nRUhW86Q
+mt3/YCVIaQZisv+KmOxyAq1m6fiIYIvXY+cH2dDIheoVteb/NjYnKVqE6xTpOsxF16pykXiM9yk3
+Q9nlJS36KEGRP4wrySU4eIBnTcv4mimZjkWj6bIvk8otNJ14FbyltaPwIc3dE3oPGfSmCrkxs73j
+iqBs2TXLvblEmOhY8ko3xVdTm0zMP50MQVO948fz9yF+xdnPdMPT1/lCmGp6iWYRzxnvEkA1+HFl
+yy9YztrM8WNAhXirpUZg3HWQE2ONLKMtqQrkIHD2nikda77flk6oirqDuCf8Q7g8s86/KabTdxrw
+pRmsRjDkAfKVae58ctaKbmF32oU9BGk+9MPG8HF5Yfoh12DE1fLZcPzZrROrDFJGGxwhv5FlnxGg
+6G7jKi68erZnpaOPayK0bXyZNunqkI9IbIuPqMw5qaCZZgN6AEHIbGTKdrWEf11DmR7MdTjv3/vu
+JWtIXgk3kQFX27w9JhqV6QogVmzIfEQ=
+</ds:X509Certificate>
+</ds:X509Data>
+<ds:KeyValue>
+<ds:RSAKeyValue>
+<ds:Modulus>yZwTJr4Kb7QEDnVY3BEkPoS3fn+XoxhCTfFvlMk8zXDcR4pFMgPkXTrZ1KbENUIVskIhy1vmnh61
+vwSL0lcdzesCekKSxLqrEA4xunZk1MB5mLbHXchSSpI1co1vaSzJjkTYP1UsUVQzNoOzV0LNCoZd
+ahjGTHSduWvbrHTEeD6/jvUj3AVWrTx6krzgYA3ozAxtUnapK7IrZERuGOSwTrgRLr1aieQdFy8h
+aW1YL+ks5HmLRvcoGp+J68GX/zfMTduvWxhcpXm4txKc4iJqGCRmyBU2XjGjpDBXndxHgT4edRLz
+5PwWSeZUh8/tWOGFwnVw7njoOa0sFixy96H2BqEn+yPeRALyf59rjtPL66tsXuaAilB63yqbH42m
+nkxHTX5zcEm337GzTOGRccsYzN/ApVuXDeMfsO+sSUosrimnxm9QTOyKcex5h1AsrxBVfTw+Zf7j
+P1YRlmMlGPG1zffK2KjJhD6ivFi2sIDThEQLxIAC8XOjp2ZXvhx87yNT</ds:Modulus>
+<ds:Exponent>AQAB</ds:Exponent>
+</ds:RSAKeyValue>
+</ds:KeyValue>
+</ds:KeyInfo>
+</ds:Signature></oval_definitions>

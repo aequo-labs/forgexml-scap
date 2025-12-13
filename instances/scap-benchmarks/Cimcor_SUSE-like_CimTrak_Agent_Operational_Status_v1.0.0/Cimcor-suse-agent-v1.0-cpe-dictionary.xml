@@ -1,0 +1,219 @@
+<!-- 
+SUSE-like Systems CPE Dictionary for CimTrak Agent Monitoring
+Defines platform identifiers for SUSE Linux Enterprise Server and openSUSE distributions (SLES 12+)
+-->
+<cpe-list xmlns="http://cpe.mitre.org/dictionary/2.0"
+		  xmlns:cpe-23="http://scap.nist.gov/schema/cpe-extension/2.3"
+		  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		  xsi:schemaLocation="http://cpe.mitre.org/dictionary/2.0 http://cpe.mitre.org/files/cpe-dictionary_2.1.xsd">
+	
+	<!-- openSUSE Leap 15.3 -->
+	<cpe-item name="cpe:/o:opensuse:leap:15.3">
+		<title xml:lang="en-US">openSUSE Leap 15.3</title>
+		<check href="Cimcor-suse-agent-v1.0-cpe-oval.xml" system="http://oval.mitre.org/XMLSchema/oval-definitions-5">oval:com.cimcor.cimtrak.o_suse:def:2001</check>
+		<cpe-23:cpe23-item name="cpe:2.3:o:opensuse:leap:15.3:*:*:*:*:*:*:*"/>
+	</cpe-item>
+	
+	<!-- openSUSE Leap 15.4 -->
+	<cpe-item name="cpe:/o:opensuse:leap:15.4">
+		<title xml:lang="en-US">openSUSE Leap 15.4</title>
+		<check href="Cimcor-suse-agent-v1.0-cpe-oval.xml" system="http://oval.mitre.org/XMLSchema/oval-definitions-5">oval:com.cimcor.cimtrak.o_suse:def:2002</check>
+		<cpe-23:cpe23-item name="cpe:2.3:o:opensuse:leap:15.4:*:*:*:*:*:*:*"/>
+	</cpe-item>
+	
+	<!-- openSUSE Leap 15.5 -->
+	<cpe-item name="cpe:/o:opensuse:leap:15.5">
+		<title xml:lang="en-US">openSUSE Leap 15.5</title>
+		<check href="Cimcor-suse-agent-v1.0-cpe-oval.xml" system="http://oval.mitre.org/XMLSchema/oval-definitions-5">oval:com.cimcor.cimtrak.o_suse:def:2003</check>
+		<cpe-23:cpe23-item name="cpe:2.3:o:opensuse:leap:15.5:*:*:*:*:*:*:*"/>
+	</cpe-item>
+	
+	<!-- openSUSE Leap 15.6 -->
+	<cpe-item name="cpe:/o:opensuse:leap:15.6">
+		<title xml:lang="en-US">openSUSE Leap 15.6</title>
+		<check href="Cimcor-suse-agent-v1.0-cpe-oval.xml" system="http://oval.mitre.org/XMLSchema/oval-definitions-5">oval:com.cimcor.cimtrak.o_suse:def:2004</check>
+		<cpe-23:cpe23-item name="cpe:2.3:o:opensuse:leap:15.6:*:*:*:*:*:*:*"/>
+	</cpe-item>
+	
+	<!-- SUSE Linux Enterprise Server 12 -->
+	<cpe-item name="cpe:/o:suse:linux_enterprise_server:12">
+		<title xml:lang="en-US">SUSE Linux Enterprise Server 12</title>
+		<check href="Cimcor-suse-agent-v1.0-cpe-oval.xml" system="http://oval.mitre.org/XMLSchema/oval-definitions-5">oval:com.cimcor.cimtrak.o_suse:def:2005</check>
+		<cpe-23:cpe23-item name="cpe:2.3:o:suse:linux_enterprise_server:12:*:*:*:*:*:*:*"/>
+	</cpe-item>
+	
+	<!-- SUSE Linux Enterprise Server 12 SP1 -->
+	<cpe-item name="cpe:/o:suse:linux_enterprise_server:12.1">
+		<title xml:lang="en-US">SUSE Linux Enterprise Server 12 SP1</title>
+		<check href="Cimcor-suse-agent-v1.0-cpe-oval.xml" system="http://oval.mitre.org/XMLSchema/oval-definitions-5">oval:com.cimcor.cimtrak.o_suse:def:2006</check>
+		<cpe-23:cpe23-item name="cpe:2.3:o:suse:linux_enterprise_server:12:sp1:*:*:*:*:*:*"/>
+	</cpe-item>
+	
+	<!-- SUSE Linux Enterprise Server 12 SP2 -->
+	<cpe-item name="cpe:/o:suse:linux_enterprise_server:12.2">
+		<title xml:lang="en-US">SUSE Linux Enterprise Server 12 SP2</title>
+		<check href="Cimcor-suse-agent-v1.0-cpe-oval.xml" system="http://oval.mitre.org/XMLSchema/oval-definitions-5">oval:com.cimcor.cimtrak.o_suse:def:2007</check>
+		<cpe-23:cpe23-item name="cpe:2.3:o:suse:linux_enterprise_server:12:sp2:*:*:*:*:*:*"/>
+	</cpe-item>
+	
+	<!-- SUSE Linux Enterprise Server 12 SP3 -->
+	<cpe-item name="cpe:/o:suse:linux_enterprise_server:12.3">
+		<title xml:lang="en-US">SUSE Linux Enterprise Server 12 SP3</title>
+		<check href="Cimcor-suse-agent-v1.0-cpe-oval.xml" system="http://oval.mitre.org/XMLSchema/oval-definitions-5">oval:com.cimcor.cimtrak.o_suse:def:2008</check>
+		<cpe-23:cpe23-item name="cpe:2.3:o:suse:linux_enterprise_server:12:sp3:*:*:*:*:*:*"/>
+	</cpe-item>
+	
+	<!-- SUSE Linux Enterprise Server 12 SP4 -->
+	<cpe-item name="cpe:/o:suse:linux_enterprise_server:12.4">
+		<title xml:lang="en-US">SUSE Linux Enterprise Server 12 SP4</title>
+		<check href="Cimcor-suse-agent-v1.0-cpe-oval.xml" system="http://oval.mitre.org/XMLSchema/oval-definitions-5">oval:com.cimcor.cimtrak.o_suse:def:2009</check>
+		<cpe-23:cpe23-item name="cpe:2.3:o:suse:linux_enterprise_server:12:sp4:*:*:*:*:*:*"/>
+	</cpe-item>
+	
+	<!-- SUSE Linux Enterprise Server 12 SP5 -->
+	<cpe-item name="cpe:/o:suse:linux_enterprise_server:12.5">
+		<title xml:lang="en-US">SUSE Linux Enterprise Server 12 SP5</title>
+		<check href="Cimcor-suse-agent-v1.0-cpe-oval.xml" system="http://oval.mitre.org/XMLSchema/oval-definitions-5">oval:com.cimcor.cimtrak.o_suse:def:2010</check>
+		<cpe-23:cpe23-item name="cpe:2.3:o:suse:linux_enterprise_server:12:sp5:*:*:*:*:*:*"/>
+	</cpe-item>
+	
+	<!-- SUSE Linux Enterprise Server 15 -->
+	<cpe-item name="cpe:/o:suse:linux_enterprise_server:15">
+		<title xml:lang="en-US">SUSE Linux Enterprise Server 15</title>
+		<check href="Cimcor-suse-agent-v1.0-cpe-oval.xml" system="http://oval.mitre.org/XMLSchema/oval-definitions-5">oval:com.cimcor.cimtrak.o_suse:def:2011</check>
+		<cpe-23:cpe23-item name="cpe:2.3:o:suse:linux_enterprise_server:15:*:*:*:*:*:*:*"/>
+	</cpe-item>
+	
+	<!-- SUSE Linux Enterprise Server 15 SP1 -->
+	<cpe-item name="cpe:/o:suse:linux_enterprise_server:15.1">
+		<title xml:lang="en-US">SUSE Linux Enterprise Server 15 SP1</title>
+		<check href="Cimcor-suse-agent-v1.0-cpe-oval.xml" system="http://oval.mitre.org/XMLSchema/oval-definitions-5">oval:com.cimcor.cimtrak.o_suse:def:2012</check>
+		<cpe-23:cpe23-item name="cpe:2.3:o:suse:linux_enterprise_server:15:sp1:*:*:*:*:*:*"/>
+	</cpe-item>
+	
+	<!-- SUSE Linux Enterprise Server 15 SP2 -->
+	<cpe-item name="cpe:/o:suse:linux_enterprise_server:15.2">
+		<title xml:lang="en-US">SUSE Linux Enterprise Server 15 SP2</title>
+		<check href="Cimcor-suse-agent-v1.0-cpe-oval.xml" system="http://oval.mitre.org/XMLSchema/oval-definitions-5">oval:com.cimcor.cimtrak.o_suse:def:2013</check>
+		<cpe-23:cpe23-item name="cpe:2.3:o:suse:linux_enterprise_server:15:sp2:*:*:*:*:*:*"/>
+	</cpe-item>
+	
+	<!-- SUSE Linux Enterprise Server 15 SP3 -->
+	<cpe-item name="cpe:/o:suse:linux_enterprise_server:15.3">
+		<title xml:lang="en-US">SUSE Linux Enterprise Server 15 SP3</title>
+		<check href="Cimcor-suse-agent-v1.0-cpe-oval.xml" system="http://oval.mitre.org/XMLSchema/oval-definitions-5">oval:com.cimcor.cimtrak.o_suse:def:2014</check>
+		<cpe-23:cpe23-item name="cpe:2.3:o:suse:linux_enterprise_server:15:sp3:*:*:*:*:*:*"/>
+	</cpe-item>
+	
+	<!-- SUSE Linux Enterprise Server 15 SP4 -->
+	<cpe-item name="cpe:/o:suse:linux_enterprise_server:15.4">
+		<title xml:lang="en-US">SUSE Linux Enterprise Server 15 SP4</title>
+		<check href="Cimcor-suse-agent-v1.0-cpe-oval.xml" system="http://oval.mitre.org/XMLSchema/oval-definitions-5">oval:com.cimcor.cimtrak.o_suse:def:2015</check>
+		<cpe-23:cpe23-item name="cpe:2.3:o:suse:linux_enterprise_server:15:sp4:*:*:*:*:*:*"/>
+	</cpe-item>
+	
+	<!-- SUSE Linux Enterprise Server 15 SP5 -->
+	<cpe-item name="cpe:/o:suse:linux_enterprise_server:15.5">
+		<title xml:lang="en-US">SUSE Linux Enterprise Server 15 SP5</title>
+		<check href="Cimcor-suse-agent-v1.0-cpe-oval.xml" system="http://oval.mitre.org/XMLSchema/oval-definitions-5">oval:com.cimcor.cimtrak.o_suse:def:2016</check>
+		<cpe-23:cpe23-item name="cpe:2.3:o:suse:linux_enterprise_server:15:sp5:*:*:*:*:*:*"/>
+	</cpe-item>
+	
+	<!-- SUSE Linux Enterprise Server 15 SP6 -->
+	<cpe-item name="cpe:/o:suse:linux_enterprise_server:15.6">
+		<title xml:lang="en-US">SUSE Linux Enterprise Server 15 SP6</title>
+		<check href="Cimcor-suse-agent-v1.0-cpe-oval.xml" system="http://oval.mitre.org/XMLSchema/oval-definitions-5">oval:com.cimcor.cimtrak.o_suse:def:2017</check>
+		<cpe-23:cpe23-item name="cpe:2.3:o:suse:linux_enterprise_server:15:sp6:*:*:*:*:*:*"/>
+	</cpe-item>
+	
+	<!-- SUSE Linux Enterprise Desktop (SLED) 12 -->
+	<cpe-item name="cpe:/o:suse:linux_enterprise_desktop:12">
+		<title xml:lang="en-US">SUSE Linux Enterprise Desktop 12</title>
+		<check href="Cimcor-suse-agent-v1.0-cpe-oval.xml" system="http://oval.mitre.org/XMLSchema/oval-definitions-5">oval:com.cimcor.cimtrak.o_suse:def:3001</check>
+		<cpe-23:cpe23-item name="cpe:2.3:o:suse:linux_enterprise_desktop:12:*:*:*:*:*:*:*"/>
+	</cpe-item>
+	
+	<!-- SUSE Linux Enterprise Desktop 12 SP1 -->
+	<cpe-item name="cpe:/o:suse:linux_enterprise_desktop:12.1">
+		<title xml:lang="en-US">SUSE Linux Enterprise Desktop 12 SP1</title>
+		<check href="Cimcor-suse-agent-v1.0-cpe-oval.xml" system="http://oval.mitre.org/XMLSchema/oval-definitions-5">oval:com.cimcor.cimtrak.o_suse:def:3002</check>
+		<cpe-23:cpe23-item name="cpe:2.3:o:suse:linux_enterprise_desktop:12:sp1:*:*:*:*:*:*"/>
+	</cpe-item>
+	
+	<!-- SUSE Linux Enterprise Desktop 12 SP2 -->
+	<cpe-item name="cpe:/o:suse:linux_enterprise_desktop:12.2">
+		<title xml:lang="en-US">SUSE Linux Enterprise Desktop 12 SP2</title>
+		<check href="Cimcor-suse-agent-v1.0-cpe-oval.xml" system="http://oval.mitre.org/XMLSchema/oval-definitions-5">oval:com.cimcor.cimtrak.o_suse:def:3003</check>
+		<cpe-23:cpe23-item name="cpe:2.3:o:suse:linux_enterprise_desktop:12:sp2:*:*:*:*:*:*"/>
+	</cpe-item>
+	
+	<!-- SUSE Linux Enterprise Desktop 12 SP3 -->
+	<cpe-item name="cpe:/o:suse:linux_enterprise_desktop:12.3">
+		<title xml:lang="en-US">SUSE Linux Enterprise Desktop 12 SP3</title>
+		<check href="Cimcor-suse-agent-v1.0-cpe-oval.xml" system="http://oval.mitre.org/XMLSchema/oval-definitions-5">oval:com.cimcor.cimtrak.o_suse:def:3004</check>
+		<cpe-23:cpe23-item name="cpe:2.3:o:suse:linux_enterprise_desktop:12:sp3:*:*:*:*:*:*"/>
+	</cpe-item>
+	
+	<!-- SUSE Linux Enterprise Desktop 12 SP4 -->
+	<cpe-item name="cpe:/o:suse:linux_enterprise_desktop:12.4">
+		<title xml:lang="en-US">SUSE Linux Enterprise Desktop 12 SP4</title>
+		<check href="Cimcor-suse-agent-v1.0-cpe-oval.xml" system="http://oval.mitre.org/XMLSchema/oval-definitions-5">oval:com.cimcor.cimtrak.o_suse:def:3005</check>
+		<cpe-23:cpe23-item name="cpe:2.3:o:suse:linux_enterprise_desktop:12:sp4:*:*:*:*:*:*"/>
+	</cpe-item>
+	
+	<!-- SUSE Linux Enterprise Desktop 12 SP5 -->
+	<cpe-item name="cpe:/o:suse:linux_enterprise_desktop:12.5">
+		<title xml:lang="en-US">SUSE Linux Enterprise Desktop 12 SP5</title>
+		<check href="Cimcor-suse-agent-v1.0-cpe-oval.xml" system="http://oval.mitre.org/XMLSchema/oval-definitions-5">oval:com.cimcor.cimtrak.o_suse:def:3006</check>
+		<cpe-23:cpe23-item name="cpe:2.3:o:suse:linux_enterprise_desktop:12:sp5:*:*:*:*:*:*"/>
+	</cpe-item>
+	
+	<!-- SUSE Linux Enterprise Desktop 15 -->
+	<cpe-item name="cpe:/o:suse:linux_enterprise_desktop:15">
+		<title xml:lang="en-US">SUSE Linux Enterprise Desktop 15</title>
+		<check href="Cimcor-suse-agent-v1.0-cpe-oval.xml" system="http://oval.mitre.org/XMLSchema/oval-definitions-5">oval:com.cimcor.cimtrak.o_suse:def:3007</check>
+		<cpe-23:cpe23-item name="cpe:2.3:o:suse:linux_enterprise_desktop:15:*:*:*:*:*:*:*"/>
+	</cpe-item>
+	
+	<!-- SUSE Linux Enterprise Desktop 15 SP1 -->
+	<cpe-item name="cpe:/o:suse:linux_enterprise_desktop:15.1">
+		<title xml:lang="en-US">SUSE Linux Enterprise Desktop 15 SP1</title>
+		<check href="Cimcor-suse-agent-v1.0-cpe-oval.xml" system="http://oval.mitre.org/XMLSchema/oval-definitions-5">oval:com.cimcor.cimtrak.o_suse:def:3008</check>
+		<cpe-23:cpe23-item name="cpe:2.3:o:suse:linux_enterprise_desktop:15:sp1:*:*:*:*:*:*"/>
+	</cpe-item>
+	
+	<!-- SUSE Linux Enterprise Desktop 15 SP2 -->
+	<cpe-item name="cpe:/o:suse:linux_enterprise_desktop:15.2">
+		<title xml:lang="en-US">SUSE Linux Enterprise Desktop 15 SP2</title>
+		<check href="Cimcor-suse-agent-v1.0-cpe-oval.xml" system="http://oval.mitre.org/XMLSchema/oval-definitions-5">oval:com.cimcor.cimtrak.o_suse:def:3009</check>
+		<cpe-23:cpe23-item name="cpe:2.3:o:suse:linux_enterprise_desktop:15:sp2:*:*:*:*:*:*"/>
+	</cpe-item>
+	
+	<!-- SUSE Linux Enterprise Desktop 15 SP3 -->
+	<cpe-item name="cpe:/o:suse:linux_enterprise_desktop:15.3">
+		<title xml:lang="en-US">SUSE Linux Enterprise Desktop 15 SP3</title>
+		<check href="Cimcor-suse-agent-v1.0-cpe-oval.xml" system="http://oval.mitre.org/XMLSchema/oval-definitions-5">oval:com.cimcor.cimtrak.o_suse:def:3010</check>
+		<cpe-23:cpe23-item name="cpe:2.3:o:suse:linux_enterprise_desktop:15:sp3:*:*:*:*:*:*"/>
+	</cpe-item>
+	
+	<!-- SUSE Linux Enterprise Desktop 15 SP4 -->
+	<cpe-item name="cpe:/o:suse:linux_enterprise_desktop:15.4">
+		<title xml:lang="en-US">SUSE Linux Enterprise Desktop 15 SP4</title>
+		<check href="Cimcor-suse-agent-v1.0-cpe-oval.xml" system="http://oval.mitre.org/XMLSchema/oval-definitions-5">oval:com.cimcor.cimtrak.o_suse:def:3011</check>
+		<cpe-23:cpe23-item name="cpe:2.3:o:suse:linux_enterprise_desktop:15:sp4:*:*:*:*:*:*"/>
+	</cpe-item>
+	
+	<!-- SUSE Linux Enterprise Desktop 15 SP5 -->
+	<cpe-item name="cpe:/o:suse:linux_enterprise_desktop:15.5">
+		<title xml:lang="en-US">SUSE Linux Enterprise Desktop 15 SP5</title>
+		<check href="Cimcor-suse-agent-v1.0-cpe-oval.xml" system="http://oval.mitre.org/XMLSchema/oval-definitions-5">oval:com.cimcor.cimtrak.o_suse:def:3012</check>
+		<cpe-23:cpe23-item name="cpe:2.3:o:suse:linux_enterprise_desktop:15:sp5:*:*:*:*:*:*"/>
+	</cpe-item>
+	
+	<!-- SUSE Linux Enterprise Desktop 15 SP6 -->
+	<cpe-item name="cpe:/o:suse:linux_enterprise_desktop:15.6">
+		<title xml:lang="en-US">SUSE Linux Enterprise Desktop 15 SP6</title>
+		<check href="Cimcor-suse-agent-v1.0-cpe-oval.xml" system="http://oval.mitre.org/XMLSchema/oval-definitions-5">oval:com.cimcor.cimtrak.o_suse:def:3013</check>
+		<cpe-23:cpe23-item name="cpe:2.3:o:suse:linux_enterprise_desktop:15:sp6:*:*:*:*:*:*"/>
+	</cpe-item>
+</cpe-list>

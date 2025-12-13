@@ -1,0 +1,1350 @@
+<oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5 https://oval.cisecurity.org/schemas/validator-oval-definitions-5.11.2.xsd">
+   <generator>
+      <oval:product_name>Center for Internet Security - Optimus</oval:product_name>
+      <oval:schema_version>5.11.2</oval:schema_version>
+      <oval:timestamp>2025-06-27T17:41:32.409Z</oval:timestamp>
+   </generator>
+   <definitions>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:def:4061312" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Host headers' are on all sites</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.2_L1_Ensure_Host_headers_are_on_all_sites" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.2_L1_Ensure_Host_headers_are_on_all_sites"></reference>
+            <description>(L1) Ensure 'Host headers' are on all sites</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061312"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:def:4061313" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Directory browsing' is set to Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.3_L1_Ensure_Directory_browsing_is_set_to_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.3_L1_Ensure_Directory_browsing_is_set_to_Disabled"></reference>
+            <description>(L1) Ensure 'Directory browsing' is set to Disabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061313"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:def:4061316" version="1">
+         <metadata>
+            <title>(L1) Ensure 'application pool identity' is configured for anonymous user identity</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.6_L1_Ensure_application_pool_identity_is_configured_for_anonymous_user_identity" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.6_L1_Ensure_application_pool_identity_is_configured_for_anonymous_user_identity"></reference>
+            <description>(L1) Ensure 'application pool identity' is configured for anonymous user identity</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061316"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:def:4061317" version="1">
+         <metadata>
+            <title>(L2) Ensure 'maxURL request filter' is configured</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.2_L2_Ensure_maxURL_request_filter_is_configured" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.2_L2_Ensure_maxURL_request_filter_is_configured"></reference>
+            <description>(L2) Ensure 'maxURL request filter' is configured</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061317"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:def:4061318" version="1">
+         <metadata>
+            <title>(L2) Ensure 'MaxQueryString request filter' is configured</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.3_L2_Ensure_MaxQueryString_request_filter_is_configured" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.3_L2_Ensure_MaxQueryString_request_filter_is_configured"></reference>
+            <description>(L2) Ensure 'MaxQueryString request filter' is configured</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061318"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:def:4061319" version="1">
+         <metadata>
+            <title>(L2) Ensure non-ASCII characters in URLs are not allowed</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.4_L2_Ensure_non-ASCII_characters_in_URLs_are_not_allowed" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.4_L2_Ensure_non-ASCII_characters_in_URLs_are_not_allowed"></reference>
+            <description>(L2) Ensure non-ASCII characters in URLs are not allowed</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061319"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:def:4061320" version="1">
+         <metadata>
+            <title>(L1) Ensure Double-Encoded requests will be rejected</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.5_L1_Ensure_Double-Encoded_requests_will_be_rejected" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.5_L1_Ensure_Double-Encoded_requests_will_be_rejected"></reference>
+            <description>(L1) Ensure Double-Encoded requests will be rejected</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061320"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:def:4061322" version="1">
+         <metadata>
+            <title>(L1) Ensure Unlisted File Extensions are not allowed</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.7_L1_Ensure_Unlisted_File_Extensions_are_not_allowed" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.7_L1_Ensure_Unlisted_File_Extensions_are_not_allowed"></reference>
+            <description>(L1) Ensure Unlisted File Extensions are not allowed</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061322"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:def:4061314" version="1">
+         <metadata>
+            <title>(L1) Ensure 'application pool identity' is configured for all application pools</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4_L1_Ensure_application_pool_identity_is_configured_for_all_application_pools" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4_L1_Ensure_application_pool_identity_is_configured_for_all_application_pools"></reference>
+            <description>(L1) Ensure 'application pool identity' is configured for all application pools</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061314"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:def:4061315" version="1">
+         <metadata>
+            <title>(L1) Ensure 'unique application pools' is set for sites</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.5_L1_Ensure_unique_application_pools_is_set_for_sites" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.5_L1_Ensure_unique_application_pools_is_set_for_sites"></reference>
+            <description>(L1) Ensure 'unique application pools' is set for sites</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061315"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:def:4066530" version="1">
+         <metadata>
+            <title>(L1) Ensure 'forms authentication' require SSL</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.3_L1_Ensure_forms_authentication_require_SSL" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.3_L1_Ensure_forms_authentication_require_SSL"></reference>
+            <description>(L1) Ensure 'forms authentication' require SSL</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4066530"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:def:4066531" version="1">
+         <metadata>
+            <title>(L2) Ensure 'forms authentication' is set to use cookies</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.4_L2_Ensure_forms_authentication_is_set_to_use_cookies" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.4_L2_Ensure_forms_authentication_is_set_to_use_cookies"></reference>
+            <description>(L2) Ensure 'forms authentication' is set to use cookies</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4066531"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:def:4066532" version="1">
+         <metadata>
+            <title>(L1) Ensure 'cookie protection mode' is configured for forms authentication</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.5_L1_Ensure_cookie_protection_mode_is_configured_for_forms_authentication" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.5_L1_Ensure_cookie_protection_mode_is_configured_for_forms_authentication"></reference>
+            <description>(L1) Ensure 'cookie protection mode' is configured for forms authentication</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4066532"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:def:4066533" version="1">
+         <metadata>
+            <title>(L1) Ensure 'passwordFormat' is not set to clear</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.7_L1_Ensure_passwordFormat_is_not_set_to_clear" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.7_L1_Ensure_passwordFormat_is_not_set_to_clear"></reference>
+            <description>(L1) Ensure 'passwordFormat' is not set to clear</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4066533"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:def:4066534" version="1">
+         <metadata>
+            <title>(L2) Ensure 'credentials' are not stored in configuration files</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.8_L2_Ensure_credentials_are_not_stored_in_configuration_files" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.8_L2_Ensure_credentials_are_not_stored_in_configuration_files"></reference>
+            <description>(L2) Ensure 'credentials' are not stored in configuration files</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4066534"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:def:4066535" version="1">
+         <metadata>
+            <title>(L2) Ensure 'debug' is turned off</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.2_L2_Ensure_debug_is_turned_off" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.2_L2_Ensure_debug_is_turned_off"></reference>
+            <description>(L2) Ensure 'debug' is turned off</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4066535"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:def:4066536" version="1">
+         <metadata>
+            <title>(L2) Ensure custom error messages are not off</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.3_L2_Ensure_custom_error_messages_are_not_off" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.3_L2_Ensure_custom_error_messages_are_not_off"></reference>
+            <description>(L2) Ensure custom error messages are not off</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4066536"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:def:4066537" version="1">
+         <metadata>
+            <title>(L1) Ensure IIS HTTP detailed errors are hidden from displaying remotely</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.4_L1_Ensure_IIS_HTTP_detailed_errors_are_hidden_from_displaying_remotely" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.4_L1_Ensure_IIS_HTTP_detailed_errors_are_hidden_from_displaying_remotely"></reference>
+            <description>(L1) Ensure IIS HTTP detailed errors are hidden from displaying remotely</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4066537"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:def:4066538" version="1">
+         <metadata>
+            <title>(L2) Ensure ASP.NET stack tracing is not enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.5_L2_Ensure_ASP.NET_stack_tracing_is_not_enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.5_L2_Ensure_ASP.NET_stack_tracing_is_not_enabled"></reference>
+            <description>(L2) Ensure ASP.NET stack tracing is not enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4066538"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:def:4066539" version="1">
+         <metadata>
+            <title>(L2) Ensure 'httpcookie' mode is configured for session state</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.6_L2_Ensure_httpcookie_mode_is_configured_for_session_state" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.6_L2_Ensure_httpcookie_mode_is_configured_for_session_state"></reference>
+            <description>(L2) Ensure 'httpcookie' mode is configured for session state</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4066539"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:def:4066540" version="1">
+         <metadata>
+            <title>(L1) Ensure 'cookies' are set with HttpOnly attribute</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.7_L1_Ensure_cookies_are_set_with_HttpOnly_attribute" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.7_L1_Ensure_cookies_are_set_with_HttpOnly_attribute"></reference>
+            <description>(L1) Ensure 'cookies' are set with HttpOnly attribute</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4066540"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:def:4066541" version="1">
+         <metadata>
+            <title>(L2) Ensure 'MachineKey validation method - .Net 3.5' is configured</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.8_L2_Ensure_MachineKey_validation_method_-_.Net_3.5_is_configured" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.8_L2_Ensure_MachineKey_validation_method_-_.Net_3.5_is_configured"></reference>
+            <description>(L2) Ensure 'MachineKey validation method - .Net 3.5' is configured</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4066541"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:def:4066542" version="1">
+         <metadata>
+            <title>(L1) Ensure 'MachineKey validation method - .Net 4.5' is configured</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.9_L1_Ensure_MachineKey_validation_method_-_.Net_4.5_is_configured" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.9_L1_Ensure_MachineKey_validation_method_-_.Net_4.5_is_configured"></reference>
+            <description>(L1) Ensure 'MachineKey validation method - .Net 4.5' is configured</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4066542"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:def:4066543" version="1">
+         <metadata>
+            <title>(L1) Ensure global .NET trust level is configured</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.10_L1_Ensure_global_.NET_trust_level_is_configured" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.10_L1_Ensure_global_.NET_trust_level_is_configured"></reference>
+            <description>(L1) Ensure global .NET trust level is configured</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4066543"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:def:4061324" version="1">
+         <metadata>
+            <title>(L1) Ensure 'notListedIsapisAllowed' is set to false</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.9_L1_Ensure_notListedIsapisAllowed_is_set_to_false" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.9_L1_Ensure_notListedIsapisAllowed_is_set_to_false"></reference>
+            <description>(L1) Ensure 'notListedIsapisAllowed' is set to false</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061324"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:def:4061326" version="1">
+         <metadata>
+            <title>(L1) Ensure 'notListedCgisAllowed' is set to false</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.10_L1_Ensure_notListedCgisAllowed_is_set_to_false" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.10_L1_Ensure_notListedCgisAllowed_is_set_to_false"></reference>
+            <description>(L1) Ensure 'notListedCgisAllowed' is set to false</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061326"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:def:4061321" version="1">
+         <metadata>
+            <title>(L1) Ensure SSLv2 is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_7.2_L1_Ensure_SSLv2_is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_7.2_L1_Ensure_SSLv2_is_Disabled"></reference>
+            <description>(L1) Ensure SSLv2 is Disabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061321"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:def:4061323" version="1">
+         <metadata>
+            <title>(L1) Ensure SSLv2 is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_7.2_L1_Ensure_SSLv2_is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_7.2_L1_Ensure_SSLv2_is_Disabled"></reference>
+            <description>(L1) Ensure SSLv2 is Disabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061323"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:def:4061325" version="1">
+         <metadata>
+            <title>(L1) Ensure SSLv2 is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_7.2_L1_Ensure_SSLv2_is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_7.2_L1_Ensure_SSLv2_is_Disabled"></reference>
+            <description>(L1) Ensure SSLv2 is Disabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061325"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:def:4061327" version="1">
+         <metadata>
+            <title>(L1) Ensure SSLv2 is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_7.2_L1_Ensure_SSLv2_is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_7.2_L1_Ensure_SSLv2_is_Disabled"></reference>
+            <description>(L1) Ensure SSLv2 is Disabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061327"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:def:4061328" version="1">
+         <metadata>
+            <title>(L1) Ensure SSLv3 is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_7.3_L1_Ensure_SSLv3_is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_7.3_L1_Ensure_SSLv3_is_Disabled"></reference>
+            <description>(L1) Ensure SSLv3 is Disabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061328"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:def:4061329" version="1">
+         <metadata>
+            <title>(L1) Ensure SSLv3 is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_7.3_L1_Ensure_SSLv3_is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_7.3_L1_Ensure_SSLv3_is_Disabled"></reference>
+            <description>(L1) Ensure SSLv3 is Disabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061329"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:def:4061330" version="1">
+         <metadata>
+            <title>(L1) Ensure SSLv3 is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_7.3_L1_Ensure_SSLv3_is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_7.3_L1_Ensure_SSLv3_is_Disabled"></reference>
+            <description>(L1) Ensure SSLv3 is Disabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061330"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:def:4061331" version="1">
+         <metadata>
+            <title>(L1) Ensure SSLv3 is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_7.3_L1_Ensure_SSLv3_is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_7.3_L1_Ensure_SSLv3_is_Disabled"></reference>
+            <description>(L1) Ensure SSLv3 is Disabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061331"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:def:4061332" version="1">
+         <metadata>
+            <title>(L1) Ensure TLS 1.0 is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_7.4_L1_Ensure_TLS_1.0_is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_7.4_L1_Ensure_TLS_1.0_is_Disabled"></reference>
+            <description>(L1) Ensure TLS 1.0 is Disabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061332"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:def:4061333" version="1">
+         <metadata>
+            <title>(L1) Ensure TLS 1.0 is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_7.4_L1_Ensure_TLS_1.0_is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_7.4_L1_Ensure_TLS_1.0_is_Disabled"></reference>
+            <description>(L1) Ensure TLS 1.0 is Disabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061333"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:def:4061334" version="1">
+         <metadata>
+            <title>(L1) Ensure TLS 1.0 is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_7.4_L1_Ensure_TLS_1.0_is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_7.4_L1_Ensure_TLS_1.0_is_Disabled"></reference>
+            <description>(L1) Ensure TLS 1.0 is Disabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061334"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:def:4061335" version="1">
+         <metadata>
+            <title>(L1) Ensure TLS 1.0 is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_7.4_L1_Ensure_TLS_1.0_is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_7.4_L1_Ensure_TLS_1.0_is_Disabled"></reference>
+            <description>(L1) Ensure TLS 1.0 is Disabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061335"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:def:4061336" version="1">
+         <metadata>
+            <title>(L1) Ensure TLS 1.1 is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_7.5_L1_Ensure_TLS_1.1_is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_7.5_L1_Ensure_TLS_1.1_is_Disabled"></reference>
+            <description>(L1) Ensure TLS 1.1 is Disabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061336"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:def:4061337" version="1">
+         <metadata>
+            <title>(L1) Ensure TLS 1.1 is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_7.5_L1_Ensure_TLS_1.1_is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_7.5_L1_Ensure_TLS_1.1_is_Disabled"></reference>
+            <description>(L1) Ensure TLS 1.1 is Disabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061337"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:def:4061338" version="1">
+         <metadata>
+            <title>(L1) Ensure TLS 1.1 is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_7.5_L1_Ensure_TLS_1.1_is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_7.5_L1_Ensure_TLS_1.1_is_Disabled"></reference>
+            <description>(L1) Ensure TLS 1.1 is Disabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061338"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:def:4061339" version="1">
+         <metadata>
+            <title>(L1) Ensure TLS 1.1 is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_7.5_L1_Ensure_TLS_1.1_is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_7.5_L1_Ensure_TLS_1.1_is_Disabled"></reference>
+            <description>(L1) Ensure TLS 1.1 is Disabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061339"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:def:4061340" version="1">
+         <metadata>
+            <title>(L1) Ensure TLS 1.2 is Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_7.6_L1_Ensure_TLS_1.2_is_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_7.6_L1_Ensure_TLS_1.2_is_Enabled"></reference>
+            <description>(L1) Ensure TLS 1.2 is Enabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061340"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:def:4061341" version="1">
+         <metadata>
+            <title>(L1) Ensure TLS 1.2 is Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_7.6_L1_Ensure_TLS_1.2_is_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_7.6_L1_Ensure_TLS_1.2_is_Enabled"></reference>
+            <description>(L1) Ensure TLS 1.2 is Enabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061341"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:def:4061342" version="1">
+         <metadata>
+            <title>(L1) Ensure NULL Cipher Suites is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_7.7_L1_Ensure_NULL_Cipher_Suites_is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_7.7_L1_Ensure_NULL_Cipher_Suites_is_Disabled"></reference>
+            <description>(L1) Ensure NULL Cipher Suites is Disabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061342"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:def:4061343" version="1">
+         <metadata>
+            <title>(L1) Ensure DES Cipher Suites is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_7.8_L1_Ensure_DES_Cipher_Suites_is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_7.8_L1_Ensure_DES_Cipher_Suites_is_Disabled"></reference>
+            <description>(L1) Ensure DES Cipher Suites is Disabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061343"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:def:4061344" version="1">
+         <metadata>
+            <title>(L1) Ensure RC4 Cipher Suites is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_7.9_L1_Ensure_RC4_Cipher_Suites_is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_7.9_L1_Ensure_RC4_Cipher_Suites_is_Disabled"></reference>
+            <description>(L1) Ensure RC4 Cipher Suites is Disabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061344"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:def:4061345" version="1">
+         <metadata>
+            <title>(L1) Ensure RC4 Cipher Suites is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_7.9_L1_Ensure_RC4_Cipher_Suites_is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_7.9_L1_Ensure_RC4_Cipher_Suites_is_Disabled"></reference>
+            <description>(L1) Ensure RC4 Cipher Suites is Disabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061345"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:def:4061346" version="1">
+         <metadata>
+            <title>(L1) Ensure RC4 Cipher Suites is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_7.9_L1_Ensure_RC4_Cipher_Suites_is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_7.9_L1_Ensure_RC4_Cipher_Suites_is_Disabled"></reference>
+            <description>(L1) Ensure RC4 Cipher Suites is Disabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061346"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:def:4061347" version="1">
+         <metadata>
+            <title>(L1) Ensure RC4 Cipher Suites is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_7.9_L1_Ensure_RC4_Cipher_Suites_is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_7.9_L1_Ensure_RC4_Cipher_Suites_is_Disabled"></reference>
+            <description>(L1) Ensure RC4 Cipher Suites is Disabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061347"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:def:4061348" version="1">
+         <metadata>
+            <title>(L1) Ensure AES 128/128 Cipher Suite is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_7.10_L1_Ensure_AES_128128_Cipher_Suite_is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_7.10_L1_Ensure_AES_128128_Cipher_Suite_is_Disabled"></reference>
+            <description>(L1) Ensure AES 128/128 Cipher Suite is Disabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061348"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:def:4061349" version="1">
+         <metadata>
+            <title>(L1) Ensure AES 256/256 Cipher Suite is Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_7.11_L1_Ensure_AES_256256_Cipher_Suite_is_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_7.11_L1_Ensure_AES_256256_Cipher_Suite_is_Enabled"></reference>
+            <description>(L1) Ensure AES 256/256 Cipher Suite is Enabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061349"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:def:4061350" version="1">
+         <metadata>
+            <title>(L2) Ensure TLS Cipher Suite ordering is Configured</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_7.12_L2_Ensure_TLS_Cipher_Suite_ordering_is_Configured" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_7.12_L2_Ensure_TLS_Cipher_Suite_ordering_is_Configured"></reference>
+            <description>(L2) Ensure TLS Cipher Suite ordering is Configured</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061350"></criterion>
+         </criteria>
+      </definition>
+   </definitions>
+   <tests>
+      <bindings_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" check="all" check_existence="any_exist" comment="Ensure host headers are on all sites" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061312" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061312"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061312"></state>
+      </bindings_test>
+      <webconfig_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" check="all" check_existence="at_least_one_exists" comment="Ensure 'directory_browse_enabled' is 'equals' to 'false'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061313" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061313"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061313"></state>
+      </webconfig_test>
+      <webconfig_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" check="all" check_existence="at_least_one_exists" comment="Ensure 'anonymous_authentication_username' is 'pattern match' to '^$'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061316" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061316"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061316"></state>
+      </webconfig_test>
+      <webconfig_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" check="all" check_existence="at_least_one_exists" comment="Ensure 'request_limits_max_url' is 'less than or equal' to '4096'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061317" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061317"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061317"></state>
+      </webconfig_test>
+      <webconfig_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" check="all" check_existence="at_least_one_exists" comment="Ensure 'request_limits_max_query' is 'less than or equal' to '2048'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061318" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061318"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061318"></state>
+      </webconfig_test>
+      <webconfig_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" check="all" check_existence="at_least_one_exists" comment="Ensure 'request_filter_allow_high_bit' is 'equals' to 'false'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061319" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061319"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061319"></state>
+      </webconfig_test>
+      <webconfig_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" check="all" check_existence="at_least_one_exists" comment="Ensure 'request_filter_allow_double_escaping' is 'equals' to 'false'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061320" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061320"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061320"></state>
+      </webconfig_test>
+      <webconfig_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" check="all" check_existence="at_least_one_exists" comment="Ensure 'request_filter_allow_unlisted_extensions' is 'equals' to 'false'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061322" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061322"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061322"></state>
+      </webconfig_test>
+      <applicationpool_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" check="all" check_existence="at_least_one_exists" comment="Ensure 'identity_type' is 'case insensitive equals' to 'ApplicationPoolIdentity'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061314" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061314"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061314"></state>
+      </applicationpool_test>
+      <applicationpool_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" check="all" check_existence="at_least_one_exists" comment="Ensure 'application_count' is 'less than or equal' to '1'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061315" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061315"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061315"></state>
+      </applicationpool_test>
+      <systemweb_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" check="all" check_existence="any_exist" comment="Ensure 'forms_require_ssl' is 'equals' to 'true'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4066530" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4066530"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4066530"></state>
+      </systemweb_test>
+      <systemweb_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" check="all" check_existence="any_exist" comment="Ensure 'forms_cookieless' is 'equals' to 'UseCookies'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4066531" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4066531"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4066531"></state>
+      </systemweb_test>
+      <systemweb_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" check="all" check_existence="any_exist" comment="Ensure 'forms_protection' is 'case insensitive equals' to 'All'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4066532" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4066532"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4066532"></state>
+      </systemweb_test>
+      <systemweb_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" check="all" check_existence="any_exist" comment="Ensure 'forms_credential_format' is 'case insensitive not equal' to 'Clear'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4066533" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4066533"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4066533"></state>
+      </systemweb_test>
+      <systemweb_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" check="all" check_existence="any_exist" comment="Ensure 'forms_credential_format' is 'case insensitive not equal' to 'Clear'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4066534" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4066534"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4066534"></state>
+      </systemweb_test>
+      <systemweb_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" check="all" check_existence="any_exist" comment="Ensure 'debug' is 'equals' to 'false'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4066535" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4066535"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4066535"></state>
+      </systemweb_test>
+      <systemweb_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" check="all" check_existence="any_exist" comment="Ensure 'custom_errors' is 'case insensitive not equal' to 'Off'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4066536" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4066536"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4066536"></state>
+      </systemweb_test>
+      <systemweb_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" check="all" check_existence="any_exist" comment="Ensure 'http_error_mode' is 'case insensitive equals' to 'DetailedLocalOnly'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4066537" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4066537"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4066537"></state>
+      </systemweb_test>
+      <systemweb_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" check="all" check_existence="any_exist" comment="Ensure 'trace_enabled' is 'equals' to 'false'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4066538" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4066538"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4066538"></state>
+      </systemweb_test>
+      <systemweb_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" check="all" check_existence="any_exist" comment="Ensure 'session_state_cookieless' is 'case insensitive equals' to 'UseCookies'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4066539" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4066539"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4066539"></state>
+      </systemweb_test>
+      <systemweb_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" check="all" check_existence="any_exist" comment="Ensure 'http_only_cookies' is 'equals' to 'true'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4066540" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4066540"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4066540"></state>
+      </systemweb_test>
+      <systemweb_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" check="all" check_existence="any_exist" comment="Ensure 'machine_key_validation' is 'pattern match' to '(AES|SHA)'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4066541" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4066541"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4066541"></state>
+      </systemweb_test>
+      <systemweb_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" check="all" check_existence="any_exist" comment="Ensure 'machine_key_validation' is 'pattern match' to '(AES|SHA)'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4066542" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4066542"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4066542"></state>
+      </systemweb_test>
+      <systemweb_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" check="all" check_existence="any_exist" comment="Ensure 'trust_level' is 'pattern match' to '((?i)Medium|(?i)Low)'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4066543" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4066543"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4066543"></state>
+      </systemweb_test>
+      <applicationhostconfig_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" check="all" check_existence="any_exist" comment="Ensure 'allow_unlisted_isapis' is 'equals' to 'false'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061324" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061324"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061324"></state>
+      </applicationhostconfig_test>
+      <applicationhostconfig_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" check="all" check_existence="any_exist" comment="Ensure 'allow_unlisted_cgis' is 'equals' to 'false'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061326" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061326"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061326"></state>
+      </applicationhostconfig_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Server - Ensure 'DisabledByDefault' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061321" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061321"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061321"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Server - Ensure 'Enabled' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061323" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061323"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061323"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Client - Ensure 'Enabled' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061325" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061325"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061325"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Client - Ensure 'DisabledByDefault' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061327" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061327"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061327"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Server - Ensure 'DisabledByDefault' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061328" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061328"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061328"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Server - Ensure 'Enabled' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061329" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061329"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061329"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Client - Ensure 'Enabled' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061330" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061330"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061330"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Client - Ensure 'DisabledByDefault' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061331" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061331"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061331"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Server - Ensure 'Enabled' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061332" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061332"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061332"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Server - Ensure 'DisabledByDefault' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061333" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061333"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061333"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Client - Ensure 'Enabled' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061334" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061334"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061334"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Client - Ensure 'DisabledByDefault' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061335" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061335"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061335"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Server - Ensure 'Enabled' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061336" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061336"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061336"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Server - Ensure 'DisabledByDefault' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061337" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061337"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061337"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Client - Ensure 'Enabled' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061338" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061338"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061338"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Client - Ensure 'DisabledByDefault' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061339" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061339"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061339"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'Enabled' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061340" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061340"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061340"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'DisabledByDefault' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061341" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061341"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061341"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'Enabled' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061342" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061342"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061342"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'Enabled' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061343" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061343"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061343"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'Enabled' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061344" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061344"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061344"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'Enabled' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061345" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061345"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061345"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="any_exist" comment="Ensure 'Enabled' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061346" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061346"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061346"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'Enabled' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061347" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061347"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061347"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'Enabled' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061348" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061348"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061348"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'Enabled' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061349" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061349"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061349"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'Functions' is 'Windows: Registry Value' to 'TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384,TLS_ECD" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:tst:4061350" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061350"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061350"></state>
+      </registry_test>
+   </tests>
+   <objects>
+      <bindings_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" comment="Ensure host headers are on all sites" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061312" version="1">
+         <site_name operation="pattern match">.*</site_name>
+      </bindings_object>
+      <webconfig_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" comment="Ensure 'directory_browse_enabled' is 'equals' to 'false'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061313" version="1">
+         <site_name operation="pattern match">.*</site_name>
+         <application_name operation="pattern match">.*</application_name>
+         <virtual_directory_name operation="pattern match">.*</virtual_directory_name>
+      </webconfig_object>
+      <webconfig_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" comment="Ensure 'anonymous_authentication_username' is 'pattern match' to '^$'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061316" version="1">
+         <site_name operation="pattern match">.*</site_name>
+         <application_name operation="pattern match">.*</application_name>
+         <virtual_directory_name operation="pattern match">.*</virtual_directory_name>
+      </webconfig_object>
+      <webconfig_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" comment="Ensure 'request_limits_max_url' is 'less than or equal' to '4096'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061317" version="1">
+         <site_name operation="pattern match">.*</site_name>
+         <application_name operation="pattern match">.*</application_name>
+         <virtual_directory_name operation="pattern match">.*</virtual_directory_name>
+      </webconfig_object>
+      <webconfig_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" comment="Ensure 'request_limits_max_query' is 'less than or equal' to '2048'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061318" version="1">
+         <site_name operation="pattern match">.*</site_name>
+         <application_name operation="pattern match">.*</application_name>
+         <virtual_directory_name operation="pattern match">.*</virtual_directory_name>
+      </webconfig_object>
+      <webconfig_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" comment="Ensure 'request_filter_allow_high_bit' is 'equals' to 'false'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061319" version="1">
+         <site_name operation="pattern match">.*</site_name>
+         <application_name operation="pattern match">.*</application_name>
+         <virtual_directory_name operation="pattern match">.*</virtual_directory_name>
+      </webconfig_object>
+      <webconfig_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" comment="Ensure 'request_filter_allow_double_escaping' is 'equals' to 'false'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061320" version="1">
+         <site_name operation="pattern match">.*</site_name>
+         <application_name operation="pattern match">.*</application_name>
+         <virtual_directory_name operation="pattern match">.*</virtual_directory_name>
+      </webconfig_object>
+      <webconfig_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" comment="Ensure 'request_filter_allow_unlisted_extensions' is 'equals' to 'false'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061322" version="1">
+         <site_name operation="pattern match">.*</site_name>
+         <application_name operation="pattern match">.*</application_name>
+         <virtual_directory_name operation="pattern match">.*</virtual_directory_name>
+      </webconfig_object>
+      <applicationpool_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" comment="Ensure 'identity_type' is 'case insensitive equals' to 'ApplicationPoolIdentity'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061314" version="1">
+         <applicationpool_name operation="pattern match">.+</applicationpool_name>
+      </applicationpool_object>
+      <applicationpool_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" comment="Ensure 'application_count' is 'less than or equal' to '1'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061315" version="1">
+         <applicationpool_name operation="pattern match">.*</applicationpool_name>
+      </applicationpool_object>
+      <systemweb_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" comment="Ensure 'forms_require_ssl' is 'equals' to 'true'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4066530" version="1">
+         <site_name operation="pattern match">.*</site_name>
+         <application_name operation="pattern match">.*</application_name>
+         <virtual_directory_name operation="pattern match">.*</virtual_directory_name>
+      </systemweb_object>
+      <systemweb_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" comment="Ensure 'forms_cookieless' is 'equals' to 'UseCookies'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4066531" version="1">
+         <site_name operation="pattern match">.*</site_name>
+         <application_name operation="pattern match">.*</application_name>
+         <virtual_directory_name operation="pattern match">.*</virtual_directory_name>
+      </systemweb_object>
+      <systemweb_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" comment="Ensure 'forms_protection' is 'case insensitive equals' to 'All'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4066532" version="1">
+         <site_name operation="pattern match">.*</site_name>
+         <application_name operation="pattern match">.*</application_name>
+         <virtual_directory_name operation="pattern match">.*</virtual_directory_name>
+      </systemweb_object>
+      <systemweb_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" comment="Ensure 'forms_credential_format' is 'case insensitive not equal' to 'Clear'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4066533" version="1">
+         <site_name operation="pattern match">.*</site_name>
+         <application_name operation="pattern match">.*</application_name>
+         <virtual_directory_name operation="pattern match">.*</virtual_directory_name>
+      </systemweb_object>
+      <systemweb_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" comment="Ensure 'forms_credential_format' is 'case insensitive not equal' to 'Clear'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4066534" version="1">
+         <site_name operation="pattern match">.*</site_name>
+         <application_name operation="pattern match">.*</application_name>
+         <virtual_directory_name operation="pattern match">.*</virtual_directory_name>
+      </systemweb_object>
+      <systemweb_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" comment="Ensure 'debug' is 'equals' to 'false'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4066535" version="1">
+         <site_name operation="pattern match">.*</site_name>
+         <application_name operation="pattern match">.*</application_name>
+         <virtual_directory_name operation="pattern match">.*</virtual_directory_name>
+      </systemweb_object>
+      <systemweb_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" comment="Ensure 'custom_errors' is 'case insensitive not equal' to 'Off'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4066536" version="1">
+         <site_name operation="pattern match">.*</site_name>
+         <application_name operation="pattern match">.*</application_name>
+         <virtual_directory_name operation="pattern match">.*</virtual_directory_name>
+      </systemweb_object>
+      <systemweb_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" comment="Ensure 'http_error_mode' is 'case insensitive equals' to 'DetailedLocalOnly'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4066537" version="1">
+         <site_name operation="pattern match">.*</site_name>
+         <application_name operation="pattern match">.*</application_name>
+         <virtual_directory_name operation="pattern match">.*</virtual_directory_name>
+      </systemweb_object>
+      <systemweb_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" comment="Ensure 'trace_enabled' is 'equals' to 'false'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4066538" version="1">
+         <site_name operation="pattern match">.*</site_name>
+         <application_name operation="pattern match">.*</application_name>
+         <virtual_directory_name operation="pattern match">.*</virtual_directory_name>
+      </systemweb_object>
+      <systemweb_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" comment="Ensure 'session_state_cookieless' is 'case insensitive equals' to 'UseCookies'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4066539" version="1">
+         <site_name operation="pattern match">.*</site_name>
+         <application_name operation="pattern match">.*</application_name>
+         <virtual_directory_name operation="pattern match">.*</virtual_directory_name>
+      </systemweb_object>
+      <systemweb_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" comment="Ensure 'http_only_cookies' is 'equals' to 'true'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4066540" version="1">
+         <site_name operation="pattern match">.*</site_name>
+         <application_name operation="pattern match">.*</application_name>
+         <virtual_directory_name operation="pattern match">.*</virtual_directory_name>
+      </systemweb_object>
+      <systemweb_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" comment="Ensure 'machine_key_validation' is 'pattern match' to '(AES|SHA)'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4066541" version="1">
+         <site_name operation="pattern match">.*</site_name>
+         <application_name operation="pattern match">.*</application_name>
+         <virtual_directory_name operation="pattern match">.*</virtual_directory_name>
+      </systemweb_object>
+      <systemweb_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" comment="Ensure 'machine_key_validation' is 'pattern match' to '(AES|SHA)'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4066542" version="1">
+         <site_name operation="pattern match">.*</site_name>
+         <application_name operation="pattern match">.*</application_name>
+         <virtual_directory_name operation="pattern match">.*</virtual_directory_name>
+      </systemweb_object>
+      <systemweb_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" comment="Ensure 'trust_level' is 'pattern match' to '((?i)Medium|(?i)Low)'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4066543" version="1">
+         <site_name operation="pattern match">.*</site_name>
+         <application_name operation="pattern match">.*</application_name>
+         <virtual_directory_name operation="pattern match">.*</virtual_directory_name>
+      </systemweb_object>
+      <applicationhostconfig_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" comment="Ensure 'allow_unlisted_isapis' is 'equals' to 'false'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061324" version="1"></applicationhostconfig_object>
+      <applicationhostconfig_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" comment="Ensure 'allow_unlisted_cgis' is 'equals' to 'false'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061326" version="1"></applicationhostconfig_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Server - Ensure 'DisabledByDefault' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061321" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">System\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0\Server</key>
+         <name>DisabledByDefault</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Server - Ensure 'Enabled' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061323" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">System\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0\Server</key>
+         <name>Enabled</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Client - Ensure 'Enabled' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061325" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">System\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0\Client</key>
+         <name>Enabled</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Client - Ensure 'DisabledByDefault' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061327" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">System\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0\Client</key>
+         <name>DisabledByDefault</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Server - Ensure 'DisabledByDefault' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061328" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">System\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Server</key>
+         <name>DisabledByDefault</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Server - Ensure 'Enabled' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061329" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">System\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Server</key>
+         <name>Enabled</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Client - Ensure 'Enabled' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061330" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">System\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Client</key>
+         <name>Enabled</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Client - Ensure 'DisabledByDefault' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061331" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">System\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Client</key>
+         <name>DisabledByDefault</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Server - Ensure 'Enabled' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061332" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server</key>
+         <name>Enabled</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Server - Ensure 'DisabledByDefault' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061333" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server</key>
+         <name>DisabledByDefault</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Client - Ensure 'Enabled' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061334" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Client</key>
+         <name>Enabled</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Client - Ensure 'DisabledByDefault' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061335" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Client</key>
+         <name>DisabledByDefault</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Server - Ensure 'Enabled' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061336" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server</key>
+         <name>Enabled</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Server - Ensure 'DisabledByDefault' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061337" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server</key>
+         <name>DisabledByDefault</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Client - Ensure 'Enabled' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061338" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Client</key>
+         <name>Enabled</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Client - Ensure 'DisabledByDefault' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061339" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Client</key>
+         <name>DisabledByDefault</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'Enabled' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061340" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">System\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server</key>
+         <name>Enabled</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'DisabledByDefault' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061341" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">System\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server</key>
+         <name>DisabledByDefault</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'Enabled' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061342" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">System\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Ciphers\NULL</key>
+         <name>Enabled</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'Enabled' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061343" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Ciphers\DES 56/56</key>
+         <name>Enabled</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'Enabled' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061344" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Ciphers\RC4 40/128</key>
+         <name>Enabled</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'Enabled' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061345" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Ciphers\RC4 64/128</key>
+         <name>Enabled</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'Enabled' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061346" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Ciphers\RC4 56/128</key>
+         <name>Enabled</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'Enabled' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061347" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Ciphers\RC4 128/128</key>
+         <name>Enabled</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'Enabled' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061348" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Ciphers\AES 128/128</key>
+         <name>Enabled</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'Enabled' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061349" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Ciphers\AES 256/256</key>
+         <name>Enabled</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'Functions' is 'Windows: Registry Value' to 'TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384,TLS_ECD" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:obj:4061350" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Microsoft\Cryptography\Configuration\SSL\00010002</key>
+         <name>Functions</name>
+      </registry_object>
+   </objects>
+   <states>
+      <bindings_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" comment="Ensure host headers are on all sites" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061312" version="1">
+         <host_header datatype="string" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:4061312"></host_header>
+      </bindings_state>
+      <webconfig_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" comment="Ensure 'directory_browse_enabled' is 'equals' to 'false'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061313" version="1">
+         <directory_browse_enabled datatype="boolean" operation="equals" var_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:4061313"></directory_browse_enabled>
+      </webconfig_state>
+      <webconfig_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" comment="Ensure 'anonymous_authentication_username' is 'pattern match' to '^$'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061316" version="1">
+         <anonymous_authentication_username datatype="string" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:4061316"></anonymous_authentication_username>
+      </webconfig_state>
+      <webconfig_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" comment="Ensure 'request_limits_max_url' is 'less than or equal' to '4096'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061317" version="1">
+         <request_limits_max_url datatype="int" operation="less than or equal" var_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:4061317"></request_limits_max_url>
+      </webconfig_state>
+      <webconfig_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" comment="Ensure 'request_limits_max_query' is 'less than or equal' to '2048'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061318" version="1">
+         <request_limits_max_query datatype="int" operation="less than or equal" var_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:4061318"></request_limits_max_query>
+      </webconfig_state>
+      <webconfig_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" comment="Ensure 'request_filter_allow_high_bit' is 'equals' to 'false'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061319" version="1">
+         <request_filter_allow_high_bit datatype="boolean" operation="equals" var_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:4061319"></request_filter_allow_high_bit>
+      </webconfig_state>
+      <webconfig_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" comment="Ensure 'request_filter_allow_double_escaping' is 'equals' to 'false'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061320" version="1">
+         <request_filter_allow_double_escaping datatype="boolean" operation="equals" var_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:4061320"></request_filter_allow_double_escaping>
+      </webconfig_state>
+      <webconfig_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" comment="Ensure 'request_filter_allow_unlisted_extensions' is 'equals' to 'false'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061322" version="1">
+         <request_filter_allow_unlisted_extensions datatype="boolean" operation="equals" var_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:4061322"></request_filter_allow_unlisted_extensions>
+      </webconfig_state>
+      <applicationpool_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" comment="Ensure 'identity_type' is 'case insensitive equals' to 'ApplicationPoolIdentity'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061314" version="1">
+         <identity_type datatype="string" operation="case insensitive equals" var_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:4061314"></identity_type>
+      </applicationpool_state>
+      <applicationpool_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" comment="Ensure 'application_count' is 'less than or equal' to '1'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061315" version="1">
+         <application_count datatype="int" operation="less than or equal" var_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:4061315"></application_count>
+      </applicationpool_state>
+      <systemweb_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" comment="Ensure 'forms_require_ssl' is 'equals' to 'true'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4066530" version="1">
+         <forms_require_ssl datatype="boolean" operation="equals" var_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:4066530"></forms_require_ssl>
+      </systemweb_state>
+      <systemweb_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" comment="Ensure 'forms_cookieless' is 'equals' to 'UseCookies'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4066531" version="1">
+         <forms_cookieless datatype="string" operation="equals" var_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:4066531"></forms_cookieless>
+      </systemweb_state>
+      <systemweb_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" comment="Ensure 'forms_protection' is 'case insensitive equals' to 'All'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4066532" version="1">
+         <forms_protection datatype="string" operation="case insensitive equals" var_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:4066532"></forms_protection>
+      </systemweb_state>
+      <systemweb_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" comment="Ensure 'forms_credential_format' is 'case insensitive not equal' to 'Clear'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4066533" version="1">
+         <forms_credential_format datatype="string" operation="case insensitive not equal" var_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:4066533"></forms_credential_format>
+      </systemweb_state>
+      <systemweb_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" comment="Ensure 'forms_credential_format' is 'case insensitive not equal' to 'Clear'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4066534" version="1">
+         <forms_credential_format datatype="string" operation="case insensitive not equal" var_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:4066534"></forms_credential_format>
+      </systemweb_state>
+      <systemweb_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" comment="Ensure 'debug' is 'equals' to 'false'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4066535" version="1">
+         <debug datatype="boolean" operation="equals" var_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:4066535"></debug>
+      </systemweb_state>
+      <systemweb_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" comment="Ensure 'custom_errors' is 'case insensitive not equal' to 'Off'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4066536" version="1">
+         <custom_errors datatype="string" operation="case insensitive not equal" var_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:4066536"></custom_errors>
+      </systemweb_state>
+      <systemweb_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" comment="Ensure 'http_error_mode' is 'case insensitive equals' to 'DetailedLocalOnly'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4066537" version="1">
+         <http_error_mode datatype="string" operation="case insensitive equals" var_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:4066537"></http_error_mode>
+      </systemweb_state>
+      <systemweb_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" comment="Ensure 'trace_enabled' is 'equals' to 'false'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4066538" version="1">
+         <trace_enabled datatype="boolean" operation="equals" var_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:4066538"></trace_enabled>
+      </systemweb_state>
+      <systemweb_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" comment="Ensure 'session_state_cookieless' is 'case insensitive equals' to 'UseCookies'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4066539" version="1">
+         <session_state_cookieless datatype="string" operation="case insensitive equals" var_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:4066539"></session_state_cookieless>
+      </systemweb_state>
+      <systemweb_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" comment="Ensure 'http_only_cookies' is 'equals' to 'true'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4066540" version="1">
+         <http_only_cookies datatype="boolean" operation="equals" var_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:4066540"></http_only_cookies>
+      </systemweb_state>
+      <systemweb_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" comment="Ensure 'machine_key_validation' is 'pattern match' to '(AES|SHA)'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4066541" version="1">
+         <machine_key_validation datatype="string" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:4066541"></machine_key_validation>
+      </systemweb_state>
+      <systemweb_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" comment="Ensure 'machine_key_validation' is 'pattern match' to '(AES|SHA)'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4066542" version="1">
+         <machine_key_validation datatype="string" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:4066542"></machine_key_validation>
+      </systemweb_state>
+      <systemweb_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" comment="Ensure 'trust_level' is 'pattern match' to '((?i)Medium|(?i)Low)'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4066543" version="1">
+         <trust_level datatype="string" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:4066543"></trust_level>
+      </systemweb_state>
+      <applicationhostconfig_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" comment="Ensure 'allow_unlisted_isapis' is 'equals' to 'false'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061324" version="1">
+         <allow_unlisted_isapis datatype="boolean" operation="equals" var_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:4061324"></allow_unlisted_isapis>
+      </applicationhostconfig_state>
+      <applicationhostconfig_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#iis" comment="Ensure 'allow_unlisted_cgis' is 'equals' to 'false'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061326" version="1">
+         <allow_unlisted_cgis datatype="boolean" operation="equals" var_ref="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:4061326"></allow_unlisted_cgis>
+      </applicationhostconfig_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Server - Ensure 'DisabledByDefault' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061321" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Server - Ensure 'Enabled' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061323" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">0</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Client - Ensure 'Enabled' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061325" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">0</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Client - Ensure 'DisabledByDefault' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061327" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Server - Ensure 'DisabledByDefault' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061328" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Server - Ensure 'Enabled' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061329" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">0</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Client - Ensure 'Enabled' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061330" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">0</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Client - Ensure 'DisabledByDefault' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061331" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Server - Ensure 'Enabled' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061332" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">0</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Server - Ensure 'DisabledByDefault' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061333" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Client - Ensure 'Enabled' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061334" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">0</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Client - Ensure 'DisabledByDefault' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061335" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Server - Ensure 'Enabled' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061336" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">0</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Server - Ensure 'DisabledByDefault' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061337" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Client - Ensure 'Enabled' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061338" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">0</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Client - Ensure 'DisabledByDefault' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061339" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'Enabled' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061340" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'DisabledByDefault' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061341" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">0</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'Enabled' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061342" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">0</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'Enabled' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061343" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">0</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'Enabled' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061344" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">0</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'Enabled' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061345" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">0</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'Enabled' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061346" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">0</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'Enabled' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061347" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">0</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'Enabled' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061348" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">0</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'Enabled' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061349" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'Functions' is 'Windows: Registry Value' to 'TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384,TLS_ECD" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:ste:4061350" version="1">
+         <type>reg_multi_sz</type>
+         <value datatype="string" operation="pattern match">^TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384|TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256|TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384|TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256|TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384|TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256|TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384|TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256$</value>
+      </registry_state>
+   </states>
+   <variables>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Host headers' are on all sites" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:4061312" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Directory browsing' is set to Disabled" datatype="boolean" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:4061313" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'application pool identity' is configured for anonymous user identity" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:4061316" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L2) Ensure 'maxURL request filter' is configured" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:4061317" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L2) Ensure 'MaxQueryString request filter' is configured" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:4061318" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L2) Ensure non-ASCII characters in URLs are not allowed" datatype="boolean" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:4061319" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure Double-Encoded requests will be rejected" datatype="boolean" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:4061320" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure Unlisted File Extensions are not allowed" datatype="boolean" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:4061322" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'application pool identity' is configured for all application pools" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:4061314" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'unique application pools' is set for sites" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:4061315" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'forms authentication' require SSL" datatype="boolean" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:4066530" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L2) Ensure 'forms authentication' is set to use cookies" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:4066531" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'cookie protection mode' is configured for forms authentication" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:4066532" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'passwordFormat' is not set to clear" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:4066533" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L2) Ensure 'credentials' are not stored in configuration files" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:4066534" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L2) Ensure 'debug' is turned off" datatype="boolean" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:4066535" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L2) Ensure custom error messages are not off" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:4066536" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure IIS HTTP detailed errors are hidden from displaying remotely" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:4066537" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L2) Ensure ASP.NET stack tracing is not enabled" datatype="boolean" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:4066538" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L2) Ensure 'httpcookie' mode is configured for session state" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:4066539" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'cookies' are set with HttpOnly attribute" datatype="boolean" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:4066540" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L2) Ensure 'MachineKey validation method - .Net 3.5' is configured" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:4066541" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'MachineKey validation method - .Net 4.5' is configured" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:4066542" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure global .NET trust level is configured" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:4066543" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'notListedIsapisAllowed' is set to false" datatype="boolean" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:4061324" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'notListedCgisAllowed' is set to false" datatype="boolean" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:4061326" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure SSLv2 is Disabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:40613211" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure SSLv2 is Disabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:40613212" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure SSLv2 is Disabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:40613231" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure SSLv2 is Disabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:40613232" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure SSLv2 is Disabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:40613251" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure SSLv2 is Disabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:40613252" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure SSLv2 is Disabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:40613271" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure SSLv2 is Disabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:40613272" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure SSLv3 is Disabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:40613281" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure SSLv3 is Disabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:40613282" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure SSLv3 is Disabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:40613291" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure SSLv3 is Disabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:40613292" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure SSLv3 is Disabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:40613301" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure SSLv3 is Disabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:40613302" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure SSLv3 is Disabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:40613311" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure SSLv3 is Disabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:40613312" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure TLS 1.0 is Disabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:40613321" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure TLS 1.0 is Disabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:40613322" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure TLS 1.0 is Disabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:40613331" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure TLS 1.0 is Disabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:40613332" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure TLS 1.0 is Disabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:40613341" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure TLS 1.0 is Disabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:40613342" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure TLS 1.0 is Disabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:40613351" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure TLS 1.0 is Disabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:40613352" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure TLS 1.1 is Disabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:40613361" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure TLS 1.1 is Disabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:40613362" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure TLS 1.1 is Disabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:40613371" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure TLS 1.1 is Disabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:40613372" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure TLS 1.1 is Disabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:40613381" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure TLS 1.1 is Disabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:40613382" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure TLS 1.1 is Disabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:40613391" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure TLS 1.1 is Disabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:40613392" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure TLS 1.2 is Enabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:40613401" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure TLS 1.2 is Enabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:40613402" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure TLS 1.2 is Enabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:40613411" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure TLS 1.2 is Enabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:40613412" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure NULL Cipher Suites is Disabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:40613421" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure NULL Cipher Suites is Disabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:40613422" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure DES Cipher Suites is Disabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:40613431" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure DES Cipher Suites is Disabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:40613432" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure RC4 Cipher Suites is Disabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:40613441" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure RC4 Cipher Suites is Disabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:40613442" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure RC4 Cipher Suites is Disabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:40613451" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure RC4 Cipher Suites is Disabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:40613452" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure RC4 Cipher Suites is Disabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:40613461" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure RC4 Cipher Suites is Disabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:40613462" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure RC4 Cipher Suites is Disabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:40613471" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure RC4 Cipher Suites is Disabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:40613472" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure AES 128/128 Cipher Suite is Disabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:40613481" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure AES 128/128 Cipher Suite is Disabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:40613482" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure AES 256/256 Cipher Suite is Enabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:40613491" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure AES 256/256 Cipher Suite is Enabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:40613492" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L2) Ensure TLS Cipher Suite ordering is Configured for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:40613501" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L2) Ensure TLS Cipher Suite ordering is Configured for the registry value" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_iis_10:var:40613502" version="1"></external_variable>
+   </variables>
+<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+<ds:SignedInfo>
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"></ds:CanonicalizationMethod>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></ds:SignatureMethod>
+<ds:Reference URI="">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"></ds:Transform>
+<ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"></ds:Transform>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></ds:DigestMethod>
+<ds:DigestValue>6J+ZPSoC8ZNoG7ngkBIh/qZUcroMa23x2qJxMp9o+U4=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue>
+mtLqmqZmag2IwuOvVeoDC0ovcFjNRQsiUbnmLtihZuPv+15h0IjAfkhX+xLkbcQDdx83LRWQhQit
+r3fnExJJsFDmQ68jaTW9sXa/NSPMYcjBSFjThd2/RkDOz6FgfbtNMmDznOKFDefXZoUW1nDCl/Uw
+3vt6kwrIcFz1fvLO3JuANTVzEoELaYSMPZjQyeNkI0SHp9SnT0mRNdXv1/Iy8UvSQjYK8JNAz9ui
+zZ+KyYH42xSImZw9Uz5qkMhwDEwv7R6vDhbGWMcdfaZBxHqyDK2I+onx7xt0+t6hGyuZTkjUFwKs
+Qqo2fDQ1pAn+4wITkHBRa1TqxHQtTaWI+CwSX/krNmSYtvdQ7fUFXQ0iZswQzVYiXpkuuf+9oh3K
+n1Wd1dsTIxk0PvDCkWcBTbaw2uKm8ingKR6OivKdtTW60vx5LScWQgYnxUtAyL8eh91pfjnyKJuy
+byOO9syyUruVlc3fDF2sAWHC4MrK9maPzT6zHt+c1g8JNsMy3TnztGlO
+</ds:SignatureValue>
+<ds:KeyInfo>
+<ds:X509Data>
+<ds:X509Certificate>
+MIIHbDCCBVSgAwIBAgIQCdceADCnzKkglkQGavVKYzANBgkqhkiG9w0BAQsFADBpMQswCQYDVQQG
+EwJVUzEXMBUGA1UEChMORGlnaUNlcnQsIEluYy4xQTA/BgNVBAMTOERpZ2lDZXJ0IFRydXN0ZWQg
+RzQgQ29kZSBTaWduaW5nIFJTQTQwOTYgU0hBMzg0IDIwMjEgQ0ExMB4XDTIzMTAxODAwMDAwMFoX
+DTI2MTAxODIzNTk1OVowgfQxEzARBgsrBgEEAYI3PAIBAxMCVVMxGTAXBgsrBgEEAYI3PAIBAhMI
+TWFyeWxhbmQxHTAbBgNVBA8MFFByaXZhdGUgT3JnYW5pemF0aW9uMRIwEAYDVQQFEwlEMDYwNTg4
+MTIxCzAJBgNVBAYTAlVTMREwDwYDVQQIEwhOZXcgWW9yazEXMBUGA1UEBxMORWFzdCBHcmVlbmJ1
+c2gxKjAoBgNVBAoTIUNlbnRlciBmb3IgSW50ZXJuZXQgU2VjdXJpdHksIEluYzEqMCgGA1UEAxMh
+Q2VudGVyIGZvciBJbnRlcm5ldCBTZWN1cml0eSwgSW5jMIIBojANBgkqhkiG9w0BAQEFAAOCAY8A
+MIIBigKCAYEAyZwTJr4Kb7QEDnVY3BEkPoS3fn+XoxhCTfFvlMk8zXDcR4pFMgPkXTrZ1KbENUIV
+skIhy1vmnh61vwSL0lcdzesCekKSxLqrEA4xunZk1MB5mLbHXchSSpI1co1vaSzJjkTYP1UsUVQz
+NoOzV0LNCoZdahjGTHSduWvbrHTEeD6/jvUj3AVWrTx6krzgYA3ozAxtUnapK7IrZERuGOSwTrgR
+Lr1aieQdFy8haW1YL+ks5HmLRvcoGp+J68GX/zfMTduvWxhcpXm4txKc4iJqGCRmyBU2XjGjpDBX
+ndxHgT4edRLz5PwWSeZUh8/tWOGFwnVw7njoOa0sFixy96H2BqEn+yPeRALyf59rjtPL66tsXuaA
+ilB63yqbH42mnkxHTX5zcEm337GzTOGRccsYzN/ApVuXDeMfsO+sSUosrimnxm9QTOyKcex5h1As
+rxBVfTw+Zf7jP1YRlmMlGPG1zffK2KjJhD6ivFi2sIDThEQLxIAC8XOjp2ZXvhx87yNTAgMBAAGj
+ggICMIIB/jAfBgNVHSMEGDAWgBRoN+Drtjv4XxGG+/5hewiIZfROQjAdBgNVHQ4EFgQUX2/J9FT5
+5BNF7JqfAl9SJkv3pf0wPQYDVR0gBDYwNDAyBgVngQwBAzApMCcGCCsGAQUFBwIBFhtodHRwOi8v
+d3d3LmRpZ2ljZXJ0LmNvbS9DUFMwDgYDVR0PAQH/BAQDAgeAMBMGA1UdJQQMMAoGCCsGAQUFBwMD
+MIG1BgNVHR8Ega0wgaowU6BRoE+GTWh0dHA6Ly9jcmwzLmRpZ2ljZXJ0LmNvbS9EaWdpQ2VydFRy
+dXN0ZWRHNENvZGVTaWduaW5nUlNBNDA5NlNIQTM4NDIwMjFDQTEuY3JsMFOgUaBPhk1odHRwOi8v
+Y3JsNC5kaWdpY2VydC5jb20vRGlnaUNlcnRUcnVzdGVkRzRDb2RlU2lnbmluZ1JTQTQwOTZTSEEz
+ODQyMDIxQ0ExLmNybDCBlAYIKwYBBQUHAQEEgYcwgYQwJAYIKwYBBQUHMAGGGGh0dHA6Ly9vY3Nw
+LmRpZ2ljZXJ0LmNvbTBcBggrBgEFBQcwAoZQaHR0cDovL2NhY2VydHMuZGlnaWNlcnQuY29tL0Rp
+Z2lDZXJ0VHJ1c3RlZEc0Q29kZVNpZ25pbmdSU0E0MDk2U0hBMzg0MjAyMUNBMS5jcnQwCQYDVR0T
+BAIwADANBgkqhkiG9w0BAQsFAAOCAgEASLOHf1FQ7TrGqEoVXYoeNSkRWdVCUGd1JCDs7Hb9sLd3
+eQuipZ4EorQS/9qMiVMhmlJfF75sNVQhr1K5UtjrDRFMTzYmh78hAyovowzgyVKdGFqiVVr5m+mb
+vVyglLlA4V076LMBaKRknm1Dt8r0/5GSRCrkP2origpYMMaocN+iBX9+MImnh3J1Ehn0nRUhW86Q
+mt3/YCVIaQZisv+KmOxyAq1m6fiIYIvXY+cH2dDIheoVteb/NjYnKVqE6xTpOsxF16pykXiM9yk3
+Q9nlJS36KEGRP4wrySU4eIBnTcv4mimZjkWj6bIvk8otNJ14FbyltaPwIc3dE3oPGfSmCrkxs73j
+iqBs2TXLvblEmOhY8ko3xVdTm0zMP50MQVO948fz9yF+xdnPdMPT1/lCmGp6iWYRzxnvEkA1+HFl
+yy9YztrM8WNAhXirpUZg3HWQE2ONLKMtqQrkIHD2nikda77flk6oirqDuCf8Q7g8s86/KabTdxrw
+pRmsRjDkAfKVae58ctaKbmF32oU9BGk+9MPG8HF5Yfoh12DE1fLZcPzZrROrDFJGGxwhv5FlnxGg
+6G7jKi68erZnpaOPayK0bXyZNunqkI9IbIuPqMw5qaCZZgN6AEHIbGTKdrWEf11DmR7MdTjv3/vu
+JWtIXgk3kQFX27w9JhqV6QogVmzIfEQ=
+</ds:X509Certificate>
+</ds:X509Data>
+<ds:KeyValue>
+<ds:RSAKeyValue>
+<ds:Modulus>yZwTJr4Kb7QEDnVY3BEkPoS3fn+XoxhCTfFvlMk8zXDcR4pFMgPkXTrZ1KbENUIVskIhy1vmnh61
+vwSL0lcdzesCekKSxLqrEA4xunZk1MB5mLbHXchSSpI1co1vaSzJjkTYP1UsUVQzNoOzV0LNCoZd
+ahjGTHSduWvbrHTEeD6/jvUj3AVWrTx6krzgYA3ozAxtUnapK7IrZERuGOSwTrgRLr1aieQdFy8h
+aW1YL+ks5HmLRvcoGp+J68GX/zfMTduvWxhcpXm4txKc4iJqGCRmyBU2XjGjpDBXndxHgT4edRLz
+5PwWSeZUh8/tWOGFwnVw7njoOa0sFixy96H2BqEn+yPeRALyf59rjtPL66tsXuaAilB63yqbH42m
+nkxHTX5zcEm337GzTOGRccsYzN/ApVuXDeMfsO+sSUosrimnxm9QTOyKcex5h1AsrxBVfTw+Zf7j
+P1YRlmMlGPG1zffK2KjJhD6ivFi2sIDThEQLxIAC8XOjp2ZXvhx87yNT</ds:Modulus>
+<ds:Exponent>AQAB</ds:Exponent>
+</ds:RSAKeyValue>
+</ds:KeyValue>
+</ds:KeyInfo>
+</ds:Signature></oval_definitions>

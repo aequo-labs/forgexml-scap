@@ -1,0 +1,1147 @@
+<oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5 https://oval.cisecurity.org/schemas/validator-oval-definitions-5.11.2.xsd">
+   <generator>
+      <oval:product_name>Center for Internet Security - Optimus</oval:product_name>
+      <oval:schema_version>5.11.2</oval:schema_version>
+      <oval:timestamp>2024-07-15T14:15:50.345Z</oval:timestamp>
+   </generator>
+   <definitions>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.cisco_ios_16:def:3647580" version="1">
+         <metadata>
+            <title>Enable 'aaa new-model'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.1_Enable_aaa_new-model" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.1_Enable_aaa_new-model"></reference>
+            <description>Enable 'aaa new-model'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647580"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.cisco_ios_16:def:3647581" version="1">
+         <metadata>
+            <title>Enable 'aaa authentication login'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.2_Enable_aaa_authentication_login" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.2_Enable_aaa_authentication_login"></reference>
+            <description>Enable 'aaa authentication login'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647581"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.cisco_ios_16:def:3647582" version="1">
+         <metadata>
+            <title>Enable 'aaa authentication enable default'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.3_Enable_aaa_authentication_enable_default" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.3_Enable_aaa_authentication_enable_default"></reference>
+            <description>Enable 'aaa authentication enable default'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647582"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.cisco_ios_16:def:3647584" version="1">
+         <metadata>
+            <title>Set 'login authentication for 'ip http'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.5_Set_login_authentication_for_ip_http" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.5_Set_login_authentication_for_ip_http"></reference>
+            <description>Set 'login authentication for 'ip http'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647584"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.cisco_ios_16:def:3647585" version="1">
+         <metadata>
+            <title>Set 'aaa accounting' to log all privileged use commands using 'commands 15'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.6_Set_aaa_accounting_to_log_all_privileged_use_commands_using_commands_15" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.6_Set_aaa_accounting_to_log_all_privileged_use_commands_using_commands_15"></reference>
+            <description>Set 'aaa accounting' to log all privileged use commands using 'commands 15'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647585"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.cisco_ios_16:def:3647586" version="1">
+         <metadata>
+            <title>Set 'aaa accounting connection'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.7_Set_aaa_accounting_connection" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.7_Set_aaa_accounting_connection"></reference>
+            <description>Set 'aaa accounting connection'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647586"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.cisco_ios_16:def:3647587" version="1">
+         <metadata>
+            <title>Set 'aaa accounting exec'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.8_Set_aaa_accounting_exec" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.8_Set_aaa_accounting_exec"></reference>
+            <description>Set 'aaa accounting exec'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647587"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.cisco_ios_16:def:3647588" version="1">
+         <metadata>
+            <title>Set 'aaa accounting network'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.9_Set_aaa_accounting_network" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.9_Set_aaa_accounting_network"></reference>
+            <description>Set 'aaa accounting network'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647588"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.cisco_ios_16:def:3647589" version="1">
+         <metadata>
+            <title>Set 'aaa accounting system'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.10_Set_aaa_accounting_system" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.10_Set_aaa_accounting_system"></reference>
+            <description>Set 'aaa accounting system'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647589"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.cisco_ios_16:def:3647597" version="1">
+         <metadata>
+            <title>Set 'password' for 'enable secret'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4.1_Set_password_for_enable_secret" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4.1_Set_password_for_enable_secret"></reference>
+            <description>Set 'password' for 'enable secret'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647597"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.cisco_ios_16:def:3647598" version="1">
+         <metadata>
+            <title>Enable 'service password-encryption'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4.2_Enable_service_password-encryption" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4.2_Enable_service_password-encryption"></reference>
+            <description>Enable 'service password-encryption'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647598"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.cisco_ios_16:def:3647609" version="1">
+         <metadata>
+            <title>Set 'snmp-server enable traps snmp'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.5.8_Set_snmp-server_enable_traps_snmp" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.5.8_Set_snmp-server_enable_traps_snmp"></reference>
+            <description>Set 'snmp-server enable traps snmp'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647609"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.cisco_ios_16:def:3647599" version="1">
+         <metadata>
+            <title>Set the 'hostname'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.1.1.1.1_Set_the_hostname" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.1.1.1.1_Set_the_hostname"></reference>
+            <description>Set the 'hostname'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647599"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.cisco_ios_16:def:3647602" version="1">
+         <metadata>
+            <title>Set the 'ip domain-name'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.1.1.1.2_Set_the_ip_domain-name" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.1.1.1.2_Set_the_ip_domain-name"></reference>
+            <description>Set the 'ip domain-name'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647602"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.cisco_ios_16:def:3647605" version="1">
+         <metadata>
+            <title>Set 'seconds' for 'ip ssh timeout' for 60 seconds or less</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.1.1.1.4_Set_seconds_for_ip_ssh_timeout_for_60_seconds_or_less" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.1.1.1.4_Set_seconds_for_ip_ssh_timeout_for_60_seconds_or_less"></reference>
+            <description>Set 'seconds' for 'ip ssh timeout' for 60 seconds or less</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647605"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.cisco_ios_16:def:3647606" version="1">
+         <metadata>
+            <title>Set maximum value for 'ip ssh authentication-retries'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.1.1.1.5_Set_maximum_value_for_ip_ssh_authentication-retries" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.1.1.1.5_Set_maximum_value_for_ip_ssh_authentication-retries"></reference>
+            <description>Set maximum value for 'ip ssh authentication-retries'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647606"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.cisco_ios_16:def:3647608" version="1">
+         <metadata>
+            <title>Set version 2 for 'ip ssh version'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.1.1.2_Set_version_2_for_ip_ssh_version" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.1.1.2_Set_version_2_for_ip_ssh_version"></reference>
+            <description>Set version 2 for 'ip ssh version'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647608"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.cisco_ios_16:def:3647610" version="1">
+         <metadata>
+            <title>Set 'no cdp run'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.1.2_Set_no_cdp_run" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.1.2_Set_no_cdp_run"></reference>
+            <description>Set 'no cdp run'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647610"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.cisco_ios_16:def:3647611" version="1">
+         <metadata>
+            <title>Set 'no ip bootp server'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.1.3_Set_no_ip_bootp_server" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.1.3_Set_no_ip_bootp_server"></reference>
+            <description>Set 'no ip bootp server'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647611"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.cisco_ios_16:def:3647612" version="1">
+         <metadata>
+            <title>Set 'no service dhcp'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.1.4_Set_no_service_dhcp" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.1.4_Set_no_service_dhcp"></reference>
+            <description>Set 'no service dhcp'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647612"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.cisco_ios_16:def:3647613" version="1">
+         <metadata>
+            <title>Set 'no ip identd'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.1.5_Set_no_ip_identd" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.1.5_Set_no_ip_identd"></reference>
+            <description>Set 'no ip identd'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647613"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.cisco_ios_16:def:3647614" version="1">
+         <metadata>
+            <title>Set 'service tcp-keepalives-in'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.1.6_Set_service_tcp-keepalives-in" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.1.6_Set_service_tcp-keepalives-in"></reference>
+            <description>Set 'service tcp-keepalives-in'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647614"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.cisco_ios_16:def:3647615" version="1">
+         <metadata>
+            <title>Set 'service tcp-keepalives-out'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.1.7_Set_service_tcp-keepalives-out" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.1.7_Set_service_tcp-keepalives-out"></reference>
+            <description>Set 'service tcp-keepalives-out'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647615"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.cisco_ios_16:def:3647616" version="1">
+         <metadata>
+            <title>Set 'no service pad'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.1.8_Set_no_service_pad" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.1.8_Set_no_service_pad"></reference>
+            <description>Set 'no service pad'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647616"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.cisco_ios_16:def:3647617" version="1">
+         <metadata>
+            <title>Set 'buffer size' for 'logging buffered'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.2.2_Set_buffer_size_for_logging_buffered" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.2.2_Set_buffer_size_for_logging_buffered"></reference>
+            <description>Set 'buffer size' for 'logging buffered'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647617"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.cisco_ios_16:def:3647618" version="1">
+         <metadata>
+            <title>Set IP address for 'logging host'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.2.4_Set_IP_address_for_logging_host" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.2.4_Set_IP_address_for_logging_host"></reference>
+            <description>Set IP address for 'logging host'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647618"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.cisco_ios_16:def:3647619" version="1">
+         <metadata>
+            <title>Set 'logging trap informational'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.2.5_Set_logging_trap_informational" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.2.5_Set_logging_trap_informational"></reference>
+            <description>Set 'logging trap informational'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647619"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.cisco_ios_16:def:3647620" version="1">
+         <metadata>
+            <title>Set 'service timestamps debug datetime'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.2.6_Set_service_timestamps_debug_datetime" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.2.6_Set_service_timestamps_debug_datetime"></reference>
+            <description>Set 'service timestamps debug datetime'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647620"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.cisco_ios_16:def:3647621" version="1">
+         <metadata>
+            <title>Set 'logging source interface'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.2.7_Set_logging_source_interface" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.2.7_Set_logging_source_interface"></reference>
+            <description>Set 'logging source interface'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647621"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.cisco_ios_16:def:3647622" version="1">
+         <metadata>
+            <title>Set 'login success/failure logging'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.2.8_Set_login_successfailure_logging" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.2.8_Set_login_successfailure_logging"></reference>
+            <description>Set 'login success/failure logging'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647622"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.cisco_ios_16:def:3647623" version="1">
+         <metadata>
+            <title>Set 'login success/failure logging'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.2.8_Set_login_successfailure_logging" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.2.8_Set_login_successfailure_logging"></reference>
+            <description>Set 'login success/failure logging'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647623"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.cisco_ios_16:def:3647624" version="1">
+         <metadata>
+            <title>Set 'ntp authenticate'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.3.1.1_Set_ntp_authenticate" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.3.1.1_Set_ntp_authenticate"></reference>
+            <description>Set 'ntp authenticate'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647624"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.cisco_ios_16:def:3647625" version="1">
+         <metadata>
+            <title>Set 'ntp authentication-key'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.3.1.2_Set_ntp_authentication-key" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.3.1.2_Set_ntp_authentication-key"></reference>
+            <description>Set 'ntp authentication-key'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647625"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.cisco_ios_16:def:3647626" version="1">
+         <metadata>
+            <title>Set the 'ntp trusted-key'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.3.1.3_Set_the_ntp_trusted-key" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.3.1.3_Set_the_ntp_trusted-key"></reference>
+            <description>Set the 'ntp trusted-key'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647626"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.cisco_ios_16:def:3647627" version="1">
+         <metadata>
+            <title>Set 'ip address' for 'ntp server'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.3.2_Set_ip_address_for_ntp_server" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.3.2_Set_ip_address_for_ntp_server"></reference>
+            <description>Set 'ip address' for 'ntp server'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647627"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.cisco_ios_16:def:3647629" version="1">
+         <metadata>
+            <title>Set AAA 'source-interface'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.4.2_Set_AAA_source-interface" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.4.2_Set_AAA_source-interface"></reference>
+            <description>Set AAA 'source-interface'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647629"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.cisco_ios_16:def:3647630" version="1">
+         <metadata>
+            <title>Set 'ntp source' to Loopback Interface</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.4.3_Set_ntp_source_to_Loopback_Interface" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.4.3_Set_ntp_source_to_Loopback_Interface"></reference>
+            <description>Set 'ntp source' to Loopback Interface</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647630"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.cisco_ios_16:def:3647631" version="1">
+         <metadata>
+            <title>Set 'ip tftp source-interface' to the Loopback Interface</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.4.4_Set_ip_tftp_source-interface_to_the_Loopback_Interface" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.4.4_Set_ip_tftp_source-interface_to_the_Loopback_Interface"></reference>
+            <description>Set 'ip tftp source-interface' to the Loopback Interface</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647631"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.cisco_ios_16:def:3647592" version="1">
+         <metadata>
+            <title>Set 'no ip source-route'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.1.1_Set_no_ip_source-route" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.1.1_Set_no_ip_source-route"></reference>
+            <description>Set 'no ip source-route'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647592"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.cisco_ios_16:def:3647583" version="1">
+         <metadata>
+            <title>Set 'login authentication for 'line vty'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.4_Set_login_authentication_for_line_vty" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.4_Set_login_authentication_for_line_vty"></reference>
+            <description>Set 'login authentication for 'line vty'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647583"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.cisco_ios_16:def:3647590" version="1">
+         <metadata>
+            <title>Set 'transport input ssh' for 'line vty' connections</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.2.2_Set_transport_input_ssh_for_line_vty_connections" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.2.2_Set_transport_input_ssh_for_line_vty_connections"></reference>
+            <description>Set 'transport input ssh' for 'line vty' connections</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647590"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.cisco_ios_16:def:3647591" version="1">
+         <metadata>
+            <title>Set 'no exec' for 'line aux 0'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.2.3_Set_no_exec_for_line_aux_0" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.2.3_Set_no_exec_for_line_aux_0"></reference>
+            <description>Set 'no exec' for 'line aux 0'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647591"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.cisco_ios_16:def:3647593" version="1">
+         <metadata>
+            <title>Set 'exec-timeout' to less than or equal to 10 minutes for 'line aux 0'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.2.6_Set_exec-timeout_to_less_than_or_equal_to_10_minutes_for_line_aux_0" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.2.6_Set_exec-timeout_to_less_than_or_equal_to_10_minutes_for_line_aux_0"></reference>
+            <description>Set 'exec-timeout' to less than or equal to 10 minutes for 'line aux 0'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647593"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.cisco_ios_16:def:3647594" version="1">
+         <metadata>
+            <title>Set 'exec-timeout' to less than or equal to 10 minutes 'line console 0'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.2.7_Set_exec-timeout_to_less_than_or_equal_to_10_minutes_line_console_0" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.2.7_Set_exec-timeout_to_less_than_or_equal_to_10_minutes_line_console_0"></reference>
+            <description>Set 'exec-timeout' to less than or equal to 10 minutes 'line console 0'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647594"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.cisco_ios_16:def:3647595" version="1">
+         <metadata>
+            <title>Set 'exec-timeout' to less than or equal to 10 minutes 'line vty'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.2.8_Set_exec-timeout_to_less_than_or_equal_to_10_minutes_line_vty" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.2.8_Set_exec-timeout_to_less_than_or_equal_to_10_minutes_line_vty"></reference>
+            <description>Set 'exec-timeout' to less than or equal to 10 minutes 'line vty'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647595"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.cisco_ios_16:def:3647596" version="1">
+         <metadata>
+            <title>Set 'transport input none' for 'line aux 0'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.2.9_Set_transport_input_none_for_line_aux_0" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.2.9_Set_transport_input_none_for_line_aux_0"></reference>
+            <description>Set 'transport input none' for 'line aux 0'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647596"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.cisco_ios_16:def:3647600" version="1">
+         <metadata>
+            <title>Unset 'private' for 'snmp-server community'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.5.2_Unset_private_for_snmp-server_community" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.5.2_Unset_private_for_snmp-server_community"></reference>
+            <description>Unset 'private' for 'snmp-server community'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647600"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.cisco_ios_16:def:3647603" version="1">
+         <metadata>
+            <title>Unset 'public' for 'snmp-server community'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.5.3_Unset_public_for_snmp-server_community" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.5.3_Unset_public_for_snmp-server_community"></reference>
+            <description>Unset 'public' for 'snmp-server community'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647603"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.cisco_ios_16:def:3647601" version="1">
+         <metadata>
+            <title>Unset 'private' for 'snmp-server community'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.5.2_Unset_private_for_snmp-server_community" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.5.2_Unset_private_for_snmp-server_community"></reference>
+            <description>Unset 'private' for 'snmp-server community'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647601"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.cisco_ios_16:def:3647604" version="1">
+         <metadata>
+            <title>Unset 'public' for 'snmp-server community'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.5.3_Unset_public_for_snmp-server_community" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.5.3_Unset_public_for_snmp-server_community"></reference>
+            <description>Unset 'public' for 'snmp-server community'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647604"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.cisco_ios_16:def:3647607" version="1">
+         <metadata>
+            <title>Set 'snmp-server enable traps snmp'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.5.8_Set_snmp-server_enable_traps_snmp" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.5.8_Set_snmp-server_enable_traps_snmp"></reference>
+            <description>Set 'snmp-server enable traps snmp'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647607"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.cisco_ios_16:def:3647628" version="1">
+         <metadata>
+            <title>Create a single 'interface loopback'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.4.1_Create_a_single_interface_loopback" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.4.1_Create_a_single_interface_loopback"></reference>
+            <description>Create a single 'interface loopback'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647628"></criterion>
+         </criteria>
+      </definition>
+   </definitions>
+   <tests>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="AAA New-Model" id="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647580" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647580"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647580"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="Enable 'aaa authentication login'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647581" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647581"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647581"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="Enable 'aaa authentication enable default'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647582" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647582"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647582"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="Ip Http server authentication" id="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647584" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647584"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647584"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="all_exist" comment="Set 'aaa accounting' to log all privileged use commands using 'command 15'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647585" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647585"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647585"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="Set 'aaa accounting connection'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647586" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647586"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647586"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="Set 'aaa accounting exec'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647587" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647587"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647587"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="Set 'aaa accounting network'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647588" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647588"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647588"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="Set 'aaa accounting system'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647589" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647589"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647589"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="all_exist" comment="Set 'password' for 'enable secret'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647597" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647597"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647597"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="all_exist" comment="Enable 'service password-encryption'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647598" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647598"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647598"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="Set 'snmp-server enable traps snmp'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647609" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647609"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647609"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="Set the 'hostname'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647599" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647599"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647599"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="Set the 'ip domain name'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647602" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647602"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647602"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="IP SSH timeout" id="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647605" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647605"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647605"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="Set maximimum value of 3 for 'ip ssh authentication-retries'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647606" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647606"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647606"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="Set version 2 for 'ip ssh version'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647608" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647608"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647608"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="No cdp run" id="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647610" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647610"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647610"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="no ip bootp server" id="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647611" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647611"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647611"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="no service dhcp" id="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647612" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647612"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647612"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="Set 'no ip identd'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647613" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647613"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647613"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="Set 'service tcp-keepalives-in'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647614" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647614"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647614"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="Set 'service tcp-keepalives-out'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647615" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647615"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647615"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="Set 'no service pad'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647616" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647616"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647616"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="all_exist" comment="Set 'buffer size' for 'logging buffered'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647617" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647617"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647617"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="all_exist" comment="Set IP address for 'logging host'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647618" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647618"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647618"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="Set 'logging trap informational'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647619" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647619"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647619"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="Set 'service timestamps debug datetime'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647620" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647620"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647620"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="all_exist" comment="Set 'logging source interface'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647621" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647621"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647621"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="all_exist" comment="Logging login failure" id="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647622" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647622"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647622"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="all_exist" comment="Logging login success" id="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647623" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647623"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647623"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="Set 'ntp authenticate'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647624" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647624"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647624"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="Set 'ntp authentication-key'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647625" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647625"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647625"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="all_exist" comment="Set the 'ntp trusted-key'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647626" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647626"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647626"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="all_exist" comment="Set 'ip address' for 'ntp server'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647627" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647627"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647627"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="Set AAA 'source-interface'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647629" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647629"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647629"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="all_exist" comment="Set 'ntp source' to Loopback Interface" id="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647630" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647630"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647630"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="all_exist" comment="Set 'ip tftp source-interface' to the Loopback Interface" id="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647631" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647631"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647631"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="Set 'no ip source-route'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647592" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647592"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647592"></state>
+      </global_test>
+      <section_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="Set 'login authentication for 'line vty'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647583" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647583"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647583"></state>
+      </section_test>
+      <section_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="Set 'transport input ssh' for 'line vty' connections" id="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647590" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647590"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647590"></state>
+      </section_test>
+      <section_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="Set 'no exec' for 'line aux 0'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647591" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647591"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647591"></state>
+      </section_test>
+      <section_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="Set 'exec-timeout' to less than or equal to 10 minutes for 'line aux 0'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647593" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647593"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647593"></state>
+      </section_test>
+      <section_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="Set 'exec-timeout' to less than or equal to 10 minutes 'line console 0'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647594" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647594"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647594"></state>
+      </section_test>
+      <section_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="Set 'exec-timeout' to less than or equal to 10 minutes 'line vty'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647595" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647595"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647595"></state>
+      </section_test>
+      <section_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="Set 'transport input none' for 'line aux 0'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647596" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647596"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647596"></state>
+      </section_test>
+      <snmpcommunity_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="none_exist" comment="Unset 'private' for 'snmp-server community'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647600" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647600"></object>
+      </snmpcommunity_test>
+      <snmpcommunity_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="none_exist" comment="Unset 'public' for 'snmp-server community'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647603" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647603"></object>
+      </snmpcommunity_test>
+      <snmp_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="none_exist" comment="SNMP is disabled" id="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647601" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647601"></object>
+      </snmp_test>
+      <snmp_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="none_exist" comment="SNMP is disabled" id="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647604" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647604"></object>
+      </snmp_test>
+      <snmp_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="none_exist" comment="SNMP is disabled" id="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647607" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647607"></object>
+      </snmp_test>
+      <interface_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="Create a single 'interface loopback'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:tst:3647628" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647628"></object>
+      </interface_test>
+   </tests>
+   <objects>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="AAA New-Model" id="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647580" version="1">
+         <global_command operation="pattern match">aaa new-model</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Enable 'aaa authentication login'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647581" version="1">
+         <global_command operation="pattern match">^\s*aaa\s+authentication\s+login(\s+.*)?$</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Enable 'aaa authentication enable default'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647582" version="1">
+         <global_command operation="pattern match">aaa authentication enable</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Ip Http server authentication" id="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647584" version="1">
+         <global_command operation="pattern match">^\s*ip\s+http\s+authentication(\s+\S+)?$</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'aaa accounting' to log all privileged use commands using 'command 15'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647585" version="1">
+         <global_command operation="pattern match">aaa accounting commands 15</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'aaa accounting connection'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647586" version="1">
+         <global_command operation="pattern match">aaa accounting connection</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'aaa accounting exec'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647587" version="1">
+         <global_command operation="pattern match">aaa accounting exec</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'aaa accounting network'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647588" version="1">
+         <global_command operation="pattern match">aaa accounting network</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'aaa accounting system'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647589" version="1">
+         <global_command operation="pattern match">aaa accounting system</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'password' for 'enable secret'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647597" version="1">
+         <global_command operation="pattern match">enable secret</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Enable 'service password-encryption'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647598" version="1">
+         <global_command operation="pattern match">service password-encryption</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'snmp-server enable traps snmp'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647609" version="1">
+         <global_command operation="pattern match">snmp-server enable traps</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set the 'hostname'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647599" version="1">
+         <global_command operation="pattern match">^hostname\s\S+$</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set the 'ip domain name'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647602" version="1">
+         <global_command operation="pattern match">^ip\s+domain(-|\s+)name\s+\S+$</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="IP SSH timeout" id="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647605" version="1">
+         <global_command operation="pattern match">ip ssh timeout</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set maximimum value of 3 for 'ip ssh authentication-retries'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647606" version="1">
+         <global_command operation="pattern match">^ip\sssh\sauthentication\Sretries\s[1-3]\b</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set version 2 for 'ip ssh version'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647608" version="1">
+         <global_command operation="pattern match">ip\sssh\sversion\s2+$</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="No cdp run" id="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647610" version="1">
+         <global_command operation="pattern match">no cdp run</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="no ip bootp server" id="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647611" version="1">
+         <global_command operation="pattern match">no ip bootp server</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="no service dhcp" id="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647612" version="1">
+         <global_command operation="pattern match">no service dhcp</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'no ip identd'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647613" version="1">
+         <global_command operation="pattern match">identd</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'service tcp-keepalives-in'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647614" version="1">
+         <global_command operation="pattern match">service tcp-keepalives-in</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'service tcp-keepalives-out'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647615" version="1">
+         <global_command operation="pattern match">service tcp-keepalives-out</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'no service pad'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647616" version="1">
+         <global_command operation="pattern match">^no\sservice\spad+$</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'buffer size' for 'logging buffered'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647617" version="1">
+         <global_command operation="pattern match">logging buffered</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set IP address for 'logging host'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647618" version="1">
+         <global_command operation="pattern match">logging host</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'logging trap informational'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647619" version="1">
+         <global_command operation="pattern match">logging trap informational</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'service timestamps debug datetime'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647620" version="1">
+         <global_command operation="pattern match">service timestamps debug</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'logging source interface'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647621" version="1">
+         <global_command operation="pattern match">logging source</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Logging login failure" id="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647622" version="1">
+         <global_command operation="pattern match">login on-failure log</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Logging login success" id="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647623" version="1">
+         <global_command operation="pattern match">login on-success log</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'ntp authenticate'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647624" version="1">
+         <global_command operation="pattern match">ntp authenticate</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'ntp authentication-key'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647625" version="1">
+         <global_command operation="pattern match">ntp authentication-key</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set the 'ntp trusted-key'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647626" version="1">
+         <global_command operation="pattern match">ntp trusted-key</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'ip address' for 'ntp server'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647627" version="1">
+         <global_command operation="pattern match">ntp server</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set AAA 'source-interface'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647629" version="1">
+         <global_command operation="pattern match">tacacs source | radius source</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'ntp source' to Loopback Interface" id="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647630" version="1">
+         <global_command operation="pattern match">ntp source</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'ip tftp source-interface' to the Loopback Interface" id="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647631" version="1">
+         <global_command operation="pattern match">tftp source-interface</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'no ip source-route'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647592" version="1">
+         <global_command operation="pattern match">^no\sip\ssource-route+$</global_command>
+      </global_object>
+      <section_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'login authentication for 'line vty'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647583" version="1">
+         <section_command>line vty</section_command>
+      </section_object>
+      <section_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'transport input ssh' for 'line vty' connections" id="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647590" version="1">
+         <section_command>vty</section_command>
+      </section_object>
+      <section_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'no exec' for 'line aux 0'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647591" version="1">
+         <section_command>aux</section_command>
+      </section_object>
+      <section_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'exec-timeout' to less than or equal to 10 minutes for 'line aux 0'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647593" version="1">
+         <section_command>line aux 0</section_command>
+      </section_object>
+      <section_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'exec-timeout' to less than or equal to 10 minutes 'line console 0'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647594" version="1">
+         <section_command>line con 0</section_command>
+      </section_object>
+      <section_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'exec-timeout' to less than or equal to 10 minutes 'line vty'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647595" version="1">
+         <section_command>line vty</section_command>
+      </section_object>
+      <section_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'transport input none' for 'line aux 0'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647596" version="1">
+         <section_command>aux 0</section_command>
+      </section_object>
+      <snmpcommunity_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Unset 'private' for 'snmp-server community'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647600" version="1">
+         <name>private</name>
+      </snmpcommunity_object>
+      <snmpcommunity_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Unset 'public' for 'snmp-server community'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647603" version="1">
+         <name>public</name>
+      </snmpcommunity_object>
+      <snmp_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="SNMP is disabled" id="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647601" version="1"></snmp_object>
+      <snmp_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="SNMP is disabled" id="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647604" version="1"></snmp_object>
+      <snmp_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="SNMP is disabled" id="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647607" version="1"></snmp_object>
+      <interface_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Create a single 'interface loopback'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:obj:3647628" version="1">
+         <name operation="pattern match">[Ll]oopback.*</name>
+      </interface_object>
+   </objects>
+   <states>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="AAA New-Model" id="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647580" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647580"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Enable 'aaa authentication login'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647581" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647581"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Enable 'aaa authentication enable default'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647582" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647582"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Ip Http server authentication" id="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647584" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647584"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'aaa accounting' to log all privileged use commands using 'command 15'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647585" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647585"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'aaa accounting connection'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647586" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647586"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'aaa accounting exec'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647587" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647587"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'aaa accounting network'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647588" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647588"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'aaa accounting system'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647589" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647589"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'password' for 'enable secret'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647597" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647597"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Enable 'service password-encryption'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647598" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647598"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'snmp-server enable traps snmp'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647609" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647609"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set the 'hostname'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647599" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647599"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set the 'ip domain name'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647602" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647602"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="IP SSH timeout" id="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647605" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647605"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set maximimum value of 3 for 'ip ssh authentication-retries'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647606" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647606"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set version 2 for 'ip ssh version'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647608" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647608"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="No cdp run" id="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647610" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647610"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="no ip bootp server" id="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647611" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647611"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="no service dhcp" id="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647612" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647612"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'no ip identd'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647613" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647613"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'service tcp-keepalives-in'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647614" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647614"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'service tcp-keepalives-out'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647615" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647615"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'no service pad'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647616" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647616"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'buffer size' for 'logging buffered'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647617" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647617"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set IP address for 'logging host'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647618" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647618"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'logging trap informational'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647619" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647619"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'service timestamps debug datetime'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647620" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647620"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'logging source interface'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647621" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647621"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Logging login failure" id="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647622" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647622"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Logging login success" id="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647623" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647623"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'ntp authenticate'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647624" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647624"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'ntp authentication-key'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647625" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647625"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set the 'ntp trusted-key'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647626" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647626"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'ip address' for 'ntp server'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647627" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647627"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set AAA 'source-interface'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647629" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647629"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'ntp source' to Loopback Interface" id="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647630" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647630"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'ip tftp source-interface' to the Loopback Interface" id="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647631" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647631"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'no ip source-route'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647592" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647592"></global_command>
+      </global_state>
+      <section_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'login authentication for 'line vty'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647583" version="1">
+         <config_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647583"></config_line>
+      </section_state>
+      <section_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'transport input ssh' for 'line vty' connections" id="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647590" version="1">
+         <config_line entity_check="at least one" operation="case insensitive equals" var_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647590"></config_line>
+      </section_state>
+      <section_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'no exec' for 'line aux 0'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647591" version="1">
+         <config_line entity_check="only one" operation="case insensitive equals" var_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647591"></config_line>
+      </section_state>
+      <section_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'exec-timeout' to less than or equal to 10 minutes for 'line aux 0'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647593" version="1">
+         <config_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647593"></config_line>
+      </section_state>
+      <section_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'exec-timeout' to less than or equal to 10 minutes 'line console 0'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647594" version="1">
+         <config_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647594"></config_line>
+      </section_state>
+      <section_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'exec-timeout' to less than or equal to 10 minutes 'line vty'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647595" version="1">
+         <config_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647595"></config_line>
+      </section_state>
+      <section_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set 'transport input none' for 'line aux 0'" id="oval:org.cisecurity.benchmarks.cisco_ios_16:ste:3647596" version="1">
+         <config_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647596"></config_line>
+      </section_state>
+   </states>
+   <variables>
+      <external_variable comment="This value is used in Rule: Enable 'aaa new-model'" datatype="string" id="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647580" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Enable 'aaa authentication login'" datatype="string" id="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647581" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Enable 'aaa authentication enable default'" datatype="string" id="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647582" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set 'login authentication for 'ip http'" datatype="string" id="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647584" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set 'aaa accounting' to log all privileged use commands using 'commands 15'" datatype="string" id="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647585" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set 'aaa accounting connection'" datatype="string" id="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647586" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set 'aaa accounting exec'" datatype="string" id="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647587" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set 'aaa accounting network'" datatype="string" id="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647588" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set 'aaa accounting system'" datatype="string" id="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647589" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set 'password' for 'enable secret'" datatype="string" id="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647597" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Enable 'service password-encryption'" datatype="string" id="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647598" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set 'snmp-server enable traps snmp'" datatype="string" id="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647609" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set the 'hostname'" datatype="string" id="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647599" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set the 'ip domain-name'" datatype="string" id="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647602" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set 'seconds' for 'ip ssh timeout' for 60 seconds or less" datatype="string" id="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647605" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set maximum value for 'ip ssh authentication-retries'" datatype="string" id="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647606" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set version 2 for 'ip ssh version'" datatype="string" id="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647608" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set 'no cdp run'" datatype="string" id="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647610" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set 'no ip bootp server'" datatype="string" id="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647611" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set 'no service dhcp'" datatype="string" id="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647612" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set 'no ip identd'" datatype="string" id="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647613" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set 'service tcp-keepalives-in'" datatype="string" id="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647614" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set 'service tcp-keepalives-out'" datatype="string" id="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647615" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set 'no service pad'" datatype="string" id="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647616" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set 'buffer size' for 'logging buffered'" datatype="string" id="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647617" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set IP address for 'logging host'" datatype="string" id="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647618" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set 'logging trap informational'" datatype="string" id="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647619" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set 'service timestamps debug datetime'" datatype="string" id="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647620" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set 'logging source interface'" datatype="string" id="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647621" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set 'login success/failure logging'" datatype="string" id="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647622" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set 'login success/failure logging'" datatype="string" id="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647623" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set 'ntp authenticate'" datatype="string" id="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647624" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set 'ntp authentication-key'" datatype="string" id="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647625" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set the 'ntp trusted-key'" datatype="string" id="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647626" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set 'ip address' for 'ntp server'" datatype="string" id="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647627" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set AAA 'source-interface'" datatype="string" id="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647629" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set 'ntp source' to Loopback Interface" datatype="string" id="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647630" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set 'ip tftp source-interface' to the Loopback Interface" datatype="string" id="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647631" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set 'no ip source-route'" datatype="string" id="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647592" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set 'login authentication for 'line vty'" datatype="string" id="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647583" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set 'transport input ssh' for 'line vty' connections" datatype="string" id="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647590" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set 'no exec' for 'line aux 0'" datatype="string" id="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647591" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set 'exec-timeout' to less than or equal to 10 minutes for 'line aux 0'" datatype="string" id="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647593" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set 'exec-timeout' to less than or equal to 10 minutes 'line console 0'" datatype="string" id="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647594" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set 'exec-timeout' to less than or equal to 10 minutes 'line vty'" datatype="string" id="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647595" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set 'transport input none' for 'line aux 0'" datatype="string" id="oval:org.cisecurity.benchmarks.cisco_ios_16:var:3647596" version="1"></external_variable>
+   </variables>
+<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+<ds:SignedInfo>
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"></ds:CanonicalizationMethod>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></ds:SignatureMethod>
+<ds:Reference URI="">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"></ds:Transform>
+<ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"></ds:Transform>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></ds:DigestMethod>
+<ds:DigestValue>FCsaYmcJ3gKaSR78/ml1OVQriWUuJtlkjqtIKBmjwgQ=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue>
+fw91rBhEOII4QMSM/j1CG1SUjsv8uCYuvdcnoNk+7IAU8K1N8QZWGh60bkioXMNoTTq8iSgx6Uxb
+66B+jrq3zsEwOgbvzdeG5tr/aC8dtwFxZ+NcFFdJEwYIy0zxVMRnSq6eKCGcWlBWZzhHWeu3fG3G
+NFZYVb5BWxCF25YYI5D/4dqhlWwMA7JywQ4Dc+sipsUhQmvpYdlq4VoNxw9tgdDkdx6Tp+XiroU1
+RBkt+TRBkr2dRZyg9ZV3OfqDV2/pXsM9xCeDir13d6V/rGXM01AbEh78rkl8UpMsxJ66nTrxs/2Q
+KL03foPeOVn3gMgH+wWJWXmmo1XgpG6LdBbCXsuJVd/B16l0REevj0DS072UJmk21avujUxMwPVL
+p0yGBYV1H1o9Ra7NmXbFTClto6uvsAf3/nwrjUYWWds+cmUfjJCGq207bWyrnQLH7oUBQsY1aeA9
+Odl3SFBlXcu5tWKFpy7kVeyRobD4FK8pg8YgkYMH2xdi7B+S/YfNGDTI
+</ds:SignatureValue>
+<ds:KeyInfo>
+<ds:X509Data>
+<ds:X509Certificate>
+MIIHbDCCBVSgAwIBAgIQCdceADCnzKkglkQGavVKYzANBgkqhkiG9w0BAQsFADBpMQswCQYDVQQG
+EwJVUzEXMBUGA1UEChMORGlnaUNlcnQsIEluYy4xQTA/BgNVBAMTOERpZ2lDZXJ0IFRydXN0ZWQg
+RzQgQ29kZSBTaWduaW5nIFJTQTQwOTYgU0hBMzg0IDIwMjEgQ0ExMB4XDTIzMTAxODAwMDAwMFoX
+DTI2MTAxODIzNTk1OVowgfQxEzARBgsrBgEEAYI3PAIBAxMCVVMxGTAXBgsrBgEEAYI3PAIBAhMI
+TWFyeWxhbmQxHTAbBgNVBA8MFFByaXZhdGUgT3JnYW5pemF0aW9uMRIwEAYDVQQFEwlEMDYwNTg4
+MTIxCzAJBgNVBAYTAlVTMREwDwYDVQQIEwhOZXcgWW9yazEXMBUGA1UEBxMORWFzdCBHcmVlbmJ1
+c2gxKjAoBgNVBAoTIUNlbnRlciBmb3IgSW50ZXJuZXQgU2VjdXJpdHksIEluYzEqMCgGA1UEAxMh
+Q2VudGVyIGZvciBJbnRlcm5ldCBTZWN1cml0eSwgSW5jMIIBojANBgkqhkiG9w0BAQEFAAOCAY8A
+MIIBigKCAYEAyZwTJr4Kb7QEDnVY3BEkPoS3fn+XoxhCTfFvlMk8zXDcR4pFMgPkXTrZ1KbENUIV
+skIhy1vmnh61vwSL0lcdzesCekKSxLqrEA4xunZk1MB5mLbHXchSSpI1co1vaSzJjkTYP1UsUVQz
+NoOzV0LNCoZdahjGTHSduWvbrHTEeD6/jvUj3AVWrTx6krzgYA3ozAxtUnapK7IrZERuGOSwTrgR
+Lr1aieQdFy8haW1YL+ks5HmLRvcoGp+J68GX/zfMTduvWxhcpXm4txKc4iJqGCRmyBU2XjGjpDBX
+ndxHgT4edRLz5PwWSeZUh8/tWOGFwnVw7njoOa0sFixy96H2BqEn+yPeRALyf59rjtPL66tsXuaA
+ilB63yqbH42mnkxHTX5zcEm337GzTOGRccsYzN/ApVuXDeMfsO+sSUosrimnxm9QTOyKcex5h1As
+rxBVfTw+Zf7jP1YRlmMlGPG1zffK2KjJhD6ivFi2sIDThEQLxIAC8XOjp2ZXvhx87yNTAgMBAAGj
+ggICMIIB/jAfBgNVHSMEGDAWgBRoN+Drtjv4XxGG+/5hewiIZfROQjAdBgNVHQ4EFgQUX2/J9FT5
+5BNF7JqfAl9SJkv3pf0wPQYDVR0gBDYwNDAyBgVngQwBAzApMCcGCCsGAQUFBwIBFhtodHRwOi8v
+d3d3LmRpZ2ljZXJ0LmNvbS9DUFMwDgYDVR0PAQH/BAQDAgeAMBMGA1UdJQQMMAoGCCsGAQUFBwMD
+MIG1BgNVHR8Ega0wgaowU6BRoE+GTWh0dHA6Ly9jcmwzLmRpZ2ljZXJ0LmNvbS9EaWdpQ2VydFRy
+dXN0ZWRHNENvZGVTaWduaW5nUlNBNDA5NlNIQTM4NDIwMjFDQTEuY3JsMFOgUaBPhk1odHRwOi8v
+Y3JsNC5kaWdpY2VydC5jb20vRGlnaUNlcnRUcnVzdGVkRzRDb2RlU2lnbmluZ1JTQTQwOTZTSEEz
+ODQyMDIxQ0ExLmNybDCBlAYIKwYBBQUHAQEEgYcwgYQwJAYIKwYBBQUHMAGGGGh0dHA6Ly9vY3Nw
+LmRpZ2ljZXJ0LmNvbTBcBggrBgEFBQcwAoZQaHR0cDovL2NhY2VydHMuZGlnaWNlcnQuY29tL0Rp
+Z2lDZXJ0VHJ1c3RlZEc0Q29kZVNpZ25pbmdSU0E0MDk2U0hBMzg0MjAyMUNBMS5jcnQwCQYDVR0T
+BAIwADANBgkqhkiG9w0BAQsFAAOCAgEASLOHf1FQ7TrGqEoVXYoeNSkRWdVCUGd1JCDs7Hb9sLd3
+eQuipZ4EorQS/9qMiVMhmlJfF75sNVQhr1K5UtjrDRFMTzYmh78hAyovowzgyVKdGFqiVVr5m+mb
+vVyglLlA4V076LMBaKRknm1Dt8r0/5GSRCrkP2origpYMMaocN+iBX9+MImnh3J1Ehn0nRUhW86Q
+mt3/YCVIaQZisv+KmOxyAq1m6fiIYIvXY+cH2dDIheoVteb/NjYnKVqE6xTpOsxF16pykXiM9yk3
+Q9nlJS36KEGRP4wrySU4eIBnTcv4mimZjkWj6bIvk8otNJ14FbyltaPwIc3dE3oPGfSmCrkxs73j
+iqBs2TXLvblEmOhY8ko3xVdTm0zMP50MQVO948fz9yF+xdnPdMPT1/lCmGp6iWYRzxnvEkA1+HFl
+yy9YztrM8WNAhXirpUZg3HWQE2ONLKMtqQrkIHD2nikda77flk6oirqDuCf8Q7g8s86/KabTdxrw
+pRmsRjDkAfKVae58ctaKbmF32oU9BGk+9MPG8HF5Yfoh12DE1fLZcPzZrROrDFJGGxwhv5FlnxGg
+6G7jKi68erZnpaOPayK0bXyZNunqkI9IbIuPqMw5qaCZZgN6AEHIbGTKdrWEf11DmR7MdTjv3/vu
+JWtIXgk3kQFX27w9JhqV6QogVmzIfEQ=
+</ds:X509Certificate>
+</ds:X509Data>
+<ds:KeyValue>
+<ds:RSAKeyValue>
+<ds:Modulus>yZwTJr4Kb7QEDnVY3BEkPoS3fn+XoxhCTfFvlMk8zXDcR4pFMgPkXTrZ1KbENUIVskIhy1vmnh61
+vwSL0lcdzesCekKSxLqrEA4xunZk1MB5mLbHXchSSpI1co1vaSzJjkTYP1UsUVQzNoOzV0LNCoZd
+ahjGTHSduWvbrHTEeD6/jvUj3AVWrTx6krzgYA3ozAxtUnapK7IrZERuGOSwTrgRLr1aieQdFy8h
+aW1YL+ks5HmLRvcoGp+J68GX/zfMTduvWxhcpXm4txKc4iJqGCRmyBU2XjGjpDBXndxHgT4edRLz
+5PwWSeZUh8/tWOGFwnVw7njoOa0sFixy96H2BqEn+yPeRALyf59rjtPL66tsXuaAilB63yqbH42m
+nkxHTX5zcEm337GzTOGRccsYzN/ApVuXDeMfsO+sSUosrimnxm9QTOyKcex5h1AsrxBVfTw+Zf7j
+P1YRlmMlGPG1zffK2KjJhD6ivFi2sIDThEQLxIAC8XOjp2ZXvhx87yNT</ds:Modulus>
+<ds:Exponent>AQAB</ds:Exponent>
+</ds:RSAKeyValue>
+</ds:KeyValue>
+</ds:KeyInfo>
+</ds:Signature></oval_definitions>

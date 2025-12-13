@@ -1,0 +1,140 @@
+<oval_definitions 
+	xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" 
+	xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" 
+	xmlns:linux="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" 
+	xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" 
+	xmlns:shell="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" 
+	xmlns:unix="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5 
+						http://oval.mitre.org/language/version5.11/ovaldefinition/complete/oval-definitions-schema.xsd 	
+						http://oval.mitre.org/XMLSchema/oval-common-5 
+						http://oval.mitre.org/language/version5.11/ovaldefinition/complete/oval-common-schema.xsd 
+						http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd x-shellcommand-schema.xsd 
+						http://oval.mitre.org/XMLSchema/oval-definitions-5#linux 
+						http://oval.mitre.org/language/version5.11/ovaldefinition/complete/linux-definitions-schema.xsd 
+						http://oval.mitre.org/XMLSchema/oval-definitions-5#independent 
+						http://oval.mitre.org/language/version5.11/ovaldefinition/complete/independent-definitions-schema.xsd 
+						http://oval.mitre.org/XMLSchema/oval-definitions-5#unix 
+						http://oval.mitre.org/language/version5.10/ovaldefinition/complete/unix-definitions-schema.xsd">
+	<generator>
+		<oval:product_name>CimTrak Agent Operational Monitoring</oval:product_name>
+		<oval:schema_version>5.11</oval:schema_version>
+		<oval:timestamp>2025-07-25T14:00:00+00:00</oval:timestamp>
+	</generator>
+	
+	<definitions>
+		<!-- CimTrak Agent Service Status -->
+		<definition class="compliance" id="oval:com.cimcor.cimtrak.o_rhel:def:5001" version="1">
+			<metadata>
+				<title>Ensure CimTrakAgent service is enabled and active</title>
+				<description>Verify that the CimTrakAgent systemd service is both enabled for auto-start and currently active/running</description>
+			</metadata>
+			<criteria negate="false" operator="AND">
+				<criterion negate="false" test_ref="oval:com.cimcor.cimtrak.o_rhel:tst:5001" comment="CimTrakAgent service is enabled"/>
+				<criterion negate="false" test_ref="oval:com.cimcor.cimtrak.o_rhel:tst:5002" comment="CimTrakAgent service is active"/>
+			</criteria>
+		</definition>
+		
+		<!-- CimTrak Agent Configuration Validation -->
+		<definition class="compliance" id="oval:com.cimcor.cimtrak.o_rhel:def:5002" version="1">
+			<metadata>
+				<title>Ensure CimTrakAgent is properly configured</title>
+				<description>Verify that CimTrakAgent --checkinstall command returns success (exit code 0)</description>
+			</metadata>
+			<criteria negate="false" operator="AND" comment="CimTrakAgent configuration validation passes">
+				<criterion negate="false" test_ref="oval:com.cimcor.cimtrak.o_rhel:tst:5003" comment="CimTrakAgent --checkinstall succeeds"/>
+			</criteria>
+		</definition>
+		
+	</definitions>
+	
+	<tests>
+		<!-- CimTrakAgent systemd service tests -->
+		<linux:systemdunitproperty_test 
+			check="all" 
+			check_existence="at_least_one_exists" 
+			comment="CimTrakAgent service is enabled" 
+			id="oval:com.cimcor.cimtrak.o_rhel:tst:5001" 
+			version="1">
+			<linux:object object_ref="oval:com.cimcor.cimtrak.o_rhel:obj:5001"/>
+			<linux:state state_ref="oval:com.cimcor.cimtrak.o_rhel:ste:5001"/>
+		</linux:systemdunitproperty_test>
+		
+		<linux:systemdunitproperty_test 
+			check="all" 
+			check_existence="at_least_one_exists" 
+			comment="CimTrakAgent service is active" 
+			id="oval:com.cimcor.cimtrak.o_rhel:tst:5002" 
+			version="1">
+			<linux:object object_ref="oval:com.cimcor.cimtrak.o_rhel:obj:5002"/>
+			<linux:state state_ref="oval:com.cimcor.cimtrak.o_rhel:ste:5002"/>
+		</linux:systemdunitproperty_test>
+		
+		<!-- CimTrak Agent Configuration Test -->
+		<shell:shellcommand_test 
+			check="at least one" 
+			check_existence="at_least_one_exists" 
+			comment="CimTrakAgent --checkinstall returns success" 
+			id="oval:com.cimcor.cimtrak.o_rhel:tst:5003" 
+			version="1">
+			<shell:object object_ref="oval:com.cimcor.cimtrak.o_rhel:obj:5003"/>
+			<shell:state state_ref="oval:com.cimcor.cimtrak.o_rhel:ste:5003"/>
+		</shell:shellcommand_test>
+		
+	</tests>
+	
+	<objects>
+		<!-- CimTrakAgent systemd service objects -->
+		<linux:systemdunitproperty_object 
+			comment="CimTrakAgent service UnitFileState" 
+			id="oval:com.cimcor.cimtrak.o_rhel:obj:5001" 
+			version="1">
+			<linux:unit>CimTrakAgent.service</linux:unit>
+			<linux:property>UnitFileState</linux:property>
+		</linux:systemdunitproperty_object>
+		
+		<linux:systemdunitproperty_object 
+			comment="CimTrakAgent service ActiveState" 
+			id="oval:com.cimcor.cimtrak.o_rhel:obj:5002" 
+			version="1">
+			<linux:unit>CimTrakAgent.service</linux:unit>
+			<linux:property>ActiveState</linux:property>
+		</linux:systemdunitproperty_object>
+		
+		<!-- CimTrak Agent Configuration Object -->
+		<shell:shellcommand_object 
+			comment="CimTrakAgent --checkinstall command with filtered output" 
+			id="oval:com.cimcor.cimtrak.o_rhel:obj:5003" 
+			version="1">
+			<shell:command>cd /opt/Cimcor/CimTrak/CimTrakAgent &amp;&amp; (./CimTrakAgent.exe --checkinstall 2>&amp;1 | grep -E "(cta_rtn=|CimTrak Version|Linux real time detection|OpenSSL Session|SetConnected:)" || true); echo "EXIT_CODE:$?"</shell:command>
+		</shell:shellcommand_object>
+		
+	</objects>
+	
+	<states>
+		<!-- CimTrakAgent systemd service states -->
+		<linux:systemdunitproperty_state 
+			comment="CimTrakAgent service is enabled" 
+			id="oval:com.cimcor.cimtrak.o_rhel:ste:5001" 
+			version="1">
+			<linux:value datatype="string" operation="equals">enabled</linux:value>
+		</linux:systemdunitproperty_state>
+		
+		<linux:systemdunitproperty_state 
+			comment="CimTrakAgent service is active" 
+			id="oval:com.cimcor.cimtrak.o_rhel:ste:5002" 
+			version="1">
+			<linux:value datatype="string" operation="equals">active</linux:value>
+		</linux:systemdunitproperty_state>
+		
+		<!-- CimTrak Agent Configuration State -->
+		<shell:shellcommand_state 
+			comment="CimTrakAgent --checkinstall returns success (exit code 0 via stdout)" 
+			id="oval:com.cimcor.cimtrak.o_rhel:ste:5003" 
+			version="1">
+			<shell:stdout_line entity_check="at least one" operation="pattern match">^EXIT_CODE:0$</shell:stdout_line>
+		</shell:shellcommand_state>
+		
+	</states>
+</oval_definitions>

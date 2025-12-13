@@ -1,0 +1,763 @@
+<oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5 https://oval.cisecurity.org/schemas/validator-oval-definitions-5.11.2.xsd">
+   <generator>
+      <oval:product_name>Center for Internet Security - Optimus</oval:product_name>
+      <oval:schema_version>5.11.2</oval:schema_version>
+      <oval:timestamp>2024-08-15T18:53:15.612Z</oval:timestamp>
+   </generator>
+   <definitions>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:def:4740235" version="1">
+         <metadata>
+            <title>Ensure audit configuration files are 640 or more restrictive</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.2.4.5_Ensure_audit_configuration_files_are_640_or_more_restrictive" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.2.4.5_Ensure_audit_configuration_files_are_640_or_more_restrictive"></reference>
+            <description>Ensure audit configuration files are 640 or more restrictive</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740235"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:def:4740249" version="1">
+         <metadata>
+            <title>Ensure audit configuration files are owned by root</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.2.4.6_Ensure_audit_configuration_files_are_owned_by_root" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.2.4.6_Ensure_audit_configuration_files_are_owned_by_root"></reference>
+            <description>Ensure audit configuration files are owned by root</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740249"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:def:4740262" version="1">
+         <metadata>
+            <title>Ensure audit configuration files belong to group root</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.2.4.7_Ensure_audit_configuration_files_belong_to_group_root" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.2.4.7_Ensure_audit_configuration_files_belong_to_group_root"></reference>
+            <description>Ensure audit configuration files belong to group root</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740262"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:def:4740424" version="1">
+         <metadata>
+            <title>Ensure filesystem integrity is regularly checked</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.3.2_Ensure_filesystem_integrity_is_regularly_checked" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.3.2_Ensure_filesystem_integrity_is_regularly_checked"></reference>
+            <description>Ensure filesystem integrity is regularly checked</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740424"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:def:4740430" version="1">
+         <metadata>
+            <title>Ensure filesystem integrity is regularly checked</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.3.2_Ensure_filesystem_integrity_is_regularly_checked" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.3.2_Ensure_filesystem_integrity_is_regularly_checked"></reference>
+            <description>Ensure filesystem integrity is regularly checked</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740430"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:def:4740433" version="1">
+         <metadata>
+            <title>Ensure filesystem integrity is regularly checked</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.3.2_Ensure_filesystem_integrity_is_regularly_checked" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.3.2_Ensure_filesystem_integrity_is_regularly_checked"></reference>
+            <description>Ensure filesystem integrity is regularly checked</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740433"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:def:4740438" version="1">
+         <metadata>
+            <title>Ensure filesystem integrity is regularly checked</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.3.2_Ensure_filesystem_integrity_is_regularly_checked" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.3.2_Ensure_filesystem_integrity_is_regularly_checked"></reference>
+            <description>Ensure filesystem integrity is regularly checked</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740438"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:def:4740441" version="1">
+         <metadata>
+            <title>Ensure filesystem integrity is regularly checked</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.3.2_Ensure_filesystem_integrity_is_regularly_checked" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.3.2_Ensure_filesystem_integrity_is_regularly_checked"></reference>
+            <description>Ensure filesystem integrity is regularly checked</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740441"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:def:4740445" version="1">
+         <metadata>
+            <title>Ensure filesystem integrity is regularly checked</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.3.2_Ensure_filesystem_integrity_is_regularly_checked" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.3.2_Ensure_filesystem_integrity_is_regularly_checked"></reference>
+            <description>Ensure filesystem integrity is regularly checked</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740445"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:def:4740456" version="1">
+         <metadata>
+            <title>Ensure filesystem integrity is regularly checked</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.3.2_Ensure_filesystem_integrity_is_regularly_checked" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.3.2_Ensure_filesystem_integrity_is_regularly_checked"></reference>
+            <description>Ensure filesystem integrity is regularly checked</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740456"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:def:4740460" version="1">
+         <metadata>
+            <title>Ensure filesystem integrity is regularly checked</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.3.2_Ensure_filesystem_integrity_is_regularly_checked" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.3.2_Ensure_filesystem_integrity_is_regularly_checked"></reference>
+            <description>Ensure filesystem integrity is regularly checked</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740460"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:def:4740275" version="1">
+         <metadata>
+            <title>Ensure audit tools are 755 or more restrictive</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.2.4.8_Ensure_audit_tools_are_755_or_more_restrictive" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.2.4.8_Ensure_audit_tools_are_755_or_more_restrictive"></reference>
+            <description>Ensure audit tools are 755 or more restrictive</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740275"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:def:4740285" version="1">
+         <metadata>
+            <title>Ensure audit tools are 755 or more restrictive</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.2.4.8_Ensure_audit_tools_are_755_or_more_restrictive" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.2.4.8_Ensure_audit_tools_are_755_or_more_restrictive"></reference>
+            <description>Ensure audit tools are 755 or more restrictive</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740285"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:def:4740294" version="1">
+         <metadata>
+            <title>Ensure audit tools are 755 or more restrictive</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.2.4.8_Ensure_audit_tools_are_755_or_more_restrictive" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.2.4.8_Ensure_audit_tools_are_755_or_more_restrictive"></reference>
+            <description>Ensure audit tools are 755 or more restrictive</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740294"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:def:4740306" version="1">
+         <metadata>
+            <title>Ensure audit tools are 755 or more restrictive</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.2.4.8_Ensure_audit_tools_are_755_or_more_restrictive" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.2.4.8_Ensure_audit_tools_are_755_or_more_restrictive"></reference>
+            <description>Ensure audit tools are 755 or more restrictive</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740306"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:def:4740317" version="1">
+         <metadata>
+            <title>Ensure audit tools are 755 or more restrictive</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.2.4.8_Ensure_audit_tools_are_755_or_more_restrictive" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.2.4.8_Ensure_audit_tools_are_755_or_more_restrictive"></reference>
+            <description>Ensure audit tools are 755 or more restrictive</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740317"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:def:4740327" version="1">
+         <metadata>
+            <title>Ensure audit tools are 755 or more restrictive</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.2.4.8_Ensure_audit_tools_are_755_or_more_restrictive" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.2.4.8_Ensure_audit_tools_are_755_or_more_restrictive"></reference>
+            <description>Ensure audit tools are 755 or more restrictive</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740327"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:def:4740338" version="1">
+         <metadata>
+            <title>Ensure audit tools are owned by root</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.2.4.9_Ensure_audit_tools_are_owned_by_root" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.2.4.9_Ensure_audit_tools_are_owned_by_root"></reference>
+            <description>Ensure audit tools are owned by root</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740338"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:def:4740349" version="1">
+         <metadata>
+            <title>Ensure audit tools are owned by root</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.2.4.9_Ensure_audit_tools_are_owned_by_root" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.2.4.9_Ensure_audit_tools_are_owned_by_root"></reference>
+            <description>Ensure audit tools are owned by root</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740349"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:def:4740357" version="1">
+         <metadata>
+            <title>Ensure audit tools are owned by root</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.2.4.9_Ensure_audit_tools_are_owned_by_root" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.2.4.9_Ensure_audit_tools_are_owned_by_root"></reference>
+            <description>Ensure audit tools are owned by root</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740357"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:def:4740365" version="1">
+         <metadata>
+            <title>Ensure audit tools are owned by root</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.2.4.9_Ensure_audit_tools_are_owned_by_root" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.2.4.9_Ensure_audit_tools_are_owned_by_root"></reference>
+            <description>Ensure audit tools are owned by root</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740365"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:def:4740373" version="1">
+         <metadata>
+            <title>Ensure audit tools are owned by root</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.2.4.9_Ensure_audit_tools_are_owned_by_root" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.2.4.9_Ensure_audit_tools_are_owned_by_root"></reference>
+            <description>Ensure audit tools are owned by root</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740373"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:def:4740380" version="1">
+         <metadata>
+            <title>Ensure audit tools are owned by root</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.2.4.9_Ensure_audit_tools_are_owned_by_root" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.2.4.9_Ensure_audit_tools_are_owned_by_root"></reference>
+            <description>Ensure audit tools are owned by root</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740380"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:def:4740386" version="1">
+         <metadata>
+            <title>Ensure audit tools belong to group root</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.2.4.10_Ensure_audit_tools_belong_to_group_root" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.2.4.10_Ensure_audit_tools_belong_to_group_root"></reference>
+            <description>Ensure audit tools belong to group root</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740386"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:def:4740392" version="1">
+         <metadata>
+            <title>Ensure audit tools belong to group root</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.2.4.10_Ensure_audit_tools_belong_to_group_root" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.2.4.10_Ensure_audit_tools_belong_to_group_root"></reference>
+            <description>Ensure audit tools belong to group root</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740392"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:def:4740396" version="1">
+         <metadata>
+            <title>Ensure audit tools belong to group root</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.2.4.10_Ensure_audit_tools_belong_to_group_root" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.2.4.10_Ensure_audit_tools_belong_to_group_root"></reference>
+            <description>Ensure audit tools belong to group root</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740396"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:def:4740402" version="1">
+         <metadata>
+            <title>Ensure audit tools belong to group root</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.2.4.10_Ensure_audit_tools_belong_to_group_root" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.2.4.10_Ensure_audit_tools_belong_to_group_root"></reference>
+            <description>Ensure audit tools belong to group root</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740402"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:def:4740408" version="1">
+         <metadata>
+            <title>Ensure audit tools belong to group root</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.2.4.10_Ensure_audit_tools_belong_to_group_root" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.2.4.10_Ensure_audit_tools_belong_to_group_root"></reference>
+            <description>Ensure audit tools belong to group root</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740408"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:def:4740413" version="1">
+         <metadata>
+            <title>Ensure audit tools belong to group root</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.2.4.10_Ensure_audit_tools_belong_to_group_root" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.2.4.10_Ensure_audit_tools_belong_to_group_root"></reference>
+            <description>Ensure audit tools belong to group root</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740413"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:def:4740427" version="1">
+         <metadata>
+            <title>Ensure filesystem integrity is regularly checked</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.3.2_Ensure_filesystem_integrity_is_regularly_checked" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.3.2_Ensure_filesystem_integrity_is_regularly_checked"></reference>
+            <description>Ensure filesystem integrity is regularly checked</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740427"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:def:4740449" version="1">
+         <metadata>
+            <title>Ensure filesystem integrity is regularly checked</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.3.2_Ensure_filesystem_integrity_is_regularly_checked" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.3.2_Ensure_filesystem_integrity_is_regularly_checked"></reference>
+            <description>Ensure filesystem integrity is regularly checked</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740449"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:def:4740451" version="1">
+         <metadata>
+            <title>Ensure filesystem integrity is regularly checked</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.3.2_Ensure_filesystem_integrity_is_regularly_checked" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.3.2_Ensure_filesystem_integrity_is_regularly_checked"></reference>
+            <description>Ensure filesystem integrity is regularly checked</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740451"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:def:4740454" version="1">
+         <metadata>
+            <title>Ensure filesystem integrity is regularly checked</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.3.2_Ensure_filesystem_integrity_is_regularly_checked" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.3.2_Ensure_filesystem_integrity_is_regularly_checked"></reference>
+            <description>Ensure filesystem integrity is regularly checked</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740454"></criterion>
+         </criteria>
+      </definition>
+   </definitions>
+   <tests>
+      <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="any_exist" comment="Ensure any file(s) named ^.*\.(conf|rules) in /etc/audit/ exists and does not have permissions --x-wxrwx" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740235" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740235"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:ste:4740235"></state>
+      </file_test>
+      <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="any_exist" comment="Ensure any file(s) named ^.*\.(conf|rules) in /etc/audit/ exists and is owned by user 0" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740249" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740249"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:ste:4740249"></state>
+      </file_test>
+      <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="any_exist" comment="Ensure any file(s) named ^.*\.(conf|rules) in /etc/audit/ exists and is owned by group 0" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740262" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740262"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:ste:4740262"></state>
+      </file_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file(s) named ^.+$ in /var/spool/cron/ exists and matches pattern ^([-0-9*\/,A-Za-z]+\s+){5}([^#\n\r]+\h+)?\/usr\/sbin\/aide\h+([^#\n\r]+\h+)?--(check|update)\b.*$" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740424" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740424"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file(s) named ^.+$ in /etc/cron.d exists and matches pattern ^([-0-9*\/,A-Za-z]+\s+){5}([^#\n\r]+\h+)?\/usr\/sbin\/aide\h+([^#\n\r]+\h+)?--(check|update)\b.*$" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740430" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740430"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file(s) named ^.+$ in /etc/cron.hourly exists and matches pattern ^\h*([^#\n\r]+\h+)?\/usr\/sbin\/aide\s([^#\n\r]+\h+)?--(check|update)\b.*$" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740433" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740433"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file(s) named ^.+$ in /etc/cron.daily exists and matches pattern ^\h*([^#\n\r]+\h+)?\/usr\/sbin\/aide\s([^#\n\r]+\h+)?--(check|update)\b.*$" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740438" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740438"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file(s) named ^.+$ in /etc/cron.weekly exists and matches pattern ^\h*([^#\n\r]+\h+)?\/usr\/sbin\/aide\s([^#\n\r]+\h+)?--(check|update)\b.*$" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740441" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740441"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file(s) named ^.+$ in /etc/cron.monthly exists and matches pattern ^\h*([^#\n\r]+\h+)?\/usr\/sbin\/aide\s([^#\n\r]+\h+)?--(check|update)\b.*$" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740445" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740445"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file(s) named aidecheck.service in /etc/systemd/system/ exists and matches pattern ^\h*ExecStart=\/usr\/sbin\/aide\h+([^#\n\r]+\h+)?--(check|update)\b.*$" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740456" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740456"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file(s) named aidecheck.service in /usr/lib/systemd/system/ exists and matches pattern ^\h*ExecStart=\/usr\/sbin\/aide\h+([^#\n\r]+\h+)?--(check|update)\b.*$" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740460" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740460"></object>
+      </textfilecontent54_test>
+      <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /sbin/auditctl exists and does not have permissions ----w--w-" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740275" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740275"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:ste:4740275"></state>
+      </file_test>
+      <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /sbin/aureport exists and does not have permissions ----w--w-" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740285" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740285"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:ste:4740285"></state>
+      </file_test>
+      <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="only one" check_existence="at_least_one_exists" comment="Ensure at least one file named /sbin/ausearch exists and does not have permissions ----w--w-" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740294" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740294"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:ste:4740294"></state>
+      </file_test>
+      <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /sbin/autrace exists and does not have permissions ----w--w-" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740306" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740306"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:ste:4740306"></state>
+      </file_test>
+      <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /sbin/auditd exists and does not have permissions ----w--w-" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740317" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740317"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:ste:4740317"></state>
+      </file_test>
+      <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /sbin/augenrules exists and does not have permissions ----w--w-" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740327" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740327"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:ste:4740327"></state>
+      </file_test>
+      <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /sbin/auditctl exists and is owned by user 0" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740338" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740338"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:ste:4740338"></state>
+      </file_test>
+      <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /sbin/aureport exists and is owned by user 0" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740349" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740349"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:ste:4740349"></state>
+      </file_test>
+      <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="only one" check_existence="at_least_one_exists" comment="Ensure at least one file named /sbin/ausearch exists and is owned by user 0" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740357" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740357"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:ste:4740357"></state>
+      </file_test>
+      <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /sbin/autrace exists and is owned by user 0" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740365" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740365"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:ste:4740365"></state>
+      </file_test>
+      <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /sbin/auditd exists and is owned by user 0" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740373" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740373"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:ste:4740373"></state>
+      </file_test>
+      <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /sbin/augenrules exists and is owned by user 0" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740380" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740380"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:ste:4740380"></state>
+      </file_test>
+      <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /sbin/auditctl exists and is owned by group 0" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740386" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740386"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:ste:4740386"></state>
+      </file_test>
+      <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /sbin/aureport exists and is owned by group 0" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740392" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740392"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:ste:4740392"></state>
+      </file_test>
+      <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="only one" check_existence="at_least_one_exists" comment="Ensure at least one file named /sbin/ausearch exists and is owned by group 0" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740396" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740396"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:ste:4740396"></state>
+      </file_test>
+      <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /sbin/autrace exists and is owned by group 0" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740402" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740402"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:ste:4740402"></state>
+      </file_test>
+      <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /sbin/auditd exists and is owned by group 0" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740408" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740408"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:ste:4740408"></state>
+      </file_test>
+      <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /sbin/augenrules exists and is owned by group 0" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740413" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740413"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:ste:4740413"></state>
+      </file_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/crontab exists and matches pattern ^([-0-9*\/,A-Za-z]+\s+){5}([^#\n\r]+\h+)?\/usr\/sbin\/aide\h+([^#\n\r]+\h+)?--(check|update)\b.*$" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740427" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740427"></object>
+      </textfilecontent54_test>
+      <systemdunitproperty_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" check="all" check_existence="at_least_one_exists" comment="Ensure systemd 'aidecheck.service' unit 'UnitFileState' property equals enabled" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740449" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740449"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:ste:4740449"></state>
+      </systemdunitproperty_test>
+      <systemdunitproperty_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" check="all" check_existence="at_least_one_exists" comment="Ensure systemd 'aidecheck.timer' unit 'UnitFileState' property equals enabled" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740451" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740451"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:ste:4740451"></state>
+      </systemdunitproperty_test>
+      <systemdunitproperty_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" check="all" check_existence="at_least_one_exists" comment="Ensure systemd 'aidecheck.timer' unit 'Unit' property equals 'aidecheck.service'" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:tst:4740454" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740454"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:ste:4740454"></state>
+      </systemdunitproperty_test>
+   </tests>
+   <objects>
+      <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure any file(s) named ^.*\.(conf|rules) in /etc/audit/ exists and does not have permissions --x-wxrwx" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740235" version="1">
+         <behaviors max_depth="-1" recurse_direction="down" recurse_file_system="local"></behaviors>
+         <path>/etc/audit/</path>
+         <filename operation="pattern match">^.*\.(conf|rules)</filename>
+      </file_object>
+      <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure any file(s) named ^.*\.(conf|rules) in /etc/audit/ exists and is owned by user 0" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740249" version="1">
+         <behaviors max_depth="-1" recurse_direction="down" recurse_file_system="local"></behaviors>
+         <path>/etc/audit/</path>
+         <filename operation="pattern match">^.*\.(conf|rules)</filename>
+      </file_object>
+      <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure any file(s) named ^.*\.(conf|rules) in /etc/audit/ exists and is owned by group 0" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740262" version="1">
+         <behaviors max_depth="-1" recurse_direction="down" recurse_file_system="local"></behaviors>
+         <path>/etc/audit/</path>
+         <filename operation="pattern match">^.*\.(conf|rules)</filename>
+      </file_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file(s) named ^.+$ in /var/spool/cron/ exists and matches pattern ^([-0-9*\/,A-Za-z]+\s+){5}([^#\n\r]+\h+)?\/usr\/sbin\/aide\h+([^#\n\r]+\h+)?--(check|update)\b.*$" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740424" version="1">
+         <behaviors max_depth="-1" recurse_direction="down" recurse_file_system="local"></behaviors>
+         <path>/var/spool/cron/</path>
+         <filename operation="pattern match">^.+$</filename>
+         <pattern datatype="string" operation="pattern match">^([-0-9*\/,A-Za-z]+\s+){5}([^#\n\r]+\h+)?\/usr\/sbin\/aide\h+([^#\n\r]+\h+)?--(check|update)\b.*$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file(s) named ^.+$ in /etc/cron.d exists and matches pattern ^([-0-9*\/,A-Za-z]+\s+){5}([^#\n\r]+\h+)?\/usr\/sbin\/aide\h+([^#\n\r]+\h+)?--(check|update)\b.*$" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740430" version="1">
+         <path>/etc/cron.d</path>
+         <filename operation="pattern match">^.+$</filename>
+         <pattern datatype="string" operation="pattern match">^([-0-9*\/,A-Za-z]+\s+){5}([^#\n\r]+\h+)?\/usr\/sbin\/aide\h+([^#\n\r]+\h+)?--(check|update)\b.*$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file(s) named ^.+$ in /etc/cron.hourly exists and matches pattern ^\h*([^#\n\r]+\h+)?\/usr\/sbin\/aide\s([^#\n\r]+\h+)?--(check|update)\b.*$" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740433" version="1">
+         <path>/etc/cron.hourly</path>
+         <filename operation="pattern match">^.+$</filename>
+         <pattern datatype="string" operation="pattern match">^\h*([^#\n\r]+\h+)?\/usr\/sbin\/aide\s([^#\n\r]+\h+)?--(check|update)\b.*$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file(s) named ^.+$ in /etc/cron.daily exists and matches pattern ^\h*([^#\n\r]+\h+)?\/usr\/sbin\/aide\s([^#\n\r]+\h+)?--(check|update)\b.*$" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740438" version="1">
+         <path>/etc/cron.daily</path>
+         <filename operation="pattern match">^.+$</filename>
+         <pattern datatype="string" operation="pattern match">^\h*([^#\n\r]+\h+)?\/usr\/sbin\/aide\s([^#\n\r]+\h+)?--(check|update)\b.*$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file(s) named ^.+$ in /etc/cron.weekly exists and matches pattern ^\h*([^#\n\r]+\h+)?\/usr\/sbin\/aide\s([^#\n\r]+\h+)?--(check|update)\b.*$" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740441" version="1">
+         <path>/etc/cron.weekly</path>
+         <filename operation="pattern match">^.+$</filename>
+         <pattern datatype="string" operation="pattern match">^\h*([^#\n\r]+\h+)?\/usr\/sbin\/aide\s([^#\n\r]+\h+)?--(check|update)\b.*$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file(s) named ^.+$ in /etc/cron.monthly exists and matches pattern ^\h*([^#\n\r]+\h+)?\/usr\/sbin\/aide\s([^#\n\r]+\h+)?--(check|update)\b.*$" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740445" version="1">
+         <path>/etc/cron.monthly</path>
+         <filename operation="pattern match">^.+$</filename>
+         <pattern datatype="string" operation="pattern match">^\h*([^#\n\r]+\h+)?\/usr\/sbin\/aide\s([^#\n\r]+\h+)?--(check|update)\b.*$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file(s) named aidecheck.service in /etc/systemd/system/ exists and matches pattern ^\h*ExecStart=\/usr\/sbin\/aide\h+([^#\n\r]+\h+)?--(check|update)\b.*$" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740456" version="1">
+         <path>/etc/systemd/system/</path>
+         <filename operation="pattern match">aidecheck.service</filename>
+         <pattern datatype="string" operation="pattern match">^\h*ExecStart=\/usr\/sbin\/aide\h+([^#\n\r]+\h+)?--(check|update)\b.*$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file(s) named aidecheck.service in /usr/lib/systemd/system/ exists and matches pattern ^\h*ExecStart=\/usr\/sbin\/aide\h+([^#\n\r]+\h+)?--(check|update)\b.*$" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740460" version="1">
+         <path>/usr/lib/systemd/system/</path>
+         <filename operation="pattern match">aidecheck.service</filename>
+         <pattern datatype="string" operation="pattern match">^\h*ExecStart=\/usr\/sbin\/aide\h+([^#\n\r]+\h+)?--(check|update)\b.*$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure at least one file named /sbin/auditctl exists and does not have permissions ----w--w-" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740275" version="1">
+         <filepath>/sbin/auditctl</filepath>
+      </file_object>
+      <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure at least one file named /sbin/aureport exists and does not have permissions ----w--w-" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740285" version="1">
+         <filepath>/sbin/aureport</filepath>
+      </file_object>
+      <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure at least one file named /sbin/ausearch exists and does not have permissions ----w--w-" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740294" version="1">
+         <filepath>/sbin/ausearch</filepath>
+      </file_object>
+      <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure at least one file named /sbin/autrace exists and does not have permissions ----w--w-" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740306" version="1">
+         <filepath>/sbin/autrace</filepath>
+      </file_object>
+      <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure at least one file named /sbin/auditd exists and does not have permissions ----w--w-" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740317" version="1">
+         <filepath>/sbin/auditd</filepath>
+      </file_object>
+      <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure at least one file named /sbin/augenrules exists and does not have permissions ----w--w-" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740327" version="1">
+         <filepath>/sbin/augenrules</filepath>
+      </file_object>
+      <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure at least one file named /sbin/auditctl exists and is owned by user 0" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740338" version="1">
+         <filepath>/sbin/auditctl</filepath>
+      </file_object>
+      <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure at least one file named /sbin/aureport exists and is owned by user 0" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740349" version="1">
+         <filepath>/sbin/aureport</filepath>
+      </file_object>
+      <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure at least one file named /sbin/ausearch exists and is owned by user 0" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740357" version="1">
+         <filepath>/sbin/ausearch</filepath>
+      </file_object>
+      <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure at least one file named /sbin/autrace exists and is owned by user 0" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740365" version="1">
+         <filepath>/sbin/autrace</filepath>
+      </file_object>
+      <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure at least one file named /sbin/auditd exists and is owned by user 0" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740373" version="1">
+         <filepath>/sbin/auditd</filepath>
+      </file_object>
+      <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure at least one file named /sbin/augenrules exists and is owned by user 0" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740380" version="1">
+         <filepath>/sbin/augenrules</filepath>
+      </file_object>
+      <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure at least one file named /sbin/auditctl exists and is owned by group 0" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740386" version="1">
+         <filepath>/sbin/auditctl</filepath>
+      </file_object>
+      <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure at least one file named /sbin/aureport exists and is owned by group 0" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740392" version="1">
+         <filepath>/sbin/aureport</filepath>
+      </file_object>
+      <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure at least one file named /sbin/ausearch exists and is owned by group 0" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740396" version="1">
+         <filepath>/sbin/ausearch</filepath>
+      </file_object>
+      <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure at least one file named /sbin/autrace exists and is owned by group 0" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740402" version="1">
+         <filepath>/sbin/autrace</filepath>
+      </file_object>
+      <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure at least one file named /sbin/auditd exists and is owned by group 0" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740408" version="1">
+         <filepath>/sbin/auditd</filepath>
+      </file_object>
+      <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure at least one file named /sbin/augenrules exists and is owned by group 0" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740413" version="1">
+         <filepath>/sbin/augenrules</filepath>
+      </file_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/crontab exists and matches pattern ^([-0-9*\/,A-Za-z]+\s+){5}([^#\n\r]+\h+)?\/usr\/sbin\/aide\h+([^#\n\r]+\h+)?--(check|update)\b.*$" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740427" version="1">
+         <filepath>/etc/crontab</filepath>
+         <pattern datatype="string" operation="pattern match">^([-0-9*\/,A-Za-z]+\s+){5}([^#\n\r]+\h+)?\/usr\/sbin\/aide\h+([^#\n\r]+\h+)?--(check|update)\b.*$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <systemdunitproperty_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure systemd 'aidecheck.service' unit 'UnitFileState' property equals enabled" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740449" version="1">
+         <unit>aidecheck.service</unit>
+         <property>UnitFileState</property>
+      </systemdunitproperty_object>
+      <systemdunitproperty_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure systemd 'aidecheck.timer' unit 'UnitFileState' property equals enabled" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740451" version="1">
+         <unit>aidecheck.timer</unit>
+         <property>UnitFileState</property>
+      </systemdunitproperty_object>
+      <systemdunitproperty_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure systemd 'aidecheck.timer' unit 'Unit' property equals 'aidecheck.service'" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:obj:4740454" version="1">
+         <unit>aidecheck.timer</unit>
+         <property>Unit</property>
+      </systemdunitproperty_object>
+   </objects>
+   <states>
+      <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure any file(s) named ^.*\.(conf|rules) in /etc/audit/ exists and does not have permissions --x-wxrwx" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:ste:4740235" version="1">
+         <uexec datatype="boolean">false</uexec>
+         <gwrite datatype="boolean">false</gwrite>
+         <gexec datatype="boolean">false</gexec>
+         <oread datatype="boolean">false</oread>
+         <owrite datatype="boolean">false</owrite>
+         <oexec datatype="boolean">false</oexec>
+      </file_state>
+      <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure any file(s) named ^.*\.(conf|rules) in /etc/audit/ exists and is owned by user 0" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:ste:4740249" version="1"></file_state>
+      <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure any file(s) named ^.*\.(conf|rules) in /etc/audit/ exists and is owned by group 0" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:ste:4740262" version="1">
+         <group_id datatype="int">0</group_id>
+      </file_state>
+      <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure at least one file named /sbin/auditctl exists and does not have permissions ----w--w-" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:ste:4740275" version="1">
+         <gwrite datatype="boolean">false</gwrite>
+         <owrite datatype="boolean">false</owrite>
+      </file_state>
+      <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure at least one file named /sbin/aureport exists and does not have permissions ----w--w-" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:ste:4740285" version="1">
+         <gwrite datatype="boolean">false</gwrite>
+         <owrite datatype="boolean">false</owrite>
+      </file_state>
+      <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure at least one file named /sbin/ausearch exists and does not have permissions ----w--w-" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:ste:4740294" version="1">
+         <gwrite datatype="boolean">false</gwrite>
+         <owrite datatype="boolean">false</owrite>
+      </file_state>
+      <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure at least one file named /sbin/autrace exists and does not have permissions ----w--w-" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:ste:4740306" version="1">
+         <gwrite datatype="boolean">false</gwrite>
+         <owrite datatype="boolean">false</owrite>
+      </file_state>
+      <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure at least one file named /sbin/auditd exists and does not have permissions ----w--w-" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:ste:4740317" version="1">
+         <gwrite datatype="boolean">false</gwrite>
+         <owrite datatype="boolean">false</owrite>
+      </file_state>
+      <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure at least one file named /sbin/augenrules exists and does not have permissions ----w--w-" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:ste:4740327" version="1">
+         <gwrite datatype="boolean">false</gwrite>
+         <owrite datatype="boolean">false</owrite>
+      </file_state>
+      <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure at least one file named /sbin/auditctl exists and is owned by user 0" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:ste:4740338" version="1">
+         <user_id datatype="int">0</user_id>
+      </file_state>
+      <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure at least one file named /sbin/aureport exists and is owned by user 0" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:ste:4740349" version="1">
+         <user_id datatype="int">0</user_id>
+      </file_state>
+      <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure at least one file named /sbin/ausearch exists and is owned by user 0" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:ste:4740357" version="1">
+         <user_id datatype="int">0</user_id>
+      </file_state>
+      <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure at least one file named /sbin/autrace exists and is owned by user 0" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:ste:4740365" version="1">
+         <user_id datatype="int">0</user_id>
+      </file_state>
+      <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure at least one file named /sbin/auditd exists and is owned by user 0" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:ste:4740373" version="1">
+         <user_id datatype="int">0</user_id>
+      </file_state>
+      <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure at least one file named /sbin/augenrules exists and is owned by user 0" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:ste:4740380" version="1">
+         <user_id datatype="int">0</user_id>
+      </file_state>
+      <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure at least one file named /sbin/auditctl exists and is owned by group 0" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:ste:4740386" version="1">
+         <group_id datatype="int">0</group_id>
+      </file_state>
+      <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure at least one file named /sbin/aureport exists and is owned by group 0" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:ste:4740392" version="1">
+         <group_id datatype="int">0</group_id>
+      </file_state>
+      <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure at least one file named /sbin/ausearch exists and is owned by group 0" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:ste:4740396" version="1">
+         <group_id datatype="int">0</group_id>
+      </file_state>
+      <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure at least one file named /sbin/autrace exists and is owned by group 0" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:ste:4740402" version="1">
+         <group_id datatype="int">0</group_id>
+      </file_state>
+      <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure at least one file named /sbin/auditd exists and is owned by group 0" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:ste:4740408" version="1">
+         <group_id datatype="int">0</group_id>
+      </file_state>
+      <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure at least one file named /sbin/augenrules exists and is owned by group 0" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:ste:4740413" version="1">
+         <group_id datatype="int">0</group_id>
+      </file_state>
+      <systemdunitproperty_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure systemd 'aidecheck.service' unit 'UnitFileState' property equals enabled" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:ste:4740449" version="1">
+         <value datatype="string" operation="equals" var_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:var:4740449"></value>
+      </systemdunitproperty_state>
+      <systemdunitproperty_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure systemd 'aidecheck.timer' unit 'UnitFileState' property equals enabled" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:ste:4740451" version="1">
+         <value datatype="string" operation="equals" var_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:var:4740451"></value>
+      </systemdunitproperty_state>
+      <systemdunitproperty_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure systemd 'aidecheck.timer' unit 'Unit' property equals 'aidecheck.service'" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:ste:4740454" version="1">
+         <value datatype="string" operation="equals" var_ref="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:var:4740454"></value>
+      </systemdunitproperty_state>
+   </states>
+   <variables>
+      <external_variable comment="This value is used in Rule: Ensure filesystem integrity is regularly checked" datatype="string" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:var:4740449" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure filesystem integrity is regularly checked" datatype="string" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:var:4740451" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure filesystem integrity is regularly checked" datatype="string" id="oval:org.cisecurity.benchmarks.freebsd_freebsd_14:var:4740454" version="1"></external_variable>
+   </variables>
+<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+<ds:SignedInfo>
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"></ds:CanonicalizationMethod>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></ds:SignatureMethod>
+<ds:Reference URI="">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"></ds:Transform>
+<ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"></ds:Transform>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></ds:DigestMethod>
+<ds:DigestValue>khsM6JQPxWRLIxkMmDPU8emsIMBEX7RWSux86a3JAv4=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue>
+Jvkru7SuYJ9TvP1J52jjdz/LbWngYM/aKAtzqzsXY3dpS10VoHPSY4FY5OP3ZoHfcfm9O8Rf7P4x
+td61TJPr7zWzkcnsCGNUlzE0ghW8BadclGgZiwToje9u//l1+t/tvH/SZFtEbeXOt3mUA5EkNP2e
+qYXjCh08/Hgb6ikOuJOTUj8INuBb8N37R5EoqiHCSc1wLlpHxGQqMWz7WR6fdhO+FaamWTl29hac
+nV6QgvCcwjz57NtwPqimm4+58+2nfOlwONzBANQvmivMqMEIwJJuPNqVfpySAywKiidFYN/q7+Sw
+tGICo1Z9cT81tBm1c158aH2JIiM7JSFNfeH928h25CYioZv3XRv14q587jzHqeXHtw3gh/l0dIYV
+7787N8cjasSu06ccWXQGusiA0zCFQMs2iSTAvci9ntP5WpNeLDcVpzm6VgIvHWjbIIEafSUdQlAF
+lEsgn+mEC3ENrJ7aZrbOOBmo38fqWxxtmYY3rzbr4uM+bNUor9x+zJiU
+</ds:SignatureValue>
+<ds:KeyInfo>
+<ds:X509Data>
+<ds:X509Certificate>
+MIIHbDCCBVSgAwIBAgIQCdceADCnzKkglkQGavVKYzANBgkqhkiG9w0BAQsFADBpMQswCQYDVQQG
+EwJVUzEXMBUGA1UEChMORGlnaUNlcnQsIEluYy4xQTA/BgNVBAMTOERpZ2lDZXJ0IFRydXN0ZWQg
+RzQgQ29kZSBTaWduaW5nIFJTQTQwOTYgU0hBMzg0IDIwMjEgQ0ExMB4XDTIzMTAxODAwMDAwMFoX
+DTI2MTAxODIzNTk1OVowgfQxEzARBgsrBgEEAYI3PAIBAxMCVVMxGTAXBgsrBgEEAYI3PAIBAhMI
+TWFyeWxhbmQxHTAbBgNVBA8MFFByaXZhdGUgT3JnYW5pemF0aW9uMRIwEAYDVQQFEwlEMDYwNTg4
+MTIxCzAJBgNVBAYTAlVTMREwDwYDVQQIEwhOZXcgWW9yazEXMBUGA1UEBxMORWFzdCBHcmVlbmJ1
+c2gxKjAoBgNVBAoTIUNlbnRlciBmb3IgSW50ZXJuZXQgU2VjdXJpdHksIEluYzEqMCgGA1UEAxMh
+Q2VudGVyIGZvciBJbnRlcm5ldCBTZWN1cml0eSwgSW5jMIIBojANBgkqhkiG9w0BAQEFAAOCAY8A
+MIIBigKCAYEAyZwTJr4Kb7QEDnVY3BEkPoS3fn+XoxhCTfFvlMk8zXDcR4pFMgPkXTrZ1KbENUIV
+skIhy1vmnh61vwSL0lcdzesCekKSxLqrEA4xunZk1MB5mLbHXchSSpI1co1vaSzJjkTYP1UsUVQz
+NoOzV0LNCoZdahjGTHSduWvbrHTEeD6/jvUj3AVWrTx6krzgYA3ozAxtUnapK7IrZERuGOSwTrgR
+Lr1aieQdFy8haW1YL+ks5HmLRvcoGp+J68GX/zfMTduvWxhcpXm4txKc4iJqGCRmyBU2XjGjpDBX
+ndxHgT4edRLz5PwWSeZUh8/tWOGFwnVw7njoOa0sFixy96H2BqEn+yPeRALyf59rjtPL66tsXuaA
+ilB63yqbH42mnkxHTX5zcEm337GzTOGRccsYzN/ApVuXDeMfsO+sSUosrimnxm9QTOyKcex5h1As
+rxBVfTw+Zf7jP1YRlmMlGPG1zffK2KjJhD6ivFi2sIDThEQLxIAC8XOjp2ZXvhx87yNTAgMBAAGj
+ggICMIIB/jAfBgNVHSMEGDAWgBRoN+Drtjv4XxGG+/5hewiIZfROQjAdBgNVHQ4EFgQUX2/J9FT5
+5BNF7JqfAl9SJkv3pf0wPQYDVR0gBDYwNDAyBgVngQwBAzApMCcGCCsGAQUFBwIBFhtodHRwOi8v
+d3d3LmRpZ2ljZXJ0LmNvbS9DUFMwDgYDVR0PAQH/BAQDAgeAMBMGA1UdJQQMMAoGCCsGAQUFBwMD
+MIG1BgNVHR8Ega0wgaowU6BRoE+GTWh0dHA6Ly9jcmwzLmRpZ2ljZXJ0LmNvbS9EaWdpQ2VydFRy
+dXN0ZWRHNENvZGVTaWduaW5nUlNBNDA5NlNIQTM4NDIwMjFDQTEuY3JsMFOgUaBPhk1odHRwOi8v
+Y3JsNC5kaWdpY2VydC5jb20vRGlnaUNlcnRUcnVzdGVkRzRDb2RlU2lnbmluZ1JTQTQwOTZTSEEz
+ODQyMDIxQ0ExLmNybDCBlAYIKwYBBQUHAQEEgYcwgYQwJAYIKwYBBQUHMAGGGGh0dHA6Ly9vY3Nw
+LmRpZ2ljZXJ0LmNvbTBcBggrBgEFBQcwAoZQaHR0cDovL2NhY2VydHMuZGlnaWNlcnQuY29tL0Rp
+Z2lDZXJ0VHJ1c3RlZEc0Q29kZVNpZ25pbmdSU0E0MDk2U0hBMzg0MjAyMUNBMS5jcnQwCQYDVR0T
+BAIwADANBgkqhkiG9w0BAQsFAAOCAgEASLOHf1FQ7TrGqEoVXYoeNSkRWdVCUGd1JCDs7Hb9sLd3
+eQuipZ4EorQS/9qMiVMhmlJfF75sNVQhr1K5UtjrDRFMTzYmh78hAyovowzgyVKdGFqiVVr5m+mb
+vVyglLlA4V076LMBaKRknm1Dt8r0/5GSRCrkP2origpYMMaocN+iBX9+MImnh3J1Ehn0nRUhW86Q
+mt3/YCVIaQZisv+KmOxyAq1m6fiIYIvXY+cH2dDIheoVteb/NjYnKVqE6xTpOsxF16pykXiM9yk3
+Q9nlJS36KEGRP4wrySU4eIBnTcv4mimZjkWj6bIvk8otNJ14FbyltaPwIc3dE3oPGfSmCrkxs73j
+iqBs2TXLvblEmOhY8ko3xVdTm0zMP50MQVO948fz9yF+xdnPdMPT1/lCmGp6iWYRzxnvEkA1+HFl
+yy9YztrM8WNAhXirpUZg3HWQE2ONLKMtqQrkIHD2nikda77flk6oirqDuCf8Q7g8s86/KabTdxrw
+pRmsRjDkAfKVae58ctaKbmF32oU9BGk+9MPG8HF5Yfoh12DE1fLZcPzZrROrDFJGGxwhv5FlnxGg
+6G7jKi68erZnpaOPayK0bXyZNunqkI9IbIuPqMw5qaCZZgN6AEHIbGTKdrWEf11DmR7MdTjv3/vu
+JWtIXgk3kQFX27w9JhqV6QogVmzIfEQ=
+</ds:X509Certificate>
+</ds:X509Data>
+<ds:KeyValue>
+<ds:RSAKeyValue>
+<ds:Modulus>yZwTJr4Kb7QEDnVY3BEkPoS3fn+XoxhCTfFvlMk8zXDcR4pFMgPkXTrZ1KbENUIVskIhy1vmnh61
+vwSL0lcdzesCekKSxLqrEA4xunZk1MB5mLbHXchSSpI1co1vaSzJjkTYP1UsUVQzNoOzV0LNCoZd
+ahjGTHSduWvbrHTEeD6/jvUj3AVWrTx6krzgYA3ozAxtUnapK7IrZERuGOSwTrgRLr1aieQdFy8h
+aW1YL+ks5HmLRvcoGp+J68GX/zfMTduvWxhcpXm4txKc4iJqGCRmyBU2XjGjpDBXndxHgT4edRLz
+5PwWSeZUh8/tWOGFwnVw7njoOa0sFixy96H2BqEn+yPeRALyf59rjtPL66tsXuaAilB63yqbH42m
+nkxHTX5zcEm337GzTOGRccsYzN/ApVuXDeMfsO+sSUosrimnxm9QTOyKcex5h1AsrxBVfTw+Zf7j
+P1YRlmMlGPG1zffK2KjJhD6ivFi2sIDThEQLxIAC8XOjp2ZXvhx87yNT</ds:Modulus>
+<ds:Exponent>AQAB</ds:Exponent>
+</ds:RSAKeyValue>
+</ds:KeyValue>
+</ds:KeyInfo>
+</ds:Signature></oval_definitions>

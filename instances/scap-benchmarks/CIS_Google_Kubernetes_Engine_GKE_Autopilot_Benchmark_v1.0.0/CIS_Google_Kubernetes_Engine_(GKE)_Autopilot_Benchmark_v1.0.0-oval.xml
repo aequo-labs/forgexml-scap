@@ -1,0 +1,719 @@
+<oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5 https://oval.cisecurity.org/schemas/validator-oval-definitions-5.11.2.xsd">
+   <generator>
+      <oval:product_name>Center for Internet Security - Optimus</oval:product_name>
+      <oval:schema_version>5.11.2</oval:schema_version>
+      <oval:timestamp>2024-07-25T12:56:07.567Z</oval:timestamp>
+   </generator>
+   <definitions>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:def:5645823" version="1">
+         <metadata>
+            <title>Ensure that the cluster-admin role is only used where required</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.1.1_Ensure_that_the_cluster-admin_role_is_only_used_where_required" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.1.1_Ensure_that_the_cluster-admin_role_is_only_used_where_required"></reference>
+            <description>Ensure that the cluster-admin role is only used where required</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5645823"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:def:5645825" version="1">
+         <metadata>
+            <title>Minimize access to secrets</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.1.2_Minimize_access_to_secrets" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.1.2_Minimize_access_to_secrets"></reference>
+            <description>Minimize access to secrets</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5645825"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:def:5645827" version="1">
+         <metadata>
+            <title>Minimize wildcard use in Roles and ClusterRoles</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.1.3_Minimize_wildcard_use_in_Roles_and_ClusterRoles" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.1.3_Minimize_wildcard_use_in_Roles_and_ClusterRoles"></reference>
+            <description>Minimize wildcard use in Roles and ClusterRoles</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5645827"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:def:5645829" version="1">
+         <metadata>
+            <title>Minimize wildcard use in Roles and ClusterRoles</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.1.3_Minimize_wildcard_use_in_Roles_and_ClusterRoles" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.1.3_Minimize_wildcard_use_in_Roles_and_ClusterRoles"></reference>
+            <description>Minimize wildcard use in Roles and ClusterRoles</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5645829"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:def:5645831" version="1">
+         <metadata>
+            <title>Ensure that default service accounts are not actively used</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.1.4_Ensure_that_default_service_accounts_are_not_actively_used" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.1.4_Ensure_that_default_service_accounts_are_not_actively_used"></reference>
+            <description>Ensure that default service accounts are not actively used</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5645831"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:def:5645832" version="1">
+         <metadata>
+            <title>Ensure that Service Account Tokens are only mounted where necessary</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.1.5_Ensure_that_Service_Account_Tokens_are_only_mounted_where_necessary" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.1.5_Ensure_that_Service_Account_Tokens_are_only_mounted_where_necessary"></reference>
+            <description>Ensure that Service Account Tokens are only mounted where necessary</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5645832"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:def:5645834" version="1">
+         <metadata>
+            <title>Ensure that Service Account Tokens are only mounted where necessary</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.1.5_Ensure_that_Service_Account_Tokens_are_only_mounted_where_necessary" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.1.5_Ensure_that_Service_Account_Tokens_are_only_mounted_where_necessary"></reference>
+            <description>Ensure that Service Account Tokens are only mounted where necessary</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5645834"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:def:5645836" version="1">
+         <metadata>
+            <title>Avoid use of system:masters group</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.1.6_Avoid_use_of_systemmasters_group" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.1.6_Avoid_use_of_systemmasters_group"></reference>
+            <description>Avoid use of system:masters group</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5645836"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:def:5645838" version="1">
+         <metadata>
+            <title>Avoid bindings to system:anonymous</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.1.8_Avoid_bindings_to_systemanonymous" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.1.8_Avoid_bindings_to_systemanonymous"></reference>
+            <description>Avoid bindings to system:anonymous</description>
+         </metadata>
+         <criteria negate="true" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5645838"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:def:5645839" version="1">
+         <metadata>
+            <title>Avoid bindings to system:anonymous</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.1.8_Avoid_bindings_to_systemanonymous" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.1.8_Avoid_bindings_to_systemanonymous"></reference>
+            <description>Avoid bindings to system:anonymous</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5645839"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:def:5645841" version="1">
+         <metadata>
+            <title>Avoid non-default bindings to system:unauthenticated</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.1.9_Avoid_non-default_bindings_to_systemunauthenticated" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.1.9_Avoid_non-default_bindings_to_systemunauthenticated"></reference>
+            <description>Avoid non-default bindings to system:unauthenticated</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5645841"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:def:5645842" version="1">
+         <metadata>
+            <title>Avoid non-default bindings to system:unauthenticated</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.1.9_Avoid_non-default_bindings_to_systemunauthenticated" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.1.9_Avoid_non-default_bindings_to_systemunauthenticated"></reference>
+            <description>Avoid non-default bindings to system:unauthenticated</description>
+         </metadata>
+         <criteria negate="true" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5645842"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:def:5838409" version="1">
+         <metadata>
+            <title>Avoid non-default bindings to system:authenticated</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.1.10_Avoid_non-default_bindings_to_systemauthenticated" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.1.10_Avoid_non-default_bindings_to_systemauthenticated"></reference>
+            <description>Avoid non-default bindings to system:authenticated</description>
+         </metadata>
+         <criteria negate="true" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5838409"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:def:5645844" version="1">
+         <metadata>
+            <title>Avoid non-default bindings to system:authenticated</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.1.10_Avoid_non-default_bindings_to_systemauthenticated" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.1.10_Avoid_non-default_bindings_to_systemauthenticated"></reference>
+            <description>Avoid non-default bindings to system:authenticated</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5645844"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:def:5645846" version="1">
+         <metadata>
+            <title>Avoid non-default bindings to system:authenticated</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.1.10_Avoid_non-default_bindings_to_systemauthenticated" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.1.10_Avoid_non-default_bindings_to_systemauthenticated"></reference>
+            <description>Avoid non-default bindings to system:authenticated</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5645846"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:def:5645847" version="1">
+         <metadata>
+            <title>Avoid non-default bindings to system:authenticated</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.1.10_Avoid_non-default_bindings_to_systemauthenticated" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.1.10_Avoid_non-default_bindings_to_systemauthenticated"></reference>
+            <description>Avoid non-default bindings to system:authenticated</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5645847"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:def:5645857" version="1">
+         <metadata>
+            <title>Ensure that all Namespaces have Network Policies defined</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.3.1_Ensure_that_all_Namespaces_have_Network_Policies_defined" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.3.1_Ensure_that_all_Namespaces_have_Network_Policies_defined"></reference>
+            <description>Ensure that all Namespaces have Network Policies defined</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5645857"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:def:5645863" version="1">
+         <metadata>
+            <title>Ensure that the seccomp profile is set to RuntimeDefault in the pod definitions</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.6.2_Ensure_that_the_seccomp_profile_is_set_to_RuntimeDefault_in_the_pod_definitions" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.6.2_Ensure_that_the_seccomp_profile_is_set_to_RuntimeDefault_in_the_pod_definitions"></reference>
+            <description>Ensure that the seccomp profile is set to RuntimeDefault in the pod definitions</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5645863"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:def:5645866" version="1">
+         <metadata>
+            <title>The default namespace should not be used</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.6.4_The_default_namespace_should_not_be_used" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.6.4_The_default_namespace_should_not_be_used"></reference>
+            <description>The default namespace should not be used</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5645866"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:def:5645849" version="1">
+         <metadata>
+            <title>Ensure Image Vulnerability Scanning is enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.1.1_Ensure_Image_Vulnerability_Scanning_is_enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.1.1_Ensure_Image_Vulnerability_Scanning_is_enabled"></reference>
+            <description>Ensure Image Vulnerability Scanning is enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5645849"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:def:5645850" version="1">
+         <metadata>
+            <title>Ensure Image Vulnerability Scanning is enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.1.1_Ensure_Image_Vulnerability_Scanning_is_enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.1.1_Ensure_Image_Vulnerability_Scanning_is_enabled"></reference>
+            <description>Ensure Image Vulnerability Scanning is enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5645850"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:def:5837923" version="1">
+         <metadata>
+            <title>Ensure only trusted container images are used</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.1.4_Ensure_only_trusted_container_images_are_used" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.1.4_Ensure_only_trusted_container_images_are_used"></reference>
+            <description>Ensure only trusted container images are used</description>
+         </metadata>
+         <criteria negate="true" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5837923"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:def:5747961" version="1">
+         <metadata>
+            <title>Ensure GKE clusters are not running using the Compute Engine default service account</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.2.1_Ensure_GKE_clusters_are_not_running_using_the_Compute_Engine_default_service_account" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.2.1_Ensure_GKE_clusters_are_not_running_using_the_Compute_Engine_default_service_account"></reference>
+            <description>Ensure GKE clusters are not running using the Compute Engine default service account</description>
+         </metadata>
+         <criteria negate="true" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5747961"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:def:5645856" version="1">
+         <metadata>
+            <title>Ensure Kubernetes Secrets are encrypted using keys managed in Cloud KMS</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.3.1_Ensure_Kubernetes_Secrets_are_encrypted_using_keys_managed_in_Cloud_KMS" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.3.1_Ensure_Kubernetes_Secrets_are_encrypted_using_keys_managed_in_Cloud_KMS"></reference>
+            <description>Ensure Kubernetes Secrets are encrypted using keys managed in Cloud KMS</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5645856"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:def:5645870" version="1">
+         <metadata>
+            <title>Enable VPC Flow Logs and Intranode Visibility</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.4.1_Enable_VPC_Flow_Logs_and_Intranode_Visibility" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.4.1_Enable_VPC_Flow_Logs_and_Intranode_Visibility"></reference>
+            <description>Enable VPC Flow Logs and Intranode Visibility</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5645870"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:def:5747962" version="1">
+         <metadata>
+            <title>Ensure Control Plane Authorized Networks is Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.4.2_Ensure_Control_Plane_Authorized_Networks_is_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.4.2_Ensure_Control_Plane_Authorized_Networks_is_Enabled"></reference>
+            <description>Ensure Control Plane Authorized Networks is Enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5747962"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:def:5747963" version="1">
+         <metadata>
+            <title>Ensure clusters are created with Private Endpoint Enabled and Public Access Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.4.3_Ensure_clusters_are_created_with_Private_Endpoint_Enabled_and_Public_Access_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.4.3_Ensure_clusters_are_created_with_Private_Endpoint_Enabled_and_Public_Access_Disabled"></reference>
+            <description>Ensure clusters are created with Private Endpoint Enabled and Public Access Disabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5747963"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:def:5747964" version="1">
+         <metadata>
+            <title>Ensure clusters are created with Private Nodes</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.4.4_Ensure_clusters_are_created_with_Private_Nodes" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.4.4_Ensure_clusters_are_created_with_Private_Nodes"></reference>
+            <description>Ensure clusters are created with Private Nodes</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5747964"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:def:5645875" version="1">
+         <metadata>
+            <title>Ensure use of Google-managed SSL Certificates</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.4.5_Ensure_use_of_Google-managed_SSL_Certificates" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.4.5_Ensure_use_of_Google-managed_SSL_Certificates"></reference>
+            <description>Ensure use of Google-managed SSL Certificates</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5645875"></criterion>
+         </criteria>
+      </definition>
+   </definitions>
+   <tests>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'kubectl get clusterrolebindings -o=wide' output Pattern Match 'cluster-admin' (string)" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5645823" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5645823"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:ste:5645823"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'kubectl auth can-i get,list,watch secrets --all-namespaces --as=system:authenticated' output Pattern Match 'no' (string)" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5645825" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5645825"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:ste:5645825"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'kubectl get roles --all-namespaces -o yaml' output Pattern Match '&quot;*&quot;' (string)" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5645827" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5645827"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:ste:5645827"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'kubectl get clusterroles -o yaml' output Pattern Match '&quot;*&quot;' (string)" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5645829" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5645829"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:ste:5645829"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'kubectl get serviceaccounts/default -o yaml' output Pattern Match 'automountServiceAccountToken.*false' (string)" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5645831" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5645831"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:ste:5645831"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'kubectl get serviceaccounts/$SERVICE_ACCOUNT -o yaml' output Pattern Match 'automountServiceAccountToken.*false' (string)" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5645832" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5645832"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:ste:5645832"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'kubectl get pods/$POD -o yaml' output Pattern Match 'automountServiceAccountToken.*false' (string)" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5645834" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5645834"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:ste:5645834"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'kubectl get clusterrolebinding cluster-admin -o json' output Pattern Match 'system:masters' (string)" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5645836" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5645836"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:ste:5645836"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'kubectl get clusterrolebindings -o json   | jq -r '[&quot;Name&quot;], [&quot;-----&quot;], (.items[] | select((.subjects | length) &gt; 0) | select(any(.subjects[]; .name == &quot;system:anonymous&quot;)) | [.metadata.namespace, .metadata.name]) | @tsv'' output Pattern Not Match" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5645838" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5645838"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:ste:5645838"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'kubectl get rolebindings -A -o json \   | jq -r '[&quot;Namespace&quot;, &quot;Name&quot;], [&quot;---------&quot;, &quot;-----&quot;], (.items[] | select((.subjects | length) &gt; 0) | select(any(.subjects[]; .name == &quot;system:anonymous&quot;)) | [.metadata.namespace, .metadata.name]) | @tsv''" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5645839" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5645839"></object>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'kubectl get clusterrolebindings -o json   | jq -r '[&quot;Name&quot;], [&quot;-----&quot;], (.items[] | select((.subjects | length) &gt; 0) | select(any(.subjects[]; .name == &quot;system:unauthenticated&quot;)) | [.metadata.namespace, .metadata.name]) | @tsv'' output Pattern Mat" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5645841" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5645841"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:ste:5645841"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'kubectl get rolebindings -A -o json \   | jq -r '[&quot;Namespace&quot;, &quot;Name&quot;], [&quot;---------&quot;, &quot;-----&quot;], (.items[] | select((.subjects | length) &gt; 0) | select(any(.subjects[]; .name == &quot;system:unauthenticated&quot;)) | [.metadata.namespace, .metadata.name]) | @" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5645842" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5645842"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:ste:5645842"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'kubectl get rolebindings -A -o json | jq -r '[&quot;Namespace&quot;, &quot;Name&quot;], [&quot;---------&quot;, &quot;-----&quot;], (.items[] | select((.subjects | length) &gt; 0) | select(any(.subjects[]; .name == &quot;system:unauthenticated&quot;)) | [.metadata.namespace, .metadata.name]) | @tsv'" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5838409" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5838409"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:ste:5838409"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'kubectl get clusterrolebindings -o json   | jq -r '[&quot;Name&quot;], [&quot;-----&quot;], (.items[] | select((.subjects | length) &gt; 0) | select(any(.subjects[]; .name == &quot;system:unauthenticated&quot;)) | [.metadata.namespace, .metadata.name]) | @tsv'' output Pattern Mat" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5645844" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5645844"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:ste:5645844"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'kubectl get clusterrolebindings -o json   | jq -r '[&quot;Name&quot;], [&quot;-----&quot;], (.items[] | select((.subjects | length) &gt; 0) | select(any(.subjects[]; .name == &quot;system:unauthenticated&quot;)) | [.metadata.namespace, .metadata.name]) | @tsv'' output Pattern Mat" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5645846" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5645846"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:ste:5645846"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'kubectl get clusterrolebindings -o json   | jq -r '[&quot;Name&quot;], [&quot;-----&quot;], (.items[] | select((.subjects | length) &gt; 0) | select(any(.subjects[]; .name == &quot;system:unauthenticated&quot;)) | [.metadata.namespace, .metadata.name]) | @tsv'' output Pattern Mat" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5645847" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5645847"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:ste:5645847"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'kubectl get networkpolicy --all-namespaces' output Pattern Match '.+' (string)" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5645857" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5645857"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:ste:5645857"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'kubectl get pods --all-namespaces -o json | jq -r '.items[] | select(.metadata.annotations.&quot;seccomp.security.alpha.kubernetes.io/pod&quot; == &quot;runtime/default&quot; or .spec.securityContext.seccompProfile.type == &quot;RuntimeDefault&quot;) | {namespace: .metadata.na" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5645863" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5645863"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:ste:5645863"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'kubectl get pods -n default' output Pattern Match '.+' (string)" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5645866" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5645866"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:ste:5645866"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'gcloud services list --enabled' output Pattern Match 'Container Registry API' (string)" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5645849" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5645849"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:ste:5645849"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'gcloud services list --enabled' output Pattern Match 'Container Analysis API' (string)" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5645850" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5645850"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:ste:5645850"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'gcloud container clusters describe $CLUSTER_NAME --zone $COMPUTE_ZONE --format json | jq .binaryAuthorization' output Pattern Not Match 'evaluationMode.*DISABLED' (string)" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5837923" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5837923"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:ste:5837923"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure GKE clusters are not running using the Compute Engine default service account" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5747961" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5747961"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:ste:5747961"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure Kubernetes Secrets are encrypted using keys managed in Cloud KMS" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5645856" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5645856"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:ste:5645856"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Enable VPC Flow Logs and Intranode Visibility" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5645870" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5645870"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:ste:5645870"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'gcloud container clusters describe $CLUSTER_NAME --zone $COMPUTE_ZONE --format json | jq '.masterAuthorizedNetworksConfig'' output Pattern Match 'enabled.*true' (string)" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5747962" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5747962"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:ste:5747962"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure clusters are created with Private Endpoint Enabled and Public Access Disabled" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5747963" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5747963"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:ste:5747963"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure clusters are created with Private Nodes" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5747964" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5747964"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:ste:5747964"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'kubectl get svc -A -o json | jq '.items[] | select(.spec.type==&quot;LoadBalancer&quot;)'' output Null Test '' ()" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:tst:5645875" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5645875"></object>
+      </shellcommand_test>
+   </tests>
+   <objects>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get clusterrolebindings -o=wide' output Pattern Match 'cluster-admin' (string)" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5645823" version="1">
+         <command>kubectl get clusterrolebindings -o json</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl auth can-i get,list,watch secrets --all-namespaces --as=system:authenticated' output Pattern Match 'no' (string)" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5645825" version="1">
+         <command>kubectl auth can-i get,list,watch secrets --all-namespaces --as=system:authenticated</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get roles --all-namespaces -o yaml' output Pattern Match '&quot;*&quot;' (string)" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5645827" version="1">
+         <command>kubectl get roles --all-namespaces -o yaml</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get clusterroles -o yaml' output Pattern Match '&quot;*&quot;' (string)" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5645829" version="1">
+         <command>kubectl get clusterroles -o yaml</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get serviceaccounts/default -o yaml' output Pattern Match 'automountServiceAccountToken.*false' (string)" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5645831" version="1">
+         <command>kubectl get serviceaccounts/$SERVICE_ACCOUNT -o yaml</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get serviceaccounts/$SERVICE_ACCOUNT -o yaml' output Pattern Match 'automountServiceAccountToken.*false' (string)" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5645832" version="1">
+         <command>kubectl get serviceaccounts/$SERVICE_ACCOUNT -o yaml</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get pods/$POD -o yaml' output Pattern Match 'automountServiceAccountToken.*false' (string)" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5645834" version="1">
+         <command>kubectl get pods/$POD -o yaml</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get clusterrolebinding cluster-admin -o json' output Pattern Match 'system:masters' (string)" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5645836" version="1">
+         <command>kubectl get clusterrolebinding cluster-admin -o json</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get clusterrolebindings -o json   | jq -r '[&quot;Name&quot;], [&quot;-----&quot;], (.items[] | select((.subjects | length) &gt; 0) | select(any(.subjects[]; .name == &quot;system:anonymous&quot;)) | [.metadata.namespace, .metadata.name]) | @tsv'' output Pattern Not Match" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5645838" version="1">
+         <command>kubectl get clusterrolebindings -o json   | jq -r '["Name"], ["-----"], (.items[] | select((.subjects | length) &gt; 0) | select(any(.subjects[]; .name == "system:anonymous")) | [.metadata.namespace, .metadata.name]) | @tsv'</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get rolebindings -A -o json \   | jq -r '[&quot;Namespace&quot;, &quot;Name&quot;], [&quot;---------&quot;, &quot;-----&quot;], (.items[] | select((.subjects | length) &gt; 0) | select(any(.subjects[]; .name == &quot;system:anonymous&quot;)) | [.metadata.namespace, .metadata.name]) | @tsv''" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5645839" version="1">
+         <command>kubectl get rolebindings -A -o json \   | jq -r '["Namespace", "Name"], ["---------", "-----"], (.items[] | select((.subjects | length) &gt; 0) | select(any(.subjects[]; .name == "system:anonymous")) | [.metadata.namespace, .metadata.name]) | @tsv'</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get clusterrolebindings -o json   | jq -r '[&quot;Name&quot;], [&quot;-----&quot;], (.items[] | select((.subjects | length) &gt; 0) | select(any(.subjects[]; .name == &quot;system:unauthenticated&quot;)) | [.metadata.namespace, .metadata.name]) | @tsv'' output Pattern Mat" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5645841" version="1">
+         <command>kubectl get clusterrolebindings -o json   | jq -r '["Name"], ["-----"], (.items[] | select((.subjects | length) &gt; 0) | select(any(.subjects[]; .name == "system:unauthenticated")) | [.metadata.namespace, .metadata.name]) | @tsv'</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get rolebindings -A -o json \   | jq -r '[&quot;Namespace&quot;, &quot;Name&quot;], [&quot;---------&quot;, &quot;-----&quot;], (.items[] | select((.subjects | length) &gt; 0) | select(any(.subjects[]; .name == &quot;system:unauthenticated&quot;)) | [.metadata.namespace, .metadata.name]) | @" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5645842" version="1">
+         <command>kubectl get rolebindings -A -o json | jq -r '["Namespace", "Name"], ["---------", "-----"], (.items[] | select((.subjects | length) &gt; 0) | select(any(.subjects[]; .name == "system:unauthenticated")) | [.metadata.namespace, .metadata.name]) | @tsv'</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get rolebindings -A -o json | jq -r '[&quot;Namespace&quot;, &quot;Name&quot;], [&quot;---------&quot;, &quot;-----&quot;], (.items[] | select((.subjects | length) &gt; 0) | select(any(.subjects[]; .name == &quot;system:unauthenticated&quot;)) | [.metadata.namespace, .metadata.name]) | @tsv'" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5838409" version="1">
+         <command>kubectl get rolebindings -A -o json | jq -r '["Namespace", "Name"], ["---------", "-----"], (.items[] | select((.subjects | length) &gt; 0) | select(any(.subjects[]; .name == "system:unauthenticated")) | [.metadata.namespace, .metadata.name]) | @tsv'</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get clusterrolebindings -o json   | jq -r '[&quot;Name&quot;], [&quot;-----&quot;], (.items[] | select((.subjects | length) &gt; 0) | select(any(.subjects[]; .name == &quot;system:unauthenticated&quot;)) | [.metadata.namespace, .metadata.name]) | @tsv'' output Pattern Mat" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5645844" version="1">
+         <command>kubectl get clusterrolebindings -o json   | jq -r '["Name"], ["-----"], (.items[] | select((.subjects | length) &gt; 0) | select(any(.subjects[]; .name == "system:unauthenticated")) | [.metadata.namespace, .metadata.name]) | @tsv'</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get clusterrolebindings -o json   | jq -r '[&quot;Name&quot;], [&quot;-----&quot;], (.items[] | select((.subjects | length) &gt; 0) | select(any(.subjects[]; .name == &quot;system:unauthenticated&quot;)) | [.metadata.namespace, .metadata.name]) | @tsv'' output Pattern Mat" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5645846" version="1">
+         <command>kubectl get clusterrolebindings -o json   | jq -r '["Name"], ["-----"], (.items[] | select((.subjects | length) &gt; 0) | select(any(.subjects[]; .name == "system:unauthenticated")) | [.metadata.namespace, .metadata.name]) | @tsv'</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get clusterrolebindings -o json   | jq -r '[&quot;Name&quot;], [&quot;-----&quot;], (.items[] | select((.subjects | length) &gt; 0) | select(any(.subjects[]; .name == &quot;system:unauthenticated&quot;)) | [.metadata.namespace, .metadata.name]) | @tsv'' output Pattern Mat" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5645847" version="1">
+         <command>kubectl get clusterrolebindings -o json   | jq -r '["Name"], ["-----"], (.items[] | select((.subjects | length) &gt; 0) | select(any(.subjects[]; .name == "system:unauthenticated")) | [.metadata.namespace, .metadata.name]) | @tsv'</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get networkpolicy --all-namespaces' output Pattern Match '.+' (string)" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5645857" version="1">
+         <command>kubectl get networkpolicy --all-namespaces</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get pods --all-namespaces -o json | jq -r '.items[] | select(.metadata.annotations.&quot;seccomp.security.alpha.kubernetes.io/pod&quot; == &quot;runtime/default&quot; or .spec.securityContext.seccompProfile.type == &quot;RuntimeDefault&quot;) | {namespace: .metadata.na" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5645863" version="1">
+         <command>kubectl get pods --all-namespaces -o json | jq -r '.items[] | select(.metadata.annotations."seccomp.security.alpha.kubernetes.io/pod" == "runtime/default" or .spec.securityContext.seccompProfile.type == "RuntimeDefault") | {namespace: .metadata.namespace, name: .metadata.name, seccompProfile: .spec.securityContext.seccompProfile.type}'</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get pods -n default' output Pattern Match '.+' (string)" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5645866" version="1">
+         <command>kubectl get pods -n default</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'gcloud services list --enabled' output Pattern Match 'Container Registry API' (string)" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5645849" version="1">
+         <command>gcloud services list --enabled</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'gcloud services list --enabled' output Pattern Match 'Container Analysis API' (string)" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5645850" version="1">
+         <command>gcloud services list --enabled</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'gcloud container clusters describe $CLUSTER_NAME --zone $COMPUTE_ZONE --format json | jq .binaryAuthorization' output Pattern Not Match 'evaluationMode.*DISABLED' (string)" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5837923" version="1">
+         <command>gcloud container clusters describe $CLUSTER_NAME --zone $COMPUTE_ZONE --format json | jq .binaryAuthorization</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure GKE clusters are not running using the Compute Engine default service account" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5747961" version="1">
+         <command>gcloud container clusters describe $CLUSTER_NAME --zone $COMPUTE_ZONE --format json | jq '.nodeConfig.serviceAccount'</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure Kubernetes Secrets are encrypted using keys managed in Cloud KMS" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5645856" version="1">
+         <command>gcloud container clusters describe $CLUSTER_NAME --zone $COMPUTE_ZONE --format json | jq '.databaseEncryption'</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Enable VPC Flow Logs and Intranode Visibility" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5645870" version="1">
+         <command>gcloud container clusters describe $CLUSTER_NAME --zone $COMPUTE_ZONE --format json | jq '.networkConfig.enableIntraNodeVisibility'</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'gcloud container clusters describe $CLUSTER_NAME --zone $COMPUTE_ZONE --format json | jq '.masterAuthorizedNetworksConfig'' output Pattern Match 'enabled.*true' (string)" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5747962" version="1">
+         <command>gcloud container clusters describe $CLUSTER_NAME --zone $COMPUTE_ZONE --format json | jq '.masterAuthorizedNetworksConfig'</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure clusters are created with Private Endpoint Enabled and Public Access Disabled" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5747963" version="1">
+         <command>gcloud container clusters describe $CLUSTER_NAME --zone $COMPUTE_ZONE --format json | jq '.privateClusterConfig.enablePrivateEndpoint'</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure clusters are created with Private Nodes" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5747964" version="1">
+         <command>gcloud container clusters describe $CLUSTER_NAME --zone $COMPUTE_ZONE --format json | jq '.privateClusterConfig.enablePrivateNodes'</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get svc -A -o json | jq '.items[] | select(.spec.type==&quot;LoadBalancer&quot;)'' output Null Test '' ()" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:obj:5645875" version="1">
+         <command>kubectl get svc -A -o json | jq '.items[] | select(.spec.type=="LoadBalancer")'</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+   </objects>
+   <states>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get clusterrolebindings -o=wide' output Pattern Match 'cluster-admin' (string)" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:ste:5645823" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:var:5645823"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl auth can-i get,list,watch secrets --all-namespaces --as=system:authenticated' output Pattern Match 'no' (string)" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:ste:5645825" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:var:5645825"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get roles --all-namespaces -o yaml' output Pattern Match '&quot;*&quot;' (string)" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:ste:5645827" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:var:5645827"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get clusterroles -o yaml' output Pattern Match '&quot;*&quot;' (string)" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:ste:5645829" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:var:5645829"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get serviceaccounts/default -o yaml' output Pattern Match 'automountServiceAccountToken.*false' (string)" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:ste:5645831" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:var:5645831"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get serviceaccounts/$SERVICE_ACCOUNT -o yaml' output Pattern Match 'automountServiceAccountToken.*false' (string)" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:ste:5645832" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:var:5645832"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get pods/$POD -o yaml' output Pattern Match 'automountServiceAccountToken.*false' (string)" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:ste:5645834" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:var:5645834"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get clusterrolebinding cluster-admin -o json' output Pattern Match 'system:masters' (string)" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:ste:5645836" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:var:5645836"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get clusterrolebindings -o json   | jq -r '[&quot;Name&quot;], [&quot;-----&quot;], (.items[] | select((.subjects | length) &gt; 0) | select(any(.subjects[]; .name == &quot;system:anonymous&quot;)) | [.metadata.namespace, .metadata.name]) | @tsv'' output Pattern Not Match" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:ste:5645838" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:var:5645838"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get clusterrolebindings -o json   | jq -r '[&quot;Name&quot;], [&quot;-----&quot;], (.items[] | select((.subjects | length) &gt; 0) | select(any(.subjects[]; .name == &quot;system:unauthenticated&quot;)) | [.metadata.namespace, .metadata.name]) | @tsv'' output Pattern Mat" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:ste:5645841" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:var:5645841"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get rolebindings -A -o json \   | jq -r '[&quot;Namespace&quot;, &quot;Name&quot;], [&quot;---------&quot;, &quot;-----&quot;], (.items[] | select((.subjects | length) &gt; 0) | select(any(.subjects[]; .name == &quot;system:unauthenticated&quot;)) | [.metadata.namespace, .metadata.name]) | @" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:ste:5645842" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:var:5645842"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get rolebindings -A -o json | jq -r '[&quot;Namespace&quot;, &quot;Name&quot;], [&quot;---------&quot;, &quot;-----&quot;], (.items[] | select((.subjects | length) &gt; 0) | select(any(.subjects[]; .name == &quot;system:unauthenticated&quot;)) | [.metadata.namespace, .metadata.name]) | @tsv'" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:ste:5838409" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:var:5838409"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get clusterrolebindings -o json   | jq -r '[&quot;Name&quot;], [&quot;-----&quot;], (.items[] | select((.subjects | length) &gt; 0) | select(any(.subjects[]; .name == &quot;system:unauthenticated&quot;)) | [.metadata.namespace, .metadata.name]) | @tsv'' output Pattern Mat" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:ste:5645844" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:var:5645844"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get clusterrolebindings -o json   | jq -r '[&quot;Name&quot;], [&quot;-----&quot;], (.items[] | select((.subjects | length) &gt; 0) | select(any(.subjects[]; .name == &quot;system:unauthenticated&quot;)) | [.metadata.namespace, .metadata.name]) | @tsv'' output Pattern Mat" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:ste:5645846" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:var:5645846"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get clusterrolebindings -o json   | jq -r '[&quot;Name&quot;], [&quot;-----&quot;], (.items[] | select((.subjects | length) &gt; 0) | select(any(.subjects[]; .name == &quot;system:unauthenticated&quot;)) | [.metadata.namespace, .metadata.name]) | @tsv'' output Pattern Mat" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:ste:5645847" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:var:5645847"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get networkpolicy --all-namespaces' output Pattern Match '.+' (string)" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:ste:5645857" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:var:5645857"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get pods --all-namespaces -o json | jq -r '.items[] | select(.metadata.annotations.&quot;seccomp.security.alpha.kubernetes.io/pod&quot; == &quot;runtime/default&quot; or .spec.securityContext.seccompProfile.type == &quot;RuntimeDefault&quot;) | {namespace: .metadata.na" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:ste:5645863" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:var:5645863"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get pods -n default' output Pattern Match '.+' (string)" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:ste:5645866" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:var:5645866"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'gcloud services list --enabled' output Pattern Match 'Container Registry API' (string)" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:ste:5645849" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:var:5645849"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'gcloud services list --enabled' output Pattern Match 'Container Analysis API' (string)" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:ste:5645850" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:var:5645850"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'gcloud container clusters describe $CLUSTER_NAME --zone $COMPUTE_ZONE --format json | jq .binaryAuthorization' output Pattern Not Match 'evaluationMode.*DISABLED' (string)" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:ste:5837923" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:var:5837923"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure GKE clusters are not running using the Compute Engine default service account" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:ste:5747961" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:var:5747961"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure Kubernetes Secrets are encrypted using keys managed in Cloud KMS" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:ste:5645856" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:var:5645856"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Enable VPC Flow Logs and Intranode Visibility" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:ste:5645870" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:var:5645870"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'gcloud container clusters describe $CLUSTER_NAME --zone $COMPUTE_ZONE --format json | jq '.masterAuthorizedNetworksConfig'' output Pattern Match 'enabled.*true' (string)" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:ste:5747962" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:var:5747962"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure clusters are created with Private Endpoint Enabled and Public Access Disabled" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:ste:5747963" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:var:5747963"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure clusters are created with Private Nodes" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:ste:5747964" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:var:5747964"></stdout_line>
+      </shellcommand_state>
+   </states>
+   <variables>
+      <external_variable comment="This value is used in Rule: Ensure that the cluster-admin role is only used where required" datatype="string" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:var:5645823" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Minimize access to secrets" datatype="string" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:var:5645825" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Minimize wildcard use in Roles and ClusterRoles" datatype="string" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:var:5645827" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Minimize wildcard use in Roles and ClusterRoles" datatype="string" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:var:5645829" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure that default service accounts are not actively used" datatype="string" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:var:5645831" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure that Service Account Tokens are only mounted where necessary" datatype="string" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:var:5645832" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure that Service Account Tokens are only mounted where necessary" datatype="string" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:var:5645834" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Avoid use of system:masters group" datatype="string" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:var:5645836" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Avoid bindings to system:anonymous" datatype="string" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:var:5645838" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Avoid non-default bindings to system:unauthenticated" datatype="string" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:var:5645841" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Avoid non-default bindings to system:unauthenticated" datatype="string" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:var:5645842" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Avoid non-default bindings to system:authenticated" datatype="string" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:var:5838409" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Avoid non-default bindings to system:authenticated" datatype="string" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:var:5645844" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Avoid non-default bindings to system:authenticated" datatype="string" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:var:5645846" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Avoid non-default bindings to system:authenticated" datatype="string" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:var:5645847" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure that all Namespaces have Network Policies defined" datatype="string" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:var:5645857" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure that the seccomp profile is set to RuntimeDefault in the pod definitions" datatype="string" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:var:5645863" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: The default namespace should not be used" datatype="string" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:var:5645866" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure Image Vulnerability Scanning is enabled" datatype="string" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:var:5645849" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure Image Vulnerability Scanning is enabled" datatype="string" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:var:5645850" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure only trusted container images are used" datatype="string" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:var:5837923" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure GKE clusters are not running using the Compute Engine default service account" datatype="string" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:var:5747961" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure Kubernetes Secrets are encrypted using keys managed in Cloud KMS" datatype="string" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:var:5645856" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Enable VPC Flow Logs and Intranode Visibility" datatype="string" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:var:5645870" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure Control Plane Authorized Networks is Enabled" datatype="string" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:var:5747962" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure clusters are created with Private Endpoint Enabled and Public Access Disabled" datatype="string" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:var:5747963" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure clusters are created with Private Nodes" datatype="string" id="oval:org.cisecurity.benchmarks.kubernetes_kubernetes_1:var:5747964" version="1"></external_variable>
+   </variables>
+<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+<ds:SignedInfo>
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"></ds:CanonicalizationMethod>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></ds:SignatureMethod>
+<ds:Reference URI="">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"></ds:Transform>
+<ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"></ds:Transform>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></ds:DigestMethod>
+<ds:DigestValue>19Jrihw9L6aWZognGzRnyPdUrIw4mv3RgymQzw2dqpg=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue>
+whPtXmhWK4P4DxEUoB5ArHMsItywDcN/PLgrV5TkO8+xK+aQTGah3wL7SaYsnqf/Lvb8SMun9i/8
+AYZkLZ0lIFoyJM4OfHhdxBtZXcnwND4FeDkoDcOHs2/HlHFzmD04UUOsewdEqGdz9YWB765p1AnX
+Umt9NBytLGAaSn01UwNu0kL4pUQunO3yKCDGuSUA6Se+lyW3WVQkWg61DLyYPIg1x2KwUqfOGBkJ
+q6se9Y097wvle+H+ZY7GaT4kl9OAvGUx0hH/9ZomsdvVwMwuqsBqFQtypdSPAZYidj4wbG0g5Ba/
+3Schedzn6JBcDyhRklSwzYIf29kCC0r5kuUqWoVBb3tA3U36SfzNRakXe6Sa50lNuECr8OTOXX/y
+K6jX3fFkgC2tujqwGeTiNeIhhPd8nmhnSHuYZNEK+3rLfLN2SAgo/mu++msSR3/WbkQSUDqcGbcN
+xqo2aakYrelABLPpgmyFSwiLnF1+NwAiWmQfy17PBachuc8ovsRrxmV9
+</ds:SignatureValue>
+<ds:KeyInfo>
+<ds:X509Data>
+<ds:X509Certificate>
+MIIHbDCCBVSgAwIBAgIQCdceADCnzKkglkQGavVKYzANBgkqhkiG9w0BAQsFADBpMQswCQYDVQQG
+EwJVUzEXMBUGA1UEChMORGlnaUNlcnQsIEluYy4xQTA/BgNVBAMTOERpZ2lDZXJ0IFRydXN0ZWQg
+RzQgQ29kZSBTaWduaW5nIFJTQTQwOTYgU0hBMzg0IDIwMjEgQ0ExMB4XDTIzMTAxODAwMDAwMFoX
+DTI2MTAxODIzNTk1OVowgfQxEzARBgsrBgEEAYI3PAIBAxMCVVMxGTAXBgsrBgEEAYI3PAIBAhMI
+TWFyeWxhbmQxHTAbBgNVBA8MFFByaXZhdGUgT3JnYW5pemF0aW9uMRIwEAYDVQQFEwlEMDYwNTg4
+MTIxCzAJBgNVBAYTAlVTMREwDwYDVQQIEwhOZXcgWW9yazEXMBUGA1UEBxMORWFzdCBHcmVlbmJ1
+c2gxKjAoBgNVBAoTIUNlbnRlciBmb3IgSW50ZXJuZXQgU2VjdXJpdHksIEluYzEqMCgGA1UEAxMh
+Q2VudGVyIGZvciBJbnRlcm5ldCBTZWN1cml0eSwgSW5jMIIBojANBgkqhkiG9w0BAQEFAAOCAY8A
+MIIBigKCAYEAyZwTJr4Kb7QEDnVY3BEkPoS3fn+XoxhCTfFvlMk8zXDcR4pFMgPkXTrZ1KbENUIV
+skIhy1vmnh61vwSL0lcdzesCekKSxLqrEA4xunZk1MB5mLbHXchSSpI1co1vaSzJjkTYP1UsUVQz
+NoOzV0LNCoZdahjGTHSduWvbrHTEeD6/jvUj3AVWrTx6krzgYA3ozAxtUnapK7IrZERuGOSwTrgR
+Lr1aieQdFy8haW1YL+ks5HmLRvcoGp+J68GX/zfMTduvWxhcpXm4txKc4iJqGCRmyBU2XjGjpDBX
+ndxHgT4edRLz5PwWSeZUh8/tWOGFwnVw7njoOa0sFixy96H2BqEn+yPeRALyf59rjtPL66tsXuaA
+ilB63yqbH42mnkxHTX5zcEm337GzTOGRccsYzN/ApVuXDeMfsO+sSUosrimnxm9QTOyKcex5h1As
+rxBVfTw+Zf7jP1YRlmMlGPG1zffK2KjJhD6ivFi2sIDThEQLxIAC8XOjp2ZXvhx87yNTAgMBAAGj
+ggICMIIB/jAfBgNVHSMEGDAWgBRoN+Drtjv4XxGG+/5hewiIZfROQjAdBgNVHQ4EFgQUX2/J9FT5
+5BNF7JqfAl9SJkv3pf0wPQYDVR0gBDYwNDAyBgVngQwBAzApMCcGCCsGAQUFBwIBFhtodHRwOi8v
+d3d3LmRpZ2ljZXJ0LmNvbS9DUFMwDgYDVR0PAQH/BAQDAgeAMBMGA1UdJQQMMAoGCCsGAQUFBwMD
+MIG1BgNVHR8Ega0wgaowU6BRoE+GTWh0dHA6Ly9jcmwzLmRpZ2ljZXJ0LmNvbS9EaWdpQ2VydFRy
+dXN0ZWRHNENvZGVTaWduaW5nUlNBNDA5NlNIQTM4NDIwMjFDQTEuY3JsMFOgUaBPhk1odHRwOi8v
+Y3JsNC5kaWdpY2VydC5jb20vRGlnaUNlcnRUcnVzdGVkRzRDb2RlU2lnbmluZ1JTQTQwOTZTSEEz
+ODQyMDIxQ0ExLmNybDCBlAYIKwYBBQUHAQEEgYcwgYQwJAYIKwYBBQUHMAGGGGh0dHA6Ly9vY3Nw
+LmRpZ2ljZXJ0LmNvbTBcBggrBgEFBQcwAoZQaHR0cDovL2NhY2VydHMuZGlnaWNlcnQuY29tL0Rp
+Z2lDZXJ0VHJ1c3RlZEc0Q29kZVNpZ25pbmdSU0E0MDk2U0hBMzg0MjAyMUNBMS5jcnQwCQYDVR0T
+BAIwADANBgkqhkiG9w0BAQsFAAOCAgEASLOHf1FQ7TrGqEoVXYoeNSkRWdVCUGd1JCDs7Hb9sLd3
+eQuipZ4EorQS/9qMiVMhmlJfF75sNVQhr1K5UtjrDRFMTzYmh78hAyovowzgyVKdGFqiVVr5m+mb
+vVyglLlA4V076LMBaKRknm1Dt8r0/5GSRCrkP2origpYMMaocN+iBX9+MImnh3J1Ehn0nRUhW86Q
+mt3/YCVIaQZisv+KmOxyAq1m6fiIYIvXY+cH2dDIheoVteb/NjYnKVqE6xTpOsxF16pykXiM9yk3
+Q9nlJS36KEGRP4wrySU4eIBnTcv4mimZjkWj6bIvk8otNJ14FbyltaPwIc3dE3oPGfSmCrkxs73j
+iqBs2TXLvblEmOhY8ko3xVdTm0zMP50MQVO948fz9yF+xdnPdMPT1/lCmGp6iWYRzxnvEkA1+HFl
+yy9YztrM8WNAhXirpUZg3HWQE2ONLKMtqQrkIHD2nikda77flk6oirqDuCf8Q7g8s86/KabTdxrw
+pRmsRjDkAfKVae58ctaKbmF32oU9BGk+9MPG8HF5Yfoh12DE1fLZcPzZrROrDFJGGxwhv5FlnxGg
+6G7jKi68erZnpaOPayK0bXyZNunqkI9IbIuPqMw5qaCZZgN6AEHIbGTKdrWEf11DmR7MdTjv3/vu
+JWtIXgk3kQFX27w9JhqV6QogVmzIfEQ=
+</ds:X509Certificate>
+</ds:X509Data>
+<ds:KeyValue>
+<ds:RSAKeyValue>
+<ds:Modulus>yZwTJr4Kb7QEDnVY3BEkPoS3fn+XoxhCTfFvlMk8zXDcR4pFMgPkXTrZ1KbENUIVskIhy1vmnh61
+vwSL0lcdzesCekKSxLqrEA4xunZk1MB5mLbHXchSSpI1co1vaSzJjkTYP1UsUVQzNoOzV0LNCoZd
+ahjGTHSduWvbrHTEeD6/jvUj3AVWrTx6krzgYA3ozAxtUnapK7IrZERuGOSwTrgRLr1aieQdFy8h
+aW1YL+ks5HmLRvcoGp+J68GX/zfMTduvWxhcpXm4txKc4iJqGCRmyBU2XjGjpDBXndxHgT4edRLz
+5PwWSeZUh8/tWOGFwnVw7njoOa0sFixy96H2BqEn+yPeRALyf59rjtPL66tsXuaAilB63yqbH42m
+nkxHTX5zcEm337GzTOGRccsYzN/ApVuXDeMfsO+sSUosrimnxm9QTOyKcex5h1AsrxBVfTw+Zf7j
+P1YRlmMlGPG1zffK2KjJhD6ivFi2sIDThEQLxIAC8XOjp2ZXvhx87yNT</ds:Modulus>
+<ds:Exponent>AQAB</ds:Exponent>
+</ds:RSAKeyValue>
+</ds:KeyValue>
+</ds:KeyInfo>
+</ds:Signature></oval_definitions>

@@ -1,0 +1,552 @@
+<oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5 https://oval.cisecurity.org/schemas/validator-oval-definitions-5.11.2.xsd">
+   <generator>
+      <oval:product_name>Center for Internet Security - Optimus</oval:product_name>
+      <oval:schema_version>5.11.2</oval:schema_version>
+      <oval:timestamp>2023-11-09T16:57:40.811Z</oval:timestamp>
+   </generator>
+   <definitions>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:def:35280" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Disable Slide Update' is set to Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.5.2_L1_Ensure_Disable_Slide_Update_is_set_to_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.5.2_L1_Ensure_Disable_Slide_Update_is_set_to_Enabled"></reference>
+            <description>(L1) Ensure 'Disable Slide Update' is set to Enabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:tst:35280"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:def:35281" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Default file format' is set to Enabled (PowerPoint Presentation (*pptx))</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.6.5.1_L1_Ensure_Default_file_format_is_set_to_Enabled_PowerPoint_Presentation_pptx" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.6.5.1_L1_Ensure_Default_file_format_is_set_to_Enabled_PowerPoint_Presentation_pptx"></reference>
+            <description>(L1) Ensure 'Default file format' is set to Enabled (PowerPoint Presentation (*pptx))</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:tst:35281"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:def:35282" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Default File Block Behavior' to Enabled (Blocked files are not opened)</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.6.6.2.1.1_L1_Ensure_Default_File_Block_Behavior_to_Enabled_Blocked_files_are_not_opened" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.6.6.2.1.1_L1_Ensure_Default_File_Block_Behavior_to_Enabled_Blocked_files_are_not_opened"></reference>
+            <description>(L1) Ensure 'Default File Block Behavior' to Enabled (Blocked files are not opened)</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:tst:35282"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:def:35283" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Document Behavior if File Validation Fails' is set to Enabled (Open in Protected View (Unchecked))</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.6.6.2.2.1_L1_Ensure_Document_Behavior_if_File_Validation_Fails_is_set_to_Enabled_Open_in_Protected_View_Unchecked" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.6.6.2.2.1_L1_Ensure_Document_Behavior_if_File_Validation_Fails_is_set_to_Enabled_Open_in_Protected_View_Unchecked"></reference>
+            <description>(L1) Ensure 'Document Behavior if File Validation Fails' is set to Enabled (Open in Protected View (Unchecked))</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:tst:35283"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:def:35284" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Document Behavior if File Validation Fails' is set to Enabled (Open in Protected View (Unchecked))</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.6.6.2.2.1_L1_Ensure_Document_Behavior_if_File_Validation_Fails_is_set_to_Enabled_Open_in_Protected_View_Unchecked" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.6.6.2.2.1_L1_Ensure_Document_Behavior_if_File_Validation_Fails_is_set_to_Enabled_Open_in_Protected_View_Unchecked"></reference>
+            <description>(L1) Ensure 'Document Behavior if File Validation Fails' is set to Enabled (Open in Protected View (Unchecked))</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:tst:35284"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:def:35285" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Do not open from the Internet zone in Protected View' is set to Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.6.6.2.2.2_L1_Ensure_Do_not_open_from_the_Internet_zone_in_Protected_View_is_set_to_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.6.6.2.2.2_L1_Ensure_Do_not_open_from_the_Internet_zone_in_Protected_View_is_set_to_Disabled"></reference>
+            <description>(L1) Ensure 'Do not open from the Internet zone in Protected View' is set to Disabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:tst:35285"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:def:35286" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Turn off Protected View for attachments opened from Outlook' is set to Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.6.6.2.2.3_L1_Ensure_Turn_off_Protected_View_for_attachments_opened_from_Outlook_is_set_to_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.6.6.2.2.3_L1_Ensure_Turn_off_Protected_View_for_attachments_opened_from_Outlook_is_set_to_Disabled"></reference>
+            <description>(L1) Ensure 'Turn off Protected View for attachments opened from Outlook' is set to Disabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:tst:35286"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:def:35287" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Do not open files in unsafe locations in Protected View' is set to Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.6.6.2.2.4_L1_Ensure_Do_not_open_files_in_unsafe_locations_in_Protected_View_is_set_to_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.6.6.2.2.4_L1_Ensure_Do_not_open_files_in_unsafe_locations_in_Protected_View_is_set_to_Disabled"></reference>
+            <description>(L1) Ensure 'Do not open files in unsafe locations in Protected View' is set to Disabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:tst:35287"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:def:35288" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Allow Trusted Locations on The Network' is set to Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.6.6.2.3.1_L1_Ensure_Allow_Trusted_Locations_on_The_Network_is_set_to_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.6.6.2.3.1_L1_Ensure_Allow_Trusted_Locations_on_The_Network_is_set_to_Disabled"></reference>
+            <description>(L1) Ensure 'Allow Trusted Locations on The Network' is set to Disabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:tst:35288"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:def:35289" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Disable all trusted locations' is set to Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.6.6.2.3.2_L1_Ensure_Disable_all_trusted_locations_is_set_to_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.6.6.2.3.2_L1_Ensure_Disable_all_trusted_locations_is_set_to_Enabled"></reference>
+            <description>(L1) Ensure 'Disable all trusted locations' is set to Enabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:tst:35289"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:def:35290" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Disable Trust Bar Notification for Unsigned Application Add-ins and Block Them' is set to Enable</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.6.6.2.4_L1_Ensure_Disable_Trust_Bar_Notification_for_Unsigned_Application_Add-ins_and_Block_Them_is_set_to_Enable" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.6.6.2.4_L1_Ensure_Disable_Trust_Bar_Notification_for_Unsigned_Application_Add-ins_and_Block_Them_is_set_to_Enable"></reference>
+            <description>(L1) Ensure 'Disable Trust Bar Notification for Unsigned Application Add-ins and Block Them' is set to Enable</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:tst:35290"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:def:35291" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Trust Access to Visual Basic Project' is set to Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.6.6.2.5_L1_Ensure_Trust_Access_to_Visual_Basic_Project_is_set_to_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.6.6.2.5_L1_Ensure_Trust_Access_to_Visual_Basic_Project_is_set_to_Disabled"></reference>
+            <description>(L1) Ensure 'Trust Access to Visual Basic Project' is set to Disabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:tst:35291"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:def:35292" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Require That Application Add-ins are Signed by Trusted Publisher' is set to Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.6.6.2.6_L1_Ensure_Require_That_Application_Add-ins_are_Signed_by_Trusted_Publisher_is_set_to_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.6.6.2.6_L1_Ensure_Require_That_Application_Add-ins_are_Signed_by_Trusted_Publisher_is_set_to_Enabled"></reference>
+            <description>(L1) Ensure 'Require That Application Add-ins are Signed by Trusted Publisher' is set to Enabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:tst:35292"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:def:35293" version="1">
+         <metadata>
+            <title>(L1) Ensure 'VBA Macro Notification Settings' is set to Enabled (Disable all Except Digitally Signed)</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.6.6.2.7_L1_Ensure_VBA_Macro_Notification_Settings_is_set_to_Enabled_Disable_all_Except_Digitally_Signed" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.6.6.2.7_L1_Ensure_VBA_Macro_Notification_Settings_is_set_to_Enabled_Disable_all_Except_Digitally_Signed"></reference>
+            <description>(L1) Ensure 'VBA Macro Notification Settings' is set to Enabled (Disable all Except Digitally Signed)</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:tst:35293"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:def:35294" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Make Hidden Markup Visible' is set to Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.6.6.3_L1_Ensure_Make_Hidden_Markup_Visible_is_set_to_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.6.6.3_L1_Ensure_Make_Hidden_Markup_Visible_is_set_to_Enabled"></reference>
+            <description>(L1) Ensure 'Make Hidden Markup Visible' is set to Enabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:tst:35294"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:def:35295" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Scan Encrypted Macros in PowerPoint Open XML Presentations' is set to Enabled (Scan Encrypted Macros)</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.6.6.4_L1_Ensure_Scan_Encrypted_Macros_in_PowerPoint_Open_XML_Presentations_is_set_to_Enabled_Scan_Encrypted_Macros" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.6.6.4_L1_Ensure_Scan_Encrypted_Macros_in_PowerPoint_Open_XML_Presentations_is_set_to_Enabled_Scan_Encrypted_Macros"></reference>
+            <description>(L1) Ensure 'Scan Encrypted Macros in PowerPoint Open XML Presentations' is set to Enabled (Scan Encrypted Macros)</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:tst:35295"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:def:35296" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Run Programs' is set to Enabled (Disable (Don't Run Any Programs))</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.6.6.5_L1_Ensure_Run_Programs_is_set_to_Enabled_Disable_Dont_Run_Any_Programs" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.6.6.5_L1_Ensure_Run_Programs_is_set_to_Enabled_Disable_Dont_Run_Any_Programs"></reference>
+            <description>(L1) Ensure 'Run Programs' is set to Enabled (Disable (Don't Run Any Programs))</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:tst:35296"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:def:35297" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Turn Off File Validation' is set to Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.6.6.6_L1_Ensure_Turn_Off_File_Validation_is_set_to_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.6.6.6_L1_Ensure_Turn_Off_File_Validation_is_set_to_Disabled"></reference>
+            <description>(L1) Ensure 'Turn Off File Validation' is set to Disabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:tst:35297"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:def:35298" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Unblock Automatic Download of Linked Images' is set to Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.6.6.7_L1_Ensure_Unblock_Automatic_Download_of_Linked_Images_is_set_to_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.6.6.7_L1_Ensure_Unblock_Automatic_Download_of_Linked_Images_is_set_to_Disabled"></reference>
+            <description>(L1) Ensure 'Unblock Automatic Download of Linked Images' is set to Disabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:tst:35298"></criterion>
+         </criteria>
+      </definition>
+   </definitions>
+   <tests>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'disableslideupdate' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:tst:35280" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:obj:35280"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:ste:35280"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'defaultformat' is equals to '27'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:tst:35281" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:obj:35281"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:ste:35281"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'openinprotectedview' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:tst:35282" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:obj:35282"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:ste:35282"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'disableeditfrompv' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:tst:35283" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:obj:35283"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:ste:35283"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'openinprotectedview' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:tst:35284" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:obj:35284"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:ste:35284"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'disableinternetfilesinpv' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:tst:35285" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:obj:35285"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:ste:35285"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'disableattachmentsinpv' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:tst:35286" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:obj:35286"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:ste:35286"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'disableunsafelocationsinpv' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:tst:35287" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:obj:35287"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:ste:35287"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'allownetworklocations' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:tst:35288" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:obj:35288"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:ste:35288"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'alllocationsdisabled' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:tst:35289" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:obj:35289"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:ste:35289"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'notbpromptunsignedaddin' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:tst:35290" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:obj:35290"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:ste:35290"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'accessvbom' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:tst:35291" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:obj:35291"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:ste:35291"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'requireaddinsig' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:tst:35292" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:obj:35292"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:ste:35292"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'vbawarnings' is equals to '3'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:tst:35293" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:obj:35293"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:ste:35293"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'markupopensave' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:tst:35294" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:obj:35294"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:ste:35294"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'powerpointbypassencryptedmacroscan' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:tst:35295" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:obj:35295"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:ste:35295"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'runprograms' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:tst:35296" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:obj:35296"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:ste:35296"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'enableonload' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:tst:35297" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:obj:35297"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:ste:35297"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="any_exist" comment="Ensure 'downloadimages' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:tst:35298" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:obj:35298"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:ste:35298"></state>
+      </registry_test>
+   </tests>
+   <objects>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'disableslideupdate' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:obj:35280" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Pp]owerpoint\\[Ss]lide [Ll]ibraries</key>
+         <name>disableslideupdate</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'defaultformat' is equals to '27'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:obj:35281" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Pp]owerpoint\\[Oo]ptions</key>
+         <name>defaultformat</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'openinprotectedview' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:obj:35282" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Pp]owerpoint\\[Ss]ecurity\\[Ff]ileblock</key>
+         <name>openinprotectedview</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'disableeditfrompv' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:obj:35283" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Pp]owerpoint\\[Ss]ecurity\\[Ff]ilevalidation</key>
+         <name>disableeditfrompv</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'openinprotectedview' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:obj:35284" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Pp]owerpoint\\[Ss]ecurity\\[Ff]ilevalidation</key>
+         <name>openinprotectedview</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'disableinternetfilesinpv' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:obj:35285" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Pp]owerpoint\\[Ss]ecurity\\[Pp]rotectedview</key>
+         <name>disableinternetfilesinpv</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'disableattachmentsinpv' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:obj:35286" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Pp]owerpoint\\[Ss]ecurity\\[Pp]rotectedview</key>
+         <name>disableattachmentsinpv</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'disableunsafelocationsinpv' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:obj:35287" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Pp]owerpoint\\[Ss]ecurity\\[Pp]rotectedview</key>
+         <name>disableunsafelocationsinpv</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'allownetworklocations' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:obj:35288" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Pp]owerpoint\\[Ss]ecurity\\[Tt]rusted [Ll]ocations</key>
+         <name>allownetworklocations</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'alllocationsdisabled' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:obj:35289" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Pp]owerpoint\\[Ss]ecurity\\[Tt]rusted locations</key>
+         <name>alllocationsdisabled</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'notbpromptunsignedaddin' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:obj:35290" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Pp]owerpoint\\[Ss]ecurity</key>
+         <name>notbpromptunsignedaddin</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'accessvbom' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:obj:35291" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Pp]owerpoint\\[Ss]ecurity</key>
+         <name>accessvbom</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'requireaddinsig' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:obj:35292" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Pp]owerpoint\\[Ss]ecurity</key>
+         <name>requireaddinsig</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'vbawarnings' is equals to '3'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:obj:35293" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Pp]owerpoint\\[Ss]ecurity</key>
+         <name>vbawarnings</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'markupopensave' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:obj:35294" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Pp]owerpoint\\[Oo]ptions</key>
+         <name>markupopensave</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'powerpointbypassencryptedmacroscan' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:obj:35295" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Pp]owerpoint\\[Ss]ecurity</key>
+         <name>powerpointbypassencryptedmacroscan</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'runprograms' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:obj:35296" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Pp]owerpoint\\[Ss]ecurity</key>
+         <name>runprograms</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'enableonload' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:obj:35297" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Pp]owerpoint\\[Ss]ecurity\\[Ff]ilevalidation</key>
+         <name>enableonload</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'downloadimages' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:obj:35298" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Pp]owerpoint\\[Ss]ecurity</key>
+         <name>downloadimages</name>
+      </registry_object>
+   </objects>
+   <states>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'disableslideupdate' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:ste:35280" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'defaultformat' is equals to '27'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:ste:35281" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">27</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'openinprotectedview' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:ste:35282" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">0</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'disableeditfrompv' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:ste:35283" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'openinprotectedview' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:ste:35284" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'disableinternetfilesinpv' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:ste:35285" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">0</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'disableattachmentsinpv' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:ste:35286" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">0</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'disableunsafelocationsinpv' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:ste:35287" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">0</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'allownetworklocations' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:ste:35288" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">0</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'alllocationsdisabled' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:ste:35289" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'notbpromptunsignedaddin' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:ste:35290" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'accessvbom' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:ste:35291" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">0</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'requireaddinsig' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:ste:35292" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'vbawarnings' is equals to '3'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:ste:35293" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">3</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'markupopensave' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:ste:35294" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'powerpointbypassencryptedmacroscan' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:ste:35295" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">0</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'runprograms' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:ste:35296" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">0</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'enableonload' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:ste:35297" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'downloadimages' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:ste:35298" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">0</value>
+      </registry_state>
+   </states>
+   <variables>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Disable Slide Update' is set to Enabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:var:352801" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Disable Slide Update' is set to Enabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:var:352802" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Default file format' is set to Enabled (PowerPoint Presentation (*pptx)) for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:var:352811" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Default file format' is set to Enabled (PowerPoint Presentation (*pptx)) for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:var:352812" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Default File Block Behavior' to Enabled (Blocked files are not opened) for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:var:352821" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Default File Block Behavior' to Enabled (Blocked files are not opened) for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:var:352822" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Document Behavior if File Validation Fails' is set to Enabled (Open in Protected View (Unchecked)) for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:var:352831" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Document Behavior if File Validation Fails' is set to Enabled (Open in Protected View (Unchecked)) for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:var:352832" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Document Behavior if File Validation Fails' is set to Enabled (Open in Protected View (Unchecked)) for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:var:352841" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Document Behavior if File Validation Fails' is set to Enabled (Open in Protected View (Unchecked)) for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:var:352842" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Do not open from the Internet zone in Protected View' is set to Disabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:var:352851" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Do not open from the Internet zone in Protected View' is set to Disabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:var:352852" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Turn off Protected View for attachments opened from Outlook' is set to Disabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:var:352861" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Turn off Protected View for attachments opened from Outlook' is set to Disabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:var:352862" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Do not open files in unsafe locations in Protected View' is set to Disabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:var:352871" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Do not open files in unsafe locations in Protected View' is set to Disabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:var:352872" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Allow Trusted Locations on The Network' is set to Disabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:var:352881" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Allow Trusted Locations on The Network' is set to Disabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:var:352882" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Disable all trusted locations' is set to Enabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:var:352891" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Disable all trusted locations' is set to Enabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:var:352892" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Disable Trust Bar Notification for Unsigned Application Add-ins and Block Them' is set to Enable for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:var:352901" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Disable Trust Bar Notification for Unsigned Application Add-ins and Block Them' is set to Enable for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:var:352902" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Trust Access to Visual Basic Project' is set to Disabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:var:352911" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Trust Access to Visual Basic Project' is set to Disabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:var:352912" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Require That Application Add-ins are Signed by Trusted Publisher' is set to Enabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:var:352921" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Require That Application Add-ins are Signed by Trusted Publisher' is set to Enabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:var:352922" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'VBA Macro Notification Settings' is set to Enabled (Disable all Except Digitally Signed) for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:var:352931" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'VBA Macro Notification Settings' is set to Enabled (Disable all Except Digitally Signed) for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:var:352932" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Make Hidden Markup Visible' is set to Enabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:var:352941" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Make Hidden Markup Visible' is set to Enabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:var:352942" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Scan Encrypted Macros in PowerPoint Open XML Presentations' is set to Enabled (Scan Encrypted Macros) for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:var:352951" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Scan Encrypted Macros in PowerPoint Open XML Presentations' is set to Enabled (Scan Encrypted Macros) for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:var:352952" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Run Programs' is set to Enabled (Disable (Don't Run Any Programs)) for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:var:352961" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Run Programs' is set to Enabled (Disable (Don't Run Any Programs)) for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:var:352962" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Turn Off File Validation' is set to Disabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:var:352971" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Turn Off File Validation' is set to Disabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:var:352972" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Unblock Automatic Download of Linked Images' is set to Disabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:var:352981" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Unblock Automatic Download of Linked Images' is set to Disabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_powerpoint_2016:var:352982" version="1"></external_variable>
+   </variables>
+<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+<ds:SignedInfo>
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"></ds:CanonicalizationMethod>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"></ds:SignatureMethod>
+<ds:Reference URI="">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"></ds:Transform>
+<ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"></ds:Transform>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"></ds:DigestMethod>
+<ds:DigestValue>fn+WdoeKK1Qoja+H0RCuUpGn+x0=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue>
+nqByV/l4IDQPshiW6WosOeT7AWw6O8g6NNV1DQMc36HztA2EBjkaeoFzzJTLb6Uv1GO3gENt+RKB
+EKvCqY/5Z7RJuiYBeGrk5pGfya4btVkt6IFmw+PKA7qe+rtepcTrwdj5y5A9tif4HAhXhnVc92BE
+S8n4L9e/eXa7Q+JPYKSsGgOpvlu5VSMhahYEJ24sHvQ7CYl+cuABRLMuyc3nZDlJbmYtsROBOQXr
+PjuMXduLSGHjm9q99OfzkoIPzlSmgb5wnEtZhjYsJxPYJAOA1HlXxr32P5vHp/IjQ/OwD9lpXTL0
+/dithW2UIUZz344MPCBPIUYZ0zjJJQvqO2d2Dg==
+</ds:SignatureValue>
+<ds:KeyInfo>
+<ds:X509Data>
+<ds:X509Certificate>
+MIIFUjCCBDqgAwIBAgIIPx+qZKptEY4wDQYJKoZIhvcNAQELBQAwgbQxCzAJBgNVBAYTAlVTMRAw
+DgYDVQQIEwdBcml6b25hMRMwEQYDVQQHEwpTY290dHNkYWxlMRowGAYDVQQKExFHb0RhZGR5LmNv
+bSwgSW5jLjEtMCsGA1UECxMkaHR0cDovL2NlcnRzLmdvZGFkZHkuY29tL3JlcG9zaXRvcnkvMTMw
+MQYDVQQDEypHbyBEYWRkeSBTZWN1cmUgQ2VydGlmaWNhdGUgQXV0aG9yaXR5IC0gRzIwHhcNMjAw
+OTA4MTMzOTM5WhcNMjMxMDI4MDAzMjA1WjCBkzELMAkGA1UEBhMCVVMxETAPBgNVBAgTCE5ldyBZ
+b3JrMRcwFQYDVQQHEw5FYXN0IEdyZWVuYnVzaDErMCkGA1UEChMiQ2VudGVyIGZvciBJbnRlcm5l
+dCBTZWN1cml0eSwgSW5jLjErMCkGA1UEAxMiQ2VudGVyIGZvciBJbnRlcm5ldCBTZWN1cml0eSwg
+SW5jLjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBANDBp4+sl9kB5JRmnQH0wcbLLz/t
+n2HoD6TRl3xJj12V61njBNgaiGzvoSl07sFLnESukb0CU44MzYDoUMdx3HJUcEAeMY/9eITqGUnk
+N4WsP145eFqH7FoszOY/4NYlgYMYt8ZP2kRHyim9LpQTLT/1mBaUkY2f2e5uUCootH3iT8W3/sK2
+flLzWfLgXTvkhJm4Uvw1RErBFs15+krW0KWtnZ6NmiDhmV0CnFGNnd1meGZPs2sBXEVGLJVSKzoT
+G9Ht/oWyRLRcJuXpHoXTYpkqM2MsixmSaJy5b6/D35r0NXHru3p1gkX2a0VgJQxxWqLi3bVPzpl3
+PlJu3C8M/FUCAwEAAaOCAYUwggGBMAwGA1UdEwEB/wQCMAAwEwYDVR0lBAwwCgYIKwYBBQUHAwMw
+DgYDVR0PAQH/BAQDAgeAMDUGA1UdHwQuMCwwKqAooCaGJGh0dHA6Ly9jcmwuZ29kYWRkeS5jb20v
+Z2RpZzJzNS02LmNybDBdBgNVHSAEVjBUMEgGC2CGSAGG/W0BBxcCMDkwNwYIKwYBBQUHAgEWK2h0
+dHA6Ly9jZXJ0aWZpY2F0ZXMuZ29kYWRkeS5jb20vcmVwb3NpdG9yeS8wCAYGZ4EMAQQBMHYGCCsG
+AQUFBwEBBGowaDAkBggrBgEFBQcwAYYYaHR0cDovL29jc3AuZ29kYWRkeS5jb20vMEAGCCsGAQUF
+BzAChjRodHRwOi8vY2VydGlmaWNhdGVzLmdvZGFkZHkuY29tL3JlcG9zaXRvcnkvZ2RpZzIuY3J0
+MB8GA1UdIwQYMBaAFEDCvSeOzDSDMKIz1/tss/C0LIDOMB0GA1UdDgQWBBT7fOf4ISDprbE+qUFe
++friFTKgHjANBgkqhkiG9w0BAQsFAAOCAQEAT0XLw2vmuq6e58bkLDXdqKeGQjREDChLw2Mae9LI
+JB93QgdA2OCLA1FwU2s7lawEDcma9wPiugxVGoaQNOfRw2/+cz0xmR3uaKQq6I24dWbHF20N2tSz
+1RAAK1lRZKewA1fj+qqKWjzETA0LpqZlaFF+CKBpQcyfYyQRZxpHkB1vvKMf4kMIRKruvl4ixLjN
+uAZrbQUWlXuq/MUkVP3FgdxWBPfmMGyngHs4hNMaSQGb1TEhBjj+PGoSunAyaOgO/P94XJPQQX3O
+2oNDsPou6gKcNtbZrH+iYTJ8rcqQTontMwSP/HrYj8lgG3neG53vk05p0jCn2M5W0ukJ4LPEnA==
+</ds:X509Certificate>
+</ds:X509Data>
+<ds:KeyValue>
+<ds:RSAKeyValue>
+<ds:Modulus>0MGnj6yX2QHklGadAfTBxssvP+2fYegPpNGXfEmPXZXrWeME2BqIbO+hKXTuwUucRK6RvQJTjgzN
+gOhQx3HcclRwQB4xj/14hOoZSeQ3haw/Xjl4WofsWizM5j/g1iWBgxi3xk/aREfKKb0ulBMtP/WY
+FpSRjZ/Z7m5QKii0feJPxbf+wrZ+UvNZ8uBdO+SEmbhS/DVESsEWzXn6StbQpa2dno2aIOGZXQKc
+UY2d3WZ4Zk+zawFcRUYslVIrOhMb0e3+hbJEtFwm5ekehdNimSozYyyLGZJonLlvr8PfmvQ1ceu7
+enWCRfZrRWAlDHFaouLdtU/OmXc+Um7cLwz8VQ==</ds:Modulus>
+<ds:Exponent>AQAB</ds:Exponent>
+</ds:RSAKeyValue>
+</ds:KeyValue>
+</ds:KeyInfo>
+</ds:Signature></oval_definitions>

@@ -1,0 +1,1662 @@
+<oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5 https://oval.cisecurity.org/schemas/validator-oval-definitions-5.11.2.xsd">
+   <generator>
+      <oval:product_name>Center for Internet Security - Optimus</oval:product_name>
+      <oval:schema_version>5.11.2</oval:schema_version>
+      <oval:timestamp>2023-05-04T21:26:39.282Z</oval:timestamp>
+   </generator>
+   <definitions>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:1422323" version="1">
+         <metadata>
+            <title>Ensure mounting of udf filesystems is disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.1.1_Ensure_mounting_of_udf_filesystems_is_disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.1.1_Ensure_mounting_of_udf_filesystems_is_disabled"></reference>
+            <description>Ensure mounting of udf filesystems is disabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:1422323"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:1422324" version="1">
+         <metadata>
+            <title>Ensure mounting of udf filesystems is disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.1.1_Ensure_mounting_of_udf_filesystems_is_disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.1.1_Ensure_mounting_of_udf_filesystems_is_disabled"></reference>
+            <description>Ensure mounting of udf filesystems is disabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:1422324"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:1422645" version="1">
+         <metadata>
+            <title>Ensure SCTP is disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.3.1_Ensure_SCTP_is_disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.3.1_Ensure_SCTP_is_disabled"></reference>
+            <description>Ensure SCTP is disabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:1422645"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:1422647" version="1">
+         <metadata>
+            <title>Ensure SCTP is disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.3.1_Ensure_SCTP_is_disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.3.1_Ensure_SCTP_is_disabled"></reference>
+            <description>Ensure SCTP is disabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:1422647"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:2829445" version="1">
+         <metadata>
+            <title>Ensure dm-verity is configured</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.3.1_Ensure_dm-verity_is_configured" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.3.1_Ensure_dm-verity_is_configured"></reference>
+            <description>Ensure dm-verity is configured</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:2829445"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:2829446" version="1">
+         <metadata>
+            <title>Ensure dm-verity is configured</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.3.1_Ensure_dm-verity_is_configured" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.3.1_Ensure_dm-verity_is_configured"></reference>
+            <description>Ensure dm-verity is configured</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:2829446"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:2829447" version="1">
+         <metadata>
+            <title>Ensure dm-verity is configured</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.3.1_Ensure_dm-verity_is_configured" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.3.1_Ensure_dm-verity_is_configured"></reference>
+            <description>Ensure dm-verity is configured</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:2829447"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:2829458" version="1">
+         <metadata>
+            <title>Ensure SELinux is configured</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.5.1_Ensure_SELinux_is_configured" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.5.1_Ensure_SELinux_is_configured"></reference>
+            <description>Ensure SELinux is configured</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:2829458"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:2829459" version="1">
+         <metadata>
+            <title>Ensure SELinux is configured</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.5.1_Ensure_SELinux_is_configured" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.5.1_Ensure_SELinux_is_configured"></reference>
+            <description>Ensure SELinux is configured</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:2829459"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:2829460" version="1">
+         <metadata>
+            <title>Ensure SELinux is configured</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.5.1_Ensure_SELinux_is_configured" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.5.1_Ensure_SELinux_is_configured"></reference>
+            <description>Ensure SELinux is configured</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:2829460"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:2829461" version="1">
+         <metadata>
+            <title>Ensure SELinux is configured</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.5.1_Ensure_SELinux_is_configured" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.5.1_Ensure_SELinux_is_configured"></reference>
+            <description>Ensure SELinux is configured</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:2829461"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:2829462" version="1">
+         <metadata>
+            <title>Ensure SELinux is configured</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.5.1_Ensure_SELinux_is_configured" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.5.1_Ensure_SELinux_is_configured"></reference>
+            <description>Ensure SELinux is configured</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:2829462"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:2829463" version="1">
+         <metadata>
+            <title>Ensure SELinux is configured</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.5.1_Ensure_SELinux_is_configured" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.5.1_Ensure_SELinux_is_configured"></reference>
+            <description>Ensure SELinux is configured</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:2829463"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:2829464" version="1">
+         <metadata>
+            <title>Ensure SELinux is configured</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.5.1_Ensure_SELinux_is_configured" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.5.1_Ensure_SELinux_is_configured"></reference>
+            <description>Ensure SELinux is configured</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:2829464"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:2836115" version="1">
+         <metadata>
+            <title>Ensure Lockdown is configured</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.5.2_Ensure_Lockdown_is_configured" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.5.2_Ensure_Lockdown_is_configured"></reference>
+            <description>Ensure Lockdown is configured</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:2836115"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:1422381" version="1">
+         <metadata>
+            <title>Ensure chrony is configured</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.1.1.1_Ensure_chrony_is_configured" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.1.1.1_Ensure_chrony_is_configured"></reference>
+            <description>Ensure chrony is configured</description>
+         </metadata>
+         <criteria negate="true" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:1422381"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:2831642" version="1">
+         <metadata>
+            <title>Ensure chrony is configured</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.1.1.1_Ensure_chrony_is_configured" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.1.1.1_Ensure_chrony_is_configured"></reference>
+            <description>Ensure chrony is configured</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:2831642"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:1422711" version="1">
+         <metadata>
+            <title>Ensure IPv4 default deny firewall policy</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.4.1.1_Ensure_IPv4_default_deny_firewall_policy" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.4.1.1_Ensure_IPv4_default_deny_firewall_policy"></reference>
+            <description>Ensure IPv4 default deny firewall policy</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:1422711"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:1422712" version="1">
+         <metadata>
+            <title>Ensure IPv4 default deny firewall policy</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.4.1.1_Ensure_IPv4_default_deny_firewall_policy" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.4.1.1_Ensure_IPv4_default_deny_firewall_policy"></reference>
+            <description>Ensure IPv4 default deny firewall policy</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:1422712"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:1422714" version="1">
+         <metadata>
+            <title>Ensure IPv4 default deny firewall policy</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.4.1.1_Ensure_IPv4_default_deny_firewall_policy" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.4.1.1_Ensure_IPv4_default_deny_firewall_policy"></reference>
+            <description>Ensure IPv4 default deny firewall policy</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:1422714"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:1422718" version="1">
+         <metadata>
+            <title>Ensure IPv4 loopback traffic is configured</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.4.1.2_Ensure_IPv4_loopback_traffic_is_configured" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.4.1.2_Ensure_IPv4_loopback_traffic_is_configured"></reference>
+            <description>Ensure IPv4 loopback traffic is configured</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:1422718"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:1422720" version="1">
+         <metadata>
+            <title>Ensure IPv4 loopback traffic is configured</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.4.1.2_Ensure_IPv4_loopback_traffic_is_configured" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.4.1.2_Ensure_IPv4_loopback_traffic_is_configured"></reference>
+            <description>Ensure IPv4 loopback traffic is configured</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:1422720"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:1422723" version="1">
+         <metadata>
+            <title>Ensure IPv4 loopback traffic is configured</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.4.1.2_Ensure_IPv4_loopback_traffic_is_configured" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.4.1.2_Ensure_IPv4_loopback_traffic_is_configured"></reference>
+            <description>Ensure IPv4 loopback traffic is configured</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:1422723"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:1422675" version="1">
+         <metadata>
+            <title>Ensure IPv6 default deny firewall policy</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.4.2.1_Ensure_IPv6_default_deny_firewall_policy" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.4.2.1_Ensure_IPv6_default_deny_firewall_policy"></reference>
+            <description>Ensure IPv6 default deny firewall policy</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:1422675"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:1422677" version="1">
+         <metadata>
+            <title>Ensure IPv6 default deny firewall policy</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.4.2.1_Ensure_IPv6_default_deny_firewall_policy" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.4.2.1_Ensure_IPv6_default_deny_firewall_policy"></reference>
+            <description>Ensure IPv6 default deny firewall policy</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:1422677"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:1422680" version="1">
+         <metadata>
+            <title>Ensure IPv6 default deny firewall policy</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.4.2.1_Ensure_IPv6_default_deny_firewall_policy" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.4.2.1_Ensure_IPv6_default_deny_firewall_policy"></reference>
+            <description>Ensure IPv6 default deny firewall policy</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:1422680"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:1422689" version="1">
+         <metadata>
+            <title>Ensure IPv6 loopback traffic is configured</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.4.2.2_Ensure_IPv6_loopback_traffic_is_configured" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.4.2.2_Ensure_IPv6_loopback_traffic_is_configured"></reference>
+            <description>Ensure IPv6 loopback traffic is configured</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:1422689"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:1422694" version="1">
+         <metadata>
+            <title>Ensure IPv6 loopback traffic is configured</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.4.2.2_Ensure_IPv6_loopback_traffic_is_configured" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.4.2.2_Ensure_IPv6_loopback_traffic_is_configured"></reference>
+            <description>Ensure IPv6 loopback traffic is configured</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:1422694"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:1422697" version="1">
+         <metadata>
+            <title>Ensure IPv6 loopback traffic is configured</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.4.2.2_Ensure_IPv6_loopback_traffic_is_configured" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.4.2.2_Ensure_IPv6_loopback_traffic_is_configured"></reference>
+            <description>Ensure IPv6 loopback traffic is configured</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:1422697"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:2832085" version="1">
+         <metadata>
+            <title>Ensure journald is configured to write logs to persistent disk</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.1.1.1_Ensure_journald_is_configured_to_write_logs_to_persistent_disk" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.1.1.1_Ensure_journald_is_configured_to_write_logs_to_persistent_disk"></reference>
+            <description>Ensure journald is configured to write logs to persistent disk</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:2832085"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:1422478" version="1">
+         <metadata>
+            <title>Ensure setuid programs do not create core dumps</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4.1_Ensure_setuid_programs_do_not_create_core_dumps" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4.1_Ensure_setuid_programs_do_not_create_core_dumps"></reference>
+            <description>Ensure setuid programs do not create core dumps</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14224781"></criterion>
+            <criteria negate="false" operator="OR">
+               <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14224782"></criterion>
+               <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14224783"></criterion>
+            </criteria>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:1422485" version="1">
+         <metadata>
+            <title>Ensure address space layout randomization (ASLR) is enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4.2_Ensure_address_space_layout_randomization_ASLR_is_enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4.2_Ensure_address_space_layout_randomization_ASLR_is_enabled"></reference>
+            <description>Ensure address space layout randomization (ASLR) is enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14224851"></criterion>
+            <criteria negate="false" operator="OR">
+               <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14224852"></criterion>
+               <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14224853"></criterion>
+            </criteria>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:2851324" version="1">
+         <metadata>
+            <title>Ensure unprivileged eBPF is disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4.3_Ensure_unprivileged_eBPF_is_disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4.3_Ensure_unprivileged_eBPF_is_disabled"></reference>
+            <description>Ensure unprivileged eBPF is disabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:28513241"></criterion>
+            <criteria negate="false" operator="OR">
+               <criterion test_ref="oval:org.cisecurity.benchmarks:tst:28513242"></criterion>
+               <criterion test_ref="oval:org.cisecurity.benchmarks:tst:28513243"></criterion>
+            </criteria>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:2836118" version="1">
+         <metadata>
+            <title>Ensure user namespaces are disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4.4_Ensure_user_namespaces_are_disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4.4_Ensure_user_namespaces_are_disabled"></reference>
+            <description>Ensure user namespaces are disabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:28361181"></criterion>
+            <criteria negate="false" operator="OR">
+               <criterion test_ref="oval:org.cisecurity.benchmarks:tst:28361182"></criterion>
+               <criterion test_ref="oval:org.cisecurity.benchmarks:tst:28361183"></criterion>
+            </criteria>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:1422496" version="1">
+         <metadata>
+            <title>Ensure packet redirect sending is disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.1.1_Ensure_packet_redirect_sending_is_disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.1.1_Ensure_packet_redirect_sending_is_disabled"></reference>
+            <description>Ensure packet redirect sending is disabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14224961"></criterion>
+            <criteria negate="false" operator="OR">
+               <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14224962"></criterion>
+               <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14224963"></criterion>
+            </criteria>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:1422499" version="1">
+         <metadata>
+            <title>Ensure packet redirect sending is disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.1.1_Ensure_packet_redirect_sending_is_disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.1.1_Ensure_packet_redirect_sending_is_disabled"></reference>
+            <description>Ensure packet redirect sending is disabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14224991"></criterion>
+            <criteria negate="false" operator="OR">
+               <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14224992"></criterion>
+               <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14224993"></criterion>
+            </criteria>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:1422506" version="1">
+         <metadata>
+            <title>Ensure source routed packets are not accepted</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.2.1_Ensure_source_routed_packets_are_not_accepted" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.2.1_Ensure_source_routed_packets_are_not_accepted"></reference>
+            <description>Ensure source routed packets are not accepted</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14225061"></criterion>
+            <criteria negate="false" operator="OR">
+               <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14225062"></criterion>
+               <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14225063"></criterion>
+            </criteria>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:1422508" version="1">
+         <metadata>
+            <title>Ensure source routed packets are not accepted</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.2.1_Ensure_source_routed_packets_are_not_accepted" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.2.1_Ensure_source_routed_packets_are_not_accepted"></reference>
+            <description>Ensure source routed packets are not accepted</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14225081"></criterion>
+            <criteria negate="false" operator="OR">
+               <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14225082"></criterion>
+               <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14225083"></criterion>
+            </criteria>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:1422511" version="1">
+         <metadata>
+            <title>Ensure source routed packets are not accepted</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.2.1_Ensure_source_routed_packets_are_not_accepted" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.2.1_Ensure_source_routed_packets_are_not_accepted"></reference>
+            <description>Ensure source routed packets are not accepted</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14225111"></criterion>
+            <criteria negate="false" operator="OR">
+               <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14225112"></criterion>
+               <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14225113"></criterion>
+            </criteria>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:1422516" version="1">
+         <metadata>
+            <title>Ensure source routed packets are not accepted</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.2.1_Ensure_source_routed_packets_are_not_accepted" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.2.1_Ensure_source_routed_packets_are_not_accepted"></reference>
+            <description>Ensure source routed packets are not accepted</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14225161"></criterion>
+            <criteria negate="false" operator="OR">
+               <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14225162"></criterion>
+               <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14225163"></criterion>
+            </criteria>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:1422522" version="1">
+         <metadata>
+            <title>Ensure ICMP redirects are not accepted</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.2.2_Ensure_ICMP_redirects_are_not_accepted" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.2.2_Ensure_ICMP_redirects_are_not_accepted"></reference>
+            <description>Ensure ICMP redirects are not accepted</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14225221"></criterion>
+            <criteria negate="false" operator="OR">
+               <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14225222"></criterion>
+               <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14225223"></criterion>
+            </criteria>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:1422526" version="1">
+         <metadata>
+            <title>Ensure ICMP redirects are not accepted</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.2.2_Ensure_ICMP_redirects_are_not_accepted" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.2.2_Ensure_ICMP_redirects_are_not_accepted"></reference>
+            <description>Ensure ICMP redirects are not accepted</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14225261"></criterion>
+            <criteria negate="false" operator="OR">
+               <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14225262"></criterion>
+               <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14225263"></criterion>
+            </criteria>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:1422530" version="1">
+         <metadata>
+            <title>Ensure ICMP redirects are not accepted</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.2.2_Ensure_ICMP_redirects_are_not_accepted" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.2.2_Ensure_ICMP_redirects_are_not_accepted"></reference>
+            <description>Ensure ICMP redirects are not accepted</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14225301"></criterion>
+            <criteria negate="false" operator="OR">
+               <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14225302"></criterion>
+               <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14225303"></criterion>
+            </criteria>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:1422533" version="1">
+         <metadata>
+            <title>Ensure ICMP redirects are not accepted</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.2.2_Ensure_ICMP_redirects_are_not_accepted" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.2.2_Ensure_ICMP_redirects_are_not_accepted"></reference>
+            <description>Ensure ICMP redirects are not accepted</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14225331"></criterion>
+            <criteria negate="false" operator="OR">
+               <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14225332"></criterion>
+               <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14225333"></criterion>
+            </criteria>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:1422539" version="1">
+         <metadata>
+            <title>Ensure secure ICMP redirects are not accepted</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.2.3_Ensure_secure_ICMP_redirects_are_not_accepted" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.2.3_Ensure_secure_ICMP_redirects_are_not_accepted"></reference>
+            <description>Ensure secure ICMP redirects are not accepted</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14225391"></criterion>
+            <criteria negate="false" operator="OR">
+               <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14225392"></criterion>
+               <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14225393"></criterion>
+            </criteria>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:1422543" version="1">
+         <metadata>
+            <title>Ensure secure ICMP redirects are not accepted</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.2.3_Ensure_secure_ICMP_redirects_are_not_accepted" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.2.3_Ensure_secure_ICMP_redirects_are_not_accepted"></reference>
+            <description>Ensure secure ICMP redirects are not accepted</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14225431"></criterion>
+            <criteria negate="false" operator="OR">
+               <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14225432"></criterion>
+               <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14225433"></criterion>
+            </criteria>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:1422549" version="1">
+         <metadata>
+            <title>Ensure suspicious packets are logged</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.2.4_Ensure_suspicious_packets_are_logged" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.2.4_Ensure_suspicious_packets_are_logged"></reference>
+            <description>Ensure suspicious packets are logged</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14225491"></criterion>
+            <criteria negate="false" operator="OR">
+               <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14225492"></criterion>
+               <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14225493"></criterion>
+            </criteria>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:1422552" version="1">
+         <metadata>
+            <title>Ensure suspicious packets are logged</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.2.4_Ensure_suspicious_packets_are_logged" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.2.4_Ensure_suspicious_packets_are_logged"></reference>
+            <description>Ensure suspicious packets are logged</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14225521"></criterion>
+            <criteria negate="false" operator="OR">
+               <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14225522"></criterion>
+               <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14225523"></criterion>
+            </criteria>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:1422558" version="1">
+         <metadata>
+            <title>Ensure broadcast ICMP requests are ignored</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.2.5_Ensure_broadcast_ICMP_requests_are_ignored" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.2.5_Ensure_broadcast_ICMP_requests_are_ignored"></reference>
+            <description>Ensure broadcast ICMP requests are ignored</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14225581"></criterion>
+            <criteria negate="false" operator="OR">
+               <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14225582"></criterion>
+               <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14225583"></criterion>
+            </criteria>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:1422564" version="1">
+         <metadata>
+            <title>Ensure bogus ICMP responses are ignored</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.2.6_Ensure_bogus_ICMP_responses_are_ignored" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.2.6_Ensure_bogus_ICMP_responses_are_ignored"></reference>
+            <description>Ensure bogus ICMP responses are ignored</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14225641"></criterion>
+            <criteria negate="false" operator="OR">
+               <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14225642"></criterion>
+               <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14225643"></criterion>
+            </criteria>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:1422581" version="1">
+         <metadata>
+            <title>Ensure TCP SYN Cookies is enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.2.7_Ensure_TCP_SYN_Cookies_is_enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.2.7_Ensure_TCP_SYN_Cookies_is_enabled"></reference>
+            <description>Ensure TCP SYN Cookies is enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14225811"></criterion>
+            <criteria negate="false" operator="OR">
+               <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14225812"></criterion>
+               <criterion test_ref="oval:org.cisecurity.benchmarks:tst:14225813"></criterion>
+            </criteria>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:1422734" version="1">
+         <metadata>
+            <title>Ensure permissions on journal files are configured</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.1.2_Ensure_permissions_on_journal_files_are_configured" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.1.2_Ensure_permissions_on_journal_files_are_configured"></reference>
+            <description>Ensure permissions on journal files are configured</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:1422734"></criterion>
+         </criteria>
+      </definition>
+   </definitions>
+   <tests>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="at least one" check_existence="at_least_one_exists" comment="Ensure kernel module udf is not loadable" id="oval:org.cisecurity.benchmarks:tst:1422323" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:1422323"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:1422323"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="none satisfy" check_existence="at_least_one_exists" comment="Ensure kernel module udf is not loaded" id="oval:org.cisecurity.benchmarks:tst:1422324" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:1422324"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:1422324"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="at least one" check_existence="at_least_one_exists" comment="Ensure kernel module sctp is not loadable" id="oval:org.cisecurity.benchmarks:tst:1422645" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:1422645"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:1422645"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="none satisfy" check_existence="at_least_one_exists" comment="Ensure kernel module sctp is not loaded" id="oval:org.cisecurity.benchmarks:tst:1422647" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:1422647"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:1422647"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'grep -FwL &quot;dm-mod.create=root,,,ro,0&quot; /proc/cmdline' output Equals '' (string)" id="oval:org.cisecurity.benchmarks:tst:2829445" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:2829445"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:2829445"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'grep -FwL &quot;root=/dev/dm-0&quot; /proc/cmdline' output Equals '' (string)" id="oval:org.cisecurity.benchmarks:tst:2829446" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:2829446"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:2829446"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'grep -FwL &quot;restart_on_corruption&quot; /proc/cmdline' output Equals '' (string)" id="oval:org.cisecurity.benchmarks:tst:2829447" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:2829447"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:2829447"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'sestatus' output Pattern Match '^SELinux status:\s+enabled$' (string)" id="oval:org.cisecurity.benchmarks:tst:2829458" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:2829458"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:2829458"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'sestatus' output Pattern Match '^Loaded policy name:\s+fortified$' (string)" id="oval:org.cisecurity.benchmarks:tst:2829459" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:2829459"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:2829459"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'sestatus' output Pattern Match '^Current mode:\s+enforcing$' (string)" id="oval:org.cisecurity.benchmarks:tst:2829460" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:2829460"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:2829460"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'sestatus' output Pattern Match '^Mode from config file:\s+enforcing$' (string)" id="oval:org.cisecurity.benchmarks:tst:2829461" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:2829461"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:2829461"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'sestatus' output Pattern Match '^Policy MLS status:\s+enabled$' (string)" id="oval:org.cisecurity.benchmarks:tst:2829462" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:2829462"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:2829462"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'sestatus' output Pattern Match '^Policy deny_unknown status:\s+denied$' (string)" id="oval:org.cisecurity.benchmarks:tst:2829463" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:2829463"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:2829463"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'sestatus' output Pattern Match '^Memory protection checking:\s+actual \(secure\)$' (string)" id="oval:org.cisecurity.benchmarks:tst:2829464" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:2829464"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:2829464"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'grep -FwL '[integrity]' /sys/kernel/security/lockdown' output Equals '' (string)" id="oval:org.cisecurity.benchmarks:tst:2836115" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:2836115"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:2836115"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'apiclient get settings.ntp.time-servers' output Pattern Not Match '^\{\}$' (string)" id="oval:org.cisecurity.benchmarks:tst:1422381" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:1422381"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:1422381"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'systemctl is-active chronyd' output Equals 'active' (string)" id="oval:org.cisecurity.benchmarks:tst:2831642" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:2831642"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:2831642"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'iptables -L' output Pattern Match '^Chain INPUT \(policy (DROP|REJECT)\)$' (string)" id="oval:org.cisecurity.benchmarks:tst:1422711" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:1422711"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:1422711"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'iptables -L' output Pattern Match '^Chain FORWARD \(policy (DROP|REJECT)\)$' (string)" id="oval:org.cisecurity.benchmarks:tst:1422712" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:1422712"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:1422712"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'iptables -L' output Pattern Match '^Chain OUTPUT \(policy (DROP|REJECT)\)$' (string)" id="oval:org.cisecurity.benchmarks:tst:1422714" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:1422714"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:1422714"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'iptables -L INPUT -v -n' output Pattern Match '^\s*\S+\s+\S+\s+ACCEPT\s+all\s+--\s+lo\s+\*\s+0\.0\.0\.0\/0\s+0\.0\.0\.0\/0\s*$' (string)" id="oval:org.cisecurity.benchmarks:tst:1422718" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:1422718"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:1422718"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'iptables -L INPUT -v -n' output Pattern Match '^\s*\S+\s+\S+\s+DROP\s+all\s+--\s+\*\s+\*\s+127\.0\.0\.0\/8\s+0\.0\.0\.0\/0\s*$' (string)" id="oval:org.cisecurity.benchmarks:tst:1422720" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:1422720"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:1422720"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'iptables -L OUTPUT -v -n' output Pattern Match '^\s*\S+\s+\S+\s+ACCEPT\s+all\s+--\s+\*\s+lo\s+0\.0\.0\.0\/0\s+0\.0\.0\.0\/0\s*$' (string)" id="oval:org.cisecurity.benchmarks:tst:1422723" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:1422723"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:1422723"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'ip6tables -L' output Pattern Match '^Chain INPUT \(policy (DROP|REJECT)\)$' (string)" id="oval:org.cisecurity.benchmarks:tst:1422675" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:1422675"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:1422675"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'ip6tables -L' output Pattern Match '^Chain FORWARD \(policy (DROP|REJECT)\)$' (string)" id="oval:org.cisecurity.benchmarks:tst:1422677" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:1422677"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:1422677"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'ip6tables -L' output Pattern Match '^Chain OUTPUT \(policy (DROP|REJECT)\)$' (string)" id="oval:org.cisecurity.benchmarks:tst:1422680" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:1422680"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:1422680"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'ip6tables -L INPUT -v -n' output Pattern Match '^\s*\S+\s+\S+\s+ACCEPT\s+all\s+lo\s+\*\s+\:\:\/0\s+\:\:\/0\s*$' (string)" id="oval:org.cisecurity.benchmarks:tst:1422689" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:1422689"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:1422689"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'ip6tables -L INPUT -v -n' output Pattern Match '^\s*\S+\s+\S+\s+DROP\s+all\s+\*\s+\*\s+\:\:1\s+\:\:\/0\s*$' (string)" id="oval:org.cisecurity.benchmarks:tst:1422694" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:1422694"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:1422694"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'ip6tables -L OUTPUT -v -n' output Pattern Match '^\s*\S+\s+\S+\s+ACCEPT\s+all\s+\*\s+lo\s+\:\:\/0\s+\:\:\/0\s*$' (string)" id="oval:org.cisecurity.benchmarks:tst:1422697" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:1422697"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:1422697"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'grep -FwL &quot;Storage=persistent&quot; /usr/lib/systemd/journald.conf.d/journald.conf' output Equals '' (string)" id="oval:org.cisecurity.benchmarks:tst:2832085" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:2832085"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:2832085"></state>
+      </shellcommand_test>
+      <sysctl_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="at_least_one_exists" comment="Ensure 'fs.suid_dumpable' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:tst:14224781" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14224781"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:14224781"></state>
+      </sysctl_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'fs.suid_dumpable' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:tst:14224782" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14224782"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'fs.suid_dumpable' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:tst:14224783" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14224783"></object>
+      </textfilecontent54_test>
+      <sysctl_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="at_least_one_exists" comment="Ensure 'kernel.randomize_va_space' kernel parameter Equals 2 (int)" id="oval:org.cisecurity.benchmarks:tst:14224851" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14224851"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:14224851"></state>
+      </sysctl_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'kernel.randomize_va_space' kernel parameter Equals 2 (int)" id="oval:org.cisecurity.benchmarks:tst:14224852" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14224852"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'kernel.randomize_va_space' kernel parameter Equals 2 (int)" id="oval:org.cisecurity.benchmarks:tst:14224853" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14224853"></object>
+      </textfilecontent54_test>
+      <sysctl_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="at_least_one_exists" comment="Ensure 'kernel.unprivileged_bpf_disabled' kernel parameter Equals 1 (int)" id="oval:org.cisecurity.benchmarks:tst:28513241" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:28513241"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:28513241"></state>
+      </sysctl_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'kernel.unprivileged_bpf_disabled' kernel parameter Equals 1 (int)" id="oval:org.cisecurity.benchmarks:tst:28513242" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:28513242"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'kernel.unprivileged_bpf_disabled' kernel parameter Equals 1 (int)" id="oval:org.cisecurity.benchmarks:tst:28513243" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:28513243"></object>
+      </textfilecontent54_test>
+      <sysctl_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="at_least_one_exists" comment="Ensure 'user.max_user_namespaces' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:tst:28361181" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:28361181"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:28361181"></state>
+      </sysctl_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'user.max_user_namespaces' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:tst:28361182" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:28361182"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'user.max_user_namespaces' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:tst:28361183" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:28361183"></object>
+      </textfilecontent54_test>
+      <sysctl_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="at_least_one_exists" comment="Ensure 'net.ipv4.conf.all.send_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:tst:14224961" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14224961"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:14224961"></state>
+      </sysctl_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'net.ipv4.conf.all.send_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:tst:14224962" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14224962"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'net.ipv4.conf.all.send_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:tst:14224963" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14224963"></object>
+      </textfilecontent54_test>
+      <sysctl_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="at_least_one_exists" comment="Ensure 'net.ipv4.conf.default.send_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:tst:14224991" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14224991"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:14224991"></state>
+      </sysctl_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'net.ipv4.conf.default.send_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:tst:14224992" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14224992"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'net.ipv4.conf.default.send_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:tst:14224993" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14224993"></object>
+      </textfilecontent54_test>
+      <sysctl_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="at_least_one_exists" comment="Ensure 'net.ipv4.conf.all.accept_source_route' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:tst:14225061" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14225061"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:14225061"></state>
+      </sysctl_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'net.ipv4.conf.all.accept_source_route' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:tst:14225062" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14225062"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'net.ipv4.conf.all.accept_source_route' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:tst:14225063" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14225063"></object>
+      </textfilecontent54_test>
+      <sysctl_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="at_least_one_exists" comment="Ensure 'net.ipv4.conf.default.accept_source_route' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:tst:14225081" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14225081"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:14225081"></state>
+      </sysctl_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'net.ipv4.conf.default.accept_source_route' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:tst:14225082" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14225082"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'net.ipv4.conf.default.accept_source_route' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:tst:14225083" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14225083"></object>
+      </textfilecontent54_test>
+      <sysctl_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="at_least_one_exists" comment="Ensure 'net.ipv6.conf.all.accept_source_route' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:tst:14225111" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14225111"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:14225111"></state>
+      </sysctl_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'net.ipv6.conf.all.accept_source_route' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:tst:14225112" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14225112"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'net.ipv6.conf.all.accept_source_route' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:tst:14225113" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14225113"></object>
+      </textfilecontent54_test>
+      <sysctl_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="at_least_one_exists" comment="Ensure 'net.ipv6.conf.default.accept_source_route' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:tst:14225161" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14225161"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:14225161"></state>
+      </sysctl_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'net.ipv6.conf.default.accept_source_route' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:tst:14225162" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14225162"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'net.ipv6.conf.default.accept_source_route' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:tst:14225163" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14225163"></object>
+      </textfilecontent54_test>
+      <sysctl_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="at_least_one_exists" comment="Ensure 'net.ipv4.conf.all.accept_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:tst:14225221" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14225221"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:14225221"></state>
+      </sysctl_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'net.ipv4.conf.all.accept_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:tst:14225222" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14225222"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'net.ipv4.conf.all.accept_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:tst:14225223" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14225223"></object>
+      </textfilecontent54_test>
+      <sysctl_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="at_least_one_exists" comment="Ensure 'net.ipv4.conf.all.accept_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:tst:14225261" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14225261"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:14225261"></state>
+      </sysctl_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'net.ipv4.conf.all.accept_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:tst:14225262" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14225262"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'net.ipv4.conf.all.accept_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:tst:14225263" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14225263"></object>
+      </textfilecontent54_test>
+      <sysctl_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="at_least_one_exists" comment="Ensure 'net.ipv6.conf.all.accept_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:tst:14225301" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14225301"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:14225301"></state>
+      </sysctl_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'net.ipv6.conf.all.accept_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:tst:14225302" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14225302"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'net.ipv6.conf.all.accept_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:tst:14225303" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14225303"></object>
+      </textfilecontent54_test>
+      <sysctl_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="at_least_one_exists" comment="Ensure 'net.ipv6.conf.default.accept_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:tst:14225331" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14225331"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:14225331"></state>
+      </sysctl_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'net.ipv6.conf.default.accept_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:tst:14225332" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14225332"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'net.ipv6.conf.default.accept_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:tst:14225333" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14225333"></object>
+      </textfilecontent54_test>
+      <sysctl_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="at_least_one_exists" comment="Ensure 'net.ipv4.conf.all.secure_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:tst:14225391" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14225391"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:14225391"></state>
+      </sysctl_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'net.ipv4.conf.all.secure_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:tst:14225392" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14225392"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'net.ipv4.conf.all.secure_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:tst:14225393" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14225393"></object>
+      </textfilecontent54_test>
+      <sysctl_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="at_least_one_exists" comment="Ensure 'net.ipv4.conf.default.secure_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:tst:14225431" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14225431"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:14225431"></state>
+      </sysctl_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'net.ipv4.conf.default.secure_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:tst:14225432" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14225432"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'net.ipv4.conf.default.secure_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:tst:14225433" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14225433"></object>
+      </textfilecontent54_test>
+      <sysctl_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="at_least_one_exists" comment="Ensure 'net.ipv4.conf.all.log_martians' kernel parameter Equals 1 (int)" id="oval:org.cisecurity.benchmarks:tst:14225491" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14225491"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:14225491"></state>
+      </sysctl_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'net.ipv4.conf.all.log_martians' kernel parameter Equals 1 (int)" id="oval:org.cisecurity.benchmarks:tst:14225492" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14225492"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'net.ipv4.conf.all.log_martians' kernel parameter Equals 1 (int)" id="oval:org.cisecurity.benchmarks:tst:14225493" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14225493"></object>
+      </textfilecontent54_test>
+      <sysctl_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="at_least_one_exists" comment="Ensure 'net.ipv4.conf.default.log_martians' kernel parameter Equals 1 (int)" id="oval:org.cisecurity.benchmarks:tst:14225521" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14225521"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:14225521"></state>
+      </sysctl_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'net.ipv4.conf.default.log_martians' kernel parameter Equals 1 (int)" id="oval:org.cisecurity.benchmarks:tst:14225522" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14225522"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'net.ipv4.conf.default.log_martians' kernel parameter Equals 1 (int)" id="oval:org.cisecurity.benchmarks:tst:14225523" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14225523"></object>
+      </textfilecontent54_test>
+      <sysctl_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="at_least_one_exists" comment="Ensure 'net.ipv4.icmp_echo_ignore_broadcasts' kernel parameter Equals 1 (int)" id="oval:org.cisecurity.benchmarks:tst:14225581" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14225581"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:14225581"></state>
+      </sysctl_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'net.ipv4.icmp_echo_ignore_broadcasts' kernel parameter Equals 1 (int)" id="oval:org.cisecurity.benchmarks:tst:14225582" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14225582"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'net.ipv4.icmp_echo_ignore_broadcasts' kernel parameter Equals 1 (int)" id="oval:org.cisecurity.benchmarks:tst:14225583" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14225583"></object>
+      </textfilecontent54_test>
+      <sysctl_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="at_least_one_exists" comment="Ensure 'net.ipv4.icmp_ignore_bogus_error_responses' kernel parameter Equals 1 (int)" id="oval:org.cisecurity.benchmarks:tst:14225641" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14225641"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:14225641"></state>
+      </sysctl_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'net.ipv4.icmp_ignore_bogus_error_responses' kernel parameter Equals 1 (int)" id="oval:org.cisecurity.benchmarks:tst:14225642" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14225642"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'net.ipv4.icmp_ignore_bogus_error_responses' kernel parameter Equals 1 (int)" id="oval:org.cisecurity.benchmarks:tst:14225643" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14225643"></object>
+      </textfilecontent54_test>
+      <sysctl_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="at_least_one_exists" comment="Ensure 'net.ipv4.tcp_syncookies' kernel parameter Equals 1 (int)" id="oval:org.cisecurity.benchmarks:tst:14225811" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14225811"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:14225811"></state>
+      </sysctl_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'net.ipv4.tcp_syncookies' kernel parameter Equals 1 (int)" id="oval:org.cisecurity.benchmarks:tst:14225812" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14225812"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'net.ipv4.tcp_syncookies' kernel parameter Equals 1 (int)" id="oval:org.cisecurity.benchmarks:tst:14225813" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:14225813"></object>
+      </textfilecontent54_test>
+      <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="any_exist" comment="Ensure any file(s) named .* in /var/log/journal exists and does not have permissions ----wxrwx" id="oval:org.cisecurity.benchmarks:tst:1422734" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:1422734"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:1422734"></state>
+      </file_test>
+   </tests>
+   <objects>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure kernel module udf is not loadable" id="oval:org.cisecurity.benchmarks:obj:1422323" version="1">
+         <command>modprobe -n -v udf</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure kernel module udf is not loaded" id="oval:org.cisecurity.benchmarks:obj:1422324" version="1">
+         <command>modprobe -n -v udf</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure kernel module sctp is not loadable" id="oval:org.cisecurity.benchmarks:obj:1422645" version="1">
+         <command>modprobe -n -v sctp</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure kernel module sctp is not loaded" id="oval:org.cisecurity.benchmarks:obj:1422647" version="1">
+         <command>modprobe -n -v sctp</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'grep -FwL &quot;dm-mod.create=root,,,ro,0&quot; /proc/cmdline' output Equals '' (string)" id="oval:org.cisecurity.benchmarks:obj:2829445" version="1">
+         <command>grep -FwL "dm-mod.create=root,,,ro,0" /proc/cmdline</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'grep -FwL &quot;root=/dev/dm-0&quot; /proc/cmdline' output Equals '' (string)" id="oval:org.cisecurity.benchmarks:obj:2829446" version="1">
+         <command>grep -FwL "root=/dev/dm-0" /proc/cmdline</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'grep -FwL &quot;restart_on_corruption&quot; /proc/cmdline' output Equals '' (string)" id="oval:org.cisecurity.benchmarks:obj:2829447" version="1">
+         <command>grep -FwL "restart_on_corruption" /proc/cmdline</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'sestatus' output Pattern Match '^SELinux status:\s+enabled$' (string)" id="oval:org.cisecurity.benchmarks:obj:2829458" version="1">
+         <command>sestatus</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'sestatus' output Pattern Match '^Loaded policy name:\s+fortified$' (string)" id="oval:org.cisecurity.benchmarks:obj:2829459" version="1">
+         <command>sestatus</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'sestatus' output Pattern Match '^Current mode:\s+enforcing$' (string)" id="oval:org.cisecurity.benchmarks:obj:2829460" version="1">
+         <command>sestatus</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'sestatus' output Pattern Match '^Mode from config file:\s+enforcing$' (string)" id="oval:org.cisecurity.benchmarks:obj:2829461" version="1">
+         <command>sestatus</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'sestatus' output Pattern Match '^Policy MLS status:\s+enabled$' (string)" id="oval:org.cisecurity.benchmarks:obj:2829462" version="1">
+         <command>sestatus</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'sestatus' output Pattern Match '^Policy deny_unknown status:\s+denied$' (string)" id="oval:org.cisecurity.benchmarks:obj:2829463" version="1">
+         <command>sestatus</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'sestatus' output Pattern Match '^Memory protection checking:\s+actual \(secure\)$' (string)" id="oval:org.cisecurity.benchmarks:obj:2829464" version="1">
+         <command>sestatus</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'grep -FwL '[integrity]' /sys/kernel/security/lockdown' output Equals '' (string)" id="oval:org.cisecurity.benchmarks:obj:2836115" version="1">
+         <command>grep -FwL '[integrity]' /sys/kernel/security/lockdown</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'apiclient get settings.ntp.time-servers' output Pattern Not Match '^\{\}$' (string)" id="oval:org.cisecurity.benchmarks:obj:1422381" version="1">
+         <command>apiclient get settings.ntp.time-servers</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'systemctl is-active chronyd' output Equals 'active' (string)" id="oval:org.cisecurity.benchmarks:obj:2831642" version="1">
+         <command>systemctl is-active chronyd</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'iptables -L' output Pattern Match '^Chain INPUT \(policy (DROP|REJECT)\)$' (string)" id="oval:org.cisecurity.benchmarks:obj:1422711" version="1">
+         <command>iptables -L</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'iptables -L' output Pattern Match '^Chain FORWARD \(policy (DROP|REJECT)\)$' (string)" id="oval:org.cisecurity.benchmarks:obj:1422712" version="1">
+         <command>iptables -L</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'iptables -L' output Pattern Match '^Chain OUTPUT \(policy (DROP|REJECT)\)$' (string)" id="oval:org.cisecurity.benchmarks:obj:1422714" version="1">
+         <command>iptables -L</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'iptables -L INPUT -v -n' output Pattern Match '^\s*\S+\s+\S+\s+ACCEPT\s+all\s+--\s+lo\s+\*\s+0\.0\.0\.0\/0\s+0\.0\.0\.0\/0\s*$' (string)" id="oval:org.cisecurity.benchmarks:obj:1422718" version="1">
+         <command>iptables -L INPUT -v -n</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'iptables -L INPUT -v -n' output Pattern Match '^\s*\S+\s+\S+\s+DROP\s+all\s+--\s+\*\s+\*\s+127\.0\.0\.0\/8\s+0\.0\.0\.0\/0\s*$' (string)" id="oval:org.cisecurity.benchmarks:obj:1422720" version="1">
+         <command>iptables -L INPUT -v -n</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'iptables -L OUTPUT -v -n' output Pattern Match '^\s*\S+\s+\S+\s+ACCEPT\s+all\s+--\s+\*\s+lo\s+0\.0\.0\.0\/0\s+0\.0\.0\.0\/0\s*$' (string)" id="oval:org.cisecurity.benchmarks:obj:1422723" version="1">
+         <command>iptables -L OUTPUT -v -n</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'ip6tables -L' output Pattern Match '^Chain INPUT \(policy (DROP|REJECT)\)$' (string)" id="oval:org.cisecurity.benchmarks:obj:1422675" version="1">
+         <command>ip6tables -L</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'ip6tables -L' output Pattern Match '^Chain FORWARD \(policy (DROP|REJECT)\)$' (string)" id="oval:org.cisecurity.benchmarks:obj:1422677" version="1">
+         <command>ip6tables -L</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'ip6tables -L' output Pattern Match '^Chain OUTPUT \(policy (DROP|REJECT)\)$' (string)" id="oval:org.cisecurity.benchmarks:obj:1422680" version="1">
+         <command>ip6tables -L</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'ip6tables -L INPUT -v -n' output Pattern Match '^\s*\S+\s+\S+\s+ACCEPT\s+all\s+lo\s+\*\s+\:\:\/0\s+\:\:\/0\s*$' (string)" id="oval:org.cisecurity.benchmarks:obj:1422689" version="1">
+         <command>ip6tables -L INPUT -v -n</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'ip6tables -L INPUT -v -n' output Pattern Match '^\s*\S+\s+\S+\s+DROP\s+all\s+\*\s+\*\s+\:\:1\s+\:\:\/0\s*$' (string)" id="oval:org.cisecurity.benchmarks:obj:1422694" version="1">
+         <command>ip6tables -L INPUT -v -n</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'ip6tables -L OUTPUT -v -n' output Pattern Match '^\s*\S+\s+\S+\s+ACCEPT\s+all\s+\*\s+lo\s+\:\:\/0\s+\:\:\/0\s*$' (string)" id="oval:org.cisecurity.benchmarks:obj:1422697" version="1">
+         <command>ip6tables -L OUTPUT -v -n</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'grep -FwL &quot;Storage=persistent&quot; /usr/lib/systemd/journald.conf.d/journald.conf' output Equals '' (string)" id="oval:org.cisecurity.benchmarks:obj:2832085" version="1">
+         <command>grep -FwL "Storage=persistent" /usr/lib/systemd/journald.conf.d/journald.conf</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <sysctl_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure 'fs.suid_dumpable' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:obj:14224781" version="1">
+         <name>fs.suid_dumpable</name>
+      </sysctl_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'fs.suid_dumpable' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:obj:14224782" version="1">
+         <filepath>/etc/sysctl.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^\s*fs.suid_dumpable\s*=\s*0$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'fs.suid_dumpable' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:obj:14224783" version="1">
+         <path>/etc/sysctl.d</path>
+         <filename datatype="string" operation="pattern match">.*</filename>
+         <pattern datatype="string" operation="pattern match">^\s*fs.suid_dumpable\s*=\s*0$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <sysctl_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure 'kernel.randomize_va_space' kernel parameter Equals 2 (int)" id="oval:org.cisecurity.benchmarks:obj:14224851" version="1">
+         <name>kernel.randomize_va_space</name>
+      </sysctl_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'kernel.randomize_va_space' kernel parameter Equals 2 (int)" id="oval:org.cisecurity.benchmarks:obj:14224852" version="1">
+         <filepath>/etc/sysctl.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^\s*kernel.randomize_va_space\s*=\s*2$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'kernel.randomize_va_space' kernel parameter Equals 2 (int)" id="oval:org.cisecurity.benchmarks:obj:14224853" version="1">
+         <path>/etc/sysctl.d</path>
+         <filename datatype="string" operation="pattern match">.*</filename>
+         <pattern datatype="string" operation="pattern match">^\s*kernel.randomize_va_space\s*=\s*2$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <sysctl_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure 'kernel.unprivileged_bpf_disabled' kernel parameter Equals 1 (int)" id="oval:org.cisecurity.benchmarks:obj:28513241" version="1">
+         <name>kernel.unprivileged_bpf_disabled</name>
+      </sysctl_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'kernel.unprivileged_bpf_disabled' kernel parameter Equals 1 (int)" id="oval:org.cisecurity.benchmarks:obj:28513242" version="1">
+         <filepath>/etc/sysctl.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^\s*kernel.unprivileged_bpf_disabled\s*=\s*1$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'kernel.unprivileged_bpf_disabled' kernel parameter Equals 1 (int)" id="oval:org.cisecurity.benchmarks:obj:28513243" version="1">
+         <path>/etc/sysctl.d</path>
+         <filename datatype="string" operation="pattern match">.*</filename>
+         <pattern datatype="string" operation="pattern match">^\s*kernel.unprivileged_bpf_disabled\s*=\s*1$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <sysctl_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure 'user.max_user_namespaces' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:obj:28361181" version="1">
+         <name>user.max_user_namespaces</name>
+      </sysctl_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'user.max_user_namespaces' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:obj:28361182" version="1">
+         <filepath>/etc/sysctl.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^\s*user.max_user_namespaces\s*=\s*0$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'user.max_user_namespaces' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:obj:28361183" version="1">
+         <path>/etc/sysctl.d</path>
+         <filename datatype="string" operation="pattern match">.*</filename>
+         <pattern datatype="string" operation="pattern match">^\s*user.max_user_namespaces\s*=\s*0$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <sysctl_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure 'net.ipv4.conf.all.send_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:obj:14224961" version="1">
+         <name>net.ipv4.conf.all.send_redirects</name>
+      </sysctl_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'net.ipv4.conf.all.send_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:obj:14224962" version="1">
+         <filepath>/etc/sysctl.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^\s*net.ipv4.conf.all.send_redirects\s*=\s*0$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'net.ipv4.conf.all.send_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:obj:14224963" version="1">
+         <path>/etc/sysctl.d</path>
+         <filename datatype="string" operation="pattern match">.*</filename>
+         <pattern datatype="string" operation="pattern match">^\s*net.ipv4.conf.all.send_redirects\s*=\s*0$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <sysctl_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure 'net.ipv4.conf.default.send_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:obj:14224991" version="1">
+         <name>net.ipv4.conf.default.send_redirects</name>
+      </sysctl_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'net.ipv4.conf.default.send_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:obj:14224992" version="1">
+         <filepath>/etc/sysctl.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^\s*net.ipv4.conf.default.send_redirects\s*=\s*0$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'net.ipv4.conf.default.send_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:obj:14224993" version="1">
+         <path>/etc/sysctl.d</path>
+         <filename datatype="string" operation="pattern match">.*</filename>
+         <pattern datatype="string" operation="pattern match">^\s*net.ipv4.conf.default.send_redirects\s*=\s*0$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <sysctl_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure 'net.ipv4.conf.all.accept_source_route' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:obj:14225061" version="1">
+         <name>net.ipv4.conf.all.accept_source_route</name>
+      </sysctl_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'net.ipv4.conf.all.accept_source_route' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:obj:14225062" version="1">
+         <filepath>/etc/sysctl.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^\s*net.ipv4.conf.all.accept_source_route\s*=\s*0$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'net.ipv4.conf.all.accept_source_route' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:obj:14225063" version="1">
+         <path>/etc/sysctl.d</path>
+         <filename datatype="string" operation="pattern match">.*</filename>
+         <pattern datatype="string" operation="pattern match">^\s*net.ipv4.conf.all.accept_source_route\s*=\s*0$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <sysctl_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure 'net.ipv4.conf.default.accept_source_route' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:obj:14225081" version="1">
+         <name>net.ipv4.conf.default.accept_source_route</name>
+      </sysctl_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'net.ipv4.conf.default.accept_source_route' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:obj:14225082" version="1">
+         <filepath>/etc/sysctl.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^\s*net.ipv4.conf.default.accept_source_route\s*=\s*0$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'net.ipv4.conf.default.accept_source_route' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:obj:14225083" version="1">
+         <path>/etc/sysctl.d</path>
+         <filename datatype="string" operation="pattern match">.*</filename>
+         <pattern datatype="string" operation="pattern match">^\s*net.ipv4.conf.default.accept_source_route\s*=\s*0$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <sysctl_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure 'net.ipv6.conf.all.accept_source_route' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:obj:14225111" version="1">
+         <name>net.ipv6.conf.all.accept_source_route</name>
+      </sysctl_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'net.ipv6.conf.all.accept_source_route' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:obj:14225112" version="1">
+         <filepath>/etc/sysctl.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^\s*net.ipv6.conf.all.accept_source_route\s*=\s*0$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'net.ipv6.conf.all.accept_source_route' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:obj:14225113" version="1">
+         <path>/etc/sysctl.d</path>
+         <filename datatype="string" operation="pattern match">.*</filename>
+         <pattern datatype="string" operation="pattern match">^\s*net.ipv6.conf.all.accept_source_route\s*=\s*0$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <sysctl_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure 'net.ipv6.conf.default.accept_source_route' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:obj:14225161" version="1">
+         <name>net.ipv6.conf.default.accept_source_route</name>
+      </sysctl_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'net.ipv6.conf.default.accept_source_route' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:obj:14225162" version="1">
+         <filepath>/etc/sysctl.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^\s*net.ipv6.conf.default.accept_source_route\s*=\s*0$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'net.ipv6.conf.default.accept_source_route' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:obj:14225163" version="1">
+         <path>/etc/sysctl.d</path>
+         <filename datatype="string" operation="pattern match">.*</filename>
+         <pattern datatype="string" operation="pattern match">^\s*net.ipv6.conf.default.accept_source_route\s*=\s*0$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <sysctl_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure 'net.ipv4.conf.all.accept_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:obj:14225221" version="1">
+         <name>net.ipv4.conf.all.accept_redirects</name>
+      </sysctl_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'net.ipv4.conf.all.accept_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:obj:14225222" version="1">
+         <filepath>/etc/sysctl.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^\s*net.ipv4.conf.all.accept_redirects\s*=\s*0$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'net.ipv4.conf.all.accept_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:obj:14225223" version="1">
+         <path>/etc/sysctl.d</path>
+         <filename datatype="string" operation="pattern match">.*</filename>
+         <pattern datatype="string" operation="pattern match">^\s*net.ipv4.conf.all.accept_redirects\s*=\s*0$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <sysctl_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure 'net.ipv4.conf.all.accept_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:obj:14225261" version="1">
+         <name>net.ipv4.conf.all.accept_redirects</name>
+      </sysctl_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'net.ipv4.conf.all.accept_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:obj:14225262" version="1">
+         <filepath>/etc/sysctl.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^\s*net.ipv4.conf.all.accept_redirects\s*=\s*0$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'net.ipv4.conf.all.accept_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:obj:14225263" version="1">
+         <path>/etc/sysctl.d</path>
+         <filename datatype="string" operation="pattern match">.*</filename>
+         <pattern datatype="string" operation="pattern match">^\s*net.ipv4.conf.all.accept_redirects\s*=\s*0$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <sysctl_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure 'net.ipv6.conf.all.accept_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:obj:14225301" version="1">
+         <name>net.ipv6.conf.all.accept_redirects</name>
+      </sysctl_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'net.ipv6.conf.all.accept_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:obj:14225302" version="1">
+         <filepath>/etc/sysctl.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^\s*net.ipv6.conf.all.accept_redirects\s*=\s*0$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'net.ipv6.conf.all.accept_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:obj:14225303" version="1">
+         <path>/etc/sysctl.d</path>
+         <filename datatype="string" operation="pattern match">.*</filename>
+         <pattern datatype="string" operation="pattern match">^\s*net.ipv6.conf.all.accept_redirects\s*=\s*0$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <sysctl_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure 'net.ipv6.conf.default.accept_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:obj:14225331" version="1">
+         <name>net.ipv6.conf.default.accept_redirects</name>
+      </sysctl_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'net.ipv6.conf.default.accept_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:obj:14225332" version="1">
+         <filepath>/etc/sysctl.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^\s*net.ipv6.conf.default.accept_redirects\s*=\s*0$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'net.ipv6.conf.default.accept_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:obj:14225333" version="1">
+         <path>/etc/sysctl.d</path>
+         <filename datatype="string" operation="pattern match">.*</filename>
+         <pattern datatype="string" operation="pattern match">^\s*net.ipv6.conf.default.accept_redirects\s*=\s*0$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <sysctl_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure 'net.ipv4.conf.all.secure_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:obj:14225391" version="1">
+         <name>net.ipv4.conf.all.secure_redirects</name>
+      </sysctl_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'net.ipv4.conf.all.secure_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:obj:14225392" version="1">
+         <filepath>/etc/sysctl.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^\s*net.ipv4.conf.all.secure_redirects\s*=\s*0$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'net.ipv4.conf.all.secure_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:obj:14225393" version="1">
+         <path>/etc/sysctl.d</path>
+         <filename datatype="string" operation="pattern match">.*</filename>
+         <pattern datatype="string" operation="pattern match">^\s*net.ipv4.conf.all.secure_redirects\s*=\s*0$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <sysctl_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure 'net.ipv4.conf.default.secure_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:obj:14225431" version="1">
+         <name>net.ipv4.conf.default.secure_redirects</name>
+      </sysctl_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'net.ipv4.conf.default.secure_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:obj:14225432" version="1">
+         <filepath>/etc/sysctl.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^\s*net.ipv4.conf.default.secure_redirects\s*=\s*0$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'net.ipv4.conf.default.secure_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:obj:14225433" version="1">
+         <path>/etc/sysctl.d</path>
+         <filename datatype="string" operation="pattern match">.*</filename>
+         <pattern datatype="string" operation="pattern match">^\s*net.ipv4.conf.default.secure_redirects\s*=\s*0$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <sysctl_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure 'net.ipv4.conf.all.log_martians' kernel parameter Equals 1 (int)" id="oval:org.cisecurity.benchmarks:obj:14225491" version="1">
+         <name>net.ipv4.conf.all.log_martians</name>
+      </sysctl_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'net.ipv4.conf.all.log_martians' kernel parameter Equals 1 (int)" id="oval:org.cisecurity.benchmarks:obj:14225492" version="1">
+         <filepath>/etc/sysctl.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^\s*net.ipv4.conf.all.log_martians\s*=\s*1$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'net.ipv4.conf.all.log_martians' kernel parameter Equals 1 (int)" id="oval:org.cisecurity.benchmarks:obj:14225493" version="1">
+         <path>/etc/sysctl.d</path>
+         <filename datatype="string" operation="pattern match">.*</filename>
+         <pattern datatype="string" operation="pattern match">^\s*net.ipv4.conf.all.log_martians\s*=\s*1$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <sysctl_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure 'net.ipv4.conf.default.log_martians' kernel parameter Equals 1 (int)" id="oval:org.cisecurity.benchmarks:obj:14225521" version="1">
+         <name>net.ipv4.conf.default.log_martians</name>
+      </sysctl_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'net.ipv4.conf.default.log_martians' kernel parameter Equals 1 (int)" id="oval:org.cisecurity.benchmarks:obj:14225522" version="1">
+         <filepath>/etc/sysctl.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^\s*net.ipv4.conf.default.log_martians\s*=\s*1$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'net.ipv4.conf.default.log_martians' kernel parameter Equals 1 (int)" id="oval:org.cisecurity.benchmarks:obj:14225523" version="1">
+         <path>/etc/sysctl.d</path>
+         <filename datatype="string" operation="pattern match">.*</filename>
+         <pattern datatype="string" operation="pattern match">^\s*net.ipv4.conf.default.log_martians\s*=\s*1$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <sysctl_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure 'net.ipv4.icmp_echo_ignore_broadcasts' kernel parameter Equals 1 (int)" id="oval:org.cisecurity.benchmarks:obj:14225581" version="1">
+         <name>net.ipv4.icmp_echo_ignore_broadcasts</name>
+      </sysctl_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'net.ipv4.icmp_echo_ignore_broadcasts' kernel parameter Equals 1 (int)" id="oval:org.cisecurity.benchmarks:obj:14225582" version="1">
+         <filepath>/etc/sysctl.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^\s*net.ipv4.icmp_echo_ignore_broadcasts\s*=\s*1$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'net.ipv4.icmp_echo_ignore_broadcasts' kernel parameter Equals 1 (int)" id="oval:org.cisecurity.benchmarks:obj:14225583" version="1">
+         <path>/etc/sysctl.d</path>
+         <filename datatype="string" operation="pattern match">.*</filename>
+         <pattern datatype="string" operation="pattern match">^\s*net.ipv4.icmp_echo_ignore_broadcasts\s*=\s*1$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <sysctl_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure 'net.ipv4.icmp_ignore_bogus_error_responses' kernel parameter Equals 1 (int)" id="oval:org.cisecurity.benchmarks:obj:14225641" version="1">
+         <name>net.ipv4.icmp_ignore_bogus_error_responses</name>
+      </sysctl_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'net.ipv4.icmp_ignore_bogus_error_responses' kernel parameter Equals 1 (int)" id="oval:org.cisecurity.benchmarks:obj:14225642" version="1">
+         <filepath>/etc/sysctl.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^\s*net.ipv4.icmp_ignore_bogus_error_responses\s*=\s*1$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'net.ipv4.icmp_ignore_bogus_error_responses' kernel parameter Equals 1 (int)" id="oval:org.cisecurity.benchmarks:obj:14225643" version="1">
+         <path>/etc/sysctl.d</path>
+         <filename datatype="string" operation="pattern match">.*</filename>
+         <pattern datatype="string" operation="pattern match">^\s*net.ipv4.icmp_ignore_bogus_error_responses\s*=\s*1$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <sysctl_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure 'net.ipv4.tcp_syncookies' kernel parameter Equals 1 (int)" id="oval:org.cisecurity.benchmarks:obj:14225811" version="1">
+         <name>net.ipv4.tcp_syncookies</name>
+      </sysctl_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'net.ipv4.tcp_syncookies' kernel parameter Equals 1 (int)" id="oval:org.cisecurity.benchmarks:obj:14225812" version="1">
+         <filepath>/etc/sysctl.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^\s*net.ipv4.tcp_syncookies\s*=\s*1$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'net.ipv4.tcp_syncookies' kernel parameter Equals 1 (int)" id="oval:org.cisecurity.benchmarks:obj:14225813" version="1">
+         <path>/etc/sysctl.d</path>
+         <filename datatype="string" operation="pattern match">.*</filename>
+         <pattern datatype="string" operation="pattern match">^\s*net.ipv4.tcp_syncookies\s*=\s*1$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure any file(s) named .* in /var/log/journal exists and does not have permissions ----wxrwx" id="oval:org.cisecurity.benchmarks:obj:1422734" version="1">
+         <behaviors max_depth="-1" recurse_direction="down" recurse_file_system="local"></behaviors>
+         <path>/var/log/journal</path>
+         <filename operation="pattern match">.*</filename>
+      </file_object>
+   </objects>
+   <states>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure kernel module udf is not loadable" id="oval:org.cisecurity.benchmarks:ste:1422323" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match">^install\s+/bin/true\s*$</stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure kernel module udf is not loaded" id="oval:org.cisecurity.benchmarks:ste:1422324" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match">^udf\s+</stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure kernel module sctp is not loadable" id="oval:org.cisecurity.benchmarks:ste:1422645" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match">^install\s+/bin/true\s*$</stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure kernel module sctp is not loaded" id="oval:org.cisecurity.benchmarks:ste:1422647" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match">^sctp\s+</stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'grep -FwL &quot;dm-mod.create=root,,,ro,0&quot; /proc/cmdline' output Equals '' (string)" id="oval:org.cisecurity.benchmarks:ste:2829445" version="1">
+         <stdout_line entity_check="at least one" operation="equals" var_ref="oval:org.cisecurity.benchmarks:var:2829445"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'grep -FwL &quot;root=/dev/dm-0&quot; /proc/cmdline' output Equals '' (string)" id="oval:org.cisecurity.benchmarks:ste:2829446" version="1">
+         <stdout_line entity_check="at least one" operation="equals" var_ref="oval:org.cisecurity.benchmarks:var:2829446"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'grep -FwL &quot;restart_on_corruption&quot; /proc/cmdline' output Equals '' (string)" id="oval:org.cisecurity.benchmarks:ste:2829447" version="1">
+         <stdout_line entity_check="at least one" operation="equals" var_ref="oval:org.cisecurity.benchmarks:var:2829447"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'sestatus' output Pattern Match '^SELinux status:\s+enabled$' (string)" id="oval:org.cisecurity.benchmarks:ste:2829458" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:2829458"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'sestatus' output Pattern Match '^Loaded policy name:\s+fortified$' (string)" id="oval:org.cisecurity.benchmarks:ste:2829459" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:2829459"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'sestatus' output Pattern Match '^Current mode:\s+enforcing$' (string)" id="oval:org.cisecurity.benchmarks:ste:2829460" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:2829460"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'sestatus' output Pattern Match '^Mode from config file:\s+enforcing$' (string)" id="oval:org.cisecurity.benchmarks:ste:2829461" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:2829461"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'sestatus' output Pattern Match '^Policy MLS status:\s+enabled$' (string)" id="oval:org.cisecurity.benchmarks:ste:2829462" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:2829462"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'sestatus' output Pattern Match '^Policy deny_unknown status:\s+denied$' (string)" id="oval:org.cisecurity.benchmarks:ste:2829463" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:2829463"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'sestatus' output Pattern Match '^Memory protection checking:\s+actual \(secure\)$' (string)" id="oval:org.cisecurity.benchmarks:ste:2829464" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:2829464"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'grep -FwL '[integrity]' /sys/kernel/security/lockdown' output Equals '' (string)" id="oval:org.cisecurity.benchmarks:ste:2836115" version="1">
+         <stdout_line entity_check="at least one" operation="equals" var_ref="oval:org.cisecurity.benchmarks:var:2836115"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'apiclient get settings.ntp.time-servers' output Pattern Not Match '^\{\}$' (string)" id="oval:org.cisecurity.benchmarks:ste:1422381" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:1422381"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'systemctl is-active chronyd' output Equals 'active' (string)" id="oval:org.cisecurity.benchmarks:ste:2831642" version="1">
+         <stdout_line entity_check="at least one" operation="equals" var_ref="oval:org.cisecurity.benchmarks:var:2831642"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'iptables -L' output Pattern Match '^Chain INPUT \(policy (DROP|REJECT)\)$' (string)" id="oval:org.cisecurity.benchmarks:ste:1422711" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:1422711"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'iptables -L' output Pattern Match '^Chain FORWARD \(policy (DROP|REJECT)\)$' (string)" id="oval:org.cisecurity.benchmarks:ste:1422712" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:1422712"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'iptables -L' output Pattern Match '^Chain OUTPUT \(policy (DROP|REJECT)\)$' (string)" id="oval:org.cisecurity.benchmarks:ste:1422714" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:1422714"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'iptables -L INPUT -v -n' output Pattern Match '^\s*\S+\s+\S+\s+ACCEPT\s+all\s+--\s+lo\s+\*\s+0\.0\.0\.0\/0\s+0\.0\.0\.0\/0\s*$' (string)" id="oval:org.cisecurity.benchmarks:ste:1422718" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:1422718"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'iptables -L INPUT -v -n' output Pattern Match '^\s*\S+\s+\S+\s+DROP\s+all\s+--\s+\*\s+\*\s+127\.0\.0\.0\/8\s+0\.0\.0\.0\/0\s*$' (string)" id="oval:org.cisecurity.benchmarks:ste:1422720" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:1422720"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'iptables -L OUTPUT -v -n' output Pattern Match '^\s*\S+\s+\S+\s+ACCEPT\s+all\s+--\s+\*\s+lo\s+0\.0\.0\.0\/0\s+0\.0\.0\.0\/0\s*$' (string)" id="oval:org.cisecurity.benchmarks:ste:1422723" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:1422723"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'ip6tables -L' output Pattern Match '^Chain INPUT \(policy (DROP|REJECT)\)$' (string)" id="oval:org.cisecurity.benchmarks:ste:1422675" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:1422675"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'ip6tables -L' output Pattern Match '^Chain FORWARD \(policy (DROP|REJECT)\)$' (string)" id="oval:org.cisecurity.benchmarks:ste:1422677" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:1422677"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'ip6tables -L' output Pattern Match '^Chain OUTPUT \(policy (DROP|REJECT)\)$' (string)" id="oval:org.cisecurity.benchmarks:ste:1422680" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:1422680"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'ip6tables -L INPUT -v -n' output Pattern Match '^\s*\S+\s+\S+\s+ACCEPT\s+all\s+lo\s+\*\s+\:\:\/0\s+\:\:\/0\s*$' (string)" id="oval:org.cisecurity.benchmarks:ste:1422689" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:1422689"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'ip6tables -L INPUT -v -n' output Pattern Match '^\s*\S+\s+\S+\s+DROP\s+all\s+\*\s+\*\s+\:\:1\s+\:\:\/0\s*$' (string)" id="oval:org.cisecurity.benchmarks:ste:1422694" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:1422694"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'ip6tables -L OUTPUT -v -n' output Pattern Match '^\s*\S+\s+\S+\s+ACCEPT\s+all\s+\*\s+lo\s+\:\:\/0\s+\:\:\/0\s*$' (string)" id="oval:org.cisecurity.benchmarks:ste:1422697" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:1422697"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'grep -FwL &quot;Storage=persistent&quot; /usr/lib/systemd/journald.conf.d/journald.conf' output Equals '' (string)" id="oval:org.cisecurity.benchmarks:ste:2832085" version="1">
+         <stdout_line entity_check="at least one" operation="equals" var_ref="oval:org.cisecurity.benchmarks:var:2832085"></stdout_line>
+      </shellcommand_state>
+      <sysctl_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure 'fs.suid_dumpable' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:ste:14224781" version="1">
+         <name datatype="string" operation="equals">fs.suid_dumpable</name>
+         <value datatype="int" operation="equals" var_ref="oval:org.cisecurity.benchmarks:var:1422478"></value>
+      </sysctl_state>
+      <sysctl_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure 'kernel.randomize_va_space' kernel parameter Equals 2 (int)" id="oval:org.cisecurity.benchmarks:ste:14224851" version="1">
+         <name datatype="string" operation="equals">kernel.randomize_va_space</name>
+         <value datatype="int" operation="equals" var_ref="oval:org.cisecurity.benchmarks:var:1422485"></value>
+      </sysctl_state>
+      <sysctl_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure 'kernel.unprivileged_bpf_disabled' kernel parameter Equals 1 (int)" id="oval:org.cisecurity.benchmarks:ste:28513241" version="1">
+         <name datatype="string" operation="equals">kernel.unprivileged_bpf_disabled</name>
+         <value datatype="int" operation="equals" var_ref="oval:org.cisecurity.benchmarks:var:2851324"></value>
+      </sysctl_state>
+      <sysctl_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure 'user.max_user_namespaces' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:ste:28361181" version="1">
+         <name datatype="string" operation="equals">user.max_user_namespaces</name>
+         <value datatype="int" operation="equals" var_ref="oval:org.cisecurity.benchmarks:var:2836118"></value>
+      </sysctl_state>
+      <sysctl_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure 'net.ipv4.conf.all.send_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:ste:14224961" version="1">
+         <name datatype="string" operation="equals">net.ipv4.conf.all.send_redirects</name>
+         <value datatype="int" operation="equals" var_ref="oval:org.cisecurity.benchmarks:var:1422496"></value>
+      </sysctl_state>
+      <sysctl_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure 'net.ipv4.conf.default.send_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:ste:14224991" version="1">
+         <name datatype="string" operation="equals">net.ipv4.conf.default.send_redirects</name>
+         <value datatype="int" operation="equals" var_ref="oval:org.cisecurity.benchmarks:var:1422499"></value>
+      </sysctl_state>
+      <sysctl_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure 'net.ipv4.conf.all.accept_source_route' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:ste:14225061" version="1">
+         <name datatype="string" operation="equals">net.ipv4.conf.all.accept_source_route</name>
+         <value datatype="int" operation="equals" var_ref="oval:org.cisecurity.benchmarks:var:1422506"></value>
+      </sysctl_state>
+      <sysctl_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure 'net.ipv4.conf.default.accept_source_route' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:ste:14225081" version="1">
+         <name datatype="string" operation="equals">net.ipv4.conf.default.accept_source_route</name>
+         <value datatype="int" operation="equals" var_ref="oval:org.cisecurity.benchmarks:var:1422508"></value>
+      </sysctl_state>
+      <sysctl_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure 'net.ipv6.conf.all.accept_source_route' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:ste:14225111" version="1">
+         <name datatype="string" operation="equals">net.ipv6.conf.all.accept_source_route</name>
+         <value datatype="int" operation="equals" var_ref="oval:org.cisecurity.benchmarks:var:1422511"></value>
+      </sysctl_state>
+      <sysctl_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure 'net.ipv6.conf.default.accept_source_route' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:ste:14225161" version="1">
+         <name datatype="string" operation="equals">net.ipv6.conf.default.accept_source_route</name>
+         <value datatype="int" operation="equals" var_ref="oval:org.cisecurity.benchmarks:var:1422516"></value>
+      </sysctl_state>
+      <sysctl_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure 'net.ipv4.conf.all.accept_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:ste:14225221" version="1">
+         <name datatype="string" operation="equals">net.ipv4.conf.all.accept_redirects</name>
+         <value datatype="int" operation="equals" var_ref="oval:org.cisecurity.benchmarks:var:1422522"></value>
+      </sysctl_state>
+      <sysctl_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure 'net.ipv4.conf.all.accept_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:ste:14225261" version="1">
+         <name datatype="string" operation="equals">net.ipv4.conf.all.accept_redirects</name>
+         <value datatype="int" operation="equals" var_ref="oval:org.cisecurity.benchmarks:var:1422526"></value>
+      </sysctl_state>
+      <sysctl_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure 'net.ipv6.conf.all.accept_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:ste:14225301" version="1">
+         <name datatype="string" operation="equals">net.ipv6.conf.all.accept_redirects</name>
+         <value datatype="int" operation="equals" var_ref="oval:org.cisecurity.benchmarks:var:1422530"></value>
+      </sysctl_state>
+      <sysctl_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure 'net.ipv6.conf.default.accept_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:ste:14225331" version="1">
+         <name datatype="string" operation="equals">net.ipv6.conf.default.accept_redirects</name>
+         <value datatype="int" operation="equals" var_ref="oval:org.cisecurity.benchmarks:var:1422533"></value>
+      </sysctl_state>
+      <sysctl_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure 'net.ipv4.conf.all.secure_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:ste:14225391" version="1">
+         <name datatype="string" operation="equals">net.ipv4.conf.all.secure_redirects</name>
+         <value datatype="int" operation="equals" var_ref="oval:org.cisecurity.benchmarks:var:1422539"></value>
+      </sysctl_state>
+      <sysctl_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure 'net.ipv4.conf.default.secure_redirects' kernel parameter Equals 0 (int)" id="oval:org.cisecurity.benchmarks:ste:14225431" version="1">
+         <name datatype="string" operation="equals">net.ipv4.conf.default.secure_redirects</name>
+         <value datatype="int" operation="equals" var_ref="oval:org.cisecurity.benchmarks:var:1422543"></value>
+      </sysctl_state>
+      <sysctl_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure 'net.ipv4.conf.all.log_martians' kernel parameter Equals 1 (int)" id="oval:org.cisecurity.benchmarks:ste:14225491" version="1">
+         <name datatype="string" operation="equals">net.ipv4.conf.all.log_martians</name>
+         <value datatype="int" operation="equals" var_ref="oval:org.cisecurity.benchmarks:var:1422549"></value>
+      </sysctl_state>
+      <sysctl_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure 'net.ipv4.conf.default.log_martians' kernel parameter Equals 1 (int)" id="oval:org.cisecurity.benchmarks:ste:14225521" version="1">
+         <name datatype="string" operation="equals">net.ipv4.conf.default.log_martians</name>
+         <value datatype="int" operation="equals" var_ref="oval:org.cisecurity.benchmarks:var:1422552"></value>
+      </sysctl_state>
+      <sysctl_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure 'net.ipv4.icmp_echo_ignore_broadcasts' kernel parameter Equals 1 (int)" id="oval:org.cisecurity.benchmarks:ste:14225581" version="1">
+         <name datatype="string" operation="equals">net.ipv4.icmp_echo_ignore_broadcasts</name>
+         <value datatype="int" operation="equals" var_ref="oval:org.cisecurity.benchmarks:var:1422558"></value>
+      </sysctl_state>
+      <sysctl_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure 'net.ipv4.icmp_ignore_bogus_error_responses' kernel parameter Equals 1 (int)" id="oval:org.cisecurity.benchmarks:ste:14225641" version="1">
+         <name datatype="string" operation="equals">net.ipv4.icmp_ignore_bogus_error_responses</name>
+         <value datatype="int" operation="equals" var_ref="oval:org.cisecurity.benchmarks:var:1422564"></value>
+      </sysctl_state>
+      <sysctl_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure 'net.ipv4.tcp_syncookies' kernel parameter Equals 1 (int)" id="oval:org.cisecurity.benchmarks:ste:14225811" version="1">
+         <name datatype="string" operation="equals">net.ipv4.tcp_syncookies</name>
+         <value datatype="int" operation="equals" var_ref="oval:org.cisecurity.benchmarks:var:1422581"></value>
+      </sysctl_state>
+      <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure any file(s) named .* in /var/log/journal exists and does not have permissions ----wxrwx" id="oval:org.cisecurity.benchmarks:ste:1422734" version="1">
+         <gwrite datatype="boolean">false</gwrite>
+         <gexec datatype="boolean">false</gexec>
+         <oread datatype="boolean">false</oread>
+         <owrite datatype="boolean">false</owrite>
+         <oexec datatype="boolean">false</oexec>
+      </file_state>
+   </states>
+   <variables>
+      <external_variable comment="This value is used in Rule: Ensure dm-verity is configured" datatype="string" id="oval:org.cisecurity.benchmarks:var:2829445" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure dm-verity is configured" datatype="string" id="oval:org.cisecurity.benchmarks:var:2829446" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure dm-verity is configured" datatype="string" id="oval:org.cisecurity.benchmarks:var:2829447" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure SELinux is configured" datatype="string" id="oval:org.cisecurity.benchmarks:var:2829458" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure SELinux is configured" datatype="string" id="oval:org.cisecurity.benchmarks:var:2829459" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure SELinux is configured" datatype="string" id="oval:org.cisecurity.benchmarks:var:2829460" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure SELinux is configured" datatype="string" id="oval:org.cisecurity.benchmarks:var:2829461" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure SELinux is configured" datatype="string" id="oval:org.cisecurity.benchmarks:var:2829462" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure SELinux is configured" datatype="string" id="oval:org.cisecurity.benchmarks:var:2829463" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure SELinux is configured" datatype="string" id="oval:org.cisecurity.benchmarks:var:2829464" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure Lockdown is configured" datatype="string" id="oval:org.cisecurity.benchmarks:var:2836115" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure chrony is configured" datatype="string" id="oval:org.cisecurity.benchmarks:var:1422381" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure chrony is configured" datatype="string" id="oval:org.cisecurity.benchmarks:var:2831642" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure IPv4 default deny firewall policy" datatype="string" id="oval:org.cisecurity.benchmarks:var:1422711" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure IPv4 default deny firewall policy" datatype="string" id="oval:org.cisecurity.benchmarks:var:1422712" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure IPv4 default deny firewall policy" datatype="string" id="oval:org.cisecurity.benchmarks:var:1422714" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure IPv4 loopback traffic is configured" datatype="string" id="oval:org.cisecurity.benchmarks:var:1422718" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure IPv4 loopback traffic is configured" datatype="string" id="oval:org.cisecurity.benchmarks:var:1422720" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure IPv4 loopback traffic is configured" datatype="string" id="oval:org.cisecurity.benchmarks:var:1422723" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure IPv6 default deny firewall policy" datatype="string" id="oval:org.cisecurity.benchmarks:var:1422675" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure IPv6 default deny firewall policy" datatype="string" id="oval:org.cisecurity.benchmarks:var:1422677" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure IPv6 default deny firewall policy" datatype="string" id="oval:org.cisecurity.benchmarks:var:1422680" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure IPv6 loopback traffic is configured" datatype="string" id="oval:org.cisecurity.benchmarks:var:1422689" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure IPv6 loopback traffic is configured" datatype="string" id="oval:org.cisecurity.benchmarks:var:1422694" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure IPv6 loopback traffic is configured" datatype="string" id="oval:org.cisecurity.benchmarks:var:1422697" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure journald is configured to write logs to persistent disk" datatype="string" id="oval:org.cisecurity.benchmarks:var:2832085" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure setuid programs do not create core dumps" datatype="int" id="oval:org.cisecurity.benchmarks:var:1422478" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure address space layout randomization (ASLR) is enabled" datatype="int" id="oval:org.cisecurity.benchmarks:var:1422485" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure unprivileged eBPF is disabled" datatype="int" id="oval:org.cisecurity.benchmarks:var:2851324" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure user namespaces are disabled" datatype="int" id="oval:org.cisecurity.benchmarks:var:2836118" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure packet redirect sending is disabled" datatype="int" id="oval:org.cisecurity.benchmarks:var:1422496" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure packet redirect sending is disabled" datatype="int" id="oval:org.cisecurity.benchmarks:var:1422499" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure source routed packets are not accepted" datatype="int" id="oval:org.cisecurity.benchmarks:var:1422506" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure source routed packets are not accepted" datatype="int" id="oval:org.cisecurity.benchmarks:var:1422508" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure source routed packets are not accepted" datatype="int" id="oval:org.cisecurity.benchmarks:var:1422511" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure source routed packets are not accepted" datatype="int" id="oval:org.cisecurity.benchmarks:var:1422516" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure ICMP redirects are not accepted" datatype="int" id="oval:org.cisecurity.benchmarks:var:1422522" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure ICMP redirects are not accepted" datatype="int" id="oval:org.cisecurity.benchmarks:var:1422526" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure ICMP redirects are not accepted" datatype="int" id="oval:org.cisecurity.benchmarks:var:1422530" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure ICMP redirects are not accepted" datatype="int" id="oval:org.cisecurity.benchmarks:var:1422533" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure secure ICMP redirects are not accepted" datatype="int" id="oval:org.cisecurity.benchmarks:var:1422539" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure secure ICMP redirects are not accepted" datatype="int" id="oval:org.cisecurity.benchmarks:var:1422543" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure suspicious packets are logged" datatype="int" id="oval:org.cisecurity.benchmarks:var:1422549" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure suspicious packets are logged" datatype="int" id="oval:org.cisecurity.benchmarks:var:1422552" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure broadcast ICMP requests are ignored" datatype="int" id="oval:org.cisecurity.benchmarks:var:1422558" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure bogus ICMP responses are ignored" datatype="int" id="oval:org.cisecurity.benchmarks:var:1422564" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure TCP SYN Cookies is enabled" datatype="int" id="oval:org.cisecurity.benchmarks:var:1422581" version="1"></external_variable>
+   </variables>
+<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+<ds:SignedInfo>
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"></ds:CanonicalizationMethod>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"></ds:SignatureMethod>
+<ds:Reference URI="">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"></ds:Transform>
+<ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"></ds:Transform>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"></ds:DigestMethod>
+<ds:DigestValue>4+XWRcUEQ89kW3kcPQMuSPVMB/0=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue>
+CEhRq1/nRzAbpk329TbapbY9kahm1OE0AC5gHR8tI4J42Lw2TWyljd30MnuQ2l9sAYdxITkHVZnm
+nNZuDLbdcedffpj8A4nBvflCXv0tJrX69FFjUNqIF8tKRwcJp1F3dqO1TWm6CU1ybm8489r4GFQT
+Qh6C0Tm/4J/VxpBsCzWB86fms5QLA03KJaqHQ16iJW3wrM2AdX8XtsIc12ZtK8VWAbDVwF4S7kf9
+2qy6ye4skWRjfK6+xgbKMzJTJOAfd37t7cpy/uw1IjXTN4FOzktdH0xMSdOSfDzX43/LhTH+ahRG
+j3OoO7N0+3CkXIcLJX6gG4TGfI6hMtm5TK9rww==
+</ds:SignatureValue>
+<ds:KeyInfo>
+<ds:X509Data>
+<ds:X509Certificate>
+MIIFUjCCBDqgAwIBAgIIPx+qZKptEY4wDQYJKoZIhvcNAQELBQAwgbQxCzAJBgNVBAYTAlVTMRAw
+DgYDVQQIEwdBcml6b25hMRMwEQYDVQQHEwpTY290dHNkYWxlMRowGAYDVQQKExFHb0RhZGR5LmNv
+bSwgSW5jLjEtMCsGA1UECxMkaHR0cDovL2NlcnRzLmdvZGFkZHkuY29tL3JlcG9zaXRvcnkvMTMw
+MQYDVQQDEypHbyBEYWRkeSBTZWN1cmUgQ2VydGlmaWNhdGUgQXV0aG9yaXR5IC0gRzIwHhcNMjAw
+OTA4MTMzOTM5WhcNMjMxMDI4MDAzMjA1WjCBkzELMAkGA1UEBhMCVVMxETAPBgNVBAgTCE5ldyBZ
+b3JrMRcwFQYDVQQHEw5FYXN0IEdyZWVuYnVzaDErMCkGA1UEChMiQ2VudGVyIGZvciBJbnRlcm5l
+dCBTZWN1cml0eSwgSW5jLjErMCkGA1UEAxMiQ2VudGVyIGZvciBJbnRlcm5ldCBTZWN1cml0eSwg
+SW5jLjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBANDBp4+sl9kB5JRmnQH0wcbLLz/t
+n2HoD6TRl3xJj12V61njBNgaiGzvoSl07sFLnESukb0CU44MzYDoUMdx3HJUcEAeMY/9eITqGUnk
+N4WsP145eFqH7FoszOY/4NYlgYMYt8ZP2kRHyim9LpQTLT/1mBaUkY2f2e5uUCootH3iT8W3/sK2
+flLzWfLgXTvkhJm4Uvw1RErBFs15+krW0KWtnZ6NmiDhmV0CnFGNnd1meGZPs2sBXEVGLJVSKzoT
+G9Ht/oWyRLRcJuXpHoXTYpkqM2MsixmSaJy5b6/D35r0NXHru3p1gkX2a0VgJQxxWqLi3bVPzpl3
+PlJu3C8M/FUCAwEAAaOCAYUwggGBMAwGA1UdEwEB/wQCMAAwEwYDVR0lBAwwCgYIKwYBBQUHAwMw
+DgYDVR0PAQH/BAQDAgeAMDUGA1UdHwQuMCwwKqAooCaGJGh0dHA6Ly9jcmwuZ29kYWRkeS5jb20v
+Z2RpZzJzNS02LmNybDBdBgNVHSAEVjBUMEgGC2CGSAGG/W0BBxcCMDkwNwYIKwYBBQUHAgEWK2h0
+dHA6Ly9jZXJ0aWZpY2F0ZXMuZ29kYWRkeS5jb20vcmVwb3NpdG9yeS8wCAYGZ4EMAQQBMHYGCCsG
+AQUFBwEBBGowaDAkBggrBgEFBQcwAYYYaHR0cDovL29jc3AuZ29kYWRkeS5jb20vMEAGCCsGAQUF
+BzAChjRodHRwOi8vY2VydGlmaWNhdGVzLmdvZGFkZHkuY29tL3JlcG9zaXRvcnkvZ2RpZzIuY3J0
+MB8GA1UdIwQYMBaAFEDCvSeOzDSDMKIz1/tss/C0LIDOMB0GA1UdDgQWBBT7fOf4ISDprbE+qUFe
++friFTKgHjANBgkqhkiG9w0BAQsFAAOCAQEAT0XLw2vmuq6e58bkLDXdqKeGQjREDChLw2Mae9LI
+JB93QgdA2OCLA1FwU2s7lawEDcma9wPiugxVGoaQNOfRw2/+cz0xmR3uaKQq6I24dWbHF20N2tSz
+1RAAK1lRZKewA1fj+qqKWjzETA0LpqZlaFF+CKBpQcyfYyQRZxpHkB1vvKMf4kMIRKruvl4ixLjN
+uAZrbQUWlXuq/MUkVP3FgdxWBPfmMGyngHs4hNMaSQGb1TEhBjj+PGoSunAyaOgO/P94XJPQQX3O
+2oNDsPou6gKcNtbZrH+iYTJ8rcqQTontMwSP/HrYj8lgG3neG53vk05p0jCn2M5W0ukJ4LPEnA==
+</ds:X509Certificate>
+</ds:X509Data>
+<ds:KeyValue>
+<ds:RSAKeyValue>
+<ds:Modulus>0MGnj6yX2QHklGadAfTBxssvP+2fYegPpNGXfEmPXZXrWeME2BqIbO+hKXTuwUucRK6RvQJTjgzN
+gOhQx3HcclRwQB4xj/14hOoZSeQ3haw/Xjl4WofsWizM5j/g1iWBgxi3xk/aREfKKb0ulBMtP/WY
+FpSRjZ/Z7m5QKii0feJPxbf+wrZ+UvNZ8uBdO+SEmbhS/DVESsEWzXn6StbQpa2dno2aIOGZXQKc
+UY2d3WZ4Zk+zawFcRUYslVIrOhMb0e3+hbJEtFwm5ekehdNimSozYyyLGZJonLlvr8PfmvQ1ceu7
+enWCRfZrRWAlDHFaouLdtU/OmXc+Um7cLwz8VQ==</ds:Modulus>
+<ds:Exponent>AQAB</ds:Exponent>
+</ds:RSAKeyValue>
+</ds:KeyValue>
+</ds:KeyInfo>
+</ds:Signature></oval_definitions>

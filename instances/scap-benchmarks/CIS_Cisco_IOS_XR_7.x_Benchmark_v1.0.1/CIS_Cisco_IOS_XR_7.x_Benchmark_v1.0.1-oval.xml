@@ -1,0 +1,1058 @@
+<oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5 https://oval.cisecurity.org/schemas/validator-oval-definitions-5.11.2.xsd">
+   <generator>
+      <oval:product_name>Center for Internet Security - Optimus</oval:product_name>
+      <oval:schema_version>5.11.2</oval:schema_version>
+      <oval:timestamp>2025-05-06T17:52:30.806Z</oval:timestamp>
+   </generator>
+   <definitions>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:7230132" version="1">
+         <metadata>
+            <title>TACACS+</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.1.1_TACACS" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.1.1_TACACS"></reference>
+            <description>TACACS+</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:7230132"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:7230134" version="1">
+         <metadata>
+            <title>TACACS+</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.1.1_TACACS" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.1.1_TACACS"></reference>
+            <description>TACACS+</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:7230134"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:7230137" version="1">
+         <metadata>
+            <title>RADIUS</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.1.2_RADIUS" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.1.2_RADIUS"></reference>
+            <description>RADIUS</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:7230137"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:7230139" version="1">
+         <metadata>
+            <title>RADIUS</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.1.2_RADIUS" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.1.2_RADIUS"></reference>
+            <description>RADIUS</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:7230139"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:7230150" version="1">
+         <metadata>
+            <title>exec accounting</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.4.1_exec_accounting" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.4.1_exec_accounting"></reference>
+            <description>exec accounting</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:7230150"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:7230151" version="1">
+         <metadata>
+            <title>command accounting</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.4.2_command_accounting" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.4.2_command_accounting"></reference>
+            <description>command accounting</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:7230151"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:7230152" version="1">
+         <metadata>
+            <title>network accounting</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.4.3_network_accounting" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.4.3_network_accounting"></reference>
+            <description>network accounting</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:7230152"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:7230154" version="1">
+         <metadata>
+            <title>system accounting</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.4.4_system_accounting" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.4.4_system_accounting"></reference>
+            <description>system accounting</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:7230154"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:7230158" version="1">
+         <metadata>
+            <title>Set the 'hostname'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.2.1_Set_the_hostname" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.2.1_Set_the_hostname"></reference>
+            <description>Set the 'hostname'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:7230158"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:7230159" version="1">
+         <metadata>
+            <title>Set 'seconds' for 'ssh timeout' for 60 seconds or less</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.2.3_Set_seconds_for_ssh_timeout_for_60_seconds_or_less" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.2.3_Set_seconds_for_ssh_timeout_for_60_seconds_or_less"></reference>
+            <description>Set 'seconds' for 'ssh timeout' for 60 seconds or less</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:7230159"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:7230160" version="1">
+         <metadata>
+            <title>Enable logging</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4.1_Enable_logging" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4.1_Enable_logging"></reference>
+            <description>Enable logging</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:7230160"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:7230161" version="1">
+         <metadata>
+            <title>Set 'buffer size'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4.2_Set_buffer_size" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4.2_Set_buffer_size"></reference>
+            <description>Set 'buffer size'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:7230161"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:7230162" version="1">
+         <metadata>
+            <title>Set IP address for 'logging host'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4.4_Set_IP_address_for_logging_host" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4.4_Set_IP_address_for_logging_host"></reference>
+            <description>Set IP address for 'logging host'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:7230162"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:7230163" version="1">
+         <metadata>
+            <title>Set 'logging trap informational'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4.5_Set_logging_trap_informational" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4.5_Set_logging_trap_informational"></reference>
+            <description>Set 'logging trap informational'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:7230163"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:7230164" version="1">
+         <metadata>
+            <title>Set logging timestamps</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4.6_Set_logging_timestamps" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4.6_Set_logging_timestamps"></reference>
+            <description>Set logging timestamps</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:7230164"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:7230165" version="1">
+         <metadata>
+            <title>Set 'logging source interface'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4.7_Set_logging_source_interface" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4.7_Set_logging_source_interface"></reference>
+            <description>Set 'logging source interface'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:7230165"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:7230170" version="1">
+         <metadata>
+            <title>Set 'snmp-server enable traps snmp'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.5.6_Set_snmp-server_enable_traps_snmp" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.5.6_Set_snmp-server_enable_traps_snmp"></reference>
+            <description>Set 'snmp-server enable traps snmp'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:7230170"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:7230172" version="1">
+         <metadata>
+            <title>Set 'priv' for each 'snmp-server group' using SNMPv3</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.5.7_Set_priv_for_each_snmp-server_group_using_SNMPv3" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.5.7_Set_priv_for_each_snmp-server_group_using_SNMPv3"></reference>
+            <description>Set 'priv' for each 'snmp-server group' using SNMPv3</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:7230172"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:7230174" version="1">
+         <metadata>
+            <title>Require 'aes 128' as minimum for 'snmp-server user' when using SNMPv3</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.5.8_Require_aes_128_as_minimum_for_snmp-server_user_when_using_SNMPv3" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.5.8_Require_aes_128_as_minimum_for_snmp-server_user_when_using_SNMPv3"></reference>
+            <description>Require 'aes 128' as minimum for 'snmp-server user' when using SNMPv3</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:7230174"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:7230179" version="1">
+         <metadata>
+            <title>Pre-authentication Banner</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.7.1_Pre-authentication_Banner" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.7.1_Pre-authentication_Banner"></reference>
+            <description>Pre-authentication Banner</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:7230179"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:7230180" version="1">
+         <metadata>
+            <title>Post-authentication Banner</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.7.2_Post-authentication_Banner" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.7.2_Post-authentication_Banner"></reference>
+            <description>Post-authentication Banner</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:7230180"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:7230142" version="1">
+         <metadata>
+            <title>console authentication</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.2.1_console_authentication" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.2.1_console_authentication"></reference>
+            <description>console authentication</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:7230142"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:7230144" version="1">
+         <metadata>
+            <title>vty line authentication</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.2.2_vty_line_authentication" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.2.2_vty_line_authentication"></reference>
+            <description>vty line authentication</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:7230144"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:7230147" version="1">
+         <metadata>
+            <title>Configure Authorization</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.3.1_Configure_Authorization" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.3.1_Configure_Authorization"></reference>
+            <description>Configure Authorization</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:7230147"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:7230176" version="1">
+         <metadata>
+            <title>Disable Telnet Access</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.6.1_Disable_Telnet_Access" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.6.1_Disable_Telnet_Access"></reference>
+            <description>Disable Telnet Access</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:7230176"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:7230177" version="1">
+         <metadata>
+            <title>Ensure Exec Timeout for Console Sessions is set</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.6.3_Ensure_Exec_Timeout_for_Console_Sessions_is_set" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.6.3_Ensure_Exec_Timeout_for_Console_Sessions_is_set"></reference>
+            <description>Ensure Exec Timeout for Console Sessions is set</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:7230177"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:7230178" version="1">
+         <metadata>
+            <title>Ensure Exec Timeout for Console Sessions is set</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.6.3_Ensure_Exec_Timeout_for_Console_Sessions_is_set" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.6.3_Ensure_Exec_Timeout_for_Console_Sessions_is_set"></reference>
+            <description>Ensure Exec Timeout for Console Sessions is set</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:7230178"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:7230181" version="1">
+         <metadata>
+            <title>Management plane protection</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.9_Management_plane_protection" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.9_Management_plane_protection"></reference>
+            <description>Management plane protection</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:7230181"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:7230133" version="1">
+         <metadata>
+            <title>Authentication</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.1.1.1_Authentication" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.1.1.1_Authentication"></reference>
+            <description>Authentication</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:7230133"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:7230135" version="1">
+         <metadata>
+            <title>Authentication</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.1.1.1_Authentication" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.1.1.1_Authentication"></reference>
+            <description>Authentication</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:7230135"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:7230136" version="1">
+         <metadata>
+            <title>Authentication</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.1.2.1_Authentication" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.1.2.1_Authentication"></reference>
+            <description>Authentication</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:7230136"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:7230138" version="1">
+         <metadata>
+            <title>Authentication</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.1.2.1_Authentication" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.1.2.1_Authentication"></reference>
+            <description>Authentication</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:7230138"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:7230141" version="1">
+         <metadata>
+            <title>Authentication</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.1.3.1_Authentication" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.1.3.1_Authentication"></reference>
+            <description>Authentication</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:7230141"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:7230143" version="1">
+         <metadata>
+            <title>Authentication</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.1.4.1_Authentication" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.1.4.1_Authentication"></reference>
+            <description>Authentication</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:7230143"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:7230145" version="1">
+         <metadata>
+            <title>Authentication</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.1.4.1_Authentication" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.1.4.1_Authentication"></reference>
+            <description>Authentication</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:7230145"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:7230146" version="1">
+         <metadata>
+            <title>Authentication</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.1.5.1_Authentication" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.1.5.1_Authentication"></reference>
+            <description>Authentication</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:7230146"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:7230148" version="1">
+         <metadata>
+            <title>Authentication</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.1.5.1_Authentication" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.1.5.1_Authentication"></reference>
+            <description>Authentication</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:7230148"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:7230149" version="1">
+         <metadata>
+            <title>Key chains</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.1.6_Key_chains" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.1.6_Key_chains"></reference>
+            <description>Key chains</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:7230149"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:7230153" version="1">
+         <metadata>
+            <title>Authentication</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.3.1_Authentication" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.3.1_Authentication"></reference>
+            <description>Authentication</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:7230153"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:7230155" version="1">
+         <metadata>
+            <title>Authentication</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.3.1_Authentication" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.3.1_Authentication"></reference>
+            <description>Authentication</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:7230155"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:7230156" version="1">
+         <metadata>
+            <title>Authentication</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.4.1_Authentication" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.4.1_Authentication"></reference>
+            <description>Authentication</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:7230156"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:7230157" version="1">
+         <metadata>
+            <title>Authentication</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.4.1_Authentication" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.4.1_Authentication"></reference>
+            <description>Authentication</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:7230157"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:7230166" version="1">
+         <metadata>
+            <title>Unset 'private' for 'snmp-server community'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.5.1_Unset_private_for_snmp-server_community" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.5.1_Unset_private_for_snmp-server_community"></reference>
+            <description>Unset 'private' for 'snmp-server community'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:7230166"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:7230167" version="1">
+         <metadata>
+            <title>Unset 'public' for 'snmp-server community'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.5.2_Unset_public_for_snmp-server_community" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.5.2_Unset_public_for_snmp-server_community"></reference>
+            <description>Unset 'public' for 'snmp-server community'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:7230167"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:7230168" version="1">
+         <metadata>
+            <title>Set 'snmp-server host' when using SNMP</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.5.5_Set_snmp-server_host_when_using_SNMP" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.5.5_Set_snmp-server_host_when_using_SNMP"></reference>
+            <description>Set 'snmp-server host' when using SNMP</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:7230168"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:7230169" version="1">
+         <metadata>
+            <title>Set 'snmp-server host' when using SNMP</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.5.5_Set_snmp-server_host_when_using_SNMP" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.5.5_Set_snmp-server_host_when_using_SNMP"></reference>
+            <description>Set 'snmp-server host' when using SNMP</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:7230169"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:7230171" version="1">
+         <metadata>
+            <title>Set 'snmp-server enable traps snmp'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.5.6_Set_snmp-server_enable_traps_snmp" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.5.6_Set_snmp-server_enable_traps_snmp"></reference>
+            <description>Set 'snmp-server enable traps snmp'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:7230171"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:7230173" version="1">
+         <metadata>
+            <title>Set 'priv' for each 'snmp-server group' using SNMPv3</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.5.7_Set_priv_for_each_snmp-server_group_using_SNMPv3" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.5.7_Set_priv_for_each_snmp-server_group_using_SNMPv3"></reference>
+            <description>Set 'priv' for each 'snmp-server group' using SNMPv3</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:7230173"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:7230175" version="1">
+         <metadata>
+            <title>Require 'aes 128' as minimum for 'snmp-server user' when using SNMPv3</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.5.8_Require_aes_128_as_minimum_for_snmp-server_user_when_using_SNMPv3" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.5.8_Require_aes_128_as_minimum_for_snmp-server_user_when_using_SNMPv3"></reference>
+            <description>Require 'aes 128' as minimum for 'snmp-server user' when using SNMPv3</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:7230175"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:7230140" version="1">
+         <metadata>
+            <title>Authentication</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.1.3.1_Authentication" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.1.3.1_Authentication"></reference>
+            <description>Authentication</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:7230140"></criterion>
+         </criteria>
+      </definition>
+   </definitions>
+   <tests>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="tacacs server host" id="oval:org.cisecurity.benchmarks:tst:7230132" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:7230132"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:7230132"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="none_exist" comment="tacacs doesn't exist" id="oval:org.cisecurity.benchmarks:tst:7230134" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:7230134"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:7230134"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="Radius server" id="oval:org.cisecurity.benchmarks:tst:7230137" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:7230137"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:7230137"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="none_exist" comment="radius doesn't exist" id="oval:org.cisecurity.benchmarks:tst:7230139" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:7230139"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:7230139"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="aaa exec accounting" id="oval:org.cisecurity.benchmarks:tst:7230150" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:7230150"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:7230150"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="command accounting" id="oval:org.cisecurity.benchmarks:tst:7230151" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:7230151"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:7230151"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="network accounting" id="oval:org.cisecurity.benchmarks:tst:7230152" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:7230152"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:7230152"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="system accounting" id="oval:org.cisecurity.benchmarks:tst:7230154" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:7230154"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:7230154"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="Set Hostname" id="oval:org.cisecurity.benchmarks:tst:7230158" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:7230158"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:7230158"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="set ssh timeout to 60 sec or less" id="oval:org.cisecurity.benchmarks:tst:7230159" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:7230159"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:7230159"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="enable logging" id="oval:org.cisecurity.benchmarks:tst:7230160" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:7230160"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:7230160"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="ensure buffer is larger than 64000" id="oval:org.cisecurity.benchmarks:tst:7230161" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:7230161"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:7230161"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="set ip for logging host" id="oval:org.cisecurity.benchmarks:tst:7230162" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:7230162"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:7230162"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="Logging trap informational" id="oval:org.cisecurity.benchmarks:tst:7230163" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:7230163"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:7230163"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="set logging timestamps" id="oval:org.cisecurity.benchmarks:tst:7230164" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:7230164"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:7230164"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="logging source interface" id="oval:org.cisecurity.benchmarks:tst:7230165" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:7230165"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:7230165"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="set snmp-server enable traps" id="oval:org.cisecurity.benchmarks:tst:7230170" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:7230170"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:7230170"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="set priv" id="oval:org.cisecurity.benchmarks:tst:7230172" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:7230172"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:7230172"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="set aes 128" id="oval:org.cisecurity.benchmarks:tst:7230174" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:7230174"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:7230174"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="Login Banner" id="oval:org.cisecurity.benchmarks:tst:7230179" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:7230179"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:7230179"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="banner motd" id="oval:org.cisecurity.benchmarks:tst:7230180" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:7230180"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:7230180"></state>
+      </global_test>
+      <section_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="Console authentication" id="oval:org.cisecurity.benchmarks:tst:7230142" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:7230142"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:7230142"></state>
+      </section_test>
+      <section_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="VTY line auth" id="oval:org.cisecurity.benchmarks:tst:7230144" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:7230144"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:7230144"></state>
+      </section_test>
+      <section_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="VTY authorization" id="oval:org.cisecurity.benchmarks:tst:7230147" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:7230147"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:7230147"></state>
+      </section_test>
+      <section_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="Section vty-pool" id="oval:org.cisecurity.benchmarks:tst:7230176" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:7230176"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:7230176"></state>
+      </section_test>
+      <section_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="line default is less than 60" id="oval:org.cisecurity.benchmarks:tst:7230177" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:7230177"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:7230177"></state>
+      </section_test>
+      <section_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="line config exec timeout" id="oval:org.cisecurity.benchmarks:tst:7230178" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:7230178"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:7230178"></state>
+      </section_test>
+      <section_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="management-plane" id="oval:org.cisecurity.benchmarks:tst:7230181" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:7230181"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:7230181"></state>
+      </section_test>
+      <section_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="EIGRP keychain" id="oval:org.cisecurity.benchmarks:tst:7230133" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:7230133"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:7230133"></state>
+      </section_test>
+      <section_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="none_exist" comment="No eigrp" id="oval:org.cisecurity.benchmarks:tst:7230135" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:7230135"></object>
+      </section_test>
+      <section_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="ospf keychain" id="oval:org.cisecurity.benchmarks:tst:7230136" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:7230136"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:7230136"></state>
+      </section_test>
+      <section_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="none_exist" comment="no OSPF" id="oval:org.cisecurity.benchmarks:tst:7230138" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:7230138"></object>
+      </section_test>
+      <section_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="none_exist" comment="No BGP" id="oval:org.cisecurity.benchmarks:tst:7230141" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:7230141"></object>
+      </section_test>
+      <section_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="ISIS keychain" id="oval:org.cisecurity.benchmarks:tst:7230143" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:7230143"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:7230143"></state>
+      </section_test>
+      <section_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="none_exist" comment="No ISIS" id="oval:org.cisecurity.benchmarks:tst:7230145" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:7230145"></object>
+      </section_test>
+      <section_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="RIP Auth" id="oval:org.cisecurity.benchmarks:tst:7230146" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:7230146"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:7230146"></state>
+      </section_test>
+      <section_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="none_exist" comment="no RIP" id="oval:org.cisecurity.benchmarks:tst:7230148" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:7230148"></object>
+      </section_test>
+      <section_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="key chain" id="oval:org.cisecurity.benchmarks:tst:7230149" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:7230149"></object>
+      </section_test>
+      <section_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="VRRP authentication" id="oval:org.cisecurity.benchmarks:tst:7230153" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:7230153"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:7230153"></state>
+      </section_test>
+      <section_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="none_exist" comment="No VRRP" id="oval:org.cisecurity.benchmarks:tst:7230155" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:7230155"></object>
+      </section_test>
+      <section_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="HSRP Authentication" id="oval:org.cisecurity.benchmarks:tst:7230156" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:7230156"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:7230156"></state>
+      </section_test>
+      <section_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="none_exist" comment="no HSRP" id="oval:org.cisecurity.benchmarks:tst:7230157" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:7230157"></object>
+      </section_test>
+      <snmpcommunity_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="none_exist" comment="unset private for snmp community" id="oval:org.cisecurity.benchmarks:tst:7230166" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:7230166"></object>
+      </snmpcommunity_test>
+      <snmpcommunity_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="none_exist" comment="unset public community" id="oval:org.cisecurity.benchmarks:tst:7230167" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:7230167"></object>
+      </snmpcommunity_test>
+      <snmphost_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="host IP" id="oval:org.cisecurity.benchmarks:tst:7230168" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:7230168"></object>
+      </snmphost_test>
+      <snmp_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="none_exist" comment="no snmp" id="oval:org.cisecurity.benchmarks:tst:7230169" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:7230169"></object>
+      </snmp_test>
+      <snmp_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="none_exist" comment="no snmp" id="oval:org.cisecurity.benchmarks:tst:7230171" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:7230171"></object>
+      </snmp_test>
+      <snmp_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="none_exist" comment="no snmp" id="oval:org.cisecurity.benchmarks:tst:7230173" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:7230173"></object>
+      </snmp_test>
+      <snmp_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="none_exist" comment="no snmp" id="oval:org.cisecurity.benchmarks:tst:7230175" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:7230175"></object>
+      </snmp_test>
+      <bgpneighbor_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="any_exist" comment="BGP neighbor password encrypted" id="oval:org.cisecurity.benchmarks:tst:7230140" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:7230140"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:7230140"></state>
+      </bgpneighbor_test>
+   </tests>
+   <objects>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="tacacs server host" id="oval:org.cisecurity.benchmarks:obj:7230132" version="1">
+         <global_command operation="pattern match">^\h*tacacs-server\hhost\h\b((25[0-5]|2[0-4]\d|1\d{2}|\d{1,2})\.){3}(25[0-5]|2[0-4]\d|1\d{2}|\d{1,2})\b\hport\h.+</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="tacacs doesn't exist" id="oval:org.cisecurity.benchmarks:obj:7230134" version="1">
+         <global_command operation="pattern match">^\s*tacacs-server\shost</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Radius server" id="oval:org.cisecurity.benchmarks:obj:7230137" version="1">
+         <global_command operation="pattern match">^\h*radius-server\hhost\h\b((25[0-5]|2[0-4]\d|1\d{2}|\d{1,2})\.){3}(25[0-5]|2[0-4]\d|1\d{2}|\d{1,2})\b\hauth-port\h.*\hacct-port\h.+</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="radius doesn't exist" id="oval:org.cisecurity.benchmarks:obj:7230139" version="1">
+         <global_command operation="pattern match">^\s*radius-server\shost</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="aaa exec accounting" id="oval:org.cisecurity.benchmarks:obj:7230150" version="1">
+         <global_command operation="pattern match">^\h*aaa\haccounting\hexec\h.+</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="command accounting" id="oval:org.cisecurity.benchmarks:obj:7230151" version="1">
+         <global_command operation="pattern match">^\h*aaa\haccounting\hcommands\h.+</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="network accounting" id="oval:org.cisecurity.benchmarks:obj:7230152" version="1">
+         <global_command operation="pattern match">^\h*aaa\haccounting\hnetwork\h.+</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="system accounting" id="oval:org.cisecurity.benchmarks:obj:7230154" version="1">
+         <global_command operation="pattern match">^\h*aaa\haccounting\hcommands\h.+</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set Hostname" id="oval:org.cisecurity.benchmarks:obj:7230158" version="1">
+         <global_command operation="pattern match">^\h*hostname\h</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="set ssh timeout to 60 sec or less" id="oval:org.cisecurity.benchmarks:obj:7230159" version="1">
+         <global_command operation="pattern match">^\h*ssh\htimeout\h(60|[1-5][0-9]|[1-9])$</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="enable logging" id="oval:org.cisecurity.benchmarks:obj:7230160" version="1">
+         <global_command operation="pattern match">^\h*logging\h.+</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="ensure buffer is larger than 64000" id="oval:org.cisecurity.benchmarks:obj:7230161" version="1">
+         <global_command operation="pattern match">^\h*logging\hbuffered\h\b(64000|[6-9]\d{4,}|[1-9]\d{5,})\b</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="set ip for logging host" id="oval:org.cisecurity.benchmarks:obj:7230162" version="1">
+         <global_command operation="pattern match">^\h*logging\h\b((25[0-5]|2[0-4]\d|1\d{2}|\d{1,2})\.){3}(25[0-5]|2[0-4]\d|1\d{2}|\d{1,2})\b</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Logging trap informational" id="oval:org.cisecurity.benchmarks:obj:7230163" version="1">
+         <global_command operation="pattern match">^\h*logging\htrap\halerts</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="set logging timestamps" id="oval:org.cisecurity.benchmarks:obj:7230164" version="1">
+         <global_command operation="pattern match">^\h*service\htimestamps\h.+</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="logging source interface" id="oval:org.cisecurity.benchmarks:obj:7230165" version="1">
+         <global_command operation="pattern match">^\h*logging\hsource-interface\h.+</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="set snmp-server enable traps" id="oval:org.cisecurity.benchmarks:obj:7230170" version="1">
+         <global_command operation="pattern match">^\h*snmp-server\htraps\h.+</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="set priv" id="oval:org.cisecurity.benchmarks:obj:7230172" version="1">
+         <global_command operation="pattern match">^\h*snmp-server\hgroup\h.*\hv3\hpriv\h.+</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="set aes 128" id="oval:org.cisecurity.benchmarks:obj:7230174" version="1">
+         <global_command operation="pattern match">^\h*snmp-server\huser\h.*\h.*\hv3\hauth\hsha\hencrypted\h.*\hpriv\haes\h\b(128|192|256)\b\hencrypted.+</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Login Banner" id="oval:org.cisecurity.benchmarks:obj:7230179" version="1">
+         <global_command operation="pattern match">^\h*banner\hlogin</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="banner motd" id="oval:org.cisecurity.benchmarks:obj:7230180" version="1">
+         <global_command operation="pattern match">^\h*banner\hmotd</global_command>
+      </global_object>
+      <section_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Console authentication" id="oval:org.cisecurity.benchmarks:obj:7230142" version="1">
+         <section_command>vty-pool\h.+</section_command>
+      </section_object>
+      <section_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="VTY line auth" id="oval:org.cisecurity.benchmarks:obj:7230144" version="1">
+         <section_command>vty-pool\h.+</section_command>
+      </section_object>
+      <section_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="VTY authorization" id="oval:org.cisecurity.benchmarks:obj:7230147" version="1">
+         <section_command>vty-pool\h.+</section_command>
+      </section_object>
+      <section_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Section vty-pool" id="oval:org.cisecurity.benchmarks:obj:7230176" version="1">
+         <section_command>^\h*vty-pool\h.+</section_command>
+      </section_object>
+      <section_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="line default is less than 60" id="oval:org.cisecurity.benchmarks:obj:7230177" version="1">
+         <section_command>line default</section_command>
+      </section_object>
+      <section_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="line config exec timeout" id="oval:org.cisecurity.benchmarks:obj:7230178" version="1">
+         <section_command>line console</section_command>
+      </section_object>
+      <section_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="management-plane" id="oval:org.cisecurity.benchmarks:obj:7230181" version="1">
+         <section_command>^\h*control-plane</section_command>
+      </section_object>
+      <section_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="EIGRP keychain" id="oval:org.cisecurity.benchmarks:obj:7230133" version="1">
+         <section_command>router eigrp</section_command>
+      </section_object>
+      <section_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="No eigrp" id="oval:org.cisecurity.benchmarks:obj:7230135" version="1">
+         <section_command>router eigrp</section_command>
+      </section_object>
+      <section_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="ospf keychain" id="oval:org.cisecurity.benchmarks:obj:7230136" version="1">
+         <section_command>router ospf</section_command>
+      </section_object>
+      <section_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="no OSPF" id="oval:org.cisecurity.benchmarks:obj:7230138" version="1">
+         <section_command>router ospf</section_command>
+      </section_object>
+      <section_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="No BGP" id="oval:org.cisecurity.benchmarks:obj:7230141" version="1">
+         <section_command>router bgp</section_command>
+      </section_object>
+      <section_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="ISIS keychain" id="oval:org.cisecurity.benchmarks:obj:7230143" version="1">
+         <section_command>^\h*router\hisis\h.+</section_command>
+      </section_object>
+      <section_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="No ISIS" id="oval:org.cisecurity.benchmarks:obj:7230145" version="1">
+         <section_command>^\hrouter\hisis\h.+</section_command>
+      </section_object>
+      <section_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="RIP Auth" id="oval:org.cisecurity.benchmarks:obj:7230146" version="1">
+         <section_command>^\h*router\hrip</section_command>
+      </section_object>
+      <section_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="no RIP" id="oval:org.cisecurity.benchmarks:obj:7230148" version="1">
+         <section_command>^\h*router\hrip</section_command>
+      </section_object>
+      <section_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="key chain" id="oval:org.cisecurity.benchmarks:obj:7230149" version="1">
+         <section_command>key chain</section_command>
+      </section_object>
+      <section_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="VRRP authentication" id="oval:org.cisecurity.benchmarks:obj:7230153" version="1">
+         <section_command>^\h*router\hvrrp</section_command>
+      </section_object>
+      <section_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="No VRRP" id="oval:org.cisecurity.benchmarks:obj:7230155" version="1">
+         <section_command>^\h*router\hvrrp</section_command>
+      </section_object>
+      <section_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="HSRP Authentication" id="oval:org.cisecurity.benchmarks:obj:7230156" version="1">
+         <section_command>^\h*router\hhsrp</section_command>
+      </section_object>
+      <section_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="no HSRP" id="oval:org.cisecurity.benchmarks:obj:7230157" version="1">
+         <section_command>^\h*router\hhsrp</section_command>
+      </section_object>
+      <snmpcommunity_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="unset private for snmp community" id="oval:org.cisecurity.benchmarks:obj:7230166" version="1">
+         <name>private</name>
+      </snmpcommunity_object>
+      <snmpcommunity_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="unset public community" id="oval:org.cisecurity.benchmarks:obj:7230167" version="1">
+         <name>public</name>
+      </snmpcommunity_object>
+      <snmphost_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="host IP" id="oval:org.cisecurity.benchmarks:obj:7230168" version="1">
+         <host operation="pattern match">.+</host>
+      </snmphost_object>
+      <snmp_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="no snmp" id="oval:org.cisecurity.benchmarks:obj:7230169" version="1"></snmp_object>
+      <snmp_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="no snmp" id="oval:org.cisecurity.benchmarks:obj:7230171" version="1"></snmp_object>
+      <snmp_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="no snmp" id="oval:org.cisecurity.benchmarks:obj:7230173" version="1"></snmp_object>
+      <snmp_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="no snmp" id="oval:org.cisecurity.benchmarks:obj:7230175" version="1"></snmp_object>
+      <bgpneighbor_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="BGP neighbor password encrypted" id="oval:org.cisecurity.benchmarks:obj:7230140" version="1">
+         <neighbor operation="pattern match">.*</neighbor>
+      </bgpneighbor_object>
+   </objects>
+   <states>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="tacacs server host" id="oval:org.cisecurity.benchmarks:ste:7230132" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:7230132"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="tacacs doesn't exist" id="oval:org.cisecurity.benchmarks:ste:7230134" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:7230134"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Radius server" id="oval:org.cisecurity.benchmarks:ste:7230137" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:7230137"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="radius doesn't exist" id="oval:org.cisecurity.benchmarks:ste:7230139" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:7230139"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="aaa exec accounting" id="oval:org.cisecurity.benchmarks:ste:7230150" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:7230150"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="command accounting" id="oval:org.cisecurity.benchmarks:ste:7230151" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:7230151"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="network accounting" id="oval:org.cisecurity.benchmarks:ste:7230152" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:7230152"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="system accounting" id="oval:org.cisecurity.benchmarks:ste:7230154" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:7230154"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Set Hostname" id="oval:org.cisecurity.benchmarks:ste:7230158" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:7230158"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="set ssh timeout to 60 sec or less" id="oval:org.cisecurity.benchmarks:ste:7230159" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:7230159"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="enable logging" id="oval:org.cisecurity.benchmarks:ste:7230160" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:7230160"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="ensure buffer is larger than 64000" id="oval:org.cisecurity.benchmarks:ste:7230161" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:7230161"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="set ip for logging host" id="oval:org.cisecurity.benchmarks:ste:7230162" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:7230162"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Logging trap informational" id="oval:org.cisecurity.benchmarks:ste:7230163" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:7230163"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="set logging timestamps" id="oval:org.cisecurity.benchmarks:ste:7230164" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:7230164"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="logging source interface" id="oval:org.cisecurity.benchmarks:ste:7230165" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:7230165"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="set snmp-server enable traps" id="oval:org.cisecurity.benchmarks:ste:7230170" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:7230170"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="set priv" id="oval:org.cisecurity.benchmarks:ste:7230172" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:7230172"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="set aes 128" id="oval:org.cisecurity.benchmarks:ste:7230174" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:7230174"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Login Banner" id="oval:org.cisecurity.benchmarks:ste:7230179" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:7230179"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="banner motd" id="oval:org.cisecurity.benchmarks:ste:7230180" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:7230180"></global_command>
+      </global_state>
+      <section_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Console authentication" id="oval:org.cisecurity.benchmarks:ste:7230142" version="1">
+         <config_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:7230142"></config_line>
+      </section_state>
+      <section_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="VTY line auth" id="oval:org.cisecurity.benchmarks:ste:7230144" version="1">
+         <config_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:7230144"></config_line>
+      </section_state>
+      <section_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="VTY authorization" id="oval:org.cisecurity.benchmarks:ste:7230147" version="1">
+         <config_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:7230147"></config_line>
+      </section_state>
+      <section_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Section vty-pool" id="oval:org.cisecurity.benchmarks:ste:7230176" version="1">
+         <config_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:7230176"></config_line>
+      </section_state>
+      <section_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="line default is less than 60" id="oval:org.cisecurity.benchmarks:ste:7230177" version="1">
+         <config_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:7230177"></config_line>
+      </section_state>
+      <section_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="line config exec timeout" id="oval:org.cisecurity.benchmarks:ste:7230178" version="1">
+         <config_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:7230178"></config_line>
+      </section_state>
+      <section_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="management-plane" id="oval:org.cisecurity.benchmarks:ste:7230181" version="1">
+         <config_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:7230181"></config_line>
+      </section_state>
+      <section_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="EIGRP keychain" id="oval:org.cisecurity.benchmarks:ste:7230133" version="1">
+         <config_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:7230133"></config_line>
+      </section_state>
+      <section_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="ospf keychain" id="oval:org.cisecurity.benchmarks:ste:7230136" version="1">
+         <config_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:7230136"></config_line>
+      </section_state>
+      <section_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="ISIS keychain" id="oval:org.cisecurity.benchmarks:ste:7230143" version="1">
+         <config_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:7230143"></config_line>
+      </section_state>
+      <section_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="RIP Auth" id="oval:org.cisecurity.benchmarks:ste:7230146" version="1">
+         <config_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:7230146"></config_line>
+      </section_state>
+      <section_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="VRRP authentication" id="oval:org.cisecurity.benchmarks:ste:7230153" version="1">
+         <config_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:7230153"></config_line>
+      </section_state>
+      <section_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="HSRP Authentication" id="oval:org.cisecurity.benchmarks:ste:7230156" version="1">
+         <config_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:7230156"></config_line>
+      </section_state>
+      <bgpneighbor_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="BGP neighbor password encrypted" id="oval:org.cisecurity.benchmarks:ste:7230140" version="1">
+         <password operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:7230140"></password>
+      </bgpneighbor_state>
+   </states>
+   <variables>
+      <external_variable comment="This value is used in Rule: TACACS+" datatype="string" id="oval:org.cisecurity.benchmarks:var:7230132" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: TACACS+" datatype="string" id="oval:org.cisecurity.benchmarks:var:7230134" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: RADIUS" datatype="string" id="oval:org.cisecurity.benchmarks:var:7230137" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: RADIUS" datatype="string" id="oval:org.cisecurity.benchmarks:var:7230139" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: exec accounting" datatype="string" id="oval:org.cisecurity.benchmarks:var:7230150" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: command accounting" datatype="string" id="oval:org.cisecurity.benchmarks:var:7230151" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: network accounting" datatype="string" id="oval:org.cisecurity.benchmarks:var:7230152" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: system accounting" datatype="string" id="oval:org.cisecurity.benchmarks:var:7230154" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set the 'hostname'" datatype="string" id="oval:org.cisecurity.benchmarks:var:7230158" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set 'seconds' for 'ssh timeout' for 60 seconds or less" datatype="string" id="oval:org.cisecurity.benchmarks:var:7230159" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Enable logging" datatype="string" id="oval:org.cisecurity.benchmarks:var:7230160" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set 'buffer size'" datatype="string" id="oval:org.cisecurity.benchmarks:var:7230161" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set IP address for 'logging host'" datatype="string" id="oval:org.cisecurity.benchmarks:var:7230162" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set 'logging trap informational'" datatype="string" id="oval:org.cisecurity.benchmarks:var:7230163" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set logging timestamps" datatype="string" id="oval:org.cisecurity.benchmarks:var:7230164" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set 'logging source interface'" datatype="string" id="oval:org.cisecurity.benchmarks:var:7230165" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set 'snmp-server enable traps snmp'" datatype="string" id="oval:org.cisecurity.benchmarks:var:7230170" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set 'priv' for each 'snmp-server group' using SNMPv3" datatype="string" id="oval:org.cisecurity.benchmarks:var:7230172" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Require 'aes 128' as minimum for 'snmp-server user' when using SNMPv3" datatype="string" id="oval:org.cisecurity.benchmarks:var:7230174" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Pre-authentication Banner" datatype="string" id="oval:org.cisecurity.benchmarks:var:7230179" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Post-authentication Banner" datatype="string" id="oval:org.cisecurity.benchmarks:var:7230180" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: console authentication" datatype="string" id="oval:org.cisecurity.benchmarks:var:7230142" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: vty line authentication" datatype="string" id="oval:org.cisecurity.benchmarks:var:7230144" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Configure Authorization" datatype="string" id="oval:org.cisecurity.benchmarks:var:7230147" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Disable Telnet Access" datatype="string" id="oval:org.cisecurity.benchmarks:var:7230176" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure Exec Timeout for Console Sessions is set" datatype="string" id="oval:org.cisecurity.benchmarks:var:7230177" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure Exec Timeout for Console Sessions is set" datatype="string" id="oval:org.cisecurity.benchmarks:var:7230178" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Management plane protection" datatype="string" id="oval:org.cisecurity.benchmarks:var:7230181" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Authentication" datatype="string" id="oval:org.cisecurity.benchmarks:var:7230133" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Authentication" datatype="string" id="oval:org.cisecurity.benchmarks:var:7230136" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Authentication" datatype="string" id="oval:org.cisecurity.benchmarks:var:7230143" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Authentication" datatype="string" id="oval:org.cisecurity.benchmarks:var:7230146" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Authentication" datatype="string" id="oval:org.cisecurity.benchmarks:var:7230153" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Authentication" datatype="string" id="oval:org.cisecurity.benchmarks:var:7230156" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Authentication" datatype="string" id="oval:org.cisecurity.benchmarks:var:7230140" version="1"></external_variable>
+   </variables>
+<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+<ds:SignedInfo>
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"></ds:CanonicalizationMethod>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></ds:SignatureMethod>
+<ds:Reference URI="">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"></ds:Transform>
+<ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"></ds:Transform>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></ds:DigestMethod>
+<ds:DigestValue>G3tDiA2PmWKb08JIXG1odviCl4dzPB2fLl9u0SY+GUg=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue>
+W6ugBhUGBqCQW+ykWiRNIumRAfAdG0LxmrhBo4PO26G3lzQnfaQwAjznF3s6ydEygDk2opEXpa+l
+qRdrtGvb64z5fJuWAQNIEgqgq4N/UKsq9hFLvYxAb1pRaSvAnbZuC7Zv44LHq+v8BeFxzRgTOMJI
+vBrJUDFoeMPIpBaefStCxTS8L2a7VDFYAEwh7E6BusAV3NN2tfxhMyrSfr99hdtDepU/8lJoA0kc
+076GdOazOS8OXWb/+y4lqyaPpwRIKMlUshmnLt55dxt+BNotLrp9Ah/YBRfs8L6eNq4/Z2ZeIBht
+xWl14H4ThTqQe27a+A5D+mDj7N4xbEnApClqrr1MMYw4PNMRG7KFYNBtma0oXAQ3ilb0P5Dhi3dZ
+3DSXMyIF70VFIupjIPfedpmtjTL9MM4/O/Z61TxhfRh3lQ6dWLJKxXugwR3S869MyF9+gpPOl0vw
+Mz97HYYJczCwfnJkj9x9tHJjd5FxdxJOlsyfaJFrwU3KP/DVg5LbOtZb
+</ds:SignatureValue>
+<ds:KeyInfo>
+<ds:X509Data>
+<ds:X509Certificate>
+MIIHbDCCBVSgAwIBAgIQCdceADCnzKkglkQGavVKYzANBgkqhkiG9w0BAQsFADBpMQswCQYDVQQG
+EwJVUzEXMBUGA1UEChMORGlnaUNlcnQsIEluYy4xQTA/BgNVBAMTOERpZ2lDZXJ0IFRydXN0ZWQg
+RzQgQ29kZSBTaWduaW5nIFJTQTQwOTYgU0hBMzg0IDIwMjEgQ0ExMB4XDTIzMTAxODAwMDAwMFoX
+DTI2MTAxODIzNTk1OVowgfQxEzARBgsrBgEEAYI3PAIBAxMCVVMxGTAXBgsrBgEEAYI3PAIBAhMI
+TWFyeWxhbmQxHTAbBgNVBA8MFFByaXZhdGUgT3JnYW5pemF0aW9uMRIwEAYDVQQFEwlEMDYwNTg4
+MTIxCzAJBgNVBAYTAlVTMREwDwYDVQQIEwhOZXcgWW9yazEXMBUGA1UEBxMORWFzdCBHcmVlbmJ1
+c2gxKjAoBgNVBAoTIUNlbnRlciBmb3IgSW50ZXJuZXQgU2VjdXJpdHksIEluYzEqMCgGA1UEAxMh
+Q2VudGVyIGZvciBJbnRlcm5ldCBTZWN1cml0eSwgSW5jMIIBojANBgkqhkiG9w0BAQEFAAOCAY8A
+MIIBigKCAYEAyZwTJr4Kb7QEDnVY3BEkPoS3fn+XoxhCTfFvlMk8zXDcR4pFMgPkXTrZ1KbENUIV
+skIhy1vmnh61vwSL0lcdzesCekKSxLqrEA4xunZk1MB5mLbHXchSSpI1co1vaSzJjkTYP1UsUVQz
+NoOzV0LNCoZdahjGTHSduWvbrHTEeD6/jvUj3AVWrTx6krzgYA3ozAxtUnapK7IrZERuGOSwTrgR
+Lr1aieQdFy8haW1YL+ks5HmLRvcoGp+J68GX/zfMTduvWxhcpXm4txKc4iJqGCRmyBU2XjGjpDBX
+ndxHgT4edRLz5PwWSeZUh8/tWOGFwnVw7njoOa0sFixy96H2BqEn+yPeRALyf59rjtPL66tsXuaA
+ilB63yqbH42mnkxHTX5zcEm337GzTOGRccsYzN/ApVuXDeMfsO+sSUosrimnxm9QTOyKcex5h1As
+rxBVfTw+Zf7jP1YRlmMlGPG1zffK2KjJhD6ivFi2sIDThEQLxIAC8XOjp2ZXvhx87yNTAgMBAAGj
+ggICMIIB/jAfBgNVHSMEGDAWgBRoN+Drtjv4XxGG+/5hewiIZfROQjAdBgNVHQ4EFgQUX2/J9FT5
+5BNF7JqfAl9SJkv3pf0wPQYDVR0gBDYwNDAyBgVngQwBAzApMCcGCCsGAQUFBwIBFhtodHRwOi8v
+d3d3LmRpZ2ljZXJ0LmNvbS9DUFMwDgYDVR0PAQH/BAQDAgeAMBMGA1UdJQQMMAoGCCsGAQUFBwMD
+MIG1BgNVHR8Ega0wgaowU6BRoE+GTWh0dHA6Ly9jcmwzLmRpZ2ljZXJ0LmNvbS9EaWdpQ2VydFRy
+dXN0ZWRHNENvZGVTaWduaW5nUlNBNDA5NlNIQTM4NDIwMjFDQTEuY3JsMFOgUaBPhk1odHRwOi8v
+Y3JsNC5kaWdpY2VydC5jb20vRGlnaUNlcnRUcnVzdGVkRzRDb2RlU2lnbmluZ1JTQTQwOTZTSEEz
+ODQyMDIxQ0ExLmNybDCBlAYIKwYBBQUHAQEEgYcwgYQwJAYIKwYBBQUHMAGGGGh0dHA6Ly9vY3Nw
+LmRpZ2ljZXJ0LmNvbTBcBggrBgEFBQcwAoZQaHR0cDovL2NhY2VydHMuZGlnaWNlcnQuY29tL0Rp
+Z2lDZXJ0VHJ1c3RlZEc0Q29kZVNpZ25pbmdSU0E0MDk2U0hBMzg0MjAyMUNBMS5jcnQwCQYDVR0T
+BAIwADANBgkqhkiG9w0BAQsFAAOCAgEASLOHf1FQ7TrGqEoVXYoeNSkRWdVCUGd1JCDs7Hb9sLd3
+eQuipZ4EorQS/9qMiVMhmlJfF75sNVQhr1K5UtjrDRFMTzYmh78hAyovowzgyVKdGFqiVVr5m+mb
+vVyglLlA4V076LMBaKRknm1Dt8r0/5GSRCrkP2origpYMMaocN+iBX9+MImnh3J1Ehn0nRUhW86Q
+mt3/YCVIaQZisv+KmOxyAq1m6fiIYIvXY+cH2dDIheoVteb/NjYnKVqE6xTpOsxF16pykXiM9yk3
+Q9nlJS36KEGRP4wrySU4eIBnTcv4mimZjkWj6bIvk8otNJ14FbyltaPwIc3dE3oPGfSmCrkxs73j
+iqBs2TXLvblEmOhY8ko3xVdTm0zMP50MQVO948fz9yF+xdnPdMPT1/lCmGp6iWYRzxnvEkA1+HFl
+yy9YztrM8WNAhXirpUZg3HWQE2ONLKMtqQrkIHD2nikda77flk6oirqDuCf8Q7g8s86/KabTdxrw
+pRmsRjDkAfKVae58ctaKbmF32oU9BGk+9MPG8HF5Yfoh12DE1fLZcPzZrROrDFJGGxwhv5FlnxGg
+6G7jKi68erZnpaOPayK0bXyZNunqkI9IbIuPqMw5qaCZZgN6AEHIbGTKdrWEf11DmR7MdTjv3/vu
+JWtIXgk3kQFX27w9JhqV6QogVmzIfEQ=
+</ds:X509Certificate>
+</ds:X509Data>
+<ds:KeyValue>
+<ds:RSAKeyValue>
+<ds:Modulus>yZwTJr4Kb7QEDnVY3BEkPoS3fn+XoxhCTfFvlMk8zXDcR4pFMgPkXTrZ1KbENUIVskIhy1vmnh61
+vwSL0lcdzesCekKSxLqrEA4xunZk1MB5mLbHXchSSpI1co1vaSzJjkTYP1UsUVQzNoOzV0LNCoZd
+ahjGTHSduWvbrHTEeD6/jvUj3AVWrTx6krzgYA3ozAxtUnapK7IrZERuGOSwTrgRLr1aieQdFy8h
+aW1YL+ks5HmLRvcoGp+J68GX/zfMTduvWxhcpXm4txKc4iJqGCRmyBU2XjGjpDBXndxHgT4edRLz
+5PwWSeZUh8/tWOGFwnVw7njoOa0sFixy96H2BqEn+yPeRALyf59rjtPL66tsXuaAilB63yqbH42m
+nkxHTX5zcEm337GzTOGRccsYzN/ApVuXDeMfsO+sSUosrimnxm9QTOyKcex5h1AsrxBVfTw+Zf7j
+P1YRlmMlGPG1zffK2KjJhD6ivFi2sIDThEQLxIAC8XOjp2ZXvhx87yNT</ds:Modulus>
+<ds:Exponent>AQAB</ds:Exponent>
+</ds:RSAKeyValue>
+</ds:KeyValue>
+</ds:KeyInfo>
+</ds:Signature></oval_definitions>

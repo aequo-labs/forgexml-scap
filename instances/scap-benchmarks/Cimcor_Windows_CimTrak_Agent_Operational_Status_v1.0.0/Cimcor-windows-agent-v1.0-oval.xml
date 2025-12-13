@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5"
+                  xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xmlns:win="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows"
+                  xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"
+                  xmlns:cmd="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd"
+                  xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd http://oval.mitre.org/XMLSchema/oval-definitions-5#windows windows-definitions-schema.xsd">
+
+  <generator>
+    <oval:product_name>CimTrak Agent Windows Operational Monitoring</oval:product_name>
+    <oval:schema_version>5.11</oval:schema_version>
+    <oval:timestamp>2025-08-05T14:30:00Z</oval:timestamp>
+  </generator>
+
+  <definitions>
+    <!-- CimTrak Agent Service Status -->
+    <definition class="compliance" id="oval:com.cimcor.agent.windows:def:1" version="1">
+      <metadata>
+        <title>Ensure CimTrakAgent service is enabled and active</title>
+        <description>Verify that the CimTrakAgent Windows service is both enabled for auto-start and currently active/running</description>
+      </metadata>
+      <criteria operator="AND" negate="false">
+        <criterion test_ref="oval:com.cimcor.agent.windows:tst:1" negate="false" comment="CimTrakAgent service is enabled"/>
+        <criterion test_ref="oval:com.cimcor.agent.windows:tst:2" negate="false" comment="CimTrakAgent service is active"/>
+      </criteria>
+    </definition>
+
+    <!-- CimTrak Agent Configuration Validation -->
+    <definition class="compliance" id="oval:com.cimcor.agent.windows:def:2" version="1">
+      <metadata>
+        <title>Ensure CimTrakAgent is properly configured</title>
+        <description>Verify that CimTrakAgent --checkinstall command returns success, confirming proper configuration and connectivity</description>
+      </metadata>
+      <criteria operator="AND" negate="false" comment="CimTrakAgent configuration validation passes">
+        <criterion test_ref="oval:com.cimcor.agent.windows:tst:3" negate="false" comment="CimTrakAgent --checkinstall succeeds"/>
+      </criteria>
+    </definition>
+  </definitions>
+
+  <tests>
+    <!-- Service Status Tests using CIS-style WMI queries -->
+    <win:wmi57_test id="oval:com.cimcor.agent.windows:tst:1" version="1" check_existence="at_least_one_exists" check="all" comment="CimTrakAgent service is enabled">
+      <win:object object_ref="oval:com.cimcor.agent.windows:obj:1"/>
+      <win:state state_ref="oval:com.cimcor.agent.windows:ste:1"/>
+    </win:wmi57_test>
+
+    <win:wmi57_test id="oval:com.cimcor.agent.windows:tst:2" version="1" check_existence="at_least_one_exists" check="all" comment="CimTrakAgent service is active">
+      <win:object object_ref="oval:com.cimcor.agent.windows:obj:1"/>
+      <win:state state_ref="oval:com.cimcor.agent.windows:ste:2"/>
+    </win:wmi57_test>
+
+    <!-- Configuration Validation Test -->
+    <cmd:shellcommand_test id="oval:com.cimcor.agent.windows:tst:3" version="1" check_existence="at_least_one_exists" check="all" comment="CimTrakAgent --checkinstall returns success">
+      <cmd:object object_ref="oval:com.cimcor.agent.windows:obj:2"/>
+      <cmd:state state_ref="oval:com.cimcor.agent.windows:ste:3"/>
+    </cmd:shellcommand_test>
+  </tests>
+
+  <objects>
+    <!-- WMI Service Object - following CIS benchmark pattern -->
+    <win:wmi57_object id="oval:com.cimcor.agent.windows:obj:1" version="1" comment="CimTrak Agent service properties for status checking">
+      <win:namespace>root\cimv2</win:namespace>
+      <win:wql>SELECT Name, State, StartMode, PathName FROM Win32_Service WHERE Name = 'CimTrak Agent'</win:wql>
+    </win:wmi57_object>
+
+
+    <!-- Shell Command Object for CimTrakAgent checkinstall -->
+    <cmd:shellcommand_object id="oval:com.cimcor.agent.windows:obj:2" version="1" comment="CimTrakAgent --checkinstall command execution">
+      <cmd:command>for /f "tokens=*" %i in ('wmic service where "name='CimTrak Agent'" get pathname /value ^| findstr "="') do set %i &amp;&amp; if defined PathName call %PathName% --checkinstall</cmd:command>
+    </cmd:shellcommand_object>
+  </objects>
+
+  <states>
+    <!-- Service Status States -->
+    <win:wmi57_state id="oval:com.cimcor.agent.windows:ste:1" version="1" comment="Service is set to automatic startup">
+      <win:result datatype="record">
+        <field name="startmode">Auto</field>
+      </win:result>
+    </win:wmi57_state>
+
+    <win:wmi57_state id="oval:com.cimcor.agent.windows:ste:2" version="1" comment="Service is currently running">
+      <win:result datatype="record">
+        <field name="state">Running</field>
+      </win:result>
+    </win:wmi57_state>
+
+    <!-- Configuration Validation State -->
+    <cmd:shellcommand_state id="oval:com.cimcor.agent.windows:ste:3" version="1" comment="CimTrakAgent --checkinstall returns success (exit code 0)">
+      <cmd:exit_status datatype="int" operation="equals">0</cmd:exit_status>
+    </cmd:shellcommand_state>
+  </states>
+
+</oval_definitions>

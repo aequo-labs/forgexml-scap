@@ -1,0 +1,162 @@
+<!-- 
+Windows CimTrak Agent Operational Benchmark
+Tests CimTrak agent installation, configuration, and operational status
+For Windows Server 2019, 2022, Windows 10, and Windows 11 platforms
+-->
+<xccdf:Benchmark xmlns:xccdf="http://checklists.nist.gov/xccdf/1.2" 
+				 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				 xmlns:cve="https://cve.mitre.org"
+				 xmlns:cc7="http://cisecurity.org/20-cc/v7.0"
+				 xmlns:cc8="http://cisecurity.org/20-cc/v8.0"
+	             id="xccdf_com.cimcor.cimtrak_benchmark_1.0.0_windows-agent" 
+	             style="SCAP_1.3" 
+	             xsi:schemaLocation="http://checklists.nist.gov/xccdf/1.2 
+				                     https://scap.nist.gov/schema/xccdf/1.2/xccdf_1.2.xsd"
+	>
+   <xccdf:status date="2025-07-25">accepted</xccdf:status>
+   <xccdf:title xml:lang="en">Cimcor Windows CimTrak Agent Operational Status</xccdf:title>
+   <xccdf:description xml:lang="en">
+      <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">This benchmark verifies the operational status of CimTrak agents on Windows systems including Windows Server 2019, Windows Server 2022, Windows 10, and Windows 11. It focuses on agent installation, configuration validation, and service monitoring to ensure proper file integrity monitoring capabilities.</xhtml:p>
+   </xccdf:description>
+
+   <!-- Windows platforms -->
+   <xccdf:platform idref="cpe:2.3:o:microsoft:windows_server_2019:-:*:*:*:*:*:*:*"/>
+   <xccdf:platform idref="cpe:2.3:o:microsoft:windows_server_2022:-:*:*:*:*:*:*:*"/>
+   <xccdf:platform idref="cpe:2.3:o:microsoft:windows_10:-:*:*:*:*:*:*:*"/>
+   <xccdf:platform idref="cpe:2.3:o:microsoft:windows_11:-:*:*:*:*:*:*:*"/>
+   <xccdf:version>1.0.0</xccdf:version>
+
+   <!-- Agent operational profile -->
+	<xccdf:Profile id="xccdf_com.cimcor.cimtrak_profile_Agent_Validation">
+		<xccdf:title xml:lang="en">CimTrak Agent Validation</xccdf:title>
+		<xccdf:description xml:lang="en">
+			<xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">Complete CimTrak Agent Validation Profile</xhtml:p>
+			<xhtml:ul xmlns:xhtml="http://www.w3.org/1999/xhtml">
+				<xhtml:li>This profile performs comprehensive agent validation including service status and configuration</xhtml:li>
+				<xhtml:li>Includes both Windows service monitoring and configuration file validation</xhtml:li>
+				<xhtml:li>Ensures complete operational readiness of the CimTrak agent</xhtml:li>
+			</xhtml:ul>
+		</xccdf:description>
+		<xccdf:select idref="xccdf_com.cimcor.cimtrak_rule_cimtrakagent_service_enabled" selected="true"/>
+		<xccdf:select idref="xccdf_com.cimcor.cimtrak_rule_cimtrakagent_config_valid" selected="true"/>
+	</xccdf:Profile>
+	
+	<xccdf:Group id="xccdf_com.cimcor.cimtrak_group_agent_service">
+        <xccdf:title xml:lang="en">CimTrak Agent Service Management</xccdf:title>
+        <xccdf:description xml:lang="en">
+            <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">Verification of CimTrak agent Windows service status, including service state and operational readiness</xhtml:p>
+        </xccdf:description>
+		
+		<xccdf:Rule id="xccdf_com.cimcor.cimtrak_rule_cimtrakagent_service_enabled" role="full" selected="false" weight="1.0">
+			<xccdf:title xml:lang="en">Ensure CimTrakAgent service is enabled and running</xccdf:title>
+			<xccdf:description xml:lang="en">
+				<xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">The CimTrakAgent Windows service provides real-time file integrity monitoring, detecting changes to critical system files, configurations, and directories. Unlike Windows File Resource Manager (FSRM) which operates on scheduled scans, CimTrak continuously monitors the file system and can instantly alert on or remediate unauthorized changes.</xhtml:p>
+			</xccdf:description>
+			<xccdf:rationale xml:lang="en">
+				<xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">File integrity monitoring is essential for:</xhtml:p>
+				<xhtml:ul xmlns:xhtml="http://www.w3.org/1999/xhtml">
+					<xhtml:li>Detecting unauthorized file modifications</xhtml:li>
+					<xhtml:li>Identifying unauthorized configuration changes</xhtml:li>
+					<xhtml:li>Meeting compliance requirements (PCI-DSS, HIPAA, SOX, NERC, FISMA, GDPR, CMMC)</xhtml:li>
+					<xhtml:li>Preventing zero-day attacks through change prevention</xhtml:li>
+					<xhtml:li>Providing forensic information (who, what, when, how) for security incidents</xhtml:li>
+				</xhtml:ul>
+				<xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">CimTrak is an acceptable replacement for native Windows file monitoring because it provides comprehensive real-time monitoring, automated remediation, change prevention, and enterprise management features.</xhtml:p>
+			</xccdf:rationale>
+			<xccdf:ident system="http://cisecurity.org/20-cc/v8.0" cc8:controlURI="http://cisecurity.org/20-cc/v8.0/control/3/subcontrol/14">CC8: 3.14</xccdf:ident>
+			<xccdf:ident system="http://cisecurity.org/20-cc/v7.0" cc7:controlURI="http://cisecurity.org/20-cc/v7.0/control/14/subcontrol/9">CC7: 14.9</xccdf:ident>
+			<xccdf:ident system="URL">NIST SP 800-53 Rev. 5: AU-2</xccdf:ident>
+			<xccdf:fixtext xml:lang="en">
+				<xhtml:div xmlns:xhtml="http://www.w3.org/1999/xhtml">
+					<xhtml:p><xhtml:b>To install CimTrakAgent on Windows:</xhtml:b></xhtml:p>
+					<xhtml:ol>
+						<xhtml:li>Download the appropriate installer:
+							<xhtml:ul>
+								<xhtml:li>Windows x64: ctagent_e_setup_windows_x64_*.exe</xhtml:li>
+								<xhtml:li>Windows x86: ctagent_e_setup_windows_x86_*.exe</xhtml:li>
+							</xhtml:ul>
+						</xhtml:li>
+						<xhtml:li>Run the installer with required parameters (using Command Prompt as Administrator):
+							<xhtml:code>ctagent_e_setup_windows_x64_*.exe /S /REPOSITORY=[REPOSITORY_IP] /PORT=3749 /USER=[USERNAME] /PASSWORD=[PASSWORD] /AGENTNAME=[UNIQUE_NAME]</xhtml:code>
+						</xhtml:li>
+						<xhtml:li>Alternatively, use an install key:
+							<xhtml:code>ctagent_e_setup_windows_x64_*.exe /S /REPOSITORY=[REPOSITORY_IP] /PORT=3749 /INSTALLKEY=[KEY] /AGENTNAME=[UNIQUE_NAME]</xhtml:code>
+						</xhtml:li>
+					</xhtml:ol>
+					<xhtml:p><xhtml:b>If already installed, enable and start the service using PowerShell (as Administrator):</xhtml:b></xhtml:p>
+					<xhtml:code>Set-Service -Name "CimTrakAgent" -StartupType Automatic</xhtml:code><xhtml:br/>
+					<xhtml:code>Start-Service -Name "CimTrakAgent"</xhtml:code><xhtml:br/>
+					<xhtml:code>Get-Service -Name "CimTrakAgent"</xhtml:code><xhtml:br/>
+					<xhtml:p><xhtml:b>Alternative using Services Management Console:</xhtml:b></xhtml:p>
+					<xhtml:ol>
+						<xhtml:li>Run <xhtml:code>services.msc</xhtml:code></xhtml:li>
+						<xhtml:li>Locate "CimTrakAgent" service</xhtml:li>
+						<xhtml:li>Set Startup Type to "Automatic"</xhtml:li>
+						<xhtml:li>Start the service</xhtml:li>
+					</xhtml:ol>
+				</xhtml:div>
+			</xccdf:fixtext>
+			<xccdf:complex-check operator="AND">
+				<xccdf:check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+					<xccdf:check-content-ref href="Cimcor-windows-agent-v1.0-oval.xml" name="oval:com.cimcor.agent.windows:def:1"/>
+				</xccdf:check>
+			</xccdf:complex-check>
+		</xccdf:Rule>
+    </xccdf:Group>
+    
+	<xccdf:Group id="xccdf_com.cimcor.cimtrak_group_agent_configuration">
+		<xccdf:title xml:lang="en">CimTrak Agent Configuration Validation</xccdf:title>
+		<xccdf:description xml:lang="en">
+			<xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">Verification of CimTrak agent configuration files, parameters, and connectivity settings in Windows environment</xhtml:p>
+		</xccdf:description>
+		
+		<xccdf:Rule id="xccdf_com.cimcor.cimtrak_rule_cimtrakagent_config_valid" role="full" selected="false" weight="1.0">
+			<xccdf:title xml:lang="en">Ensure CimTrakAgent is properly configured</xccdf:title>
+			<xccdf:description xml:lang="en">
+				<xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">This rule ensures CimTrak Agent configuration maintains secure operational parameters and proper authentication mechanisms by executing the built-in configuration validation command.</xhtml:p>
+				<xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">The CimTrakAgent.exe --checkinstall command performs comprehensive validation of the agent configuration including repository connectivity, authentication credentials, and operational readiness checks.</xhtml:p>
+			</xccdf:description>
+			<xccdf:rationale xml:lang="en">
+				<xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">A properly configured CimTrakAgent is essential for:</xhtml:p>
+				<xhtml:ul xmlns:xhtml="http://www.w3.org/1999/xhtml">
+					<xhtml:li>Establishing secure communication with the CimTrak repository</xhtml:li>
+					<xhtml:li>Ensuring proper file system monitoring capabilities are available</xhtml:li>
+					<xhtml:li>Providing unique agent identification for centralized management</xhtml:li>
+					<xhtml:li>Enabling real-time change detection and reporting</xhtml:li>
+				</xhtml:ul>
+				<xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">Without proper configuration, the CimTrakAgent cannot function effectively, leaving systems vulnerable to undetected changes and compliance violations.</xhtml:p>
+			</xccdf:rationale>
+			<xccdf:ident system="http://cisecurity.org/20-cc/v8.0" cc8:controlURI="http://cisecurity.org/20-cc/v8.0/control/8/subcontrol/2">CC8: 8.2</xccdf:ident>
+			<xccdf:ident system="http://cisecurity.org/20-cc/v7.0" cc7:controlURI="http://cisecurity.org/20-cc/v7.0/control/6/subcontrol/2">CC7: 6.2</xccdf:ident>
+			<xccdf:ident system="http://cisecurity.org/20-cc/v7.0" cc7:controlURI="http://cisecurity.org/20-cc/v7.0/control/6/subcontrol/3">CC7: 6.3</xccdf:ident>
+			<xccdf:ident system="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final">NIST SP 800-53 Rev. 5: AU-02</xccdf:ident>
+			<xccdf:ident system="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final">NIST SP 800-53 Rev. 5: AU-07</xccdf:ident>
+			<xccdf:ident system="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final">NIST SP 800-53 Rev. 5: AU-12</xccdf:ident>
+			<xccdf:fixtext xml:lang="en">
+				<xhtml:div xmlns:xhtml="http://www.w3.org/1999/xhtml">
+					<xhtml:p><xhtml:b>To test the current configuration:</xhtml:b></xhtml:p>
+					<xhtml:code>cd "C:\Program Files\Cimcor\CimTrak\CimTrakAgent" &amp;&amp; CimTrakAgent.exe --checkinstall</xhtml:code>
+					<xhtml:p><xhtml:b>If configuration validation fails, re-register the agent:</xhtml:b></xhtml:p>
+					<xhtml:ol>
+						<xhtml:li><xhtml:b>Re-register CimTrak Agent:</xhtml:b>
+							<xhtml:code>cd "C:\Program Files\Cimcor\CimTrak\CimTrakAgent" &amp;&amp; CimTrakAgent.exe -reregister username=[admin_username],password=[password],server=[cimtrak_repository_ip],overridebyname=1</xhtml:code>
+						</xhtml:li>
+						<xhtml:li><xhtml:b>Test SSL connectivity to CimTrak repository:</xhtml:b>
+							<xhtml:code>Test-NetConnection -ComputerName [cimtrak_repository_ip] -Port 3749</xhtml:code>
+						</xhtml:li>
+						<xhtml:li><xhtml:b>Restart service after re-registration:</xhtml:b>
+							<xhtml:code>Restart-Service -Name "CimTrakAgent"</xhtml:code>
+						</xhtml:li>
+					</xhtml:ol>
+				</xhtml:div>
+			</xccdf:fixtext>
+			<xccdf:complex-check operator="AND">
+				<xccdf:check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+					<xccdf:check-content-ref href="Cimcor-windows-agent-v1.0-oval.xml" name="oval:com.cimcor.agent.windows:def:2"/>
+				</xccdf:check>
+			</xccdf:complex-check>
+		</xccdf:Rule>
+	</xccdf:Group>
+
+	
+</xccdf:Benchmark>

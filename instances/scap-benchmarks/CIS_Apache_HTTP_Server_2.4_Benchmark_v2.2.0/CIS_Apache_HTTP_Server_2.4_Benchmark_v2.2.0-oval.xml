@@ -1,0 +1,1329 @@
+<oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5 https://oval.cisecurity.org/schemas/validator-oval-definitions-5.11.2.xsd">
+   <generator>
+      <oval:product_name>Center for Internet Security - Optimus</oval:product_name>
+      <oval:schema_version>5.11.2</oval:schema_version>
+      <oval:timestamp>2025-01-27T21:09:16.146Z</oval:timestamp>
+   </generator>
+   <definitions>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151728" version="1">
+         <metadata>
+            <title>Ensure the Log Config Module Is Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.2_Ensure_the_Log_Config_Module_Is_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.2_Ensure_the_Log_Config_Module_Is_Enabled"></reference>
+            <description>Ensure the Log Config Module Is Enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151728"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151730" version="1">
+         <metadata>
+            <title>Ensure the Log Config Module Is Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.2_Ensure_the_Log_Config_Module_Is_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.2_Ensure_the_Log_Config_Module_Is_Enabled"></reference>
+            <description>Ensure the Log Config Module Is Enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151730"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151732" version="1">
+         <metadata>
+            <title>Ensure the WebDAV Modules Are Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.3_Ensure_the_WebDAV_Modules_Are_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.3_Ensure_the_WebDAV_Modules_Are_Disabled"></reference>
+            <description>Ensure the WebDAV Modules Are Disabled</description>
+         </metadata>
+         <criteria negate="true" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151732"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151734" version="1">
+         <metadata>
+            <title>Ensure the WebDAV Modules Are Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.3_Ensure_the_WebDAV_Modules_Are_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.3_Ensure_the_WebDAV_Modules_Are_Disabled"></reference>
+            <description>Ensure the WebDAV Modules Are Disabled</description>
+         </metadata>
+         <criteria negate="true" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151734"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151736" version="1">
+         <metadata>
+            <title>Ensure the Status Module Is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.4_Ensure_the_Status_Module_Is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.4_Ensure_the_Status_Module_Is_Disabled"></reference>
+            <description>Ensure the Status Module Is Disabled</description>
+         </metadata>
+         <criteria negate="true" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151736"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151737" version="1">
+         <metadata>
+            <title>Ensure the Status Module Is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.4_Ensure_the_Status_Module_Is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.4_Ensure_the_Status_Module_Is_Disabled"></reference>
+            <description>Ensure the Status Module Is Disabled</description>
+         </metadata>
+         <criteria negate="true" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151737"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151739" version="1">
+         <metadata>
+            <title>Ensure the Autoindex Module Is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.5_Ensure_the_Autoindex_Module_Is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.5_Ensure_the_Autoindex_Module_Is_Disabled"></reference>
+            <description>Ensure the Autoindex Module Is Disabled</description>
+         </metadata>
+         <criteria negate="true" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151739"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151741" version="1">
+         <metadata>
+            <title>Ensure the Autoindex Module Is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.5_Ensure_the_Autoindex_Module_Is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.5_Ensure_the_Autoindex_Module_Is_Disabled"></reference>
+            <description>Ensure the Autoindex Module Is Disabled</description>
+         </metadata>
+         <criteria negate="true" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151741"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151743" version="1">
+         <metadata>
+            <title>Ensure the Proxy Modules Are Disabled if not in use</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.6_Ensure_the_Proxy_Modules_Are_Disabled_if_not_in_use" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.6_Ensure_the_Proxy_Modules_Are_Disabled_if_not_in_use"></reference>
+            <description>Ensure the Proxy Modules Are Disabled if not in use</description>
+         </metadata>
+         <criteria negate="true" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151743"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151744" version="1">
+         <metadata>
+            <title>Ensure the Proxy Modules Are Disabled if not in use</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.6_Ensure_the_Proxy_Modules_Are_Disabled_if_not_in_use" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.6_Ensure_the_Proxy_Modules_Are_Disabled_if_not_in_use"></reference>
+            <description>Ensure the Proxy Modules Are Disabled if not in use</description>
+         </metadata>
+         <criteria negate="true" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151744"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151745" version="1">
+         <metadata>
+            <title>Ensure the User Directories Module Is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.7_Ensure_the_User_Directories_Module_Is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.7_Ensure_the_User_Directories_Module_Is_Disabled"></reference>
+            <description>Ensure the User Directories Module Is Disabled</description>
+         </metadata>
+         <criteria negate="true" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151745"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151746" version="1">
+         <metadata>
+            <title>Ensure the User Directories Module Is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.7_Ensure_the_User_Directories_Module_Is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.7_Ensure_the_User_Directories_Module_Is_Disabled"></reference>
+            <description>Ensure the User Directories Module Is Disabled</description>
+         </metadata>
+         <criteria negate="true" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151746"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151748" version="1">
+         <metadata>
+            <title>Ensure the Info Module Is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.8_Ensure_the_Info_Module_Is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.8_Ensure_the_Info_Module_Is_Disabled"></reference>
+            <description>Ensure the Info Module Is Disabled</description>
+         </metadata>
+         <criteria negate="true" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151748"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151749" version="1">
+         <metadata>
+            <title>Ensure the Info Module Is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.8_Ensure_the_Info_Module_Is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.8_Ensure_the_Info_Module_Is_Disabled"></reference>
+            <description>Ensure the Info Module Is Disabled</description>
+         </metadata>
+         <criteria negate="true" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151749"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151750" version="1">
+         <metadata>
+            <title>Ensure the Basic and Digest Authentication Modules are Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.9_Ensure_the_Basic_and_Digest_Authentication_Modules_are_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.9_Ensure_the_Basic_and_Digest_Authentication_Modules_are_Disabled"></reference>
+            <description>Ensure the Basic and Digest Authentication Modules are Disabled</description>
+         </metadata>
+         <criteria negate="true" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151750"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151752" version="1">
+         <metadata>
+            <title>Ensure the Basic and Digest Authentication Modules are Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.9_Ensure_the_Basic_and_Digest_Authentication_Modules_are_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.9_Ensure_the_Basic_and_Digest_Authentication_Modules_are_Disabled"></reference>
+            <description>Ensure the Basic and Digest Authentication Modules are Disabled</description>
+         </metadata>
+         <criteria negate="true" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151752"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151740" version="1">
+         <metadata>
+            <title>Ensure the Apache User Account Is Locked</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.3_Ensure_the_Apache_User_Account_Is_Locked" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.3_Ensure_the_Apache_User_Account_Is_Locked"></reference>
+            <description>Ensure the Apache User Account Is Locked</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151740"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151753" version="1">
+         <metadata>
+            <title>Ensure Access to OS Root Directory Is Denied By Default</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.1_Ensure_Access_to_OS_Root_Directory_Is_Denied_By_Default" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.1_Ensure_Access_to_OS_Root_Directory_Is_Denied_By_Default"></reference>
+            <description>Ensure Access to OS Root Directory Is Denied By Default</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151753"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151754" version="1">
+         <metadata>
+            <title>Ensure Access to OS Root Directory Is Denied By Default</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.1_Ensure_Access_to_OS_Root_Directory_Is_Denied_By_Default" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.1_Ensure_Access_to_OS_Root_Directory_Is_Denied_By_Default"></reference>
+            <description>Ensure Access to OS Root Directory Is Denied By Default</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151754"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151756" version="1">
+         <metadata>
+            <title>Ensure OverRide Is Disabled for the OS Root Directory</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.3_Ensure_OverRide_Is_Disabled_for_the_OS_Root_Directory" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.3_Ensure_OverRide_Is_Disabled_for_the_OS_Root_Directory"></reference>
+            <description>Ensure OverRide Is Disabled for the OS Root Directory</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151756"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151757" version="1">
+         <metadata>
+            <title>Ensure OverRide Is Disabled for the OS Root Directory</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.3_Ensure_OverRide_Is_Disabled_for_the_OS_Root_Directory" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.3_Ensure_OverRide_Is_Disabled_for_the_OS_Root_Directory"></reference>
+            <description>Ensure OverRide Is Disabled for the OS Root Directory</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151757"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151758" version="1">
+         <metadata>
+            <title>Ensure OverRide Is Disabled for All Directories</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.4_Ensure_OverRide_Is_Disabled_for_All_Directories" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.4_Ensure_OverRide_Is_Disabled_for_All_Directories"></reference>
+            <description>Ensure OverRide Is Disabled for All Directories</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151758"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151759" version="1">
+         <metadata>
+            <title>Ensure OverRide Is Disabled for All Directories</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.4_Ensure_OverRide_Is_Disabled_for_All_Directories" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.4_Ensure_OverRide_Is_Disabled_for_All_Directories"></reference>
+            <description>Ensure OverRide Is Disabled for All Directories</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151759"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151760" version="1">
+         <metadata>
+            <title>Ensure Options for the OS Root Directory Are Restricted</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.1_Ensure_Options_for_the_OS_Root_Directory_Are_Restricted" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.1_Ensure_Options_for_the_OS_Root_Directory_Are_Restricted"></reference>
+            <description>Ensure Options for the OS Root Directory Are Restricted</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151760"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151761" version="1">
+         <metadata>
+            <title>Ensure Options for the OS Root Directory Are Restricted</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.1_Ensure_Options_for_the_OS_Root_Directory_Are_Restricted" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.1_Ensure_Options_for_the_OS_Root_Directory_Are_Restricted"></reference>
+            <description>Ensure Options for the OS Root Directory Are Restricted</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151761"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151764" version="1">
+         <metadata>
+            <title>Ensure Options for Other Directories Are Minimized</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.3_Ensure_Options_for_Other_Directories_Are_Minimized" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.3_Ensure_Options_for_Other_Directories_Are_Minimized"></reference>
+            <description>Ensure Options for Other Directories Are Minimized</description>
+         </metadata>
+         <criteria negate="true" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151764"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151766" version="1">
+         <metadata>
+            <title>Ensure Options for Other Directories Are Minimized</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.3_Ensure_Options_for_Other_Directories_Are_Minimized" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.3_Ensure_Options_for_Other_Directories_Are_Minimized"></reference>
+            <description>Ensure Options for Other Directories Are Minimized</description>
+         </metadata>
+         <criteria negate="true" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151766"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151765" version="1">
+         <metadata>
+            <title>Ensure ModSecurity Is Installed and Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.6_Ensure_ModSecurity_Is_Installed_and_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.6_Ensure_ModSecurity_Is_Installed_and_Enabled"></reference>
+            <description>Ensure ModSecurity Is Installed and Enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151765"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151767" version="1">
+         <metadata>
+            <title>Ensure ModSecurity Is Installed and Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.6_Ensure_ModSecurity_Is_Installed_and_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.6_Ensure_ModSecurity_Is_Installed_and_Enabled"></reference>
+            <description>Ensure ModSecurity Is Installed and Enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151767"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151768" version="1">
+         <metadata>
+            <title>Ensure mod_ssl and/or mod_nss Is Installed</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_7.1_Ensure_mod_ssl_andor_mod_nss_Is_Installed" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_7.1_Ensure_mod_ssl_andor_mod_nss_Is_Installed"></reference>
+            <description>Ensure mod_ssl and/or mod_nss Is Installed</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151768"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151769" version="1">
+         <metadata>
+            <title>Ensure mod_ssl and/or mod_nss Is Installed</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_7.1_Ensure_mod_ssl_andor_mod_nss_Is_Installed" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_7.1_Ensure_mod_ssl_andor_mod_nss_Is_Installed"></reference>
+            <description>Ensure mod_ssl and/or mod_nss Is Installed</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151769"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151782" version="1">
+         <metadata>
+            <title>Ensure the AppArmor Framework Is Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_12.1_Ensure_the_AppArmor_Framework_Is_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_12.1_Ensure_the_AppArmor_Framework_Is_Enabled"></reference>
+            <description>Ensure the AppArmor Framework Is Enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151782"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151729" version="1">
+         <metadata>
+            <title>Ensure the Apache Web Server Runs As a Non-Root User</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.1_Ensure_the_Apache_Web_Server_Runs_As_a_Non-Root_User" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.1_Ensure_the_Apache_Web_Server_Runs_As_a_Non-Root_User"></reference>
+            <description>Ensure the Apache Web Server Runs As a Non-Root User</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151729"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151731" version="1">
+         <metadata>
+            <title>Ensure the Apache Web Server Runs As a Non-Root User</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.1_Ensure_the_Apache_Web_Server_Runs_As_a_Non-Root_User" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.1_Ensure_the_Apache_Web_Server_Runs_As_a_Non-Root_User"></reference>
+            <description>Ensure the Apache Web Server Runs As a Non-Root User</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151731"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151733" version="1">
+         <metadata>
+            <title>Ensure the Apache Web Server Runs As a Non-Root User</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.1_Ensure_the_Apache_Web_Server_Runs_As_a_Non-Root_User" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.1_Ensure_the_Apache_Web_Server_Runs_As_a_Non-Root_User"></reference>
+            <description>Ensure the Apache Web Server Runs As a Non-Root User</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151733"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151735" version="1">
+         <metadata>
+            <title>Ensure the Apache Web Server Runs As a Non-Root User</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.1_Ensure_the_Apache_Web_Server_Runs_As_a_Non-Root_User" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.1_Ensure_the_Apache_Web_Server_Runs_As_a_Non-Root_User"></reference>
+            <description>Ensure the Apache Web Server Runs As a Non-Root User</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151735"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151738" version="1">
+         <metadata>
+            <title>Ensure the Apache User Account Has an Invalid Shell</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.2_Ensure_the_Apache_User_Account_Has_an_Invalid_Shell" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.2_Ensure_the_Apache_User_Account_Has_an_Invalid_Shell"></reference>
+            <description>Ensure the Apache User Account Has an Invalid Shell</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151738"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151770" version="1">
+         <metadata>
+            <title>Ensure ServerTokens is Set to 'Prod' or 'ProductOnly'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_8.1_Ensure_ServerTokens_is_Set_to_Prod_or_ProductOnly" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_8.1_Ensure_ServerTokens_is_Set_to_Prod_or_ProductOnly"></reference>
+            <description>Ensure ServerTokens is Set to 'Prod' or 'ProductOnly'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151770"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151771" version="1">
+         <metadata>
+            <title>Ensure ServerTokens is Set to 'Prod' or 'ProductOnly'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_8.1_Ensure_ServerTokens_is_Set_to_Prod_or_ProductOnly" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_8.1_Ensure_ServerTokens_is_Set_to_Prod_or_ProductOnly"></reference>
+            <description>Ensure ServerTokens is Set to 'Prod' or 'ProductOnly'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151771"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151775" version="1">
+         <metadata>
+            <title>Ensure ServerSignature Is Not Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_8.2_Ensure_ServerSignature_Is_Not_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_8.2_Ensure_ServerSignature_Is_Not_Enabled"></reference>
+            <description>Ensure ServerSignature Is Not Enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151775"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151777" version="1">
+         <metadata>
+            <title>Ensure ServerSignature Is Not Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_8.2_Ensure_ServerSignature_Is_Not_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_8.2_Ensure_ServerSignature_Is_Not_Enabled"></reference>
+            <description>Ensure ServerSignature Is Not Enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151777"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151772" version="1">
+         <metadata>
+            <title>Ensure the TimeOut Is Set to 10 or Less</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_9.1_Ensure_the_TimeOut_Is_Set_to_10_or_Less" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_9.1_Ensure_the_TimeOut_Is_Set_to_10_or_Less"></reference>
+            <description>Ensure the TimeOut Is Set to 10 or Less</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151772"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151774" version="1">
+         <metadata>
+            <title>Ensure the TimeOut Is Set to 10 or Less</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_9.1_Ensure_the_TimeOut_Is_Set_to_10_or_Less" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_9.1_Ensure_the_TimeOut_Is_Set_to_10_or_Less"></reference>
+            <description>Ensure the TimeOut Is Set to 10 or Less</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151774"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151778" version="1">
+         <metadata>
+            <title>Ensure KeepAlive Is Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_9.2_Ensure_KeepAlive_Is_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_9.2_Ensure_KeepAlive_Is_Enabled"></reference>
+            <description>Ensure KeepAlive Is Enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151778"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151780" version="1">
+         <metadata>
+            <title>Ensure KeepAlive Is Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_9.2_Ensure_KeepAlive_Is_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_9.2_Ensure_KeepAlive_Is_Enabled"></reference>
+            <description>Ensure KeepAlive Is Enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151780"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151783" version="1">
+         <metadata>
+            <title>Ensure MaxKeepAliveRequests is Set to a Value of 100 or Greater</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_9.3_Ensure_MaxKeepAliveRequests_is_Set_to_a_Value_of_100_or_Greater" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_9.3_Ensure_MaxKeepAliveRequests_is_Set_to_a_Value_of_100_or_Greater"></reference>
+            <description>Ensure MaxKeepAliveRequests is Set to a Value of 100 or Greater</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151783"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151785" version="1">
+         <metadata>
+            <title>Ensure MaxKeepAliveRequests is Set to a Value of 100 or Greater</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_9.3_Ensure_MaxKeepAliveRequests_is_Set_to_a_Value_of_100_or_Greater" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_9.3_Ensure_MaxKeepAliveRequests_is_Set_to_a_Value_of_100_or_Greater"></reference>
+            <description>Ensure MaxKeepAliveRequests is Set to a Value of 100 or Greater</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151785"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151788" version="1">
+         <metadata>
+            <title>Ensure KeepAliveTimeout is Set to a Value of 15 or Less</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_9.4_Ensure_KeepAliveTimeout_is_Set_to_a_Value_of_15_or_Less" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_9.4_Ensure_KeepAliveTimeout_is_Set_to_a_Value_of_15_or_Less"></reference>
+            <description>Ensure KeepAliveTimeout is Set to a Value of 15 or Less</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151788"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151791" version="1">
+         <metadata>
+            <title>Ensure KeepAliveTimeout is Set to a Value of 15 or Less</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_9.4_Ensure_KeepAliveTimeout_is_Set_to_a_Value_of_15_or_Less" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_9.4_Ensure_KeepAliveTimeout_is_Set_to_a_Value_of_15_or_Less"></reference>
+            <description>Ensure KeepAliveTimeout is Set to a Value of 15 or Less</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151791"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151779" version="1">
+         <metadata>
+            <title>Ensure the LimitRequestFields Directive is Set to 100 or Less</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_10.2_Ensure_the_LimitRequestFields_Directive_is_Set_to_100_or_Less" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_10.2_Ensure_the_LimitRequestFields_Directive_is_Set_to_100_or_Less"></reference>
+            <description>Ensure the LimitRequestFields Directive is Set to 100 or Less</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151779"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151781" version="1">
+         <metadata>
+            <title>Ensure the LimitRequestFields Directive is Set to 100 or Less</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_10.2_Ensure_the_LimitRequestFields_Directive_is_Set_to_100_or_Less" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_10.2_Ensure_the_LimitRequestFields_Directive_is_Set_to_100_or_Less"></reference>
+            <description>Ensure the LimitRequestFields Directive is Set to 100 or Less</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151781"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151784" version="1">
+         <metadata>
+            <title>Ensure the LimitRequestFieldsize Directive is Set to 1024 or Less</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_10.3_Ensure_the_LimitRequestFieldsize_Directive_is_Set_to_1024_or_Less" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_10.3_Ensure_the_LimitRequestFieldsize_Directive_is_Set_to_1024_or_Less"></reference>
+            <description>Ensure the LimitRequestFieldsize Directive is Set to 1024 or Less</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151784"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151787" version="1">
+         <metadata>
+            <title>Ensure the LimitRequestFieldsize Directive is Set to 1024 or Less</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_10.3_Ensure_the_LimitRequestFieldsize_Directive_is_Set_to_1024_or_Less" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_10.3_Ensure_the_LimitRequestFieldsize_Directive_is_Set_to_1024_or_Less"></reference>
+            <description>Ensure the LimitRequestFieldsize Directive is Set to 1024 or Less</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151787"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151789" version="1">
+         <metadata>
+            <title>Ensure the LimitRequestBody Directive is Set to 102400 or Less</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_10.4_Ensure_the_LimitRequestBody_Directive_is_Set_to_102400_or_Less" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_10.4_Ensure_the_LimitRequestBody_Directive_is_Set_to_102400_or_Less"></reference>
+            <description>Ensure the LimitRequestBody Directive is Set to 102400 or Less</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151789"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151792" version="1">
+         <metadata>
+            <title>Ensure the LimitRequestBody Directive is Set to 102400 or Less</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_10.4_Ensure_the_LimitRequestBody_Directive_is_Set_to_102400_or_Less" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_10.4_Ensure_the_LimitRequestBody_Directive_is_Set_to_102400_or_Less"></reference>
+            <description>Ensure the LimitRequestBody Directive is Set to 102400 or Less</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151792"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151742" version="1">
+         <metadata>
+            <title>Ensure Apache Directories and Files Are Owned By Root</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.4_Ensure_Apache_Directories_and_Files_Are_Owned_By_Root" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.4_Ensure_Apache_Directories_and_Files_Are_Owned_By_Root"></reference>
+            <description>Ensure Apache Directories and Files Are Owned By Root</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151742"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151747" version="1">
+         <metadata>
+            <title>Ensure Apache Directories and Files Are Owned By Root</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.4_Ensure_Apache_Directories_and_Files_Are_Owned_By_Root" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.4_Ensure_Apache_Directories_and_Files_Are_Owned_By_Root"></reference>
+            <description>Ensure Apache Directories and Files Are Owned By Root</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151747"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151751" version="1">
+         <metadata>
+            <title>Ensure the Group Is Set Correctly on Apache Directories and Files</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.5_Ensure_the_Group_Is_Set_Correctly_on_Apache_Directories_and_Files" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.5_Ensure_the_Group_Is_Set_Correctly_on_Apache_Directories_and_Files"></reference>
+            <description>Ensure the Group Is Set Correctly on Apache Directories and Files</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151751"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151755" version="1">
+         <metadata>
+            <title>Ensure the Group Is Set Correctly on Apache Directories and Files</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.5_Ensure_the_Group_Is_Set_Correctly_on_Apache_Directories_and_Files" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.5_Ensure_the_Group_Is_Set_Correctly_on_Apache_Directories_and_Files"></reference>
+            <description>Ensure the Group Is Set Correctly on Apache Directories and Files</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151755"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151790" version="1">
+         <metadata>
+            <title>Ensure SELinux Is Enabled in Enforcing Mode</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_11.1_Ensure_SELinux_Is_Enabled_in_Enforcing_Mode" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_11.1_Ensure_SELinux_Is_Enabled_in_Enforcing_Mode"></reference>
+            <description>Ensure SELinux Is Enabled in Enforcing Mode</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151790"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:def:4151786" version="1">
+         <metadata>
+            <title>Ensure Apache AppArmor Profile is in Enforce Mode</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_12.3_Ensure_Apache_AppArmor_Profile_is_in_Enforce_Mode" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_12.3_Ensure_Apache_AppArmor_Profile_is_in_Enforce_Mode"></reference>
+            <description>Ensure Apache AppArmor Profile is in Enforce Mode</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151786"></criterion>
+         </criteria>
+      </definition>
+   </definitions>
+   <tests>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'httpd -M | grep log_config' output Pattern Match '^log_config_module (static)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151728" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151728"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151728"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'apache2 -M | grep log_config' output Pattern Match '^log_config_module (static)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151730" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151730"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151730"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'httpd -M | grep ' dav_[[:print:]]+module'' output Pattern Not Match '^mod_dav.* \(s.+\)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151732" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151732"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151732"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'apache2 -M | grep ' dav_[[:print:]]+module'' output Pattern Not Match '^mod_dav.* \(s.+\)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151734" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151734"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151734"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'httpd -M | egrep 'status_module'' output Pattern Not Match '^mod_status \(s.+\)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151736" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151736"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151736"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'apache2 -M | egrep 'status_module'' output Pattern Not Match '^mod_status \(s.+\)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151737" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151737"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151737"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'httpd -M | grep autoindex_module' output Pattern Not Match '^autoindex_module \(s.+\)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151739" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151739"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151739"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'apache2-M | grep autoindex_module' output Pattern Not Match '^autoindex_module \(s.+\)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151741" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151741"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151741"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'httpd -M | grep proxy_' output Pattern Not Match '^mod_proxy  \(s.+\)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151743" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151743"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151743"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'apache2 -M | grep proxy_' output Pattern Not Match '^mod_proxy  \(s.+\)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151744" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151744"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151744"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'httpd -M | grep userdir_' output Pattern Not Match '^mod_userdir \(s.+\)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151745" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151745"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151745"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'apache2 -M | grep userdir_' output Pattern Not Match '^mod_userdir \(s.+\)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151746" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151746"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151746"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'httpd -M | egrep 'info_module'' output Pattern Not Match '^mod_info \(s.+\)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151748" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151748"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151748"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'apache2 -M | egrep 'info_module'' output Pattern Not Match '^mod_info \(s.+\)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151749" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151749"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151749"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'httpd -M | grep auth_basic_module' output Pattern Not Match '^mod_auth_basic \(s.+\)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151750" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151750"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151750"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'httpd -M | grep auth_digest_module' output Pattern Not Match '^mod_auth_digest \(s.+\)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151752" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151752"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151752"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'passwd -S apache' output Pattern Match '^apache.*(Password locked|L)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151740" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151740"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151740"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'perl -ne 'print if /^ *&lt;Directory *\//i .. /&lt;\/Directory/i' /etc/httpd/conf/httpd.conf' output Pattern Match '^.*Require all denied$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151753" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151753"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151753"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'perl -ne 'print if /^ *&lt;Directory *\//i .. /&lt;\/Directory/i' /etc/apache2/apache2.conf' output Pattern Match '^.*Require all denied$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151754" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151754"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151754"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'perl -ne 'print if /^ *&lt;Directory *\//i .. /&lt;\/Directory/i' /etc/httpd/conf/httpd.conf' output Pattern Match '^.*AllowOverride None$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151756" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151756"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151756"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'perl -ne 'print if /^ *&lt;Directory *\//i .. /&lt;\/Directory/i' /etc/apache2/apache2.conf' output Pattern Match '^.*AllowOverride None$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151757" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151757"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151757"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'grep -i AllowOverride /etc/httpd/conf/httpd.conf' output Pattern Match '^.*AllowOverride None$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151758" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151758"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151758"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'grep -i AllowOverride /etc/apache2/apache2.conf' output Pattern Match '^.*AllowOverride None$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151759" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151759"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151759"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'perl -ne 'print if /^ *&lt;Directory */i .. /&lt;\/Directory/i' /etc/httpd/conf/httpd.conf' output Pattern Match '^.*Options None$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151760" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151760"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151760"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'perl -ne 'print if /^ *&lt;Directory */i .. /&lt;\/Directory/i'  /etc/apache2/apache2.conf' output Pattern Match '^.*Options None$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151761" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151761"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151761"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'perl -ne 'print if /^ *&lt;Directory */i .. /&lt;\/Directory/i' /etc/httpd/conf/httpd.conf' output Pattern Not Match '^Options.*Includes$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151764" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151764"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151764"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'perl -ne 'print if /^ *&lt;Directory */i .. /&lt;\/Directory/i' /etc/apache2/apache2.conf' output Pattern Not Match '^Options.*Includes$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151766" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151766"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151766"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'httpd -M | grep security2_module' output Pattern Match '^security2_module$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151765" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151765"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151765"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'apache2 -M | grep security2_module' output Pattern Match '^security2_module$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151767" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151767"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151767"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'httpd -M | egrep 'ssl_module|nss_module'' output Pattern Match '^mod_(ssl|nss)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151768" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151768"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151768"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'apache2 -M | egrep 'ssl_module|nss_module'' output Pattern Match '^mod_(ssl|nss)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151769" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151769"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151769"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'aa-status --enabled &amp;&amp; echo Enabled' output Pattern Match '^Enabled$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151782" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151782"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151782"></state>
+      </shellcommand_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/httpd/conf/httpd.conf exists and matches pattern ^User.*apache$" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151729" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151729"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/httpd/conf/httpd.conf exists and matches pattern ^Group.*apache$" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151731" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151731"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/apache2/apache2.conf exists and matches pattern ^User.*apache$" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151733" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151733"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/apache2/apache2.conf exists and matches pattern ^Group.*apache$" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151735" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151735"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/passwd exists and matches pattern ^apache.*(\/sbin\/nologin|\/dev\/null)$" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151738" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151738"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/httpd/conf/httpd.conf exists and matches pattern ^ServerTokens.*(Prod|uctOnly)$" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151770" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151770"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/apache2/apache2.conf exists and matches pattern ^ServerTokens.*(Prod|uctOnly)$" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151771" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151771"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/httpd/conf/httpd.conf exists and matches pattern ^ServerSignature.*Off$" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151775" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151775"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/apache2/apache2.conf exists and matches pattern ^ServerSignature.*Off$" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151777" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151777"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/httpd/conf/httpd.conf exists and matches pattern ^Timeout.*([0-9]|10)$" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151772" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151772"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/apache2/apache2.conf exists and matches pattern ^Timeout.*([0-9]|10)$" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151774" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151774"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/httpd/conf/httpd.conf exists and matches pattern ^KeepAlive.*On$" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151778" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151778"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/apache2/apache2.conf exists and matches pattern ^KeepAlive.*On$" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151780" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151780"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/httpd/conf/httpd.conf exists and matches pattern ^MaxKeepAliveRequests.*([1-8][0-9]{2}|9[0-8][0-9]|99[0-9]|[1-8][0-9]{3}|9[0-8][0-9]{2}|99[0-8][0-9]|999[0-9]|[1-8][0-9]{4}|9[0-8][0-9]{3}|99[0-8][0-9]{2}|999[0-8][0-9]|99" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151783" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151783"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/apache2/apache2.conf exists and matches pattern ^MaxKeepAliveRequests.*([1-8][0-9]{2}|9[0-8][0-9]|99[0-9]|[1-8][0-9]{3}|9[0-8][0-9]{2}|99[0-8][0-9]|999[0-9]|[1-8][0-9]{4}|9[0-8][0-9]{3}|99[0-8][0-9]{2}|999[0-8][0-9]|999" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151785" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151785"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/httpd/conf/httpd.conf exists and matches pattern ^KeepAliveTimeout.*([0-9]|1[0-5])$" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151788" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151788"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/apache2/apache2.conf exists and matches pattern ^KeepAliveTimeout.*([0-9]|1[0-5])$" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151791" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151791"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/httpd/conf/httpd.conf exists and matches pattern ^LimitRequestFields.*([0-9]|[1-8][0-9]|9[0-9]|100)$" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151779" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151779"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/apache2/apache2.conf exists and matches pattern ^LimitRequestFields.*([0-9]|[1-8][0-9]|9[0-9]|100)$" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151781" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151781"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/httpd/conf/httpd.conf exists and matches pattern ^LimitRequestFieldsize.*([0-9]|[1-8][0-9]|9[0-9]|100)$" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151784" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151784"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/apache2/apache2.conf exists and matches pattern ^LimitRequestFieldsize.*([0-9]|[1-8][0-9]|9[0-9]|100)$" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151787" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151787"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/httpd/conf/httpd.conf exists and matches pattern ^LimitRequestBody.*([0-9]|[1-8][0-9]|9[0-9]|[1-8][0-9]{2}|9[0-8][0-9]|99[0-9]|[1-8][0-9]{3}|9[0-8][0-9]{2}|99[0-8][0-9]|999[0-9]|[1-8][0-9]{4}|9[0-8][0-9]{3}|99[0-8][0-9]" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151789" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151789"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/apache2/apache2.conf exists and matches pattern ^LimitRequestBody.*([0-9]|[1-8][0-9]|9[0-9]|[1-8][0-9]{2}|9[0-8][0-9]|99[0-9]|[1-8][0-9]{3}|9[0-8][0-9]{2}|99[0-8][0-9]|999[0-9]|[1-8][0-9]{4}|9[0-8][0-9]{3}|99[0-8][0-9]{" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151792" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151792"></object>
+      </textfilecontent54_test>
+      <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file(s) named httpd in /etc exists and is owned by user 0" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151742" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151742"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151742"></state>
+      </file_test>
+      <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file(s) named apache2 in /etc exists and is owned by user 0" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151747" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151747"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151747"></state>
+      </file_test>
+      <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file(s) named httpd in /etc exists and is owned by group 0" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151751" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151751"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151751"></state>
+      </file_test>
+      <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file(s) named apache2 in /etc exists and is owned by group 0" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151755" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151755"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151755"></state>
+      </file_test>
+      <sestatus_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" check="all" check_existence="at_least_one_exists" comment="No TitleEnsure SELinux Is Enabled in Enforcing Mode" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151790" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151790"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151790"></state>
+      </sestatus_test>
+      <apparmorstatus_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" check="all" check_existence="at_least_one_exists" comment="Ensure Apache AppArmor Profile is in Enforce Mode" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:tst:4151786" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151786"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151786"></state>
+      </apparmorstatus_test>
+   </tests>
+   <objects>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'httpd -M | grep log_config' output Pattern Match '^log_config_module (static)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151728" version="1">
+         <command>httpd -M | grep log_config</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'apache2 -M | grep log_config' output Pattern Match '^log_config_module (static)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151730" version="1">
+         <command>apache2 -M | grep log_config</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'httpd -M | grep ' dav_[[:print:]]+module'' output Pattern Not Match '^mod_dav.* \(s.+\)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151732" version="1">
+         <command>httpd -M | grep ' dav_[[:print:]]+module'</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'apache2 -M | grep ' dav_[[:print:]]+module'' output Pattern Not Match '^mod_dav.* \(s.+\)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151734" version="1">
+         <command>apache2 -M | grep ' dav_[[:print:]]+module'</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'httpd -M | egrep 'status_module'' output Pattern Not Match '^mod_status \(s.+\)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151736" version="1">
+         <command>httpd -M | egrep 'status_module'</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'apache2 -M | egrep 'status_module'' output Pattern Not Match '^mod_status \(s.+\)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151737" version="1">
+         <command>apache2 -M | egrep 'status_module'</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'httpd -M | grep autoindex_module' output Pattern Not Match '^autoindex_module \(s.+\)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151739" version="1">
+         <command>httpd -M | grep autoindex_module</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'apache2-M | grep autoindex_module' output Pattern Not Match '^autoindex_module \(s.+\)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151741" version="1">
+         <command>apache2 -M | grep autoindex_module</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'httpd -M | grep proxy_' output Pattern Not Match '^mod_proxy  \(s.+\)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151743" version="1">
+         <command>httpd -M | grep proxy_</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'apache2 -M | grep proxy_' output Pattern Not Match '^mod_proxy  \(s.+\)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151744" version="1">
+         <command>apache2 -M | grep proxy_</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'httpd -M | grep userdir_' output Pattern Not Match '^mod_userdir \(s.+\)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151745" version="1">
+         <command>httpd -M | grep userdir_</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'apache2 -M | grep userdir_' output Pattern Not Match '^mod_userdir \(s.+\)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151746" version="1">
+         <command>apache2 -M | grep userdir_</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'httpd -M | egrep 'info_module'' output Pattern Not Match '^mod_info \(s.+\)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151748" version="1">
+         <command>httpd -M | egrep 'info_module'</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'apache2 -M | egrep 'info_module'' output Pattern Not Match '^mod_info \(s.+\)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151749" version="1">
+         <command>apache2 -M | egrep 'info_module'</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'httpd -M | grep auth_basic_module' output Pattern Not Match '^mod_auth_basic \(s.+\)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151750" version="1">
+         <command>httpd -M | grep auth_basic_module</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'httpd -M | grep auth_digest_module' output Pattern Not Match '^mod_auth_digest \(s.+\)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151752" version="1">
+         <command>httpd -M | grep auth_digest_module</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'passwd -S apache' output Pattern Match '^apache.*(Password locked|L)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151740" version="1">
+         <command>passwd -S apache</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'perl -ne 'print if /^ *&lt;Directory *\//i .. /&lt;\/Directory/i' /etc/httpd/conf/httpd.conf' output Pattern Match '^.*Require all denied$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151753" version="1">
+         <command>perl -ne 'print if /^ *&lt;Directory *\//i .. /&lt;\/Directory/i' /etc/httpd/conf/httpd.conf</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'perl -ne 'print if /^ *&lt;Directory *\//i .. /&lt;\/Directory/i' /etc/apache2/apache2.conf' output Pattern Match '^.*Require all denied$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151754" version="1">
+         <command>perl -ne 'print if /^ *&lt;Directory *\//i .. /&lt;\/Directory/i' /etc/apache2/apache2.conf</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'perl -ne 'print if /^ *&lt;Directory *\//i .. /&lt;\/Directory/i' /etc/httpd/conf/httpd.conf' output Pattern Match '^.*AllowOverride None$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151756" version="1">
+         <command>perl -ne 'print if /^ *&lt;Directory *\//i .. /&lt;\/Directory/i' /etc/httpd/conf/httpd.conf</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'perl -ne 'print if /^ *&lt;Directory *\//i .. /&lt;\/Directory/i' /etc/apache2/apache2.conf' output Pattern Match '^.*AllowOverride None$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151757" version="1">
+         <command>perl -ne 'print if /^ *&lt;Directory *\//i .. /&lt;\/Directory/i' /etc/apache2/apache2.conf</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'grep -i AllowOverride /etc/httpd/conf/httpd.conf' output Pattern Match '^.*AllowOverride None$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151758" version="1">
+         <command>grep -i AllowOverride /etc/httpd/conf/httpd.conf</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'grep -i AllowOverride /etc/apache2/apache2.conf' output Pattern Match '^.*AllowOverride None$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151759" version="1">
+         <command>grep -i AllowOverride /etc/apache2/apache2.conf</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'perl -ne 'print if /^ *&lt;Directory */i .. /&lt;\/Directory/i' /etc/httpd/conf/httpd.conf' output Pattern Match '^.*Options None$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151760" version="1">
+         <command>perl -ne 'print if /^ *&lt;Directory */i .. /&lt;\/Directory/i' /etc/httpd/conf/httpd.conf</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'perl -ne 'print if /^ *&lt;Directory */i .. /&lt;\/Directory/i'  /etc/apache2/apache2.conf' output Pattern Match '^.*Options None$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151761" version="1">
+         <command>perl -ne 'print if /^ *&lt;Directory */i .. /&lt;\/Directory/i'  /etc/apache2/apache2.conf</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'perl -ne 'print if /^ *&lt;Directory */i .. /&lt;\/Directory/i' /etc/httpd/conf/httpd.conf' output Pattern Not Match '^Options.*Includes$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151764" version="1">
+         <command>perl -ne 'print if /^ *&lt;Directory */i .. /&lt;\/Directory/i' /etc/httpd/conf/httpd.conf</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'perl -ne 'print if /^ *&lt;Directory */i .. /&lt;\/Directory/i' /etc/apache2/apache2.conf' output Pattern Not Match '^Options.*Includes$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151766" version="1">
+         <command>perl -ne 'print if /^ *&lt;Directory */i .. /&lt;\/Directory/i' /etc/apache2/apache2.conf</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'httpd -M | grep security2_module' output Pattern Match '^security2_module$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151765" version="1">
+         <command>httpd -M | grep security2_module</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'apache2 -M | grep security2_module' output Pattern Match '^security2_module$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151767" version="1">
+         <command>apache2 -M | grep security2_module</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'httpd -M | egrep 'ssl_module|nss_module'' output Pattern Match '^mod_(ssl|nss)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151768" version="1">
+         <command>httpd -M | egrep 'ssl_module|nss_module'</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'apache2 -M | egrep 'ssl_module|nss_module'' output Pattern Match '^mod_(ssl|nss)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151769" version="1">
+         <command>apache2 -M | egrep 'ssl_module|nss_module'</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'aa-status --enabled &amp;&amp; echo Enabled' output Pattern Match '^Enabled$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151782" version="1">
+         <command>aa-status --enabled &amp;&amp; echo Enabled</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/httpd/conf/httpd.conf exists and matches pattern ^User.*apache$" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151729" version="1">
+         <filepath>/etc/httpd/conf/httpd.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^User.*apache$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/httpd/conf/httpd.conf exists and matches pattern ^Group.*apache$" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151731" version="1">
+         <filepath>/etc/httpd/conf/httpd.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^Group.*apache$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/apache2/apache2.conf exists and matches pattern ^User.*apache$" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151733" version="1">
+         <filepath>/etc/apache2/apache2.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^User.*apache$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/apache2/apache2.conf exists and matches pattern ^Group.*apache$" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151735" version="1">
+         <filepath>/etc/apache2/apache2.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^Group.*apache$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/passwd exists and matches pattern ^apache.*(\/sbin\/nologin|\/dev\/null)$" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151738" version="1">
+         <filepath>/etc/passwd</filepath>
+         <pattern datatype="string" operation="pattern match">^apache.*(\/sbin\/nologin|\/dev\/null)$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/httpd/conf/httpd.conf exists and matches pattern ^ServerTokens.*(Prod|uctOnly)$" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151770" version="1">
+         <filepath>/etc/httpd/conf/httpd.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^ServerTokens.*(Prod|uctOnly)$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/apache2/apache2.conf exists and matches pattern ^ServerTokens.*(Prod|uctOnly)$" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151771" version="1">
+         <filepath>/etc/apache2/apache2.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^ServerTokens.*(Prod|uctOnly)$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/httpd/conf/httpd.conf exists and matches pattern ^ServerSignature.*Off$" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151775" version="1">
+         <filepath>/etc/httpd/conf/httpd.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^ServerSignature.*Off$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/apache2/apache2.conf exists and matches pattern ^ServerSignature.*Off$" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151777" version="1">
+         <filepath>/etc/apache2/apache2.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^ServerSignature.*Off$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/httpd/conf/httpd.conf exists and matches pattern ^Timeout.*([0-9]|10)$" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151772" version="1">
+         <filepath>/etc/httpd/conf/httpd.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^Timeout.*([0-9]|10)$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/apache2/apache2.conf exists and matches pattern ^Timeout.*([0-9]|10)$" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151774" version="1">
+         <filepath>/etc/apache2/apache2.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^Timeout.*([0-9]|10)$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/httpd/conf/httpd.conf exists and matches pattern ^KeepAlive.*On$" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151778" version="1">
+         <filepath>/etc/httpd/conf/httpd.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^KeepAlive.*On$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/apache2/apache2.conf exists and matches pattern ^KeepAlive.*On$" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151780" version="1">
+         <filepath>/etc/apache2/apache2.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^KeepAlive.*On$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/httpd/conf/httpd.conf exists and matches pattern ^MaxKeepAliveRequests.*([1-8][0-9]{2}|9[0-8][0-9]|99[0-9]|[1-8][0-9]{3}|9[0-8][0-9]{2}|99[0-8][0-9]|999[0-9]|[1-8][0-9]{4}|9[0-8][0-9]{3}|99[0-8][0-9]{2}|999[0-8][0-9]|99" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151783" version="1">
+         <filepath>/etc/httpd/conf/httpd.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^MaxKeepAliveRequests.*([1-8][0-9]{2}|9[0-8][0-9]|99[0-9]|[1-8][0-9]{3}|9[0-8][0-9]{2}|99[0-8][0-9]|999[0-9]|[1-8][0-9]{4}|9[0-8][0-9]{3}|99[0-8][0-9]{2}|999[0-8][0-9]|9999[0-9]|[1-8][0-9]{5}|9[0-8][0-9]{4}|99[0-8][0-9]{3}|999[0-8][0-9]{2}|9999[0-8][0-9]|99999[0-9]|[1-8][0-9]{6}|9[0-8][0-9]{5}|99[0-8][0-9]{4}|999[0-8][0-9]{3}|9999[0-8][0-9]{2}|99999[0-8][0-9]|999999[0-9]|[1-8][0-9]{7}|9[0-8][0-9]{6}|99[0-8][0-9]{5}|999[0-8][0-9]{4}|9999[0-8][0-9]{3}|99999[0-8][0-9]{2}|999999[0-8][0-9]|9999999[0-9]|[1-8][0-9]{8}|9[0-8][0-9]{7}|99[0-8][0-9]{6}|999[0-8][0-9]{5}|9999[0-8][0-9]{4}|99999[0-8][0-9]{3}|999999[0-8][0-9]{2}|9999999[0-8][0-9]|99999999[0-9]|[1-8][0-9]{9}|9[0-8][0-9]{8}|99[0-8][0-9]{7}|999[0-8][0-9]{6}|9999[0-8][0-9]{5}|99999[0-8][0-9]{4}|999999[0-8][0-9]{3}|9999999[0-8][0-9]{2}|99999999[0-8][0-9]|999999999[0-9]|[1-8][0-9]{10}|9[0-8][0-9]{9}|99[0-8][0-9]{8}|999[0-8][0-9]{7}|9999[0-8][0-9]{6}|99999[0-8][0-9]{5}|999999[0-8][0-9]{4}|9999999[0-8][0-9]{3}|99999999[0-8][0-9]{2}|999999999[0-8][0-9]|9999999999[0-9]|[1-8][0-9]{11}|9[0-8][0-9]{10}|99[0-8][0-9]{9}|999[0-8][0-9]{8}|9999[0-8][0-9]{7}|99999[0-8][0-9]{6}|999999[0-8][0-9]{5}|9999999[0-8][0-9]{4}|99999999[0-8][0-9]{3}|999999999[0-8][0-9]{2}|9999999999[0-8][0-9]|99999999999[0-9]|[1-8][0-9]{12}|9[0-8][0-9]{11}|99[0-8][0-9]{10}|999[0-8][0-9]{9}|9999[0-8][0-9]{8}|99999[0-8][0-9]{7}|999999[0-8][0-9]{6}|9999999[0-8][0-9]{5}|99999999[0-8][0-9]{4}|999999999[0-8][0-9]{3}|9999999999[0-8][0-9]{2}|99999999999[0-8][0-9]|999999999999[0-9])$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/apache2/apache2.conf exists and matches pattern ^MaxKeepAliveRequests.*([1-8][0-9]{2}|9[0-8][0-9]|99[0-9]|[1-8][0-9]{3}|9[0-8][0-9]{2}|99[0-8][0-9]|999[0-9]|[1-8][0-9]{4}|9[0-8][0-9]{3}|99[0-8][0-9]{2}|999[0-8][0-9]|999" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151785" version="1">
+         <filepath>/etc/apache2/apache2.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^MaxKeepAliveRequests.*([1-8][0-9]{2}|9[0-8][0-9]|99[0-9]|[1-8][0-9]{3}|9[0-8][0-9]{2}|99[0-8][0-9]|999[0-9]|[1-8][0-9]{4}|9[0-8][0-9]{3}|99[0-8][0-9]{2}|999[0-8][0-9]|9999[0-9]|[1-8][0-9]{5}|9[0-8][0-9]{4}|99[0-8][0-9]{3}|999[0-8][0-9]{2}|9999[0-8][0-9]|99999[0-9]|[1-8][0-9]{6}|9[0-8][0-9]{5}|99[0-8][0-9]{4}|999[0-8][0-9]{3}|9999[0-8][0-9]{2}|99999[0-8][0-9]|999999[0-9]|[1-8][0-9]{7}|9[0-8][0-9]{6}|99[0-8][0-9]{5}|999[0-8][0-9]{4}|9999[0-8][0-9]{3}|99999[0-8][0-9]{2}|999999[0-8][0-9]|9999999[0-9]|[1-8][0-9]{8}|9[0-8][0-9]{7}|99[0-8][0-9]{6}|999[0-8][0-9]{5}|9999[0-8][0-9]{4}|99999[0-8][0-9]{3}|999999[0-8][0-9]{2}|9999999[0-8][0-9]|99999999[0-9]|[1-8][0-9]{9}|9[0-8][0-9]{8}|99[0-8][0-9]{7}|999[0-8][0-9]{6}|9999[0-8][0-9]{5}|99999[0-8][0-9]{4}|999999[0-8][0-9]{3}|9999999[0-8][0-9]{2}|99999999[0-8][0-9]|999999999[0-9]|[1-8][0-9]{10}|9[0-8][0-9]{9}|99[0-8][0-9]{8}|999[0-8][0-9]{7}|9999[0-8][0-9]{6}|99999[0-8][0-9]{5}|999999[0-8][0-9]{4}|9999999[0-8][0-9]{3}|99999999[0-8][0-9]{2}|999999999[0-8][0-9]|9999999999[0-9]|[1-8][0-9]{11}|9[0-8][0-9]{10}|99[0-8][0-9]{9}|999[0-8][0-9]{8}|9999[0-8][0-9]{7}|99999[0-8][0-9]{6}|999999[0-8][0-9]{5}|9999999[0-8][0-9]{4}|99999999[0-8][0-9]{3}|999999999[0-8][0-9]{2}|9999999999[0-8][0-9]|99999999999[0-9]|[1-8][0-9]{12}|9[0-8][0-9]{11}|99[0-8][0-9]{10}|999[0-8][0-9]{9}|9999[0-8][0-9]{8}|99999[0-8][0-9]{7}|999999[0-8][0-9]{6}|9999999[0-8][0-9]{5}|99999999[0-8][0-9]{4}|999999999[0-8][0-9]{3}|9999999999[0-8][0-9]{2}|99999999999[0-8][0-9]|999999999999[0-9])$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/httpd/conf/httpd.conf exists and matches pattern ^KeepAliveTimeout.*([0-9]|1[0-5])$" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151788" version="1">
+         <filepath>/etc/httpd/conf/httpd.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^KeepAliveTimeout.*([0-9]|1[0-5])$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/apache2/apache2.conf exists and matches pattern ^KeepAliveTimeout.*([0-9]|1[0-5])$" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151791" version="1">
+         <filepath>/etc/apache2/apache2.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^KeepAliveTimeout.*([0-9]|1[0-5])$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/httpd/conf/httpd.conf exists and matches pattern ^LimitRequestFields.*([0-9]|[1-8][0-9]|9[0-9]|100)$" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151779" version="1">
+         <filepath>/etc/httpd/conf/httpd.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^LimitRequestFields.*([0-9]|[1-8][0-9]|9[0-9]|100)$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/apache2/apache2.conf exists and matches pattern ^LimitRequestFields.*([0-9]|[1-8][0-9]|9[0-9]|100)$" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151781" version="1">
+         <filepath>/etc/apache2/apache2.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^LimitRequestFields.*([0-9]|[1-8][0-9]|9[0-9]|100)$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/httpd/conf/httpd.conf exists and matches pattern ^LimitRequestFieldsize.*([0-9]|[1-8][0-9]|9[0-9]|100)$" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151784" version="1">
+         <filepath>/etc/httpd/conf/httpd.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^LimitRequestFieldsize.*([0-9]|[1-8][0-9]|9[0-9]|100)$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/apache2/apache2.conf exists and matches pattern ^LimitRequestFieldsize.*([0-9]|[1-8][0-9]|9[0-9]|100)$" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151787" version="1">
+         <filepath>/etc/apache2/apache2.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^LimitRequestFieldsize.*([0-9]|[1-8][0-9]|9[0-9]|100)$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/httpd/conf/httpd.conf exists and matches pattern ^LimitRequestBody.*([0-9]|[1-8][0-9]|9[0-9]|[1-8][0-9]{2}|9[0-8][0-9]|99[0-9]|[1-8][0-9]{3}|9[0-8][0-9]{2}|99[0-8][0-9]|999[0-9]|[1-8][0-9]{4}|9[0-8][0-9]{3}|99[0-8][0-9]" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151789" version="1">
+         <filepath>/etc/httpd/conf/httpd.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^LimitRequestBody.*([0-9]|[1-8][0-9]|9[0-9]|[1-8][0-9]{2}|9[0-8][0-9]|99[0-9]|[1-8][0-9]{3}|9[0-8][0-9]{2}|99[0-8][0-9]|999[0-9]|[1-8][0-9]{4}|9[0-8][0-9]{3}|99[0-8][0-9]{2}|999[0-8][0-9]|9999[0-9]|10[01][0-9]{3}|102[0-3][0-9]{2}|102400)$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/apache2/apache2.conf exists and matches pattern ^LimitRequestBody.*([0-9]|[1-8][0-9]|9[0-9]|[1-8][0-9]{2}|9[0-8][0-9]|99[0-9]|[1-8][0-9]{3}|9[0-8][0-9]{2}|99[0-8][0-9]|999[0-9]|[1-8][0-9]{4}|9[0-8][0-9]{3}|99[0-8][0-9]{" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151792" version="1">
+         <filepath>/etc/apache2/apache2.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^LimitRequestBody.*([0-9]|[1-8][0-9]|9[0-9]|[1-8][0-9]{2}|9[0-8][0-9]|99[0-9]|[1-8][0-9]{3}|9[0-8][0-9]{2}|99[0-8][0-9]|999[0-9]|[1-8][0-9]{4}|9[0-8][0-9]{3}|99[0-8][0-9]{2}|999[0-8][0-9]|9999[0-9]|10[01][0-9]{3}|102[0-3][0-9]{2}|102400)$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure at least one file(s) named httpd in /etc exists and is owned by user 0" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151742" version="1">
+         <behaviors max_depth="-1" recurse_direction="down" recurse_file_system="local"></behaviors>
+         <path>/etc</path>
+         <filename operation="pattern match">httpd</filename>
+      </file_object>
+      <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure at least one file(s) named apache2 in /etc exists and is owned by user 0" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151747" version="1">
+         <behaviors max_depth="-1" recurse_direction="down" recurse_file_system="local"></behaviors>
+         <path>/etc</path>
+         <filename operation="pattern match">apache2</filename>
+      </file_object>
+      <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure at least one file(s) named httpd in /etc exists and is owned by group 0" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151751" version="1">
+         <behaviors max_depth="-1" recurse_direction="down" recurse_file_system="local"></behaviors>
+         <path>/etc</path>
+         <filename operation="pattern match">httpd</filename>
+      </file_object>
+      <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure at least one file(s) named apache2 in /etc exists and is owned by group 0" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151755" version="1">
+         <behaviors max_depth="-1" recurse_direction="down" recurse_file_system="local"></behaviors>
+         <path>/etc</path>
+         <filename operation="pattern match">apache2</filename>
+      </file_object>
+      <sestatus_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="No TitleEnsure SELinux Is Enabled in Enforcing Mode" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151790" version="1"></sestatus_object>
+      <apparmorstatus_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure Apache AppArmor Profile is in Enforce Mode" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:obj:4151786" version="1"></apparmorstatus_object>
+   </objects>
+   <states>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'httpd -M | grep log_config' output Pattern Match '^log_config_module (static)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151728" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151728"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'apache2 -M | grep log_config' output Pattern Match '^log_config_module (static)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151730" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151730"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'httpd -M | grep ' dav_[[:print:]]+module'' output Pattern Not Match '^mod_dav.* \(s.+\)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151732" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151732"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'apache2 -M | grep ' dav_[[:print:]]+module'' output Pattern Not Match '^mod_dav.* \(s.+\)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151734" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151734"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'httpd -M | egrep 'status_module'' output Pattern Not Match '^mod_status \(s.+\)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151736" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151736"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'apache2 -M | egrep 'status_module'' output Pattern Not Match '^mod_status \(s.+\)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151737" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151737"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'httpd -M | grep autoindex_module' output Pattern Not Match '^autoindex_module \(s.+\)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151739" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151739"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'apache2-M | grep autoindex_module' output Pattern Not Match '^autoindex_module \(s.+\)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151741" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151741"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'httpd -M | grep proxy_' output Pattern Not Match '^mod_proxy  \(s.+\)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151743" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151743"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'apache2 -M | grep proxy_' output Pattern Not Match '^mod_proxy  \(s.+\)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151744" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151744"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'httpd -M | grep userdir_' output Pattern Not Match '^mod_userdir \(s.+\)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151745" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151745"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'apache2 -M | grep userdir_' output Pattern Not Match '^mod_userdir \(s.+\)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151746" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151746"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'httpd -M | egrep 'info_module'' output Pattern Not Match '^mod_info \(s.+\)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151748" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151748"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'apache2 -M | egrep 'info_module'' output Pattern Not Match '^mod_info \(s.+\)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151749" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151749"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'httpd -M | grep auth_basic_module' output Pattern Not Match '^mod_auth_basic \(s.+\)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151750" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151750"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'httpd -M | grep auth_digest_module' output Pattern Not Match '^mod_auth_digest \(s.+\)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151752" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151752"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'passwd -S apache' output Pattern Match '^apache.*(Password locked|L)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151740" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151740"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'perl -ne 'print if /^ *&lt;Directory *\//i .. /&lt;\/Directory/i' /etc/httpd/conf/httpd.conf' output Pattern Match '^.*Require all denied$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151753" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151753"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'perl -ne 'print if /^ *&lt;Directory *\//i .. /&lt;\/Directory/i' /etc/apache2/apache2.conf' output Pattern Match '^.*Require all denied$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151754" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151754"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'perl -ne 'print if /^ *&lt;Directory *\//i .. /&lt;\/Directory/i' /etc/httpd/conf/httpd.conf' output Pattern Match '^.*AllowOverride None$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151756" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151756"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'perl -ne 'print if /^ *&lt;Directory *\//i .. /&lt;\/Directory/i' /etc/apache2/apache2.conf' output Pattern Match '^.*AllowOverride None$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151757" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151757"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'grep -i AllowOverride /etc/httpd/conf/httpd.conf' output Pattern Match '^.*AllowOverride None$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151758" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151758"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'grep -i AllowOverride /etc/apache2/apache2.conf' output Pattern Match '^.*AllowOverride None$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151759" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151759"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'perl -ne 'print if /^ *&lt;Directory */i .. /&lt;\/Directory/i' /etc/httpd/conf/httpd.conf' output Pattern Match '^.*Options None$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151760" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151760"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'perl -ne 'print if /^ *&lt;Directory */i .. /&lt;\/Directory/i'  /etc/apache2/apache2.conf' output Pattern Match '^.*Options None$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151761" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151761"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'perl -ne 'print if /^ *&lt;Directory */i .. /&lt;\/Directory/i' /etc/httpd/conf/httpd.conf' output Pattern Not Match '^Options.*Includes$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151764" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151764"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'perl -ne 'print if /^ *&lt;Directory */i .. /&lt;\/Directory/i' /etc/apache2/apache2.conf' output Pattern Not Match '^Options.*Includes$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151766" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151766"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'httpd -M | grep security2_module' output Pattern Match '^security2_module$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151765" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151765"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'apache2 -M | grep security2_module' output Pattern Match '^security2_module$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151767" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151767"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'httpd -M | egrep 'ssl_module|nss_module'' output Pattern Match '^mod_(ssl|nss)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151768" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151768"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'apache2 -M | egrep 'ssl_module|nss_module'' output Pattern Match '^mod_(ssl|nss)$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151769" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151769"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'aa-status --enabled &amp;&amp; echo Enabled' output Pattern Match '^Enabled$' (string)" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151782" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151782"></stdout_line>
+      </shellcommand_state>
+      <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure at least one file(s) named httpd in /etc exists and is owned by user 0" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151742" version="1"></file_state>
+      <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure at least one file(s) named apache2 in /etc exists and is owned by user 0" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151747" version="1"></file_state>
+      <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure at least one file(s) named httpd in /etc exists and is owned by group 0" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151751" version="1">
+         <group_id datatype="int">0</group_id>
+      </file_state>
+      <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure at least one file(s) named apache2 in /etc exists and is owned by group 0" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151755" version="1">
+         <group_id datatype="int">0</group_id>
+      </file_state>
+      <sestatus_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="No TitleEnsure SELinux Is Enabled in Enforcing Mode" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151790" version="1">
+         <current_mode datatype="string" operation="equals">enforcing</current_mode>
+      </sestatus_state>
+      <apparmorstatus_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure Apache AppArmor Profile is in Enforce Mode" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:ste:4151786" version="1">
+         <enforce_mode_profiles_count datatype="int" operation="greater than">0</enforce_mode_profiles_count>
+      </apparmorstatus_state>
+   </states>
+   <variables>
+      <external_variable comment="This value is used in Rule: Ensure the Log Config Module Is Enabled" datatype="string" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151728" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure the Log Config Module Is Enabled" datatype="string" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151730" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure the WebDAV Modules Are Disabled" datatype="string" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151732" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure the WebDAV Modules Are Disabled" datatype="string" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151734" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure the Status Module Is Disabled" datatype="string" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151736" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure the Status Module Is Disabled" datatype="string" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151737" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure the Autoindex Module Is Disabled" datatype="string" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151739" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure the Autoindex Module Is Disabled" datatype="string" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151741" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure the Proxy Modules Are Disabled if not in use" datatype="string" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151743" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure the Proxy Modules Are Disabled if not in use" datatype="string" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151744" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure the User Directories Module Is Disabled" datatype="string" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151745" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure the User Directories Module Is Disabled" datatype="string" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151746" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure the Info Module Is Disabled" datatype="string" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151748" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure the Info Module Is Disabled" datatype="string" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151749" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure the Basic and Digest Authentication Modules are Disabled" datatype="string" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151750" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure the Basic and Digest Authentication Modules are Disabled" datatype="string" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151752" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure the Apache User Account Is Locked" datatype="string" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151740" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure Access to OS Root Directory Is Denied By Default" datatype="string" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151753" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure Access to OS Root Directory Is Denied By Default" datatype="string" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151754" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure OverRide Is Disabled for the OS Root Directory" datatype="string" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151756" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure OverRide Is Disabled for the OS Root Directory" datatype="string" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151757" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure OverRide Is Disabled for All Directories" datatype="string" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151758" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure OverRide Is Disabled for All Directories" datatype="string" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151759" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure Options for the OS Root Directory Are Restricted" datatype="string" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151760" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure Options for the OS Root Directory Are Restricted" datatype="string" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151761" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure Options for Other Directories Are Minimized" datatype="string" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151764" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure Options for Other Directories Are Minimized" datatype="string" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151766" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure ModSecurity Is Installed and Enabled" datatype="string" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151765" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure ModSecurity Is Installed and Enabled" datatype="string" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151767" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure mod_ssl and/or mod_nss Is Installed" datatype="string" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151768" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure mod_ssl and/or mod_nss Is Installed" datatype="string" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151769" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure the AppArmor Framework Is Enabled" datatype="string" id="oval:org.cisecurity.benchmarks.apache_foundation_apache_http_server_2:var:4151782" version="1"></external_variable>
+   </variables>
+<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+<ds:SignedInfo>
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"></ds:CanonicalizationMethod>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></ds:SignatureMethod>
+<ds:Reference URI="">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"></ds:Transform>
+<ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"></ds:Transform>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></ds:DigestMethod>
+<ds:DigestValue>MSzd7PNRi+BFv5vNw1Yur6R4vr06S9l1FYWWARG0ddo=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue>
+IyOlS3U4FR6XKq1svrRGLvvP9s5E7LCmjaXc/Cc90EH7ZGZZAdDWB4D5RLsmqU0+wpNkVwe6a5yJ
+b1XDfEnTwgAoG+utq7BRPCUEun4kbKDqkFzKV9ubb1sgTI+ivZKsc1R8pLB1y2r9cr+Icjkds8qf
+0h2C1j3+MpfnMCqKOYwBnDZZwCpMjWwO9Y+xQRarjuSZygK1WUw7B0n0TNhOqu7fuykdqOiOI4S2
+zmhHoWhCHMkAun92MuRfEP7agFU1NDGyg1BXPnxaI1fHZDYakrxUfs3uM00AkARGqXA7ZeW7+Q7R
+ZJtAqMc+YsauSh5UdslGBgkiORevdkgVZv09tBqEKQEkNDj6FGVxVKqY3XgaXkrEP5BaaiNb79Qy
+DMDpP51oKLx9T+ID4goTfmkU7h9eJz2AkbqOaOffusH4z9aH3G/tv157GNGVt9lSLdDW0AQ/3sZY
+e2+UoPlb+yMcERIDdRAiTTe8S6Tengezt+ktSykhUTvANRBkw2ukwAdH
+</ds:SignatureValue>
+<ds:KeyInfo>
+<ds:X509Data>
+<ds:X509Certificate>
+MIIHbDCCBVSgAwIBAgIQCdceADCnzKkglkQGavVKYzANBgkqhkiG9w0BAQsFADBpMQswCQYDVQQG
+EwJVUzEXMBUGA1UEChMORGlnaUNlcnQsIEluYy4xQTA/BgNVBAMTOERpZ2lDZXJ0IFRydXN0ZWQg
+RzQgQ29kZSBTaWduaW5nIFJTQTQwOTYgU0hBMzg0IDIwMjEgQ0ExMB4XDTIzMTAxODAwMDAwMFoX
+DTI2MTAxODIzNTk1OVowgfQxEzARBgsrBgEEAYI3PAIBAxMCVVMxGTAXBgsrBgEEAYI3PAIBAhMI
+TWFyeWxhbmQxHTAbBgNVBA8MFFByaXZhdGUgT3JnYW5pemF0aW9uMRIwEAYDVQQFEwlEMDYwNTg4
+MTIxCzAJBgNVBAYTAlVTMREwDwYDVQQIEwhOZXcgWW9yazEXMBUGA1UEBxMORWFzdCBHcmVlbmJ1
+c2gxKjAoBgNVBAoTIUNlbnRlciBmb3IgSW50ZXJuZXQgU2VjdXJpdHksIEluYzEqMCgGA1UEAxMh
+Q2VudGVyIGZvciBJbnRlcm5ldCBTZWN1cml0eSwgSW5jMIIBojANBgkqhkiG9w0BAQEFAAOCAY8A
+MIIBigKCAYEAyZwTJr4Kb7QEDnVY3BEkPoS3fn+XoxhCTfFvlMk8zXDcR4pFMgPkXTrZ1KbENUIV
+skIhy1vmnh61vwSL0lcdzesCekKSxLqrEA4xunZk1MB5mLbHXchSSpI1co1vaSzJjkTYP1UsUVQz
+NoOzV0LNCoZdahjGTHSduWvbrHTEeD6/jvUj3AVWrTx6krzgYA3ozAxtUnapK7IrZERuGOSwTrgR
+Lr1aieQdFy8haW1YL+ks5HmLRvcoGp+J68GX/zfMTduvWxhcpXm4txKc4iJqGCRmyBU2XjGjpDBX
+ndxHgT4edRLz5PwWSeZUh8/tWOGFwnVw7njoOa0sFixy96H2BqEn+yPeRALyf59rjtPL66tsXuaA
+ilB63yqbH42mnkxHTX5zcEm337GzTOGRccsYzN/ApVuXDeMfsO+sSUosrimnxm9QTOyKcex5h1As
+rxBVfTw+Zf7jP1YRlmMlGPG1zffK2KjJhD6ivFi2sIDThEQLxIAC8XOjp2ZXvhx87yNTAgMBAAGj
+ggICMIIB/jAfBgNVHSMEGDAWgBRoN+Drtjv4XxGG+/5hewiIZfROQjAdBgNVHQ4EFgQUX2/J9FT5
+5BNF7JqfAl9SJkv3pf0wPQYDVR0gBDYwNDAyBgVngQwBAzApMCcGCCsGAQUFBwIBFhtodHRwOi8v
+d3d3LmRpZ2ljZXJ0LmNvbS9DUFMwDgYDVR0PAQH/BAQDAgeAMBMGA1UdJQQMMAoGCCsGAQUFBwMD
+MIG1BgNVHR8Ega0wgaowU6BRoE+GTWh0dHA6Ly9jcmwzLmRpZ2ljZXJ0LmNvbS9EaWdpQ2VydFRy
+dXN0ZWRHNENvZGVTaWduaW5nUlNBNDA5NlNIQTM4NDIwMjFDQTEuY3JsMFOgUaBPhk1odHRwOi8v
+Y3JsNC5kaWdpY2VydC5jb20vRGlnaUNlcnRUcnVzdGVkRzRDb2RlU2lnbmluZ1JTQTQwOTZTSEEz
+ODQyMDIxQ0ExLmNybDCBlAYIKwYBBQUHAQEEgYcwgYQwJAYIKwYBBQUHMAGGGGh0dHA6Ly9vY3Nw
+LmRpZ2ljZXJ0LmNvbTBcBggrBgEFBQcwAoZQaHR0cDovL2NhY2VydHMuZGlnaWNlcnQuY29tL0Rp
+Z2lDZXJ0VHJ1c3RlZEc0Q29kZVNpZ25pbmdSU0E0MDk2U0hBMzg0MjAyMUNBMS5jcnQwCQYDVR0T
+BAIwADANBgkqhkiG9w0BAQsFAAOCAgEASLOHf1FQ7TrGqEoVXYoeNSkRWdVCUGd1JCDs7Hb9sLd3
+eQuipZ4EorQS/9qMiVMhmlJfF75sNVQhr1K5UtjrDRFMTzYmh78hAyovowzgyVKdGFqiVVr5m+mb
+vVyglLlA4V076LMBaKRknm1Dt8r0/5GSRCrkP2origpYMMaocN+iBX9+MImnh3J1Ehn0nRUhW86Q
+mt3/YCVIaQZisv+KmOxyAq1m6fiIYIvXY+cH2dDIheoVteb/NjYnKVqE6xTpOsxF16pykXiM9yk3
+Q9nlJS36KEGRP4wrySU4eIBnTcv4mimZjkWj6bIvk8otNJ14FbyltaPwIc3dE3oPGfSmCrkxs73j
+iqBs2TXLvblEmOhY8ko3xVdTm0zMP50MQVO948fz9yF+xdnPdMPT1/lCmGp6iWYRzxnvEkA1+HFl
+yy9YztrM8WNAhXirpUZg3HWQE2ONLKMtqQrkIHD2nikda77flk6oirqDuCf8Q7g8s86/KabTdxrw
+pRmsRjDkAfKVae58ctaKbmF32oU9BGk+9MPG8HF5Yfoh12DE1fLZcPzZrROrDFJGGxwhv5FlnxGg
+6G7jKi68erZnpaOPayK0bXyZNunqkI9IbIuPqMw5qaCZZgN6AEHIbGTKdrWEf11DmR7MdTjv3/vu
+JWtIXgk3kQFX27w9JhqV6QogVmzIfEQ=
+</ds:X509Certificate>
+</ds:X509Data>
+<ds:KeyValue>
+<ds:RSAKeyValue>
+<ds:Modulus>yZwTJr4Kb7QEDnVY3BEkPoS3fn+XoxhCTfFvlMk8zXDcR4pFMgPkXTrZ1KbENUIVskIhy1vmnh61
+vwSL0lcdzesCekKSxLqrEA4xunZk1MB5mLbHXchSSpI1co1vaSzJjkTYP1UsUVQzNoOzV0LNCoZd
+ahjGTHSduWvbrHTEeD6/jvUj3AVWrTx6krzgYA3ozAxtUnapK7IrZERuGOSwTrgRLr1aieQdFy8h
+aW1YL+ks5HmLRvcoGp+J68GX/zfMTduvWxhcpXm4txKc4iJqGCRmyBU2XjGjpDBXndxHgT4edRLz
+5PwWSeZUh8/tWOGFwnVw7njoOa0sFixy96H2BqEn+yPeRALyf59rjtPL66tsXuaAilB63yqbH42m
+nkxHTX5zcEm337GzTOGRccsYzN/ApVuXDeMfsO+sSUosrimnxm9QTOyKcex5h1AsrxBVfTw+Zf7j
+P1YRlmMlGPG1zffK2KjJhD6ivFi2sIDThEQLxIAC8XOjp2ZXvhx87yNT</ds:Modulus>
+<ds:Exponent>AQAB</ds:Exponent>
+</ds:RSAKeyValue>
+</ds:KeyValue>
+</ds:KeyInfo>
+</ds:Signature></oval_definitions>

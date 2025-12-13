@@ -1,0 +1,321 @@
+<oval_definitions 
+	xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" 
+	xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" 
+	xmlns:linux="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" 
+	xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" 
+	xmlns:unix="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5 
+						http://oval.mitre.org/language/version5.11/ovaldefinition/complete/oval-definitions-schema.xsd 	
+						http://oval.mitre.org/XMLSchema/oval-common-5 
+						http://oval.mitre.org/language/version5.11/ovaldefinition/complete/oval-common-schema.xsd 
+						http://oval.mitre.org/XMLSchema/oval-definitions-5#linux 
+						http://oval.mitre.org/language/version5.11/ovaldefinition/complete/linux-definitions-schema.xsd 
+						http://oval.mitre.org/XMLSchema/oval-definitions-5#independent 
+						http://oval.mitre.org/language/version5.11/ovaldefinition/complete/independent-definitions-schema.xsd 
+						http://oval.mitre.org/XMLSchema/oval-definitions-5#unix 
+						http://oval.mitre.org/language/version5.10/ovaldefinition/complete/unix-definitions-schema.xsd">
+	<generator>
+		<oval:product_name>CimTrak Agent RHEL Platform Detection</oval:product_name>
+		<oval:schema_version>5.11</oval:schema_version>
+		<oval:timestamp>2025-07-25T14:00:00+00:00</oval:timestamp>
+	</generator>
+	
+	<definitions>
+		<!-- CentOS 7 Detection -->
+		<definition class="inventory" id="oval:com.cimcor.cimtrak.o_rhel:def:2000" version="1">
+			<metadata>
+				<title>CentOS Linux 7</title>
+				<description>The operating system is CentOS Linux 7</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion negate="false" test_ref="oval:com.cimcor.cimtrak.o_rhel:tst:2000"/>
+			</criteria>
+		</definition>
+		
+		<!-- CentOS 8 Detection -->
+		<definition class="inventory" id="oval:com.cimcor.cimtrak.o_rhel:def:2001" version="1">
+			<metadata>
+				<title>CentOS Linux 8</title>
+				<description>The operating system is CentOS Linux 8</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion negate="false" test_ref="oval:com.cimcor.cimtrak.o_rhel:tst:2001"/>
+			</criteria>
+		</definition>
+		
+		<!-- AlmaLinux 8 Detection -->
+		<definition class="inventory" id="oval:com.cimcor.cimtrak.o_rhel:def:2002" version="1">
+			<metadata>
+				<title>AlmaLinux 8</title>
+				<description>The operating system is AlmaLinux 8</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion negate="false" test_ref="oval:com.cimcor.cimtrak.o_rhel:tst:2002"/>
+			</criteria>
+		</definition>
+		
+		<!-- AlmaLinux 9 Detection -->
+		<definition class="inventory" id="oval:com.cimcor.cimtrak.o_rhel:def:2003" version="1">
+			<metadata>
+				<title>AlmaLinux 9</title>
+				<description>The operating system is AlmaLinux 9</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion negate="false" test_ref="oval:com.cimcor.cimtrak.o_rhel:tst:2003"/>
+			</criteria>
+		</definition>
+		
+		<!-- AlmaLinux 10 Detection -->
+		<definition class="inventory" id="oval:com.cimcor.cimtrak.o_rhel:def:2004" version="1">
+			<metadata>
+				<title>AlmaLinux 10</title>
+				<description>The operating system is AlmaLinux 10</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion negate="false" test_ref="oval:com.cimcor.cimtrak.o_rhel:tst:2004"/>
+			</criteria>
+		</definition>
+		
+		<!-- RHEL 7 Detection -->
+		<definition class="inventory" id="oval:com.cimcor.cimtrak.o_rhel:def:2050" version="1">
+			<metadata>
+				<title>Red Hat Enterprise Linux 7</title>
+				<description>The operating system is Red Hat Enterprise Linux 7</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion negate="false" test_ref="oval:com.cimcor.cimtrak.o_rhel:tst:2050"/>
+			</criteria>
+		</definition>
+		
+		<!-- RHEL 8 Detection -->
+		<definition class="inventory" id="oval:com.cimcor.cimtrak.o_rhel:def:2005" version="1">
+			<metadata>
+				<title>Red Hat Enterprise Linux 8</title>
+				<description>The operating system is Red Hat Enterprise Linux 8</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion negate="false" test_ref="oval:com.cimcor.cimtrak.o_rhel:tst:2005"/>
+			</criteria>
+		</definition>
+		
+		<!-- RHEL 9 Detection -->
+		<definition class="inventory" id="oval:com.cimcor.cimtrak.o_rhel:def:2006" version="1">
+			<metadata>
+				<title>Red Hat Enterprise Linux 9</title>
+				<description>The operating system is Red Hat Enterprise Linux 9</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion negate="false" test_ref="oval:com.cimcor.cimtrak.o_rhel:tst:2006"/>
+			</criteria>
+		</definition>
+		
+		<!-- RHEL 10 Detection -->
+		<definition class="inventory" id="oval:com.cimcor.cimtrak.o_rhel:def:2007" version="1">
+			<metadata>
+				<title>Red Hat Enterprise Linux 10</title>
+				<description>The operating system is Red Hat Enterprise Linux 10</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion negate="false" test_ref="oval:com.cimcor.cimtrak.o_rhel:tst:2007"/>
+			</criteria>
+		</definition>
+		
+		<!-- Rocky Linux 8 Detection -->
+		<definition class="inventory" id="oval:com.cimcor.cimtrak.o_rhel:def:2008" version="1">
+			<metadata>
+				<title>Rocky Linux 8</title>
+				<description>The operating system is Rocky Linux 8</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion negate="false" test_ref="oval:com.cimcor.cimtrak.o_rhel:tst:2008"/>
+			</criteria>
+		</definition>
+		
+		<!-- Rocky Linux 9 Detection -->
+		<definition class="inventory" id="oval:com.cimcor.cimtrak.o_rhel:def:2009" version="1">
+			<metadata>
+				<title>Rocky Linux 9</title>
+				<description>The operating system is Rocky Linux 9</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion negate="false" test_ref="oval:com.cimcor.cimtrak.o_rhel:tst:2009"/>
+			</criteria>
+		</definition>
+		
+		<!-- Rocky Linux 10 Detection -->
+		<definition class="inventory" id="oval:com.cimcor.cimtrak.o_rhel:def:2010" version="1">
+			<metadata>
+				<title>Rocky Linux 10</title>
+				<description>The operating system is Rocky Linux 10</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion negate="false" test_ref="oval:com.cimcor.cimtrak.o_rhel:tst:2010"/>
+			</criteria>
+		</definition>
+	</definitions>
+	
+	<tests>
+		<!-- Platform detection tests using textfilecontent54_test on /etc/os-release -->
+		
+		<!-- CentOS 7 -->
+		<ind:textfilecontent54_test check="at least one" check_existence="at_least_one_exists" 
+			comment="Check for CentOS 7" id="oval:com.cimcor.cimtrak.o_rhel:tst:2000" version="1">
+			<ind:object object_ref="oval:com.cimcor.cimtrak.o_rhel:obj:2000"/>
+		</ind:textfilecontent54_test>
+		
+		<!-- CentOS 8 -->
+		<ind:textfilecontent54_test check="at least one" check_existence="at_least_one_exists" 
+			comment="Check for CentOS 8" id="oval:com.cimcor.cimtrak.o_rhel:tst:2001" version="1">
+			<ind:object object_ref="oval:com.cimcor.cimtrak.o_rhel:obj:2001"/>
+		</ind:textfilecontent54_test>
+		
+		<!-- AlmaLinux 8 -->
+		<ind:textfilecontent54_test check="at least one" check_existence="at_least_one_exists" 
+			comment="Check for AlmaLinux 8" id="oval:com.cimcor.cimtrak.o_rhel:tst:2002" version="1">
+			<ind:object object_ref="oval:com.cimcor.cimtrak.o_rhel:obj:2002"/>
+		</ind:textfilecontent54_test>
+		
+		<!-- AlmaLinux 9 -->
+		<ind:textfilecontent54_test check="at least one" check_existence="at_least_one_exists" 
+			comment="Check for AlmaLinux 9" id="oval:com.cimcor.cimtrak.o_rhel:tst:2003" version="1">
+			<ind:object object_ref="oval:com.cimcor.cimtrak.o_rhel:obj:2003"/>
+		</ind:textfilecontent54_test>
+		
+		<!-- AlmaLinux 10 -->
+		<ind:textfilecontent54_test check="at least one" check_existence="at_least_one_exists" 
+			comment="Check for AlmaLinux 10" id="oval:com.cimcor.cimtrak.o_rhel:tst:2004" version="1">
+			<ind:object object_ref="oval:com.cimcor.cimtrak.o_rhel:obj:2004"/>
+		</ind:textfilecontent54_test>
+		
+		<!-- RHEL 7 -->
+		<ind:textfilecontent54_test check="at least one" check_existence="at_least_one_exists" 
+			comment="Check for RHEL 7" id="oval:com.cimcor.cimtrak.o_rhel:tst:2050" version="1">
+			<ind:object object_ref="oval:com.cimcor.cimtrak.o_rhel:obj:2050"/>
+		</ind:textfilecontent54_test>
+		
+		<!-- RHEL 8 -->
+		<ind:textfilecontent54_test check="at least one" check_existence="at_least_one_exists" 
+			comment="Check for RHEL 8" id="oval:com.cimcor.cimtrak.o_rhel:tst:2005" version="1">
+			<ind:object object_ref="oval:com.cimcor.cimtrak.o_rhel:obj:2005"/>
+		</ind:textfilecontent54_test>
+		
+		<!-- RHEL 9 -->
+		<ind:textfilecontent54_test check="at least one" check_existence="at_least_one_exists" 
+			comment="Check for RHEL 9" id="oval:com.cimcor.cimtrak.o_rhel:tst:2006" version="1">
+			<ind:object object_ref="oval:com.cimcor.cimtrak.o_rhel:obj:2006"/>
+		</ind:textfilecontent54_test>
+		
+		<!-- RHEL 10 -->
+		<ind:textfilecontent54_test check="at least one" check_existence="at_least_one_exists" 
+			comment="Check for RHEL 10" id="oval:com.cimcor.cimtrak.o_rhel:tst:2007" version="1">
+			<ind:object object_ref="oval:com.cimcor.cimtrak.o_rhel:obj:2007"/>
+		</ind:textfilecontent54_test>
+		
+		<!-- Rocky Linux 8 -->
+		<ind:textfilecontent54_test check="at least one" check_existence="at_least_one_exists" 
+			comment="Check for Rocky Linux 8" id="oval:com.cimcor.cimtrak.o_rhel:tst:2008" version="1">
+			<ind:object object_ref="oval:com.cimcor.cimtrak.o_rhel:obj:2008"/>
+		</ind:textfilecontent54_test>
+		
+		<!-- Rocky Linux 9 -->
+		<ind:textfilecontent54_test check="at least one" check_existence="at_least_one_exists" 
+			comment="Check for Rocky Linux 9" id="oval:com.cimcor.cimtrak.o_rhel:tst:2009" version="1">
+			<ind:object object_ref="oval:com.cimcor.cimtrak.o_rhel:obj:2009"/>
+		</ind:textfilecontent54_test>
+		
+		<!-- Rocky Linux 10 -->
+		<ind:textfilecontent54_test check="at least one" check_existence="at_least_one_exists" 
+			comment="Check for Rocky Linux 10" id="oval:com.cimcor.cimtrak.o_rhel:tst:2010" version="1">
+			<ind:object object_ref="oval:com.cimcor.cimtrak.o_rhel:obj:2010"/>
+		</ind:textfilecontent54_test>
+	</tests>
+	
+	<objects>
+		<!-- OS detection objects using /etc/os-release file -->
+		
+		<!-- CentOS 7 -->
+		<ind:textfilecontent54_object comment="CentOS 7 detection" id="oval:com.cimcor.cimtrak.o_rhel:obj:2000" version="1">
+			<ind:filepath>/etc/os-release</ind:filepath>
+			<ind:pattern operation="pattern match">^ID="?centos"?$|^PRETTY_NAME=.*CentOS.*7.*$</ind:pattern>
+			<ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+		</ind:textfilecontent54_object>
+		
+		<!-- CentOS 8 -->
+		<ind:textfilecontent54_object comment="CentOS 8 detection" id="oval:com.cimcor.cimtrak.o_rhel:obj:2001" version="1">
+			<ind:filepath>/etc/os-release</ind:filepath>
+			<ind:pattern operation="pattern match">^ID="?centos"?$|^PRETTY_NAME=.*CentOS.*8.*$</ind:pattern>
+			<ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+		</ind:textfilecontent54_object>
+		
+		<!-- AlmaLinux 8 -->
+		<ind:textfilecontent54_object comment="AlmaLinux 8 detection" id="oval:com.cimcor.cimtrak.o_rhel:obj:2002" version="1">
+			<ind:filepath>/etc/os-release</ind:filepath>
+			<ind:pattern operation="pattern match">^ID="?almalinux"?$|^PRETTY_NAME=.*AlmaLinux.*8.*$</ind:pattern>
+			<ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+		</ind:textfilecontent54_object>
+		
+		<!-- AlmaLinux 9 -->
+		<ind:textfilecontent54_object comment="AlmaLinux 9 detection" id="oval:com.cimcor.cimtrak.o_rhel:obj:2003" version="1">
+			<ind:filepath>/etc/os-release</ind:filepath>
+			<ind:pattern operation="pattern match">^ID="?almalinux"?$|^PRETTY_NAME=.*AlmaLinux.*9.*$</ind:pattern>
+			<ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+		</ind:textfilecontent54_object>
+		
+		<!-- AlmaLinux 10 -->
+		<ind:textfilecontent54_object comment="AlmaLinux 10 detection" id="oval:com.cimcor.cimtrak.o_rhel:obj:2004" version="1">
+			<ind:filepath>/etc/os-release</ind:filepath>
+			<ind:pattern operation="pattern match">^ID="?almalinux"?$|^PRETTY_NAME=.*AlmaLinux.*10.*$</ind:pattern>
+			<ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+		</ind:textfilecontent54_object>
+		
+		<!-- RHEL 7 -->
+		<ind:textfilecontent54_object comment="RHEL 7 detection" id="oval:com.cimcor.cimtrak.o_rhel:obj:2050" version="1">
+			<ind:filepath>/etc/os-release</ind:filepath>
+			<ind:pattern operation="pattern match">^ID="?rhel"?$|^PRETTY_NAME=.*Red Hat.*7.*$</ind:pattern>
+			<ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+		</ind:textfilecontent54_object>
+		
+		<!-- RHEL 8 -->
+		<ind:textfilecontent54_object comment="RHEL 8 detection" id="oval:com.cimcor.cimtrak.o_rhel:obj:2005" version="1">
+			<ind:filepath>/etc/os-release</ind:filepath>
+			<ind:pattern operation="pattern match">^ID="?rhel"?$|^PRETTY_NAME=.*Red Hat.*8.*$</ind:pattern>
+			<ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+		</ind:textfilecontent54_object>
+		
+		<!-- RHEL 9 -->
+		<ind:textfilecontent54_object comment="RHEL 9 detection" id="oval:com.cimcor.cimtrak.o_rhel:obj:2006" version="1">
+			<ind:filepath>/etc/os-release</ind:filepath>
+			<ind:pattern operation="pattern match">^ID="?rhel"?$|^PRETTY_NAME=.*Red Hat.*9.*$</ind:pattern>
+			<ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+		</ind:textfilecontent54_object>
+		
+		<!-- RHEL 10 -->
+		<ind:textfilecontent54_object comment="RHEL 10 detection" id="oval:com.cimcor.cimtrak.o_rhel:obj:2007" version="1">
+			<ind:filepath>/etc/os-release</ind:filepath>
+			<ind:pattern operation="pattern match">^ID="?rhel"?$|^PRETTY_NAME=.*Red Hat.*10.*$</ind:pattern>
+			<ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+		</ind:textfilecontent54_object>
+		
+		<!-- Rocky Linux 8 -->
+		<ind:textfilecontent54_object comment="Rocky Linux 8 detection" id="oval:com.cimcor.cimtrak.o_rhel:obj:2008" version="1">
+			<ind:filepath>/etc/os-release</ind:filepath>
+			<ind:pattern operation="pattern match">^ID="?rocky"?$|^PRETTY_NAME=.*Rocky.*8.*$</ind:pattern>
+			<ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+		</ind:textfilecontent54_object>
+		
+		<!-- Rocky Linux 9 -->
+		<ind:textfilecontent54_object comment="Rocky Linux 9 detection" id="oval:com.cimcor.cimtrak.o_rhel:obj:2009" version="1">
+			<ind:filepath>/etc/os-release</ind:filepath>
+			<ind:pattern operation="pattern match">^ID="?rocky"?$|^PRETTY_NAME=.*Rocky.*9.*$</ind:pattern>
+			<ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+		</ind:textfilecontent54_object>
+		
+		<!-- Rocky Linux 10 -->
+		<ind:textfilecontent54_object comment="Rocky Linux 10 detection" id="oval:com.cimcor.cimtrak.o_rhel:obj:2010" version="1">
+			<ind:filepath>/etc/os-release</ind:filepath>
+			<ind:pattern operation="pattern match">^ID="?rocky"?$|^PRETTY_NAME=.*Rocky.*10.*$</ind:pattern>
+			<ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+		</ind:textfilecontent54_object>
+	</objects>
+</oval_definitions>

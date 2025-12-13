@@ -1,0 +1,28 @@
+# UI Server Image
+FROM golang:1.24-alpine AS builder
+
+WORKDIR /app
+
+# Copy go.mod and download dependencies
+COPY go.mod go.sum* ./
+RUN go mod download || true
+
+# Copy source and build
+COPY . .
+RUN CGO_ENABLED=0 GOOS=linux go build -o /ui-server ./cmd/ui
+
+# Runtime image
+FROM alpine:latest
+
+RUN apk --no-cache add ca-certificates
+
+WORKDIR /app
+
+# Copy static assets if they exist
+COPY --from=builder /app/static ./static 2>/dev/null || true
+
+COPY --from=builder /ui-server /usr/local/bin/ui-server
+
+EXPOSE 8080
+
+ENTRYPOINT ["ui-server"]

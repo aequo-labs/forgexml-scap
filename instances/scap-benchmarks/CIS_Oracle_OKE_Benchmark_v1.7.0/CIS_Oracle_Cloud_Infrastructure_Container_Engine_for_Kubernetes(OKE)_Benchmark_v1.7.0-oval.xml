@@ -1,0 +1,741 @@
+<oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5 https://oval.cisecurity.org/schemas/validator-oval-definitions-5.11.2.xsd">
+   <generator>
+      <oval:product_name>Center for Internet Security - Optimus</oval:product_name>
+      <oval:schema_version>5.11.2</oval:schema_version>
+      <oval:timestamp>2025-06-24T15:28:57.205Z</oval:timestamp>
+   </generator>
+   <definitions>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6790626" version="1">
+         <metadata>
+            <title>Ensure that the kubelet-config.json file permissions are set to 644 or more restrictive</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.1.1_Ensure_that_the_kubelet-config.json_file_permissions_are_set_to_644_or_more_restrictive" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.1.1_Ensure_that_the_kubelet-config.json_file_permissions_are_set_to_644_or_more_restrictive"></reference>
+            <description>Ensure that the kubelet-config.json file permissions are set to 644 or more restrictive</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6790626"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6790633" version="1">
+         <metadata>
+            <title>Ensure that the kubelet-config.json file ownership is set to root:root</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.1.2_Ensure_that_the_kubelet-config.json_file_ownership_is_set_to_rootroot" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.1.2_Ensure_that_the_kubelet-config.json_file_ownership_is_set_to_rootroot"></reference>
+            <description>Ensure that the kubelet-config.json file ownership is set to root:root</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6790633"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6790634" version="1">
+         <metadata>
+            <title>Ensure that the kubelet configuration file has permissions set to 644 or more restrictive</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.1.3_Ensure_that_the_kubelet_configuration_file_has_permissions_set_to_644_or_more_restrictive" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.1.3_Ensure_that_the_kubelet_configuration_file_has_permissions_set_to_644_or_more_restrictive"></reference>
+            <description>Ensure that the kubelet configuration file has permissions set to 644 or more restrictive</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6790634"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6790648" version="1">
+         <metadata>
+            <title>Ensure that the kubelet configuration file ownership is set to root:root</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.1.4_Ensure_that_the_kubelet_configuration_file_ownership_is_set_to_rootroot" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.1.4_Ensure_that_the_kubelet_configuration_file_ownership_is_set_to_rootroot"></reference>
+            <description>Ensure that the kubelet configuration file ownership is set to root:root</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6790648"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6790637" version="1">
+         <metadata>
+            <title>Ensure that the cluster-admin role is only used where required</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.1.1_Ensure_that_the_cluster-admin_role_is_only_used_where_required" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.1.1_Ensure_that_the_cluster-admin_role_is_only_used_where_required"></reference>
+            <description>Ensure that the cluster-admin role is only used where required</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6790637"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6790638" version="1">
+         <metadata>
+            <title>Minimize access to secrets</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.1.2_Minimize_access_to_secrets" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.1.2_Minimize_access_to_secrets"></reference>
+            <description>Minimize access to secrets</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6790638"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6790640" version="1">
+         <metadata>
+            <title>Minimize wildcard use in Roles and ClusterRoles</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.1.3_Minimize_wildcard_use_in_Roles_and_ClusterRoles" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.1.3_Minimize_wildcard_use_in_Roles_and_ClusterRoles"></reference>
+            <description>Minimize wildcard use in Roles and ClusterRoles</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6790640"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6790641" version="1">
+         <metadata>
+            <title>Minimize wildcard use in Roles and ClusterRoles</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.1.3_Minimize_wildcard_use_in_Roles_and_ClusterRoles" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.1.3_Minimize_wildcard_use_in_Roles_and_ClusterRoles"></reference>
+            <description>Minimize wildcard use in Roles and ClusterRoles</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6790641"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6790644" version="1">
+         <metadata>
+            <title>Minimize access to create pods</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.1.4_Minimize_access_to_create_pods" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.1.4_Minimize_access_to_create_pods"></reference>
+            <description>Minimize access to create pods</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6790644"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6790647" version="1">
+         <metadata>
+            <title>Ensure that default service accounts are not actively used.</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.1.5_Ensure_that_default_service_accounts_are_not_actively_used." ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.1.5_Ensure_that_default_service_accounts_are_not_actively_used."></reference>
+            <description>Ensure that default service accounts are not actively used.</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6790647"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6790650" version="1">
+         <metadata>
+            <title>Ensure that Service Account Tokens are only mounted where necessary</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.1.6_Ensure_that_Service_Account_Tokens_are_only_mounted_where_necessary" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.1.6_Ensure_that_Service_Account_Tokens_are_only_mounted_where_necessary"></reference>
+            <description>Ensure that Service Account Tokens are only mounted where necessary</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6790650"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6790653" version="1">
+         <metadata>
+            <title>Ensure that Service Account Tokens are only mounted where necessary</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.1.6_Ensure_that_Service_Account_Tokens_are_only_mounted_where_necessary" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.1.6_Ensure_that_Service_Account_Tokens_are_only_mounted_where_necessary"></reference>
+            <description>Ensure that Service Account Tokens are only mounted where necessary</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6790653"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6790655" version="1">
+         <metadata>
+            <title>Minimize the admission of privileged containers</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.2.1_Minimize_the_admission_of_privileged_containers" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.2.1_Minimize_the_admission_of_privileged_containers"></reference>
+            <description>Minimize the admission of privileged containers</description>
+         </metadata>
+         <criteria negate="true" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6790655"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6790658" version="1">
+         <metadata>
+            <title>Minimize the admission of containers wishing to share the host process ID namespace</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.2.2_Minimize_the_admission_of_containers_wishing_to_share_the_host_process_ID_namespace" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.2.2_Minimize_the_admission_of_containers_wishing_to_share_the_host_process_ID_namespace"></reference>
+            <description>Minimize the admission of containers wishing to share the host process ID namespace</description>
+         </metadata>
+         <criteria negate="true" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6790658"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6790660" version="1">
+         <metadata>
+            <title>Minimize the admission of containers wishing to share the host IPC namespace</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.2.3_Minimize_the_admission_of_containers_wishing_to_share_the_host_IPC_namespace" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.2.3_Minimize_the_admission_of_containers_wishing_to_share_the_host_IPC_namespace"></reference>
+            <description>Minimize the admission of containers wishing to share the host IPC namespace</description>
+         </metadata>
+         <criteria negate="true" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6790660"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6790662" version="1">
+         <metadata>
+            <title>Minimize the admission of containers wishing to share the host network namespace</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.2.4_Minimize_the_admission_of_containers_wishing_to_share_the_host_network_namespace" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.2.4_Minimize_the_admission_of_containers_wishing_to_share_the_host_network_namespace"></reference>
+            <description>Minimize the admission of containers wishing to share the host network namespace</description>
+         </metadata>
+         <criteria negate="true" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6790662"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6790663" version="1">
+         <metadata>
+            <title>Minimize the admission of containers with allowPrivilegeEscalation</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.2.5_Minimize_the_admission_of_containers_with_allowPrivilegeEscalation" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.2.5_Minimize_the_admission_of_containers_with_allowPrivilegeEscalation"></reference>
+            <description>Minimize the admission of containers with allowPrivilegeEscalation</description>
+         </metadata>
+         <criteria negate="true" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6790663"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6790665" version="1">
+         <metadata>
+            <title>Ensure latest CNI version is used</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.3.1_Ensure_latest_CNI_version_is_used" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.3.1_Ensure_latest_CNI_version_is_used"></reference>
+            <description>Ensure latest CNI version is used</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6790665"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6790667" version="1">
+         <metadata>
+            <title>Ensure that all Namespaces have Network Policies defined</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.3.2_Ensure_that_all_Namespaces_have_Network_Policies_defined" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.3.2_Ensure_that_all_Namespaces_have_Network_Policies_defined"></reference>
+            <description>Ensure that all Namespaces have Network Policies defined</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6790667"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6790668" version="1">
+         <metadata>
+            <title>Prefer using secrets as files over secrets as environment variables</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.4.1_Prefer_using_secrets_as_files_over_secrets_as_environment_variables" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.4.1_Prefer_using_secrets_as_files_over_secrets_as_environment_variables"></reference>
+            <description>Prefer using secrets as files over secrets as environment variables</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6790668"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6790670" version="1">
+         <metadata>
+            <title>The default namespace should not be used</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.5.3_The_default_namespace_should_not_be_used" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.5.3_The_default_namespace_should_not_be_used"></reference>
+            <description>The default namespace should not be used</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6790670"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6790671" version="1">
+         <metadata>
+            <title>The default namespace should not be used</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.5.3_The_default_namespace_should_not_be_used" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.5.3_The_default_namespace_should_not_be_used"></reference>
+            <description>The default namespace should not be used</description>
+         </metadata>
+         <criteria negate="true" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6790671"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6790645" version="1">
+         <metadata>
+            <title>Prefer using dedicated Service Accounts</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.2.1_Prefer_using_dedicated_Service_Accounts" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.2.1_Prefer_using_dedicated_Service_Accounts"></reference>
+            <description>Prefer using dedicated Service Accounts</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6790645"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6790649" version="1">
+         <metadata>
+            <title>Restrict Access to the Control Plane Endpoint</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.4.1_Restrict_Access_to_the_Control_Plane_Endpoint" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.4.1_Restrict_Access_to_the_Control_Plane_Endpoint"></reference>
+            <description>Restrict Access to the Control Plane Endpoint</description>
+         </metadata>
+         <criteria negate="true" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6790649"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6790652" version="1">
+         <metadata>
+            <title>Ensure clusters are created with Private Endpoint Enabled and Public Access Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.4.2_Ensure_clusters_are_created_with_Private_Endpoint_Enabled_and_Public_Access_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.4.2_Ensure_clusters_are_created_with_Private_Endpoint_Enabled_and_Public_Access_Disabled"></reference>
+            <description>Ensure clusters are created with Private Endpoint Enabled and Public Access Disabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6790652"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6790654" version="1">
+         <metadata>
+            <title>Ensure clusters are created with Private Endpoint Enabled and Public Access Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.4.2_Ensure_clusters_are_created_with_Private_Endpoint_Enabled_and_Public_Access_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.4.2_Ensure_clusters_are_created_with_Private_Endpoint_Enabled_and_Public_Access_Disabled"></reference>
+            <description>Ensure clusters are created with Private Endpoint Enabled and Public Access Disabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6790654"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6790656" version="1">
+         <metadata>
+            <title>Ensure clusters are created with Private Nodes</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.4.3_Ensure_clusters_are_created_with_Private_Nodes" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.4.3_Ensure_clusters_are_created_with_Private_Nodes"></reference>
+            <description>Ensure clusters are created with Private Nodes</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6790656"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6790659" version="1">
+         <metadata>
+            <title>Ensure Network Policy is Enabled and set as appropriate</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.4.4_Ensure_Network_Policy_is_Enabled_and_set_as_appropriate" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.4.4_Ensure_Network_Policy_is_Enabled_and_set_as_appropriate"></reference>
+            <description>Ensure Network Policy is Enabled and set as appropriate</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6790659"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6790664" version="1">
+         <metadata>
+            <title>Ensure that the --read-only-port argument is set to 0</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.2.4_Ensure_that_the_--read-only-port_argument_is_set_to_0" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.2.4_Ensure_that_the_--read-only-port_argument_is_set_to_0"></reference>
+            <description>Ensure that the --read-only-port argument is set to 0</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6790664"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6790666" version="1">
+         <metadata>
+            <title>Ensure that the --read-only-port argument is set to 0</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.2.4_Ensure_that_the_--read-only-port_argument_is_set_to_0" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.2.4_Ensure_that_the_--read-only-port_argument_is_set_to_0"></reference>
+            <description>Ensure that the --read-only-port argument is set to 0</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6790666"></criterion>
+         </criteria>
+      </definition>
+   </definitions>
+   <tests>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'for node in $(kubectl get nodes -o jsonpath='{.items[*].metadata.name}'); do kubectl exec -it file-check -- stat -c %a /host/var/lib/kubelet/oke_kubelet_conf.json; done' output Pattern Match '\b(?:000|400|444|600|640|644)\b' (string)" id="oval:org.cisecurity.benchmarks:tst:6790626" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6790626"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6790626"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'for node in $(kubectl get nodes -o jsonpath='{.items[*].metadata.name}'); do kubectl exec -it file-check -- stat -c %a /host/var/lib/kubelet/oke_kubelet_conf.json; done' output Pattern Match 'root:root' (string)" id="oval:org.cisecurity.benchmarks:tst:6790633" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6790633"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6790633"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'for node in $(kubectl get nodes -o jsonpath='{.items[*].metadata.name}'); do kubectl exec -it file-check -- stat -c %a /host/etc/kubernetes/kubelet.conf; done' output Pattern Match '\b(?:000|400|444|600|640|644)\b' (string)" id="oval:org.cisecurity.benchmarks:tst:6790634" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6790634"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6790634"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'for node in $(kubectl get nodes -o jsonpath='{.items[*].metadata.name}'); do kubectl exec -it file-check -- stat -c %a /host/etc/kubernetes/kubelet.conf; done' output Pattern Match 'root:root' (string)" id="oval:org.cisecurity.benchmarks:tst:6790648" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6790648"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6790648"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'kubectl get clusterrolebindings -o=wide' output Pattern Match 'cluster-admin' (string)" id="oval:org.cisecurity.benchmarks:tst:6790637" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6790637"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6790637"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'kubectl auth can-i get,list,watch secrets --all-namespaces --as=system:authenticated' output Pattern Match 'no' (string)" id="oval:org.cisecurity.benchmarks:tst:6790638" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6790638"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6790638"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'kubectl get roles --all-namespaces -o yaml' output Pattern Match '&quot;*&quot;' (string)" id="oval:org.cisecurity.benchmarks:tst:6790640" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6790640"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6790640"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'kubectl get clusterroles -o yaml' output Pattern Match '&quot;*&quot;' (string)" id="oval:org.cisecurity.benchmarks:tst:6790641" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6790641"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6790641"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'kubectl auth can-i create pods --all-namespaces --as=system:authenticated' output Pattern Match 'no' (string)" id="oval:org.cisecurity.benchmarks:tst:6790644" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6790644"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6790644"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'kubectl get serviceaccounts/default -o yaml' output Pattern Match 'automountServiceAccountToken.*false' (string)" id="oval:org.cisecurity.benchmarks:tst:6790647" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6790647"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6790647"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'kubectl get serviceaccounts/$SERVICE_ACCOUNT -o yaml' output Pattern Match 'automountServiceAccountToken.*false' (string)" id="oval:org.cisecurity.benchmarks:tst:6790650" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6790650"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6790650"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'kubectl get pods/$POD -o yaml' output Pattern Match 'automountServiceAccountToken.*false' (string)" id="oval:org.cisecurity.benchmarks:tst:6790653" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6790653"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6790653"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'kubectl get pods --all-namespaces -o json | jq '.items[] | select(.metadata.namespace != &quot;kube-system&quot; and .spec.containers[]?.securityContext?.privileged == true) | {pod: .metadata.name, namespace: .metadata.namespace, container: .spec.containers" id="oval:org.cisecurity.benchmarks:tst:6790655" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6790655"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6790655"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'kubectl get pods --all-namespaces -o json | jq '.items[] | select(.metadata.namespace != &quot;kube-system&quot; and .spec.hostPID == true) | {pod: .metadata.name, namespace: .metadata.namespace, container: .spec.containers[].name}'' output Pattern Match '." id="oval:org.cisecurity.benchmarks:tst:6790658" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6790658"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6790658"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'kubectl get pods --all-namespaces -o json | jq '.items[] | select(.metadata.namespace != &quot;kube-system&quot; and .spec.hostIPC == true) | {pod: .metadata.name, namespace: .metadata.namespace, container: .spec.containers[].name}'' output Pattern Match '." id="oval:org.cisecurity.benchmarks:tst:6790660" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6790660"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6790660"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'kubectl get pods --all-namespaces -o json | jq '.items[] | select(.metadata.namespace != &quot;kube-system&quot; and .spec.hostNetwork == true) | {pod: .metadata.name, namespace: .metadata.namespace, container: .spec.containers[].name}'' output Pattern Matc" id="oval:org.cisecurity.benchmarks:tst:6790662" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6790662"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6790662"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'kubectl get pods --all-namespaces -o json | jq '.items[] | select(.metadata.namespace != &quot;kube-system&quot; and .spec.containers[]?.securityContext.allowPrivilegeEscalation == true) | {pod: .metadata.name, namespace: .metadata.namespace, container: .sp" id="oval:org.cisecurity.benchmarks:tst:6790663" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6790663"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6790663"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'kubectl get daemonset -n kube-system' output Pattern Match '.+' (string)" id="oval:org.cisecurity.benchmarks:tst:6790665" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6790665"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6790665"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'kubectl get networkpolicy --all-namespaces' output Pattern Match '.+' (string)" id="oval:org.cisecurity.benchmarks:tst:6790667" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6790667"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6790667"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'kubectl get all -o jsonpath='{range .items[?(@..secretKeyRef)]} {.kind} {.metadata.name} {&quot;\n&quot;}{end}' -A' output Null Test '' ()" id="oval:org.cisecurity.benchmarks:tst:6790668" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6790668"></object>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'kubectl get all -n default' output Pattern Match 'service\/kubernetes' (string)" id="oval:org.cisecurity.benchmarks:tst:6790670" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6790670"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6790670"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'kubectl get pods -n default' output Pattern Not Match '.+' (string)" id="oval:org.cisecurity.benchmarks:tst:6790671" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6790671"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6790671"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'kubectl get serviceaccounts/$SERVICE_ACCOUNT -o yaml' output Pattern Match 'automountServiceAccountToken.*false' (string)" id="oval:org.cisecurity.benchmarks:tst:6790645" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6790645"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6790645"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'oci ce cluster get --cluster-id $OKE_CLUSTERID' output Pattern Not Match 'endpoints.*\n.*kubernetes.*null' (string)" id="oval:org.cisecurity.benchmarks:tst:6790649" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6790649"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6790649"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'oci ce cluster get --cluster-id ${OKE_CLUSTERID=}' output Pattern Match 'private-endpoint.*\d' (string)" id="oval:org.cisecurity.benchmarks:tst:6790652" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6790652"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6790652"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'oci ce cluster get --cluster-id ${OKE_CLUSTERID=}' output Pattern Match 'is-public-ip-enabled&quot;: false' (string)" id="oval:org.cisecurity.benchmarks:tst:6790654" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6790654"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6790654"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'oci ce node-pool get --node-pool-id ${OKE_NODEPOOLID=}' output Pattern Match 'private-ip.*\d' (string)" id="oval:org.cisecurity.benchmarks:tst:6790656" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6790656"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6790656"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'networkPolicyConfig.*\n.*isEnabled.*true' output Pattern Not Match 'networkPolicyConfig.*\n.*isEnabled.*true' (string)" id="oval:org.cisecurity.benchmarks:tst:6790659" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6790659"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6790659"></state>
+      </shellcommand_test>
+      <process58_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="at_least_one_exists" comment="No Title" id="oval:org.cisecurity.benchmarks:tst:6790664" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6790664"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6790664"></state>
+      </process58_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/systemd/system/kubelet.service.d/10-kubeadm.conf exists and matches pattern ^.*KUBELET_SYSTEM_PODS_ARGS.+--read-only-port=0.+$" id="oval:org.cisecurity.benchmarks:tst:6790666" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6790666"></object>
+      </textfilecontent54_test>
+   </tests>
+   <objects>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'for node in $(kubectl get nodes -o jsonpath='{.items[*].metadata.name}'); do kubectl exec -it file-check -- stat -c %a /host/var/lib/kubelet/oke_kubelet_conf.json; done' output Pattern Match '\b(?:000|400|444|600|640|644)\b' (string)" id="oval:org.cisecurity.benchmarks:obj:6790626" version="1">
+         <command>for node in $(kubectl get nodes -o jsonpath='{.items[*].metadata.name}'); do kubectl exec -it file-check -- stat -c %a /host/etc/kubernetes/kubelet-config.json; done</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'for node in $(kubectl get nodes -o jsonpath='{.items[*].metadata.name}'); do kubectl exec -it file-check -- stat -c %a /host/var/lib/kubelet/oke_kubelet_conf.json; done' output Pattern Match 'root:root' (string)" id="oval:org.cisecurity.benchmarks:obj:6790633" version="1">
+         <command>for node in $(kubectl get nodes -o jsonpath='{.items[*].metadata.name}'); do kubectl exec -it file-check -- stat -c %U:%G /host/etc/kubernetes/kubelet-config.json; done</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'for node in $(kubectl get nodes -o jsonpath='{.items[*].metadata.name}'); do kubectl exec -it file-check -- stat -c %a /host/etc/kubernetes/kubelet.conf; done' output Pattern Match '\b(?:000|400|444|600|640|644)\b' (string)" id="oval:org.cisecurity.benchmarks:obj:6790634" version="1">
+         <command>for node in $(kubectl get nodes -o jsonpath='{.items[*].metadata.name}'); do kubectl exec -it file-check -- stat -c %a /host/etc/kubernetes/kubelet.conf; done</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'for node in $(kubectl get nodes -o jsonpath='{.items[*].metadata.name}'); do kubectl exec -it file-check -- stat -c %a /host/etc/kubernetes/kubelet.conf; done' output Pattern Match 'root:root' (string)" id="oval:org.cisecurity.benchmarks:obj:6790648" version="1">
+         <command>for node in $(kubectl get nodes -o jsonpath='{.items[*].metadata.name}'); do kubectl exec -it file-check -- stat -c %U:%G /host/etc/kubernetes/kubelet.conf; done</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get clusterrolebindings -o=wide' output Pattern Match 'cluster-admin' (string)" id="oval:org.cisecurity.benchmarks:obj:6790637" version="1">
+         <command>kubectl get clusterrolebindings -o json</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl auth can-i get,list,watch secrets --all-namespaces --as=system:authenticated' output Pattern Match 'no' (string)" id="oval:org.cisecurity.benchmarks:obj:6790638" version="1">
+         <command>kubectl auth can-i get,list,watch secrets --all-namespaces --as=system:authenticated</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get roles --all-namespaces -o yaml' output Pattern Match '&quot;*&quot;' (string)" id="oval:org.cisecurity.benchmarks:obj:6790640" version="1">
+         <command>kubectl get roles --all-namespaces -o yaml</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get clusterroles -o yaml' output Pattern Match '&quot;*&quot;' (string)" id="oval:org.cisecurity.benchmarks:obj:6790641" version="1">
+         <command>kubectl get clusterroles -o yaml</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl auth can-i create pods --all-namespaces --as=system:authenticated' output Pattern Match 'no' (string)" id="oval:org.cisecurity.benchmarks:obj:6790644" version="1">
+         <command>kubectl auth can-i create pods --all-namespaces --as=system:authenticated</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get serviceaccounts/default -o yaml' output Pattern Match 'automountServiceAccountToken.*false' (string)" id="oval:org.cisecurity.benchmarks:obj:6790647" version="1">
+         <command>kubectl get serviceaccounts/$SERVICE_ACCOUNT -o yaml</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get serviceaccounts/$SERVICE_ACCOUNT -o yaml' output Pattern Match 'automountServiceAccountToken.*false' (string)" id="oval:org.cisecurity.benchmarks:obj:6790650" version="1">
+         <command>kubectl get serviceaccounts/$SERVICE_ACCOUNT -o yaml</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get pods/$POD -o yaml' output Pattern Match 'automountServiceAccountToken.*false' (string)" id="oval:org.cisecurity.benchmarks:obj:6790653" version="1">
+         <command>kubectl get pods/$POD -o yaml</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get pods --all-namespaces -o json | jq '.items[] | select(.metadata.namespace != &quot;kube-system&quot; and .spec.containers[]?.securityContext?.privileged == true) | {pod: .metadata.name, namespace: .metadata.namespace, container: .spec.containers" id="oval:org.cisecurity.benchmarks:obj:6790655" version="1">
+         <command>kubectl get pods --all-namespaces -o json | jq '.items[] | select(.metadata.namespace != "kube-system" and .spec.containers[]?.securityContext?.privileged == true) | {pod: .metadata.name, namespace: .metadata.namespace, container: .spec.containers[].name}'</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get pods --all-namespaces -o json | jq '.items[] | select(.metadata.namespace != &quot;kube-system&quot; and .spec.hostPID == true) | {pod: .metadata.name, namespace: .metadata.namespace, container: .spec.containers[].name}'' output Pattern Match '." id="oval:org.cisecurity.benchmarks:obj:6790658" version="1">
+         <command>kubectl get pods --all-namespaces -o json | jq '.items[] | select(.metadata.namespace != "kube-system" and .spec.hostPID == true) | {pod: .metadata.name, namespace: .metadata.namespace, container: .spec.containers[].name}'</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get pods --all-namespaces -o json | jq '.items[] | select(.metadata.namespace != &quot;kube-system&quot; and .spec.hostIPC == true) | {pod: .metadata.name, namespace: .metadata.namespace, container: .spec.containers[].name}'' output Pattern Match '." id="oval:org.cisecurity.benchmarks:obj:6790660" version="1">
+         <command>kubectl get pods --all-namespaces -o json | jq '.items[] | select(.metadata.namespace != "kube-system" and .spec.hostIPC == true) | {pod: .metadata.name, namespace: .metadata.namespace, container: .spec.containers[].name}'</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get pods --all-namespaces -o json | jq '.items[] | select(.metadata.namespace != &quot;kube-system&quot; and .spec.hostNetwork == true) | {pod: .metadata.name, namespace: .metadata.namespace, container: .spec.containers[].name}'' output Pattern Matc" id="oval:org.cisecurity.benchmarks:obj:6790662" version="1">
+         <command>kubectl get pods --all-namespaces -o json | jq '.items[] | select(.metadata.namespace != "kube-system" and .spec.hostNetwork == true) | {pod: .metadata.name, namespace: .metadata.namespace, container: .spec.containers[].name}'</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get pods --all-namespaces -o json | jq '.items[] | select(.metadata.namespace != &quot;kube-system&quot; and .spec.containers[]?.securityContext.allowPrivilegeEscalation == true) | {pod: .metadata.name, namespace: .metadata.namespace, container: .sp" id="oval:org.cisecurity.benchmarks:obj:6790663" version="1">
+         <command>kubectl get pods --all-namespaces -o json | jq '.items[] | select(.metadata.namespace != "kube-system" and .spec.containers[]?.securityContext.allowPrivilegeEscalation == true) | {pod: .metadata.name, namespace: .metadata.namespace, container: .spec.containers[].name}'</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get daemonset -n kube-system' output Pattern Match '.+' (string)" id="oval:org.cisecurity.benchmarks:obj:6790665" version="1">
+         <command>kubectl get daemonset -n kube-system</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get networkpolicy --all-namespaces' output Pattern Match '.+' (string)" id="oval:org.cisecurity.benchmarks:obj:6790667" version="1">
+         <command>kubectl get networkpolicy --all-namespaces</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get all -o jsonpath='{range .items[?(@..secretKeyRef)]} {.kind} {.metadata.name} {&quot;\n&quot;}{end}' -A' output Null Test '' ()" id="oval:org.cisecurity.benchmarks:obj:6790668" version="1">
+         <command>kubectl get all -o jsonpath='{range .items[?(@..secretKeyRef)]} {.kind} {.metadata.name} {"\n"}{end}' -A</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get all -n default' output Pattern Match 'service\/kubernetes' (string)" id="oval:org.cisecurity.benchmarks:obj:6790670" version="1">
+         <command>kubectl get all -n default</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get pods -n default' output Pattern Not Match '.+' (string)" id="oval:org.cisecurity.benchmarks:obj:6790671" version="1">
+         <command>kubectl get pods -n default</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get serviceaccounts/$SERVICE_ACCOUNT -o yaml' output Pattern Match 'automountServiceAccountToken.*false' (string)" id="oval:org.cisecurity.benchmarks:obj:6790645" version="1">
+         <command>kubectl get serviceaccounts/$SERVICE_ACCOUNT -o yaml</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'oci ce cluster get --cluster-id $OKE_CLUSTERID' output Pattern Not Match 'endpoints.*\n.*kubernetes.*null' (string)" id="oval:org.cisecurity.benchmarks:obj:6790649" version="1">
+         <command>oci ce cluster get --cluster-id $OKE_CLUSTERID</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'oci ce cluster get --cluster-id ${OKE_CLUSTERID=}' output Pattern Match 'private-endpoint.*\d' (string)" id="oval:org.cisecurity.benchmarks:obj:6790652" version="1">
+         <command>oci ce cluster get --cluster-id $OKE_CLUSTERID</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'oci ce cluster get --cluster-id ${OKE_CLUSTERID=}' output Pattern Match 'is-public-ip-enabled&quot;: false' (string)" id="oval:org.cisecurity.benchmarks:obj:6790654" version="1">
+         <command>oci ce cluster get --cluster-id $OKE_CLUSTERID</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'oci ce node-pool get --node-pool-id ${OKE_NODEPOOLID=}' output Pattern Match 'private-ip.*\d' (string)" id="oval:org.cisecurity.benchmarks:obj:6790656" version="1">
+         <command>oci ce node-pool get --node-pool-id ${OKE_NODEPOOLID=}</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'networkPolicyConfig.*\n.*isEnabled.*true' output Pattern Not Match 'networkPolicyConfig.*\n.*isEnabled.*true' (string)" id="oval:org.cisecurity.benchmarks:obj:6790659" version="1">
+         <command>oci ce cluster get --cluster-id $OKE_CLUSTERID</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <process58_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="No Title" id="oval:org.cisecurity.benchmarks:obj:6790664" version="1">
+         <command_line operation="pattern match">kubelet</command_line>
+         <pid datatype="int" operation="greater than">0</pid>
+      </process58_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/systemd/system/kubelet.service.d/10-kubeadm.conf exists and matches pattern ^.*KUBELET_SYSTEM_PODS_ARGS.+--read-only-port=0.+$" id="oval:org.cisecurity.benchmarks:obj:6790666" version="1">
+         <filepath>/etc/systemd/system/kubelet.service.d/10-kubeadm.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^.*KUBELET_SYSTEM_PODS_ARGS.+--read-only-port=0.+$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+   </objects>
+   <states>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'for node in $(kubectl get nodes -o jsonpath='{.items[*].metadata.name}'); do kubectl exec -it file-check -- stat -c %a /host/var/lib/kubelet/oke_kubelet_conf.json; done' output Pattern Match '\b(?:000|400|444|600|640|644)\b' (string)" id="oval:org.cisecurity.benchmarks:ste:6790626" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6790626"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'for node in $(kubectl get nodes -o jsonpath='{.items[*].metadata.name}'); do kubectl exec -it file-check -- stat -c %a /host/var/lib/kubelet/oke_kubelet_conf.json; done' output Pattern Match 'root:root' (string)" id="oval:org.cisecurity.benchmarks:ste:6790633" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6790633"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'for node in $(kubectl get nodes -o jsonpath='{.items[*].metadata.name}'); do kubectl exec -it file-check -- stat -c %a /host/etc/kubernetes/kubelet.conf; done' output Pattern Match '\b(?:000|400|444|600|640|644)\b' (string)" id="oval:org.cisecurity.benchmarks:ste:6790634" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6790634"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'for node in $(kubectl get nodes -o jsonpath='{.items[*].metadata.name}'); do kubectl exec -it file-check -- stat -c %a /host/etc/kubernetes/kubelet.conf; done' output Pattern Match 'root:root' (string)" id="oval:org.cisecurity.benchmarks:ste:6790648" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6790648"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get clusterrolebindings -o=wide' output Pattern Match 'cluster-admin' (string)" id="oval:org.cisecurity.benchmarks:ste:6790637" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6790637"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl auth can-i get,list,watch secrets --all-namespaces --as=system:authenticated' output Pattern Match 'no' (string)" id="oval:org.cisecurity.benchmarks:ste:6790638" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6790638"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get roles --all-namespaces -o yaml' output Pattern Match '&quot;*&quot;' (string)" id="oval:org.cisecurity.benchmarks:ste:6790640" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6790640"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get clusterroles -o yaml' output Pattern Match '&quot;*&quot;' (string)" id="oval:org.cisecurity.benchmarks:ste:6790641" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6790641"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl auth can-i create pods --all-namespaces --as=system:authenticated' output Pattern Match 'no' (string)" id="oval:org.cisecurity.benchmarks:ste:6790644" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6790644"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get serviceaccounts/default -o yaml' output Pattern Match 'automountServiceAccountToken.*false' (string)" id="oval:org.cisecurity.benchmarks:ste:6790647" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6790647"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get serviceaccounts/$SERVICE_ACCOUNT -o yaml' output Pattern Match 'automountServiceAccountToken.*false' (string)" id="oval:org.cisecurity.benchmarks:ste:6790650" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6790650"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get pods/$POD -o yaml' output Pattern Match 'automountServiceAccountToken.*false' (string)" id="oval:org.cisecurity.benchmarks:ste:6790653" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6790653"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get pods --all-namespaces -o json | jq '.items[] | select(.metadata.namespace != &quot;kube-system&quot; and .spec.containers[]?.securityContext?.privileged == true) | {pod: .metadata.name, namespace: .metadata.namespace, container: .spec.containers" id="oval:org.cisecurity.benchmarks:ste:6790655" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6790655"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get pods --all-namespaces -o json | jq '.items[] | select(.metadata.namespace != &quot;kube-system&quot; and .spec.hostPID == true) | {pod: .metadata.name, namespace: .metadata.namespace, container: .spec.containers[].name}'' output Pattern Match '." id="oval:org.cisecurity.benchmarks:ste:6790658" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6790658"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get pods --all-namespaces -o json | jq '.items[] | select(.metadata.namespace != &quot;kube-system&quot; and .spec.hostIPC == true) | {pod: .metadata.name, namespace: .metadata.namespace, container: .spec.containers[].name}'' output Pattern Match '." id="oval:org.cisecurity.benchmarks:ste:6790660" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6790660"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get pods --all-namespaces -o json | jq '.items[] | select(.metadata.namespace != &quot;kube-system&quot; and .spec.hostNetwork == true) | {pod: .metadata.name, namespace: .metadata.namespace, container: .spec.containers[].name}'' output Pattern Matc" id="oval:org.cisecurity.benchmarks:ste:6790662" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6790662"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get pods --all-namespaces -o json | jq '.items[] | select(.metadata.namespace != &quot;kube-system&quot; and .spec.containers[]?.securityContext.allowPrivilegeEscalation == true) | {pod: .metadata.name, namespace: .metadata.namespace, container: .sp" id="oval:org.cisecurity.benchmarks:ste:6790663" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6790663"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get daemonset -n kube-system' output Pattern Match '.+' (string)" id="oval:org.cisecurity.benchmarks:ste:6790665" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6790665"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get networkpolicy --all-namespaces' output Pattern Match '.+' (string)" id="oval:org.cisecurity.benchmarks:ste:6790667" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6790667"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get all -n default' output Pattern Match 'service\/kubernetes' (string)" id="oval:org.cisecurity.benchmarks:ste:6790670" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6790670"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get pods -n default' output Pattern Not Match '.+' (string)" id="oval:org.cisecurity.benchmarks:ste:6790671" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6790671"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'kubectl get serviceaccounts/$SERVICE_ACCOUNT -o yaml' output Pattern Match 'automountServiceAccountToken.*false' (string)" id="oval:org.cisecurity.benchmarks:ste:6790645" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6790645"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'oci ce cluster get --cluster-id $OKE_CLUSTERID' output Pattern Not Match 'endpoints.*\n.*kubernetes.*null' (string)" id="oval:org.cisecurity.benchmarks:ste:6790649" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6790649"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'oci ce cluster get --cluster-id ${OKE_CLUSTERID=}' output Pattern Match 'private-endpoint.*\d' (string)" id="oval:org.cisecurity.benchmarks:ste:6790652" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6790652"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'oci ce cluster get --cluster-id ${OKE_CLUSTERID=}' output Pattern Match 'is-public-ip-enabled&quot;: false' (string)" id="oval:org.cisecurity.benchmarks:ste:6790654" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6790654"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'oci ce node-pool get --node-pool-id ${OKE_NODEPOOLID=}' output Pattern Match 'private-ip.*\d' (string)" id="oval:org.cisecurity.benchmarks:ste:6790656" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6790656"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'networkPolicyConfig.*\n.*isEnabled.*true' output Pattern Not Match 'networkPolicyConfig.*\n.*isEnabled.*true' (string)" id="oval:org.cisecurity.benchmarks:ste:6790659" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6790659"></stdout_line>
+      </shellcommand_state>
+      <process58_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="No Title" id="oval:org.cisecurity.benchmarks:ste:6790664" version="1">
+         <command_line datatype="string" operation="pattern match">--read-only-port=0</command_line>
+      </process58_state>
+   </states>
+   <variables>
+      <external_variable comment="This value is used in Rule: Ensure that the kubelet-config.json file permissions are set to 644 or more restrictive" datatype="string" id="oval:org.cisecurity.benchmarks:var:6790626" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure that the kubelet-config.json file ownership is set to root:root" datatype="string" id="oval:org.cisecurity.benchmarks:var:6790633" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure that the kubelet configuration file has permissions set to 644 or more restrictive" datatype="string" id="oval:org.cisecurity.benchmarks:var:6790634" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure that the kubelet configuration file ownership is set to root:root" datatype="string" id="oval:org.cisecurity.benchmarks:var:6790648" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure that the cluster-admin role is only used where required" datatype="string" id="oval:org.cisecurity.benchmarks:var:6790637" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Minimize access to secrets" datatype="string" id="oval:org.cisecurity.benchmarks:var:6790638" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Minimize wildcard use in Roles and ClusterRoles" datatype="string" id="oval:org.cisecurity.benchmarks:var:6790640" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Minimize wildcard use in Roles and ClusterRoles" datatype="string" id="oval:org.cisecurity.benchmarks:var:6790641" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Minimize access to create pods" datatype="string" id="oval:org.cisecurity.benchmarks:var:6790644" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure that default service accounts are not actively used." datatype="string" id="oval:org.cisecurity.benchmarks:var:6790647" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure that Service Account Tokens are only mounted where necessary" datatype="string" id="oval:org.cisecurity.benchmarks:var:6790650" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure that Service Account Tokens are only mounted where necessary" datatype="string" id="oval:org.cisecurity.benchmarks:var:6790653" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Minimize the admission of privileged containers" datatype="string" id="oval:org.cisecurity.benchmarks:var:6790655" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Minimize the admission of containers wishing to share the host process ID namespace" datatype="string" id="oval:org.cisecurity.benchmarks:var:6790658" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Minimize the admission of containers wishing to share the host IPC namespace" datatype="string" id="oval:org.cisecurity.benchmarks:var:6790660" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Minimize the admission of containers wishing to share the host network namespace" datatype="string" id="oval:org.cisecurity.benchmarks:var:6790662" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Minimize the admission of containers with allowPrivilegeEscalation" datatype="string" id="oval:org.cisecurity.benchmarks:var:6790663" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure latest CNI version is used" datatype="string" id="oval:org.cisecurity.benchmarks:var:6790665" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure that all Namespaces have Network Policies defined" datatype="string" id="oval:org.cisecurity.benchmarks:var:6790667" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: The default namespace should not be used" datatype="string" id="oval:org.cisecurity.benchmarks:var:6790670" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: The default namespace should not be used" datatype="string" id="oval:org.cisecurity.benchmarks:var:6790671" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Prefer using dedicated Service Accounts" datatype="string" id="oval:org.cisecurity.benchmarks:var:6790645" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Restrict Access to the Control Plane Endpoint" datatype="string" id="oval:org.cisecurity.benchmarks:var:6790649" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure clusters are created with Private Endpoint Enabled and Public Access Disabled" datatype="string" id="oval:org.cisecurity.benchmarks:var:6790652" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure clusters are created with Private Endpoint Enabled and Public Access Disabled" datatype="string" id="oval:org.cisecurity.benchmarks:var:6790654" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure clusters are created with Private Nodes" datatype="string" id="oval:org.cisecurity.benchmarks:var:6790656" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure Network Policy is Enabled and set as appropriate" datatype="string" id="oval:org.cisecurity.benchmarks:var:6790659" version="1"></external_variable>
+   </variables>
+<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+<ds:SignedInfo>
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"></ds:CanonicalizationMethod>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></ds:SignatureMethod>
+<ds:Reference URI="">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"></ds:Transform>
+<ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"></ds:Transform>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></ds:DigestMethod>
+<ds:DigestValue>aqWj3RnkfCDVR4VoO95Ha3s9O6WwTGP/KwDh79lI45Y=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue>
+LQBfKjk4DkjRtgylPTdipPU+2VFBpmBcIITgNvniXEgW3rbXrkrcdTl92qHWsmZflcSaHKRzAE//
+P9HNsEj4G80hjNv73B8UTiU+wu00oSIlQlbfIrBRxfwW9yfgyQpKGt5E3LCr12Sunwqlp2b6g+Fl
+xcAD5/QD7hr0ABmhu7vfAd3ZnMKyGT+Td4hr//6uKnhoVoCdEcOd54cr0pk5V8YiQ4CRlER+S2zX
+eX4boaFQe+ZsN2MRx5PC7KbjfVVBjDZWhqGcoDc8Bt6859cLCWDJJtD4eH9VaOR39h+MSC7A4S1r
+P+XVCRe94GhR9uDdIweUad9l2j2dJWnIk6iRIcfz5zZo2wVtMUcv0D40QaPePkvJpQUKIMbDylov
+rHFSVdDV7GVgnkUqziEV1NDsTXXcSYJAOT6e83eT/JUtI7oM0KGcLSssnp8XOmkvUeJcX0FN4Lxi
+b0VFiKMCvvnKGO1bX/l2xLTVcY1Z3nhnpfjelptfy9ntIqqpqgoC99IW
+</ds:SignatureValue>
+<ds:KeyInfo>
+<ds:X509Data>
+<ds:X509Certificate>
+MIIHbDCCBVSgAwIBAgIQCdceADCnzKkglkQGavVKYzANBgkqhkiG9w0BAQsFADBpMQswCQYDVQQG
+EwJVUzEXMBUGA1UEChMORGlnaUNlcnQsIEluYy4xQTA/BgNVBAMTOERpZ2lDZXJ0IFRydXN0ZWQg
+RzQgQ29kZSBTaWduaW5nIFJTQTQwOTYgU0hBMzg0IDIwMjEgQ0ExMB4XDTIzMTAxODAwMDAwMFoX
+DTI2MTAxODIzNTk1OVowgfQxEzARBgsrBgEEAYI3PAIBAxMCVVMxGTAXBgsrBgEEAYI3PAIBAhMI
+TWFyeWxhbmQxHTAbBgNVBA8MFFByaXZhdGUgT3JnYW5pemF0aW9uMRIwEAYDVQQFEwlEMDYwNTg4
+MTIxCzAJBgNVBAYTAlVTMREwDwYDVQQIEwhOZXcgWW9yazEXMBUGA1UEBxMORWFzdCBHcmVlbmJ1
+c2gxKjAoBgNVBAoTIUNlbnRlciBmb3IgSW50ZXJuZXQgU2VjdXJpdHksIEluYzEqMCgGA1UEAxMh
+Q2VudGVyIGZvciBJbnRlcm5ldCBTZWN1cml0eSwgSW5jMIIBojANBgkqhkiG9w0BAQEFAAOCAY8A
+MIIBigKCAYEAyZwTJr4Kb7QEDnVY3BEkPoS3fn+XoxhCTfFvlMk8zXDcR4pFMgPkXTrZ1KbENUIV
+skIhy1vmnh61vwSL0lcdzesCekKSxLqrEA4xunZk1MB5mLbHXchSSpI1co1vaSzJjkTYP1UsUVQz
+NoOzV0LNCoZdahjGTHSduWvbrHTEeD6/jvUj3AVWrTx6krzgYA3ozAxtUnapK7IrZERuGOSwTrgR
+Lr1aieQdFy8haW1YL+ks5HmLRvcoGp+J68GX/zfMTduvWxhcpXm4txKc4iJqGCRmyBU2XjGjpDBX
+ndxHgT4edRLz5PwWSeZUh8/tWOGFwnVw7njoOa0sFixy96H2BqEn+yPeRALyf59rjtPL66tsXuaA
+ilB63yqbH42mnkxHTX5zcEm337GzTOGRccsYzN/ApVuXDeMfsO+sSUosrimnxm9QTOyKcex5h1As
+rxBVfTw+Zf7jP1YRlmMlGPG1zffK2KjJhD6ivFi2sIDThEQLxIAC8XOjp2ZXvhx87yNTAgMBAAGj
+ggICMIIB/jAfBgNVHSMEGDAWgBRoN+Drtjv4XxGG+/5hewiIZfROQjAdBgNVHQ4EFgQUX2/J9FT5
+5BNF7JqfAl9SJkv3pf0wPQYDVR0gBDYwNDAyBgVngQwBAzApMCcGCCsGAQUFBwIBFhtodHRwOi8v
+d3d3LmRpZ2ljZXJ0LmNvbS9DUFMwDgYDVR0PAQH/BAQDAgeAMBMGA1UdJQQMMAoGCCsGAQUFBwMD
+MIG1BgNVHR8Ega0wgaowU6BRoE+GTWh0dHA6Ly9jcmwzLmRpZ2ljZXJ0LmNvbS9EaWdpQ2VydFRy
+dXN0ZWRHNENvZGVTaWduaW5nUlNBNDA5NlNIQTM4NDIwMjFDQTEuY3JsMFOgUaBPhk1odHRwOi8v
+Y3JsNC5kaWdpY2VydC5jb20vRGlnaUNlcnRUcnVzdGVkRzRDb2RlU2lnbmluZ1JTQTQwOTZTSEEz
+ODQyMDIxQ0ExLmNybDCBlAYIKwYBBQUHAQEEgYcwgYQwJAYIKwYBBQUHMAGGGGh0dHA6Ly9vY3Nw
+LmRpZ2ljZXJ0LmNvbTBcBggrBgEFBQcwAoZQaHR0cDovL2NhY2VydHMuZGlnaWNlcnQuY29tL0Rp
+Z2lDZXJ0VHJ1c3RlZEc0Q29kZVNpZ25pbmdSU0E0MDk2U0hBMzg0MjAyMUNBMS5jcnQwCQYDVR0T
+BAIwADANBgkqhkiG9w0BAQsFAAOCAgEASLOHf1FQ7TrGqEoVXYoeNSkRWdVCUGd1JCDs7Hb9sLd3
+eQuipZ4EorQS/9qMiVMhmlJfF75sNVQhr1K5UtjrDRFMTzYmh78hAyovowzgyVKdGFqiVVr5m+mb
+vVyglLlA4V076LMBaKRknm1Dt8r0/5GSRCrkP2origpYMMaocN+iBX9+MImnh3J1Ehn0nRUhW86Q
+mt3/YCVIaQZisv+KmOxyAq1m6fiIYIvXY+cH2dDIheoVteb/NjYnKVqE6xTpOsxF16pykXiM9yk3
+Q9nlJS36KEGRP4wrySU4eIBnTcv4mimZjkWj6bIvk8otNJ14FbyltaPwIc3dE3oPGfSmCrkxs73j
+iqBs2TXLvblEmOhY8ko3xVdTm0zMP50MQVO948fz9yF+xdnPdMPT1/lCmGp6iWYRzxnvEkA1+HFl
+yy9YztrM8WNAhXirpUZg3HWQE2ONLKMtqQrkIHD2nikda77flk6oirqDuCf8Q7g8s86/KabTdxrw
+pRmsRjDkAfKVae58ctaKbmF32oU9BGk+9MPG8HF5Yfoh12DE1fLZcPzZrROrDFJGGxwhv5FlnxGg
+6G7jKi68erZnpaOPayK0bXyZNunqkI9IbIuPqMw5qaCZZgN6AEHIbGTKdrWEf11DmR7MdTjv3/vu
+JWtIXgk3kQFX27w9JhqV6QogVmzIfEQ=
+</ds:X509Certificate>
+</ds:X509Data>
+<ds:KeyValue>
+<ds:RSAKeyValue>
+<ds:Modulus>yZwTJr4Kb7QEDnVY3BEkPoS3fn+XoxhCTfFvlMk8zXDcR4pFMgPkXTrZ1KbENUIVskIhy1vmnh61
+vwSL0lcdzesCekKSxLqrEA4xunZk1MB5mLbHXchSSpI1co1vaSzJjkTYP1UsUVQzNoOzV0LNCoZd
+ahjGTHSduWvbrHTEeD6/jvUj3AVWrTx6krzgYA3ozAxtUnapK7IrZERuGOSwTrgRLr1aieQdFy8h
+aW1YL+ks5HmLRvcoGp+J68GX/zfMTduvWxhcpXm4txKc4iJqGCRmyBU2XjGjpDBXndxHgT4edRLz
+5PwWSeZUh8/tWOGFwnVw7njoOa0sFixy96H2BqEn+yPeRALyf59rjtPL66tsXuaAilB63yqbH42m
+nkxHTX5zcEm337GzTOGRccsYzN/ApVuXDeMfsO+sSUosrimnxm9QTOyKcex5h1AsrxBVfTw+Zf7j
+P1YRlmMlGPG1zffK2KjJhD6ivFi2sIDThEQLxIAC8XOjp2ZXvhx87yNT</ds:Modulus>
+<ds:Exponent>AQAB</ds:Exponent>
+</ds:RSAKeyValue>
+</ds:KeyValue>
+</ds:KeyInfo>
+</ds:Signature></oval_definitions>

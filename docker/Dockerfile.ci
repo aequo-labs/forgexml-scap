@@ -1,0 +1,20 @@
+# CI/CD Build Image for forgexml-scap
+FROM golang:1.24-alpine
+
+# Install build dependencies
+RUN apk add --no-cache git make gcc musl-dev
+
+# Set working directory
+WORKDIR /app
+
+# Copy go.mod and go.sum first for better caching
+COPY go.mod go.sum* ./
+
+# Download dependencies
+RUN go mod download || true
+
+# Copy source code
+COPY . .
+
+# Default command runs tests
+CMD ["go", "test", "./..."]

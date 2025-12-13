@@ -1,0 +1,1459 @@
+<oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5 https://oval.cisecurity.org/schemas/validator-oval-definitions-5.11.2.xsd">
+   <generator>
+      <oval:product_name>Center for Internet Security - Optimus</oval:product_name>
+      <oval:schema_version>5.11.2</oval:schema_version>
+      <oval:timestamp>2024-07-31T21:55:40.981Z</oval:timestamp>
+   </generator>
+   <definitions>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:5765966" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Allow add-on installs from websites' is set to 'Disabled'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.1.1_L1_Ensure_Allow_add-on_installs_from_websites_is_set_to_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.1.1_L1_Ensure_Allow_add-on_installs_from_websites_is_set_to_Disabled"></reference>
+            <description>(L1) Ensure 'Allow add-on installs from websites' is set to 'Disabled'</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:5765966"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:5765967" version="1">
+         <metadata>
+            <title>(L1) Ensure 'NTLM' is set to 'Disabled'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.2.1_L1_Ensure_NTLM_is_set_to_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.2.1_L1_Ensure_NTLM_is_set_to_Disabled"></reference>
+            <description>(L1) Ensure 'NTLM' is set to 'Disabled'</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:5765967"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:5765968" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Active Logins’ is set to ‘Disabled’</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.5.1_L1_Ensure_Active_Logins_is_set_to_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.5.1_L1_Ensure_Active_Logins_is_set_to_Disabled"></reference>
+            <description>(L1) Ensure 'Active Logins’ is set to ‘Disabled’</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:5765968"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:5765969" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Browsing History' is set to 'Disabled'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.5.2_L1_Ensure_Browsing_History_is_set_to_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.5.2_L1_Ensure_Browsing_History_is_set_to_Disabled"></reference>
+            <description>(L1) Ensure 'Browsing History' is set to 'Disabled'</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:5765969"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:5765970" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Download History' is set to 'Disabled'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.5.3_L1_Ensure_Download_History_is_set_to_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.5.3_L1_Ensure_Download_History_is_set_to_Disabled"></reference>
+            <description>(L1) Ensure 'Download History' is set to 'Disabled'</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:5765970"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:5765971" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Form &amp; Search History' is set to 'Disabled'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.5.4_L1_Ensure_Form__Search_History_is_set_to_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.5.4_L1_Ensure_Form__Search_History_is_set_to_Disabled"></reference>
+            <description>(L1) Ensure 'Form &amp; Search History' is set to 'Disabled'</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:5765971"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:5765972" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Locked' is set to 'Enabled'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.5.5_L1_Ensure_Locked_is_set_to_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.5.5_L1_Ensure_Locked_is_set_to_Enabled"></reference>
+            <description>(L1) Ensure 'Locked' is set to 'Enabled'</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:5765972"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:5765973" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Cookie Behavior' is set to 'Enabled: Reject cookies for known trackers and partition third-party cookies'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.6.1_L1_Ensure_Cookie_Behavior_is_set_to_Enabled_Reject_cookies_for_known_trackers_and_partition_third-party_cookies" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.6.1_L1_Ensure_Cookie_Behavior_is_set_to_Enabled_Reject_cookies_for_known_trackers_and_partition_third-party_cookies"></reference>
+            <description>(L1) Ensure 'Cookie Behavior' is set to 'Enabled: Reject cookies for known trackers and partition third-party cookies'</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:5765973"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:5765974" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Cookie Behavior in private browsing' is set to 'Enabled: Reject cookies for known trackers and partition third-party cookies'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.6.2_L1_Ensure_Cookie_Behavior_in_private_browsing_is_set_to_Enabled_Reject_cookies_for_known_trackers_and_partition_third-party_cookies" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.6.2_L1_Ensure_Cookie_Behavior_in_private_browsing_is_set_to_Enabled_Reject_cookies_for_known_trackers_and_partition_third-party_cookies"></reference>
+            <description>(L1) Ensure 'Cookie Behavior in private browsing' is set to 'Enabled: Reject cookies for known trackers and partition third-party cookies'</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:5765974"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:5783866" version="1">
+         <metadata>
+            <title>(L1) Ensure 'TLS_RSA_WITH_3DES_EDE_CBC_SHA ' is set to 'Enabled'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.7.1_L1_Ensure_TLS_RSA_WITH_3DES_EDE_CBC_SHA__is_set_to_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.7.1_L1_Ensure_TLS_RSA_WITH_3DES_EDE_CBC_SHA__is_set_to_Enabled"></reference>
+            <description>(L1) Ensure 'TLS_RSA_WITH_3DES_EDE_CBC_SHA ' is set to 'Enabled'</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:5783866"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:5765975" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Lock Encrypted Media Extensions’ is set to ‘Enabled’</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.9.1_L1_Ensure_Lock_Encrypted_Media_Extensions_is_set_to_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.9.1_L1_Ensure_Lock_Encrypted_Media_Extensions_is_set_to_Enabled"></reference>
+            <description>(L1) Ensure 'Lock Encrypted Media Extensions’ is set to ‘Enabled’</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:5765975"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:5765976" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Extension Update' is set to 'Enabled'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.10.1_L1_Ensure_Extension_Update_is_set_to_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.10.1_L1_Ensure_Extension_Update_is_set_to_Enabled"></reference>
+            <description>(L1) Ensure 'Extension Update' is set to 'Enabled'</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:5765976"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:5765977" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Activate Flash on websites' is set to 'Disabled'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.12.1_L1_Ensure_Activate_Flash_on_websites_is_set_to_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.12.1_L1_Ensure_Activate_Flash_on_websites_is_set_to_Disabled"></reference>
+            <description>(L1) Ensure 'Activate Flash on websites' is set to 'Disabled'</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:5765977"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:5765978" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Block new requests asking to access location' is set to 'Enabled'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.15.3.1_L1_Ensure_Block_new_requests_asking_to_access_location_is_set_to_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.15.3.1_L1_Ensure_Block_new_requests_asking_to_access_location_is_set_to_Enabled"></reference>
+            <description>(L1) Ensure 'Block new requests asking to access location' is set to 'Enabled'</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:5765978"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:5765979" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Do not allow preferences to be changed' is set to 'Enabled'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.15.3.2_L1_Ensure_Do_not_allow_preferences_to_be_changed_is_set_to_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.15.3.2_L1_Ensure_Do_not_allow_preferences_to_be_changed_is_set_to_Enabled"></reference>
+            <description>(L1) Ensure 'Do not allow preferences to be changed' is set to 'Enabled'</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:5765979"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:5765980" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Block pop-ups from websites' is set to 'Enabled'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.17.1_L1_Ensure_Block_pop-ups_from_websites_is_set_to_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.17.1_L1_Ensure_Block_pop-ups_from_websites_is_set_to_Enabled"></reference>
+            <description>(L1) Ensure 'Block pop-ups from websites' is set to 'Enabled'</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:5765980"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:5765981" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Do not allow preferences to be changed' is set to 'Enabled'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.17.2_L1_Ensure_Do_not_allow_preferences_to_be_changed_is_set_to_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.17.2_L1_Ensure_Do_not_allow_preferences_to_be_changed_is_set_to_Enabled"></reference>
+            <description>(L1) Ensure 'Do not allow preferences to be changed' is set to 'Enabled'</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:5765981"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:5765982" version="1">
+         <metadata>
+            <title>(L1) Ensure 'browser.safebrowsing.malware.enabled' is set to 'Enabled'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.18.1_L1_Ensure_browser.safebrowsing.malware.enabled_is_set_to_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.18.1_L1_Ensure_browser.safebrowsing.malware.enabled_is_set_to_Enabled"></reference>
+            <description>(L1) Ensure 'browser.safebrowsing.malware.enabled' is set to 'Enabled'</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:5765982"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:5765983" version="1">
+         <metadata>
+            <title>(L1) Ensure 'browser.safebrowsing.phishing.enabled' is set to 'Enabled'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.18.2_L1_Ensure_browser.safebrowsing.phishing.enabled_is_set_to_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.18.2_L1_Ensure_browser.safebrowsing.phishing.enabled_is_set_to_Enabled"></reference>
+            <description>(L1) Ensure 'browser.safebrowsing.phishing.enabled' is set to 'Enabled'</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:5765983"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:5765984" version="1">
+         <metadata>
+            <title>(L1) Ensure 'browser.search.update' is set to 'Enabled'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.18.3_L1_Ensure_browser.search.update_is_set_to_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.18.3_L1_Ensure_browser.search.update_is_set_to_Enabled"></reference>
+            <description>(L1) Ensure 'browser.search.update' is set to 'Enabled'</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:5765984"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:5765985" version="1">
+         <metadata>
+            <title>(L1) Ensure 'dom.allow_scripts_to_close_windows' is set to 'Disabled'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.18.4_L1_Ensure_dom.allow_scripts_to_close_windows_is_set_to_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.18.4_L1_Ensure_dom.allow_scripts_to_close_windows_is_set_to_Disabled"></reference>
+            <description>(L1) Ensure 'dom.allow_scripts_to_close_windows' is set to 'Disabled'</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:5765985"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:5765986" version="1">
+         <metadata>
+            <title>(L1) Ensure 'dom.disable_window_flip' is set to 'Enabled'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.18.5_L1_Ensure_dom.disable_window_flip_is_set_to_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.18.5_L1_Ensure_dom.disable_window_flip_is_set_to_Enabled"></reference>
+            <description>(L1) Ensure 'dom.disable_window_flip' is set to 'Enabled'</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:5765986"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:5765987" version="1">
+         <metadata>
+            <title>(L1) Ensure 'dom.disable_window_move_resize' is set to 'Enabled'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.18.6_L1_Ensure_dom.disable_window_move_resize_is_set_to_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.18.6_L1_Ensure_dom.disable_window_move_resize_is_set_to_Enabled"></reference>
+            <description>(L1) Ensure 'dom.disable_window_move_resize' is set to 'Enabled'</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:5765987"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:5765988" version="1">
+         <metadata>
+            <title>(L1) Ensure 'extensions.blocklist.enabled' is set to 'Enabled'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.18.7_L1_Ensure_extensions.blocklist.enabled_is_set_to_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.18.7_L1_Ensure_extensions.blocklist.enabled_is_set_to_Enabled"></reference>
+            <description>(L1) Ensure 'extensions.blocklist.enabled' is set to 'Enabled'</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:5765988"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:5765989" version="1">
+         <metadata>
+            <title>(L1) Ensure 'media.peerconnection.enabled' is set to 'Disabled'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.18.8_L1_Ensure_media.peerconnection.enabled_is_set_to_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.18.8_L1_Ensure_media.peerconnection.enabled_is_set_to_Disabled"></reference>
+            <description>(L1) Ensure 'media.peerconnection.enabled' is set to 'Disabled'</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:5765989"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:5765990" version="1">
+         <metadata>
+            <title>(L2) Ensure 'network.IDN_show_punycode' is set to 'Enabled'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.18.9_L2_Ensure_network.IDN_show_punycode_is_set_to_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.18.9_L2_Ensure_network.IDN_show_punycode_is_set_to_Enabled"></reference>
+            <description>(L2) Ensure 'network.IDN_show_punycode' is set to 'Enabled'</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:5765990"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:5765991" version="1">
+         <metadata>
+            <title>(L1) Ensure 'security.mixed_content.block_active_content' is set to 'Enabled'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.18.10_L1_Ensure_security.mixed_content.block_active_content_is_set_to_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.18.10_L1_Ensure_security.mixed_content.block_active_content_is_set_to_Enabled"></reference>
+            <description>(L1) Ensure 'security.mixed_content.block_active_content' is set to 'Enabled'</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:5765991"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:5765992" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Connection Type' is set to 'Enabled: No Proxy'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.19.1_L1_Ensure_Connection_Type_is_set_to_Enabled_No_Proxy" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.19.1_L1_Ensure_Connection_Type_is_set_to_Enabled_No_Proxy"></reference>
+            <description>(L1) Ensure 'Connection Type' is set to 'Enabled: No Proxy'</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:5765992"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:5765993" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Do not allow proxy settings to be changed' is set to 'Enabled'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.19.2_L1_Ensure_Do_not_allow_proxy_settings_to_be_changed_is_set_to_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.19.2_L1_Ensure_Do_not_allow_proxy_settings_to_be_changed_is_set_to_Enabled"></reference>
+            <description>(L1) Ensure 'Do not allow proxy settings to be changed' is set to 'Enabled'</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:5765993"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:5765994" version="1">
+         <metadata>
+            <title>(L2) Ensure 'Search Suggestions' is set to 'Disabled'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.20.1_L2_Ensure_Search_Suggestions_is_set_to_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.20.1_L2_Ensure_Search_Suggestions_is_set_to_Disabled"></reference>
+            <description>(L2) Ensure 'Search Suggestions' is set to 'Disabled'</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:5765994"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:5765995" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Cryptomining' is set to 'Enabled'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.22.1_L1_Ensure_Cryptomining_is_set_to_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.22.1_L1_Ensure_Cryptomining_is_set_to_Enabled"></reference>
+            <description>(L1) Ensure 'Cryptomining' is set to 'Enabled'</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:5765995"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:5765996" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Do not allow tracking protection preferences to be changed' is set to 'Enabled'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.22.2_L1_Ensure_Do_not_allow_tracking_protection_preferences_to_be_changed_is_set_to_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.22.2_L1_Ensure_Do_not_allow_tracking_protection_preferences_to_be_changed_is_set_to_Enabled"></reference>
+            <description>(L1) Ensure 'Do not allow tracking protection preferences to be changed' is set to 'Enabled'</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:5765996"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:5765997" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Email Tracking' is set to 'Enabled'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.22.3_L1_Ensure_Email_Tracking_is_set_to_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.22.3_L1_Ensure_Email_Tracking_is_set_to_Enabled"></reference>
+            <description>(L1) Ensure 'Email Tracking' is set to 'Enabled'</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:5765997"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:5765998" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Enabled' is set to 'Enabled'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.22.4_L1_Ensure_Enabled_is_set_to_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.22.4_L1_Ensure_Enabled_is_set_to_Enabled"></reference>
+            <description>(L1) Ensure 'Enabled' is set to 'Enabled'</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:5765998"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:5765999" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Fingerprinting' is set to 'Enabled'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.22.5_L1_Ensure_Fingerprinting_is_set_to_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.22.5_L1_Ensure_Fingerprinting_is_set_to_Enabled"></reference>
+            <description>(L1) Ensure 'Fingerprinting' is set to 'Enabled'</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:5765999"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:5766000" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Extension Recommendations' is set to 'Disabled'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.23.1_L1_Ensure_Extension_Recommendations_is_set_to_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.23.1_L1_Ensure_Extension_Recommendations_is_set_to_Disabled"></reference>
+            <description>(L1) Ensure 'Extension Recommendations' is set to 'Disabled'</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:5766000"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:5766001" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Application Autoupdate' is set to 'Enabled'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.24_L1_Ensure_Application_Autoupdate_is_set_to_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.24_L1_Ensure_Application_Autoupdate_is_set_to_Enabled"></reference>
+            <description>(L1) Ensure 'Application Autoupdate' is set to 'Enabled'</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:5766001"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:5766002" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Background updater' is set to 'Enabled'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.25_L1_Ensure_Background_updater_is_set_to_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.25_L1_Ensure_Background_updater_is_set_to_Enabled"></reference>
+            <description>(L1) Ensure 'Background updater' is set to 'Enabled'</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:5766002"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:5766003" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Disable Developer Tools' is set to 'Enabled'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.26_L1_Ensure_Disable_Developer_Tools_is_set_to_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.26_L1_Ensure_Disable_Developer_Tools_is_set_to_Enabled"></reference>
+            <description>(L1) Ensure 'Disable Developer Tools' is set to 'Enabled'</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:5766003"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:5766004" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Disable Feedback Commands' is set to 'Enabled'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.27_L1_Ensure_Disable_Feedback_Commands_is_set_to_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.27_L1_Ensure_Disable_Feedback_Commands_is_set_to_Enabled"></reference>
+            <description>(L1) Ensure 'Disable Feedback Commands' is set to 'Enabled'</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:5766004"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:5766005" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Disable Firefox Accounts' is set to 'Enabled'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.28_L1_Ensure_Disable_Firefox_Accounts_is_set_to_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.28_L1_Ensure_Disable_Firefox_Accounts_is_set_to_Enabled"></reference>
+            <description>(L1) Ensure 'Disable Firefox Accounts' is set to 'Enabled'</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:5766005"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:5766006" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Disable Firefox Studies' is set to 'Enabled'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.29_L1_Ensure_Disable_Firefox_Studies_is_set_to_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.29_L1_Ensure_Disable_Firefox_Studies_is_set_to_Enabled"></reference>
+            <description>(L1) Ensure 'Disable Firefox Studies' is set to 'Enabled'</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:5766006"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:5766007" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Disable Forget Button' is set to 'Enabled'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.30_L1_Ensure_Disable_Forget_Button_is_set_to_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.30_L1_Ensure_Disable_Forget_Button_is_set_to_Enabled"></reference>
+            <description>(L1) Ensure 'Disable Forget Button' is set to 'Enabled'</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:5766007"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:5766008" version="1">
+         <metadata>
+            <title>(L2) Ensure 'Disable Form History' is set to 'Enabled'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.31_L2_Ensure_Disable_Form_History_is_set_to_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.31_L2_Ensure_Disable_Form_History_is_set_to_Enabled"></reference>
+            <description>(L2) Ensure 'Disable Form History' is set to 'Enabled'</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:5766008"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:5766009" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Disable Pocket' is set to 'Enabled'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.32_L1_Ensure_Disable_Pocket_is_set_to_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.32_L1_Ensure_Disable_Pocket_is_set_to_Enabled"></reference>
+            <description>(L1) Ensure 'Disable Pocket' is set to 'Enabled'</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:5766009"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:5766010" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Disable Private Browsing' is set to 'Enabled'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.33_L1_Ensure_Disable_Private_Browsing_is_set_to_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.33_L1_Ensure_Disable_Private_Browsing_is_set_to_Enabled"></reference>
+            <description>(L1) Ensure 'Disable Private Browsing' is set to 'Enabled'</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:5766010"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:5766011" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Disable System Addon Updates' is set to 'Disabled'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.34_L1_Ensure_Disable_System_Addon_Updates_is_set_to_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.34_L1_Ensure_Disable_System_Addon_Updates_is_set_to_Disabled"></reference>
+            <description>(L1) Ensure 'Disable System Addon Updates' is set to 'Disabled'</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:5766011"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:5766012" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Disable Telemetry' is set to 'Enabled'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.35_L1_Ensure_Disable_Telemetry_is_set_to_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.35_L1_Ensure_Disable_Telemetry_is_set_to_Enabled"></reference>
+            <description>(L1) Ensure 'Disable Telemetry' is set to 'Enabled'</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:5766012"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:5766013" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Disable Update' is set to 'Disabled'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.36_L1_Ensure_Disable_Update_is_set_to_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.36_L1_Ensure_Disable_Update_is_set_to_Disabled"></reference>
+            <description>(L1) Ensure 'Disable Update' is set to 'Disabled'</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:5766013"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:5766015" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Maximum SSL version enabled' is set to 'Enabled: TLS 1.3'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.37_L1_Ensure_Maximum_SSL_version_enabled_is_set_to_Enabled_TLS_1.3" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.37_L1_Ensure_Maximum_SSL_version_enabled_is_set_to_Enabled_TLS_1.3"></reference>
+            <description>(L1) Ensure 'Maximum SSL version enabled' is set to 'Enabled: TLS 1.3'</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:5766015"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:5766014" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Minimum SSL version enabled' is set to 'Enabled: TLS 1.2'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.38_L1_Ensure_Minimum_SSL_version_enabled_is_set_to_Enabled_TLS_1.2" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.38_L1_Ensure_Minimum_SSL_version_enabled_is_set_to_Enabled_TLS_1.2"></reference>
+            <description>(L1) Ensure 'Minimum SSL version enabled' is set to 'Enabled: TLS 1.2'</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:5766014"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:5766016" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Network Prediction' is set to 'Disabled'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.39_L1_Ensure_Network_Prediction_is_set_to_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.39_L1_Ensure_Network_Prediction_is_set_to_Disabled"></reference>
+            <description>(L1) Ensure 'Network Prediction' is set to 'Disabled'</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:5766016"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:5766017" version="1">
+         <metadata>
+            <title>(L2) Ensure 'New Tab Page' is set to 'Disabled'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.40_L2_Ensure_New_Tab_Page_is_set_to_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.40_L2_Ensure_New_Tab_Page_is_set_to_Disabled"></reference>
+            <description>(L2) Ensure 'New Tab Page' is set to 'Disabled'</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:5766017"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:5766018" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Offer to save logins' is set to 'Disabled'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.41_L1_Ensure_Offer_to_save_logins_is_set_to_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.41_L1_Ensure_Offer_to_save_logins_is_set_to_Disabled"></reference>
+            <description>(L1) Ensure 'Offer to save logins' is set to 'Disabled'</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:5766018"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:5784881" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Password Manager' is set to 'Disabled'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.42_L1_Ensure_Password_Manager_is_set_to_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.42_L1_Ensure_Password_Manager_is_set_to_Disabled"></reference>
+            <description>(L1) Ensure 'Password Manager' is set to 'Disabled'</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:5784881"></criterion>
+         </criteria>
+      </definition>
+   </definitions>
+   <tests>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'Default' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks:tst:5765966" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:5765966"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:5765966"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="none_exist" comment="Ensure '1' is 'Existence Test' to 'none_exist'" id="oval:org.cisecurity.benchmarks:tst:5765967" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:5765967"></object>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'History' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks:tst:5765968" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:5765968"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:5765968"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'History' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks:tst:5765969" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:5765969"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:5765969"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'Downloads' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks:tst:5765970" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:5765970"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:5765970"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'FormData' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks:tst:5765971" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:5765971"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:5765971"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'Locked' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:tst:5765972" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:5765972"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:5765972"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'Behavior' is 'Windows: Registry Value' to 'reject-tracker-and-partition-foreign'" id="oval:org.cisecurity.benchmarks:tst:5765973" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:5765973"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:5765973"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'BehaviorPrivateBrowsing' is 'Windows: Registry Value' to 'reject-tracker-and-partition-foreign'" id="oval:org.cisecurity.benchmarks:tst:5765974" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:5765974"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:5765974"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'TLS_RSA_WITH_3DES_EDE_CBC_SHA' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:tst:5783866" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:5783866"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:5783866"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'Locked' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:tst:5765975" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:5765975"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:5765975"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'ExtensionUpdate' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:tst:5765976" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:5765976"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:5765976"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'Default' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks:tst:5765977" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:5765977"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:5765977"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'BlockNewRequests' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:tst:5765978" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:5765978"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:5765978"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'Locked' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:tst:5765979" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:5765979"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:5765979"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'Default' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:tst:5765980" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:5765980"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:5765980"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'Locked' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:tst:5765981" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:5765981"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:5765981"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'browser.safebrowsing.malware.enabled' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:tst:5765982" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:5765982"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:5765982"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'browser.safebrowsing.phishing.enabled' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:tst:5765983" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:5765983"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:5765983"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'browser.search.update' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:tst:5765984" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:5765984"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:5765984"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'dom.allow_scripts_to_close_windows' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks:tst:5765985" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:5765985"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:5765985"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'dom.disable_window_flip' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:tst:5765986" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:5765986"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:5765986"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'dom.disable_window_move_resize' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:tst:5765987" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:5765987"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:5765987"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'extensions.blocklist.enabled' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:tst:5765988" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:5765988"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:5765988"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'media.peerconnection.enabled' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks:tst:5765989" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:5765989"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:5765989"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'network.IDN_show_punycode' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:tst:5765990" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:5765990"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:5765990"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'security.mixed_content.block_active_content' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:tst:5765991" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:5765991"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:5765991"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'Mode' is 'Windows: Registry Value' to 'none'" id="oval:org.cisecurity.benchmarks:tst:5765992" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:5765992"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:5765992"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'Locked' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:tst:5765993" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:5765993"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:5765993"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'SearchSuggestEnabled' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks:tst:5765994" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:5765994"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:5765994"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'Cryptomining' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:tst:5765995" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:5765995"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:5765995"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'Locked' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:tst:5765996" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:5765996"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:5765996"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'EmailTracking' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:tst:5765997" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:5765997"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:5765997"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'Value' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:tst:5765998" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:5765998"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:5765998"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'Fingerprinting' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:tst:5765999" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:5765999"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:5765999"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'ExtensionRecommendations' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks:tst:5766000" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:5766000"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:5766000"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'AppAutoUpdate' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:tst:5766001" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:5766001"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:5766001"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'BackgroundAppUpdate' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:tst:5766002" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:5766002"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:5766002"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'DisableDeveloperTools' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:tst:5766003" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:5766003"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:5766003"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'DisableFeedbackCommands' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:tst:5766004" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:5766004"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:5766004"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'DisableFirefoxAccounts' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:tst:5766005" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:5766005"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:5766005"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'DisableFirefoxStudies' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:tst:5766006" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:5766006"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:5766006"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'DisableForgetButton' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:tst:5766007" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:5766007"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:5766007"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'DisableFormHistory' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:tst:5766008" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:5766008"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:5766008"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'DisablePocket' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:tst:5766009" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:5766009"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:5766009"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'DisablePrivateBrowsing' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:tst:5766010" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:5766010"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:5766010"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'DisableSystemAddonUpdate' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks:tst:5766011" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:5766011"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:5766011"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'DisableTelemetry' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:tst:5766012" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:5766012"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:5766012"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'DisableAppUpdate' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks:tst:5766013" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:5766013"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:5766013"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'SSLVersionMax' is 'Windows: Registry Value' to 'tls1.3'" id="oval:org.cisecurity.benchmarks:tst:5766015" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:5766015"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:5766015"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'SSLVersionMin' is 'Windows: Registry Value' to 'tls1.2'" id="oval:org.cisecurity.benchmarks:tst:5766014" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:5766014"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:5766014"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'NetworkPrediction' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks:tst:5766016" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:5766016"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:5766016"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'NewTabPage' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks:tst:5766017" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:5766017"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:5766017"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'OfferToSaveLogins' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks:tst:5766018" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:5766018"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:5766018"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="at_least_one_exists" comment="Ensure 'PasswordManagerEnabled' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks:tst:5784881" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:5784881"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:5784881"></state>
+      </registry_test>
+   </tests>
+   <objects>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'Default' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks:obj:5765966" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Mozilla\Firefox\InstallAddonsPermission</key>
+         <name>Default</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure '1' is 'Existence Test' to 'none_exist'" id="oval:org.cisecurity.benchmarks:obj:5765967" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Mozilla\Firefox\Authentication\NTLM</key>
+         <name>1</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'History' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks:obj:5765968" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Mozilla\Firefox\SanitizeOnShutdown</key>
+         <name>Sessions</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'History' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks:obj:5765969" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Mozilla\Firefox\SanitizeOnShutdown</key>
+         <name>History</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'Downloads' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks:obj:5765970" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Mozilla\Firefox\SanitizeOnShutdown</key>
+         <name>Downloads</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'FormData' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks:obj:5765971" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Mozilla\Firefox\SanitizeOnShutdown</key>
+         <name>FormData</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'Locked' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:obj:5765972" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Mozilla\Firefox\SanitizeOnShutdown</key>
+         <name>Locked</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'Behavior' is 'Windows: Registry Value' to 'reject-tracker-and-partition-foreign'" id="oval:org.cisecurity.benchmarks:obj:5765973" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Mozilla\Firefox\Cookies</key>
+         <name>Behavior</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'BehaviorPrivateBrowsing' is 'Windows: Registry Value' to 'reject-tracker-and-partition-foreign'" id="oval:org.cisecurity.benchmarks:obj:5765974" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Mozilla\Firefox\Cookies</key>
+         <name>BehaviorPrivateBrowsing</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'TLS_RSA_WITH_3DES_EDE_CBC_SHA' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:obj:5783866" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Mozilla\Firefox\DisabledCiphers</key>
+         <name>TLS_RSA_WITH_3DES_EDE_CBC_SHA</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'Locked' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:obj:5765975" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Mozilla\Firefox\EncryptedMediaExtensions</key>
+         <name>Locked</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'ExtensionUpdate' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:obj:5765976" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Mozilla\Firefox</key>
+         <name>ExtensionUpdate</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'Default' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks:obj:5765977" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Mozilla\Firefox\FlashPlugin</key>
+         <name>Default</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'BlockNewRequests' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:obj:5765978" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Mozilla\Firefox\Permissions\Location</key>
+         <name>BlockNewRequests</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'Locked' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:obj:5765979" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Mozilla\Firefox\Permissions\Location</key>
+         <name>Locked</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'Default' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:obj:5765980" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Mozilla\Firefox\PopupBlocking</key>
+         <name>Default</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'Locked' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:obj:5765981" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Mozilla\Firefox\PopupBlocking</key>
+         <name>Locked</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'browser.safebrowsing.malware.enabled' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:obj:5765982" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Mozilla\Firefox\Preferences</key>
+         <name>browser.safebrowsing.malware.enabled</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'browser.safebrowsing.phishing.enabled' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:obj:5765983" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Mozilla\Firefox\Preferences</key>
+         <name>browser.safebrowsing.phishing.enabled</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'browser.search.update' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:obj:5765984" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Mozilla\Firefox\Preferences</key>
+         <name>browser.search.update</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'dom.allow_scripts_to_close_windows' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks:obj:5765985" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Mozilla\Firefox\Preferences</key>
+         <name>dom.allow_scripts_to_close_windows</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'dom.disable_window_flip' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:obj:5765986" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Mozilla\Firefox\Preferences</key>
+         <name>dom.disable_window_flip</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'dom.disable_window_move_resize' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:obj:5765987" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Mozilla\Firefox\Preferences</key>
+         <name>dom.disable_window_move_resize</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'extensions.blocklist.enabled' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:obj:5765988" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Mozilla\Firefox\Preferences</key>
+         <name>extensions.blocklist.enabled</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'media.peerconnection.enabled' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks:obj:5765989" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Mozilla\Firefox\Preferences</key>
+         <name>media.peerconnection.enabled</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'network.IDN_show_punycode' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:obj:5765990" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Mozilla\Firefox\Preferences</key>
+         <name>network.IDN_show_punycode</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'security.mixed_content.block_active_content' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:obj:5765991" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Mozilla\Firefox\Preferences</key>
+         <name>security.mixed_content.block_active_content</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'Mode' is 'Windows: Registry Value' to 'none'" id="oval:org.cisecurity.benchmarks:obj:5765992" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Mozilla\Firefox\Proxy</key>
+         <name>Mode</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'Locked' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:obj:5765993" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Mozilla\Firefox\EnableTrackingProtection</key>
+         <name>Locked</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'SearchSuggestEnabled' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks:obj:5765994" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Mozilla\Firefox</key>
+         <name>SearchSuggestEnabled</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'Cryptomining' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:obj:5765995" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Mozilla\Firefox\EnableTrackingProtection</key>
+         <name>Cryptomining</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'Locked' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:obj:5765996" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Mozilla\Firefox\EnableTrackingProtection</key>
+         <name>Locked</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'EmailTracking' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:obj:5765997" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Mozilla\Firefox\EnableTrackingProtection</key>
+         <name>EmailTracking</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'Value' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:obj:5765998" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Mozilla\Firefox\EnableTrackingProtection</key>
+         <name>Value</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'Fingerprinting' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:obj:5765999" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Mozilla\Firefox\EnableTrackingProtection</key>
+         <name>Fingerprinting</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'ExtensionRecommendations' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks:obj:5766000" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Mozilla\Firefox\UserMessaging</key>
+         <name>ExtensionRecommendations</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'AppAutoUpdate' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:obj:5766001" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Mozilla\Firefox</key>
+         <name>AppAutoUpdate</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'BackgroundAppUpdate' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:obj:5766002" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Mozilla\Firefox</key>
+         <name>BackgroundAppUpdate</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'DisableDeveloperTools' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:obj:5766003" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Mozilla\Firefox</key>
+         <name>DisableDeveloperTools</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'DisableFeedbackCommands' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:obj:5766004" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Mozilla\Firefox</key>
+         <name>DisableFeedbackCommands</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'DisableFirefoxAccounts' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:obj:5766005" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Mozilla\Firefox</key>
+         <name>DisableFirefoxAccounts</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'DisableFirefoxStudies' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:obj:5766006" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Mozilla\Firefox</key>
+         <name>DisableFirefoxStudies</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'DisableForgetButton' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:obj:5766007" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Mozilla\Firefox</key>
+         <name>DisableForgetButton</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'DisableFormHistory' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:obj:5766008" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Mozilla\Firefox</key>
+         <name>DisableFormHistory</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'DisablePocket' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:obj:5766009" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Mozilla\Firefox</key>
+         <name>DisablePocket</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'DisablePrivateBrowsing' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:obj:5766010" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Mozilla\Firefox</key>
+         <name>DisablePrivateBrowsing</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'DisableSystemAddonUpdate' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks:obj:5766011" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Mozilla\Firefox</key>
+         <name>DisableSystemAddonUpdate</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'DisableTelemetry' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:obj:5766012" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Mozilla\Firefox</key>
+         <name>DisableTelemetry</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'DisableAppUpdate' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks:obj:5766013" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Mozilla\Firefox</key>
+         <name>DisableAppUpdate</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'SSLVersionMax' is 'Windows: Registry Value' to 'tls1.3'" id="oval:org.cisecurity.benchmarks:obj:5766015" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Mozilla\Firefox</key>
+         <name>SSLVersionMax</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'SSLVersionMin' is 'Windows: Registry Value' to 'tls1.2'" id="oval:org.cisecurity.benchmarks:obj:5766014" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Mozilla\Firefox</key>
+         <name>SSLVersionMin</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'NetworkPrediction' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks:obj:5766016" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Mozilla\Firefox</key>
+         <name>NetworkPrediction</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'NewTabPage' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks:obj:5766017" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Mozilla\Firefox</key>
+         <name>NewTabPage</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'OfferToSaveLogins' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks:obj:5766018" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Mozilla\Firefox</key>
+         <name>OfferToSaveLogins</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'PasswordManagerEnabled' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks:obj:5784881" version="1">
+         <hive>HKEY_LOCAL_MACHINE</hive>
+         <key operation="equals">SOFTWARE\Policies\Mozilla\Firefox</key>
+         <name>PasswordManagerEnabled</name>
+      </registry_object>
+   </objects>
+   <states>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'Default' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks:ste:5765966" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">0</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'History' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks:ste:5765968" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">0</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'History' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks:ste:5765969" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">0</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'Downloads' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks:ste:5765970" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">0</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'FormData' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks:ste:5765971" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">0</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'Locked' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:ste:5765972" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'Behavior' is 'Windows: Registry Value' to 'reject-tracker-and-partition-foreign'" id="oval:org.cisecurity.benchmarks:ste:5765973" version="1">
+         <type>reg_sz</type>
+         <value datatype="string" operation="equals">reject-tracker-and-partition-foreign</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'BehaviorPrivateBrowsing' is 'Windows: Registry Value' to 'reject-tracker-and-partition-foreign'" id="oval:org.cisecurity.benchmarks:ste:5765974" version="1">
+         <type>reg_sz</type>
+         <value datatype="string" operation="equals">reject-tracker-and-partition-foreign</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'TLS_RSA_WITH_3DES_EDE_CBC_SHA' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:ste:5783866" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'Locked' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:ste:5765975" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'ExtensionUpdate' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:ste:5765976" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'Default' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks:ste:5765977" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">0</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'BlockNewRequests' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:ste:5765978" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'Locked' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:ste:5765979" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'Default' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:ste:5765980" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'Locked' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:ste:5765981" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'browser.safebrowsing.malware.enabled' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:ste:5765982" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'browser.safebrowsing.phishing.enabled' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:ste:5765983" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'browser.search.update' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:ste:5765984" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'dom.allow_scripts_to_close_windows' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks:ste:5765985" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">0</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'dom.disable_window_flip' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:ste:5765986" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'dom.disable_window_move_resize' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:ste:5765987" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'extensions.blocklist.enabled' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:ste:5765988" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'media.peerconnection.enabled' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks:ste:5765989" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">0</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'network.IDN_show_punycode' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:ste:5765990" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'security.mixed_content.block_active_content' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:ste:5765991" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'Mode' is 'Windows: Registry Value' to 'none'" id="oval:org.cisecurity.benchmarks:ste:5765992" version="1">
+         <type>reg_sz</type>
+         <value datatype="string" operation="equals">none</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'Locked' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:ste:5765993" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'SearchSuggestEnabled' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks:ste:5765994" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">0</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'Cryptomining' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:ste:5765995" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'Locked' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:ste:5765996" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'EmailTracking' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:ste:5765997" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'Value' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:ste:5765998" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'Fingerprinting' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:ste:5765999" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'ExtensionRecommendations' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks:ste:5766000" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">0</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'AppAutoUpdate' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:ste:5766001" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'BackgroundAppUpdate' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:ste:5766002" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'DisableDeveloperTools' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:ste:5766003" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'DisableFeedbackCommands' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:ste:5766004" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'DisableFirefoxAccounts' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:ste:5766005" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'DisableFirefoxStudies' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:ste:5766006" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'DisableForgetButton' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:ste:5766007" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'DisableFormHistory' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:ste:5766008" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'DisablePocket' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:ste:5766009" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'DisablePrivateBrowsing' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:ste:5766010" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'DisableSystemAddonUpdate' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks:ste:5766011" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">0</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'DisableTelemetry' is 'Windows: Registry Value' to '1'" id="oval:org.cisecurity.benchmarks:ste:5766012" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'DisableAppUpdate' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks:ste:5766013" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">0</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'SSLVersionMax' is 'Windows: Registry Value' to 'tls1.3'" id="oval:org.cisecurity.benchmarks:ste:5766015" version="1">
+         <type>reg_sz</type>
+         <value datatype="string" operation="equals">tls1.3</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'SSLVersionMin' is 'Windows: Registry Value' to 'tls1.2'" id="oval:org.cisecurity.benchmarks:ste:5766014" version="1">
+         <type>reg_sz</type>
+         <value datatype="string" operation="equals">tls1.2</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'NetworkPrediction' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks:ste:5766016" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">0</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'NewTabPage' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks:ste:5766017" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">0</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'OfferToSaveLogins' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks:ste:5766018" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">0</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'PasswordManagerEnabled' is 'Windows: Registry Value' to '0'" id="oval:org.cisecurity.benchmarks:ste:5784881" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">0</value>
+      </registry_state>
+   </states>
+   <variables>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Allow add-on installs from websites' is set to 'Disabled' for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks:var:57659661" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Allow add-on installs from websites' is set to 'Disabled' for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks:var:57659662" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Active Logins’ is set to ‘Disabled’ for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks:var:57659681" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Active Logins’ is set to ‘Disabled’ for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks:var:57659682" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Browsing History' is set to 'Disabled' for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks:var:57659691" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Browsing History' is set to 'Disabled' for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks:var:57659692" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Download History' is set to 'Disabled' for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks:var:57659701" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Download History' is set to 'Disabled' for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks:var:57659702" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Form &amp; Search History' is set to 'Disabled' for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks:var:57659711" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Form &amp; Search History' is set to 'Disabled' for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks:var:57659712" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Locked' is set to 'Enabled' for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks:var:57659721" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Locked' is set to 'Enabled' for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks:var:57659722" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Cookie Behavior' is set to 'Enabled: Reject cookies for known trackers and partition third-party cookies' for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks:var:57659731" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Cookie Behavior' is set to 'Enabled: Reject cookies for known trackers and partition third-party cookies' for the registry value" datatype="string" id="oval:org.cisecurity.benchmarks:var:57659732" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Cookie Behavior in private browsing' is set to 'Enabled: Reject cookies for known trackers and partition third-party cookies' for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks:var:57659741" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Cookie Behavior in private browsing' is set to 'Enabled: Reject cookies for known trackers and partition third-party cookies' for the registry value" datatype="string" id="oval:org.cisecurity.benchmarks:var:57659742" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'TLS_RSA_WITH_3DES_EDE_CBC_SHA ' is set to 'Enabled' for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks:var:57838661" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'TLS_RSA_WITH_3DES_EDE_CBC_SHA ' is set to 'Enabled' for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks:var:57838662" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Lock Encrypted Media Extensions’ is set to ‘Enabled’ for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks:var:57659751" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Lock Encrypted Media Extensions’ is set to ‘Enabled’ for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks:var:57659752" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Extension Update' is set to 'Enabled' for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks:var:57659761" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Extension Update' is set to 'Enabled' for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks:var:57659762" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Activate Flash on websites' is set to 'Disabled' for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks:var:57659771" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Activate Flash on websites' is set to 'Disabled' for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks:var:57659772" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Block new requests asking to access location' is set to 'Enabled' for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks:var:57659781" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Block new requests asking to access location' is set to 'Enabled' for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks:var:57659782" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Do not allow preferences to be changed' is set to 'Enabled' for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks:var:57659791" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Do not allow preferences to be changed' is set to 'Enabled' for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks:var:57659792" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Block pop-ups from websites' is set to 'Enabled' for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks:var:57659801" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Block pop-ups from websites' is set to 'Enabled' for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks:var:57659802" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Do not allow preferences to be changed' is set to 'Enabled' for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks:var:57659811" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Do not allow preferences to be changed' is set to 'Enabled' for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks:var:57659812" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'browser.safebrowsing.malware.enabled' is set to 'Enabled' for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks:var:57659821" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'browser.safebrowsing.malware.enabled' is set to 'Enabled' for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks:var:57659822" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'browser.safebrowsing.phishing.enabled' is set to 'Enabled' for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks:var:57659831" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'browser.safebrowsing.phishing.enabled' is set to 'Enabled' for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks:var:57659832" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'browser.search.update' is set to 'Enabled' for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks:var:57659841" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'browser.search.update' is set to 'Enabled' for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks:var:57659842" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'dom.allow_scripts_to_close_windows' is set to 'Disabled' for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks:var:57659851" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'dom.allow_scripts_to_close_windows' is set to 'Disabled' for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks:var:57659852" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'dom.disable_window_flip' is set to 'Enabled' for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks:var:57659861" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'dom.disable_window_flip' is set to 'Enabled' for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks:var:57659862" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'dom.disable_window_move_resize' is set to 'Enabled' for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks:var:57659871" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'dom.disable_window_move_resize' is set to 'Enabled' for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks:var:57659872" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'extensions.blocklist.enabled' is set to 'Enabled' for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks:var:57659881" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'extensions.blocklist.enabled' is set to 'Enabled' for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks:var:57659882" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'media.peerconnection.enabled' is set to 'Disabled' for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks:var:57659891" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'media.peerconnection.enabled' is set to 'Disabled' for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks:var:57659892" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L2) Ensure 'network.IDN_show_punycode' is set to 'Enabled' for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks:var:57659901" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L2) Ensure 'network.IDN_show_punycode' is set to 'Enabled' for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks:var:57659902" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'security.mixed_content.block_active_content' is set to 'Enabled' for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks:var:57659911" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'security.mixed_content.block_active_content' is set to 'Enabled' for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks:var:57659912" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Connection Type' is set to 'Enabled: No Proxy' for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks:var:57659921" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Connection Type' is set to 'Enabled: No Proxy' for the registry value" datatype="string" id="oval:org.cisecurity.benchmarks:var:57659922" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Do not allow proxy settings to be changed' is set to 'Enabled' for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks:var:57659931" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Do not allow proxy settings to be changed' is set to 'Enabled' for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks:var:57659932" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L2) Ensure 'Search Suggestions' is set to 'Disabled' for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks:var:57659941" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L2) Ensure 'Search Suggestions' is set to 'Disabled' for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks:var:57659942" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Cryptomining' is set to 'Enabled' for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks:var:57659951" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Cryptomining' is set to 'Enabled' for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks:var:57659952" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Do not allow tracking protection preferences to be changed' is set to 'Enabled' for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks:var:57659961" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Do not allow tracking protection preferences to be changed' is set to 'Enabled' for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks:var:57659962" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Email Tracking' is set to 'Enabled' for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks:var:57659971" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Email Tracking' is set to 'Enabled' for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks:var:57659972" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Enabled' is set to 'Enabled' for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks:var:57659981" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Enabled' is set to 'Enabled' for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks:var:57659982" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Fingerprinting' is set to 'Enabled' for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks:var:57659991" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Fingerprinting' is set to 'Enabled' for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks:var:57659992" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Extension Recommendations' is set to 'Disabled' for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks:var:57660001" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Extension Recommendations' is set to 'Disabled' for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks:var:57660002" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Application Autoupdate' is set to 'Enabled' for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks:var:57660011" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Application Autoupdate' is set to 'Enabled' for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks:var:57660012" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Background updater' is set to 'Enabled' for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks:var:57660021" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Background updater' is set to 'Enabled' for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks:var:57660022" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Disable Developer Tools' is set to 'Enabled' for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks:var:57660031" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Disable Developer Tools' is set to 'Enabled' for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks:var:57660032" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Disable Feedback Commands' is set to 'Enabled' for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks:var:57660041" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Disable Feedback Commands' is set to 'Enabled' for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks:var:57660042" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Disable Firefox Accounts' is set to 'Enabled' for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks:var:57660051" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Disable Firefox Accounts' is set to 'Enabled' for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks:var:57660052" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Disable Firefox Studies' is set to 'Enabled' for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks:var:57660061" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Disable Firefox Studies' is set to 'Enabled' for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks:var:57660062" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Disable Forget Button' is set to 'Enabled' for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks:var:57660071" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Disable Forget Button' is set to 'Enabled' for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks:var:57660072" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L2) Ensure 'Disable Form History' is set to 'Enabled' for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks:var:57660081" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L2) Ensure 'Disable Form History' is set to 'Enabled' for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks:var:57660082" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Disable Pocket' is set to 'Enabled' for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks:var:57660091" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Disable Pocket' is set to 'Enabled' for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks:var:57660092" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Disable Private Browsing' is set to 'Enabled' for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks:var:57660101" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Disable Private Browsing' is set to 'Enabled' for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks:var:57660102" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Disable System Addon Updates' is set to 'Disabled' for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks:var:57660111" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Disable System Addon Updates' is set to 'Disabled' for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks:var:57660112" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Disable Telemetry' is set to 'Enabled' for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks:var:57660121" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Disable Telemetry' is set to 'Enabled' for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks:var:57660122" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Disable Update' is set to 'Disabled' for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks:var:57660131" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Disable Update' is set to 'Disabled' for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks:var:57660132" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Maximum SSL version enabled' is set to 'Enabled: TLS 1.3' for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks:var:57660151" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Maximum SSL version enabled' is set to 'Enabled: TLS 1.3' for the registry value" datatype="string" id="oval:org.cisecurity.benchmarks:var:57660152" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Minimum SSL version enabled' is set to 'Enabled: TLS 1.2' for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks:var:57660141" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Minimum SSL version enabled' is set to 'Enabled: TLS 1.2' for the registry value" datatype="string" id="oval:org.cisecurity.benchmarks:var:57660142" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Network Prediction' is set to 'Disabled' for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks:var:57660161" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Network Prediction' is set to 'Disabled' for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks:var:57660162" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L2) Ensure 'New Tab Page' is set to 'Disabled' for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks:var:57660171" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L2) Ensure 'New Tab Page' is set to 'Disabled' for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks:var:57660172" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Offer to save logins' is set to 'Disabled' for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks:var:57660181" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Offer to save logins' is set to 'Disabled' for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks:var:57660182" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Password Manager' is set to 'Disabled' for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks:var:57848811" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Password Manager' is set to 'Disabled' for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks:var:57848812" version="1"></external_variable>
+   </variables>
+<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+<ds:SignedInfo>
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"></ds:CanonicalizationMethod>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></ds:SignatureMethod>
+<ds:Reference URI="">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"></ds:Transform>
+<ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"></ds:Transform>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></ds:DigestMethod>
+<ds:DigestValue>8er5fu/pSyQ99GDGZnt8m/mTSS2dc4zAdY1VQQtoMus=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue>
+D/7oqqTxq0Z51AAIhWoas4M0J1T4YWaGKCoqSfkX0VdyXM5Y12svRpLYxmH7IAQLBtwL97/YhHA8
+n8dksBjl8DbbY0m8X28b8nZ64SiDmjOw9bZQuA0hWqykEUVfNEyxdewu+QCaISKHChPyMRksTag0
+ZwzhDc4g6O4sfaHz5FG+HZuiupScJYCt+fuwAo4+74ffFprkIUl+0lzs5CLaxnDvJ0RISlyU6LUm
+OdTdLRHvjNdNlSfvQp4YHEqfFz3rRuKXyWEMslbJRMmhhpz4bfn30t4EEU65tRfBxt2hYtg8TnL+
+4+FIbcfTW2CMvW8exeEjRYpGtZuHjlgcmPVMt4uB9Nv32ufKNHs4jbHrSR/eboXMx5tM1YFzFUYP
+n9EIe66Gw/2hhnA3e8wFVY3qy6p8947DBGDZTz0kWPxXdGyWYsCv+k9pVV0ltLMu18Au3tHI8PSA
+6pvo2sSJ2dT98u8vp9SXTLl+sU7Ac6b+jfm+/h3scxyIVIppy1NSfpUN
+</ds:SignatureValue>
+<ds:KeyInfo>
+<ds:X509Data>
+<ds:X509Certificate>
+MIIHbDCCBVSgAwIBAgIQCdceADCnzKkglkQGavVKYzANBgkqhkiG9w0BAQsFADBpMQswCQYDVQQG
+EwJVUzEXMBUGA1UEChMORGlnaUNlcnQsIEluYy4xQTA/BgNVBAMTOERpZ2lDZXJ0IFRydXN0ZWQg
+RzQgQ29kZSBTaWduaW5nIFJTQTQwOTYgU0hBMzg0IDIwMjEgQ0ExMB4XDTIzMTAxODAwMDAwMFoX
+DTI2MTAxODIzNTk1OVowgfQxEzARBgsrBgEEAYI3PAIBAxMCVVMxGTAXBgsrBgEEAYI3PAIBAhMI
+TWFyeWxhbmQxHTAbBgNVBA8MFFByaXZhdGUgT3JnYW5pemF0aW9uMRIwEAYDVQQFEwlEMDYwNTg4
+MTIxCzAJBgNVBAYTAlVTMREwDwYDVQQIEwhOZXcgWW9yazEXMBUGA1UEBxMORWFzdCBHcmVlbmJ1
+c2gxKjAoBgNVBAoTIUNlbnRlciBmb3IgSW50ZXJuZXQgU2VjdXJpdHksIEluYzEqMCgGA1UEAxMh
+Q2VudGVyIGZvciBJbnRlcm5ldCBTZWN1cml0eSwgSW5jMIIBojANBgkqhkiG9w0BAQEFAAOCAY8A
+MIIBigKCAYEAyZwTJr4Kb7QEDnVY3BEkPoS3fn+XoxhCTfFvlMk8zXDcR4pFMgPkXTrZ1KbENUIV
+skIhy1vmnh61vwSL0lcdzesCekKSxLqrEA4xunZk1MB5mLbHXchSSpI1co1vaSzJjkTYP1UsUVQz
+NoOzV0LNCoZdahjGTHSduWvbrHTEeD6/jvUj3AVWrTx6krzgYA3ozAxtUnapK7IrZERuGOSwTrgR
+Lr1aieQdFy8haW1YL+ks5HmLRvcoGp+J68GX/zfMTduvWxhcpXm4txKc4iJqGCRmyBU2XjGjpDBX
+ndxHgT4edRLz5PwWSeZUh8/tWOGFwnVw7njoOa0sFixy96H2BqEn+yPeRALyf59rjtPL66tsXuaA
+ilB63yqbH42mnkxHTX5zcEm337GzTOGRccsYzN/ApVuXDeMfsO+sSUosrimnxm9QTOyKcex5h1As
+rxBVfTw+Zf7jP1YRlmMlGPG1zffK2KjJhD6ivFi2sIDThEQLxIAC8XOjp2ZXvhx87yNTAgMBAAGj
+ggICMIIB/jAfBgNVHSMEGDAWgBRoN+Drtjv4XxGG+/5hewiIZfROQjAdBgNVHQ4EFgQUX2/J9FT5
+5BNF7JqfAl9SJkv3pf0wPQYDVR0gBDYwNDAyBgVngQwBAzApMCcGCCsGAQUFBwIBFhtodHRwOi8v
+d3d3LmRpZ2ljZXJ0LmNvbS9DUFMwDgYDVR0PAQH/BAQDAgeAMBMGA1UdJQQMMAoGCCsGAQUFBwMD
+MIG1BgNVHR8Ega0wgaowU6BRoE+GTWh0dHA6Ly9jcmwzLmRpZ2ljZXJ0LmNvbS9EaWdpQ2VydFRy
+dXN0ZWRHNENvZGVTaWduaW5nUlNBNDA5NlNIQTM4NDIwMjFDQTEuY3JsMFOgUaBPhk1odHRwOi8v
+Y3JsNC5kaWdpY2VydC5jb20vRGlnaUNlcnRUcnVzdGVkRzRDb2RlU2lnbmluZ1JTQTQwOTZTSEEz
+ODQyMDIxQ0ExLmNybDCBlAYIKwYBBQUHAQEEgYcwgYQwJAYIKwYBBQUHMAGGGGh0dHA6Ly9vY3Nw
+LmRpZ2ljZXJ0LmNvbTBcBggrBgEFBQcwAoZQaHR0cDovL2NhY2VydHMuZGlnaWNlcnQuY29tL0Rp
+Z2lDZXJ0VHJ1c3RlZEc0Q29kZVNpZ25pbmdSU0E0MDk2U0hBMzg0MjAyMUNBMS5jcnQwCQYDVR0T
+BAIwADANBgkqhkiG9w0BAQsFAAOCAgEASLOHf1FQ7TrGqEoVXYoeNSkRWdVCUGd1JCDs7Hb9sLd3
+eQuipZ4EorQS/9qMiVMhmlJfF75sNVQhr1K5UtjrDRFMTzYmh78hAyovowzgyVKdGFqiVVr5m+mb
+vVyglLlA4V076LMBaKRknm1Dt8r0/5GSRCrkP2origpYMMaocN+iBX9+MImnh3J1Ehn0nRUhW86Q
+mt3/YCVIaQZisv+KmOxyAq1m6fiIYIvXY+cH2dDIheoVteb/NjYnKVqE6xTpOsxF16pykXiM9yk3
+Q9nlJS36KEGRP4wrySU4eIBnTcv4mimZjkWj6bIvk8otNJ14FbyltaPwIc3dE3oPGfSmCrkxs73j
+iqBs2TXLvblEmOhY8ko3xVdTm0zMP50MQVO948fz9yF+xdnPdMPT1/lCmGp6iWYRzxnvEkA1+HFl
+yy9YztrM8WNAhXirpUZg3HWQE2ONLKMtqQrkIHD2nikda77flk6oirqDuCf8Q7g8s86/KabTdxrw
+pRmsRjDkAfKVae58ctaKbmF32oU9BGk+9MPG8HF5Yfoh12DE1fLZcPzZrROrDFJGGxwhv5FlnxGg
+6G7jKi68erZnpaOPayK0bXyZNunqkI9IbIuPqMw5qaCZZgN6AEHIbGTKdrWEf11DmR7MdTjv3/vu
+JWtIXgk3kQFX27w9JhqV6QogVmzIfEQ=
+</ds:X509Certificate>
+</ds:X509Data>
+<ds:KeyValue>
+<ds:RSAKeyValue>
+<ds:Modulus>yZwTJr4Kb7QEDnVY3BEkPoS3fn+XoxhCTfFvlMk8zXDcR4pFMgPkXTrZ1KbENUIVskIhy1vmnh61
+vwSL0lcdzesCekKSxLqrEA4xunZk1MB5mLbHXchSSpI1co1vaSzJjkTYP1UsUVQzNoOzV0LNCoZd
+ahjGTHSduWvbrHTEeD6/jvUj3AVWrTx6krzgYA3ozAxtUnapK7IrZERuGOSwTrgRLr1aieQdFy8h
+aW1YL+ks5HmLRvcoGp+J68GX/zfMTduvWxhcpXm4txKc4iJqGCRmyBU2XjGjpDBXndxHgT4edRLz
+5PwWSeZUh8/tWOGFwnVw7njoOa0sFixy96H2BqEn+yPeRALyf59rjtPL66tsXuaAilB63yqbH42m
+nkxHTX5zcEm337GzTOGRccsYzN/ApVuXDeMfsO+sSUosrimnxm9QTOyKcex5h1AsrxBVfTw+Zf7j
+P1YRlmMlGPG1zffK2KjJhD6ivFi2sIDThEQLxIAC8XOjp2ZXvhx87yNT</ds:Modulus>
+<ds:Exponent>AQAB</ds:Exponent>
+</ds:RSAKeyValue>
+</ds:KeyValue>
+</ds:KeyInfo>
+</ds:Signature></oval_definitions>

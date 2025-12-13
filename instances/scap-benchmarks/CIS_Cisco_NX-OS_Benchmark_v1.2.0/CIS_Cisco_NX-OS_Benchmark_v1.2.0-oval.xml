@@ -1,0 +1,728 @@
+<oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5 https://oval.cisecurity.org/schemas/validator-oval-definitions-5.11.2.xsd">
+   <generator>
+      <oval:product_name>Center for Internet Security - Optimus</oval:product_name>
+      <oval:schema_version>5.11.2</oval:schema_version>
+      <oval:timestamp>2025-07-16T15:45:45.840Z</oval:timestamp>
+   </generator>
+   <definitions>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6886753" version="1">
+         <metadata>
+            <title>Configure AAA Authentication - TACACS if applicable</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.1.1_Configure_AAA_Authentication_-_TACACS_if_applicable" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.1.1_Configure_AAA_Authentication_-_TACACS_if_applicable"></reference>
+            <description>Configure AAA Authentication - TACACS if applicable</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6886753"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6983732" version="1">
+         <metadata>
+            <title>Configure AAA Authentication - TACACS if applicable</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.1.1_Configure_AAA_Authentication_-_TACACS_if_applicable" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.1.1_Configure_AAA_Authentication_-_TACACS_if_applicable"></reference>
+            <description>Configure AAA Authentication - TACACS if applicable</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6983732"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6886754" version="1">
+         <metadata>
+            <title>Configure AAA Authentication - Local SSH keys</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.1.2_Configure_AAA_Authentication_-_Local_SSH_keys" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.1.2_Configure_AAA_Authentication_-_Local_SSH_keys"></reference>
+            <description>Configure AAA Authentication - Local SSH keys</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6886754"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6886755" version="1">
+         <metadata>
+            <title>vty line authentication</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.2.1_vty_line_authentication" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.2.1_vty_line_authentication"></reference>
+            <description>vty line authentication</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6886755"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6935321" version="1">
+         <metadata>
+            <title>Limit SSH Login Attempts to 3 or less</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.2.3_Limit_SSH_Login_Attempts_to_3_or_less" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.2.3_Limit_SSH_Login_Attempts_to_3_or_less"></reference>
+            <description>Limit SSH Login Attempts to 3 or less</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6935321"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6935323" version="1">
+         <metadata>
+            <title>Limit SSH Login Attempts to 3 or less</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.2.3_Limit_SSH_Login_Attempts_to_3_or_less" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.2.3_Limit_SSH_Login_Attempts_to_3_or_less"></reference>
+            <description>Limit SSH Login Attempts to 3 or less</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6935323"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6937269" version="1">
+         <metadata>
+            <title>Disable the Telnet Feature</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.2.7_Disable_the_Telnet_Feature" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.2.7_Disable_the_Telnet_Feature"></reference>
+            <description>Disable the Telnet Feature</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6937269"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6925965" version="1">
+         <metadata>
+            <title>Pre-authentication Banner</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.3.1_Pre-authentication_Banner" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.3.1_Pre-authentication_Banner"></reference>
+            <description>Pre-authentication Banner</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6925965"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6925966" version="1">
+         <metadata>
+            <title>Post-authentication Banner</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.3.2_Post-authentication_Banner" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.3.2_Post-authentication_Banner"></reference>
+            <description>Post-authentication Banner</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6925966"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6939241" version="1">
+         <metadata>
+            <title>Enable Password Complexity Requirements for Local Credentials</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4.1_Enable_Password_Complexity_Requirements_for_Local_Credentials" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4.1_Enable_Password_Complexity_Requirements_for_Local_Credentials"></reference>
+            <description>Enable Password Complexity Requirements for Local Credentials</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6939241"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6939238" version="1">
+         <metadata>
+            <title>Set password lifetime, warning time and grace time for local credentials</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4.3_Set_password_lifetime_warning_time_and_grace_time_for_local_credentials" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4.3_Set_password_lifetime_warning_time_and_grace_time_for_local_credentials"></reference>
+            <description>Set password lifetime, warning time and grace time for local credentials</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6939238"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6939239" version="1">
+         <metadata>
+            <title>Set password lifetime, warning time and grace time for local credentials</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4.3_Set_password_lifetime_warning_time_and_grace_time_for_local_credentials" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4.3_Set_password_lifetime_warning_time_and_grace_time_for_local_credentials"></reference>
+            <description>Set password lifetime, warning time and grace time for local credentials</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6939239"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6939240" version="1">
+         <metadata>
+            <title>Set password length for local credentials</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4.4_Set_password_length_for_local_credentials" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4.4_Set_password_length_for_local_credentials"></reference>
+            <description>Set password length for local credentials</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6939240"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6943546" version="1">
+         <metadata>
+            <title>Ensure Syslog Logging is configured</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.5.1_Ensure_Syslog_Logging_is_configured" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.5.1_Ensure_Syslog_Logging_is_configured"></reference>
+            <description>Ensure Syslog Logging is configured</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6943546"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6960031" version="1">
+         <metadata>
+            <title>Configure a Time Zone</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.6.2_Configure_a_Time_Zone" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.6.2_Configure_a_Time_Zone"></reference>
+            <description>Configure a Time Zone</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6960031"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6943547" version="1">
+         <metadata>
+            <title>Disable Power on Auto Provisioning (POAP)</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.7.1_Disable_Power_on_Auto_Provisioning_POAP" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.7.1_Disable_Power_on_Auto_Provisioning_POAP"></reference>
+            <description>Disable Power on Auto Provisioning (POAP)</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6943547"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6943548" version="1">
+         <metadata>
+            <title>Disable iPXE (Pre-boot eXecution Environment)</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.7.2_Disable_iPXE_Pre-boot_eXecution_Environment" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.7.2_Disable_iPXE_Pre-boot_eXecution_Environment"></reference>
+            <description>Disable iPXE (Pre-boot eXecution Environment)</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6943548"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6939242" version="1">
+         <metadata>
+            <title>Configure SNMPv3</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.9.1_Configure_SNMPv3" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.9.1_Configure_SNMPv3"></reference>
+            <description>Configure SNMPv3</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6939242"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6939244" version="1">
+         <metadata>
+            <title>Configure SNMP Traps</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.9.2_Configure_SNMP_Traps" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.9.2_Configure_SNMP_Traps"></reference>
+            <description>Configure SNMP Traps</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6939244"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6950771" version="1">
+         <metadata>
+            <title>Disable IP Source-Routing</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.2.5_Disable_IP_Source-Routing" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.2.5_Disable_IP_Source-Routing"></reference>
+            <description>Disable IP Source-Routing</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6950771"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6935324" version="1">
+         <metadata>
+            <title>Ensure Exec Timeout for Console Sessions is set for less than 10</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.2.4_Ensure_Exec_Timeout_for_Console_Sessions_is_set_for_less_than_10" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.2.4_Ensure_Exec_Timeout_for_Console_Sessions_is_set_for_less_than_10"></reference>
+            <description>Ensure Exec Timeout for Console Sessions is set for less than 10</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6935324"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6935325" version="1">
+         <metadata>
+            <title>Ensure Exec Timeout for Remote Administrative Sessions (VTY) is set to less than 10</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.2.5_Ensure_Exec_Timeout_for_Remote_Administrative_Sessions_VTY_is_set_to_less_than_10" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.2.5_Ensure_Exec_Timeout_for_Remote_Administrative_Sessions_VTY_is_set_to_less_than_10"></reference>
+            <description>Ensure Exec Timeout for Remote Administrative Sessions (VTY) is set to less than 10</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6935325"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6935326" version="1">
+         <metadata>
+            <title>Set the Maximum Number of VTY Sessions</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.2.6_Set_the_Maximum_Number_of_VTY_Sessions" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.2.6_Set_the_Maximum_Number_of_VTY_Sessions"></reference>
+            <description>Set the Maximum Number of VTY Sessions</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6935326"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6935327" version="1">
+         <metadata>
+            <title>Set the Maximum Number of VTY Sessions</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.2.6_Set_the_Maximum_Number_of_VTY_Sessions" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.2.6_Set_the_Maximum_Number_of_VTY_Sessions"></reference>
+            <description>Set the Maximum Number of VTY Sessions</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6935327"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6951961" version="1">
+         <metadata>
+            <title>If VLAN interfaces have IP addreses, configure anti spoofing / ingress filtering protections</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.1.4.1_If_VLAN_interfaces_have_IP_addreses_configure_anti_spoofing__ingress_filtering_protections" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.1.4.1_If_VLAN_interfaces_have_IP_addreses_configure_anti_spoofing__ingress_filtering_protections"></reference>
+            <description>If VLAN interfaces have IP addreses, configure anti spoofing / ingress filtering protections</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6951961"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6950152" version="1">
+         <metadata>
+            <title>Disable ICMP Redirects on all Layer 3 Interfaces</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.2.2_Disable_ICMP_Redirects_on_all_Layer_3_Interfaces" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.2.2_Disable_ICMP_Redirects_on_all_Layer_3_Interfaces"></reference>
+            <description>Disable ICMP Redirects on all Layer 3 Interfaces</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6950152"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6960032" version="1">
+         <metadata>
+            <title>Disable ICMP Redirects on all Layer 3 Interfaces</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.2.2_Disable_ICMP_Redirects_on_all_Layer_3_Interfaces" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.2.2_Disable_ICMP_Redirects_on_all_Layer_3_Interfaces"></reference>
+            <description>Disable ICMP Redirects on all Layer 3 Interfaces</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6960032"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6950701" version="1">
+         <metadata>
+            <title>Disable Proxy ARP on all Layer 3 Interfaces</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.2.3_Disable_Proxy_ARP_on_all_Layer_3_Interfaces" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.2.3_Disable_Proxy_ARP_on_all_Layer_3_Interfaces"></reference>
+            <description>Disable Proxy ARP on all Layer 3 Interfaces</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6950701"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6951960" version="1">
+         <metadata>
+            <title>Disable Proxy ARP on all Layer 3 Interfaces</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.2.3_Disable_Proxy_ARP_on_all_Layer_3_Interfaces" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.2.3_Disable_Proxy_ARP_on_all_Layer_3_Interfaces"></reference>
+            <description>Disable Proxy ARP on all Layer 3 Interfaces</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6951960"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6939243" version="1">
+         <metadata>
+            <title>Configure SNMPv3</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.9.1_Configure_SNMPv3" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.9.1_Configure_SNMPv3"></reference>
+            <description>Configure SNMPv3</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6939243"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:6939245" version="1">
+         <metadata>
+            <title>Configure SNMP Traps</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.9.2_Configure_SNMP_Traps" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.9.2_Configure_SNMP_Traps"></reference>
+            <description>Configure SNMP Traps</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:6939245"></criterion>
+         </criteria>
+      </definition>
+   </definitions>
+   <tests>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="Configure AAA Auth" id="oval:org.cisecurity.benchmarks:tst:6886753" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6886753"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6886753"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="none_exist" comment="tacacs doesn't exist" id="oval:org.cisecurity.benchmarks:tst:6983732" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6983732"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6983732"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="Local SSH keys" id="oval:org.cisecurity.benchmarks:tst:6886754" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6886754"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6886754"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="VTY Auth" id="oval:org.cisecurity.benchmarks:tst:6886755" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6886755"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6886755"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="SSH Login-attempts 3 or less" id="oval:org.cisecurity.benchmarks:tst:6935321" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6935321"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6935321"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="none_exist" comment="SSH Login-attempts default of 3" id="oval:org.cisecurity.benchmarks:tst:6935323" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6935323"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6935323"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="tellnet disabled" id="oval:org.cisecurity.benchmarks:tst:6937269" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6937269"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6937269"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="Banner MOTD" id="oval:org.cisecurity.benchmarks:tst:6925965" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6925965"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6925965"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="Banner EXEC" id="oval:org.cisecurity.benchmarks:tst:6925966" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6925966"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6925966"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="none_exist" comment="Password strength check enabled" id="oval:org.cisecurity.benchmarks:tst:6939241" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6939241"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6939241"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="Passphrase default lifetime is established" id="oval:org.cisecurity.benchmarks:tst:6939238" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6939238"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6939238"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="Username passphrase length is established" id="oval:org.cisecurity.benchmarks:tst:6939239" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6939239"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6939239"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="password length" id="oval:org.cisecurity.benchmarks:tst:6939240" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6939240"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6939240"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="logging server established" id="oval:org.cisecurity.benchmarks:tst:6943546" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6943546"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6943546"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="Timezone configured" id="oval:org.cisecurity.benchmarks:tst:6960031" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6960031"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6960031"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="none_exist" comment="Boot POAP disabled" id="oval:org.cisecurity.benchmarks:tst:6943547" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6943547"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6943547"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="none_exist" comment="Disable iPXE" id="oval:org.cisecurity.benchmarks:tst:6943548" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6943548"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6943548"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="SNMP v3 traps" id="oval:org.cisecurity.benchmarks:tst:6939242" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6939242"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6939242"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="SNMP traps enabled" id="oval:org.cisecurity.benchmarks:tst:6939244" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6939244"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6939244"></state>
+      </global_test>
+      <global_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="no ip source route" id="oval:org.cisecurity.benchmarks:tst:6950771" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6950771"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6950771"></state>
+      </global_test>
+      <section_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="Ensure exec timeout is less than 10" id="oval:org.cisecurity.benchmarks:tst:6935324" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6935324"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6935324"></state>
+      </section_test>
+      <section_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="Exec timeout on line VTY" id="oval:org.cisecurity.benchmarks:tst:6935325" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6935325"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6935325"></state>
+      </section_test>
+      <section_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="Sessions 31 or less" id="oval:org.cisecurity.benchmarks:tst:6935326" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6935326"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6935326"></state>
+      </section_test>
+      <section_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="Default enabled does not display" id="oval:org.cisecurity.benchmarks:tst:6935327" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6935327"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6935327"></state>
+      </section_test>
+      <section_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="Anti Spoofing configured" id="oval:org.cisecurity.benchmarks:tst:6951961" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6951961"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6951961"></state>
+      </section_test>
+      <section_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="No ip redirects" id="oval:org.cisecurity.benchmarks:tst:6950152" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6950152"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6950152"></state>
+      </section_test>
+      <section_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="interface shutdown" id="oval:org.cisecurity.benchmarks:tst:6960032" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6960032"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6960032"></state>
+      </section_test>
+      <section_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="no proxy arp" id="oval:org.cisecurity.benchmarks:tst:6950701" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6950701"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6950701"></state>
+      </section_test>
+      <section_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="at_least_one_exists" comment="interface shutdown" id="oval:org.cisecurity.benchmarks:tst:6951960" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6951960"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:6951960"></state>
+      </section_test>
+      <snmp_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="none_exist" comment="SNMP not configured" id="oval:org.cisecurity.benchmarks:tst:6939243" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6939243"></object>
+      </snmp_test>
+      <snmp_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" check="all" check_existence="none_exist" comment="SNMP not enabled" id="oval:org.cisecurity.benchmarks:tst:6939245" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:6939245"></object>
+      </snmp_test>
+   </tests>
+   <objects>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Configure AAA Auth" id="oval:org.cisecurity.benchmarks:obj:6886753" version="1">
+         <global_command operation="pattern match">^\h*aaa\hgroup\hserver\htacacs.+</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="tacacs doesn't exist" id="oval:org.cisecurity.benchmarks:obj:6983732" version="1">
+         <global_command operation="pattern match">^\h*feature\h+tacacs.+</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Local SSH keys" id="oval:org.cisecurity.benchmarks:obj:6886754" version="1">
+         <global_command operation="pattern match">^\h*username\h.+\hsshkey\hssh-rsa\h.+</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="VTY Auth" id="oval:org.cisecurity.benchmarks:obj:6886755" version="1">
+         <global_command operation="pattern match">aaa\hauthentication\hlogin\hdefault\hgroup\h.+</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="SSH Login-attempts 3 or less" id="oval:org.cisecurity.benchmarks:obj:6935321" version="1">
+         <global_command operation="pattern match">^h*ssh\hlogin-attempts\h[1-2]</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="SSH Login-attempts default of 3" id="oval:org.cisecurity.benchmarks:obj:6935323" version="1">
+         <global_command operation="pattern match">^h*ssh\hlogin-attempts\h.+</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="tellnet disabled" id="oval:org.cisecurity.benchmarks:obj:6937269" version="1">
+         <global_command operation="pattern match">^\h*no\hfeature\htelnet</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Banner MOTD" id="oval:org.cisecurity.benchmarks:obj:6925965" version="1">
+         <global_command operation="pattern match">^\h*banner\hmotd\h.+</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Banner EXEC" id="oval:org.cisecurity.benchmarks:obj:6925966" version="1">
+         <global_command operation="pattern match">^\h*banner\hexec\h.+</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Password strength check enabled" id="oval:org.cisecurity.benchmarks:obj:6939241" version="1">
+         <global_command operation="pattern match">^\h*no\hpassword\hstrength-check$</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Passphrase default lifetime is established" id="oval:org.cisecurity.benchmarks:obj:6939238" version="1">
+         <global_command operation="pattern match">^\h*userpassphrase\hdefault-lifetime\h(365|36[0-5]|3[0-5][0-9]|[1-2][0-9]{2}|[1-9][0-9]|[1-9])\b</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Username passphrase length is established" id="oval:org.cisecurity.benchmarks:obj:6939239" version="1">
+         <global_command operation="pattern match">^\h*username\h+[A-Za-z0-9]+\h+passphrase\h+lifetime\h+(365|36[0-5]|3[0-5][0-9]|[1-2][0-9]{2}|[1-9][0-9]|[1-9])\b\h+</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="password length" id="oval:org.cisecurity.benchmarks:obj:6939240" version="1">
+         <global_command operation="pattern match">^\h*userpassphrase\h+min-length\h\b(1[6-9]|[2-9][0-9]|1[01][0-9]|12[0-7])\b\h+max-length\h+\b(1[6-9]|[2-9][0-9]|1[01][0-9]|12[0-7])\b$</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="logging server established" id="oval:org.cisecurity.benchmarks:obj:6943546" version="1">
+         <global_command operation="pattern match">^\h*logging\hserver\h.+</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Timezone configured" id="oval:org.cisecurity.benchmarks:obj:6960031" version="1">
+         <global_command operation="pattern match">^\h*clock\h+timezone\h...\h-\d\h\d$</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Boot POAP disabled" id="oval:org.cisecurity.benchmarks:obj:6943547" version="1">
+         <global_command operation="pattern match">^\h*boot\hpoap\henable</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Disable iPXE" id="oval:org.cisecurity.benchmarks:obj:6943548" version="1">
+         <global_command operation="pattern match">^\h*boot\horder\hbootflash</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="SNMP v3 traps" id="oval:org.cisecurity.benchmarks:obj:6939242" version="1">
+         <global_command operation="pattern match">^\h*snmp-server\hhost\h[0-9]+.[0-9]+.[0-9]+.[0-9]+\htraps\hversion\h3.+</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="SNMP traps enabled" id="oval:org.cisecurity.benchmarks:obj:6939244" version="1">
+         <global_command operation="pattern match">^\h*snmp-server\hhost\h[0-9]+.[0-9]+.[0-9]+.[0-9]+\htraps\hversion\h3.+</global_command>
+      </global_object>
+      <global_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="no ip source route" id="oval:org.cisecurity.benchmarks:obj:6950771" version="1">
+         <global_command operation="pattern match">^\h*no\h+ip\h+source-route$</global_command>
+      </global_object>
+      <section_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Ensure exec timeout is less than 10" id="oval:org.cisecurity.benchmarks:obj:6935324" version="1">
+         <section_command>line console</section_command>
+      </section_object>
+      <section_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Exec timeout on line VTY" id="oval:org.cisecurity.benchmarks:obj:6935325" version="1">
+         <section_command>line vty</section_command>
+      </section_object>
+      <section_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Sessions 31 or less" id="oval:org.cisecurity.benchmarks:obj:6935326" version="1">
+         <section_command>line vty</section_command>
+      </section_object>
+      <section_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Default enabled does not display" id="oval:org.cisecurity.benchmarks:obj:6935327" version="1">
+         <section_command>line vty</section_command>
+      </section_object>
+      <section_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Anti Spoofing configured" id="oval:org.cisecurity.benchmarks:obj:6951961" version="1">
+         <section_command>^\h*interface\h+Vlan.+$</section_command>
+      </section_object>
+      <section_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="No ip redirects" id="oval:org.cisecurity.benchmarks:obj:6950152" version="1">
+         <section_command>^\h*interface\h.+</section_command>
+      </section_object>
+      <section_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="interface shutdown" id="oval:org.cisecurity.benchmarks:obj:6960032" version="1">
+         <section_command>^\h*interface\h+</section_command>
+      </section_object>
+      <section_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="no proxy arp" id="oval:org.cisecurity.benchmarks:obj:6950701" version="1">
+         <section_command>^\h*interface\h.+</section_command>
+      </section_object>
+      <section_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="interface shutdown" id="oval:org.cisecurity.benchmarks:obj:6951960" version="1">
+         <section_command>^\h*interface\h.+</section_command>
+      </section_object>
+      <snmp_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="SNMP not configured" id="oval:org.cisecurity.benchmarks:obj:6939243" version="1"></snmp_object>
+      <snmp_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="SNMP not enabled" id="oval:org.cisecurity.benchmarks:obj:6939245" version="1"></snmp_object>
+   </objects>
+   <states>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Configure AAA Auth" id="oval:org.cisecurity.benchmarks:ste:6886753" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6886753"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="tacacs doesn't exist" id="oval:org.cisecurity.benchmarks:ste:6983732" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6983732"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Local SSH keys" id="oval:org.cisecurity.benchmarks:ste:6886754" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6886754"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="VTY Auth" id="oval:org.cisecurity.benchmarks:ste:6886755" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6886755"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="SSH Login-attempts 3 or less" id="oval:org.cisecurity.benchmarks:ste:6935321" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6935321"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="SSH Login-attempts default of 3" id="oval:org.cisecurity.benchmarks:ste:6935323" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6935323"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="tellnet disabled" id="oval:org.cisecurity.benchmarks:ste:6937269" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6937269"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Banner MOTD" id="oval:org.cisecurity.benchmarks:ste:6925965" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6925965"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Banner EXEC" id="oval:org.cisecurity.benchmarks:ste:6925966" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6925966"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Password strength check enabled" id="oval:org.cisecurity.benchmarks:ste:6939241" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6939241"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Passphrase default lifetime is established" id="oval:org.cisecurity.benchmarks:ste:6939238" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6939238"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Username passphrase length is established" id="oval:org.cisecurity.benchmarks:ste:6939239" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6939239"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="password length" id="oval:org.cisecurity.benchmarks:ste:6939240" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6939240"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="logging server established" id="oval:org.cisecurity.benchmarks:ste:6943546" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6943546"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Timezone configured" id="oval:org.cisecurity.benchmarks:ste:6960031" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6960031"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Boot POAP disabled" id="oval:org.cisecurity.benchmarks:ste:6943547" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6943547"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Disable iPXE" id="oval:org.cisecurity.benchmarks:ste:6943548" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6943548"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="SNMP v3 traps" id="oval:org.cisecurity.benchmarks:ste:6939242" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6939242"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="SNMP traps enabled" id="oval:org.cisecurity.benchmarks:ste:6939244" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6939244"></global_command>
+      </global_state>
+      <global_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="no ip source route" id="oval:org.cisecurity.benchmarks:ste:6950771" version="1">
+         <global_command operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6950771"></global_command>
+      </global_state>
+      <section_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Ensure exec timeout is less than 10" id="oval:org.cisecurity.benchmarks:ste:6935324" version="1">
+         <config_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6935324"></config_line>
+      </section_state>
+      <section_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Exec timeout on line VTY" id="oval:org.cisecurity.benchmarks:ste:6935325" version="1">
+         <config_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6935325"></config_line>
+      </section_state>
+      <section_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Sessions 31 or less" id="oval:org.cisecurity.benchmarks:ste:6935326" version="1">
+         <config_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6935326"></config_line>
+      </section_state>
+      <section_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Default enabled does not display" id="oval:org.cisecurity.benchmarks:ste:6935327" version="1">
+         <config_line entity_check="none satisfy" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6935327"></config_line>
+      </section_state>
+      <section_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="Anti Spoofing configured" id="oval:org.cisecurity.benchmarks:ste:6951961" version="1">
+         <config_line entity_check="all" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6951961"></config_line>
+      </section_state>
+      <section_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="No ip redirects" id="oval:org.cisecurity.benchmarks:ste:6950152" version="1">
+         <config_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6950152"></config_line>
+      </section_state>
+      <section_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="interface shutdown" id="oval:org.cisecurity.benchmarks:ste:6960032" version="1">
+         <config_line entity_check="none satisfy" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6960032"></config_line>
+      </section_state>
+      <section_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="no proxy arp" id="oval:org.cisecurity.benchmarks:ste:6950701" version="1">
+         <config_line entity_check="none satisfy" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6950701"></config_line>
+      </section_state>
+      <section_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" comment="interface shutdown" id="oval:org.cisecurity.benchmarks:ste:6951960" version="1">
+         <config_line entity_check="all" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:6951960"></config_line>
+      </section_state>
+   </states>
+   <variables>
+      <external_variable comment="This value is used in Rule: Configure AAA Authentication - TACACS if applicable" datatype="string" id="oval:org.cisecurity.benchmarks:var:6886753" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Configure AAA Authentication - TACACS if applicable" datatype="string" id="oval:org.cisecurity.benchmarks:var:6983732" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Configure AAA Authentication - Local SSH keys" datatype="string" id="oval:org.cisecurity.benchmarks:var:6886754" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: vty line authentication" datatype="string" id="oval:org.cisecurity.benchmarks:var:6886755" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Limit SSH Login Attempts to 3 or less" datatype="string" id="oval:org.cisecurity.benchmarks:var:6935321" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Limit SSH Login Attempts to 3 or less" datatype="string" id="oval:org.cisecurity.benchmarks:var:6935323" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Disable the Telnet Feature" datatype="string" id="oval:org.cisecurity.benchmarks:var:6937269" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Pre-authentication Banner" datatype="string" id="oval:org.cisecurity.benchmarks:var:6925965" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Post-authentication Banner" datatype="string" id="oval:org.cisecurity.benchmarks:var:6925966" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Enable Password Complexity Requirements for Local Credentials" datatype="string" id="oval:org.cisecurity.benchmarks:var:6939241" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set password lifetime, warning time and grace time for local credentials" datatype="string" id="oval:org.cisecurity.benchmarks:var:6939238" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set password lifetime, warning time and grace time for local credentials" datatype="string" id="oval:org.cisecurity.benchmarks:var:6939239" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set password length for local credentials" datatype="string" id="oval:org.cisecurity.benchmarks:var:6939240" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure Syslog Logging is configured" datatype="string" id="oval:org.cisecurity.benchmarks:var:6943546" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Configure a Time Zone" datatype="string" id="oval:org.cisecurity.benchmarks:var:6960031" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Disable Power on Auto Provisioning (POAP)" datatype="string" id="oval:org.cisecurity.benchmarks:var:6943547" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Disable iPXE (Pre-boot eXecution Environment)" datatype="string" id="oval:org.cisecurity.benchmarks:var:6943548" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Configure SNMPv3" datatype="string" id="oval:org.cisecurity.benchmarks:var:6939242" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Configure SNMP Traps" datatype="string" id="oval:org.cisecurity.benchmarks:var:6939244" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Disable IP Source-Routing" datatype="string" id="oval:org.cisecurity.benchmarks:var:6950771" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure Exec Timeout for Console Sessions is set for less than 10" datatype="string" id="oval:org.cisecurity.benchmarks:var:6935324" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure Exec Timeout for Remote Administrative Sessions (VTY) is set to less than 10" datatype="string" id="oval:org.cisecurity.benchmarks:var:6935325" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set the Maximum Number of VTY Sessions" datatype="string" id="oval:org.cisecurity.benchmarks:var:6935326" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set the Maximum Number of VTY Sessions" datatype="string" id="oval:org.cisecurity.benchmarks:var:6935327" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: If VLAN interfaces have IP addreses, configure anti spoofing / ingress filtering protections" datatype="string" id="oval:org.cisecurity.benchmarks:var:6951961" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Disable ICMP Redirects on all Layer 3 Interfaces" datatype="string" id="oval:org.cisecurity.benchmarks:var:6950152" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Disable ICMP Redirects on all Layer 3 Interfaces" datatype="string" id="oval:org.cisecurity.benchmarks:var:6960032" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Disable Proxy ARP on all Layer 3 Interfaces" datatype="string" id="oval:org.cisecurity.benchmarks:var:6950701" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Disable Proxy ARP on all Layer 3 Interfaces" datatype="string" id="oval:org.cisecurity.benchmarks:var:6951960" version="1"></external_variable>
+   </variables>
+<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+<ds:SignedInfo>
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"></ds:CanonicalizationMethod>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></ds:SignatureMethod>
+<ds:Reference URI="">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"></ds:Transform>
+<ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"></ds:Transform>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></ds:DigestMethod>
+<ds:DigestValue>IvFa6JhOLqbLWIirciYVyhIX0B0SKcVcF8MwkyAcZWg=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue>
+gmVoQyEPnxM6MCZ6KuotL9lWxskJdg1/V0MG6eqzEwlTBc91lULLDLuuhX6BWqYNJ5mOfm4rNDPU
+t5uexGFk4R0KsEU0cCof86x8rUqzzyd8ZS4kLCdhH9WlYxI0IeSXE+9E9y8CoLGybNMTjJiztgzs
+5rxn2L+knB41fRkxG3JOGjfU9Gy2RrqSS4wsJCYzy72GO8n16XmdQkwgzia3ccVzGhfXstp6syuY
+5QSTiysU3A0thXPyhA88qde4ghBKWY9Jme5ovd7a8u8r4fliWHVmKEb2Uiq49P4CrvNf9EBUmVSX
+zK1AdWpFxHKSW5SD0LjDztcqv5cYnIxuxCpria1rKNJIe4SxXHn0NF7hQ1PFx4xFxDMCWIcbHJus
+zczMoydtVNALwA6FOKi3/PU6Wn2+2F5isZKYRNT+Qp2TB1dXTwsH04M3Q1vPbultzBBKjDCNyi/R
+pvHajX7L5wK3TvTLkvV4alh1eV3hsHsALd8ZI//1eFQX7vsTiMxeQ6+l
+</ds:SignatureValue>
+<ds:KeyInfo>
+<ds:X509Data>
+<ds:X509Certificate>
+MIIHbDCCBVSgAwIBAgIQCdceADCnzKkglkQGavVKYzANBgkqhkiG9w0BAQsFADBpMQswCQYDVQQG
+EwJVUzEXMBUGA1UEChMORGlnaUNlcnQsIEluYy4xQTA/BgNVBAMTOERpZ2lDZXJ0IFRydXN0ZWQg
+RzQgQ29kZSBTaWduaW5nIFJTQTQwOTYgU0hBMzg0IDIwMjEgQ0ExMB4XDTIzMTAxODAwMDAwMFoX
+DTI2MTAxODIzNTk1OVowgfQxEzARBgsrBgEEAYI3PAIBAxMCVVMxGTAXBgsrBgEEAYI3PAIBAhMI
+TWFyeWxhbmQxHTAbBgNVBA8MFFByaXZhdGUgT3JnYW5pemF0aW9uMRIwEAYDVQQFEwlEMDYwNTg4
+MTIxCzAJBgNVBAYTAlVTMREwDwYDVQQIEwhOZXcgWW9yazEXMBUGA1UEBxMORWFzdCBHcmVlbmJ1
+c2gxKjAoBgNVBAoTIUNlbnRlciBmb3IgSW50ZXJuZXQgU2VjdXJpdHksIEluYzEqMCgGA1UEAxMh
+Q2VudGVyIGZvciBJbnRlcm5ldCBTZWN1cml0eSwgSW5jMIIBojANBgkqhkiG9w0BAQEFAAOCAY8A
+MIIBigKCAYEAyZwTJr4Kb7QEDnVY3BEkPoS3fn+XoxhCTfFvlMk8zXDcR4pFMgPkXTrZ1KbENUIV
+skIhy1vmnh61vwSL0lcdzesCekKSxLqrEA4xunZk1MB5mLbHXchSSpI1co1vaSzJjkTYP1UsUVQz
+NoOzV0LNCoZdahjGTHSduWvbrHTEeD6/jvUj3AVWrTx6krzgYA3ozAxtUnapK7IrZERuGOSwTrgR
+Lr1aieQdFy8haW1YL+ks5HmLRvcoGp+J68GX/zfMTduvWxhcpXm4txKc4iJqGCRmyBU2XjGjpDBX
+ndxHgT4edRLz5PwWSeZUh8/tWOGFwnVw7njoOa0sFixy96H2BqEn+yPeRALyf59rjtPL66tsXuaA
+ilB63yqbH42mnkxHTX5zcEm337GzTOGRccsYzN/ApVuXDeMfsO+sSUosrimnxm9QTOyKcex5h1As
+rxBVfTw+Zf7jP1YRlmMlGPG1zffK2KjJhD6ivFi2sIDThEQLxIAC8XOjp2ZXvhx87yNTAgMBAAGj
+ggICMIIB/jAfBgNVHSMEGDAWgBRoN+Drtjv4XxGG+/5hewiIZfROQjAdBgNVHQ4EFgQUX2/J9FT5
+5BNF7JqfAl9SJkv3pf0wPQYDVR0gBDYwNDAyBgVngQwBAzApMCcGCCsGAQUFBwIBFhtodHRwOi8v
+d3d3LmRpZ2ljZXJ0LmNvbS9DUFMwDgYDVR0PAQH/BAQDAgeAMBMGA1UdJQQMMAoGCCsGAQUFBwMD
+MIG1BgNVHR8Ega0wgaowU6BRoE+GTWh0dHA6Ly9jcmwzLmRpZ2ljZXJ0LmNvbS9EaWdpQ2VydFRy
+dXN0ZWRHNENvZGVTaWduaW5nUlNBNDA5NlNIQTM4NDIwMjFDQTEuY3JsMFOgUaBPhk1odHRwOi8v
+Y3JsNC5kaWdpY2VydC5jb20vRGlnaUNlcnRUcnVzdGVkRzRDb2RlU2lnbmluZ1JTQTQwOTZTSEEz
+ODQyMDIxQ0ExLmNybDCBlAYIKwYBBQUHAQEEgYcwgYQwJAYIKwYBBQUHMAGGGGh0dHA6Ly9vY3Nw
+LmRpZ2ljZXJ0LmNvbTBcBggrBgEFBQcwAoZQaHR0cDovL2NhY2VydHMuZGlnaWNlcnQuY29tL0Rp
+Z2lDZXJ0VHJ1c3RlZEc0Q29kZVNpZ25pbmdSU0E0MDk2U0hBMzg0MjAyMUNBMS5jcnQwCQYDVR0T
+BAIwADANBgkqhkiG9w0BAQsFAAOCAgEASLOHf1FQ7TrGqEoVXYoeNSkRWdVCUGd1JCDs7Hb9sLd3
+eQuipZ4EorQS/9qMiVMhmlJfF75sNVQhr1K5UtjrDRFMTzYmh78hAyovowzgyVKdGFqiVVr5m+mb
+vVyglLlA4V076LMBaKRknm1Dt8r0/5GSRCrkP2origpYMMaocN+iBX9+MImnh3J1Ehn0nRUhW86Q
+mt3/YCVIaQZisv+KmOxyAq1m6fiIYIvXY+cH2dDIheoVteb/NjYnKVqE6xTpOsxF16pykXiM9yk3
+Q9nlJS36KEGRP4wrySU4eIBnTcv4mimZjkWj6bIvk8otNJ14FbyltaPwIc3dE3oPGfSmCrkxs73j
+iqBs2TXLvblEmOhY8ko3xVdTm0zMP50MQVO948fz9yF+xdnPdMPT1/lCmGp6iWYRzxnvEkA1+HFl
+yy9YztrM8WNAhXirpUZg3HWQE2ONLKMtqQrkIHD2nikda77flk6oirqDuCf8Q7g8s86/KabTdxrw
+pRmsRjDkAfKVae58ctaKbmF32oU9BGk+9MPG8HF5Yfoh12DE1fLZcPzZrROrDFJGGxwhv5FlnxGg
+6G7jKi68erZnpaOPayK0bXyZNunqkI9IbIuPqMw5qaCZZgN6AEHIbGTKdrWEf11DmR7MdTjv3/vu
+JWtIXgk3kQFX27w9JhqV6QogVmzIfEQ=
+</ds:X509Certificate>
+</ds:X509Data>
+<ds:KeyValue>
+<ds:RSAKeyValue>
+<ds:Modulus>yZwTJr4Kb7QEDnVY3BEkPoS3fn+XoxhCTfFvlMk8zXDcR4pFMgPkXTrZ1KbENUIVskIhy1vmnh61
+vwSL0lcdzesCekKSxLqrEA4xunZk1MB5mLbHXchSSpI1co1vaSzJjkTYP1UsUVQzNoOzV0LNCoZd
+ahjGTHSduWvbrHTEeD6/jvUj3AVWrTx6krzgYA3ozAxtUnapK7IrZERuGOSwTrgRLr1aieQdFy8h
+aW1YL+ks5HmLRvcoGp+J68GX/zfMTduvWxhcpXm4txKc4iJqGCRmyBU2XjGjpDBXndxHgT4edRLz
+5PwWSeZUh8/tWOGFwnVw7njoOa0sFixy96H2BqEn+yPeRALyf59rjtPL66tsXuaAilB63yqbH42m
+nkxHTX5zcEm337GzTOGRccsYzN/ApVuXDeMfsO+sSUosrimnxm9QTOyKcex5h1AsrxBVfTw+Zf7j
+P1YRlmMlGPG1zffK2KjJhD6ivFi2sIDThEQLxIAC8XOjp2ZXvhx87yNT</ds:Modulus>
+<ds:Exponent>AQAB</ds:Exponent>
+</ds:RSAKeyValue>
+</ds:KeyValue>
+</ds:KeyInfo>
+</ds:Signature></oval_definitions>

@@ -1,0 +1,326 @@
+<oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5 https://oval.cisecurity.org/schemas/validator-oval-definitions-5.11.2.xsd">
+   <generator>
+      <oval:product_name>Center for Internet Security - Optimus</oval:product_name>
+      <oval:schema_version>5.11.2</oval:schema_version>
+      <oval:timestamp>2024-05-01T20:39:06.126Z</oval:timestamp>
+   </generator>
+   <definitions>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:def:1900046" version="1">
+         <metadata>
+            <title>Ensure Authentication is configured</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.1_Ensure_Authentication_is_configured" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.1_Ensure_Authentication_is_configured"></reference>
+            <description>Ensure Authentication is configured</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:tst:1900046"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:def:1900047" version="1">
+         <metadata>
+            <title>Ensure that MongoDB only listens for network connections on authorized interfaces</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.2_Ensure_that_MongoDB_only_listens_for_network_connections_on_authorized_interfaces" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.2_Ensure_that_MongoDB_only_listens_for_network_connections_on_authorized_interfaces"></reference>
+            <description>Ensure that MongoDB only listens for network connections on authorized interfaces</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:tst:1900047"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:def:1900051" version="1">
+         <metadata>
+            <title>Ensure Encryption of Data in Transit  TLS/SSL (Transport Encryption)</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.1_Ensure_Encryption_of_Data_in_Transit__TLSSSL_Transport_Encryption" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.1_Ensure_Encryption_of_Data_in_Transit__TLSSSL_Transport_Encryption"></reference>
+            <description>Ensure Encryption of Data in Transit  TLS/SSL (Transport Encryption)</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:tst:1900051"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:def:2041298" version="1">
+         <metadata>
+            <title>Ensure Encryption of Data in Transit  TLS/SSL (Transport Encryption)</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.1_Ensure_Encryption_of_Data_in_Transit__TLSSSL_Transport_Encryption" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.1_Ensure_Encryption_of_Data_in_Transit__TLSSSL_Transport_Encryption"></reference>
+            <description>Ensure Encryption of Data in Transit  TLS/SSL (Transport Encryption)</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:tst:2041298"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:def:1900055" version="1">
+         <metadata>
+            <title>Ensure Federal Information Processing Standard (FIPS) is enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.2_Ensure_Federal_Information_Processing_Standard_FIPS_is_enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.2_Ensure_Federal_Information_Processing_Standard_FIPS_is_enabled"></reference>
+            <description>Ensure Federal Information Processing Standard (FIPS) is enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:tst:1900055"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:def:1900056" version="1">
+         <metadata>
+            <title>Ensure that system activity is audited</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.1_Ensure_that_system_activity_is_audited" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.1_Ensure_that_system_activity_is_audited"></reference>
+            <description>Ensure that system activity is audited</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:tst:1900056"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:def:1900060" version="1">
+         <metadata>
+            <title>Ensure that logging captures as much information as possible</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.3_Ensure_that_logging_captures_as_much_information_as_possible" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.3_Ensure_that_logging_captures_as_much_information_as_possible"></reference>
+            <description>Ensure that logging captures as much information as possible</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:tst:1900060"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:def:1900061" version="1">
+         <metadata>
+            <title>Ensure that new entries are appended to the end of the log file</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.4_Ensure_that_new_entries_are_appended_to_the_end_of_the_log_file" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.4_Ensure_that_new_entries_are_appended_to_the_end_of_the_log_file"></reference>
+            <description>Ensure that new entries are appended to the end of the log file</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:tst:1900061"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:def:1900057" version="1">
+         <metadata>
+            <title>Ensure that MongoDB uses a non-default port</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.1_Ensure_that_MongoDB_uses_a_non-default_port" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.1_Ensure_that_MongoDB_uses_a_non-default_port"></reference>
+            <description>Ensure that MongoDB uses a non-default port</description>
+         </metadata>
+         <criteria negate="true" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:tst:1900057"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:def:1900048" version="1">
+         <metadata>
+            <title>Ensure that MongoDB does not bypass authentication via the localhost exception</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.2_Ensure_that_MongoDB_does_not_bypass_authentication_via_the_localhost_exception" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.2_Ensure_that_MongoDB_does_not_bypass_authentication_via_the_localhost_exception"></reference>
+            <description>Ensure that MongoDB does not bypass authentication via the localhost exception</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:tst:1900048"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:def:1900058" version="1">
+         <metadata>
+            <title>Ensure that audit filters are configured properly</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.2_Ensure_that_audit_filters_are_configured_properly" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.2_Ensure_that_audit_filters_are_configured_properly"></reference>
+            <description>Ensure that audit filters are configured properly</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:tst:1900058"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:def:1900059" version="1">
+         <metadata>
+            <title>Ensure that server-side scripting is disabled if not needed</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.3_Ensure_that_server-side_scripting_is_disabled_if_not_needed" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.3_Ensure_that_server-side_scripting_is_disabled_if_not_needed"></reference>
+            <description>Ensure that server-side scripting is disabled if not needed</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:tst:1900059"></criterion>
+         </criteria>
+      </definition>
+   </definitions>
+   <tests>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="at least one" check_existence="at_least_one_exists" comment="Ensure the running configuration file includes Authentication Parameter Configured" id="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:tst:1900046" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:obj:1900046"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="at least one" check_existence="at_least_one_exists" comment="Ensure running configuration file contents Pattern Match bindIp (string)" id="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:tst:1900047" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:obj:1900047"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="at least one" check_existence="at_least_one_exists" comment="Ensure the running configuration file includes a non-commented-out 'mode: requireSSL'" id="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:tst:1900051" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:obj:1900051"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="at least one" check_existence="at_least_one_exists" comment="Ensure the running configuration file includes a non-commented-out 'mode: requireTLS'" id="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:tst:2041298" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:obj:2041298"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="at least one" check_existence="at_least_one_exists" comment="Ensure the running configuration file includes a non-commented-out 'FIPSMode: true'" id="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:tst:1900055" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:obj:1900055"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="at least one" check_existence="at_least_one_exists" comment="Ensure the running configuration file includes a non-commented-out 'auditLog: destination: syslog'" id="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:tst:1900056" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:obj:1900056"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="at least one" check_existence="at_least_one_exists" comment="Ensure the running configuration file includes a non-commented-out 'SystemLog.quiet =False'" id="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:tst:1900060" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:obj:1900060"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="at least one" check_existence="at_least_one_exists" comment="Ensure the running configuration file includes a non-commented-out 'systemLog.logAppend=True'" id="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:tst:1900061" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:obj:1900061"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="at least one" check_existence="at_least_one_exists" comment="Ensure the running configuration file does not include a non-commented out 'port = 27017'" id="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:tst:1900057" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:obj:1900057"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure the running configuration file includes a non-commented-out 'enableLocalhostAuthBypass: false'" id="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:tst:1900048" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:obj:1900048"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:ste:1900048"></state>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure the running configuration file includes a non-commented-out audit filter value" id="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:tst:1900058" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:obj:1900058"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:ste:1900058"></state>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure the running configuration file includes a non-commented-out 'javascriptEnabled =False'" id="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:tst:1900059" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:obj:1900059"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:ste:1900059"></state>
+      </textfilecontent54_test>
+   </tests>
+   <objects>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure the running configuration file includes Authentication Parameter Configured" id="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:obj:1900046" version="1">
+         <filepath>/etc/mongod.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^\s*(?i)authorization:\s*"?enabled"?\s*$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure running configuration file contents Pattern Match bindIp (string)" id="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:obj:1900047" version="1">
+         <filepath>/etc/mongod.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^\s*net:\s*\n\s*bindIp</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure the running configuration file includes a non-commented-out 'mode: requireSSL'" id="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:obj:1900051" version="1">
+         <filepath>/etc/mongod.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^\s+mode:\s*requireSSL\s*$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure the running configuration file includes a non-commented-out 'mode: requireTLS'" id="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:obj:2041298" version="1">
+         <filepath>/etc/mongodb</filepath>
+         <pattern datatype="string" operation="pattern match">^\s+mode:\s*requireTLS\s*$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure the running configuration file includes a non-commented-out 'FIPSMode: true'" id="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:obj:1900055" version="1">
+         <filepath>/etc/mongod.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^\s*(?i)FIPSMode\s*:\s*true\s*$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure the running configuration file includes a non-commented-out 'auditLog: destination: syslog'" id="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:obj:1900056" version="1">
+         <filepath>/etc/mongod.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^\s*auditLog:\s*\n\s*destination</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure the running configuration file includes a non-commented-out 'SystemLog.quiet =False'" id="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:obj:1900060" version="1">
+         <filepath>/etc/mongod.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^\s*quiet\s*:\s*false\s*$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure the running configuration file includes a non-commented-out 'systemLog.logAppend=True'" id="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:obj:1900061" version="1">
+         <filepath>/etc/mongod.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^\s*logAppend\s*:\s*true\s*$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure the running configuration file does not include a non-commented out 'port = 27017'" id="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:obj:1900057" version="1">
+         <filepath>/etc/mongod.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^\s*port\s*:\s*27017*$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure the running configuration file includes a non-commented-out 'enableLocalhostAuthBypass: false'" id="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:obj:1900048" version="1">
+         <behaviors ignore_case="true" multiline="true"></behaviors>
+         <filepath var_ref="oval:org.cisecurity.benchmarks:var:2000000"></filepath>
+         <pattern datatype="string" operation="pattern match">^\s*(?i)enableLocalhostAuthBypass\s*:\s*(.*)\s*$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure the running configuration file includes a non-commented-out audit filter value" id="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:obj:1900058" version="1">
+         <behaviors ignore_case="true" multiline="true"></behaviors>
+         <filepath var_ref="oval:org.cisecurity.benchmarks:var:2000000"></filepath>
+         <pattern datatype="string" operation="pattern match">^\s*(?i)auditLog:(?:\R.*){1,}(filter\s*:.*)$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure the running configuration file includes a non-commented-out 'javascriptEnabled =False'" id="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:obj:1900059" version="1">
+         <behaviors ignore_case="true" multiline="true"></behaviors>
+         <filepath var_ref="oval:org.cisecurity.benchmarks:var:2000000"></filepath>
+         <pattern datatype="string" operation="pattern match">^\s*(?i)security:(?:\R.*){1,}\s*javascriptEnabled\s*:\s*(.*)\s*$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+   </objects>
+   <states>
+      <textfilecontent54_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure the running configuration file includes a non-commented-out 'enableLocalhostAuthBypass: false'" id="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:ste:1900048" version="1">
+         <subexpression operation="case insensitive equals" var_ref="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:var:1900048"></subexpression>
+      </textfilecontent54_state>
+      <textfilecontent54_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure the running configuration file includes a non-commented-out audit filter value" id="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:ste:1900058" version="1">
+         <subexpression operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:var:1900058"></subexpression>
+      </textfilecontent54_state>
+      <textfilecontent54_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure the running configuration file includes a non-commented-out 'javascriptEnabled =False'" id="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:ste:1900059" version="1">
+         <subexpression operation="case insensitive equals" var_ref="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:var:1900059"></subexpression>
+      </textfilecontent54_state>
+   </states>
+   <variables>
+      <external_variable comment="SQL connection string" datatype="string" id="oval:org.cisecurity.benchmarks:var:2000000" version="1"></external_variable>
+      <external_variable comment="Ensure the running configuration file includes a non-commented-out 'enableLocalhostAuthBypass: false'" datatype="string" id="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:var:1900048" version="1"></external_variable>
+      <external_variable comment="Ensure the running configuration file includes a non-commented-out audit filter value" datatype="string" id="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:var:1900058" version="1"></external_variable>
+      <external_variable comment="Ensure the running configuration file includes a non-commented-out 'javascriptEnabled =False'" datatype="string" id="oval:org.cisecurity.benchmarks.mongodb_mongodb_3:var:1900059" version="1"></external_variable>
+   </variables>
+<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+<ds:SignedInfo>
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"></ds:CanonicalizationMethod>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></ds:SignatureMethod>
+<ds:Reference URI="">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"></ds:Transform>
+<ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"></ds:Transform>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></ds:DigestMethod>
+<ds:DigestValue>OupVSf0ZIwbWlal1AZAG3olBdZ7ZjpxRCe1oQ2HQmjw=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue>
+fT9W9znRsxT/vIPbXYp56FqZxO/lyxOcd10F345BsSX2Q6HP76akeziNtLRQiO3C5cCfGIWY1/7Q
+RLWhBmQQSxNU2i5CvFYv0/xVOCEPJXnTYiUOdTY+HSoT3XC8F5CctfoIkVbtENrEtNIzrcf6Bn4m
+rbaPVWHIaziKxhJGkao2nk9G854SeUT1MTXIaC1b1nO4Ob79FFPnil4AtTTrqPwy5jyCuKDFylJg
+foU1uMfUksdeUgRDeD+hyU1669T9gDtQayXClG4JpLjKYS/nJ+kKoqJQlTRSj/lQyyesXjOQi9cq
+IEz7jTowKbLg1cwOmKcWbTd7f5JxIQzVAHgaEOwlethgOuD46PJeV8xjgvxMNWC6Uyyf949eWICm
+p2VHJtIkroG/zClB8pbfz+nvzVxVq+IAMgfa1V//e4dgj32HWV3scsFJm1wxd64P976Z9UgetNOa
+pm6nPxiyQllBAdJwXK535ylo+FqXDyAUhzRCQWNk50NkzRWafwB98oEo
+</ds:SignatureValue>
+<ds:KeyInfo>
+<ds:X509Data>
+<ds:X509Certificate>
+MIIHbDCCBVSgAwIBAgIQCdceADCnzKkglkQGavVKYzANBgkqhkiG9w0BAQsFADBpMQswCQYDVQQG
+EwJVUzEXMBUGA1UEChMORGlnaUNlcnQsIEluYy4xQTA/BgNVBAMTOERpZ2lDZXJ0IFRydXN0ZWQg
+RzQgQ29kZSBTaWduaW5nIFJTQTQwOTYgU0hBMzg0IDIwMjEgQ0ExMB4XDTIzMTAxODAwMDAwMFoX
+DTI2MTAxODIzNTk1OVowgfQxEzARBgsrBgEEAYI3PAIBAxMCVVMxGTAXBgsrBgEEAYI3PAIBAhMI
+TWFyeWxhbmQxHTAbBgNVBA8MFFByaXZhdGUgT3JnYW5pemF0aW9uMRIwEAYDVQQFEwlEMDYwNTg4
+MTIxCzAJBgNVBAYTAlVTMREwDwYDVQQIEwhOZXcgWW9yazEXMBUGA1UEBxMORWFzdCBHcmVlbmJ1
+c2gxKjAoBgNVBAoTIUNlbnRlciBmb3IgSW50ZXJuZXQgU2VjdXJpdHksIEluYzEqMCgGA1UEAxMh
+Q2VudGVyIGZvciBJbnRlcm5ldCBTZWN1cml0eSwgSW5jMIIBojANBgkqhkiG9w0BAQEFAAOCAY8A
+MIIBigKCAYEAyZwTJr4Kb7QEDnVY3BEkPoS3fn+XoxhCTfFvlMk8zXDcR4pFMgPkXTrZ1KbENUIV
+skIhy1vmnh61vwSL0lcdzesCekKSxLqrEA4xunZk1MB5mLbHXchSSpI1co1vaSzJjkTYP1UsUVQz
+NoOzV0LNCoZdahjGTHSduWvbrHTEeD6/jvUj3AVWrTx6krzgYA3ozAxtUnapK7IrZERuGOSwTrgR
+Lr1aieQdFy8haW1YL+ks5HmLRvcoGp+J68GX/zfMTduvWxhcpXm4txKc4iJqGCRmyBU2XjGjpDBX
+ndxHgT4edRLz5PwWSeZUh8/tWOGFwnVw7njoOa0sFixy96H2BqEn+yPeRALyf59rjtPL66tsXuaA
+ilB63yqbH42mnkxHTX5zcEm337GzTOGRccsYzN/ApVuXDeMfsO+sSUosrimnxm9QTOyKcex5h1As
+rxBVfTw+Zf7jP1YRlmMlGPG1zffK2KjJhD6ivFi2sIDThEQLxIAC8XOjp2ZXvhx87yNTAgMBAAGj
+ggICMIIB/jAfBgNVHSMEGDAWgBRoN+Drtjv4XxGG+/5hewiIZfROQjAdBgNVHQ4EFgQUX2/J9FT5
+5BNF7JqfAl9SJkv3pf0wPQYDVR0gBDYwNDAyBgVngQwBAzApMCcGCCsGAQUFBwIBFhtodHRwOi8v
+d3d3LmRpZ2ljZXJ0LmNvbS9DUFMwDgYDVR0PAQH/BAQDAgeAMBMGA1UdJQQMMAoGCCsGAQUFBwMD
+MIG1BgNVHR8Ega0wgaowU6BRoE+GTWh0dHA6Ly9jcmwzLmRpZ2ljZXJ0LmNvbS9EaWdpQ2VydFRy
+dXN0ZWRHNENvZGVTaWduaW5nUlNBNDA5NlNIQTM4NDIwMjFDQTEuY3JsMFOgUaBPhk1odHRwOi8v
+Y3JsNC5kaWdpY2VydC5jb20vRGlnaUNlcnRUcnVzdGVkRzRDb2RlU2lnbmluZ1JTQTQwOTZTSEEz
+ODQyMDIxQ0ExLmNybDCBlAYIKwYBBQUHAQEEgYcwgYQwJAYIKwYBBQUHMAGGGGh0dHA6Ly9vY3Nw
+LmRpZ2ljZXJ0LmNvbTBcBggrBgEFBQcwAoZQaHR0cDovL2NhY2VydHMuZGlnaWNlcnQuY29tL0Rp
+Z2lDZXJ0VHJ1c3RlZEc0Q29kZVNpZ25pbmdSU0E0MDk2U0hBMzg0MjAyMUNBMS5jcnQwCQYDVR0T
+BAIwADANBgkqhkiG9w0BAQsFAAOCAgEASLOHf1FQ7TrGqEoVXYoeNSkRWdVCUGd1JCDs7Hb9sLd3
+eQuipZ4EorQS/9qMiVMhmlJfF75sNVQhr1K5UtjrDRFMTzYmh78hAyovowzgyVKdGFqiVVr5m+mb
+vVyglLlA4V076LMBaKRknm1Dt8r0/5GSRCrkP2origpYMMaocN+iBX9+MImnh3J1Ehn0nRUhW86Q
+mt3/YCVIaQZisv+KmOxyAq1m6fiIYIvXY+cH2dDIheoVteb/NjYnKVqE6xTpOsxF16pykXiM9yk3
+Q9nlJS36KEGRP4wrySU4eIBnTcv4mimZjkWj6bIvk8otNJ14FbyltaPwIc3dE3oPGfSmCrkxs73j
+iqBs2TXLvblEmOhY8ko3xVdTm0zMP50MQVO948fz9yF+xdnPdMPT1/lCmGp6iWYRzxnvEkA1+HFl
+yy9YztrM8WNAhXirpUZg3HWQE2ONLKMtqQrkIHD2nikda77flk6oirqDuCf8Q7g8s86/KabTdxrw
+pRmsRjDkAfKVae58ctaKbmF32oU9BGk+9MPG8HF5Yfoh12DE1fLZcPzZrROrDFJGGxwhv5FlnxGg
+6G7jKi68erZnpaOPayK0bXyZNunqkI9IbIuPqMw5qaCZZgN6AEHIbGTKdrWEf11DmR7MdTjv3/vu
+JWtIXgk3kQFX27w9JhqV6QogVmzIfEQ=
+</ds:X509Certificate>
+</ds:X509Data>
+<ds:KeyValue>
+<ds:RSAKeyValue>
+<ds:Modulus>yZwTJr4Kb7QEDnVY3BEkPoS3fn+XoxhCTfFvlMk8zXDcR4pFMgPkXTrZ1KbENUIVskIhy1vmnh61
+vwSL0lcdzesCekKSxLqrEA4xunZk1MB5mLbHXchSSpI1co1vaSzJjkTYP1UsUVQzNoOzV0LNCoZd
+ahjGTHSduWvbrHTEeD6/jvUj3AVWrTx6krzgYA3ozAxtUnapK7IrZERuGOSwTrgRLr1aieQdFy8h
+aW1YL+ks5HmLRvcoGp+J68GX/zfMTduvWxhcpXm4txKc4iJqGCRmyBU2XjGjpDBXndxHgT4edRLz
+5PwWSeZUh8/tWOGFwnVw7njoOa0sFixy96H2BqEn+yPeRALyf59rjtPL66tsXuaAilB63yqbH42m
+nkxHTX5zcEm337GzTOGRccsYzN/ApVuXDeMfsO+sSUosrimnxm9QTOyKcex5h1AsrxBVfTw+Zf7j
+P1YRlmMlGPG1zffK2KjJhD6ivFi2sIDThEQLxIAC8XOjp2ZXvhx87yNT</ds:Modulus>
+<ds:Exponent>AQAB</ds:Exponent>
+</ds:RSAKeyValue>
+</ds:KeyValue>
+</ds:KeyInfo>
+</ds:Signature></oval_definitions>

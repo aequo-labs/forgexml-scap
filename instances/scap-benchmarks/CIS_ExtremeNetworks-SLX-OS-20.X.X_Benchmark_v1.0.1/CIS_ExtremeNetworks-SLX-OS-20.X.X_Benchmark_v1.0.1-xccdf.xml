@@ -1,0 +1,1344 @@
+<xccdf:Benchmark xmlns="http://checklists.nist.gov/xccdf/1.2" xmlns:ae="http://benchmarks.cisecurity.org/ae/0.5" xmlns:cc6="http://cisecurity.org/20-cc/v6.1" xmlns:cc7="http://cisecurity.org/20-cc/v7.0" xmlns:cc8="http://cisecurity.org/20-cc/v8.0" xmlns:ciscf="https://benchmarks.cisecurity.org/ciscf/1.0" xmlns:notes="http://benchmarks.cisecurity.org/notes" xmlns:xccdf="http://checklists.nist.gov/xccdf/1.2" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="xccdf_org.cisecurity.benchmarks_benchmark_1.0.1_CIS_ExtremeNetworks-SLX-OS-20.X.X_Benchmark" style="SCAP_1.2" xsi:schemaLocation="http://checklists.nist.gov/xccdf/1.2 https://scap.nist.gov/schema/xccdf/1.2/xccdf_1.2.xsd">
+   <xccdf:status date="2025-08-12">accepted</xccdf:status>
+   <xccdf:title xml:lang="en">CIS ExtremeNetworks-SLX-OS-20.X.X Benchmark</xccdf:title>
+   <xccdf:description xml:lang="en">
+      <xhtml:p>
+This document, Security Configuration Benchmark for Extreme Networks SLX OS, provides prescriptive guidance for establishing a secure configuration posture for Extreme Network switches running SLX OS version 20.6.3 or later. This guide was tested against SLX OS 20.6.3.
+This is a development version and is meant to encourage the SLX-OS user community to test configurations and make recommendations.
+To obtain the latest version of this guide, please visit       <xhtml:a href="http://benchmarks.cisecurity.org">http://benchmarks.cisecurity.org</xhtml:a>
+. If you have questions, comments, or have identified ways to improve this guide, please write us at       <xhtml:a href="mailto:benchmarkinfo@cisecurity.org">benchmarkinfo@cisecurity.org</xhtml:a>
+.    </xhtml:p>
+   </xccdf:description>
+   <xccdf:notice id="terms-of-use" xml:lang="en">	BACKGROUND.
+	The Center for Internet Security ("CIS") provides benchmarks, scoring tools, software, data, information, suggestions, ideas, and other services and materials from the CIS website or elsewhere ("Products") as a public service to Internet users worldwide.	Recommendations contained in the Products ("Recommendations") result from a consensus-building process that involves many security experts and are generally generic in nature.	The Recommendations are intended to provide helpful information to organizations attempting to evaluate or improve the security of their networks, systems, and devices.	Proper use of the Recommendations requires careful analysis and adaptation to specific user requirements.	The Recommendations are not in any way intended to be a "quick fix" for anyone's information security needs.
+	NO REPRESENTATIONS, WARRANTIES, OR COVENANTS.
+	CIS makes no representations, warranties, or covenants whatsoever as to (i) the positive or negative effect of the Products or the Recommendations on the operation or the security of any particular network, computer system, network device, software, hardware, or any component of any of the foregoing or (ii) the accuracy, reliability, timeliness, or completeness of	the Products or the Recommendations.	CIS is providing the Products and the Recommendations "as is" and "as available" without representations, warranties, or covenants of any kind.	USER AGREEMENTS.
+	By using the Products and/or the Recommendations, I and/or my organization ("We") agree and acknowledge that:
+	1.	No network, system, device, hardware, software, or component can be made fully secure;
+	2.	We are using the Products and the Recommendations solely at our own risk;
+	3.	We are not compensating CIS to assume any liabilities associated with our use of the Products or the Recommendations, even risks that result from 		CIS's negligence or failure to perform; 
+	4.	We have the sole responsibility to evaluate the risks and benefits of the Products and Recommendations to us and to adapt the Products and the 			Recommendations to our particular circumstances and requirements;
+	5.	Neither CIS, nor any CIS Party (defined below) has any responsibility to make any corrections, updates, upgrades, or bug fixes; or to notify us of 		the need for any such corrections, updates, upgrades, or bug fixes; and
+	6.	Neither CIS nor any CIS Party has or will have any liability to us whatsoever (whether based in contract, tort, strict liability or otherwise) for 		any direct, indirect, incidental, consequential, or special damages (including without limitation loss of profits, loss of sales, loss of or damage 		to reputation,loss of customers, loss of software, data, information or emails, loss of privacy, loss of use of any computer or other equipment, 	business interruption, wasted management or other staff resources or claims of any kind against us from third parties) arising out of or in any way 	Connected with our use of or our inability to use any of the Products or Recommendations (even if CIS has been advised of the possibility of such 	damages), including without limitation any liability associated with infringement of intellectual property, defects, bugs, errors, omissions, 	viruses, worms, backdoors, Trojan horses or other harmful items.
+	GRANT OF LIMITED RIGHTS.
+	CIS hereby grants each user the following rights, but only so long as the user complies with all of the terms of these Agreed Terms of Use:
+	1.	Except to the extent that we may have received additional authorization pursuant to a written agreement with CIS, each user may download, install and 	use each of the Products on a single computer;
+	2.	Each user may print one or more copies of any Product or any component of a Product that is in a .txt, .pdf, .doc, .mcw, or .rtf format, provided 		that all such copies are printed in full and are kept intact, including without limitation the text of this Agreed Terms of Use in its entirety.
+	RETENTION OF INTELLECTUAL PROPERTY RIGHTS; LIMITATIONS ON DISTRIBUTION.
+	The Products are protected by copyright and other intellectual property laws and by international treaties.	We acknowledge and agree that we are not acquiring title to any intellectual property rights in the Products and that full title and all ownership rights to the Products will remain the exclusive property of CIS or CIS Parties.	CIS reserves all rights not expressly granted to users in the preceding section entitled "Grant of limited rights."
+	Subject to the paragraph entitled "Special Rules" (which includes a waiver, granted to some classes of CIS Members, of certain limitations in this paragraph), and except as we may have otherwise agreed in a written agreement with CIS, we agree that we will not (i) decompile, disassemble, reverse engineer, or otherwise attempt to derive the source code for any software Product that is not already in the form of source code; (ii) distribute, redistribute, encumber, sell, rent, lease, lend, sublicense, or otherwise transfer or exploit rights to any Product or any component of a Product; (iii) post any Product or any component of a Product on any website, bulletin board, ftp server, newsgroup, or other similar mechanism or device, without regard to whether such mechanism or device is internal or external, (iv) remove or alter trademark, logo, copyright or other proprietary notices, legends, symbols or labels in any Product or any component of a Product; (v) remove these Agreed Terms of Use from, or alter these Agreed Terms of Use as they appear in, any Product or any component of a Product; (vi) use any Product or any component of a Product with any derivative works based directly on a Product or any component of a Product; (vii) use any Product or any component of a Product with other products or applications that are directly and specifically dependent on such Product or any component for any part of their functionality, or (viii) represent or claim a particular level of compliance with a CIS Benchmark, scoring tool or other Product.	We will not facilitate or otherwise aid other individuals or entities in any of the activities listed in this paragraph.
+	We hereby agree to indemnify, defend, and hold CIS and all of its officers, directors, members, contributors, employees, authors, developers, agents, affiliates, licensors, information and service providers, software suppliers, hardware suppliers, and all other persons who aided CIS in the creation, development, or maintenance of the Products or Recommendations ("CIS Parties") harmless from and against any and all liability, losses, costs, and expenses (including attorneys' fees and court costs) incurred by CIS or any CIS Party in connection with any claim arising out of any violation by us of the preceding paragraph, including without limitation CIS's right, at our expense, to assume the exclusive defense and control of any matter subject to this indemnification, and in such case, we agree to cooperate with CIS in its defense of such claim.	We further agree that all CIS Parties are third-party beneficiaries of our undertakings in these Agreed Terms of Use.	SPECIAL RULES.
+	CIS has created and will from time to time create, special rules for its members and for other persons and organizations with which CIS has a written contractual relationship.	Those special rules will override and supersede these Agreed Terms of Use with respect to the users who are covered by the special rules.
+	CIS hereby grants each CIS Security Consulting or Software Vendor Member and each CIS Organizational User Member, but only so long as such Member remains in good standing with CIS and complies with all of the terms of these Agreed Terms of Use, the right to distribute the Products and Recommendations within such Member's own organization, whether by manual or electronic means.	Each such Member acknowledges and agrees that the foregoing grant is subject to the terms of such Member's membership arrangement with CIS and may, therefore, be modified or terminated by CIS at any time.
+	CHOICE OF LAW; JURISDICTION; VENUE.
+	We acknowledge and agree that these Agreed Terms of Use will be governed by and construed in accordance with the laws of the State of Maryland, that any action at law or in equity arising out of or relating to these Agreed Terms of Use shall be filed only in the courts located in the State of Maryland, that we hereby consent and submit to the personal jurisdiction of such courts for the purposes of litigating any such action.	If any of these Agreed Terms of Use shall be determined to be unlawful, void, or for any reason unenforceable, then such terms shall be deemed severable and shall not affect the validity and enforceability of any remaining provisions.
+	BY USING THE PRODUCTS I(WE) ACKNOWLEDGE THAT WE HAVE READ THESE AGREED TERMS OF USE IN THEIR ENTIRETY, UNDERSTAND THEM, AND I(WE) AGREE TO BE BOUND BY THEM IN ALL RESPECTS.</xccdf:notice>
+   <xccdf:version>1.0.1</xccdf:version>
+   <xccdf:Profile id="xccdf_org.cisecurity.benchmarks_profile_Level_1">
+      <xccdf:title xml:lang="en">Level 1</xccdf:title>
+      <xccdf:description xml:lang="en">
+         <xhtml:p>Items in this profile intend to:</xhtml:p>
+         <xhtml:ul>
+            <xhtml:li>be practical and prudent;</xhtml:li>
+            <xhtml:li>provide a clear security benefit; and</xhtml:li>
+            <xhtml:li>not inhibit the utility of the technology beyond acceptable means.</xhtml:li>
+         </xhtml:ul>
+      </xccdf:description>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_1.1_Ensure_the_system_is_on_a_supported_Network_Operating_System" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_1.2_Configure_Host_Name" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_1.3_Ensure_that_the_Default_Chassis_Name_is_changed" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_2.1.1_Login_Banner" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_2.2.1_Change_default_username_and_password" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_2.2.2_Ensure_Password_complexity_is_configured" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_2.3.1_Ensure_system_is_running_TLS_1.2_or_later" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_2.4.1_Ensure_multiple_NTP_servers_are_configured" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_2.4.2_Enable_NTP_Server_Authentication" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_2.5.1_Syslog_Server_Configuration" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_2.5.2_Syslog_Facility_Configuration" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_2.5.3_Syslog_Audit_Class_Configuration" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_2.6.1_Enable_Local_Login_Authentication" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_2.6.2_Enable_Accounting" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_3.1.1_Disable_Unused_Interfaces" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_3.1.2_Disable_Proxy_Arp" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_5.1.1_Check_V3_host_configuration" selected="true"></xccdf:select>
+   </xccdf:Profile>
+   <xccdf:Profile id="xccdf_org.cisecurity.benchmarks_profile_Level_2">
+      <xccdf:title xml:lang="en">Level 2</xccdf:title>
+      <xccdf:description xml:lang="en">
+         <xhtml:p>This profile extends the "Level 1" profile. Items in this profile exhibit one or more of the following characteristics:</xhtml:p>
+         <xhtml:ul>
+            <xhtml:li>are intended for environments or use cases where security is paramount</xhtml:li>
+            <xhtml:li>acts as a defense in depth measure</xhtml:li>
+            <xhtml:li>may negatively inhibit the utility or performance of the technology.</xhtml:li>
+         </xhtml:ul>
+      </xccdf:description>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_1.1_Ensure_the_system_is_on_a_supported_Network_Operating_System" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_1.2_Configure_Host_Name" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_1.3_Ensure_that_the_Default_Chassis_Name_is_changed" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_2.1.1_Login_Banner" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_2.2.1_Change_default_username_and_password" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_2.2.2_Ensure_Password_complexity_is_configured" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_2.3.1_Ensure_system_is_running_TLS_1.2_or_later" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_2.4.1_Ensure_multiple_NTP_servers_are_configured" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_2.4.2_Enable_NTP_Server_Authentication" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_2.5.1_Syslog_Server_Configuration" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_2.5.2_Syslog_Facility_Configuration" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_2.5.3_Syslog_Audit_Class_Configuration" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_2.6.1_Enable_Local_Login_Authentication" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_2.6.2_Enable_Accounting" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_3.1.1_Disable_Unused_Interfaces" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_3.1.2_Disable_Proxy_Arp" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_5.1.1_Check_V3_host_configuration" selected="true"></xccdf:select>
+   </xccdf:Profile>
+   <xccdf:Profile id="xccdf_org.cisecurity.benchmarks_profile_BGP_Enabled">
+      <xccdf:title xml:lang="en">BGP Enabled</xccdf:title>
+      <xccdf:description xml:lang="en">
+         <xhtml:p>Use this profile when BGP is in use</xhtml:p>
+      </xccdf:description>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_1.1_Ensure_the_system_is_on_a_supported_Network_Operating_System" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_1.2_Configure_Host_Name" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_1.3_Ensure_that_the_Default_Chassis_Name_is_changed" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_2.1.1_Login_Banner" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_2.2.1_Change_default_username_and_password" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_2.2.2_Ensure_Password_complexity_is_configured" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_2.3.1_Ensure_system_is_running_TLS_1.2_or_later" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_2.4.1_Ensure_multiple_NTP_servers_are_configured" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_2.4.2_Enable_NTP_Server_Authentication" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_2.5.1_Syslog_Server_Configuration" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_2.5.2_Syslog_Facility_Configuration" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_2.5.3_Syslog_Audit_Class_Configuration" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_2.6.1_Enable_Local_Login_Authentication" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_2.6.2_Enable_Accounting" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_3.1.1_Disable_Unused_Interfaces" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_3.1.2_Disable_Proxy_Arp" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_4.1.1_Ensure_BGP_Configuration" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_4.1.2_Ensure_AS_number_configuration" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_5.1.1_Check_V3_host_configuration" selected="true"></xccdf:select>
+   </xccdf:Profile>
+   <Value id="xccdf_org.cisecurity.benchmarks_value_7546658_var" operator="equals" type="string">
+      <title>Configure Host Name</title>
+      <description>This value is used in Rule: Configure Host Name</description>
+      <value>^switch-attributes\hhost-name\h\w+</value>
+   </Value>
+   <Value id="xccdf_org.cisecurity.benchmarks_value_7546656_var" operator="equals" type="string">
+      <title>Login Banner</title>
+      <description>This value is used in Rule: Login Banner</description>
+      <value>\h*banner\hlogin</value>
+   </Value>
+   <Value id="xccdf_org.cisecurity.benchmarks_value_7546657_var" operator="equals" type="string">
+      <title>Ensure Password complexity is configured</title>
+      <description>This value is used in Rule: Ensure Password complexity is configured</description>
+      <value>^password-attributes\hmin-length\h(1[4-9]|[2-9][0-9]|[1-9][0-9]{2,})</value>
+   </Value>
+   <Value id="xccdf_org.cisecurity.benchmarks_value_7546660_var" operator="equals" type="string">
+      <title>Ensure Password complexity is configured</title>
+      <description>This value is used in Rule: Ensure Password complexity is configured</description>
+      <value>^password-attributes\hmax-retry\h\b([1-3]|3)\b</value>
+   </Value>
+   <Value id="xccdf_org.cisecurity.benchmarks_value_7546661_var" operator="equals" type="string">
+      <title>Ensure Password complexity is configured</title>
+      <description>This value is used in Rule: Ensure Password complexity is configured</description>
+      <value>^password-attributes\hcharacter-restriction\hupper\h\b([1-9]|1)\b</value>
+   </Value>
+   <Value id="xccdf_org.cisecurity.benchmarks_value_7546664_var" operator="equals" type="string">
+      <title>Ensure Password complexity is configured</title>
+      <description>This value is used in Rule: Ensure Password complexity is configured</description>
+      <value>^password-attributes\hcharacter-restriction\hlower\h\b([1-9]|1)\b</value>
+   </Value>
+   <Value id="xccdf_org.cisecurity.benchmarks_value_7546665_var" operator="equals" type="string">
+      <title>Ensure Password complexity is configured</title>
+      <description>This value is used in Rule: Ensure Password complexity is configured</description>
+      <value>^password-attributes\hcharacter-restriction\hnumeric\h\b([1-9]|1)\b</value>
+   </Value>
+   <Value id="xccdf_org.cisecurity.benchmarks_value_7546666_var" operator="equals" type="string">
+      <title>Ensure Password complexity is configured</title>
+      <description>This value is used in Rule: Ensure Password complexity is configured</description>
+      <value>^password-attributes\hcharacter-restriction\hspecial-char\h\b([1-9]|1)\b</value>
+   </Value>
+   <Value id="xccdf_org.cisecurity.benchmarks_value_7546667_var" operator="equals" type="string">
+      <title>Ensure multiple NTP servers are configured</title>
+      <description>This value is used in Rule: Ensure multiple NTP servers are configured</description>
+      <value>^ntp\hserver\h+.*$</value>
+   </Value>
+   <Value id="xccdf_org.cisecurity.benchmarks_value_7546668_var" operator="equals" type="string">
+      <title>Enable NTP Server Authentication</title>
+      <description>This value is used in Rule: Enable NTP Server Authentication</description>
+      <value>^ntp\hauthenticate$</value>
+   </Value>
+   <Value id="xccdf_org.cisecurity.benchmarks_value_7546669_var" operator="equals" type="string">
+      <title>Syslog Server Configuration</title>
+      <description>This value is used in Rule: Syslog Server Configuration</description>
+      <value>^logging\hsyslog-server\h+.*$</value>
+   </Value>
+   <Value id="xccdf_org.cisecurity.benchmarks_value_7546670_var" operator="equals" type="string">
+      <title>Syslog Facility Configuration</title>
+      <description>This value is used in Rule: Syslog Facility Configuration</description>
+      <value>^logging\hsyslog-facility\h+.*$</value>
+   </Value>
+   <Value id="xccdf_org.cisecurity.benchmarks_value_7546671_var" operator="equals" type="string">
+      <title>Syslog Audit Class Configuration</title>
+      <description>This value is used in Rule: Syslog Audit Class Configuration</description>
+      <value>^logging\hauditlog\hclass\h+.*$</value>
+   </Value>
+   <Value id="xccdf_org.cisecurity.benchmarks_value_7546672_var" operator="equals" type="string">
+      <title>Enable Local Login Authentication</title>
+      <description>This value is used in Rule: Enable Local Login Authentication</description>
+      <value>^aaa\hauthentication\hlogin\hlocal$</value>
+   </Value>
+   <Value id="xccdf_org.cisecurity.benchmarks_value_7546673_var" operator="equals" type="string">
+      <title>Enable Accounting</title>
+      <description>This value is used in Rule: Enable Accounting</description>
+      <value>^aaa\haccounting\hexec\hdefault\h+.*</value>
+   </Value>
+   <Value id="xccdf_org.cisecurity.benchmarks_value_7546674_var" operator="equals" type="string">
+      <title>Enable Accounting</title>
+      <description>This value is used in Rule: Enable Accounting</description>
+      <value>^aaa\haccounting\hcommands\hdefault\h+.*</value>
+   </Value>
+   <Value id="xccdf_org.cisecurity.benchmarks_value_7546663_var" operator="equals" type="string">
+      <title>Check V3 host configuration</title>
+      <description>This value is used in Rule: Check V3 host configuration</description>
+      <value>^snmp-server\hv3host.*$</value>
+   </Value>
+   <Value id="xccdf_org.cisecurity.benchmarks_value_7546662_var" operator="equals" type="string">
+      <title>Ensure AS number configuration</title>
+      <description>This value is used in Rule: Ensure AS number configuration</description>
+      <value>local-as\h+.*</value>
+   </Value>
+   <xccdf:Group id="xccdf_org.cisecurity.benchmarks_group_1_General_Recommendations">
+      <xccdf:title xml:lang="en">General Recommendations</xccdf:title>
+      <xccdf:description xml:lang="en"></xccdf:description>
+      <xccdf:Rule id="xccdf_org.cisecurity.benchmarks_rule_1.1_Ensure_the_system_is_on_a_supported_Network_Operating_System" role="unscored" selected="false" weight="0.0">
+         <xccdf:title xml:lang="en">Ensure the system is on a supported Network Operating System</xccdf:title>
+         <xccdf:description xml:lang="en">
+            <xhtml:p>Extreme Networks releases software releases periodically to close defects, upgrade security postures, and close security vulnerabilities. Customers are expected to be utilizing a supported software release.</xhtml:p>
+         </xccdf:description>
+         <xccdf:metadata>
+            <controls:cis_controls xmlns:controls="http://cisecurity.org/controls">
+               <controls:framework urn="urn:cisecurity.org:controls:8.0">
+                  <controls:safeguard title="Perform Automated Operating System Patch Management" urn="urn:cisecurity.org:controls:8.0:7:3">
+                     <controls:implementation_groups ig1="true" ig2="true" ig3="true"></controls:implementation_groups>
+                     <controls:asset_type>Applications</controls:asset_type>
+                     <controls:security_function>Protect</controls:security_function>
+                  </controls:safeguard>
+                  <controls:safeguard title="Perform Automated Application Patch Management" urn="urn:cisecurity.org:controls:8.0:7:4">
+                     <controls:implementation_groups ig1="true" ig2="true" ig3="true"></controls:implementation_groups>
+                     <controls:asset_type>Applications</controls:asset_type>
+                     <controls:security_function>Protect</controls:security_function>
+                  </controls:safeguard>
+                  <controls:safeguard title="Ensure Network Infrastructure is Up-to-Date" urn="urn:cisecurity.org:controls:8.0:12:1">
+                     <controls:implementation_groups ig1="true" ig2="true" ig3="true"></controls:implementation_groups>
+                     <controls:asset_type>Network</controls:asset_type>
+                     <controls:security_function>Protect</controls:security_function>
+                  </controls:safeguard>
+               </controls:framework>
+               <controls:framework urn="urn:cisecurity.org:controls:7.0">
+                  <controls:safeguard title="Install the Latest Stable Version of Any Security-related Updates on All Network Devices" urn="urn:cisecurity.org:controls:7.0:11:4">
+                     <controls:implementation_groups ig1="true" ig2="true" ig3="true"></controls:implementation_groups>
+                     <controls:asset_type>Network</controls:asset_type>
+                     <controls:security_function>Protect</controls:security_function>
+                  </controls:safeguard>
+               </controls:framework>
+            </controls:cis_controls>
+         </xccdf:metadata>
+         <xccdf:rationale xml:lang="en">
+            <xhtml:p>Having up to date software is important for the security of your environment.  Software defects, bugs, and vulnerabilities are patched in new software releases. Failing to update can result in a compromise to your network.</xhtml:p>
+         </xccdf:rationale>
+         <xccdf:ident cc7:controlURI="http://cisecurity.org/20-cc/v7.0/control/11/subcontrol/4" system="http://cisecurity.org/20-cc/v7.0"></xccdf:ident>
+         <xccdf:ident cc8:controlURI="http://cisecurity.org/20-cc/v8.0/control/7/subcontrol/3" system="http://cisecurity.org/20-cc/v8.0"></xccdf:ident>
+         <xccdf:ident cc8:controlURI="http://cisecurity.org/20-cc/v8.0/control/7/subcontrol/4" system="http://cisecurity.org/20-cc/v8.0"></xccdf:ident>
+         <xccdf:ident cc8:controlURI="http://cisecurity.org/20-cc/v8.0/control/12/subcontrol/1" system="http://cisecurity.org/20-cc/v8.0"></xccdf:ident>
+         <xccdf:fixtext xml:lang="en">
+            <xhtml:div>
+               <xhtml:p>
+                  <xhtml:p>Update to the latest stable release</xhtml:p>
+               </xhtml:p>
+            </xhtml:div>
+         </xccdf:fixtext>
+      </xccdf:Rule>
+      <xccdf:Rule id="xccdf_org.cisecurity.benchmarks_rule_1.2_Configure_Host_Name" role="full" selected="false" weight="1.0">
+         <xccdf:title xml:lang="en">Configure Host Name</xccdf:title>
+         <xccdf:description xml:lang="en">
+            <xhtml:p>Extreme Networks switches ship with a default host name. The host-name property should be set up to be unique name on the management network. This enables the switch to be resolved with a unique FQDN.</xhtml:p>
+         </xccdf:description>
+         <xccdf:metadata>
+            <controls:cis_controls xmlns:controls="http://cisecurity.org/controls">
+               <controls:framework urn="urn:cisecurity.org:controls:8.0">
+                  <controls:safeguard title="Explicitly Not Mapped" urn="urn:cisecurity.org:controls:8.0:0:0">
+                     <controls:implementation_groups></controls:implementation_groups>
+                     <controls:asset_type></controls:asset_type>
+                     <controls:security_function></controls:security_function>
+                  </controls:safeguard>
+               </controls:framework>
+               <controls:framework urn="urn:cisecurity.org:controls:7.0">
+                  <controls:safeguard title="Explicitly Not Mapped" urn="urn:cisecurity.org:controls:7.0:0:0">
+                     <controls:implementation_groups></controls:implementation_groups>
+                     <controls:asset_type></controls:asset_type>
+                     <controls:security_function></controls:security_function>
+                  </controls:safeguard>
+               </controls:framework>
+            </controls:cis_controls>
+         </xccdf:metadata>
+         <xccdf:rationale xml:lang="en">
+            <xhtml:p>Assigning a unique hostname allows you to pinpoint what device you are looking for in logs and prevents confusion when a security incident happens.</xhtml:p>
+         </xccdf:rationale>
+         <xccdf:ident cc7:controlURI="http://cisecurity.org/20-cc/v7.0/control/0/subcontrol/0" system="http://cisecurity.org/20-cc/v7.0"></xccdf:ident>
+         <xccdf:ident cc8:controlURI="http://cisecurity.org/20-cc/v8.0/control/0/subcontrol/0" system="http://cisecurity.org/20-cc/v8.0"></xccdf:ident>
+         <xccdf:fixtext xml:lang="en">
+            <xhtml:div>
+               <xhtml:p>
+                  <xhtml:code class="code_block">
+SLX#config terminal              <br></br>
+SLX(config)#switch-attributes host-name new_switch              <br></br>
+SLX(config)#end
+            </xhtml:code>
+               </xhtml:p>
+            </xhtml:div>
+         </xccdf:fixtext>
+         <xccdf:complex-check operator="AND">
+            <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+               <check-export export-name="oval:org.cisecurity.benchmarks:var:7546658" value-id="xccdf_org.cisecurity.benchmarks_value_7546658_var"></check-export>
+               <check-content-ref href="CIS_ExtremeNetworks-SLX-OS-20.X.X_Benchmark_v1.0.1-oval.xml" name="oval:org.cisecurity.benchmarks:def:7546658"></check-content-ref>
+            </check>
+         </xccdf:complex-check>
+      </xccdf:Rule>
+      <xccdf:Rule id="xccdf_org.cisecurity.benchmarks_rule_1.3_Ensure_that_the_Default_Chassis_Name_is_changed" role="unscored" selected="false" weight="0.0">
+         <xccdf:title xml:lang="en">Ensure that the Default Chassis Name is changed</xccdf:title>
+         <xccdf:description xml:lang="en">
+            <xhtml:p>It is incredibly important to change default ID's to ensure that they are not easily compromised from an attacker.</xhtml:p>
+         </xccdf:description>
+         <xccdf:metadata>
+            <controls:cis_controls xmlns:controls="http://cisecurity.org/controls">
+               <controls:framework urn="urn:cisecurity.org:controls:8.0">
+                  <controls:safeguard title="Explicitly Not Mapped" urn="urn:cisecurity.org:controls:8.0:0:0">
+                     <controls:implementation_groups></controls:implementation_groups>
+                     <controls:asset_type></controls:asset_type>
+                     <controls:security_function></controls:security_function>
+                  </controls:safeguard>
+               </controls:framework>
+               <controls:framework urn="urn:cisecurity.org:controls:7.0">
+                  <controls:safeguard title="Explicitly Not Mapped" urn="urn:cisecurity.org:controls:7.0:0:0">
+                     <controls:implementation_groups></controls:implementation_groups>
+                     <controls:asset_type></controls:asset_type>
+                     <controls:security_function></controls:security_function>
+                  </controls:safeguard>
+               </controls:framework>
+            </controls:cis_controls>
+         </xccdf:metadata>
+         <xccdf:rationale xml:lang="en">
+            <xhtml:p>The default name of the chassis is the product model. This should be changed</xhtml:p>
+         </xccdf:rationale>
+         <xccdf:ident cc7:controlURI="http://cisecurity.org/20-cc/v7.0/control/0/subcontrol/0" system="http://cisecurity.org/20-cc/v7.0"></xccdf:ident>
+         <xccdf:ident cc8:controlURI="http://cisecurity.org/20-cc/v8.0/control/0/subcontrol/0" system="http://cisecurity.org/20-cc/v8.0"></xccdf:ident>
+         <xccdf:fixtext xml:lang="en">
+            <xhtml:div>
+               <xhtml:p>
+                  <xhtml:code class="code_block">
+SLX#config terminal              <br></br>
+SLX(config)#switch-attributes chassis-name new_switch              <br></br>
+SLX(config)#end
+            </xhtml:code>
+               </xhtml:p>
+            </xhtml:div>
+         </xccdf:fixtext>
+      </xccdf:Rule>
+   </xccdf:Group>
+   <xccdf:Group id="xccdf_org.cisecurity.benchmarks_group_2_System_Configuration">
+      <xccdf:title xml:lang="en">System Configuration</xccdf:title>
+      <xccdf:description xml:lang="en">
+         <xhtml:p>The system configuration benchmark section applies to the Global Config of the switch.</xhtml:p>
+      </xccdf:description>
+      <xccdf:Group id="xccdf_org.cisecurity.benchmarks_group_2.1_Banner_Configuration">
+         <xccdf:title xml:lang="en">Banner Configuration</xccdf:title>
+         <xccdf:description xml:lang="en"></xccdf:description>
+         <xccdf:Rule id="xccdf_org.cisecurity.benchmarks_rule_2.1.1_Login_Banner" role="full" selected="false" weight="1.0">
+            <xccdf:title xml:lang="en">Login Banner</xccdf:title>
+            <xccdf:description xml:lang="en">
+               <xhtml:p>An approved use notification, in the form of a Login Banner, should be displayed before granting access to the switch. Such a banner ensures that the privacy and security notification verbiage used is consistent with applicable federal laws, Executive Orders, directives, policies, regulations, standards, and guidance.</xhtml:p>
+            </xccdf:description>
+            <xccdf:metadata>
+               <controls:cis_controls xmlns:controls="http://cisecurity.org/controls">
+                  <controls:framework urn="urn:cisecurity.org:controls:8.0">
+                     <controls:safeguard title="Explicitly Not Mapped" urn="urn:cisecurity.org:controls:8.0:0:0">
+                        <controls:implementation_groups></controls:implementation_groups>
+                        <controls:asset_type></controls:asset_type>
+                        <controls:security_function></controls:security_function>
+                     </controls:safeguard>
+                  </controls:framework>
+                  <controls:framework urn="urn:cisecurity.org:controls:7.0">
+                     <controls:safeguard title="Explicitly Not Mapped" urn="urn:cisecurity.org:controls:7.0:0:0">
+                        <controls:implementation_groups></controls:implementation_groups>
+                        <controls:asset_type></controls:asset_type>
+                        <controls:security_function></controls:security_function>
+                     </controls:safeguard>
+                  </controls:framework>
+               </controls:cis_controls>
+            </xccdf:metadata>
+            <xccdf:rationale xml:lang="en"></xccdf:rationale>
+            <xccdf:ident cc7:controlURI="http://cisecurity.org/20-cc/v7.0/control/0/subcontrol/0" system="http://cisecurity.org/20-cc/v7.0"></xccdf:ident>
+            <xccdf:ident cc8:controlURI="http://cisecurity.org/20-cc/v8.0/control/0/subcontrol/0" system="http://cisecurity.org/20-cc/v8.0"></xccdf:ident>
+            <xccdf:fixtext xml:lang="en">
+               <xhtml:div>
+                  <xhtml:p>
+                     <xhtml:code class="code_block">SLX(config)# banner login “Please do not disturb the setup on this switch”
+</xhtml:code>
+                  </xhtml:p>
+               </xhtml:div>
+            </xccdf:fixtext>
+            <xccdf:complex-check operator="AND">
+               <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+                  <check-export export-name="oval:org.cisecurity.benchmarks:var:7546656" value-id="xccdf_org.cisecurity.benchmarks_value_7546656_var"></check-export>
+                  <check-content-ref href="CIS_ExtremeNetworks-SLX-OS-20.X.X_Benchmark_v1.0.1-oval.xml" name="oval:org.cisecurity.benchmarks:def:7546656"></check-content-ref>
+               </check>
+            </xccdf:complex-check>
+         </xccdf:Rule>
+      </xccdf:Group>
+      <xccdf:Group id="xccdf_org.cisecurity.benchmarks_group_2.2_Password_Configuration">
+         <xccdf:title xml:lang="en">Password Configuration</xccdf:title>
+         <xccdf:description xml:lang="en"></xccdf:description>
+         <xccdf:Rule id="xccdf_org.cisecurity.benchmarks_rule_2.2.1_Change_default_username_and_password" role="unscored" selected="false" weight="0.0">
+            <xccdf:title xml:lang="en">Change default username and password</xccdf:title>
+            <xccdf:description xml:lang="en">
+               <xhtml:p>Extreme switches have a default username and password. These need to be changed from their default values.</xhtml:p>
+            </xccdf:description>
+            <xccdf:metadata>
+               <controls:cis_controls xmlns:controls="http://cisecurity.org/controls">
+                  <controls:framework urn="urn:cisecurity.org:controls:8.0">
+                     <controls:safeguard title="Manage Default Accounts on Enterprise Assets and Software" urn="urn:cisecurity.org:controls:8.0:4:7">
+                        <controls:implementation_groups ig1="true" ig2="true" ig3="true"></controls:implementation_groups>
+                        <controls:asset_type>Users</controls:asset_type>
+                        <controls:security_function>Protect</controls:security_function>
+                     </controls:safeguard>
+                     <controls:safeguard title="Use Unique Passwords" urn="urn:cisecurity.org:controls:8.0:5:2">
+                        <controls:implementation_groups ig1="true" ig2="true" ig3="true"></controls:implementation_groups>
+                        <controls:asset_type>Users</controls:asset_type>
+                        <controls:security_function>Protect</controls:security_function>
+                     </controls:safeguard>
+                  </controls:framework>
+                  <controls:framework urn="urn:cisecurity.org:controls:7.0">
+                     <controls:safeguard title="Change Default Passwords" urn="urn:cisecurity.org:controls:7.0:4:2">
+                        <controls:implementation_groups ig1="true" ig2="true" ig3="true"></controls:implementation_groups>
+                        <controls:asset_type>Users</controls:asset_type>
+                        <controls:security_function>Protect</controls:security_function>
+                     </controls:safeguard>
+                  </controls:framework>
+               </controls:cis_controls>
+            </xccdf:metadata>
+            <xccdf:rationale xml:lang="en">
+               <xhtml:p>Changing the default username and password is critical for maintaining the security of any system. Here’s why it’s important:</xhtml:p>
+               <xhtml:ul>
+                  <xhtml:li>Prevent Unauthorized Access: Default credentials are well-known to attackers, making it easy for them to gain access to systems that use default usernames and passwords. Changing these credentials significantly reduces this risk.</xhtml:li>
+                  <xhtml:li>Improve Security Posture: Customized usernames and strong, unique passwords add an additional layer of security, making it harder for attackers to guess or brute-force their way into your system.</xhtml:li>
+                  <xhtml:li>Compliance: Many security standards and regulations require changing default credentials as a basic security measure. Adhering to these requirements helps in achieving compliance and avoiding potential penalties.</xhtml:li>
+                  <xhtml:li>Reduce Attack Surface: Using default credentials increases the attack surface of your system. By changing them, you reduce the number of potential entry points for attackers.</xhtml:li>
+                  <xhtml:li>Protection of Sensitive Data: Default credentials can expose sensitive data to unauthorized users. Changing them ensures that only authorized personnel have access to important information.</xhtml:li>
+               </xhtml:ul>
+               <xhtml:p>By updating default usernames and passwords, you enhance your system’s security, protect sensitive data, and comply with regulatory standards, ultimately maintaining a safer and more secure environment.</xhtml:p>
+            </xccdf:rationale>
+            <xccdf:ident cc8:controlURI="http://cisecurity.org/20-cc/v8.0/control/5/subcontrol/2" system="http://cisecurity.org/20-cc/v8.0"></xccdf:ident>
+            <xccdf:ident cc7:controlURI="http://cisecurity.org/20-cc/v7.0/control/4/subcontrol/2" system="http://cisecurity.org/20-cc/v7.0"></xccdf:ident>
+            <xccdf:ident cc8:controlURI="http://cisecurity.org/20-cc/v8.0/control/4/subcontrol/7" system="http://cisecurity.org/20-cc/v8.0"></xccdf:ident>
+            <xccdf:fixtext xml:lang="en">
+               <xhtml:div>
+                  <xhtml:p>
+                     <xhtml:code class="code_block">password_digest = ^username.admin.(*).encryption-level
+</xhtml:code>
+                  </xhtml:p>
+               </xhtml:div>
+            </xccdf:fixtext>
+         </xccdf:Rule>
+         <xccdf:Rule id="xccdf_org.cisecurity.benchmarks_rule_2.2.2_Ensure_Password_complexity_is_configured" role="full" selected="false" weight="1.0">
+            <xccdf:title xml:lang="en">Ensure Password complexity is configured</xccdf:title>
+            <xccdf:description xml:lang="en">
+               <xhtml:p>It is prudent to use a minimum length to 14 characters. Maximum length should be as long as possible based on system constraints</xhtml:p>
+            </xccdf:description>
+            <xccdf:metadata>
+               <controls:cis_controls xmlns:controls="http://cisecurity.org/controls">
+                  <controls:framework urn="urn:cisecurity.org:controls:8.0">
+                     <controls:safeguard title="Use Unique Passwords" urn="urn:cisecurity.org:controls:8.0:5:2">
+                        <controls:implementation_groups ig1="true" ig2="true" ig3="true"></controls:implementation_groups>
+                        <controls:asset_type>Users</controls:asset_type>
+                        <controls:security_function>Protect</controls:security_function>
+                     </controls:safeguard>
+                  </controls:framework>
+                  <controls:framework urn="urn:cisecurity.org:controls:7.0">
+                     <controls:safeguard title="Use Unique Passwords" urn="urn:cisecurity.org:controls:7.0:4:4">
+                        <controls:implementation_groups ig2="true" ig3="true"></controls:implementation_groups>
+                        <controls:asset_type>Users</controls:asset_type>
+                        <controls:security_function>Protect</controls:security_function>
+                     </controls:safeguard>
+                  </controls:framework>
+               </controls:cis_controls>
+            </xccdf:metadata>
+            <xccdf:rationale xml:lang="en">
+               <xhtml:p>
+Password composition or complexity requirements are often used to increase the strength of a user-created password of a given length. For example, a complex password would need some number of characters from all three of the following categories:
+• Uppercase characters
+• Lowercase characters
+• Non-alphabetic characters such as numbers or special characters like &lt;*&amp;(^%$&gt;!:
+While there is no standard for password composition in use today, it is very common for these requirements to vary from system to system (e.g., system one allows special characters, but system two does not).
+Using a radius system to manage logins will decrease the need to have actual passwords and username on the device.  Generally, it is recommended to have 1 emergency account on the device with the password stored in a secure location to use in case of loss of communication with the Radius servers.            <xhtml:br></xhtml:br>
+
+This password should be changed after every use.          </xhtml:p>
+            </xccdf:rationale>
+            <xccdf:ident cc8:controlURI="http://cisecurity.org/20-cc/v8.0/control/5/subcontrol/2" system="http://cisecurity.org/20-cc/v8.0"></xccdf:ident>
+            <xccdf:ident cc7:controlURI="http://cisecurity.org/20-cc/v7.0/control/4/subcontrol/4" system="http://cisecurity.org/20-cc/v7.0"></xccdf:ident>
+            <xccdf:ident system="URL">https://www.cisecurity.org/insights/white-papers/cis-password-policy-guide</xccdf:ident>
+            <xccdf:fixtext xml:lang="en">
+               <xhtml:div>
+                  <xhtml:p>
+                     <xhtml:code class="code_block">
+SLX(config)# password-attributes min-length 8                <br></br>
+SLX(config)# password-attributes max-retry 4                 <br></br>
+SLX(config)# password-attributes character-restriction upper 1                 <br></br>
+SLX(config)# password-attributes character-restriction lower 2                 <br></br>
+SLX(config)# password-attributes character-restriction numeric 1                 <br></br>
+SLX(config)# password-attributes character-restriction special-char 1
+              </xhtml:code>
+                  </xhtml:p>
+               </xhtml:div>
+            </xccdf:fixtext>
+            <xccdf:complex-check operator="AND">
+               <xccdf:complex-check operator="AND">
+                  <xccdf:complex-check operator="AND">
+                     <xccdf:complex-check operator="AND">
+                        <xccdf:complex-check operator="AND">
+                           <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+                              <check-export export-name="oval:org.cisecurity.benchmarks:var:7546657" value-id="xccdf_org.cisecurity.benchmarks_value_7546657_var"></check-export>
+                              <check-content-ref href="CIS_ExtremeNetworks-SLX-OS-20.X.X_Benchmark_v1.0.1-oval.xml" name="oval:org.cisecurity.benchmarks:def:7546657"></check-content-ref>
+                           </check>
+                           <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+                              <check-export export-name="oval:org.cisecurity.benchmarks:var:7546660" value-id="xccdf_org.cisecurity.benchmarks_value_7546660_var"></check-export>
+                              <check-content-ref href="CIS_ExtremeNetworks-SLX-OS-20.X.X_Benchmark_v1.0.1-oval.xml" name="oval:org.cisecurity.benchmarks:def:7546660"></check-content-ref>
+                           </check>
+                        </xccdf:complex-check>
+                        <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+                           <check-export export-name="oval:org.cisecurity.benchmarks:var:7546661" value-id="xccdf_org.cisecurity.benchmarks_value_7546661_var"></check-export>
+                           <check-content-ref href="CIS_ExtremeNetworks-SLX-OS-20.X.X_Benchmark_v1.0.1-oval.xml" name="oval:org.cisecurity.benchmarks:def:7546661"></check-content-ref>
+                        </check>
+                     </xccdf:complex-check>
+                     <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+                        <check-export export-name="oval:org.cisecurity.benchmarks:var:7546664" value-id="xccdf_org.cisecurity.benchmarks_value_7546664_var"></check-export>
+                        <check-content-ref href="CIS_ExtremeNetworks-SLX-OS-20.X.X_Benchmark_v1.0.1-oval.xml" name="oval:org.cisecurity.benchmarks:def:7546664"></check-content-ref>
+                     </check>
+                  </xccdf:complex-check>
+                  <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+                     <check-export export-name="oval:org.cisecurity.benchmarks:var:7546665" value-id="xccdf_org.cisecurity.benchmarks_value_7546665_var"></check-export>
+                     <check-content-ref href="CIS_ExtremeNetworks-SLX-OS-20.X.X_Benchmark_v1.0.1-oval.xml" name="oval:org.cisecurity.benchmarks:def:7546665"></check-content-ref>
+                  </check>
+               </xccdf:complex-check>
+               <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+                  <check-export export-name="oval:org.cisecurity.benchmarks:var:7546666" value-id="xccdf_org.cisecurity.benchmarks_value_7546666_var"></check-export>
+                  <check-content-ref href="CIS_ExtremeNetworks-SLX-OS-20.X.X_Benchmark_v1.0.1-oval.xml" name="oval:org.cisecurity.benchmarks:def:7546666"></check-content-ref>
+               </check>
+            </xccdf:complex-check>
+         </xccdf:Rule>
+      </xccdf:Group>
+      <xccdf:Group id="xccdf_org.cisecurity.benchmarks_group_2.3_TLS_Version">
+         <xccdf:title xml:lang="en">TLS Version</xccdf:title>
+         <xccdf:description xml:lang="en"></xccdf:description>
+         <xccdf:Rule id="xccdf_org.cisecurity.benchmarks_rule_2.3.1_Ensure_system_is_running_TLS_1.2_or_later" role="unscored" selected="false" weight="0.0">
+            <xccdf:title xml:lang="en">Ensure system is running TLS 1.2 or later</xccdf:title>
+            <xccdf:description xml:lang="en">
+               <xhtml:p>Ensuring secure data transmission is crucial in our digital age. TLS 1.2 stands out by offering advanced encryption algorithms, improved key exchange mechanisms, and enhanced protection against known vulnerabilities. This level of security ensures the privacy and integrity of sensitive information transmitted over the internet. As a result, most modern browsers and services now mandate the use of TLS 1.2 or higher for secure connections.</xhtml:p>
+            </xccdf:description>
+            <xccdf:metadata>
+               <controls:cis_controls xmlns:controls="http://cisecurity.org/controls">
+                  <controls:framework urn="urn:cisecurity.org:controls:8.0">
+                     <controls:safeguard title="Encrypt Sensitive Data in Transit" urn="urn:cisecurity.org:controls:8.0:3:10">
+                        <controls:implementation_groups ig2="true" ig3="true"></controls:implementation_groups>
+                        <controls:asset_type>Data</controls:asset_type>
+                        <controls:security_function>Protect</controls:security_function>
+                     </controls:safeguard>
+                  </controls:framework>
+                  <controls:framework urn="urn:cisecurity.org:controls:7.0">
+                     <controls:safeguard title="Explicitly Not Mapped" urn="urn:cisecurity.org:controls:7.0:0:0">
+                        <controls:implementation_groups></controls:implementation_groups>
+                        <controls:asset_type></controls:asset_type>
+                        <controls:security_function></controls:security_function>
+                     </controls:safeguard>
+                  </controls:framework>
+               </controls:cis_controls>
+            </xccdf:metadata>
+            <xccdf:rationale xml:lang="en">
+               <xhtml:p>Using TLS 1.2 or higher is crucial for ensuring secure and reliable communication over the internet. Here’s why it’s so important:</xhtml:p>
+               <xhtml:ul>
+                  <xhtml:li>Enhanced Security: TLS 1.2 and higher versions incorporate stronger encryption algorithms and improved cryptographic techniques, making it much harder for attackers to intercept and decipher data.</xhtml:li>
+                  <xhtml:li>Protection Against Vulnerabilities: Older versions like TLS 1.0 and TLS 1.1 have known vulnerabilities that can be exploited by attackers. TLS 1.2 and higher provide better defenses against these threats, ensuring that data remains secure during transmission.</xhtml:li>
+                  <xhtml:li>Compliance with Standards: Many regulatory frameworks and security standards now require the use of TLS 1.2 or higher. Adopting these versions helps organizations stay compliant and avoid potential legal and financial penalties.</xhtml:li>
+                  <xhtml:li>Interoperability with Modern Systems: Most modern browsers, servers, and applications require TLS 1.2 or higher to establish secure connections. Using outdated protocols can lead to compatibility issues and interrupted service.</xhtml:li>
+                  <xhtml:li>Improved Performance: Newer versions of TLS offer optimizations that can enhance performance, providing faster and more efficient secure connections.</xhtml:li>
+               </xhtml:ul>
+               <xhtml:p>Overall, migrating to TLS 1.2 or higher is essential for maintaining robust security, ensuring regulatory compliance, and achieving seamless interoperability with contemporary technology.</xhtml:p>
+            </xccdf:rationale>
+            <xccdf:ident cc8:controlURI="http://cisecurity.org/20-cc/v8.0/control/3/subcontrol/10" system="http://cisecurity.org/20-cc/v8.0"></xccdf:ident>
+            <xccdf:ident cc7:controlURI="http://cisecurity.org/20-cc/v7.0/control/0/subcontrol/0" system="http://cisecurity.org/20-cc/v7.0"></xccdf:ident>
+            <xccdf:fixtext xml:lang="en">
+               <xhtml:div>
+                  <xhtml:p></xhtml:p>
+               </xhtml:div>
+            </xccdf:fixtext>
+         </xccdf:Rule>
+      </xccdf:Group>
+      <xccdf:Group id="xccdf_org.cisecurity.benchmarks_group_2.4_NTP">
+         <xccdf:title xml:lang="en">NTP</xccdf:title>
+         <xccdf:description xml:lang="en"></xccdf:description>
+         <xccdf:Rule id="xccdf_org.cisecurity.benchmarks_rule_2.4.1_Ensure_multiple_NTP_servers_are_configured" role="full" selected="false" weight="1.0">
+            <xccdf:title xml:lang="en">Ensure multiple NTP servers are configured</xccdf:title>
+            <xccdf:description xml:lang="en">
+               <xhtml:p>NTP servers ensure that the system maintains the correct time to prevent drift and delays.  If an adversary gains access to an NTP server it is more difficult to cause issues if there are multiple servers configured on the device</xhtml:p>
+            </xccdf:description>
+            <xccdf:metadata>
+               <controls:cis_controls xmlns:controls="http://cisecurity.org/controls">
+                  <controls:framework urn="urn:cisecurity.org:controls:8.0">
+                     <controls:safeguard title="Standardize Time Synchronization" urn="urn:cisecurity.org:controls:8.0:8:4">
+                        <controls:implementation_groups ig2="true" ig3="true"></controls:implementation_groups>
+                        <controls:asset_type>Network</controls:asset_type>
+                        <controls:security_function>Protect</controls:security_function>
+                     </controls:safeguard>
+                  </controls:framework>
+                  <controls:framework urn="urn:cisecurity.org:controls:7.0">
+                     <controls:safeguard title="Utilize Three Synchronized Time Sources" urn="urn:cisecurity.org:controls:7.0:6:1">
+                        <controls:implementation_groups ig2="true" ig3="true"></controls:implementation_groups>
+                        <controls:asset_type>Network</controls:asset_type>
+                        <controls:security_function>Detect</controls:security_function>
+                     </controls:safeguard>
+                  </controls:framework>
+               </controls:cis_controls>
+            </xccdf:metadata>
+            <xccdf:rationale xml:lang="en">
+               <xhtml:p>Using multiple Network Time Protocol (NTP) servers is vital for maintaining accurate and reliable time synchronization across systems. Here’s why having multiple NTP servers is important:</xhtml:p>
+               <xhtml:ul>
+                  <xhtml:li>Redundancy: If one NTP server fails or becomes unreachable, having additional servers ensures that time synchronization can continue without interruption.</xhtml:li>
+                  <xhtml:li>Accuracy: Multiple NTP servers provide a more accurate and reliable time by averaging the time received from various sources, reducing the impact of any single incorrect or misleading time source.</xhtml:li>
+                  <xhtml:li>Load Balancing: Distributing the time synchronization load across multiple servers prevents any single server from being overwhelmed, leading to more stable and reliable timekeeping.</xhtml:li>
+                  <xhtml:li>Fault Tolerance: In case of network issues or server maintenance, multiple NTP servers provide fault tolerance, ensuring that time synchronization remains consistent and accurate.</xhtml:li>
+                  <xhtml:li>Diverse Sources: Using NTP servers from different geographic locations or networks helps mitigate the risk of localized issues affecting the accuracy and reliability of time synchronization.</xhtml:li>
+               </xhtml:ul>
+               <xhtml:p>Overall, leveraging multiple NTP servers helps ensure accurate, reliable, and resilient time synchronization, which is essential for the smooth operation of many systems and applications.</xhtml:p>
+            </xccdf:rationale>
+            <xccdf:ident cc8:controlURI="http://cisecurity.org/20-cc/v8.0/control/8/subcontrol/4" system="http://cisecurity.org/20-cc/v8.0"></xccdf:ident>
+            <xccdf:ident cc7:controlURI="http://cisecurity.org/20-cc/v7.0/control/6/subcontrol/1" system="http://cisecurity.org/20-cc/v7.0"></xccdf:ident>
+            <xccdf:fixtext xml:lang="en">
+               <xhtml:div>
+                  <xhtml:p>
+                     <xhtml:code class="code_block">SLX(config)# ntp server 192.168.0.10 source-interface-type management source-interface-number 0
+</xhtml:code>
+                  </xhtml:p>
+               </xhtml:div>
+            </xccdf:fixtext>
+            <xccdf:complex-check operator="AND">
+               <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+                  <check-export export-name="oval:org.cisecurity.benchmarks:var:7546667" value-id="xccdf_org.cisecurity.benchmarks_value_7546667_var"></check-export>
+                  <check-content-ref href="CIS_ExtremeNetworks-SLX-OS-20.X.X_Benchmark_v1.0.1-oval.xml" name="oval:org.cisecurity.benchmarks:def:7546667"></check-content-ref>
+               </check>
+            </xccdf:complex-check>
+         </xccdf:Rule>
+         <xccdf:Rule id="xccdf_org.cisecurity.benchmarks_rule_2.4.2_Enable_NTP_Server_Authentication" role="full" selected="false" weight="1.0">
+            <xccdf:title xml:lang="en">Enable NTP Server Authentication</xccdf:title>
+            <xccdf:description xml:lang="en">
+               <xhtml:p>The switch should be synchronized with NTP server with authentication turned on. Authenticating to the NTP servers prevent an adversary from spoofing the NTP address and establishing connection.</xhtml:p>
+            </xccdf:description>
+            <xccdf:metadata>
+               <controls:cis_controls xmlns:controls="http://cisecurity.org/controls">
+                  <controls:framework urn="urn:cisecurity.org:controls:8.0">
+                     <controls:safeguard title="Standardize Time Synchronization" urn="urn:cisecurity.org:controls:8.0:8:4">
+                        <controls:implementation_groups ig2="true" ig3="true"></controls:implementation_groups>
+                        <controls:asset_type>Network</controls:asset_type>
+                        <controls:security_function>Protect</controls:security_function>
+                     </controls:safeguard>
+                  </controls:framework>
+                  <controls:framework urn="urn:cisecurity.org:controls:7.0">
+                     <controls:safeguard title="Utilize Three Synchronized Time Sources" urn="urn:cisecurity.org:controls:7.0:6:1">
+                        <controls:implementation_groups ig2="true" ig3="true"></controls:implementation_groups>
+                        <controls:asset_type>Network</controls:asset_type>
+                        <controls:security_function>Detect</controls:security_function>
+                     </controls:safeguard>
+                  </controls:framework>
+               </controls:cis_controls>
+            </xccdf:metadata>
+            <xccdf:rationale xml:lang="en">
+               <xhtml:p>NTP server authentication is essential for ensuring the accuracy and security of time synchronization across networks. Here’s why it should be done:</xhtml:p>
+               <xhtml:ul>
+                  <xhtml:li>Preventing Spoofing: Without authentication, malicious actors can send false time information to your systems, leading to incorrect time synchronization. Authentication ensures that the time data comes from a legitimate source.</xhtml:li>
+                  <xhtml:li>Ensuring Data Integrity: Authentication verifies that the time data has not been tampered with during transmission. This maintains the integrity of the time information being synchronized across your network.</xhtml:li>
+                  <xhtml:li>Maintaining Network Security: Accurate time synchronization is critical for many security protocols, such as Kerberos. Authentication helps maintain the accuracy of time, which in turn supports the overall security of your network.</xhtml:li>
+                  <xhtml:li>Compliance: Many regulatory frameworks require secure time synchronization. Using authenticated NTP servers helps meet these compliance requirements by ensuring that time data is accurate and trustworthy.</xhtml:li>
+                  <xhtml:li>Troubleshooting and Forensics: Accurate time stamps are essential for troubleshooting and forensic analysis in case of security incidents. Authentication ensures that these time stamps are reliable and precise.</xhtml:li>
+               </xhtml:ul>
+               <xhtml:p>By implementing NTP server authentication, you enhance the reliability, accuracy, and security of time synchronization in your network, supporting both operational efficiency and regulatory compliance.</xhtml:p>
+            </xccdf:rationale>
+            <xccdf:ident cc8:controlURI="http://cisecurity.org/20-cc/v8.0/control/8/subcontrol/4" system="http://cisecurity.org/20-cc/v8.0"></xccdf:ident>
+            <xccdf:ident cc7:controlURI="http://cisecurity.org/20-cc/v7.0/control/6/subcontrol/1" system="http://cisecurity.org/20-cc/v7.0"></xccdf:ident>
+            <xccdf:fixtext xml:lang="en">
+               <xhtml:div>
+                  <xhtml:p>
+                     <xhtml:p>Configure the NTP Server configuration and authentication</xhtml:p>
+                     <xhtml:code class="code_block">SLX(config)# ntp authenticate
+</xhtml:code>
+                  </xhtml:p>
+               </xhtml:div>
+            </xccdf:fixtext>
+            <xccdf:complex-check operator="AND">
+               <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+                  <check-export export-name="oval:org.cisecurity.benchmarks:var:7546668" value-id="xccdf_org.cisecurity.benchmarks_value_7546668_var"></check-export>
+                  <check-content-ref href="CIS_ExtremeNetworks-SLX-OS-20.X.X_Benchmark_v1.0.1-oval.xml" name="oval:org.cisecurity.benchmarks:def:7546668"></check-content-ref>
+               </check>
+            </xccdf:complex-check>
+         </xccdf:Rule>
+      </xccdf:Group>
+      <xccdf:Group id="xccdf_org.cisecurity.benchmarks_group_2.5_Syslog_Configuration">
+         <xccdf:title xml:lang="en">Syslog Configuration</xccdf:title>
+         <xccdf:description xml:lang="en">
+            <xhtml:p>Syslog server should be configured to capture and retain events, and logs generated with the system. There two categories of logs in SLXOS that can be configured to stream messages to
+syslog.</xhtml:p>
+            <xhtml:ul>
+               <xhtml:li>RASlog – Reliability, Availability and Security log provided central logging of CRITICAL,
+ERROR, WARNING and INFO class events.</xhtml:li>
+               <xhtml:li>Auditlog - To meet STIG/SRG requirements logs are directed to a syslog server. By
+default auditlog classes SECURITY, CONFIGURATION and FIRMWARE are logged.</xhtml:li>
+            </xhtml:ul>
+         </xccdf:description>
+         <xccdf:Rule id="xccdf_org.cisecurity.benchmarks_rule_2.5.1_Syslog_Server_Configuration" role="full" selected="false" weight="1.0">
+            <xccdf:title xml:lang="en">Syslog Server Configuration</xccdf:title>
+            <xccdf:description xml:lang="en">
+               <xhtml:p>Switches should have a syslog server configuration to enable the syslog logging activity to function.</xhtml:p>
+            </xccdf:description>
+            <xccdf:metadata>
+               <controls:cis_controls xmlns:controls="http://cisecurity.org/controls">
+                  <controls:framework urn="urn:cisecurity.org:controls:8.0">
+                     <controls:safeguard title="Collect Detailed Audit Logs" urn="urn:cisecurity.org:controls:8.0:8:5">
+                        <controls:implementation_groups ig2="true" ig3="true"></controls:implementation_groups>
+                        <controls:asset_type>Network</controls:asset_type>
+                        <controls:security_function>Detect</controls:security_function>
+                     </controls:safeguard>
+                  </controls:framework>
+                  <controls:framework urn="urn:cisecurity.org:controls:7.0">
+                     <controls:safeguard title="Enable Detailed Logging" urn="urn:cisecurity.org:controls:7.0:6:3">
+                        <controls:implementation_groups ig2="true" ig3="true"></controls:implementation_groups>
+                        <controls:asset_type>Network</controls:asset_type>
+                        <controls:security_function>Detect</controls:security_function>
+                     </controls:safeguard>
+                  </controls:framework>
+               </controls:cis_controls>
+            </xccdf:metadata>
+            <xccdf:rationale xml:lang="en">
+               <xhtml:p>The syslog logging function plays a crucial role in maintaining the security and efficiency of a system by centralizing log data from various sources. Here’s why it’s important:</xhtml:p>
+               <xhtml:ul>
+                  <xhtml:li>Security Monitoring: Syslog helps detect security breaches and suspicious activities by providing real-time alerts and historical data for analysis.</xhtml:li>
+                  <xhtml:li>Troubleshooting: It aids in diagnosing issues by logging errors and unusual system behavior, allowing for quick identification and resolution of problems.</xhtml:li>
+                  <xhtml:li>Compliance: Many industries require strict adherence to regulations that mandate the logging of specific events. Syslog ensures that these requirements are met.</xhtml:li>
+                  <xhtml:li>Centralized Management: It consolidates logs from multiple devices into a single location, simplifying the monitoring and management of a network.</xhtml:li>
+                  <xhtml:li>Audit Trails: Syslog maintains detailed records of system and user activities, which are essential for audits and forensic investigations.</xhtml:li>
+               </xhtml:ul>
+               <xhtml:p>Overall, syslog is a foundational tool for maintaining system integrity, ensuring security, and complying with regulatory requirements.</xhtml:p>
+            </xccdf:rationale>
+            <xccdf:ident cc8:controlURI="http://cisecurity.org/20-cc/v8.0/control/8/subcontrol/5" system="http://cisecurity.org/20-cc/v8.0"></xccdf:ident>
+            <xccdf:ident cc7:controlURI="http://cisecurity.org/20-cc/v7.0/control/6/subcontrol/3" system="http://cisecurity.org/20-cc/v7.0"></xccdf:ident>
+            <xccdf:fixtext xml:lang="en">
+               <xhtml:div>
+                  <xhtml:p>
+                     <xhtml:code class="code_block">SLX(config)# logging syslog-server 192.168.0.10 use-vrf mgmt-vrf source-interface management 0
+</xhtml:code>
+                  </xhtml:p>
+               </xhtml:div>
+            </xccdf:fixtext>
+            <xccdf:complex-check operator="AND">
+               <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+                  <check-export export-name="oval:org.cisecurity.benchmarks:var:7546669" value-id="xccdf_org.cisecurity.benchmarks_value_7546669_var"></check-export>
+                  <check-content-ref href="CIS_ExtremeNetworks-SLX-OS-20.X.X_Benchmark_v1.0.1-oval.xml" name="oval:org.cisecurity.benchmarks:def:7546669"></check-content-ref>
+               </check>
+            </xccdf:complex-check>
+         </xccdf:Rule>
+         <xccdf:Rule id="xccdf_org.cisecurity.benchmarks_rule_2.5.2_Syslog_Facility_Configuration" role="full" selected="false" weight="1.0">
+            <xccdf:title xml:lang="en">Syslog Facility Configuration</xccdf:title>
+            <xccdf:description xml:lang="en">
+               <xhtml:p>Switches should have a syslog server configuration to enable the syslog logging activity to function.</xhtml:p>
+            </xccdf:description>
+            <xccdf:metadata>
+               <controls:cis_controls xmlns:controls="http://cisecurity.org/controls">
+                  <controls:framework urn="urn:cisecurity.org:controls:8.0">
+                     <controls:safeguard title="Collect Detailed Audit Logs" urn="urn:cisecurity.org:controls:8.0:8:5">
+                        <controls:implementation_groups ig2="true" ig3="true"></controls:implementation_groups>
+                        <controls:asset_type>Network</controls:asset_type>
+                        <controls:security_function>Detect</controls:security_function>
+                     </controls:safeguard>
+                  </controls:framework>
+                  <controls:framework urn="urn:cisecurity.org:controls:7.0">
+                     <controls:safeguard title="Enable Detailed Logging" urn="urn:cisecurity.org:controls:7.0:6:3">
+                        <controls:implementation_groups ig2="true" ig3="true"></controls:implementation_groups>
+                        <controls:asset_type>Network</controls:asset_type>
+                        <controls:security_function>Detect</controls:security_function>
+                     </controls:safeguard>
+                  </controls:framework>
+               </controls:cis_controls>
+            </xccdf:metadata>
+            <xccdf:rationale xml:lang="en">
+               <xhtml:p>Configuring the syslog facility correctly is vital for effective log management and system security. Here are some reasons why it's important:</xhtml:p>
+               <xhtml:ul>
+                  <xhtml:li>Efficient Log Categorization: By properly configuring syslog facilities, logs from different sources (e.g., applications, system processes, security events) can be categorized and stored separately. This makes it easier to locate and analyze specific logs.</xhtml:li>
+                  <xhtml:li>Enhanced Security Monitoring: Proper facility configuration ensures that security-related events are logged to the appropriate facility, making it simpler to monitor and respond to potential threats.</xhtml:li>
+                  <xhtml:li>Simplified Troubleshooting: When logs are organized by facility, troubleshooting becomes more efficient. You can quickly identify and address issues by focusing on the relevant log entries.</xhtml:li>
+                  <xhtml:li>Compliance and Audit Readiness: Accurate facility configuration helps meet regulatory and compliance requirements by ensuring that critical events are logged correctly and are easily accessible for audits.</xhtml:li>
+                  <xhtml:li>Resource Management: Configuring facilities helps manage storage and processing resources efficiently by preventing unnecessary or redundant logging, ensuring that only important data is captured.</xhtml:li>
+               </xhtml:ul>
+               <xhtml:p>By configuring syslog facilities properly, you can improve log management, security, and system performance, ultimately leading to a more robust and secure IT environment.</xhtml:p>
+            </xccdf:rationale>
+            <xccdf:ident cc8:controlURI="http://cisecurity.org/20-cc/v8.0/control/8/subcontrol/5" system="http://cisecurity.org/20-cc/v8.0"></xccdf:ident>
+            <xccdf:ident cc7:controlURI="http://cisecurity.org/20-cc/v7.0/control/6/subcontrol/3" system="http://cisecurity.org/20-cc/v7.0"></xccdf:ident>
+            <xccdf:fixtext xml:lang="en">
+               <xhtml:div>
+                  <xhtml:p>
+                     <xhtml:code class="code_block">SLX(config)# logging syslog-facility local LOG_LOCAL7
+</xhtml:code>
+                  </xhtml:p>
+               </xhtml:div>
+            </xccdf:fixtext>
+            <xccdf:complex-check operator="AND">
+               <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+                  <check-export export-name="oval:org.cisecurity.benchmarks:var:7546670" value-id="xccdf_org.cisecurity.benchmarks_value_7546670_var"></check-export>
+                  <check-content-ref href="CIS_ExtremeNetworks-SLX-OS-20.X.X_Benchmark_v1.0.1-oval.xml" name="oval:org.cisecurity.benchmarks:def:7546670"></check-content-ref>
+               </check>
+            </xccdf:complex-check>
+         </xccdf:Rule>
+         <xccdf:Rule id="xccdf_org.cisecurity.benchmarks_rule_2.5.3_Syslog_Audit_Class_Configuration" role="full" selected="false" weight="1.0">
+            <xccdf:title xml:lang="en">Syslog Audit Class Configuration</xccdf:title>
+            <xccdf:description xml:lang="en">
+               <xhtml:p>A syslog audit class is a categorization mechanism used in logging systems to classify and group different types of audit events. This allows administrators to define what specific events or activities should be logged.</xhtml:p>
+            </xccdf:description>
+            <xccdf:metadata>
+               <controls:cis_controls xmlns:controls="http://cisecurity.org/controls">
+                  <controls:framework urn="urn:cisecurity.org:controls:8.0">
+                     <controls:safeguard title="Collect Detailed Audit Logs" urn="urn:cisecurity.org:controls:8.0:8:5">
+                        <controls:implementation_groups ig2="true" ig3="true"></controls:implementation_groups>
+                        <controls:asset_type>Network</controls:asset_type>
+                        <controls:security_function>Detect</controls:security_function>
+                     </controls:safeguard>
+                  </controls:framework>
+                  <controls:framework urn="urn:cisecurity.org:controls:7.0">
+                     <controls:safeguard title="Enable Detailed Logging" urn="urn:cisecurity.org:controls:7.0:6:3">
+                        <controls:implementation_groups ig2="true" ig3="true"></controls:implementation_groups>
+                        <controls:asset_type>Network</controls:asset_type>
+                        <controls:security_function>Detect</controls:security_function>
+                     </controls:safeguard>
+                  </controls:framework>
+               </controls:cis_controls>
+            </xccdf:metadata>
+            <xccdf:rationale xml:lang="en">
+               <xhtml:p>Syslog audit classes are essential for maintaining a comprehensive and organized logging system. Here's why they're important:</xhtml:p>
+               <xhtml:ul>
+                  <xhtml:li>Targeted Logging: Audit classes allow you to specify which types of events to log. This ensures that only relevant information is captured, reducing unnecessary clutter and making the logs more manageable.</xhtml:li>
+                  <xhtml:li>Improved Security: By configuring audit classes, you can focus on logging security-related events such as login attempts, permission changes, and access to sensitive data. This makes it easier to detect and respond to potential security threats.</xhtml:li>
+                  <xhtml:li>Compliance: Many regulations require detailed logs of specific activities. Configuring audit classes helps ensure that all necessary events are recorded, making it easier to meet compliance requirements.</xhtml:li>
+                  <xhtml:li>Efficient Troubleshooting: When audit classes are properly configured, it becomes easier to pinpoint issues by analyzing logs related to specific system components or activities. This speeds up the troubleshooting process.</xhtml:li>
+                  <xhtml:li>Resource Optimization: Audit classes help manage logging resources by ensuring that only pertinent events are logged. This prevents excessive use of storage and processing power, maintaining system performance.</xhtml:li>
+               </xhtml:ul>
+               <xhtml:p>By effectively utilizing syslog audit classes, you can enhance security monitoring, simplify compliance, and optimize system resources.</xhtml:p>
+            </xccdf:rationale>
+            <xccdf:ident cc8:controlURI="http://cisecurity.org/20-cc/v8.0/control/8/subcontrol/5" system="http://cisecurity.org/20-cc/v8.0"></xccdf:ident>
+            <xccdf:ident cc7:controlURI="http://cisecurity.org/20-cc/v7.0/control/6/subcontrol/3" system="http://cisecurity.org/20-cc/v7.0"></xccdf:ident>
+            <xccdf:fixtext xml:lang="en">
+               <xhtml:div>
+                  <xhtml:p>
+                     <xhtml:code class="code_block">
+SLX(config)# logging auditlog class SECURITY                <br></br>
+SLX(config)# logging auditlog class CONFIGURATION                <br></br>
+SLX(config)# logging auditlog class FIRMWARE
+              </xhtml:code>
+                  </xhtml:p>
+               </xhtml:div>
+            </xccdf:fixtext>
+            <xccdf:complex-check operator="AND">
+               <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+                  <check-export export-name="oval:org.cisecurity.benchmarks:var:7546671" value-id="xccdf_org.cisecurity.benchmarks_value_7546671_var"></check-export>
+                  <check-content-ref href="CIS_ExtremeNetworks-SLX-OS-20.X.X_Benchmark_v1.0.1-oval.xml" name="oval:org.cisecurity.benchmarks:def:7546671"></check-content-ref>
+               </check>
+            </xccdf:complex-check>
+         </xccdf:Rule>
+      </xccdf:Group>
+      <xccdf:Group id="xccdf_org.cisecurity.benchmarks_group_2.6_AAA_Configuration">
+         <xccdf:title xml:lang="en">AAA Configuration</xccdf:title>
+         <xccdf:description xml:lang="en"></xccdf:description>
+         <xccdf:Rule id="xccdf_org.cisecurity.benchmarks_rule_2.6.1_Enable_Local_Login_Authentication" role="full" selected="false" weight="1.0">
+            <xccdf:title xml:lang="en">Enable Local Login Authentication</xccdf:title>
+            <xccdf:description xml:lang="en">
+               <xhtml:p>Enabling local login authentication in AAA (Authentication, Authorization, and Accounting) allows a system to authenticate users using a local database instead of relying on an external server like RADIUS or TACACS+. Here’s how it works:</xhtml:p>
+               <xhtml:ul>
+                  <xhtml:li>Local User Database: The system uses its own local database to store usernames and passwords.</xhtml:li>
+                  <xhtml:li>Authentication Process: When a user attempts to log in, the system checks the local database for the credentials.</xhtml:li>
+                  <xhtml:li>Fallback Option: It can be used as a fallback method if the external authentication server is unavailable.</xhtml:li>
+               </xhtml:ul>
+               <xhtml:p>This setup is useful as a backup method to ensure users can still authenticate even if the external server is down.</xhtml:p>
+            </xccdf:description>
+            <xccdf:metadata>
+               <controls:cis_controls xmlns:controls="http://cisecurity.org/controls">
+                  <controls:framework urn="urn:cisecurity.org:controls:8.0">
+                     <controls:safeguard title="Explicitly Not Mapped" urn="urn:cisecurity.org:controls:8.0:0:0">
+                        <controls:implementation_groups></controls:implementation_groups>
+                        <controls:asset_type></controls:asset_type>
+                        <controls:security_function></controls:security_function>
+                     </controls:safeguard>
+                  </controls:framework>
+                  <controls:framework urn="urn:cisecurity.org:controls:7.0">
+                     <controls:safeguard title="Explicitly Not Mapped" urn="urn:cisecurity.org:controls:7.0:0:0">
+                        <controls:implementation_groups></controls:implementation_groups>
+                        <controls:asset_type></controls:asset_type>
+                        <controls:security_function></controls:security_function>
+                     </controls:safeguard>
+                  </controls:framework>
+               </controls:cis_controls>
+            </xccdf:metadata>
+            <xccdf:rationale xml:lang="en">
+               <xhtml:p>Enabling local login with AAA (Authentication, Authorization, and Accounting) provides several key benefits:</xhtml:p>
+               <xhtml:ul>
+                  <xhtml:li>Redundancy and Reliability: In scenarios where the external authentication servers (like RADIUS or TACACS+) are unavailable due to network issues or maintenance, local login serves as a reliable fallback method. This ensures continuous access for users.</xhtml:li>
+                  <xhtml:li>Simplified Configuration: For smaller networks or environments with a limited number of users, using a local database can simplify the configuration and management of authentication processes.</xhtml:li>
+                  <xhtml:li>Immediate Access Control: Local login allows for immediate adjustments to user access, such as quickly adding or removing users, without needing to interact with external authentication servers.</xhtml:li>
+                  <xhtml:li>Testing and Troubleshooting: Local login is useful for testing and troubleshooting the AAA configuration. It allows administrators to verify that the system's authentication mechanisms are working properly without relying on external factors.</xhtml:li>
+                  <xhtml:li>Enhanced Security: By keeping a local user database, you can secure critical accounts that must always have access, even if external systems are compromised or offline. This is particularly important for emergency situations or maintenance activities.</xhtml:li>
+               </xhtml:ul>
+               <xhtml:p>Using local login with AAA ensures that you have a robust, flexible, and reliable authentication mechanism that enhances overall system security and availability.</xhtml:p>
+            </xccdf:rationale>
+            <xccdf:ident cc7:controlURI="http://cisecurity.org/20-cc/v7.0/control/0/subcontrol/0" system="http://cisecurity.org/20-cc/v7.0"></xccdf:ident>
+            <xccdf:ident cc8:controlURI="http://cisecurity.org/20-cc/v8.0/control/0/subcontrol/0" system="http://cisecurity.org/20-cc/v8.0"></xccdf:ident>
+            <xccdf:fixtext xml:lang="en">
+               <xhtml:div>
+                  <xhtml:p>
+                     <xhtml:code class="code_block">SLX(config)# aaa authentication login local
+</xhtml:code>
+                  </xhtml:p>
+               </xhtml:div>
+            </xccdf:fixtext>
+            <xccdf:complex-check operator="AND">
+               <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+                  <check-export export-name="oval:org.cisecurity.benchmarks:var:7546672" value-id="xccdf_org.cisecurity.benchmarks_value_7546672_var"></check-export>
+                  <check-content-ref href="CIS_ExtremeNetworks-SLX-OS-20.X.X_Benchmark_v1.0.1-oval.xml" name="oval:org.cisecurity.benchmarks:def:7546672"></check-content-ref>
+               </check>
+            </xccdf:complex-check>
+         </xccdf:Rule>
+         <xccdf:Rule id="xccdf_org.cisecurity.benchmarks_rule_2.6.2_Enable_Accounting" role="full" selected="false" weight="1.0">
+            <xccdf:title xml:lang="en">Enable Accounting</xccdf:title>
+            <xccdf:description xml:lang="en">
+               <xhtml:p>AAA accounting, a crucial component of the AAA framework, stands for Authentication, Authorization, and Accounting. Here's a breakdown of what AAA accounting entails:</xhtml:p>
+               <xhtml:ul>
+                  <xhtml:li>Tracking User Activities: AAA accounting monitors and records user activities on a network, such as login attempts, resource access, and changes to system configurations.</xhtml:li>
+                  <xhtml:li>Usage Auditing: It helps in auditing the usage of network resources by keeping detailed logs of user interactions with the system, which can be vital for both security and performance analysis.</xhtml:li>
+                  <xhtml:li>Resource Management: By tracking resource utilization, AAA accounting aids in managing network resources efficiently, ensuring that users are billed or charged accurately for the resources they consume.</xhtml:li>
+                  <xhtml:li>Compliance and Reporting: It supports compliance with regulatory requirements by maintaining detailed records of user actions, which can be used for reporting and auditing purposes.</xhtml:li>
+                  <xhtml:li>Troubleshooting and Diagnostics: Detailed logs generated by AAA accounting assist in troubleshooting network issues and diagnosing problems by providing a historical record of user activities and system events.</xhtml:li>
+               </xhtml:ul>
+               <xhtml:p>In essence, AAA accounting ensures that all user actions are tracked and recorded, which is essential for maintaining security, compliance, and efficient resource management in a network environment.</xhtml:p>
+            </xccdf:description>
+            <xccdf:metadata>
+               <controls:cis_controls xmlns:controls="http://cisecurity.org/controls">
+                  <controls:framework urn="urn:cisecurity.org:controls:8.0">
+                     <controls:safeguard title="Collect Detailed Audit Logs" urn="urn:cisecurity.org:controls:8.0:8:5">
+                        <controls:implementation_groups ig2="true" ig3="true"></controls:implementation_groups>
+                        <controls:asset_type>Network</controls:asset_type>
+                        <controls:security_function>Detect</controls:security_function>
+                     </controls:safeguard>
+                  </controls:framework>
+                  <controls:framework urn="urn:cisecurity.org:controls:7.0">
+                     <controls:safeguard title="Enable Detailed Logging" urn="urn:cisecurity.org:controls:7.0:6:3">
+                        <controls:implementation_groups ig2="true" ig3="true"></controls:implementation_groups>
+                        <controls:asset_type>Network</controls:asset_type>
+                        <controls:security_function>Detect</controls:security_function>
+                     </controls:safeguard>
+                  </controls:framework>
+               </controls:cis_controls>
+            </xccdf:metadata>
+            <xccdf:rationale xml:lang="en">
+               <xhtml:p>Using accounting in AAA (Authentication, Authorization, and Accounting) is essential for several reasons:</xhtml:p>
+               <xhtml:ul>
+                  <xhtml:li>Security and Monitoring: Accounting provides detailed logs of user activities, which are crucial for monitoring and detecting unauthorized access or unusual behavior. This enhances overall network security.</xhtml:li>
+                  <xhtml:li>Compliance: Many regulatory frameworks require organizations to maintain detailed records of user activities. Accounting helps meet these compliance requirements by providing a comprehensive log of interactions and transactions.</xhtml:li>
+                  <xhtml:li>Troubleshooting and Auditing: Detailed accounting logs are invaluable for troubleshooting network issues and performing audits. They provide a historical record of user activities and system events, making it easier to diagnose problems and ensure accountability.</xhtml:li>
+                  <xhtml:li>Performance Analysis: Accounting data can be used to analyze the performance of the network and identify areas for improvement. It helps in understanding how resources are being used and where potential bottlenecks might occur.</xhtml:li>
+               </xhtml:ul>
+               <xhtml:p>By implementing accounting within the AAA framework, organizations can enhance security, comply with regulations, manage resources more effectively, and ensure accurate billing and performance analysis.</xhtml:p>
+            </xccdf:rationale>
+            <xccdf:ident cc8:controlURI="http://cisecurity.org/20-cc/v8.0/control/8/subcontrol/5" system="http://cisecurity.org/20-cc/v8.0"></xccdf:ident>
+            <xccdf:ident cc7:controlURI="http://cisecurity.org/20-cc/v7.0/control/6/subcontrol/3" system="http://cisecurity.org/20-cc/v7.0"></xccdf:ident>
+            <xccdf:fixtext xml:lang="en">
+               <xhtml:div>
+                  <xhtml:p>
+                     <xhtml:code class="code_block">
+SLX(config)# aaa authentication login local                <br></br>
+SLX(config)# aaa accounting exec default start-stop none                <br></br>
+SLX(config)# aaa accounting commands default start-stop none                <br></br>
+SLX(config)# aaa authorization command none
+              </xhtml:code>
+                  </xhtml:p>
+               </xhtml:div>
+            </xccdf:fixtext>
+            <xccdf:complex-check operator="AND">
+               <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+                  <check-export export-name="oval:org.cisecurity.benchmarks:var:7546673" value-id="xccdf_org.cisecurity.benchmarks_value_7546673_var"></check-export>
+                  <check-content-ref href="CIS_ExtremeNetworks-SLX-OS-20.X.X_Benchmark_v1.0.1-oval.xml" name="oval:org.cisecurity.benchmarks:def:7546673"></check-content-ref>
+               </check>
+               <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+                  <check-export export-name="oval:org.cisecurity.benchmarks:var:7546674" value-id="xccdf_org.cisecurity.benchmarks_value_7546674_var"></check-export>
+                  <check-content-ref href="CIS_ExtremeNetworks-SLX-OS-20.X.X_Benchmark_v1.0.1-oval.xml" name="oval:org.cisecurity.benchmarks:def:7546674"></check-content-ref>
+               </check>
+            </xccdf:complex-check>
+         </xccdf:Rule>
+      </xccdf:Group>
+   </xccdf:Group>
+   <xccdf:Group id="xccdf_org.cisecurity.benchmarks_group_3_Interface_Configuration">
+      <xccdf:title xml:lang="en">Interface Configuration</xccdf:title>
+      <xccdf:description xml:lang="en"></xccdf:description>
+      <xccdf:Group id="xccdf_org.cisecurity.benchmarks_group_3.1_Handle_Unused_Interfaces">
+         <xccdf:title xml:lang="en">Handle Unused Interfaces</xccdf:title>
+         <xccdf:description xml:lang="en"></xccdf:description>
+         <xccdf:Rule id="xccdf_org.cisecurity.benchmarks_rule_3.1.1_Disable_Unused_Interfaces" role="unscored" selected="false" weight="0.0">
+            <xccdf:title xml:lang="en">Disable Unused Interfaces</xccdf:title>
+            <xccdf:description xml:lang="en">
+               <xhtml:p>Any unused interface should be disabled. The SLX-OS switches enable all ports by default. However, unused ports should be disabled and only used ports should be enabled.</xhtml:p>
+            </xccdf:description>
+            <xccdf:metadata>
+               <controls:cis_controls xmlns:controls="http://cisecurity.org/controls">
+                  <controls:framework urn="urn:cisecurity.org:controls:8.0">
+                     <controls:safeguard title="Securely Manage Network Infrastructure" urn="urn:cisecurity.org:controls:8.0:12:3">
+                        <controls:implementation_groups ig2="true" ig3="true"></controls:implementation_groups>
+                        <controls:asset_type>Network</controls:asset_type>
+                        <controls:security_function>Protect</controls:security_function>
+                     </controls:safeguard>
+                  </controls:framework>
+                  <controls:framework urn="urn:cisecurity.org:controls:7.0">
+                     <controls:safeguard title="Explicitly Not Mapped" urn="urn:cisecurity.org:controls:7.0:0:0">
+                        <controls:implementation_groups></controls:implementation_groups>
+                        <controls:asset_type></controls:asset_type>
+                        <controls:security_function></controls:security_function>
+                     </controls:safeguard>
+                  </controls:framework>
+               </controls:cis_controls>
+            </xccdf:metadata>
+            <xccdf:rationale xml:lang="en">
+               <xhtml:p>Disabling unused network interfaces is a crucial best practice for maintaining security and optimizing network performance. Here’s why:</xhtml:p>
+               <xhtml:ul>
+                  <xhtml:li>Enhanced Security: Unused network interfaces can be exploited by attackers to gain unauthorized access to a network. Disabling these interfaces reduces the attack surface, making it harder for malicious actors to find entry points.</xhtml:li>
+                  <xhtml:li>Preventing Misconfigurations: Active but unused interfaces might inadvertently be configured incorrectly or left with default settings, which can pose security risks. Disabling them ensures they don’t become unintentional vulnerabilities.</xhtml:li>
+                  <xhtml:li>Network Performance: Active interfaces consume system resources, even if they’re not in use. Disabling them can free up resources, leading to improved network performance and efficiency.</xhtml:li>
+                  <xhtml:li>Simplified Network Management: Managing a network with fewer active interfaces simplifies monitoring and maintenance tasks. It’s easier to keep track of active devices and their configurations.</xhtml:li>
+                  <xhtml:li>Compliance: Some security standards and policies require minimizing the number of active network interfaces to reduce risks. Disabling unused interfaces helps meet these compliance requirements.</xhtml:li>
+                  <xhtml:li>Fault Isolation: During troubleshooting, having unused interfaces disabled makes it easier to isolate and identify issues, as there are fewer potential sources of problems.</xhtml:li>
+               </xhtml:ul>
+               <xhtml:p>By disabling unused network interfaces, you enhance the security, performance, and manageability of your network, ultimately creating a more robust and resilient IT environment.</xhtml:p>
+            </xccdf:rationale>
+            <xccdf:ident cc8:controlURI="http://cisecurity.org/20-cc/v8.0/control/12/subcontrol/3" system="http://cisecurity.org/20-cc/v8.0"></xccdf:ident>
+            <xccdf:ident cc7:controlURI="http://cisecurity.org/20-cc/v7.0/control/0/subcontrol/0" system="http://cisecurity.org/20-cc/v7.0"></xccdf:ident>
+            <xccdf:fixtext xml:lang="en">
+               <xhtml:div>
+                  <xhtml:p>
+                     <xhtml:code class="code_block">
+SLX(config)# interface ethernet 1-32                <br></br>
+SLX(config)# shutdown
+              </xhtml:code>
+                  </xhtml:p>
+               </xhtml:div>
+            </xccdf:fixtext>
+         </xccdf:Rule>
+         <xccdf:Rule id="xccdf_org.cisecurity.benchmarks_rule_3.1.2_Disable_Proxy_Arp" role="unscored" selected="false" weight="0.0">
+            <xccdf:title xml:lang="en">Disable Proxy Arp</xccdf:title>
+            <xccdf:description xml:lang="en">
+               <xhtml:p>Proxy ARP (Proxy Address Resolution Protocol) is a network technique that allows one device on a local network to respond to ARP (Address Resolution Protocol) requests on behalf of another device</xhtml:p>
+               <xhtml:p>While Proxy ARP can be useful, it also has some drawbacks:</xhtml:p>
+               <xhtml:ul>
+                  <xhtml:li>Security Risks: It can potentially expose the network to security risks, such as ARP spoofing and man-in-the-middle attacks.</xhtml:li>
+                  <xhtml:li>Network Performance: It can introduce additional traffic on the network, which may impact performance.</xhtml:li>
+               </xhtml:ul>
+            </xccdf:description>
+            <xccdf:metadata>
+               <controls:cis_controls xmlns:controls="http://cisecurity.org/controls">
+                  <controls:framework urn="urn:cisecurity.org:controls:8.0">
+                     <controls:safeguard title="Explicitly Not Mapped" urn="urn:cisecurity.org:controls:8.0:0:0">
+                        <controls:implementation_groups></controls:implementation_groups>
+                        <controls:asset_type></controls:asset_type>
+                        <controls:security_function></controls:security_function>
+                     </controls:safeguard>
+                  </controls:framework>
+                  <controls:framework urn="urn:cisecurity.org:controls:7.0">
+                     <controls:safeguard title="Explicitly Not Mapped" urn="urn:cisecurity.org:controls:7.0:0:0">
+                        <controls:implementation_groups></controls:implementation_groups>
+                        <controls:asset_type></controls:asset_type>
+                        <controls:security_function></controls:security_function>
+                     </controls:safeguard>
+                  </controls:framework>
+               </controls:cis_controls>
+            </xccdf:metadata>
+            <xccdf:rationale xml:lang="en">
+               <xhtml:p>Disabling Proxy ARP is often recommended for several important reasons:</xhtml:p>
+               <xhtml:ul>
+                  <xhtml:li>Security Enhancement: Proxy ARP can expose your network to various security risks, including ARP spoofing and man-in-the-middle attacks. Disabling Proxy ARP helps mitigate these vulnerabilities, thereby enhancing overall network security.</xhtml:li>
+                  <xhtml:li>Preventing Network Loops: Proxy ARP can create complex and hard-to-troubleshoot network loops, leading to potential broadcast storms and other network issues. Disabling it simplifies network topology and reduces the risk of such problems.</xhtml:li>
+                  <xhtml:li>Improved Performance: Proxy ARP can generate unnecessary ARP traffic, which can degrade network performance. Disabling it helps reduce this overhead, ensuring more efficient use of network resources.</xhtml:li>
+                  <xhtml:li>Better Network Control: When Proxy ARP is disabled, network administrators have better control over routing and traffic management, leading to more predictable and manageable network behavior.</xhtml:li>
+                  <xhtml:li>Simplified Troubleshooting: Without Proxy ARP, troubleshooting network issues becomes simpler and more straightforward, as the network’s behavior is easier to understand and diagnose.</xhtml:li>
+               </xhtml:ul>
+               <xhtml:p>By disabling Proxy ARP, you can enhance the security, performance, and manageability of your network, leading to a more stable and reliable IT environment.</xhtml:p>
+            </xccdf:rationale>
+            <xccdf:ident cc7:controlURI="http://cisecurity.org/20-cc/v7.0/control/0/subcontrol/0" system="http://cisecurity.org/20-cc/v7.0"></xccdf:ident>
+            <xccdf:ident cc8:controlURI="http://cisecurity.org/20-cc/v8.0/control/0/subcontrol/0" system="http://cisecurity.org/20-cc/v8.0"></xccdf:ident>
+            <xccdf:fixtext xml:lang="en">
+               <xhtml:div>
+                  <xhtml:p>
+                     <xhtml:code class="code_block">
+SLX(config)# interface ethernet 1-32                <br></br>
+SLX(config)# shutdown
+              </xhtml:code>
+                  </xhtml:p>
+               </xhtml:div>
+            </xccdf:fixtext>
+         </xccdf:Rule>
+      </xccdf:Group>
+   </xccdf:Group>
+   <xccdf:Group id="xccdf_org.cisecurity.benchmarks_group_4_Protocol_Configuration">
+      <xccdf:title xml:lang="en">Protocol Configuration</xccdf:title>
+      <xccdf:description xml:lang="en"></xccdf:description>
+      <xccdf:Group id="xccdf_org.cisecurity.benchmarks_group_4.1_BGP">
+         <xccdf:title xml:lang="en">BGP</xccdf:title>
+         <xccdf:description xml:lang="en"></xccdf:description>
+         <xccdf:Rule id="xccdf_org.cisecurity.benchmarks_rule_4.1.1_Ensure_BGP_Configuration" role="full" selected="false" weight="1.0">
+            <xccdf:title xml:lang="en">Ensure BGP Configuration</xccdf:title>
+            <xccdf:description xml:lang="en">
+               <xhtml:p>BGP, or Border Gateway Protocol, is a standardized exterior gateway protocol used to exchange routing information between different autonomous systems (AS) on the internet.</xhtml:p>
+            </xccdf:description>
+            <xccdf:metadata>
+               <controls:cis_controls xmlns:controls="http://cisecurity.org/controls">
+                  <controls:framework urn="urn:cisecurity.org:controls:8.0">
+                     <controls:safeguard title="Explicitly Not Mapped" urn="urn:cisecurity.org:controls:8.0:0:0">
+                        <controls:implementation_groups></controls:implementation_groups>
+                        <controls:asset_type></controls:asset_type>
+                        <controls:security_function></controls:security_function>
+                     </controls:safeguard>
+                  </controls:framework>
+                  <controls:framework urn="urn:cisecurity.org:controls:7.0">
+                     <controls:safeguard title="Explicitly Not Mapped" urn="urn:cisecurity.org:controls:7.0:0:0">
+                        <controls:implementation_groups></controls:implementation_groups>
+                        <controls:asset_type></controls:asset_type>
+                        <controls:security_function></controls:security_function>
+                     </controls:safeguard>
+                  </controls:framework>
+               </controls:cis_controls>
+            </xccdf:metadata>
+            <xccdf:rationale xml:lang="en">
+               <xhtml:p>Ensuring proper BGP (Border Gateway Protocol) configuration is essential for maintaining the stability, performance, and security of a network. Here’s why it's crucial:</xhtml:p>
+               <xhtml:ul>
+                  <xhtml:li>Network Stability: Proper BGP configuration ensures that routing information is accurate and up-to-date, preventing routing loops and black holes that can disrupt network stability.</xhtml:li>
+                  <xhtml:li>Optimal Path Selection: BGP configurations influence how data is routed through the network. Correctly setting policies and attributes ensures that traffic takes the most efficient path, improving performance and reducing latency.</xhtml:li>
+                  <xhtml:li>Redundancy and Failover: BGP can provide multiple paths for data to travel. Proper configuration ensures seamless failover in case one path becomes unavailable, maintaining continuous connectivity.</xhtml:li>
+                  <xhtml:li>Security: Incorrect BGP configurations can expose networks to route hijacking and other security threats. Proper configuration includes implementing route filtering, prefix lists, and other security measures to protect against these risks.</xhtml:li>
+                  <xhtml:li>Scalability: BGP is designed to handle large numbers of routes. Proper configuration ensures that the network can scale efficiently as it grows, avoiding performance issues and routing table overloads.</xhtml:li>
+                  <xhtml:li>Compliance and Best Practices: Following industry standards and best practices in BGP configuration helps ensure compliance with regulatory requirements and reduces the risk of network misconfigurations.</xhtml:li>
+               </xhtml:ul>
+               <xhtml:p>By ensuring BGP is correctly configured, organizations can maintain a robust, secure, and efficient network, capable of handling the demands of modern internet traffic.</xhtml:p>
+            </xccdf:rationale>
+            <xccdf:ident cc7:controlURI="http://cisecurity.org/20-cc/v7.0/control/0/subcontrol/0" system="http://cisecurity.org/20-cc/v7.0"></xccdf:ident>
+            <xccdf:ident cc8:controlURI="http://cisecurity.org/20-cc/v8.0/control/0/subcontrol/0" system="http://cisecurity.org/20-cc/v8.0"></xccdf:ident>
+            <xccdf:fixtext xml:lang="en">
+               <xhtml:div>
+                  <xhtml:p>
+                     <xhtml:code class="code_block">
+SLX(config)# router bgp                <br></br>
+SLX(config)# write
+              </xhtml:code>
+                  </xhtml:p>
+               </xhtml:div>
+            </xccdf:fixtext>
+            <xccdf:complex-check operator="AND">
+               <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+                  <check-content-ref href="CIS_ExtremeNetworks-SLX-OS-20.X.X_Benchmark_v1.0.1-oval.xml" name="oval:org.cisecurity.benchmarks:def:7546659"></check-content-ref>
+               </check>
+            </xccdf:complex-check>
+         </xccdf:Rule>
+         <xccdf:Rule id="xccdf_org.cisecurity.benchmarks_rule_4.1.2_Ensure_AS_number_configuration" role="full" selected="false" weight="1.0">
+            <xccdf:title xml:lang="en">Ensure AS number configuration</xccdf:title>
+            <xccdf:description xml:lang="en">
+               <xhtml:p>A BGP AS number (ASN), or Autonomous System Number, is a unique identifier assigned to each autonomous system (AS) on the internet.</xhtml:p>
+            </xccdf:description>
+            <xccdf:metadata>
+               <controls:cis_controls xmlns:controls="http://cisecurity.org/controls">
+                  <controls:framework urn="urn:cisecurity.org:controls:8.0">
+                     <controls:safeguard title="Explicitly Not Mapped" urn="urn:cisecurity.org:controls:8.0:0:0">
+                        <controls:implementation_groups></controls:implementation_groups>
+                        <controls:asset_type></controls:asset_type>
+                        <controls:security_function></controls:security_function>
+                     </controls:safeguard>
+                  </controls:framework>
+                  <controls:framework urn="urn:cisecurity.org:controls:7.0">
+                     <controls:safeguard title="Explicitly Not Mapped" urn="urn:cisecurity.org:controls:7.0:0:0">
+                        <controls:implementation_groups></controls:implementation_groups>
+                        <controls:asset_type></controls:asset_type>
+                        <controls:security_function></controls:security_function>
+                     </controls:safeguard>
+                  </controls:framework>
+               </controls:cis_controls>
+            </xccdf:metadata>
+            <xccdf:rationale xml:lang="en">
+               <xhtml:p>BGP AS are important because:</xhtml:p>
+               <xhtml:ul>
+                  <xhtml:li>Global Internet Routing: ASNs enable the global routing of IP traffic by ensuring that routing policies are maintained and followed. This is critical for the stability and efficiency of the internet.</xhtml:li>
+                  <xhtml:li>Network Identity: An ASN provides a unique identity to an autonomous system, distinguishing it from others on the internet.</xhtml:li>
+                  <xhtml:li>Policy Implementation: ASNs are used to implement and manage routing policies, allowing organizations to control how traffic enters and exits their networks.</xhtml:li>
+               </xhtml:ul>
+               <xhtml:p>In summary, ASNs are a fundamental component of BGP, enabling the internet to function as a cohesive and interconnected network of networks.</xhtml:p>
+            </xccdf:rationale>
+            <xccdf:ident cc7:controlURI="http://cisecurity.org/20-cc/v7.0/control/0/subcontrol/0" system="http://cisecurity.org/20-cc/v7.0"></xccdf:ident>
+            <xccdf:ident cc8:controlURI="http://cisecurity.org/20-cc/v8.0/control/0/subcontrol/0" system="http://cisecurity.org/20-cc/v8.0"></xccdf:ident>
+            <xccdf:fixtext xml:lang="en">
+               <xhtml:div>
+                  <xhtml:p>
+                     <xhtml:code class="code_block">
+SLX(config)# router bgp                <br></br>
+SLX(bgp)# local-as 65512                <br></br>
+SLX(bgp)# capability as4-enable                <br></br>
+SLX(bgp)# fast-external-fallover                <br></br>
+SLX(bgp)# end
+              </xhtml:code>
+                  </xhtml:p>
+               </xhtml:div>
+            </xccdf:fixtext>
+            <xccdf:complex-check operator="AND">
+               <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+                  <check-export export-name="oval:org.cisecurity.benchmarks:var:7546662" value-id="xccdf_org.cisecurity.benchmarks_value_7546662_var"></check-export>
+                  <check-content-ref href="CIS_ExtremeNetworks-SLX-OS-20.X.X_Benchmark_v1.0.1-oval.xml" name="oval:org.cisecurity.benchmarks:def:7546662"></check-content-ref>
+               </check>
+            </xccdf:complex-check>
+         </xccdf:Rule>
+      </xccdf:Group>
+   </xccdf:Group>
+   <xccdf:Group id="xccdf_org.cisecurity.benchmarks_group_5_SNMP_Configuration">
+      <xccdf:title xml:lang="en">SNMP Configuration</xccdf:title>
+      <xccdf:description xml:lang="en"></xccdf:description>
+      <xccdf:Group id="xccdf_org.cisecurity.benchmarks_group_5.1_Ensure_V3_host_is_enabled">
+         <xccdf:title xml:lang="en">Ensure V3 host is enabled</xccdf:title>
+         <xccdf:description xml:lang="en"></xccdf:description>
+         <xccdf:Rule id="xccdf_org.cisecurity.benchmarks_rule_5.1.1_Check_V3_host_configuration" role="full" selected="false" weight="1.0">
+            <xccdf:title xml:lang="en">Check V3 host configuration</xccdf:title>
+            <xccdf:description xml:lang="en">
+               <xhtml:p>SNMPv3 (Simple Network Management Protocol version 3) is the latest version of SNMP, designed to provide secure access to devices by incorporating robust security features</xhtml:p>
+            </xccdf:description>
+            <xccdf:metadata>
+               <controls:cis_controls xmlns:controls="http://cisecurity.org/controls">
+                  <controls:framework urn="urn:cisecurity.org:controls:8.0">
+                     <controls:safeguard title="Define and Maintain Role-Based Access Control" urn="urn:cisecurity.org:controls:8.0:6:8">
+                        <controls:implementation_groups ig3="true"></controls:implementation_groups>
+                        <controls:asset_type>Data</controls:asset_type>
+                        <controls:security_function>Protect</controls:security_function>
+                     </controls:safeguard>
+                  </controls:framework>
+                  <controls:framework urn="urn:cisecurity.org:controls:7.0">
+                     <controls:safeguard title="Explicitly Not Mapped" urn="urn:cisecurity.org:controls:7.0:0:0">
+                        <controls:implementation_groups></controls:implementation_groups>
+                        <controls:asset_type></controls:asset_type>
+                        <controls:security_function></controls:security_function>
+                     </controls:safeguard>
+                  </controls:framework>
+               </controls:cis_controls>
+            </xccdf:metadata>
+            <xccdf:rationale xml:lang="en">
+               <xhtml:p>Using SNMPv3 (Simple Network Management Protocol version 3) offers significant advantages for network management, mainly due to its enhanced security features. Here are the key reasons to use SNMPv3:</xhtml:p>
+               <xhtml:ul>
+                  <xhtml:li>Improved Security: SNMPv3 incorporates strong security mechanisms, including message integrity, authentication, and encryption. This ensures that the data being transmitted is protected from tampering and unauthorized access.</xhtml:li>
+                  <xhtml:li>Confidentiality: With encryption, SNMPv3 keeps sensitive information, such as network configuration and management data, confidential. This is particularly important in preventing data breaches and ensuring that only authorized users can view the information.</xhtml:li>
+                  <xhtml:li>Authentication: SNMPv3 verifies the identity of users and devices, preventing unauthorized entities from accessing or altering network management data. This helps maintain the integrity and trustworthiness of the network.</xhtml:li>
+                  <xhtml:li>Compliance: Many organizations and regulatory bodies require secure network management protocols. SNMPv3 meets these requirements, helping organizations comply with industry standards and regulations.</xhtml:li>
+                  <xhtml:li>Compatibility and Interoperability: SNMPv3 is a standardized protocol, ensuring compatibility and interoperability with a wide range of network devices and management systems. This makes it easier to integrate SNMPv3 into existing network environments.</xhtml:li>
+                  <xhtml:li>Reliability: By providing mechanisms to ensure data integrity and confidentiality, SNMPv3 enhances the reliability of network management. This means administrators can trust the data they receive and make informed decisions based on accurate information.</xhtml:li>
+               </xhtml:ul>
+               <xhtml:p>Overall, SNMPv3 is a robust and secure protocol that enhances the safety and efficiency of network management, making it a vital tool for modern network environments.</xhtml:p>
+            </xccdf:rationale>
+            <xccdf:ident cc8:controlURI="http://cisecurity.org/20-cc/v8.0/control/6/subcontrol/8" system="http://cisecurity.org/20-cc/v8.0"></xccdf:ident>
+            <xccdf:ident cc7:controlURI="http://cisecurity.org/20-cc/v7.0/control/0/subcontrol/0" system="http://cisecurity.org/20-cc/v7.0"></xccdf:ident>
+            <xccdf:fixtext xml:lang="en">
+               <xhtml:div>
+                  <xhtml:p>
+                     <xhtml:code class="code_block">SLX(config)# snmp-server v3host 10.18.120.110 efav3User
+</xhtml:code>
+                  </xhtml:p>
+               </xhtml:div>
+            </xccdf:fixtext>
+            <xccdf:complex-check operator="AND">
+               <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+                  <check-export export-name="oval:org.cisecurity.benchmarks:var:7546663" value-id="xccdf_org.cisecurity.benchmarks_value_7546663_var"></check-export>
+                  <check-content-ref href="CIS_ExtremeNetworks-SLX-OS-20.X.X_Benchmark_v1.0.1-oval.xml" name="oval:org.cisecurity.benchmarks:def:7546663"></check-content-ref>
+               </check>
+            </xccdf:complex-check>
+         </xccdf:Rule>
+      </xccdf:Group>
+   </xccdf:Group>
+<xccdf:signature><ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+<ds:SignedInfo>
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"></ds:CanonicalizationMethod>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></ds:SignatureMethod>
+<ds:Reference URI="">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"></ds:Transform>
+<ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"></ds:Transform>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></ds:DigestMethod>
+<ds:DigestValue>WdvFxgyh1aa18s8cTBBRkJhyP4NJ201xX2OMFR+3tPk=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue>
+jyPJPlRfgRvtgAojhkymWAph9yog0ozZ5KNjwDQHaP2NBcpMGNyHVYVJDiHjQp0RPHstCfFDkRCG
+XHdbvIozCfWE9lsXJAkTsDyglvbVNWC0CTzZ/QDCEhWGtzHqnnJN/O7+umLl3zMp3XAgdHrDS/0d
+1O142bgADheebhulcpe97KWKy1O+VDtI491arIUXQk9/VjmtyDimz2x0aJ7kdZ+V5MOV7RY54kYs
+NKWCKxn2Lvgh02Flkfl7H6B8g9dWjZ4ODi71HpCsQdlhvSwV9nPZMgoRgaDWDZS2mxASdAYhWY+1
+cSbv6yJa8NtIlDjwTer1FfOnLsn8G70OOL/aiMxEKPx4IiYUDsiaKR7y1hRKHOcoukgkZ5pBeXdW
+S0zb4v46SEdcYrYWiKFvRDV95eRrySkzW6wpPypCXd4dQSE6Rx4VZUy+xsH0l8NEkITub4vPoPXq
+olzEkpoAdsHQNcrh9N0GhHYQgCn2hD2kT+4zgki4vbexdPmxcPpKIm0U
+</ds:SignatureValue>
+<ds:KeyInfo>
+<ds:X509Data>
+<ds:X509Certificate>
+MIIHbDCCBVSgAwIBAgIQCdceADCnzKkglkQGavVKYzANBgkqhkiG9w0BAQsFADBpMQswCQYDVQQG
+EwJVUzEXMBUGA1UEChMORGlnaUNlcnQsIEluYy4xQTA/BgNVBAMTOERpZ2lDZXJ0IFRydXN0ZWQg
+RzQgQ29kZSBTaWduaW5nIFJTQTQwOTYgU0hBMzg0IDIwMjEgQ0ExMB4XDTIzMTAxODAwMDAwMFoX
+DTI2MTAxODIzNTk1OVowgfQxEzARBgsrBgEEAYI3PAIBAxMCVVMxGTAXBgsrBgEEAYI3PAIBAhMI
+TWFyeWxhbmQxHTAbBgNVBA8MFFByaXZhdGUgT3JnYW5pemF0aW9uMRIwEAYDVQQFEwlEMDYwNTg4
+MTIxCzAJBgNVBAYTAlVTMREwDwYDVQQIEwhOZXcgWW9yazEXMBUGA1UEBxMORWFzdCBHcmVlbmJ1
+c2gxKjAoBgNVBAoTIUNlbnRlciBmb3IgSW50ZXJuZXQgU2VjdXJpdHksIEluYzEqMCgGA1UEAxMh
+Q2VudGVyIGZvciBJbnRlcm5ldCBTZWN1cml0eSwgSW5jMIIBojANBgkqhkiG9w0BAQEFAAOCAY8A
+MIIBigKCAYEAyZwTJr4Kb7QEDnVY3BEkPoS3fn+XoxhCTfFvlMk8zXDcR4pFMgPkXTrZ1KbENUIV
+skIhy1vmnh61vwSL0lcdzesCekKSxLqrEA4xunZk1MB5mLbHXchSSpI1co1vaSzJjkTYP1UsUVQz
+NoOzV0LNCoZdahjGTHSduWvbrHTEeD6/jvUj3AVWrTx6krzgYA3ozAxtUnapK7IrZERuGOSwTrgR
+Lr1aieQdFy8haW1YL+ks5HmLRvcoGp+J68GX/zfMTduvWxhcpXm4txKc4iJqGCRmyBU2XjGjpDBX
+ndxHgT4edRLz5PwWSeZUh8/tWOGFwnVw7njoOa0sFixy96H2BqEn+yPeRALyf59rjtPL66tsXuaA
+ilB63yqbH42mnkxHTX5zcEm337GzTOGRccsYzN/ApVuXDeMfsO+sSUosrimnxm9QTOyKcex5h1As
+rxBVfTw+Zf7jP1YRlmMlGPG1zffK2KjJhD6ivFi2sIDThEQLxIAC8XOjp2ZXvhx87yNTAgMBAAGj
+ggICMIIB/jAfBgNVHSMEGDAWgBRoN+Drtjv4XxGG+/5hewiIZfROQjAdBgNVHQ4EFgQUX2/J9FT5
+5BNF7JqfAl9SJkv3pf0wPQYDVR0gBDYwNDAyBgVngQwBAzApMCcGCCsGAQUFBwIBFhtodHRwOi8v
+d3d3LmRpZ2ljZXJ0LmNvbS9DUFMwDgYDVR0PAQH/BAQDAgeAMBMGA1UdJQQMMAoGCCsGAQUFBwMD
+MIG1BgNVHR8Ega0wgaowU6BRoE+GTWh0dHA6Ly9jcmwzLmRpZ2ljZXJ0LmNvbS9EaWdpQ2VydFRy
+dXN0ZWRHNENvZGVTaWduaW5nUlNBNDA5NlNIQTM4NDIwMjFDQTEuY3JsMFOgUaBPhk1odHRwOi8v
+Y3JsNC5kaWdpY2VydC5jb20vRGlnaUNlcnRUcnVzdGVkRzRDb2RlU2lnbmluZ1JTQTQwOTZTSEEz
+ODQyMDIxQ0ExLmNybDCBlAYIKwYBBQUHAQEEgYcwgYQwJAYIKwYBBQUHMAGGGGh0dHA6Ly9vY3Nw
+LmRpZ2ljZXJ0LmNvbTBcBggrBgEFBQcwAoZQaHR0cDovL2NhY2VydHMuZGlnaWNlcnQuY29tL0Rp
+Z2lDZXJ0VHJ1c3RlZEc0Q29kZVNpZ25pbmdSU0E0MDk2U0hBMzg0MjAyMUNBMS5jcnQwCQYDVR0T
+BAIwADANBgkqhkiG9w0BAQsFAAOCAgEASLOHf1FQ7TrGqEoVXYoeNSkRWdVCUGd1JCDs7Hb9sLd3
+eQuipZ4EorQS/9qMiVMhmlJfF75sNVQhr1K5UtjrDRFMTzYmh78hAyovowzgyVKdGFqiVVr5m+mb
+vVyglLlA4V076LMBaKRknm1Dt8r0/5GSRCrkP2origpYMMaocN+iBX9+MImnh3J1Ehn0nRUhW86Q
+mt3/YCVIaQZisv+KmOxyAq1m6fiIYIvXY+cH2dDIheoVteb/NjYnKVqE6xTpOsxF16pykXiM9yk3
+Q9nlJS36KEGRP4wrySU4eIBnTcv4mimZjkWj6bIvk8otNJ14FbyltaPwIc3dE3oPGfSmCrkxs73j
+iqBs2TXLvblEmOhY8ko3xVdTm0zMP50MQVO948fz9yF+xdnPdMPT1/lCmGp6iWYRzxnvEkA1+HFl
+yy9YztrM8WNAhXirpUZg3HWQE2ONLKMtqQrkIHD2nikda77flk6oirqDuCf8Q7g8s86/KabTdxrw
+pRmsRjDkAfKVae58ctaKbmF32oU9BGk+9MPG8HF5Yfoh12DE1fLZcPzZrROrDFJGGxwhv5FlnxGg
+6G7jKi68erZnpaOPayK0bXyZNunqkI9IbIuPqMw5qaCZZgN6AEHIbGTKdrWEf11DmR7MdTjv3/vu
+JWtIXgk3kQFX27w9JhqV6QogVmzIfEQ=
+</ds:X509Certificate>
+</ds:X509Data>
+<ds:KeyValue>
+<ds:RSAKeyValue>
+<ds:Modulus>yZwTJr4Kb7QEDnVY3BEkPoS3fn+XoxhCTfFvlMk8zXDcR4pFMgPkXTrZ1KbENUIVskIhy1vmnh61
+vwSL0lcdzesCekKSxLqrEA4xunZk1MB5mLbHXchSSpI1co1vaSzJjkTYP1UsUVQzNoOzV0LNCoZd
+ahjGTHSduWvbrHTEeD6/jvUj3AVWrTx6krzgYA3ozAxtUnapK7IrZERuGOSwTrgRLr1aieQdFy8h
+aW1YL+ks5HmLRvcoGp+J68GX/zfMTduvWxhcpXm4txKc4iJqGCRmyBU2XjGjpDBXndxHgT4edRLz
+5PwWSeZUh8/tWOGFwnVw7njoOa0sFixy96H2BqEn+yPeRALyf59rjtPL66tsXuaAilB63yqbH42m
+nkxHTX5zcEm337GzTOGRccsYzN/ApVuXDeMfsO+sSUosrimnxm9QTOyKcex5h1AsrxBVfTw+Zf7j
+P1YRlmMlGPG1zffK2KjJhD6ivFi2sIDThEQLxIAC8XOjp2ZXvhx87yNT</ds:Modulus>
+<ds:Exponent>AQAB</ds:Exponent>
+</ds:RSAKeyValue>
+</ds:KeyValue>
+</ds:KeyInfo>
+</ds:Signature></xccdf:signature></xccdf:Benchmark>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" 
+                  xmlns:aix="http://oval.mitre.org/XMLSchema/oval-definitions-5#aix"
+                  xmlns:unix="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix"
+                  xmlns:cmd="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd"
+                  xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd
+                                      http://oval.mitre.org/XMLSchema/oval-definitions-5#aix aix-definitions-schema.xsd
+                                      http://oval.mitre.org/XMLSchema/oval-definitions-5#unix unix-definitions-schema.xsd
+                                      http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd cmd-definitions-schema.xsd">
+                                      
+	<generator>
+		<oval:product_name>CimTrak Agent Operational Monitoring</oval:product_name>
+		<oval:product_version>1.0.0</oval:product_version>
+		<oval:schema_version>5.11</oval:schema_version>
+		<oval:timestamp>2025-08-20T14:00:00Z</oval:timestamp>
+	</generator>
+
+	<definitions>
+		<!-- CimTrak Agent Service Status -->
+		<definition class="compliance" id="oval:com.cimcor.cimtrak.o_aix:def:5001" version="1">
+			<metadata>
+				<title>Ensure CimTrakAgent service is enabled and active</title>
+				<description>Verify that the CimTrakAgent service is configured to start at boot and is currently running on AIX</description>
+			</metadata>
+			<criteria negate="false" operator="AND">
+				<criterion negate="false" test_ref="oval:com.cimcor.cimtrak.o_aix:tst:5001" comment="CimTrakAgent process is running"/>
+				<criterion negate="false" test_ref="oval:com.cimcor.cimtrak.o_aix:tst:5002" comment="CimTrakAgent service script exists"/>
+			</criteria>
+		</definition>
+		
+		<!-- CimTrak Agent Configuration Validation -->
+		<definition class="compliance" id="oval:com.cimcor.cimtrak.o_aix:def:5002" version="1">
+			<metadata>
+				<title>Ensure CimTrakAgent is properly configured</title>
+				<description>Verify that CimTrakAgent --checkinstall command returns success (exit code 0)</description>
+			</metadata>
+			<criteria negate="false" operator="AND" comment="CimTrakAgent configuration validation passes">
+				<criterion negate="false" test_ref="oval:com.cimcor.cimtrak.o_aix:tst:5003" comment="CimTrakAgent --checkinstall succeeds"/>
+			</criteria>
+		</definition>
+		
+	</definitions>
+
+	<tests>
+		<!-- CimTrakAgent process check -->
+		<unix:process_test 
+			check="at least one" 
+			check_existence="at_least_one_exists" 
+			comment="CimTrakAgent process is running" 
+			id="oval:com.cimcor.cimtrak.o_aix:tst:5001" 
+			version="1">
+			<unix:object object_ref="oval:com.cimcor.cimtrak.o_aix:obj:5001"/>
+		</unix:process_test>
+		
+		<!-- CimTrakAgent service script existence check -->
+		<unix:file_test 
+			check="all" 
+			check_existence="at_least_one_exists" 
+			comment="CimTrakAgent service script exists" 
+			id="oval:com.cimcor.cimtrak.o_aix:tst:5002" 
+			version="1">
+			<unix:object object_ref="oval:com.cimcor.cimtrak.o_aix:obj:5002"/>
+		</unix:file_test>
+		
+		<!-- CimTrak Agent Configuration Test using checkinstall -->
+		<cmd:shellcommand_test 
+			check="all" 
+			check_existence="at_least_one_exists" 
+			comment="CimTrakAgent --checkinstall returns success" 
+			id="oval:com.cimcor.cimtrak.o_aix:tst:5003" 
+			version="1">
+			<cmd:object object_ref="oval:com.cimcor.cimtrak.o_aix:obj:5003"/>
+			<cmd:state state_ref="oval:com.cimcor.cimtrak.o_aix:ste:5003"/>
+		</cmd:shellcommand_test>
+		
+	</tests>
+	
+	<objects>
+		<!-- CimTrakAgent process object -->
+		<unix:process_object 
+			comment="CimTrakAgent process" 
+			id="oval:com.cimcor.cimtrak.o_aix:obj:5001" 
+			version="1">
+			<unix:command operation="pattern match">.*CimTrakAgent.*</unix:command>
+		</unix:process_object>
+		
+		<!-- CimTrakAgent service script object -->
+		<unix:file_object 
+			comment="CimTrakAgent service script" 
+			id="oval:com.cimcor.cimtrak.o_aix:obj:5002" 
+			version="1">
+			<unix:path>/etc/rc.d/init.d</unix:path>
+			<unix:filename>CimTrakAgent</unix:filename>
+		</unix:file_object>
+		
+		<!-- CimTrak Agent Configuration Test Object -->
+		<cmd:shellcommand_object 
+			comment="CimTrakAgent --checkinstall command" 
+			id="oval:com.cimcor.cimtrak.o_aix:obj:5003" 
+			version="1">
+			<cmd:command>cd /opt/Cimcor/CimTrak/CimTrakAgent &amp;&amp; ./CimTrakAgent.exe --checkinstall; echo "EXIT_CODE:$?"</cmd:command>
+			<cmd:line_selection operation="pattern match">.+</cmd:line_selection>
+		</cmd:shellcommand_object>
+		
+	</objects>
+	
+	<states>
+		<!-- CimTrak Agent Configuration State -->
+		<cmd:shellcommand_state 
+			comment="CimTrakAgent --checkinstall returns success (exit code 0)" 
+			id="oval:com.cimcor.cimtrak.o_aix:ste:5003" 
+			version="1">
+			<cmd:stdout_line entity_check="at least one" operation="pattern match">^EXIT_CODE:0$</cmd:stdout_line>
+		</cmd:shellcommand_state>
+	</states>
+</oval_definitions>

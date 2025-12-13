@@ -1,0 +1,1586 @@
+<oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5 https://oval.cisecurity.org/schemas/validator-oval-definitions-5.11.2.xsd">
+   <generator>
+      <oval:product_name>Center for Internet Security - Optimus</oval:product_name>
+      <oval:schema_version>5.11.2</oval:schema_version>
+      <oval:timestamp>2024-11-09T18:31:53.492Z</oval:timestamp>
+   </generator>
+   <definitions>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2812451" version="1">
+         <metadata>
+            <title>Ensure Auto Update Is Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.2_Ensure_Auto_Update_Is_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.2_Ensure_Auto_Update_Is_Enabled"></reference>
+            <description>Ensure Auto Update Is Enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2812451"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2812452" version="1">
+         <metadata>
+            <title>Ensure Auto Update Is Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.2_Ensure_Auto_Update_Is_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.2_Ensure_Auto_Update_Is_Enabled"></reference>
+            <description>Ensure Auto Update Is Enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2812452"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2750968" version="1">
+         <metadata>
+            <title>Ensure Download New Updates When Available Is Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.3_Ensure_Download_New_Updates_When_Available_Is_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.3_Ensure_Download_New_Updates_When_Available_Is_Enabled"></reference>
+            <description>Ensure Download New Updates When Available Is Enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2750968"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2750969" version="1">
+         <metadata>
+            <title>Ensure Download New Updates When Available Is Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.3_Ensure_Download_New_Updates_When_Available_Is_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.3_Ensure_Download_New_Updates_When_Available_Is_Enabled"></reference>
+            <description>Ensure Download New Updates When Available Is Enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2750969"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2057114" version="1">
+         <metadata>
+            <title>Ensure Installation of App Update Is Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4_Ensure_Installation_of_App_Update_Is_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4_Ensure_Installation_of_App_Update_Is_Enabled"></reference>
+            <description>Ensure Installation of App Update Is Enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2057114"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2057116" version="1">
+         <metadata>
+            <title>Ensure Installation of App Update Is Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4_Ensure_Installation_of_App_Update_Is_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4_Ensure_Installation_of_App_Update_Is_Enabled"></reference>
+            <description>Ensure Installation of App Update Is Enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2057116"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2782505" version="1">
+         <metadata>
+            <title>Ensure System Data Files and Security Updates Are Downloaded Automatically Is Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.5_Ensure_System_Data_Files_and_Security_Updates_Are_Downloaded_Automatically_Is_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.5_Ensure_System_Data_Files_and_Security_Updates_Are_Downloaded_Automatically_Is_Enabled"></reference>
+            <description>Ensure System Data Files and Security Updates Are Downloaded Automatically Is Enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2782505"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2782506" version="1">
+         <metadata>
+            <title>Ensure System Data Files and Security Updates Are Downloaded Automatically Is Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.5_Ensure_System_Data_Files_and_Security_Updates_Are_Downloaded_Automatically_Is_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.5_Ensure_System_Data_Files_and_Security_Updates_Are_Downloaded_Automatically_Is_Enabled"></reference>
+            <description>Ensure System Data Files and Security Updates Are Downloaded Automatically Is Enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2782506"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2782507" version="1">
+         <metadata>
+            <title>Ensure System Data Files and Security Updates Are Downloaded Automatically Is Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.5_Ensure_System_Data_Files_and_Security_Updates_Are_Downloaded_Automatically_Is_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.5_Ensure_System_Data_Files_and_Security_Updates_Are_Downloaded_Automatically_Is_Enabled"></reference>
+            <description>Ensure System Data Files and Security Updates Are Downloaded Automatically Is Enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2782507"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2782508" version="1">
+         <metadata>
+            <title>Ensure System Data Files and Security Updates Are Downloaded Automatically Is Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.5_Ensure_System_Data_Files_and_Security_Updates_Are_Downloaded_Automatically_Is_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.5_Ensure_System_Data_Files_and_Security_Updates_Are_Downloaded_Automatically_Is_Enabled"></reference>
+            <description>Ensure System Data Files and Security Updates Are Downloaded Automatically Is Enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2782508"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2130770" version="1">
+         <metadata>
+            <title>Ensure Install of macOS Updates Is Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.6_Ensure_Install_of_macOS_Updates_Is_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.6_Ensure_Install_of_macOS_Updates_Is_Enabled"></reference>
+            <description>Ensure Install of macOS Updates Is Enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2130770"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2130771" version="1">
+         <metadata>
+            <title>Ensure Install of macOS Updates Is Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.6_Ensure_Install_of_macOS_Updates_Is_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.6_Ensure_Install_of_macOS_Updates_Is_Enabled"></reference>
+            <description>Ensure Install of macOS Updates Is Enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2130771"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2057113" version="1">
+         <metadata>
+            <title>Ensure Show Bluetooth Status in Menu Bar Is Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.1.1_Ensure_Show_Bluetooth_Status_in_Menu_Bar_Is_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.1.1_Ensure_Show_Bluetooth_Status_in_Menu_Bar_Is_Enabled"></reference>
+            <description>Ensure Show Bluetooth Status in Menu Bar Is Enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2057113"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2697717" version="1">
+         <metadata>
+            <title>Ensure Show Wi-Fi status in Menu Bar Is Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.1.2_Ensure_Show_Wi-Fi_status_in_Menu_Bar_Is_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.1.2_Ensure_Show_Wi-Fi_status_in_Menu_Bar_Is_Enabled"></reference>
+            <description>Ensure Show Wi-Fi status in Menu Bar Is Enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2697717"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2057126" version="1">
+         <metadata>
+            <title>Ensure Screen Saver Corners Are Secure</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.3.2_Ensure_Screen_Saver_Corners_Are_Secure" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.3.2_Ensure_Screen_Saver_Corners_Are_Secure"></reference>
+            <description>Ensure Screen Saver Corners Are Secure</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2057126"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2783216" version="1">
+         <metadata>
+            <title>Ensure Internet Sharing Is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.4.2_Ensure_Internet_Sharing_Is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.4.2_Ensure_Internet_Sharing_Is_Disabled"></reference>
+            <description>Ensure Internet Sharing Is Disabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2783216"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2697702" version="1">
+         <metadata>
+            <title>Ensure Bluetooth Sharing Is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.4.7_Ensure_Bluetooth_Sharing_Is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.4.7_Ensure_Bluetooth_Sharing_Is_Disabled"></reference>
+            <description>Ensure Bluetooth Sharing Is Disabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2697702"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2870316" version="1">
+         <metadata>
+            <title>Ensure Content Caching Is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.4.10_Ensure_Content_Caching_Is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.4.10_Ensure_Content_Caching_Is_Disabled"></reference>
+            <description>Ensure Content Caching Is Disabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2870316"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2870317" version="1">
+         <metadata>
+            <title>Ensure Content Caching Is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.4.10_Ensure_Content_Caching_Is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.4.10_Ensure_Content_Caching_Is_Disabled"></reference>
+            <description>Ensure Content Caching Is Disabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2870317"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2870318" version="1">
+         <metadata>
+            <title>Ensure AirDrop Is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.4.11_Ensure_AirDrop_Is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.4.11_Ensure_AirDrop_Is_Disabled"></reference>
+            <description>Ensure AirDrop Is Disabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2870318"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2870319" version="1">
+         <metadata>
+            <title>Ensure AirDrop Is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.4.11_Ensure_AirDrop_Is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.4.11_Ensure_AirDrop_Is_Disabled"></reference>
+            <description>Ensure AirDrop Is Disabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2870319"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2130864" version="1">
+         <metadata>
+            <title>Ensure Media Sharing Is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.4.12_Ensure_Media_Sharing_Is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.4.12_Ensure_Media_Sharing_Is_Disabled"></reference>
+            <description>Ensure Media Sharing Is Disabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2130864"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2130865" version="1">
+         <metadata>
+            <title>Ensure Media Sharing Is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.4.12_Ensure_Media_Sharing_Is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.4.12_Ensure_Media_Sharing_Is_Disabled"></reference>
+            <description>Ensure Media Sharing Is Disabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2130865"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2130866" version="1">
+         <metadata>
+            <title>Ensure Media Sharing Is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.4.12_Ensure_Media_Sharing_Is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.4.12_Ensure_Media_Sharing_Is_Disabled"></reference>
+            <description>Ensure Media Sharing Is Disabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2130866"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2130867" version="1">
+         <metadata>
+            <title>Ensure Media Sharing Is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.4.12_Ensure_Media_Sharing_Is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.4.12_Ensure_Media_Sharing_Is_Disabled"></reference>
+            <description>Ensure Media Sharing Is Disabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2130867"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2130900" version="1">
+         <metadata>
+            <title>Ensure Firewall Is Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.5.2.1_Ensure_Firewall_Is_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.5.2.1_Ensure_Firewall_Is_Enabled"></reference>
+            <description>Ensure Firewall Is Enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2130900"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2130901" version="1">
+         <metadata>
+            <title>Ensure Firewall Is Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.5.2.1_Ensure_Firewall_Is_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.5.2.1_Ensure_Firewall_Is_Enabled"></reference>
+            <description>Ensure Firewall Is Enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2130901"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2130902" version="1">
+         <metadata>
+            <title>Ensure Firewall Is Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.5.2.1_Ensure_Firewall_Is_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.5.2.1_Ensure_Firewall_Is_Enabled"></reference>
+            <description>Ensure Firewall Is Enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2130902"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2790265" version="1">
+         <metadata>
+            <title>Ensure Firewall Stealth Mode Is Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.5.2.2_Ensure_Firewall_Stealth_Mode_Is_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.5.2.2_Ensure_Firewall_Stealth_Mode_Is_Enabled"></reference>
+            <description>Ensure Firewall Stealth Mode Is Enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2790265"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2790266" version="1">
+         <metadata>
+            <title>Ensure Firewall Stealth Mode Is Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.5.2.2_Ensure_Firewall_Stealth_Mode_Is_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.5.2.2_Ensure_Firewall_Stealth_Mode_Is_Enabled"></reference>
+            <description>Ensure Firewall Stealth Mode Is Enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2790266"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2146860" version="1">
+         <metadata>
+            <title>Ensure Sending Diagnostic and Usage Data to Apple Is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.5.5_Ensure_Sending_Diagnostic_and_Usage_Data_to_Apple_Is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.5.5_Ensure_Sending_Diagnostic_and_Usage_Data_to_Apple_Is_Disabled"></reference>
+            <description>Ensure Sending Diagnostic and Usage Data to Apple Is Disabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2146860"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2146861" version="1">
+         <metadata>
+            <title>Ensure Sending Diagnostic and Usage Data to Apple Is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.5.5_Ensure_Sending_Diagnostic_and_Usage_Data_to_Apple_Is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.5.5_Ensure_Sending_Diagnostic_and_Usage_Data_to_Apple_Is_Disabled"></reference>
+            <description>Ensure Sending Diagnostic and Usage Data to Apple Is Disabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2146861"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2697708" version="1">
+         <metadata>
+            <title>Ensure Limit Ad Tracking Is Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.5.6_Ensure_Limit_Ad_Tracking_Is_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.5.6_Ensure_Limit_Ad_Tracking_Is_Enabled"></reference>
+            <description>Ensure Limit Ad Tracking Is Enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2697708"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2697710" version="1">
+         <metadata>
+            <title>Ensure Limit Ad Tracking Is Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.5.6_Ensure_Limit_Ad_Tracking_Is_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.5.6_Ensure_Limit_Ad_Tracking_Is_Enabled"></reference>
+            <description>Ensure Limit Ad Tracking Is Enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2697710"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2697706" version="1">
+         <metadata>
+            <title>Ensure Gatekeeper Is Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.5.7_Ensure_Gatekeeper_Is_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.5.7_Ensure_Gatekeeper_Is_Enabled"></reference>
+            <description>Ensure Gatekeeper Is Enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2697706"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2697707" version="1">
+         <metadata>
+            <title>Ensure Gatekeeper Is Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.5.7_Ensure_Gatekeeper_Is_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.5.7_Ensure_Gatekeeper_Is_Enabled"></reference>
+            <description>Ensure Gatekeeper Is Enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2697707"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2782512" version="1">
+         <metadata>
+            <title>Ensure a Custom Message for the Login Screen Is Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.5.8_Ensure_a_Custom_Message_for_the_Login_Screen_Is_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.5.8_Ensure_a_Custom_Message_for_the_Login_Screen_Is_Enabled"></reference>
+            <description>Ensure a Custom Message for the Login Screen Is Enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2782512"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2782513" version="1">
+         <metadata>
+            <title>Ensure a Custom Message for the Login Screen Is Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.5.8_Ensure_a_Custom_Message_for_the_Login_Screen_Is_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.5.8_Ensure_a_Custom_Message_for_the_Login_Screen_Is_Enabled"></reference>
+            <description>Ensure a Custom Message for the Login Screen Is Enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2782513"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2787106" version="1">
+         <metadata>
+            <title>Ensure a Password is Required to Wake the Computer From Sleep or Screen Saver Is Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.5.10_Ensure_a_Password_is_Required_to_Wake_the_Computer_From_Sleep_or_Screen_Saver_Is_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.5.10_Ensure_a_Password_is_Required_to_Wake_the_Computer_From_Sleep_or_Screen_Saver_Is_Enabled"></reference>
+            <description>Ensure a Password is Required to Wake the Computer From Sleep or Screen Saver Is Enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2787106"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2787107" version="1">
+         <metadata>
+            <title>Ensure a Password is Required to Wake the Computer From Sleep or Screen Saver Is Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.5.10_Ensure_a_Password_is_Required_to_Wake_the_Computer_From_Sleep_or_Screen_Saver_Is_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.5.10_Ensure_a_Password_is_Required_to_Wake_the_Computer_From_Sleep_or_Screen_Saver_Is_Enabled"></reference>
+            <description>Ensure a Password is Required to Wake the Computer From Sleep or Screen Saver Is Enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2787107"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2787105" version="1">
+         <metadata>
+            <title>Ensure a Password is Required to Wake the Computer From Sleep or Screen Saver Is Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.5.10_Ensure_a_Password_is_Required_to_Wake_the_Computer_From_Sleep_or_Screen_Saver_Is_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.5.10_Ensure_a_Password_is_Required_to_Wake_the_Computer_From_Sleep_or_Screen_Saver_Is_Enabled"></reference>
+            <description>Ensure a Password is Required to Wake the Computer From Sleep or Screen Saver Is Enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2787105"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2783715" version="1">
+         <metadata>
+            <title>Audit iCloud Keychain</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.6.1.1_Audit_iCloud_Keychain" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.6.1.1_Audit_iCloud_Keychain"></reference>
+            <description>Audit iCloud Keychain</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2783715"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2829250" version="1">
+         <metadata>
+            <title>Audit iCloud Drive</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.6.1.2_Audit_iCloud_Drive" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.6.1.2_Audit_iCloud_Drive"></reference>
+            <description>Audit iCloud Drive</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2829250"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2189768" version="1">
+         <metadata>
+            <title>Ensure iCloud Drive Document and Desktop Sync Is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.6.1.3_Ensure_iCloud_Drive_Document_and_Desktop_Sync_Is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.6.1.3_Ensure_iCloud_Drive_Document_and_Desktop_Sync_Is_Disabled"></reference>
+            <description>Ensure iCloud Drive Document and Desktop Sync Is Disabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2189768"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2057236" version="1">
+         <metadata>
+            <title>Ensure Backup Automatically is Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.7.1_Ensure_Backup_Automatically_is_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.7.1_Ensure_Backup_Automatically_is_Enabled"></reference>
+            <description>Ensure Backup Automatically is Enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2057236"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2057140" version="1">
+         <metadata>
+            <title>Ensure Firewall Logging Is Enabled and Configured</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.6_Ensure_Firewall_Logging_Is_Enabled_and_Configured" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.6_Ensure_Firewall_Logging_Is_Enabled_and_Configured"></reference>
+            <description>Ensure Firewall Logging Is Enabled and Configured</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2057140"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2057142" version="1">
+         <metadata>
+            <title>Ensure Firewall Logging Is Enabled and Configured</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.6_Ensure_Firewall_Logging_Is_Enabled_and_Configured" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.6_Ensure_Firewall_Logging_Is_Enabled_and_Configured"></reference>
+            <description>Ensure Firewall Logging Is Enabled and Configured</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2057142"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2191750" version="1">
+         <metadata>
+            <title>Ensure Bonjour Advertising Services Is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.1_Ensure_Bonjour_Advertising_Services_Is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.1_Ensure_Bonjour_Advertising_Services_Is_Disabled"></reference>
+            <description>Ensure Bonjour Advertising Services Is Disabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2191750"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2191751" version="1">
+         <metadata>
+            <title>Ensure Bonjour Advertising Services Is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.1_Ensure_Bonjour_Advertising_Services_Is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.1_Ensure_Bonjour_Advertising_Services_Is_Disabled"></reference>
+            <description>Ensure Bonjour Advertising Services Is Disabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2191751"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2193552" version="1">
+         <metadata>
+            <title>Ensure Password Minimum Length Is Configured</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.2.2_Ensure_Password_Minimum_Length_Is_Configured" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.2.2_Ensure_Password_Minimum_Length_Is_Configured"></reference>
+            <description>Ensure Password Minimum Length Is Configured</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2193552"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2697779" version="1">
+         <metadata>
+            <title>Ensure Complex Password Must Contain Alphabetic Characters Is Configured</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.2.3_Ensure_Complex_Password_Must_Contain_Alphabetic_Characters_Is_Configured" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.2.3_Ensure_Complex_Password_Must_Contain_Alphabetic_Characters_Is_Configured"></reference>
+            <description>Ensure Complex Password Must Contain Alphabetic Characters Is Configured</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2697779"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2697785" version="1">
+         <metadata>
+            <title>Ensure Complex Password Must Contain Numeric Character Is Configured</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.2.4_Ensure_Complex_Password_Must_Contain_Numeric_Character_Is_Configured" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.2.4_Ensure_Complex_Password_Must_Contain_Numeric_Character_Is_Configured"></reference>
+            <description>Ensure Complex Password Must Contain Numeric Character Is Configured</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2697785"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2198271" version="1">
+         <metadata>
+            <title>Ensure Complex Password Must Contain Special Character Is Configured</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.2.5_Ensure_Complex_Password_Must_Contain_Special_Character_Is_Configured" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.2.5_Ensure_Complex_Password_Must_Contain_Special_Character_Is_Configured"></reference>
+            <description>Ensure Complex Password Must Contain Special Character Is Configured</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2198271"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2198295" version="1">
+         <metadata>
+            <title>Ensure Password Age Is Configured</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.2.7_Ensure_Password_Age_Is_Configured" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.2.7_Ensure_Password_Age_Is_Configured"></reference>
+            <description>Ensure Password Age Is Configured</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2198295"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2198283" version="1">
+         <metadata>
+            <title>Ensure Password History Is Configured</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.2.8_Ensure_Password_History_Is_Configured" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.2.8_Ensure_Password_History_Is_Configured"></reference>
+            <description>Ensure Password History Is Configured</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2198283"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2697720" version="1">
+         <metadata>
+            <title>Ensure Automatic Login Is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.6_Ensure_Automatic_Login_Is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.6_Ensure_Automatic_Login_Is_Disabled"></reference>
+            <description>Ensure Automatic Login Is Disabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2697720"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2205454" version="1">
+         <metadata>
+            <title>Ensure Fast User Switching Is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.10_Ensure_Fast_User_Switching_Is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.10_Ensure_Fast_User_Switching_Is_Disabled"></reference>
+            <description>Ensure Fast User Switching Is Disabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2205454"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2205455" version="1">
+         <metadata>
+            <title>Ensure Fast User Switching Is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.10_Ensure_Fast_User_Switching_Is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.10_Ensure_Fast_User_Switching_Is_Disabled"></reference>
+            <description>Ensure Fast User Switching Is Disabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2205455"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2829231" version="1">
+         <metadata>
+            <title>Ensure Secure Keyboard Entry Terminal.app Is Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.11_Ensure_Secure_Keyboard_Entry_Terminal.app_Is_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.11_Ensure_Secure_Keyboard_Entry_Terminal.app_Is_Enabled"></reference>
+            <description>Ensure Secure Keyboard Entry Terminal.app Is Enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2829231"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2829232" version="1">
+         <metadata>
+            <title>Ensure Secure Keyboard Entry Terminal.app Is Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.11_Ensure_Secure_Keyboard_Entry_Terminal.app_Is_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.11_Ensure_Secure_Keyboard_Entry_Terminal.app_Is_Enabled"></reference>
+            <description>Ensure Secure Keyboard Entry Terminal.app Is Enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2829232"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2205472" version="1">
+         <metadata>
+            <title>Ensure Login Window Displays as Name and Password Is Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.1.1_Ensure_Login_Window_Displays_as_Name_and_Password_Is_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.1.1_Ensure_Login_Window_Displays_as_Name_and_Password_Is_Enabled"></reference>
+            <description>Ensure Login Window Displays as Name and Password Is Enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2205472"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2205473" version="1">
+         <metadata>
+            <title>Ensure Login Window Displays as Name and Password Is Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.1.1_Ensure_Login_Window_Displays_as_Name_and_Password_Is_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.1.1_Ensure_Login_Window_Displays_as_Name_and_Password_Is_Enabled"></reference>
+            <description>Ensure Login Window Displays as Name and Password Is Enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2205473"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2697722" version="1">
+         <metadata>
+            <title>Ensure Show Password Hints Is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.1.2_Ensure_Show_Password_Hints_Is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.1.2_Ensure_Show_Password_Hints_Is_Disabled"></reference>
+            <description>Ensure Show Password Hints Is Disabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2697722"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2697723" version="1">
+         <metadata>
+            <title>Ensure Show Password Hints Is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.1.2_Ensure_Show_Password_Hints_Is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.1.2_Ensure_Show_Password_Hints_Is_Disabled"></reference>
+            <description>Ensure Show Password Hints Is Disabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2697723"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2859500" version="1">
+         <metadata>
+            <title>Ensure Guest Account Is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.1.3_Ensure_Guest_Account_Is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.1.3_Ensure_Guest_Account_Is_Disabled"></reference>
+            <description>Ensure Guest Account Is Disabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2859500"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2790268" version="1">
+         <metadata>
+            <title>Ensure Show All Filename Extensions Setting is Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.2_Ensure_Show_All_Filename_Extensions_Setting_is_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.2_Ensure_Show_All_Filename_Extensions_Setting_is_Enabled"></reference>
+            <description>Ensure Show All Filename Extensions Setting is Enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2790268"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2833840" version="1">
+         <metadata>
+            <title>Ensure "Set time and date automatically" Is Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.2.1_Ensure_Set_time_and_date_automatically_Is_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.2.1_Ensure_Set_time_and_date_automatically_Is_Enabled"></reference>
+            <description>Ensure "Set time and date automatically" Is Enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2833840"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2782648" version="1">
+         <metadata>
+            <title>Ensure Time Is Set Within Appropriate Limits</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.2.2_Ensure_Time_Is_Set_Within_Appropriate_Limits" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.2.2_Ensure_Time_Is_Set_Within_Appropriate_Limits"></reference>
+            <description>Ensure Time Is Set Within Appropriate Limits</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2782648"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2697700" version="1">
+         <metadata>
+            <title>Ensure Remote Apple Events Is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.4.1_Ensure_Remote_Apple_Events_Is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.4.1_Ensure_Remote_Apple_Events_Is_Disabled"></reference>
+            <description>Ensure Remote Apple Events Is Disabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2697700"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2057143" version="1">
+         <metadata>
+            <title>Ensure Remote Login Is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.4.5_Ensure_Remote_Login_Is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.4.5_Ensure_Remote_Login_Is_Disabled"></reference>
+            <description>Ensure Remote Login Is Disabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2057143"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2697705" version="1">
+         <metadata>
+            <title>Ensure Gatekeeper Is Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.5.7_Ensure_Gatekeeper_Is_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.5.7_Ensure_Gatekeeper_Is_Enabled"></reference>
+            <description>Ensure Gatekeeper Is Enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2697705"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:def:2189838" version="1">
+         <metadata>
+            <title>Ensure an Administrator Account Cannot Login to Another User's Active and Locked Session</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.7_Ensure_an_Administrator_Account_Cannot_Login_to_Another_Users_Active_and_Locked_Session" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.7_Ensure_an_Administrator_Account_Cannot_Login_to_Another_Users_Active_and_Locked_Session"></reference>
+            <description>Ensure an Administrator Account Cannot Login to Another User's Active and Locked Session</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2189838"></criterion>
+         </criteria>
+      </definition>
+   </definitions>
+   <tests>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='AutomaticCheckEnabled']/following-sibling::*[1]/name() in /Library/Preferences/com.apple.SoftwareUpdate.plist operation equals datatype boolean and value True" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2812451" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2812451"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2812451"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='AutomaticCheckEnabled']/following-sibling::*[1]/name() in /Library/Managed\ Preferences/com.apple.SoftwareUpdate.plist operation equals datatype string and value True" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2812452" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2812452"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2812452"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='AutomaticDownload']/following-sibling::*[1]/name() in /Library/Preferences/com.apple.SoftwareUpdate.plist operation equals datatype boolean and value True" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2750968" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2750968"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2750968"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='AutomaticDownload']/following-sibling::*[1]/name() in /Library/Managed Preferences/com.apple.SoftwareUpdate.plist operation equals datatype boolean and value True" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2750969" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2750969"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2750969"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='AutoUpdate']/following-sibling::*[1]/name() in /Library/Preferences/com.apple.commerce.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2057114" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2057114"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2057114"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='AutomaticallyInstallAppUpdates']/following-sibling::*[1]/name() in /Library/Managed Preferences/com.apple.SoftwareUpdate.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2057116" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2057116"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2057116"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='ConfigDataInstall']/following-sibling::*[1]/name() in /Library/Preferences/com.apple.SoftwareUpdate.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2782505" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2782505"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2782505"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='CriticalUpdateInstall']/following-sibling::*[1]/name() in /Library/Preferences/com.apple.SoftwareUpdate.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2782506" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2782506"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2782506"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='ConfigDataInstall']/following-sibling::*[1]/name() in /Library/Managed\ Preferences/com.apple.SoftwareUpdate.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2782507" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2782507"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2782507"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='CriticalUpdateInstall']/following-sibling::*[1]/name() in /Library/Managed\ Preferences/com.apple.SoftwareUpdate.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2782508" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2782508"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2782508"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='AutomaticallyInstallMacOSUpdates']/following-sibling::*[1]/name() in /Library/Preferences/com.apple.SoftwareUpdate.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2130770" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2130770"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2130770"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='AutomaticallyInstallMacOSUpdates']/following-sibling::*[1]/name() in /Library/Managed\ Preferences/com.apple.SoftwareUpdate.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2130771" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2130771"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2130771"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='Bluetooth']/following-sibling::*[1]/number() in /Library/Managed Preferences/com.apple.controlcenter.plist operation equals datatype int and value 18" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2057113" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2057113"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2057113"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='WiFi']/following-sibling::*[1]/number() in /Library/Managed Preferences/com.apple.controlcenter.plist operation equals datatype int and value 18" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2697717" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2697717"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2697717"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="any_exist" comment="Ensure /plist/dict/key[contains(text(), 'corner')]/following-sibling::*[1]/number() in $HOME/Library/Preferences/com.apple.dock.plist operation not equal datatype int and value 6" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2057126" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2057126"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2057126"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='forceInternetSharingOff']/following-sibling::*[1]/name() in /Library/Managed Preferences/com.apple.MCX.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2783216" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2783216"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2783216"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='PrefKeyServicesEnabled']/following-sibling::*[1]/name() in /Library/Managed\ Preferences/com.apple.Bluetooth.plist operation equals datatype boolean and value false" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2697702" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2697702"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2697702"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[contains(text(), 'Activated')]/following-sibling::*[1]/name() in /Library/Preferences/com.apple.AssetCache.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2870316" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2870316"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2870316"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='AllowSharedCaching']/following-sibling::*[1]/name() in /Library/Managed\ Preferences/com.apple.AssetCache.plist operation equals datatype boolean and value false" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2870317" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2870317"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2870317"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[contains(text(), 'DisableAirDrop')]/following-sibling::*[1]/name() in $HOME/Library/Preferences/com.apple.NetworkBrowser.plist operation equals datatype string and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2870318" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2870318"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2870318"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[contains(text(), 'DisableAirDrop')]/following-sibling::*[1]/name() in /Library/Managed\ Preferences/fail/com.apple.NetworkBrowser.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2870319" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2870319"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2870319"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[contains(text(), 'Activated')]/following-sibling::*[1]/name() in /Library/Preferences/com.apple.AssetCache.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2130864" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2130864"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2130864"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='homeSharingUIStatus']/following-sibling::*[1]/number() in /Library/Managed Preferences/com.apple.preferences.sharing.SharingPrefsExtension.plist operation equals datatype int and value 0" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2130865" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2130865"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2130865"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='legacySharingUIStatus']/following-sibling::*[1]/number() in /Library/Managed Preferences/com.apple.preferences.sharing.SharingPrefsExtension.plist operation equals datatype int and value 0" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2130866" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2130866"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2130866"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='mediaSharingUIStatus']/following-sibling::*[1]/number() in /Library/Managed Preferences/com.apple.preferences.sharing.SharingPrefsExtension.plist operation equals datatype int and value 0" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2130867" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2130867"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2130867"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='globalstate']/following-sibling::*[1]/text() in /Library/Preferences/com.apple.alf.plist operation greater than or equal datatype int and value 1" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2130900" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2130900"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2130900"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='globalstate']/following-sibling::*[1]/text() in /Library/Preferences/com.apple.alf.plist operation less than or equal datatype int and value 2" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2130901" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2130901"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2130901"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='EnableFirewall']/following-sibling::*[1]/text() in /Library/Managed\ Preferences/com.apple.security.firewall.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2130902" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2130902"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2130902"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='stealthenabled']/following-sibling::*[1]/text() in /Library/Preferences/com.apple.alf.plist operation equals datatype int and value 1" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2790265" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2790265"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2790265"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='EnableStealthMode']/following-sibling::*[1]/text() in /Library/Managed\ Preferences/com.apple.security.firewall.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2790266" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2790266"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2790266"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='allowDiagnosticSubmission']/following-sibling::*[1]/name() in /Library/Application\ Support/CrashReporter/DiagnosticMessagesHistory.plist operation equals datatype boolean and value false" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2146860" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2146860"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2146860"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='allowDiagnosticSubmission']/following-sibling::*[1]/name() in /Library/Managed Preferences/com.apple.applicationaccess.plist operation equals datatype boolean and value false" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2146861" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2146861"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2146861"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='forceLimitAdTracking']/following-sibling::*[1]/name() in $HOME/Library/Preferences/com.apple.AdLib.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2697708" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2697708"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2697708"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='allowApplePersonalizedAdvertising']/following-sibling::*[1]/name() in /Library/Managed Preferences/com.apple.AdLib.plist operation equals datatype boolean and value false" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2697710" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2697710"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2697710"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='EnableAssessment']/following-sibling::*[1]/name() in /Library/Managed\ Preferences/com.apple.systempolicy.control.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2697706" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2697706"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2697706"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='AllowIdentifiedDevelopers']/following-sibling::*[1]/name() in /Library/Managed\ Preferences/com.apple.systempolicy.control.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2697707" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2697707"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2697707"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='LoginwindowText']/following-sibling::*[1] in /Library/Preferences/com.apple.loginwindow.plist operation pattern match datatype string and value ^.+$" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2782512" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2782512"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2782512"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='LoginwindowText']/following-sibling::*[1]/name() in /Library/Managed\ Preferences/com.apple.loginwindow.plist operation pattern match datatype string and value ^.+$" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2782513" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2782513"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2782513"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="all_exist" comment="Ensure /plist/dict/key[text()='askForPasswordDelay']/following-sibling::*[1]/name() in /Library/Managed Preferences/com.apple.screensaver.plist operation equals datatype int and value 0" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2787106" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2787106"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2787106"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="all_exist" comment="Ensure /plist/dict/key[text()='askForPasswordDelay']/following-sibling::*[1]/name() in /Library/Managed Preferences/com.apple.screensaver.plist operation equals datatype int and value 0" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2787107" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2787107"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2787107"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='askForPassword']/following-sibling::*[1]/name() in /Library/Managed Preferences/com.apple.screensaver.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2787105" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2787105"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2787105"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='allowCloudKeychainSync']/following-sibling::*[1]/name() in /Library/Managed\ Preferences/com.apple.applicationaccess.plist operation equals datatype boolean and value false" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2783715" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2783715"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2783715"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='allowCloudDocumentSync']/following-sibling::*[1]/name() in /Library/Managed\ Preferences/com.apple.applicationaccess.plist operation equals datatype boolean and value false" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2829250" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2829250"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2829250"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='allowCloudDesktopAndDocuments']/following-sibling::*[1]/name() in /Library/Managed\ Preferences/com.apple.applicationaccess.plist operation equals datatype boolean and value false" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2189768" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2189768"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2189768"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='AutoBackup']/following-sibling::*[1]/name() in /Library/Managed Preferences/com.apple.TimeMachine.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2057236" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2057236"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2057236"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure Firewall logging is enabled" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2057140" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2057140"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2057140"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='loggingenabled']/following-sibling::*[1]/text() in /Library/Preferences/com.apple.alf.plist operation equals datatype int and value 2" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2057142" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2057142"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2057142"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='NoMulticastAdvertisements']/following-sibling::*[1]/name() in /Library/Preferences/com.apple.mDNSResponder.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2191750" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2191750"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2191750"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='NoMulticastAdvertisements']/following-sibling::*[1]/name() in /Library/Managed\ Preferences/com.apple.mDNSResponder.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2191751" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2191751"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2191751"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='minLength']/following-sibling::*[1]/number() in /Library/Managed\ Preferences/com.apple.mobiledevice.passwordpolicy.plist operation greater than or equal datatype int and value 15" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2193552" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2193552"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2193552"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='requireAlphanumeric']/following-sibling::*[1]/number() in /Library/Managed\ Preferences/com.apple.mobiledevice.passwordpolicy.plist operation greater than or equal datatype int and value 1" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2697779" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2697779"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2697779"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='requireAlphanumeric']/following-sibling::*[1]/number() in /Library/Managed Preferences/com.apple.mobiledevice.passwordpolicy.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2697785" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2697785"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2697785"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='minComplexChars']/following-sibling::*[1]/number() in /Library/Managed\ Preferences/com.apple.mobiledevice.passwordpolicy.plist operation greater than or equal datatype int and value 1" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2198271" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2198271"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2198271"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='maxPINAgeInDays']/following-sibling::*[1]/number() in /Library/Managed\ Preferences/com.apple.mobiledevice.passwordpolicy.plist operation less than or equal datatype int and value 365" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2198295" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2198295"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2198295"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='pinHistory']/following-sibling::*[1]/number() in /Library/Managed\ Preferences/com.apple.mobiledevice.passwordpolicy.plist operation greater than or equal datatype int and value 15" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2198283" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2198283"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2198283"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='com.apple.login.mcx.DisableAutoLoginClient']/following-sibling::*[1]/name() in /Library/Managed\ Preferences/com.apple.loginwindow.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2697720" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2697720"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2697720"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='MultipleSessionEnabled']/following-sibling::*[1]/name() in /Library/Preferences/.GlobalPreferences.plist operation equals datatype boolean and value false" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2205454" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2205454"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2205454"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='MultipleSessionEnabled']/following-sibling::*[1]/name() in /Library/Managed\ Preferences/.GlobalPreferences.plist operation equals datatype boolean and value false" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2205455" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2205455"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2205455"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='SecureKeyboardEntry']/following-sibling::*[1]/name() in $HOME/Library/Preferences/com.apple.Terminal.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2829231" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2829231"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2829231"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='SecureKeyboardEntry']/following-sibling::*[1]/name() in /Library/Managed\ Preferences/com.apple.Terminal.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2829232" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2829232"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2829232"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='SHOWFULLNAME']/following-sibling::*[1] in /Library/Preferences/com.apple.loginwindow.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2205472" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2205472"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2205472"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='SHOWFULLNAME']/following-sibling::*[1]/name() in /Library/Managed\ Preferences/com.apple.loginwindow.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2205473" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2205473"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2205473"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='RetriesUntilHint']/following-sibling::*[1] in /Library/Preferences/com.apple.loginwindow.plist operation equals datatype int and value 0" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2697722" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2697722"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2697722"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='RetriesUntilHint']/following-sibling::*[1] in /Library/Managed\ Preferences/com.apple.loginwindow.plist operation equals datatype boolean and value false" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2697723" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2697723"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2697723"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='DisableGuestAccount']/following-sibling::*[1]/name() in /Library/Managed\ Preferences/com.apple.loginwindow.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2859500" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2859500"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2859500"></state>
+      </plist511_test>
+      <plist511_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/key[text()='AppleShowAllExtensions']/following-sibling::*[1]/name() in /Library/Preferences/.GlobalPreferences.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2790268" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2790268"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2790268"></state>
+      </plist511_test>
+      <systemsetup_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="any_exist" comment="Ensure macos:systemsetup_usingnetworktime with operation equals and datatype boolean" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2833840" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2833840"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2833840"></state>
+      </systemsetup_test>
+      <systemsetup_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="any_exist" comment="Ensure macos:systemsetup_usingnetworktime with operation equals and datatype boolean" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2782648" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2782648"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2782648"></state>
+      </systemsetup_test>
+      <systemsetup_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure macos:systemsetup_remoteappleevents with operation equals and datatype boolean" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2697700" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2697700"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2697700"></state>
+      </systemsetup_test>
+      <systemsetup_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure macos:systemsetup_remotelogin with operation equals and datatype boolean" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2057143" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2057143"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2057143"></state>
+      </systemsetup_test>
+      <gatekeeper_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure macos:gatekeeper_enabled with operation equals and datatype boolean is set" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2697705" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2697705"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2697705"></state>
+      </gatekeeper_test>
+      <authorizationdb_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" check="all" check_existence="at_least_one_exists" comment="Ensure /plist/dict/array/child::*[1] in system.login.screensaver operation equals datatype string and value use-login-window-ui" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:tst:2189838" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2189838"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2189838"></state>
+      </authorizationdb_test>
+   </tests>
+   <objects>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='AutomaticCheckEnabled']/following-sibling::*[1]/name() in /Library/Preferences/com.apple.SoftwareUpdate.plist operation equals datatype boolean and value True" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2812451" version="1">
+         <filepath>/Library/Preferences/com.apple.SoftwareUpdate.plist</filepath>
+         <xpath>/plist/dict/key[text()='AutomaticCheckEnabled']/following-sibling::*[1]/name()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='AutomaticCheckEnabled']/following-sibling::*[1]/name() in /Library/Managed\ Preferences/com.apple.SoftwareUpdate.plist operation equals datatype string and value True" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2812452" version="1">
+         <filepath>/Library/Managed Preferences/com.apple.SoftwareUpdate.plist</filepath>
+         <xpath>/plist/dict/key[text()='AutomaticCheckEnabled']/following-sibling::*[1]/name()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='AutomaticDownload']/following-sibling::*[1]/name() in /Library/Preferences/com.apple.SoftwareUpdate.plist operation equals datatype boolean and value True" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2750968" version="1">
+         <filepath>/Library/Preferences/com.apple.SoftwareUpdate.plist</filepath>
+         <xpath>/plist/dict/key[text()='AutomaticDownload']/following-sibling::*[1]/name()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='AutomaticDownload']/following-sibling::*[1]/name() in /Library/Managed Preferences/com.apple.SoftwareUpdate.plist operation equals datatype boolean and value True" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2750969" version="1">
+         <filepath>/Library/Managed Preferences/com.apple.SoftwareUpdate.plist</filepath>
+         <xpath>/plist/dict/key[text()='AutomaticDownload']/following-sibling::*[1]/name()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='AutoUpdate']/following-sibling::*[1]/name() in /Library/Preferences/com.apple.commerce.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2057114" version="1">
+         <filepath>/Library/Preferences/com.apple.commerce.plist</filepath>
+         <xpath>/plist/dict/key[text()='AutoUpdate']/following-sibling::*[1]/name()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='AutomaticallyInstallAppUpdates']/following-sibling::*[1]/name() in /Library/Managed Preferences/com.apple.SoftwareUpdate.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2057116" version="1">
+         <filepath>/Library/Managed Preferences/com.apple.SoftwareUpdate.plist</filepath>
+         <xpath>/plist/dict/key[text()='AutomaticallyInstallAppUpdates']/following-sibling::*[1]/name()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='ConfigDataInstall']/following-sibling::*[1]/name() in /Library/Preferences/com.apple.SoftwareUpdate.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2782505" version="1">
+         <filepath>/Library/Preferences/com.apple.SoftwareUpdate.plist</filepath>
+         <xpath>/plist/dict/key[text()='ConfigDataInstall']/following-sibling::*[1]/name()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='CriticalUpdateInstall']/following-sibling::*[1]/name() in /Library/Preferences/com.apple.SoftwareUpdate.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2782506" version="1">
+         <filepath>/Library/Preferences/com.apple.SoftwareUpdate.plist</filepath>
+         <xpath>/plist/dict/key[text()='CriticalUpdateInstall']/following-sibling::*[1]/name()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='ConfigDataInstall']/following-sibling::*[1]/name() in /Library/Managed\ Preferences/com.apple.SoftwareUpdate.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2782507" version="1">
+         <filepath>/Library/Managed Preferences/com.apple.SoftwareUpdate.plist</filepath>
+         <xpath>/plist/dict/key[text()='ConfigDataInstall']/following-sibling::*[1]/name()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='CriticalUpdateInstall']/following-sibling::*[1]/name() in /Library/Managed\ Preferences/com.apple.SoftwareUpdate.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2782508" version="1">
+         <filepath>/Library/Managed Preferences/com.apple.SoftwareUpdate.plist</filepath>
+         <xpath>/plist/dict/key[text()='CriticalUpdateInstall']/following-sibling::*[1]/name()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='AutomaticallyInstallMacOSUpdates']/following-sibling::*[1]/name() in /Library/Preferences/com.apple.SoftwareUpdate.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2130770" version="1">
+         <filepath>/Library/Preferences/com.apple.SoftwareUpdate.plist</filepath>
+         <xpath>/plist/dict/key[text()='AutomaticallyInstallMacOSUpdates']/following-sibling::*[1]/name()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='AutomaticallyInstallMacOSUpdates']/following-sibling::*[1]/name() in /Library/Managed\ Preferences/com.apple.SoftwareUpdate.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2130771" version="1">
+         <filepath>/Library/Managed Preferences/com.apple.SoftwareUpdate.plist</filepath>
+         <xpath>/plist/dict/key[text()='AutomaticallyInstallMacOSUpdates']/following-sibling::*[1]/name()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='Bluetooth']/following-sibling::*[1]/number() in /Library/Managed Preferences/com.apple.controlcenter.plist operation equals datatype int and value 18" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2057113" version="1">
+         <filepath>/Library/Managed Preferences/com.apple.controlcenter.plist</filepath>
+         <xpath>/plist/dict/key[text()='Bluetooth']/following-sibling::*[1]/number()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='WiFi']/following-sibling::*[1]/number() in /Library/Managed Preferences/com.apple.controlcenter.plist operation equals datatype int and value 18" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2697717" version="1">
+         <filepath>/Library/Managed Preferences/com.apple.controlcenter.plist</filepath>
+         <xpath>/plist/dict/key[text()='WiFi']/following-sibling::*[1]/number()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[contains(text(), 'corner')]/following-sibling::*[1]/number() in $HOME/Library/Preferences/com.apple.dock.plist operation not equal datatype int and value 6" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2057126" version="1">
+         <filepath operation="case insensitive equals">$HOME/Library/Preferences/com.apple.dock.plist</filepath>
+         <xpath>/plist/dict/key[contains(text(), 'corner')]/following-sibling::*[1]/number()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='forceInternetSharingOff']/following-sibling::*[1]/name() in /Library/Managed Preferences/com.apple.MCX.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2783216" version="1">
+         <filepath>/Library/Managed Preferences/com.apple.MCX.plist</filepath>
+         <xpath>/plist/dict/key[text()='forceInternetSharingOff']/following-sibling::*[1]/name()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='PrefKeyServicesEnabled']/following-sibling::*[1]/name() in /Library/Managed\ Preferences/com.apple.Bluetooth.plist operation equals datatype boolean and value false" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2697702" version="1">
+         <filepath>/Library/Managed Preferences/com.apple.Bluetooth.plist</filepath>
+         <xpath>/plist/dict/key[text()='PrefKeyServicesEnabled']/following-sibling::*[1]/name()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[contains(text(), 'Activated')]/following-sibling::*[1]/name() in /Library/Preferences/com.apple.AssetCache.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2870316" version="1">
+         <filepath>/Library/Preferences/com.apple.AssetCache.plist</filepath>
+         <xpath>/plist/dict/key[contains(text(), 'Activated')]/following-sibling::*[1]/name()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='AllowSharedCaching']/following-sibling::*[1]/name() in /Library/Managed\ Preferences/com.apple.AssetCache.plist operation equals datatype boolean and value false" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2870317" version="1">
+         <filepath>/Library/Managed\ Preferences/com.apple.AssetCache.plist</filepath>
+         <xpath>/plist/dict/key[text()='AllowSharedCaching']/following-sibling::*[1]/name()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[contains(text(), 'DisableAirDrop')]/following-sibling::*[1]/name() in $HOME/Library/Preferences/com.apple.NetworkBrowser.plist operation equals datatype string and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2870318" version="1">
+         <filepath operation="case insensitive equals">$HOME/Library/Preferences/com.apple.NetworkBrowser.plist</filepath>
+         <xpath>/plist/dict/key[contains(text(), 'DisableAirDrop')]/following-sibling::*[1]/name()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[contains(text(), 'DisableAirDrop')]/following-sibling::*[1]/name() in /Library/Managed\ Preferences/fail/com.apple.NetworkBrowser.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2870319" version="1">
+         <filepath>/Library/Managed Preferences/com.apple.applicationaccess.plist</filepath>
+         <xpath>/plist/dict/key[contains(text(), 'allowAirDrop')]/following-sibling::*[1]/name()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[contains(text(), 'Activated')]/following-sibling::*[1]/name() in /Library/Preferences/com.apple.AssetCache.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2130864" version="1">
+         <filepath operation="case insensitive equals">$HOME/Library/Preferences/com.apple.amp.mediasharingd.plist</filepath>
+         <xpath>/plist/dict/key[text()='home-sharing-enabled']/following-sibling::*[1]/number()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='homeSharingUIStatus']/following-sibling::*[1]/number() in /Library/Managed Preferences/com.apple.preferences.sharing.SharingPrefsExtension.plist operation equals datatype int and value 0" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2130865" version="1">
+         <filepath>/Library/Managed Preferences/com.apple.preferences.sharing.SharingPrefsExtension.plist</filepath>
+         <xpath>/plist/dict/key[text()='homeSharingUIStatus']/following-sibling::*[1]/number()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='legacySharingUIStatus']/following-sibling::*[1]/number() in /Library/Managed Preferences/com.apple.preferences.sharing.SharingPrefsExtension.plist operation equals datatype int and value 0" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2130866" version="1">
+         <filepath>/Library/Managed Preferences/com.apple.preferences.sharing.SharingPrefsExtension.plist</filepath>
+         <xpath>/plist/dict/key[text()='legacySharingUIStatus']/following-sibling::*[1]/number()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='mediaSharingUIStatus']/following-sibling::*[1]/number() in /Library/Managed Preferences/com.apple.preferences.sharing.SharingPrefsExtension.plist operation equals datatype int and value 0" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2130867" version="1">
+         <filepath>/Library/Managed Preferences/com.apple.preferences.sharing.SharingPrefsExtension.plist</filepath>
+         <xpath>/plist/dict/key[text()='mediaSharingUIStatus']/following-sibling::*[1]/number()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='globalstate']/following-sibling::*[1]/text() in /Library/Preferences/com.apple.alf.plist operation greater than or equal datatype int and value 1" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2130900" version="1">
+         <filepath>/Library/Preferences/com.apple.alf.plist</filepath>
+         <xpath>/plist/dict/key[text()='globalstate']/following-sibling::*[1]/text()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='globalstate']/following-sibling::*[1]/text() in /Library/Preferences/com.apple.alf.plist operation less than or equal datatype int and value 2" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2130901" version="1">
+         <filepath>/Library/Preferences/com.apple.alf.plist</filepath>
+         <xpath>/plist/dict/key[text()='globalstate']/following-sibling::*[1]/text()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='EnableFirewall']/following-sibling::*[1]/text() in /Library/Managed\ Preferences/com.apple.security.firewall.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2130902" version="1">
+         <filepath>/Library/Managed Preferences/com.apple.security.firewall.plist</filepath>
+         <xpath>/plist/dict/key[text()='EnableFirewall']/following-sibling::*[1]/text()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='stealthenabled']/following-sibling::*[1]/text() in /Library/Preferences/com.apple.alf.plist operation equals datatype int and value 1" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2790265" version="1">
+         <filepath>/Library/Preferences/com.apple.alf.plist</filepath>
+         <xpath>/plist/dict/key[text()='stealthenabled']/following-sibling::*[1]/text()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='EnableStealthMode']/following-sibling::*[1]/text() in /Library/Managed\ Preferences/com.apple.security.firewall.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2790266" version="1">
+         <filepath>/Library/Managed Preferences/com.apple.security.firewall.plist</filepath>
+         <xpath>/plist/dict/key[text()='EnableStealthMode']/following-sibling::*[1]/text()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='allowDiagnosticSubmission']/following-sibling::*[1]/name() in /Library/Application\ Support/CrashReporter/DiagnosticMessagesHistory.plist operation equals datatype boolean and value false" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2146860" version="1">
+         <filepath>/Library/Application\ Support/CrashReporter/DiagnosticMessagesHistory.plist</filepath>
+         <xpath>/plist/dict/key[text()='allowDiagnosticSubmission']/following-sibling::*[1]/name()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='allowDiagnosticSubmission']/following-sibling::*[1]/name() in /Library/Managed Preferences/com.apple.applicationaccess.plist operation equals datatype boolean and value false" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2146861" version="1">
+         <filepath>/Library/Managed Preferences/com.apple.applicationaccess.plist</filepath>
+         <xpath>/plist/dict/key[text()='allowDiagnosticSubmission']/following-sibling::*[1]/name()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='forceLimitAdTracking']/following-sibling::*[1]/name() in $HOME/Library/Preferences/com.apple.AdLib.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2697708" version="1">
+         <filepath operation="case insensitive equals">$HOME/Library/Preferences/com.apple.AdLib.plist</filepath>
+         <xpath>/plist/dict/key[text()='allowApplePersonalizedAdvertising']/following-sibling::*[1]/name()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='allowApplePersonalizedAdvertising']/following-sibling::*[1]/name() in /Library/Managed Preferences/com.apple.AdLib.plist operation equals datatype boolean and value false" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2697710" version="1">
+         <filepath>/Library/Managed Preferences/com.apple.AdLib.plist</filepath>
+         <xpath>/plist/dict/key[text()='allowApplePersonalizedAdvertising']/following-sibling::*[1]/name()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='EnableAssessment']/following-sibling::*[1]/name() in /Library/Managed\ Preferences/com.apple.systempolicy.control.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2697706" version="1">
+         <filepath>/Library/Managed Preferences/com.apple.systempolicy.control.plist</filepath>
+         <xpath>/plist/dict/key[text()='EnableAssessment']/following-sibling::*[1]/name()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='AllowIdentifiedDevelopers']/following-sibling::*[1]/name() in /Library/Managed\ Preferences/com.apple.systempolicy.control.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2697707" version="1">
+         <filepath>/Library/Managed Preferences/com.apple.systempolicy.control.plist</filepath>
+         <xpath>/plist/dict/key[text()='AllowIdentifiedDevelopers']/following-sibling::*[1]/name()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='LoginwindowText']/following-sibling::*[1] in /Library/Preferences/com.apple.loginwindow.plist operation pattern match datatype string and value ^.+$" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2782512" version="1">
+         <filepath>/Library/Preferences/com.apple.loginwindow.plist</filepath>
+         <xpath>/plist/dict/key[text()='LoginwindowText']/following-sibling::*[1]</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='LoginwindowText']/following-sibling::*[1]/name() in /Library/Managed\ Preferences/com.apple.loginwindow.plist operation pattern match datatype string and value ^.+$" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2782513" version="1">
+         <filepath>/Library/Managed Preferences/com.apple.loginwindow.plist</filepath>
+         <xpath>/plist/dict/key[text()='LoginwindowText']/following-sibling::*[1]/name()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='askForPasswordDelay']/following-sibling::*[1]/name() in /Library/Managed Preferences/com.apple.screensaver.plist operation equals datatype int and value 0" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2787106" version="1">
+         <filepath>/Library/Managed Preferences/com.apple.screensaver.plist</filepath>
+         <xpath>/plist/dict/key[text()='askForPasswordDelay']/following-sibling::*[1]/number()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='askForPasswordDelay']/following-sibling::*[1]/name() in /Library/Managed Preferences/com.apple.screensaver.plist operation equals datatype int and value 0" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2787107" version="1">
+         <filepath>/Library/Managed Preferences/com.apple.screensaver.plist</filepath>
+         <xpath>/plist/dict/key[text()='askForPasswordDelay']/following-sibling::*[1]/number()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='askForPassword']/following-sibling::*[1]/name() in /Library/Managed Preferences/com.apple.screensaver.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2787105" version="1">
+         <filepath>/Library/Managed Preferences/com.apple.screensaver.plist</filepath>
+         <xpath>/plist/dict/key[text()='askForPassword']/following-sibling::*[1]/name()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='allowCloudKeychainSync']/following-sibling::*[1]/name() in /Library/Managed\ Preferences/com.apple.applicationaccess.plist operation equals datatype boolean and value false" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2783715" version="1">
+         <filepath>/Library/Managed Preferences/com.apple.applicationaccess.plist</filepath>
+         <xpath>/plist/dict/key[text()='allowCloudKeychainSync']/following-sibling::*[1]/name()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='allowCloudDocumentSync']/following-sibling::*[1]/name() in /Library/Managed\ Preferences/com.apple.applicationaccess.plist operation equals datatype boolean and value false" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2829250" version="1">
+         <filepath>/Library/Managed Preferences/com.apple.applicationaccess.plist</filepath>
+         <xpath>/plist/dict/key[text()='allowCloudDocumentSync']/following-sibling::*[1]/name()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='allowCloudDesktopAndDocuments']/following-sibling::*[1]/name() in /Library/Managed\ Preferences/com.apple.applicationaccess.plist operation equals datatype boolean and value false" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2189768" version="1">
+         <filepath>/Library/Managed Preferences/com.apple.applicationaccess.plist</filepath>
+         <xpath>/plist/dict/key[text()='allowCloudDesktopAndDocuments']/following-sibling::*[1]/name()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='AutoBackup']/following-sibling::*[1]/name() in /Library/Managed Preferences/com.apple.TimeMachine.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2057236" version="1">
+         <filepath>/Library/Managed Preferences/com.apple.TimeMachine.plist</filepath>
+         <xpath>/plist/dict/key[text()='AutoBackup']/following-sibling::*[1]/name()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure Firewall logging is enabled" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2057140" version="1">
+         <filepath>/Library/Preferences/com.apple.alf.plist</filepath>
+         <xpath>/plist/dict/key[text()='loggingenabled']/following-sibling::*[1]/text()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='loggingenabled']/following-sibling::*[1]/text() in /Library/Preferences/com.apple.alf.plist operation equals datatype int and value 2" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2057142" version="1">
+         <filepath>/Library/Preferences/com.apple.alf.plist</filepath>
+         <xpath>/plist/dict/key[text()='loggingenabled']/following-sibling::*[1]/text()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='NoMulticastAdvertisements']/following-sibling::*[1]/name() in /Library/Preferences/com.apple.mDNSResponder.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2191750" version="1">
+         <filepath>/Library/Preferences/com.apple.mDNSResponder.plist</filepath>
+         <xpath>/plist/dict/key[text()='NoMulticastAdvertisements']/following-sibling::*[1]/name()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='NoMulticastAdvertisements']/following-sibling::*[1]/name() in /Library/Managed\ Preferences/com.apple.mDNSResponder.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2191751" version="1">
+         <filepath>/Library/Managed Preferences/com.apple.mDNSResponder.plist</filepath>
+         <xpath>/plist/dict/key[text()='NoMulticastAdvertisements']/following-sibling::*[1]/name()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='minLength']/following-sibling::*[1]/number() in /Library/Managed\ Preferences/com.apple.mobiledevice.passwordpolicy.plist operation greater than or equal datatype int and value 15" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2193552" version="1">
+         <filepath>/Library/Managed Preferences/com.apple.mobiledevice.passwordpolicy.plist</filepath>
+         <xpath>/plist/dict/key[text()='minLength']/following-sibling::*[1]/number()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='requireAlphanumeric']/following-sibling::*[1]/number() in /Library/Managed\ Preferences/com.apple.mobiledevice.passwordpolicy.plist operation greater than or equal datatype int and value 1" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2697779" version="1">
+         <filepath>/Library/Managed Preferences/com.apple.mobiledevice.passwordpolicy.plist</filepath>
+         <xpath>/plist/dict/key[text()='requireAlphanumeric']/following-sibling::*[1]/number()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='requireAlphanumeric']/following-sibling::*[1]/number() in /Library/Managed Preferences/com.apple.mobiledevice.passwordpolicy.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2697785" version="1">
+         <filepath>/Library/Managed Preferences/com.apple.mobiledevice.passwordpolicy.plist</filepath>
+         <xpath>/plist/dict/key[text()='requireAlphanumeric']/following-sibling::*[1]/number()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='minComplexChars']/following-sibling::*[1]/number() in /Library/Managed\ Preferences/com.apple.mobiledevice.passwordpolicy.plist operation greater than or equal datatype int and value 1" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2198271" version="1">
+         <filepath>/Library/Managed Preferences/com.apple.mobiledevice.passwordpolicy.plist</filepath>
+         <xpath>/plist/dict/key[text()='minComplexChars']/following-sibling::*[1]/number()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='maxPINAgeInDays']/following-sibling::*[1]/number() in /Library/Managed\ Preferences/com.apple.mobiledevice.passwordpolicy.plist operation less than or equal datatype int and value 365" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2198295" version="1">
+         <filepath>/Library/Managed Preferences/com.apple.mobiledevice.passwordpolicy.plist</filepath>
+         <xpath>/plist/dict/key[text()='maxPINAgeInDays']/following-sibling::*[1]/number()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='pinHistory']/following-sibling::*[1]/number() in /Library/Managed\ Preferences/com.apple.mobiledevice.passwordpolicy.plist operation greater than or equal datatype int and value 15" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2198283" version="1">
+         <filepath>/Library/Managed Preferences/com.apple.mobiledevice.passwordpolicy.plist</filepath>
+         <xpath>/plist/dict/key[text()='pinHistory']/following-sibling::*[1]/number()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='com.apple.login.mcx.DisableAutoLoginClient']/following-sibling::*[1]/name() in /Library/Managed\ Preferences/com.apple.loginwindow.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2697720" version="1">
+         <filepath>/Library/Managed Preferences/com.apple.loginwindow.plist</filepath>
+         <xpath>/plist/dict/key[text()='com.apple.login.mcx.DisableAutoLoginClient']/following-sibling::*[1]/name()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='MultipleSessionEnabled']/following-sibling::*[1]/name() in /Library/Preferences/.GlobalPreferences.plist operation equals datatype boolean and value false" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2205454" version="1">
+         <filepath>/Library/Preferences/.GlobalPreferences.plist</filepath>
+         <xpath>/plist/dict/key[text()='MultipleSessionEnabled']/following-sibling::*[1]/name()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='MultipleSessionEnabled']/following-sibling::*[1]/name() in /Library/Managed\ Preferences/.GlobalPreferences.plist operation equals datatype boolean and value false" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2205455" version="1">
+         <filepath>/Library/Managed Preferences/.GlobalPreferences.plist</filepath>
+         <xpath>/plist/dict/key[text()='MultipleSessionEnabled']/following-sibling::*[1]/name()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='SecureKeyboardEntry']/following-sibling::*[1]/name() in $HOME/Library/Preferences/com.apple.Terminal.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2829231" version="1">
+         <filepath operation="case insensitive equals">$HOME/Library/Preferences/com.apple.Terminal.plist</filepath>
+         <xpath>/plist/dict/key[text()='SecureKeyboardEntry']/following-sibling::*[1]/name()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='SecureKeyboardEntry']/following-sibling::*[1]/name() in /Library/Managed\ Preferences/com.apple.Terminal.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2829232" version="1">
+         <filepath>/Library/Managed Preferences/com.apple.Terminal.plist</filepath>
+         <xpath>/plist/dict/key[text()='SecureKeyboardEntry']/following-sibling::*[1]/name()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='SHOWFULLNAME']/following-sibling::*[1] in /Library/Preferences/com.apple.loginwindow.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2205472" version="1">
+         <filepath>/Library/Preferences/com.apple.loginwindow.plist</filepath>
+         <xpath>/plist/dict/key[text()='SHOWFULLNAME']/following-sibling::*[1]/name()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='SHOWFULLNAME']/following-sibling::*[1]/name() in /Library/Managed\ Preferences/com.apple.loginwindow.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2205473" version="1">
+         <filepath>/Library/Managed Preferences/com.apple.loginwindow.plist</filepath>
+         <xpath>/plist/dict/key[text()='SHOWFULLNAME']/following-sibling::*[1]/name()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='RetriesUntilHint']/following-sibling::*[1] in /Library/Preferences/com.apple.loginwindow.plist operation equals datatype int and value 0" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2697722" version="1">
+         <filepath>/Library/Preferences/com.apple.loginwindow.plist</filepath>
+         <xpath>/plist/dict/key[text()='RetriesUntilHint']/following-sibling::*[1]</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='RetriesUntilHint']/following-sibling::*[1] in /Library/Managed\ Preferences/com.apple.loginwindow.plist operation equals datatype boolean and value false" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2697723" version="1">
+         <filepath>/Library/Managed Preferences/com.apple.loginwindow.plist</filepath>
+         <xpath>/plist/dict/key[text()='RetriesUntilHint']/following-sibling::*[1]</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='DisableGuestAccount']/following-sibling::*[1]/name() in /Library/Managed\ Preferences/com.apple.loginwindow.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2859500" version="1">
+         <filepath>/Library/Managed Preferences/com.apple.MCX.plist</filepath>
+         <xpath>/plist/dict/key[text()='DisableGuestAccount']/following-sibling::*[1]/name()</xpath>
+      </plist511_object>
+      <plist511_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='AppleShowAllExtensions']/following-sibling::*[1]/name() in /Library/Preferences/.GlobalPreferences.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2790268" version="1">
+         <filepath operation="case insensitive equals">$HOME/Library/Preferences/.GlobalPreferences.plist</filepath>
+         <xpath>/plist/dict/key[text()='AppleShowAllExtensions']/following-sibling::*[1]/name()</xpath>
+      </plist511_object>
+      <systemsetup_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure macos:systemsetup_usingnetworktime with operation equals and datatype boolean" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2833840" version="1"></systemsetup_object>
+      <systemsetup_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure macos:systemsetup_usingnetworktime with operation equals and datatype boolean" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2782648" version="1"></systemsetup_object>
+      <systemsetup_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure macos:systemsetup_remoteappleevents with operation equals and datatype boolean" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2697700" version="1"></systemsetup_object>
+      <systemsetup_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure macos:systemsetup_remotelogin with operation equals and datatype boolean" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2057143" version="1"></systemsetup_object>
+      <gatekeeper_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure macos:gatekeeper_enabled with operation equals and datatype boolean is set" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2697705" version="1"></gatekeeper_object>
+      <authorizationdb_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/array/child::*[1] in system.login.screensaver operation equals datatype string and value use-login-window-ui" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:obj:2189838" version="1">
+         <right_name>system.login.screensaver</right_name>
+         <xpath>/plist/dict/array/child::*[1]</xpath>
+      </authorizationdb_object>
+   </objects>
+   <states>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='AutomaticCheckEnabled']/following-sibling::*[1]/name() in /Library/Preferences/com.apple.SoftwareUpdate.plist operation equals datatype boolean and value True" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2812451" version="1">
+         <value_of datatype="boolean" operation="equals">True</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='AutomaticCheckEnabled']/following-sibling::*[1]/name() in /Library/Managed\ Preferences/com.apple.SoftwareUpdate.plist operation equals datatype string and value True" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2812452" version="1">
+         <value_of datatype="boolean" operation="equals">True</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='AutomaticDownload']/following-sibling::*[1]/name() in /Library/Preferences/com.apple.SoftwareUpdate.plist operation equals datatype boolean and value True" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2750968" version="1">
+         <value_of datatype="boolean" operation="equals">True</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='AutomaticDownload']/following-sibling::*[1]/name() in /Library/Managed Preferences/com.apple.SoftwareUpdate.plist operation equals datatype boolean and value True" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2750969" version="1">
+         <value_of datatype="boolean" operation="equals">True</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='AutoUpdate']/following-sibling::*[1]/name() in /Library/Preferences/com.apple.commerce.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2057114" version="1">
+         <value_of datatype="boolean" operation="equals">true</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='AutomaticallyInstallAppUpdates']/following-sibling::*[1]/name() in /Library/Managed Preferences/com.apple.SoftwareUpdate.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2057116" version="1">
+         <value_of datatype="boolean" operation="equals">true</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='ConfigDataInstall']/following-sibling::*[1]/name() in /Library/Preferences/com.apple.SoftwareUpdate.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2782505" version="1">
+         <value_of datatype="boolean" operation="equals">true</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='CriticalUpdateInstall']/following-sibling::*[1]/name() in /Library/Preferences/com.apple.SoftwareUpdate.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2782506" version="1">
+         <value_of datatype="boolean" operation="equals">true</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='ConfigDataInstall']/following-sibling::*[1]/name() in /Library/Managed\ Preferences/com.apple.SoftwareUpdate.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2782507" version="1">
+         <value_of datatype="boolean" operation="equals">true</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='CriticalUpdateInstall']/following-sibling::*[1]/name() in /Library/Managed\ Preferences/com.apple.SoftwareUpdate.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2782508" version="1">
+         <value_of datatype="boolean" operation="equals">true</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='AutomaticallyInstallMacOSUpdates']/following-sibling::*[1]/name() in /Library/Preferences/com.apple.SoftwareUpdate.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2130770" version="1">
+         <value_of datatype="boolean" operation="equals">true</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='AutomaticallyInstallMacOSUpdates']/following-sibling::*[1]/name() in /Library/Managed\ Preferences/com.apple.SoftwareUpdate.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2130771" version="1">
+         <value_of datatype="boolean" operation="equals">true</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='Bluetooth']/following-sibling::*[1]/number() in /Library/Managed Preferences/com.apple.controlcenter.plist operation equals datatype int and value 18" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2057113" version="1">
+         <value_of datatype="int" operation="equals">18</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='WiFi']/following-sibling::*[1]/number() in /Library/Managed Preferences/com.apple.controlcenter.plist operation equals datatype int and value 18" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2697717" version="1">
+         <value_of datatype="int" operation="equals">18</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[contains(text(), 'corner')]/following-sibling::*[1]/number() in $HOME/Library/Preferences/com.apple.dock.plist operation not equal datatype int and value 6" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2057126" version="1">
+         <value_of datatype="int" operation="not equal">6</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='forceInternetSharingOff']/following-sibling::*[1]/name() in /Library/Managed Preferences/com.apple.MCX.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2783216" version="1">
+         <value_of datatype="boolean" operation="equals">true</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='PrefKeyServicesEnabled']/following-sibling::*[1]/name() in /Library/Managed\ Preferences/com.apple.Bluetooth.plist operation equals datatype boolean and value false" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2697702" version="1">
+         <value_of datatype="boolean" operation="equals">false</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[contains(text(), 'Activated')]/following-sibling::*[1]/name() in /Library/Preferences/com.apple.AssetCache.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2870316" version="1">
+         <value_of datatype="boolean" operation="equals">false</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='AllowSharedCaching']/following-sibling::*[1]/name() in /Library/Managed\ Preferences/com.apple.AssetCache.plist operation equals datatype boolean and value false" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2870317" version="1">
+         <value_of datatype="boolean" operation="equals">false</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[contains(text(), 'DisableAirDrop')]/following-sibling::*[1]/name() in $HOME/Library/Preferences/com.apple.NetworkBrowser.plist operation equals datatype string and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2870318" version="1">
+         <value_of datatype="string" operation="equals">true</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[contains(text(), 'DisableAirDrop')]/following-sibling::*[1]/name() in /Library/Managed\ Preferences/fail/com.apple.NetworkBrowser.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2870319" version="1">
+         <value_of datatype="boolean" operation="equals">false</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[contains(text(), 'Activated')]/following-sibling::*[1]/name() in /Library/Preferences/com.apple.AssetCache.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2130864" version="1">
+         <value_of datatype="int" operation="equals">0</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='homeSharingUIStatus']/following-sibling::*[1]/number() in /Library/Managed Preferences/com.apple.preferences.sharing.SharingPrefsExtension.plist operation equals datatype int and value 0" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2130865" version="1">
+         <value_of datatype="int" operation="equals">0</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='legacySharingUIStatus']/following-sibling::*[1]/number() in /Library/Managed Preferences/com.apple.preferences.sharing.SharingPrefsExtension.plist operation equals datatype int and value 0" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2130866" version="1">
+         <value_of datatype="int" operation="equals">0</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='mediaSharingUIStatus']/following-sibling::*[1]/number() in /Library/Managed Preferences/com.apple.preferences.sharing.SharingPrefsExtension.plist operation equals datatype int and value 0" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2130867" version="1">
+         <value_of datatype="int" operation="equals">0</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='globalstate']/following-sibling::*[1]/text() in /Library/Preferences/com.apple.alf.plist operation greater than or equal datatype int and value 1" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2130900" version="1">
+         <value_of datatype="int" operation="greater than or equal">1</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='globalstate']/following-sibling::*[1]/text() in /Library/Preferences/com.apple.alf.plist operation less than or equal datatype int and value 2" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2130901" version="1">
+         <value_of datatype="int" operation="less than or equal">2</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='EnableFirewall']/following-sibling::*[1]/text() in /Library/Managed\ Preferences/com.apple.security.firewall.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2130902" version="1">
+         <value_of datatype="boolean" operation="equals">true</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='stealthenabled']/following-sibling::*[1]/text() in /Library/Preferences/com.apple.alf.plist operation equals datatype int and value 1" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2790265" version="1">
+         <value_of datatype="int" operation="equals">1</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='EnableStealthMode']/following-sibling::*[1]/text() in /Library/Managed\ Preferences/com.apple.security.firewall.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2790266" version="1">
+         <value_of datatype="boolean" operation="equals">true</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='allowDiagnosticSubmission']/following-sibling::*[1]/name() in /Library/Application\ Support/CrashReporter/DiagnosticMessagesHistory.plist operation equals datatype boolean and value false" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2146860" version="1">
+         <value_of datatype="boolean" operation="equals">false</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='allowDiagnosticSubmission']/following-sibling::*[1]/name() in /Library/Managed Preferences/com.apple.applicationaccess.plist operation equals datatype boolean and value false" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2146861" version="1">
+         <value_of datatype="boolean" operation="equals">false</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='forceLimitAdTracking']/following-sibling::*[1]/name() in $HOME/Library/Preferences/com.apple.AdLib.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2697708" version="1">
+         <value_of datatype="boolean" operation="equals">false</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='allowApplePersonalizedAdvertising']/following-sibling::*[1]/name() in /Library/Managed Preferences/com.apple.AdLib.plist operation equals datatype boolean and value false" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2697710" version="1">
+         <value_of datatype="boolean" operation="equals">false</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='EnableAssessment']/following-sibling::*[1]/name() in /Library/Managed\ Preferences/com.apple.systempolicy.control.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2697706" version="1">
+         <value_of datatype="boolean" operation="equals">true</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='AllowIdentifiedDevelopers']/following-sibling::*[1]/name() in /Library/Managed\ Preferences/com.apple.systempolicy.control.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2697707" version="1">
+         <value_of datatype="boolean" operation="equals">true</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='LoginwindowText']/following-sibling::*[1] in /Library/Preferences/com.apple.loginwindow.plist operation pattern match datatype string and value ^.+$" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2782512" version="1">
+         <value_of datatype="string" operation="pattern match">^.+$</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='LoginwindowText']/following-sibling::*[1]/name() in /Library/Managed\ Preferences/com.apple.loginwindow.plist operation pattern match datatype string and value ^.+$" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2782513" version="1">
+         <value_of datatype="string" operation="pattern match">^.+$</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='askForPasswordDelay']/following-sibling::*[1]/name() in /Library/Managed Preferences/com.apple.screensaver.plist operation equals datatype int and value 0" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2787106" version="1">
+         <value_of datatype="int" operation="equals">5</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='askForPasswordDelay']/following-sibling::*[1]/name() in /Library/Managed Preferences/com.apple.screensaver.plist operation equals datatype int and value 0" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2787107" version="1">
+         <value_of datatype="int" operation="equals">0</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='askForPassword']/following-sibling::*[1]/name() in /Library/Managed Preferences/com.apple.screensaver.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2787105" version="1">
+         <value_of datatype="boolean" operation="equals">true</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='allowCloudKeychainSync']/following-sibling::*[1]/name() in /Library/Managed\ Preferences/com.apple.applicationaccess.plist operation equals datatype boolean and value false" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2783715" version="1">
+         <value_of datatype="boolean" operation="equals">false</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='allowCloudDocumentSync']/following-sibling::*[1]/name() in /Library/Managed\ Preferences/com.apple.applicationaccess.plist operation equals datatype boolean and value false" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2829250" version="1">
+         <value_of datatype="boolean" operation="equals">false</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='allowCloudDesktopAndDocuments']/following-sibling::*[1]/name() in /Library/Managed\ Preferences/com.apple.applicationaccess.plist operation equals datatype boolean and value false" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2189768" version="1">
+         <value_of datatype="boolean" operation="equals">false</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='AutoBackup']/following-sibling::*[1]/name() in /Library/Managed Preferences/com.apple.TimeMachine.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2057236" version="1">
+         <value_of datatype="boolean" operation="equals">true</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure Firewall logging is enabled" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2057140" version="1">
+         <value_of datatype="int" operation="equals">1</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='loggingenabled']/following-sibling::*[1]/text() in /Library/Preferences/com.apple.alf.plist operation equals datatype int and value 2" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2057142" version="1">
+         <value_of datatype="int" operation="equals">2</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='NoMulticastAdvertisements']/following-sibling::*[1]/name() in /Library/Preferences/com.apple.mDNSResponder.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2191750" version="1">
+         <value_of datatype="boolean" operation="equals">true</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='NoMulticastAdvertisements']/following-sibling::*[1]/name() in /Library/Managed\ Preferences/com.apple.mDNSResponder.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2191751" version="1">
+         <value_of datatype="boolean" operation="equals">true</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='minLength']/following-sibling::*[1]/number() in /Library/Managed\ Preferences/com.apple.mobiledevice.passwordpolicy.plist operation greater than or equal datatype int and value 15" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2193552" version="1">
+         <value_of datatype="int" operation="greater than or equal">15</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='requireAlphanumeric']/following-sibling::*[1]/number() in /Library/Managed\ Preferences/com.apple.mobiledevice.passwordpolicy.plist operation greater than or equal datatype int and value 1" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2697779" version="1">
+         <value_of datatype="boolean" operation="equals">true</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='requireAlphanumeric']/following-sibling::*[1]/number() in /Library/Managed Preferences/com.apple.mobiledevice.passwordpolicy.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2697785" version="1">
+         <value_of datatype="boolean" operation="equals">true</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='minComplexChars']/following-sibling::*[1]/number() in /Library/Managed\ Preferences/com.apple.mobiledevice.passwordpolicy.plist operation greater than or equal datatype int and value 1" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2198271" version="1">
+         <value_of datatype="int" operation="greater than or equal">1</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='maxPINAgeInDays']/following-sibling::*[1]/number() in /Library/Managed\ Preferences/com.apple.mobiledevice.passwordpolicy.plist operation less than or equal datatype int and value 365" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2198295" version="1">
+         <value_of datatype="int" operation="less than or equal">365</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='pinHistory']/following-sibling::*[1]/number() in /Library/Managed\ Preferences/com.apple.mobiledevice.passwordpolicy.plist operation greater than or equal datatype int and value 15" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2198283" version="1">
+         <value_of datatype="int" operation="greater than or equal">15</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='com.apple.login.mcx.DisableAutoLoginClient']/following-sibling::*[1]/name() in /Library/Managed\ Preferences/com.apple.loginwindow.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2697720" version="1">
+         <value_of datatype="boolean" operation="equals">true</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='MultipleSessionEnabled']/following-sibling::*[1]/name() in /Library/Preferences/.GlobalPreferences.plist operation equals datatype boolean and value false" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2205454" version="1">
+         <value_of datatype="boolean" operation="equals">false</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='MultipleSessionEnabled']/following-sibling::*[1]/name() in /Library/Managed\ Preferences/.GlobalPreferences.plist operation equals datatype boolean and value false" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2205455" version="1">
+         <value_of datatype="boolean" operation="equals">false</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='SecureKeyboardEntry']/following-sibling::*[1]/name() in $HOME/Library/Preferences/com.apple.Terminal.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2829231" version="1">
+         <value_of datatype="boolean" operation="equals">true</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='SecureKeyboardEntry']/following-sibling::*[1]/name() in /Library/Managed\ Preferences/com.apple.Terminal.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2829232" version="1">
+         <value_of datatype="boolean" operation="equals">true</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='SHOWFULLNAME']/following-sibling::*[1] in /Library/Preferences/com.apple.loginwindow.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2205472" version="1">
+         <value_of datatype="boolean" operation="equals">true</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='SHOWFULLNAME']/following-sibling::*[1]/name() in /Library/Managed\ Preferences/com.apple.loginwindow.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2205473" version="1">
+         <value_of datatype="boolean" operation="equals">true</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='RetriesUntilHint']/following-sibling::*[1] in /Library/Preferences/com.apple.loginwindow.plist operation equals datatype int and value 0" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2697722" version="1">
+         <value_of datatype="int" operation="equals">0</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='RetriesUntilHint']/following-sibling::*[1] in /Library/Managed\ Preferences/com.apple.loginwindow.plist operation equals datatype boolean and value false" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2697723" version="1">
+         <value_of datatype="boolean" operation="equals">false</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='DisableGuestAccount']/following-sibling::*[1]/name() in /Library/Managed\ Preferences/com.apple.loginwindow.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2859500" version="1">
+         <value_of datatype="boolean" operation="equals">true</value_of>
+      </plist511_state>
+      <plist511_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/key[text()='AppleShowAllExtensions']/following-sibling::*[1]/name() in /Library/Preferences/.GlobalPreferences.plist operation equals datatype boolean and value true" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2790268" version="1">
+         <value_of datatype="boolean" operation="equals">true</value_of>
+      </plist511_state>
+      <systemsetup_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure macos:systemsetup_usingnetworktime with operation equals and datatype boolean" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2833840" version="1">
+         <usingnetworktime datatype="boolean" operation="equals">true</usingnetworktime>
+      </systemsetup_state>
+      <systemsetup_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure macos:systemsetup_usingnetworktime with operation equals and datatype boolean" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2782648" version="1">
+         <usingnetworktime datatype="boolean" operation="equals">true</usingnetworktime>
+      </systemsetup_state>
+      <systemsetup_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure macos:systemsetup_remoteappleevents with operation equals and datatype boolean" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2697700" version="1">
+         <remoteappleevents datatype="boolean" operation="equals">false</remoteappleevents>
+      </systemsetup_state>
+      <systemsetup_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure macos:systemsetup_remotelogin with operation equals and datatype boolean" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2057143" version="1">
+         <remotelogin datatype="boolean" operation="equals">false</remotelogin>
+      </systemsetup_state>
+      <gatekeeper_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure macos:gatekeeper_enabled with operation equals and datatype boolean is set" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2697705" version="1">
+         <enabled datatype="boolean" operation="equals">1</enabled>
+      </gatekeeper_state>
+      <authorizationdb_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" comment="Ensure /plist/dict/array/child::*[1] in system.login.screensaver operation equals datatype string and value use-login-window-ui" id="oval:org.cisecurity.benchmarks.apple_mac_os_x_11:ste:2189838" version="1">
+         <value_of datatype="string" operation="equals">use-login-window-ui</value_of>
+      </authorizationdb_state>
+   </states>
+<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+<ds:SignedInfo>
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"></ds:CanonicalizationMethod>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></ds:SignatureMethod>
+<ds:Reference URI="">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"></ds:Transform>
+<ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"></ds:Transform>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></ds:DigestMethod>
+<ds:DigestValue>Hvni1uAKHYRO60sGg/zYeEb0ukmaouEbRqYNL7cPj3Y=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue>
+bqurB1BvK7hwzMlWueN+T9V9MIiz61PCOeiElL/ZckxVg9xHIghz69hGOGcIiBHcVX+eWVW764fN
+u0jQ+S+Em/urDh+TSARMpagPoxnetvMpxiW6IxbjBF2RL6opF5FaXgUZF9pXECqEoQ0FM6bWW91B
+VEA+gjxTjUfXnUxPWKUBTec3KepBQYFrH+tTv27fGaW//OpTTPkta9qyOQMglhHd1hInFb77foEz
+L7vOjc/e6w1z9iTUj4/trAe63M/2xEA6pq4bEO7zx3R0Hb+tPGgu7VH7609KyKfnyL4m8LdR+Yig
+PnafN9IkKPKeFPvgPWSFQ63H7SIJf/Ztn6FFrgZ3V/Bf0DwCHYijKcTrid42au1V8oVv8lSh3JDy
+0kLLNX2eRMSi7r+cH5veHpOWJ/O77VsaqnHNwfUetQb/OwPPCeVhQSou67uvbrvs3lQ3MrdtWdRd
+344tD4mLhmt0c9qkGHdf5PqNUbxkO7zMLm7OgkBJojQRFuqbmM1Jbw08
+</ds:SignatureValue>
+<ds:KeyInfo>
+<ds:X509Data>
+<ds:X509Certificate>
+MIIHbDCCBVSgAwIBAgIQCdceADCnzKkglkQGavVKYzANBgkqhkiG9w0BAQsFADBpMQswCQYDVQQG
+EwJVUzEXMBUGA1UEChMORGlnaUNlcnQsIEluYy4xQTA/BgNVBAMTOERpZ2lDZXJ0IFRydXN0ZWQg
+RzQgQ29kZSBTaWduaW5nIFJTQTQwOTYgU0hBMzg0IDIwMjEgQ0ExMB4XDTIzMTAxODAwMDAwMFoX
+DTI2MTAxODIzNTk1OVowgfQxEzARBgsrBgEEAYI3PAIBAxMCVVMxGTAXBgsrBgEEAYI3PAIBAhMI
+TWFyeWxhbmQxHTAbBgNVBA8MFFByaXZhdGUgT3JnYW5pemF0aW9uMRIwEAYDVQQFEwlEMDYwNTg4
+MTIxCzAJBgNVBAYTAlVTMREwDwYDVQQIEwhOZXcgWW9yazEXMBUGA1UEBxMORWFzdCBHcmVlbmJ1
+c2gxKjAoBgNVBAoTIUNlbnRlciBmb3IgSW50ZXJuZXQgU2VjdXJpdHksIEluYzEqMCgGA1UEAxMh
+Q2VudGVyIGZvciBJbnRlcm5ldCBTZWN1cml0eSwgSW5jMIIBojANBgkqhkiG9w0BAQEFAAOCAY8A
+MIIBigKCAYEAyZwTJr4Kb7QEDnVY3BEkPoS3fn+XoxhCTfFvlMk8zXDcR4pFMgPkXTrZ1KbENUIV
+skIhy1vmnh61vwSL0lcdzesCekKSxLqrEA4xunZk1MB5mLbHXchSSpI1co1vaSzJjkTYP1UsUVQz
+NoOzV0LNCoZdahjGTHSduWvbrHTEeD6/jvUj3AVWrTx6krzgYA3ozAxtUnapK7IrZERuGOSwTrgR
+Lr1aieQdFy8haW1YL+ks5HmLRvcoGp+J68GX/zfMTduvWxhcpXm4txKc4iJqGCRmyBU2XjGjpDBX
+ndxHgT4edRLz5PwWSeZUh8/tWOGFwnVw7njoOa0sFixy96H2BqEn+yPeRALyf59rjtPL66tsXuaA
+ilB63yqbH42mnkxHTX5zcEm337GzTOGRccsYzN/ApVuXDeMfsO+sSUosrimnxm9QTOyKcex5h1As
+rxBVfTw+Zf7jP1YRlmMlGPG1zffK2KjJhD6ivFi2sIDThEQLxIAC8XOjp2ZXvhx87yNTAgMBAAGj
+ggICMIIB/jAfBgNVHSMEGDAWgBRoN+Drtjv4XxGG+/5hewiIZfROQjAdBgNVHQ4EFgQUX2/J9FT5
+5BNF7JqfAl9SJkv3pf0wPQYDVR0gBDYwNDAyBgVngQwBAzApMCcGCCsGAQUFBwIBFhtodHRwOi8v
+d3d3LmRpZ2ljZXJ0LmNvbS9DUFMwDgYDVR0PAQH/BAQDAgeAMBMGA1UdJQQMMAoGCCsGAQUFBwMD
+MIG1BgNVHR8Ega0wgaowU6BRoE+GTWh0dHA6Ly9jcmwzLmRpZ2ljZXJ0LmNvbS9EaWdpQ2VydFRy
+dXN0ZWRHNENvZGVTaWduaW5nUlNBNDA5NlNIQTM4NDIwMjFDQTEuY3JsMFOgUaBPhk1odHRwOi8v
+Y3JsNC5kaWdpY2VydC5jb20vRGlnaUNlcnRUcnVzdGVkRzRDb2RlU2lnbmluZ1JTQTQwOTZTSEEz
+ODQyMDIxQ0ExLmNybDCBlAYIKwYBBQUHAQEEgYcwgYQwJAYIKwYBBQUHMAGGGGh0dHA6Ly9vY3Nw
+LmRpZ2ljZXJ0LmNvbTBcBggrBgEFBQcwAoZQaHR0cDovL2NhY2VydHMuZGlnaWNlcnQuY29tL0Rp
+Z2lDZXJ0VHJ1c3RlZEc0Q29kZVNpZ25pbmdSU0E0MDk2U0hBMzg0MjAyMUNBMS5jcnQwCQYDVR0T
+BAIwADANBgkqhkiG9w0BAQsFAAOCAgEASLOHf1FQ7TrGqEoVXYoeNSkRWdVCUGd1JCDs7Hb9sLd3
+eQuipZ4EorQS/9qMiVMhmlJfF75sNVQhr1K5UtjrDRFMTzYmh78hAyovowzgyVKdGFqiVVr5m+mb
+vVyglLlA4V076LMBaKRknm1Dt8r0/5GSRCrkP2origpYMMaocN+iBX9+MImnh3J1Ehn0nRUhW86Q
+mt3/YCVIaQZisv+KmOxyAq1m6fiIYIvXY+cH2dDIheoVteb/NjYnKVqE6xTpOsxF16pykXiM9yk3
+Q9nlJS36KEGRP4wrySU4eIBnTcv4mimZjkWj6bIvk8otNJ14FbyltaPwIc3dE3oPGfSmCrkxs73j
+iqBs2TXLvblEmOhY8ko3xVdTm0zMP50MQVO948fz9yF+xdnPdMPT1/lCmGp6iWYRzxnvEkA1+HFl
+yy9YztrM8WNAhXirpUZg3HWQE2ONLKMtqQrkIHD2nikda77flk6oirqDuCf8Q7g8s86/KabTdxrw
+pRmsRjDkAfKVae58ctaKbmF32oU9BGk+9MPG8HF5Yfoh12DE1fLZcPzZrROrDFJGGxwhv5FlnxGg
+6G7jKi68erZnpaOPayK0bXyZNunqkI9IbIuPqMw5qaCZZgN6AEHIbGTKdrWEf11DmR7MdTjv3/vu
+JWtIXgk3kQFX27w9JhqV6QogVmzIfEQ=
+</ds:X509Certificate>
+</ds:X509Data>
+<ds:KeyValue>
+<ds:RSAKeyValue>
+<ds:Modulus>yZwTJr4Kb7QEDnVY3BEkPoS3fn+XoxhCTfFvlMk8zXDcR4pFMgPkXTrZ1KbENUIVskIhy1vmnh61
+vwSL0lcdzesCekKSxLqrEA4xunZk1MB5mLbHXchSSpI1co1vaSzJjkTYP1UsUVQzNoOzV0LNCoZd
+ahjGTHSduWvbrHTEeD6/jvUj3AVWrTx6krzgYA3ozAxtUnapK7IrZERuGOSwTrgRLr1aieQdFy8h
+aW1YL+ks5HmLRvcoGp+J68GX/zfMTduvWxhcpXm4txKc4iJqGCRmyBU2XjGjpDBXndxHgT4edRLz
+5PwWSeZUh8/tWOGFwnVw7njoOa0sFixy96H2BqEn+yPeRALyf59rjtPL66tsXuaAilB63yqbH42m
+nkxHTX5zcEm337GzTOGRccsYzN/ApVuXDeMfsO+sSUosrimnxm9QTOyKcex5h1AsrxBVfTw+Zf7j
+P1YRlmMlGPG1zffK2KjJhD6ivFi2sIDThEQLxIAC8XOjp2ZXvhx87yNT</ds:Modulus>
+<ds:Exponent>AQAB</ds:Exponent>
+</ds:RSAKeyValue>
+</ds:KeyValue>
+</ds:KeyInfo>
+</ds:Signature></oval_definitions>

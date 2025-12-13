@@ -1,0 +1,443 @@
+<oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5 https://oval.cisecurity.org/schemas/validator-oval-definitions-5.11.2.xsd">
+   <generator>
+      <oval:product_name>Center for Internet Security - Optimus</oval:product_name>
+      <oval:schema_version>5.11.2</oval:schema_version>
+      <oval:timestamp>2024-11-11T21:27:01.506Z</oval:timestamp>
+   </generator>
+   <definitions>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.ibm_aix_7:def:1674370" version="1">
+         <metadata>
+            <title>histexpire</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.1.2.1_histexpire" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.1.2.1_histexpire"></reference>
+            <description>histexpire</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:tst:1674370"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.ibm_aix_7:def:1674689" version="1">
+         <metadata>
+            <title>histsize</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.1.2.2_histsize" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.1.2.2_histsize"></reference>
+            <description>histsize</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:tst:1674689"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.ibm_aix_7:def:1953567" version="1">
+         <metadata>
+            <title>loginretries</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.1.2.3_loginretries" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.1.2.3_loginretries"></reference>
+            <description>loginretries</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:tst:1953567"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.ibm_aix_7:def:1953570" version="1">
+         <metadata>
+            <title>maxage</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.1.2.4_maxage" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.1.2.4_maxage"></reference>
+            <description>maxage</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:tst:1953570"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.ibm_aix_7:def:1699164" version="1">
+         <metadata>
+            <title>maxexpired</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.1.2.5_maxexpired" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.1.2.5_maxexpired"></reference>
+            <description>maxexpired</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:tst:1699164"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.ibm_aix_7:def:1699165" version="1">
+         <metadata>
+            <title>maxrepeats</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.1.2.6_maxrepeats" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.1.2.6_maxrepeats"></reference>
+            <description>maxrepeats</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:tst:1699165"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.ibm_aix_7:def:1699166" version="1">
+         <metadata>
+            <title>minage</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.1.2.7_minage" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.1.2.7_minage"></reference>
+            <description>minage</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:tst:1699166"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.ibm_aix_7:def:1769942" version="1">
+         <metadata>
+            <title>minalpha</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.1.2.8_minalpha" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.1.2.8_minalpha"></reference>
+            <description>minalpha</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:tst:1769942"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.ibm_aix_7:def:1699168" version="1">
+         <metadata>
+            <title>mindiff</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.1.2.9_mindiff" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.1.2.9_mindiff"></reference>
+            <description>mindiff</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:tst:1699168"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.ibm_aix_7:def:1769944" version="1">
+         <metadata>
+            <title>mindigit</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.1.2.10_mindigit" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.1.2.10_mindigit"></reference>
+            <description>mindigit</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:tst:1769944"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.ibm_aix_7:def:1699170" version="1">
+         <metadata>
+            <title>minlen</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.1.2.11_minlen" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.1.2.11_minlen"></reference>
+            <description>minlen</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:tst:1699170"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.ibm_aix_7:def:1769946" version="1">
+         <metadata>
+            <title>minloweralpha</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.1.2.12_minloweralpha" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.1.2.12_minloweralpha"></reference>
+            <description>minloweralpha</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:tst:1769946"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.ibm_aix_7:def:1769948" version="1">
+         <metadata>
+            <title>minother</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.1.2.13_minother" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.1.2.13_minother"></reference>
+            <description>minother</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:tst:1769948"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.ibm_aix_7:def:1769950" version="1">
+         <metadata>
+            <title>minspecialchar</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.1.2.14_minspecialchar" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.1.2.14_minspecialchar"></reference>
+            <description>minspecialchar</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:tst:1769950"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.ibm_aix_7:def:1769952" version="1">
+         <metadata>
+            <title>minupperalpha</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.1.2.15_minupperalpha" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.1.2.15_minupperalpha"></reference>
+            <description>minupperalpha</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:tst:1769952"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.ibm_aix_7:def:1692164" version="1">
+         <metadata>
+            <title>Ensure root access is controlled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.6.9_Ensure_root_access_is_controlled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.6.9_Ensure_root_access_is_controlled"></reference>
+            <description>Ensure root access is controlled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:tst:1692164"></criterion>
+         </criteria>
+      </definition>
+   </definitions>
+   <tests>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'lssec -f /etc/security/user -s default -a histexpire' output Pattern Match '\s*\S+\s*=\s*(2[6-9]|[3-9][0-9]|[1-9][0-9][0-9]+)\s*$' (int)" id="oval:org.cisecurity.benchmarks.ibm_aix_7:tst:1674370" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:obj:1674370"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:ste:1674370"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure default histsize is 20 or more" id="oval:org.cisecurity.benchmarks.ibm_aix_7:tst:1674689" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:obj:1674689"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:ste:1674689"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'lssec -f /etc/security/user -s default -a loginretries' output Pattern Match '\s*\S+\s*=\s*([1-5])$' (int)" id="oval:org.cisecurity.benchmarks.ibm_aix_7:tst:1953567" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:obj:1953567"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:ste:1953567"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'lssec -f /etc/security/user -s default -a maxage' output Pattern Match '\s*\S+\s*=\s*([1-9]|1[0-3])$' (int)" id="oval:org.cisecurity.benchmarks.ibm_aix_7:tst:1953570" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:obj:1953570"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:ste:1953570"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure default maxexpired is 4" id="oval:org.cisecurity.benchmarks.ibm_aix_7:tst:1699164" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:obj:1699164"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:ste:1699164"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure default maxrepeats is 4" id="oval:org.cisecurity.benchmarks.ibm_aix_7:tst:1699165" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:obj:1699165"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:ste:1699165"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure default minage is 0" id="oval:org.cisecurity.benchmarks.ibm_aix_7:tst:1699166" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:obj:1699166"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:ste:1699166"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure default minalpha is 2" id="oval:org.cisecurity.benchmarks.ibm_aix_7:tst:1769942" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:obj:1769942"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:ste:1769942"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure default mindiff greater or equal to 4" id="oval:org.cisecurity.benchmarks.ibm_aix_7:tst:1699168" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:obj:1699168"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:ste:1699168"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure default mindigit is 1" id="oval:org.cisecurity.benchmarks.ibm_aix_7:tst:1769944" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:obj:1769944"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:ste:1769944"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure default minlen is 14 or more" id="oval:org.cisecurity.benchmarks.ibm_aix_7:tst:1699170" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:obj:1699170"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:ste:1699170"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure default minloweralpha is 1" id="oval:org.cisecurity.benchmarks.ibm_aix_7:tst:1769946" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:obj:1769946"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:ste:1769946"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure default minother is 2" id="oval:org.cisecurity.benchmarks.ibm_aix_7:tst:1769948" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:obj:1769948"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:ste:1769948"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure default minspecialchar is 1" id="oval:org.cisecurity.benchmarks.ibm_aix_7:tst:1769950" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:obj:1769950"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:ste:1769950"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure default minupperalpha is 1" id="oval:org.cisecurity.benchmarks.ibm_aix_7:tst:1769952" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:obj:1769952"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:ste:1769952"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure sugroups is set to system" id="oval:org.cisecurity.benchmarks.ibm_aix_7:tst:1692164" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:obj:1692164"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:ste:1692164"></state>
+      </shellcommand_test>
+   </tests>
+   <objects>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'lssec -f /etc/security/user -s default -a histexpire' output Pattern Match '\s*\S+\s*=\s*(2[6-9]|[3-9][0-9]|[1-9][0-9][0-9]+)\s*$' (int)" id="oval:org.cisecurity.benchmarks.ibm_aix_7:obj:1674370" version="1">
+         <command>lssec -f /etc/security/user -s default -a histexpire</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure default histsize is 20 or more" id="oval:org.cisecurity.benchmarks.ibm_aix_7:obj:1674689" version="1">
+         <command>lssec -f /etc/security/user -s default -a histsize</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'lssec -f /etc/security/user -s default -a loginretries' output Pattern Match '\s*\S+\s*=\s*([1-5])$' (int)" id="oval:org.cisecurity.benchmarks.ibm_aix_7:obj:1953567" version="1">
+         <command>lssec -f /etc/security/user -s default -a loginretries</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'lssec -f /etc/security/user -s default -a maxage' output Pattern Match '\s*\S+\s*=\s*([1-9]|1[0-3])$' (int)" id="oval:org.cisecurity.benchmarks.ibm_aix_7:obj:1953570" version="1">
+         <command>lssec -f /etc/security/user -s default -a maxage</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure default maxexpired is 4" id="oval:org.cisecurity.benchmarks.ibm_aix_7:obj:1699164" version="1">
+         <command>lssec -f /etc/security/user -s default -a maxexpired</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure default maxrepeats is 4" id="oval:org.cisecurity.benchmarks.ibm_aix_7:obj:1699165" version="1">
+         <command>lssec -f /etc/security/user -s default -a maxrepeats</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure default minage is 0" id="oval:org.cisecurity.benchmarks.ibm_aix_7:obj:1699166" version="1">
+         <command>lssec -f /etc/security/user -s default -a minage</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure default minalpha is 2" id="oval:org.cisecurity.benchmarks.ibm_aix_7:obj:1769942" version="1">
+         <command>lssec -f /etc/security/user -s default -a minalpha</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure default mindiff greater or equal to 4" id="oval:org.cisecurity.benchmarks.ibm_aix_7:obj:1699168" version="1">
+         <command>lssec -f /etc/security/user -s default -a mindiff</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure default mindigit is 1" id="oval:org.cisecurity.benchmarks.ibm_aix_7:obj:1769944" version="1">
+         <command>lssec -f /etc/security/user -s default -a mindigit</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure default minlen is 14 or more" id="oval:org.cisecurity.benchmarks.ibm_aix_7:obj:1699170" version="1">
+         <command>lssec -f /etc/security/user -s default -a minlen</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure default minloweralpha is 1" id="oval:org.cisecurity.benchmarks.ibm_aix_7:obj:1769946" version="1">
+         <command>lssec -f /etc/security/user -s default -a minloweralpha</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure default minother is 2" id="oval:org.cisecurity.benchmarks.ibm_aix_7:obj:1769948" version="1">
+         <command>lssec -f /etc/security/user -s default -a minother</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure default minspecialchar is 1" id="oval:org.cisecurity.benchmarks.ibm_aix_7:obj:1769950" version="1">
+         <command>lssec -f /etc/security/user -s default -a minspecialchar</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure default minupperalpha is 1" id="oval:org.cisecurity.benchmarks.ibm_aix_7:obj:1769952" version="1">
+         <command>lssec -f /etc/security/user -s default -a minupperalpha</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure sugroups is set to system" id="oval:org.cisecurity.benchmarks.ibm_aix_7:obj:1692164" version="1">
+         <command>lssec -f /etc/security/user -s root -a sugroups -a su</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+   </objects>
+   <states>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'lssec -f /etc/security/user -s default -a histexpire' output Pattern Match '\s*\S+\s*=\s*(2[6-9]|[3-9][0-9]|[1-9][0-9][0-9]+)\s*$' (int)" id="oval:org.cisecurity.benchmarks.ibm_aix_7:ste:1674370" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:var:1674370"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure default histsize is 20 or more" id="oval:org.cisecurity.benchmarks.ibm_aix_7:ste:1674689" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:var:1674689"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'lssec -f /etc/security/user -s default -a loginretries' output Pattern Match '\s*\S+\s*=\s*([1-5])$' (int)" id="oval:org.cisecurity.benchmarks.ibm_aix_7:ste:1953567" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:var:1953567"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'lssec -f /etc/security/user -s default -a maxage' output Pattern Match '\s*\S+\s*=\s*([1-9]|1[0-3])$' (int)" id="oval:org.cisecurity.benchmarks.ibm_aix_7:ste:1953570" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:var:1953570"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure default maxexpired is 4" id="oval:org.cisecurity.benchmarks.ibm_aix_7:ste:1699164" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:var:1699164"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure default maxrepeats is 4" id="oval:org.cisecurity.benchmarks.ibm_aix_7:ste:1699165" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:var:1699165"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure default minage is 0" id="oval:org.cisecurity.benchmarks.ibm_aix_7:ste:1699166" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:var:1699166"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure default minalpha is 2" id="oval:org.cisecurity.benchmarks.ibm_aix_7:ste:1769942" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:var:1769942"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure default mindiff greater or equal to 4" id="oval:org.cisecurity.benchmarks.ibm_aix_7:ste:1699168" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:var:1699168"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure default mindigit is 1" id="oval:org.cisecurity.benchmarks.ibm_aix_7:ste:1769944" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:var:1769944"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure default minlen is 14 or more" id="oval:org.cisecurity.benchmarks.ibm_aix_7:ste:1699170" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:var:1699170"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure default minloweralpha is 1" id="oval:org.cisecurity.benchmarks.ibm_aix_7:ste:1769946" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:var:1769946"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure default minother is 2" id="oval:org.cisecurity.benchmarks.ibm_aix_7:ste:1769948" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:var:1769948"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure default minspecialchar is 1" id="oval:org.cisecurity.benchmarks.ibm_aix_7:ste:1769950" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:var:1769950"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure default minupperalpha is 1" id="oval:org.cisecurity.benchmarks.ibm_aix_7:ste:1769952" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:var:1769952"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure sugroups is set to system" id="oval:org.cisecurity.benchmarks.ibm_aix_7:ste:1692164" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.ibm_aix_7:var:1692164"></stdout_line>
+      </shellcommand_state>
+   </states>
+   <variables>
+      <external_variable comment="This value is used in Rule: histexpire" datatype="int" id="oval:org.cisecurity.benchmarks.ibm_aix_7:var:1674370" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: histsize" datatype="int" id="oval:org.cisecurity.benchmarks.ibm_aix_7:var:1674689" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: loginretries" datatype="int" id="oval:org.cisecurity.benchmarks.ibm_aix_7:var:1953567" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: maxage" datatype="int" id="oval:org.cisecurity.benchmarks.ibm_aix_7:var:1953570" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: maxexpired" datatype="int" id="oval:org.cisecurity.benchmarks.ibm_aix_7:var:1699164" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: maxrepeats" datatype="int" id="oval:org.cisecurity.benchmarks.ibm_aix_7:var:1699165" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: minage" datatype="int" id="oval:org.cisecurity.benchmarks.ibm_aix_7:var:1699166" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: minalpha" datatype="int" id="oval:org.cisecurity.benchmarks.ibm_aix_7:var:1769942" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: mindiff" datatype="int" id="oval:org.cisecurity.benchmarks.ibm_aix_7:var:1699168" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: mindigit" datatype="int" id="oval:org.cisecurity.benchmarks.ibm_aix_7:var:1769944" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: minlen" datatype="int" id="oval:org.cisecurity.benchmarks.ibm_aix_7:var:1699170" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: minloweralpha" datatype="int" id="oval:org.cisecurity.benchmarks.ibm_aix_7:var:1769946" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: minother" datatype="int" id="oval:org.cisecurity.benchmarks.ibm_aix_7:var:1769948" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: minspecialchar" datatype="int" id="oval:org.cisecurity.benchmarks.ibm_aix_7:var:1769950" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: minupperalpha" datatype="int" id="oval:org.cisecurity.benchmarks.ibm_aix_7:var:1769952" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure root access is controlled" datatype="string" id="oval:org.cisecurity.benchmarks.ibm_aix_7:var:1692164" version="1"></external_variable>
+   </variables>
+<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+<ds:SignedInfo>
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"></ds:CanonicalizationMethod>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></ds:SignatureMethod>
+<ds:Reference URI="">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"></ds:Transform>
+<ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"></ds:Transform>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></ds:DigestMethod>
+<ds:DigestValue>cFEHQ/LpajCRuHxv6k92VO64KvJpip/4LQ3khZg6QBI=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue>
+yOFCptb7nOJAcOqDNlM5ETg2F/+gpuVN2YhpXnSx7wRzPYJlXgPSYRb95AwqqrTV4Z4+DkPnhqA2
+0TMckWEJg0pmeSt6TLgwDOzfvD8RObnKCraNSq4fhsgep3jaLHNPrsckmrUkPsIjNNTGGEOzisCa
+8L+jb0jeHRAebvBxGhdO0qW9Sjgs6UIpq27qmnwjbp0MIUgeoNu+Ug/RCXSMiUfApW7A0/P1D5zs
+Yv6/2WKe8rx4C8C3C5XS820hrdrIL2pHSKwaEzP+fukRkd0uEX9dRtwUDjKrDJpmmIaTd4wP9E42
+8UMw9IFrYyHCq+wNUhj3qYz1HU+8W4QyrIqpGtmy7S5p1t7DOLXQN55UFCyk5wM/YwWMzQqM0Jpq
+JZN+/zUIJf2PIdx7HIjue7edYEKNvhGbgcuKKX1rrY14Bzz+HJ+1x1EVD/+6CoiOAH1sKY7es6cz
+RtgzwIcXiBSVXMSjm18T2VcecQ/eXmKCQYeaID15SWK7kfAuQBqmcNsN
+</ds:SignatureValue>
+<ds:KeyInfo>
+<ds:X509Data>
+<ds:X509Certificate>
+MIIHbDCCBVSgAwIBAgIQCdceADCnzKkglkQGavVKYzANBgkqhkiG9w0BAQsFADBpMQswCQYDVQQG
+EwJVUzEXMBUGA1UEChMORGlnaUNlcnQsIEluYy4xQTA/BgNVBAMTOERpZ2lDZXJ0IFRydXN0ZWQg
+RzQgQ29kZSBTaWduaW5nIFJTQTQwOTYgU0hBMzg0IDIwMjEgQ0ExMB4XDTIzMTAxODAwMDAwMFoX
+DTI2MTAxODIzNTk1OVowgfQxEzARBgsrBgEEAYI3PAIBAxMCVVMxGTAXBgsrBgEEAYI3PAIBAhMI
+TWFyeWxhbmQxHTAbBgNVBA8MFFByaXZhdGUgT3JnYW5pemF0aW9uMRIwEAYDVQQFEwlEMDYwNTg4
+MTIxCzAJBgNVBAYTAlVTMREwDwYDVQQIEwhOZXcgWW9yazEXMBUGA1UEBxMORWFzdCBHcmVlbmJ1
+c2gxKjAoBgNVBAoTIUNlbnRlciBmb3IgSW50ZXJuZXQgU2VjdXJpdHksIEluYzEqMCgGA1UEAxMh
+Q2VudGVyIGZvciBJbnRlcm5ldCBTZWN1cml0eSwgSW5jMIIBojANBgkqhkiG9w0BAQEFAAOCAY8A
+MIIBigKCAYEAyZwTJr4Kb7QEDnVY3BEkPoS3fn+XoxhCTfFvlMk8zXDcR4pFMgPkXTrZ1KbENUIV
+skIhy1vmnh61vwSL0lcdzesCekKSxLqrEA4xunZk1MB5mLbHXchSSpI1co1vaSzJjkTYP1UsUVQz
+NoOzV0LNCoZdahjGTHSduWvbrHTEeD6/jvUj3AVWrTx6krzgYA3ozAxtUnapK7IrZERuGOSwTrgR
+Lr1aieQdFy8haW1YL+ks5HmLRvcoGp+J68GX/zfMTduvWxhcpXm4txKc4iJqGCRmyBU2XjGjpDBX
+ndxHgT4edRLz5PwWSeZUh8/tWOGFwnVw7njoOa0sFixy96H2BqEn+yPeRALyf59rjtPL66tsXuaA
+ilB63yqbH42mnkxHTX5zcEm337GzTOGRccsYzN/ApVuXDeMfsO+sSUosrimnxm9QTOyKcex5h1As
+rxBVfTw+Zf7jP1YRlmMlGPG1zffK2KjJhD6ivFi2sIDThEQLxIAC8XOjp2ZXvhx87yNTAgMBAAGj
+ggICMIIB/jAfBgNVHSMEGDAWgBRoN+Drtjv4XxGG+/5hewiIZfROQjAdBgNVHQ4EFgQUX2/J9FT5
+5BNF7JqfAl9SJkv3pf0wPQYDVR0gBDYwNDAyBgVngQwBAzApMCcGCCsGAQUFBwIBFhtodHRwOi8v
+d3d3LmRpZ2ljZXJ0LmNvbS9DUFMwDgYDVR0PAQH/BAQDAgeAMBMGA1UdJQQMMAoGCCsGAQUFBwMD
+MIG1BgNVHR8Ega0wgaowU6BRoE+GTWh0dHA6Ly9jcmwzLmRpZ2ljZXJ0LmNvbS9EaWdpQ2VydFRy
+dXN0ZWRHNENvZGVTaWduaW5nUlNBNDA5NlNIQTM4NDIwMjFDQTEuY3JsMFOgUaBPhk1odHRwOi8v
+Y3JsNC5kaWdpY2VydC5jb20vRGlnaUNlcnRUcnVzdGVkRzRDb2RlU2lnbmluZ1JTQTQwOTZTSEEz
+ODQyMDIxQ0ExLmNybDCBlAYIKwYBBQUHAQEEgYcwgYQwJAYIKwYBBQUHMAGGGGh0dHA6Ly9vY3Nw
+LmRpZ2ljZXJ0LmNvbTBcBggrBgEFBQcwAoZQaHR0cDovL2NhY2VydHMuZGlnaWNlcnQuY29tL0Rp
+Z2lDZXJ0VHJ1c3RlZEc0Q29kZVNpZ25pbmdSU0E0MDk2U0hBMzg0MjAyMUNBMS5jcnQwCQYDVR0T
+BAIwADANBgkqhkiG9w0BAQsFAAOCAgEASLOHf1FQ7TrGqEoVXYoeNSkRWdVCUGd1JCDs7Hb9sLd3
+eQuipZ4EorQS/9qMiVMhmlJfF75sNVQhr1K5UtjrDRFMTzYmh78hAyovowzgyVKdGFqiVVr5m+mb
+vVyglLlA4V076LMBaKRknm1Dt8r0/5GSRCrkP2origpYMMaocN+iBX9+MImnh3J1Ehn0nRUhW86Q
+mt3/YCVIaQZisv+KmOxyAq1m6fiIYIvXY+cH2dDIheoVteb/NjYnKVqE6xTpOsxF16pykXiM9yk3
+Q9nlJS36KEGRP4wrySU4eIBnTcv4mimZjkWj6bIvk8otNJ14FbyltaPwIc3dE3oPGfSmCrkxs73j
+iqBs2TXLvblEmOhY8ko3xVdTm0zMP50MQVO948fz9yF+xdnPdMPT1/lCmGp6iWYRzxnvEkA1+HFl
+yy9YztrM8WNAhXirpUZg3HWQE2ONLKMtqQrkIHD2nikda77flk6oirqDuCf8Q7g8s86/KabTdxrw
+pRmsRjDkAfKVae58ctaKbmF32oU9BGk+9MPG8HF5Yfoh12DE1fLZcPzZrROrDFJGGxwhv5FlnxGg
+6G7jKi68erZnpaOPayK0bXyZNunqkI9IbIuPqMw5qaCZZgN6AEHIbGTKdrWEf11DmR7MdTjv3/vu
+JWtIXgk3kQFX27w9JhqV6QogVmzIfEQ=
+</ds:X509Certificate>
+</ds:X509Data>
+<ds:KeyValue>
+<ds:RSAKeyValue>
+<ds:Modulus>yZwTJr4Kb7QEDnVY3BEkPoS3fn+XoxhCTfFvlMk8zXDcR4pFMgPkXTrZ1KbENUIVskIhy1vmnh61
+vwSL0lcdzesCekKSxLqrEA4xunZk1MB5mLbHXchSSpI1co1vaSzJjkTYP1UsUVQzNoOzV0LNCoZd
+ahjGTHSduWvbrHTEeD6/jvUj3AVWrTx6krzgYA3ozAxtUnapK7IrZERuGOSwTrgRLr1aieQdFy8h
+aW1YL+ks5HmLRvcoGp+J68GX/zfMTduvWxhcpXm4txKc4iJqGCRmyBU2XjGjpDBXndxHgT4edRLz
+5PwWSeZUh8/tWOGFwnVw7njoOa0sFixy96H2BqEn+yPeRALyf59rjtPL66tsXuaAilB63yqbH42m
+nkxHTX5zcEm337GzTOGRccsYzN/ApVuXDeMfsO+sSUosrimnxm9QTOyKcex5h1AsrxBVfTw+Zf7j
+P1YRlmMlGPG1zffK2KjJhD6ivFi2sIDThEQLxIAC8XOjp2ZXvhx87yNT</ds:Modulus>
+<ds:Exponent>AQAB</ds:Exponent>
+</ds:RSAKeyValue>
+</ds:KeyValue>
+</ds:KeyInfo>
+</ds:Signature></oval_definitions>

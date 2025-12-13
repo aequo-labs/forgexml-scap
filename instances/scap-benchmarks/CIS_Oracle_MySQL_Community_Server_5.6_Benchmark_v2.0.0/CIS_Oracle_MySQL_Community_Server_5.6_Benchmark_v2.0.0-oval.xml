@@ -1,0 +1,1895 @@
+<oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5 https://oval.cisecurity.org/schemas/validator-oval-definitions-5.11.2.xsd">
+   <generator>
+      <oval:product_name>Center for Internet Security - Optimus</oval:product_name>
+      <oval:schema_version>5.11.2</oval:schema_version>
+      <oval:timestamp>2023-08-03T15:42:42.264Z</oval:timestamp>
+   </generator>
+   <definitions>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:42601" version="1">
+         <metadata>
+            <title>Use Dedicated Least Privileged Account for MySQL Daemon/Service</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.2_Use_Dedicated_Least_Privileged_Account_for_MySQL_DaemonService" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.2_Use_Dedicated_Least_Privileged_Account_for_MySQL_DaemonService"></reference>
+            <description>Use Dedicated Least Privileged Account for MySQL Daemon/Service</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42601"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:42602" version="1">
+         <metadata>
+            <title>Disable MySQL Command History</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.3_Disable_MySQL_Command_History" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.3_Disable_MySQL_Command_History"></reference>
+            <description>Disable MySQL Command History</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42602"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:42603" version="1">
+         <metadata>
+            <title>Verify That the MYSQL_PWD Environment Variable Is Not In Use</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4_Verify_That_the_MYSQL_PWD_Environment_Variable_Is_Not_In_Use" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4_Verify_That_the_MYSQL_PWD_Environment_Variable_Is_Not_In_Use"></reference>
+            <description>Verify That the MYSQL_PWD Environment Variable Is Not In Use</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42603"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:42604" version="1">
+         <metadata>
+            <title>Ensure Interactive Login is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.5_Ensure_Interactive_Login_is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.5_Ensure_Interactive_Login_is_Disabled"></reference>
+            <description>Ensure Interactive Login is Disabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42604"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:42605" version="1">
+         <metadata>
+            <title>Verify That 'MYSQL_PWD' Is Not Set In Users' Profiles</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.6_Verify_That_MYSQL_PWD_Is_Not_Set_In_Users_Profiles" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.6_Verify_That_MYSQL_PWD_Is_Not_Set_In_Users_Profiles"></reference>
+            <description>Verify That 'MYSQL_PWD' Is Not Set In Users' Profiles</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42605"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:78208" version="1">
+         <metadata>
+            <title>Verify That 'MYSQL_PWD' Is Not Set In Users' Profiles</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.6_Verify_That_MYSQL_PWD_Is_Not_Set_In_Users_Profiles" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.6_Verify_That_MYSQL_PWD_Is_Not_Set_In_Users_Profiles"></reference>
+            <description>Verify That 'MYSQL_PWD' Is Not Set In Users' Profiles</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:78208"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:78209" version="1">
+         <metadata>
+            <title>Verify That 'MYSQL_PWD' Is Not Set In Users' Profiles</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.6_Verify_That_MYSQL_PWD_Is_Not_Set_In_Users_Profiles" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.6_Verify_That_MYSQL_PWD_Is_Not_Set_In_Users_Profiles"></reference>
+            <description>Verify That 'MYSQL_PWD' Is Not Set In Users' Profiles</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:78209"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:42624" version="1">
+         <metadata>
+            <title>Ensure 'log-raw' Is Set to 'OFF'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.4_Ensure_log-raw_Is_Set_to_OFF" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.4_Ensure_log-raw_Is_Set_to_OFF"></reference>
+            <description>Ensure 'log-raw' Is Set to 'OFF'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42624"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:42627" version="1">
+         <metadata>
+            <title>Ensure Passwords Are Not Stored in the Global Configuration</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_7.3_Ensure_Passwords_Are_Not_Stored_in_the_Global_Configuration" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_7.3_Ensure_Passwords_Are_Not_Stored_in_the_Global_Configuration"></reference>
+            <description>Ensure Passwords Are Not Stored in the Global Configuration</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42627"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:42635" version="1">
+         <metadata>
+            <title>Ensure Password Complexity Policies are in Place</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_7.6_Ensure_Password_Complexity_Policies_are_in_Place" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_7.6_Ensure_Password_Complexity_Policies_are_in_Place"></reference>
+            <description>Ensure Password Complexity Policies are in Place</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42635"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:42636" version="1">
+         <metadata>
+            <title>Ensure Password Complexity Policies are in Place</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_7.6_Ensure_Password_Complexity_Policies_are_in_Place" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_7.6_Ensure_Password_Complexity_Policies_are_in_Place"></reference>
+            <description>Ensure Password Complexity Policies are in Place</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42636"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:2299730" version="1">
+         <metadata>
+            <title>Ensure Password Complexity is Configured</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.6_Ensure_Password_Complexity_is_Configured" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.6_Ensure_Password_Complexity_is_Configured"></reference>
+            <description>Ensure Password Complexity is Configured</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:2299730"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:2299731" version="1">
+         <metadata>
+            <title>Ensure Password Complexity is Configured</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.6_Ensure_Password_Complexity_is_Configured" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.6_Ensure_Password_Complexity_is_Configured"></reference>
+            <description>Ensure Password Complexity is Configured</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:2299731"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:2299732" version="1">
+         <metadata>
+            <title>Ensure Password Complexity is Configured</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.6_Ensure_Password_Complexity_is_Configured" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.6_Ensure_Password_Complexity_is_Configured"></reference>
+            <description>Ensure Password Complexity is Configured</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:2299732"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:2299733" version="1">
+         <metadata>
+            <title>Ensure Password Complexity is Configured</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.6_Ensure_Password_Complexity_is_Configured" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.6_Ensure_Password_Complexity_is_Configured"></reference>
+            <description>Ensure Password Complexity is Configured</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:2299733"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:2299734" version="1">
+         <metadata>
+            <title>Ensure Password Complexity is Configured</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.6_Ensure_Password_Complexity_is_Configured" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.6_Ensure_Password_Complexity_is_Configured"></reference>
+            <description>Ensure Password Complexity is Configured</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:2299734"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:2299735" version="1">
+         <metadata>
+            <title>Ensure Password Complexity is Configured</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.6_Ensure_Password_Complexity_is_Configured" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.6_Ensure_Password_Complexity_is_Configured"></reference>
+            <description>Ensure Password Complexity is Configured</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:2299735"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:2299736" version="1">
+         <metadata>
+            <title>Ensure Password Complexity is Configured</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.6_Ensure_Password_Complexity_is_Configured" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.6_Ensure_Password_Complexity_is_Configured"></reference>
+            <description>Ensure Password Complexity is Configured</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:2299736"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:2299737" version="1">
+         <metadata>
+            <title>Ensure AES Encryption Mode for AES_ENCRYPT/AES_DECRYPT is Configured Correctly</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.7_Ensure_AES_Encryption_Mode_for_AES_ENCRYPTAES_DECRYPT_is_Configured_Correctly" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.7_Ensure_AES_Encryption_Mode_for_AES_ENCRYPTAES_DECRYPT_is_Configured_Correctly"></reference>
+            <description>Ensure AES Encryption Mode for AES_ENCRYPT/AES_DECRYPT is Configured Correctly</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:2299737"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:2299738" version="1">
+         <metadata>
+            <title>Ensure MySQL is Bound to an IP Address</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.9_Ensure_MySQL_is_Bound_to_an_IP_Address" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.9_Ensure_MySQL_is_Bound_to_an_IP_Address"></reference>
+            <description>Ensure MySQL is Bound to an IP Address</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:2299738"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:2299739" version="1">
+         <metadata>
+            <title>Ensure Only Approved Ciphers are Used</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.10_Ensure_Only_Approved_Ciphers_are_Used" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.10_Ensure_Only_Approved_Ciphers_are_Used"></reference>
+            <description>Ensure Only Approved Ciphers are Used</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:2299739"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:2303004" version="1">
+         <metadata>
+            <title>Implement Connection Delays to Limit Failed Login Attempts</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.11_Implement_Connection_Delays_to_Limit_Failed_Login_Attempts" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.11_Implement_Connection_Delays_to_Limit_Failed_Login_Attempts"></reference>
+            <description>Implement Connection Delays to Limit Failed Login Attempts</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:2303004"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:2303005" version="1">
+         <metadata>
+            <title>Implement Connection Delays to Limit Failed Login Attempts</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.11_Implement_Connection_Delays_to_Limit_Failed_Login_Attempts" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.11_Implement_Connection_Delays_to_Limit_Failed_Login_Attempts"></reference>
+            <description>Implement Connection Delays to Limit Failed Login Attempts</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:2303005"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:2303006" version="1">
+         <metadata>
+            <title>Implement Connection Delays to Limit Failed Login Attempts</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.11_Implement_Connection_Delays_to_Limit_Failed_Login_Attempts" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.11_Implement_Connection_Delays_to_Limit_Failed_Login_Attempts"></reference>
+            <description>Implement Connection Delays to Limit Failed Login Attempts</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:2303006"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:2303007" version="1">
+         <metadata>
+            <title>Implement Connection Delays to Limit Failed Login Attempts</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.11_Implement_Connection_Delays_to_Limit_Failed_Login_Attempts" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.11_Implement_Connection_Delays_to_Limit_Failed_Login_Attempts"></reference>
+            <description>Implement Connection Delays to Limit Failed Login Attempts</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:2303007"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:78032" version="1">
+         <metadata>
+            <title>Ensure 'datadir' Has Appropriate Permissions</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.1_Ensure_datadir_Has_Appropriate_Permissions" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.1_Ensure_datadir_Has_Appropriate_Permissions"></reference>
+            <description>Ensure 'datadir' Has Appropriate Permissions</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:78032"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:78025" version="1">
+         <metadata>
+            <title>Ensure 'log_bin_basename' Files Have Appropriate Permissions</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.2_Ensure_log_bin_basename_Files_Have_Appropriate_Permissions" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.2_Ensure_log_bin_basename_Files_Have_Appropriate_Permissions"></reference>
+            <description>Ensure 'log_bin_basename' Files Have Appropriate Permissions</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:78025"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:78021" version="1">
+         <metadata>
+            <title>Ensure 'log_error' Has Appropriate Permissions</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.3_Ensure_log_error_Has_Appropriate_Permissions" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.3_Ensure_log_error_Has_Appropriate_Permissions"></reference>
+            <description>Ensure 'log_error' Has Appropriate Permissions</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:78021"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:78017" version="1">
+         <metadata>
+            <title>Ensure 'slow_query_log' Has Appropriate Permissions</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.4_Ensure_slow_query_log_Has_Appropriate_Permissions" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.4_Ensure_slow_query_log_Has_Appropriate_Permissions"></reference>
+            <description>Ensure 'slow_query_log' Has Appropriate Permissions</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:78017"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:2303008" version="1">
+         <metadata>
+            <title>Ensure 'slow_query_log' Has Appropriate Permissions</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.4_Ensure_slow_query_log_Has_Appropriate_Permissions" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.4_Ensure_slow_query_log_Has_Appropriate_Permissions"></reference>
+            <description>Ensure 'slow_query_log' Has Appropriate Permissions</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:2303008"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:2303009" version="1">
+         <metadata>
+            <title>Ensure 'slow_query_log' Has Appropriate Permissions</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.4_Ensure_slow_query_log_Has_Appropriate_Permissions" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.4_Ensure_slow_query_log_Has_Appropriate_Permissions"></reference>
+            <description>Ensure 'slow_query_log' Has Appropriate Permissions</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:2303009"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:42610" version="1">
+         <metadata>
+            <title>Ensure 'relay_log_basename' Files Have Appropriate Permissions</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.5_Ensure_relay_log_basename_Files_Have_Appropriate_Permissions" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.5_Ensure_relay_log_basename_Files_Have_Appropriate_Permissions"></reference>
+            <description>Ensure 'relay_log_basename' Files Have Appropriate Permissions</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42610"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:42611" version="1">
+         <metadata>
+            <title>Ensure 'general_log_file' Has Appropriate Permissions</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.6_Ensure_general_log_file_Has_Appropriate_Permissions" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.6_Ensure_general_log_file_Has_Appropriate_Permissions"></reference>
+            <description>Ensure 'general_log_file' Has Appropriate Permissions</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42611"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:42612" version="1">
+         <metadata>
+            <title>Ensure SSL Key Files Have Appropriate Permissions</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.7_Ensure_SSL_Key_Files_Have_Appropriate_Permissions" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.7_Ensure_SSL_Key_Files_Have_Appropriate_Permissions"></reference>
+            <description>Ensure SSL Key Files Have Appropriate Permissions</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42612"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:2303598" version="1">
+         <metadata>
+            <title>Ensure SSL Key Files Have Appropriate Permissions</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.7_Ensure_SSL_Key_Files_Have_Appropriate_Permissions" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.7_Ensure_SSL_Key_Files_Have_Appropriate_Permissions"></reference>
+            <description>Ensure SSL Key Files Have Appropriate Permissions</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:2303598"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:2303599" version="1">
+         <metadata>
+            <title>Ensure SSL Key Files Have Appropriate Permissions</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.7_Ensure_SSL_Key_Files_Have_Appropriate_Permissions" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.7_Ensure_SSL_Key_Files_Have_Appropriate_Permissions"></reference>
+            <description>Ensure SSL Key Files Have Appropriate Permissions</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:2303599"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:2303600" version="1">
+         <metadata>
+            <title>Ensure SSL Key Files Have Appropriate Permissions</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.7_Ensure_SSL_Key_Files_Have_Appropriate_Permissions" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.7_Ensure_SSL_Key_Files_Have_Appropriate_Permissions"></reference>
+            <description>Ensure SSL Key Files Have Appropriate Permissions</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:2303600"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:42613" version="1">
+         <metadata>
+            <title>Ensure Plugin Directory Has Appropriate Permissions</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.8_Ensure_Plugin_Directory_Has_Appropriate_Permissions" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.8_Ensure_Plugin_Directory_Has_Appropriate_Permissions"></reference>
+            <description>Ensure Plugin Directory Has Appropriate Permissions</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42613"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:42614" version="1">
+         <metadata>
+            <title>Ensure Example or Test Databases are Not Installed on Production Servers</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.2_Ensure_Example_or_Test_Databases_are_Not_Installed_on_Production_Servers" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.2_Ensure_Example_or_Test_Databases_are_Not_Installed_on_Production_Servers"></reference>
+            <description>Ensure Example or Test Databases are Not Installed on Production Servers</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42614"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:42616" version="1">
+         <metadata>
+            <title>Ensure 'local_infile' Is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.4_Ensure_local_infile_Is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.4_Ensure_local_infile_Is_Disabled"></reference>
+            <description>Ensure 'local_infile' Is Disabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42616"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:42618" version="1">
+         <metadata>
+            <title>Ensure Symbolic Links are Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.6_Ensure_Symbolic_Links_are_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.6_Ensure_Symbolic_Links_are_Disabled"></reference>
+            <description>Ensure Symbolic Links are Disabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42618"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:42619" version="1">
+         <metadata>
+            <title>Ensure the 'daemon_memcached' Plugin Is Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.7_Ensure_the_daemon_memcached_Plugin_Is_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.7_Ensure_the_daemon_memcached_Plugin_Is_Disabled"></reference>
+            <description>Ensure the 'daemon_memcached' Plugin Is Disabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42619"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:42620" version="1">
+         <metadata>
+            <title>Ensure the 'secure_file_priv' is Configured Correctly</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.8_Ensure_the_secure_file_priv_is_Configured_Correctly" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.8_Ensure_the_secure_file_priv_is_Configured_Correctly"></reference>
+            <description>Ensure the 'secure_file_priv' is Configured Correctly</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42620"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:42621" version="1">
+         <metadata>
+            <title>Ensure 'sql_mode' Contains 'STRICT_ALL_TABLES'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.9_Ensure_sql_mode_Contains_STRICT_ALL_TABLES" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.9_Ensure_sql_mode_Contains_STRICT_ALL_TABLES"></reference>
+            <description>Ensure 'sql_mode' Contains 'STRICT_ALL_TABLES'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42621"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:42622" version="1">
+         <metadata>
+            <title>Ensure 'log_error' Is Not Empty</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.1_Ensure_log_error_Is_Not_Empty" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.1_Ensure_log_error_Is_Not_Empty"></reference>
+            <description>Ensure 'log_error' Is Not Empty</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42622"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:78074" version="1">
+         <metadata>
+            <title>Ensure Log Files Are Stored on a Non-System Partition</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.2_Ensure_Log_Files_Are_Stored_on_a_Non-System_Partition" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.2_Ensure_Log_Files_Are_Stored_on_a_Non-System_Partition"></reference>
+            <description>Ensure Log Files Are Stored on a Non-System Partition</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:78074"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:42623" version="1">
+         <metadata>
+            <title>Ensure 'log_warnings' is Set to '2'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.3_Ensure_log_warnings_is_Set_to_2" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.3_Ensure_log_warnings_is_Set_to_2"></reference>
+            <description>Ensure 'log_warnings' is Set to '2'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42623"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:42625" version="1">
+         <metadata>
+            <title>Ensure 'old_passwords' Is Not Set to '1'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_7.1_Ensure_old_passwords_Is_Not_Set_to_1" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_7.1_Ensure_old_passwords_Is_Not_Set_to_1"></reference>
+            <description>Ensure 'old_passwords' Is Not Set to '1'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42625"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:42626" version="1">
+         <metadata>
+            <title>Ensure 'secure_auth' is Set to 'ON'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_7.2_Ensure_secure_auth_is_Set_to_ON" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_7.2_Ensure_secure_auth_is_Set_to_ON"></reference>
+            <description>Ensure 'secure_auth' is Set to 'ON'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42626"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:42628" version="1">
+         <metadata>
+            <title>Ensure 'sql_mode' Contains 'NO_AUTO_CREATE_USER'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_7.4_Ensure_sql_mode_Contains_NO_AUTO_CREATE_USER" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_7.4_Ensure_sql_mode_Contains_NO_AUTO_CREATE_USER"></reference>
+            <description>Ensure 'sql_mode' Contains 'NO_AUTO_CREATE_USER'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42628"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:42629" version="1">
+         <metadata>
+            <title>Ensure Passwords are Set for All MySQL Accounts</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_7.5_Ensure_Passwords_are_Set_for_All_MySQL_Accounts" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_7.5_Ensure_Passwords_are_Set_for_All_MySQL_Accounts"></reference>
+            <description>Ensure Passwords are Set for All MySQL Accounts</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42629"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:42630" version="1">
+         <metadata>
+            <title>Ensure Password Complexity Policies are in Place</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_7.6_Ensure_Password_Complexity_Policies_are_in_Place" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_7.6_Ensure_Password_Complexity_Policies_are_in_Place"></reference>
+            <description>Ensure Password Complexity Policies are in Place</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42630"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:42631" version="1">
+         <metadata>
+            <title>Ensure Password Complexity Policies are in Place</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_7.6_Ensure_Password_Complexity_Policies_are_in_Place" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_7.6_Ensure_Password_Complexity_Policies_are_in_Place"></reference>
+            <description>Ensure Password Complexity Policies are in Place</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42631"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:42632" version="1">
+         <metadata>
+            <title>Ensure Password Complexity Policies are in Place</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_7.6_Ensure_Password_Complexity_Policies_are_in_Place" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_7.6_Ensure_Password_Complexity_Policies_are_in_Place"></reference>
+            <description>Ensure Password Complexity Policies are in Place</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42632"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:42633" version="1">
+         <metadata>
+            <title>Ensure Password Complexity Policies are in Place</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_7.6_Ensure_Password_Complexity_Policies_are_in_Place" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_7.6_Ensure_Password_Complexity_Policies_are_in_Place"></reference>
+            <description>Ensure Password Complexity Policies are in Place</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42633"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:42634" version="1">
+         <metadata>
+            <title>Ensure Password Complexity Policies are in Place</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_7.6_Ensure_Password_Complexity_Policies_are_in_Place" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_7.6_Ensure_Password_Complexity_Policies_are_in_Place"></reference>
+            <description>Ensure Password Complexity Policies are in Place</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42634"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:2328824" version="1">
+         <metadata>
+            <title>Ensure Password Complexity Policies are in Place</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_7.6_Ensure_Password_Complexity_Policies_are_in_Place" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_7.6_Ensure_Password_Complexity_Policies_are_in_Place"></reference>
+            <description>Ensure Password Complexity Policies are in Place</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:2328824"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:42637" version="1">
+         <metadata>
+            <title>Ensure No Users Have Wildcard Hostnames</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_7.7_Ensure_No_Users_Have_Wildcard_Hostnames" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_7.7_Ensure_No_Users_Have_Wildcard_Hostnames"></reference>
+            <description>Ensure No Users Have Wildcard Hostnames</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42637"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:42638" version="1">
+         <metadata>
+            <title>Ensure No Anonymous Accounts Exist</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_7.8_Ensure_No_Anonymous_Accounts_Exist" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_7.8_Ensure_No_Anonymous_Accounts_Exist"></reference>
+            <description>Ensure No Anonymous Accounts Exist</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42638"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:42639" version="1">
+         <metadata>
+            <title>Ensure 'have_ssl' Is Set to 'YES'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_8.1_Ensure_have_ssl_Is_Set_to_YES" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_8.1_Ensure_have_ssl_Is_Set_to_YES"></reference>
+            <description>Ensure 'have_ssl' Is Set to 'YES'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42639"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:42640" version="1">
+         <metadata>
+            <title>Ensure 'ssl_type' Is Set to 'ANY', 'X509', or 'SPECIFIED' for All Remote Users</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_8.2_Ensure_ssl_type_Is_Set_to_ANY_X509_or_SPECIFIED_for_All_Remote_Users" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_8.2_Ensure_ssl_type_Is_Set_to_ANY_X509_or_SPECIFIED_for_All_Remote_Users"></reference>
+            <description>Ensure 'ssl_type' Is Set to 'ANY', 'X509', or 'SPECIFIED' for All Remote Users</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42640"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:42642" version="1">
+         <metadata>
+            <title>Ensure 'MASTER_SSL_VERIFY_SERVER_CERT' Is Set to 'YES' or '1'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_9.2_Ensure_MASTER_SSL_VERIFY_SERVER_CERT_Is_Set_to_YES_or_1" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_9.2_Ensure_MASTER_SSL_VERIFY_SERVER_CERT_Is_Set_to_YES_or_1"></reference>
+            <description>Ensure 'MASTER_SSL_VERIFY_SERVER_CERT' Is Set to 'YES' or '1'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42642"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:42641" version="1">
+         <metadata>
+            <title>Ensure 'master_info_repository' Is Set to 'TABLE'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_9.3_Ensure_master_info_repository_Is_Set_to_TABLE" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_9.3_Ensure_master_info_repository_Is_Set_to_TABLE"></reference>
+            <description>Ensure 'master_info_repository' Is Set to 'TABLE'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42641"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:2453627" version="1">
+         <metadata>
+            <title>Ensure 'slow_query_log' Has Appropriate Permissions</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.4_Ensure_slow_query_log_Has_Appropriate_Permissions" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.4_Ensure_slow_query_log_Has_Appropriate_Permissions"></reference>
+            <description>Ensure 'slow_query_log' Has Appropriate Permissions</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:2453627"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:2453628" version="1">
+         <metadata>
+            <title>Ensure 'slow_query_log' Has Appropriate Permissions</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.4_Ensure_slow_query_log_Has_Appropriate_Permissions" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.4_Ensure_slow_query_log_Has_Appropriate_Permissions"></reference>
+            <description>Ensure 'slow_query_log' Has Appropriate Permissions</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:2453628"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:2459969" version="1">
+         <metadata>
+            <title>Ensure 'general_log_file' Has Appropriate Permissions</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.6_Ensure_general_log_file_Has_Appropriate_Permissions" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.6_Ensure_general_log_file_Has_Appropriate_Permissions"></reference>
+            <description>Ensure 'general_log_file' Has Appropriate Permissions</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:2459969"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:2459970" version="1">
+         <metadata>
+            <title>Ensure 'general_log_file' Has Appropriate Permissions</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.6_Ensure_general_log_file_Has_Appropriate_Permissions" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.6_Ensure_general_log_file_Has_Appropriate_Permissions"></reference>
+            <description>Ensure 'general_log_file' Has Appropriate Permissions</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:2459970"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:42643" version="1">
+         <metadata>
+            <title>Ensure 'super_priv' Is Not Set to 'Y' for Replication Users</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_9.4_Ensure_super_priv_Is_Not_Set_to_Y_for_Replication_Users" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_9.4_Ensure_super_priv_Is_Not_Set_to_Y_for_Replication_Users"></reference>
+            <description>Ensure 'super_priv' Is Not Set to 'Y' for Replication Users</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42643"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:def:42644" version="1">
+         <metadata>
+            <title>Ensure No Replication Users Have Wildcard Hostnames</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_9.5_Ensure_No_Replication_Users_Have_Wildcard_Hostnames" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_9.5_Ensure_No_Replication_Users_Have_Wildcard_Hostnames"></reference>
+            <description>Ensure No Replication Users Have Wildcard Hostnames</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42644"></criterion>
+         </criteria>
+      </definition>
+   </definitions>
+   <tests>
+      <process58_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="all_exist" comment="Ensure 'mysqld' Is Run By 'mysql' User" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42601" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42601"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:42601"></state>
+      </process58_test>
+      <symlink_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="all_exist" comment="Ensure '.mysql_history' Is Symbolically Linked To '/dev/null' For All Users" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42602" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42602"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:42602"></state>
+      </symlink_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Verify that 'MYSQL_PWD' Is Not Set" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42603" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42603"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure Interactive Login is Disabled" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42604" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42604"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Verify That 'MYSQL_PWD' Is Not Set In .bashrc" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42605" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42605"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Verify That 'MYSQL_PWD' Is Not Set In .bash_profile" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:78208" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:78208"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Verify That 'MYSQL_PWD' Is Not Set In .profile" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:78209" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:78209"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'log-raw' Is Set to 'OFF'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42624" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42624"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure Passwords Are Not Stored in the Global Configuration" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42627" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42627"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'my.cnf' has 'plugin-load' set to 'validate_password.so'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42635" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42635"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:42635"></state>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'my.cnf' has 'validate-password' set to 'FORCE_PLUS_PERMANENT'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42636" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42636"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:42636"></state>
+      </textfilecontent54_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure validate password plugin is loaded" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:2299730" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:2299730"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure dictionary file is configured" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:2299731" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:2299731"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure length is configured to at least 14" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:2299732" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:2299732"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:2299732"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure mixed case count is less than or equal to 1" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:2299733" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:2299733"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:2299733"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure number count is less than or equal to 1" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:2299734" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:2299734"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:2299734"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure password policy is set to STRONG" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:2299735" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:2299735"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:2299735"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure special character count is less than or equal to 1" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:2299736" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:2299736"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:2299736"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure block_encryption_mode is set to aes 256" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:2299737" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:2299737"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:2299737"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure MySQL is bound to at least one IP" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:2299738" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:2299738"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:2299738"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'ssl_cipher' is configured correctly" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:2299739" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:2299739"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:2299739"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure connection controls are active" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:2303004" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:2303004"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:2303004"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure connection_control_failed_connections_threshold is greater than or equal to 5" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:2303005" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:2303005"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:2303005"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure connection_control_min_connection_delay is greater than or equal to 60000" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:2303006" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:2303006"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:2303006"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure connection_control_max_connection_delay is greater than or equal to 1920000" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:2303007" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:2303007"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:2303007"></state>
+      </sql57_test>
+      <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="all_exist" comment="Ensure '750:mysql:mysql' Permissions On 'datadir'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:78032" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:78032"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:78032"></state>
+      </file_test>
+      <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="any_exist" comment="Ensure '660:mysql:mysql' permissions on 'log_bin_basename' files" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:78025" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:78025"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:78025"></state>
+      </file_test>
+      <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="all_exist" comment="Ensure '660:mysql:mysql' Permissions On 'log_error' File" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:78021" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:78021"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:78021"></state>
+      </file_test>
+      <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="all_exist" comment="Ensure Permissions On 'slow_query_log' File are '660' or More Restrictive" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:78017" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:78017"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:78017"></state>
+      </file_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure slow query log is set to OFF" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:2303008" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:2303008"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:2303008"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure 'slow_query_log_file' does not exist" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:2303009" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:2303009"></object>
+      </sql57_test>
+      <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="any_exist" comment="Ensure permissions on 'relay_log_basename' files are '660' or More Restrictive" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42610" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42610"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:42610"></state>
+      </file_test>
+      <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="all_exist" comment="Ensure Permissions On 'general_log_file' File are '600' or More Restrictive" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42611" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42611"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:42611"></state>
+      </file_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure SSL Key and Certificate Files are configured" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42612" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42612"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure a path is not included in SSL Key File values" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:2303598" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:2303598"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:2303598"></state>
+      </sql57_test>
+      <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="all_exist" comment="Ensure Permissions On SSL Key and Certificate Files without Path Info in the Data Directory are '400'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:2303599" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:2303599"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:2303599"></state>
+      </file_test>
+      <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="all_exist" comment="Ensure Permissions On SSL Key and Certificate Files with Path Info are '400'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:2303600" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:2303600"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:2303600"></state>
+      </file_test>
+      <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="all_exist" comment="Ensure Permissions On 'plugin_dir' are '554' or More Restrictive" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42613" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42613"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:42613"></state>
+      </file_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure Example or Test Databases do not exist" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42614" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42614"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:42614"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'local_infile' is 'OFF'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42616" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42616"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:42616"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'have_symlink' is 'DISABLED'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42618" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42618"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:42618"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure 'daemon_memcached' is disabled" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42619" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42619"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'secure_file_priv' is not an empty string" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42620" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42620"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:42620"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'sql_mode' contains 'STRICT_ALL_TABLES'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42621" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42621"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:42621"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'log_error' is not empty" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42622" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42622"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:42622"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure not root (`/`), `/var`, or `/usr`" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:78074" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:78074"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:78074"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'log_warnings' is set to '2'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42623" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42623"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:42623"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'old_passwords' is set to '0'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42625" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42625"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:42625"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'secure_auth' is set to 'ON'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42626" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42626"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:42626"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'sql_mode' contains 'NO_AUTO_CREATE_USER'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42628" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42628"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:42628"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure All Users Have Passwords" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42629" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42629"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'validate_password_length' is greater than or equal to '14'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42630" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42630"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:42630"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'validate_password_mixed_case_count' is less than or equal to '1'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42631" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42631"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:42631"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'validate_password_number_count' is less than or equal to '1'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42632" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42632"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:42632"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'validate_password_special_char_count' is less than or equal to '1'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42633" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42633"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:42633"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'validate_password_policy' is set to 'STRONG'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42634" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42634"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:42634"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'validate_password_dictionary_file' is configured" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:2328824" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:2328824"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:2328824"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure 'host' is not equal to '%' for all users" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42637" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42637"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure no anonymous accounts exist" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42638" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42638"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'have_ssl' is set to 'YES'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42639" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42639"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:42639"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure 'ssl_type' is not blank for any user" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42640" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42640"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'ssl_verify_server_cert' Is Set To '1'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42642" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42642"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:42642"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'master_info_repository' is set to 'TABLE'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42641" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42641"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:42641"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure slow query log is set to ON" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:2453627" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:2453627"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:2453627"></state>
+      </sql57_test>
+      <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="none_exist" comment="Ensure 'slow_query_log' file does not exist" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:2453628" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:2453628"></object>
+      </file_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure general_log is set to 0" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:2459969" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:2459969"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:2459969"></state>
+      </sql57_test>
+      <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="none_exist" comment="Ensure 'general_log' file does not exist" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:2459970" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:2459970"></object>
+      </file_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure 'super_priv' equals 'N' for 'repl' user" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42643" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42643"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure 'repl' does not use '%' for 'host'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:tst:42644" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42644"></object>
+      </sql57_test>
+   </tests>
+   <objects>
+      <process58_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure 'mysqld' Is Run By 'mysql' User" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42601" version="1">
+         <command_line operation="pattern match">^.*mysqld.*$</command_line>
+         <pid datatype="int" operation="greater than">0</pid>
+      </process58_object>
+      <symlink_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure '.mysql_history' Is Symbolically Linked To '/dev/null' For All Users" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42602" version="1">
+         <filepath datatype="string" operation="equals" var_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:426021"></filepath>
+      </symlink_object>
+      <password_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure '.mysql_history' Is Symbolically Linked To '/dev/null' For All Users" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:426021" version="1">
+         <username datatype="string" operation="pattern match">^.+$</username>
+         <filter xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" action="exclude">oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:426021</filter>
+      </password_object>
+      <password_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" id="oval:org.cisecurity.benchmarks:obj:1000002" version="1">
+         <username datatype="string">mysql</username>
+      </password_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:org.cisecurity.benchmarks:obj:1000003" version="1">
+         <filepath datatype="string">/etc/group</filepath>
+         <pattern operation="pattern match">^mysql[^:]*:[^:]*:([^:]*):.*$</pattern>
+         <instance datatype="int">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Verify that 'MYSQL_PWD' Is Not Set" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42603" version="1">
+         <behaviors max_depth="-1" recurse_direction="down" recurse_file_system="defined"></behaviors>
+         <path>/proc</path>
+         <filename>environ</filename>
+         <pattern operation="pattern match">^(?i).*MYSQL_PWD.*$</pattern>
+         <instance datatype="int" operation="greater than or equal">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure Interactive Login is Disabled" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42604" version="1">
+         <path>/etc</path>
+         <filename>passwd</filename>
+         <pattern operation="pattern match">^(?i)mysql.*(\/bin\/false|\/sbin\/nologin)$</pattern>
+         <instance datatype="int" operation="greater than or equal">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Verify That 'MYSQL_PWD' Is Not Set In .bashrc" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42605" version="1">
+         <behaviors max_depth="-1" recurse_direction="down" recurse_file_system="defined"></behaviors>
+         <path>/home</path>
+         <filename>.bashrc</filename>
+         <pattern operation="pattern match">^(?i).*MYSQL_PWD.*$</pattern>
+         <instance datatype="int" operation="greater than or equal">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Verify That 'MYSQL_PWD' Is Not Set In .bash_profile" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:78208" version="1">
+         <behaviors max_depth="-1" recurse_direction="down" recurse_file_system="defined"></behaviors>
+         <path>/home</path>
+         <filename>.bash_profile</filename>
+         <pattern operation="pattern match">^(?i).*MYSQL_PWD.*$</pattern>
+         <instance datatype="int" operation="greater than or equal">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Verify That 'MYSQL_PWD' Is Not Set In .profile" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:78209" version="1">
+         <behaviors max_depth="-1" recurse_direction="down" recurse_file_system="defined"></behaviors>
+         <path>/home</path>
+         <filename>.profile</filename>
+         <pattern operation="pattern match">^(?i).*MYSQL_PWD.*$</pattern>
+         <instance datatype="int" operation="greater than or equal">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'log-raw' Is Set to 'OFF'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42624" version="1">
+         <path>/etc/mysql</path>
+         <filename>my.cnf</filename>
+         <pattern operation="pattern match">^(?i)\s*log-raw\s*=\s*OFF\s*$</pattern>
+         <instance datatype="int" operation="greater than or equal">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure Passwords Are Not Stored in the Global Configuration" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42627" version="1">
+         <path>/etc/mysql</path>
+         <filename>my.cnf</filename>
+         <pattern operation="pattern match">^(?i)\s*password.*$</pattern>
+         <instance datatype="int" operation="greater than or equal">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'my.cnf' has 'plugin-load' set to 'validate_password.so'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42635" version="1">
+         <path>/etc/mysql</path>
+         <filename>my.cnf</filename>
+         <pattern operation="pattern match">^(?:\s*plugin-load\s*=\s*)(\S+)\s*$</pattern>
+         <instance datatype="int" operation="greater than or equal">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'my.cnf' has 'validate-password' set to 'FORCE_PLUS_PERMANENT'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42636" version="1">
+         <path>/etc/mysql</path>
+         <filename>my.cnf</filename>
+         <pattern operation="pattern match">^(?:\s*validate-password\s*=\s*)(\S+)\s*$</pattern>
+         <instance datatype="int" operation="greater than or equal">1</instance>
+      </textfilecontent54_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure validate password plugin is loaded" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:2299730" version="1">
+         <engine>mysql</engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SHOW VARIABLES LIKE 'validate_password%';</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure dictionary file is configured" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:2299731" version="1">
+         <engine>mysql</engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT VARIABLE_NAME, VARIABLE_VALUE FROM information_schema.global_variables where VARIABLE_NAME in ('validate_password_dictionary_file');</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure length is configured to at least 14" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:2299732" version="1">
+         <engine>mysql</engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT VARIABLE_NAME, VARIABLE_VALUE FROM information_schema.global_variables where VARIABLE_NAME in ('validate_password_length');</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure mixed case count is less than or equal to 1" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:2299733" version="1">
+         <engine>mysql</engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT VARIABLE_NAME, VARIABLE_VALUE FROM information_schema.global_variables where VARIABLE_NAME in ('validate_password_mixed_case_count');</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure number count is less than or equal to 1" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:2299734" version="1">
+         <engine>mysql</engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT VARIABLE_NAME, VARIABLE_VALUE FROM information_schema.global_variables where VARIABLE_NAME in ('validate_password_number_count');</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure password policy is set to STRONG" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:2299735" version="1">
+         <engine>mysql</engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT VARIABLE_NAME, VARIABLE_VALUE FROM information_schema.global_variables where VARIABLE_NAME in ('validate_password_policy');</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure special character count is less than or equal to 1" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:2299736" version="1">
+         <engine>mysql</engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT VARIABLE_NAME, VARIABLE_VALUE FROM information_schema.global_variables where VARIABLE_NAME in ('validate_password_special_char_count');</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure block_encryption_mode is set to aes 256" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:2299737" version="1">
+         <engine>mysql</engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>select @@block_encryption_mode as value;</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure MySQL is bound to at least one IP" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:2299738" version="1">
+         <engine>mysql</engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT VARIABLE_NAME, VARIABLE_VALUE FROM information_schema.global_variables WHERE VARIABLE_NAME = 'bind_address';</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'ssl_cipher' is configured correctly" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:2299739" version="1">
+         <engine></engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT VARIABLE_NAME, VARIABLE_VALUE FROM information_schema.global_variables WHERE VARIABLE_NAME='ssl_cipher';</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure connection controls are active" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:2303004" version="1">
+         <engine>mysql</engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT PLUGIN_NAME, PLUGIN_STATUS FROM INFORMATION_SCHEMA.PLUGINS WHERE PLUGIN_NAME LIKE 'connection%';</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure connection_control_failed_connections_threshold is greater than or equal to 5" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:2303005" version="1">
+         <engine>mysql</engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT VARIABLE_NAME, VARIABLE_VALUE FROM information_schema.global_variables WHERE VARIABLE_NAME LIKE 'connection_control_failed_connections_threshold';</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure connection_control_min_connection_delay is greater than or equal to 60000" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:2303006" version="1">
+         <engine>mysql</engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT VARIABLE_NAME, VARIABLE_VALUE FROM information_schema.global_variables WHERE VARIABLE_NAME LIKE 'connection_control_min_connection_delay';</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure connection_control_max_connection_delay is greater than or equal to 1920000" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:2303007" version="1">
+         <engine>mysql</engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT VARIABLE_NAME, VARIABLE_VALUE FROM information_schema.global_variables WHERE VARIABLE_NAME LIKE 'connection_control_max_connection_delay';</sql>
+      </sql57_object>
+      <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure '750:mysql:mysql' Permissions On 'datadir'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:78032" version="1">
+         <path datatype="string" operation="equals" var_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:78032"></path>
+         <filename xsi:nil="true"></filename>
+      </file_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure '750:mysql:mysql' Permissions On 'datadir'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:780321" version="1">
+         <engine>mysql</engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT @@GLOBAL.datadir AS value;</sql>
+      </sql57_object>
+      <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure '660:mysql:mysql' permissions on 'log_bin_basename' files" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:78025" version="1">
+         <path datatype="string" operation="equals" var_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:78025"></path>
+         <filename datatype="string" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:780251"></filename>
+      </file_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure '660:mysql:mysql' permissions on 'log_bin_basename' files" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:780251" version="1">
+         <engine>mysql</engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT @@GLOBAL.log_bin_basename AS value;</sql>
+      </sql57_object>
+      <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure '660:mysql:mysql' Permissions On 'log_error' File" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:78021" version="1">
+         <filepath datatype="string" operation="equals" var_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:78021"></filepath>
+      </file_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure '660:mysql:mysql' Permissions On 'log_error' File" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:780211" version="1">
+         <engine>mysql</engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT @@GLOBAL.log_error AS value;</sql>
+      </sql57_object>
+      <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure Permissions On 'slow_query_log' File are '660' or More Restrictive" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:78017" version="1">
+         <filepath datatype="string" operation="equals" var_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:78017"></filepath>
+      </file_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure Permissions On 'slow_query_log' File are '660' or More Restrictive" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:780171" version="1">
+         <engine>mysql</engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT @@GLOBAL.slow_query_log_file AS variable_value;</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure slow query log is set to OFF" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:2303008" version="1">
+         <engine>mysql</engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>show variables like 'slow_query_log';</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'slow_query_log_file' does not exist" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:2303009" version="1">
+         <engine>mysql</engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT @@GLOBAL.slow_query_log_file AS value;</sql>
+      </sql57_object>
+      <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure permissions on 'relay_log_basename' files are '660' or More Restrictive" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42610" version="1">
+         <path datatype="string" operation="equals" var_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:42610"></path>
+         <filename datatype="string" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:426101"></filename>
+      </file_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure permissions on 'relay_log_basename' files are '660' or More Restrictive" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:426101" version="1">
+         <engine>mysql</engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT @@GLOBAL.relay_log_basename AS value;</sql>
+      </sql57_object>
+      <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure Permissions On 'general_log_file' File are '600' or More Restrictive" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42611" version="1">
+         <filepath datatype="string" operation="equals" var_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:42611"></filepath>
+      </file_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure Permissions On 'general_log_file' File are '600' or More Restrictive" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:426111" version="1">
+         <engine>mysql</engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT @@GLOBAL.general_log_file AS variable_value;</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure SSL Key and Certificate Files are configured" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42612" version="1">
+         <engine>mysql</engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT VARIABLE_VALUE FROM information_schema.global_variables WHERE VARIABLE_NAME RLIKE '^.*ssl_(ca|capath|cert|crl|crlpath|key)$' AND VARIABLE_VALUE &lt;&gt; '';</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure a path is not included in SSL Key File values" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:2303598" version="1">
+         <engine>mysql</engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT VARIABLE_VALUE FROM information_schema.global_variables WHERE VARIABLE_NAME RLIKE '^.*ssl_(ca|capath|cert|crl|crlpath|key)$' AND VARIABLE_VALUE &lt;&gt; '';</sql>
+      </sql57_object>
+      <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure Permissions On SSL Key and Certificate Files without Path Info in the Data Directory are '400'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:2303599" version="1">
+         <filepath datatype="string" operation="equals" var_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:2303599"></filepath>
+      </file_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure Permissions On SSL Key and Certificate Files without Path Info in the Data Directory are '400'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:23035991" version="1">
+         <engine>mysql</engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT VARIABLE_VALUE FROM information_schema.global_variables WHERE VARIABLE_NAME RLIKE '^.*ssl_(ca|capath|cert|crl|crlpath|key)$' AND VARIABLE_VALUE &lt;&gt; '';</sql>
+      </sql57_object>
+      <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure Permissions On SSL Key and Certificate Files with Path Info are '400'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:2303600" version="1">
+         <filepath datatype="string" operation="equals" var_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:2303600"></filepath>
+      </file_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure Permissions On SSL Key and Certificate Files with Path Info are '400'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:23036001" version="1">
+         <engine>mysql</engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT VARIABLE_VALUE FROM information_schema.global_variables WHERE VARIABLE_NAME RLIKE '^.*ssl_(ca|capath|cert|crl|crlpath|key)$' AND VARIABLE_VALUE &lt;&gt; '';</sql>
+      </sql57_object>
+      <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure Permissions On 'plugin_dir' are '554' or More Restrictive" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42613" version="1">
+         <path datatype="string" operation="equals" var_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:42613"></path>
+         <filename xsi:nil="true"></filename>
+      </file_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure Permissions On 'plugin_dir' are '554' or More Restrictive" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:426131" version="1">
+         <engine>mysql</engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>select @@GLOBAL.plugin_dir as value;</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure Example or Test Databases do not exist" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42614" version="1">
+         <engine>mysql</engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT * FROM information_schema.SCHEMATA where SCHEMA_NAME not in ('mysql','information_schema', 'sys', 'performance_schema');</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'local_infile' is 'OFF'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42616" version="1">
+         <engine>mysql</engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SHOW VARIABLES WHERE variable_name = 'local_infile';</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'have_symlink' is 'DISABLED'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42618" version="1">
+         <engine>mysql</engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SHOW VARIABLES WHERE variable_name = 'have_symlink';</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'daemon_memcached' is disabled" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42619" version="1">
+         <engine>mysql</engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SHOW DATABASES LIKE 'innodb_memcache';</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'secure_file_priv' is not an empty string" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42620" version="1">
+         <engine>mysql</engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SHOW VARIABLES WHERE variable_name = 'secure_file_priv';</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'sql_mode' contains 'STRICT_ALL_TABLES'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42621" version="1">
+         <engine>mysql</engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SHOW VARIABLES WHERE variable_name = 'sql_mode';</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'log_error' is not empty" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42622" version="1">
+         <engine>mysql</engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SHOW VARIABLES WHERE variable_name = 'log_error';</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure not root (`/`), `/var`, or `/usr`" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:78074" version="1">
+         <engine>mysql</engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT @@global.log_bin_basename AS value;</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'log_warnings' is set to '2'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42623" version="1">
+         <engine>mysql</engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SHOW VARIABLES WHERE variable_name = 'log_warnings';</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'old_passwords' is set to '0'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42625" version="1">
+         <engine>mysql</engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SHOW VARIABLES WHERE variable_name = 'old_passwords';</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'secure_auth' is set to 'ON'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42626" version="1">
+         <engine>mysql</engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SHOW VARIABLES WHERE variable_name = 'secure_auth';</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'sql_mode' contains 'NO_AUTO_CREATE_USER'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42628" version="1">
+         <engine>mysql</engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SHOW VARIABLES WHERE variable_name = 'sql_mode';</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure All Users Have Passwords" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42629" version="1">
+         <engine>mysql</engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT User,host FROM mysql.user WHERE (plugin IN('mysql_native_password', 'mysql_old_password','') AND (LENGTH(Password) = 0 OR Password IS NULL)) OR (plugin='sha256_password' AND LENGTH(authentication_string) = 0);</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'validate_password_length' is greater than or equal to '14'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42630" version="1">
+         <engine>mysql</engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SHOW VARIABLES WHERE variable_name = 'validate_password_length';</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'validate_password_mixed_case_count' is less than or equal to '1'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42631" version="1">
+         <engine>mysql</engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SHOW VARIABLES WHERE variable_name = 'validate_password_mixed_case_count';</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'validate_password_number_count' is less than or equal to '1'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42632" version="1">
+         <engine>mysql</engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SHOW VARIABLES WHERE variable_name = 'validate_password_number_count';</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'validate_password_special_char_count' is less than or equal to '1'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42633" version="1">
+         <engine>mysql</engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SHOW VARIABLES WHERE variable_name = 'validate_password_special_char_count';</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'validate_password_policy' is set to 'STRONG'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42634" version="1">
+         <engine>mysql</engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SHOW VARIABLES WHERE variable_name = 'validate_password_policy';</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'validate_password_dictionary_file' is configured" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:2328824" version="1">
+         <engine>mysql</engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SHOW VARIABLES LIKE 'validate_password_dictionary_file';</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'host' is not equal to '%' for all users" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42637" version="1">
+         <engine>mysql</engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT user, host FROM mysql.user WHERE host = '%';</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure no anonymous accounts exist" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42638" version="1">
+         <engine>mysql</engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT user,host FROM mysql.user WHERE user = '';</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'have_ssl' is set to 'YES'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42639" version="1">
+         <engine>mysql</engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SHOW VARIABLES WHERE variable_name = 'have_ssl';</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'ssl_type' is not blank for any user" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42640" version="1">
+         <engine>mysql</engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT user, host, ssl_type FROM mysql.user WHERE NOT HOST IN ('::1', '127.0.0.1', 'localhost') AND ssl_type != 'ANY' AND ssl_type != 'X509' AND ssl_type != 'SPECIFIED';</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'ssl_verify_server_cert' Is Set To '1'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42642" version="1">
+         <engine>mysql</engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>select ssl_verify_server_cert from mysql.slave_master_info;</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'master_info_repository' is set to 'TABLE'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42641" version="1">
+         <engine>mysql</engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SHOW VARIABLES WHERE variable_name = 'master_info_repository';</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure slow query log is set to ON" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:2453627" version="1">
+         <engine>mysql</engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>show variables like 'slow_query_log';</sql>
+      </sql57_object>
+      <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure 'slow_query_log' file does not exist" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:2453628" version="1">
+         <filepath datatype="string" operation="equals" var_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:2453628"></filepath>
+      </file_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'slow_query_log' file does not exist" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:24536281" version="1">
+         <engine>mysql</engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT @@GLOBAL.slow_query_log_file AS value;</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure general_log is set to 0" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:2459969" version="1">
+         <engine>mysql</engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>select @@GLOBAL.general_log AS value;</sql>
+      </sql57_object>
+      <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure 'general_log' file does not exist" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:2459970" version="1">
+         <filepath datatype="string" operation="equals" var_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:2459970"></filepath>
+      </file_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'general_log' file does not exist" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:24599701" version="1">
+         <engine>mysql</engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT @@GLOBAL.general_log_file AS value;</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'super_priv' equals 'N' for 'repl' user" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42643" version="1">
+         <engine></engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql var_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:42643"></sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'repl' does not use '%' for 'host'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:42644" version="1">
+         <engine></engine>
+         <version>5.6</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql var_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:42644"></sql>
+      </sql57_object>
+   </objects>
+   <states>
+      <process58_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure 'mysqld' Is Run By 'mysql' User" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:42601" version="1">
+         <user_id datatype="int" operation="equals" var_ref="oval:org.cisecurity.benchmarks:var:1000002"></user_id>
+      </process58_state>
+      <symlink_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure '.mysql_history' Is Symbolically Linked To '/dev/null' For All Users" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:42602" version="1">
+         <canonical_path datatype="string" operation="equals" var_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:42602"></canonical_path>
+      </symlink_state>
+      <password_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure '.mysql_history' Is Symbolically Linked To '/dev/null' For All Users" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:426021" version="1">
+         <login_shell datatype="string" operation="pattern match">^.+\/(nologin|false|sync)$</login_shell>
+      </password_state>
+      <textfilecontent54_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'my.cnf' has 'plugin-load' set to 'validate_password.so'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:42635" version="1">
+         <subexpression operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:42635"></subexpression>
+      </textfilecontent54_state>
+      <textfilecontent54_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'my.cnf' has 'validate-password' set to 'FORCE_PLUS_PERMANENT'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:42636" version="1">
+         <subexpression operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:42636"></subexpression>
+      </textfilecontent54_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure length is configured to at least 14" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:2299732" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="int" name="variable_value" operation="greater than or equal" var_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:2299732"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure mixed case count is less than or equal to 1" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:2299733" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="int" name="variable_value" operation="less than or equal" var_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:2299733"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure number count is less than or equal to 1" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:2299734" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="int" name="variable_value" operation="less than or equal" var_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:2299734"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure password policy is set to STRONG" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:2299735" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="variable_value" operation="case insensitive equals" var_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:2299735"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure special character count is less than or equal to 1" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:2299736" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="int" name="variable_value" operation="less than or equal" var_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:2299736"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure block_encryption_mode is set to aes 256" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:2299737" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="value" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:2299737"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure MySQL is bound to at least one IP" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:2299738" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="variable_value" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:2299738"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'ssl_cipher' is configured correctly" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:2299739" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="variable_value" operation="case insensitive equals" var_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:2299739"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure connection controls are active" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:2303004" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="plugin_status" operation="case insensitive equals" var_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:2303004"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure connection_control_failed_connections_threshold is greater than or equal to 5" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:2303005" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="int" name="variable_value" operation="greater than or equal" var_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:2303005"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure connection_control_min_connection_delay is greater than or equal to 60000" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:2303006" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="int" name="variable_value" operation="greater than or equal" var_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:2303006"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure connection_control_max_connection_delay is greater than or equal to 1920000" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:2303007" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="int" name="variable_value" operation="greater than or equal" var_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:2303007"></field>
+         </result>
+      </sql57_state>
+      <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure '750:mysql:mysql' Permissions On 'datadir'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:78032" version="1">
+         <group_id datatype="int" var_ref="oval:org.cisecurity.benchmarks:var:1000003"></group_id>
+         <user_id datatype="int" var_ref="oval:org.cisecurity.benchmarks:var:1000002"></user_id>
+         <gwrite datatype="boolean">false</gwrite>
+         <oread datatype="boolean">false</oread>
+         <owrite datatype="boolean">false</owrite>
+         <oexec datatype="boolean">false</oexec>
+      </file_state>
+      <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure '660:mysql:mysql' permissions on 'log_bin_basename' files" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:78025" version="1">
+         <group_id datatype="int" var_ref="oval:org.cisecurity.benchmarks:var:1000003"></group_id>
+         <user_id datatype="int" var_ref="oval:org.cisecurity.benchmarks:var:1000002"></user_id>
+         <uexec datatype="boolean">false</uexec>
+         <gexec datatype="boolean">false</gexec>
+         <oread datatype="boolean">false</oread>
+         <owrite datatype="boolean">false</owrite>
+         <oexec datatype="boolean">false</oexec>
+      </file_state>
+      <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure '660:mysql:mysql' Permissions On 'log_error' File" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:78021" version="1">
+         <group_id datatype="int" var_ref="oval:org.cisecurity.benchmarks:var:1000003"></group_id>
+         <user_id datatype="int" var_ref="oval:org.cisecurity.benchmarks:var:1000002"></user_id>
+         <uexec datatype="boolean">false</uexec>
+         <gexec datatype="boolean">false</gexec>
+         <oread datatype="boolean">false</oread>
+         <owrite datatype="boolean">false</owrite>
+         <oexec datatype="boolean">false</oexec>
+      </file_state>
+      <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure Permissions On 'slow_query_log' File are '660' or More Restrictive" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:78017" version="1">
+         <group_id datatype="int" var_ref="oval:org.cisecurity.benchmarks:var:1000003"></group_id>
+         <user_id datatype="int" var_ref="oval:org.cisecurity.benchmarks:var:1000002"></user_id>
+         <uexec datatype="boolean">false</uexec>
+         <gexec datatype="boolean">false</gexec>
+         <oread datatype="boolean">false</oread>
+         <owrite datatype="boolean">false</owrite>
+         <oexec datatype="boolean">false</oexec>
+      </file_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure slow query log is set to OFF" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:2303008" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="variable_value" operation="case insensitive equals" var_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:2303008"></field>
+         </result>
+      </sql57_state>
+      <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure permissions on 'relay_log_basename' files are '660' or More Restrictive" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:42610" version="1">
+         <group_id datatype="int" var_ref="oval:org.cisecurity.benchmarks:var:1000003"></group_id>
+         <user_id datatype="int" var_ref="oval:org.cisecurity.benchmarks:var:1000002"></user_id>
+         <uexec datatype="boolean">false</uexec>
+         <gexec datatype="boolean">false</gexec>
+         <oread datatype="boolean">false</oread>
+         <owrite datatype="boolean">false</owrite>
+         <oexec datatype="boolean">false</oexec>
+      </file_state>
+      <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure Permissions On 'general_log_file' File are '600' or More Restrictive" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:42611" version="1">
+         <group_id datatype="int" var_ref="oval:org.cisecurity.benchmarks:var:1000003"></group_id>
+         <user_id datatype="int" var_ref="oval:org.cisecurity.benchmarks:var:1000002"></user_id>
+         <uexec datatype="boolean">false</uexec>
+         <gread datatype="boolean">false</gread>
+         <gwrite datatype="boolean">false</gwrite>
+         <gexec datatype="boolean">false</gexec>
+         <oread datatype="boolean">false</oread>
+         <owrite datatype="boolean">false</owrite>
+         <oexec datatype="boolean">false</oexec>
+      </file_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure a path is not included in SSL Key File values" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:2303598" version="1">
+         <result datatype="record" entity_check="none satisfy">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="variable_value" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:2303598"></field>
+         </result>
+      </sql57_state>
+      <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure Permissions On SSL Key and Certificate Files without Path Info in the Data Directory are '400'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:2303599" version="1">
+         <group_id datatype="int" var_ref="oval:org.cisecurity.benchmarks:var:1000003"></group_id>
+         <user_id datatype="int" var_ref="oval:org.cisecurity.benchmarks:var:1000002"></user_id>
+         <uread datatype="boolean">true</uread>
+         <uwrite datatype="boolean">false</uwrite>
+         <uexec datatype="boolean">false</uexec>
+         <gread datatype="boolean">false</gread>
+         <gwrite datatype="boolean">false</gwrite>
+         <gexec datatype="boolean">false</gexec>
+         <oread datatype="boolean">false</oread>
+         <owrite datatype="boolean">false</owrite>
+         <oexec datatype="boolean">false</oexec>
+      </file_state>
+      <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure Permissions On SSL Key and Certificate Files with Path Info are '400'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:2303600" version="1">
+         <group_id datatype="int" var_ref="oval:org.cisecurity.benchmarks:var:1000003"></group_id>
+         <user_id datatype="int" var_ref="oval:org.cisecurity.benchmarks:var:1000002"></user_id>
+         <uread datatype="boolean">true</uread>
+         <uwrite datatype="boolean">false</uwrite>
+         <uexec datatype="boolean">false</uexec>
+         <gread datatype="boolean">false</gread>
+         <gwrite datatype="boolean">false</gwrite>
+         <gexec datatype="boolean">false</gexec>
+         <oread datatype="boolean">false</oread>
+         <owrite datatype="boolean">false</owrite>
+         <oexec datatype="boolean">false</oexec>
+      </file_state>
+      <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure Permissions On 'plugin_dir' are '554' or More Restrictive" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:42613" version="1">
+         <group_id datatype="int" var_ref="oval:org.cisecurity.benchmarks:var:1000003"></group_id>
+         <user_id datatype="int" var_ref="oval:org.cisecurity.benchmarks:var:1000002"></user_id>
+         <uwrite datatype="boolean">false</uwrite>
+         <gwrite datatype="boolean">false</gwrite>
+         <owrite datatype="boolean">false</owrite>
+         <oexec datatype="boolean">false</oexec>
+      </file_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure Example or Test Databases do not exist" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:42614" version="1">
+         <result datatype="record" entity_check="none satisfy">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="schema_name" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:42614"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'local_infile' is 'OFF'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:42616" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="variable_value" operation="case insensitive equals" var_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:42616"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'have_symlink' is 'DISABLED'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:42618" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="variable_value" operation="case insensitive equals" var_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:42618"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'secure_file_priv' is not an empty string" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:42620" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="variable_value" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:42620"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'sql_mode' contains 'STRICT_ALL_TABLES'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:42621" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="variable_value" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:42621"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'log_error' is not empty" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:42622" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="variable_value" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:42622"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure not root (`/`), `/var`, or `/usr`" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:78074" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="value" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:78074"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'log_warnings' is set to '2'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:42623" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="int" name="variable_value" operation="equals" var_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:42623"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'old_passwords' is set to '0'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:42625" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="int" name="variable_value" operation="not equal" var_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:42625"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'secure_auth' is set to 'ON'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:42626" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="variable_value" operation="case insensitive equals" var_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:42626"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'sql_mode' contains 'NO_AUTO_CREATE_USER'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:42628" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="variable_value" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:42628"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'validate_password_length' is greater than or equal to '14'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:42630" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="int" name="variable_value" operation="greater than or equal" var_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:42630"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'validate_password_mixed_case_count' is less than or equal to '1'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:42631" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="int" name="variable_value" operation="less than or equal" var_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:42631"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'validate_password_number_count' is less than or equal to '1'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:42632" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="int" name="variable_value" operation="less than or equal" var_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:42632"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'validate_password_special_char_count' is less than or equal to '1'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:42633" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="int" name="variable_value" operation="less than or equal" var_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:42633"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'validate_password_policy' is set to 'STRONG'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:42634" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="variable_value" operation="case insensitive equals" var_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:42634"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'validate_password_dictionary_file' is configured" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:2328824" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="variable_value" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:2328824"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'have_ssl' is set to 'YES'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:42639" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="variable_value" operation="case insensitive equals" var_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:42639"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'ssl_verify_server_cert' Is Set To '1'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:42642" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="int" name="ssl_verify_server_cert" operation="equals" var_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:42642"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'master_info_repository' is set to 'TABLE'" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:42641" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="variable_value" operation="case insensitive equals" var_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:42641"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure slow query log is set to ON" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:2453627" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="variable_value" operation="case insensitive equals" var_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:2453627"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure general_log is set to 0" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:ste:2459969" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="int" name="value" operation="equals" var_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:2459969"></field>
+         </result>
+      </sql57_state>
+   </states>
+   <variables>
+      <external_variable comment="This value is used in Rule: Disable MySQL Command History" datatype="string" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:42602" version="1"></external_variable>
+      <local_variable comment="Ensure '.mysql_history' Is Symbolically Linked To '/dev/null' For All Users" datatype="string" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:426021" version="1">
+         <concat>
+            <end character="/">
+               <object_component item_field="home_dir" object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:426021"></object_component>
+            </end>
+            <literal_component>.mysql_history</literal_component>
+         </concat>
+      </local_variable>
+      <external_variable comment="SQL replication username" datatype="string" id="oval:org.cisecurity.benchmarks:var:3000000" version="1"></external_variable>
+      <local_variable comment="Listener names from listener.ora" datatype="int" id="oval:org.cisecurity.benchmarks:var:1000002" version="1">
+         <object_component item_field="user_id" object_ref="oval:org.cisecurity.benchmarks:obj:1000002"></object_component>
+      </local_variable>
+      <local_variable comment="Listener names from listener.ora" datatype="int" id="oval:org.cisecurity.benchmarks:var:1000003" version="1">
+         <object_component item_field="subexpression" object_ref="oval:org.cisecurity.benchmarks:obj:1000003"></object_component>
+      </local_variable>
+      <external_variable comment="SQL connection string" datatype="string" id="oval:org.cisecurity.benchmarks:var:2000000" version="1"></external_variable>
+      <external_variable comment="Ensure 'my.cnf' has 'plugin-load' set to 'validate_password.so'" datatype="string" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:42635" version="1"></external_variable>
+      <external_variable comment="Ensure 'my.cnf' has 'validate-password' set to 'FORCE_PLUS_PERMANENT'" datatype="string" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:42636" version="1"></external_variable>
+      <external_variable comment="Ensure length is configured to at least 14" datatype="int" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:2299732" version="1"></external_variable>
+      <external_variable comment="Ensure mixed case count is less than or equal to 1" datatype="int" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:2299733" version="1"></external_variable>
+      <external_variable comment="Ensure number count is less than or equal to 1" datatype="int" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:2299734" version="1"></external_variable>
+      <external_variable comment="Ensure password policy is set to STRONG" datatype="string" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:2299735" version="1"></external_variable>
+      <external_variable comment="Ensure special character count is less than or equal to 1" datatype="int" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:2299736" version="1"></external_variable>
+      <external_variable comment="Ensure block_encryption_mode is set to aes 256" datatype="string" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:2299737" version="1"></external_variable>
+      <external_variable comment="Ensure MySQL is bound to at least one IP" datatype="string" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:2299738" version="1"></external_variable>
+      <external_variable comment="Ensure 'ssl_cipher' is configured correctly" datatype="string" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:2299739" version="1"></external_variable>
+      <external_variable comment="Ensure connection controls are active" datatype="string" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:2303004" version="1"></external_variable>
+      <external_variable comment="Ensure connection_control_failed_connections_threshold is greater than or equal to 5" datatype="int" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:2303005" version="1"></external_variable>
+      <external_variable comment="Ensure connection_control_min_connection_delay is greater than or equal to 60000" datatype="int" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:2303006" version="1"></external_variable>
+      <external_variable comment="Ensure connection_control_max_connection_delay is greater than or equal to 1920000" datatype="int" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:2303007" version="1"></external_variable>
+      <local_variable comment="Ensure '750:mysql:mysql' Permissions On 'datadir'" datatype="string" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:78032" version="1">
+         <object_component item_field="result" object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:780321" record_field="value"></object_component>
+      </local_variable>
+      <local_variable comment="This value is used in Rule: Ensure 'log_bin_basename' Files Have Appropriate Permissions" datatype="string" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:78025" version="1">
+         <regex_capture pattern="^([\/a-zA-Z0-9_\.\-]+\/)[a-zA-Z0-9_\.\-]+$">
+            <object_component item_field="result" object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:780251" record_field="value"></object_component>
+         </regex_capture>
+      </local_variable>
+      <local_variable comment="This value is used in Rule: Ensure 'log_bin_basename' Files Have Appropriate Permissions" datatype="string" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:780251" version="1">
+         <concat>
+            <escape_regex>
+               <regex_capture pattern="^[\/a-zA-Z0-9_\.\-]+\/([a-zA-Z0-9_\.\-]+)$">
+                  <object_component item_field="result" object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:780251" record_field="value"></object_component>
+               </regex_capture>
+            </escape_regex>
+            <literal_component datatype="string">\..*</literal_component>
+         </concat>
+      </local_variable>
+      <local_variable comment="Ensure '660:mysql:mysql' Permissions On 'log_error' File" datatype="string" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:78021" version="1">
+         <object_component item_field="result" object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:780211" record_field="value"></object_component>
+      </local_variable>
+      <local_variable comment="Ensure Permissions On 'slow_query_log' File are '660' or More Restrictive" datatype="string" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:78017" version="1">
+         <object_component item_field="result" object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:780171" record_field="variable_value"></object_component>
+      </local_variable>
+      <external_variable comment="Ensure slow query log is set to OFF" datatype="string" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:2303008" version="1"></external_variable>
+      <local_variable comment="This value is used in Rule: Ensure 'relay_log_basename' Files Have Appropriate Permissions" datatype="string" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:42610" version="1">
+         <regex_capture pattern="^([\/a-zA-Z0-9_\.\-]+\/)[a-zA-Z0-9_\.\-]+$">
+            <object_component item_field="result" object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:426101" record_field="value"></object_component>
+         </regex_capture>
+      </local_variable>
+      <local_variable comment="This value is used in Rule: Ensure 'relay_log_basename' Files Have Appropriate Permissions" datatype="string" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:426101" version="1">
+         <concat>
+            <escape_regex>
+               <regex_capture pattern="^[\/a-zA-Z0-9_\.\-]+\/([a-zA-Z0-9_\.\-]+)$">
+                  <object_component item_field="result" object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:426101" record_field="value"></object_component>
+               </regex_capture>
+            </escape_regex>
+            <literal_component datatype="string">\..*</literal_component>
+         </concat>
+      </local_variable>
+      <local_variable comment="Ensure Permissions On 'general_log_file' File are '600' or More Restrictive" datatype="string" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:42611" version="1">
+         <object_component item_field="result" object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:426111" record_field="variable_value"></object_component>
+      </local_variable>
+      <external_variable comment="Ensure a path is not included in SSL Key File values" datatype="string" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:2303598" version="1"></external_variable>
+      <local_variable comment="Ensure Permissions On SSL Key and Certificate Files without Path Info in the Data Directory are '400'" datatype="string" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:2303599" version="1">
+         <object_component item_field="result" object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:23035991" record_field="variable_value"></object_component>
+      </local_variable>
+      <local_variable comment="Ensure Permissions On SSL Key and Certificate Files with Path Info are '400'" datatype="string" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:2303600" version="1">
+         <object_component item_field="result" object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:23036001" record_field="variable_value"></object_component>
+      </local_variable>
+      <local_variable comment="Ensure Permissions On 'plugin_dir' are '554' or More Restrictive" datatype="string" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:42613" version="1">
+         <object_component item_field="result" object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:426131" record_field="value"></object_component>
+      </local_variable>
+      <external_variable comment="Ensure Example or Test Databases do not exist" datatype="string" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:42614" version="1"></external_variable>
+      <external_variable comment="Ensure 'local_infile' is 'OFF'" datatype="string" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:42616" version="1"></external_variable>
+      <external_variable comment="Ensure 'have_symlink' is 'DISABLED'" datatype="string" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:42618" version="1"></external_variable>
+      <external_variable comment="Ensure 'secure_file_priv' is not an empty string" datatype="string" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:42620" version="1"></external_variable>
+      <external_variable comment="Ensure 'sql_mode' contains 'STRICT_ALL_TABLES'" datatype="string" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:42621" version="1"></external_variable>
+      <external_variable comment="Ensure 'log_error' is not empty" datatype="string" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:42622" version="1"></external_variable>
+      <external_variable comment="Ensure not root (`/`), `/var`, or `/usr`" datatype="string" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:78074" version="1"></external_variable>
+      <external_variable comment="Ensure 'log_warnings' is set to '2'" datatype="int" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:42623" version="1"></external_variable>
+      <external_variable comment="Ensure 'old_passwords' is set to '0'" datatype="int" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:42625" version="1"></external_variable>
+      <external_variable comment="Ensure 'secure_auth' is set to 'ON'" datatype="string" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:42626" version="1"></external_variable>
+      <external_variable comment="Ensure 'sql_mode' contains 'NO_AUTO_CREATE_USER'" datatype="string" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:42628" version="1"></external_variable>
+      <external_variable comment="Ensure 'validate_password_length' is greater than or equal to '14'" datatype="int" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:42630" version="1"></external_variable>
+      <external_variable comment="Ensure 'validate_password_mixed_case_count' is less than or equal to '1'" datatype="int" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:42631" version="1"></external_variable>
+      <external_variable comment="Ensure 'validate_password_number_count' is less than or equal to '1'" datatype="int" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:42632" version="1"></external_variable>
+      <external_variable comment="Ensure 'validate_password_special_char_count' is less than or equal to '1'" datatype="int" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:42633" version="1"></external_variable>
+      <external_variable comment="Ensure 'validate_password_policy' is set to 'STRONG'" datatype="string" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:42634" version="1"></external_variable>
+      <external_variable comment="Ensure 'validate_password_dictionary_file' is configured" datatype="string" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:2328824" version="1"></external_variable>
+      <external_variable comment="Ensure 'have_ssl' is set to 'YES'" datatype="string" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:42639" version="1"></external_variable>
+      <external_variable comment="Ensure 'ssl_verify_server_cert' Is Set To '1'" datatype="int" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:42642" version="1"></external_variable>
+      <external_variable comment="Ensure 'master_info_repository' is set to 'TABLE'" datatype="string" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:42641" version="1"></external_variable>
+      <external_variable comment="Ensure slow query log is set to ON" datatype="string" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:2453627" version="1"></external_variable>
+      <local_variable comment="Ensure 'slow_query_log' file does not exist" datatype="string" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:2453628" version="1">
+         <object_component item_field="result" object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:24536281" record_field="value"></object_component>
+      </local_variable>
+      <external_variable comment="Ensure general_log is set to 0" datatype="int" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:2459969" version="1"></external_variable>
+      <local_variable comment="Ensure 'general_log' file does not exist" datatype="string" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:2459970" version="1">
+         <object_component item_field="result" object_ref="oval:org.cisecurity.benchmarks.oracle_mysql_5:obj:24599701" record_field="value"></object_component>
+      </local_variable>
+      <local_variable comment="Ensure 'super_priv' equals 'N' for 'repl' user" datatype="string" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:42643" version="1">
+         <concat>
+            <literal_component datatype="string">select user, host, super_priv from mysql.user where user='</literal_component>
+            <variable_component var_ref="oval:org.cisecurity.benchmarks:var:3000000"></variable_component>
+            <literal_component datatype="string">' and Super_priv = 'Y';</literal_component>
+         </concat>
+      </local_variable>
+      <local_variable comment="Ensure 'repl' does not use '%' for 'host'" datatype="string" id="oval:org.cisecurity.benchmarks.oracle_mysql_5:var:42644" version="1">
+         <concat>
+            <literal_component datatype="string">select host from mysql.user where user='</literal_component>
+            <variable_component var_ref="oval:org.cisecurity.benchmarks:var:3000000"></variable_component>
+            <literal_component datatype="string">' and host = '%';</literal_component>
+         </concat>
+      </local_variable>
+   </variables>
+<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+<ds:SignedInfo>
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"></ds:CanonicalizationMethod>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"></ds:SignatureMethod>
+<ds:Reference URI="">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"></ds:Transform>
+<ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"></ds:Transform>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"></ds:DigestMethod>
+<ds:DigestValue>rboo+qZOeMOXjWIJizgFGCguH+M=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue>
+ccYpcJC6esswvI3jyZMjV8tLaxVF42pHPyhdEg3Ta+JQucZ2DbmqvThUvfzUDI4ezAd+kwo3D/oU
+btZQmMhba2sWz91A28fIgQ2mMF/xvcIqDAHiaX6vPKQrgvx2IiR9zss3SYwL1dnoNtI7OODJRBcG
+FwILRdKVQ5bLLYq2XJcyBstiTWZTDVLHIbWJRXacpi4wkiK0XTxZW+P3DEtAlx6RiHFgyC51iDRm
+ErxIPL89PpABHeKNOqlBvKLpvhZSiQ3bmFCuGN/8a9R+B317/3Yc1DlmQ2cCyJexbDwXtp09F+ju
+4nqkm64dW1GXTeVtZgIxU9W/efMtF8NezVIFnw==
+</ds:SignatureValue>
+<ds:KeyInfo>
+<ds:X509Data>
+<ds:X509Certificate>
+MIIFUjCCBDqgAwIBAgIIPx+qZKptEY4wDQYJKoZIhvcNAQELBQAwgbQxCzAJBgNVBAYTAlVTMRAw
+DgYDVQQIEwdBcml6b25hMRMwEQYDVQQHEwpTY290dHNkYWxlMRowGAYDVQQKExFHb0RhZGR5LmNv
+bSwgSW5jLjEtMCsGA1UECxMkaHR0cDovL2NlcnRzLmdvZGFkZHkuY29tL3JlcG9zaXRvcnkvMTMw
+MQYDVQQDEypHbyBEYWRkeSBTZWN1cmUgQ2VydGlmaWNhdGUgQXV0aG9yaXR5IC0gRzIwHhcNMjAw
+OTA4MTMzOTM5WhcNMjMxMDI4MDAzMjA1WjCBkzELMAkGA1UEBhMCVVMxETAPBgNVBAgTCE5ldyBZ
+b3JrMRcwFQYDVQQHEw5FYXN0IEdyZWVuYnVzaDErMCkGA1UEChMiQ2VudGVyIGZvciBJbnRlcm5l
+dCBTZWN1cml0eSwgSW5jLjErMCkGA1UEAxMiQ2VudGVyIGZvciBJbnRlcm5ldCBTZWN1cml0eSwg
+SW5jLjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBANDBp4+sl9kB5JRmnQH0wcbLLz/t
+n2HoD6TRl3xJj12V61njBNgaiGzvoSl07sFLnESukb0CU44MzYDoUMdx3HJUcEAeMY/9eITqGUnk
+N4WsP145eFqH7FoszOY/4NYlgYMYt8ZP2kRHyim9LpQTLT/1mBaUkY2f2e5uUCootH3iT8W3/sK2
+flLzWfLgXTvkhJm4Uvw1RErBFs15+krW0KWtnZ6NmiDhmV0CnFGNnd1meGZPs2sBXEVGLJVSKzoT
+G9Ht/oWyRLRcJuXpHoXTYpkqM2MsixmSaJy5b6/D35r0NXHru3p1gkX2a0VgJQxxWqLi3bVPzpl3
+PlJu3C8M/FUCAwEAAaOCAYUwggGBMAwGA1UdEwEB/wQCMAAwEwYDVR0lBAwwCgYIKwYBBQUHAwMw
+DgYDVR0PAQH/BAQDAgeAMDUGA1UdHwQuMCwwKqAooCaGJGh0dHA6Ly9jcmwuZ29kYWRkeS5jb20v
+Z2RpZzJzNS02LmNybDBdBgNVHSAEVjBUMEgGC2CGSAGG/W0BBxcCMDkwNwYIKwYBBQUHAgEWK2h0
+dHA6Ly9jZXJ0aWZpY2F0ZXMuZ29kYWRkeS5jb20vcmVwb3NpdG9yeS8wCAYGZ4EMAQQBMHYGCCsG
+AQUFBwEBBGowaDAkBggrBgEFBQcwAYYYaHR0cDovL29jc3AuZ29kYWRkeS5jb20vMEAGCCsGAQUF
+BzAChjRodHRwOi8vY2VydGlmaWNhdGVzLmdvZGFkZHkuY29tL3JlcG9zaXRvcnkvZ2RpZzIuY3J0
+MB8GA1UdIwQYMBaAFEDCvSeOzDSDMKIz1/tss/C0LIDOMB0GA1UdDgQWBBT7fOf4ISDprbE+qUFe
++friFTKgHjANBgkqhkiG9w0BAQsFAAOCAQEAT0XLw2vmuq6e58bkLDXdqKeGQjREDChLw2Mae9LI
+JB93QgdA2OCLA1FwU2s7lawEDcma9wPiugxVGoaQNOfRw2/+cz0xmR3uaKQq6I24dWbHF20N2tSz
+1RAAK1lRZKewA1fj+qqKWjzETA0LpqZlaFF+CKBpQcyfYyQRZxpHkB1vvKMf4kMIRKruvl4ixLjN
+uAZrbQUWlXuq/MUkVP3FgdxWBPfmMGyngHs4hNMaSQGb1TEhBjj+PGoSunAyaOgO/P94XJPQQX3O
+2oNDsPou6gKcNtbZrH+iYTJ8rcqQTontMwSP/HrYj8lgG3neG53vk05p0jCn2M5W0ukJ4LPEnA==
+</ds:X509Certificate>
+</ds:X509Data>
+<ds:KeyValue>
+<ds:RSAKeyValue>
+<ds:Modulus>0MGnj6yX2QHklGadAfTBxssvP+2fYegPpNGXfEmPXZXrWeME2BqIbO+hKXTuwUucRK6RvQJTjgzN
+gOhQx3HcclRwQB4xj/14hOoZSeQ3haw/Xjl4WofsWizM5j/g1iWBgxi3xk/aREfKKb0ulBMtP/WY
+FpSRjZ/Z7m5QKii0feJPxbf+wrZ+UvNZ8uBdO+SEmbhS/DVESsEWzXn6StbQpa2dno2aIOGZXQKc
+UY2d3WZ4Zk+zawFcRUYslVIrOhMb0e3+hbJEtFwm5ekehdNimSozYyyLGZJonLlvr8PfmvQ1ceu7
+enWCRfZrRWAlDHFaouLdtU/OmXc+Um7cLwz8VQ==</ds:Modulus>
+<ds:Exponent>AQAB</ds:Exponent>
+</ds:RSAKeyValue>
+</ds:KeyValue>
+</ds:KeyInfo>
+</ds:Signature></oval_definitions>

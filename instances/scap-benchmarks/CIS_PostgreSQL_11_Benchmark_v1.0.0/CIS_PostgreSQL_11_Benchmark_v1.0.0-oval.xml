@@ -1,0 +1,1314 @@
+<oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5 https://oval.cisecurity.org/schemas/validator-oval-definitions-5.11.2.xsd">
+   <generator>
+      <oval:product_name>Center for Internet Security - Optimus</oval:product_name>
+      <oval:schema_version>5.11.2</oval:schema_version>
+      <oval:timestamp>2023-11-28T17:19:16.044Z</oval:timestamp>
+   </generator>
+   <definitions>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:def:263338" version="1">
+         <metadata>
+            <title>Ensure Installation of Binary Packages</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.2_Ensure_Installation_of_Binary_Packages" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.2_Ensure_Installation_of_Binary_Packages"></reference>
+            <description>Ensure Installation of Binary Packages</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263338"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:def:263339" version="1">
+         <metadata>
+            <title>Ensure Installation of Community Packages</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.3_Ensure_Installation_of_Community_Packages" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.3_Ensure_Installation_of_Community_Packages"></reference>
+            <description>Ensure Installation of Community Packages</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263339"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:def:508573" version="1">
+         <metadata>
+            <title>Ensure the backup and restore tool, 'pgBackRest', is installed and configured</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_8.3_Ensure_the_backup_and_restore_tool_pgBackRest_is_installed_and_configured" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_8.3_Ensure_the_backup_and_restore_tool_pgBackRest_is_installed_and_configured"></reference>
+            <description>Ensure the backup and restore tool, 'pgBackRest', is installed and configured</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:508573"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:def:495833" version="1">
+         <metadata>
+            <title>Ensure systemd Service Files Are Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4_Ensure_systemd_Service_Files_Are_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4_Ensure_systemd_Service_Files_Are_Enabled"></reference>
+            <description>Ensure systemd Service Files Are Enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:495833"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:def:263341" version="1">
+         <metadata>
+            <title>Ensure Data Cluster Initialized Successfully</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.5_Ensure_Data_Cluster_Initialized_Successfully" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.5_Ensure_Data_Cluster_Initialized_Successfully"></reference>
+            <description>Ensure Data Cluster Initialized Successfully</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263341"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:def:263345" version="1">
+         <metadata>
+            <title>Ensure the log destinations are set correctly</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.1.2_Ensure_the_log_destinations_are_set_correctly" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.1.2_Ensure_the_log_destinations_are_set_correctly"></reference>
+            <description>Ensure the log destinations are set correctly</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263345"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:def:263346" version="1">
+         <metadata>
+            <title>Ensure the logging collector is enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.1.3_Ensure_the_logging_collector_is_enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.1.3_Ensure_the_logging_collector_is_enabled"></reference>
+            <description>Ensure the logging collector is enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263346"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:def:263347" version="1">
+         <metadata>
+            <title>Ensure the log file destination directory is set correctly</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.1.4_Ensure_the_log_file_destination_directory_is_set_correctly" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.1.4_Ensure_the_log_file_destination_directory_is_set_correctly"></reference>
+            <description>Ensure the log file destination directory is set correctly</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263347"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:def:263348" version="1">
+         <metadata>
+            <title>Ensure the filename pattern for log files is set correctly</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.1.5_Ensure_the_filename_pattern_for_log_files_is_set_correctly" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.1.5_Ensure_the_filename_pattern_for_log_files_is_set_correctly"></reference>
+            <description>Ensure the filename pattern for log files is set correctly</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263348"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:def:263349" version="1">
+         <metadata>
+            <title>Ensure the log file permissions are set correctly</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.1.6_Ensure_the_log_file_permissions_are_set_correctly" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.1.6_Ensure_the_log_file_permissions_are_set_correctly"></reference>
+            <description>Ensure the log file permissions are set correctly</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263349"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:def:263350" version="1">
+         <metadata>
+            <title>Ensure 'log_truncate_on_rotation' is enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.1.7_Ensure_log_truncate_on_rotation_is_enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.1.7_Ensure_log_truncate_on_rotation_is_enabled"></reference>
+            <description>Ensure 'log_truncate_on_rotation' is enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263350"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:def:263351" version="1">
+         <metadata>
+            <title>Ensure the maximum log file lifetime is set correctly</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.1.8_Ensure_the_maximum_log_file_lifetime_is_set_correctly" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.1.8_Ensure_the_maximum_log_file_lifetime_is_set_correctly"></reference>
+            <description>Ensure the maximum log file lifetime is set correctly</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263351"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:def:263352" version="1">
+         <metadata>
+            <title>Ensure the maximum log file size is set correctly</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.1.9_Ensure_the_maximum_log_file_size_is_set_correctly" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.1.9_Ensure_the_maximum_log_file_size_is_set_correctly"></reference>
+            <description>Ensure the maximum log file size is set correctly</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263352"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:def:263353" version="1">
+         <metadata>
+            <title>Ensure the correct syslog facility is selected</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.1.10_Ensure_the_correct_syslog_facility_is_selected" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.1.10_Ensure_the_correct_syslog_facility_is_selected"></reference>
+            <description>Ensure the correct syslog facility is selected</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263353"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:def:263354" version="1">
+         <metadata>
+            <title>Ensure the program name for PostgreSQL syslog messages is correct</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.1.11_Ensure_the_program_name_for_PostgreSQL_syslog_messages_is_correct" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.1.11_Ensure_the_program_name_for_PostgreSQL_syslog_messages_is_correct"></reference>
+            <description>Ensure the program name for PostgreSQL syslog messages is correct</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263354"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:def:263355" version="1">
+         <metadata>
+            <title>Ensure the correct messages are written to the server log</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.1.12_Ensure_the_correct_messages_are_written_to_the_server_log" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.1.12_Ensure_the_correct_messages_are_written_to_the_server_log"></reference>
+            <description>Ensure the correct messages are written to the server log</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263355"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:def:263356" version="1">
+         <metadata>
+            <title>Ensure the correct SQL statements generating errors are recorded</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.1.13_Ensure_the_correct_SQL_statements_generating_errors_are_recorded" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.1.13_Ensure_the_correct_SQL_statements_generating_errors_are_recorded"></reference>
+            <description>Ensure the correct SQL statements generating errors are recorded</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263356"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:def:263357" version="1">
+         <metadata>
+            <title>Ensure 'debug_print_parse' is disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.1.14_Ensure_debug_print_parse_is_disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.1.14_Ensure_debug_print_parse_is_disabled"></reference>
+            <description>Ensure 'debug_print_parse' is disabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263357"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:def:263358" version="1">
+         <metadata>
+            <title>Ensure 'debug_print_rewritten' is disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.1.15_Ensure_debug_print_rewritten_is_disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.1.15_Ensure_debug_print_rewritten_is_disabled"></reference>
+            <description>Ensure 'debug_print_rewritten' is disabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263358"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:def:263359" version="1">
+         <metadata>
+            <title>Ensure 'debug_print_plan' is disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.1.16_Ensure_debug_print_plan_is_disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.1.16_Ensure_debug_print_plan_is_disabled"></reference>
+            <description>Ensure 'debug_print_plan' is disabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263359"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:def:263360" version="1">
+         <metadata>
+            <title>Ensure 'debug_pretty_print' is enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.1.17_Ensure_debug_pretty_print_is_enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.1.17_Ensure_debug_pretty_print_is_enabled"></reference>
+            <description>Ensure 'debug_pretty_print' is enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263360"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:def:263361" version="1">
+         <metadata>
+            <title>Ensure 'log_connections' is enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.1.18_Ensure_log_connections_is_enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.1.18_Ensure_log_connections_is_enabled"></reference>
+            <description>Ensure 'log_connections' is enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263361"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:def:263362" version="1">
+         <metadata>
+            <title>Ensure 'log_disconnections' is enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.1.19_Ensure_log_disconnections_is_enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.1.19_Ensure_log_disconnections_is_enabled"></reference>
+            <description>Ensure 'log_disconnections' is enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263362"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:def:263363" version="1">
+         <metadata>
+            <title>Ensure 'log_error_verbosity' is set correctly</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.1.20_Ensure_log_error_verbosity_is_set_correctly" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.1.20_Ensure_log_error_verbosity_is_set_correctly"></reference>
+            <description>Ensure 'log_error_verbosity' is set correctly</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263363"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:def:263364" version="1">
+         <metadata>
+            <title>Ensure 'log_hostname' is set correctly</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.1.21_Ensure_log_hostname_is_set_correctly" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.1.21_Ensure_log_hostname_is_set_correctly"></reference>
+            <description>Ensure 'log_hostname' is set correctly</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263364"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:def:263365" version="1">
+         <metadata>
+            <title>Ensure 'log_line_prefix' is set correctly</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.1.22_Ensure_log_line_prefix_is_set_correctly" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.1.22_Ensure_log_line_prefix_is_set_correctly"></reference>
+            <description>Ensure 'log_line_prefix' is set correctly</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263365"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:def:263366" version="1">
+         <metadata>
+            <title>Ensure 'log_statement' is set correctly</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.1.23_Ensure_log_statement_is_set_correctly" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.1.23_Ensure_log_statement_is_set_correctly"></reference>
+            <description>Ensure 'log_statement' is set correctly</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263366"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:def:263367" version="1">
+         <metadata>
+            <title>Ensure 'log_timezone' is set correctly</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.1.24_Ensure_log_timezone_is_set_correctly" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.1.24_Ensure_log_timezone_is_set_correctly"></reference>
+            <description>Ensure 'log_timezone' is set correctly</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263367"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:def:263343" version="1">
+         <metadata>
+            <title>Ensure the PostgreSQL Audit Extension (pgAudit) is enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.2_Ensure_the_PostgreSQL_Audit_Extension_pgAudit_is_enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.2_Ensure_the_PostgreSQL_Audit_Extension_pgAudit_is_enabled"></reference>
+            <description>Ensure the PostgreSQL Audit Extension (pgAudit) is enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263343"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:def:263344" version="1">
+         <metadata>
+            <title>Ensure the PostgreSQL Audit Extension (pgAudit) is enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.2_Ensure_the_PostgreSQL_Audit_Extension_pgAudit_is_enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.2_Ensure_the_PostgreSQL_Audit_Extension_pgAudit_is_enabled"></reference>
+            <description>Ensure the PostgreSQL Audit Extension (pgAudit) is enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263344"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:def:508568" version="1">
+         <metadata>
+            <title>Ensure excessive function privileges are revoked</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.3_Ensure_excessive_function_privileges_are_revoked" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.3_Ensure_excessive_function_privileges_are_revoked"></reference>
+            <description>Ensure excessive function privileges are revoked</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:508568"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:def:508569" version="1">
+         <metadata>
+            <title>Use pg_permission extension to audit object permissions</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.5_Use_pg_permission_extension_to_audit_object_permissions" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.5_Use_pg_permission_extension_to_audit_object_permissions"></reference>
+            <description>Use pg_permission extension to audit object permissions</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:508569"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:def:508570" version="1">
+         <metadata>
+            <title>Ensure the set_user extension is installed</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.7_Ensure_the_set_user_extension_is_installed" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.7_Ensure_the_set_user_extension_is_installed"></reference>
+            <description>Ensure the set_user extension is installed</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:508570"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:def:508571" version="1">
+         <metadata>
+            <title>Make use of default roles</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.8_Make_use_of_default_roles" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.8_Make_use_of_default_roles"></reference>
+            <description>Make use of default roles</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:508571"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:def:263368" version="1">
+         <metadata>
+            <title>Ensure 'backend' runtime parameters are configured correctly</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.2_Ensure_backend_runtime_parameters_are_configured_correctly" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.2_Ensure_backend_runtime_parameters_are_configured_correctly"></reference>
+            <description>Ensure 'backend' runtime parameters are configured correctly</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263368"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:def:263369" version="1">
+         <metadata>
+            <title>Ensure 'backend' runtime parameters are configured correctly</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.2_Ensure_backend_runtime_parameters_are_configured_correctly" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.2_Ensure_backend_runtime_parameters_are_configured_correctly"></reference>
+            <description>Ensure 'backend' runtime parameters are configured correctly</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263369"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:def:263370" version="1">
+         <metadata>
+            <title>Ensure 'backend' runtime parameters are configured correctly</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.2_Ensure_backend_runtime_parameters_are_configured_correctly" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.2_Ensure_backend_runtime_parameters_are_configured_correctly"></reference>
+            <description>Ensure 'backend' runtime parameters are configured correctly</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263370"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:def:263371" version="1">
+         <metadata>
+            <title>Ensure 'backend' runtime parameters are configured correctly</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.2_Ensure_backend_runtime_parameters_are_configured_correctly" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.2_Ensure_backend_runtime_parameters_are_configured_correctly"></reference>
+            <description>Ensure 'backend' runtime parameters are configured correctly</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263371"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:def:263372" version="1">
+         <metadata>
+            <title>Ensure 'Postmaster' Runtime Parameters are Configured</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.3_Ensure_Postmaster_Runtime_Parameters_are_Configured" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.3_Ensure_Postmaster_Runtime_Parameters_are_Configured"></reference>
+            <description>Ensure 'Postmaster' Runtime Parameters are Configured</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263372"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:def:263373" version="1">
+         <metadata>
+            <title>Ensure 'SIGHUP' Runtime Parameters are Configured</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.4_Ensure_SIGHUP_Runtime_Parameters_are_Configured" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.4_Ensure_SIGHUP_Runtime_Parameters_are_Configured"></reference>
+            <description>Ensure 'SIGHUP' Runtime Parameters are Configured</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263373"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:def:263374" version="1">
+         <metadata>
+            <title>Ensure 'Superuser' Runtime Parameters are Configured</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.5_Ensure_Superuser_Runtime_Parameters_are_Configured" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.5_Ensure_Superuser_Runtime_Parameters_are_Configured"></reference>
+            <description>Ensure 'Superuser' Runtime Parameters are Configured</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263374"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:def:263375" version="1">
+         <metadata>
+            <title>Ensure 'User' Runtime Parameters are Configured</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.6_Ensure_User_Runtime_Parameters_are_Configured" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.6_Ensure_User_Runtime_Parameters_are_Configured"></reference>
+            <description>Ensure 'User' Runtime Parameters are Configured</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263375"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:def:263377" version="1">
+         <metadata>
+            <title>Ensure SSL is enabled and configured correctly</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.8_Ensure_SSL_is_enabled_and_configured_correctly" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.8_Ensure_SSL_is_enabled_and_configured_correctly"></reference>
+            <description>Ensure SSL is enabled and configured correctly</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263377"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:def:263376" version="1">
+         <metadata>
+            <title>Ensure the pgcrypto extension is installed and configured correctly</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.9_Ensure_the_pgcrypto_extension_is_installed_and_configured_correctly" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.9_Ensure_the_pgcrypto_extension_is_installed_and_configured_correctly"></reference>
+            <description>Ensure the pgcrypto extension is installed and configured correctly</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263376"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:def:508572" version="1">
+         <metadata>
+            <title>Ensure a replication-only user is created and used for streaming replication</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_7.1_Ensure_a_replication-only_user_is_created_and_used_for_streaming_replication" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_7.1_Ensure_a_replication-only_user_is_created_and_used_for_streaming_replication"></reference>
+            <description>Ensure a replication-only user is created and used for streaming replication</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:508572"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:def:263381" version="1">
+         <metadata>
+            <title>Ensure streaming replication parameters are configured correctly</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_7.4_Ensure_streaming_replication_parameters_are_configured_correctly" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_7.4_Ensure_streaming_replication_parameters_are_configured_correctly"></reference>
+            <description>Ensure streaming replication parameters are configured correctly</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263381"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:def:263382" version="1">
+         <metadata>
+            <title>Ensure PostgreSQL configuration files are outside the data cluster</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_8.1_Ensure_PostgreSQL_configuration_files_are_outside_the_data_cluster" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_8.1_Ensure_PostgreSQL_configuration_files_are_outside_the_data_cluster"></reference>
+            <description>Ensure PostgreSQL configuration files are outside the data cluster</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263382"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:def:263383" version="1">
+         <metadata>
+            <title>Ensure PostgreSQL subdirectory locations are outside the data cluster</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_8.2_Ensure_PostgreSQL_subdirectory_locations_are_outside_the_data_cluster" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_8.2_Ensure_PostgreSQL_subdirectory_locations_are_outside_the_data_cluster"></reference>
+            <description>Ensure PostgreSQL subdirectory locations are outside the data cluster</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263383"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:def:508574" version="1">
+         <metadata>
+            <title>Ensure miscellaneous configuration settings are correct</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_8.4_Ensure_miscellaneous_configuration_settings_are_correct" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_8.4_Ensure_miscellaneous_configuration_settings_are_correct"></reference>
+            <description>Ensure miscellaneous configuration settings are correct</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:508574"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:def:263379" version="1">
+         <metadata>
+            <title>Ensure WAL archiving is configured and functional</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_7.3_Ensure_WAL_archiving_is_configured_and_functional" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_7.3_Ensure_WAL_archiving_is_configured_and_functional"></reference>
+            <description>Ensure WAL archiving is configured and functional</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263379"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:def:263380" version="1">
+         <metadata>
+            <title>Ensure WAL archiving is configured and functional</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_7.3_Ensure_WAL_archiving_is_configured_and_functional" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_7.3_Ensure_WAL_archiving_is_configured_and_functional"></reference>
+            <description>Ensure WAL archiving is configured and functional</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263380"></criterion>
+         </criteria>
+      </definition>
+   </definitions>
+   <tests>
+      <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" check="all" check_existence="at_least_one_exists" comment="PostgreSQL Binaries are Installed" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263338" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263338"></object>
+      </rpminfo_test>
+      <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" check="all" check_existence="at_least_one_exists" comment="PostgreSQL Community Packages are Installed" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263339" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263339"></object>
+      </rpminfo_test>
+      <rpminfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" check="all" check_existence="at_least_one_exists" comment="Ensure package name matching '^(?i)pgbackrest.*$' is installed" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:508573" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:508573"></object>
+      </rpminfo_test>
+      <systemdunitdependency_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" check="all" check_existence="any_exist" comment="Ensure 'default.target' has a dependency of postgres" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:495833" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:495833"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:495833"></state>
+      </systemdunitdependency_test>
+      <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="all_exist" comment="Ensure '700:postgres:postgres' Permissions On 'postgres'" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263341" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263341"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263341"></state>
+      </file_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure the log destinations are set correctly" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263345" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263345"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263345"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure the logging collector is enabled" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263346" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263346"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263346"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure the log file destination directory is set correctly" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263347" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263347"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263347"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure the filename pattern for log files is set correctly" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263348" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263348"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263348"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure the log file permissions are set to '0600'" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263349" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263349"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263349"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'log_truncate_on_rotation' is set to 'on'" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263350" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263350"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263350"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure the maximum log file lifetime is set correctly" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263351" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263351"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263351"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure the maximum log file size is set correctly" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263352" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263352"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263352"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure the correct syslog facility is selected" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263353" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263353"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263353"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure the program name for PostgreSQL syslog messages is correct" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263354" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263354"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263354"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure the correct messages are written to the server log" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263355" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263355"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263355"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure the correct SQL statements generating errors are recorded" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263356" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263356"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263356"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'debug_print_parse' is disabled" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263357" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263357"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263357"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'debug_print_rewritten' is disabled" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263358" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263358"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263358"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'debug_print_plan' is disabled" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263359" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263359"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263359"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'debug_pretty_print' is enabled" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263360" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263360"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263360"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'log_connections' is enabled" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263361" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263361"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263361"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="only_one_exists" comment="Ensure 'log_disconnections' is enabled" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263362" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263362"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263362"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'log_error_verbosity' is set correctly" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263363" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263363"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263363"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'log_hostname' is set correctly" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263364" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263364"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263364"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'log_line_prefix' is set correctly" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263365" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263365"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263365"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'log_statement' is set correctly" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263366" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263366"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263366"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'log_timezone' is set correctly" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263367" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263367"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263367"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure the PostgreSQL Audit Extension (pgAudit) is enabled" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263343" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263343"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263343"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Check if audit.log exists" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263344" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263344"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="none satisfy" check_existence="any_exist" comment="Ensure excessive function privileges are revoked" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:508568" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:508568"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:508568"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure the `pg_permissions` extension is available for use." id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:508569" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:508569"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure the extension 'set_user' is available for use." id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:508570" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:508570"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="any_exist" comment="Review the list of all database roles that have `superuser` access." id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:508571" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:508571"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Check ignore_system_indexes" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263368" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263368"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263368"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Check log_connections" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263369" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263369"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263369"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Check log_disconnections" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263370" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263370"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263370"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Check post_auth_delay" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263371" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263371"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263371"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'Postmaster' Runtime Parameters are Configured" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263372" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263372"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'SIGHUP' Runtime Parameters are Configured" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263373" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263373"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'Superuser' Runtime Parameters are Configured" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263374" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263374"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="'User' Runtime Parameters" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263375" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263375"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure SSL is enabled and configured correctly" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263377" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263377"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263377"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure the pgcrypto extension is installed and configured correctly" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263376" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263376"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Review the list of users with the replication permission." id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:508572" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:508572"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="List Postgres roles" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263381" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263381"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure PostgreSQL configuration files are outside the data cluster" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263382" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263382"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure PostgreSQL subdirectory locations are outside the data cluster" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263383" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263383"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Review miscellaneous configuration settings." id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:508574" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:508574"></object>
+      </sql57_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure WAL archiving is configured and functional" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263379" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263379"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263379"></state>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure SSH as a transport medium" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:tst:263380" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263380"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263380"></state>
+      </textfilecontent54_test>
+   </tests>
+   <objects>
+      <rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="PostgreSQL Binaries are Installed" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263338" version="1">
+         <name operation="pattern match">^(?i)postgres.*$</name>
+      </rpminfo_object>
+      <rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="PostgreSQL Community Packages are Installed" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263339" version="1">
+         <name operation="pattern match">^(?i)postgres.*$</name>
+      </rpminfo_object>
+      <rpminfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure package name matching '^(?i)pgbackrest.*$' is installed" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:508573" version="1">
+         <name operation="pattern match">^(?i)pgbackrest.*$</name>
+      </rpminfo_object>
+      <systemdunitdependency_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure 'default.target' has a dependency of postgres" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:495833" version="1">
+         <unit operation="equals">default.target</unit>
+      </systemdunitdependency_object>
+      <password_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" id="oval:org.cisecurity.benchmarks:obj:1000002" version="1">
+         <username datatype="string">postgres</username>
+      </password_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:org.cisecurity.benchmarks:obj:1000003" version="1">
+         <filepath datatype="string">/etc/group</filepath>
+         <pattern operation="pattern match">^postgres[^:]*:[^:]*:([^:]*):</pattern>
+         <instance datatype="int">1</instance>
+      </textfilecontent54_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:org.cisecurity.benchmarks:obj:1000004" version="1">
+         <engine>postgre</engine>
+         <version>11</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>show config_file;</sql>
+      </sql57_object>
+      <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure '700:postgres:postgres' Permissions On 'postgres'" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263341" version="1">
+         <path datatype="string" operation="equals" var_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263341"></path>
+         <filename xsi:nil="true"></filename>
+      </file_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure '700:postgres:postgres' Permissions On 'postgres'" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:2633411" version="1">
+         <engine>postgre</engine>
+         <version>11</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>select regexp_matches(setting, '\/.*\/') from pg_settings where name = 'data_directory';</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure the log destinations are set correctly" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263345" version="1">
+         <engine>postgre</engine>
+         <version>11</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>show log_destination;</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure the logging collector is enabled" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263346" version="1">
+         <engine>postgre</engine>
+         <version>11</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>show logging_collector;</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure the log file destination directory is set correctly" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263347" version="1">
+         <engine>postgre</engine>
+         <version>11</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>show log_directory</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure the filename pattern for log files is set correctly" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263348" version="1">
+         <engine>postgre</engine>
+         <version>11</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>show log_filename;</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure the log file permissions are set to '0600'" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263349" version="1">
+         <engine>postgre</engine>
+         <version>11</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>show log_file_mode;</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'log_truncate_on_rotation' is set to 'on'" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263350" version="1">
+         <engine>postgre</engine>
+         <version>11</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>show log_truncate_on_rotation;</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure the maximum log file lifetime is set correctly" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263351" version="1">
+         <engine>postgre</engine>
+         <version>11</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>show log_rotation_age;</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure the maximum log file size is set correctly" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263352" version="1">
+         <engine>postgre</engine>
+         <version>11</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>show log_rotation_size;</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure the correct syslog facility is selected" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263353" version="1">
+         <engine>postgre</engine>
+         <version>11</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>show syslog_facility;</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure the program name for PostgreSQL syslog messages is correct" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263354" version="1">
+         <engine>postgre</engine>
+         <version>11</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>show syslog_ident;</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure the correct messages are written to the server log" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263355" version="1">
+         <engine>postgre</engine>
+         <version>11</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>show log_min_messages;</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure the correct SQL statements generating errors are recorded" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263356" version="1">
+         <engine>postgre</engine>
+         <version>11</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>show log_min_error_statement;</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'debug_print_parse' is disabled" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263357" version="1">
+         <engine>postgre</engine>
+         <version>11</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>show debug_print_parse;</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'debug_print_rewritten' is disabled" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263358" version="1">
+         <engine>postgre</engine>
+         <version>11</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>show debug_print_rewritten;</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'debug_print_plan' is disabled" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263359" version="1">
+         <engine>postgre</engine>
+         <version>11</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>show debug_print_plan ;</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'debug_pretty_print' is enabled" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263360" version="1">
+         <engine>postgre</engine>
+         <version>11</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>show debug_pretty_print ;</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'log_connections' is enabled" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263361" version="1">
+         <engine>postgre</engine>
+         <version>11</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>show log_connections ;</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'log_disconnections' is enabled" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263362" version="1">
+         <engine>postgre</engine>
+         <version>11</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>show log_disconnections ;</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'log_error_verbosity' is set correctly" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263363" version="1">
+         <engine>postgre</engine>
+         <version>11</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>show log_error_verbosity ;</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'log_hostname' is set correctly" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263364" version="1">
+         <engine>postgre</engine>
+         <version>11</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>show log_hostname;</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'log_line_prefix' is set correctly" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263365" version="1">
+         <engine>postgre</engine>
+         <version>11</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>show log_line_prefix;</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'log_statement' is set correctly" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263366" version="1">
+         <engine>postgre</engine>
+         <version>11</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>show log_statement;</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'log_timezone' is set correctly" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263367" version="1">
+         <engine>postgre</engine>
+         <version>11</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>show log_timezone;</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure the PostgreSQL Audit Extension (pgAudit) is enabled" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263343" version="1">
+         <engine>postgre</engine>
+         <version>11</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>show shared_preload_libraries;</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Check if audit.log exists" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263344" version="1">
+         <engine>postgre</engine>
+         <version>11</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>show pgaudit.log;</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure excessive function privileges are revoked" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:508568" version="1">
+         <engine>postgre</engine>
+         <version>11</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT nspname, proname, proargtypes, prosecdef, rolname, proconfig FROM pg_proc p JOIN pg_namespace n ON p.pronamespace = n.oid JOIN pg_authid a ON a.oid = p.proowner WHERE prosecdef OR NOT proconfig IS NULL;</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure the `pg_permissions` extension is available for use." id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:508569" version="1">
+         <engine>postgre</engine>
+         <version>11</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>select * from pg_available_extensions where name = 'pg_permission';</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure the extension 'set_user' is available for use." id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:508570" version="1">
+         <engine>postgre</engine>
+         <version>11</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>select * from pg_available_extensions where name = 'set_user';</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Review the list of all database roles that have `superuser` access." id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:508571" version="1">
+         <engine>postgre</engine>
+         <version>11</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>select rolname from pg_roles where rolsuper is true;</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Check ignore_system_indexes" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263368" version="1">
+         <engine>postgre</engine>
+         <version>11</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>select setting from pg_settings where name = 'ignore_system_indexes' AND context IN ('backend','superuser-backend') order by 1;</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Check log_connections" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263369" version="1">
+         <engine>postgre</engine>
+         <version>11</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>select setting from pg_settings where name = 'log_connections' AND context IN ('backend','superuser-backend') order by 1;</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Check log_disconnections" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263370" version="1">
+         <engine>postgre</engine>
+         <version>11</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>select setting from pg_settings where name = 'log_disconnections' AND context IN ('backend','superuser-backend') order by 1;</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Check post_auth_delay" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263371" version="1">
+         <engine>postgre</engine>
+         <version>11</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>select setting from pg_settings where name = 'post_auth_delay' AND context IN ('backend','superuser-backend') order by 1;</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'Postmaster' Runtime Parameters are Configured" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263372" version="1">
+         <engine>postgre</engine>
+         <version>11</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>select name, setting from pg_settings where context = 'postmaster' order by 1;</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'SIGHUP' Runtime Parameters are Configured" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263373" version="1">
+         <engine>postgre</engine>
+         <version>11</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>select name, setting from pg_settings where context = 'sighup' order by 1;</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'Superuser' Runtime Parameters are Configured" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263374" version="1">
+         <engine>postgre</engine>
+         <version>11</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>select name, setting from pg_settings where context = 'superuser' order by 1;</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="'User' Runtime Parameters" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263375" version="1">
+         <engine>postgre</engine>
+         <version>11</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>select name, setting from pg_settings where context = 'user' order by 1;</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure SSL is enabled and configured correctly" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263377" version="1">
+         <engine>postgre</engine>
+         <version>11</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>show ssl;</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure the pgcrypto extension is installed and configured correctly" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263376" version="1">
+         <engine>postgre</engine>
+         <version>11</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT * FROM pg_available_extensions where name='pgcrypto';</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Review the list of users with the replication permission." id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:508572" version="1">
+         <engine>postgre</engine>
+         <version>11</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>select rolname from pg_roles where rolreplication is true;</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="List Postgres roles" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263381" version="1">
+         <engine>postgre</engine>
+         <version>11</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>select rolname from pg_roles where rolreplication is true;</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure PostgreSQL configuration files are outside the data cluster" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263382" version="1">
+         <engine>postgre</engine>
+         <version>11</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT name, setting FROM pg_settings WHERE name IN ('hba_file','ident_file','ssl_cert_file','ssl_key_file','ssl_ca_file','ssl_crl_file','krb_server_keyfile');</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure PostgreSQL subdirectory locations are outside the data cluster" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263383" version="1">
+         <engine>postgre</engine>
+         <version>11</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT name, setting FROM pg_settings WHERE name IN ('data_directory','log_directory' ,'default_tablespace' ,'temp_tablespaces');</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Review miscellaneous configuration settings." id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:508574" version="1">
+         <engine>postgre</engine>
+         <version>11</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>select name, setting from pg_settings where name in ('external_pid_file', 'unix_socket_directories','shared_preload_libraries','dynamic_library_path','local_preload_libraries','session_preload_libraries');</sql>
+      </sql57_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure WAL archiving is configured and functional" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263379" version="1">
+         <behaviors ignore_case="true" multiline="true"></behaviors>
+         <path var_ref="oval:org.cisecurity.benchmarks:var:1000004"></path>
+         <filename var_ref="oval:org.cisecurity.benchmarks:var:1000005"></filename>
+         <pattern operation="pattern match">(?&lt;=^archive_mode\s?=\s?)[^\s].+$</pattern>
+         <instance datatype="int" operation="greater than or equal">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure SSH as a transport medium" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:263380" version="1">
+         <behaviors ignore_case="true" multiline="true"></behaviors>
+         <path var_ref="oval:org.cisecurity.benchmarks:var:1000004"></path>
+         <filename var_ref="oval:org.cisecurity.benchmarks:var:1000005"></filename>
+         <pattern operation="pattern match">(?&lt;=(?i)^archive_command\s?=\s?)[^\s].+$</pattern>
+         <instance datatype="int" operation="greater than or equal">1</instance>
+      </textfilecontent54_object>
+   </objects>
+   <states>
+      <systemdunitdependency_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure 'default.target' has a dependency of postgres" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:495833" version="1">
+         <dependency entity_check="at least one" operation="pattern match">^postgres.+$</dependency>
+      </systemdunitdependency_state>
+      <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure '700:postgres:postgres' Permissions On 'postgres'" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263341" version="1">
+         <group_id datatype="int" var_ref="oval:org.cisecurity.benchmarks:var:1000003"></group_id>
+         <user_id datatype="int" var_ref="oval:org.cisecurity.benchmarks:var:1000002"></user_id>
+         <uread datatype="boolean">true</uread>
+         <uwrite datatype="boolean">true</uwrite>
+         <uexec datatype="boolean">true</uexec>
+         <gread datatype="boolean">false</gread>
+         <gwrite datatype="boolean">false</gwrite>
+         <gexec datatype="boolean">false</gexec>
+         <oread datatype="boolean">false</oread>
+         <owrite datatype="boolean">false</owrite>
+         <oexec datatype="boolean">false</oexec>
+      </file_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure the log destinations are set correctly" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263345" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="log_destination" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263345"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure the logging collector is enabled" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263346" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="logging_collector" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263346"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure the log file destination directory is set correctly" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263347" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="log_directory" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263347"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure the filename pattern for log files is set correctly" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263348" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="log_filename" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263348"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure the log file permissions are set to '0600'" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263349" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="log_file_mode" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263349"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'log_truncate_on_rotation' is set to 'on'" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263350" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="log_truncate_on_rotation" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263350"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure the maximum log file lifetime is set correctly" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263351" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="log_rotation_age" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263351"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure the maximum log file size is set correctly" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263352" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="log_rotation_size" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263352"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure the correct syslog facility is selected" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263353" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="syslog_facility" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263353"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure the program name for PostgreSQL syslog messages is correct" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263354" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="syslog_ident" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263354"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure the correct messages are written to the server log" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263355" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="log_min_messages" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263355"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure the correct SQL statements generating errors are recorded" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263356" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="log_min_error_statement" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263356"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'debug_print_parse' is disabled" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263357" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="debug_print_parse" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263357"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'debug_print_rewritten' is disabled" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263358" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="debug_print_rewritten" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263358"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'debug_print_plan' is disabled" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263359" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="debug_print_plan" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263359"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'debug_pretty_print' is enabled" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263360" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="debug_pretty_print" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263360"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'log_connections' is enabled" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263361" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="log_connections" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263361"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'log_disconnections' is enabled" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263362" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="log_disconnections" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263362"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'log_error_verbosity' is set correctly" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263363" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="log_error_verbosity" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263363"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'log_hostname' is set correctly" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263364" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="log_hostname" operation="equals" var_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263364"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'log_line_prefix' is set correctly" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263365" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="log_line_prefix" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263365"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'log_statement' is set correctly" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263366" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="log_statement" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263366"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'log_timezone' is set correctly" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263367" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="log_timezone" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263367"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure the PostgreSQL Audit Extension (pgAudit) is enabled" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263343" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="shared_preload_libraries" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263343"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure excessive function privileges are revoked" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:508568" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="prosecdef" operation="equals" var_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:508568"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Check ignore_system_indexes" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263368" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="setting" operation="equals" var_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263368"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Check log_connections" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263369" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="setting" operation="equals" var_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263369"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Check log_disconnections" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263370" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="setting" operation="equals" var_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263370"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Check post_auth_delay" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263371" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="int" name="setting" operation="equals" var_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263371"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure SSL is enabled and configured correctly" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263377" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="ssl" operation="equals" var_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263377"></field>
+         </result>
+      </sql57_state>
+      <textfilecontent54_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure WAL archiving is configured and functional" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263379" version="1">
+         <subexpression operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263379"></subexpression>
+      </textfilecontent54_state>
+      <textfilecontent54_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure SSH as a transport medium" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:ste:263380" version="1">
+         <subexpression operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263380"></subexpression>
+      </textfilecontent54_state>
+   </states>
+   <variables>
+      <local_variable comment="Postgres user id" datatype="int" id="oval:org.cisecurity.benchmarks:var:1000002" version="1">
+         <object_component item_field="user_id" object_ref="oval:org.cisecurity.benchmarks:obj:1000002"></object_component>
+      </local_variable>
+      <local_variable comment="Postgres group id" datatype="int" id="oval:org.cisecurity.benchmarks:var:1000003" version="1">
+         <object_component item_field="subexpression" object_ref="oval:org.cisecurity.benchmarks:obj:1000003"></object_component>
+      </local_variable>
+      <local_variable comment="Capture the directory path for the PostgreSQL config file." datatype="string" id="oval:org.cisecurity.benchmarks:var:1000004" version="1">
+         <regex_capture pattern="^([/a-zA-Z0-9_\.\-]+/)[a-zA-Z0-9_\.\-]+$">
+            <object_component item_field="result" object_ref="oval:org.cisecurity.benchmarks:obj:1000004" record_field="config_file"></object_component>
+         </regex_capture>
+      </local_variable>
+      <local_variable comment="Capture the directory path for the PostgreSQL config file, typically postgresql.conf" datatype="string" id="oval:org.cisecurity.benchmarks:var:1000005" version="1">
+         <regex_capture pattern="^[/a-zA-Z0-9_\.\-]+/([a-zA-Z0-9_\.\-]+)$">
+            <object_component item_field="result" object_ref="oval:org.cisecurity.benchmarks:obj:1000004" record_field="config_file"></object_component>
+         </regex_capture>
+      </local_variable>
+      <external_variable comment="SQL connection string" datatype="string" id="oval:org.cisecurity.benchmarks:var:2000000" version="1"></external_variable>
+      <local_variable comment="This value is used in Rule: Ensure Data Cluster Initialized Successfully" datatype="string" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263341" version="1">
+         <regex_capture pattern="^\{([^\{\}]+)\}.*$">
+            <object_component item_field="result" object_ref="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:obj:2633411" record_field="regexp_matches"></object_component>
+         </regex_capture>
+      </local_variable>
+      <external_variable comment="Ensure the log destinations are set correctly" datatype="string" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263345" version="1"></external_variable>
+      <external_variable comment="Ensure the logging collector is enabled" datatype="string" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263346" version="1"></external_variable>
+      <external_variable comment="Ensure the log file destination directory is set correctly" datatype="string" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263347" version="1"></external_variable>
+      <external_variable comment="Ensure the filename pattern for log files is set correctly" datatype="string" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263348" version="1"></external_variable>
+      <external_variable comment="Ensure the log file permissions are set to '0600'" datatype="string" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263349" version="1"></external_variable>
+      <external_variable comment="Ensure 'log_truncate_on_rotation' is set to 'on'" datatype="string" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263350" version="1"></external_variable>
+      <external_variable comment="Ensure the maximum log file lifetime is set correctly" datatype="string" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263351" version="1"></external_variable>
+      <external_variable comment="Ensure the maximum log file size is set correctly" datatype="string" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263352" version="1"></external_variable>
+      <external_variable comment="Ensure the correct syslog facility is selected" datatype="string" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263353" version="1"></external_variable>
+      <external_variable comment="Ensure the program name for PostgreSQL syslog messages is correct" datatype="string" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263354" version="1"></external_variable>
+      <external_variable comment="Ensure the correct messages are written to the server log" datatype="string" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263355" version="1"></external_variable>
+      <external_variable comment="Ensure the correct SQL statements generating errors are recorded" datatype="string" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263356" version="1"></external_variable>
+      <external_variable comment="Ensure 'debug_print_parse' is disabled" datatype="string" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263357" version="1"></external_variable>
+      <external_variable comment="Ensure 'debug_print_rewritten' is disabled" datatype="string" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263358" version="1"></external_variable>
+      <external_variable comment="Ensure 'debug_print_plan' is disabled" datatype="string" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263359" version="1"></external_variable>
+      <external_variable comment="Ensure 'debug_pretty_print' is enabled" datatype="string" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263360" version="1"></external_variable>
+      <external_variable comment="Ensure 'log_connections' is enabled" datatype="string" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263361" version="1"></external_variable>
+      <external_variable comment="Ensure 'log_disconnections' is enabled" datatype="string" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263362" version="1"></external_variable>
+      <external_variable comment="Ensure 'log_error_verbosity' is set correctly" datatype="string" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263363" version="1"></external_variable>
+      <external_variable comment="Ensure 'log_hostname' is set correctly" datatype="string" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263364" version="1"></external_variable>
+      <external_variable comment="Ensure 'log_line_prefix' is set correctly" datatype="string" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263365" version="1"></external_variable>
+      <external_variable comment="Ensure 'log_statement' is set correctly" datatype="string" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263366" version="1"></external_variable>
+      <external_variable comment="Ensure 'log_timezone' is set correctly" datatype="string" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263367" version="1"></external_variable>
+      <external_variable comment="Ensure the PostgreSQL Audit Extension (pgAudit) is enabled" datatype="string" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263343" version="1"></external_variable>
+      <external_variable comment="Ensure excessive function privileges are revoked" datatype="string" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:508568" version="1"></external_variable>
+      <external_variable comment="Check ignore_system_indexes" datatype="string" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263368" version="1"></external_variable>
+      <external_variable comment="Check log_connections" datatype="string" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263369" version="1"></external_variable>
+      <external_variable comment="Check log_disconnections" datatype="string" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263370" version="1"></external_variable>
+      <external_variable comment="Check post_auth_delay" datatype="int" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263371" version="1"></external_variable>
+      <external_variable comment="Ensure SSL is enabled and configured correctly" datatype="string" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263377" version="1"></external_variable>
+      <external_variable comment="Ensure WAL archiving is configured and functional" datatype="string" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263379" version="1"></external_variable>
+      <external_variable comment="Ensure SSH as a transport medium" datatype="string" id="oval:org.cisecurity.benchmarks.postgresql_postgresql_11:var:263380" version="1"></external_variable>
+   </variables>
+<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+<ds:SignedInfo>
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"></ds:CanonicalizationMethod>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"></ds:SignatureMethod>
+<ds:Reference URI="">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"></ds:Transform>
+<ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"></ds:Transform>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"></ds:DigestMethod>
+<ds:DigestValue>EFMzdJ5CBdrXSnKDW2r6fmC7YTc=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue>
+UQw1oh+9zrDToFp6nJNQBQAJMarvb3vSOJRyRJn4tzRZjrrF+Su6LzYg0Dh/dGgrlI5mm18Cng69
+MObAN7ULsvvQSwpbdeJ7+rFAxa77lWW+auegLUVPqyDIQQm9a+Ksq1Zpu0aNsNHMQxPEnIAXbGpx
+Ci2m40wg9wlR2dti5K0cCb/Ql5u6UBMmXkNETFbT8Sr+N4th3vMacdB9jl+rPp7WLpJ0sUy3P/Hw
+mbuQGgSgCT1C4gEXcVgZ7W53Mua5UAlv91hGzjH489wOAwOBsDavHuMa528jObfVOiWj4PeLxjeI
+DcbX62ts+pb/yrQWUHByPPsBSnyT8Col9vy1cA==
+</ds:SignatureValue>
+<ds:KeyInfo>
+<ds:X509Data>
+<ds:X509Certificate>
+MIIFUjCCBDqgAwIBAgIIPx+qZKptEY4wDQYJKoZIhvcNAQELBQAwgbQxCzAJBgNVBAYTAlVTMRAw
+DgYDVQQIEwdBcml6b25hMRMwEQYDVQQHEwpTY290dHNkYWxlMRowGAYDVQQKExFHb0RhZGR5LmNv
+bSwgSW5jLjEtMCsGA1UECxMkaHR0cDovL2NlcnRzLmdvZGFkZHkuY29tL3JlcG9zaXRvcnkvMTMw
+MQYDVQQDEypHbyBEYWRkeSBTZWN1cmUgQ2VydGlmaWNhdGUgQXV0aG9yaXR5IC0gRzIwHhcNMjAw
+OTA4MTMzOTM5WhcNMjMxMDI4MDAzMjA1WjCBkzELMAkGA1UEBhMCVVMxETAPBgNVBAgTCE5ldyBZ
+b3JrMRcwFQYDVQQHEw5FYXN0IEdyZWVuYnVzaDErMCkGA1UEChMiQ2VudGVyIGZvciBJbnRlcm5l
+dCBTZWN1cml0eSwgSW5jLjErMCkGA1UEAxMiQ2VudGVyIGZvciBJbnRlcm5ldCBTZWN1cml0eSwg
+SW5jLjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBANDBp4+sl9kB5JRmnQH0wcbLLz/t
+n2HoD6TRl3xJj12V61njBNgaiGzvoSl07sFLnESukb0CU44MzYDoUMdx3HJUcEAeMY/9eITqGUnk
+N4WsP145eFqH7FoszOY/4NYlgYMYt8ZP2kRHyim9LpQTLT/1mBaUkY2f2e5uUCootH3iT8W3/sK2
+flLzWfLgXTvkhJm4Uvw1RErBFs15+krW0KWtnZ6NmiDhmV0CnFGNnd1meGZPs2sBXEVGLJVSKzoT
+G9Ht/oWyRLRcJuXpHoXTYpkqM2MsixmSaJy5b6/D35r0NXHru3p1gkX2a0VgJQxxWqLi3bVPzpl3
+PlJu3C8M/FUCAwEAAaOCAYUwggGBMAwGA1UdEwEB/wQCMAAwEwYDVR0lBAwwCgYIKwYBBQUHAwMw
+DgYDVR0PAQH/BAQDAgeAMDUGA1UdHwQuMCwwKqAooCaGJGh0dHA6Ly9jcmwuZ29kYWRkeS5jb20v
+Z2RpZzJzNS02LmNybDBdBgNVHSAEVjBUMEgGC2CGSAGG/W0BBxcCMDkwNwYIKwYBBQUHAgEWK2h0
+dHA6Ly9jZXJ0aWZpY2F0ZXMuZ29kYWRkeS5jb20vcmVwb3NpdG9yeS8wCAYGZ4EMAQQBMHYGCCsG
+AQUFBwEBBGowaDAkBggrBgEFBQcwAYYYaHR0cDovL29jc3AuZ29kYWRkeS5jb20vMEAGCCsGAQUF
+BzAChjRodHRwOi8vY2VydGlmaWNhdGVzLmdvZGFkZHkuY29tL3JlcG9zaXRvcnkvZ2RpZzIuY3J0
+MB8GA1UdIwQYMBaAFEDCvSeOzDSDMKIz1/tss/C0LIDOMB0GA1UdDgQWBBT7fOf4ISDprbE+qUFe
++friFTKgHjANBgkqhkiG9w0BAQsFAAOCAQEAT0XLw2vmuq6e58bkLDXdqKeGQjREDChLw2Mae9LI
+JB93QgdA2OCLA1FwU2s7lawEDcma9wPiugxVGoaQNOfRw2/+cz0xmR3uaKQq6I24dWbHF20N2tSz
+1RAAK1lRZKewA1fj+qqKWjzETA0LpqZlaFF+CKBpQcyfYyQRZxpHkB1vvKMf4kMIRKruvl4ixLjN
+uAZrbQUWlXuq/MUkVP3FgdxWBPfmMGyngHs4hNMaSQGb1TEhBjj+PGoSunAyaOgO/P94XJPQQX3O
+2oNDsPou6gKcNtbZrH+iYTJ8rcqQTontMwSP/HrYj8lgG3neG53vk05p0jCn2M5W0ukJ4LPEnA==
+</ds:X509Certificate>
+</ds:X509Data>
+<ds:KeyValue>
+<ds:RSAKeyValue>
+<ds:Modulus>0MGnj6yX2QHklGadAfTBxssvP+2fYegPpNGXfEmPXZXrWeME2BqIbO+hKXTuwUucRK6RvQJTjgzN
+gOhQx3HcclRwQB4xj/14hOoZSeQ3haw/Xjl4WofsWizM5j/g1iWBgxi3xk/aREfKKb0ulBMtP/WY
+FpSRjZ/Z7m5QKii0feJPxbf+wrZ+UvNZ8uBdO+SEmbhS/DVESsEWzXn6StbQpa2dno2aIOGZXQKc
+UY2d3WZ4Zk+zawFcRUYslVIrOhMb0e3+hbJEtFwm5ekehdNimSozYyyLGZJonLlvr8PfmvQ1ceu7
+enWCRfZrRWAlDHFaouLdtU/OmXc+Um7cLwz8VQ==</ds:Modulus>
+<ds:Exponent>AQAB</ds:Exponent>
+</ds:RSAKeyValue>
+</ds:KeyValue>
+</ds:KeyInfo>
+</ds:Signature></oval_definitions>

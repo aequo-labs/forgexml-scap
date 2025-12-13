@@ -1,0 +1,487 @@
+<oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5 https://oval.cisecurity.org/schemas/validator-oval-definitions-5.11.2.xsd">
+   <generator>
+      <oval:product_name>Center for Internet Security - Optimus</oval:product_name>
+      <oval:schema_version>5.11.2</oval:schema_version>
+      <oval:timestamp>2024-03-11T19:02:37.037Z</oval:timestamp>
+   </generator>
+   <definitions>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4133285" version="1">
+         <metadata>
+            <title>Ensure that the kubelet service file permissions are set to 644 or more restrictive</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.1.1_Ensure_that_the_kubelet_service_file_permissions_are_set_to_644_or_more_restrictive" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.1.1_Ensure_that_the_kubelet_service_file_permissions_are_set_to_644_or_more_restrictive"></reference>
+            <description>Ensure that the kubelet service file permissions are set to 644 or more restrictive</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4133285"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4133286" version="1">
+         <metadata>
+            <title>Ensure that the kubelet service file permissions are set to 644 or more restrictive</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.1.1_Ensure_that_the_kubelet_service_file_permissions_are_set_to_644_or_more_restrictive" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.1.1_Ensure_that_the_kubelet_service_file_permissions_are_set_to_644_or_more_restrictive"></reference>
+            <description>Ensure that the kubelet service file permissions are set to 644 or more restrictive</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4133286"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4133287" version="1">
+         <metadata>
+            <title>Ensure that the kubelet service file ownership is set to root:root</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.1.2_Ensure_that_the_kubelet_service_file_ownership_is_set_to_rootroot" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.1.2_Ensure_that_the_kubelet_service_file_ownership_is_set_to_rootroot"></reference>
+            <description>Ensure that the kubelet service file ownership is set to root:root</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4133287"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4669075" version="1">
+         <metadata>
+            <title>Ensure that the --kubeconfig kubelet.conf file ownership is set to root:root</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.1.6_Ensure_that_the_--kubeconfig_kubelet.conf_file_ownership_is_set_to_rootroot" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.1.6_Ensure_that_the_--kubeconfig_kubelet.conf_file_ownership_is_set_to_rootroot"></reference>
+            <description>Ensure that the --kubeconfig kubelet.conf file ownership is set to root:root</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4669075"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4133288" version="1">
+         <metadata>
+            <title>Ensure that the certificate authorities file permissions are set to 644 or more restrictive</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.1.7_Ensure_that_the_certificate_authorities_file_permissions_are_set_to_644_or_more_restrictive" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.1.7_Ensure_that_the_certificate_authorities_file_permissions_are_set_to_644_or_more_restrictive"></reference>
+            <description>Ensure that the certificate authorities file permissions are set to 644 or more restrictive</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4133288"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4670283" version="1">
+         <metadata>
+            <title>Ensure that the certificate authorities file permissions are set to 644 or more restrictive</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.1.7_Ensure_that_the_certificate_authorities_file_permissions_are_set_to_644_or_more_restrictive" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.1.7_Ensure_that_the_certificate_authorities_file_permissions_are_set_to_644_or_more_restrictive"></reference>
+            <description>Ensure that the certificate authorities file permissions are set to 644 or more restrictive</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4670283"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4133289" version="1">
+         <metadata>
+            <title>Ensure that the client certificate authorities file ownership is set to root:root</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.1.8_Ensure_that_the_client_certificate_authorities_file_ownership_is_set_to_rootroot" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.1.8_Ensure_that_the_client_certificate_authorities_file_ownership_is_set_to_rootroot"></reference>
+            <description>Ensure that the client certificate authorities file ownership is set to root:root</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4133289"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4670284" version="1">
+         <metadata>
+            <title>Ensure that the client certificate authorities file ownership is set to root:root</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.1.8_Ensure_that_the_client_certificate_authorities_file_ownership_is_set_to_rootroot" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.1.8_Ensure_that_the_client_certificate_authorities_file_ownership_is_set_to_rootroot"></reference>
+            <description>Ensure that the client certificate authorities file ownership is set to root:root</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4670284"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4133290" version="1">
+         <metadata>
+            <title>Ensure that the kubelet --config configuration file has permissions set to 600 or more restrictive</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.1.9_Ensure_that_the_kubelet_--config_configuration_file_has_permissions_set_to_600_or_more_restrictive" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.1.9_Ensure_that_the_kubelet_--config_configuration_file_has_permissions_set_to_600_or_more_restrictive"></reference>
+            <description>Ensure that the kubelet --config configuration file has permissions set to 600 or more restrictive</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4133290"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4669072" version="1">
+         <metadata>
+            <title>Ensure that the kubelet --config configuration file has permissions set to 600 or more restrictive</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.1.9_Ensure_that_the_kubelet_--config_configuration_file_has_permissions_set_to_600_or_more_restrictive" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.1.9_Ensure_that_the_kubelet_--config_configuration_file_has_permissions_set_to_600_or_more_restrictive"></reference>
+            <description>Ensure that the kubelet --config configuration file has permissions set to 600 or more restrictive</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4669072"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4133291" version="1">
+         <metadata>
+            <title>Ensure that the kubelet configuration file ownership is set to root:root</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.1.10_Ensure_that_the_kubelet_configuration_file_ownership_is_set_to_rootroot" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.1.10_Ensure_that_the_kubelet_configuration_file_ownership_is_set_to_rootroot"></reference>
+            <description>Ensure that the kubelet configuration file ownership is set to root:root</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4133291"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4669073" version="1">
+         <metadata>
+            <title>Ensure that the kubelet configuration file ownership is set to root:root</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.1.10_Ensure_that_the_kubelet_configuration_file_ownership_is_set_to_rootroot" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.1.10_Ensure_that_the_kubelet_configuration_file_ownership_is_set_to_rootroot"></reference>
+            <description>Ensure that the kubelet configuration file ownership is set to root:root</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4669073"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4133292" version="1">
+         <metadata>
+            <title>Ensure that the --anonymous-auth argument is set to false</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.2.2_Ensure_that_the_--anonymous-auth_argument_is_set_to_false" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.2.2_Ensure_that_the_--anonymous-auth_argument_is_set_to_false"></reference>
+            <description>Ensure that the --anonymous-auth argument is set to false</description>
+         </metadata>
+         <criteria negate="true" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4133292"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4133293" version="1">
+         <metadata>
+            <title>Ensure that the --authorization-mode argument is not set to AlwaysAllow</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.2.3_Ensure_that_the_--authorization-mode_argument_is_not_set_to_AlwaysAllow" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.2.3_Ensure_that_the_--authorization-mode_argument_is_not_set_to_AlwaysAllow"></reference>
+            <description>Ensure that the --authorization-mode argument is not set to AlwaysAllow</description>
+         </metadata>
+         <criteria negate="true" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4133293"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4133294" version="1">
+         <metadata>
+            <title>Ensure that the --client-ca-file argument is set as appropriate</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.2.4_Ensure_that_the_--client-ca-file_argument_is_set_as_appropriate" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.2.4_Ensure_that_the_--client-ca-file_argument_is_set_as_appropriate"></reference>
+            <description>Ensure that the --client-ca-file argument is set as appropriate</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4133294"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4133295" version="1">
+         <metadata>
+            <title>Verify that the read only port is not used or is set to 0</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.2.5_Verify_that_the_read_only_port_is_not_used_or_is_set_to_0" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.2.5_Verify_that_the_read_only_port_is_not_used_or_is_set_to_0"></reference>
+            <description>Verify that the read only port is not used or is set to 0</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4133295"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4133296" version="1">
+         <metadata>
+            <title>Verify that the read only port is not used or is set to 0</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.2.5_Verify_that_the_read_only_port_is_not_used_or_is_set_to_0" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.2.5_Verify_that_the_read_only_port_is_not_used_or_is_set_to_0"></reference>
+            <description>Verify that the read only port is not used or is set to 0</description>
+         </metadata>
+         <criteria negate="true" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4133296"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4133297" version="1">
+         <metadata>
+            <title>Ensure that the --streaming-connection-idle-timeout argument is not set to 0</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.2.6_Ensure_that_the_--streaming-connection-idle-timeout_argument_is_not_set_to_0" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.2.6_Ensure_that_the_--streaming-connection-idle-timeout_argument_is_not_set_to_0"></reference>
+            <description>Ensure that the --streaming-connection-idle-timeout argument is not set to 0</description>
+         </metadata>
+         <criteria negate="true" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4133297"></criterion>
+         </criteria>
+      </definition>
+   </definitions>
+   <tests>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host stat -c %a /etc/systemd/system/kubelet.service; done' output Equals '644' (string)" id="oval:org.cisecurity.benchmarks:tst:4133285" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4133285"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4133285"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host stat -c %a /etc/systemd/system/kubelet.service; done' output Equals '644' (string)" id="oval:org.cisecurity.benchmarks:tst:4133286" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4133286"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4133286"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'for node in &quot;$(oc get nodes -o jsonpath='{.items[*].metadata.name}')&quot;; do oc debug node/${node} -- chroot /host stat -c %U:%G /etc/systemd/system/kubelet.service; done' output Equals 'root:root' (string)" id="oval:org.cisecurity.benchmarks:tst:4133287" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4133287"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4133287"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host stat -c %U:%G /etc/kubernetes/kubelet.conf; done' output Pattern Match 'root' (string)" id="oval:org.cisecurity.benchmarks:tst:4669075" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4669075"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4669075"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host stat -c %a /etc/kubernetes/kubelet-ca.crt; done' output Equals '600' (string)" id="oval:org.cisecurity.benchmarks:tst:4133288" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4133288"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4133288"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host stat -c %a /etc/kubernetes/kubelet-ca.crt; done' output Pattern Match '600' (string)" id="oval:org.cisecurity.benchmarks:tst:4670283" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4670283"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4670283"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host stat -c %U:%G /etc/kubernetes/kubelet-ca.crt; done' output Pattern Match 'root' (string)" id="oval:org.cisecurity.benchmarks:tst:4133289" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4133289"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4133289"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host stat -c %U:%G /etc/kubernetes/kubelet-ca.crt; done' output Pattern Match 'root' (string)" id="oval:org.cisecurity.benchmarks:tst:4670284" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4670284"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4670284"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host stat -c %a /var/lib/kubelet/config.json; done' output Pattern Match '600' (string)" id="oval:org.cisecurity.benchmarks:tst:4133290" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4133290"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4133290"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host stat -c %a /var/data/kubelet/config.json; done' output Pattern Match '600' (string)" id="oval:org.cisecurity.benchmarks:tst:4669072" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4669072"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4669072"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host stat -c %U:%G /var/lib/kubelet/config.json; done' output Pattern Match 'root' (string)" id="oval:org.cisecurity.benchmarks:tst:4133291" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4133291"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4133291"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host stat -c %U:%G /var/data/kubelet/config.json; done' output Pattern Match 'root' (string)" id="oval:org.cisecurity.benchmarks:tst:4669073" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4669073"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4669073"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'for node in $(oc get nodes -ojsonpath='{.items[*].metadata.name}'); do oc get --raw /api/v1/nodes/$node/proxy/configz | jq '.kubeletconfig.authentication.anonymous.enabled' done' output Pattern Not Match 'true' (string)" id="oval:org.cisecurity.benchmarks:tst:4133292" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4133292"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4133292"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'for node in $(oc get nodes -ojsonpath='{.items[*].metadata.name}'); do oc get --raw /api/v1/nodes/$node/proxy/configz | jq '.kubeletconfig.authorization.mode' done' output Pattern Not Match 'authorization-mode=AlwaysAllow' (string)" id="oval:org.cisecurity.benchmarks:tst:4133293" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4133293"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4133293"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host ps -ef | grep kubelet; done' output Pattern Match 'client-ca-file=/etc/kubernetes/kubelet-ca.crt' (string)" id="oval:org.cisecurity.benchmarks:tst:4133294" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4133294"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4133294"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host ps -ef | grep kubelet; done' output Pattern Match 'read-only-port=0' (string)" id="oval:org.cisecurity.benchmarks:tst:4133295" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4133295"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4133295"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host ps -ef | grep kubelet; done' output Pattern Not Match 'read-only-port=0' (string)" id="oval:org.cisecurity.benchmarks:tst:4133296" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4133296"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4133296"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host ps -ef | grep kubelet; done' output Not Equal 'streaming-connection-idle" id="oval:org.cisecurity.benchmarks:tst:4133297" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4133297"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4133297"></state>
+      </shellcommand_test>
+   </tests>
+   <objects>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host stat -c %a /etc/systemd/system/kubelet.service; done' output Equals '644' (string)" id="oval:org.cisecurity.benchmarks:obj:4133285" version="1">
+         <command>for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host stat -c %a /etc/systemd/system/kubelet.service; done</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host stat -c %a /etc/systemd/system/kubelet.service; done' output Equals '644' (string)" id="oval:org.cisecurity.benchmarks:obj:4133286" version="1">
+         <command>for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host stat -c %a /etc/systemd/system/kubelet.service; done</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'for node in &quot;$(oc get nodes -o jsonpath='{.items[*].metadata.name}')&quot;; do oc debug node/${node} -- chroot /host stat -c %U:%G /etc/systemd/system/kubelet.service; done' output Equals 'root:root' (string)" id="oval:org.cisecurity.benchmarks:obj:4133287" version="1">
+         <command>for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host stat -c %U:%G /etc/systemd/system/kubelet.service; done</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host stat -c %U:%G /etc/kubernetes/kubelet.conf; done' output Pattern Match 'root' (string)" id="oval:org.cisecurity.benchmarks:obj:4669075" version="1">
+         <command>for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host stat -c %U:%G /etc/kubernetes/kubelet.conf; done</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host stat -c %a /etc/kubernetes/kubelet-ca.crt; done' output Equals '600' (string)" id="oval:org.cisecurity.benchmarks:obj:4133288" version="1">
+         <command>for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host stat -c %a /etc/kubernetes/kubelet-ca.crt; done</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host stat -c %a /etc/kubernetes/kubelet-ca.crt; done' output Pattern Match '600' (string)" id="oval:org.cisecurity.benchmarks:obj:4670283" version="1">
+         <command>for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host stat -c %a /etc/kubernetes/kubelet-ca.crt; done</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host stat -c %U:%G /etc/kubernetes/kubelet-ca.crt; done' output Pattern Match 'root' (string)" id="oval:org.cisecurity.benchmarks:obj:4133289" version="1">
+         <command>for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host stat -c %U:%G /etc/kubernetes/kubelet-ca.crt; done</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host stat -c %U:%G /etc/kubernetes/kubelet-ca.crt; done' output Pattern Match 'root' (string)" id="oval:org.cisecurity.benchmarks:obj:4670284" version="1">
+         <command>for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host stat -c %U:%G /etc/kubernetes/kubelet-ca.crt; done</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host stat -c %a /var/lib/kubelet/config.json; done' output Pattern Match '600' (string)" id="oval:org.cisecurity.benchmarks:obj:4133290" version="1">
+         <command>for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host stat -c %a /var/lib/kubelet/config.json; done</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host stat -c %a /var/data/kubelet/config.json; done' output Pattern Match '600' (string)" id="oval:org.cisecurity.benchmarks:obj:4669072" version="1">
+         <command>for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host stat -c %a /var/data/kubelet/config.json; done</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host stat -c %U:%G /var/lib/kubelet/config.json; done' output Pattern Match 'root' (string)" id="oval:org.cisecurity.benchmarks:obj:4133291" version="1">
+         <command>for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host stat -c %U:%G /var/lib/kubelet/config.json; done</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host stat -c %U:%G /var/data/kubelet/config.json; done' output Pattern Match 'root' (string)" id="oval:org.cisecurity.benchmarks:obj:4669073" version="1">
+         <command>for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host stat -c %U:%G /var/data/kubelet/config.json; done</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'for node in $(oc get nodes -ojsonpath='{.items[*].metadata.name}'); do oc get --raw /api/v1/nodes/$node/proxy/configz | jq '.kubeletconfig.authentication.anonymous.enabled' done' output Pattern Not Match 'true' (string)" id="oval:org.cisecurity.benchmarks:obj:4133292" version="1">
+         <command>for node in $(oc get nodes -ojsonpath='{.items[*].metadata.name}'); do oc get --raw /api/v1/nodes/$node/proxy/configz | jq '.kubeletconfig.authentication.anonymous.enabled' done</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'for node in $(oc get nodes -ojsonpath='{.items[*].metadata.name}'); do oc get --raw /api/v1/nodes/$node/proxy/configz | jq '.kubeletconfig.authorization.mode' done' output Pattern Not Match 'authorization-mode=AlwaysAllow' (string)" id="oval:org.cisecurity.benchmarks:obj:4133293" version="1">
+         <command>for node in $(oc get nodes -ojsonpath='{.items[*].metadata.name}'); do oc get --raw /api/v1/nodes/$node/proxy/configz | jq '.kubeletconfig.authorization.mode' done</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host ps -ef | grep kubelet; done' output Pattern Match 'client-ca-file=/etc/kubernetes/kubelet-ca.crt' (string)" id="oval:org.cisecurity.benchmarks:obj:4133294" version="1">
+         <command>for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host cat /etc/kubernetes/kubelet.conf | grep clientCAFile; done</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host ps -ef | grep kubelet; done' output Pattern Match 'read-only-port=0' (string)" id="oval:org.cisecurity.benchmarks:obj:4133295" version="1">
+         <command>for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host ps -ef | grep kubelet; done</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host ps -ef | grep kubelet; done' output Pattern Not Match 'read-only-port=0' (string)" id="oval:org.cisecurity.benchmarks:obj:4133296" version="1">
+         <command>for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host ps -ef | grep kubelet; done</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host ps -ef | grep kubelet; done' output Not Equal 'streaming-connection-idle" id="oval:org.cisecurity.benchmarks:obj:4133297" version="1">
+         <command>for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host ps -ef | grep kubelet; done</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+   </objects>
+   <states>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host stat -c %a /etc/systemd/system/kubelet.service; done' output Equals '644' (string)" id="oval:org.cisecurity.benchmarks:ste:4133285" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:4133285"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host stat -c %a /etc/systemd/system/kubelet.service; done' output Equals '644' (string)" id="oval:org.cisecurity.benchmarks:ste:4133286" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:4133286"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'for node in &quot;$(oc get nodes -o jsonpath='{.items[*].metadata.name}')&quot;; do oc debug node/${node} -- chroot /host stat -c %U:%G /etc/systemd/system/kubelet.service; done' output Equals 'root:root' (string)" id="oval:org.cisecurity.benchmarks:ste:4133287" version="1">
+         <stdout_line entity_check="at least one" operation="equals" var_ref="oval:org.cisecurity.benchmarks:var:4133287"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host stat -c %U:%G /etc/kubernetes/kubelet.conf; done' output Pattern Match 'root' (string)" id="oval:org.cisecurity.benchmarks:ste:4669075" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:4669075"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host stat -c %a /etc/kubernetes/kubelet-ca.crt; done' output Equals '600' (string)" id="oval:org.cisecurity.benchmarks:ste:4133288" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:4133288"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host stat -c %a /etc/kubernetes/kubelet-ca.crt; done' output Pattern Match '600' (string)" id="oval:org.cisecurity.benchmarks:ste:4670283" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:4670283"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host stat -c %U:%G /etc/kubernetes/kubelet-ca.crt; done' output Pattern Match 'root' (string)" id="oval:org.cisecurity.benchmarks:ste:4133289" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:4133289"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host stat -c %U:%G /etc/kubernetes/kubelet-ca.crt; done' output Pattern Match 'root' (string)" id="oval:org.cisecurity.benchmarks:ste:4670284" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:4670284"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host stat -c %a /var/lib/kubelet/config.json; done' output Pattern Match '600' (string)" id="oval:org.cisecurity.benchmarks:ste:4133290" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:4133290"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host stat -c %a /var/data/kubelet/config.json; done' output Pattern Match '600' (string)" id="oval:org.cisecurity.benchmarks:ste:4669072" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:4669072"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host stat -c %U:%G /var/lib/kubelet/config.json; done' output Pattern Match 'root' (string)" id="oval:org.cisecurity.benchmarks:ste:4133291" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:4133291"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host stat -c %U:%G /var/data/kubelet/config.json; done' output Pattern Match 'root' (string)" id="oval:org.cisecurity.benchmarks:ste:4669073" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:4669073"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'for node in $(oc get nodes -ojsonpath='{.items[*].metadata.name}'); do oc get --raw /api/v1/nodes/$node/proxy/configz | jq '.kubeletconfig.authentication.anonymous.enabled' done' output Pattern Not Match 'true' (string)" id="oval:org.cisecurity.benchmarks:ste:4133292" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:4133292"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'for node in $(oc get nodes -ojsonpath='{.items[*].metadata.name}'); do oc get --raw /api/v1/nodes/$node/proxy/configz | jq '.kubeletconfig.authorization.mode' done' output Pattern Not Match 'authorization-mode=AlwaysAllow' (string)" id="oval:org.cisecurity.benchmarks:ste:4133293" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:4133293"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host ps -ef | grep kubelet; done' output Pattern Match 'client-ca-file=/etc/kubernetes/kubelet-ca.crt' (string)" id="oval:org.cisecurity.benchmarks:ste:4133294" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:4133294"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host ps -ef | grep kubelet; done' output Pattern Match 'read-only-port=0' (string)" id="oval:org.cisecurity.benchmarks:ste:4133295" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:4133295"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host ps -ef | grep kubelet; done' output Pattern Not Match 'read-only-port=0' (string)" id="oval:org.cisecurity.benchmarks:ste:4133296" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:4133296"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'for node in $(oc get nodes -o jsonpath='{.items[*].metadata.name}'); do oc debug node/${node} -- chroot /host ps -ef | grep kubelet; done' output Not Equal 'streaming-connection-idle" id="oval:org.cisecurity.benchmarks:ste:4133297" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:4133297"></stdout_line>
+      </shellcommand_state>
+   </states>
+   <variables>
+      <external_variable comment="This value is used in Rule: Ensure that the kubelet service file permissions are set to 644 or more restrictive" datatype="string" id="oval:org.cisecurity.benchmarks:var:4133285" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure that the kubelet service file permissions are set to 644 or more restrictive" datatype="string" id="oval:org.cisecurity.benchmarks:var:4133286" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure that the kubelet service file ownership is set to root:root" datatype="string" id="oval:org.cisecurity.benchmarks:var:4133287" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure that the --kubeconfig kubelet.conf file ownership is set to root:root" datatype="string" id="oval:org.cisecurity.benchmarks:var:4669075" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure that the certificate authorities file permissions are set to 644 or more restrictive" datatype="string" id="oval:org.cisecurity.benchmarks:var:4133288" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure that the certificate authorities file permissions are set to 644 or more restrictive" datatype="string" id="oval:org.cisecurity.benchmarks:var:4670283" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure that the client certificate authorities file ownership is set to root:root" datatype="string" id="oval:org.cisecurity.benchmarks:var:4133289" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure that the client certificate authorities file ownership is set to root:root" datatype="string" id="oval:org.cisecurity.benchmarks:var:4670284" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure that the kubelet --config configuration file has permissions set to 600 or more restrictive" datatype="string" id="oval:org.cisecurity.benchmarks:var:4133290" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure that the kubelet --config configuration file has permissions set to 600 or more restrictive" datatype="string" id="oval:org.cisecurity.benchmarks:var:4669072" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure that the kubelet configuration file ownership is set to root:root" datatype="string" id="oval:org.cisecurity.benchmarks:var:4133291" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure that the kubelet configuration file ownership is set to root:root" datatype="string" id="oval:org.cisecurity.benchmarks:var:4669073" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure that the --anonymous-auth argument is set to false" datatype="string" id="oval:org.cisecurity.benchmarks:var:4133292" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure that the --authorization-mode argument is not set to AlwaysAllow" datatype="string" id="oval:org.cisecurity.benchmarks:var:4133293" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure that the --client-ca-file argument is set as appropriate" datatype="string" id="oval:org.cisecurity.benchmarks:var:4133294" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Verify that the read only port is not used or is set to 0" datatype="string" id="oval:org.cisecurity.benchmarks:var:4133295" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Verify that the read only port is not used or is set to 0" datatype="string" id="oval:org.cisecurity.benchmarks:var:4133296" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure that the --streaming-connection-idle-timeout argument is not set to 0" datatype="string" id="oval:org.cisecurity.benchmarks:var:4133297" version="1"></external_variable>
+   </variables>
+<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+<ds:SignedInfo>
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"></ds:CanonicalizationMethod>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></ds:SignatureMethod>
+<ds:Reference URI="">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"></ds:Transform>
+<ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"></ds:Transform>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></ds:DigestMethod>
+<ds:DigestValue>4Iz9fHqOhVs+hUzCBPxpmwplpPphhAdioOArZBed0D0=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue>
+rrFpN1rLYVBq6LR3RVVGS9TKp2sU6uhdSvJN+a2CEVzTo00e1h27EwtYbirQqchyqveppLhtsh2D
+QwegNYGvToX/dJZ5honHnFb2vvWXJRcq6jDwRi6sAK3+hzmMXZjAvR7U3XTijE2MsQPL56n5lOdg
+4mkoLtXqwUYgXL34srbBjh16Vqr8GwWPJ9Q32ngw6Wpj/6A5OWvlRlb3jo3/cSTgyQlbxmxzC/7I
+LWrJG8Xhg6yNlU/fkon7brWOMrHTv/CNcc73nlUJKE4l/lMpL93vZ/iYhtVzMX7KN+x7aV/e+mkI
+NFe9hOqBed3RS8HjQ6G3OXaGLJX+ZPQUoYEkQnO0PUDhW3A0AKbAQgTx+kMD65QgAni8opgHnlyf
+iTK1SUgSXSHEUALyJUfIMJZCVFVUhLkpW7SEcRXr5OAuff0nl6fTMJL1QA16a+Ne73WdWJKgpR9s
+X4Ipofo0vBbx2E/QFVtMkX3kykn5uknBdZQwYDgvRIkqjYkzeUTPh14c
+</ds:SignatureValue>
+<ds:KeyInfo>
+<ds:X509Data>
+<ds:X509Certificate>
+MIIHbDCCBVSgAwIBAgIQCdceADCnzKkglkQGavVKYzANBgkqhkiG9w0BAQsFADBpMQswCQYDVQQG
+EwJVUzEXMBUGA1UEChMORGlnaUNlcnQsIEluYy4xQTA/BgNVBAMTOERpZ2lDZXJ0IFRydXN0ZWQg
+RzQgQ29kZSBTaWduaW5nIFJTQTQwOTYgU0hBMzg0IDIwMjEgQ0ExMB4XDTIzMTAxODAwMDAwMFoX
+DTI2MTAxODIzNTk1OVowgfQxEzARBgsrBgEEAYI3PAIBAxMCVVMxGTAXBgsrBgEEAYI3PAIBAhMI
+TWFyeWxhbmQxHTAbBgNVBA8MFFByaXZhdGUgT3JnYW5pemF0aW9uMRIwEAYDVQQFEwlEMDYwNTg4
+MTIxCzAJBgNVBAYTAlVTMREwDwYDVQQIEwhOZXcgWW9yazEXMBUGA1UEBxMORWFzdCBHcmVlbmJ1
+c2gxKjAoBgNVBAoTIUNlbnRlciBmb3IgSW50ZXJuZXQgU2VjdXJpdHksIEluYzEqMCgGA1UEAxMh
+Q2VudGVyIGZvciBJbnRlcm5ldCBTZWN1cml0eSwgSW5jMIIBojANBgkqhkiG9w0BAQEFAAOCAY8A
+MIIBigKCAYEAyZwTJr4Kb7QEDnVY3BEkPoS3fn+XoxhCTfFvlMk8zXDcR4pFMgPkXTrZ1KbENUIV
+skIhy1vmnh61vwSL0lcdzesCekKSxLqrEA4xunZk1MB5mLbHXchSSpI1co1vaSzJjkTYP1UsUVQz
+NoOzV0LNCoZdahjGTHSduWvbrHTEeD6/jvUj3AVWrTx6krzgYA3ozAxtUnapK7IrZERuGOSwTrgR
+Lr1aieQdFy8haW1YL+ks5HmLRvcoGp+J68GX/zfMTduvWxhcpXm4txKc4iJqGCRmyBU2XjGjpDBX
+ndxHgT4edRLz5PwWSeZUh8/tWOGFwnVw7njoOa0sFixy96H2BqEn+yPeRALyf59rjtPL66tsXuaA
+ilB63yqbH42mnkxHTX5zcEm337GzTOGRccsYzN/ApVuXDeMfsO+sSUosrimnxm9QTOyKcex5h1As
+rxBVfTw+Zf7jP1YRlmMlGPG1zffK2KjJhD6ivFi2sIDThEQLxIAC8XOjp2ZXvhx87yNTAgMBAAGj
+ggICMIIB/jAfBgNVHSMEGDAWgBRoN+Drtjv4XxGG+/5hewiIZfROQjAdBgNVHQ4EFgQUX2/J9FT5
+5BNF7JqfAl9SJkv3pf0wPQYDVR0gBDYwNDAyBgVngQwBAzApMCcGCCsGAQUFBwIBFhtodHRwOi8v
+d3d3LmRpZ2ljZXJ0LmNvbS9DUFMwDgYDVR0PAQH/BAQDAgeAMBMGA1UdJQQMMAoGCCsGAQUFBwMD
+MIG1BgNVHR8Ega0wgaowU6BRoE+GTWh0dHA6Ly9jcmwzLmRpZ2ljZXJ0LmNvbS9EaWdpQ2VydFRy
+dXN0ZWRHNENvZGVTaWduaW5nUlNBNDA5NlNIQTM4NDIwMjFDQTEuY3JsMFOgUaBPhk1odHRwOi8v
+Y3JsNC5kaWdpY2VydC5jb20vRGlnaUNlcnRUcnVzdGVkRzRDb2RlU2lnbmluZ1JTQTQwOTZTSEEz
+ODQyMDIxQ0ExLmNybDCBlAYIKwYBBQUHAQEEgYcwgYQwJAYIKwYBBQUHMAGGGGh0dHA6Ly9vY3Nw
+LmRpZ2ljZXJ0LmNvbTBcBggrBgEFBQcwAoZQaHR0cDovL2NhY2VydHMuZGlnaWNlcnQuY29tL0Rp
+Z2lDZXJ0VHJ1c3RlZEc0Q29kZVNpZ25pbmdSU0E0MDk2U0hBMzg0MjAyMUNBMS5jcnQwCQYDVR0T
+BAIwADANBgkqhkiG9w0BAQsFAAOCAgEASLOHf1FQ7TrGqEoVXYoeNSkRWdVCUGd1JCDs7Hb9sLd3
+eQuipZ4EorQS/9qMiVMhmlJfF75sNVQhr1K5UtjrDRFMTzYmh78hAyovowzgyVKdGFqiVVr5m+mb
+vVyglLlA4V076LMBaKRknm1Dt8r0/5GSRCrkP2origpYMMaocN+iBX9+MImnh3J1Ehn0nRUhW86Q
+mt3/YCVIaQZisv+KmOxyAq1m6fiIYIvXY+cH2dDIheoVteb/NjYnKVqE6xTpOsxF16pykXiM9yk3
+Q9nlJS36KEGRP4wrySU4eIBnTcv4mimZjkWj6bIvk8otNJ14FbyltaPwIc3dE3oPGfSmCrkxs73j
+iqBs2TXLvblEmOhY8ko3xVdTm0zMP50MQVO948fz9yF+xdnPdMPT1/lCmGp6iWYRzxnvEkA1+HFl
+yy9YztrM8WNAhXirpUZg3HWQE2ONLKMtqQrkIHD2nikda77flk6oirqDuCf8Q7g8s86/KabTdxrw
+pRmsRjDkAfKVae58ctaKbmF32oU9BGk+9MPG8HF5Yfoh12DE1fLZcPzZrROrDFJGGxwhv5FlnxGg
+6G7jKi68erZnpaOPayK0bXyZNunqkI9IbIuPqMw5qaCZZgN6AEHIbGTKdrWEf11DmR7MdTjv3/vu
+JWtIXgk3kQFX27w9JhqV6QogVmzIfEQ=
+</ds:X509Certificate>
+</ds:X509Data>
+<ds:KeyValue>
+<ds:RSAKeyValue>
+<ds:Modulus>yZwTJr4Kb7QEDnVY3BEkPoS3fn+XoxhCTfFvlMk8zXDcR4pFMgPkXTrZ1KbENUIVskIhy1vmnh61
+vwSL0lcdzesCekKSxLqrEA4xunZk1MB5mLbHXchSSpI1co1vaSzJjkTYP1UsUVQzNoOzV0LNCoZd
+ahjGTHSduWvbrHTEeD6/jvUj3AVWrTx6krzgYA3ozAxtUnapK7IrZERuGOSwTrgRLr1aieQdFy8h
+aW1YL+ks5HmLRvcoGp+J68GX/zfMTduvWxhcpXm4txKc4iJqGCRmyBU2XjGjpDBXndxHgT4edRLz
+5PwWSeZUh8/tWOGFwnVw7njoOa0sFixy96H2BqEn+yPeRALyf59rjtPL66tsXuaAilB63yqbH42m
+nkxHTX5zcEm337GzTOGRccsYzN/ApVuXDeMfsO+sSUosrimnxm9QTOyKcex5h1AsrxBVfTw+Zf7j
+P1YRlmMlGPG1zffK2KjJhD6ivFi2sIDThEQLxIAC8XOjp2ZXvhx87yNT</ds:Modulus>
+<ds:Exponent>AQAB</ds:Exponent>
+</ds:RSAKeyValue>
+</ds:KeyValue>
+</ds:KeyInfo>
+</ds:Signature></oval_definitions>

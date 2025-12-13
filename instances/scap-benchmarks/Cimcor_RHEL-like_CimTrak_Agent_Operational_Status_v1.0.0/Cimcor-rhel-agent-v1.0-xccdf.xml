@@ -1,0 +1,167 @@
+<!-- 
+RHEL-like CimTrak Agent Operational Benchmark
+Tests CimTrak agent installation, configuration, and operational status
+For RHEL, AlmaLinux, Rocky Linux, and CentOS 8
+-->
+<xccdf:Benchmark xmlns:xccdf="http://checklists.nist.gov/xccdf/1.2" 
+				 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				 xmlns:cve="https://cve.mitre.org"
+				 xmlns:cc7="http://cisecurity.org/20-cc/v7.0"
+				 xmlns:cc8="http://cisecurity.org/20-cc/v8.0"
+	             id="xccdf_com.cimcor.cimtrak_benchmark_1.0.0_rhel-agent" 
+	             style="SCAP_1.3" 
+	             xsi:schemaLocation="http://checklists.nist.gov/xccdf/1.2 
+				                     https://scap.nist.gov/schema/xccdf/1.2/xccdf_1.2.xsd"
+	>
+   <xccdf:status date="2025-07-25">accepted</xccdf:status>
+   <xccdf:title xml:lang="en">Cimcor RHEL-like CimTrak Agent Operational Status</xccdf:title>
+   <xccdf:description xml:lang="en">
+      <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">This benchmark verifies the operational status of CimTrak agents on RHEL-like systems including Red Hat Enterprise Linux, AlmaLinux, Rocky Linux, and CentOS. It provides enhanced file integrity monitoring capabilities for enterprise security compliance.</xhtml:p>
+      <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">CimTrak provides real-time file integrity monitoring, automated remediation, and centralized management that enhances the security posture established by baseline controls.</xhtml:p>
+   </xccdf:description>
+
+   <!-- RHEL-like platforms only -->
+   <xccdf:platform idref="cpe:2.3:o:centos:centos:7:*:*:*:*:*:*:*"/>
+   <xccdf:platform idref="cpe:2.3:o:centos:centos:8:*:*:*:*:*:*:*"/>
+   <xccdf:platform idref="cpe:2.3:o:almalinux:almalinux:8:*:*:*:*:*:*:*"/>
+   <xccdf:platform idref="cpe:2.3:o:almalinux:almalinux:9:*:*:*:*:*:*:*"/>
+   <xccdf:platform idref="cpe:2.3:o:almalinux:almalinux:10:*:*:*:*:*:*:*"/>
+   <xccdf:platform idref="cpe:2.3:o:redhat:enterprise_linux:7:*:*:*:*:*:*:*"/>
+   <xccdf:platform idref="cpe:2.3:o:redhat:enterprise_linux:8:*:*:*:*:*:*:*"/>
+   <xccdf:platform idref="cpe:2.3:o:redhat:enterprise_linux:9:*:*:*:*:*:*:*"/>
+   <xccdf:platform idref="cpe:2.3:o:redhat:enterprise_linux:10:*:*:*:*:*:*:*"/>
+   <xccdf:platform idref="cpe:2.3:o:rocky:rocky:8:*:*:*:*:*:*:*"/>
+   <xccdf:platform idref="cpe:2.3:o:rocky:rocky:9:*:*:*:*:*:*:*"/>
+   <xccdf:platform idref="cpe:2.3:o:rocky:rocky:10:*:*:*:*:*:*:*"/>
+   <xccdf:version>1.0.0</xccdf:version>
+
+   <!-- Agent operational profile -->
+	<xccdf:Profile id="xccdf_com.cimcor.cimtrak_profile_Agent_Validation">
+		<xccdf:title xml:lang="en">CimTrak Agent Validation</xccdf:title>
+		<xccdf:description xml:lang="en">
+			<xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">Complete CimTrak Agent Validation Profile</xhtml:p>
+			<xhtml:ul xmlns:xhtml="http://www.w3.org/1999/xhtml">
+				<xhtml:li>Comprehensive file integrity monitoring validation</xhtml:li>
+				<xhtml:li>Validates secure configuration management</xhtml:li>
+				<xhtml:li>Includes service monitoring, configuration validation, and audit rules</xhtml:li>
+				<xhtml:li>Provides enterprise-grade capabilities beyond baseline requirements</xhtml:li>
+			</xhtml:ul>
+			<xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">This ensures complete operational readiness with enhanced security capabilities.</xhtml:p>
+		</xccdf:description>
+		<xccdf:select idref="xccdf_com.cimcor.cimtrak_rule_cimtrakagent_service_enabled" selected="true"/>
+		<xccdf:select idref="xccdf_com.cimcor.cimtrak_rule_cimtrakagent_config_valid" selected="true"/>
+	</xccdf:Profile>
+	
+	<xccdf:Group id="xccdf_com.cimcor.cimtrak_group_agent_service">
+        <xccdf:title xml:lang="en">CimTrak Agent Service Management</xccdf:title>
+        <xccdf:description xml:lang="en">
+            <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">Verification of CimTrak agent service status, including systemd service state and operational readiness</xhtml:p>
+        </xccdf:description>
+		
+		<xccdf:Rule id="xccdf_com.cimcor.cimtrak_rule_cimtrakagent_service_enabled" role="full" selected="false" weight="1.0">
+			<xccdf:title xml:lang="en">Ensure CimTrakAgent service is enabled and active</xccdf:title>
+			<xccdf:description xml:lang="en">
+				<xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">This rule verifies that CimTrak Agent provides enhanced capabilities for detecting unauthorized file system changes.</xhtml:p>
+				<xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">The CimTrakAgent service provides real-time file integrity monitoring, detecting changes to critical system files, configurations, and directories. CimTrak continuously monitors the file system and can instantly alert on or remediate unauthorized changes, providing comprehensive protection against threats.</xhtml:p>
+			</xccdf:description>
+			<xccdf:rationale xml:lang="en">
+				<xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">File integrity monitoring is essential for:</xhtml:p>
+				<xhtml:ul xmlns:xhtml="http://www.w3.org/1999/xhtml">
+					<xhtml:li>Detecting malware and rootkit installations</xhtml:li>
+					<xhtml:li>Identifying unauthorized configuration changes</xhtml:li>
+					<xhtml:li>Meeting compliance requirements (PCI-DSS, HIPAA, SOX, NERC, FISMA, GDPR, CMMC)</xhtml:li>
+					<xhtml:li>Preventing zero-day attacks through change prevention</xhtml:li>
+					<xhtml:li>Providing forensic information (who, what, when, how) for security incidents</xhtml:li>
+				</xhtml:ul>
+				<xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">CimTrak provides comprehensive file integrity monitoring with real-time detection, automated remediation, change prevention, and enterprise management features.</xhtml:p>
+			</xccdf:rationale>
+			<xccdf:ident system="http://cisecurity.org/20-cc/v8.0" cc8:controlURI="http://cisecurity.org/20-cc/v8.0/control/3/subcontrol/14">CC8: 3.14</xccdf:ident>
+			<xccdf:ident system="http://cisecurity.org/20-cc/v7.0" cc7:controlURI="http://cisecurity.org/20-cc/v7.0/control/14/subcontrol/9">CC7: 14.9</xccdf:ident>
+			<xccdf:ident system="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final">NIST SP 800-53 Rev. 5: AU-02</xccdf:ident>
+			<xccdf:fixtext xml:lang="en">
+				<xhtml:div xmlns:xhtml="http://www.w3.org/1999/xhtml">
+					<xhtml:p><xhtml:b>To install CimTrakAgent:</xhtml:b></xhtml:p>
+					<xhtml:ol>
+						<xhtml:li>Download the appropriate installer:
+							<xhtml:ul>
+								<xhtml:li>Linux x64: ctagent_e_setup_linux_x64_*.run</xhtml:li>
+								<xhtml:li>Linux x86: ctagent_e_setup_linux_x86_*.run</xhtml:li>
+							</xhtml:ul>
+						</xhtml:li>
+						<xhtml:li>Run the installer with required parameters:
+							<xhtml:code>./ctagent_e_setup_linux_x64_*.run --mode unattended --repository [REPOSITORY_IP] --port 3749 --user [USERNAME] --password [PASSWORD] --agentname [UNIQUE_NAME]</xhtml:code>
+						</xhtml:li>
+						<xhtml:li>Alternatively, use an install key:
+							<xhtml:code>./ctagent_e_setup_linux_x64_*.run --mode unattended --repository [REPOSITORY_IP] --port 3749 --installkey [KEY] --agentname [UNIQUE_NAME]</xhtml:code>
+						</xhtml:li>
+					</xhtml:ol>
+					<xhtml:p><xhtml:b>If already installed, enable and start the service:</xhtml:b></xhtml:p>
+					<xhtml:code>systemctl enable CimTrakAgent</xhtml:code><xhtml:br/>
+					<xhtml:code>systemctl start CimTrakAgent</xhtml:code><xhtml:br/>
+					<xhtml:code>systemctl status CimTrakAgent</xhtml:code>
+				</xhtml:div>
+			</xccdf:fixtext>
+			<xccdf:complex-check operator="AND">
+				<xccdf:check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+					<xccdf:check-content-ref href="Cimcor-rhel-agent-v1.0-oval.xml" name="oval:com.cimcor.cimtrak.o_rhel:def:5001"/>
+				</xccdf:check>
+			</xccdf:complex-check>
+		</xccdf:Rule>
+    </xccdf:Group>
+    
+	<xccdf:Group id="xccdf_com.cimcor.cimtrak_group_agent_configuration">
+		<xccdf:title xml:lang="en">CimTrak Agent Configuration Validation</xccdf:title>
+		<xccdf:description xml:lang="en">
+			<xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">Verification of CimTrak agent configuration files, parameters, and connectivity settings</xhtml:p>
+		</xccdf:description>
+		
+		<xccdf:Rule id="xccdf_com.cimcor.cimtrak_rule_cimtrakagent_config_valid" role="full" selected="false" weight="1.0">
+			<xccdf:title xml:lang="en">Ensure CimTrakAgent is properly configured</xccdf:title>
+			<xccdf:description xml:lang="en">
+				<xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">This rule ensures CimTrak Agent configuration maintains secure operational parameters and proper authentication mechanisms.</xhtml:p>
+				<xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">The CimTrakAgent configuration file contains critical settings that enable the agent to connect to the CimTrak repository and perform file integrity monitoring. The configuration must include repository connection details and authentication credentials with proper cryptographic validation.</xhtml:p>
+			</xccdf:description>
+			<xccdf:rationale xml:lang="en">
+				<xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">A properly configured CimTrakAgent is essential for:</xhtml:p>
+				<xhtml:ul xmlns:xhtml="http://www.w3.org/1999/xhtml">
+					<xhtml:li>Establishing secure communication with the CimTrak repository</xhtml:li>
+					<xhtml:li>Ensuring proper file system monitoring capabilities are available</xhtml:li>
+					<xhtml:li>Providing unique agent identification for centralized management</xhtml:li>
+					<xhtml:li>Enabling real-time change detection and reporting</xhtml:li>
+				</xhtml:ul>
+				<xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">Without proper configuration, the CimTrakAgent cannot function effectively, leaving systems vulnerable to undetected changes and compliance violations.</xhtml:p>
+			</xccdf:rationale>
+			<xccdf:ident system="http://cisecurity.org/20-cc/v8.0" cc8:controlURI="http://cisecurity.org/20-cc/v8.0/control/8/subcontrol/2">CC8: 8.2</xccdf:ident>
+			<xccdf:ident system="http://cisecurity.org/20-cc/v7.0" cc7:controlURI="http://cisecurity.org/20-cc/v7.0/control/6/subcontrol/2">CC7: 6.2</xccdf:ident>
+			<xccdf:ident system="http://cisecurity.org/20-cc/v7.0" cc7:controlURI="http://cisecurity.org/20-cc/v7.0/control/6/subcontrol/3">CC7: 6.3</xccdf:ident>
+			<xccdf:ident system="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final">NIST SP 800-53 Rev. 5: AU-02</xccdf:ident>
+			<xccdf:ident system="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final">NIST SP 800-53 Rev. 5: AU-07</xccdf:ident>
+			<xccdf:ident system="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final">NIST SP 800-53 Rev. 5: AU-12</xccdf:ident>
+			<xccdf:fixtext xml:lang="en">
+				<xhtml:div xmlns:xhtml="http://www.w3.org/1999/xhtml">
+					<xhtml:p><xhtml:b>To test the current configuration:</xhtml:b></xhtml:p>
+					<xhtml:code>cd /opt/Cimcor/CimTrak/CimTrakAgent &amp;&amp; ./CimTrakAgent.exe --checkinstall</xhtml:code>
+					<xhtml:p><xhtml:b>If configuration validation fails, register the agent:</xhtml:b></xhtml:p>
+					<xhtml:ol>
+						<xhtml:li><xhtml:b>Register CimTrak Agent:</xhtml:b>
+							<xhtml:code>cd /opt/Cimcor/CimTrak/CimTrakAgent &amp;&amp; ./CimTrakAgent.exe -registeragent username=[admin_username],password=[password],server=[cimtrak_repository_ip],overridebyname=1</xhtml:code>
+						</xhtml:li>
+						<xhtml:li><xhtml:b>Test SSL connectivity to CimTrak repository:</xhtml:b>
+							<xhtml:code>echo "Q" | openssl s_client -connect [cimtrak_repository_ip]:3749</xhtml:code>
+						</xhtml:li>
+						<xhtml:li><xhtml:b>Restart service after registration:</xhtml:b>
+							<xhtml:code>systemctl restart CimTrakAgent</xhtml:code>
+						</xhtml:li>
+					</xhtml:ol>
+				</xhtml:div>
+			</xccdf:fixtext>
+			<xccdf:complex-check operator="AND">
+				<xccdf:check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+					<xccdf:check-content-ref href="Cimcor-rhel-agent-v1.0-oval.xml" name="oval:com.cimcor.cimtrak.o_rhel:def:5002"/>
+				</xccdf:check>
+			</xccdf:complex-check>
+		</xccdf:Rule>
+	</xccdf:Group>
+	
+	
+</xccdf:Benchmark>

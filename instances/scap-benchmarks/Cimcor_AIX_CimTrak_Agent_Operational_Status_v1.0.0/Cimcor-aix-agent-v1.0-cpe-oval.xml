@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" 
+                  xmlns:aix="http://oval.mitre.org/XMLSchema/oval-definitions-5#aix"
+                  xmlns:unix="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix"
+                  xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5 oval-definitions-schema.xsd
+                                      http://oval.mitre.org/XMLSchema/oval-definitions-5#aix aix-definitions-schema.xsd
+                                      http://oval.mitre.org/XMLSchema/oval-definitions-5#unix unix-definitions-schema.xsd">
+
+	<generator>
+		<oval:product_name>Cimcor SCAP Content</oval:product_name>
+		<oval:product_version>1.0.0</oval:product_version>
+		<oval:schema_version>5.11.1</oval:schema_version>
+		<oval:timestamp>2025-08-20T14:00:00</oval:timestamp>
+	</generator>
+
+	<definitions>
+		<!-- IBM AIX 6.1 Detection -->
+		<definition class="inventory" id="oval:com.cimcor.cimtrak.o_aix:def:2000" version="1">
+			<metadata>
+				<title>IBM AIX 6.1 is installed</title>
+				<description>The operating system installed on the system is IBM AIX 6.1</description>
+			</metadata>
+			<criteria comment="IBM AIX 6.1" operator="AND">
+				<criterion comment="AIX is installed" test_ref="oval:com.cimcor.cimtrak.o_aix:tst:2001"/>
+				<criterion comment="AIX version is 6.1" test_ref="oval:com.cimcor.cimtrak.o_aix:tst:2000"/>
+			</criteria>
+		</definition>
+
+		<!-- IBM AIX 7.1 Detection -->
+		<definition class="inventory" id="oval:com.cimcor.cimtrak.o_aix:def:2001" version="1">
+			<metadata>
+				<title>IBM AIX 7.1 is installed</title>
+				<description>The operating system installed on the system is IBM AIX 7.1</description>
+			</metadata>
+			<criteria comment="IBM AIX 7.1" operator="AND">
+				<criterion comment="AIX is installed" test_ref="oval:com.cimcor.cimtrak.o_aix:tst:2001"/>
+				<criterion comment="AIX version is 7.1" test_ref="oval:com.cimcor.cimtrak.o_aix:tst:2001"/>
+			</criteria>
+		</definition>
+
+		<!-- IBM AIX 7.2 Detection -->
+		<definition class="inventory" id="oval:com.cimcor.cimtrak.o_aix:def:2002" version="1">
+			<metadata>
+				<title>IBM AIX 7.2 is installed</title>
+				<description>The operating system installed on the system is IBM AIX 7.2</description>
+			</metadata>
+			<criteria comment="IBM AIX 7.2" operator="AND">
+				<criterion comment="AIX is installed" test_ref="oval:com.cimcor.cimtrak.o_aix:tst:2001"/>
+				<criterion comment="AIX version is 7.2" test_ref="oval:com.cimcor.cimtrak.o_aix:tst:2002"/>
+			</criteria>
+		</definition>
+
+		<!-- IBM AIX 7.3 Detection -->
+		<definition class="inventory" id="oval:com.cimcor.cimtrak.o_aix:def:2003" version="1">
+			<metadata>
+				<title>IBM AIX 7.3 is installed</title>
+				<description>The operating system installed on the system is IBM AIX 7.3</description>
+			</metadata>
+			<criteria comment="IBM AIX 7.3" operator="AND">
+				<criterion comment="AIX is installed" test_ref="oval:com.cimcor.cimtrak.o_aix:tst:2001"/>
+				<criterion comment="AIX version is 7.3" test_ref="oval:com.cimcor.cimtrak.o_aix:tst:2003"/>
+			</criteria>
+		</definition>
+
+	</definitions>
+
+	<tests>
+		<!-- General AIX Detection Test -->
+		<unix:uname_test check="all" check_existence="at_least_one_exists" 
+			comment="AIX is installed" id="oval:com.cimcor.cimtrak.o_aix:tst:2001" version="1">
+			<unix:object object_ref="oval:com.cimcor.cimtrak.o_aix:obj:2001"/>
+			<unix:state state_ref="oval:com.cimcor.cimtrak.o_aix:ste:2001"/>
+		</unix:uname_test>
+
+		<!-- AIX 6.1 Version Test -->
+		<aix:oslevel_test check="all" check_existence="at_least_one_exists" 
+			comment="AIX version is 6.1" id="oval:com.cimcor.cimtrak.o_aix:tst:2000" version="1">
+			<aix:object object_ref="oval:com.cimcor.cimtrak.o_aix:obj:2002"/>
+			<aix:state state_ref="oval:com.cimcor.cimtrak.o_aix:ste:2000"/>
+		</aix:oslevel_test>
+
+		<!-- AIX 7.1 Version Test -->
+		<aix:oslevel_test check="all" check_existence="at_least_one_exists" 
+			comment="AIX version is 7.1" id="oval:com.cimcor.cimtrak.o_aix:tst:2001" version="1">
+			<aix:object object_ref="oval:com.cimcor.cimtrak.o_aix:obj:2002"/>
+			<aix:state state_ref="oval:com.cimcor.cimtrak.o_aix:ste:2002"/>
+		</aix:oslevel_test>
+
+		<!-- AIX 7.2 Version Test -->
+		<aix:oslevel_test check="all" check_existence="at_least_one_exists" 
+			comment="AIX version is 7.2" id="oval:com.cimcor.cimtrak.o_aix:tst:2002" version="1">
+			<aix:object object_ref="oval:com.cimcor.cimtrak.o_aix:obj:2002"/>
+			<aix:state state_ref="oval:com.cimcor.cimtrak.o_aix:ste:2003"/>
+		</aix:oslevel_test>
+
+		<!-- AIX 7.3 Version Test -->
+		<aix:oslevel_test check="all" check_existence="at_least_one_exists" 
+			comment="AIX version is 7.3" id="oval:com.cimcor.cimtrak.o_aix:tst:2003" version="1">
+			<aix:object object_ref="oval:com.cimcor.cimtrak.o_aix:obj:2002"/>
+			<aix:state state_ref="oval:com.cimcor.cimtrak.o_aix:ste:2004"/>
+		</aix:oslevel_test>
+
+	</tests>
+
+	<objects>
+		<!-- AIX uname object -->
+		<unix:uname_object comment="AIX system identification" 
+			id="oval:com.cimcor.cimtrak.o_aix:obj:2001" version="1"/>
+
+		<!-- AIX oslevel object -->
+		<aix:oslevel_object comment="AIX OS level information" 
+			id="oval:com.cimcor.cimtrak.o_aix:obj:2002" version="1"/>
+
+	</objects>
+
+	<states>
+		<!-- AIX system state -->
+		<unix:uname_state comment="AIX operating system" 
+			id="oval:com.cimcor.cimtrak.o_aix:ste:2001" version="1">
+			<unix:os_name>AIX</unix:os_name>
+		</unix:uname_state>
+
+		<!-- AIX 6.1 state -->
+		<aix:oslevel_state comment="AIX version 6.1" 
+			id="oval:com.cimcor.cimtrak.o_aix:ste:2000" version="1">
+			<aix:maintenance_level operation="pattern match">^61</aix:maintenance_level>
+		</aix:oslevel_state>
+
+		<!-- AIX 7.1 state -->
+		<aix:oslevel_state comment="AIX version 7.1" 
+			id="oval:com.cimcor.cimtrak.o_aix:ste:2002" version="1">
+			<aix:maintenance_level operation="pattern match">^71</aix:maintenance_level>
+		</aix:oslevel_state>
+
+		<!-- AIX 7.2 state -->
+		<aix:oslevel_state comment="AIX version 7.2" 
+			id="oval:com.cimcor.cimtrak.o_aix:ste:2003" version="1">
+			<aix:maintenance_level operation="pattern match">^72</aix:maintenance_level>
+		</aix:oslevel_state>
+
+		<!-- AIX 7.3 state -->
+		<aix:oslevel_state comment="AIX version 7.3" 
+			id="oval:com.cimcor.cimtrak.o_aix:ste:2004" version="1">
+			<aix:maintenance_level operation="pattern match">^73</aix:maintenance_level>
+		</aix:oslevel_state>
+
+	</states>
+</oval_definitions>

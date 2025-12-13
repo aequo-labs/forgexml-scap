@@ -1,0 +1,880 @@
+<oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5 https://oval.cisecurity.org/schemas/validator-oval-definitions-5.11.2.xsd">
+   <generator>
+      <oval:product_name>Center for Internet Security - Optimus</oval:product_name>
+      <oval:schema_version>5.11.2</oval:schema_version>
+      <oval:timestamp>2024-11-12T19:11:54.317Z</oval:timestamp>
+   </generator>
+   <definitions>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:def:36905" version="1">
+         <metadata>
+            <title>Ensure Latest SQL Server Service Packs and Hotfixes are Installed</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1_Ensure_Latest_SQL_Server_Service_Packs_and_Hotfixes_are_Installed" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1_Ensure_Latest_SQL_Server_Service_Packs_and_Hotfixes_are_Installed"></reference>
+            <description>Ensure Latest SQL Server Service Packs and Hotfixes are Installed</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:36905"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:def:36906" version="1">
+         <metadata>
+            <title>Ensure 'Ad Hoc Distributed Queries' Server Configuration Option is set to '0'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.1_Ensure_Ad_Hoc_Distributed_Queries_Server_Configuration_Option_is_set_to_0" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.1_Ensure_Ad_Hoc_Distributed_Queries_Server_Configuration_Option_is_set_to_0"></reference>
+            <description>Ensure 'Ad Hoc Distributed Queries' Server Configuration Option is set to '0'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:36906"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:def:36907" version="1">
+         <metadata>
+            <title>Ensure 'CLR Enabled' Server Configuration Option is set to '0'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.2_Ensure_CLR_Enabled_Server_Configuration_Option_is_set_to_0" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.2_Ensure_CLR_Enabled_Server_Configuration_Option_is_set_to_0"></reference>
+            <description>Ensure 'CLR Enabled' Server Configuration Option is set to '0'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:36907"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:def:36908" version="1">
+         <metadata>
+            <title>Ensure 'Cross DB Ownership Chaining' Server Configuration Option is set to '0'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.3_Ensure_Cross_DB_Ownership_Chaining_Server_Configuration_Option_is_set_to_0" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.3_Ensure_Cross_DB_Ownership_Chaining_Server_Configuration_Option_is_set_to_0"></reference>
+            <description>Ensure 'Cross DB Ownership Chaining' Server Configuration Option is set to '0'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:36908"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:def:36909" version="1">
+         <metadata>
+            <title>Ensure 'Database Mail XPs' Server Configuration Option is set to '0'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.4_Ensure_Database_Mail_XPs_Server_Configuration_Option_is_set_to_0" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.4_Ensure_Database_Mail_XPs_Server_Configuration_Option_is_set_to_0"></reference>
+            <description>Ensure 'Database Mail XPs' Server Configuration Option is set to '0'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:36909"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:def:36910" version="1">
+         <metadata>
+            <title>Ensure 'Ole Automation Procedures' Server Configuration Option is set to '0'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.5_Ensure_Ole_Automation_Procedures_Server_Configuration_Option_is_set_to_0" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.5_Ensure_Ole_Automation_Procedures_Server_Configuration_Option_is_set_to_0"></reference>
+            <description>Ensure 'Ole Automation Procedures' Server Configuration Option is set to '0'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:36910"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:def:36911" version="1">
+         <metadata>
+            <title>Ensure 'Remote Access' Server Configuration Option is set to '0'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.6_Ensure_Remote_Access_Server_Configuration_Option_is_set_to_0" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.6_Ensure_Remote_Access_Server_Configuration_Option_is_set_to_0"></reference>
+            <description>Ensure 'Remote Access' Server Configuration Option is set to '0'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:36911"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:def:50061" version="1">
+         <metadata>
+            <title>Ensure 'Remote Access' Server Configuration Option is set to '0'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.6_Ensure_Remote_Access_Server_Configuration_Option_is_set_to_0" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.6_Ensure_Remote_Access_Server_Configuration_Option_is_set_to_0"></reference>
+            <description>Ensure 'Remote Access' Server Configuration Option is set to '0'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:50061"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:def:36912" version="1">
+         <metadata>
+            <title>Ensure 'Remote Admin Connections' Server Configuration Option is set to '0'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.7_Ensure_Remote_Admin_Connections_Server_Configuration_Option_is_set_to_0" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.7_Ensure_Remote_Admin_Connections_Server_Configuration_Option_is_set_to_0"></reference>
+            <description>Ensure 'Remote Admin Connections' Server Configuration Option is set to '0'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:36912"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:def:36913" version="1">
+         <metadata>
+            <title>Ensure 'Scan For Startup Procs' Server Configuration Option is set to '0'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.8_Ensure_Scan_For_Startup_Procs_Server_Configuration_Option_is_set_to_0" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.8_Ensure_Scan_For_Startup_Procs_Server_Configuration_Option_is_set_to_0"></reference>
+            <description>Ensure 'Scan For Startup Procs' Server Configuration Option is set to '0'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:36913"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:def:50065" version="1">
+         <metadata>
+            <title>Ensure 'Scan For Startup Procs' Server Configuration Option is set to '0'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.8_Ensure_Scan_For_Startup_Procs_Server_Configuration_Option_is_set_to_0" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.8_Ensure_Scan_For_Startup_Procs_Server_Configuration_Option_is_set_to_0"></reference>
+            <description>Ensure 'Scan For Startup Procs' Server Configuration Option is set to '0'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:50065"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:def:36914" version="1">
+         <metadata>
+            <title>Ensure 'Trustworthy' Database Property is set to 'Off'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.9_Ensure_Trustworthy_Database_Property_is_set_to_Off" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.9_Ensure_Trustworthy_Database_Property_is_set_to_Off"></reference>
+            <description>Ensure 'Trustworthy' Database Property is set to 'Off'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:36914"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:def:50077" version="1">
+         <metadata>
+            <title>Ensure SQL Server is configured to use non-standard ports</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.11_Ensure_SQL_Server_is_configured_to_use_non-standard_ports" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.11_Ensure_SQL_Server_is_configured_to_use_non-standard_ports"></reference>
+            <description>Ensure SQL Server is configured to use non-standard ports</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:50077"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:def:50081" version="1">
+         <metadata>
+            <title>Ensure 'Hide Instance' option is set to 'Yes' for Production SQL Server instances</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.12_Ensure_Hide_Instance_option_is_set_to_Yes_for_Production_SQL_Server_instances" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.12_Ensure_Hide_Instance_option_is_set_to_Yes_for_Production_SQL_Server_instances"></reference>
+            <description>Ensure 'Hide Instance' option is set to 'Yes' for Production SQL Server instances</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:50081"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:def:36915" version="1">
+         <metadata>
+            <title>Ensure  'sa' Login Account is set to 'Disabled'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.13_Ensure__sa_Login_Account_is_set_to_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.13_Ensure__sa_Login_Account_is_set_to_Disabled"></reference>
+            <description>Ensure  'sa' Login Account is set to 'Disabled'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:36915"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:def:36916" version="1">
+         <metadata>
+            <title>Ensure 'sa' Login Account has been renamed</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.14_Ensure_sa_Login_Account_has_been_renamed" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.14_Ensure_sa_Login_Account_has_been_renamed"></reference>
+            <description>Ensure 'sa' Login Account has been renamed</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:36916"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:def:50086" version="1">
+         <metadata>
+            <title>Ensure 'xp_cmdshell' Server Configuration Option is set to '0'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.15_Ensure_xp_cmdshell_Server_Configuration_Option_is_set_to_0" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.15_Ensure_xp_cmdshell_Server_Configuration_Option_is_set_to_0"></reference>
+            <description>Ensure 'xp_cmdshell' Server Configuration Option is set to '0'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:50086"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:def:50090" version="1">
+         <metadata>
+            <title>Ensure 'AUTO_CLOSE OFF' is set on contained databases</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.16_Ensure_AUTO_CLOSE_OFF_is_set_on_contained_databases" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.16_Ensure_AUTO_CLOSE_OFF_is_set_on_contained_databases"></reference>
+            <description>Ensure 'AUTO_CLOSE OFF' is set on contained databases</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:50090"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:def:36919" version="1">
+         <metadata>
+            <title>Ensure no login exists with the name 'sa'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.17_Ensure_no_login_exists_with_the_name_sa" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.17_Ensure_no_login_exists_with_the_name_sa"></reference>
+            <description>Ensure no login exists with the name 'sa'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:36919"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:def:36920" version="1">
+         <metadata>
+            <title>Ensure 'Server Authentication' Property is set to 'Windows Authentication Mode'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.1_Ensure_Server_Authentication_Property_is_set_to_Windows_Authentication_Mode" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.1_Ensure_Server_Authentication_Property_is_set_to_Windows_Authentication_Mode"></reference>
+            <description>Ensure 'Server Authentication' Property is set to 'Windows Authentication Mode'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:36920"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:def:36921" version="1">
+         <metadata>
+            <title>Ensure CONNECT permissions on the 'guest user' is Revoked within all SQL Server databases excluding the master, msdb and tempdb</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.2_Ensure_CONNECT_permissions_on_the_guest_user_is_Revoked_within_all_SQL_Server_databases_excluding_the_master_msdb_and_tempdb" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.2_Ensure_CONNECT_permissions_on_the_guest_user_is_Revoked_within_all_SQL_Server_databases_excluding_the_master_msdb_and_tempdb"></reference>
+            <description>Ensure CONNECT permissions on the 'guest user' is Revoked within all SQL Server databases excluding the master, msdb and tempdb</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:36921"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:def:36922" version="1">
+         <metadata>
+            <title>Ensure 'Orphaned Users' are Dropped From SQL Server Databases</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.3_Ensure_Orphaned_Users_are_Dropped_From_SQL_Server_Databases" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.3_Ensure_Orphaned_Users_are_Dropped_From_SQL_Server_Databases"></reference>
+            <description>Ensure 'Orphaned Users' are Dropped From SQL Server Databases</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:36922"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:def:50093" version="1">
+         <metadata>
+            <title>Ensure only the default permissions specified by Microsoft are granted to the public server role</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.8_Ensure_only_the_default_permissions_specified_by_Microsoft_are_granted_to_the_public_server_role" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.8_Ensure_only_the_default_permissions_specified_by_Microsoft_are_granted_to_the_public_server_role"></reference>
+            <description>Ensure only the default permissions specified by Microsoft are granted to the public server role</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:50093"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:def:50097" version="1">
+         <metadata>
+            <title>Ensure Windows BUILTIN groups are not SQL Logins</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.9_Ensure_Windows_BUILTIN_groups_are_not_SQL_Logins" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.9_Ensure_Windows_BUILTIN_groups_are_not_SQL_Logins"></reference>
+            <description>Ensure Windows BUILTIN groups are not SQL Logins</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:50097"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:def:50101" version="1">
+         <metadata>
+            <title>Ensure Windows local groups are not SQL Logins</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.10_Ensure_Windows_local_groups_are_not_SQL_Logins" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.10_Ensure_Windows_local_groups_are_not_SQL_Logins"></reference>
+            <description>Ensure Windows local groups are not SQL Logins</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:50101"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:def:50105" version="1">
+         <metadata>
+            <title>Ensure the public role in the msdb database is not granted access to SQL Agent proxies</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.11_Ensure_the_public_role_in_the_msdb_database_is_not_granted_access_to_SQL_Agent_proxies" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.11_Ensure_the_public_role_in_the_msdb_database_is_not_granted_access_to_SQL_Agent_proxies"></reference>
+            <description>Ensure the public role in the msdb database is not granted access to SQL Agent proxies</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:50105"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:def:36923" version="1">
+         <metadata>
+            <title>Ensure &amp;#039;CHECK_EXPIRATION&amp;#039; Option is set to &amp;#039;ON&amp;#039; for All SQL Authenticated Logins Within the Sysadmin Role</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.2_Ensure_039CHECK_EXPIRATION039_Option_is_set_to_039ON039_for_All_SQL_Authenticated_Logins_Within_the_Sysadmin_Role" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.2_Ensure_039CHECK_EXPIRATION039_Option_is_set_to_039ON039_for_All_SQL_Authenticated_Logins_Within_the_Sysadmin_Role"></reference>
+            <description>Ensure &amp;#039;CHECK_EXPIRATION&amp;#039; Option is set to &amp;#039;ON&amp;#039; for All SQL Authenticated Logins Within the Sysadmin Role</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:36923"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:def:36924" version="1">
+         <metadata>
+            <title>Ensure 'CHECK_POLICY' Option is set to 'ON' for All SQL Authenticated Logins</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.3_Ensure_CHECK_POLICY_Option_is_set_to_ON_for_All_SQL_Authenticated_Logins" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.3_Ensure_CHECK_POLICY_Option_is_set_to_ON_for_All_SQL_Authenticated_Logins"></reference>
+            <description>Ensure 'CHECK_POLICY' Option is set to 'ON' for All SQL Authenticated Logins</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:36924"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:def:50073" version="1">
+         <metadata>
+            <title>Ensure 'Maximum number of error log files' is set to greater than or equal to '12'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.1_Ensure_Maximum_number_of_error_log_files_is_set_to_greater_than_or_equal_to_12" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.1_Ensure_Maximum_number_of_error_log_files_is_set_to_greater_than_or_equal_to_12"></reference>
+            <description>Ensure 'Maximum number of error log files' is set to greater than or equal to '12'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:50073"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:def:36925" version="1">
+         <metadata>
+            <title>Ensure 'Default Trace Enabled' Server Configuration Option is set to '1'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.2_Ensure_Default_Trace_Enabled_Server_Configuration_Option_is_set_to_1" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.2_Ensure_Default_Trace_Enabled_Server_Configuration_Option_is_set_to_1"></reference>
+            <description>Ensure 'Default Trace Enabled' Server Configuration Option is set to '1'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:36925"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:def:36926" version="1">
+         <metadata>
+            <title>Ensure 'Default Trace Enabled' Server Configuration Option is set to '1'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.2_Ensure_Default_Trace_Enabled_Server_Configuration_Option_is_set_to_1" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.2_Ensure_Default_Trace_Enabled_Server_Configuration_Option_is_set_to_1"></reference>
+            <description>Ensure 'Default Trace Enabled' Server Configuration Option is set to '1'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:36926"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:def:48891" version="1">
+         <metadata>
+            <title>Ensure 'Login Auditing' is set to 'failed logins'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.3_Ensure_Login_Auditing_is_set_to_failed_logins" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.3_Ensure_Login_Auditing_is_set_to_failed_logins"></reference>
+            <description>Ensure 'Login Auditing' is set to 'failed logins'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:48891"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:def:36928" version="1">
+         <metadata>
+            <title>Ensure 'CLR Assembly Permission Set' is set to 'SAFE_ACCESS' for All CLR Assemblies</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.2_Ensure_CLR_Assembly_Permission_Set_is_set_to_SAFE_ACCESS_for_All_CLR_Assemblies" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.2_Ensure_CLR_Assembly_Permission_Set_is_set_to_SAFE_ACCESS_for_All_CLR_Assemblies"></reference>
+            <description>Ensure 'CLR Assembly Permission Set' is set to 'SAFE_ACCESS' for All CLR Assemblies</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:36928"></criterion>
+         </criteria>
+      </definition>
+   </definitions>
+   <tests>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="No Title" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:36905" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:36905"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:ste:36905"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="No Title" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:36906" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:36906"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:ste:36906"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="No Title" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:36907" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:36907"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:ste:36907"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="No Title" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:36908" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:36908"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:ste:36908"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="No Title" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:36909" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:36909"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:ste:36909"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="No Title" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:36910" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:36910"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:ste:36910"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure value_configured is set to 0" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:36911" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:36911"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:ste:36911"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure value_in_use is set to 0" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:50061" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:50061"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:ste:50061"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="No Title" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:36912" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:36912"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:ste:36912"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure value_configured is set to 0" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:36913" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:36913"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:ste:36913"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure value_in_use is set to 0" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:50065" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:50065"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:ste:50065"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure Trustworthy Database Property is set to Off" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:36914" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:36914"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure TcpPort is not equal to 1433" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:50077" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:50077"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:ste:50077"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure Hide Instance option is 1" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:50081" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:50081"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:ste:50081"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="No Title" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:36915" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:36915"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:ste:36915"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="No Title" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:36916" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:36916"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:ste:36916"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure value_configured is set to 0" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:50086" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:50086"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:ste:50086"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure auto_close is off for contained databases" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:50090" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:50090"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure no login exists with the name sa" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:36919" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:36919"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="No Title" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:36920" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:36920"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:ste:36920"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="all_exist" comment="No Title" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:36921" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:36921"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:ste:36921"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="No Title" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:36922" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:36922"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure no extra permissions granted to public" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:50093" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:50093"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure no Builtin groups are logins" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:50097" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:50097"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure Windows local groups are not SQL Logins" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:50101" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:50101"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure the public role in the msdb database is not granted access to SQL Agent proxies" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:50105" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:50105"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure Check_Expiration is ON for High Privilege Logins" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:36923" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:36923"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure Check_Policy is ON for all SQL Authenticated Logins" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:36924" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:36924"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure number of error logs is greater than or equal to 12" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:50073" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:50073"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:ste:50073"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure value_configured is set to 1" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:36925" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:36925"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:ste:36925"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure value_in_use is set to 1" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:36926" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:36926"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:ste:36926"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure audit level is failure or all" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:48891" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:48891"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:ste:48891"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="any_exist" comment="No Title" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:tst:36928" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:36928"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:ste:36928"></state>
+      </sql57_test>
+   </tests>
+   <objects>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="No Title" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:36905" version="1">
+         <engine>sqlserver</engine>
+         <version>2014</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT SERVERPROPERTY('ProductVersion') as result</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="No Title" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:36906" version="1">
+         <engine>sqlserver</engine>
+         <version>2014</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT CAST(value as int) as value_configured, CAST(value_in_use as int) as value_in_use FROM sys.configurations WHERE name = 'Ad Hoc Distributed Queries';</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="No Title" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:36907" version="1">
+         <engine>sqlserver</engine>
+         <version>2014</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT CAST(value as int) as value_configured,  CAST(value_in_use as int) as value_in_use  FROM sys.configurations  WHERE name = 'clr enabled';</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="No Title" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:36908" version="1">
+         <engine>sqlserver</engine>
+         <version>2014</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT CAST(value as int) as value_configured, CAST(value_in_use as int) as value_in_use FROM sys.configurations WHERE name = 'cross db ownership chaining';</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="No Title" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:36909" version="1">
+         <engine>sqlserver</engine>
+         <version>2014</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT CAST(value as int) as value_configured, CAST(value_in_use as int) as value_in_use FROM sys.configurations WHERE name = 'Database Mail XPs';</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="No Title" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:36910" version="1">
+         <engine>sqlserver</engine>
+         <version>2014</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT CAST(value as int) as value_configured, CAST(value_in_use as int) as value_in_use FROM sys.configurations WHERE name = 'Ole Automation Procedures';</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure value_configured is set to 0" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:36911" version="1">
+         <engine>sqlserver</engine>
+         <version>2014</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT CAST(value as int) as value_configured FROM sys.configurations WHERE name = 'remote access';</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure value_in_use is set to 0" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:50061" version="1">
+         <engine>sqlserver</engine>
+         <version>2014</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT CAST(value_in_use as int) as value_in_use FROM sys.configurations WHERE name = 'remote access';</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="No Title" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:36912" version="1">
+         <engine>sqlserver</engine>
+         <version>2014</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT CAST(value as int) as value_configured, CAST(value_in_use as int) as value_in_use FROM sys.configurations WHERE name = 'remote admin connections' AND SERVERPROPERTY('IsClustered') = 0;</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure value_configured is set to 0" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:36913" version="1">
+         <engine>sqlserver</engine>
+         <version>2014</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT CAST(value as int) as value_configured FROM sys.configurations WHERE name = 'scan for startup procs';</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure value_in_use is set to 0" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:50065" version="1">
+         <engine>sqlserver</engine>
+         <version>2014</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT CAST(value_in_use as int) as value_in_use FROM sys.configurations WHERE name = 'scan for startup procs';</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure Trustworthy Database Property is set to Off" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:36914" version="1">
+         <engine>sqlserver</engine>
+         <version>2014</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT name FROM sys.databases WHERE is_trustworthy_on = 1 AND name != 'msdb';</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure TcpPort is not equal to 1433" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:50077" version="1">
+         <engine>sqlserver</engine>
+         <version>2014</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>BEGIN EXEC master.sys.xp_instance_regread N'HKEY_LOCAL_MACHINE', N'SOFTWARE\Microsoft\Microsoft SQL Server\MSSQLServer\SuperSocketNetLib\Tcp\IPAll', N'TcpPort'; END</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure Hide Instance option is 1" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:50081" version="1">
+         <engine>sqlserver</engine>
+         <version>2014</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>BEGIN EXEC master.sys.xp_instance_regread @rootkey = N'HKEY_LOCAL_MACHINE', @key = N'SOFTWARE\Microsoft\Microsoft SQL Server\MSSQLServer\SuperSocketNetLib', @value_name = N'HideInstance'; END</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="No Title" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:36915" version="1">
+         <engine>sqlserver</engine>
+         <version>2014</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT name, is_disabled   FROM sys.server_principals WHERE sid = 0x01;</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="No Title" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:36916" version="1">
+         <engine>sqlserver</engine>
+         <version>2014</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT name  FROM sys.server_principals WHERE sid = 0x01;</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure value_configured is set to 0" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:50086" version="1">
+         <engine>sqlserver</engine>
+         <version>2014</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT CAST(value as int) as value_configured FROM sys.configurations WHERE name = 'xp_cmdshell';</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure auto_close is off for contained databases" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:50090" version="1">
+         <engine>sqlserver</engine>
+         <version>2014</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT 1 FROM sys.databases WHERE containment &lt;&gt; 0 and is_auto_close_on = 1;</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure no login exists with the name sa" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:36919" version="1">
+         <engine>sqlserver</engine>
+         <version>2014</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT 1 FROM sys.server_principals WHERE L.name = 'sa' AND L.sid &lt;&gt; 0x01;</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="No Title" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:36920" version="1">
+         <engine>sqlserver</engine>
+         <version>2014</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT SERVERPROPERTY('IsIntegratedSecurityOnly') as login_mode";"</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="No Title" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:36921" version="1">
+         <engine>sqlserver</engine>
+         <version>2014</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT name, hasdbaccess FROM sys.sysusers WHERE name = 'guest'</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="No Title" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:36922" version="1">
+         <engine>sqlserver</engine>
+         <version>2014</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>EXEC sp_change_users_login @Action='Report';</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure no extra permissions granted to public" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:50093" version="1">
+         <engine>sqlserver</engine>
+         <version>2014</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT 1 FROM master.sys.server_permissions WHERE (grantee_principal_id = SUSER_SID(N'public') and state_desc LIKE 'GRANT%') AND NOT (state_desc = 'GRANT' and [permission_name] = 'VIEW ANY DATABASE' and class_desc = 'SERVER') AND NOT (state_desc = 'GRANT' and [permission_name] = 'CONNECT' and class_desc = 'ENDPOINT' and major_id = 2) AND NOT (state_desc = 'GRANT' and [permission_name] = 'CONNECT' and class_desc = 'ENDPOINT' and major_id = 3) AND NOT (state_desc = 'GRANT' and [permission_name] = 'CONNECT' and class_desc = 'ENDPOINT' and major_id = 4) AND NOT (state_desc = 'GRANT' and [permission_name] = 'CONNECT' and class_desc = 'ENDPOINT' and major_id = 5);</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure no Builtin groups are logins" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:50097" version="1">
+         <engine>sqlserver</engine>
+         <version>2014</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT 1 FROM sys.server_principals pr JOIN sys.server_permissions pe ON pr.principal_id = pe.grantee_principal_id WHERE pr.name like 'BUILTIN%';</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure Windows local groups are not SQL Logins" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:50101" version="1">
+         <engine>sqlserver</engine>
+         <version>2014</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT 1 FROM sys.server_principals pr JOIN sys.server_permissions pe ON pr.[principal_id] = pe.[grantee_principal_id] WHERE pr.[type_desc] = 'WINDOWS_GROUP' AND pr.[name] like CAST(SERVERPROPERTY('MachineName') AS nvarchar) + '%';</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure the public role in the msdb database is not granted access to SQL Agent proxies" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:50105" version="1">
+         <engine>sqlserver</engine>
+         <version>2014</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT 1 FROM dbo.sysproxylogin spl JOIN sys.database_principals dp ON dp.sid = spl.sid JOIN sysproxies sp ON sp.proxy_id = spl.proxy_id WHERE principal_id = USER_ID('public');</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure Check_Expiration is ON for High Privilege Logins" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:36923" version="1">
+         <engine>sqlserver</engine>
+         <version>2014</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT 1 FROM sys.sql_logins AS l WHERE IS_SRVROLEMEMBER('sysadmin',name) = 1 AND l.is_expiration_checked &lt;&gt; 1 UNION ALL SELECT 1 FROM sys.sql_logins AS l JOIN sys.server_permissions AS p ON l.principal_id = p.grantee_principal_id WHERE p.type = 'CL' AND p.state IN ('G', 'W') AND l.is_expiration_checked &lt;&gt; 1;</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure Check_Policy is ON for all SQL Authenticated Logins" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:36924" version="1">
+         <engine>sqlserver</engine>
+         <version>2014</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT 1 FROM sys.sql_logins WHERE is_policy_checked = 0;</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure number of error logs is greater than or equal to 12" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:50073" version="1">
+         <engine>sqlserver</engine>
+         <version>2014</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>BEGIN EXEC master.sys.xp_instance_regread N'HKEY_LOCAL_MACHINE', N'Software\Microsoft\MSSQLServer\MSSQLServer', N'NumErrorLogs'; END</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure value_configured is set to 1" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:36925" version="1">
+         <engine>sqlserver</engine>
+         <version>2014</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT CAST(value as int) as value_configured FROM sys.configurations WHERE name = 'default trace enabled';</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure value_in_use is set to 1" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:36926" version="1">
+         <engine>sqlserver</engine>
+         <version>2014</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT CAST(value_in_use as int) as value_in_use FROM sys.configurations WHERE name = 'default trace enabled';</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure audit level is failure or all" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:48891" version="1">
+         <engine>sqlserver</engine>
+         <version>2016</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>BEGIN exec xp_loginconfig 'audit level'; END</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="No Title" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:obj:36928" version="1">
+         <engine>sqlserver</engine>
+         <version>2014</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT name, permission_set_desc  FROM sys.assemblies where is_user_defined = 1;</sql>
+      </sql57_object>
+   </objects>
+   <states>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="No Title" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:ste:36905" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="version" name="result" operation="greater than or equal" var_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:var:36905"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="No Title" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:ste:36906" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="int" name="value_configured" operation="equals" var_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:var:36906"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="No Title" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:ste:36907" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="int" name="value_configured" operation="equals" var_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:var:36907"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="No Title" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:ste:36908" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="int" name="value_configured" operation="equals" var_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:var:36908"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="No Title" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:ste:36909" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="int" name="value_configured" operation="equals" var_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:var:36909"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="No Title" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:ste:36910" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="int" name="value_configured" operation="equals" var_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:var:36910"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure value_configured is set to 0" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:ste:36911" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="int" name="value_configured" operation="equals" var_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:var:36911"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure value_in_use is set to 0" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:ste:50061" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="int" name="value_in_use" operation="equals" var_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:var:50061"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="No Title" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:ste:36912" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="int" name="value_configured" operation="equals" var_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:var:36912"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure value_configured is set to 0" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:ste:36913" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="int" name="value_configured" operation="equals" var_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:var:36913"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure value_in_use is set to 0" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:ste:50065" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="int" name="value_in_use" operation="equals" var_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:var:50065"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure TcpPort is not equal to 1433" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:ste:50077" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="int" name="data" operation="not equal" var_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:var:50077"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure Hide Instance option is 1" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:ste:50081" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="int" name="data" operation="equals" var_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:var:50081"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="No Title" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:ste:36915" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="int" name="is_disabled" operation="equals" var_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:var:36915"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="No Title" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:ste:36916" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="name" operation="not equal" var_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:var:36916"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure value_configured is set to 0" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:ste:50086" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="int" name="value_configured" operation="equals" var_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:var:50086"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="No Title" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:ste:36920" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="int" name="login_mode" operation="equals" var_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:var:36920"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="No Title" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:ste:36921" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="int" name="hasdbaccess" operation="equals" var_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:var:36921"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure number of error logs is greater than or equal to 12" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:ste:50073" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="int" name="data" operation="greater than or equal" var_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:var:50073"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure value_configured is set to 1" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:ste:36925" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="int" name="value_configured" operation="equals" var_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:var:36925"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure value_in_use is set to 1" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:ste:36926" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="int" name="value_in_use" operation="equals" var_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:var:36926"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure audit level is failure or all" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:ste:48891" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="config_value" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:var:48891"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="No Title" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:ste:36928" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="permission_set_desc" operation="equals" var_ref="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:var:36928"></field>
+         </result>
+      </sql57_state>
+   </states>
+   <variables>
+      <external_variable comment="SQL connection string" datatype="string" id="oval:org.cisecurity.benchmarks:var:2000000" version="1"></external_variable>
+      <external_variable comment="No Title" datatype="version" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:var:36905" version="1"></external_variable>
+      <external_variable comment="No Title" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:var:36906" version="1"></external_variable>
+      <external_variable comment="No Title" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:var:36907" version="1"></external_variable>
+      <external_variable comment="No Title" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:var:36908" version="1"></external_variable>
+      <external_variable comment="No Title" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:var:36909" version="1"></external_variable>
+      <external_variable comment="No Title" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:var:36910" version="1"></external_variable>
+      <external_variable comment="Ensure value_configured is set to 0" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:var:36911" version="1"></external_variable>
+      <external_variable comment="Ensure value_in_use is set to 0" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:var:50061" version="1"></external_variable>
+      <external_variable comment="No Title" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:var:36912" version="1"></external_variable>
+      <external_variable comment="Ensure value_configured is set to 0" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:var:36913" version="1"></external_variable>
+      <external_variable comment="Ensure value_in_use is set to 0" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:var:50065" version="1"></external_variable>
+      <external_variable comment="Ensure TcpPort is not equal to 1433" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:var:50077" version="1"></external_variable>
+      <external_variable comment="Ensure Hide Instance option is 1" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:var:50081" version="1"></external_variable>
+      <external_variable comment="No Title" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:var:36915" version="1"></external_variable>
+      <external_variable comment="No Title" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:var:36916" version="1"></external_variable>
+      <external_variable comment="Ensure value_configured is set to 0" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:var:50086" version="1"></external_variable>
+      <external_variable comment="No Title" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:var:36920" version="1"></external_variable>
+      <external_variable comment="No Title" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:var:36921" version="1"></external_variable>
+      <external_variable comment="Ensure number of error logs is greater than or equal to 12" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:var:50073" version="1"></external_variable>
+      <external_variable comment="Ensure value_configured is set to 1" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:var:36925" version="1"></external_variable>
+      <external_variable comment="Ensure value_in_use is set to 1" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:var:36926" version="1"></external_variable>
+      <external_variable comment="Ensure audit level is failure or all" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:var:48891" version="1"></external_variable>
+      <external_variable comment="No Title" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_sql_server_2014:var:36928" version="1"></external_variable>
+   </variables>
+<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+<ds:SignedInfo>
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"></ds:CanonicalizationMethod>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></ds:SignatureMethod>
+<ds:Reference URI="">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"></ds:Transform>
+<ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"></ds:Transform>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></ds:DigestMethod>
+<ds:DigestValue>oEAtSI2366aQlCfRIoy9wI4z6NyHJiple/v0r3lFzS8=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue>
+Y7Vx0GQABgyQK0kaVMtJyAKOHC1FF+obsOdDiTkWhccRqB10af6s7g+SwLDgxgoJY+7NHu+iRMwB
+JbpoNdwCECXPGHaS3GmauggSdEEgN/pfmgObGvErSvDMRmG5tZZC1D+bcAKp/JIuhXrXOD99t8h1
+jTQIvwW3ioGiANiD68RYszypJ5eLVDmK/qgT9X5I3GoUrF0bKVbm5E+RpzKgHnvemB4NkLjJuZrL
+6XTM0xPacwVSjCUvmX8UCAt41R9Sroe9faN8w9cgM4Y+58dAo2OICAGW5zymlxkCx/qMjoWmutzS
+PvoGg6y6lXOTgg7vThKkYE21DmY6PADnQbD0ax0PLMIMc9w5gj/bqKnRRR4Z/MKcIu7p9VQy9j4I
+bKxI526SC7hLv4WtLz0cRmsdB7hn0TmYlWlXcmZPvbf/x2SCT6m44/t2C5Wxu8X1C4CnxwiMgoCr
+Oa1jfaWJ22wSAdW2Cc/vD+z/WGP9KW91PGxDAct6q9D42RtTikWxZSxs
+</ds:SignatureValue>
+<ds:KeyInfo>
+<ds:X509Data>
+<ds:X509Certificate>
+MIIHbDCCBVSgAwIBAgIQCdceADCnzKkglkQGavVKYzANBgkqhkiG9w0BAQsFADBpMQswCQYDVQQG
+EwJVUzEXMBUGA1UEChMORGlnaUNlcnQsIEluYy4xQTA/BgNVBAMTOERpZ2lDZXJ0IFRydXN0ZWQg
+RzQgQ29kZSBTaWduaW5nIFJTQTQwOTYgU0hBMzg0IDIwMjEgQ0ExMB4XDTIzMTAxODAwMDAwMFoX
+DTI2MTAxODIzNTk1OVowgfQxEzARBgsrBgEEAYI3PAIBAxMCVVMxGTAXBgsrBgEEAYI3PAIBAhMI
+TWFyeWxhbmQxHTAbBgNVBA8MFFByaXZhdGUgT3JnYW5pemF0aW9uMRIwEAYDVQQFEwlEMDYwNTg4
+MTIxCzAJBgNVBAYTAlVTMREwDwYDVQQIEwhOZXcgWW9yazEXMBUGA1UEBxMORWFzdCBHcmVlbmJ1
+c2gxKjAoBgNVBAoTIUNlbnRlciBmb3IgSW50ZXJuZXQgU2VjdXJpdHksIEluYzEqMCgGA1UEAxMh
+Q2VudGVyIGZvciBJbnRlcm5ldCBTZWN1cml0eSwgSW5jMIIBojANBgkqhkiG9w0BAQEFAAOCAY8A
+MIIBigKCAYEAyZwTJr4Kb7QEDnVY3BEkPoS3fn+XoxhCTfFvlMk8zXDcR4pFMgPkXTrZ1KbENUIV
+skIhy1vmnh61vwSL0lcdzesCekKSxLqrEA4xunZk1MB5mLbHXchSSpI1co1vaSzJjkTYP1UsUVQz
+NoOzV0LNCoZdahjGTHSduWvbrHTEeD6/jvUj3AVWrTx6krzgYA3ozAxtUnapK7IrZERuGOSwTrgR
+Lr1aieQdFy8haW1YL+ks5HmLRvcoGp+J68GX/zfMTduvWxhcpXm4txKc4iJqGCRmyBU2XjGjpDBX
+ndxHgT4edRLz5PwWSeZUh8/tWOGFwnVw7njoOa0sFixy96H2BqEn+yPeRALyf59rjtPL66tsXuaA
+ilB63yqbH42mnkxHTX5zcEm337GzTOGRccsYzN/ApVuXDeMfsO+sSUosrimnxm9QTOyKcex5h1As
+rxBVfTw+Zf7jP1YRlmMlGPG1zffK2KjJhD6ivFi2sIDThEQLxIAC8XOjp2ZXvhx87yNTAgMBAAGj
+ggICMIIB/jAfBgNVHSMEGDAWgBRoN+Drtjv4XxGG+/5hewiIZfROQjAdBgNVHQ4EFgQUX2/J9FT5
+5BNF7JqfAl9SJkv3pf0wPQYDVR0gBDYwNDAyBgVngQwBAzApMCcGCCsGAQUFBwIBFhtodHRwOi8v
+d3d3LmRpZ2ljZXJ0LmNvbS9DUFMwDgYDVR0PAQH/BAQDAgeAMBMGA1UdJQQMMAoGCCsGAQUFBwMD
+MIG1BgNVHR8Ega0wgaowU6BRoE+GTWh0dHA6Ly9jcmwzLmRpZ2ljZXJ0LmNvbS9EaWdpQ2VydFRy
+dXN0ZWRHNENvZGVTaWduaW5nUlNBNDA5NlNIQTM4NDIwMjFDQTEuY3JsMFOgUaBPhk1odHRwOi8v
+Y3JsNC5kaWdpY2VydC5jb20vRGlnaUNlcnRUcnVzdGVkRzRDb2RlU2lnbmluZ1JTQTQwOTZTSEEz
+ODQyMDIxQ0ExLmNybDCBlAYIKwYBBQUHAQEEgYcwgYQwJAYIKwYBBQUHMAGGGGh0dHA6Ly9vY3Nw
+LmRpZ2ljZXJ0LmNvbTBcBggrBgEFBQcwAoZQaHR0cDovL2NhY2VydHMuZGlnaWNlcnQuY29tL0Rp
+Z2lDZXJ0VHJ1c3RlZEc0Q29kZVNpZ25pbmdSU0E0MDk2U0hBMzg0MjAyMUNBMS5jcnQwCQYDVR0T
+BAIwADANBgkqhkiG9w0BAQsFAAOCAgEASLOHf1FQ7TrGqEoVXYoeNSkRWdVCUGd1JCDs7Hb9sLd3
+eQuipZ4EorQS/9qMiVMhmlJfF75sNVQhr1K5UtjrDRFMTzYmh78hAyovowzgyVKdGFqiVVr5m+mb
+vVyglLlA4V076LMBaKRknm1Dt8r0/5GSRCrkP2origpYMMaocN+iBX9+MImnh3J1Ehn0nRUhW86Q
+mt3/YCVIaQZisv+KmOxyAq1m6fiIYIvXY+cH2dDIheoVteb/NjYnKVqE6xTpOsxF16pykXiM9yk3
+Q9nlJS36KEGRP4wrySU4eIBnTcv4mimZjkWj6bIvk8otNJ14FbyltaPwIc3dE3oPGfSmCrkxs73j
+iqBs2TXLvblEmOhY8ko3xVdTm0zMP50MQVO948fz9yF+xdnPdMPT1/lCmGp6iWYRzxnvEkA1+HFl
+yy9YztrM8WNAhXirpUZg3HWQE2ONLKMtqQrkIHD2nikda77flk6oirqDuCf8Q7g8s86/KabTdxrw
+pRmsRjDkAfKVae58ctaKbmF32oU9BGk+9MPG8HF5Yfoh12DE1fLZcPzZrROrDFJGGxwhv5FlnxGg
+6G7jKi68erZnpaOPayK0bXyZNunqkI9IbIuPqMw5qaCZZgN6AEHIbGTKdrWEf11DmR7MdTjv3/vu
+JWtIXgk3kQFX27w9JhqV6QogVmzIfEQ=
+</ds:X509Certificate>
+</ds:X509Data>
+<ds:KeyValue>
+<ds:RSAKeyValue>
+<ds:Modulus>yZwTJr4Kb7QEDnVY3BEkPoS3fn+XoxhCTfFvlMk8zXDcR4pFMgPkXTrZ1KbENUIVskIhy1vmnh61
+vwSL0lcdzesCekKSxLqrEA4xunZk1MB5mLbHXchSSpI1co1vaSzJjkTYP1UsUVQzNoOzV0LNCoZd
+ahjGTHSduWvbrHTEeD6/jvUj3AVWrTx6krzgYA3ozAxtUnapK7IrZERuGOSwTrgRLr1aieQdFy8h
+aW1YL+ks5HmLRvcoGp+J68GX/zfMTduvWxhcpXm4txKc4iJqGCRmyBU2XjGjpDBXndxHgT4edRLz
+5PwWSeZUh8/tWOGFwnVw7njoOa0sFixy96H2BqEn+yPeRALyf59rjtPL66tsXuaAilB63yqbH42m
+nkxHTX5zcEm337GzTOGRccsYzN/ApVuXDeMfsO+sSUosrimnxm9QTOyKcex5h1AsrxBVfTw+Zf7j
+P1YRlmMlGPG1zffK2KjJhD6ivFi2sIDThEQLxIAC8XOjp2ZXvhx87yNT</ds:Modulus>
+<ds:Exponent>AQAB</ds:Exponent>
+</ds:RSAKeyValue>
+</ds:KeyValue>
+</ds:KeyInfo>
+</ds:Signature></oval_definitions>

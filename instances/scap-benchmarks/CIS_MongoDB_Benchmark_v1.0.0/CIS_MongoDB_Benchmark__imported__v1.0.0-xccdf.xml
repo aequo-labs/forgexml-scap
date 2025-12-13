@@ -1,0 +1,1147 @@
+<xccdf:Benchmark xmlns="http://checklists.nist.gov/xccdf/1.2" xmlns:ae="http://benchmarks.cisecurity.org/ae/0.5" xmlns:cc6="http://cisecurity.org/20-cc/v6.1" xmlns:cc7="http://cisecurity.org/20-cc/v7.0" xmlns:cc8="http://cisecurity.org/20-cc/v8.0" xmlns:ciscf="https://benchmarks.cisecurity.org/ciscf/1.0" xmlns:notes="http://benchmarks.cisecurity.org/notes" xmlns:xccdf="http://checklists.nist.gov/xccdf/1.2" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="xccdf_org.cisecurity.benchmarks_benchmark_1.0.0_CIS_MongoDB_Benchmark_imported" style="SCAP_1.2" xsi:schemaLocation="http://checklists.nist.gov/xccdf/1.2 https://scap.nist.gov/schema/xccdf/1.2/xccdf_1.2.xsd">
+   <xccdf:status date="2023-12-07">accepted</xccdf:status>
+   <xccdf:title xml:lang="en">CIS MongoDB Benchmark [imported]</xccdf:title>
+   <xccdf:description xml:lang="en">
+      <xhtml:h4>
+         <xhtml:strong>This is the archive of the CIS Benchmark for MongoDB. CIS encourages you to migrate to a more recent, supported version of this technology.</xhtml:strong>
+      </xhtml:h4>
+      <xhtml:p>
+This document, CIS MongoDB Benchmark, provides prescriptive guidance for establishing a secure configuration posture for MongoDB version 3.0 or 3.2. This guide was tested against MongoDB 3.2 running on Ubuntu Linux 14.04, but applies to other linux distributions as well. To obtain the latest version of this guide, please visit       <xhtml:a href="http://benchmarks.cisecurity.org/">http://benchmarks.cisecurity.org</xhtml:a>
+. If you have questions, comments, or have identified ways to improve this guide, please write us at       <xhtml:a href="mailto:feedback@cisecurity.org">feedback@cisecurity.org</xhtml:a>
+.    </xhtml:p>
+   </xccdf:description>
+   <xccdf:notice id="terms-of-use" xml:lang="en">	BACKGROUND.
+	The Center for Internet Security ("CIS") provides benchmarks, scoring tools, software, data, information, suggestions, ideas, and other services and materials from the CIS website or elsewhere ("Products") as a public service to Internet users worldwide.	Recommendations contained in the Products ("Recommendations") result from a consensus-building process that involves many security experts and are generally generic in nature.	The Recommendations are intended to provide helpful information to organizations attempting to evaluate or improve the security of their networks, systems, and devices.	Proper use of the Recommendations requires careful analysis and adaptation to specific user requirements.	The Recommendations are not in any way intended to be a "quick fix" for anyone's information security needs.
+	NO REPRESENTATIONS, WARRANTIES, OR COVENANTS.
+	CIS makes no representations, warranties, or covenants whatsoever as to (i) the positive or negative effect of the Products or the Recommendations on the operation or the security of any particular network, computer system, network device, software, hardware, or any component of any of the foregoing or (ii) the accuracy, reliability, timeliness, or completeness of	the Products or the Recommendations.	CIS is providing the Products and the Recommendations "as is" and "as available" without representations, warranties, or covenants of any kind.	USER AGREEMENTS.
+	By using the Products and/or the Recommendations, I and/or my organization ("We") agree and acknowledge that:
+	1.	No network, system, device, hardware, software, or component can be made fully secure;
+	2.	We are using the Products and the Recommendations solely at our own risk;
+	3.	We are not compensating CIS to assume any liabilities associated with our use of the Products or the Recommendations, even risks that result from 		CIS's negligence or failure to perform; 
+	4.	We have the sole responsibility to evaluate the risks and benefits of the Products and Recommendations to us and to adapt the Products and the 			Recommendations to our particular circumstances and requirements;
+	5.	Neither CIS, nor any CIS Party (defined below) has any responsibility to make any corrections, updates, upgrades, or bug fixes; or to notify us of 		the need for any such corrections, updates, upgrades, or bug fixes; and
+	6.	Neither CIS nor any CIS Party has or will have any liability to us whatsoever (whether based in contract, tort, strict liability or otherwise) for 		any direct, indirect, incidental, consequential, or special damages (including without limitation loss of profits, loss of sales, loss of or damage 		to reputation,loss of customers, loss of software, data, information or emails, loss of privacy, loss of use of any computer or other equipment, 	business interruption, wasted management or other staff resources or claims of any kind against us from third parties) arising out of or in any way 	Connected with our use of or our inability to use any of the Products or Recommendations (even if CIS has been advised of the possibility of such 	damages), including without limitation any liability associated with infringement of intellectual property, defects, bugs, errors, omissions, 	viruses, worms, backdoors, Trojan horses or other harmful items.
+	GRANT OF LIMITED RIGHTS.
+	CIS hereby grants each user the following rights, but only so long as the user complies with all of the terms of these Agreed Terms of Use:
+	1.	Except to the extent that we may have received additional authorization pursuant to a written agreement with CIS, each user may download, install and 	use each of the Products on a single computer;
+	2.	Each user may print one or more copies of any Product or any component of a Product that is in a .txt, .pdf, .doc, .mcw, or .rtf format, provided 		that all such copies are printed in full and are kept intact, including without limitation the text of this Agreed Terms of Use in its entirety.
+	RETENTION OF INTELLECTUAL PROPERTY RIGHTS; LIMITATIONS ON DISTRIBUTION.
+	The Products are protected by copyright and other intellectual property laws and by international treaties.	We acknowledge and agree that we are not acquiring title to any intellectual property rights in the Products and that full title and all ownership rights to the Products will remain the exclusive property of CIS or CIS Parties.	CIS reserves all rights not expressly granted to users in the preceding section entitled "Grant of limited rights."
+	Subject to the paragraph entitled "Special Rules" (which includes a waiver, granted to some classes of CIS Members, of certain limitations in this paragraph), and except as we may have otherwise agreed in a written agreement with CIS, we agree that we will not (i) decompile, disassemble, reverse engineer, or otherwise attempt to derive the source code for any software Product that is not already in the form of source code; (ii) distribute, redistribute, encumber, sell, rent, lease, lend, sublicense, or otherwise transfer or exploit rights to any Product or any component of a Product; (iii) post any Product or any component of a Product on any website, bulletin board, ftp server, newsgroup, or other similar mechanism or device, without regard to whether such mechanism or device is internal or external, (iv) remove or alter trademark, logo, copyright or other proprietary notices, legends, symbols or labels in any Product or any component of a Product; (v) remove these Agreed Terms of Use from, or alter these Agreed Terms of Use as they appear in, any Product or any component of a Product; (vi) use any Product or any component of a Product with any derivative works based directly on a Product or any component of a Product; (vii) use any Product or any component of a Product with other products or applications that are directly and specifically dependent on such Product or any component for any part of their functionality, or (viii) represent or claim a particular level of compliance with a CIS Benchmark, scoring tool or other Product.	We will not facilitate or otherwise aid other individuals or entities in any of the activities listed in this paragraph.
+	We hereby agree to indemnify, defend, and hold CIS and all of its officers, directors, members, contributors, employees, authors, developers, agents, affiliates, licensors, information and service providers, software suppliers, hardware suppliers, and all other persons who aided CIS in the creation, development, or maintenance of the Products or Recommendations ("CIS Parties") harmless from and against any and all liability, losses, costs, and expenses (including attorneys' fees and court costs) incurred by CIS or any CIS Party in connection with any claim arising out of any violation by us of the preceding paragraph, including without limitation CIS's right, at our expense, to assume the exclusive defense and control of any matter subject to this indemnification, and in such case, we agree to cooperate with CIS in its defense of such claim.	We further agree that all CIS Parties are third-party beneficiaries of our undertakings in these Agreed Terms of Use.	SPECIAL RULES.
+	CIS has created and will from time to time create, special rules for its members and for other persons and organizations with which CIS has a written contractual relationship.	Those special rules will override and supersede these Agreed Terms of Use with respect to the users who are covered by the special rules.
+	CIS hereby grants each CIS Security Consulting or Software Vendor Member and each CIS Organizational User Member, but only so long as such Member remains in good standing with CIS and complies with all of the terms of these Agreed Terms of Use, the right to distribute the Products and Recommendations within such Member's own organization, whether by manual or electronic means.	Each such Member acknowledges and agrees that the foregoing grant is subject to the terms of such Member's membership arrangement with CIS and may, therefore, be modified or terminated by CIS at any time.
+	CHOICE OF LAW; JURISDICTION; VENUE.
+	We acknowledge and agree that these Agreed Terms of Use will be governed by and construed in accordance with the laws of the State of Maryland, that any action at law or in equity arising out of or relating to these Agreed Terms of Use shall be filed only in the courts located in the State of Maryland, that we hereby consent and submit to the personal jurisdiction of such courts for the purposes of litigating any such action.	If any of these Agreed Terms of Use shall be determined to be unlawful, void, or for any reason unenforceable, then such terms shall be deemed severable and shall not affect the validity and enforceability of any remaining provisions.
+	BY USING THE PRODUCTS I(WE) ACKNOWLEDGE THAT WE HAVE READ THESE AGREED TERMS OF USE IN THEIR ENTIRETY, UNDERSTAND THEM, AND I(WE) AGREE TO BE BOUND BY THEM IN ALL RESPECTS.</xccdf:notice>
+   <xccdf:version>1.0.0</xccdf:version>
+   <xccdf:Profile id="xccdf_org.cisecurity.benchmarks_profile_Level_1_-_MongoDB_on_Linux">
+      <xccdf:title xml:lang="en">Level 1 - MongoDB on Linux</xccdf:title>
+      <xccdf:description xml:lang="en">
+         <xhtml:p>Items in this profile apply to MongoDB running on Linux and intend to:</xhtml:p>
+         <xhtml:ul>
+            <xhtml:li>be practical and prudent;</xhtml:li>
+            <xhtml:li>provide a clear security benefit; and</xhtml:li>
+            <xhtml:li>not inhibit the utility of the technology beyond acceptable means.</xhtml:li>
+         </xhtml:ul>
+      </xccdf:description>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_1.1_Ensure_the_appropriate_MongoDB_software_versionpatches_are_installed" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_2.1_Ensure_that_authentication_is_enabled_for_MongoDB_databases" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_2.2_Ensure_that_MongoDB_does_not_bypass_authentication_via_the_localhost_exception" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_2.3_Ensure_authentication_is_enabled_in_the_sharded_cluster" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_3.1_Ensure_that_role-based_access_control_is_enabled_and_configured_appropriately" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_3.2_Ensure_that_MongoDB_only_listens_for_network_connections_on_authorized_interfaces" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_3.3_Ensure_that_MongoDB_is_run_using_a_non-privileged_dedicated_service_account" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_4.1_Ensure_TLS_or_SSL_protects_all_network_communications" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_4.2_Ensure_Federal_Information_Processing_Standard_FIPS_is_enabled" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_5.1_Ensure_that_system_activity_is_audited" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_5.2_Ensure_that_audit_filters_are_configured_properly" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_6.1_Ensure_that_the_HTTP_status_interface_is_disabled" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_6.2_Ensure_that_MongoDB_uses_a_non-default_port" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_7.1_Ensure_that_key_file_permissions_are_set_correctly" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_7.2_Ensure_that_database_file_permissions_are_set_correctly" selected="true"></xccdf:select>
+   </xccdf:Profile>
+   <xccdf:Profile id="xccdf_org.cisecurity.benchmarks_profile_Level_2_-_MongoDB_on_Linux">
+      <xccdf:title xml:lang="en">Level 2 - MongoDB on Linux</xccdf:title>
+      <xccdf:description xml:lang="en">
+         <xhtml:p>This profile extends the "Level 1 - MongoDB on Linux" profile. Items in this profile apply to MongoDB running on Linux and exhibit one or more of the following characteristics:</xhtml:p>
+         <xhtml:ul>
+            <xhtml:li>are intended for environments or use cases where security is paramount</xhtml:li>
+            <xhtml:li>acts as defense in depth measure</xhtml:li>
+            <xhtml:li>may negatively inhibit the utility or performance of the technology.</xhtml:li>
+         </xhtml:ul>
+      </xccdf:description>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_2.4_Ensure_an_industry_standard_authentication_mechanism_is_used" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_3.4_Ensure_that_each_role_for_each_MongoDB_database_is_needed_and_grants_only_the_necessary_privileges" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_3.5_Review_User-Defined_Roles" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_3.6_Review_SuperuserAdmin_Roles" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_5.3_Ensure_that_logging_captures_as_much_information_as_possible" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_5.4_Ensure_that_new_entries_are_appended_to_the_end_of_the_log_file" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_6.3_Ensure_that_operating_system_resource_limits_are_set_for_MongoDB" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_6.4_Ensure_that_server-side_scripting_is_disabled_if_not_needed" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_6.5_Ensure_that_the_HTTP_interface_is_disabled" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_6.6_Ensure_that_JSONP_access_via_an_HTTP_interface_is_disabled" selected="true"></xccdf:select>
+      <xccdf:select idref="xccdf_org.cisecurity.benchmarks_rule_6.7_Ensure_that_the_REST_API_is_disabled" selected="true"></xccdf:select>
+   </xccdf:Profile>
+   <Value abstract="false" hidden="false" id="xccdf_org.cisecurity_value_jdbc.url" interactive="1" prohibitChanges="false" type="string">
+      <title override="0">Database connection string</title>
+      <description override="0">This value allows for user-supplied connection strings</description>
+      <value selector=""></value>
+      <default>/etc/mongod.conf</default>
+   </Value>
+   <Value id="xccdf_org.cisecurity.benchmarks_value_99941_var" operator="equals" type="string">
+      <title>Ensure the appropriate MongoDB software version/patches are installed</title>
+      <description>This value is used in Rule: Ensure the appropriate MongoDB software version/patches are installed</description>
+      <value>3.0</value>
+   </Value>
+   <Value id="xccdf_org.cisecurity.benchmarks_value_99951_var" operator="pattern match" type="string">
+      <title>Ensure that authentication is enabled for MongoDB databases</title>
+      <description>This value is used in Rule: Ensure that authentication is enabled for MongoDB databases</description>
+      <value>^\s*Auth\s*=\s*True\s*$</value>
+   </Value>
+   <Value id="xccdf_org.cisecurity.benchmarks_value_99961_var" operator="pattern match" type="string">
+      <title>Ensure that MongoDB does not bypass authentication via the localhost exception</title>
+      <description>This value is used in Rule: Ensure that MongoDB does not bypass authentication via the localhost exception</description>
+      <value>^\s*enableLocalhostAuthBypass\s*=\s*0\s*$</value>
+   </Value>
+   <Value id="xccdf_org.cisecurity.benchmarks_value_99971_var" operator="pattern match" type="string">
+      <title>Ensure authentication is enabled in the sharded cluster</title>
+      <description>This value is used in Rule: Ensure authentication is enabled in the sharded cluster</description>
+      <value>^\s*keyFile=.+\s*$</value>
+   </Value>
+   <Value id="xccdf_org.cisecurity.benchmarks_value_99981_var" operator="pattern match" type="string">
+      <title>Ensure an industry standard authentication mechanism is used</title>
+      <description>This value is used in Rule: Ensure an industry standard authentication mechanism is used</description>
+      <value>^\s*clusterAuthMode:.+$</value>
+   </Value>
+   <Value id="xccdf_org.cisecurity.benchmarks_value_99991_var" operator="pattern match" type="string">
+      <title>Ensure an industry standard authentication mechanism is used</title>
+      <description>This value is used in Rule: Ensure an industry standard authentication mechanism is used</description>
+      <value>^\s*authenticationMechanisms:.+$</value>
+   </Value>
+   <Value id="xccdf_org.cisecurity.benchmarks_value_100001_var" operator="pattern match" type="string">
+      <title>Ensure an industry standard authentication mechanism is used</title>
+      <description>This value is used in Rule: Ensure an industry standard authentication mechanism is used</description>
+      <value>^\s*mode:.+$</value>
+   </Value>
+   <Value id="xccdf_org.cisecurity.benchmarks_value_100011_var" operator="pattern match" type="string">
+      <title>Ensure an industry standard authentication mechanism is used</title>
+      <description>This value is used in Rule: Ensure an industry standard authentication mechanism is used</description>
+      <value>^\s*authorization:.+$</value>
+   </Value>
+   <Value id="xccdf_org.cisecurity.benchmarks_value_100021_var" operator="pattern match" type="string">
+      <title>Ensure TLS or SSL protects all network communications</title>
+      <description>This value is used in Rule: Ensure TLS or SSL protects all network communications</description>
+      <value>^\s*mode:\s*requireSSL\s*$</value>
+   </Value>
+   <Value id="xccdf_org.cisecurity.benchmarks_value_100031_var" operator="pattern match" type="string">
+      <title>Ensure Federal Information Processing Standard (FIPS) is enabled</title>
+      <description>This value is used in Rule: Ensure Federal Information Processing Standard (FIPS) is enabled</description>
+      <value>^\s* FIPSMode\s*:\s*true\s*$</value>
+   </Value>
+   <Value id="xccdf_org.cisecurity.benchmarks_value_100041_var" operator="pattern match" type="string">
+      <title>Ensure that system activity is audited</title>
+      <description>This value is used in Rule: Ensure that system activity is audited</description>
+      <value>^\s*auditLog:\s*\n\s*destination:\s*syslog\s*$</value>
+   </Value>
+   <Value id="xccdf_org.cisecurity.benchmarks_value_100051_var" operator="pattern match" type="string">
+      <title>Ensure that audit filters are configured properly</title>
+      <description>This value is used in Rule: Ensure that audit filters are configured properly</description>
+      <value>^\s*filter:\s*'\{\s*[(atype)|(roles)]:.+'\s*$</value>
+   </Value>
+   <Value id="xccdf_org.cisecurity.benchmarks_value_100061_var" operator="pattern match" type="string">
+      <title>Ensure that logging captures as much information as possible</title>
+      <description>This value is used in Rule: Ensure that logging captures as much information as possible</description>
+      <value>^\s*SystemLog\.quiet\s*=\s*False\s*$</value>
+   </Value>
+   <Value id="xccdf_org.cisecurity.benchmarks_value_100071_var" operator="pattern match" type="string">
+      <title>Ensure that new entries are appended to the end of the log file</title>
+      <description>This value is used in Rule: Ensure that new entries are appended to the end of the log file</description>
+      <value>^\s*systemLog\.logAppend\s*=\s*True\s*$</value>
+   </Value>
+   <Value id="xccdf_org.cisecurity.benchmarks_value_100081_var" operator="pattern match" type="string">
+      <title>Ensure that the HTTP status interface is disabled</title>
+      <description>This value is used in Rule: Ensure that the HTTP status interface is disabled</description>
+      <value>^\s*nohttpinterface\s*=\s*False\s*$</value>
+   </Value>
+   <Value id="xccdf_org.cisecurity.benchmarks_value_100091_var" operator="pattern match" type="string">
+      <title>Ensure that MongoDB uses a non-default port</title>
+      <description>This value is used in Rule: Ensure that MongoDB uses a non-default port</description>
+      <value>^\s*port\s*=\s*27017\s*$</value>
+   </Value>
+   <Value id="xccdf_org.cisecurity.benchmarks_value_100101_var" operator="pattern match" type="string">
+      <title>Ensure that MongoDB uses a non-default port</title>
+      <description>This value is used in Rule: Ensure that MongoDB uses a non-default port</description>
+      <value>^\s*port\s*=\s*</value>
+   </Value>
+   <Value id="xccdf_org.cisecurity.benchmarks_value_100111_var" operator="pattern match" type="string">
+      <title>Ensure that server-side scripting is disabled if not needed</title>
+      <description>This value is used in Rule: Ensure that server-side scripting is disabled if not needed</description>
+      <value>^\s*javascriptEnabled\s*=\s*False\s*$</value>
+   </Value>
+   <xccdf:Group id="xccdf_org.cisecurity.benchmarks_group_1_Installation_and_Patching">
+      <xccdf:title xml:lang="en">Installation and Patching</xccdf:title>
+      <xccdf:description xml:lang="en">
+         <xhtml:p>This section provides guidance on ensuring that the MongoDB software is up to date to eliminate easily avoidable vulnerabilities.</xhtml:p>
+      </xccdf:description>
+      <xccdf:Rule id="xccdf_org.cisecurity.benchmarks_rule_1.1_Ensure_the_appropriate_MongoDB_software_versionpatches_are_installed" role="full" selected="false" weight="1.0">
+         <xccdf:title xml:lang="en">Ensure the appropriate MongoDB software version/patches are installed</xccdf:title>
+         <xccdf:description xml:lang="en">
+            <xhtml:p>The MongoDB installation version, along with the patch level, should be the most recent that is compatible with the organization's operational needs.</xhtml:p>
+         </xccdf:description>
+         <xccdf:rationale xml:lang="en">
+            <xhtml:p>Using the most recent MongoDB software version along with all applicable patches helps limit the possibilities for vulnerabilities in the software. The installation version and/or patches applied should be selected according to the needs of the organization. At minimum, the software version should be supported.</xhtml:p>
+            <xhtml:p>Note that as of October 2016, only MongoDB versions 3.0 and 3.2 are still supported.</xhtml:p>
+         </xccdf:rationale>
+         <xccdf:ident system="URL">http://docs.mongodb.org/manual/tutorial/upgrade-revision/</xccdf:ident>
+         <xccdf:ident system="URL">https://docs.mongodb.com/manual/release-notes/</xccdf:ident>
+         <xccdf:ident system="URL">https://www.mongodb.com/download-center#community</xccdf:ident>
+         <xccdf:ident system="URL">https://www.mongodb.com/support-policy</xccdf:ident>
+         <xccdf:fixtext xml:lang="en">
+            <xhtml:div>
+               <xhtml:p>
+                  <xhtml:p>Upgrade to the latest version of the MongoDB software:</xhtml:p>
+                  <xhtml:ol>
+                     <xhtml:li>Backup the data set.</xhtml:li>
+                     <xhtml:li>Download the binaries for the latest MongoDB revision from the MongoDB Download Page and store the binaries in a temporary location. The binaries download as compressed files that extract to the directory structure used by the MongoDB installation.</xhtml:li>
+                     <xhtml:li>Shutdown the MongoDB instance.</xhtml:li>
+                     <xhtml:li>Replace the existing MongoDB binaries with the downloaded binaries.</xhtml:li>
+                     <xhtml:li>Restart the MongoDB instance.</xhtml:li>
+                  </xhtml:ol>
+               </xhtml:p>
+            </xhtml:div>
+         </xccdf:fixtext>
+         <xccdf:complex-check operator="AND">
+            <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+               <check-export export-name="oval:org.cisecurity.benchmarksmongodb_mongodb:var:9994" value-id="xccdf_org.cisecurity.benchmarks_value_99941_var"></check-export>
+               <check-export export-name="oval:org.cisecurity.benchmarks:var:2000000" value-id="xccdf_org.cisecurity_value_jdbc.url"></check-export>
+               <check-content-ref href="CIS_MongoDB_Benchmark__imported__v1.0.0-oval.xml" name="oval:org.cisecurity.benchmarksmongodb_mongodb:def:9994"></check-content-ref>
+            </check>
+         </xccdf:complex-check>
+      </xccdf:Rule>
+   </xccdf:Group>
+   <xccdf:Group id="xccdf_org.cisecurity.benchmarks_group_2_Authentication">
+      <xccdf:title xml:lang="en">Authentication</xccdf:title>
+      <xccdf:description xml:lang="en">
+         <xhtml:p>This section contains recommendations for requiring authentication before allowing access to the MongoDB database.</xhtml:p>
+      </xccdf:description>
+      <xccdf:Rule id="xccdf_org.cisecurity.benchmarks_rule_2.1_Ensure_that_authentication_is_enabled_for_MongoDB_databases" role="full" selected="false" weight="1.0">
+         <xccdf:title xml:lang="en">Ensure that authentication is enabled for MongoDB databases</xccdf:title>
+         <xccdf:description xml:lang="en">
+            <xhtml:p>This setting ensures that all clients, users, and/or servers are required to authenticate prior to being granted access to the MongoDB database.</xhtml:p>
+         </xccdf:description>
+         <xccdf:rationale xml:lang="en">
+            <xhtml:p>Failure to authenticate clients, users, and/or servers can enable unauthorized access to the MongoDB database and can prevent tracing actions back to their sources.</xhtml:p>
+         </xccdf:rationale>
+         <xccdf:ident system="URL">https://www.mongodb.com/blog/post/improved-password-based-authentication-mongodb-30-scram-explained-part-1</xccdf:ident>
+         <xccdf:ident system="URL">https://www.owasp.org/index.php/Authentication_Cheat_Sheet</xccdf:ident>
+         <xccdf:fixtext xml:lang="en">
+            <xhtml:div>
+               <xhtml:p>
+                  <xhtml:p>The authentication mechanism should be implemented before anyone accesses the MongoDB Server.</xhtml:p>
+                  <xhtml:p>To enable the authentication mechanism:</xhtml:p>
+                  <xhtml:ul>
+                     <xhtml:li>Start the MongoDB instance without authentication.</xhtml:li>
+                  </xhtml:ul>
+                  <xhtml:code class="code_block">
+mongod --port 27017 --dbpath /data/db1
+</xhtml:code>
+                  <xhtml:ul>
+                     <xhtml:li>Create the system user administrator, ensuring that its password meets organizationally-defined password complexity requirements.</xhtml:li>
+                  </xhtml:ul>
+                  <xhtml:code class="code_block">
+use admin
+db.createUser(
+  {
+    user: "siteUserAdmin",
+    pwd: "password",
+    roles: [ { role: "userAdminAnyDatabase", db: "admin" } ]
+  }
+)
+</xhtml:code>
+                  <xhtml:ul>
+                     <xhtml:li>Restart the MongoDB instance with authentication enabled.</xhtml:li>
+                  </xhtml:ul>
+                  <xhtml:code class="code_block">
+mongod --auth --config /etc/mongod.conf
+</xhtml:code>
+               </xhtml:p>
+            </xhtml:div>
+         </xccdf:fixtext>
+         <xccdf:complex-check operator="AND">
+            <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+               <check-export export-name="oval:org.cisecurity.benchmarksmongodb_mongodb:var:9995" value-id="xccdf_org.cisecurity.benchmarks_value_99951_var"></check-export>
+               <check-export export-name="oval:org.cisecurity.benchmarks:var:2000000" value-id="xccdf_org.cisecurity_value_jdbc.url"></check-export>
+               <check-content-ref href="CIS_MongoDB_Benchmark__imported__v1.0.0-oval.xml" name="oval:org.cisecurity.benchmarksmongodb_mongodb:def:9995"></check-content-ref>
+            </check>
+         </xccdf:complex-check>
+      </xccdf:Rule>
+      <xccdf:Rule id="xccdf_org.cisecurity.benchmarks_rule_2.2_Ensure_that_MongoDB_does_not_bypass_authentication_via_the_localhost_exception" role="full" selected="false" weight="1.0">
+         <xccdf:title xml:lang="en">Ensure that MongoDB does not bypass authentication via the localhost exception</xccdf:title>
+         <xccdf:description xml:lang="en">
+            <xhtml:p>MongoDB should not be set to bypass authentication via the localhost exception. The localhost exception allows you to enable authorization before creating the first user in the system.</xhtml:p>
+            <xhtml:p>Note: This recommendation only applies when there are no users created in the MongoDB instance.</xhtml:p>
+         </xccdf:description>
+         <xccdf:metadata>
+            <notes:notes xml:lang="en">
+               <xhtml:p>
+The             <xhtml:em>--setParameter</xhtml:em>
+ option on the command line may also be used to configure this; however, having it in the config file may provide greater confidence that this setting is configured correctly in every instance.          </xhtml:p>
+            </notes:notes>
+         </xccdf:metadata>
+         <xccdf:rationale xml:lang="en">
+            <xhtml:p>Disabling this exception will prevent unauthorized local access to the MongoDB database. It will also ensure traceability of each database activity to a specific user.</xhtml:p>
+         </xccdf:rationale>
+         <xccdf:ident system="URL">http://docs.mongodb.org/manual/core/authentication/#localhost-exception</xccdf:ident>
+         <xccdf:fixtext xml:lang="en">
+            <xhtml:div>
+               <xhtml:p>
+                  <xhtml:p>
+Since               <xhtml:span class="inline_block">enableLocalhostAuthBypass</xhtml:span>
+ is not available using the               <xhtml:span class="inline_block">setParameter</xhtml:span>
+ database command, use the               <xhtml:span class="inline_block">setParameter</xhtml:span>
+ option in the configuration file to set it to               <xhtml:span class="inline_block">false</xhtml:span>
+.            </xhtml:p>
+                  <xhtml:code class="code_block">
+ setParameter:
+   enableLocalhostAuthBypass: false
+</xhtml:code>
+               </xhtml:p>
+            </xhtml:div>
+         </xccdf:fixtext>
+         <xccdf:complex-check operator="AND">
+            <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+               <check-export export-name="oval:org.cisecurity.benchmarksmongodb_mongodb:var:9996" value-id="xccdf_org.cisecurity.benchmarks_value_99961_var"></check-export>
+               <check-export export-name="oval:org.cisecurity.benchmarks:var:2000000" value-id="xccdf_org.cisecurity_value_jdbc.url"></check-export>
+               <check-content-ref href="CIS_MongoDB_Benchmark__imported__v1.0.0-oval.xml" name="oval:org.cisecurity.benchmarksmongodb_mongodb:def:9996"></check-content-ref>
+            </check>
+         </xccdf:complex-check>
+      </xccdf:Rule>
+      <xccdf:Rule id="xccdf_org.cisecurity.benchmarks_rule_2.3_Ensure_authentication_is_enabled_in_the_sharded_cluster" role="full" selected="false" weight="1.0">
+         <xccdf:title xml:lang="en">Ensure authentication is enabled in the sharded cluster</xccdf:title>
+         <xccdf:description xml:lang="en">
+            <xhtml:p>Authentication is enabled in a sharded cluster when keyfiles are created and configured for all components. This ensures that every client that accesses the cluster must provide credentials, to include MongoDB instances that access each other within the cluster.</xhtml:p>
+         </xccdf:description>
+         <xccdf:rationale xml:lang="en">
+            <xhtml:p>Enforcing a key on a sharded cluster prevents unauthorized access to the MongoDB database and provides traceability of database activities to a specific user or component.</xhtml:p>
+         </xccdf:rationale>
+         <xccdf:ident system="URL">http://docs.mongodb.org/v2.2/administration/sharded-clusters/</xccdf:ident>
+         <xccdf:fixtext xml:lang="en">
+            <xhtml:div>
+               <xhtml:p>
+                  <xhtml:p>To enable authentication in the sharded cluster, perform the following steps:</xhtml:p>
+                  <xhtml:ul>
+                     <xhtml:li>Generate a key file.</xhtml:li>
+                  </xhtml:ul>
+                  <xhtml:p>
+                     <xhtml:a href="http://docs.mongodb.org/v2.4/tutorial/generate-key-file/#generate-key-file">http://docs.mongodb.org/v2.4/tutorial/generate-key-file/#generate-key-file</xhtml:a>
+                  </xhtml:p>
+                  <xhtml:ul>
+                     <xhtml:li>
+On each component in the shared cluster, enable authentication by doing one of the following:
+                <xhtml:ul>
+                           <xhtml:li>
+In the configuration file                     <xhtml:span class="inline_block">/etc/mongod.conf</xhtml:span>
+, set the                     <xhtml:span class="inline_block">keyFile</xhtml:span>
+ option to the key file’s path and then start the component with this command:                  </xhtml:li>
+                        </xhtml:ul>
+                     </xhtml:li>
+                  </xhtml:ul>
+                  <xhtml:code class="code_block">
+&lt;span&gt;keyFile = /srv/mongodb/keyfile&amp;amp;lt;/span&gt;
+</xhtml:code>
+                  <xhtml:ul>
+                     <xhtml:li>
+When starting the component, set                 <xhtml:span class="inline_block">--keyFile</xhtml:span>
+ option, which is an option for both mongos instances and mongod instances. Set the                 <xhtml:span class="inline_block">--keyFile</xhtml:span>
+ to the key file’s path.              </xhtml:li>
+                  </xhtml:ul>
+               </xhtml:p>
+            </xhtml:div>
+         </xccdf:fixtext>
+         <xccdf:complex-check operator="AND">
+            <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+               <check-export export-name="oval:org.cisecurity.benchmarksmongodb_mongodb:var:9997" value-id="xccdf_org.cisecurity.benchmarks_value_99971_var"></check-export>
+               <check-export export-name="oval:org.cisecurity.benchmarks:var:2000000" value-id="xccdf_org.cisecurity_value_jdbc.url"></check-export>
+               <check-content-ref href="CIS_MongoDB_Benchmark__imported__v1.0.0-oval.xml" name="oval:org.cisecurity.benchmarksmongodb_mongodb:def:9997"></check-content-ref>
+            </check>
+         </xccdf:complex-check>
+      </xccdf:Rule>
+      <xccdf:Rule id="xccdf_org.cisecurity.benchmarks_rule_2.4_Ensure_an_industry_standard_authentication_mechanism_is_used" role="full" selected="false" weight="1.0">
+         <xccdf:title xml:lang="en">Ensure an industry standard authentication mechanism is used</xccdf:title>
+         <xccdf:description xml:lang="en">
+            <xhtml:p>Using one or more industry standard authentication mechanisms helps organizations enforce their account and password policies for their MongoDB users.</xhtml:p>
+         </xccdf:description>
+         <xccdf:metadata>
+            <notes:notes xml:lang="en">
+               <xhtml:p>Configuring the X.509 certificate and deploying Kerberos is beyond the scope of the document.</xhtml:p>
+            </notes:notes>
+         </xccdf:metadata>
+         <xccdf:rationale xml:lang="en">
+            <xhtml:p>Without an industry standard authentication mechanism in place, account and password management is more tedious, and authentication may not align with the organization's policies.</xhtml:p>
+         </xccdf:rationale>
+         <xccdf:ident system="URL">https://docs.mongodb.com/v3.2/tutorial/configure-x509-client-authentication/</xccdf:ident>
+         <xccdf:ident system="URL">https://docs.mongodb.com/v3.2/tutorial/control-access-to-mongodb-with-kerberos-authentication/</xccdf:ident>
+         <xccdf:ident system="URL">https://docs.mongodb.com/v3.2/core/kerberos/#kerberos-service-principal</xccdf:ident>
+         <xccdf:ident system="URL">https://docs.mongodb.com/v3.2/core/kerberos/#keytab-files</xccdf:ident>
+         <xccdf:fixtext xml:lang="en">
+            <xhtml:div>
+               <xhtml:p>
+                  <xhtml:p>In order to implement an industry standard authentication mechanism, use the corresponding sample from the list below as a model for specifying the authentication mechanisms in the MongoDB configuration file.</xhtml:p>
+                  <xhtml:p>x.509 Certificates for Client Authentication:</xhtml:p>
+                  <xhtml:code class="code_block">
+security:
+   clusterAuthMode: x509
+net:
+   ssl:
+      mode: requireSSL
+      PEMKeyFile: &lt;em&gt;&lt;path to TLS/SSL certificate and key PEM file&gt;&lt;/em&gt;
+      CAFile: &lt;em&gt;&lt;path to root CA PEM file&gt;&lt;/em&gt;
+</xhtml:code>
+                  <xhtml:p>
+See the reference section for a link to a detailed procedure for generating the               <xhtml:span class="inline_block">PEMKeyFile</xhtml:span>
+ and               <xhtml:span class="inline_block">CAFile</xhtml:span>
+.            </xhtml:p>
+                  <xhtml:p>MongoDB with Kerberos Authentication on Linux:</xhtml:p>
+                  <xhtml:code class="code_block">
+security:
+   authorization: enabled
+setParameter:
+   authenticationMechanisms: GSSAPI
+storage:
+   dbPath: /opt/mongodb/data
+</xhtml:code>
+                  <xhtml:p>
+See the reference section for a link to a detailed procedure for establishing the Kerberos service principal and               <xhtml:span class="inline_block">keytab</xhtml:span>
+ file.            </xhtml:p>
+               </xhtml:p>
+            </xhtml:div>
+         </xccdf:fixtext>
+         <xccdf:complex-check operator="OR">
+            <xccdf:complex-check operator="AND">
+               <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+                  <check-export export-name="oval:org.cisecurity.benchmarksmongodb_mongodb:var:9998" value-id="xccdf_org.cisecurity.benchmarks_value_99981_var"></check-export>
+                  <check-export export-name="oval:org.cisecurity.benchmarks:var:2000000" value-id="xccdf_org.cisecurity_value_jdbc.url"></check-export>
+                  <check-content-ref href="CIS_MongoDB_Benchmark__imported__v1.0.0-oval.xml" name="oval:org.cisecurity.benchmarksmongodb_mongodb:def:9998"></check-content-ref>
+               </check>
+               <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+                  <check-export export-name="oval:org.cisecurity.benchmarksmongodb_mongodb:var:9999" value-id="xccdf_org.cisecurity.benchmarks_value_99991_var"></check-export>
+                  <check-export export-name="oval:org.cisecurity.benchmarks:var:2000000" value-id="xccdf_org.cisecurity_value_jdbc.url"></check-export>
+                  <check-content-ref href="CIS_MongoDB_Benchmark__imported__v1.0.0-oval.xml" name="oval:org.cisecurity.benchmarksmongodb_mongodb:def:9999"></check-content-ref>
+               </check>
+            </xccdf:complex-check>
+            <xccdf:complex-check operator="AND">
+               <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+                  <check-export export-name="oval:org.cisecurity.benchmarksmongodb_mongodb:var:10000" value-id="xccdf_org.cisecurity.benchmarks_value_100001_var"></check-export>
+                  <check-export export-name="oval:org.cisecurity.benchmarks:var:2000000" value-id="xccdf_org.cisecurity_value_jdbc.url"></check-export>
+                  <check-content-ref href="CIS_MongoDB_Benchmark__imported__v1.0.0-oval.xml" name="oval:org.cisecurity.benchmarksmongodb_mongodb:def:10000"></check-content-ref>
+               </check>
+               <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+                  <check-export export-name="oval:org.cisecurity.benchmarksmongodb_mongodb:var:10001" value-id="xccdf_org.cisecurity.benchmarks_value_100011_var"></check-export>
+                  <check-export export-name="oval:org.cisecurity.benchmarks:var:2000000" value-id="xccdf_org.cisecurity_value_jdbc.url"></check-export>
+                  <check-content-ref href="CIS_MongoDB_Benchmark__imported__v1.0.0-oval.xml" name="oval:org.cisecurity.benchmarksmongodb_mongodb:def:10001"></check-content-ref>
+               </check>
+            </xccdf:complex-check>
+         </xccdf:complex-check>
+      </xccdf:Rule>
+   </xccdf:Group>
+   <xccdf:Group id="xccdf_org.cisecurity.benchmarks_group_3_Access_Control">
+      <xccdf:title xml:lang="en">Access Control</xccdf:title>
+      <xccdf:description xml:lang="en">
+         <xhtml:p>This section contains recommendations for restricting access to MongoDB systems.</xhtml:p>
+      </xccdf:description>
+      <xccdf:Rule id="xccdf_org.cisecurity.benchmarks_rule_3.1_Ensure_that_role-based_access_control_is_enabled_and_configured_appropriately" role="full" selected="false" weight="1.0">
+         <xccdf:title xml:lang="en">Ensure that role-based access control is enabled and configured appropriately</xccdf:title>
+         <xccdf:description xml:lang="en">
+            <xhtml:p>Role-based access control (RBAC) is a method of regulating access to resources based on the roles of individual users within an enterprise. A user is granted one or more roles that determine the user’s access to database resources and operations. Outside of role assignments, the user has no access to the system. MongoDB can use RBAC to govern access to MongoDB systems. MongoDB does not enable authorization by default.</xhtml:p>
+         </xccdf:description>
+         <xccdf:rationale xml:lang="en">
+            <xhtml:p>When properly implemented, RBAC enables users to carry out a wide range of authorized tasks by dynamically regulating their actions according to flexible functions. This allows an organization to control employees’ &lt;a title="Access to all Apptivo Apps"&gt;&lt;/a&gt;access to all database tables through RBAC.</xhtml:p>
+         </xccdf:rationale>
+         <xccdf:ident system="URL">http://docs.mongodb.org/manual/tutorial/manage-users-and-roles/</xccdf:ident>
+         <xccdf:fixtext xml:lang="en">
+            <xhtml:div>
+               <xhtml:p>
+                  <xhtml:ol>
+                     <xhtml:li>Establish roles for MongoDB.</xhtml:li>
+                     <xhtml:li>Assign the appropriate privileges to each role.</xhtml:li>
+                     <xhtml:li>Assign the appropriate users to each role.</xhtml:li>
+                     <xhtml:li>Remove any individual privileges assigned to users that are now addressed by the roles.</xhtml:li>
+                     <xhtml:li>See the reference below for more Information.</xhtml:li>
+                  </xhtml:ol>
+               </xhtml:p>
+            </xhtml:div>
+         </xccdf:fixtext>
+      </xccdf:Rule>
+      <xccdf:Rule id="xccdf_org.cisecurity.benchmarks_rule_3.2_Ensure_that_MongoDB_only_listens_for_network_connections_on_authorized_interfaces" role="full" selected="false" weight="1.0">
+         <xccdf:title xml:lang="en">Ensure that MongoDB only listens for network connections on authorized interfaces</xccdf:title>
+         <xccdf:description xml:lang="en">
+            <xhtml:p>Ensuring that MongoDB runs in a trusted network environment involves limiting the network interfaces on which MongoDB instances listen for incoming connections. Any untrusted network connections should be dropped by MongoDB.</xhtml:p>
+         </xccdf:description>
+         <xccdf:rationale xml:lang="en">
+            <xhtml:p>This configuration blocks connections from untrusted networks, leaving only systems on authorized and trusted networks able to attempt to connect to the MongoDB. If not configured, this may lead to unauthorized connections from untrusted networks to MongoDB.</xhtml:p>
+         </xccdf:rationale>
+         <xccdf:ident system="URL">http://docs.mongodb.org/manual/tutorial/configure-linux-iptables-firewall/</xccdf:ident>
+         <xccdf:ident system="URL">http://docs.mongodb.org/manual/tutorial/configure-windows-netsh-firewall/</xccdf:ident>
+         <xccdf:fixtext xml:lang="en">
+            <xhtml:div>
+               <xhtml:p>
+                  <xhtml:p>Configure the MongoDB configuration file to limit its exposure to only the network interfaces on which MongoDB instances should listen for incoming connections.</xhtml:p>
+               </xhtml:p>
+            </xhtml:div>
+         </xccdf:fixtext>
+      </xccdf:Rule>
+      <xccdf:Rule id="xccdf_org.cisecurity.benchmarks_rule_3.3_Ensure_that_MongoDB_is_run_using_a_non-privileged_dedicated_service_account" role="full" selected="false" weight="1.0">
+         <xccdf:title xml:lang="en">Ensure that MongoDB is run using a non-privileged, dedicated service account</xccdf:title>
+         <xccdf:description xml:lang="en">
+            <xhtml:p>The MongoDB service should not be run using a privileged account such as 'root' because this unnecessarily exposes the operating system to high risk.</xhtml:p>
+         </xccdf:description>
+         <xccdf:rationale xml:lang="en">
+            <xhtml:p>Using a non-privileged, dedicated service account restricts the database from accessing the critical areas of the operating system which are not required by the MongoDB. This will also mitigate the potential for unauthorized access via a compromised, privileged account on the operating system.</xhtml:p>
+         </xccdf:rationale>
+         <xccdf:ident system="URL">http://docs.mongodb.org/manual/tutorial/manage-users-and-roles/</xccdf:ident>
+         <xccdf:fixtext xml:lang="en">
+            <xhtml:div>
+               <xhtml:p>
+                  <xhtml:ol>
+                     <xhtml:li>Create a dedicated user for performing MongoDB database activity.</xhtml:li>
+                     <xhtml:li>Set the Database data files, the keyfile, and the SSL private key files to only be readable by the mongod/mongos user.</xhtml:li>
+                     <xhtml:li>Set the log files to only be writable by the mongod/mongos user and readable only by root.</xhtml:li>
+                  </xhtml:ol>
+               </xhtml:p>
+            </xhtml:div>
+         </xccdf:fixtext>
+      </xccdf:Rule>
+      <xccdf:Rule id="xccdf_org.cisecurity.benchmarks_rule_3.4_Ensure_that_each_role_for_each_MongoDB_database_is_needed_and_grants_only_the_necessary_privileges" role="full" selected="false" weight="1.0">
+         <xccdf:title xml:lang="en">Ensure that each role for each MongoDB database is needed and grants only the necessary privileges</xccdf:title>
+         <xccdf:description xml:lang="en">
+            <xhtml:p>Reviewing all roles periodically and eliminating unneeded roles as well as unneeded privileges from necessary roles helps minimize the privileges that each user has.</xhtml:p>
+         </xccdf:description>
+         <xccdf:metadata>
+            <notes:notes xml:lang="en">
+               <xhtml:p>You must have the dropRole action on a database to drop a role from that database.</xhtml:p>
+            </notes:notes>
+         </xccdf:metadata>
+         <xccdf:rationale xml:lang="en">
+            <xhtml:p>Although role-based access control (RBAC) has many advantages for regulating access to resources, over time some roles may no longer be needed, and some roles may grant privileges that are no longer needed.</xhtml:p>
+         </xccdf:rationale>
+         <xccdf:ident system="URL">https://docs.mongodb.com/v3.2/reference/method/db.revokePrivilegesFromRole/</xccdf:ident>
+         <xccdf:ident system="URL">https://docs.mongodb.com/v3.2/reference/command/revokePrivilegesFromRole/#dbcmd.revokePrivilegesFromRole</xccdf:ident>
+         <xccdf:fixtext xml:lang="en">
+            <xhtml:div>
+               <xhtml:p>
+                  <xhtml:p>
+To revoke specified privileges from the user-defined role on the database where the command is run. The               <xhtml:span class="inline_block">revokePrivilegesFromRole</xhtml:span>
+ command has the following syntax:            </xhtml:p>
+                  <xhtml:code class="code_block">
+{
+  revokePrivilegesFromRole: "&lt;role&gt;",
+  privileges:
+      [
+        { resource: { &lt;em&gt;&lt;resource&gt;&lt;/em&gt; }, actions: [ "&lt;em&gt;&lt;action&gt;&lt;/em&gt;", ... ] },
+        ...
+      ],
+}
+</xhtml:code>
+               </xhtml:p>
+            </xhtml:div>
+         </xccdf:fixtext>
+      </xccdf:Rule>
+      <xccdf:Rule id="xccdf_org.cisecurity.benchmarks_rule_3.5_Review_User-Defined_Roles" role="full" selected="false" weight="1.0">
+         <xccdf:title xml:lang="en">Review User-Defined Roles</xccdf:title>
+         <xccdf:description xml:lang="en">
+            <xhtml:p>Reviewing all roles periodically and removing all users from those roles who do not need to belong to them helps minimize the privileges that each user has.</xhtml:p>
+         </xccdf:description>
+         <xccdf:metadata>
+            <notes:notes xml:lang="en">
+               <xhtml:p>
+Logged-in user must have the             <xhtml:em>revokeRole</xhtml:em>
+ action on a database to revoke a role on that database. Also             <xhtml:em>roleInfo</xhtml:em>
+ works for both user-defined roles and built-in roles.          </xhtml:p>
+            </notes:notes>
+         </xccdf:metadata>
+         <xccdf:rationale xml:lang="en">
+            <xhtml:p>Although role-based access control (RBAC) has many advantages for regulating access to resources, over time some users may be assigned to roles that are no longer necessary, such as a user changing jobs within the organization. Users who have excessive privileges pose unnecessary risk to the organization.</xhtml:p>
+         </xccdf:rationale>
+         <xccdf:ident system="URL">https://docs.mongodb.com/manual/reference/method/db.revokeRolesFromUser/</xccdf:ident>
+         <xccdf:ident system="URL">https://docs.mongodb.com/manual/reference/command/rolesInfo/</xccdf:ident>
+         <xccdf:ident system="URL">https://docs.mongodb.com/manual/reference/privilege-actions/#authr.revokeRole</xccdf:ident>
+         <xccdf:fixtext xml:lang="en">
+            <xhtml:div>
+               <xhtml:p>
+                  <xhtml:p>To remove a user from one or more roles on the current database, use the following command:</xhtml:p>
+                  <xhtml:code class="code_block">
+use &lt;dbName&gt;
+db.revokeRolesFromUser( "&lt;em&gt;&lt;username&gt;&lt;/em&gt;", [ &lt;em&gt;&lt;roles&gt;&lt;/em&gt; ])
+</xhtml:code>
+               </xhtml:p>
+            </xhtml:div>
+         </xccdf:fixtext>
+      </xccdf:Rule>
+      <xccdf:Rule id="xccdf_org.cisecurity.benchmarks_rule_3.6_Review_SuperuserAdmin_Roles" role="full" selected="false" weight="1.0">
+         <xccdf:title xml:lang="en">Review Superuser/Admin Roles</xccdf:title>
+         <xccdf:description xml:lang="en">
+            <xhtml:p>Roles provide several advantages that make it easier to manage privileges in a database system. Security administrators can control access to their databases in a way that mirrors the structure of their organizations (they can create roles in the database that map directly to the job functions in their organizations). The assignment of privileges is simplified. Instead of granting the same set of privileges to each individual user in a particular job function, the administrator can grant this set of privileges to a role representing that job function and then grant that role to each user in that job function.</xhtml:p>
+         </xccdf:description>
+         <xccdf:rationale xml:lang="en">
+            <xhtml:p>Reviewing the Superuser/Admin roles within a database helps minimize the possibility of privileged unwanted access.</xhtml:p>
+         </xccdf:rationale>
+         <xccdf:ident system="URL">https://docs.mongodb.com/v3.0/reference/built-in-roles/#built-in-roles</xccdf:ident>
+         <xccdf:ident system="URL">https://docs.mongodb.com/manual/reference/method/db.revokeRolesFromUser/</xccdf:ident>
+         <xccdf:fixtext xml:lang="en">
+            <xhtml:div>
+               <xhtml:p>
+                  <xhtml:p>To remove a user from one or more roles on the current database.</xhtml:p>
+                  <xhtml:code class="code_block">
+use &lt;em&gt;&lt;dbName&gt;&lt;/em&gt;
+db.revokeRolesFromUser( "&lt;em&gt;&lt;username&gt;&lt;/em&gt;", [ &lt;roles&gt; ])
+</xhtml:code>
+               </xhtml:p>
+            </xhtml:div>
+         </xccdf:fixtext>
+      </xccdf:Rule>
+   </xccdf:Group>
+   <xccdf:Group id="xccdf_org.cisecurity.benchmarks_group_4_Data_Encryption">
+      <xccdf:title xml:lang="en">Data Encryption</xccdf:title>
+      <xccdf:description xml:lang="en">
+         <xhtml:p>This section contains recommendations for securing data at rest (stored) and data in motion (transiting) for MongoDB.</xhtml:p>
+      </xccdf:description>
+      <xccdf:Rule id="xccdf_org.cisecurity.benchmarks_rule_4.1_Ensure_TLS_or_SSL_protects_all_network_communications" role="full" selected="false" weight="1.0">
+         <xccdf:title xml:lang="en">Ensure TLS or SSL protects all network communications</xccdf:title>
+         <xccdf:description xml:lang="en">
+            <xhtml:p>Use TLS or SSL to protect all incoming and outgoing connections. This should include using TLS or SSL to encrypt communication between mongod and mongos components of a MongoDB client as well as between all applications and MongoDB.</xhtml:p>
+            <xhtml:p>Most MongoDB distributions include support for SSL or TLS.</xhtml:p>
+         </xccdf:description>
+         <xccdf:metadata>
+            <notes:notes xml:lang="en">
+               <xhtml:p>
+                  <xhtml:strong>Value Description****disabled</xhtml:strong>
+ The server does not use TLS/SSL.             <xhtml:strong>allowSSL</xhtml:strong>
+ Connections between servers do not use TLS/SSL. For incoming connections, the server accepts both TLS/SSL and non-TLS/non-SSL.             <xhtml:strong>preferSSL</xhtml:strong>
+ Connections between servers use TLS/SSL. For incoming connections, the server accepts both TLS/SSL and non-TLS/non-SSL.             <xhtml:strong>requireSSL</xhtml:strong>
+ The server uses and accepts only TLS/SSL encrypted connections.          </xhtml:p>
+            </notes:notes>
+         </xccdf:metadata>
+         <xccdf:rationale xml:lang="en">
+            <xhtml:p>This prevents sniffing of cleartext traffic between MongoDB components or performing a man-in-the-middle attack for MongoDB.</xhtml:p>
+         </xccdf:rationale>
+         <xccdf:ident system="URL">http://docs.mongodb.org/manual/tutorial/configure-ssl/</xccdf:ident>
+         <xccdf:fixtext xml:lang="en">
+            <xhtml:div>
+               <xhtml:p>
+                  <xhtml:p>Configure MongoDB servers to require the use of SSL or TLS to encrypt all MongoDB network communications.</xhtml:p>
+               </xhtml:p>
+            </xhtml:div>
+         </xccdf:fixtext>
+         <xccdf:complex-check operator="AND">
+            <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+               <check-export export-name="oval:org.cisecurity.benchmarksmongodb_mongodb:var:10002" value-id="xccdf_org.cisecurity.benchmarks_value_100021_var"></check-export>
+               <check-export export-name="oval:org.cisecurity.benchmarks:var:2000000" value-id="xccdf_org.cisecurity_value_jdbc.url"></check-export>
+               <check-content-ref href="CIS_MongoDB_Benchmark__imported__v1.0.0-oval.xml" name="oval:org.cisecurity.benchmarksmongodb_mongodb:def:10002"></check-content-ref>
+            </check>
+         </xccdf:complex-check>
+      </xccdf:Rule>
+      <xccdf:Rule id="xccdf_org.cisecurity.benchmarks_rule_4.2_Ensure_Federal_Information_Processing_Standard_FIPS_is_enabled" role="full" selected="false" weight="1.0">
+         <xccdf:title xml:lang="en">Ensure Federal Information Processing Standard (FIPS) is enabled</xccdf:title>
+         <xccdf:description xml:lang="en">
+            <xhtml:p>The Federal Information Processing Standard (FIPS) is a computer security standard used to certify software modules and libraries that encrypt and decrypt data securely. You can configure MongoDB to run with a FIPS 140-2 certified library for OpenSSL.</xhtml:p>
+         </xccdf:description>
+         <xccdf:rationale xml:lang="en">
+            <xhtml:p>FIPS is industry standard that dictates how data should be encrypted in rest and during transmission.</xhtml:p>
+         </xccdf:rationale>
+         <xccdf:ident system="URL">https://docs.mongodb.com/v3.2/tutorial/configure-fips/</xccdf:ident>
+         <xccdf:fixtext xml:lang="en">
+            <xhtml:div>
+               <xhtml:p>
+                  <xhtml:p>Configuring FIPS mode, ensure that your certificate is FIPS compliant. Run mongod or mongos instance in FIPS mode.</xhtml:p>
+                  <xhtml:p>Make changes to configuration file, to configure your mongod or mongos instance to use FIPS mode, shut down the instance and update the configuration file with the following setting:</xhtml:p>
+                  <xhtml:code class="code_block">
+net:
+   ssl:
+      FIPSMode: true
+</xhtml:code>
+                  <xhtml:p>Start mongod or mongos instance with a configuration file.</xhtml:p>
+                  <xhtml:code class="code_block">
+mongod --config /etc/mongod.conf
+</xhtml:code>
+               </xhtml:p>
+            </xhtml:div>
+         </xccdf:fixtext>
+         <xccdf:complex-check operator="AND">
+            <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+               <check-export export-name="oval:org.cisecurity.benchmarksmongodb_mongodb:var:10003" value-id="xccdf_org.cisecurity.benchmarks_value_100031_var"></check-export>
+               <check-export export-name="oval:org.cisecurity.benchmarks:var:2000000" value-id="xccdf_org.cisecurity_value_jdbc.url"></check-export>
+               <check-content-ref href="CIS_MongoDB_Benchmark__imported__v1.0.0-oval.xml" name="oval:org.cisecurity.benchmarksmongodb_mongodb:def:10003"></check-content-ref>
+            </check>
+         </xccdf:complex-check>
+      </xccdf:Rule>
+   </xccdf:Group>
+   <xccdf:Group id="xccdf_org.cisecurity.benchmarks_group_5_Auditing">
+      <xccdf:title xml:lang="en">Auditing</xccdf:title>
+      <xccdf:description xml:lang="en">
+         <xhtml:p>This section contains recommendations related to configuring audit logging in MongoDB.</xhtml:p>
+      </xccdf:description>
+      <xccdf:Rule id="xccdf_org.cisecurity.benchmarks_rule_5.1_Ensure_that_system_activity_is_audited" role="full" selected="false" weight="1.0">
+         <xccdf:title xml:lang="en">Ensure that system activity is audited</xccdf:title>
+         <xccdf:description xml:lang="en">
+            <xhtml:p>Track access and changes to database configurations and data. MongoDB Enterprise includes a system auditing facility that can record system events (e.g. user operations, connection events) on a MongoDB instance. These audit records permit forensic analysis and allow administrators to verify proper controls.</xhtml:p>
+         </xccdf:description>
+         <xccdf:rationale xml:lang="en">
+            <xhtml:p>System level logs can be handy while troubleshooting an operational problem or handling a security incident.</xhtml:p>
+         </xccdf:rationale>
+         <xccdf:ident system="URL">http://docs.mongodb.org/manual/tutorial/configure-auditing/</xccdf:ident>
+         <xccdf:fixtext xml:lang="en">
+            <xhtml:div>
+               <xhtml:p>
+                  <xhtml:p>
+Set the value of               <xhtml:span class="inline_block">auditLog.destination</xhtml:span>
+ to the appropriate value from the following options:            </xhtml:p>
+                  <xhtml:p>syslog</xhtml:p>
+                  <xhtml:p>To enable auditing and print audit events to syslog</xhtml:p>
+                  <xhtml:code class="code_block">
+mongod --dbpath data/db --auditDestination syslog
+</xhtml:code>
+                  <xhtml:p>console</xhtml:p>
+                  <xhtml:p>
+To enable auditing and print audit events to standard output (i.e.,               <xhtml:span class="inline_block">stdout</xhtml:span>
+)            </xhtml:p>
+                  <xhtml:code class="code_block">
+mongod --dbpath data/db --auditDestination console
+</xhtml:code>
+                  <xhtml:p>Json File</xhtml:p>
+                  <xhtml:p>To enable auditing and print audit events to a file in JSON format. Printing audit events to file in JSON format degrades server performance more than printing to a file in BSON format.</xhtml:p>
+                  <xhtml:code class="code_block">
+mongod --dbpath data/db --auditDestination file --auditFormat JSON --auditPath data/db/auditLog.json
+</xhtml:code>
+                  <xhtml:p>Bson File</xhtml:p>
+                  <xhtml:p>To enable auditing and print audit events to a file in BSON binary format</xhtml:p>
+                  <xhtml:code class="code_block">
+mongod --dbpath data/db --auditDestination file --auditFormat BSON --auditPath data/db/auditLog.bson
+</xhtml:code>
+               </xhtml:p>
+            </xhtml:div>
+         </xccdf:fixtext>
+         <xccdf:complex-check operator="AND">
+            <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+               <check-export export-name="oval:org.cisecurity.benchmarksmongodb_mongodb:var:10004" value-id="xccdf_org.cisecurity.benchmarks_value_100041_var"></check-export>
+               <check-export export-name="oval:org.cisecurity.benchmarks:var:2000000" value-id="xccdf_org.cisecurity_value_jdbc.url"></check-export>
+               <check-content-ref href="CIS_MongoDB_Benchmark__imported__v1.0.0-oval.xml" name="oval:org.cisecurity.benchmarksmongodb_mongodb:def:10004"></check-content-ref>
+            </check>
+         </xccdf:complex-check>
+      </xccdf:Rule>
+      <xccdf:Rule id="xccdf_org.cisecurity.benchmarks_rule_5.2_Ensure_that_audit_filters_are_configured_properly" role="full" selected="false" weight="1.0">
+         <xccdf:title xml:lang="en">Ensure that audit filters are configured properly</xccdf:title>
+         <xccdf:description xml:lang="en">
+            <xhtml:p>
+MongoDB Enterprise supports auditing of various operations. When enabled, the audit facility, by default, records all auditable operations as detailed in Audit Event Actions, Details, and Results. To specify which events to record, the audit feature includes the           <xhtml:span class="inline_block">--auditFilter</xhtml:span>
+ option. This check is only for Enterprise editions.        </xhtml:p>
+         </xccdf:description>
+         <xccdf:rationale xml:lang="en">
+            <xhtml:p>All operations carried out on the database are logged. This helps in backtracking and tracing any incident that occurs.</xhtml:p>
+         </xccdf:rationale>
+         <xccdf:ident system="URL">https://docs.mongodb.com/manual/reference/audit-message/</xccdf:ident>
+         <xccdf:ident system="URL">https://docs.mongodb.com/manual/tutorial/configure-audit-filters/</xccdf:ident>
+         <xccdf:fixtext xml:lang="en">
+            <xhtml:div>
+               <xhtml:p>
+                  <xhtml:p>Set the audit filters based on the organization’s requirements.</xhtml:p>
+               </xhtml:p>
+            </xhtml:div>
+         </xccdf:fixtext>
+         <xccdf:complex-check operator="AND">
+            <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+               <check-export export-name="oval:org.cisecurity.benchmarksmongodb_mongodb:var:10005" value-id="xccdf_org.cisecurity.benchmarks_value_100051_var"></check-export>
+               <check-export export-name="oval:org.cisecurity.benchmarks:var:2000000" value-id="xccdf_org.cisecurity_value_jdbc.url"></check-export>
+               <check-content-ref href="CIS_MongoDB_Benchmark__imported__v1.0.0-oval.xml" name="oval:org.cisecurity.benchmarksmongodb_mongodb:def:10005"></check-content-ref>
+            </check>
+         </xccdf:complex-check>
+      </xccdf:Rule>
+      <xccdf:Rule id="xccdf_org.cisecurity.benchmarks_rule_5.3_Ensure_that_logging_captures_as_much_information_as_possible" role="unscored" selected="false" weight="0.0">
+         <xccdf:title xml:lang="en">Ensure that logging captures as much information as possible</xccdf:title>
+         <xccdf:description xml:lang="en">
+            <xhtml:p>
+The           <xhtml:span class="inline_block">SystemLog.quiet</xhtml:span>
+ option stops logging of information such as:        </xhtml:p>
+            <xhtml:ul>
+               <xhtml:li>connection events</xhtml:li>
+               <xhtml:li>authentication events</xhtml:li>
+               <xhtml:li>replication sync activities</xhtml:li>
+               <xhtml:li>
+evidence of some potentially impactful commands being run (eg:             <xhtml:span class="inline_block">drop</xhtml:span>
+,             <xhtml:span class="inline_block">dropIndexes</xhtml:span>
+,             <xhtml:span class="inline_block">validate</xhtml:span>
+)          </xhtml:li>
+            </xhtml:ul>
+            <xhtml:p>This information should be logged whenever possible. This check is only for Enterprise editions.</xhtml:p>
+         </xccdf:description>
+         <xccdf:rationale xml:lang="en">
+            <xhtml:p>
+The use of           <xhtml:span class="inline_block">SystemLog.quiet</xhtml:span>
+ makes troubleshooting problems and investigating possible security incidents much more difficult.        </xhtml:p>
+         </xccdf:rationale>
+         <xccdf:ident system="URL">https://docs.mongodb.com/manual/reference/configuration-options/#systemLog.quiet</xccdf:ident>
+         <xccdf:fixtext xml:lang="en">
+            <xhtml:div>
+               <xhtml:p>
+                  <xhtml:p>
+Set               <xhtml:span class="inline_block">SystemLog.quiet</xhtml:span>
+ to               <xhtml:span class="inline_block">False</xhtml:span>
+ in the               <xhtml:span class="inline_block">/etc/mongod.conf</xhtml:span>
+ file to disable it.            </xhtml:p>
+               </xhtml:p>
+            </xhtml:div>
+         </xccdf:fixtext>
+         <xccdf:complex-check operator="AND">
+            <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+               <check-export export-name="oval:org.cisecurity.benchmarksmongodb_mongodb:var:10006" value-id="xccdf_org.cisecurity.benchmarks_value_100061_var"></check-export>
+               <check-export export-name="oval:org.cisecurity.benchmarks:var:2000000" value-id="xccdf_org.cisecurity_value_jdbc.url"></check-export>
+               <check-content-ref href="CIS_MongoDB_Benchmark__imported__v1.0.0-oval.xml" name="oval:org.cisecurity.benchmarksmongodb_mongodb:def:10006"></check-content-ref>
+            </check>
+         </xccdf:complex-check>
+      </xccdf:Rule>
+      <xccdf:Rule id="xccdf_org.cisecurity.benchmarks_rule_5.4_Ensure_that_new_entries_are_appended_to_the_end_of_the_log_file" role="unscored" selected="false" weight="0.0">
+         <xccdf:title xml:lang="en">Ensure that new entries are appended to the end of the log file</xccdf:title>
+         <xccdf:description xml:lang="en">
+            <xhtml:p>
+By default, new log entries will overwrite old entries after a restart of the mongod or Mongols service. Enabling the           <xhtml:span class="inline_block">systemLog.logAppend</xhtml:span>
+ setting causes new entries to be appended to the end of the log file rather than overwriting the existing content of the log when the mongos or mongod instance restarts.        </xhtml:p>
+         </xccdf:description>
+         <xccdf:rationale xml:lang="en">
+            <xhtml:p>Allowing old entries to be overwritten by new entries instead of appending new entries to the end of the log may destroy old log data that is needed for a variety of purposes.</xhtml:p>
+         </xccdf:rationale>
+         <xccdf:ident system="URL">https://docs.mongodb.com/manual/reference/configuration-options/#systemLog.logAppend</xccdf:ident>
+         <xccdf:fixtext xml:lang="en">
+            <xhtml:div>
+               <xhtml:p>
+                  <xhtml:p>
+                     <xhtml:span class="inline_block">Set systemLog.logAppend</xhtml:span>
+ to               <xhtml:span class="inline_block">true</xhtml:span>
+ in the               <xhtml:span class="inline_block">/etc/mongod.conf</xhtml:span>
+ file.            </xhtml:p>
+               </xhtml:p>
+            </xhtml:div>
+         </xccdf:fixtext>
+         <xccdf:complex-check operator="AND">
+            <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+               <check-export export-name="oval:org.cisecurity.benchmarksmongodb_mongodb:var:10007" value-id="xccdf_org.cisecurity.benchmarks_value_100071_var"></check-export>
+               <check-export export-name="oval:org.cisecurity.benchmarks:var:2000000" value-id="xccdf_org.cisecurity_value_jdbc.url"></check-export>
+               <check-content-ref href="CIS_MongoDB_Benchmark__imported__v1.0.0-oval.xml" name="oval:org.cisecurity.benchmarksmongodb_mongodb:def:10007"></check-content-ref>
+            </check>
+         </xccdf:complex-check>
+      </xccdf:Rule>
+   </xccdf:Group>
+   <xccdf:Group id="xccdf_org.cisecurity.benchmarks_group_6_Operating_System_Hardening">
+      <xccdf:title xml:lang="en">Operating System Hardening</xccdf:title>
+      <xccdf:description xml:lang="en">
+         <xhtml:p>This section contains recommendations related to hardening the operating system running below MongoDB.</xhtml:p>
+      </xccdf:description>
+      <xccdf:Rule id="xccdf_org.cisecurity.benchmarks_rule_6.1_Ensure_that_the_HTTP_status_interface_is_disabled" role="full" selected="false" weight="1.0">
+         <xccdf:title xml:lang="en">Ensure that the HTTP status interface is disabled</xccdf:title>
+         <xccdf:description xml:lang="en">
+            <xhtml:p>MongoDB by default provides an HTTP interface running on port 28017 to provide the “home” status page. This page provides certain critical information about the database’s statistics and clients.</xhtml:p>
+            <xhtml:p>
+               <xhtml:strong>Please note that this function has been Deprecated since version 3.2.</xhtml:strong>
+            </xhtml:p>
+         </xccdf:description>
+         <xccdf:metadata>
+            <notes:notes xml:lang="en">
+               <xhtml:p>Starting in 3.2, MongoDB deprecates the HTTP interface.</xhtml:p>
+            </notes:notes>
+         </xccdf:metadata>
+         <xccdf:rationale xml:lang="en">
+            <xhtml:p>An attacker could access the status page to learn more about the MongoDB server and determine how to compromise it.</xhtml:p>
+         </xccdf:rationale>
+         <xccdf:ident system="URL">https://docs.mongodb.com/ecosystem/tools/http-interfaces/#http-status-interface</xccdf:ident>
+         <xccdf:fixtext xml:lang="en">
+            <xhtml:div>
+               <xhtml:p>
+                  <xhtml:p>
+Disable the HTTP status interface by setting               <xhtml:span class="inline_block">nohttpinterface = True</xhtml:span>
+ in the               <xhtml:span class="inline_block">/etc/mongod.conf</xhtml:span>
+ file.            </xhtml:p>
+               </xhtml:p>
+            </xhtml:div>
+         </xccdf:fixtext>
+         <xccdf:complex-check operator="AND">
+            <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+               <check-export export-name="oval:org.cisecurity.benchmarksmongodb_mongodb:var:10008" value-id="xccdf_org.cisecurity.benchmarks_value_100081_var"></check-export>
+               <check-export export-name="oval:org.cisecurity.benchmarks:var:2000000" value-id="xccdf_org.cisecurity_value_jdbc.url"></check-export>
+               <check-content-ref href="CIS_MongoDB_Benchmark__imported__v1.0.0-oval.xml" name="oval:org.cisecurity.benchmarksmongodb_mongodb:def:10008"></check-content-ref>
+            </check>
+         </xccdf:complex-check>
+      </xccdf:Rule>
+      <xccdf:Rule id="xccdf_org.cisecurity.benchmarks_rule_6.2_Ensure_that_MongoDB_uses_a_non-default_port" role="full" selected="false" weight="1.0">
+         <xccdf:title xml:lang="en">Ensure that MongoDB uses a non-default port</xccdf:title>
+         <xccdf:description xml:lang="en">
+            <xhtml:p>Changing the port used by MongoDB makes it harder for attackers to find the database and target it.</xhtml:p>
+         </xccdf:description>
+         <xccdf:rationale xml:lang="en">
+            <xhtml:p>Standard ports are used in automated attacks and by attackers to verify which applications are running on a server.</xhtml:p>
+         </xccdf:rationale>
+         <xccdf:ident system="URL">https://docs.mongodb.com/manual/reference/default-mongodb-port/</xccdf:ident>
+         <xccdf:fixtext xml:lang="en">
+            <xhtml:div>
+               <xhtml:p>
+                  <xhtml:p>Change the port for MongoDB server to a number other than 27017.</xhtml:p>
+                  <xhtml:p class="bold">Impact:</xhtml:p>
+                  <xhtml:p>
+                     <xhtml:p>Hackers frequently scan IP addresses for commonly used ports, so it's not uncommon to use a different port to "fly under the radar". This is just to avoid detection, other than that there is no added safety by using a different port.</xhtml:p>
+                  </xhtml:p>
+               </xhtml:p>
+            </xhtml:div>
+         </xccdf:fixtext>
+         <xccdf:complex-check operator="AND">
+            <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+               <check-export export-name="oval:org.cisecurity.benchmarksmongodb_mongodb:var:10009" value-id="xccdf_org.cisecurity.benchmarks_value_100091_var"></check-export>
+               <check-export export-name="oval:org.cisecurity.benchmarks:var:2000000" value-id="xccdf_org.cisecurity_value_jdbc.url"></check-export>
+               <check-content-ref href="CIS_MongoDB_Benchmark__imported__v1.0.0-oval.xml" name="oval:org.cisecurity.benchmarksmongodb_mongodb:def:10009"></check-content-ref>
+            </check>
+            <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+               <check-export export-name="oval:org.cisecurity.benchmarksmongodb_mongodb:var:10010" value-id="xccdf_org.cisecurity.benchmarks_value_100101_var"></check-export>
+               <check-export export-name="oval:org.cisecurity.benchmarks:var:2000000" value-id="xccdf_org.cisecurity_value_jdbc.url"></check-export>
+               <check-content-ref href="CIS_MongoDB_Benchmark__imported__v1.0.0-oval.xml" name="oval:org.cisecurity.benchmarksmongodb_mongodb:def:10010"></check-content-ref>
+            </check>
+         </xccdf:complex-check>
+      </xccdf:Rule>
+      <xccdf:Rule id="xccdf_org.cisecurity.benchmarks_rule_6.3_Ensure_that_operating_system_resource_limits_are_set_for_MongoDB" role="unscored" selected="false" weight="0.0">
+         <xccdf:title xml:lang="en">Ensure that operating system resource limits are set for MongoDB</xccdf:title>
+         <xccdf:description xml:lang="en">
+            <xhtml:p>Operating systems provide ways to limit and control the usage of system resources such as threads, files, and network connections on a per-process and per-user basis</xhtml:p>
+         </xccdf:description>
+         <xccdf:rationale xml:lang="en">
+            <xhtml:p>
+These           <xhtml:span class="inline_block">ulimits</xhtml:span>
+ prevent a single user from consuming too many system resources.        </xhtml:p>
+         </xccdf:rationale>
+         <xccdf:ident system="URL">https://docs.mongodb.com/manual/reference/ulimit/#recommended-ulimit-settings</xccdf:ident>
+         <xccdf:fixtext xml:lang="en">
+            <xhtml:div>
+               <xhtml:p>
+                  <xhtml:p>Every deployment may have unique requirements and settings. Recommended thresholds and settings are particularly important for MongoDB deployments:</xhtml:p>
+                  <xhtml:ul>
+                     <xhtml:li>f (file size): unlimited</xhtml:li>
+                     <xhtml:li>t (cpu time): unlimited</xhtml:li>
+                     <xhtml:li>v (virtual memory): unlimited [1]</xhtml:li>
+                     <xhtml:li>n (open files): 64000</xhtml:li>
+                     <xhtml:li>m (memory size): unlimited [1] [2]</xhtml:li>
+                     <xhtml:li>u (processes/threads): 64000</xhtml:li>
+                  </xhtml:ul>
+                  <xhtml:p>
+Restart the mongod and mongos instances after changing the               <xhtml:span class="inline_block">ulimit</xhtml:span>
+ settings to ensure that the changes take effect.            </xhtml:p>
+               </xhtml:p>
+            </xhtml:div>
+         </xccdf:fixtext>
+      </xccdf:Rule>
+      <xccdf:Rule id="xccdf_org.cisecurity.benchmarks_rule_6.4_Ensure_that_server-side_scripting_is_disabled_if_not_needed" role="unscored" selected="false" weight="0.0">
+         <xccdf:title xml:lang="en">Ensure that server-side scripting is disabled if not needed</xccdf:title>
+         <xccdf:description xml:lang="en">
+            <xhtml:p>
+MongoDB supports the execution of JavaScript code for certain server-side operations:           <xhtml:span class="inline_block">mapReduce</xhtml:span>
+,           <xhtml:span class="inline_block">group</xhtml:span>
+, and           <xhtml:span class="inline_block">$where.</xhtml:span>
+ If you do not use these operations, server-side scripting should be disabled.        </xhtml:p>
+         </xccdf:description>
+         <xccdf:rationale xml:lang="en">
+            <xhtml:p>If server-side scripting is not needed and is not disabled, this introduces unnecessary risk that an attacker may take advantage of insecure coding.</xhtml:p>
+         </xccdf:rationale>
+         <xccdf:fixtext xml:lang="en">
+            <xhtml:div>
+               <xhtml:p>
+                  <xhtml:p>
+If server-side scripting is not required, disable it by using the               <xhtml:span class="inline_block">--noscripting</xhtml:span>
+ option on the command line.            </xhtml:p>
+               </xhtml:p>
+            </xhtml:div>
+         </xccdf:fixtext>
+         <xccdf:complex-check operator="AND">
+            <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+               <check-export export-name="oval:org.cisecurity.benchmarksmongodb_mongodb:var:10011" value-id="xccdf_org.cisecurity.benchmarks_value_100111_var"></check-export>
+               <check-export export-name="oval:org.cisecurity.benchmarks:var:2000000" value-id="xccdf_org.cisecurity_value_jdbc.url"></check-export>
+               <check-content-ref href="CIS_MongoDB_Benchmark__imported__v1.0.0-oval.xml" name="oval:org.cisecurity.benchmarksmongodb_mongodb:def:10011"></check-content-ref>
+            </check>
+         </xccdf:complex-check>
+      </xccdf:Rule>
+      <xccdf:Rule id="xccdf_org.cisecurity.benchmarks_rule_6.5_Ensure_that_the_HTTP_interface_is_disabled" role="unscored" selected="false" weight="0.0">
+         <xccdf:title xml:lang="en">Ensure that the HTTP interface is disabled</xccdf:title>
+         <xccdf:description xml:lang="en">
+            <xhtml:p>
+The           <xhtml:span class="inline_block">net.http.enabled</xhtml:span>
+ parameter is used to enable or disable the HTTP interface.        </xhtml:p>
+            <xhtml:p>
+               <xhtml:strong>Please note that this function has been Deprecated since version 3.2.</xhtml:strong>
+            </xhtml:p>
+         </xccdf:description>
+         <xccdf:rationale xml:lang="en">
+            <xhtml:p>Additional network interfaces expose the system to a greater extent. Running unnecessary services may allow an attacker to penetrate the system via an unknown vulnerability.</xhtml:p>
+         </xccdf:rationale>
+         <xccdf:ident system="URL">https://docs.mongodb.com/manual/core/security-mongodb-configuration/#http-status-interface</xccdf:ident>
+         <xccdf:fixtext xml:lang="en">
+            <xhtml:div>
+               <xhtml:p>
+                  <xhtml:p>
+Set the parameter value to               <xhtml:span class="inline_block">false</xhtml:span>
+ to disable the HTTP interface.            </xhtml:p>
+               </xhtml:p>
+            </xhtml:div>
+         </xccdf:fixtext>
+      </xccdf:Rule>
+      <xccdf:Rule id="xccdf_org.cisecurity.benchmarks_rule_6.6_Ensure_that_JSONP_access_via_an_HTTP_interface_is_disabled" role="unscored" selected="false" weight="0.0">
+         <xccdf:title xml:lang="en">Ensure that JSONP access via an HTTP interface is disabled</xccdf:title>
+         <xccdf:description xml:lang="en">
+            <xhtml:p>
+The           <xhtml:span class="inline_block">net.http.JSONPEnabled</xhtml:span>
+ parameter is used to enable or disable JSONP access via an HTTP interface. Enabling this parameter also enables the HTTP interface, even if the parameter for enabling the HTTP interface is set to disabled.        </xhtml:p>
+            <xhtml:p>
+               <xhtml:strong>Please note that this function has been Deprecated since version 3.2.</xhtml:strong>
+            </xhtml:p>
+         </xccdf:description>
+         <xccdf:rationale xml:lang="en">
+            <xhtml:p>Additional network interfaces expose the system to a greater extent. Running unnecessary services may allow an attacker to penetrate the system via an unknown vulnerability.</xhtml:p>
+         </xccdf:rationale>
+         <xccdf:ident system="URL">https://docs.mongodb.com/manual/reference/configuration-options/#net.http.JSONPEnabled</xccdf:ident>
+         <xccdf:fixtext xml:lang="en">
+            <xhtml:div>
+               <xhtml:p>
+                  <xhtml:p>
+Set the parameter value to               <xhtml:span class="inline_block">false</xhtml:span>
+ to disable JSONP access.            </xhtml:p>
+               </xhtml:p>
+            </xhtml:div>
+         </xccdf:fixtext>
+      </xccdf:Rule>
+      <xccdf:Rule id="xccdf_org.cisecurity.benchmarks_rule_6.7_Ensure_that_the_REST_API_is_disabled" role="unscored" selected="false" weight="0.0">
+         <xccdf:title xml:lang="en">Ensure that the REST API is disabled</xccdf:title>
+         <xccdf:description xml:lang="en">
+            <xhtml:p>
+The           <xhtml:span class="inline_block">net.http.RESTInterfaceEnabled</xhtml:span>
+ parameter is used to enable or disable the REST API. Enabling this parameter also enables the HTTP interface, even if the parameter for enabling the HTTP interface is set to disabled.        </xhtml:p>
+            <xhtml:p>
+               <xhtml:strong>Please note that this function has been Deprecated since version 3.2.</xhtml:strong>
+            </xhtml:p>
+         </xccdf:description>
+         <xccdf:rationale xml:lang="en">
+            <xhtml:p>Additional interfaces expose the system to a greater extent. Running unnecessary services may allow an attacker to penetrate the system via an unknown vulnerability.</xhtml:p>
+         </xccdf:rationale>
+         <xccdf:ident system="URL">https://docs.mongodb.com/manual/reference/configuration-options/#net.http.RESTInterfaceEnabled</xccdf:ident>
+         <xccdf:fixtext xml:lang="en">
+            <xhtml:div>
+               <xhtml:p>
+                  <xhtml:p>
+Set the parameter value to               <xhtml:span class="inline_block">false</xhtml:span>
+ to disable the REST API.            </xhtml:p>
+               </xhtml:p>
+            </xhtml:div>
+         </xccdf:fixtext>
+      </xccdf:Rule>
+   </xccdf:Group>
+   <xccdf:Group id="xccdf_org.cisecurity.benchmarks_group_7_File_Permissions">
+      <xccdf:title xml:lang="en">File Permissions</xccdf:title>
+      <xccdf:description xml:lang="en">
+         <xhtml:p>This section provides recommendations for setting permissions for the key file and the database file.</xhtml:p>
+      </xccdf:description>
+      <xccdf:Rule id="xccdf_org.cisecurity.benchmarks_rule_7.1_Ensure_that_key_file_permissions_are_set_correctly" role="full" selected="false" weight="1.0">
+         <xccdf:title xml:lang="en">Ensure that key file permissions are set correctly</xccdf:title>
+         <xccdf:description xml:lang="en">
+            <xhtml:p>The key file is used for authentication in the sharded cluster. Implementing proper file permissions on the key file will prevent unauthorized access to it.</xhtml:p>
+         </xccdf:description>
+         <xccdf:rationale xml:lang="en">
+            <xhtml:p>Protecting the key file strengthens authentication in the sharded cluster and prevents unauthorized access to the MongoDB database.</xhtml:p>
+         </xccdf:rationale>
+         <xccdf:ident system="URL">https://docs.mongodb.com/v3.0/tutorial/enable-internal-authentication/</xccdf:ident>
+         <xccdf:fixtext xml:lang="en">
+            <xhtml:div>
+               <xhtml:p>
+                  <xhtml:p>
+Set the               <xhtml:span class="inline_block">keyFile</xhtml:span>
+ ownership to mongodb user and remove other permissions by executing these commands:            </xhtml:p>
+                  <xhtml:code class="code_block">
+chmod 600 /keyfile
+sudo chown mongodb:mongodb /keyfile
+</xhtml:code>
+               </xhtml:p>
+            </xhtml:div>
+         </xccdf:fixtext>
+      </xccdf:Rule>
+      <xccdf:Rule id="xccdf_org.cisecurity.benchmarks_rule_7.2_Ensure_that_database_file_permissions_are_set_correctly" role="full" selected="false" weight="1.0">
+         <xccdf:title xml:lang="en">Ensure that database file permissions are set correctly</xccdf:title>
+         <xccdf:description xml:lang="en">
+            <xhtml:p>MongoDB database files need to be protected using file permissions.</xhtml:p>
+         </xccdf:description>
+         <xccdf:rationale xml:lang="en">
+            <xhtml:p>This will restrict unauthorized users from accessing the database.</xhtml:p>
+         </xccdf:rationale>
+         <xccdf:fixtext xml:lang="en">
+            <xhtml:div>
+               <xhtml:p>
+                  <xhtml:p>Set ownership of the database file to mongodb user and remove other permissions using the following commands:</xhtml:p>
+                  <xhtml:code class="code_block">
+chmod 660 /var/lib/mongodb
+sudo chown mongodb:mongodb /var/lib/mongodb
+</xhtml:code>
+               </xhtml:p>
+            </xhtml:div>
+         </xccdf:fixtext>
+      </xccdf:Rule>
+   </xccdf:Group>
+<xccdf:signature><ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+<ds:SignedInfo>
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"></ds:CanonicalizationMethod>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"></ds:SignatureMethod>
+<ds:Reference URI="">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"></ds:Transform>
+<ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"></ds:Transform>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"></ds:DigestMethod>
+<ds:DigestValue>iTDMeRgzeg3BjIQEabrV59Oq46M=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue>
+tM+0aOkeVsEXucl1GQb7ri+JehE9QaUOcUXclQTM2f7k6pksgcW7XqJ5sg/XBelX49IxvUkpjdQY
+FMmkAjxD2GNx7+eq9ECH1L1u/iU74uTWAaci7m2c8rpF5M+aeFzDVxJMYxh13KU/5N9296xAnY1l
+mq8+cDY9ERTReif1Mc2IJ8wc7VM40qLxjEy69afdztt1BtwLc9jFfwpemUEb+2HIJiZjddIyk4XX
+mixUFnnHgrBIKZQdVFfBEKz5AKnVAo+qziNvDnkPMU0y6GXigr/MvmHrJNju5Ynyak7IwGaRxP04
+4lLGnHFOlP4HpGrDkY9B0Jy3mDJw/4xv2Mvu0w==
+</ds:SignatureValue>
+<ds:KeyInfo>
+<ds:X509Data>
+<ds:X509Certificate>
+MIIFUjCCBDqgAwIBAgIIPx+qZKptEY4wDQYJKoZIhvcNAQELBQAwgbQxCzAJBgNVBAYTAlVTMRAw
+DgYDVQQIEwdBcml6b25hMRMwEQYDVQQHEwpTY290dHNkYWxlMRowGAYDVQQKExFHb0RhZGR5LmNv
+bSwgSW5jLjEtMCsGA1UECxMkaHR0cDovL2NlcnRzLmdvZGFkZHkuY29tL3JlcG9zaXRvcnkvMTMw
+MQYDVQQDEypHbyBEYWRkeSBTZWN1cmUgQ2VydGlmaWNhdGUgQXV0aG9yaXR5IC0gRzIwHhcNMjAw
+OTA4MTMzOTM5WhcNMjMxMDI4MDAzMjA1WjCBkzELMAkGA1UEBhMCVVMxETAPBgNVBAgTCE5ldyBZ
+b3JrMRcwFQYDVQQHEw5FYXN0IEdyZWVuYnVzaDErMCkGA1UEChMiQ2VudGVyIGZvciBJbnRlcm5l
+dCBTZWN1cml0eSwgSW5jLjErMCkGA1UEAxMiQ2VudGVyIGZvciBJbnRlcm5ldCBTZWN1cml0eSwg
+SW5jLjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBANDBp4+sl9kB5JRmnQH0wcbLLz/t
+n2HoD6TRl3xJj12V61njBNgaiGzvoSl07sFLnESukb0CU44MzYDoUMdx3HJUcEAeMY/9eITqGUnk
+N4WsP145eFqH7FoszOY/4NYlgYMYt8ZP2kRHyim9LpQTLT/1mBaUkY2f2e5uUCootH3iT8W3/sK2
+flLzWfLgXTvkhJm4Uvw1RErBFs15+krW0KWtnZ6NmiDhmV0CnFGNnd1meGZPs2sBXEVGLJVSKzoT
+G9Ht/oWyRLRcJuXpHoXTYpkqM2MsixmSaJy5b6/D35r0NXHru3p1gkX2a0VgJQxxWqLi3bVPzpl3
+PlJu3C8M/FUCAwEAAaOCAYUwggGBMAwGA1UdEwEB/wQCMAAwEwYDVR0lBAwwCgYIKwYBBQUHAwMw
+DgYDVR0PAQH/BAQDAgeAMDUGA1UdHwQuMCwwKqAooCaGJGh0dHA6Ly9jcmwuZ29kYWRkeS5jb20v
+Z2RpZzJzNS02LmNybDBdBgNVHSAEVjBUMEgGC2CGSAGG/W0BBxcCMDkwNwYIKwYBBQUHAgEWK2h0
+dHA6Ly9jZXJ0aWZpY2F0ZXMuZ29kYWRkeS5jb20vcmVwb3NpdG9yeS8wCAYGZ4EMAQQBMHYGCCsG
+AQUFBwEBBGowaDAkBggrBgEFBQcwAYYYaHR0cDovL29jc3AuZ29kYWRkeS5jb20vMEAGCCsGAQUF
+BzAChjRodHRwOi8vY2VydGlmaWNhdGVzLmdvZGFkZHkuY29tL3JlcG9zaXRvcnkvZ2RpZzIuY3J0
+MB8GA1UdIwQYMBaAFEDCvSeOzDSDMKIz1/tss/C0LIDOMB0GA1UdDgQWBBT7fOf4ISDprbE+qUFe
++friFTKgHjANBgkqhkiG9w0BAQsFAAOCAQEAT0XLw2vmuq6e58bkLDXdqKeGQjREDChLw2Mae9LI
+JB93QgdA2OCLA1FwU2s7lawEDcma9wPiugxVGoaQNOfRw2/+cz0xmR3uaKQq6I24dWbHF20N2tSz
+1RAAK1lRZKewA1fj+qqKWjzETA0LpqZlaFF+CKBpQcyfYyQRZxpHkB1vvKMf4kMIRKruvl4ixLjN
+uAZrbQUWlXuq/MUkVP3FgdxWBPfmMGyngHs4hNMaSQGb1TEhBjj+PGoSunAyaOgO/P94XJPQQX3O
+2oNDsPou6gKcNtbZrH+iYTJ8rcqQTontMwSP/HrYj8lgG3neG53vk05p0jCn2M5W0ukJ4LPEnA==
+</ds:X509Certificate>
+</ds:X509Data>
+<ds:KeyValue>
+<ds:RSAKeyValue>
+<ds:Modulus>0MGnj6yX2QHklGadAfTBxssvP+2fYegPpNGXfEmPXZXrWeME2BqIbO+hKXTuwUucRK6RvQJTjgzN
+gOhQx3HcclRwQB4xj/14hOoZSeQ3haw/Xjl4WofsWizM5j/g1iWBgxi3xk/aREfKKb0ulBMtP/WY
+FpSRjZ/Z7m5QKii0feJPxbf+wrZ+UvNZ8uBdO+SEmbhS/DVESsEWzXn6StbQpa2dno2aIOGZXQKc
+UY2d3WZ4Zk+zawFcRUYslVIrOhMb0e3+hbJEtFwm5ekehdNimSozYyyLGZJonLlvr8PfmvQ1ceu7
+enWCRfZrRWAlDHFaouLdtU/OmXc+Um7cLwz8VQ==</ds:Modulus>
+<ds:Exponent>AQAB</ds:Exponent>
+</ds:RSAKeyValue>
+</ds:KeyValue>
+</ds:KeyInfo>
+</ds:Signature></xccdf:signature></xccdf:Benchmark>

@@ -1,0 +1,1637 @@
+<oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5 https://oval.cisecurity.org/schemas/validator-oval-definitions-5.11.2.xsd">
+   <generator>
+      <oval:product_name>Center for Internet Security - Optimus</oval:product_name>
+      <oval:schema_version>5.11.2</oval:schema_version>
+      <oval:timestamp>2023-12-19T17:56:08.465Z</oval:timestamp>
+   </generator>
+   <definitions>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9855" version="1">
+         <metadata>
+            <title>Verify Image Profile and VIB Acceptance Levels</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.2_Verify_Image_Profile_and_VIB_Acceptance_Levels" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.2_Verify_Image_Profile_and_VIB_Acceptance_Levels"></reference>
+            <description>Verify Image Profile and VIB Acceptance Levels</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9855"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9856" version="1">
+         <metadata>
+            <title>Verify Image Profile and VIB Acceptance Levels</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.2_Verify_Image_Profile_and_VIB_Acceptance_Levels" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.2_Verify_Image_Profile_and_VIB_Acceptance_Levels"></reference>
+            <description>Verify Image Profile and VIB Acceptance Levels</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9856"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9857" version="1">
+         <metadata>
+            <title>Verify no unauthorized kernel modules are loaded on the host</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.3_Verify_no_unauthorized_kernel_modules_are_loaded_on_the_host" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.3_Verify_no_unauthorized_kernel_modules_are_loaded_on_the_host"></reference>
+            <description>Verify no unauthorized kernel modules are loaded on the host</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9857"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9858" version="1">
+         <metadata>
+            <title>Configure NTP time synchronization</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.1_Configure_NTP_time_synchronization" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.1_Configure_NTP_time_synchronization"></reference>
+            <description>Configure NTP time synchronization</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9858"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9859" version="1">
+         <metadata>
+            <title>Configure the ESXi host firewall to restrict access to services running on the host</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.2_Configure_the_ESXi_host_firewall_to_restrict_access_to_services_running_on_the_host" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.2_Configure_the_ESXi_host_firewall_to_restrict_access_to_services_running_on_the_host"></reference>
+            <description>Configure the ESXi host firewall to restrict access to services running on the host</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9859"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9861" version="1">
+         <metadata>
+            <title>Do not use default self-signed certificates for ESXi communication</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.4_Do_not_use_default_self-signed_certificates_for_ESXi_communication" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.4_Do_not_use_default_self-signed_certificates_for_ESXi_communication"></reference>
+            <description>Do not use default self-signed certificates for ESXi communication</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9861"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9862" version="1">
+         <metadata>
+            <title>Prevent unintended use of dvfilter network APIs</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.6_Prevent_unintended_use_of_dvfilter_network_APIs" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.6_Prevent_unintended_use_of_dvfilter_network_APIs"></reference>
+            <description>Prevent unintended use of dvfilter network APIs</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9862"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9864" version="1">
+         <metadata>
+            <title>Configure persistent logging for all ESXi host</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.2_Configure_persistent_logging_for_all_ESXi_host" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.2_Configure_persistent_logging_for_all_ESXi_host"></reference>
+            <description>Configure persistent logging for all ESXi host</description>
+         </metadata>
+         <criteria negate="true" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9864"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9865" version="1">
+         <metadata>
+            <title>Configure remote logging for ESXi hosts</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.3_Configure_remote_logging_for_ESXi_hosts" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.3_Configure_remote_logging_for_ESXi_hosts"></reference>
+            <description>Configure remote logging for ESXi hosts</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9865"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9874" version="1">
+         <metadata>
+            <title>Set a timeout to automatically terminate idle ESXi Shell and SSH sessions</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.7_Set_a_timeout_to_automatically_terminate_idle_ESXi_Shell_and_SSH_sessions" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.7_Set_a_timeout_to_automatically_terminate_idle_ESXi_Shell_and_SSH_sessions"></reference>
+            <description>Set a timeout to automatically terminate idle ESXi Shell and SSH sessions</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9874"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9875" version="1">
+         <metadata>
+            <title>Set a timeout for Shell Services</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.8_Set_a_timeout_for_Shell_Services" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.8_Set_a_timeout_for_Shell_Services"></reference>
+            <description>Set a timeout for Shell Services</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9875"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9863" version="1">
+         <metadata>
+            <title>Configure a centralized location to collect ESXi host core dumps</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.1_Configure_a_centralized_location_to_collect_ESXi_host_core_dumps" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.1_Configure_a_centralized_location_to_collect_ESXi_host_core_dumps"></reference>
+            <description>Configure a centralized location to collect ESXi host core dumps</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9863"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9866" version="1">
+         <metadata>
+            <title>Create a non-root user account for local admin access</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.1_Create_a_non-root_user_account_for_local_admin_access" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.1_Create_a_non-root_user_account_for_local_admin_access"></reference>
+            <description>Create a non-root user account for local admin access</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9866"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9868" version="1">
+         <metadata>
+            <title>Use Active Directory for local user authentication</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.3_Use_Active_Directory_for_local_user_authentication" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.3_Use_Active_Directory_for_local_user_authentication"></reference>
+            <description>Use Active Directory for local user authentication</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9868"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9869" version="1">
+         <metadata>
+            <title>Disable DCUI to prevent local administrative control</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.1_Disable_DCUI_to_prevent_local_administrative_control" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.1_Disable_DCUI_to_prevent_local_administrative_control"></reference>
+            <description>Disable DCUI to prevent local administrative control</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9869"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9870" version="1">
+         <metadata>
+            <title>Disable ESXi Shell unless needed for diagnostics or troubleshooting</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.2_Disable_ESXi_Shell_unless_needed_for_diagnostics_or_troubleshooting" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.2_Disable_ESXi_Shell_unless_needed_for_diagnostics_or_troubleshooting"></reference>
+            <description>Disable ESXi Shell unless needed for diagnostics or troubleshooting</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9870"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9871" version="1">
+         <metadata>
+            <title>Disable SSH</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.3_Disable_SSH" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.3_Disable_SSH"></reference>
+            <description>Disable SSH</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9871"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9872" version="1">
+         <metadata>
+            <title>Enable lockdown mode to restrict remote access</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.5_Enable_lockdown_mode_to_restrict_remote_access" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.5_Enable_lockdown_mode_to_restrict_remote_access"></reference>
+            <description>Enable lockdown mode to restrict remote access</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9872"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9876" version="1">
+         <metadata>
+            <title>Enable bidirectional CHAP authentication for iSCSI traffic.</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.1_Enable_bidirectional_CHAP_authentication_for_iSCSI_traffic." ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.1_Enable_bidirectional_CHAP_authentication_for_iSCSI_traffic."></reference>
+            <description>Enable bidirectional CHAP authentication for iSCSI traffic.</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9876"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9877" version="1">
+         <metadata>
+            <title>Ensure that the vSwitch Forged Transmits policy is set to reject</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_7.1_Ensure_that_the_vSwitch_Forged_Transmits_policy_is_set_to_reject" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_7.1_Ensure_that_the_vSwitch_Forged_Transmits_policy_is_set_to_reject"></reference>
+            <description>Ensure that the vSwitch Forged Transmits policy is set to reject</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9877"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9878" version="1">
+         <metadata>
+            <title>Ensure that the vSwitch MAC Address Change policy is set to reject</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_7.2_Ensure_that_the_vSwitch_MAC_Address_Change_policy_is_set_to_reject" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_7.2_Ensure_that_the_vSwitch_MAC_Address_Change_policy_is_set_to_reject"></reference>
+            <description>Ensure that the vSwitch MAC Address Change policy is set to reject</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9878"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9879" version="1">
+         <metadata>
+            <title>Ensure that the vSwitch Promiscuous Mode policy is set to reject</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_7.3_Ensure_that_the_vSwitch_Promiscuous_Mode_policy_is_set_to_reject" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_7.3_Ensure_that_the_vSwitch_Promiscuous_Mode_policy_is_set_to_reject"></reference>
+            <description>Ensure that the vSwitch Promiscuous Mode policy is set to reject</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9879"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9880" version="1">
+         <metadata>
+            <title>Ensure that port groups are not configured to the value of the native VLAN</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_7.4_Ensure_that_port_groups_are_not_configured_to_the_value_of_the_native_VLAN" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_7.4_Ensure_that_port_groups_are_not_configured_to_the_value_of_the_native_VLAN"></reference>
+            <description>Ensure that port groups are not configured to the value of the native VLAN</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9880"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9881" version="1">
+         <metadata>
+            <title>Ensure that port groups are not configured to VLAN 4095 except for Virtual Guest Tagging (VGT)</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_7.6_Ensure_that_port_groups_are_not_configured_to_VLAN_4095_except_for_Virtual_Guest_Tagging_VGT" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_7.6_Ensure_that_port_groups_are_not_configured_to_VLAN_4095_except_for_Virtual_Guest_Tagging_VGT"></reference>
+            <description>Ensure that port groups are not configured to VLAN 4095 except for Virtual Guest Tagging (VGT)</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9881"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9882" version="1">
+         <metadata>
+            <title>Limit informational messages from the VM to the VMX file</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_8.1.1_Limit_informational_messages_from_the_VM_to_the_VMX_file" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_8.1.1_Limit_informational_messages_from_the_VM_to_the_VMX_file"></reference>
+            <description>Limit informational messages from the VM to the VMX file</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9882"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9883" version="1">
+         <metadata>
+            <title>Limit sharing of console connections</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_8.1.2_Limit_sharing_of_console_connections" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_8.1.2_Limit_sharing_of_console_connections"></reference>
+            <description>Limit sharing of console connections</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9883"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9889" version="1">
+         <metadata>
+            <title>Prevent unauthorized removal and modification of devices</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_8.2.6_Prevent_unauthorized_removal_and_modification_of_devices" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_8.2.6_Prevent_unauthorized_removal_and_modification_of_devices"></reference>
+            <description>Prevent unauthorized removal and modification of devices</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9889"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9890" version="1">
+         <metadata>
+            <title>Prevent unauthorized connection of devices</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_8.2.7_Prevent_unauthorized_connection_of_devices" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_8.2.7_Prevent_unauthorized_connection_of_devices"></reference>
+            <description>Prevent unauthorized connection of devices</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9890"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9891" version="1">
+         <metadata>
+            <title>Control VMsafe Agent Configuration</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_8.4.4_Control_VMsafe_Agent_Configuration" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_8.4.4_Control_VMsafe_Agent_Configuration"></reference>
+            <description>Control VMsafe Agent Configuration</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9891"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9892" version="1">
+         <metadata>
+            <title>Disable Autologon</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_8.4.5_Disable_Autologon" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_8.4.5_Disable_Autologon"></reference>
+            <description>Disable Autologon</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9892"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9893" version="1">
+         <metadata>
+            <title>Disable BIOS BBS</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_8.4.6_Disable_BIOS_BBS" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_8.4.6_Disable_BIOS_BBS"></reference>
+            <description>Disable BIOS BBS</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9893"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9894" version="1">
+         <metadata>
+            <title>Disable Guest Host Interaction Protocol Handler</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_8.4.7_Disable_Guest_Host_Interaction_Protocol_Handler" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_8.4.7_Disable_Guest_Host_Interaction_Protocol_Handler"></reference>
+            <description>Disable Guest Host Interaction Protocol Handler</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9894"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9895" version="1">
+         <metadata>
+            <title>Disable Unity Taskbar</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_8.4.8_Disable_Unity_Taskbar" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_8.4.8_Disable_Unity_Taskbar"></reference>
+            <description>Disable Unity Taskbar</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9895"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9896" version="1">
+         <metadata>
+            <title>Disable Unity Active</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_8.4.9_Disable_Unity_Active" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_8.4.9_Disable_Unity_Active"></reference>
+            <description>Disable Unity Active</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9896"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9897" version="1">
+         <metadata>
+            <title>Disable Unity Window Contents</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_8.4.10_Disable_Unity_Window_Contents" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_8.4.10_Disable_Unity_Window_Contents"></reference>
+            <description>Disable Unity Window Contents</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9897"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9898" version="1">
+         <metadata>
+            <title>Disable Unity Push Update</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_8.4.11_Disable_Unity_Push_Update" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_8.4.11_Disable_Unity_Push_Update"></reference>
+            <description>Disable Unity Push Update</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9898"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9899" version="1">
+         <metadata>
+            <title>Disable Drag and Drop Version Get</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_8.4.12_Disable_Drag_and_Drop_Version_Get" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_8.4.12_Disable_Drag_and_Drop_Version_Get"></reference>
+            <description>Disable Drag and Drop Version Get</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9899"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9900" version="1">
+         <metadata>
+            <title>Disable Drag and Drop Version Set</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_8.4.13_Disable_Drag_and_Drop_Version_Set" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_8.4.13_Disable_Drag_and_Drop_Version_Set"></reference>
+            <description>Disable Drag and Drop Version Set</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9900"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9901" version="1">
+         <metadata>
+            <title>Disable Shell Action</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_8.4.14_Disable_Shell_Action" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_8.4.14_Disable_Shell_Action"></reference>
+            <description>Disable Shell Action</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9901"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9902" version="1">
+         <metadata>
+            <title>Disable Request Disk Topology</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_8.4.15_Disable_Request_Disk_Topology" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_8.4.15_Disable_Request_Disk_Topology"></reference>
+            <description>Disable Request Disk Topology</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9902"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9903" version="1">
+         <metadata>
+            <title>Disable Trash Folder State</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_8.4.16_Disable_Trash_Folder_State" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_8.4.16_Disable_Trash_Folder_State"></reference>
+            <description>Disable Trash Folder State</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9903"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9904" version="1">
+         <metadata>
+            <title>Disable Guest Host Interaction Tray Icon</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_8.4.17_Disable_Guest_Host_Interaction_Tray_Icon" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_8.4.17_Disable_Guest_Host_Interaction_Tray_Icon"></reference>
+            <description>Disable Guest Host Interaction Tray Icon</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9904"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9905" version="1">
+         <metadata>
+            <title>Disable Unity</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_8.4.18_Disable_Unity" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_8.4.18_Disable_Unity"></reference>
+            <description>Disable Unity</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9905"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9906" version="1">
+         <metadata>
+            <title>Disable Unity Interlock</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_8.4.19_Disable_Unity_Interlock" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_8.4.19_Disable_Unity_Interlock"></reference>
+            <description>Disable Unity Interlock</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9906"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9907" version="1">
+         <metadata>
+            <title>Disable GetCreds</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_8.4.20_Disable_GetCreds" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_8.4.20_Disable_GetCreds"></reference>
+            <description>Disable GetCreds</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9907"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9908" version="1">
+         <metadata>
+            <title>Disable Host Guest File System Server</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_8.4.21_Disable_Host_Guest_File_System_Server" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_8.4.21_Disable_Host_Guest_File_System_Server"></reference>
+            <description>Disable Host Guest File System Server</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9908"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9909" version="1">
+         <metadata>
+            <title>Disable Guest Host Interaction Launch Menu</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_8.4.22_Disable_Guest_Host_Interaction_Launch_Menu" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_8.4.22_Disable_Guest_Host_Interaction_Launch_Menu"></reference>
+            <description>Disable Guest Host Interaction Launch Menu</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9909"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9910" version="1">
+         <metadata>
+            <title>Disable memSchedFakeSampleStats</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_8.4.23_Disable_memSchedFakeSampleStats" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_8.4.23_Disable_memSchedFakeSampleStats"></reference>
+            <description>Disable memSchedFakeSampleStats</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9910"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9911" version="1">
+         <metadata>
+            <title>Disable VM Console Copy operations</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_8.4.24_Disable_VM_Console_Copy_operations" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_8.4.24_Disable_VM_Console_Copy_operations"></reference>
+            <description>Disable VM Console Copy operations</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9911"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9912" version="1">
+         <metadata>
+            <title>Disable VM Console Drag and Drop operations</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_8.4.25_Disable_VM_Console_Drag_and_Drop_operations" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_8.4.25_Disable_VM_Console_Drag_and_Drop_operations"></reference>
+            <description>Disable VM Console Drag and Drop operations</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9912"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9913" version="1">
+         <metadata>
+            <title>Disable VM Console GUI Options</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_8.4.26_Disable_VM_Console_GUI_Options" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_8.4.26_Disable_VM_Console_GUI_Options"></reference>
+            <description>Disable VM Console GUI Options</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9913"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9914" version="1">
+         <metadata>
+            <title>Disable VM Console Paste operations</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_8.4.27_Disable_VM_Console_Paste_operations" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_8.4.27_Disable_VM_Console_Paste_operations"></reference>
+            <description>Disable VM Console Paste operations</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9914"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9915" version="1">
+         <metadata>
+            <title>Control access to VM console via VNC protocol</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_8.4.28_Control_access_to_VM_console_via_VNC_protocol" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_8.4.28_Control_access_to_VM_console_via_VNC_protocol"></reference>
+            <description>Control access to VM console via VNC protocol</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9915"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9918" version="1">
+         <metadata>
+            <title>Disable virtual disk shrinking</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_8.6.2_Disable_virtual_disk_shrinking" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_8.6.2_Disable_virtual_disk_shrinking"></reference>
+            <description>Disable virtual disk shrinking</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9918"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9919" version="1">
+         <metadata>
+            <title>Disable virtual disk wiping</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_8.6.3_Disable_virtual_disk_wiping" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_8.6.3_Disable_virtual_disk_wiping"></reference>
+            <description>Disable virtual disk wiping</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9919"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9920" version="1">
+         <metadata>
+            <title>Disable VIX messages from the VM</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_8.7.1_Disable_VIX_messages_from_the_VM" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_8.7.1_Disable_VIX_messages_from_the_VM"></reference>
+            <description>Disable VIX messages from the VM</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9920"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9921" version="1">
+         <metadata>
+            <title>Limit number of VM log files</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_8.7.2_Limit_number_of_VM_log_files" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_8.7.2_Limit_number_of_VM_log_files"></reference>
+            <description>Limit number of VM log files</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9921"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9922" version="1">
+         <metadata>
+            <title>Do not send host information to guests</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_8.7.3_Do_not_send_host_information_to_guests" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_8.7.3_Do_not_send_host_information_to_guests"></reference>
+            <description>Do not send host information to guests</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9922"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9923" version="1">
+         <metadata>
+            <title>Limit VM log file size</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_8.7.4_Limit_VM_log_file_size" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_8.7.4_Limit_VM_log_file_size"></reference>
+            <description>Limit VM log file size</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9923"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9884" version="1">
+         <metadata>
+            <title>Disconnect unauthorized devices - Floppy Devices</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_8.2.1_Disconnect_unauthorized_devices_-_Floppy_Devices" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_8.2.1_Disconnect_unauthorized_devices_-_Floppy_Devices"></reference>
+            <description>Disconnect unauthorized devices - Floppy Devices</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9884"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9885" version="1">
+         <metadata>
+            <title>Disconnect unauthorized devices - CD/DVD Devices</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_8.2.2_Disconnect_unauthorized_devices_-_CDDVD_Devices" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_8.2.2_Disconnect_unauthorized_devices_-_CDDVD_Devices"></reference>
+            <description>Disconnect unauthorized devices - CD/DVD Devices</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9885"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9886" version="1">
+         <metadata>
+            <title>Disconnect unauthorized devices - Parallel Devices</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_8.2.3_Disconnect_unauthorized_devices_-_Parallel_Devices" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_8.2.3_Disconnect_unauthorized_devices_-_Parallel_Devices"></reference>
+            <description>Disconnect unauthorized devices - Parallel Devices</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9886"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9887" version="1">
+         <metadata>
+            <title>Disconnect unauthorized devices - Serial Devices</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_8.2.4_Disconnect_unauthorized_devices_-_Serial_Devices" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_8.2.4_Disconnect_unauthorized_devices_-_Serial_Devices"></reference>
+            <description>Disconnect unauthorized devices - Serial Devices</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9887"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9888" version="1">
+         <metadata>
+            <title>Disconnect unauthorized devices - USB Devices</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_8.2.5_Disconnect_unauthorized_devices_-_USB_Devices" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_8.2.5_Disconnect_unauthorized_devices_-_USB_Devices"></reference>
+            <description>Disconnect unauthorized devices - USB Devices</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9888"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9916" version="1">
+         <metadata>
+            <title>Avoid using nonpersistent disks</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_8.6.1_Avoid_using_nonpersistent_disks" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_8.6.1_Avoid_using_nonpersistent_disks"></reference>
+            <description>Avoid using nonpersistent disks</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9916"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:def:9917" version="1">
+         <metadata>
+            <title>Avoid using nonpersistent disks</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_8.6.1_Avoid_using_nonpersistent_disks" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_8.6.1_Avoid_using_nonpersistent_disks"></reference>
+            <description>Avoid using nonpersistent disks</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9917"></criterion>
+         </criteria>
+      </definition>
+   </definitions>
+   <tests>
+      <unknown_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" comment="This test must be performed manually." id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9854" version="1"></unknown_test>
+      <unknown_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" comment="This test must be performed manually." id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9860" version="1"></unknown_test>
+      <unknown_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" comment="This test must be performed manually." id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9867" version="1"></unknown_test>
+      <unknown_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" comment="This test must be performed manually." id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9873" version="1"></unknown_test>
+      <vmhost_vib_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="at_least_one_exists" comment="Ensure the 'AcceptanceLevel' of VIBs is not equal to 'CommunitySupported'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9855" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9855"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9855"></state>
+      </vmhost_vib_test>
+      <vmhost_acceptancelevel_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="at_least_one_exists" comment="Ensure the VM Host's Software Acceptance Policy is not equal to 'CommunitySupported'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9856" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9856"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9856"></state>
+      </vmhost_acceptancelevel_test>
+      <vmhost_module_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="any_exist" comment="Ensure the &quot;SignedStatus&quot; property of all modules is equals to &quot;VMware Signed&quot;" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9857" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9857"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9857"></state>
+      </vmhost_module_test>
+      <vmhost_ntpserver_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="at least one" check_existence="at_least_one_exists" comment="Ensure at least one qualified NTP Server exists" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9858" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9858"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9858"></state>
+      </vmhost_ntpserver_test>
+      <vmhost_firewallexception_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="at_least_one_exists" comment="Ensure the 'AllowedHosts.AllIP' property of all network service firewall exceptions is equals to 'false'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9859" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9859"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9859"></state>
+      </vmhost_firewallexception_test>
+      <vmhost_webserverssl_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="at_least_one_exists" comment="Ensure the host's SSL certificates are valid" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9861" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9861"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9861"></state>
+      </vmhost_webserverssl_test>
+      <vmhost_advancedsetting_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="at_least_one_exists" comment="Ensure 'Net.DVFilterBindIpAddress' is pattern match to '^$'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9862" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9862"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9862"></state>
+      </vmhost_advancedsetting_test>
+      <vmhost_advancedsetting_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="at_least_one_exists" comment="Ensure 'Syslog.global.logDir' is pattern not match to 'scratch'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9864" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9864"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9864"></state>
+      </vmhost_advancedsetting_test>
+      <vmhost_advancedsetting_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="at_least_one_exists" comment="Ensure 'Syslog.global.logHost' is pattern match to '.'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9865" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9865"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9865"></state>
+      </vmhost_advancedsetting_test>
+      <vmhost_advancedsetting_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="at_least_one_exists" comment="Ensure 'UserVars.ESXiShellInteractiveTimeOut' is less than or equal to '300'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9874" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9874"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9874"></state>
+      </vmhost_advancedsetting_test>
+      <vmhost_advancedsetting_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="at_least_one_exists" comment="Ensure 'UserVars.ESXiShellTimeOut' is less than or equal to '3660'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9875" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9875"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9875"></state>
+      </vmhost_advancedsetting_test>
+      <vmhost_coredump_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="at least one" check_existence="at_least_one_exists" comment="Ensure at least one qualified core dump server is configured" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9863" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9863"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9863"></state>
+      </vmhost_coredump_test>
+      <vmhost_account_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="at least one" check_existence="at_least_one_exists" comment="Ensure at least one qualified account exists" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9866" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9866"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9866"></state>
+      </vmhost_account_test>
+      <vmhost_authentication_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="at_least_one_exists" comment="Ensure 'DomainMembershipStatus' is equals to 'Ok'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9868" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9868"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9868"></state>
+      </vmhost_authentication_test>
+      <vmhost_service_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="any_exist" comment="Ensure the 'DCUI' service's start policy is set to 'Off'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9869" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9869"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9869"></state>
+      </vmhost_service_test>
+      <vmhost_service_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="any_exist" comment="Ensure the 'TSM' service's start policy is set to 'Off'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9870" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9870"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9870"></state>
+      </vmhost_service_test>
+      <vmhost_service_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="any_exist" comment="Ensure the 'TSM-SSH' service's start policy is set to 'Off'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9871" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9871"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9871"></state>
+      </vmhost_service_test>
+      <vmhost_lockdown_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="at_least_one_exists" comment="Ensure 'adminDisabled' (Lockdown Mode) is set to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9872" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9872"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9872"></state>
+      </vmhost_lockdown_test>
+      <vmhost_busadapter_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="at_least_one_exists" comment="Ensure the 'MutualChapEnabled' property of qualified iSCSI Bus Adapters is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9876" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9876"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9876"></state>
+      </vmhost_busadapter_test>
+      <vmhost_vswitchpolicy_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="at_least_one_exists" comment="Ensure the &quot;forged_transmits&quot; policy on all vSwitches is set to &quot;Reject&quot;" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9877" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9877"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9877"></state>
+      </vmhost_vswitchpolicy_test>
+      <vmhost_vswitchpolicy_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="at_least_one_exists" comment="Ensure the &quot;mac_changes&quot; policy on all vSwitches is set to &quot;Reject&quot;" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9878" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9878"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9878"></state>
+      </vmhost_vswitchpolicy_test>
+      <vmhost_vswitchpolicy_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="at_least_one_exists" comment="Ensure the &quot;promiscuous_mode&quot; policy on all vSwitches is set to &quot;Reject&quot;" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9879" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9879"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9879"></state>
+      </vmhost_vswitchpolicy_test>
+      <virtual_portgroup_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="any_exist" comment="Ensure the VLAN ID on all vSwitches is not equal to &quot;1&quot; " id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9880" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9880"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9880"></state>
+      </virtual_portgroup_test>
+      <virtual_portgroup_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="any_exist" comment="Ensure the VLAN ID on all vSwitches is not equal to &quot;4095&quot; " id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9881" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9881"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9881"></state>
+      </virtual_portgroup_test>
+      <vm_advancedsetting_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="at_least_one_exists" comment="Ensure 'tools.setInfo.sizeLimit' is less than or equal to '1048576'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9882" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9882"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9882"></state>
+      </vm_advancedsetting_test>
+      <vm_advancedsetting_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="at_least_one_exists" comment="Ensure 'RemoteDisplay.maxConnections' is equals to '1'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9883" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9883"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9883"></state>
+      </vm_advancedsetting_test>
+      <vm_advancedsetting_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="at_least_one_exists" comment="Ensure 'isolation.device.edit.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9889" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9889"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9889"></state>
+      </vm_advancedsetting_test>
+      <vm_advancedsetting_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="at_least_one_exists" comment="Ensure 'isolation.device.connectable.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9890" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9890"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9890"></state>
+      </vm_advancedsetting_test>
+      <vm_advancedsetting_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="at_least_one_exists" comment="Ensure 'vmsafe.enable' is equals to 'false'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9891" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9891"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9891"></state>
+      </vm_advancedsetting_test>
+      <vm_advancedsetting_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="at_least_one_exists" comment="Ensure 'isolation.tools.ghi.autologon.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9892" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9892"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9892"></state>
+      </vm_advancedsetting_test>
+      <vm_advancedsetting_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="at_least_one_exists" comment="Ensure 'isolation.bios.bbs.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9893" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9893"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9893"></state>
+      </vm_advancedsetting_test>
+      <vm_advancedsetting_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="at_least_one_exists" comment="Ensure 'isolation.tools.ghi.protocolhandler.info.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9894" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9894"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9894"></state>
+      </vm_advancedsetting_test>
+      <vm_advancedsetting_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="at_least_one_exists" comment="Ensure 'isolation.tools.unity.taskbar.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9895" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9895"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9895"></state>
+      </vm_advancedsetting_test>
+      <vm_advancedsetting_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="at_least_one_exists" comment="Ensure 'isolation.tools.unityActive.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9896" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9896"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9896"></state>
+      </vm_advancedsetting_test>
+      <vm_advancedsetting_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="at_least_one_exists" comment="Ensure 'isolation.tools.unity.windowContents.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9897" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9897"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9897"></state>
+      </vm_advancedsetting_test>
+      <vm_advancedsetting_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="at_least_one_exists" comment="Ensure 'isolation.tools.unity.push.update.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9898" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9898"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9898"></state>
+      </vm_advancedsetting_test>
+      <vm_advancedsetting_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="at_least_one_exists" comment="Ensure 'isolation.tools.vmxDnDVersionGet.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9899" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9899"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9899"></state>
+      </vm_advancedsetting_test>
+      <vm_advancedsetting_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="at_least_one_exists" comment="Ensure 'isolation.tools.guestDnDVersionSet.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9900" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9900"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9900"></state>
+      </vm_advancedsetting_test>
+      <vm_advancedsetting_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="at_least_one_exists" comment="Ensure 'isolation.ghi.host.shellAction.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9901" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9901"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9901"></state>
+      </vm_advancedsetting_test>
+      <vm_advancedsetting_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="at_least_one_exists" comment="Ensure 'isolation.tools.dispTopoRequest.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9902" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9902"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9902"></state>
+      </vm_advancedsetting_test>
+      <vm_advancedsetting_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="at_least_one_exists" comment="Ensure 'isolation.tools.trashFolderState.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9903" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9903"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9903"></state>
+      </vm_advancedsetting_test>
+      <vm_advancedsetting_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="at_least_one_exists" comment="Ensure 'isolation.tools.ghi.trayicon.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9904" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9904"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9904"></state>
+      </vm_advancedsetting_test>
+      <vm_advancedsetting_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="at_least_one_exists" comment="Ensure 'isolation.tools.unity.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9905" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9905"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9905"></state>
+      </vm_advancedsetting_test>
+      <vm_advancedsetting_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="at_least_one_exists" comment="Ensure 'isolation.tools.unityInterlockOperation.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9906" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9906"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9906"></state>
+      </vm_advancedsetting_test>
+      <vm_advancedsetting_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="at_least_one_exists" comment="Ensure 'isolation.tools.getCreds.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9907" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9907"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9907"></state>
+      </vm_advancedsetting_test>
+      <vm_advancedsetting_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="at_least_one_exists" comment="Ensure 'isolation.tools.hgfsServerSet.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9908" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9908"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9908"></state>
+      </vm_advancedsetting_test>
+      <vm_advancedsetting_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="at_least_one_exists" comment="Ensure 'isolation.tools.ghi.launchmenu.change' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9909" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9909"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9909"></state>
+      </vm_advancedsetting_test>
+      <vm_advancedsetting_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="at_least_one_exists" comment="Ensure 'isolation.tools.memSchedFakeSampleStats.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9910" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9910"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9910"></state>
+      </vm_advancedsetting_test>
+      <vm_advancedsetting_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="at_least_one_exists" comment="Ensure 'isolation.tools.copy.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9911" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9911"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9911"></state>
+      </vm_advancedsetting_test>
+      <vm_advancedsetting_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="at_least_one_exists" comment="Ensure 'isolation.tools.dnd.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9912" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9912"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9912"></state>
+      </vm_advancedsetting_test>
+      <vm_advancedsetting_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="at_least_one_exists" comment="Ensure 'isolation.tools.setGUIOptions.enable' is equals to 'false'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9913" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9913"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9913"></state>
+      </vm_advancedsetting_test>
+      <vm_advancedsetting_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="at_least_one_exists" comment="Ensure 'isolation.tools.paste.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9914" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9914"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9914"></state>
+      </vm_advancedsetting_test>
+      <vm_advancedsetting_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="at_least_one_exists" comment="Ensure 'RemoteDisplay.vnc.enabled' is equals to 'false'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9915" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9915"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9915"></state>
+      </vm_advancedsetting_test>
+      <vm_advancedsetting_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="at_least_one_exists" comment="Ensure 'isolation.tools.diskShrink.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9918" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9918"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9918"></state>
+      </vm_advancedsetting_test>
+      <vm_advancedsetting_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="at_least_one_exists" comment="Ensure 'isolation.tools.diskWiper.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9919" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9919"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9919"></state>
+      </vm_advancedsetting_test>
+      <vm_advancedsetting_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="at_least_one_exists" comment="Ensure 'isolation.tools.vixMessage.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9920" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9920"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9920"></state>
+      </vm_advancedsetting_test>
+      <vm_advancedsetting_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="at_least_one_exists" comment="Ensure 'log.keepOld' is less than or equal to '10'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9921" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9921"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9921"></state>
+      </vm_advancedsetting_test>
+      <vm_advancedsetting_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="at_least_one_exists" comment="Ensure 'tools.guestlib.enableHostInfo' is equals to 'false'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9922" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9922"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9922"></state>
+      </vm_advancedsetting_test>
+      <vm_advancedsetting_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="at_least_one_exists" comment="Ensure 'log.rotateSize' is less than or equal to '1024000'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9923" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9923"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9923"></state>
+      </vm_advancedsetting_test>
+      <vm_device_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="any_exist" comment="Ensure the 'floppy' device's &quot;Connected&quot; property is set to is 'false'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9884" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9884"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9884"></state>
+      </vm_device_test>
+      <vm_device_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="any_exist" comment="Ensure the 'cdrom' device's &quot;Connected&quot; property is set to is 'false'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9885" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9885"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9885"></state>
+      </vm_device_test>
+      <vm_device_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="any_exist" comment="Ensure the 'parallel_port' device's &quot;Connected&quot; property is set to is 'false'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9886" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9886"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9886"></state>
+      </vm_device_test>
+      <vm_device_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="any_exist" comment="Ensure the 'serial_port' device's &quot;Connected&quot; property is set to is 'false'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9887" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9887"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9887"></state>
+      </vm_device_test>
+      <vm_device_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="any_exist" comment="Ensure the 'usb' device's &quot;Connected&quot; property is set to is 'false'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9888" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9888"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9888"></state>
+      </vm_device_test>
+      <vm_harddiskdevice_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="any_exist" comment="Ensure the 'Persistence' property of qualified hard disks is not equal to 'NonPersistent'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9916" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9916"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9916"></state>
+      </vm_harddiskdevice_test>
+      <vm_harddiskdevice_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" check="all" check_existence="any_exist" comment="Ensure the 'Persistence' property of qualified hard disks is not equal to 'IndependentNonPersistent'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:tst:9917" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9917"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9917"></state>
+      </vm_harddiskdevice_test>
+   </tests>
+   <objects>
+      <vmhost_vib_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure the 'AcceptanceLevel' of VIBs is not equal to 'CommunitySupported'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9855" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vmhost_name operation="pattern match">.*</vmhost_name>
+         <vib_name operation="pattern match">.*</vib_name>
+      </vmhost_vib_object>
+      <vmhost_acceptancelevel_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure the VM Host's Software Acceptance Policy is not equal to 'CommunitySupported'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9856" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vmhost_name operation="pattern match">.*</vmhost_name>
+      </vmhost_acceptancelevel_object>
+      <vmhost_module_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure the &quot;SignedStatus&quot; property of all modules is equals to &quot;VMware Signed&quot;" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9857" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vmhost_name operation="pattern match">.*</vmhost_name>
+         <module_name operation="pattern match">.*</module_name>
+      </vmhost_module_object>
+      <vmhost_ntpserver_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure at least one qualified NTP Server exists" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9858" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vmhost_name operation="pattern match">.*</vmhost_name>
+         <ntp_server_name operation="pattern match">.*</ntp_server_name>
+      </vmhost_ntpserver_object>
+      <vmhost_firewallexception_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure the 'AllowedHosts.AllIP' property of all network service firewall exceptions is equals to 'false'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9859" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vmhost_name operation="pattern match">.*</vmhost_name>
+         <firewall_exception_name operation="pattern match">.*</firewall_exception_name>
+      </vmhost_firewallexception_object>
+      <vmhost_webserverssl_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure the host's SSL certificates are valid" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9861" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vmhost_name operation="pattern match">.*</vmhost_name>
+      </vmhost_webserverssl_object>
+      <vmhost_advancedsetting_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'Net.DVFilterBindIpAddress' is pattern match to '^$'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9862" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vmhost_name operation="pattern match">.*</vmhost_name>
+         <advanced_setting_name>Net.DVFilterBindIpAddress</advanced_setting_name>
+      </vmhost_advancedsetting_object>
+      <vmhost_advancedsetting_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'Syslog.global.logDir' is pattern not match to 'scratch'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9864" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vmhost_name operation="pattern match">.*</vmhost_name>
+         <advanced_setting_name>Syslog.global.logDir</advanced_setting_name>
+      </vmhost_advancedsetting_object>
+      <vmhost_advancedsetting_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'Syslog.global.logHost' is pattern match to '.'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9865" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vmhost_name operation="pattern match">.*</vmhost_name>
+         <advanced_setting_name>Syslog.global.logHost</advanced_setting_name>
+      </vmhost_advancedsetting_object>
+      <vmhost_advancedsetting_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'UserVars.ESXiShellInteractiveTimeOut' is less than or equal to '300'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9874" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vmhost_name operation="pattern match">.*</vmhost_name>
+         <advanced_setting_name>UserVars.ESXiShellInteractiveTimeOut</advanced_setting_name>
+      </vmhost_advancedsetting_object>
+      <vmhost_advancedsetting_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'UserVars.ESXiShellTimeOut' is less than or equal to '3660'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9875" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vmhost_name operation="pattern match">.*</vmhost_name>
+         <advanced_setting_name>UserVars.ESXiShellTimeOut</advanced_setting_name>
+      </vmhost_advancedsetting_object>
+      <vmhost_coredump_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure at least one qualified core dump server is configured" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9863" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vmhost_name operation="pattern match">.*</vmhost_name>
+         <filter xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" action="exclude">oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9863</filter>
+      </vmhost_coredump_object>
+      <vmhost_account_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure at least one qualified account exists" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9866" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vmhost_name operation="pattern match">.*</vmhost_name>
+         <account_name operation="pattern match">.*</account_name>
+      </vmhost_account_object>
+      <vmhost_authentication_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'DomainMembershipStatus' is equals to 'Ok'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9868" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vmhost_name operation="pattern match">.*</vmhost_name>
+      </vmhost_authentication_object>
+      <vmhost_service_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure the 'DCUI' service's start policy is set to 'Off'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9869" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vmhost_name operation="pattern match">.*</vmhost_name>
+         <service_name>DCUI</service_name>
+      </vmhost_service_object>
+      <vmhost_service_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure the 'TSM' service's start policy is set to 'Off'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9870" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vmhost_name operation="pattern match">.*</vmhost_name>
+         <service_name>TSM</service_name>
+      </vmhost_service_object>
+      <vmhost_service_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure the 'TSM-SSH' service's start policy is set to 'Off'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9871" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vmhost_name operation="pattern match">.*</vmhost_name>
+         <service_name>TSM-SSH</service_name>
+      </vmhost_service_object>
+      <vmhost_lockdown_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'adminDisabled' (Lockdown Mode) is set to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9872" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vmhost_name operation="pattern match">.*</vmhost_name>
+      </vmhost_lockdown_object>
+      <vmhost_busadapter_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure the 'MutualChapEnabled' property of qualified iSCSI Bus Adapters is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9876" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vmhost_name operation="pattern match">.*</vmhost_name>
+         <busadapter_type>IScsi</busadapter_type>
+      </vmhost_busadapter_object>
+      <vmhost_vswitchpolicy_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure the &quot;forged_transmits&quot; policy on all vSwitches is set to &quot;Reject&quot;" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9877" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vmhost_name operation="pattern match">.*</vmhost_name>
+         <vswitch_name operation="pattern match">.*</vswitch_name>
+      </vmhost_vswitchpolicy_object>
+      <vmhost_vswitchpolicy_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure the &quot;mac_changes&quot; policy on all vSwitches is set to &quot;Reject&quot;" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9878" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vmhost_name operation="pattern match">.*</vmhost_name>
+         <vswitch_name operation="pattern match">.*</vswitch_name>
+      </vmhost_vswitchpolicy_object>
+      <vmhost_vswitchpolicy_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure the &quot;promiscuous_mode&quot; policy on all vSwitches is set to &quot;Reject&quot;" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9879" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vmhost_name operation="pattern match">.*</vmhost_name>
+         <vswitch_name operation="pattern match">.*</vswitch_name>
+      </vmhost_vswitchpolicy_object>
+      <virtual_portgroup_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure the VLAN ID on all vSwitches is not equal to &quot;1&quot; " id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9880" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <port_group_name operation="pattern match">.*</port_group_name>
+         <virtual_switch_name operation="pattern match">.*</virtual_switch_name>
+      </virtual_portgroup_object>
+      <virtual_portgroup_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure the VLAN ID on all vSwitches is not equal to &quot;4095&quot; " id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9881" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <port_group_name operation="pattern match">.*</port_group_name>
+         <virtual_switch_name operation="pattern match">.*</virtual_switch_name>
+      </virtual_portgroup_object>
+      <vm_advancedsetting_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'tools.setInfo.sizeLimit' is less than or equal to '1048576'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9882" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vm_name operation="pattern match">.*</vm_name>
+         <advanced_setting_name>tools.setInfo.sizeLimit</advanced_setting_name>
+      </vm_advancedsetting_object>
+      <vm_advancedsetting_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'RemoteDisplay.maxConnections' is equals to '1'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9883" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vm_name operation="pattern match">.*</vm_name>
+         <advanced_setting_name>RemoteDisplay.maxConnections</advanced_setting_name>
+      </vm_advancedsetting_object>
+      <vm_advancedsetting_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.device.edit.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9889" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vm_name operation="pattern match">.*</vm_name>
+         <advanced_setting_name>isolation.device.edit.disable</advanced_setting_name>
+      </vm_advancedsetting_object>
+      <vm_advancedsetting_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.device.connectable.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9890" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vm_name operation="pattern match">.*</vm_name>
+         <advanced_setting_name>isolation.device.connectable.disable</advanced_setting_name>
+      </vm_advancedsetting_object>
+      <vm_advancedsetting_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'vmsafe.enable' is equals to 'false'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9891" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vm_name operation="pattern match">.*</vm_name>
+         <advanced_setting_name>vmsafe.enable</advanced_setting_name>
+      </vm_advancedsetting_object>
+      <vm_advancedsetting_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.tools.ghi.autologon.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9892" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vm_name operation="pattern match">.*</vm_name>
+         <advanced_setting_name>isolation.tools.ghi.autologon.disable</advanced_setting_name>
+      </vm_advancedsetting_object>
+      <vm_advancedsetting_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.bios.bbs.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9893" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vm_name operation="pattern match">.*</vm_name>
+         <advanced_setting_name>isolation.bios.bbs.disable</advanced_setting_name>
+      </vm_advancedsetting_object>
+      <vm_advancedsetting_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.tools.ghi.protocolhandler.info.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9894" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vm_name operation="pattern match">.*</vm_name>
+         <advanced_setting_name>isolation.tools.ghi.protocolhandler.info.disable</advanced_setting_name>
+      </vm_advancedsetting_object>
+      <vm_advancedsetting_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.tools.unity.taskbar.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9895" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vm_name operation="pattern match">.*</vm_name>
+         <advanced_setting_name>isolation.tools.unity.taskbar.disable</advanced_setting_name>
+      </vm_advancedsetting_object>
+      <vm_advancedsetting_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.tools.unityActive.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9896" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vm_name operation="pattern match">.*</vm_name>
+         <advanced_setting_name>isolation.tools.unityActive.disable</advanced_setting_name>
+      </vm_advancedsetting_object>
+      <vm_advancedsetting_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.tools.unity.windowContents.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9897" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vm_name operation="pattern match">.*</vm_name>
+         <advanced_setting_name>isolation.tools.unity.windowContents.disable</advanced_setting_name>
+      </vm_advancedsetting_object>
+      <vm_advancedsetting_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.tools.unity.push.update.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9898" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vm_name operation="pattern match">.*</vm_name>
+         <advanced_setting_name>isolation.tools.unity.push.update.disable</advanced_setting_name>
+      </vm_advancedsetting_object>
+      <vm_advancedsetting_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.tools.vmxDnDVersionGet.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9899" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vm_name operation="pattern match">.*</vm_name>
+         <advanced_setting_name>isolation.tools.vmxDnDVersionGet.disable</advanced_setting_name>
+      </vm_advancedsetting_object>
+      <vm_advancedsetting_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.tools.guestDnDVersionSet.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9900" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vm_name operation="pattern match">.*</vm_name>
+         <advanced_setting_name>isolation.tools.guestDnDVersionSet.disable</advanced_setting_name>
+      </vm_advancedsetting_object>
+      <vm_advancedsetting_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.ghi.host.shellAction.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9901" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vm_name operation="pattern match">.*</vm_name>
+         <advanced_setting_name>isolation.ghi.host.shellAction.disable</advanced_setting_name>
+      </vm_advancedsetting_object>
+      <vm_advancedsetting_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.tools.dispTopoRequest.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9902" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vm_name operation="pattern match">.*</vm_name>
+         <advanced_setting_name>isolation.tools.dispTopoRequest.disable</advanced_setting_name>
+      </vm_advancedsetting_object>
+      <vm_advancedsetting_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.tools.trashFolderState.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9903" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vm_name operation="pattern match">.*</vm_name>
+         <advanced_setting_name>isolation.tools.trashFolderState.disable</advanced_setting_name>
+      </vm_advancedsetting_object>
+      <vm_advancedsetting_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.tools.ghi.trayicon.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9904" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vm_name operation="pattern match">.*</vm_name>
+         <advanced_setting_name>isolation.tools.ghi.trayicon.disable</advanced_setting_name>
+      </vm_advancedsetting_object>
+      <vm_advancedsetting_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.tools.unity.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9905" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vm_name operation="pattern match">.*</vm_name>
+         <advanced_setting_name>isolation.tools.unity.disable</advanced_setting_name>
+      </vm_advancedsetting_object>
+      <vm_advancedsetting_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.tools.unityInterlockOperation.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9906" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vm_name operation="pattern match">.*</vm_name>
+         <advanced_setting_name>isolation.tools.unityInterlockOperation.disable</advanced_setting_name>
+      </vm_advancedsetting_object>
+      <vm_advancedsetting_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.tools.getCreds.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9907" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vm_name operation="pattern match">.*</vm_name>
+         <advanced_setting_name>isolation.tools.getCreds.disable</advanced_setting_name>
+      </vm_advancedsetting_object>
+      <vm_advancedsetting_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.tools.hgfsServerSet.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9908" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vm_name operation="pattern match">.*</vm_name>
+         <advanced_setting_name>isolation.tools.hgfsServerSet.disable</advanced_setting_name>
+      </vm_advancedsetting_object>
+      <vm_advancedsetting_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.tools.ghi.launchmenu.change' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9909" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vm_name operation="pattern match">.*</vm_name>
+         <advanced_setting_name>isolation.tools.ghi.launchmenu.change</advanced_setting_name>
+      </vm_advancedsetting_object>
+      <vm_advancedsetting_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.tools.memSchedFakeSampleStats.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9910" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vm_name operation="pattern match">.*</vm_name>
+         <advanced_setting_name>isolation.tools.memSchedFakeSampleStats.disable</advanced_setting_name>
+      </vm_advancedsetting_object>
+      <vm_advancedsetting_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.tools.copy.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9911" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vm_name operation="pattern match">.*</vm_name>
+         <advanced_setting_name>isolation.tools.copy.disable</advanced_setting_name>
+      </vm_advancedsetting_object>
+      <vm_advancedsetting_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.tools.dnd.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9912" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vm_name operation="pattern match">.*</vm_name>
+         <advanced_setting_name>isolation.tools.dnd.disable</advanced_setting_name>
+      </vm_advancedsetting_object>
+      <vm_advancedsetting_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.tools.setGUIOptions.enable' is equals to 'false'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9913" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vm_name operation="pattern match">.*</vm_name>
+         <advanced_setting_name>isolation.tools.setGUIOptions.enable</advanced_setting_name>
+      </vm_advancedsetting_object>
+      <vm_advancedsetting_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.tools.paste.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9914" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vm_name operation="pattern match">.*</vm_name>
+         <advanced_setting_name>isolation.tools.paste.disable</advanced_setting_name>
+      </vm_advancedsetting_object>
+      <vm_advancedsetting_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'RemoteDisplay.vnc.enabled' is equals to 'false'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9915" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vm_name operation="pattern match">.*</vm_name>
+         <advanced_setting_name>RemoteDisplay.vnc.enabled</advanced_setting_name>
+      </vm_advancedsetting_object>
+      <vm_advancedsetting_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.tools.diskShrink.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9918" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vm_name operation="pattern match">.*</vm_name>
+         <advanced_setting_name>isolation.tools.diskShrink.disable</advanced_setting_name>
+      </vm_advancedsetting_object>
+      <vm_advancedsetting_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.tools.diskWiper.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9919" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vm_name operation="pattern match">.*</vm_name>
+         <advanced_setting_name>isolation.tools.diskWiper.disable</advanced_setting_name>
+      </vm_advancedsetting_object>
+      <vm_advancedsetting_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.tools.vixMessage.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9920" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vm_name operation="pattern match">.*</vm_name>
+         <advanced_setting_name>isolation.tools.vixMessage.disable</advanced_setting_name>
+      </vm_advancedsetting_object>
+      <vm_advancedsetting_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'log.keepOld' is less than or equal to '10'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9921" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vm_name operation="pattern match">.*</vm_name>
+         <advanced_setting_name>log.keepOld</advanced_setting_name>
+      </vm_advancedsetting_object>
+      <vm_advancedsetting_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'tools.guestlib.enableHostInfo' is equals to 'false'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9922" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vm_name operation="pattern match">.*</vm_name>
+         <advanced_setting_name>tools.guestlib.enableHostInfo</advanced_setting_name>
+      </vm_advancedsetting_object>
+      <vm_advancedsetting_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'log.rotateSize' is less than or equal to '1024000'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9923" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vm_name operation="pattern match">.*</vm_name>
+         <advanced_setting_name>log.rotateSize</advanced_setting_name>
+      </vm_advancedsetting_object>
+      <vm_device_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure the 'floppy' device's &quot;Connected&quot; property is set to is 'false'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9884" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vm_name operation="pattern match">.*</vm_name>
+         <device_type>floppy</device_type>
+      </vm_device_object>
+      <vm_device_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure the 'cdrom' device's &quot;Connected&quot; property is set to is 'false'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9885" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vm_name operation="pattern match">.*</vm_name>
+         <device_type>cdrom</device_type>
+      </vm_device_object>
+      <vm_device_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure the 'parallel_port' device's &quot;Connected&quot; property is set to is 'false'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9886" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vm_name operation="pattern match">.*</vm_name>
+         <device_type>parallel_port</device_type>
+      </vm_device_object>
+      <vm_device_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure the 'serial_port' device's &quot;Connected&quot; property is set to is 'false'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9887" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vm_name operation="pattern match">.*</vm_name>
+         <device_type>serial_port</device_type>
+      </vm_device_object>
+      <vm_device_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure the 'usb' device's &quot;Connected&quot; property is set to is 'false'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9888" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vm_name operation="pattern match">.*</vm_name>
+         <device_type>usb</device_type>
+      </vm_device_object>
+      <vm_harddiskdevice_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure the 'Persistence' property of qualified hard disks is not equal to 'NonPersistent'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9916" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vm_name operation="pattern match">.*</vm_name>
+      </vm_harddiskdevice_object>
+      <vm_harddiskdevice_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure the 'Persistence' property of qualified hard disks is not equal to 'IndependentNonPersistent'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:obj:9917" version="1">
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:100000"></connection_string>
+         <vm_name operation="pattern match">.*</vm_name>
+      </vm_harddiskdevice_object>
+   </objects>
+   <states>
+      <vmhost_vib_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure the 'AcceptanceLevel' of VIBs is not equal to 'CommunitySupported'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9855" version="1">
+         <acceptance_level datatype="string" operation="not equal">CommunitySupported</acceptance_level>
+      </vmhost_vib_state>
+      <vmhost_acceptancelevel_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure the VM Host's Software Acceptance Policy is not equal to 'CommunitySupported'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9856" version="1">
+         <acceptance_level datatype="string" operation="not equal">CommunitySupported</acceptance_level>
+      </vmhost_acceptancelevel_state>
+      <vmhost_module_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure the &quot;SignedStatus&quot; property of all modules is equals to &quot;VMware Signed&quot;" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9857" version="1">
+         <signed_status datatype="string" operation="equals" var_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9857"></signed_status>
+      </vmhost_module_state>
+      <vmhost_ntpserver_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure at least one qualified NTP Server exists" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9858" version="1">
+         <ntp_server_name datatype="string" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9858"></ntp_server_name>
+      </vmhost_ntpserver_state>
+      <vmhost_firewallexception_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure the 'AllowedHosts.AllIP' property of all network service firewall exceptions is equals to 'false'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9859" version="1">
+         <exception_enabled datatype="boolean" operation="equals">true</exception_enabled>
+         <service_running datatype="boolean" operation="equals">false</service_running>
+         <allowed_hosts_all_ip datatype="boolean" operation="equals" var_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9859"></allowed_hosts_all_ip>
+      </vmhost_firewallexception_state>
+      <vmhost_webserverssl_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure the host's SSL certificates are valid" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9861" version="1">
+         <certificate_is_valid datatype="boolean" operation="equals" var_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9861"></certificate_is_valid>
+      </vmhost_webserverssl_state>
+      <vmhost_advancedsetting_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'Net.DVFilterBindIpAddress' is pattern match to '^$'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9862" version="1">
+         <advanced_setting_name datatype="string" operation="equals">Net.DVFilterBindIpAddress</advanced_setting_name>
+         <advanced_setting_value datatype="string" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9862"></advanced_setting_value>
+      </vmhost_advancedsetting_state>
+      <vmhost_advancedsetting_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'Syslog.global.logDir' is pattern not match to 'scratch'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9864" version="1">
+         <advanced_setting_name datatype="string" operation="equals">Syslog.global.logDir</advanced_setting_name>
+         <advanced_setting_value datatype="string" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9864"></advanced_setting_value>
+      </vmhost_advancedsetting_state>
+      <vmhost_advancedsetting_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'Syslog.global.logHost' is pattern match to '.'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9865" version="1">
+         <advanced_setting_name datatype="string" operation="equals">Syslog.global.logHost</advanced_setting_name>
+         <advanced_setting_value datatype="string" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9865"></advanced_setting_value>
+      </vmhost_advancedsetting_state>
+      <vmhost_advancedsetting_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'UserVars.ESXiShellInteractiveTimeOut' is less than or equal to '300'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9874" version="1">
+         <advanced_setting_name datatype="string" operation="equals">UserVars.ESXiShellInteractiveTimeOut</advanced_setting_name>
+         <advanced_setting_value datatype="int" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9874"></advanced_setting_value>
+      </vmhost_advancedsetting_state>
+      <vmhost_advancedsetting_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'UserVars.ESXiShellTimeOut' is less than or equal to '3660'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9875" version="1">
+         <advanced_setting_name datatype="string" operation="equals">UserVars.ESXiShellTimeOut</advanced_setting_name>
+         <advanced_setting_value datatype="int" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9875"></advanced_setting_value>
+      </vmhost_advancedsetting_state>
+      <vmhost_coredump_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure at least one qualified core dump server is configured" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9863" version="1">
+         <network_server_ip datatype="string" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9863"></network_server_ip>
+      </vmhost_coredump_state>
+      <vmhost_account_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure at least one qualified account exists" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9866" version="1">
+         <shell_access_enabled datatype="boolean" operation="equals">true</shell_access_enabled>
+         <role datatype="string" operation="case insensitive equals">Admin</role>
+      </vmhost_account_state>
+      <vmhost_authentication_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'DomainMembershipStatus' is equals to 'Ok'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9868" version="1">
+         <domain_membership_status datatype="string" operation="equals" var_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9868"></domain_membership_status>
+      </vmhost_authentication_state>
+      <vmhost_service_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure the 'DCUI' service's start policy is set to 'Off'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9869" version="1">
+         <service_policy datatype="string" operation="case insensitive equals">Off</service_policy>
+      </vmhost_service_state>
+      <vmhost_service_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure the 'TSM' service's start policy is set to 'Off'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9870" version="1">
+         <service_policy datatype="string" operation="case insensitive equals">Off</service_policy>
+      </vmhost_service_state>
+      <vmhost_service_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure the 'TSM-SSH' service's start policy is set to 'Off'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9871" version="1">
+         <service_policy datatype="string" operation="case insensitive equals">Off</service_policy>
+      </vmhost_service_state>
+      <vmhost_lockdown_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'adminDisabled' (Lockdown Mode) is set to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9872" version="1">
+         <lockdown datatype="boolean" operation="equals" var_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9872"></lockdown>
+      </vmhost_lockdown_state>
+      <vmhost_busadapter_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure the 'MutualChapEnabled' property of qualified iSCSI Bus Adapters is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9876" version="1">
+         <mutual_chap_enabled datatype="boolean" operation="equals" var_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9876"></mutual_chap_enabled>
+      </vmhost_busadapter_state>
+      <vmhost_vswitchpolicy_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure the &quot;forged_transmits&quot; policy on all vSwitches is set to &quot;Reject&quot;" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9877" version="1">
+         <forged_transmits datatype="string" operation="equals">Reject</forged_transmits>
+      </vmhost_vswitchpolicy_state>
+      <vmhost_vswitchpolicy_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure the &quot;mac_changes&quot; policy on all vSwitches is set to &quot;Reject&quot;" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9878" version="1">
+         <mac_changes datatype="string" operation="equals">Reject</mac_changes>
+      </vmhost_vswitchpolicy_state>
+      <vmhost_vswitchpolicy_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure the &quot;promiscuous_mode&quot; policy on all vSwitches is set to &quot;Reject&quot;" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9879" version="1">
+         <promiscuous_mode datatype="string" operation="equals">Reject</promiscuous_mode>
+      </vmhost_vswitchpolicy_state>
+      <virtual_portgroup_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure the VLAN ID on all vSwitches is not equal to &quot;1&quot; " id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9880" version="1">
+         <vlan_id datatype="int" operation="not equal">1</vlan_id>
+      </virtual_portgroup_state>
+      <virtual_portgroup_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure the VLAN ID on all vSwitches is not equal to &quot;4095&quot; " id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9881" version="1">
+         <vlan_id datatype="int" operation="not equal">4095</vlan_id>
+      </virtual_portgroup_state>
+      <vm_advancedsetting_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'tools.setInfo.sizeLimit' is less than or equal to '1048576'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9882" version="1">
+         <advanced_setting_name datatype="string" operation="equals">tools.setInfo.sizeLimit</advanced_setting_name>
+         <advanced_setting_value datatype="int" operation="equals" var_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9882"></advanced_setting_value>
+      </vm_advancedsetting_state>
+      <vm_advancedsetting_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'RemoteDisplay.maxConnections' is equals to '1'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9883" version="1">
+         <advanced_setting_name datatype="string" operation="equals">RemoteDisplay.maxConnections</advanced_setting_name>
+         <advanced_setting_value datatype="int" operation="equals" var_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9883"></advanced_setting_value>
+      </vm_advancedsetting_state>
+      <vm_advancedsetting_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.device.edit.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9889" version="1">
+         <advanced_setting_name datatype="string" operation="equals">isolation.device.edit.disable</advanced_setting_name>
+         <advanced_setting_value datatype="boolean" operation="equals" var_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9889"></advanced_setting_value>
+      </vm_advancedsetting_state>
+      <vm_advancedsetting_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.device.connectable.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9890" version="1">
+         <advanced_setting_name datatype="string" operation="equals">isolation.device.connectable.disable</advanced_setting_name>
+         <advanced_setting_value datatype="boolean" operation="equals" var_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9890"></advanced_setting_value>
+      </vm_advancedsetting_state>
+      <vm_advancedsetting_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'vmsafe.enable' is equals to 'false'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9891" version="1">
+         <advanced_setting_name datatype="string" operation="equals">vmsafe.enable</advanced_setting_name>
+         <advanced_setting_value datatype="boolean" operation="equals" var_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9891"></advanced_setting_value>
+      </vm_advancedsetting_state>
+      <vm_advancedsetting_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.tools.ghi.autologon.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9892" version="1">
+         <advanced_setting_name datatype="string" operation="equals">isolation.tools.ghi.autologon.disable</advanced_setting_name>
+         <advanced_setting_value datatype="boolean" operation="equals" var_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9892"></advanced_setting_value>
+      </vm_advancedsetting_state>
+      <vm_advancedsetting_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.bios.bbs.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9893" version="1">
+         <advanced_setting_name datatype="string" operation="equals">isolation.bios.bbs.disable</advanced_setting_name>
+         <advanced_setting_value datatype="boolean" operation="equals" var_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9893"></advanced_setting_value>
+      </vm_advancedsetting_state>
+      <vm_advancedsetting_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.tools.ghi.protocolhandler.info.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9894" version="1">
+         <advanced_setting_name datatype="string" operation="equals">isolation.tools.ghi.protocolhandler.info.disable</advanced_setting_name>
+         <advanced_setting_value datatype="boolean" operation="equals" var_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9894"></advanced_setting_value>
+      </vm_advancedsetting_state>
+      <vm_advancedsetting_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.tools.unity.taskbar.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9895" version="1">
+         <advanced_setting_name datatype="string" operation="equals">isolation.tools.unity.taskbar.disable</advanced_setting_name>
+         <advanced_setting_value datatype="boolean" operation="equals" var_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9895"></advanced_setting_value>
+      </vm_advancedsetting_state>
+      <vm_advancedsetting_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.tools.unityActive.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9896" version="1">
+         <advanced_setting_name datatype="string" operation="equals">isolation.tools.unityActive.disable</advanced_setting_name>
+         <advanced_setting_value datatype="boolean" operation="equals" var_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9896"></advanced_setting_value>
+      </vm_advancedsetting_state>
+      <vm_advancedsetting_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.tools.unity.windowContents.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9897" version="1">
+         <advanced_setting_name datatype="string" operation="equals">isolation.tools.unity.windowContents.disable</advanced_setting_name>
+         <advanced_setting_value datatype="boolean" operation="equals" var_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9897"></advanced_setting_value>
+      </vm_advancedsetting_state>
+      <vm_advancedsetting_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.tools.unity.push.update.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9898" version="1">
+         <advanced_setting_name datatype="string" operation="equals">isolation.tools.unity.push.update.disable</advanced_setting_name>
+         <advanced_setting_value datatype="boolean" operation="equals" var_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9898"></advanced_setting_value>
+      </vm_advancedsetting_state>
+      <vm_advancedsetting_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.tools.vmxDnDVersionGet.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9899" version="1">
+         <advanced_setting_name datatype="string" operation="equals">isolation.tools.vmxDnDVersionGet.disable</advanced_setting_name>
+         <advanced_setting_value datatype="boolean" operation="equals" var_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9899"></advanced_setting_value>
+      </vm_advancedsetting_state>
+      <vm_advancedsetting_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.tools.guestDnDVersionSet.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9900" version="1">
+         <advanced_setting_name datatype="string" operation="equals">isolation.tools.guestDnDVersionSet.disable</advanced_setting_name>
+         <advanced_setting_value datatype="boolean" operation="equals" var_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9900"></advanced_setting_value>
+      </vm_advancedsetting_state>
+      <vm_advancedsetting_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.ghi.host.shellAction.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9901" version="1">
+         <advanced_setting_name datatype="string" operation="equals">isolation.ghi.host.shellAction.disable</advanced_setting_name>
+         <advanced_setting_value datatype="boolean" operation="equals" var_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9901"></advanced_setting_value>
+      </vm_advancedsetting_state>
+      <vm_advancedsetting_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.tools.dispTopoRequest.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9902" version="1">
+         <advanced_setting_name datatype="string" operation="equals">isolation.tools.dispTopoRequest.disable</advanced_setting_name>
+         <advanced_setting_value datatype="boolean" operation="equals" var_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9902"></advanced_setting_value>
+      </vm_advancedsetting_state>
+      <vm_advancedsetting_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.tools.trashFolderState.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9903" version="1">
+         <advanced_setting_name datatype="string" operation="equals">isolation.tools.trashFolderState.disable</advanced_setting_name>
+         <advanced_setting_value datatype="boolean" operation="equals" var_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9903"></advanced_setting_value>
+      </vm_advancedsetting_state>
+      <vm_advancedsetting_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.tools.ghi.trayicon.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9904" version="1">
+         <advanced_setting_name datatype="string" operation="equals">isolation.tools.ghi.trayicon.disable</advanced_setting_name>
+         <advanced_setting_value datatype="boolean" operation="equals" var_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9904"></advanced_setting_value>
+      </vm_advancedsetting_state>
+      <vm_advancedsetting_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.tools.unity.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9905" version="1">
+         <advanced_setting_name datatype="string" operation="equals">isolation.tools.unity.disable</advanced_setting_name>
+         <advanced_setting_value datatype="boolean" operation="equals" var_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9905"></advanced_setting_value>
+      </vm_advancedsetting_state>
+      <vm_advancedsetting_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.tools.unityInterlockOperation.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9906" version="1">
+         <advanced_setting_name datatype="string" operation="equals">isolation.tools.unityInterlockOperation.disable</advanced_setting_name>
+         <advanced_setting_value datatype="boolean" operation="equals" var_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9906"></advanced_setting_value>
+      </vm_advancedsetting_state>
+      <vm_advancedsetting_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.tools.getCreds.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9907" version="1">
+         <advanced_setting_name datatype="string" operation="equals">isolation.tools.getCreds.disable</advanced_setting_name>
+         <advanced_setting_value datatype="boolean" operation="equals" var_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9907"></advanced_setting_value>
+      </vm_advancedsetting_state>
+      <vm_advancedsetting_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.tools.hgfsServerSet.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9908" version="1">
+         <advanced_setting_name datatype="string" operation="equals">isolation.tools.hgfsServerSet.disable</advanced_setting_name>
+         <advanced_setting_value datatype="boolean" operation="equals" var_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9908"></advanced_setting_value>
+      </vm_advancedsetting_state>
+      <vm_advancedsetting_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.tools.ghi.launchmenu.change' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9909" version="1">
+         <advanced_setting_name datatype="string" operation="equals">isolation.tools.ghi.launchmenu.change</advanced_setting_name>
+         <advanced_setting_value datatype="boolean" operation="equals" var_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9909"></advanced_setting_value>
+      </vm_advancedsetting_state>
+      <vm_advancedsetting_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.tools.memSchedFakeSampleStats.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9910" version="1">
+         <advanced_setting_name datatype="string" operation="equals">isolation.tools.memSchedFakeSampleStats.disable</advanced_setting_name>
+         <advanced_setting_value datatype="boolean" operation="equals" var_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9910"></advanced_setting_value>
+      </vm_advancedsetting_state>
+      <vm_advancedsetting_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.tools.copy.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9911" version="1">
+         <advanced_setting_name datatype="string" operation="equals">isolation.tools.copy.disable</advanced_setting_name>
+         <advanced_setting_value datatype="boolean" operation="equals" var_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9911"></advanced_setting_value>
+      </vm_advancedsetting_state>
+      <vm_advancedsetting_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.tools.dnd.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9912" version="1">
+         <advanced_setting_name datatype="string" operation="equals">isolation.tools.dnd.disable</advanced_setting_name>
+         <advanced_setting_value datatype="boolean" operation="equals" var_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9912"></advanced_setting_value>
+      </vm_advancedsetting_state>
+      <vm_advancedsetting_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.tools.setGUIOptions.enable' is equals to 'false'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9913" version="1">
+         <advanced_setting_name datatype="string" operation="equals">isolation.tools.setGUIOptions.enable</advanced_setting_name>
+         <advanced_setting_value datatype="boolean" operation="equals" var_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9913"></advanced_setting_value>
+      </vm_advancedsetting_state>
+      <vm_advancedsetting_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.tools.paste.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9914" version="1">
+         <advanced_setting_name datatype="string" operation="equals">isolation.tools.paste.disable</advanced_setting_name>
+         <advanced_setting_value datatype="boolean" operation="equals" var_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9914"></advanced_setting_value>
+      </vm_advancedsetting_state>
+      <vm_advancedsetting_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'RemoteDisplay.vnc.enabled' is equals to 'false'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9915" version="1">
+         <advanced_setting_name datatype="string" operation="equals">RemoteDisplay.vnc.enabled</advanced_setting_name>
+         <advanced_setting_value datatype="boolean" operation="equals" var_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9915"></advanced_setting_value>
+      </vm_advancedsetting_state>
+      <vm_advancedsetting_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.tools.diskShrink.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9918" version="1">
+         <advanced_setting_name datatype="string" operation="equals">isolation.tools.diskShrink.disable</advanced_setting_name>
+         <advanced_setting_value datatype="boolean" operation="equals" var_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9918"></advanced_setting_value>
+      </vm_advancedsetting_state>
+      <vm_advancedsetting_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.tools.diskWiper.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9919" version="1">
+         <advanced_setting_name datatype="string" operation="equals">isolation.tools.diskWiper.disable</advanced_setting_name>
+         <advanced_setting_value datatype="boolean" operation="equals" var_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9919"></advanced_setting_value>
+      </vm_advancedsetting_state>
+      <vm_advancedsetting_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'isolation.tools.vixMessage.disable' is equals to 'true'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9920" version="1">
+         <advanced_setting_name datatype="string" operation="equals">isolation.tools.vixMessage.disable</advanced_setting_name>
+         <advanced_setting_value datatype="boolean" operation="equals" var_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9920"></advanced_setting_value>
+      </vm_advancedsetting_state>
+      <vm_advancedsetting_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'log.keepOld' is less than or equal to '10'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9921" version="1">
+         <advanced_setting_name datatype="string" operation="equals">log.keepOld</advanced_setting_name>
+         <advanced_setting_value datatype="int" operation="equals" var_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9921"></advanced_setting_value>
+      </vm_advancedsetting_state>
+      <vm_advancedsetting_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'tools.guestlib.enableHostInfo' is equals to 'false'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9922" version="1">
+         <advanced_setting_name datatype="string" operation="equals">tools.guestlib.enableHostInfo</advanced_setting_name>
+         <advanced_setting_value datatype="boolean" operation="equals" var_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9922"></advanced_setting_value>
+      </vm_advancedsetting_state>
+      <vm_advancedsetting_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure 'log.rotateSize' is less than or equal to '1024000'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9923" version="1">
+         <advanced_setting_name datatype="string" operation="equals">log.rotateSize</advanced_setting_name>
+         <advanced_setting_value datatype="int" operation="equals" var_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9923"></advanced_setting_value>
+      </vm_advancedsetting_state>
+      <vm_device_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure the 'floppy' device's &quot;Connected&quot; property is set to is 'false'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9884" version="1">
+         <connected datatype="boolean" operation="equals" var_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9884"></connected>
+      </vm_device_state>
+      <vm_device_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure the 'cdrom' device's &quot;Connected&quot; property is set to is 'false'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9885" version="1">
+         <connected datatype="boolean" operation="equals" var_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9885"></connected>
+      </vm_device_state>
+      <vm_device_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure the 'parallel_port' device's &quot;Connected&quot; property is set to is 'false'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9886" version="1">
+         <connected datatype="boolean" operation="equals" var_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9886"></connected>
+      </vm_device_state>
+      <vm_device_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure the 'serial_port' device's &quot;Connected&quot; property is set to is 'false'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9887" version="1">
+         <connected datatype="boolean" operation="equals" var_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9887"></connected>
+      </vm_device_state>
+      <vm_device_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure the 'usb' device's &quot;Connected&quot; property is set to is 'false'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9888" version="1">
+         <connected datatype="boolean" operation="equals" var_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9888"></connected>
+      </vm_device_state>
+      <vm_harddiskdevice_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure the 'Persistence' property of qualified hard disks is not equal to 'NonPersistent'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9916" version="1">
+         <persistence datatype="string" operation="not equal" var_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9916"></persistence>
+      </vm_harddiskdevice_state>
+      <vm_harddiskdevice_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#esxi" comment="Ensure the 'Persistence' property of qualified hard disks is not equal to 'IndependentNonPersistent'" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:ste:9917" version="1">
+         <persistence datatype="string" operation="not equal" var_ref="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9917"></persistence>
+      </vm_harddiskdevice_state>
+   </states>
+   <variables>
+      <external_variable comment="ESXi connection string" datatype="string" id="oval:org.cisecurity.benchmarks:var:100000" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Verify Image Profile and VIB Acceptance Levels" datatype="boolean" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9855" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Verify Image Profile and VIB Acceptance Levels" datatype="boolean" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9856" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Verify no unauthorized kernel modules are loaded on the host" datatype="string" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9857" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Configure NTP time synchronization" datatype="string" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9858" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Configure the ESXi host firewall to restrict access to services running on the host" datatype="boolean" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9859" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Do not use default self-signed certificates for ESXi communication" datatype="boolean" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9861" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Prevent unintended use of dvfilter network APIs" datatype="string" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9862" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Configure persistent logging for all ESXi host" datatype="string" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9864" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Configure remote logging for ESXi hosts" datatype="string" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9865" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set a timeout to automatically terminate idle ESXi Shell and SSH sessions" datatype="int" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9874" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Set a timeout for Shell Services" datatype="int" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9875" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Configure a centralized location to collect ESXi host core dumps" datatype="string" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9863" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Create a non-root user account for local admin access" datatype="boolean" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9866" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Use Active Directory for local user authentication" datatype="string" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9868" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Disable DCUI to prevent local administrative control" datatype="boolean" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9869" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Disable ESXi Shell unless needed for diagnostics or troubleshooting" datatype="boolean" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9870" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Disable SSH" datatype="boolean" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9871" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Enable lockdown mode to restrict remote access" datatype="boolean" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9872" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Enable bidirectional CHAP authentication for iSCSI traffic." datatype="boolean" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9876" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure that the vSwitch Forged Transmits policy is set to reject" datatype="boolean" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9877" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure that the vSwitch MAC Address Change policy is set to reject" datatype="boolean" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9878" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure that the vSwitch Promiscuous Mode policy is set to reject" datatype="boolean" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9879" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure that port groups are not configured to the value of the native VLAN" datatype="boolean" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9880" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure that port groups are not configured to VLAN 4095 except for Virtual Guest Tagging (VGT)" datatype="boolean" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9881" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Limit informational messages from the VM to the VMX file" datatype="int" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9882" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Limit sharing of console connections" datatype="int" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9883" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Prevent unauthorized removal and modification of devices" datatype="boolean" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9889" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Prevent unauthorized connection of devices" datatype="boolean" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9890" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Control VMsafe Agent Configuration" datatype="boolean" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9891" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Disable Autologon" datatype="boolean" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9892" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Disable BIOS BBS" datatype="boolean" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9893" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Disable Guest Host Interaction Protocol Handler" datatype="boolean" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9894" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Disable Unity Taskbar" datatype="boolean" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9895" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Disable Unity Active" datatype="boolean" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9896" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Disable Unity Window Contents" datatype="boolean" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9897" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Disable Unity Push Update" datatype="boolean" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9898" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Disable Drag and Drop Version Get" datatype="boolean" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9899" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Disable Drag and Drop Version Set" datatype="boolean" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9900" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Disable Shell Action" datatype="boolean" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9901" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Disable Request Disk Topology" datatype="boolean" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9902" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Disable Trash Folder State" datatype="boolean" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9903" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Disable Guest Host Interaction Tray Icon" datatype="boolean" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9904" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Disable Unity" datatype="boolean" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9905" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Disable Unity Interlock" datatype="boolean" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9906" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Disable GetCreds" datatype="boolean" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9907" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Disable Host Guest File System Server" datatype="boolean" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9908" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Disable Guest Host Interaction Launch Menu" datatype="boolean" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9909" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Disable memSchedFakeSampleStats" datatype="boolean" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9910" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Disable VM Console Copy operations" datatype="boolean" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9911" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Disable VM Console Drag and Drop operations" datatype="boolean" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9912" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Disable VM Console GUI Options" datatype="boolean" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9913" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Disable VM Console Paste operations" datatype="boolean" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9914" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Control access to VM console via VNC protocol" datatype="boolean" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9915" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Disable virtual disk shrinking" datatype="boolean" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9918" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Disable virtual disk wiping" datatype="boolean" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9919" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Disable VIX messages from the VM" datatype="boolean" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9920" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Limit number of VM log files" datatype="int" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9921" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Do not send host information to guests" datatype="boolean" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9922" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Limit VM log file size" datatype="int" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9923" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Disconnect unauthorized devices - Floppy Devices" datatype="boolean" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9884" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Disconnect unauthorized devices - CD/DVD Devices" datatype="boolean" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9885" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Disconnect unauthorized devices - Parallel Devices" datatype="boolean" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9886" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Disconnect unauthorized devices - Serial Devices" datatype="boolean" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9887" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Disconnect unauthorized devices - USB Devices" datatype="boolean" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9888" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Avoid using nonpersistent disks" datatype="string" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9916" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Avoid using nonpersistent disks" datatype="string" id="oval:org.cisecurity.benchmarks.vmware_esxi_5:var:9917" version="1"></external_variable>
+   </variables>
+<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+<ds:SignedInfo>
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"></ds:CanonicalizationMethod>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"></ds:SignatureMethod>
+<ds:Reference URI="">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"></ds:Transform>
+<ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"></ds:Transform>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"></ds:DigestMethod>
+<ds:DigestValue>xoarlWqx0DgX5RmGhfV3mK2SSJ4=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue>
+ie00YRnkaCEkrFxyyNyqWa9QwBps8PiJG6/HLwPZJ8griVdSB/mqdzyUGWfytnz1fU45ji0TPxJJ
+V607bBLiJumAQ9KjTma7wVFc60ZXnqT3gofMJ3rrQ4K+hIv8Z2a1r8yi9EcvFCIMPqm1aZCLBbFb
+ozInOq4sA+357mzRym02JCAGrje1yIZ+xCdLD1HmbcKhJ4Ffq3qcqy6ly4FAmSW4DSCdxu6uCPH3
+jF1Ae2llWdHal6DFnT9chGU7jKiJhfztlVTMlVhugjyI/ceCyqlQ4BDLorQpGqKIttFygfPznEi7
+48lcvBACd+8tKBwAKvG1RSZDouvjM6BVSxbOnQ==
+</ds:SignatureValue>
+<ds:KeyInfo>
+<ds:X509Data>
+<ds:X509Certificate>
+MIIFUjCCBDqgAwIBAgIIPx+qZKptEY4wDQYJKoZIhvcNAQELBQAwgbQxCzAJBgNVBAYTAlVTMRAw
+DgYDVQQIEwdBcml6b25hMRMwEQYDVQQHEwpTY290dHNkYWxlMRowGAYDVQQKExFHb0RhZGR5LmNv
+bSwgSW5jLjEtMCsGA1UECxMkaHR0cDovL2NlcnRzLmdvZGFkZHkuY29tL3JlcG9zaXRvcnkvMTMw
+MQYDVQQDEypHbyBEYWRkeSBTZWN1cmUgQ2VydGlmaWNhdGUgQXV0aG9yaXR5IC0gRzIwHhcNMjAw
+OTA4MTMzOTM5WhcNMjMxMDI4MDAzMjA1WjCBkzELMAkGA1UEBhMCVVMxETAPBgNVBAgTCE5ldyBZ
+b3JrMRcwFQYDVQQHEw5FYXN0IEdyZWVuYnVzaDErMCkGA1UEChMiQ2VudGVyIGZvciBJbnRlcm5l
+dCBTZWN1cml0eSwgSW5jLjErMCkGA1UEAxMiQ2VudGVyIGZvciBJbnRlcm5ldCBTZWN1cml0eSwg
+SW5jLjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBANDBp4+sl9kB5JRmnQH0wcbLLz/t
+n2HoD6TRl3xJj12V61njBNgaiGzvoSl07sFLnESukb0CU44MzYDoUMdx3HJUcEAeMY/9eITqGUnk
+N4WsP145eFqH7FoszOY/4NYlgYMYt8ZP2kRHyim9LpQTLT/1mBaUkY2f2e5uUCootH3iT8W3/sK2
+flLzWfLgXTvkhJm4Uvw1RErBFs15+krW0KWtnZ6NmiDhmV0CnFGNnd1meGZPs2sBXEVGLJVSKzoT
+G9Ht/oWyRLRcJuXpHoXTYpkqM2MsixmSaJy5b6/D35r0NXHru3p1gkX2a0VgJQxxWqLi3bVPzpl3
+PlJu3C8M/FUCAwEAAaOCAYUwggGBMAwGA1UdEwEB/wQCMAAwEwYDVR0lBAwwCgYIKwYBBQUHAwMw
+DgYDVR0PAQH/BAQDAgeAMDUGA1UdHwQuMCwwKqAooCaGJGh0dHA6Ly9jcmwuZ29kYWRkeS5jb20v
+Z2RpZzJzNS02LmNybDBdBgNVHSAEVjBUMEgGC2CGSAGG/W0BBxcCMDkwNwYIKwYBBQUHAgEWK2h0
+dHA6Ly9jZXJ0aWZpY2F0ZXMuZ29kYWRkeS5jb20vcmVwb3NpdG9yeS8wCAYGZ4EMAQQBMHYGCCsG
+AQUFBwEBBGowaDAkBggrBgEFBQcwAYYYaHR0cDovL29jc3AuZ29kYWRkeS5jb20vMEAGCCsGAQUF
+BzAChjRodHRwOi8vY2VydGlmaWNhdGVzLmdvZGFkZHkuY29tL3JlcG9zaXRvcnkvZ2RpZzIuY3J0
+MB8GA1UdIwQYMBaAFEDCvSeOzDSDMKIz1/tss/C0LIDOMB0GA1UdDgQWBBT7fOf4ISDprbE+qUFe
++friFTKgHjANBgkqhkiG9w0BAQsFAAOCAQEAT0XLw2vmuq6e58bkLDXdqKeGQjREDChLw2Mae9LI
+JB93QgdA2OCLA1FwU2s7lawEDcma9wPiugxVGoaQNOfRw2/+cz0xmR3uaKQq6I24dWbHF20N2tSz
+1RAAK1lRZKewA1fj+qqKWjzETA0LpqZlaFF+CKBpQcyfYyQRZxpHkB1vvKMf4kMIRKruvl4ixLjN
+uAZrbQUWlXuq/MUkVP3FgdxWBPfmMGyngHs4hNMaSQGb1TEhBjj+PGoSunAyaOgO/P94XJPQQX3O
+2oNDsPou6gKcNtbZrH+iYTJ8rcqQTontMwSP/HrYj8lgG3neG53vk05p0jCn2M5W0ukJ4LPEnA==
+</ds:X509Certificate>
+</ds:X509Data>
+<ds:KeyValue>
+<ds:RSAKeyValue>
+<ds:Modulus>0MGnj6yX2QHklGadAfTBxssvP+2fYegPpNGXfEmPXZXrWeME2BqIbO+hKXTuwUucRK6RvQJTjgzN
+gOhQx3HcclRwQB4xj/14hOoZSeQ3haw/Xjl4WofsWizM5j/g1iWBgxi3xk/aREfKKb0ulBMtP/WY
+FpSRjZ/Z7m5QKii0feJPxbf+wrZ+UvNZ8uBdO+SEmbhS/DVESsEWzXn6StbQpa2dno2aIOGZXQKc
+UY2d3WZ4Zk+zawFcRUYslVIrOhMb0e3+hbJEtFwm5ekehdNimSozYyyLGZJonLlvr8PfmvQ1ceu7
+enWCRfZrRWAlDHFaouLdtU/OmXc+Um7cLwz8VQ==</ds:Modulus>
+<ds:Exponent>AQAB</ds:Exponent>
+</ds:RSAKeyValue>
+</ds:KeyValue>
+</ds:KeyInfo>
+</ds:Signature></oval_definitions>

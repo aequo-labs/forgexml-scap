@@ -1,0 +1,1516 @@
+<oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5 https://oval.cisecurity.org/schemas/validator-oval-definitions-5.11.2.xsd">
+   <generator>
+      <oval:product_name>Center for Internet Security - Optimus</oval:product_name>
+      <oval:schema_version>5.11.2</oval:schema_version>
+      <oval:timestamp>2025-04-03T13:24:08.117Z</oval:timestamp>
+   </generator>
+   <definitions>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6848545" version="1">
+         <metadata>
+            <title>Ensure 'extproc' Is Not Present In 'listener.ora'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.1.1_Ensure_extproc_Is_Not_Present_In_listener.ora" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.1.1_Ensure_extproc_Is_Not_Present_In_listener.ora"></reference>
+            <description>Ensure 'extproc' Is Not Present In 'listener.ora'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6848545"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6961224" version="1">
+         <metadata>
+            <title>Ensure 'ACCEPT_MD5_CERTS' Is Configured Correctly</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.1.2_Ensure_ACCEPT_MD5_CERTS_Is_Configured_Correctly" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.1.2_Ensure_ACCEPT_MD5_CERTS_Is_Configured_Correctly"></reference>
+            <description>Ensure 'ACCEPT_MD5_CERTS' Is Configured Correctly</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961224"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6961226" version="1">
+         <metadata>
+            <title>Ensure 'ACCEPT_SHA1_CERTS' Is Configured Correctly</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.1.3_Ensure_ACCEPT_SHA1_CERTS_Is_Configured_Correctly" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.1.3_Ensure_ACCEPT_SHA1_CERTS_Is_Configured_Correctly"></reference>
+            <description>Ensure 'ACCEPT_SHA1_CERTS' Is Configured Correctly</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961226"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6848702" version="1">
+         <metadata>
+            <title>Ensure 'ALLOWED_WEAK_CERT_ALGORITHMS’ Is NOT Set.</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.1.4_Ensure_ALLOWED_WEAK_CERT_ALGORITHMS_Is_NOT_Set." ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.1.4_Ensure_ALLOWED_WEAK_CERT_ALGORITHMS_Is_NOT_Set."></reference>
+            <description>Ensure 'ALLOWED_WEAK_CERT_ALGORITHMS’ Is NOT Set.</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6848702"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6961540" version="1">
+         <metadata>
+            <title>Ensure 'BACKGROUND_CORE_DUMP' Is Not Set To 'Full'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.3.1_Ensure_BACKGROUND_CORE_DUMP_Is_Not_Set_To_Full" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.3.1_Ensure_BACKGROUND_CORE_DUMP_Is_Not_Set_To_Full"></reference>
+            <description>Ensure 'BACKGROUND_CORE_DUMP' Is Not Set To 'Full'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961540"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6961662" version="1">
+         <metadata>
+            <title>Ensure 'SHADOW_CORE_DUMP' Is Not Set To 'Full'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.3.2_Ensure_SHADOW_CORE_DUMP_Is_Not_Set_To_Full" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.3.2_Ensure_SHADOW_CORE_DUMP_Is_Not_Set_To_Full"></reference>
+            <description>Ensure 'SHADOW_CORE_DUMP' Is Not Set To 'Full'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961662"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6961742" version="1">
+         <metadata>
+            <title>Ensure 'MLE_PROG_LANGUAGES' Is Set To 'OFF'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.3.3_Ensure_MLE_PROG_LANGUAGES_Is_Set_To_OFF" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.3.3_Ensure_MLE_PROG_LANGUAGES_Is_Set_To_OFF"></reference>
+            <description>Ensure 'MLE_PROG_LANGUAGES' Is Set To 'OFF'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961742"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6961807" version="1">
+         <metadata>
+            <title>Ensure 'ALLOW_GROUP_ACCESS_TO_SGA' Is Set To `FALSE`</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.3.4_Ensure_ALLOW_GROUP_ACCESS_TO_SGA_Is_Set_To_FALSE" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.3.4_Ensure_ALLOW_GROUP_ACCESS_TO_SGA_Is_Set_To_FALSE"></reference>
+            <description>Ensure 'ALLOW_GROUP_ACCESS_TO_SGA' Is Set To `FALSE`</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961807"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6961866" version="1">
+         <metadata>
+            <title>Ensure 'OS_ROLES' Is Set To 'FALSE'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.3.6_Ensure_OS_ROLES_Is_Set_To_FALSE" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.3.6_Ensure_OS_ROLES_Is_Set_To_FALSE"></reference>
+            <description>Ensure 'OS_ROLES' Is Set To 'FALSE'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961866"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6961868" version="1">
+         <metadata>
+            <title>Ensure 'REMOTE_OS_ROLES' Is Set To 'FALSE'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.3.7_Ensure_REMOTE_OS_ROLES_Is_Set_To_FALSE" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.3.7_Ensure_REMOTE_OS_ROLES_Is_Set_To_FALSE"></reference>
+            <description>Ensure 'REMOTE_OS_ROLES' Is Set To 'FALSE'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961868"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6961870" version="1">
+         <metadata>
+            <title>Ensure 'SEC_MAX_FAILED_LOGIN_ATTEMPTS' Is Set To '3' Or Less</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.3.8_Ensure_SEC_MAX_FAILED_LOGIN_ATTEMPTS_Is_Set_To_3_Or_Less" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.3.8_Ensure_SEC_MAX_FAILED_LOGIN_ATTEMPTS_Is_Set_To_3_Or_Less"></reference>
+            <description>Ensure 'SEC_MAX_FAILED_LOGIN_ATTEMPTS' Is Set To '3' Or Less</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961870"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6961872" version="1">
+         <metadata>
+            <title>Ensure 'SEC_PROTOCOL_ERROR_FURTHER_ACTION' Is Set To '(DROP,3)'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.3.9_Ensure_SEC_PROTOCOL_ERROR_FURTHER_ACTION_Is_Set_To_DROP3" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.3.9_Ensure_SEC_PROTOCOL_ERROR_FURTHER_ACTION_Is_Set_To_DROP3"></reference>
+            <description>Ensure 'SEC_PROTOCOL_ERROR_FURTHER_ACTION' Is Set To '(DROP,3)'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961872"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6961874" version="1">
+         <metadata>
+            <title>Ensure 'SEC_PROTOCOL_ERROR_TRACE_ACTION' Is Set To 'LOG'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.3.10_Ensure_SEC_PROTOCOL_ERROR_TRACE_ACTION_Is_Set_To_LOG" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.3.10_Ensure_SEC_PROTOCOL_ERROR_TRACE_ACTION_Is_Set_To_LOG"></reference>
+            <description>Ensure 'SEC_PROTOCOL_ERROR_TRACE_ACTION' Is Set To 'LOG'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961874"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6961876" version="1">
+         <metadata>
+            <title>Ensure 'SEC_RETURN_SERVER_RELEASE_BANNER' Is Set To 'FALSE'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.3.11_Ensure_SEC_RETURN_SERVER_RELEASE_BANNER_Is_Set_To_FALSE" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.3.11_Ensure_SEC_RETURN_SERVER_RELEASE_BANNER_Is_Set_To_FALSE"></reference>
+            <description>Ensure 'SEC_RETURN_SERVER_RELEASE_BANNER' Is Set To 'FALSE'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961876"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6961878" version="1">
+         <metadata>
+            <title>Ensure 'REMOTE_LOGIN_PASSWORDFILE' Is Set To 'NONE'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.3.12_Ensure_REMOTE_LOGIN_PASSWORDFILE_Is_Set_To_NONE" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.3.12_Ensure_REMOTE_LOGIN_PASSWORDFILE_Is_Set_To_NONE"></reference>
+            <description>Ensure 'REMOTE_LOGIN_PASSWORDFILE' Is Set To 'NONE'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961878"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6961881" version="1">
+         <metadata>
+            <title>Ensure 'REMOTE_LISTENER' Is Empty</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.3.13_Ensure_REMOTE_LISTENER_Is_Empty" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.3.13_Ensure_REMOTE_LISTENER_Is_Empty"></reference>
+            <description>Ensure 'REMOTE_LISTENER' Is Empty</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961881"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6961884" version="1">
+         <metadata>
+            <title>Ensure 'RESOURCE_LIMIT' Is Set To 'TRUE'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_2.3.14_Ensure_RESOURCE_LIMIT_Is_Set_To_TRUE" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_2.3.14_Ensure_RESOURCE_LIMIT_Is_Set_To_TRUE"></reference>
+            <description>Ensure 'RESOURCE_LIMIT' Is Set To 'TRUE'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961884"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6961959" version="1">
+         <metadata>
+            <title>Ensure 'FAILED_LOGIN_ATTEMPTS' Is Less Than Or Equal To '5'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.1_Ensure_FAILED_LOGIN_ATTEMPTS_Is_Less_Than_Or_Equal_To_5" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.1_Ensure_FAILED_LOGIN_ATTEMPTS_Is_Less_Than_Or_Equal_To_5"></reference>
+            <description>Ensure 'FAILED_LOGIN_ATTEMPTS' Is Less Than Or Equal To '5'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961959"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6961962" version="1">
+         <metadata>
+            <title>Ensure 'PASSWORD_LOCK_TIME' Is Greater Than Or Equal To '1'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.2_Ensure_PASSWORD_LOCK_TIME_Is_Greater_Than_Or_Equal_To_1" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.2_Ensure_PASSWORD_LOCK_TIME_Is_Greater_Than_Or_Equal_To_1"></reference>
+            <description>Ensure 'PASSWORD_LOCK_TIME' Is Greater Than Or Equal To '1'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961962"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6961965" version="1">
+         <metadata>
+            <title>Ensure 'PASSWORD_LIFE_TIME + PASSWORD_GRACE_TIME' Is Less Than Or Equal To '365'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.3_Ensure_PASSWORD_LIFE_TIME__PASSWORD_GRACE_TIME_Is_Less_Than_Or_Equal_To_365" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.3_Ensure_PASSWORD_LIFE_TIME__PASSWORD_GRACE_TIME_Is_Less_Than_Or_Equal_To_365"></reference>
+            <description>Ensure 'PASSWORD_LIFE_TIME + PASSWORD_GRACE_TIME' Is Less Than Or Equal To '365'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961965"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6961968" version="1">
+         <metadata>
+            <title>Ensure 'PASSWORD_REUSE_MAX' Is Set To 'UNLIMITED'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.4_Ensure_PASSWORD_REUSE_MAX_Is_Set_To_UNLIMITED" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.4_Ensure_PASSWORD_REUSE_MAX_Is_Set_To_UNLIMITED"></reference>
+            <description>Ensure 'PASSWORD_REUSE_MAX' Is Set To 'UNLIMITED'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961968"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6961971" version="1">
+         <metadata>
+            <title>Ensure 'PASSWORD_VERIFY_FUNCTION' Is Set For All Profiles</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.5_Ensure_PASSWORD_VERIFY_FUNCTION_Is_Set_For_All_Profiles" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.5_Ensure_PASSWORD_VERIFY_FUNCTION_Is_Set_For_All_Profiles"></reference>
+            <description>Ensure 'PASSWORD_VERIFY_FUNCTION' Is Set For All Profiles</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961971"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6961974" version="1">
+         <metadata>
+            <title>Ensure 'PASSWORD_ROLLOVER_TIME' Is set to '0'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.7_Ensure_PASSWORD_ROLLOVER_TIME_Is_set_to_0" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.7_Ensure_PASSWORD_ROLLOVER_TIME_Is_set_to_0"></reference>
+            <description>Ensure 'PASSWORD_ROLLOVER_TIME' Is set to '0'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961974"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6961956" version="1">
+         <metadata>
+            <title>Ensure 'INACTIVE_ACCOUNT_TIME' Is Less than or Equal to '120'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.8_Ensure_INACTIVE_ACCOUNT_TIME_Is_Less_than_or_Equal_to_120" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.8_Ensure_INACTIVE_ACCOUNT_TIME_Is_Less_than_or_Equal_to_120"></reference>
+            <description>Ensure 'INACTIVE_ACCOUNT_TIME' Is Less than or Equal to '120'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961956"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6961887" version="1">
+         <metadata>
+            <title>Ensure All Default Passwords Are Changed</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.1_Ensure_All_Default_Passwords_Are_Changed" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.1_Ensure_All_Default_Passwords_Are_Changed"></reference>
+            <description>Ensure All Default Passwords Are Changed</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961887"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:5978650" version="1">
+         <metadata>
+            <title>Ensure No Custom 'ORACLE_MAINTAINED' Users Exist</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.2_Ensure_No_Custom_ORACLE_MAINTAINED_Users_Exist" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.2_Ensure_No_Custom_ORACLE_MAINTAINED_Users_Exist"></reference>
+            <description>Ensure No Custom 'ORACLE_MAINTAINED' Users Exist</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:5978650"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:5978651" version="1">
+         <metadata>
+            <title>Ensure Old Password Versions Are Not Used</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.4_Ensure_Old_Password_Versions_Are_Not_Used" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.4_Ensure_Old_Password_Versions_Are_Not_Used"></reference>
+            <description>Ensure Old Password Versions Are Not Used</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:5978651"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:5978652" version="1">
+         <metadata>
+            <title>Ensure The Latest Version of The Password File Is Used</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.5_Ensure_The_Latest_Version_of_The_Password_File_Is_Used" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.5_Ensure_The_Latest_Version_of_The_Password_File_Is_Used"></reference>
+            <description>Ensure The Latest Version of The Password File Is Used</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:5978652"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:4971272" version="1">
+         <metadata>
+            <title>Ensure No Public Database Links Exist</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.7_Ensure_No_Public_Database_Links_Exist" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.7_Ensure_No_Public_Database_Links_Exist"></reference>
+            <description>Ensure No Public Database Links Exist</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:4971272"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6961897" version="1">
+         <metadata>
+            <title>Ensure That Database Link Passwords Are Using The Latest Encryption</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_4.8_Ensure_That_Database_Link_Passwords_Are_Using_The_Latest_Encryption" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_4.8_Ensure_That_Database_Link_Passwords_Are_Using_The_Latest_Encryption"></reference>
+            <description>Ensure That Database Link Passwords Are Using The Latest Encryption</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961897"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6961908" version="1">
+         <metadata>
+            <title>Ensure All Auditable System Actions Commands Are Audited</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.1_Ensure_All_Auditable_System_Actions_Commands_Are_Audited" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.1_Ensure_All_Auditable_System_Actions_Commands_Are_Audited"></reference>
+            <description>Ensure All Auditable System Actions Commands Are Audited</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961908"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6961898" version="1">
+         <metadata>
+            <title>Ensure the 'LOGON' AND 'LOGOFF' Actions Audit Is Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.2_Ensure_the_LOGON_AND_LOGOFF_Actions_Audit_Is_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.2_Ensure_the_LOGON_AND_LOGOFF_Actions_Audit_Is_Enabled"></reference>
+            <description>Ensure the 'LOGON' AND 'LOGOFF' Actions Audit Is Enabled</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961898"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6961904" version="1">
+         <metadata>
+            <title>Ensure Critical Packages Are Audited</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.3_Ensure_Critical_Packages_Are_Audited" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.3_Ensure_Critical_Packages_Are_Audited"></reference>
+            <description>Ensure Critical Packages Are Audited</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961904"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6961906" version="1">
+         <metadata>
+            <title>Ensure All Export Activities Are Audited</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.4_Ensure_All_Export_Activities_Are_Audited" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.4_Ensure_All_Export_Activities_Are_Audited"></reference>
+            <description>Ensure All Export Activities Are Audited</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961906"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6923384" version="1">
+         <metadata>
+            <title>Ensure The Use Of SYS* Privileges Is Audited</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_5.5_Ensure_The_Use_Of_SYS_Privileges_Is_Audited" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_5.5_Ensure_The_Use_Of_SYS_Privileges_Is_Audited"></reference>
+            <description>Ensure The Use Of SYS* Privileges Is Audited</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6923384"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6961913" version="1">
+         <metadata>
+            <title>Ensure '%ANY%' Is Revoked from Unauthorized 'GRANTEE'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.1.1_Ensure_ANY_Is_Revoked_from_Unauthorized_GRANTEE" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.1.1_Ensure_ANY_Is_Revoked_from_Unauthorized_GRANTEE"></reference>
+            <description>Ensure '%ANY%' Is Revoked from Unauthorized 'GRANTEE'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961913"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6931081" version="1">
+         <metadata>
+            <title>Ensure Admin Privileges Are Revoked from Unauthorized 'GRANTEE'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.1.2_Ensure_Admin_Privileges_Are_Revoked_from_Unauthorized_GRANTEE" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.1.2_Ensure_Admin_Privileges_Are_Revoked_from_Unauthorized_GRANTEE"></reference>
+            <description>Ensure Admin Privileges Are Revoked from Unauthorized 'GRANTEE'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6931081"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6931449" version="1">
+         <metadata>
+            <title>Ensure 'IMPORT' And 'EXPORT' 'FULL DATABASE' Is Revoked From Unauthorized 'GRANTEE'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.1.3_Ensure_IMPORT_And_EXPORT_FULL_DATABASE_Is_Revoked_From_Unauthorized_GRANTEE" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.1.3_Ensure_IMPORT_And_EXPORT_FULL_DATABASE_Is_Revoked_From_Unauthorized_GRANTEE"></reference>
+            <description>Ensure 'IMPORT' And 'EXPORT' 'FULL DATABASE' Is Revoked From Unauthorized 'GRANTEE'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6931449"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6931468" version="1">
+         <metadata>
+            <title>Ensure 'CREATE EXTERNAL JOB' Is Revoked From Unauthorized 'GRANTEE'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.1.4_Ensure_CREATE_EXTERNAL_JOB_Is_Revoked_From_Unauthorized_GRANTEE" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.1.4_Ensure_CREATE_EXTERNAL_JOB_Is_Revoked_From_Unauthorized_GRANTEE"></reference>
+            <description>Ensure 'CREATE EXTERNAL JOB' Is Revoked From Unauthorized 'GRANTEE'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6931468"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6931470" version="1">
+         <metadata>
+            <title>Ensure 'BECOME USER' Is Revoked From Unauthorized 'GRANTEE'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.1.5_Ensure_BECOME_USER_Is_Revoked_From_Unauthorized_GRANTEE" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.1.5_Ensure_BECOME_USER_Is_Revoked_From_Unauthorized_GRANTEE"></reference>
+            <description>Ensure 'BECOME USER' Is Revoked From Unauthorized 'GRANTEE'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6931470"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6931483" version="1">
+         <metadata>
+            <title>Ensure 'TEXT DATASTORE ACCESS' Is Revoked From Unauthorized 'GRANTEE'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.1.6_Ensure_TEXT_DATASTORE_ACCESS_Is_Revoked_From_Unauthorized_GRANTEE" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.1.6_Ensure_TEXT_DATASTORE_ACCESS_Is_Revoked_From_Unauthorized_GRANTEE"></reference>
+            <description>Ensure 'TEXT DATASTORE ACCESS' Is Revoked From Unauthorized 'GRANTEE'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6931483"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6931579" version="1">
+         <metadata>
+            <title>Ensure 'CREATE', 'ALTER', And 'DROP' 'PUBLIC DATABASE LINK' Is Revoked From Unauthorized 'GRANTEE'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.1.7_Ensure_CREATE_ALTER_And_DROP_PUBLIC_DATABASE_LINK_Is_Revoked_From_Unauthorized_GRANTEE" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.1.7_Ensure_CREATE_ALTER_And_DROP_PUBLIC_DATABASE_LINK_Is_Revoked_From_Unauthorized_GRANTEE"></reference>
+            <description>Ensure 'CREATE', 'ALTER', And 'DROP' 'PUBLIC DATABASE LINK' Is Revoked From Unauthorized 'GRANTEE'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6931579"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6931581" version="1">
+         <metadata>
+            <title>Ensure 'LOGMINING' Is Revoked From Unauthorized 'GRANTEE'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.1.8_Ensure_LOGMINING_Is_Revoked_From_Unauthorized_GRANTEE" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.1.8_Ensure_LOGMINING_Is_Revoked_From_Unauthorized_GRANTEE"></reference>
+            <description>Ensure 'LOGMINING' Is Revoked From Unauthorized 'GRANTEE'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6931581"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6961915" version="1">
+         <metadata>
+            <title>Ensure 'ALTER SYSTEM' Is Revoked From Unauthorized 'GRANTEE'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.1.9_Ensure_ALTER_SYSTEM_Is_Revoked_From_Unauthorized_GRANTEE" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.1.9_Ensure_ALTER_SYSTEM_Is_Revoked_From_Unauthorized_GRANTEE"></reference>
+            <description>Ensure 'ALTER SYSTEM' Is Revoked From Unauthorized 'GRANTEE'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961915"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6961917" version="1">
+         <metadata>
+            <title>Ensure 'CREATE LIBRARY' Is Revoked From Unauthorized 'GRANTEE'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.1.10_Ensure_CREATE_LIBRARY_Is_Revoked_From_Unauthorized_GRANTEE" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.1.10_Ensure_CREATE_LIBRARY_Is_Revoked_From_Unauthorized_GRANTEE"></reference>
+            <description>Ensure 'CREATE LIBRARY' Is Revoked From Unauthorized 'GRANTEE'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961917"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6934011" version="1">
+         <metadata>
+            <title>Ensure All `SYSTEM` Privileges Are Revoked from Unauthorized 'GRANTEE'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.1.11_Ensure_All_SYSTEM_Privileges_Are_Revoked_from_Unauthorized_GRANTEE" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.1.11_Ensure_All_SYSTEM_Privileges_Are_Revoked_from_Unauthorized_GRANTEE"></reference>
+            <description>Ensure All `SYSTEM` Privileges Are Revoked from Unauthorized 'GRANTEE'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6934011"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6961919" version="1">
+         <metadata>
+            <title>Ensure 'DBA' Is Revoked from Unauthorized 'GRANTEE'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.2.1_Ensure_DBA_Is_Revoked_from_Unauthorized_GRANTEE" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.2.1_Ensure_DBA_Is_Revoked_from_Unauthorized_GRANTEE"></reference>
+            <description>Ensure 'DBA' Is Revoked from Unauthorized 'GRANTEE'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961919"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6953256" version="1">
+         <metadata>
+            <title>Ensure 'EXP_FULL_DATABASE' Is Revoked From Unauthorized 'GRANTEE'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.2.2_Ensure_EXP_FULL_DATABASE_Is_Revoked_From_Unauthorized_GRANTEE" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.2.2_Ensure_EXP_FULL_DATABASE_Is_Revoked_From_Unauthorized_GRANTEE"></reference>
+            <description>Ensure 'EXP_FULL_DATABASE' Is Revoked From Unauthorized 'GRANTEE'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6953256"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6953257" version="1">
+         <metadata>
+            <title>Ensure 'IMP_FULL_DATABASE' Is Revoked From Unauthorized 'GRANTEE'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.2.3_Ensure_IMP_FULL_DATABASE_Is_Revoked_From_Unauthorized_GRANTEE" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.2.3_Ensure_IMP_FULL_DATABASE_Is_Revoked_From_Unauthorized_GRANTEE"></reference>
+            <description>Ensure 'IMP_FULL_DATABASE' Is Revoked From Unauthorized 'GRANTEE'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6953257"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6960011" version="1">
+         <metadata>
+            <title>Ensure 'DATAPUMP_EXP_FULL_DATABASE' Is Revoked From Unauthorized 'GRANTEE'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.2.4_Ensure_DATAPUMP_EXP_FULL_DATABASE_Is_Revoked_From_Unauthorized_GRANTEE" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.2.4_Ensure_DATAPUMP_EXP_FULL_DATABASE_Is_Revoked_From_Unauthorized_GRANTEE"></reference>
+            <description>Ensure 'DATAPUMP_EXP_FULL_DATABASE' Is Revoked From Unauthorized 'GRANTEE'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6960011"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6961922" version="1">
+         <metadata>
+            <title>Ensure 'DATAPUMP_IMP_FULL_DATABASE' is Revoked From Unauthorized 'GRANTEE'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.2.5_Ensure_DATAPUMP_IMP_FULL_DATABASE_is_Revoked_From_Unauthorized_GRANTEE" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.2.5_Ensure_DATAPUMP_IMP_FULL_DATABASE_is_Revoked_From_Unauthorized_GRANTEE"></reference>
+            <description>Ensure 'DATAPUMP_IMP_FULL_DATABASE' is Revoked From Unauthorized 'GRANTEE'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961922"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6960015" version="1">
+         <metadata>
+            <title>Ensure 'DV_ADMIN’ Is Revoked From Unauthorized 'GRANTEE'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.2.6_Ensure_DV_ADMIN_Is_Revoked_From_Unauthorized_GRANTEE" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.2.6_Ensure_DV_ADMIN_Is_Revoked_From_Unauthorized_GRANTEE"></reference>
+            <description>Ensure 'DV_ADMIN’ Is Revoked From Unauthorized 'GRANTEE'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6960015"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6960030" version="1">
+         <metadata>
+            <title>Ensure 'DV_AUDIT_CLEANUP’ Is Revoked From Unauthorized 'GRANTEE'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.2.7_Ensure_DV_AUDIT_CLEANUP_Is_Revoked_From_Unauthorized_GRANTEE" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.2.7_Ensure_DV_AUDIT_CLEANUP_Is_Revoked_From_Unauthorized_GRANTEE"></reference>
+            <description>Ensure 'DV_AUDIT_CLEANUP’ Is Revoked From Unauthorized 'GRANTEE'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6960030"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6961923" version="1">
+         <metadata>
+            <title>Ensure 'OLAP_DBA' Is Revoked From Unauthorized 'GRANTEE'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.2.8_Ensure_OLAP_DBA_Is_Revoked_From_Unauthorized_GRANTEE" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.2.8_Ensure_OLAP_DBA_Is_Revoked_From_Unauthorized_GRANTEE"></reference>
+            <description>Ensure 'OLAP_DBA' Is Revoked From Unauthorized 'GRANTEE'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961923"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6961924" version="1">
+         <metadata>
+            <title>Ensure 'LBAC_DBA' Is Revoked From Unauthorized 'GRANTEE'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.2.9_Ensure_LBAC_DBA_Is_Revoked_From_Unauthorized_GRANTEE" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.2.9_Ensure_LBAC_DBA_Is_Revoked_From_Unauthorized_GRANTEE"></reference>
+            <description>Ensure 'LBAC_DBA' Is Revoked From Unauthorized 'GRANTEE'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961924"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6961925" version="1">
+         <metadata>
+            <title>Ensure 'JAVA_ADMIN' Is Revoked From Unauthorized 'GRANTEE'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.2.10_Ensure_JAVA_ADMIN_Is_Revoked_From_Unauthorized_GRANTEE" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.2.10_Ensure_JAVA_ADMIN_Is_Revoked_From_Unauthorized_GRANTEE"></reference>
+            <description>Ensure 'JAVA_ADMIN' Is Revoked From Unauthorized 'GRANTEE'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961925"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6961928" version="1">
+         <metadata>
+            <title>Ensure 'JAVASYSPRIVS' Is Revoked From Unauthorized 'GRANTEE'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.2.11_Ensure_JAVASYSPRIVS_Is_Revoked_From_Unauthorized_GRANTEE" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.2.11_Ensure_JAVASYSPRIVS_Is_Revoked_From_Unauthorized_GRANTEE"></reference>
+            <description>Ensure 'JAVASYSPRIVS' Is Revoked From Unauthorized 'GRANTEE'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961928"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6961931" version="1">
+         <metadata>
+            <title>Ensure 'LOGSTDBY_ADMINISTRATOR' Is Revoked From Unauthorized 'GRANTEE'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.2.12_Ensure_LOGSTDBY_ADMINISTRATOR_Is_Revoked_From_Unauthorized_GRANTEE" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.2.12_Ensure_LOGSTDBY_ADMINISTRATOR_Is_Revoked_From_Unauthorized_GRANTEE"></reference>
+            <description>Ensure 'LOGSTDBY_ADMINISTRATOR' Is Revoked From Unauthorized 'GRANTEE'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961931"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6961933" version="1">
+         <metadata>
+            <title>Ensure 'SQL_FIREWALL_ADMIN' Is Revoked From Unauthorized 'GRANTEE'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.2.13_Ensure_SQL_FIREWALL_ADMIN_Is_Revoked_From_Unauthorized_GRANTEE" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.2.13_Ensure_SQL_FIREWALL_ADMIN_Is_Revoked_From_Unauthorized_GRANTEE"></reference>
+            <description>Ensure 'SQL_FIREWALL_ADMIN' Is Revoked From Unauthorized 'GRANTEE'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961933"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6961935" version="1">
+         <metadata>
+            <title>Ensure 'MAINTPLAN_APP' Is Revoked From Unauthorized 'GRANTEE'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.2.14_Ensure_MAINTPLAN_APP_Is_Revoked_From_Unauthorized_GRANTEE" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.2.14_Ensure_MAINTPLAN_APP_Is_Revoked_From_Unauthorized_GRANTEE"></reference>
+            <description>Ensure 'MAINTPLAN_APP' Is Revoked From Unauthorized 'GRANTEE'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961935"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6961937" version="1">
+         <metadata>
+            <title>Ensure 'JAVADEBUGPRIV' Is Revoked From Unauthorized 'GRANTEE'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.2.15_Ensure_JAVADEBUGPRIV_Is_Revoked_From_Unauthorized_GRANTEE" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.2.15_Ensure_JAVADEBUGPRIV_Is_Revoked_From_Unauthorized_GRANTEE"></reference>
+            <description>Ensure 'JAVADEBUGPRIV' Is Revoked From Unauthorized 'GRANTEE'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961937"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6961940" version="1">
+         <metadata>
+            <title>Ensure 'DV_PATCH_ADMIN' Is Revoked From Unauthorized 'GRANTEE'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.2.16_Ensure_DV_PATCH_ADMIN_Is_Revoked_From_Unauthorized_GRANTEE" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.2.16_Ensure_DV_PATCH_ADMIN_Is_Revoked_From_Unauthorized_GRANTEE"></reference>
+            <description>Ensure 'DV_PATCH_ADMIN' Is Revoked From Unauthorized 'GRANTEE'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961940"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6961942" version="1">
+         <metadata>
+            <title>Ensure 'DV_POLICY_OWNER' Is Revoked From Unauthorized 'GRANTEE'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.2.17_Ensure_DV_POLICY_OWNER_Is_Revoked_From_Unauthorized_GRANTEE" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.2.17_Ensure_DV_POLICY_OWNER_Is_Revoked_From_Unauthorized_GRANTEE"></reference>
+            <description>Ensure 'DV_POLICY_OWNER' Is Revoked From Unauthorized 'GRANTEE'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961942"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6961944" version="1">
+         <metadata>
+            <title>Ensure AUDIT_ADMIN' Is Revoked From Unauthorized 'GRANTEE'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.2.18_Ensure_AUDIT_ADMIN_Is_Revoked_From_Unauthorized_GRANTEE" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.2.18_Ensure_AUDIT_ADMIN_Is_Revoked_From_Unauthorized_GRANTEE"></reference>
+            <description>Ensure AUDIT_ADMIN' Is Revoked From Unauthorized 'GRANTEE'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961944"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6961947" version="1">
+         <metadata>
+            <title>Ensure 'AUDIT_VIEWER' Is Revoked From Unauthorized 'GRANTEE'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.2.19_Ensure_AUDIT_VIEWER_Is_Revoked_From_Unauthorized_GRANTEE" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.2.19_Ensure_AUDIT_VIEWER_Is_Revoked_From_Unauthorized_GRANTEE"></reference>
+            <description>Ensure 'AUDIT_VIEWER' Is Revoked From Unauthorized 'GRANTEE'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961947"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6961949" version="1">
+         <metadata>
+            <title>Ensure 'PDB_DBA' Is Revoked From Unauthorized 'GRANTEE'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.2.20_Ensure_PDB_DBA_Is_Revoked_From_Unauthorized_GRANTEE" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.2.20_Ensure_PDB_DBA_Is_Revoked_From_Unauthorized_GRANTEE"></reference>
+            <description>Ensure 'PDB_DBA' Is Revoked From Unauthorized 'GRANTEE'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961949"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:4971260" version="1">
+         <metadata>
+            <title>Ensure 'SELECT_CATALOG_ROLE' Is Revoked From Unauthorized 'GRANTEE'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.2.21_Ensure_SELECT_CATALOG_ROLE_Is_Revoked_From_Unauthorized_GRANTEE" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.2.21_Ensure_SELECT_CATALOG_ROLE_Is_Revoked_From_Unauthorized_GRANTEE"></reference>
+            <description>Ensure 'SELECT_CATALOG_ROLE' Is Revoked From Unauthorized 'GRANTEE'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:4971260"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6961953" version="1">
+         <metadata>
+            <title>Ensure 'EXECUTE_CATALOG_ROLE' Is Revoked from Unauthorized 'GRANTEE'</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.2.22_Ensure_EXECUTE_CATALOG_ROLE_Is_Revoked_from_Unauthorized_GRANTEE" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.2.22_Ensure_EXECUTE_CATALOG_ROLE_Is_Revoked_from_Unauthorized_GRANTEE"></reference>
+            <description>Ensure 'EXECUTE_CATALOG_ROLE' Is Revoked from Unauthorized 'GRANTEE'</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961953"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.oracle_database_23:def:6943545" version="1">
+         <metadata>
+            <title>Ensure 'ALL' Is Revoked On 'Sensitive' Tables</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_6.4.1_Ensure_ALL_Is_Revoked_On_Sensitive_Tables" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_6.4.1_Ensure_ALL_Is_Revoked_On_Sensitive_Tables"></reference>
+            <description>Ensure 'ALL' Is Revoked On 'Sensitive' Tables</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6943545"></criterion>
+         </criteria>
+      </definition>
+   </definitions>
+   <tests>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure 'extproc' Is Not Present In 'listener.ora'" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6848545" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6848545"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'ACCEPT_MD5_CERTS' Is Set To 'FALSE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961224" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961224"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_database_23:ste:6961224"></state>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure 'ACCEPT_SHA1_CERTS' Is Set To 'FALSE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961226" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961226"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure 'ALLOWED_WEAK_CERT_ALGORITHMS' Is Set To 'FALSE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6848702" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6848702"></object>
+      </textfilecontent54_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'BACKGROUND_CORE_DUMP' Is Not Set To 'Full'" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961540" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961540"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_database_23:ste:6961540"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'SHADOW_CORE_DUMP' Is Not Set To 'full'" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961662" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961662"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_database_23:ste:6961662"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'MLE_PROG_LANGUAGES' Is Set To 'OFF'" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961742" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961742"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_database_23:ste:6961742"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'ALLOW_GROUP_ACCESS_TO_SGA' Is Set To `FALSE`" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961807" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961807"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_database_23:ste:6961807"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'OS_ROLES' Is Set To 'FALSE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961866" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961866"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_database_23:ste:6961866"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'REMOTE_OS_ROLES' Is Set To 'FALSE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961868" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961868"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_database_23:ste:6961868"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'SEC_MAX_FAILED_LOGIN_ATTEMPTS' Is Set To '3' Or Less" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961870" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961870"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_database_23:ste:6961870"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'SEC_PROTOCOL_ERROR_FURTHER_ACTION' Is Set To '(DROP,3)'" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961872" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961872"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_database_23:ste:6961872"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'SEC_PROTOCOL_ERROR_TRACE_ACTION' Is Set To 'LOG'" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961874" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961874"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_database_23:ste:6961874"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'SEC_RETURN_SERVER_RELEASE_BANNER' Is Set To 'FALSE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961876" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961876"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_database_23:ste:6961876"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure No 'REMOTE_LOGIN_PASSWORDFILE' Exist Which Are Not Is Set To 'NONE' or , In The Case Of DataGuard'EXCLUSIVE`" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961878" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961878"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure 'REMOTE_LISTENER' Is Empty" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961881" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961881"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure No 'RESOURCE_LIMIT' Exists Which Is Not Set To 'TRUE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961884" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961884"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure 'FAILED_LOGIN_ATTEMPTS' Is Less Than Or Equal to '5'" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961959" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961959"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure 'PASSWORD_LOCK_TIME' Is Greater Than Or Equal To '1'" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961962" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961962"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure 'PASSWORD_LIFE_TIME + PASSWORD_GRACE_TIME' Is Less Than Or Equal To '365'" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961965" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961965"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure 'PASSWORD_REUSE_MAX' Is Set To 'UNLIMITED'" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961968" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961968"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure 'PASSWORD_VERIFY_FUNCTION' Is Set For All Profiles" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961971" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961971"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure 'PASSWORD_ROLLOVER_TIME' Is Set To '0'" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961974" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961974"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.oracle_database_23:ste:6961974"></state>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure 'INACTIVE_ACCOUNT_TIME' Is Less than or Equal to '120'" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961956" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961956"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure No Accounts With Default Passwords Exist" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961887" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961887"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure No Custom 'ORACLE_MAINTAINED' Users Exist" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:5978650" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:5978650"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure Old Password Versions Are Not Used" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:5978651" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:5978651"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure The Latest Version of The Password File Is Used" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:5978652" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:5978652"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure No Public Database Links Exist" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:4971272" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:4971272"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure That Database Link Passwords Are Using The Latest Encryption" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961897" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961897"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure All Auditable System Actions Commands Are Audited" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961908" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961908"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure the 'LOGON' AND 'LOGOFF' Actions Audit Is Enabled" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961898" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961898"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure Critical Packages Are Audited" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961904" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961904"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure All Export Activities Are Audited" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961906" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961906"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure The Use Of SYS* Privileges Is Audited" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6923384" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6923384"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure '%ANY%' Is Revoked from Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961913" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961913"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure Admin Privileges Are Revoked from Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6931081" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6931081"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure 'IMPORT' And 'EXPORT' 'FULL DATABASE' Is Revoked From Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6931449" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6931449"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure 'CREATE EXTERNAL JOB' Is Revoked From Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6931468" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6931468"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure 'BECOME USER' Is Revoked From Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6931470" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6931470"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure 'TEXT DATASTORE ACCESS' Is Revoked From Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6931483" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6931483"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure 'CREATE', 'ALTER', And 'DROP' 'PUBLIC DATABASE LINK' Is Revoked From Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6931579" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6931579"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure 'LOGMINING' Is Revoked From Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6931581" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6931581"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure 'ALTER SYSTEM' Is Revoked from Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961915" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961915"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure 'CREATE LIBRARY' Is Revoked From Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961917" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961917"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure All SYSTEM Privileges Are Revoked from Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6934011" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6934011"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure 'DBA' Is Revoked from Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961919" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961919"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure 'EXP_FULL_DATABASE' Is Revoked From Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6953256" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6953256"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure 'IMP_FULL_DATABASE' Is Revoked From Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6953257" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6953257"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure 'DATAPUMP_EXP_FULL_DATABASE' Is Revoked From Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6960011" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6960011"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure 'DATAPUMP_IMP_FULL_DATABASE' is Revoked From Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961922" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961922"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure 'DV_ADMIN’ Is Revoked From Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6960015" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6960015"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure 'DV_AUDIT_CLEANUP’ Is Revoked From Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6960030" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6960030"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure 'OLAP_DBA' Is Revoked From Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961923" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961923"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure 'LBAC_DBA' Is Revoked From Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961924" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961924"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure 'JAVA_ADMIN' Is Revoked From Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961925" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961925"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure 'JAVASYSPRIVS' Is Revoked From Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961928" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961928"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure 'LOGSTDBY_ADMINISTRATOR' Is Revoked From Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961931" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961931"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure 'SQL_FIREWALL_ADMIN' Is Revoked From Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961933" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961933"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure 'MAINTPLAN_APP' Is Revoked From Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961935" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961935"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure 'JAVADEBUGPRIV' Is Revoked From Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961937" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961937"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure 'DV_PATCH_ADMIN' Is Revoked From Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961940" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961940"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure 'DV_POLICY_OWNER' Is Revoked From Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961942" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961942"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure 'AUDIT_ADMIN' Is Revoked From Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961944" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961944"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure 'AUDIT_VIEWER' Is Revoked From Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961947" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961947"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure 'PDB_DBA' Is Revoked From Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961949" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961949"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure 'SELECT_CATALOG_ROLE' Is Revoked From Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:4971260" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:4971260"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure 'EXECUTE_CATALOG_ROLE' Is Revoked from Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6961953" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961953"></object>
+      </sql57_test>
+      <sql57_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure 'ALL' Is Revoked On 'Sensitive' Tables" id="oval:org.cisecurity.benchmarks.oracle_database_23:tst:6943545" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6943545"></object>
+      </sql57_test>
+   </tests>
+   <objects>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" id="oval:org.cisecurity.benchmarks:obj:2000002" version="1">
+         <behaviors multiline="true"></behaviors>
+         <filepath var_ref="oval:org.cisecurity.benchmarks:var:2000001"></filepath>
+         <pattern operation="pattern match">^(?i)(?:\s*)(\w*listener\w*)\s*(?:=[\s\n]*\()</pattern>
+         <instance datatype="int" operation="greater than">0</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'extproc' Is Not Present In 'listener.ora'" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6848545" version="1">
+         <behaviors ignore_case="true" multiline="true"></behaviors>
+         <filepath var_ref="oval:org.cisecurity.benchmarks:var:2000001"></filepath>
+         <pattern operation="pattern match">^[^#].*(\b[Ee][Xx][Tt][Pp][Rr][Oo][Cc]).*$</pattern>
+         <instance datatype="int" operation="greater than or equal">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'ACCEPT_MD5_CERTS' Is Set To 'FALSE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961224" version="1">
+         <behaviors ignore_case="true" multiline="true"></behaviors>
+         <filepath var_ref="oval:org.cisecurity.benchmarks:var:2000000"></filepath>
+         <pattern datatype="string" operation="pattern match">^[^#]*ACCEPT_MD5_CERTS\s*=\s*(\w+).*$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'ACCEPT_SHA1_CERTS' Is Set To 'FALSE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961226" version="1">
+         <behaviors ignore_case="true" multiline="true"></behaviors>
+         <filepath var_ref="oval:org.cisecurity.benchmarks:var:2000001"></filepath>
+         <pattern operation="pattern match">^[^#]*ACCEPT_SHA1_CERTS\s*=\s*(\w+).*$</pattern>
+         <instance datatype="int" operation="greater than or equal">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'ALLOWED_WEAK_CERT_ALGORITHMS' Is Set To 'FALSE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6848702" version="1">
+         <behaviors ignore_case="true" multiline="true"></behaviors>
+         <filepath var_ref="oval:org.cisecurity.benchmarks:var:2000001"></filepath>
+         <pattern operation="pattern match">^[^#]*ALLOWED_WEAK_CERT_ALGORITHMS\s*=\s*(\w+).*$</pattern>
+         <instance datatype="int" operation="greater than or equal">1</instance>
+      </textfilecontent54_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'BACKGROUND_CORE_DUMP' Is Not Set To 'Full'" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961540" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT  DECODE(V.CON_ID,0,'ENTIRE-'||SYS_CONTEXT('USERENV','DB_NAME'),1,'ROOTONLY-'||SYS_CONTEXT('USERENV','DB_NAME'),CON_ID_TO_CON_NAME(V.CON_ID)) AS CONTAINERNAME, UPPER(V.VALUE) FROM V$SYSTEM_PARAMETER V WHERE UPPER(NAME) = 'BACKGROUND_CORE_DUMP' ORDER BY CON_ID</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'SHADOW_CORE_DUMP' Is Not Set To 'full'" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961662" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT  DECODE(V.CON_ID,0,'ENTIRE-'||SYS_CONTEXT('USERENV','DB_NAME'),1,'ROOTONLY-'||SYS_CONTEXT('USERENV','DB_NAME'),CON_ID_TO_CON_NAME(V.CON_ID)) AS CONTAINERNAME,  UPPER(V.VALUE) FROM V$SYSTEM_PARAMETER V WHERE UPPER(NAME) = 'SHADOW_CORE_DUMP' ORDER BY CON_ID</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'MLE_PROG_LANGUAGES' Is Set To 'OFF'" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961742" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT  DECODE(V.CON_ID,0,'ENTIRE-'||SYS_CONTEXT('USERENV','DB_NAME'),1,'ROOTONLY-'||SYS_CONTEXT('USERENV','DB_NAME'),CON_ID_TO_CON_NAME(V.CON_ID)) AS CONTAINERNAME, UPPER(V.VALUE) FROM V$SYSTEM_PARAMETER V WHERE UPPER(NAME) = 'MLE_PROG_LANGUAGES' ORDER BY CON_ID</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'ALLOW_GROUP_ACCESS_TO_SGA' Is Set To `FALSE`" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961807" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT  DECODE(V.CON_ID,0,'ENTIRE-'||SYS_CONTEXT('USERENV','DB_NAME'),1,'ROOTONLY-'||SYS_CONTEXT('USERENV','DB_NAME'),CON_ID_TO_CON_NAME(V.CON_ID)) AS CONTAINERNAME, UPPER(V.VALUE) FROM V$SYSTEM_PARAMETER V WHERE UPPER(NAME) = 'ALLOW_GROUP_ACCESS_TO_SGA' ORDER BY CON_ID</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'OS_ROLES' Is Set To 'FALSE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961866" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT  DECODE(V.CON_ID,0,'ENTIRE-'||SYS_CONTEXT('USERENV','DB_NAME'),1,'ROOTONLY-'||SYS_CONTEXT('USERENV','DB_NAME'),CON_ID_TO_CON_NAME(V.CON_ID)) AS CONTAINERNAME, UPPER(V.VALUE) FROM V$SYSTEM_PARAMETER V WHERE UPPER(NAME) = 'OS_ROLES' ORDER BY CON_ID</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'REMOTE_OS_ROLES' Is Set To 'FALSE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961868" version="1">
+         <engine>oracle</engine>
+         <version>19c</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT  DECODE(V.CON_ID,0,'ENTIRE-'||SYS_CONTEXT('USERENV','DB_NAME'),1,'ROOTONLY-'||SYS_CONTEXT('USERENV','DB_NAME'),CON_ID_TO_CON_NAME(V.CON_ID)) AS CONTAINERNAME, UPPER(V.VALUE) FROM V$SYSTEM_PARAMETER V WHERE UPPER(NAME) = 'REMOTE_OS_ROLES' ORDER BY CON_ID</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'SEC_MAX_FAILED_LOGIN_ATTEMPTS' Is Set To '3' Or Less" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961870" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT UPPER(VALUE) AS VALUE FROM V$SYSTEM_PARAMETER WHERE UPPER(NAME)='SEC_MAX_FAILED_LOGIN_ATTEMPTS'</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'SEC_PROTOCOL_ERROR_FURTHER_ACTION' Is Set To '(DROP,3)'" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961872" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT  DECODE(V.CON_ID,0,'ENTIRE-'||SYS_CONTEXT('USERENV','DB_NAME'),1,'ROOTONLY-'||SYS_CONTEXT('USERENV','DB_NAME'),CON_ID_TO_CON_NAME(V.CON_ID)) AS CONTAINERNAME, UPPER(V.VALUE) FROM V$SYSTEM_PARAMETER V WHERE UPPER(NAME) = 'SEC_PROTOCOL_ERROR_FURTHER_ACTION' ORDER BY CON_ID</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'SEC_PROTOCOL_ERROR_TRACE_ACTION' Is Set To 'LOG'" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961874" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT  DECODE(V.CON_ID,0,'ENTIRE-'||SYS_CONTEXT('USERENV','DB_NAME'),1,'ROOTONLY-'||SYS_CONTEXT('USERENV','DB_NAME'),CON_ID_TO_CON_NAME(V.CON_ID)) AS CONTAINERNAME, UPPER(V.VALUE) FROM V$SYSTEM_PARAMETER V WHERE UPPER(NAME) = 'SEC_PROTOCOL_ERROR_TRACE_ACTION' ORDER BY CON_ID</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'SEC_RETURN_SERVER_RELEASE_BANNER' Is Set To 'FALSE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961876" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT  DECODE(V.CON_ID,0,'ENTIRE-'||SYS_CONTEXT('USERENV','DB_NAME'),1,'ROOTONLY-'||SYS_CONTEXT('USERENV','DB_NAME'),CON_ID_TO_CON_NAME(V.CON_ID)) AS CONTAINERNAME, UPPER(V.VALUE) FROM V$SYSTEM_PARAMETER V WHERE UPPER(NAME) = 'SEC_RETURN_SERVER_RELEASE_BANNER' ORDER BY CON_ID</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure No 'REMOTE_LOGIN_PASSWORDFILE' Exist Which Are Not Is Set To 'NONE' or , In The Case Of DataGuard'EXCLUSIVE`" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961878" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT DECODE(V.CON_ID,0,'ENTIRE-'||SYS_CONTEXT('USERENV','DB_NAME'), 1,'ROOTONLY-'||SYS_CONTEXT('USERENV','DB_NAME'), CON_ID_TO_CON_NAME(V.CON_ID)) AS CONTAINERNAME, UPPER(V.VALUE) FROM GV$SYSTEM_PARAMETER V WHERE UPPER(NAME) = 'REMOTE_LOGIN_PASSWORDFILE' and 'DG' != (SELECT 'DG' FROM V$DATABASE where database_role in ('PRIMARY','PHYSICAL STANDBY','LOGICAL STANDBY','SNAPSHOT STANDBY')) AND UPPER(VALUE) != 'NONE' union SELECT DECODE(V.CON_ID,0,'ENTIRE-'||SYS_CONTEXT('USERENV','DB_NAME'), 1,'ROOTONLY-'||SYS_CONTEXT('USERENV','DB_NAME'), CON_ID_TO_CON_NAME(V.CON_ID)) AS CONTAINERNAME, UPPER(V.VALUE) FROM GV$SYSTEM_PARAMETER V WHERE UPPER(NAME) = 'REMOTE_LOGIN_PASSWORDFILE' and 'DG' = (SELECT 'DG' FROM V$DATABASE where database_role in ('PRIMARY','PHYSICAL STANDBY','LOGICAL STANDBY','SNAPSHOT STANDBY')) AND UPPER(VALUE) != 'EXCLUSIVE'</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'REMOTE_LISTENER' Is Empty" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961881" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT  DECODE(V.CON_ID,0,'ENTIRE-'||SYS_CONTEXT('USERENV','DB_NAME'),1,'ROOTONLY-'||SYS_CONTEXT('USERENV','DB_NAME'),CON_ID_TO_CON_NAME(V.CON_ID)) AS CONTAINERNAME, UPPER(V.VALUE) FROM V$SYSTEM_PARAMETER V WHERE UPPER(NAME) = 'REMOTE_LISTENER' AND VALUE IS NOT NULL ORDER BY CON_ID</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure No 'RESOURCE_LIMIT' Exists Which Is Not Set To 'TRUE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961884" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT DECODE(V.CON_ID,0,'ENTIRE-'||SYS_CONTEXT('USERENV','DB_NAME'), 1,'ROOTONLY-'||SYS_CONTEXT('USERENV','DB_NAME'), CON_ID_TO_CON_NAME(V.CON_ID)) AS CONTAINERNAME, UPPER(V.VALUE) FROM GV$SYSTEM_PARAMETER V WHERE UPPER(NAME) = 'RESOURCE_LIMIT' AND UPPER(VALUE) != 'TRUE' ORDER BY CON_ID</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'FAILED_LOGIN_ATTEMPTS' Is Less Than Or Equal to '5'" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961959" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT DECODE(P.CON_ID,0,'ENTIRE-'||SYS_CONTEXT('USERENV','DB_NAME'), 1,'ROOTONLY-'||SYS_CONTEXT('USERENV','DB_NAME'), CON_ID_TO_CON_NAME(P.CON_ID)) AS CONTAINERNAME, P.PROFILE, P.RESOURCE_NAME, P.LIMIT FROM CDB_PROFILES P WHERE P.RESOURCE_NAME = 'FAILED_LOGIN_ATTEMPTS' AND TO_NUMBER(DECODE(P.LIMIT, 'DEFAULT', (SELECT DECODE(LIMIT,'UNLIMITED',9999,LIMIT) FROM CDB_PROFILES WHERE PROFILE='DEFAULT' AND RESOURCE_NAME='FAILED_LOGIN_ATTEMPTS' AND CON_ID = P.CON_ID), 'UNLIMITED','9999',P.LIMIT)) &gt; 5 ORDER BY CON_ID, PROFILE, RESOURCE_NAME</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'PASSWORD_LOCK_TIME' Is Greater Than Or Equal To '1'" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961962" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT DECODE(P.CON_ID,0,'ENTIRE-'||SYS_CONTEXT('USERENV','DB_NAME'), 1,'ROOTONLY-'||SYS_CONTEXT('USERENV','DB_NAME'), CON_ID_TO_CON_NAME(P.CON_ID)) AS CONTAINERNAME, P.PROFILE, P.RESOURCE_NAME, P.LIMIT FROM CDB_PROFILES P WHERE TO_NUMBER(DECODE(P.LIMIT, 'DEFAULT',(SELECT DECODE(LIMIT,'UNLIMITED',9999,LIMIT) FROM CDB_PROFILES WHERE PROFILE='DEFAULT' AND RESOURCE_NAME='PASSWORD_LOCK_TIME' AND CON_ID = P.CON_ID), 'UNLIMITED','9999',P.LIMIT)) &lt; 1 ORDER BY CON_ID, PROFILE, RESOURCE_NAME</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'PASSWORD_LIFE_TIME + PASSWORD_GRACE_TIME' Is Less Than Or Equal To '365'" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961965" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>WITH PWD_LIFE_TIME AS (SELECT CON_ID, DECODE(P.CON_ID,0,'ENTIRE-'||SYS_CONTEXT('USERENV','DB_NAME'), 1,'ROOTONLY-'||SYS_CONTEXT('USERENV','DB_NAME'), CON_ID_TO_CON_NAME(P.CON_ID)) AS CONTAINERNAME, P.PROFILE, P.RESOURCE_NAME, TO_NUMBER(DECODE(P.LIMIT, 'DEFAULT',(SELECT DECODE(LIMIT,'UNLIMITED',9999,LIMIT) FROM CDB_PROFILES WHERE PROFILE='DEFAULT' AND RESOURCE_NAME='PASSWORD_LIFE_TIME' AND CON_ID = P.CON_ID), 'UNLIMITED','9999', P.LIMIT)) LIMIT FROM CDB_PROFILES P WHERE P.RESOURCE_NAME = 'PASSWORD_LIFE_TIME'), PWD_GRACE_TIME AS (SELECT CON_ID, DECODE(P.CON_ID,0,'ENTIRE-'||SYS_CONTEXT('USERENV','DB_NAME'), 1,'ROOTONLY-'||SYS_CONTEXT('USERENV','DB_NAME'), CON_ID_TO_CON_NAME(P.CON_ID)) AS CONTAINERNAME, P.PROFILE, P.RESOURCE_NAME, TO_NUMBER(DECODE(P.LIMIT, 'DEFAULT',(SELECT DECODE(LIMIT,'UNLIMITED',9999,LIMIT) FROM CDB_PROFILES WHERE PROFILE='DEFAULT' AND RESOURCE_NAME='PASSWORD_GRACE_TIME' AND CON_ID = P.CON_ID), 'UNLIMITED','9999', P.LIMIT)) LIMIT FROM CDB_PROFILES P WHERE P.RESOURCE_NAME = 'PASSWORD_GRACE_TIME') SELECT L.CONTAINERNAME, L.PROFILE, L.RESOURCE_NAME, L.LIMIT, G.RESOURCE_NAME, G.LIMIT FROM PWD_LIFE_TIME L, PWD_GRACE_TIME G WHERE L.CON_ID = G.CON_ID AND L.PROFILE = G.PROFILE AND L.LIMIT + G.LIMIT &gt; 365 ORDER BY L.CON_ID, L.PROFILE, L.RESOURCE_NAME</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'PASSWORD_REUSE_MAX' Is Set To 'UNLIMITED'" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961968" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT DECODE(P.CON_ID,0,'ENTIRE-'||SYS_CONTEXT('USERENV','DB_NAME'), 1,'ROOTONLY-'||SYS_CONTEXT('USERENV','DB_NAME'), CON_ID_TO_CON_NAME(P.CON_ID)) AS CONTAINERNAME, P.PROFILE, P.RESOURCE_NAME, P.LIMIT FROM CDB_PROFILES P WHERE TO_NUMBER(DECODE(P.LIMIT, 'DEFAULT',(SELECT DECODE(LIMIT,'UNLIMITED',9999,LIMIT) FROM CDB_PROFILES WHERE PROFILE='DEFAULT' AND RESOURCE_NAME='PASSWORD_REUSE_MAX' AND CON_ID = P.CON_ID), 'UNLIMITED','9999',P.LIMIT)) &lt; 9999 AND P.RESOURCE_NAME = 'PASSWORD_REUSE_MAX' ORDER BY CON_ID, PROFILE, RESOURCE_NAME</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'PASSWORD_VERIFY_FUNCTION' Is Set For All Profiles" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961971" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT DECODE(P.CON_ID,0,'ENTIRE-'||SYS_CONTEXT('USERENV','DB_NAME'), 1,'ROOTONLY-'||SYS_CONTEXT('USERENV','DB_NAME'), CON_ID_TO_CON_NAME(P.CON_ID)) AS CONTAINERNAME, P.PROFILE, P.RESOURCE_NAME, P.LIMIT FROM SYS.CDB_PROFILES P WHERE  RESOURCE_NAME='PASSWORD_VERIFY_FUNCTION' AND P.LIMIT = 'NULL' ORDER BY CON_ID, PROFILE, RESOURCE_NAME</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'PASSWORD_ROLLOVER_TIME' Is Set To '0'" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961974" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT DECODE(P.CON_ID,0,'ENTIRE-'||SYS_CONTEXT('USERENV','DB_NAME'), 1,'ROOTONLY-'||SYS_CONTEXT('USERENV','DB_NAME'), CON_ID_TO_CON_NAME(P.CON_ID)) AS CONTAINERNAME, P.PROFILE, P.RESOURCE_NAME, P.LIMIT FROM SYS.CDB_PROFILES P WHERE  TO_NUMBER(DECODE(P.LIMIT,'DEFAULT',(SELECT LIMIT FROM CDB_PROFILES WHERE PROFILE='DEFAULT' AND RESOURCE_NAME='PASSWORD_ROLLOVER_TIME' AND CON_ID = P.CON_ID), P.LIMIT)) &gt; 0 AND RESOURCE_NAME='PASSWORD_ROLLOVER_TIME' ORDER BY CON_ID, PROFILE, RESOURCE_NAME</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'INACTIVE_ACCOUNT_TIME' Is Less than or Equal to '120'" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961956" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT DECODE(P.CON_ID,0,'ENTIRE-'||SYS_CONTEXT('USERENV','DB_NAME'), 1,'ROOTONLY-'||SYS_CONTEXT('USERENV','DB_NAME'), CON_ID_TO_CON_NAME(P.CON_ID)) AS CONTAINERNAME, P.PROFILE, P.RESOURCE_NAME, P.LIMIT FROM SYS.CDB_PROFILES P WHERE RESOURCE_NAME='INACTIVE_ACCOUNT_TIME' AND TO_NUMBER(DECODE(P.LIMIT, 'DEFAULT',(SELECT DECODE(LIMIT,'UNLIMITED',9999,LIMIT) FROM CDB_PROFILES WHERE PROFILE='DEFAULT' AND RESOURCE_NAME='INACTIVE_ACCOUNT_TIME' AND CON_ID = P.CON_ID), 'UNLIMITED',9999, P.LIMIT)) &gt; 120 ORDER BY CON_ID, PROFILE, RESOURCE_NAME</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure No Accounts With Default Passwords Exist" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961887" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT DECODE(C.CON_ID,0,'ENTIRE-'||SYS_CONTEXT('USERENV','DB_NAME'), 1,'ROOTONLY-'||SYS_CONTEXT('USERENV','DB_NAME'), CON_ID_TO_CON_NAME(C.CON_ID)) AS CONTAINERNAME, A.USERNAME, C.ACCOUNT_STATUS FROM CDB_USERS_WITH_DEFPWD A, CDB_USERS C WHERE A.USERNAME = C.USERNAME ORDER BY C.CON_ID</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure No Custom 'ORACLE_MAINTAINED' Users Exist" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:5978650" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT CON_ID_TO_CON_NAME(C.CON_ID) AS CONTAINERNAME,USERNAME, FROM CDB_USERS C WHERE ORACLE_MAINTAINED = 'Y' AND USERNAME NOT IN ( 'ANONYMOUS', 'APEX_LISTENER', 'APEX_PUBLIC_USER','APEX_REST_PUBLIC_USER', 'APEX_230200', 'APEX_240100', 'APEX_PUBLIC_ROUTER', 'APPQOSSYS','AUDSYS', 'CTXSYS', 'DBSFWUSER', 'DBSNMP', 'DGPDB_INT', 'DIP', 'DVF', 'DVSYS', 'FLOWS_FILES', 'GGSHAREDCAP', 'GGSYS', 'GSMADMIN_INTERNAL', 'GSMCATUSER', 'GSMROOTUSER', 'GSMUSER', 'LBACSYS', 'MDDATA', 'MDSYS', 'OJVMSYS', 'OLAPSYS', 'OUTLN', 'REMOTE_SCHEDULER_AGENT', 'SYS', 'SYSBACKUP', 'SYSDG', 'SYSKM', 'SYSRAC', 'SYSTEM', 'SYS$UMF', 'VECSYS', 'WMSYS', 'XDB', 'XS$NULL' ) ORDER BY 1;</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure Old Password Versions Are Not Used" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:5978651" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT DECODE(C.CON_ID, 0, 'ENTIRE-' || SYS_CONTEXT('USERENV','DB_NAME'), 1, 'ROOTONLY-' || SYS_CONTEXT('USERENV','DB_NAME'), CON_ID_TO_CON_NAME(C.CON_ID)) AS CONTAINERNAME, C.USERNAME, C.PASSWORD_VERSIONS FROM CDB_USERS C WHERE C.PASSWORD_VERSIONS NOT IN ('12C') ORDER BY C.CON_ID</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure The Latest Version of The Password File Is Used" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:5978652" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT inst_id,format FROM GV$PASSWORDFILE_INFO WHERE FORMAT !='12.2'</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure No Public Database Links Exist" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:4971272" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT DECODE(V.CON_ID, 0, 'ENTIRE-' || SYS_CONTEXT('USERENV','DB_NAME'), 1, 'ROOTONLY-' || SYS_CONTEXT('USERENV','DB_NAME'), CON_ID_TO_CON_NAME(V.CON_ID)) AS CONTAINERNAME, DB_LINK, HOST FROM CDB_DB_LINKS V WHERE OWNER = 'PUBLIC'</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure That Database Link Passwords Are Using The Latest Encryption" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961897" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT DECODE(v.con_id, 0, 'Entire-' || SYS_CONTEXT('USERENV', 'DB_NAME'), 1, 'RootOnly-' || SYS_CONTEXT('USERENV', 'DB_NAME'), CON_ID_TO_CON_NAME(v.con_id)) AS container_name, name AS db_link, host, userid FROM CONTAINERS("SYS"."LINK$") v WHERE passwordx IS NOT NULL</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure All Auditable System Actions Commands Are Audited" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961908" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>WITH PRIVS(PRIVILEGE) AS ( SELECT DISTINCT A.PRIVILEGE AS NAME FROM DBA_SYS_PRIVS A WHERE A.PRIVILEGE NOT IN (SELECT NAME FROM AUDITABLE_SYSTEM_ACTIONS WHERE COMPONENT='Standard') AND PRIVILEGE NOT IN ('INHERIT ANY PRIVILEGES') UNION SELECT A.NAME FROM AUDITABLE_SYSTEM_ACTIONS A WHERE COMPONENT='Standard' AND A.NAME NOT IN ('ALL','SELECT','DELETE','INSERT','UPDATE','EXECUTE','LOGON','LOGOFF') ), CIS_AUDIT(CONTAINERNAME, CON_ID, AUDIT_OPTION) AS( SELECT C.NAME, C.CON_ID, LL.PRIVILEGE FROM V$CONTAINERS C, PRIVS LL WHERE C.OPEN_MODE='READ WRITE' ), AUDIT_ENABLED AS ( SELECT DISTINCT AUD.CON_ID, AUDIT_OPTION FROM CONTAINERS(AUDIT_UNIFIED_POLICIES) AUD WHERE AUD.AUDIT_OPTION IN (SELECT PRIVILEGE FROM PRIVS ) AND AUD.AUDIT_OPTION_TYPE IN ('SYSTEM PRIVILEGE','STANDARD ACTION') AND EXISTS (SELECT ENABLED.* FROM CONTAINERS(AUDIT_UNIFIED_ENABLED_POLICIES) ENABLED WHERE ENABLED.SUCCESS = 'YES' AND ENABLED.FAILURE = 'YES' AND ENABLED.ENABLED_OPTION = 'BY USER' AND ENABLED.ENTITY_NAME = 'ALL USERS' AND ENABLED.POLICY_NAME = AUD.POLICY_NAME AND ENABLED.CON_ID = AUD.CON_ID) ) SELECT C.CONTAINERNAME, C.AUDIT_OPTION FROM CIS_AUDIT C LEFT JOIN AUDIT_ENABLED E ON C.AUDIT_OPTION = E.AUDIT_OPTION AND E.CON_ID = C.CON_ID WHERE E.AUDIT_OPTION IS NULL ORDER BY 1, 2</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure the 'LOGON' AND 'LOGOFF' Actions Audit Is Enabled" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961898" version="1">
+         <engine>oracle</engine>
+         <version>19c</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>WITH CIS_AUDIT(CONTAINERNAME, CON_ID, AUDIT_OPTION) AS( SELECT C.NAME, C.CON_ID, LL.* FROM V$CONTAINERS C, TABLE(DBMSOUTPUT_LINESARRAY('LOGON','LOGOFF')) LL WHERE C.OPEN_MODE='READ WRITE' ), AUDIT_ENABLED AS ( SELECT DISTINCT AUD.CON_ID, AUDIT_OPTION FROM CONTAINERS(AUDIT_UNIFIED_POLICIES) AUD WHERE AUD.AUDIT_OPTION IN ('LOGON','LOGOFF') AND AUD.AUDIT_OPTION_TYPE = 'STANDARD ACTION' AND EXISTS (SELECT ENABLED.* FROM CONTAINERS(AUDIT_UNIFIED_ENABLED_POLICIES) ENABLED WHERE ENABLED.SUCCESS = 'YES' AND ENABLED.FAILURE = 'YES' AND ENABLED.ENABLED_OPTION = 'BY USER' AND ENABLED.ENTITY_NAME = 'ALL USERS' AND ENABLED.POLICY_NAME = AUD.POLICY_NAME AND ENABLED.CON_ID = AUD.CON_ID) ) SELECT C.CONTAINERNAME, C.AUDIT_OPTION FROM CIS_AUDIT C LEFT JOIN AUDIT_ENABLED E ON C.AUDIT_OPTION = E.AUDIT_OPTION AND E.CON_ID = C.CON_ID WHERE E.AUDIT_OPTION IS NULL ORDER BY 1, 2</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure Critical Packages Are Audited" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961904" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>WITH CIS_AUDIT(NAME, CON_ID, AUDIT_OBJECT_NAME) AS( SELECT C.NAME, C.CON_ID, LL.* FROM V$CONTAINERS C, TABLE(DBMSOUTPUT_LINESARRAY('DBMS_AW','DBMS_CRYPTO','DBMS_FGA', 'DBMS_JAVA_TEST','DBMS_JOB','DBMS_LOGMNR', 'DBMS_NETWORK_ACL_ADMIN','DBMS_REDACT','DBMS_REDEFINITION','DBMS_RLS', 'DBMS_SCHEDULER','DBMS_SQL_TRANSLATOR','DBMS_SYS_SQL','DBMS_TSDP_MANAGE', 'DBMS_TSDP_PROTECT','DBMS_XMLGEN','DBMS_XMLSTORE','OWA_UTIL') ) LL WHERE C.OPEN_MODE='READ WRITE' ), AUDIT_ENABLED AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(AUD.CON_ID) AS CONTAINERNAME, AUDIT_OPTION, AUD.OBJECT_NAME, AUD.POLICY_NAME, AUD.CON_ID FROM CONTAINERS(AUDIT_UNIFIED_POLICIES) AUD WHERE AUD.OBJECT_NAME IN ('DBMS_AW','DBMS_CRYPTO','DBMS_FGA','DBMS_JAVA_TEST','DBMS_JOB','DBMS_LOGMNR', 'DBMS_NETWORK_ACL_ADMIN','DBMS_REDACT','DBMS_REDEFINITION','DBMS_RLS', 'DBMS_SCHEDULER','DBMS_SQL_TRANSLATOR','DBMS_SYS_SQL','DBMS_TSDP_MANAGE', 'DBMS_TSDP_PROTECT','DBMS_XMLGEN','DBMS_XMLSTORE','OWA_UTIL') AND AUD.AUDIT_OPTION_TYPE = 'OBJECT ACTION' AND EXISTS (SELECT CON_ID_TO_CON_NAME(ENABLED.CON_ID) AS CONTAINERNAME, ENABLED.* FROM CONTAINERS(AUDIT_UNIFIED_ENABLED_POLICIES) ENABLED WHERE ENABLED.SUCCESS = 'YES' AND ENABLED.FAILURE = 'YES' AND ENABLED.ENABLED_OPTION = 'BY USER' AND ENABLED.ENTITY_NAME = 'ALL USERS' AND ENABLED.POLICY_NAME = AUD.POLICY_NAME AND ENABLED.CON_ID = AUD.CON_ID) ) SELECT C.NAME, C.AUDIT_OBJECT_NAME FROM CIS_AUDIT C LEFT JOIN AUDIT_ENABLED E ON C.AUDIT_OBJECT_NAME = E.OBJECT_NAME AND E.CON_ID = C.CON_ID WHERE E.OBJECT_NAME IS NULL ORDER BY 1, 2</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure All Export Activities Are Audited" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961906" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>WITH CIS_AUDIT(NAME, CON_ID, AUDIT_OPTION) AS( SELECT C.NAME, C.CON_ID, 'EXPORT' AS AUDIT_OPTION FROM V$CONTAINERS C WHERE C.OPEN_MODE='READ WRITE' ), AUDIT_ENABLED AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(AUD.CON_ID) AS CONTAINERNAME, AUDIT_OPTION, AUD.POLICY_NAME, AUD.CON_ID FROM CONTAINERS(AUDIT_UNIFIED_POLICIES) AUD WHERE AUD.AUDIT_OPTION IN ('EXPORT') AND AUD.AUDIT_OPTION_TYPE = 'DATAPUMP ACTION' AND EXISTS (SELECT CON_ID_TO_CON_NAME(ENABLED.CON_ID) AS CONTAINERNAME, ENABLED.* FROM CONTAINERS(AUDIT_UNIFIED_ENABLED_POLICIES) ENABLED WHERE ENABLED.SUCCESS = 'YES' AND ENABLED.FAILURE = 'YES' AND ENABLED.ENABLED_OPTION = 'BY USER' AND ENABLED.ENTITY_NAME = 'ALL USERS' AND ENABLED.POLICY_NAME = AUD.POLICY_NAME AND ENABLED.CON_ID = AUD.CON_ID) ) SELECT C.NAME, C.AUDIT_OPTION FROM CIS_AUDIT C LEFT JOIN AUDIT_ENABLED E ON C.AUDIT_OPTION = E.AUDIT_OPTION AND E.CON_ID = C.CON_ID WHERE E.AUDIT_OPTION IS NULL ORDER BY 1, 2</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure The Use Of SYS* Privileges Is Audited" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6923384" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>WITH CIS_AUDIT(CONTAINERNAME, CON_ID, AUDIT_OPTION, ENTITY_NAME) AS( SELECT C.NAME, C.CON_ID, 'ALL' AS AUDIT_OPTION, LL.* FROM V$CONTAINERS C, TABLE(DBMSOUTPUT_LINESARRAY('SYS','SYSBACKUP','SYSDG','SYSKM','SYSRAC','PUBLIC')) LL WHERE C.OPEN_MODE='READ WRITE' ), AUDIT_ENABLED AS ( SELECT DISTINCT AUD.CON_ID, AUD.AUDIT_OPTION, ENABLED.ENTITY_NAME FROM CONTAINERS(AUDIT_UNIFIED_POLICIES) AUD, CONTAINERS(AUDIT_UNIFIED_ENABLED_POLICIES) ENABLED WHERE ENABLED.CON_ID = AUD.CON_ID AND ENABLED.POLICY_NAME = AUD.POLICY_NAME AND AUD.AUDIT_OPTION IN ('ALL') AND AUD.AUDIT_OPTION_TYPE = 'STANDARD ACTION' AND ENABLED.SUCCESS = 'YES' AND ENABLED.FAILURE = 'YES' AND ENABLED.ENABLED_OPTION = 'BY USER' AND ENABLED.ENTITY_NAME IN ('SYS','SYSBACKUP','SYSDG','SYSKM','SYSRAC','PUBLIC') ) SELECT C.CONTAINERNAME, C.AUDIT_OPTION, C.ENTITY_NAME FROM CIS_AUDIT C LEFT JOIN AUDIT_ENABLED E ON C.AUDIT_OPTION = E.AUDIT_OPTION AND C.ENTITY_NAME = E.ENTITY_NAME AND E.CON_ID = C.CON_ID WHERE E.AUDIT_OPTION IS NULL ORDER BY 1, 2, 3</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure '%ANY%' Is Revoked from Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961913" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>WITH GRANTEES_NOT_ORACLEMAINTAINED AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, ROLE AS GRANTEE FROM CDB_ROLES WHERE ORACLE_MAINTAINED = 'N' UNION SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, USERNAME AS GRANTEE FROM CDB_USERS WHERE ORACLE_MAINTAINED = 'N' ), DIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, PRIVILEGE AS GRANTED_PRIVILEGE, 'Direct Grant' AS HOW_GRANTED FROM CDB_SYS_PRIVS WHERE PRIVILEGE LIKE '%ANY%' ), INDIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, GRANTED_ROLE AS GRANTED_PRIVILEGE, 'Privileges Through Role' AS HOW_GRANTED FROM CDB_ROLE_PRIVS START WITH GRANTED_ROLE IN ( SELECT DISTINCT P.GRANTEE FROM SYS.CDB_SYS_PRIVS P, SYS.CDB_ROLES R WHERE P.PRIVILEGE LIKE '%ANY%' AND P.GRANTEE = R.ROLE) CONNECT BY PRIOR GRANTEE = GRANTED_ROLE ) SELECT CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE, HOW_GRANTED FROM ( SELECT * FROM DIRECT_PRIVS UNION SELECT * FROM INDIRECT_PRIVS ) COMBINED_PRIVS WHERE GRANTEE IN (SELECT GRANTEE FROM GRANTEES_NOT_ORACLEMAINTAINED) ORDER BY CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure Admin Privileges Are Revoked from Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6931081" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>WITH GRANTEES_NOT_ORACLEMAINTAINED AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, ROLE AS GRANTEE FROM CDB_ROLES WHERE ORACLE_MAINTAINED = 'N' UNION SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, USERNAME AS GRANTEE FROM CDB_USERS WHERE ORACLE_MAINTAINED = 'N' ), DIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, PRIVILEGE AS GRANTED_PRIVILEGE, 'Direct Grant' AS HOW_GRANTED FROM CDB_SYS_PRIVS WHERE ADMIN_OPTION = 'YES' ), INDIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, GRANTED_ROLE AS GRANTED_PRIVILEGE, 'Privileges Through Role' AS HOW_GRANTED FROM CDB_ROLE_PRIVS START WITH GRANTED_ROLE IN ( SELECT DISTINCT P.GRANTEE FROM SYS.CDB_SYS_PRIVS P, SYS.CDB_ROLES R WHERE P.ADMIN_OPTION = 'Y' AND P.GRANTEE = R.ROLE) CONNECT BY PRIOR GRANTEE = GRANTED_ROLE ) SELECT CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE, HOW_GRANTED FROM ( SELECT * FROM DIRECT_PRIVS UNION SELECT * FROM INDIRECT_PRIVS ) COMBINED_PRIVS WHERE GRANTEE IN (SELECT GRANTEE FROM GRANTEES_NOT_ORACLEMAINTAINED) ORDER BY CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'IMPORT' And 'EXPORT' 'FULL DATABASE' Is Revoked From Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6931449" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>WITH GRANTEES_NOT_ORACLEMAINTAINED AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, ROLE AS GRANTEE FROM CDB_ROLES WHERE ORACLE_MAINTAINED = 'N' UNION SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, USERNAME AS GRANTEE FROM CDB_USERS WHERE ORACLE_MAINTAINED = 'N' ), DIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, PRIVILEGE AS GRANTED_PRIVILEGE, 'Direct Grant' AS HOW_GRANTED FROM CDB_SYS_PRIVS WHERE PRIVILEGE IN ('IMPORT FULL DATABASE','EXPORT FULL DATABASE') ), INDIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, GRANTED_ROLE AS GRANTED_PRIVILEGE, 'Privileges Through Role' AS HOW_GRANTED FROM CDB_ROLE_PRIVS START WITH GRANTED_ROLE IN ( SELECT DISTINCT P.GRANTEE FROM SYS.CDB_SYS_PRIVS P, SYS.CDB_ROLES R WHERE P.PRIVILEGE IN ('IMPORT FULL DATABASE','EXPORT FULL DATABASE') AND P.GRANTEE = R.ROLE) CONNECT BY PRIOR GRANTEE = GRANTED_ROLE ) SELECT CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE, HOW_GRANTED FROM ( SELECT * FROM DIRECT_PRIVS UNION SELECT * FROM INDIRECT_PRIVS ) COMBINED_PRIVS WHERE GRANTEE IN (SELECT GRANTEE FROM GRANTEES_NOT_ORACLEMAINTAINED) ORDER BY CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'CREATE EXTERNAL JOB' Is Revoked From Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6931468" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>WITH GRANTEES_NOT_ORACLEMAINTAINED AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, ROLE AS GRANTEE FROM CDB_ROLES WHERE ORACLE_MAINTAINED = 'N' UNION SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, USERNAME AS GRANTEE FROM CDB_USERS WHERE ORACLE_MAINTAINED = 'N' ), DIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, PRIVILEGE AS GRANTED_PRIVILEGE, 'Direct Grant' AS HOW_GRANTED FROM CDB_SYS_PRIVS WHERE PRIVILEGE IN ('CREATE EXTERNAL JOB') ), INDIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, GRANTED_ROLE AS GRANTED_PRIVILEGE, 'Privileges Through Role' AS HOW_GRANTED FROM CDB_ROLE_PRIVS START WITH GRANTED_ROLE IN ( SELECT DISTINCT P.GRANTEE FROM SYS.CDB_SYS_PRIVS P, SYS.CDB_ROLES R WHERE P.PRIVILEGE IN ('CREATE EXTERNAL JOB') AND P.GRANTEE = R.ROLE) CONNECT BY PRIOR GRANTEE = GRANTED_ROLE ) SELECT CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE, HOW_GRANTED FROM ( SELECT * FROM DIRECT_PRIVS UNION SELECT * FROM INDIRECT_PRIVS ) COMBINED_PRIVS WHERE GRANTEE IN (SELECT GRANTEE FROM GRANTEES_NOT_ORACLEMAINTAINED) ORDER BY CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'BECOME USER' Is Revoked From Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6931470" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>WITH GRANTEES_NOT_ORACLEMAINTAINED AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, ROLE AS GRANTEE FROM CDB_ROLES WHERE ORACLE_MAINTAINED = 'N' UNION SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, USERNAME AS GRANTEE FROM CDB_USERS WHERE ORACLE_MAINTAINED = 'N' ), DIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, PRIVILEGE AS GRANTED_PRIVILEGE, 'Direct Grant' AS HOW_GRANTED FROM CDB_SYS_PRIVS WHERE PRIVILEGE IN ('BECOME USER') ), INDIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, GRANTED_ROLE AS GRANTED_PRIVILEGE, 'Privileges Through Role' AS HOW_GRANTED FROM CDB_ROLE_PRIVS START WITH GRANTED_ROLE IN ( SELECT DISTINCT P.GRANTEE FROM SYS.CDB_SYS_PRIVS P, SYS.CDB_ROLES R WHERE P.PRIVILEGE IN ('BECOME USER') AND P.GRANTEE = R.ROLE) CONNECT BY PRIOR GRANTEE = GRANTED_ROLE ) SELECT CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE, HOW_GRANTED FROM ( SELECT * FROM DIRECT_PRIVS UNION SELECT * FROM INDIRECT_PRIVS ) COMBINED_PRIVS WHERE GRANTEE IN (SELECT GRANTEE FROM GRANTEES_NOT_ORACLEMAINTAINED) ORDER BY CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'TEXT DATASTORE ACCESS' Is Revoked From Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6931483" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>WITH GRANTEES_NOT_ORACLEMAINTAINED AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, ROLE AS GRANTEE FROM CDB_ROLES WHERE ORACLE_MAINTAINED = 'N' UNION SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, USERNAME AS GRANTEE FROM CDB_USERS WHERE ORACLE_MAINTAINED = 'N' ), DIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, PRIVILEGE AS GRANTED_PRIVILEGE, 'Direct Grant' AS HOW_GRANTED FROM CDB_SYS_PRIVS WHERE PRIVILEGE IN ('TEXT DATASTORE ACCESS') ), INDIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, GRANTED_ROLE AS GRANTED_PRIVILEGE, 'Privileges Through Role' AS HOW_GRANTED FROM CDB_ROLE_PRIVS START WITH GRANTED_ROLE IN ( SELECT DISTINCT P.GRANTEE FROM SYS.CDB_SYS_PRIVS P, SYS.CDB_ROLES R WHERE P.PRIVILEGE IN ('TEXT DATASTORE ACCESS') AND P.GRANTEE = R.ROLE) CONNECT BY PRIOR GRANTEE = GRANTED_ROLE ) SELECT CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE, HOW_GRANTED FROM ( SELECT * FROM DIRECT_PRIVS UNION SELECT * FROM INDIRECT_PRIVS ) COMBINED_PRIVS WHERE GRANTEE IN (SELECT GRANTEE FROM GRANTEES_NOT_ORACLEMAINTAINED) ORDER BY CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'CREATE', 'ALTER', And 'DROP' 'PUBLIC DATABASE LINK' Is Revoked From Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6931579" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>WITH GRANTEES_NOT_ORACLEMAINTAINED AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, ROLE AS GRANTEE FROM CDB_ROLES WHERE ORACLE_MAINTAINED = 'N' UNION SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, USERNAME AS GRANTEE FROM CDB_USERS WHERE ORACLE_MAINTAINED = 'N' ), DIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, PRIVILEGE AS GRANTED_PRIVILEGE, 'Direct Grant' AS HOW_GRANTED FROM CDB_SYS_PRIVS WHERE PRIVILEGE IN ('CREATE PUBLIC DATABASE LINK','ALTER PUBLIC DATABASE LINK','DROP PUBLIC DATABASE LINK') ), INDIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, GRANTED_ROLE AS GRANTED_PRIVILEGE, 'Privileges Through Role' AS HOW_GRANTED FROM CDB_ROLE_PRIVS START WITH GRANTED_ROLE IN ( SELECT DISTINCT P.GRANTEE FROM SYS.CDB_SYS_PRIVS P, SYS.CDB_ROLES R WHERE P.PRIVILEGE IN ('CREATE PUBLIC DATABASE LINK','ALTER PUBLIC DATABASE LINK','DROP PUBLIC DATABASE LINK') AND P.GRANTEE = R.ROLE) CONNECT BY PRIOR GRANTEE = GRANTED_ROLE ) SELECT CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE, HOW_GRANTED FROM ( SELECT * FROM DIRECT_PRIVS UNION SELECT * FROM INDIRECT_PRIVS ) COMBINED_PRIVS WHERE GRANTEE IN (SELECT GRANTEE FROM GRANTEES_NOT_ORACLEMAINTAINED) ORDER BY CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'LOGMINING' Is Revoked From Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6931581" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>WITH GRANTEES_NOT_ORACLEMAINTAINED AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, ROLE AS GRANTEE FROM CDB_ROLES WHERE ORACLE_MAINTAINED = 'N' UNION SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, USERNAME AS GRANTEE FROM CDB_USERS WHERE ORACLE_MAINTAINED = 'N' ), DIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, PRIVILEGE AS GRANTED_PRIVILEGE, 'Direct Grant' AS HOW_GRANTED FROM CDB_SYS_PRIVS WHERE PRIVILEGE IN ('LOGMINING') ), INDIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, GRANTED_ROLE AS GRANTED_PRIVILEGE, 'Privileges Through Role' AS HOW_GRANTED FROM CDB_ROLE_PRIVS START WITH GRANTED_ROLE IN ( SELECT DISTINCT P.GRANTEE FROM SYS.CDB_SYS_PRIVS P, SYS.CDB_ROLES R WHERE P.PRIVILEGE IN ('LOGMINING') AND P.GRANTEE = R.ROLE) CONNECT BY PRIOR GRANTEE = GRANTED_ROLE ) SELECT CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE, HOW_GRANTED FROM ( SELECT * FROM DIRECT_PRIVS UNION SELECT * FROM INDIRECT_PRIVS ) COMBINED_PRIVS WHERE GRANTEE IN (SELECT GRANTEE FROM GRANTEES_NOT_ORACLEMAINTAINED) ORDER BY CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'ALTER SYSTEM' Is Revoked from Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961915" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>WITH GRANTEES_NOT_ORACLEMAINTAINED AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, ROLE AS GRANTEE FROM CDB_ROLES WHERE ORACLE_MAINTAINED = 'N' UNION SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, USERNAME AS GRANTEE FROM CDB_USERS WHERE ORACLE_MAINTAINED = 'N' ), DIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, PRIVILEGE AS GRANTED_PRIVILEGE, 'Direct Grant' AS HOW_GRANTED FROM CDB_SYS_PRIVS WHERE PRIVILEGE IN ('ALTER SYSTEM') ), INDIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, GRANTED_ROLE AS GRANTED_PRIVILEGE, 'Privileges Through Role' AS HOW_GRANTED FROM CDB_ROLE_PRIVS START WITH GRANTED_ROLE IN ( SELECT DISTINCT P.GRANTEE FROM SYS.CDB_SYS_PRIVS P, SYS.CDB_ROLES R WHERE P.PRIVILEGE IN ('ALTER SYSTEM') AND P.GRANTEE = R.ROLE) CONNECT BY PRIOR GRANTEE = GRANTED_ROLE ) SELECT CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE, HOW_GRANTED FROM ( SELECT * FROM DIRECT_PRIVS UNION SELECT * FROM INDIRECT_PRIVS ) COMBINED_PRIVS WHERE GRANTEE IN (SELECT GRANTEE FROM GRANTEES_NOT_ORACLEMAINTAINED) ORDER BY CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'CREATE LIBRARY' Is Revoked From Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961917" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>WITH GRANTEES_NOT_ORACLEMAINTAINED AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, ROLE AS GRANTEE FROM CDB_ROLES WHERE ORACLE_MAINTAINED = 'N' UNION SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, USERNAME AS GRANTEE FROM CDB_USERS WHERE ORACLE_MAINTAINED = 'N' ), DIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, PRIVILEGE AS GRANTED_PRIVILEGE, 'Direct Grant' AS HOW_GRANTED FROM CDB_SYS_PRIVS WHERE PRIVILEGE IN ('CREATE LIBRARY') ), INDIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, GRANTED_ROLE AS GRANTED_PRIVILEGE, 'Privileges Through Role' AS HOW_GRANTED FROM CDB_ROLE_PRIVS START WITH GRANTED_ROLE IN ( SELECT DISTINCT P.GRANTEE FROM SYS.CDB_SYS_PRIVS P, SYS.CDB_ROLES R WHERE P.PRIVILEGE IN ('CREATE LIBRARY') AND P.GRANTEE = R.ROLE) CONNECT BY PRIOR GRANTEE = GRANTED_ROLE ) SELECT CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE, HOW_GRANTED FROM ( SELECT * FROM DIRECT_PRIVS UNION SELECT * FROM INDIRECT_PRIVS ) COMBINED_PRIVS WHERE GRANTEE IN (SELECT GRANTEE FROM GRANTEES_NOT_ORACLEMAINTAINED) ORDER BY CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure All SYSTEM Privileges Are Revoked from Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6934011" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>WITH GRANTEES_NOT_ORACLEMAINTAINED AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, ROLE AS GRANTEE FROM CDB_ROLES WHERE ORACLE_MAINTAINED = 'N' UNION SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, USERNAME AS GRANTEE FROM CDB_USERS WHERE ORACLE_MAINTAINED = 'N' ), DIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, PRIVILEGE AS GRANTED_PRIVILEGE, 'Direct Grant' AS HOW_GRANTED FROM CDB_SYS_PRIVS ), INDIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, GRANTED_ROLE AS GRANTED_PRIVILEGE, 'Privileges Through Role' AS HOW_GRANTED FROM CDB_ROLE_PRIVS START WITH GRANTED_ROLE IN ( SELECT DISTINCT P.GRANTEE FROM SYS.CDB_SYS_PRIVS P, SYS.CDB_ROLES R WHERE P.GRANTEE = R.ROLE) CONNECT BY PRIOR GRANTEE = GRANTED_ROLE ) SELECT CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE, HOW_GRANTED FROM ( SELECT * FROM DIRECT_PRIVS UNION SELECT * FROM INDIRECT_PRIVS ) COMBINED_PRIVS WHERE GRANTEE IN (SELECT GRANTEE FROM GRANTEES_NOT_ORACLEMAINTAINED) ORDER BY CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'DBA' Is Revoked from Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961919" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>WITH GRANTEES_NOT_ORACLEMAINTAINED AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, ROLE AS GRANTEE FROM CDB_ROLES WHERE ORACLE_MAINTAINED = 'N' UNION SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, USERNAME AS GRANTEE FROM CDB_USERS WHERE ORACLE_MAINTAINED = 'N' ), DIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, GRANTED_ROLE AS GRANTED_PRIVILEGE, 'Direct Grant' AS HOW_GRANTED FROM CDB_ROLE_PRIVS WHERE GRANTED_ROLE IN ('DBA') ), INDIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, GRANTED_ROLE AS GRANTED_PRIVILEGE, 'Privileges Through Role' AS HOW_GRANTED FROM CDB_ROLE_PRIVS START WITH GRANTED_ROLE IN ( SELECT DISTINCT P.GRANTEE FROM SYS.CDB_ROLE_PRIVS P, SYS.CDB_ROLES R WHERE P.GRANTED_ROLE IN ('DBA') AND P.GRANTEE = R.ROLE) CONNECT BY PRIOR GRANTEE = GRANTED_ROLE ) SELECT CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE, HOW_GRANTED FROM ( SELECT * FROM DIRECT_PRIVS UNION SELECT * FROM INDIRECT_PRIVS ) COMBINED_PRIVS WHERE GRANTEE IN (SELECT GRANTEE FROM GRANTEES_NOT_ORACLEMAINTAINED) ORDER BY CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'EXP_FULL_DATABASE' Is Revoked From Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6953256" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>WITH GRANTEES_NOT_ORACLEMAINTAINED AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, ROLE AS GRANTEE FROM CDB_ROLES WHERE ORACLE_MAINTAINED = 'N' UNION SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, USERNAME AS GRANTEE FROM CDB_USERS WHERE ORACLE_MAINTAINED = 'N' ), DIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, GRANTED_ROLE AS GRANTED_PRIVILEGE, 'Direct Grant' AS HOW_GRANTED FROM CDB_ROLE_PRIVS WHERE GRANTED_ROLE IN ('EXP_FULL_DATABASE') ), INDIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, GRANTED_ROLE AS GRANTED_PRIVILEGE, 'Privileges Through Role' AS HOW_GRANTED FROM CDB_ROLE_PRIVS START WITH GRANTED_ROLE IN ( SELECT DISTINCT P.GRANTEE FROM SYS.CDB_ROLE_PRIVS P, SYS.CDB_ROLES R WHERE P.GRANTED_ROLE IN ('EXP_FULL_DATABASE') AND P.GRANTEE = R.ROLE) CONNECT BY PRIOR GRANTEE = GRANTED_ROLE ) SELECT CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE, HOW_GRANTED FROM ( SELECT * FROM DIRECT_PRIVS UNION SELECT * FROM INDIRECT_PRIVS ) COMBINED_PRIVS WHERE GRANTEE IN (SELECT GRANTEE FROM GRANTEES_NOT_ORACLEMAINTAINED) ORDER BY CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'IMP_FULL_DATABASE' Is Revoked From Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6953257" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>WITH GRANTEES_NOT_ORACLEMAINTAINED AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, ROLE AS GRANTEE FROM CDB_ROLES WHERE ORACLE_MAINTAINED = 'N' UNION SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, USERNAME AS GRANTEE FROM CDB_USERS WHERE ORACLE_MAINTAINED = 'N' ), DIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, GRANTED_ROLE AS GRANTED_PRIVILEGE, 'Direct Grant' AS HOW_GRANTED FROM CDB_ROLE_PRIVS WHERE GRANTED_ROLE IN ('IMP_FULL_DATABASE') ), INDIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, GRANTED_ROLE AS GRANTED_PRIVILEGE, 'Privileges Through Role' AS HOW_GRANTED FROM CDB_ROLE_PRIVS START WITH GRANTED_ROLE IN ( SELECT DISTINCT P.GRANTEE FROM SYS.CDB_ROLE_PRIVS P, SYS.CDB_ROLES R WHERE P.GRANTED_ROLE IN ('IMP_FULL_DATABASE') AND P.GRANTEE = R.ROLE) CONNECT BY PRIOR GRANTEE = GRANTED_ROLE ) SELECT CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE, HOW_GRANTED FROM ( SELECT * FROM DIRECT_PRIVS UNION SELECT * FROM INDIRECT_PRIVS ) COMBINED_PRIVS WHERE GRANTEE IN (SELECT GRANTEE FROM GRANTEES_NOT_ORACLEMAINTAINED) ORDER BY CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'DATAPUMP_EXP_FULL_DATABASE' Is Revoked From Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6960011" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>WITH GRANTEES_NOT_ORACLEMAINTAINED AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, ROLE AS GRANTEE FROM CDB_ROLES WHERE ORACLE_MAINTAINED = 'N' UNION SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, USERNAME AS GRANTEE FROM CDB_USERS WHERE ORACLE_MAINTAINED = 'N' ), DIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, GRANTED_ROLE AS GRANTED_PRIVILEGE, 'Direct Grant' AS HOW_GRANTED FROM CDB_ROLE_PRIVS WHERE GRANTED_ROLE IN ('DATAPUMP_EXP_FULL_DATABASE') ), INDIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, GRANTED_ROLE AS GRANTED_PRIVILEGE, 'Privileges Through Role' AS HOW_GRANTED FROM CDB_ROLE_PRIVS START WITH GRANTED_ROLE IN ( SELECT DISTINCT P.GRANTEE FROM SYS.CDB_ROLE_PRIVS P, SYS.CDB_ROLES R WHERE P.GRANTED_ROLE IN ('DATAPUMP_EXP_FULL_DATABASE') AND P.GRANTEE = R.ROLE) CONNECT BY PRIOR GRANTEE = GRANTED_ROLE ) SELECT CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE, HOW_GRANTED FROM ( SELECT * FROM DIRECT_PRIVS UNION SELECT * FROM INDIRECT_PRIVS ) COMBINED_PRIVS WHERE GRANTEE IN (SELECT GRANTEE FROM GRANTEES_NOT_ORACLEMAINTAINED) ORDER BY CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'DATAPUMP_IMP_FULL_DATABASE' is Revoked From Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961922" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>WITH GRANTEES_NOT_ORACLEMAINTAINED AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, ROLE AS GRANTEE FROM CDB_ROLES WHERE ORACLE_MAINTAINED = 'N' UNION SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, USERNAME AS GRANTEE FROM CDB_USERS WHERE ORACLE_MAINTAINED = 'N' ), DIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, GRANTED_ROLE AS GRANTED_PRIVILEGE, 'Direct Grant' AS HOW_GRANTED FROM CDB_ROLE_PRIVS WHERE GRANTED_ROLE IN ('DATAPUMP_IMP_FULL_DATABASE') ), INDIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, GRANTED_ROLE AS GRANTED_PRIVILEGE, 'Privileges Through Role' AS HOW_GRANTED FROM CDB_ROLE_PRIVS START WITH GRANTED_ROLE IN ( SELECT DISTINCT P.GRANTEE FROM SYS.CDB_ROLE_PRIVS P, SYS.CDB_ROLES R WHERE P.GRANTED_ROLE IN ('DATAPUMP_IMP_FULL_DATABASE') AND P.GRANTEE = R.ROLE) CONNECT BY PRIOR GRANTEE = GRANTED_ROLE ) SELECT CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE, HOW_GRANTED FROM ( SELECT * FROM DIRECT_PRIVS UNION SELECT * FROM INDIRECT_PRIVS ) COMBINED_PRIVS WHERE GRANTEE IN (SELECT GRANTEE FROM GRANTEES_NOT_ORACLEMAINTAINED) ORDER BY CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'DV_ADMIN’ Is Revoked From Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6960015" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>``` WITH GRANTEES_NOT_ORACLEMAINTAINED AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, ROLE AS GRANTEE FROM CDB_ROLES WHERE ORACLE_MAINTAINED = 'N' UNION SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, USERNAME AS GRANTEE FROM CDB_USERS WHERE ORACLE_MAINTAINED = 'N' ), DIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, GRANTED_ROLE AS GRANTED_PRIVILEGE, 'Direct Grant' AS HOW_GRANTED FROM CDB_ROLE_PRIVS WHERE GRANTED_ROLE IN ('DV_ADMIN') ), INDIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, GRANTED_ROLE AS GRANTED_PRIVILEGE, 'Privileges Through Role' AS HOW_GRANTED FROM CDB_ROLE_PRIVS START WITH GRANTED_ROLE IN ( SELECT DISTINCT P.GRANTEE FROM SYS.CDB_ROLE_PRIVS P, SYS.CDB_ROLES R WHERE P.GRANTED_ROLE IN ('DV_ADMIN') AND P.GRANTEE = R.ROLE) CONNECT BY PRIOR GRANTEE = GRANTED_ROLE ) SELECT CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE, HOW_GRANTED FROM ( SELECT * FROM DIRECT_PRIVS UNION SELECT * FROM INDIRECT_PRIVS ) COMBINED_PRIVS WHERE GRANTEE IN (SELECT GRANTEE FROM GRANTEES_NOT_ORACLEMAINTAINED) ORDER BY CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'DV_AUDIT_CLEANUP’ Is Revoked From Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6960030" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>WITH GRANTEES_NOT_ORACLEMAINTAINED AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, ROLE AS GRANTEE FROM CDB_ROLES WHERE ORACLE_MAINTAINED = 'N' UNION SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, USERNAME AS GRANTEE FROM CDB_USERS WHERE ORACLE_MAINTAINED = 'N' ), DIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, GRANTED_ROLE AS GRANTED_PRIVILEGE, 'Direct Grant' AS HOW_GRANTED FROM CDB_ROLE_PRIVS WHERE GRANTED_ROLE IN ('DV_AUDIT_CLEANUP') ), INDIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, GRANTED_ROLE AS GRANTED_PRIVILEGE, 'Privileges Through Role' AS HOW_GRANTED FROM CDB_ROLE_PRIVS START WITH GRANTED_ROLE IN ( SELECT DISTINCT P.GRANTEE FROM SYS.CDB_ROLE_PRIVS P, SYS.CDB_ROLES R WHERE P.GRANTED_ROLE IN ('DV_AUDIT_CLEANUP') AND P.GRANTEE = R.ROLE) CONNECT BY PRIOR GRANTEE = GRANTED_ROLE ) SELECT CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE, HOW_GRANTED FROM ( SELECT * FROM DIRECT_PRIVS UNION SELECT * FROM INDIRECT_PRIVS ) COMBINED_PRIVS WHERE GRANTEE IN (SELECT GRANTEE FROM GRANTEES_NOT_ORACLEMAINTAINED) ORDER BY CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'OLAP_DBA' Is Revoked From Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961923" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>WITH GRANTEES_NOT_ORACLEMAINTAINED AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, ROLE AS GRANTEE FROM CDB_ROLES WHERE ORACLE_MAINTAINED = 'N' UNION SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, USERNAME AS GRANTEE FROM CDB_USERS WHERE ORACLE_MAINTAINED = 'N' ), DIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, GRANTED_ROLE AS GRANTED_PRIVILEGE, 'Direct Grant' AS HOW_GRANTED FROM CDB_ROLE_PRIVS WHERE GRANTED_ROLE IN ('OLAP_DBA') ), INDIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, GRANTED_ROLE AS GRANTED_PRIVILEGE, 'Privileges Through Role' AS HOW_GRANTED FROM CDB_ROLE_PRIVS START WITH GRANTED_ROLE IN ( SELECT DISTINCT P.GRANTEE FROM SYS.CDB_ROLE_PRIVS P, SYS.CDB_ROLES R WHERE P.GRANTED_ROLE IN ('OLAP_DBA') AND P.GRANTEE = R.ROLE) CONNECT BY PRIOR GRANTEE = GRANTED_ROLE ) SELECT CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE, HOW_GRANTED FROM ( SELECT * FROM DIRECT_PRIVS UNION SELECT * FROM INDIRECT_PRIVS ) COMBINED_PRIVS WHERE GRANTEE IN (SELECT GRANTEE FROM GRANTEES_NOT_ORACLEMAINTAINED) ORDER BY CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'LBAC_DBA' Is Revoked From Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961924" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>WITH GRANTEES_NOT_ORACLEMAINTAINED AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, ROLE AS GRANTEE FROM CDB_ROLES WHERE ORACLE_MAINTAINED = 'N' UNION SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, USERNAME AS GRANTEE FROM CDB_USERS WHERE ORACLE_MAINTAINED = 'N' ), DIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, GRANTED_ROLE AS GRANTED_PRIVILEGE, 'Direct Grant' AS HOW_GRANTED FROM CDB_ROLE_PRIVS WHERE GRANTED_ROLE IN ('LBAC_DBA') ), INDIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, GRANTED_ROLE AS GRANTED_PRIVILEGE, 'Privileges Through Role' AS HOW_GRANTED FROM CDB_ROLE_PRIVS START WITH GRANTED_ROLE IN ( SELECT DISTINCT P.GRANTEE FROM SYS.CDB_ROLE_PRIVS P, SYS.CDB_ROLES R WHERE P.GRANTED_ROLE IN ('LBAC_DBA') AND P.GRANTEE = R.ROLE) CONNECT BY PRIOR GRANTEE = GRANTED_ROLE ) SELECT CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE, HOW_GRANTED FROM ( SELECT * FROM DIRECT_PRIVS UNION SELECT * FROM INDIRECT_PRIVS ) COMBINED_PRIVS WHERE GRANTEE IN (SELECT GRANTEE FROM GRANTEES_NOT_ORACLEMAINTAINED) ORDER BY CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'JAVA_ADMIN' Is Revoked From Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961925" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>WITH GRANTEES_NOT_ORACLEMAINTAINED AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, ROLE AS GRANTEE FROM CDB_ROLES WHERE ORACLE_MAINTAINED = 'N' UNION SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, USERNAME AS GRANTEE FROM CDB_USERS WHERE ORACLE_MAINTAINED = 'N' ), DIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, GRANTED_ROLE AS GRANTED_PRIVILEGE, 'Direct Grant' AS HOW_GRANTED FROM CDB_ROLE_PRIVS WHERE GRANTED_ROLE IN ('JAVA_ADMIN') ), INDIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, GRANTED_ROLE AS GRANTED_PRIVILEGE, 'Privileges Through Role' AS HOW_GRANTED FROM CDB_ROLE_PRIVS START WITH GRANTED_ROLE IN ( SELECT DISTINCT P.GRANTEE FROM SYS.CDB_ROLE_PRIVS P, SYS.CDB_ROLES R WHERE P.GRANTED_ROLE IN ('JAVA_ADMIN') AND P.GRANTEE = R.ROLE) CONNECT BY PRIOR GRANTEE = GRANTED_ROLE ) SELECT CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE, HOW_GRANTED FROM ( SELECT * FROM DIRECT_PRIVS UNION SELECT * FROM INDIRECT_PRIVS ) COMBINED_PRIVS WHERE GRANTEE IN (SELECT GRANTEE FROM GRANTEES_NOT_ORACLEMAINTAINED) ORDER BY CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'JAVASYSPRIVS' Is Revoked From Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961928" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>WITH GRANTEES_NOT_ORACLEMAINTAINED AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, ROLE AS GRANTEE FROM CDB_ROLES WHERE ORACLE_MAINTAINED = 'N' UNION SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, USERNAME AS GRANTEE FROM CDB_USERS WHERE ORACLE_MAINTAINED = 'N' ), DIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, GRANTED_ROLE AS GRANTED_PRIVILEGE, 'Direct Grant' AS HOW_GRANTED FROM CDB_ROLE_PRIVS WHERE GRANTED_ROLE IN ('JAVAUSERPRIV') ), INDIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, GRANTED_ROLE AS GRANTED_PRIVILEGE, 'Privileges Through Role' AS HOW_GRANTED FROM CDB_ROLE_PRIVS START WITH GRANTED_ROLE IN ( SELECT DISTINCT P.GRANTEE FROM SYS.CDB_ROLE_PRIVS P, SYS.CDB_ROLES R WHERE P.GRANTED_ROLE IN ('JAVAUSERPRIV') AND P.GRANTEE = R.ROLE) CONNECT BY PRIOR GRANTEE = GRANTED_ROLE ) SELECT CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE, HOW_GRANTED FROM ( SELECT * FROM DIRECT_PRIVS UNION SELECT * FROM INDIRECT_PRIVS ) COMBINED_PRIVS WHERE GRANTEE IN (SELECT GRANTEE FROM GRANTEES_NOT_ORACLEMAINTAINED) ORDER BY CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'LOGSTDBY_ADMINISTRATOR' Is Revoked From Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961931" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>WITH GRANTEES_NOT_ORACLEMAINTAINED AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, ROLE AS GRANTEE FROM CDB_ROLES WHERE ORACLE_MAINTAINED = 'N' UNION SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, USERNAME AS GRANTEE FROM CDB_USERS WHERE ORACLE_MAINTAINED = 'N' ), DIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, GRANTED_ROLE AS GRANTED_PRIVILEGE, 'Direct Grant' AS HOW_GRANTED FROM CDB_ROLE_PRIVS WHERE GRANTED_ROLE IN ('LOGSTDBY_ADMINISTRATOR') ), INDIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, GRANTED_ROLE AS GRANTED_PRIVILEGE, 'Privileges Through Role' AS HOW_GRANTED FROM CDB_ROLE_PRIVS START WITH GRANTED_ROLE IN ( SELECT DISTINCT P.GRANTEE FROM SYS.CDB_ROLE_PRIVS P, SYS.CDB_ROLES R WHERE P.GRANTED_ROLE IN ('LOGSTDBY_ADMINISTRATOR') AND P.GRANTEE = R.ROLE) CONNECT BY PRIOR GRANTEE = GRANTED_ROLE ) SELECT CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE, HOW_GRANTED FROM ( SELECT * FROM DIRECT_PRIVS UNION SELECT * FROM INDIRECT_PRIVS ) COMBINED_PRIVS WHERE GRANTEE IN (SELECT GRANTEE FROM GRANTEES_NOT_ORACLEMAINTAINED) ORDER BY CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'SQL_FIREWALL_ADMIN' Is Revoked From Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961933" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>WITH GRANTEES_NOT_ORACLEMAINTAINED AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, ROLE AS GRANTEE FROM CDB_ROLES WHERE ORACLE_MAINTAINED = 'N' UNION SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, USERNAME AS GRANTEE FROM CDB_USERS WHERE ORACLE_MAINTAINED = 'N' ), DIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, GRANTED_ROLE AS GRANTED_PRIVILEGE, 'Direct Grant' AS HOW_GRANTED FROM CDB_ROLE_PRIVS WHERE GRANTED_ROLE IN ('SQL_FIREWALL_ADMIN') ), INDIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, GRANTED_ROLE AS GRANTED_PRIVILEGE, 'Privileges Through Role' AS HOW_GRANTED FROM CDB_ROLE_PRIVS START WITH GRANTED_ROLE IN ( SELECT DISTINCT P.GRANTEE FROM SYS.CDB_ROLE_PRIVS P, SYS.CDB_ROLES R WHERE P.GRANTED_ROLE IN ('SQL_FIREWALL_ADMIN') AND P.GRANTEE = R.ROLE) CONNECT BY PRIOR GRANTEE = GRANTED_ROLE ) SELECT CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE, HOW_GRANTED FROM ( SELECT * FROM DIRECT_PRIVS UNION SELECT * FROM INDIRECT_PRIVS ) COMBINED_PRIVS WHERE GRANTEE IN (SELECT GRANTEE FROM GRANTEES_NOT_ORACLEMAINTAINED) ORDER BY CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'MAINTPLAN_APP' Is Revoked From Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961935" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>WITH GRANTEES_NOT_ORACLEMAINTAINED AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, ROLE AS GRANTEE FROM CDB_ROLES WHERE ORACLE_MAINTAINED = 'N' UNION SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, USERNAME AS GRANTEE FROM CDB_USERS WHERE ORACLE_MAINTAINED = 'N' ), DIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, GRANTED_ROLE AS GRANTED_PRIVILEGE, 'Direct Grant' AS HOW_GRANTED FROM CDB_ROLE_PRIVS WHERE GRANTED_ROLE IN ('MAINTPLAN_APP') ), INDIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, GRANTED_ROLE AS GRANTED_PRIVILEGE, 'Privileges Through Role' AS HOW_GRANTED FROM CDB_ROLE_PRIVS START WITH GRANTED_ROLE IN ( SELECT DISTINCT P.GRANTEE FROM SYS.CDB_ROLE_PRIVS P, SYS.CDB_ROLES R WHERE P.GRANTED_ROLE IN ('MAINTPLAN_APP') AND P.GRANTEE = R.ROLE) CONNECT BY PRIOR GRANTEE = GRANTED_ROLE ) SELECT CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE, HOW_GRANTED FROM ( SELECT * FROM DIRECT_PRIVS UNION SELECT * FROM INDIRECT_PRIVS ) COMBINED_PRIVS WHERE GRANTEE IN (SELECT GRANTEE FROM GRANTEES_NOT_ORACLEMAINTAINED) ORDER BY CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'JAVADEBUGPRIV' Is Revoked From Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961937" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>WITH GRANTEES_NOT_ORACLEMAINTAINED AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, ROLE AS GRANTEE FROM CDB_ROLES WHERE ORACLE_MAINTAINED = 'N' UNION SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, USERNAME AS GRANTEE FROM CDB_USERS WHERE ORACLE_MAINTAINED = 'N' ), DIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, GRANTED_ROLE AS GRANTED_PRIVILEGE, 'Direct Grant' AS HOW_GRANTED FROM CDB_ROLE_PRIVS WHERE GRANTED_ROLE IN ('JAVADEBUGPRIV') ), INDIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, GRANTED_ROLE AS GRANTED_PRIVILEGE, 'Privileges Through Role' AS HOW_GRANTED FROM CDB_ROLE_PRIVS START WITH GRANTED_ROLE IN ( SELECT DISTINCT P.GRANTEE FROM SYS.CDB_ROLE_PRIVS P, SYS.CDB_ROLES R WHERE P.GRANTED_ROLE IN ('JAVADEBUGPRIV') AND P.GRANTEE = R.ROLE) CONNECT BY PRIOR GRANTEE = GRANTED_ROLE ) SELECT CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE, HOW_GRANTED FROM ( SELECT * FROM DIRECT_PRIVS UNION SELECT * FROM INDIRECT_PRIVS ) COMBINED_PRIVS WHERE GRANTEE IN (SELECT GRANTEE FROM GRANTEES_NOT_ORACLEMAINTAINED) ORDER BY CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'DV_PATCH_ADMIN' Is Revoked From Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961940" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>WITH GRANTEES_NOT_ORACLEMAINTAINED AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, ROLE AS GRANTEE FROM CDB_ROLES WHERE ORACLE_MAINTAINED = 'N' UNION SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, USERNAME AS GRANTEE FROM CDB_USERS WHERE ORACLE_MAINTAINED = 'N' ), DIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, GRANTED_ROLE AS GRANTED_PRIVILEGE, 'Direct Grant' AS HOW_GRANTED FROM CDB_ROLE_PRIVS WHERE GRANTED_ROLE IN ('DV_PATCH_ADMIN') ), INDIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, GRANTED_ROLE AS GRANTED_PRIVILEGE, 'Privileges Through Role' AS HOW_GRANTED FROM CDB_ROLE_PRIVS START WITH GRANTED_ROLE IN ( SELECT DISTINCT P.GRANTEE FROM SYS.CDB_ROLE_PRIVS P, SYS.CDB_ROLES R WHERE P.GRANTED_ROLE IN ('DV_PATCH_ADMIN') AND P.GRANTEE = R.ROLE) CONNECT BY PRIOR GRANTEE = GRANTED_ROLE ) SELECT CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE, HOW_GRANTED FROM ( SELECT * FROM DIRECT_PRIVS UNION SELECT * FROM INDIRECT_PRIVS ) COMBINED_PRIVS WHERE GRANTEE IN (SELECT GRANTEE FROM GRANTEES_NOT_ORACLEMAINTAINED) ORDER BY CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'DV_POLICY_OWNER' Is Revoked From Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961942" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>WITH GRANTEES_NOT_ORACLEMAINTAINED AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, ROLE AS GRANTEE FROM CDB_ROLES WHERE ORACLE_MAINTAINED = 'N' UNION SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, USERNAME AS GRANTEE FROM CDB_USERS WHERE ORACLE_MAINTAINED = 'N' ), DIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, GRANTED_ROLE AS GRANTED_PRIVILEGE, 'Direct Grant' AS HOW_GRANTED FROM CDB_ROLE_PRIVS WHERE GRANTED_ROLE IN ('DV_POLICY_OWNER') ), INDIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, GRANTED_ROLE AS GRANTED_PRIVILEGE, 'Privileges Through Role' AS HOW_GRANTED FROM CDB_ROLE_PRIVS START WITH GRANTED_ROLE IN ( SELECT DISTINCT P.GRANTEE FROM SYS.CDB_ROLE_PRIVS P, SYS.CDB_ROLES R WHERE P.GRANTED_ROLE IN ('DV_POLICY_OWNER') AND P.GRANTEE = R.ROLE) CONNECT BY PRIOR GRANTEE = GRANTED_ROLE ) SELECT CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE, HOW_GRANTED FROM ( SELECT * FROM DIRECT_PRIVS UNION SELECT * FROM INDIRECT_PRIVS ) COMBINED_PRIVS WHERE GRANTEE IN (SELECT GRANTEE FROM GRANTEES_NOT_ORACLEMAINTAINED) ORDER BY CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'AUDIT_ADMIN' Is Revoked From Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961944" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>WITH GRANTEES_NOT_ORACLEMAINTAINED AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, ROLE AS GRANTEE FROM CDB_ROLES WHERE ORACLE_MAINTAINED = 'N' UNION SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, USERNAME AS GRANTEE FROM CDB_USERS WHERE ORACLE_MAINTAINED = 'N' ), DIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, GRANTED_ROLE AS GRANTED_PRIVILEGE, 'Direct Grant' AS HOW_GRANTED FROM CDB_ROLE_PRIVS WHERE GRANTED_ROLE IN ('AUDIT_ADMIN') ), INDIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, GRANTED_ROLE AS GRANTED_PRIVILEGE, 'Privileges Through Role' AS HOW_GRANTED FROM CDB_ROLE_PRIVS START WITH GRANTED_ROLE IN ( SELECT DISTINCT P.GRANTEE FROM SYS.CDB_ROLE_PRIVS P, SYS.CDB_ROLES R WHERE P.GRANTED_ROLE IN ('AUDIT_ADMIN') AND P.GRANTEE = R.ROLE) CONNECT BY PRIOR GRANTEE = GRANTED_ROLE ) SELECT CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE, HOW_GRANTED FROM ( SELECT * FROM DIRECT_PRIVS UNION SELECT * FROM INDIRECT_PRIVS ) COMBINED_PRIVS WHERE GRANTEE IN (SELECT GRANTEE FROM GRANTEES_NOT_ORACLEMAINTAINED) ORDER BY CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'AUDIT_VIEWER' Is Revoked From Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961947" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>WITH GRANTEES_NOT_ORACLEMAINTAINED AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, ROLE AS GRANTEE FROM CDB_ROLES WHERE ORACLE_MAINTAINED = 'N' UNION SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, USERNAME AS GRANTEE FROM CDB_USERS WHERE ORACLE_MAINTAINED = 'N' ), DIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, GRANTED_ROLE AS GRANTED_PRIVILEGE, 'Direct Grant' AS HOW_GRANTED FROM CDB_ROLE_PRIVS WHERE GRANTED_ROLE IN ('AUDIT_VIEWER') ), INDIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, GRANTED_ROLE AS GRANTED_PRIVILEGE, 'Privileges Through Role' AS HOW_GRANTED FROM CDB_ROLE_PRIVS START WITH GRANTED_ROLE IN ( SELECT DISTINCT P.GRANTEE FROM SYS.CDB_ROLE_PRIVS P, SYS.CDB_ROLES R WHERE P.GRANTED_ROLE IN ('AUDIT_VIEWER') AND P.GRANTEE = R.ROLE) CONNECT BY PRIOR GRANTEE = GRANTED_ROLE ) SELECT CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE, HOW_GRANTED FROM ( SELECT * FROM DIRECT_PRIVS UNION SELECT * FROM INDIRECT_PRIVS ) COMBINED_PRIVS WHERE GRANTEE IN (SELECT GRANTEE FROM GRANTEES_NOT_ORACLEMAINTAINED) ORDER BY CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'PDB_DBA' Is Revoked From Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961949" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>WITH GRANTEES_NOT_ORACLEMAINTAINED AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, ROLE AS GRANTEE FROM CDB_ROLES WHERE ORACLE_MAINTAINED = 'N' UNION SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, USERNAME AS GRANTEE FROM CDB_USERS WHERE ORACLE_MAINTAINED = 'N' ), DIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, GRANTED_ROLE AS GRANTED_PRIVILEGE, 'Direct Grant' AS HOW_GRANTED FROM CDB_ROLE_PRIVS WHERE GRANTED_ROLE IN ('PDB_DBA') ), INDIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, GRANTED_ROLE AS GRANTED_PRIVILEGE, 'Privileges Through Role' AS HOW_GRANTED FROM CDB_ROLE_PRIVS START WITH GRANTED_ROLE IN ( SELECT DISTINCT P.GRANTEE FROM SYS.CDB_ROLE_PRIVS P, SYS.CDB_ROLES R WHERE P.GRANTED_ROLE IN ('PDB_DBA') AND P.GRANTEE = R.ROLE) CONNECT BY PRIOR GRANTEE = GRANTED_ROLE ) SELECT CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE, HOW_GRANTED FROM ( SELECT * FROM DIRECT_PRIVS UNION SELECT * FROM INDIRECT_PRIVS ) COMBINED_PRIVS WHERE GRANTEE IN (SELECT GRANTEE FROM GRANTEES_NOT_ORACLEMAINTAINED) ORDER BY CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'SELECT_CATALOG_ROLE' Is Revoked From Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:4971260" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT GRANTEE, GRANTED_ROLE, DECODE (A.CON_ID,0,(SELECT NAME FROM V$DATABASE), 1,(SELECT NAME FROM V$DATABASE), (SELECT NAME FROM V$PDBS B WHERE A.CON_ID = B.CON_ID)) FROM CDB_ROLE_PRIVS A WHERE GRANTED_ROLE='SELECT_CATALOG_ROLE' AND GRANTEE NOT IN (SELECT USERNAME FROM CDB_USERS WHERE ORACLE_MAINTAINED='Y') AND GRANTEE NOT IN (SELECT ROLE FROM CDB_ROLES WHERE ORACLE_MAINTAINED='Y')</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'EXECUTE_CATALOG_ROLE' Is Revoked from Unauthorized 'GRANTEE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6961953" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>WITH GRANTEES_NOT_ORACLEMAINTAINED AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, ROLE AS GRANTEE FROM CDB_ROLES WHERE ORACLE_MAINTAINED = 'N' UNION SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, USERNAME AS GRANTEE FROM CDB_USERS WHERE ORACLE_MAINTAINED = 'N' ), DIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, GRANTED_ROLE AS GRANTED_PRIVILEGE, 'Direct Grant' AS HOW_GRANTED FROM CDB_ROLE_PRIVS WHERE GRANTED_ROLE IN ('EXECUTE_CATALOG_ROLE') ), INDIRECT_PRIVS AS ( SELECT DISTINCT CON_ID_TO_CON_NAME(CON_ID) AS CONTAINERNAME, GRANTEE, GRANTED_ROLE AS GRANTED_PRIVILEGE, 'Privileges Through Role' AS HOW_GRANTED FROM CDB_ROLE_PRIVS START WITH GRANTED_ROLE IN ( SELECT DISTINCT P.GRANTEE FROM SYS.CDB_ROLE_PRIVS P, SYS.CDB_ROLES R WHERE P.GRANTED_ROLE IN ('EXECUTE_CATALOG_ROLE') AND P.GRANTEE = R.ROLE) CONNECT BY PRIOR GRANTEE = GRANTED_ROLE ) SELECT CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE, HOW_GRANTED FROM ( SELECT * FROM DIRECT_PRIVS UNION SELECT * FROM INDIRECT_PRIVS ) COMBINED_PRIVS WHERE GRANTEE IN (SELECT GRANTEE FROM GRANTEES_NOT_ORACLEMAINTAINED) ORDER BY CONTAINERNAME, GRANTEE, GRANTED_PRIVILEGE</sql>
+      </sql57_object>
+      <sql57_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'ALL' Is Revoked On 'Sensitive' Tables" id="oval:org.cisecurity.benchmarks.oracle_database_23:obj:6943545" version="1">
+         <engine>oracle</engine>
+         <version>23ai</version>
+         <connection_string var_ref="oval:org.cisecurity.benchmarks:var:2000000"></connection_string>
+         <sql>SELECT CON_ID_TO_CON_NAME(c.con_id) AS containername, c.* FROM CDB_TAB_PRIVS c WHERE c.owner='SYS' AND c.table_name IN ('CDB_LOCAL_ADMINAUTH$','DEFAULT_PWD$','ENC$','HISTGRM$','HIST_HEAD$','LINK$','PDB_SYNC$','SCHEDULER$_CREDENTIAL','USER$','USER_HISTORY$','XS$VERIFIERS')</sql>
+      </sql57_object>
+   </objects>
+   <states>
+      <textfilecontent54_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'ACCEPT_MD5_CERTS' Is Set To 'FALSE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:ste:6961224" version="1">
+         <subexpression operation="case insensitive equals" var_ref="oval:org.cisecurity.benchmarks.oracle_database_23:var:6961224"></subexpression>
+      </textfilecontent54_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'BACKGROUND_CORE_DUMP' Is Not Set To 'Full'" id="oval:org.cisecurity.benchmarks.oracle_database_23:ste:6961540" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="value" operation="case insensitive not equal" var_ref="oval:org.cisecurity.benchmarks.oracle_database_23:var:6961540"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'SHADOW_CORE_DUMP' Is Not Set To 'full'" id="oval:org.cisecurity.benchmarks.oracle_database_23:ste:6961662" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="value" operation="case insensitive not equal" var_ref="oval:org.cisecurity.benchmarks.oracle_database_23:var:6961662"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'MLE_PROG_LANGUAGES' Is Set To 'OFF'" id="oval:org.cisecurity.benchmarks.oracle_database_23:ste:6961742" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="value" operation="case insensitive equals" var_ref="oval:org.cisecurity.benchmarks.oracle_database_23:var:6961742"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'ALLOW_GROUP_ACCESS_TO_SGA' Is Set To `FALSE`" id="oval:org.cisecurity.benchmarks.oracle_database_23:ste:6961807" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="value" operation="case insensitive equals" var_ref="oval:org.cisecurity.benchmarks.oracle_database_23:var:6961807"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'OS_ROLES' Is Set To 'FALSE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:ste:6961866" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="value" operation="case insensitive equals" var_ref="oval:org.cisecurity.benchmarks.oracle_database_23:var:6961866"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'REMOTE_OS_ROLES' Is Set To 'FALSE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:ste:6961868" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="value" operation="equals" var_ref="oval:org.cisecurity.benchmarks.oracle_database_23:var:6961868"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'SEC_MAX_FAILED_LOGIN_ATTEMPTS' Is Set To '3' Or Less" id="oval:org.cisecurity.benchmarks.oracle_database_23:ste:6961870" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="int" name="value" operation="less than or equal" var_ref="oval:org.cisecurity.benchmarks.oracle_database_23:var:6961870"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'SEC_PROTOCOL_ERROR_FURTHER_ACTION' Is Set To '(DROP,3)'" id="oval:org.cisecurity.benchmarks.oracle_database_23:ste:6961872" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="value" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks.oracle_database_23:var:6961872"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'SEC_PROTOCOL_ERROR_TRACE_ACTION' Is Set To 'LOG'" id="oval:org.cisecurity.benchmarks.oracle_database_23:ste:6961874" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="value" operation="case insensitive equals" var_ref="oval:org.cisecurity.benchmarks.oracle_database_23:var:6961874"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'SEC_RETURN_SERVER_RELEASE_BANNER' Is Set To 'FALSE'" id="oval:org.cisecurity.benchmarks.oracle_database_23:ste:6961876" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="string" name="value" operation="equals" var_ref="oval:org.cisecurity.benchmarks.oracle_database_23:var:6961876"></field>
+         </result>
+      </sql57_state>
+      <sql57_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure 'PASSWORD_ROLLOVER_TIME' Is Set To '0'" id="oval:org.cisecurity.benchmarks.oracle_database_23:ste:6961974" version="1">
+         <result datatype="record" entity_check="all">
+            <field xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" datatype="float" name="value" operation="equals" var_ref="oval:org.cisecurity.benchmarks.oracle_database_23:var:6961974"></field>
+         </result>
+      </sql57_state>
+   </states>
+   <variables>
+      <external_variable comment="File path to Oracle listener.ora" datatype="string" id="oval:org.cisecurity.benchmarks:var:2000001" version="1"></external_variable>
+      <local_variable comment="Listener names from listener.ora" datatype="string" id="oval:org.cisecurity.benchmarks:var:2000002" version="1">
+         <object_component item_field="subexpression" object_ref="oval:org.cisecurity.benchmarks:obj:2000002"></object_component>
+      </local_variable>
+      <local_variable comment="SECURE_CONTROL_listener_name" datatype="string" id="oval:org.cisecurity.benchmarks:var:2000003" version="1">
+         <concat>
+            <literal_component>^(?i)(?:[^\#]*secure_control_</literal_component>
+            <variable_component var_ref="oval:org.cisecurity.benchmarks:var:2000002"></variable_component>
+            <literal_component>\s*=\s*)([^\s]+)(?:\s*)$</literal_component>
+         </concat>
+      </local_variable>
+      <local_variable comment="ADMIN_RESTRICTIONS_listener_name" datatype="string" id="oval:org.cisecurity.benchmarks:var:2000004" version="1">
+         <concat>
+            <literal_component>^(?i)(?:[^\#]*admin_restrictions_</literal_component>
+            <variable_component var_ref="oval:org.cisecurity.benchmarks:var:2000002"></variable_component>
+            <literal_component>\s*=\s*)([^\s]+)(?:\s*)$</literal_component>
+         </concat>
+      </local_variable>
+      <local_variable comment="SECURE_REGISTER_listener_name" datatype="string" id="oval:org.cisecurity.benchmarks:var:2000005" version="1">
+         <concat>
+            <literal_component>^(?i)(?:[^\#]*secure_register_</literal_component>
+            <variable_component var_ref="oval:org.cisecurity.benchmarks:var:2000002"></variable_component>
+            <literal_component>\s*=\s*)([^\s]+)(?:\s*)$</literal_component>
+         </concat>
+      </local_variable>
+      <external_variable comment="SQL connection string" datatype="string" id="oval:org.cisecurity.benchmarks:var:2000000" version="1"></external_variable>
+      <external_variable comment="Ensure 'ACCEPT_MD5_CERTS' Is Set To 'FALSE'" datatype="string" id="oval:org.cisecurity.benchmarks.oracle_database_23:var:6961224" version="1"></external_variable>
+      <external_variable comment="Ensure 'BACKGROUND_CORE_DUMP' Is Not Set To 'Full'" datatype="string" id="oval:org.cisecurity.benchmarks.oracle_database_23:var:6961540" version="1"></external_variable>
+      <external_variable comment="Ensure 'SHADOW_CORE_DUMP' Is Not Set To 'full'" datatype="string" id="oval:org.cisecurity.benchmarks.oracle_database_23:var:6961662" version="1"></external_variable>
+      <external_variable comment="Ensure 'MLE_PROG_LANGUAGES' Is Set To 'OFF'" datatype="string" id="oval:org.cisecurity.benchmarks.oracle_database_23:var:6961742" version="1"></external_variable>
+      <external_variable comment="Ensure 'ALLOW_GROUP_ACCESS_TO_SGA' Is Set To `FALSE`" datatype="string" id="oval:org.cisecurity.benchmarks.oracle_database_23:var:6961807" version="1"></external_variable>
+      <external_variable comment="Ensure 'OS_ROLES' Is Set To 'FALSE'" datatype="string" id="oval:org.cisecurity.benchmarks.oracle_database_23:var:6961866" version="1"></external_variable>
+      <external_variable comment="Ensure 'REMOTE_OS_ROLES' Is Set To 'FALSE'" datatype="string" id="oval:org.cisecurity.benchmarks.oracle_database_23:var:6961868" version="1"></external_variable>
+      <external_variable comment="Ensure 'SEC_MAX_FAILED_LOGIN_ATTEMPTS' Is Set To '3' Or Less" datatype="int" id="oval:org.cisecurity.benchmarks.oracle_database_23:var:6961870" version="1"></external_variable>
+      <external_variable comment="Ensure 'SEC_PROTOCOL_ERROR_FURTHER_ACTION' Is Set To '(DROP,3)'" datatype="string" id="oval:org.cisecurity.benchmarks.oracle_database_23:var:6961872" version="1"></external_variable>
+      <external_variable comment="Ensure 'SEC_PROTOCOL_ERROR_TRACE_ACTION' Is Set To 'LOG'" datatype="string" id="oval:org.cisecurity.benchmarks.oracle_database_23:var:6961874" version="1"></external_variable>
+      <external_variable comment="Ensure 'SEC_RETURN_SERVER_RELEASE_BANNER' Is Set To 'FALSE'" datatype="string" id="oval:org.cisecurity.benchmarks.oracle_database_23:var:6961876" version="1"></external_variable>
+      <external_variable comment="Ensure 'PASSWORD_ROLLOVER_TIME' Is Set To '0'" datatype="float" id="oval:org.cisecurity.benchmarks.oracle_database_23:var:6961974" version="1"></external_variable>
+   </variables>
+<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+<ds:SignedInfo>
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"></ds:CanonicalizationMethod>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></ds:SignatureMethod>
+<ds:Reference URI="">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"></ds:Transform>
+<ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"></ds:Transform>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></ds:DigestMethod>
+<ds:DigestValue>DVx891IMPFDK6ydaYiGbNU1iWq5nOT2LQTTMgNpleII=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue>
+q2nlh0ksw6yn0iPb5iStjg2GFRoo6skCQOhS2jGBnaX+3vXNEm++VagTFN/bfoAyeqgkEcTvHKNS
+W7I+Qpy/BwxHxeMdKT4yWi+wAfS66C3313jriKNQbppuDImMJSX7hEURG2tVqmEAF57rbxVXf2VK
+d6Y3//ZM4YQDr3NuNwKdJ4slFOeQ2Pe934Y4nh++Th0ew5W5TuNuwV56i13GRlPXoNb/DlR4HNYL
+etxkE8gcqG0dDCp2cn2oJKzlEQqC5vafUprejBDJ8ZcJCXeQkw0kNtOjH6WusW5fHHq+N8bBumTS
+NEvCfMUA4FGZZfm79xmR952X3rov/bhu6Om0yeuZlz6dY1UxJ2cDpLkD5RtP1aRjJEdxNPdb7Nyb
+NIJ2o/OqGplfDusnZ57B7Z8zOKHr71Zu5loZss2g0s/NKFYy3vzl+oi0h74fNtrjCmi2ZC9mxVRH
+SYV1ceqtq10CyH4kSRdiL39nRe4OScJOe9Wp3Qo1USawsEOLnv52ESRZ
+</ds:SignatureValue>
+<ds:KeyInfo>
+<ds:X509Data>
+<ds:X509Certificate>
+MIIHbDCCBVSgAwIBAgIQCdceADCnzKkglkQGavVKYzANBgkqhkiG9w0BAQsFADBpMQswCQYDVQQG
+EwJVUzEXMBUGA1UEChMORGlnaUNlcnQsIEluYy4xQTA/BgNVBAMTOERpZ2lDZXJ0IFRydXN0ZWQg
+RzQgQ29kZSBTaWduaW5nIFJTQTQwOTYgU0hBMzg0IDIwMjEgQ0ExMB4XDTIzMTAxODAwMDAwMFoX
+DTI2MTAxODIzNTk1OVowgfQxEzARBgsrBgEEAYI3PAIBAxMCVVMxGTAXBgsrBgEEAYI3PAIBAhMI
+TWFyeWxhbmQxHTAbBgNVBA8MFFByaXZhdGUgT3JnYW5pemF0aW9uMRIwEAYDVQQFEwlEMDYwNTg4
+MTIxCzAJBgNVBAYTAlVTMREwDwYDVQQIEwhOZXcgWW9yazEXMBUGA1UEBxMORWFzdCBHcmVlbmJ1
+c2gxKjAoBgNVBAoTIUNlbnRlciBmb3IgSW50ZXJuZXQgU2VjdXJpdHksIEluYzEqMCgGA1UEAxMh
+Q2VudGVyIGZvciBJbnRlcm5ldCBTZWN1cml0eSwgSW5jMIIBojANBgkqhkiG9w0BAQEFAAOCAY8A
+MIIBigKCAYEAyZwTJr4Kb7QEDnVY3BEkPoS3fn+XoxhCTfFvlMk8zXDcR4pFMgPkXTrZ1KbENUIV
+skIhy1vmnh61vwSL0lcdzesCekKSxLqrEA4xunZk1MB5mLbHXchSSpI1co1vaSzJjkTYP1UsUVQz
+NoOzV0LNCoZdahjGTHSduWvbrHTEeD6/jvUj3AVWrTx6krzgYA3ozAxtUnapK7IrZERuGOSwTrgR
+Lr1aieQdFy8haW1YL+ks5HmLRvcoGp+J68GX/zfMTduvWxhcpXm4txKc4iJqGCRmyBU2XjGjpDBX
+ndxHgT4edRLz5PwWSeZUh8/tWOGFwnVw7njoOa0sFixy96H2BqEn+yPeRALyf59rjtPL66tsXuaA
+ilB63yqbH42mnkxHTX5zcEm337GzTOGRccsYzN/ApVuXDeMfsO+sSUosrimnxm9QTOyKcex5h1As
+rxBVfTw+Zf7jP1YRlmMlGPG1zffK2KjJhD6ivFi2sIDThEQLxIAC8XOjp2ZXvhx87yNTAgMBAAGj
+ggICMIIB/jAfBgNVHSMEGDAWgBRoN+Drtjv4XxGG+/5hewiIZfROQjAdBgNVHQ4EFgQUX2/J9FT5
+5BNF7JqfAl9SJkv3pf0wPQYDVR0gBDYwNDAyBgVngQwBAzApMCcGCCsGAQUFBwIBFhtodHRwOi8v
+d3d3LmRpZ2ljZXJ0LmNvbS9DUFMwDgYDVR0PAQH/BAQDAgeAMBMGA1UdJQQMMAoGCCsGAQUFBwMD
+MIG1BgNVHR8Ega0wgaowU6BRoE+GTWh0dHA6Ly9jcmwzLmRpZ2ljZXJ0LmNvbS9EaWdpQ2VydFRy
+dXN0ZWRHNENvZGVTaWduaW5nUlNBNDA5NlNIQTM4NDIwMjFDQTEuY3JsMFOgUaBPhk1odHRwOi8v
+Y3JsNC5kaWdpY2VydC5jb20vRGlnaUNlcnRUcnVzdGVkRzRDb2RlU2lnbmluZ1JTQTQwOTZTSEEz
+ODQyMDIxQ0ExLmNybDCBlAYIKwYBBQUHAQEEgYcwgYQwJAYIKwYBBQUHMAGGGGh0dHA6Ly9vY3Nw
+LmRpZ2ljZXJ0LmNvbTBcBggrBgEFBQcwAoZQaHR0cDovL2NhY2VydHMuZGlnaWNlcnQuY29tL0Rp
+Z2lDZXJ0VHJ1c3RlZEc0Q29kZVNpZ25pbmdSU0E0MDk2U0hBMzg0MjAyMUNBMS5jcnQwCQYDVR0T
+BAIwADANBgkqhkiG9w0BAQsFAAOCAgEASLOHf1FQ7TrGqEoVXYoeNSkRWdVCUGd1JCDs7Hb9sLd3
+eQuipZ4EorQS/9qMiVMhmlJfF75sNVQhr1K5UtjrDRFMTzYmh78hAyovowzgyVKdGFqiVVr5m+mb
+vVyglLlA4V076LMBaKRknm1Dt8r0/5GSRCrkP2origpYMMaocN+iBX9+MImnh3J1Ehn0nRUhW86Q
+mt3/YCVIaQZisv+KmOxyAq1m6fiIYIvXY+cH2dDIheoVteb/NjYnKVqE6xTpOsxF16pykXiM9yk3
+Q9nlJS36KEGRP4wrySU4eIBnTcv4mimZjkWj6bIvk8otNJ14FbyltaPwIc3dE3oPGfSmCrkxs73j
+iqBs2TXLvblEmOhY8ko3xVdTm0zMP50MQVO948fz9yF+xdnPdMPT1/lCmGp6iWYRzxnvEkA1+HFl
+yy9YztrM8WNAhXirpUZg3HWQE2ONLKMtqQrkIHD2nikda77flk6oirqDuCf8Q7g8s86/KabTdxrw
+pRmsRjDkAfKVae58ctaKbmF32oU9BGk+9MPG8HF5Yfoh12DE1fLZcPzZrROrDFJGGxwhv5FlnxGg
+6G7jKi68erZnpaOPayK0bXyZNunqkI9IbIuPqMw5qaCZZgN6AEHIbGTKdrWEf11DmR7MdTjv3/vu
+JWtIXgk3kQFX27w9JhqV6QogVmzIfEQ=
+</ds:X509Certificate>
+</ds:X509Data>
+<ds:KeyValue>
+<ds:RSAKeyValue>
+<ds:Modulus>yZwTJr4Kb7QEDnVY3BEkPoS3fn+XoxhCTfFvlMk8zXDcR4pFMgPkXTrZ1KbENUIVskIhy1vmnh61
+vwSL0lcdzesCekKSxLqrEA4xunZk1MB5mLbHXchSSpI1co1vaSzJjkTYP1UsUVQzNoOzV0LNCoZd
+ahjGTHSduWvbrHTEeD6/jvUj3AVWrTx6krzgYA3ozAxtUnapK7IrZERuGOSwTrgRLr1aieQdFy8h
+aW1YL+ks5HmLRvcoGp+J68GX/zfMTduvWxhcpXm4txKc4iJqGCRmyBU2XjGjpDBXndxHgT4edRLz
+5PwWSeZUh8/tWOGFwnVw7njoOa0sFixy96H2BqEn+yPeRALyf59rjtPL66tsXuaAilB63yqbH42m
+nkxHTX5zcEm337GzTOGRccsYzN/ApVuXDeMfsO+sSUosrimnxm9QTOyKcex5h1AsrxBVfTw+Zf7j
+P1YRlmMlGPG1zffK2KjJhD6ivFi2sIDThEQLxIAC8XOjp2ZXvhx87yNT</ds:Modulus>
+<ds:Exponent>AQAB</ds:Exponent>
+</ds:RSAKeyValue>
+</ds:KeyValue>
+</ds:KeyInfo>
+</ds:Signature></oval_definitions>

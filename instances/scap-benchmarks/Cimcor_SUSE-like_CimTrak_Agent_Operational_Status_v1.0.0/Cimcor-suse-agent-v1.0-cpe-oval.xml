@@ -1,0 +1,753 @@
+<oval_definitions 
+	xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" 
+	xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" 
+	xmlns:linux="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" 
+	xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" 
+	xmlns:unix="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5 
+						http://oval.mitre.org/language/version5.11/ovaldefinition/complete/oval-definitions-schema.xsd 	
+						http://oval.mitre.org/XMLSchema/oval-common-5 
+						http://oval.mitre.org/language/version5.11/ovaldefinition/complete/oval-common-schema.xsd 
+						http://oval.mitre.org/XMLSchema/oval-definitions-5#linux 
+						http://oval.mitre.org/language/version5.11/ovaldefinition/complete/linux-definitions-schema.xsd 
+						http://oval.mitre.org/XMLSchema/oval-definitions-5#independent 
+						http://oval.mitre.org/language/version5.11/ovaldefinition/complete/independent-definitions-schema.xsd 
+						http://oval.mitre.org/XMLSchema/oval-definitions-5#unix 
+						http://oval.mitre.org/language/version5.10/ovaldefinition/complete/unix-definitions-schema.xsd">
+	<generator>
+		<oval:product_name>CimTrak SUSE Platform Detection</oval:product_name>
+		<oval:schema_version>5.11</oval:schema_version>
+		<oval:timestamp>2025-07-25T14:00:00+00:00</oval:timestamp>
+	</generator>
+	
+	<definitions>
+		<!-- openSUSE Leap 15.4 Detection -->
+		<definition class="inventory" id="oval:com.cimcor.cimtrak.o_suse:def:2001" version="1">
+			<metadata>
+				<title>openSUSE Leap 15.4</title>
+				<description>The operating system is openSUSE Leap 15.4</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion negate="false" test_ref="oval:com.cimcor.cimtrak.o_suse:tst:2001"/>
+			</criteria>
+		</definition>
+		
+		<!-- openSUSE Leap 15.5 Detection -->
+		<definition class="inventory" id="oval:com.cimcor.cimtrak.o_suse:def:2002" version="1">
+			<metadata>
+				<title>openSUSE Leap 15.5</title>
+				<description>The operating system is openSUSE Leap 15.5</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion negate="false" test_ref="oval:com.cimcor.cimtrak.o_suse:tst:2002"/>
+			</criteria>
+		</definition>
+		
+		<!-- openSUSE Leap 15.6 Detection -->
+		<definition class="inventory" id="oval:com.cimcor.cimtrak.o_suse:def:2003" version="1">
+			<metadata>
+				<title>openSUSE Leap 15.6</title>
+				<description>The operating system is openSUSE Leap 15.6</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion negate="false" test_ref="oval:com.cimcor.cimtrak.o_suse:tst:2003"/>
+			</criteria>
+		</definition>
+		
+		<!-- SUSE Linux Enterprise Server 15 SP4 Detection -->
+		<definition class="inventory" id="oval:com.cimcor.cimtrak.o_suse:def:2004" version="1">
+			<metadata>
+				<title>SUSE Linux Enterprise Server 15 SP4</title>
+				<description>The operating system is SUSE Linux Enterprise Server 15 SP4</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion negate="false" test_ref="oval:com.cimcor.cimtrak.o_suse:tst:2004"/>
+			</criteria>
+		</definition>
+		
+		<!-- SUSE Linux Enterprise Server 15 SP5 Detection -->
+		<definition class="inventory" id="oval:com.cimcor.cimtrak.o_suse:def:2005" version="1">
+			<metadata>
+				<title>SUSE Linux Enterprise Server 15 SP5</title>
+				<description>The operating system is SUSE Linux Enterprise Server 15 SP5</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion negate="false" test_ref="oval:com.cimcor.cimtrak.o_suse:tst:2005"/>
+			</criteria>
+		</definition>
+		
+		<!-- SUSE Linux Enterprise Server 15 SP6 Detection -->
+		<definition class="inventory" id="oval:com.cimcor.cimtrak.o_suse:def:2006" version="1">
+			<metadata>
+				<title>SUSE Linux Enterprise Server 15 SP6</title>
+				<description>The operating system is SUSE Linux Enterprise Server 15 SP6</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion negate="false" test_ref="oval:com.cimcor.cimtrak.o_suse:tst:2006"/>
+			</criteria>
+		</definition>
+		
+		<!-- openSUSE Tumbleweed Detection -->
+		<definition class="inventory" id="oval:com.cimcor.cimtrak.o_suse:def:2007" version="1">
+			<metadata>
+				<title>openSUSE Tumbleweed</title>
+				<description>The operating system is openSUSE Tumbleweed</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion negate="false" test_ref="oval:com.cimcor.cimtrak.o_suse:tst:2007"/>
+			</criteria>
+		</definition>
+		
+		<!-- SUSE Linux Enterprise Server 12 SP3 Detection -->
+		<definition class="inventory" id="oval:com.cimcor.cimtrak.o_suse:def:2008" version="1">
+			<metadata>
+				<title>SUSE Linux Enterprise Server 12 SP3</title>
+				<description>The operating system is SUSE Linux Enterprise Server 12 SP3</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion negate="false" test_ref="oval:com.cimcor.cimtrak.o_suse:tst:2008"/>
+			</criteria>
+		</definition>
+		
+		<!-- SUSE Linux Enterprise Server 12 SP4 Detection -->
+		<definition class="inventory" id="oval:com.cimcor.cimtrak.o_suse:def:2009" version="1">
+			<metadata>
+				<title>SUSE Linux Enterprise Server 12 SP4</title>
+				<description>The operating system is SUSE Linux Enterprise Server 12 SP4</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion negate="false" test_ref="oval:com.cimcor.cimtrak.o_suse:tst:2009"/>
+			</criteria>
+		</definition>
+		
+		<!-- SUSE Linux Enterprise Server 12 SP5 Detection -->
+		<definition class="inventory" id="oval:com.cimcor.cimtrak.o_suse:def:2010" version="1">
+			<metadata>
+				<title>SUSE Linux Enterprise Server 12 SP5</title>
+				<description>The operating system is SUSE Linux Enterprise Server 12 SP5</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion negate="false" test_ref="oval:com.cimcor.cimtrak.o_suse:tst:2010"/>
+			</criteria>
+		</definition>
+		
+		<!-- SUSE Linux Enterprise Server 15 Detection -->
+		<definition class="inventory" id="oval:com.cimcor.cimtrak.o_suse:def:2011" version="1">
+			<metadata>
+				<title>SUSE Linux Enterprise Server 15</title>
+				<description>The operating system is SUSE Linux Enterprise Server 15</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion negate="false" test_ref="oval:com.cimcor.cimtrak.o_suse:tst:2011"/>
+			</criteria>
+		</definition>
+		
+		<!-- SUSE Linux Enterprise Server 15 SP1 Detection -->
+		<definition class="inventory" id="oval:com.cimcor.cimtrak.o_suse:def:2012" version="1">
+			<metadata>
+				<title>SUSE Linux Enterprise Server 15 SP1</title>
+				<description>The operating system is SUSE Linux Enterprise Server 15 SP1</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion negate="false" test_ref="oval:com.cimcor.cimtrak.o_suse:tst:2012"/>
+			</criteria>
+		</definition>
+		
+		<!-- SUSE Linux Enterprise Server 15 SP2 Detection -->
+		<definition class="inventory" id="oval:com.cimcor.cimtrak.o_suse:def:2013" version="1">
+			<metadata>
+				<title>SUSE Linux Enterprise Server 15 SP2</title>
+				<description>The operating system is SUSE Linux Enterprise Server 15 SP2</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion negate="false" test_ref="oval:com.cimcor.cimtrak.o_suse:tst:2013"/>
+			</criteria>
+		</definition>
+		
+		<!-- SUSE Linux Enterprise Server 15 SP3 Detection -->
+		<definition class="inventory" id="oval:com.cimcor.cimtrak.o_suse:def:2014" version="1">
+			<metadata>
+				<title>SUSE Linux Enterprise Server 15 SP3</title>
+				<description>The operating system is SUSE Linux Enterprise Server 15 SP3</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion negate="false" test_ref="oval:com.cimcor.cimtrak.o_suse:tst:2014"/>
+			</criteria>
+		</definition>
+		
+		<!-- SUSE Linux Enterprise Server 15 SP4 Detection -->
+		<definition class="inventory" id="oval:com.cimcor.cimtrak.o_suse:def:2015" version="1">
+			<metadata>
+				<title>SUSE Linux Enterprise Server 15 SP4</title>
+				<description>The operating system is SUSE Linux Enterprise Server 15 SP4</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion negate="false" test_ref="oval:com.cimcor.cimtrak.o_suse:tst:2015"/>
+			</criteria>
+		</definition>
+		
+		<!-- SUSE Linux Enterprise Server 15 SP5 Detection -->
+		<definition class="inventory" id="oval:com.cimcor.cimtrak.o_suse:def:2016" version="1">
+			<metadata>
+				<title>SUSE Linux Enterprise Server 15 SP5</title>
+				<description>The operating system is SUSE Linux Enterprise Server 15 SP5</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion negate="false" test_ref="oval:com.cimcor.cimtrak.o_suse:tst:2016"/>
+			</criteria>
+		</definition>
+		
+		<!-- SUSE Linux Enterprise Server 15 SP6 Detection -->
+		<definition class="inventory" id="oval:com.cimcor.cimtrak.o_suse:def:2017" version="1">
+			<metadata>
+				<title>SUSE Linux Enterprise Server 15 SP6</title>
+				<description>The operating system is SUSE Linux Enterprise Server 15 SP6</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion negate="false" test_ref="oval:com.cimcor.cimtrak.o_suse:tst:2017"/>
+			</criteria>
+		</definition>
+		
+		<!-- SUSE Linux Enterprise Desktop 12 Detection -->
+		<definition class="inventory" id="oval:com.cimcor.cimtrak.o_suse:def:3001" version="1">
+			<metadata>
+				<title>SUSE Linux Enterprise Desktop 12</title>
+				<description>The operating system is SUSE Linux Enterprise Desktop 12</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion negate="false" test_ref="oval:com.cimcor.cimtrak.o_suse:tst:3001"/>
+			</criteria>
+		</definition>
+		
+		<!-- SUSE Linux Enterprise Desktop 12 SP1 Detection -->
+		<definition class="inventory" id="oval:com.cimcor.cimtrak.o_suse:def:3002" version="1">
+			<metadata>
+				<title>SUSE Linux Enterprise Desktop 12 SP1</title>
+				<description>The operating system is SUSE Linux Enterprise Desktop 12 SP1</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion negate="false" test_ref="oval:com.cimcor.cimtrak.o_suse:tst:3002"/>
+			</criteria>
+		</definition>
+		
+		<!-- SUSE Linux Enterprise Desktop 12 SP2 Detection -->
+		<definition class="inventory" id="oval:com.cimcor.cimtrak.o_suse:def:3003" version="1">
+			<metadata>
+				<title>SUSE Linux Enterprise Desktop 12 SP2</title>
+				<description>The operating system is SUSE Linux Enterprise Desktop 12 SP2</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion negate="false" test_ref="oval:com.cimcor.cimtrak.o_suse:tst:3003"/>
+			</criteria>
+		</definition>
+		
+		<!-- SUSE Linux Enterprise Desktop 12 SP3 Detection -->
+		<definition class="inventory" id="oval:com.cimcor.cimtrak.o_suse:def:3004" version="1">
+			<metadata>
+				<title>SUSE Linux Enterprise Desktop 12 SP3</title>
+				<description>The operating system is SUSE Linux Enterprise Desktop 12 SP3</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion negate="false" test_ref="oval:com.cimcor.cimtrak.o_suse:tst:3004"/>
+			</criteria>
+		</definition>
+		
+		<!-- SUSE Linux Enterprise Desktop 12 SP4 Detection -->
+		<definition class="inventory" id="oval:com.cimcor.cimtrak.o_suse:def:3005" version="1">
+			<metadata>
+				<title>SUSE Linux Enterprise Desktop 12 SP4</title>
+				<description>The operating system is SUSE Linux Enterprise Desktop 12 SP4</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion negate="false" test_ref="oval:com.cimcor.cimtrak.o_suse:tst:3005"/>
+			</criteria>
+		</definition>
+		
+		<!-- SUSE Linux Enterprise Desktop 12 SP5 Detection -->
+		<definition class="inventory" id="oval:com.cimcor.cimtrak.o_suse:def:3006" version="1">
+			<metadata>
+				<title>SUSE Linux Enterprise Desktop 12 SP5</title>
+				<description>The operating system is SUSE Linux Enterprise Desktop 12 SP5</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion negate="false" test_ref="oval:com.cimcor.cimtrak.o_suse:tst:3006"/>
+			</criteria>
+		</definition>
+		
+		<!-- SUSE Linux Enterprise Desktop 15 Detection -->
+		<definition class="inventory" id="oval:com.cimcor.cimtrak.o_suse:def:3007" version="1">
+			<metadata>
+				<title>SUSE Linux Enterprise Desktop 15</title>
+				<description>The operating system is SUSE Linux Enterprise Desktop 15</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion negate="false" test_ref="oval:com.cimcor.cimtrak.o_suse:tst:3007"/>
+			</criteria>
+		</definition>
+		
+		<!-- SUSE Linux Enterprise Desktop 15 SP1 Detection -->
+		<definition class="inventory" id="oval:com.cimcor.cimtrak.o_suse:def:3008" version="1">
+			<metadata>
+				<title>SUSE Linux Enterprise Desktop 15 SP1</title>
+				<description>The operating system is SUSE Linux Enterprise Desktop 15 SP1</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion negate="false" test_ref="oval:com.cimcor.cimtrak.o_suse:tst:3008"/>
+			</criteria>
+		</definition>
+		
+		<!-- SUSE Linux Enterprise Desktop 15 SP2 Detection -->
+		<definition class="inventory" id="oval:com.cimcor.cimtrak.o_suse:def:3009" version="1">
+			<metadata>
+				<title>SUSE Linux Enterprise Desktop 15 SP2</title>
+				<description>The operating system is SUSE Linux Enterprise Desktop 15 SP2</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion negate="false" test_ref="oval:com.cimcor.cimtrak.o_suse:tst:3009"/>
+			</criteria>
+		</definition>
+		
+		<!-- SUSE Linux Enterprise Desktop 15 SP3 Detection -->
+		<definition class="inventory" id="oval:com.cimcor.cimtrak.o_suse:def:3010" version="1">
+			<metadata>
+				<title>SUSE Linux Enterprise Desktop 15 SP3</title>
+				<description>The operating system is SUSE Linux Enterprise Desktop 15 SP3</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion negate="false" test_ref="oval:com.cimcor.cimtrak.o_suse:tst:3010"/>
+			</criteria>
+		</definition>
+		
+		<!-- SUSE Linux Enterprise Desktop 15 SP4 Detection -->
+		<definition class="inventory" id="oval:com.cimcor.cimtrak.o_suse:def:3011" version="1">
+			<metadata>
+				<title>SUSE Linux Enterprise Desktop 15 SP4</title>
+				<description>The operating system is SUSE Linux Enterprise Desktop 15 SP4</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion negate="false" test_ref="oval:com.cimcor.cimtrak.o_suse:tst:3011"/>
+			</criteria>
+		</definition>
+		
+		<!-- SUSE Linux Enterprise Desktop 15 SP5 Detection -->
+		<definition class="inventory" id="oval:com.cimcor.cimtrak.o_suse:def:3012" version="1">
+			<metadata>
+				<title>SUSE Linux Enterprise Desktop 15 SP5</title>
+				<description>The operating system is SUSE Linux Enterprise Desktop 15 SP5</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion negate="false" test_ref="oval:com.cimcor.cimtrak.o_suse:tst:3012"/>
+			</criteria>
+		</definition>
+		
+		<!-- SUSE Linux Enterprise Desktop 15 SP6 Detection -->
+		<definition class="inventory" id="oval:com.cimcor.cimtrak.o_suse:def:3013" version="1">
+			<metadata>
+				<title>SUSE Linux Enterprise Desktop 15 SP6</title>
+				<description>The operating system is SUSE Linux Enterprise Desktop 15 SP6</description>
+			</metadata>
+			<criteria operator="AND">
+				<criterion negate="false" test_ref="oval:com.cimcor.cimtrak.o_suse:tst:3013"/>
+			</criteria>
+		</definition>
+	</definitions>
+	
+	<tests>
+		<!-- Platform detection tests using textfilecontent54_test on /etc/os-release -->
+		
+		<!-- openSUSE Leap 15.4 -->
+		<ind:textfilecontent54_test check="at least one" check_existence="at_least_one_exists" 
+			comment="Check for openSUSE Leap 15.4" id="oval:com.cimcor.cimtrak.o_suse:tst:2001" version="1">
+			<ind:object object_ref="oval:com.cimcor.cimtrak.o_suse:obj:2001"/>
+		</ind:textfilecontent54_test>
+		
+		<!-- openSUSE Leap 15.5 -->
+		<ind:textfilecontent54_test check="at least one" check_existence="at_least_one_exists" 
+			comment="Check for openSUSE Leap 15.5" id="oval:com.cimcor.cimtrak.o_suse:tst:2002" version="1">
+			<ind:object object_ref="oval:com.cimcor.cimtrak.o_suse:obj:2002"/>
+		</ind:textfilecontent54_test>
+		
+		<!-- openSUSE Leap 15.6 -->
+		<ind:textfilecontent54_test check="at least one" check_existence="at_least_one_exists" 
+			comment="Check for openSUSE Leap 15.6" id="oval:com.cimcor.cimtrak.o_suse:tst:2003" version="1">
+			<ind:object object_ref="oval:com.cimcor.cimtrak.o_suse:obj:2003"/>
+		</ind:textfilecontent54_test>
+		
+		<!-- SUSE Linux Enterprise Server 15 SP4 -->
+		<ind:textfilecontent54_test check="at least one" check_existence="at_least_one_exists" 
+			comment="Check for SLES 15 SP4" id="oval:com.cimcor.cimtrak.o_suse:tst:2004" version="1">
+			<ind:object object_ref="oval:com.cimcor.cimtrak.o_suse:obj:2004"/>
+		</ind:textfilecontent54_test>
+		
+		<!-- SUSE Linux Enterprise Server 15 SP5 -->
+		<ind:textfilecontent54_test check="at least one" check_existence="at_least_one_exists" 
+			comment="Check for SLES 15 SP5" id="oval:com.cimcor.cimtrak.o_suse:tst:2005" version="1">
+			<ind:object object_ref="oval:com.cimcor.cimtrak.o_suse:obj:2005"/>
+		</ind:textfilecontent54_test>
+		
+		<!-- SUSE Linux Enterprise Server 15 SP6 -->
+		<ind:textfilecontent54_test check="at least one" check_existence="at_least_one_exists" 
+			comment="Check for SLES 15 SP6" id="oval:com.cimcor.cimtrak.o_suse:tst:2006" version="1">
+			<ind:object object_ref="oval:com.cimcor.cimtrak.o_suse:obj:2006"/>
+		</ind:textfilecontent54_test>
+		
+		<!-- openSUSE Tumbleweed -->
+		<ind:textfilecontent54_test check="at least one" check_existence="at_least_one_exists" 
+			comment="Check for openSUSE Tumbleweed" id="oval:com.cimcor.cimtrak.o_suse:tst:2007" version="1">
+			<ind:object object_ref="oval:com.cimcor.cimtrak.o_suse:obj:2007"/>
+		</ind:textfilecontent54_test>
+		
+		<!-- SUSE Linux Enterprise Server 12 SP3 -->
+		<ind:textfilecontent54_test check="at least one" check_existence="at_least_one_exists" 
+			comment="Check for SLES 12 SP3" id="oval:com.cimcor.cimtrak.o_suse:tst:2008" version="1">
+			<ind:object object_ref="oval:com.cimcor.cimtrak.o_suse:obj:2008"/>
+		</ind:textfilecontent54_test>
+		
+		<!-- SUSE Linux Enterprise Server 12 SP4 -->
+		<ind:textfilecontent54_test check="at least one" check_existence="at_least_one_exists" 
+			comment="Check for SLES 12 SP4" id="oval:com.cimcor.cimtrak.o_suse:tst:2009" version="1">
+			<ind:object object_ref="oval:com.cimcor.cimtrak.o_suse:obj:2009"/>
+		</ind:textfilecontent54_test>
+		
+		<!-- SUSE Linux Enterprise Server 12 SP5 -->
+		<ind:textfilecontent54_test check="at least one" check_existence="at_least_one_exists" 
+			comment="Check for SLES 12 SP5" id="oval:com.cimcor.cimtrak.o_suse:tst:2010" version="1">
+			<ind:object object_ref="oval:com.cimcor.cimtrak.o_suse:obj:2010"/>
+		</ind:textfilecontent54_test>
+		
+		<!-- SUSE Linux Enterprise Server 15 -->
+		<ind:textfilecontent54_test check="at least one" check_existence="at_least_one_exists" 
+			comment="Check for SLES 15" id="oval:com.cimcor.cimtrak.o_suse:tst:2011" version="1">
+			<ind:object object_ref="oval:com.cimcor.cimtrak.o_suse:obj:2011"/>
+		</ind:textfilecontent54_test>
+		
+		<!-- SUSE Linux Enterprise Server 15 SP1 -->
+		<ind:textfilecontent54_test check="at least one" check_existence="at_least_one_exists" 
+			comment="Check for SLES 15 SP1" id="oval:com.cimcor.cimtrak.o_suse:tst:2012" version="1">
+			<ind:object object_ref="oval:com.cimcor.cimtrak.o_suse:obj:2012"/>
+		</ind:textfilecontent54_test>
+		
+		<!-- SUSE Linux Enterprise Server 15 SP2 -->
+		<ind:textfilecontent54_test check="at least one" check_existence="at_least_one_exists" 
+			comment="Check for SLES 15 SP2" id="oval:com.cimcor.cimtrak.o_suse:tst:2013" version="1">
+			<ind:object object_ref="oval:com.cimcor.cimtrak.o_suse:obj:2013"/>
+		</ind:textfilecontent54_test>
+		
+		<!-- SUSE Linux Enterprise Server 15 SP3 -->
+		<ind:textfilecontent54_test check="at least one" check_existence="at_least_one_exists" 
+			comment="Check for SLES 15 SP3" id="oval:com.cimcor.cimtrak.o_suse:tst:2014" version="1">
+			<ind:object object_ref="oval:com.cimcor.cimtrak.o_suse:obj:2014"/>
+		</ind:textfilecontent54_test>
+		
+		<!-- SUSE Linux Enterprise Server 15 SP4 -->
+		<ind:textfilecontent54_test check="at least one" check_existence="at_least_one_exists" 
+			comment="Check for SLES 15 SP4" id="oval:com.cimcor.cimtrak.o_suse:tst:2015" version="1">
+			<ind:object object_ref="oval:com.cimcor.cimtrak.o_suse:obj:2015"/>
+		</ind:textfilecontent54_test>
+		
+		<!-- SUSE Linux Enterprise Server 15 SP5 -->
+		<ind:textfilecontent54_test check="at least one" check_existence="at_least_one_exists" 
+			comment="Check for SLES 15 SP5" id="oval:com.cimcor.cimtrak.o_suse:tst:2016" version="1">
+			<ind:object object_ref="oval:com.cimcor.cimtrak.o_suse:obj:2016"/>
+		</ind:textfilecontent54_test>
+		
+		<!-- SUSE Linux Enterprise Server 15 SP6 -->
+		<ind:textfilecontent54_test check="at least one" check_existence="at_least_one_exists" 
+			comment="Check for SLES 15 SP6" id="oval:com.cimcor.cimtrak.o_suse:tst:2017" version="1">
+			<ind:object object_ref="oval:com.cimcor.cimtrak.o_suse:obj:2017"/>
+		</ind:textfilecontent54_test>
+		
+		<!-- SUSE Linux Enterprise Desktop 12 -->
+		<ind:textfilecontent54_test check="at least one" check_existence="at_least_one_exists" 
+			comment="Check for SLED 12" id="oval:com.cimcor.cimtrak.o_suse:tst:3001" version="1">
+			<ind:object object_ref="oval:com.cimcor.cimtrak.o_suse:obj:3001"/>
+		</ind:textfilecontent54_test>
+		
+		<!-- SUSE Linux Enterprise Desktop 12 SP1 -->
+		<ind:textfilecontent54_test check="at least one" check_existence="at_least_one_exists" 
+			comment="Check for SLED 12 SP1" id="oval:com.cimcor.cimtrak.o_suse:tst:3002" version="1">
+			<ind:object object_ref="oval:com.cimcor.cimtrak.o_suse:obj:3002"/>
+		</ind:textfilecontent54_test>
+		
+		<!-- SUSE Linux Enterprise Desktop 12 SP2 -->
+		<ind:textfilecontent54_test check="at least one" check_existence="at_least_one_exists" 
+			comment="Check for SLED 12 SP2" id="oval:com.cimcor.cimtrak.o_suse:tst:3003" version="1">
+			<ind:object object_ref="oval:com.cimcor.cimtrak.o_suse:obj:3003"/>
+		</ind:textfilecontent54_test>
+		
+		<!-- SUSE Linux Enterprise Desktop 12 SP3 -->
+		<ind:textfilecontent54_test check="at least one" check_existence="at_least_one_exists" 
+			comment="Check for SLED 12 SP3" id="oval:com.cimcor.cimtrak.o_suse:tst:3004" version="1">
+			<ind:object object_ref="oval:com.cimcor.cimtrak.o_suse:obj:3004"/>
+		</ind:textfilecontent54_test>
+		
+		<!-- SUSE Linux Enterprise Desktop 12 SP4 -->
+		<ind:textfilecontent54_test check="at least one" check_existence="at_least_one_exists" 
+			comment="Check for SLED 12 SP4" id="oval:com.cimcor.cimtrak.o_suse:tst:3005" version="1">
+			<ind:object object_ref="oval:com.cimcor.cimtrak.o_suse:obj:3005"/>
+		</ind:textfilecontent54_test>
+		
+		<!-- SUSE Linux Enterprise Desktop 12 SP5 -->
+		<ind:textfilecontent54_test check="at least one" check_existence="at_least_one_exists" 
+			comment="Check for SLED 12 SP5" id="oval:com.cimcor.cimtrak.o_suse:tst:3006" version="1">
+			<ind:object object_ref="oval:com.cimcor.cimtrak.o_suse:obj:3006"/>
+		</ind:textfilecontent54_test>
+		
+		<!-- SUSE Linux Enterprise Desktop 15 -->
+		<ind:textfilecontent54_test check="at least one" check_existence="at_least_one_exists" 
+			comment="Check for SLED 15" id="oval:com.cimcor.cimtrak.o_suse:tst:3007" version="1">
+			<ind:object object_ref="oval:com.cimcor.cimtrak.o_suse:obj:3007"/>
+		</ind:textfilecontent54_test>
+		
+		<!-- SUSE Linux Enterprise Desktop 15 SP1 -->
+		<ind:textfilecontent54_test check="at least one" check_existence="at_least_one_exists" 
+			comment="Check for SLED 15 SP1" id="oval:com.cimcor.cimtrak.o_suse:tst:3008" version="1">
+			<ind:object object_ref="oval:com.cimcor.cimtrak.o_suse:obj:3008"/>
+		</ind:textfilecontent54_test>
+		
+		<!-- SUSE Linux Enterprise Desktop 15 SP2 -->
+		<ind:textfilecontent54_test check="at least one" check_existence="at_least_one_exists" 
+			comment="Check for SLED 15 SP2" id="oval:com.cimcor.cimtrak.o_suse:tst:3009" version="1">
+			<ind:object object_ref="oval:com.cimcor.cimtrak.o_suse:obj:3009"/>
+		</ind:textfilecontent54_test>
+		
+		<!-- SUSE Linux Enterprise Desktop 15 SP3 -->
+		<ind:textfilecontent54_test check="at least one" check_existence="at_least_one_exists" 
+			comment="Check for SLED 15 SP3" id="oval:com.cimcor.cimtrak.o_suse:tst:3010" version="1">
+			<ind:object object_ref="oval:com.cimcor.cimtrak.o_suse:obj:3010"/>
+		</ind:textfilecontent54_test>
+		
+		<!-- SUSE Linux Enterprise Desktop 15 SP4 -->
+		<ind:textfilecontent54_test check="at least one" check_existence="at_least_one_exists" 
+			comment="Check for SLED 15 SP4" id="oval:com.cimcor.cimtrak.o_suse:tst:3011" version="1">
+			<ind:object object_ref="oval:com.cimcor.cimtrak.o_suse:obj:3011"/>
+		</ind:textfilecontent54_test>
+		
+		<!-- SUSE Linux Enterprise Desktop 15 SP5 -->
+		<ind:textfilecontent54_test check="at least one" check_existence="at_least_one_exists" 
+			comment="Check for SLED 15 SP5" id="oval:com.cimcor.cimtrak.o_suse:tst:3012" version="1">
+			<ind:object object_ref="oval:com.cimcor.cimtrak.o_suse:obj:3012"/>
+		</ind:textfilecontent54_test>
+		
+		<!-- SUSE Linux Enterprise Desktop 15 SP6 -->
+		<ind:textfilecontent54_test check="at least one" check_existence="at_least_one_exists" 
+			comment="Check for SLED 15 SP6" id="oval:com.cimcor.cimtrak.o_suse:tst:3013" version="1">
+			<ind:object object_ref="oval:com.cimcor.cimtrak.o_suse:obj:3013"/>
+		</ind:textfilecontent54_test>
+	</tests>
+	
+	<objects>
+		<!-- OS detection objects using /etc/os-release file -->
+		
+		<!-- openSUSE Leap 15.4 -->
+		<ind:textfilecontent54_object comment="openSUSE Leap 15.4 detection" id="oval:com.cimcor.cimtrak.o_suse:obj:2001" version="1">
+			<ind:filepath>/etc/os-release</ind:filepath>
+			<ind:pattern operation="pattern match">^ID="?opensuse-leap"?$|^PRETTY_NAME=.*openSUSE Leap 15\.4.*$</ind:pattern>
+			<ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+		</ind:textfilecontent54_object>
+		
+		<!-- openSUSE Leap 15.5 -->
+		<ind:textfilecontent54_object comment="openSUSE Leap 15.5 detection" id="oval:com.cimcor.cimtrak.o_suse:obj:2002" version="1">
+			<ind:filepath>/etc/os-release</ind:filepath>
+			<ind:pattern operation="pattern match">^ID="?opensuse-leap"?$|^PRETTY_NAME=.*openSUSE Leap 15\.5.*$</ind:pattern>
+			<ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+		</ind:textfilecontent54_object>
+		
+		<!-- openSUSE Leap 15.6 -->
+		<ind:textfilecontent54_object comment="openSUSE Leap 15.6 detection" id="oval:com.cimcor.cimtrak.o_suse:obj:2003" version="1">
+			<ind:filepath>/etc/os-release</ind:filepath>
+			<ind:pattern operation="pattern match">^ID="?opensuse-leap"?$|^PRETTY_NAME=.*openSUSE Leap 15\.6.*$</ind:pattern>
+			<ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+		</ind:textfilecontent54_object>
+		
+		<!-- SUSE Linux Enterprise Server 15 SP4 -->
+		<ind:textfilecontent54_object comment="SLES 15 SP4 detection" id="oval:com.cimcor.cimtrak.o_suse:obj:2004" version="1">
+			<ind:filepath>/etc/os-release</ind:filepath>
+			<ind:pattern operation="pattern match">^ID="?sles"?$|^PRETTY_NAME=.*SUSE Linux Enterprise Server 15 SP4.*$</ind:pattern>
+			<ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+		</ind:textfilecontent54_object>
+		
+		<!-- SUSE Linux Enterprise Server 15 SP5 -->
+		<ind:textfilecontent54_object comment="SLES 15 SP5 detection" id="oval:com.cimcor.cimtrak.o_suse:obj:2005" version="1">
+			<ind:filepath>/etc/os-release</ind:filepath>
+			<ind:pattern operation="pattern match">^ID="?sles"?$|^PRETTY_NAME=.*SUSE Linux Enterprise Server 15 SP5.*$</ind:pattern>
+			<ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+		</ind:textfilecontent54_object>
+		
+		<!-- SUSE Linux Enterprise Server 15 SP6 -->
+		<ind:textfilecontent54_object comment="SLES 15 SP6 detection" id="oval:com.cimcor.cimtrak.o_suse:obj:2006" version="1">
+			<ind:filepath>/etc/os-release</ind:filepath>
+			<ind:pattern operation="pattern match">^ID="?sles"?$|^PRETTY_NAME=.*SUSE Linux Enterprise Server 15 SP6.*$</ind:pattern>
+			<ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+		</ind:textfilecontent54_object>
+		
+		<!-- openSUSE Tumbleweed -->
+		<ind:textfilecontent54_object comment="openSUSE Tumbleweed detection" id="oval:com.cimcor.cimtrak.o_suse:obj:2007" version="1">
+			<ind:filepath>/etc/os-release</ind:filepath>
+			<ind:pattern operation="pattern match">^ID="?opensuse-tumbleweed"?$|^PRETTY_NAME=.*openSUSE Tumbleweed.*$</ind:pattern>
+			<ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+		</ind:textfilecontent54_object>
+		
+		<!-- SUSE Linux Enterprise Server 12 SP3 -->
+		<ind:textfilecontent54_object comment="SLES 12 SP3 detection" id="oval:com.cimcor.cimtrak.o_suse:obj:2008" version="1">
+			<ind:filepath>/etc/os-release</ind:filepath>
+			<ind:pattern operation="pattern match">^ID="?sles"?$|^PRETTY_NAME=.*SUSE Linux Enterprise Server 12 SP3.*$</ind:pattern>
+			<ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+		</ind:textfilecontent54_object>
+		
+		<!-- SUSE Linux Enterprise Server 12 SP4 -->
+		<ind:textfilecontent54_object comment="SLES 12 SP4 detection" id="oval:com.cimcor.cimtrak.o_suse:obj:2009" version="1">
+			<ind:filepath>/etc/os-release</ind:filepath>
+			<ind:pattern operation="pattern match">^ID="?sles"?$|^PRETTY_NAME=.*SUSE Linux Enterprise Server 12 SP4.*$</ind:pattern>
+			<ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+		</ind:textfilecontent54_object>
+		
+		<!-- SUSE Linux Enterprise Server 12 SP5 -->
+		<ind:textfilecontent54_object comment="SLES 12 SP5 detection" id="oval:com.cimcor.cimtrak.o_suse:obj:2010" version="1">
+			<ind:filepath>/etc/os-release</ind:filepath>
+			<ind:pattern operation="pattern match">^ID="?sles"?$|^PRETTY_NAME=.*SUSE Linux Enterprise Server 12 SP5.*$</ind:pattern>
+			<ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+		</ind:textfilecontent54_object>
+		
+		<!-- SUSE Linux Enterprise Server 15 -->
+		<ind:textfilecontent54_object comment="SLES 15 detection" id="oval:com.cimcor.cimtrak.o_suse:obj:2011" version="1">
+			<ind:filepath>/etc/os-release</ind:filepath>
+			<ind:pattern operation="pattern match">^ID="?sles"?$|^PRETTY_NAME=.*SUSE Linux Enterprise Server 15[^0-9].*$</ind:pattern>
+			<ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+		</ind:textfilecontent54_object>
+		
+		<!-- SUSE Linux Enterprise Server 15 SP1 -->
+		<ind:textfilecontent54_object comment="SLES 15 SP1 detection" id="oval:com.cimcor.cimtrak.o_suse:obj:2012" version="1">
+			<ind:filepath>/etc/os-release</ind:filepath>
+			<ind:pattern operation="pattern match">^ID="?sles"?$|^PRETTY_NAME=.*SUSE Linux Enterprise Server 15 SP1.*$</ind:pattern>
+			<ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+		</ind:textfilecontent54_object>
+		
+		<!-- SUSE Linux Enterprise Server 15 SP2 -->
+		<ind:textfilecontent54_object comment="SLES 15 SP2 detection" id="oval:com.cimcor.cimtrak.o_suse:obj:2013" version="1">
+			<ind:filepath>/etc/os-release</ind:filepath>
+			<ind:pattern operation="pattern match">^ID="?sles"?$|^PRETTY_NAME=.*SUSE Linux Enterprise Server 15 SP2.*$</ind:pattern>
+			<ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+		</ind:textfilecontent54_object>
+		
+		<!-- SUSE Linux Enterprise Server 15 SP3 -->
+		<ind:textfilecontent54_object comment="SLES 15 SP3 detection" id="oval:com.cimcor.cimtrak.o_suse:obj:2014" version="1">
+			<ind:filepath>/etc/os-release</ind:filepath>
+			<ind:pattern operation="pattern match">^ID="?sles"?$|^PRETTY_NAME=.*SUSE Linux Enterprise Server 15 SP3.*$</ind:pattern>
+			<ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+		</ind:textfilecontent54_object>
+		
+		<!-- SUSE Linux Enterprise Server 15 SP4 -->
+		<ind:textfilecontent54_object comment="SLES 15 SP4 detection" id="oval:com.cimcor.cimtrak.o_suse:obj:2015" version="1">
+			<ind:filepath>/etc/os-release</ind:filepath>
+			<ind:pattern operation="pattern match">^ID="?sles"?$|^PRETTY_NAME=.*SUSE Linux Enterprise Server 15 SP4.*$</ind:pattern>
+			<ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+		</ind:textfilecontent54_object>
+		
+		<!-- SUSE Linux Enterprise Server 15 SP5 -->
+		<ind:textfilecontent54_object comment="SLES 15 SP5 detection" id="oval:com.cimcor.cimtrak.o_suse:obj:2016" version="1">
+			<ind:filepath>/etc/os-release</ind:filepath>
+			<ind:pattern operation="pattern match">^ID="?sles"?$|^PRETTY_NAME=.*SUSE Linux Enterprise Server 15 SP5.*$</ind:pattern>
+			<ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+		</ind:textfilecontent54_object>
+		
+		<!-- SUSE Linux Enterprise Server 15 SP6 -->
+		<ind:textfilecontent54_object comment="SLES 15 SP6 detection" id="oval:com.cimcor.cimtrak.o_suse:obj:2017" version="1">
+			<ind:filepath>/etc/os-release</ind:filepath>
+			<ind:pattern operation="pattern match">^ID="?sles"?$|^PRETTY_NAME=.*SUSE Linux Enterprise Server 15 SP6.*$</ind:pattern>
+			<ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+		</ind:textfilecontent54_object>
+		
+		<!-- SUSE Linux Enterprise Desktop 12 -->
+		<ind:textfilecontent54_object comment="SLED 12 detection" id="oval:com.cimcor.cimtrak.o_suse:obj:3001" version="1">
+			<ind:filepath>/etc/os-release</ind:filepath>
+			<ind:pattern operation="pattern match">^ID="?sled"?$|^PRETTY_NAME=.*SUSE Linux Enterprise Desktop 12[^0-9].*$</ind:pattern>
+			<ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+		</ind:textfilecontent54_object>
+		
+		<!-- SUSE Linux Enterprise Desktop 12 SP1 -->
+		<ind:textfilecontent54_object comment="SLED 12 SP1 detection" id="oval:com.cimcor.cimtrak.o_suse:obj:3002" version="1">
+			<ind:filepath>/etc/os-release</ind:filepath>
+			<ind:pattern operation="pattern match">^ID="?sled"?$|^PRETTY_NAME=.*SUSE Linux Enterprise Desktop 12 SP1.*$</ind:pattern>
+			<ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+		</ind:textfilecontent54_object>
+		
+		<!-- SUSE Linux Enterprise Desktop 12 SP2 -->
+		<ind:textfilecontent54_object comment="SLED 12 SP2 detection" id="oval:com.cimcor.cimtrak.o_suse:obj:3003" version="1">
+			<ind:filepath>/etc/os-release</ind:filepath>
+			<ind:pattern operation="pattern match">^ID="?sled"?$|^PRETTY_NAME=.*SUSE Linux Enterprise Desktop 12 SP2.*$</ind:pattern>
+			<ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+		</ind:textfilecontent54_object>
+		
+		<!-- SUSE Linux Enterprise Desktop 12 SP3 -->
+		<ind:textfilecontent54_object comment="SLED 12 SP3 detection" id="oval:com.cimcor.cimtrak.o_suse:obj:3004" version="1">
+			<ind:filepath>/etc/os-release</ind:filepath>
+			<ind:pattern operation="pattern match">^ID="?sled"?$|^PRETTY_NAME=.*SUSE Linux Enterprise Desktop 12 SP3.*$</ind:pattern>
+			<ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+		</ind:textfilecontent54_object>
+		
+		<!-- SUSE Linux Enterprise Desktop 12 SP4 -->
+		<ind:textfilecontent54_object comment="SLED 12 SP4 detection" id="oval:com.cimcor.cimtrak.o_suse:obj:3005" version="1">
+			<ind:filepath>/etc/os-release</ind:filepath>
+			<ind:pattern operation="pattern match">^ID="?sled"?$|^PRETTY_NAME=.*SUSE Linux Enterprise Desktop 12 SP4.*$</ind:pattern>
+			<ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+		</ind:textfilecontent54_object>
+		
+		<!-- SUSE Linux Enterprise Desktop 12 SP5 -->
+		<ind:textfilecontent54_object comment="SLED 12 SP5 detection" id="oval:com.cimcor.cimtrak.o_suse:obj:3006" version="1">
+			<ind:filepath>/etc/os-release</ind:filepath>
+			<ind:pattern operation="pattern match">^ID="?sled"?$|^PRETTY_NAME=.*SUSE Linux Enterprise Desktop 12 SP5.*$</ind:pattern>
+			<ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+		</ind:textfilecontent54_object>
+		
+		<!-- SUSE Linux Enterprise Desktop 15 -->
+		<ind:textfilecontent54_object comment="SLED 15 detection" id="oval:com.cimcor.cimtrak.o_suse:obj:3007" version="1">
+			<ind:filepath>/etc/os-release</ind:filepath>
+			<ind:pattern operation="pattern match">^ID="?sled"?$|^PRETTY_NAME=.*SUSE Linux Enterprise Desktop 15[^0-9].*$</ind:pattern>
+			<ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+		</ind:textfilecontent54_object>
+		
+		<!-- SUSE Linux Enterprise Desktop 15 SP1 -->
+		<ind:textfilecontent54_object comment="SLED 15 SP1 detection" id="oval:com.cimcor.cimtrak.o_suse:obj:3008" version="1">
+			<ind:filepath>/etc/os-release</ind:filepath>
+			<ind:pattern operation="pattern match">^ID="?sled"?$|^PRETTY_NAME=.*SUSE Linux Enterprise Desktop 15 SP1.*$</ind:pattern>
+			<ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+		</ind:textfilecontent54_object>
+		
+		<!-- SUSE Linux Enterprise Desktop 15 SP2 -->
+		<ind:textfilecontent54_object comment="SLED 15 SP2 detection" id="oval:com.cimcor.cimtrak.o_suse:obj:3009" version="1">
+			<ind:filepath>/etc/os-release</ind:filepath>
+			<ind:pattern operation="pattern match">^ID="?sled"?$|^PRETTY_NAME=.*SUSE Linux Enterprise Desktop 15 SP2.*$</ind:pattern>
+			<ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+		</ind:textfilecontent54_object>
+		
+		<!-- SUSE Linux Enterprise Desktop 15 SP3 -->
+		<ind:textfilecontent54_object comment="SLED 15 SP3 detection" id="oval:com.cimcor.cimtrak.o_suse:obj:3010" version="1">
+			<ind:filepath>/etc/os-release</ind:filepath>
+			<ind:pattern operation="pattern match">^ID="?sled"?$|^PRETTY_NAME=.*SUSE Linux Enterprise Desktop 15 SP3.*$</ind:pattern>
+			<ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+		</ind:textfilecontent54_object>
+		
+		<!-- SUSE Linux Enterprise Desktop 15 SP4 -->
+		<ind:textfilecontent54_object comment="SLED 15 SP4 detection" id="oval:com.cimcor.cimtrak.o_suse:obj:3011" version="1">
+			<ind:filepath>/etc/os-release</ind:filepath>
+			<ind:pattern operation="pattern match">^ID="?sled"?$|^PRETTY_NAME=.*SUSE Linux Enterprise Desktop 15 SP4.*$</ind:pattern>
+			<ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+		</ind:textfilecontent54_object>
+		
+		<!-- SUSE Linux Enterprise Desktop 15 SP5 -->
+		<ind:textfilecontent54_object comment="SLED 15 SP5 detection" id="oval:com.cimcor.cimtrak.o_suse:obj:3012" version="1">
+			<ind:filepath>/etc/os-release</ind:filepath>
+			<ind:pattern operation="pattern match">^ID="?sled"?$|^PRETTY_NAME=.*SUSE Linux Enterprise Desktop 15 SP5.*$</ind:pattern>
+			<ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+		</ind:textfilecontent54_object>
+		
+		<!-- SUSE Linux Enterprise Desktop 15 SP6 -->
+		<ind:textfilecontent54_object comment="SLED 15 SP6 detection" id="oval:com.cimcor.cimtrak.o_suse:obj:3013" version="1">
+			<ind:filepath>/etc/os-release</ind:filepath>
+			<ind:pattern operation="pattern match">^ID="?sled"?$|^PRETTY_NAME=.*SUSE Linux Enterprise Desktop 15 SP6.*$</ind:pattern>
+			<ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+		</ind:textfilecontent54_object>
+	</objects>
+</oval_definitions>

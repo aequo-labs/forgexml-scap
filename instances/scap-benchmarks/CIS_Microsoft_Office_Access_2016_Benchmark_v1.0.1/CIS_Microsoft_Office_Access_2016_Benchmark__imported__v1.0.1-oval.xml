@@ -1,0 +1,302 @@
+<oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5 https://oval.cisecurity.org/schemas/validator-oval-definitions-5.11.2.xsd">
+   <generator>
+      <oval:product_name>Center for Internet Security - Optimus</oval:product_name>
+      <oval:schema_version>5.11.2</oval:schema_version>
+      <oval:timestamp>2023-11-03T16:41:54.778Z</oval:timestamp>
+   </generator>
+   <definitions>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_access_2016:def:36289" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Allow Trusted Locations on the network' is set to Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.3.2.1.1_L1_Ensure_Allow_Trusted_Locations_on_the_network_is_set_to_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.3.2.1.1_L1_Ensure_Allow_Trusted_Locations_on_the_network_is_set_to_Disabled"></reference>
+            <description>(L1) Ensure 'Allow Trusted Locations on the network' is set to Disabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_access_2016:tst:36289"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_access_2016:def:36290" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Disable all trusted locations' is set to Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.3.2.1.2_L1_Ensure_Disable_all_trusted_locations_is_set_to_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.3.2.1.2_L1_Ensure_Disable_all_trusted_locations_is_set_to_Enabled"></reference>
+            <description>(L1) Ensure 'Disable all trusted locations' is set to Enabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_access_2016:tst:36290"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_access_2016:def:36291" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Require that application add-ins are signed by Trusted Publisher' is set to Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.3.2.2_L1_Ensure_Require_that_application_add-ins_are_signed_by_Trusted_Publisher_is_set_to_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.3.2.2_L1_Ensure_Require_that_application_add-ins_are_signed_by_Trusted_Publisher_is_set_to_Enabled"></reference>
+            <description>(L1) Ensure 'Require that application add-ins are signed by Trusted Publisher' is set to Enabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_access_2016:tst:36291"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_access_2016:def:36292" version="1">
+         <metadata>
+            <title>(L1) Ensure 'VBA Macro Notification Settings' is set to Enabled (Disable all Except Digitally Signed Macros)</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.3.2.3_L1_Ensure_VBA_Macro_Notification_Settings_is_set_to_Enabled_Disable_all_Except_Digitally_Signed_Macros" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.3.2.3_L1_Ensure_VBA_Macro_Notification_Settings_is_set_to_Enabled_Disable_all_Except_Digitally_Signed_Macros"></reference>
+            <description>(L1) Ensure 'VBA Macro Notification Settings' is set to Enabled (Disable all Except Digitally Signed Macros)</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_access_2016:tst:36292"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_access_2016:def:36293" version="1">
+         <metadata>
+            <title>(L1) Ensure Set 'Disable Trust Bar Notification for unsigned application add-ins ' is set to Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.3.2.4_L1_Ensure_Set_Disable_Trust_Bar_Notification_for_unsigned_application_add-ins__is_set_to_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.3.2.4_L1_Ensure_Set_Disable_Trust_Bar_Notification_for_unsigned_application_add-ins__is_set_to_Enabled"></reference>
+            <description>(L1) Ensure Set 'Disable Trust Bar Notification for unsigned application add-ins ' is set to Enabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_access_2016:tst:36293"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_access_2016:def:36294" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Underline hyperlinks' is set to Enabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.4.1.1_L1_Ensure_Underline_hyperlinks_is_set_to_Enabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.4.1.1_L1_Ensure_Underline_hyperlinks_is_set_to_Enabled"></reference>
+            <description>(L1) Ensure 'Underline hyperlinks' is set to Enabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_access_2016:tst:36294"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_access_2016:def:36295" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Do not prompt to convert older databases' is set to Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4.1_L1_Ensure_Do_not_prompt_to_convert_older_databases_is_set_to_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4.1_L1_Ensure_Do_not_prompt_to_convert_older_databases_is_set_to_Disabled"></reference>
+            <description>(L1) Ensure 'Do not prompt to convert older databases' is set to Disabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_access_2016:tst:36295"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_access_2016:def:36296" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Default file format' is set to Enabled (Access 2007)</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.4.2_L1_Ensure_Default_file_format_is_set_to_Enabled_Access_2007" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.4.2_L1_Ensure_Default_file_format_is_set_to_Enabled_Access_2007"></reference>
+            <description>(L1) Ensure 'Default file format' is set to Enabled (Access 2007)</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_access_2016:tst:36296"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.microsoft_access_2016:def:36297" version="1">
+         <metadata>
+            <title>(L1) Ensure 'Modal Trust Decision Only' is set to Disabled</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.5.2_L1_Ensure_Modal_Trust_Decision_Only_is_set_to_Disabled" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.5.2_L1_Ensure_Modal_Trust_Decision_Only_is_set_to_Disabled"></reference>
+            <description>(L1) Ensure 'Modal Trust Decision Only' is set to Disabled</description>
+         </metadata>
+         <criteria operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.microsoft_access_2016:tst:36297"></criterion>
+         </criteria>
+      </definition>
+   </definitions>
+   <tests>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'allownetworklocations' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_access_2016:tst:36289" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_access_2016:obj:36289"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_access_2016:ste:36289"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'alllocationsdisabled' is equal to '1'" id="oval:org.cisecurity.benchmarks.microsoft_access_2016:tst:36290" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_access_2016:obj:36290"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_access_2016:ste:36290"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'requireaddinsig' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_access_2016:tst:36291" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_access_2016:obj:36291"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_access_2016:ste:36291"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'vbawarnings' is equals to '3'" id="oval:org.cisecurity.benchmarks.microsoft_access_2016:tst:36292" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_access_2016:obj:36292"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_access_2016:ste:36292"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'notbpromptunsignedaddin' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_access_2016:tst:36293" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_access_2016:obj:36293"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_access_2016:ste:36293"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'donotunderlinehyperlinks' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_access_2016:tst:36294" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_access_2016:obj:36294"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_access_2016:ste:36294"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'noconvertdialog' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_access_2016:tst:36295" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_access_2016:obj:36295"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_access_2016:ste:36295"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'default file format' is equals to '12'" id="oval:org.cisecurity.benchmarks.microsoft_access_2016:tst:36296" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_access_2016:obj:36296"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_access_2016:ste:36296"></state>
+      </registry_test>
+      <registry_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" check="all" check_existence="all_exist" comment="Ensure 'modaltrustdecisiononly' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_access_2016:tst:36297" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.microsoft_access_2016:obj:36297"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.microsoft_access_2016:ste:36297"></state>
+      </registry_test>
+   </tests>
+   <objects>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'allownetworklocations' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_access_2016:obj:36289" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Aa]ccess\\[Ss]ecurity\\[Tt]rusted locations</key>
+         <name>allownetworklocations</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'alllocationsdisabled' is equal to '1'" id="oval:org.cisecurity.benchmarks.microsoft_access_2016:obj:36290" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Aa]ccess\\[Ss]ecurity\\[Tt]rusted\s[Ll]ocations</key>
+         <name>alllocationsdisabled</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'requireaddinsig' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_access_2016:obj:36291" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Aa]ccess\\[Ss]ecurity</key>
+         <name>requireaddinsig</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'vbawarnings' is equals to '3'" id="oval:org.cisecurity.benchmarks.microsoft_access_2016:obj:36292" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Aa]ccess\\[Ss]ecurity</key>
+         <name>vbawarnings</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'notbpromptunsignedaddin' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_access_2016:obj:36293" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Aa]ccess\\[Ss]ecurity</key>
+         <name>notbpromptunsignedaddin</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'donotunderlinehyperlinks' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_access_2016:obj:36294" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Aa]ccess\\[Ii]nternet</key>
+         <name>donotunderlinehyperlinks</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'noconvertdialog' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_access_2016:obj:36295" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Aa]ccess\\[Ss]ettings</key>
+         <name>noconvertdialog</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'default file format' is equals to '12'" id="oval:org.cisecurity.benchmarks.microsoft_access_2016:obj:36296" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Aa]ccess\\[Ss]ettings</key>
+         <name>default file format</name>
+      </registry_object>
+      <registry_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'modaltrustdecisiononly' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_access_2016:obj:36297" version="1">
+         <hive>HKEY_USERS</hive>
+         <key operation="equals">^S-1-5-21-[0-9]+-[0-9]+-[0-9]+-[0-9]{4,}\\[Ss][Oo][Ff][Tt][Ww][Aa][Rr][Ee]\\[Pp]olicies\\[Mm]icrosoft\\[Oo]ffice\\16.0\\[Aa]ccess\\[Ss]ecurity</key>
+         <name>modaltrustdecisiononly</name>
+      </registry_object>
+   </objects>
+   <states>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'allownetworklocations' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_access_2016:ste:36289" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">0</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'alllocationsdisabled' is equal to '1'" id="oval:org.cisecurity.benchmarks.microsoft_access_2016:ste:36290" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'requireaddinsig' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_access_2016:ste:36291" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'vbawarnings' is equals to '3'" id="oval:org.cisecurity.benchmarks.microsoft_access_2016:ste:36292" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">3</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'notbpromptunsignedaddin' is equals to '1'" id="oval:org.cisecurity.benchmarks.microsoft_access_2016:ste:36293" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">1</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'donotunderlinehyperlinks' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_access_2016:ste:36294" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">0</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'noconvertdialog' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_access_2016:ste:36295" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">0</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'default file format' is equals to '12'" id="oval:org.cisecurity.benchmarks.microsoft_access_2016:ste:36296" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">12</value>
+      </registry_state>
+      <registry_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows" comment="Ensure 'modaltrustdecisiononly' is equals to '0'" id="oval:org.cisecurity.benchmarks.microsoft_access_2016:ste:36297" version="1">
+         <type>reg_dword</type>
+         <value datatype="int" operation="equals">0</value>
+      </registry_state>
+   </states>
+   <variables>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Allow Trusted Locations on the network' is set to Disabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_access_2016:var:362891" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Allow Trusted Locations on the network' is set to Disabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_access_2016:var:362892" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Disable all trusted locations' is set to Enabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_access_2016:var:362901" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Disable all trusted locations' is set to Enabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_access_2016:var:362902" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Require that application add-ins are signed by Trusted Publisher' is set to Enabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_access_2016:var:362911" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Require that application add-ins are signed by Trusted Publisher' is set to Enabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_access_2016:var:362912" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'VBA Macro Notification Settings' is set to Enabled (Disable all Except Digitally Signed Macros) for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_access_2016:var:362921" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'VBA Macro Notification Settings' is set to Enabled (Disable all Except Digitally Signed Macros) for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_access_2016:var:362922" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure Set 'Disable Trust Bar Notification for unsigned application add-ins ' is set to Enabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_access_2016:var:362931" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure Set 'Disable Trust Bar Notification for unsigned application add-ins ' is set to Enabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_access_2016:var:362932" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Underline hyperlinks' is set to Enabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_access_2016:var:362941" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Underline hyperlinks' is set to Enabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_access_2016:var:362942" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Do not prompt to convert older databases' is set to Disabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_access_2016:var:362951" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Do not prompt to convert older databases' is set to Disabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_access_2016:var:362952" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Default file format' is set to Enabled (Access 2007) for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_access_2016:var:362961" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Default file format' is set to Enabled (Access 2007) for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_access_2016:var:362962" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Modal Trust Decision Only' is set to Disabled for the registry data type" datatype="string" id="oval:org.cisecurity.benchmarks.microsoft_access_2016:var:362971" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: (L1) Ensure 'Modal Trust Decision Only' is set to Disabled for the registry value" datatype="int" id="oval:org.cisecurity.benchmarks.microsoft_access_2016:var:362972" version="1"></external_variable>
+   </variables>
+<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+<ds:SignedInfo>
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"></ds:CanonicalizationMethod>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"></ds:SignatureMethod>
+<ds:Reference URI="">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"></ds:Transform>
+<ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"></ds:Transform>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"></ds:DigestMethod>
+<ds:DigestValue>zGZhGBdraQ9b/mGB8MOrUHYhsJo=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue>
+LMxqHF/5GCF91eXelUrHQ3p/DzejJKLtkGIkIoce1GNYRrnbm/yZdq3Sk8Cq1NEO8ujVKuTPTjUt
+TZcAnxUexjj7RfrTwNm1zHZ0zYkBpKNfMA/AOmo6x2By9V/sOdFEYe9G+wpclvgAODp9KtzqzSr0
++jy8Q5UjiesqR2udGG46rSjafXOm/L6Ai5DXXb/JmMuDVMx4ciq11AepWoZml4dE3nSrYXl14nHD
+/jhsrTHVGvDetFkA0DCVNiB9oZ91HQivdoEJyMyGwTGPLhO22in0i7ZB++sbpgEHVqX/CYj4ccU6
+a7cysZOnYyKGzXWCezCqG7PWgG79FeArRSg4DA==
+</ds:SignatureValue>
+<ds:KeyInfo>
+<ds:X509Data>
+<ds:X509Certificate>
+MIIFUjCCBDqgAwIBAgIIPx+qZKptEY4wDQYJKoZIhvcNAQELBQAwgbQxCzAJBgNVBAYTAlVTMRAw
+DgYDVQQIEwdBcml6b25hMRMwEQYDVQQHEwpTY290dHNkYWxlMRowGAYDVQQKExFHb0RhZGR5LmNv
+bSwgSW5jLjEtMCsGA1UECxMkaHR0cDovL2NlcnRzLmdvZGFkZHkuY29tL3JlcG9zaXRvcnkvMTMw
+MQYDVQQDEypHbyBEYWRkeSBTZWN1cmUgQ2VydGlmaWNhdGUgQXV0aG9yaXR5IC0gRzIwHhcNMjAw
+OTA4MTMzOTM5WhcNMjMxMDI4MDAzMjA1WjCBkzELMAkGA1UEBhMCVVMxETAPBgNVBAgTCE5ldyBZ
+b3JrMRcwFQYDVQQHEw5FYXN0IEdyZWVuYnVzaDErMCkGA1UEChMiQ2VudGVyIGZvciBJbnRlcm5l
+dCBTZWN1cml0eSwgSW5jLjErMCkGA1UEAxMiQ2VudGVyIGZvciBJbnRlcm5ldCBTZWN1cml0eSwg
+SW5jLjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBANDBp4+sl9kB5JRmnQH0wcbLLz/t
+n2HoD6TRl3xJj12V61njBNgaiGzvoSl07sFLnESukb0CU44MzYDoUMdx3HJUcEAeMY/9eITqGUnk
+N4WsP145eFqH7FoszOY/4NYlgYMYt8ZP2kRHyim9LpQTLT/1mBaUkY2f2e5uUCootH3iT8W3/sK2
+flLzWfLgXTvkhJm4Uvw1RErBFs15+krW0KWtnZ6NmiDhmV0CnFGNnd1meGZPs2sBXEVGLJVSKzoT
+G9Ht/oWyRLRcJuXpHoXTYpkqM2MsixmSaJy5b6/D35r0NXHru3p1gkX2a0VgJQxxWqLi3bVPzpl3
+PlJu3C8M/FUCAwEAAaOCAYUwggGBMAwGA1UdEwEB/wQCMAAwEwYDVR0lBAwwCgYIKwYBBQUHAwMw
+DgYDVR0PAQH/BAQDAgeAMDUGA1UdHwQuMCwwKqAooCaGJGh0dHA6Ly9jcmwuZ29kYWRkeS5jb20v
+Z2RpZzJzNS02LmNybDBdBgNVHSAEVjBUMEgGC2CGSAGG/W0BBxcCMDkwNwYIKwYBBQUHAgEWK2h0
+dHA6Ly9jZXJ0aWZpY2F0ZXMuZ29kYWRkeS5jb20vcmVwb3NpdG9yeS8wCAYGZ4EMAQQBMHYGCCsG
+AQUFBwEBBGowaDAkBggrBgEFBQcwAYYYaHR0cDovL29jc3AuZ29kYWRkeS5jb20vMEAGCCsGAQUF
+BzAChjRodHRwOi8vY2VydGlmaWNhdGVzLmdvZGFkZHkuY29tL3JlcG9zaXRvcnkvZ2RpZzIuY3J0
+MB8GA1UdIwQYMBaAFEDCvSeOzDSDMKIz1/tss/C0LIDOMB0GA1UdDgQWBBT7fOf4ISDprbE+qUFe
++friFTKgHjANBgkqhkiG9w0BAQsFAAOCAQEAT0XLw2vmuq6e58bkLDXdqKeGQjREDChLw2Mae9LI
+JB93QgdA2OCLA1FwU2s7lawEDcma9wPiugxVGoaQNOfRw2/+cz0xmR3uaKQq6I24dWbHF20N2tSz
+1RAAK1lRZKewA1fj+qqKWjzETA0LpqZlaFF+CKBpQcyfYyQRZxpHkB1vvKMf4kMIRKruvl4ixLjN
+uAZrbQUWlXuq/MUkVP3FgdxWBPfmMGyngHs4hNMaSQGb1TEhBjj+PGoSunAyaOgO/P94XJPQQX3O
+2oNDsPou6gKcNtbZrH+iYTJ8rcqQTontMwSP/HrYj8lgG3neG53vk05p0jCn2M5W0ukJ4LPEnA==
+</ds:X509Certificate>
+</ds:X509Data>
+<ds:KeyValue>
+<ds:RSAKeyValue>
+<ds:Modulus>0MGnj6yX2QHklGadAfTBxssvP+2fYegPpNGXfEmPXZXrWeME2BqIbO+hKXTuwUucRK6RvQJTjgzN
+gOhQx3HcclRwQB4xj/14hOoZSeQ3haw/Xjl4WofsWizM5j/g1iWBgxi3xk/aREfKKb0ulBMtP/WY
+FpSRjZ/Z7m5QKii0feJPxbf+wrZ+UvNZ8uBdO+SEmbhS/DVESsEWzXn6StbQpa2dno2aIOGZXQKc
+UY2d3WZ4Zk+zawFcRUYslVIrOhMb0e3+hbJEtFwm5ekehdNimSozYyyLGZJonLlvr8PfmvQ1ceu7
+enWCRfZrRWAlDHFaouLdtU/OmXc+Um7cLwz8VQ==</ds:Modulus>
+<ds:Exponent>AQAB</ds:Exponent>
+</ds:RSAKeyValue>
+</ds:KeyValue>
+</ds:KeyInfo>
+</ds:Signature></oval_definitions>

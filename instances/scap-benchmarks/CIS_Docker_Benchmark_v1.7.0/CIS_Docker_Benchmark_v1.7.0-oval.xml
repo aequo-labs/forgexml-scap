@@ -1,0 +1,946 @@
+<oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5 https://oval.cisecurity.org/schemas/validator-oval-definitions-5.11.2.xsd">
+   <generator>
+      <oval:product_name>Center for Internet Security - Optimus</oval:product_name>
+      <oval:schema_version>5.11.2</oval:schema_version>
+      <oval:timestamp>2025-06-24T15:28:31.799Z</oval:timestamp>
+   </generator>
+   <definitions>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4808425" version="1">
+         <metadata>
+            <title>Ensure auditing is configured for the Docker daemon</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.3_Ensure_auditing_is_configured_for_the_Docker_daemon" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.3_Ensure_auditing_is_configured_for_the_Docker_daemon"></reference>
+            <description>Ensure auditing is configured for the Docker daemon</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4808425"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4808426" version="1">
+         <metadata>
+            <title>Ensure auditing is configured for Docker files and directories - /var/lib/docker</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.5_Ensure_auditing_is_configured_for_Docker_files_and_directories_-_varlibdocker" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.5_Ensure_auditing_is_configured_for_Docker_files_and_directories_-_varlibdocker"></reference>
+            <description>Ensure auditing is configured for Docker files and directories - /var/lib/docker</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4808426"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4808427" version="1">
+         <metadata>
+            <title>Ensure auditing is configured for Docker files and directories - /etc/docker</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.6_Ensure_auditing_is_configured_for_Docker_files_and_directories_-_etcdocker" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.6_Ensure_auditing_is_configured_for_Docker_files_and_directories_-_etcdocker"></reference>
+            <description>Ensure auditing is configured for Docker files and directories - /etc/docker</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4808427"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4808428" version="1">
+         <metadata>
+            <title>Ensure auditing is configured for Docker files and directories - docker.service</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.7_Ensure_auditing_is_configured_for_Docker_files_and_directories_-_docker.service" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.7_Ensure_auditing_is_configured_for_Docker_files_and_directories_-_docker.service"></reference>
+            <description>Ensure auditing is configured for Docker files and directories - docker.service</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4808428"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4808429" version="1">
+         <metadata>
+            <title>Ensure auditing is configured for Docker files and directories - docker.service</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.7_Ensure_auditing_is_configured_for_Docker_files_and_directories_-_docker.service" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.7_Ensure_auditing_is_configured_for_Docker_files_and_directories_-_docker.service"></reference>
+            <description>Ensure auditing is configured for Docker files and directories - docker.service</description>
+         </metadata>
+         <criteria negate="true" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4808429"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4808430" version="1">
+         <metadata>
+            <title>Ensure auditing is configured for Docker files and directories - containerd.sock</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.8_Ensure_auditing_is_configured_for_Docker_files_and_directories_-_containerd.sock" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.8_Ensure_auditing_is_configured_for_Docker_files_and_directories_-_containerd.sock"></reference>
+            <description>Ensure auditing is configured for Docker files and directories - containerd.sock</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4808430"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4808431" version="1">
+         <metadata>
+            <title>Ensure auditing is configured for Docker files and directories - containerd.sock</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.8_Ensure_auditing_is_configured_for_Docker_files_and_directories_-_containerd.sock" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.8_Ensure_auditing_is_configured_for_Docker_files_and_directories_-_containerd.sock"></reference>
+            <description>Ensure auditing is configured for Docker files and directories - containerd.sock</description>
+         </metadata>
+         <criteria negate="true" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4808431"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4808432" version="1">
+         <metadata>
+            <title>Ensure auditing is configured for Docker files and directories - docker.sock</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.9_Ensure_auditing_is_configured_for_Docker_files_and_directories_-_docker.sock" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.9_Ensure_auditing_is_configured_for_Docker_files_and_directories_-_docker.sock"></reference>
+            <description>Ensure auditing is configured for Docker files and directories - docker.sock</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4808432"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4808433" version="1">
+         <metadata>
+            <title>Ensure auditing is configured for Docker files and directories - docker.sock</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.9_Ensure_auditing_is_configured_for_Docker_files_and_directories_-_docker.sock" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.9_Ensure_auditing_is_configured_for_Docker_files_and_directories_-_docker.sock"></reference>
+            <description>Ensure auditing is configured for Docker files and directories - docker.sock</description>
+         </metadata>
+         <criteria negate="true" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4808433"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4808434" version="1">
+         <metadata>
+            <title>Ensure auditing is configured for Docker files and directories - /etc/default/docker</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.10_Ensure_auditing_is_configured_for_Docker_files_and_directories_-_etcdefaultdocker" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.10_Ensure_auditing_is_configured_for_Docker_files_and_directories_-_etcdefaultdocker"></reference>
+            <description>Ensure auditing is configured for Docker files and directories - /etc/default/docker</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4808434"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4808435" version="1">
+         <metadata>
+            <title>Ensure auditing is configured for Docker files and directories - /etc/default/docker</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.10_Ensure_auditing_is_configured_for_Docker_files_and_directories_-_etcdefaultdocker" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.10_Ensure_auditing_is_configured_for_Docker_files_and_directories_-_etcdefaultdocker"></reference>
+            <description>Ensure auditing is configured for Docker files and directories - /etc/default/docker</description>
+         </metadata>
+         <criteria negate="true" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4808435"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4808436" version="1">
+         <metadata>
+            <title>Ensure auditing is configured for Docker files and directories - /etc/docker/daemon.json</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.11_Ensure_auditing_is_configured_for_Docker_files_and_directories_-_etcdockerdaemon.json" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.11_Ensure_auditing_is_configured_for_Docker_files_and_directories_-_etcdockerdaemon.json"></reference>
+            <description>Ensure auditing is configured for Docker files and directories - /etc/docker/daemon.json</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4808436"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4808437" version="1">
+         <metadata>
+            <title>Ensure auditing is configured for Docker files and directories - /etc/docker/daemon.json</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.11_Ensure_auditing_is_configured_for_Docker_files_and_directories_-_etcdockerdaemon.json" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.11_Ensure_auditing_is_configured_for_Docker_files_and_directories_-_etcdockerdaemon.json"></reference>
+            <description>Ensure auditing is configured for Docker files and directories - /etc/docker/daemon.json</description>
+         </metadata>
+         <criteria negate="true" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4808437"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4808438" version="1">
+         <metadata>
+            <title>Ensure auditing is configured for Docker files and directories - /etc/containerd/config.toml</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.12_Ensure_auditing_is_configured_for_Docker_files_and_directories_-_etccontainerdconfig.toml" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.12_Ensure_auditing_is_configured_for_Docker_files_and_directories_-_etccontainerdconfig.toml"></reference>
+            <description>Ensure auditing is configured for Docker files and directories - /etc/containerd/config.toml</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4808438"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4808439" version="1">
+         <metadata>
+            <title>Ensure auditing is configured for Docker files and directories - /etc/containerd/config.toml</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.12_Ensure_auditing_is_configured_for_Docker_files_and_directories_-_etccontainerdconfig.toml" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.12_Ensure_auditing_is_configured_for_Docker_files_and_directories_-_etccontainerdconfig.toml"></reference>
+            <description>Ensure auditing is configured for Docker files and directories - /etc/containerd/config.toml</description>
+         </metadata>
+         <criteria negate="true" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4808439"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4808440" version="1">
+         <metadata>
+            <title>Ensure auditing is configured for Docker files and directories - /etc/sysconfig/docker</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.13_Ensure_auditing_is_configured_for_Docker_files_and_directories_-_etcsysconfigdocker" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.13_Ensure_auditing_is_configured_for_Docker_files_and_directories_-_etcsysconfigdocker"></reference>
+            <description>Ensure auditing is configured for Docker files and directories - /etc/sysconfig/docker</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4808440"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4808441" version="1">
+         <metadata>
+            <title>Ensure auditing is configured for Docker files and directories - /etc/sysconfig/docker</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.13_Ensure_auditing_is_configured_for_Docker_files_and_directories_-_etcsysconfigdocker" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.13_Ensure_auditing_is_configured_for_Docker_files_and_directories_-_etcsysconfigdocker"></reference>
+            <description>Ensure auditing is configured for Docker files and directories - /etc/sysconfig/docker</description>
+         </metadata>
+         <criteria negate="true" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4808441"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4808442" version="1">
+         <metadata>
+            <title>Ensure auditing is configured for Docker files and directories - /usr/bin/containerd</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.14_Ensure_auditing_is_configured_for_Docker_files_and_directories_-_usrbincontainerd" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.14_Ensure_auditing_is_configured_for_Docker_files_and_directories_-_usrbincontainerd"></reference>
+            <description>Ensure auditing is configured for Docker files and directories - /usr/bin/containerd</description>
+         </metadata>
+         <criteria negate="true" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4808442"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4808443" version="1">
+         <metadata>
+            <title>Ensure auditing is configured for Docker files and directories - /usr/bin/containerd</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.14_Ensure_auditing_is_configured_for_Docker_files_and_directories_-_usrbincontainerd" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.14_Ensure_auditing_is_configured_for_Docker_files_and_directories_-_usrbincontainerd"></reference>
+            <description>Ensure auditing is configured for Docker files and directories - /usr/bin/containerd</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4808443"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4808444" version="1">
+         <metadata>
+            <title>Ensure auditing is configured for Docker files and directories - /usr/bin/containerd-shim</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.15_Ensure_auditing_is_configured_for_Docker_files_and_directories_-_usrbincontainerd-shim" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.15_Ensure_auditing_is_configured_for_Docker_files_and_directories_-_usrbincontainerd-shim"></reference>
+            <description>Ensure auditing is configured for Docker files and directories - /usr/bin/containerd-shim</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4808444"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4808445" version="1">
+         <metadata>
+            <title>Ensure auditing is configured for Docker files and directories - /usr/bin/containerd-shim</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.15_Ensure_auditing_is_configured_for_Docker_files_and_directories_-_usrbincontainerd-shim" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.15_Ensure_auditing_is_configured_for_Docker_files_and_directories_-_usrbincontainerd-shim"></reference>
+            <description>Ensure auditing is configured for Docker files and directories - /usr/bin/containerd-shim</description>
+         </metadata>
+         <criteria negate="true" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4808445"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4808446" version="1">
+         <metadata>
+            <title>Ensure auditing is configured for Docker files and directories - /usr/bin/containerd-shim-runc-v1</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.16_Ensure_auditing_is_configured_for_Docker_files_and_directories_-_usrbincontainerd-shim-runc-v1" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.16_Ensure_auditing_is_configured_for_Docker_files_and_directories_-_usrbincontainerd-shim-runc-v1"></reference>
+            <description>Ensure auditing is configured for Docker files and directories - /usr/bin/containerd-shim-runc-v1</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4808446"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4808448" version="1">
+         <metadata>
+            <title>Ensure auditing is configured for Docker files and directories - /usr/bin/containerd-shim-runc-v2</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.17_Ensure_auditing_is_configured_for_Docker_files_and_directories_-_usrbincontainerd-shim-runc-v2" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.17_Ensure_auditing_is_configured_for_Docker_files_and_directories_-_usrbincontainerd-shim-runc-v2"></reference>
+            <description>Ensure auditing is configured for Docker files and directories - /usr/bin/containerd-shim-runc-v2</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4808448"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4808449" version="1">
+         <metadata>
+            <title>Ensure auditing is configured for Docker files and directories - /usr/bin/containerd-shim-runc-v2</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.17_Ensure_auditing_is_configured_for_Docker_files_and_directories_-_usrbincontainerd-shim-runc-v2" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.17_Ensure_auditing_is_configured_for_Docker_files_and_directories_-_usrbincontainerd-shim-runc-v2"></reference>
+            <description>Ensure auditing is configured for Docker files and directories - /usr/bin/containerd-shim-runc-v2</description>
+         </metadata>
+         <criteria negate="true" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4808449"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4808450" version="1">
+         <metadata>
+            <title>Ensure auditing is configured for Docker files and directories - /usr/bin/runc</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.18_Ensure_auditing_is_configured_for_Docker_files_and_directories_-_usrbinrunc" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.18_Ensure_auditing_is_configured_for_Docker_files_and_directories_-_usrbinrunc"></reference>
+            <description>Ensure auditing is configured for Docker files and directories - /usr/bin/runc</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4808450"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4808451" version="1">
+         <metadata>
+            <title>Ensure auditing is configured for Docker files and directories - /usr/bin/runc</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1.18_Ensure_auditing_is_configured_for_Docker_files_and_directories_-_usrbinrunc" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1.18_Ensure_auditing_is_configured_for_Docker_files_and_directories_-_usrbinrunc"></reference>
+            <description>Ensure auditing is configured for Docker files and directories - /usr/bin/runc</description>
+         </metadata>
+         <criteria negate="true" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4808451"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4808457" version="1">
+         <metadata>
+            <title>Ensure that the /etc/docker directory ownership is set to root:root</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.5_Ensure_that_the_etcdocker_directory_ownership_is_set_to_rootroot" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.5_Ensure_that_the_etcdocker_directory_ownership_is_set_to_rootroot"></reference>
+            <description>Ensure that the /etc/docker directory ownership is set to root:root</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4808457"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4808459" version="1">
+         <metadata>
+            <title>Ensure that /etc/docker directory permissions are set to 755 or more restrictively</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.6_Ensure_that_etcdocker_directory_permissions_are_set_to_755_or_more_restrictively" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.6_Ensure_that_etcdocker_directory_permissions_are_set_to_755_or_more_restrictively"></reference>
+            <description>Ensure that /etc/docker directory permissions are set to 755 or more restrictively</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4808459"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4808460" version="1">
+         <metadata>
+            <title>Ensure that the Docker socket file ownership is set to root:docker</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.15_Ensure_that_the_Docker_socket_file_ownership_is_set_to_rootdocker" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.15_Ensure_that_the_Docker_socket_file_ownership_is_set_to_rootdocker"></reference>
+            <description>Ensure that the Docker socket file ownership is set to root:docker</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4808460"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4808452" version="1">
+         <metadata>
+            <title>Ensure that the docker.service file ownership is set to root:root</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.1_Ensure_that_the_docker.service_file_ownership_is_set_to_rootroot" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.1_Ensure_that_the_docker.service_file_ownership_is_set_to_rootroot"></reference>
+            <description>Ensure that the docker.service file ownership is set to root:root</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4808452"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4808453" version="1">
+         <metadata>
+            <title>Ensure that docker.service file permissions are appropriately set</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.2_Ensure_that_docker.service_file_permissions_are_appropriately_set" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.2_Ensure_that_docker.service_file_permissions_are_appropriately_set"></reference>
+            <description>Ensure that docker.service file permissions are appropriately set</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4808453"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4808454" version="1">
+         <metadata>
+            <title>Ensure that docker.socket file ownership is set to root:root</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.3_Ensure_that_docker.socket_file_ownership_is_set_to_rootroot" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.3_Ensure_that_docker.socket_file_ownership_is_set_to_rootroot"></reference>
+            <description>Ensure that docker.socket file ownership is set to root:root</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4808454"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4808455" version="1">
+         <metadata>
+            <title>Ensure that docker.socket file permissions are set to 644 or more restrictive</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.4_Ensure_that_docker.socket_file_permissions_are_set_to_644_or_more_restrictive" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.4_Ensure_that_docker.socket_file_permissions_are_set_to_644_or_more_restrictive"></reference>
+            <description>Ensure that docker.socket file permissions are set to 644 or more restrictive</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4808455"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4808461" version="1">
+         <metadata>
+            <title>Ensure that the Docker socket file permissions are set to 660 or more restrictively</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.16_Ensure_that_the_Docker_socket_file_permissions_are_set_to_660_or_more_restrictively" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.16_Ensure_that_the_Docker_socket_file_permissions_are_set_to_660_or_more_restrictively"></reference>
+            <description>Ensure that the Docker socket file permissions are set to 660 or more restrictively</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4808461"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4808462" version="1">
+         <metadata>
+            <title>Ensure that the Containerd socket file ownership is set to root:root</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.23_Ensure_that_the_Containerd_socket_file_ownership_is_set_to_rootroot" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.23_Ensure_that_the_Containerd_socket_file_ownership_is_set_to_rootroot"></reference>
+            <description>Ensure that the Containerd socket file ownership is set to root:root</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4808462"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4808463" version="1">
+         <metadata>
+            <title>Ensure that the Containerd socket file permissions are set to 660 or more restrictively</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.24_Ensure_that_the_Containerd_socket_file_permissions_are_set_to_660_or_more_restrictively" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.24_Ensure_that_the_Containerd_socket_file_permissions_are_set_to_660_or_more_restrictively"></reference>
+            <description>Ensure that the Containerd socket file permissions are set to 660 or more restrictively</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4808463"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4808456" version="1">
+         <metadata>
+            <title>Ensure that the /etc/docker directory ownership is set to root:root</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.5_Ensure_that_the_etcdocker_directory_ownership_is_set_to_rootroot" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.5_Ensure_that_the_etcdocker_directory_ownership_is_set_to_rootroot"></reference>
+            <description>Ensure that the /etc/docker directory ownership is set to root:root</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4808456"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks:def:4808458" version="1">
+         <metadata>
+            <title>Ensure that /etc/docker directory permissions are set to 755 or more restrictively</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_3.6_Ensure_that_etcdocker_directory_permissions_are_set_to_755_or_more_restrictively" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_3.6_Ensure_that_etcdocker_directory_permissions_are_set_to_755_or_more_restrictively"></reference>
+            <description>Ensure that /etc/docker directory permissions are set to 755 or more restrictively</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks:tst:4808458"></criterion>
+         </criteria>
+      </definition>
+   </definitions>
+   <tests>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'auditctl -l | grep /usr/bin/dockerd' output Pattern Match '\/usr\/bin\/dockerd' (string)" id="oval:org.cisecurity.benchmarks:tst:4808425" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4808425"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4808425"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'auditctl -l | grep /var/lib/docker' output Pattern Match '\/var\/lib\/docker' (string)" id="oval:org.cisecurity.benchmarks:tst:4808426" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4808426"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4808426"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure auditing is configured for Docker files and directories - /etc/docker" id="oval:org.cisecurity.benchmarks:tst:4808427" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4808427"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4808427"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure auditing is configured for Docker files and directories - docker.service" id="oval:org.cisecurity.benchmarks:tst:4808428" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4808428"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4808428"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure docker.service exists" id="oval:org.cisecurity.benchmarks:tst:4808429" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4808429"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4808429"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure auditing is configured for Docker files and directories - containerd.sock" id="oval:org.cisecurity.benchmarks:tst:4808430" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4808430"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4808430"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure containerd.sock exists" id="oval:org.cisecurity.benchmarks:tst:4808431" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4808431"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4808431"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure auditing is configured for Docker files and directories - docker.socket" id="oval:org.cisecurity.benchmarks:tst:4808432" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4808432"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4808432"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure docker.socket exists" id="oval:org.cisecurity.benchmarks:tst:4808433" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4808433"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4808433"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure auditing is configured for Docker files and directories - /etc/default/docker" id="oval:org.cisecurity.benchmarks:tst:4808434" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4808434"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4808434"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Check if /etc/default/docker applicable" id="oval:org.cisecurity.benchmarks:tst:4808435" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4808435"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4808435"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure auditing is configured for Docker files and directories - /etc/docker/daemon.json" id="oval:org.cisecurity.benchmarks:tst:4808436" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4808436"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4808436"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Check existence of /etc/docker/daemon.json" id="oval:org.cisecurity.benchmarks:tst:4808437" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4808437"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4808437"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure auditing is configured for Docker files and directories - /etc/containerd/config.toml" id="oval:org.cisecurity.benchmarks:tst:4808438" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4808438"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4808438"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Check applicability of" id="oval:org.cisecurity.benchmarks:tst:4808439" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4808439"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4808439"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure auditing is configured for Docker files and directories - /etc/sysconfig/docker" id="oval:org.cisecurity.benchmarks:tst:4808440" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4808440"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4808440"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Check existence of /etc/sysconfig/docker" id="oval:org.cisecurity.benchmarks:tst:4808441" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4808441"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4808441"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Check existence of /usr/bin/containerd" id="oval:org.cisecurity.benchmarks:tst:4808442" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4808442"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4808442"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'auditctl -l | grep /usr/bin/containerd' output Pattern Match '\/usr\/bin\/containerd' (string)" id="oval:org.cisecurity.benchmarks:tst:4808443" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4808443"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4808443"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure auditing is configured for Docker files and directories - /usr/bin/containerd-shim" id="oval:org.cisecurity.benchmarks:tst:4808444" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4808444"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4808444"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Verify /usr/bin/containerd-shim exists" id="oval:org.cisecurity.benchmarks:tst:4808445" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4808445"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4808445"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure 'auditctl -l | grep /usr/bin/containerd-shim-runc-v1' output Pattern Match '\/usr\/bin\/containerd-shim-runc-v1' (string)" id="oval:org.cisecurity.benchmarks:tst:4808446" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4808446"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4808446"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure auditing is configured for Docker files and directories - /usr/bin/containerd-shim-runc-v2" id="oval:org.cisecurity.benchmarks:tst:4808448" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4808448"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4808448"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Audit `/usr/bin/containerd-shim-runc-v2` if applicable." id="oval:org.cisecurity.benchmarks:tst:4808449" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4808449"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4808449"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure auditing is configured for Docker files and directories - /usr/bin/runc" id="oval:org.cisecurity.benchmarks:tst:4808450" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4808450"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4808450"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Audit `/usr/bin/runc` if applicable" id="oval:org.cisecurity.benchmarks:tst:4808451" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4808451"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4808451"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure that the /etc/docker directory ownership is set to root:root" id="oval:org.cisecurity.benchmarks:tst:4808457" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4808457"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4808457"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure that /etc/docker directory permissions are set to 755 or more restrictively" id="oval:org.cisecurity.benchmarks:tst:4808459" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4808459"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4808459"></state>
+      </shellcommand_test>
+      <shellcommand_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" check="all" check_existence="at_least_one_exists" comment="Ensure that the Docker socket file ownership is set to root:docker" id="oval:org.cisecurity.benchmarks:tst:4808460" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4808460"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4808460"></state>
+      </shellcommand_test>
+      <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="at least one" check_existence="at_least_one_exists" comment="Ensure that the docker.service file ownership is set to root:root" id="oval:org.cisecurity.benchmarks:tst:4808452" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4808452"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4808452"></state>
+      </file_test>
+      <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="at least one" check_existence="at_least_one_exists" comment="Ensure that docker.service file permissions are appropriately set" id="oval:org.cisecurity.benchmarks:tst:4808453" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4808453"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4808453"></state>
+      </file_test>
+      <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="at least one" check_existence="at_least_one_exists" comment="Ensure that docker.socket file ownership is set to root:root" id="oval:org.cisecurity.benchmarks:tst:4808454" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4808454"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4808454"></state>
+      </file_test>
+      <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="only one" check_existence="at_least_one_exists" comment="Ensure that docker.socket file permissions are set to 644 or more restrictive" id="oval:org.cisecurity.benchmarks:tst:4808455" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4808455"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4808455"></state>
+      </file_test>
+      <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="at least one" check_existence="at_least_one_exists" comment="Ensure that the Docker socket file permissions are set to 660 or more restrictively" id="oval:org.cisecurity.benchmarks:tst:4808461" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4808461"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4808461"></state>
+      </file_test>
+      <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="at least one" check_existence="at_least_one_exists" comment="Ensure that the Containerd socket file ownership is set to root:root" id="oval:org.cisecurity.benchmarks:tst:4808462" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4808462"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4808462"></state>
+      </file_test>
+      <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="at least one" check_existence="at_least_one_exists" comment="Ensure that the Containerd socket file permissions are set to 660 or more restrictively" id="oval:org.cisecurity.benchmarks:tst:4808463" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4808463"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4808463"></state>
+      </file_test>
+      <process58_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="at_least_one_exists" comment="Ensure that the /etc/docker directory ownership is set to root:root" id="oval:org.cisecurity.benchmarks:tst:4808456" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4808456"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4808456"></state>
+      </process58_test>
+      <process58_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="at_least_one_exists" comment="Ensure that /etc/docker directory permissions are set to 755 or more restrictively" id="oval:org.cisecurity.benchmarks:tst:4808458" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks:obj:4808458"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks:ste:4808458"></state>
+      </process58_test>
+   </tests>
+   <objects>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'auditctl -l | grep /usr/bin/dockerd' output Pattern Match '\/usr\/bin\/dockerd' (string)" id="oval:org.cisecurity.benchmarks:obj:4808425" version="1">
+         <command>auditctl -l | grep /usr/bin/dockerd</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'auditctl -l | grep /var/lib/docker' output Pattern Match '\/var\/lib\/docker' (string)" id="oval:org.cisecurity.benchmarks:obj:4808426" version="1">
+         <command>auditctl -l | grep /var/lib/docker</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure auditing is configured for Docker files and directories - /etc/docker" id="oval:org.cisecurity.benchmarks:obj:4808427" version="1">
+         <command>auditctl -l | grep /etc/docker</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure auditing is configured for Docker files and directories - docker.service" id="oval:org.cisecurity.benchmarks:obj:4808428" version="1">
+         <command>auditctl -l | grep docker.service</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure docker.service exists" id="oval:org.cisecurity.benchmarks:obj:4808429" version="1">
+         <command>systemctl show -p FragmentPath docker.service</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure auditing is configured for Docker files and directories - containerd.sock" id="oval:org.cisecurity.benchmarks:obj:4808430" version="1">
+         <command>auditctl -l | grep containerd.sock</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure containerd.sock exists" id="oval:org.cisecurity.benchmarks:obj:4808431" version="1">
+         <command>grep 'containerd.sock' /etc/containerd/config.toml</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure auditing is configured for Docker files and directories - docker.socket" id="oval:org.cisecurity.benchmarks:obj:4808432" version="1">
+         <command>auditctl -l | grep docker.sock</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure docker.socket exists" id="oval:org.cisecurity.benchmarks:obj:4808433" version="1">
+         <command>systemctl show -p FragmentPath docker.socket</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure auditing is configured for Docker files and directories - /etc/default/docker" id="oval:org.cisecurity.benchmarks:obj:4808434" version="1">
+         <command>auditctl -l | grep /etc/default/docker</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Check if /etc/default/docker applicable" id="oval:org.cisecurity.benchmarks:obj:4808435" version="1">
+         <command>ls /etc/default/docker</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure auditing is configured for Docker files and directories - /etc/docker/daemon.json" id="oval:org.cisecurity.benchmarks:obj:4808436" version="1">
+         <command>auditctl -l | grep /etc/docker/daemon.json</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Check existence of /etc/docker/daemon.json" id="oval:org.cisecurity.benchmarks:obj:4808437" version="1">
+         <command>ls /etc/docker/daemon.json</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure auditing is configured for Docker files and directories - /etc/containerd/config.toml" id="oval:org.cisecurity.benchmarks:obj:4808438" version="1">
+         <command>auditctl -l | grep /etc/containerd/config.toml</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Check applicability of" id="oval:org.cisecurity.benchmarks:obj:4808439" version="1">
+         <command>ls /etc/containerd/config.toml</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure auditing is configured for Docker files and directories - /etc/sysconfig/docker" id="oval:org.cisecurity.benchmarks:obj:4808440" version="1">
+         <command>auditctl -l | grep /etc/sysconfig/docker</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Check existence of /etc/sysconfig/docker" id="oval:org.cisecurity.benchmarks:obj:4808441" version="1">
+         <command>ls -R /etc/sysconfig/docker</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Check existence of /usr/bin/containerd" id="oval:org.cisecurity.benchmarks:obj:4808442" version="1">
+         <command>ls -R /usr/bin/containerd</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'auditctl -l | grep /usr/bin/containerd' output Pattern Match '\/usr\/bin\/containerd' (string)" id="oval:org.cisecurity.benchmarks:obj:4808443" version="1">
+         <command>auditctl -l | grep /usr/bin/containerd</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure auditing is configured for Docker files and directories - /usr/bin/containerd-shim" id="oval:org.cisecurity.benchmarks:obj:4808444" version="1">
+         <command>auditctl -l | grep /usr/bin/containerd-shim</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Verify /usr/bin/containerd-shim exists" id="oval:org.cisecurity.benchmarks:obj:4808445" version="1">
+         <command>ls -R /usr/bin/containerd-shim</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'auditctl -l | grep /usr/bin/containerd-shim-runc-v1' output Pattern Match '\/usr\/bin\/containerd-shim-runc-v1' (string)" id="oval:org.cisecurity.benchmarks:obj:4808446" version="1">
+         <command>auditctl -l | grep /usr/bin/containerd-shim-runc-v1</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure auditing is configured for Docker files and directories - /usr/bin/containerd-shim-runc-v2" id="oval:org.cisecurity.benchmarks:obj:4808448" version="1">
+         <command>auditctl -l | grep /usr/bin/containerd-shim-runc-v2</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Audit `/usr/bin/containerd-shim-runc-v2` if applicable." id="oval:org.cisecurity.benchmarks:obj:4808449" version="1">
+         <command>ls -R /usr/bin/containerd-shim-runc-v2</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure auditing is configured for Docker files and directories - /usr/bin/runc" id="oval:org.cisecurity.benchmarks:obj:4808450" version="1">
+         <command>auditctl -l | grep /usr/bin/runc</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Audit `/usr/bin/runc` if applicable" id="oval:org.cisecurity.benchmarks:obj:4808451" version="1">
+         <command>ls -R /usr/bin/runc</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure that the /etc/docker directory ownership is set to root:root" id="oval:org.cisecurity.benchmarks:obj:4808457" version="1">
+         <command>stat -c %U:%G /etc/docker</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure that /etc/docker directory permissions are set to 755 or more restrictively" id="oval:org.cisecurity.benchmarks:obj:4808459" version="1">
+         <command>stat -c %a /etc/docker</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <shellcommand_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure that the Docker socket file ownership is set to root:docker" id="oval:org.cisecurity.benchmarks:obj:4808460" version="1">
+         <command>stat -c %U:%G /var/run/docker.sock</command>
+         <line_selection operation="pattern match">.+</line_selection>
+      </shellcommand_object>
+      <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure that the docker.service file ownership is set to root:root" id="oval:org.cisecurity.benchmarks:obj:4808452" version="1">
+         <filepath>/usr/lib/systemd/system/docker.service</filepath>
+      </file_object>
+      <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure that docker.service file permissions are appropriately set" id="oval:org.cisecurity.benchmarks:obj:4808453" version="1">
+         <filepath>/usr/lib/systemd/system/docker.service</filepath>
+      </file_object>
+      <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure that docker.socket file ownership is set to root:root" id="oval:org.cisecurity.benchmarks:obj:4808454" version="1">
+         <filepath>/usr/lib/systemd/system/docker.socket</filepath>
+      </file_object>
+      <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure that docker.socket file permissions are set to 644 or more restrictive" id="oval:org.cisecurity.benchmarks:obj:4808455" version="1">
+         <filepath>/usr/lib/systemd/system/docker.socket</filepath>
+      </file_object>
+      <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure that the Docker socket file permissions are set to 660 or more restrictively" id="oval:org.cisecurity.benchmarks:obj:4808461" version="1">
+         <filepath>/var/run/docker.sock</filepath>
+      </file_object>
+      <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure that the Containerd socket file ownership is set to root:root" id="oval:org.cisecurity.benchmarks:obj:4808462" version="1">
+         <filepath>/run/containerd/containerd.sock</filepath>
+      </file_object>
+      <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure that the Containerd socket file permissions are set to 660 or more restrictively" id="oval:org.cisecurity.benchmarks:obj:4808463" version="1">
+         <filepath>/run/containerd/containerd.sock</filepath>
+      </file_object>
+      <process58_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure that the /etc/docker directory ownership is set to root:root" id="oval:org.cisecurity.benchmarks:obj:4808456" version="1">
+         <command_line operation="pattern match">stat -c %U:%G /etc/docker</command_line>
+         <pid datatype="int" operation="greater than">0</pid>
+      </process58_object>
+      <process58_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure that /etc/docker directory permissions are set to 755 or more restrictively" id="oval:org.cisecurity.benchmarks:obj:4808458" version="1">
+         <command_line operation="pattern match">stat -c %a /etc/docker</command_line>
+         <pid datatype="int" operation="greater than">0</pid>
+      </process58_object>
+   </objects>
+   <states>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'auditctl -l | grep /usr/bin/dockerd' output Pattern Match '\/usr\/bin\/dockerd' (string)" id="oval:org.cisecurity.benchmarks:ste:4808425" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:4808425"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'auditctl -l | grep /var/lib/docker' output Pattern Match '\/var\/lib\/docker' (string)" id="oval:org.cisecurity.benchmarks:ste:4808426" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:4808426"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure auditing is configured for Docker files and directories - /etc/docker" id="oval:org.cisecurity.benchmarks:ste:4808427" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:4808427"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure auditing is configured for Docker files and directories - docker.service" id="oval:org.cisecurity.benchmarks:ste:4808428" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:4808428"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure docker.service exists" id="oval:org.cisecurity.benchmarks:ste:4808429" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:4808429"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure auditing is configured for Docker files and directories - containerd.sock" id="oval:org.cisecurity.benchmarks:ste:4808430" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:4808430"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure containerd.sock exists" id="oval:org.cisecurity.benchmarks:ste:4808431" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:4808431"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure auditing is configured for Docker files and directories - docker.socket" id="oval:org.cisecurity.benchmarks:ste:4808432" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:4808432"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure docker.socket exists" id="oval:org.cisecurity.benchmarks:ste:4808433" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:4808433"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure auditing is configured for Docker files and directories - /etc/default/docker" id="oval:org.cisecurity.benchmarks:ste:4808434" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:4808434"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Check if /etc/default/docker applicable" id="oval:org.cisecurity.benchmarks:ste:4808435" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:4808435"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure auditing is configured for Docker files and directories - /etc/docker/daemon.json" id="oval:org.cisecurity.benchmarks:ste:4808436" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:4808436"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Check existence of /etc/docker/daemon.json" id="oval:org.cisecurity.benchmarks:ste:4808437" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:4808437"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure auditing is configured for Docker files and directories - /etc/containerd/config.toml" id="oval:org.cisecurity.benchmarks:ste:4808438" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:4808438"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Check applicability of" id="oval:org.cisecurity.benchmarks:ste:4808439" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:4808439"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure auditing is configured for Docker files and directories - /etc/sysconfig/docker" id="oval:org.cisecurity.benchmarks:ste:4808440" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:4808440"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Check existence of /etc/sysconfig/docker" id="oval:org.cisecurity.benchmarks:ste:4808441" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:4808441"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Check existence of /usr/bin/containerd" id="oval:org.cisecurity.benchmarks:ste:4808442" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:4808442"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'auditctl -l | grep /usr/bin/containerd' output Pattern Match '\/usr\/bin\/containerd' (string)" id="oval:org.cisecurity.benchmarks:ste:4808443" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:4808443"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure auditing is configured for Docker files and directories - /usr/bin/containerd-shim" id="oval:org.cisecurity.benchmarks:ste:4808444" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:4808444"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Verify /usr/bin/containerd-shim exists" id="oval:org.cisecurity.benchmarks:ste:4808445" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:4808445"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure 'auditctl -l | grep /usr/bin/containerd-shim-runc-v1' output Pattern Match '\/usr\/bin\/containerd-shim-runc-v1' (string)" id="oval:org.cisecurity.benchmarks:ste:4808446" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:4808446"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure auditing is configured for Docker files and directories - /usr/bin/containerd-shim-runc-v2" id="oval:org.cisecurity.benchmarks:ste:4808448" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:4808448"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Audit `/usr/bin/containerd-shim-runc-v2` if applicable." id="oval:org.cisecurity.benchmarks:ste:4808449" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:4808449"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure auditing is configured for Docker files and directories - /usr/bin/runc" id="oval:org.cisecurity.benchmarks:ste:4808450" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:4808450"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Audit `/usr/bin/runc` if applicable" id="oval:org.cisecurity.benchmarks:ste:4808451" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:4808451"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure that the /etc/docker directory ownership is set to root:root" id="oval:org.cisecurity.benchmarks:ste:4808457" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:4808457"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure that /etc/docker directory permissions are set to 755 or more restrictively" id="oval:org.cisecurity.benchmarks:ste:4808459" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:4808459"></stdout_line>
+      </shellcommand_state>
+      <shellcommand_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#cmd" comment="Ensure that the Docker socket file ownership is set to root:docker" id="oval:org.cisecurity.benchmarks:ste:4808460" version="1">
+         <stdout_line entity_check="at least one" operation="pattern match" var_ref="oval:org.cisecurity.benchmarks:var:4808460"></stdout_line>
+      </shellcommand_state>
+      <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure that the docker.service file ownership is set to root:root" id="oval:org.cisecurity.benchmarks:ste:4808452" version="1">
+         <group_id datatype="int">0</group_id>
+         <user_id datatype="int">0</user_id>
+      </file_state>
+      <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure that docker.service file permissions are appropriately set" id="oval:org.cisecurity.benchmarks:ste:4808453" version="1">
+         <uread datatype="boolean">true</uread>
+         <uwrite datatype="boolean">true</uwrite>
+         <uexec datatype="boolean">false</uexec>
+         <gread datatype="boolean">true</gread>
+         <gwrite datatype="boolean">false</gwrite>
+         <gexec datatype="boolean">false</gexec>
+         <oread datatype="boolean">true</oread>
+         <owrite datatype="boolean">false</owrite>
+         <oexec datatype="boolean">false</oexec>
+      </file_state>
+      <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure that docker.socket file ownership is set to root:root" id="oval:org.cisecurity.benchmarks:ste:4808454" version="1">
+         <group_id datatype="int">0</group_id>
+         <user_id datatype="int">0</user_id>
+      </file_state>
+      <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure that docker.socket file permissions are set to 644 or more restrictive" id="oval:org.cisecurity.benchmarks:ste:4808455" version="1">
+         <uread datatype="boolean">true</uread>
+         <uwrite datatype="boolean">true</uwrite>
+         <uexec datatype="boolean">false</uexec>
+         <gread datatype="boolean">true</gread>
+         <gwrite datatype="boolean">false</gwrite>
+         <gexec datatype="boolean">false</gexec>
+         <oread datatype="boolean">true</oread>
+         <owrite datatype="boolean">false</owrite>
+         <oexec datatype="boolean">false</oexec>
+      </file_state>
+      <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure that the Docker socket file permissions are set to 660 or more restrictively" id="oval:org.cisecurity.benchmarks:ste:4808461" version="1">
+         <uread datatype="boolean">true</uread>
+         <uwrite datatype="boolean">true</uwrite>
+         <uexec datatype="boolean">false</uexec>
+         <gread datatype="boolean">true</gread>
+         <gwrite datatype="boolean">true</gwrite>
+         <gexec datatype="boolean">false</gexec>
+         <oread datatype="boolean">false</oread>
+         <owrite datatype="boolean">false</owrite>
+         <oexec datatype="boolean">false</oexec>
+      </file_state>
+      <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure that the Containerd socket file ownership is set to root:root" id="oval:org.cisecurity.benchmarks:ste:4808462" version="1">
+         <group_id datatype="int">0</group_id>
+         <user_id datatype="int">0</user_id>
+      </file_state>
+      <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure that the Containerd socket file permissions are set to 660 or more restrictively" id="oval:org.cisecurity.benchmarks:ste:4808463" version="1">
+         <uread datatype="boolean">true</uread>
+         <uwrite datatype="boolean">true</uwrite>
+         <uexec datatype="boolean">false</uexec>
+         <gread datatype="boolean">true</gread>
+         <gwrite datatype="boolean">true</gwrite>
+         <gexec datatype="boolean">false</gexec>
+         <oread datatype="boolean">false</oread>
+         <owrite datatype="boolean">false</owrite>
+         <oexec datatype="boolean">false</oexec>
+      </file_state>
+      <process58_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure that the /etc/docker directory ownership is set to root:root" id="oval:org.cisecurity.benchmarks:ste:4808456" version="1">
+         <command_line datatype="string" operation="pattern match">root:root</command_line>
+      </process58_state>
+      <process58_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure that /etc/docker directory permissions are set to 755 or more restrictively" id="oval:org.cisecurity.benchmarks:ste:4808458" version="1">
+         <command_line datatype="string" operation="pattern match">755</command_line>
+      </process58_state>
+   </states>
+   <variables>
+      <external_variable comment="This value is used in Rule: Ensure auditing is configured for the Docker daemon" datatype="string" id="oval:org.cisecurity.benchmarks:var:4808425" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure auditing is configured for Docker files and directories - /var/lib/docker" datatype="string" id="oval:org.cisecurity.benchmarks:var:4808426" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure auditing is configured for Docker files and directories - /etc/docker" datatype="string" id="oval:org.cisecurity.benchmarks:var:4808427" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure auditing is configured for Docker files and directories - docker.service" datatype="string" id="oval:org.cisecurity.benchmarks:var:4808428" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure auditing is configured for Docker files and directories - docker.service" datatype="string" id="oval:org.cisecurity.benchmarks:var:4808429" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure auditing is configured for Docker files and directories - containerd.sock" datatype="string" id="oval:org.cisecurity.benchmarks:var:4808430" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure auditing is configured for Docker files and directories - containerd.sock" datatype="string" id="oval:org.cisecurity.benchmarks:var:4808431" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure auditing is configured for Docker files and directories - docker.sock" datatype="string" id="oval:org.cisecurity.benchmarks:var:4808432" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure auditing is configured for Docker files and directories - docker.sock" datatype="string" id="oval:org.cisecurity.benchmarks:var:4808433" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure auditing is configured for Docker files and directories - /etc/default/docker" datatype="string" id="oval:org.cisecurity.benchmarks:var:4808434" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure auditing is configured for Docker files and directories - /etc/default/docker" datatype="string" id="oval:org.cisecurity.benchmarks:var:4808435" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure auditing is configured for Docker files and directories - /etc/docker/daemon.json" datatype="string" id="oval:org.cisecurity.benchmarks:var:4808436" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure auditing is configured for Docker files and directories - /etc/docker/daemon.json" datatype="string" id="oval:org.cisecurity.benchmarks:var:4808437" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure auditing is configured for Docker files and directories - /etc/containerd/config.toml" datatype="string" id="oval:org.cisecurity.benchmarks:var:4808438" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure auditing is configured for Docker files and directories - /etc/containerd/config.toml" datatype="string" id="oval:org.cisecurity.benchmarks:var:4808439" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure auditing is configured for Docker files and directories - /etc/sysconfig/docker" datatype="string" id="oval:org.cisecurity.benchmarks:var:4808440" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure auditing is configured for Docker files and directories - /etc/sysconfig/docker" datatype="string" id="oval:org.cisecurity.benchmarks:var:4808441" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure auditing is configured for Docker files and directories - /usr/bin/containerd" datatype="string" id="oval:org.cisecurity.benchmarks:var:4808442" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure auditing is configured for Docker files and directories - /usr/bin/containerd" datatype="string" id="oval:org.cisecurity.benchmarks:var:4808443" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure auditing is configured for Docker files and directories - /usr/bin/containerd-shim" datatype="string" id="oval:org.cisecurity.benchmarks:var:4808444" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure auditing is configured for Docker files and directories - /usr/bin/containerd-shim" datatype="string" id="oval:org.cisecurity.benchmarks:var:4808445" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure auditing is configured for Docker files and directories - /usr/bin/containerd-shim-runc-v1" datatype="string" id="oval:org.cisecurity.benchmarks:var:4808446" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure auditing is configured for Docker files and directories - /usr/bin/containerd-shim-runc-v2" datatype="string" id="oval:org.cisecurity.benchmarks:var:4808448" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure auditing is configured for Docker files and directories - /usr/bin/containerd-shim-runc-v2" datatype="string" id="oval:org.cisecurity.benchmarks:var:4808449" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure auditing is configured for Docker files and directories - /usr/bin/runc" datatype="string" id="oval:org.cisecurity.benchmarks:var:4808450" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure auditing is configured for Docker files and directories - /usr/bin/runc" datatype="string" id="oval:org.cisecurity.benchmarks:var:4808451" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure that the /etc/docker directory ownership is set to root:root" datatype="string" id="oval:org.cisecurity.benchmarks:var:4808457" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure that /etc/docker directory permissions are set to 755 or more restrictively" datatype="string" id="oval:org.cisecurity.benchmarks:var:4808459" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: Ensure that the Docker socket file ownership is set to root:docker" datatype="string" id="oval:org.cisecurity.benchmarks:var:4808460" version="1"></external_variable>
+   </variables>
+<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+<ds:SignedInfo>
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"></ds:CanonicalizationMethod>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></ds:SignatureMethod>
+<ds:Reference URI="">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"></ds:Transform>
+<ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"></ds:Transform>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></ds:DigestMethod>
+<ds:DigestValue>EBwUxOj8Jph1k3nq7yjQrGLmlltgR8Qb1BY1jO6M5uQ=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue>
+rsLXvzsJKaH33s2GJA8Kvcgk1sJz5KjmFrHws54N/FHNQkR9VILyH+OTufOeTG2jeXbiBg3FytOK
+ZmaKW7QpzakR2Ozirf3i56ovlS1G1oyAxoheKDFI1yF4xUXSrEn6TZAO63QaIqiJ4tHFBytVHcLX
+M7nXN04mMyrVRIGVHMWxfeChMXJMcQ7wot+xzUrc8axxureAZoqIDQJRH2kmp0xadJIiWGPiM+vV
+c0JJ0OpZu9X/IoxdM/qmH7Zj8OBeRzu3JdxTju7h5Onuyqa71NIw8unV9Ps9jPtJzSSPBFpiyc32
+5XHFKxP4QlLckwOl67hLZn6qK42qop5ZWwa13YFmFfUh7qBu4S25bTwCNxQJnP7fasqbbON+m8zf
+mIIdVcDzl/OSMBHj9miNX+7v+KNlcFVvdq4S1i7Eu3ywPQvdUmqIis4iao8OXpHBrtcAFCZsFAyC
+c4WC4azGX8LAlVdsVtkcsgbjGyVGRkVAgKU9LARgBID5SXRNwWPx6sPU
+</ds:SignatureValue>
+<ds:KeyInfo>
+<ds:X509Data>
+<ds:X509Certificate>
+MIIHbDCCBVSgAwIBAgIQCdceADCnzKkglkQGavVKYzANBgkqhkiG9w0BAQsFADBpMQswCQYDVQQG
+EwJVUzEXMBUGA1UEChMORGlnaUNlcnQsIEluYy4xQTA/BgNVBAMTOERpZ2lDZXJ0IFRydXN0ZWQg
+RzQgQ29kZSBTaWduaW5nIFJTQTQwOTYgU0hBMzg0IDIwMjEgQ0ExMB4XDTIzMTAxODAwMDAwMFoX
+DTI2MTAxODIzNTk1OVowgfQxEzARBgsrBgEEAYI3PAIBAxMCVVMxGTAXBgsrBgEEAYI3PAIBAhMI
+TWFyeWxhbmQxHTAbBgNVBA8MFFByaXZhdGUgT3JnYW5pemF0aW9uMRIwEAYDVQQFEwlEMDYwNTg4
+MTIxCzAJBgNVBAYTAlVTMREwDwYDVQQIEwhOZXcgWW9yazEXMBUGA1UEBxMORWFzdCBHcmVlbmJ1
+c2gxKjAoBgNVBAoTIUNlbnRlciBmb3IgSW50ZXJuZXQgU2VjdXJpdHksIEluYzEqMCgGA1UEAxMh
+Q2VudGVyIGZvciBJbnRlcm5ldCBTZWN1cml0eSwgSW5jMIIBojANBgkqhkiG9w0BAQEFAAOCAY8A
+MIIBigKCAYEAyZwTJr4Kb7QEDnVY3BEkPoS3fn+XoxhCTfFvlMk8zXDcR4pFMgPkXTrZ1KbENUIV
+skIhy1vmnh61vwSL0lcdzesCekKSxLqrEA4xunZk1MB5mLbHXchSSpI1co1vaSzJjkTYP1UsUVQz
+NoOzV0LNCoZdahjGTHSduWvbrHTEeD6/jvUj3AVWrTx6krzgYA3ozAxtUnapK7IrZERuGOSwTrgR
+Lr1aieQdFy8haW1YL+ks5HmLRvcoGp+J68GX/zfMTduvWxhcpXm4txKc4iJqGCRmyBU2XjGjpDBX
+ndxHgT4edRLz5PwWSeZUh8/tWOGFwnVw7njoOa0sFixy96H2BqEn+yPeRALyf59rjtPL66tsXuaA
+ilB63yqbH42mnkxHTX5zcEm337GzTOGRccsYzN/ApVuXDeMfsO+sSUosrimnxm9QTOyKcex5h1As
+rxBVfTw+Zf7jP1YRlmMlGPG1zffK2KjJhD6ivFi2sIDThEQLxIAC8XOjp2ZXvhx87yNTAgMBAAGj
+ggICMIIB/jAfBgNVHSMEGDAWgBRoN+Drtjv4XxGG+/5hewiIZfROQjAdBgNVHQ4EFgQUX2/J9FT5
+5BNF7JqfAl9SJkv3pf0wPQYDVR0gBDYwNDAyBgVngQwBAzApMCcGCCsGAQUFBwIBFhtodHRwOi8v
+d3d3LmRpZ2ljZXJ0LmNvbS9DUFMwDgYDVR0PAQH/BAQDAgeAMBMGA1UdJQQMMAoGCCsGAQUFBwMD
+MIG1BgNVHR8Ega0wgaowU6BRoE+GTWh0dHA6Ly9jcmwzLmRpZ2ljZXJ0LmNvbS9EaWdpQ2VydFRy
+dXN0ZWRHNENvZGVTaWduaW5nUlNBNDA5NlNIQTM4NDIwMjFDQTEuY3JsMFOgUaBPhk1odHRwOi8v
+Y3JsNC5kaWdpY2VydC5jb20vRGlnaUNlcnRUcnVzdGVkRzRDb2RlU2lnbmluZ1JTQTQwOTZTSEEz
+ODQyMDIxQ0ExLmNybDCBlAYIKwYBBQUHAQEEgYcwgYQwJAYIKwYBBQUHMAGGGGh0dHA6Ly9vY3Nw
+LmRpZ2ljZXJ0LmNvbTBcBggrBgEFBQcwAoZQaHR0cDovL2NhY2VydHMuZGlnaWNlcnQuY29tL0Rp
+Z2lDZXJ0VHJ1c3RlZEc0Q29kZVNpZ25pbmdSU0E0MDk2U0hBMzg0MjAyMUNBMS5jcnQwCQYDVR0T
+BAIwADANBgkqhkiG9w0BAQsFAAOCAgEASLOHf1FQ7TrGqEoVXYoeNSkRWdVCUGd1JCDs7Hb9sLd3
+eQuipZ4EorQS/9qMiVMhmlJfF75sNVQhr1K5UtjrDRFMTzYmh78hAyovowzgyVKdGFqiVVr5m+mb
+vVyglLlA4V076LMBaKRknm1Dt8r0/5GSRCrkP2origpYMMaocN+iBX9+MImnh3J1Ehn0nRUhW86Q
+mt3/YCVIaQZisv+KmOxyAq1m6fiIYIvXY+cH2dDIheoVteb/NjYnKVqE6xTpOsxF16pykXiM9yk3
+Q9nlJS36KEGRP4wrySU4eIBnTcv4mimZjkWj6bIvk8otNJ14FbyltaPwIc3dE3oPGfSmCrkxs73j
+iqBs2TXLvblEmOhY8ko3xVdTm0zMP50MQVO948fz9yF+xdnPdMPT1/lCmGp6iWYRzxnvEkA1+HFl
+yy9YztrM8WNAhXirpUZg3HWQE2ONLKMtqQrkIHD2nikda77flk6oirqDuCf8Q7g8s86/KabTdxrw
+pRmsRjDkAfKVae58ctaKbmF32oU9BGk+9MPG8HF5Yfoh12DE1fLZcPzZrROrDFJGGxwhv5FlnxGg
+6G7jKi68erZnpaOPayK0bXyZNunqkI9IbIuPqMw5qaCZZgN6AEHIbGTKdrWEf11DmR7MdTjv3/vu
+JWtIXgk3kQFX27w9JhqV6QogVmzIfEQ=
+</ds:X509Certificate>
+</ds:X509Data>
+<ds:KeyValue>
+<ds:RSAKeyValue>
+<ds:Modulus>yZwTJr4Kb7QEDnVY3BEkPoS3fn+XoxhCTfFvlMk8zXDcR4pFMgPkXTrZ1KbENUIVskIhy1vmnh61
+vwSL0lcdzesCekKSxLqrEA4xunZk1MB5mLbHXchSSpI1co1vaSzJjkTYP1UsUVQzNoOzV0LNCoZd
+ahjGTHSduWvbrHTEeD6/jvUj3AVWrTx6krzgYA3ozAxtUnapK7IrZERuGOSwTrgRLr1aieQdFy8h
+aW1YL+ks5HmLRvcoGp+J68GX/zfMTduvWxhcpXm4txKc4iJqGCRmyBU2XjGjpDBXndxHgT4edRLz
+5PwWSeZUh8/tWOGFwnVw7njoOa0sFixy96H2BqEn+yPeRALyf59rjtPL66tsXuaAilB63yqbH42m
+nkxHTX5zcEm337GzTOGRccsYzN/ApVuXDeMfsO+sSUosrimnxm9QTOyKcex5h1AsrxBVfTw+Zf7j
+P1YRlmMlGPG1zffK2KjJhD6ivFi2sIDThEQLxIAC8XOjp2ZXvhx87yNT</ds:Modulus>
+<ds:Exponent>AQAB</ds:Exponent>
+</ds:RSAKeyValue>
+</ds:KeyValue>
+</ds:KeyInfo>
+</ds:Signature></oval_definitions>

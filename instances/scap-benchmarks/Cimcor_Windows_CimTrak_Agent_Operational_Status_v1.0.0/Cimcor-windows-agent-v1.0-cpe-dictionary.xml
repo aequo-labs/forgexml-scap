@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cpe-list xmlns="http://cpe.mitre.org/dictionary/2.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns:cpe="http://cpe.mitre.org/language/2.0"
+          xmlns:cpe-23="http://scap.nist.gov/schema/cpe-extension/2.3"
+          xsi:schemaLocation="http://cpe.mitre.org/dictionary/2.0 cpe-dictionary_2.3.xsd">
+
+  <generator>
+    <product_name>Cimcor SCAP Content</product_name>
+    <product_version>1.0</product_version>
+    <schema_version>2.3</schema_version>
+    <timestamp>2024-12-19T00:00:00</timestamp>
+  </generator>
+
+  <!-- Windows Server 2019 CPE Items -->
+  <cpe-item name="cpe:/o:microsoft:windows_server_2019:-">
+    <title xml:lang="en-US">Microsoft Windows Server 2019</title>
+    <notes xml:lang="en-US">
+      <note>This CPE item represents Microsoft Windows Server 2019 operating system.</note>
+    </notes>
+    <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5" href="Cimcor-windows-agent-v1.0-cpe-oval.xml">oval:com.cimcor.agent.windows:def:100</check>
+    <cpe-23:cpe23-item name="cpe:2.3:o:microsoft:windows_server_2019:-:*:*:*:*:*:*:*"/>
+  </cpe-item>
+
+  <cpe-item name="cpe:/o:microsoft:windows_server_2019::~~~x86~~">
+    <title xml:lang="en-US">Microsoft Windows Server 2019 (x86)</title>
+    <notes xml:lang="en-US">
+      <note>This CPE item represents Microsoft Windows Server 2019 operating system on x86 architecture.</note>
+    </notes>
+    <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5" href="Cimcor-windows-agent-v1.0-cpe-oval.xml">oval:com.cimcor.agent.windows:def:100</check>
+    <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5" href="Cimcor-windows-agent-v1.0-cpe-oval.xml">oval:com.cimcor.agent.windows:def:104</check>
+  </cpe-item>
+
+  <cpe-item name="cpe:/o:microsoft:windows_server_2019::~~~x64~~">
+    <title xml:lang="en-US">Microsoft Windows Server 2019 (x64)</title>
+    <notes xml:lang="en-US">
+      <note>This CPE item represents Microsoft Windows Server 2019 operating system on x64 architecture.</note>
+    </notes>
+    <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5" href="Cimcor-windows-agent-v1.0-cpe-oval.xml">oval:com.cimcor.agent.windows:def:100</check>
+    <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5" href="Cimcor-windows-agent-v1.0-cpe-oval.xml">oval:com.cimcor.agent.windows:def:105</check>
+  </cpe-item>
+
+  <!-- Windows Server 2022 CPE Items -->
+  <cpe-item name="cpe:/o:microsoft:windows_server_2022:-">
+    <title xml:lang="en-US">Microsoft Windows Server 2022</title>
+    <notes xml:lang="en-US">
+      <note>This CPE item represents Microsoft Windows Server 2022 operating system.</note>
+    </notes>
+    <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5" href="Cimcor-windows-agent-v1.0-cpe-oval.xml">oval:com.cimcor.agent.windows:def:101</check>
+    <cpe-23:cpe23-item name="cpe:2.3:o:microsoft:windows_server_2022:-:*:*:*:*:*:*:*"/>
+  </cpe-item>
+
+  <cpe-item name="cpe:/o:microsoft:windows_server_2022::~~~x86~~">
+    <title xml:lang="en-US">Microsoft Windows Server 2022 (x86)</title>
+    <notes xml:lang="en-US">
+      <note>This CPE item represents Microsoft Windows Server 2022 operating system on x86 architecture.</note>
+    </notes>
+    <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5" href="Cimcor-windows-agent-v1.0-cpe-oval.xml">oval:com.cimcor.agent.windows:def:101</check>
+    <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5" href="Cimcor-windows-agent-v1.0-cpe-oval.xml">oval:com.cimcor.agent.windows:def:104</check>
+  </cpe-item>
+
+  <cpe-item name="cpe:/o:microsoft:windows_server_2022::~~~x64~~">
+    <title xml:lang="en-US">Microsoft Windows Server 2022 (x64)</title>
+    <notes xml:lang="en-US">
+      <note>This CPE item represents Microsoft Windows Server 2022 operating system on x64 architecture.</note>
+    </notes>
+    <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5" href="Cimcor-windows-agent-v1.0-cpe-oval.xml">oval:com.cimcor.agent.windows:def:101</check>
+    <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5" href="Cimcor-windows-agent-v1.0-cpe-oval.xml">oval:com.cimcor.agent.windows:def:105</check>
+  </cpe-item>
+
+  <!-- Windows 10 CPE Items -->
+  <cpe-item name="cpe:/o:microsoft:windows_10:-">
+    <title xml:lang="en-US">Microsoft Windows 10</title>
+    <notes xml:lang="en-US">
+      <note>This CPE item represents Microsoft Windows 10 operating system.</note>
+    </notes>
+    <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5" href="Cimcor-windows-agent-v1.0-cpe-oval.xml">oval:com.cimcor.agent.windows:def:102</check>
+    <cpe-23:cpe23-item name="cpe:2.3:o:microsoft:windows_10:-:*:*:*:*:*:*:*"/>
+  </cpe-item>
+
+  <cpe-item name="cpe:/o:microsoft:windows_10::~~~x86~~">
+    <title xml:lang="en-US">Microsoft Windows 10 (x86)</title>
+    <notes xml:lang="en-US">
+      <note>This CPE item represents Microsoft Windows 10 operating system on x86 architecture.</note>
+    </notes>
+    <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5" href="Cimcor-windows-agent-v1.0-cpe-oval.xml">oval:com.cimcor.agent.windows:def:102</check>
+    <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5" href="Cimcor-windows-agent-v1.0-cpe-oval.xml">oval:com.cimcor.agent.windows:def:104</check>
+  </cpe-item>
+
+  <cpe-item name="cpe:/o:microsoft:windows_10::~~~x64~~">
+    <title xml:lang="en-US">Microsoft Windows 10 (x64)</title>
+    <notes xml:lang="en-US">
+      <note>This CPE item represents Microsoft Windows 10 operating system on x64 architecture.</note>
+    </notes>
+    <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5" href="Cimcor-windows-agent-v1.0-cpe-oval.xml">oval:com.cimcor.agent.windows:def:102</check>
+    <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5" href="Cimcor-windows-agent-v1.0-cpe-oval.xml">oval:com.cimcor.agent.windows:def:105</check>
+  </cpe-item>
+
+  <!-- Windows 11 CPE Items -->
+  <cpe-item name="cpe:/o:microsoft:windows_11:-">
+    <title xml:lang="en-US">Microsoft Windows 11</title>
+    <notes xml:lang="en-US">
+      <note>This CPE item represents Microsoft Windows 11 operating system.</note>
+    </notes>
+    <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5" href="Cimcor-windows-agent-v1.0-cpe-oval.xml">oval:com.cimcor.agent.windows:def:103</check>
+    <cpe-23:cpe23-item name="cpe:2.3:o:microsoft:windows_11:-:*:*:*:*:*:*:*"/>
+  </cpe-item>
+
+  <cpe-item name="cpe:/o:microsoft:windows_11::~~~x86~~">
+    <title xml:lang="en-US">Microsoft Windows 11 (x86)</title>
+    <notes xml:lang="en-US">
+      <note>This CPE item represents Microsoft Windows 11 operating system on x86 architecture.</note>
+    </notes>
+    <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5" href="Cimcor-windows-agent-v1.0-cpe-oval.xml">oval:com.cimcor.agent.windows:def:103</check>
+    <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5" href="Cimcor-windows-agent-v1.0-cpe-oval.xml">oval:com.cimcor.agent.windows:def:104</check>
+  </cpe-item>
+
+  <cpe-item name="cpe:/o:microsoft:windows_11::~~~x64~~">
+    <title xml:lang="en-US">Microsoft Windows 11 (x64)</title>
+    <notes xml:lang="en-US">
+      <note>This CPE item represents Microsoft Windows 11 operating system on x64 architecture.</note>
+    </notes>
+    <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5" href="Cimcor-windows-agent-v1.0-cpe-oval.xml">oval:com.cimcor.agent.windows:def:103</check>
+    <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5" href="Cimcor-windows-agent-v1.0-cpe-oval.xml">oval:com.cimcor.agent.windows:def:105</check>
+  </cpe-item>
+
+  <!-- Generic Windows Platform CPE Items -->
+  <cpe-item name="cpe:2.3:o:microsoft:windows:*:*:*:*:*:*:*:*">
+    <title xml:lang="en-US">Microsoft Windows</title>
+    <notes xml:lang="en-US">
+      <note>This CPE item represents any Microsoft Windows operating system.</note>
+    </notes>
+    <cpe-23:cpe23-item name="cpe:2.3:o:microsoft:windows:*:*:*:*:*:*:*:*"/>
+  </cpe-item>
+
+  <cpe-item name="cpe:2.3:o:microsoft:windows:*:*:*:*:*:*:x86:*">
+    <title xml:lang="en-US">Microsoft Windows (x86)</title>
+    <notes xml:lang="en-US">
+      <note>This CPE item represents any Microsoft Windows operating system on x86 architecture.</note>
+    </notes>
+    <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5" href="Cimcor-windows-agent-v1.0-cpe-oval.xml">oval:com.cimcor.agent.windows:def:104</check>
+    <cpe-23:cpe23-item name="cpe:2.3:o:microsoft:windows:*:*:*:*:*:*:x86:*"/>
+  </cpe-item>
+
+  <cpe-item name="cpe:2.3:o:microsoft:windows:*:*:*:*:*:*:x64:*">
+    <title xml:lang="en-US">Microsoft Windows (x64)</title>
+    <notes xml:lang="en-US">
+      <note>This CPE item represents any Microsoft Windows operating system on x64 architecture.</note>
+    </notes>
+    <check system="http://oval.mitre.org/XMLSchema/oval-definitions-5" href="Cimcor-windows-agent-v1.0-cpe-oval.xml">oval:com.cimcor.agent.windows:def:105</check>
+    <cpe-23:cpe23-item name="cpe:2.3:o:microsoft:windows:*:*:*:*:*:*:x64:*"/>
+  </cpe-item>
+
+</cpe-list>

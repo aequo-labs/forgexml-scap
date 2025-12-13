@@ -1,0 +1,1912 @@
+<oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://oval.mitre.org/XMLSchema/oval-definitions-5 https://oval.cisecurity.org/schemas/validator-oval-definitions-5.11.2.xsd">
+   <generator>
+      <oval:product_name>Center for Internet Security - Optimus</oval:product_name>
+      <oval:schema_version>5.11.2</oval:schema_version>
+      <oval:timestamp>2025-08-01T14:14:53.733Z</oval:timestamp>
+   </generator>
+   <definitions>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231776" version="1">
+         <metadata>
+            <title>UBTU-22-211015</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1_UBTU-22-211015" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1_UBTU-22-211015"></reference>
+            <description>UBTU-22-211015</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231776"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231777" version="1">
+         <metadata>
+            <title>UBTU-22-211015</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.1_UBTU-22-211015" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.1_UBTU-22-211015"></reference>
+            <description>UBTU-22-211015</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231777"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231782" version="1">
+         <metadata>
+            <title>UBTU-22-213015</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.5_UBTU-22-213015" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.5_UBTU-22-213015"></reference>
+            <description>UBTU-22-213015</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231782"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231783" version="1">
+         <metadata>
+            <title>UBTU-22-213015</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.5_UBTU-22-213015" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.5_UBTU-22-213015"></reference>
+            <description>UBTU-22-213015</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231783"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231881" version="1">
+         <metadata>
+            <title>UBTU-22-251020</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.48_UBTU-22-251020" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.48_UBTU-22-251020"></reference>
+            <description>UBTU-22-251020</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231881"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231887" version="1">
+         <metadata>
+            <title>UBTU-22-255015</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.56_UBTU-22-255015" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.56_UBTU-22-255015"></reference>
+            <description>UBTU-22-255015</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231887"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231888" version="1">
+         <metadata>
+            <title>UBTU-22-255015</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.56_UBTU-22-255015" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.56_UBTU-22-255015"></reference>
+            <description>UBTU-22-255015</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231888"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231928" version="1">
+         <metadata>
+            <title>UBTU-22-431015</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.87_UBTU-22-431015" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.87_UBTU-22-431015"></reference>
+            <description>UBTU-22-431015</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231928"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231929" version="1">
+         <metadata>
+            <title>UBTU-22-431015</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.87_UBTU-22-431015" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.87_UBTU-22-431015"></reference>
+            <description>UBTU-22-431015</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231929"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231964" version="1">
+         <metadata>
+            <title>UBTU-22-652010</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.117_UBTU-22-652010" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.117_UBTU-22-652010"></reference>
+            <description>UBTU-22-652010</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231964"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231965" version="1">
+         <metadata>
+            <title>UBTU-22-652010</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.117_UBTU-22-652010" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.117_UBTU-22-652010"></reference>
+            <description>UBTU-22-652010</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231965"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231971" version="1">
+         <metadata>
+            <title>UBTU-22-653015</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.120_UBTU-22-653015" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.120_UBTU-22-653015"></reference>
+            <description>UBTU-22-653015</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231971"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231972" version="1">
+         <metadata>
+            <title>UBTU-22-653015</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.120_UBTU-22-653015" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.120_UBTU-22-653015"></reference>
+            <description>UBTU-22-653015</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231972"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231778" version="1">
+         <metadata>
+            <title>UBTU-22-212010</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.2_UBTU-22-212010" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.2_UBTU-22-212010"></reference>
+            <description>UBTU-22-212010</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231778"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231779" version="1">
+         <metadata>
+            <title>UBTU-22-212010</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.2_UBTU-22-212010" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.2_UBTU-22-212010"></reference>
+            <description>UBTU-22-212010</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231779"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231785" version="1">
+         <metadata>
+            <title>UBTU-22-213020</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.6_UBTU-22-213020" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.6_UBTU-22-213020"></reference>
+            <description>UBTU-22-213020</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231785"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231788" version="1">
+         <metadata>
+            <title>UBTU-22-214015</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.9_UBTU-22-214015" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.9_UBTU-22-214015"></reference>
+            <description>UBTU-22-214015</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231788"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231789" version="1">
+         <metadata>
+            <title>UBTU-22-214015</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.9_UBTU-22-214015" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.9_UBTU-22-214015"></reference>
+            <description>UBTU-22-214015</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231789"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231817" version="1">
+         <metadata>
+            <title>UBTU-22-232030</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.23_UBTU-22-232030" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.23_UBTU-22-232030"></reference>
+            <description>UBTU-22-232030</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231817"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231873" version="1">
+         <metadata>
+            <title>UBTU-22-232120</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.40_UBTU-22-232120" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.40_UBTU-22-232120"></reference>
+            <description>UBTU-22-232120</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231873"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231877" version="1">
+         <metadata>
+            <title>UBTU-22-232140</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.44_UBTU-22-232140" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.44_UBTU-22-232140"></reference>
+            <description>UBTU-22-232140</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231877"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231882" version="1">
+         <metadata>
+            <title>UBTU-22-252010</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.51_UBTU-22-252010" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.51_UBTU-22-252010"></reference>
+            <description>UBTU-22-252010</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231882"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231883" version="1">
+         <metadata>
+            <title>UBTU-22-252015</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.52_UBTU-22-252015" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.52_UBTU-22-252015"></reference>
+            <description>UBTU-22-252015</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231883"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231911" version="1">
+         <metadata>
+            <title>UBTU-22-411025</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.76_UBTU-22-411025" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.76_UBTU-22-411025"></reference>
+            <description>UBTU-22-411025</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231911"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231912" version="1">
+         <metadata>
+            <title>UBTU-22-411030</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.77_UBTU-22-411030" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.77_UBTU-22-411030"></reference>
+            <description>UBTU-22-411030</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231912"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231913" version="1">
+         <metadata>
+            <title>UBTU-22-411035</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.78_UBTU-22-411035" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.78_UBTU-22-411035"></reference>
+            <description>UBTU-22-411035</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231913"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231914" version="1">
+         <metadata>
+            <title>UBTU-22-411045</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.80_UBTU-22-411045" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.80_UBTU-22-411045"></reference>
+            <description>UBTU-22-411045</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231914"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231915" version="1">
+         <metadata>
+            <title>UBTU-22-411045</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.80_UBTU-22-411045" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.80_UBTU-22-411045"></reference>
+            <description>UBTU-22-411045</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231915"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231916" version="1">
+         <metadata>
+            <title>UBTU-22-411045</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.80_UBTU-22-411045" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.80_UBTU-22-411045"></reference>
+            <description>UBTU-22-411045</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231916"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231917" version="1">
+         <metadata>
+            <title>UBTU-22-411045</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.80_UBTU-22-411045" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.80_UBTU-22-411045"></reference>
+            <description>UBTU-22-411045</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231917"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231918" version="1">
+         <metadata>
+            <title>UBTU-22-411045</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.80_UBTU-22-411045" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.80_UBTU-22-411045"></reference>
+            <description>UBTU-22-411045</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231918"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231919" version="1">
+         <metadata>
+            <title>UBTU-22-411045</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.80_UBTU-22-411045" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.80_UBTU-22-411045"></reference>
+            <description>UBTU-22-411045</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231919"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231920" version="1">
+         <metadata>
+            <title>UBTU-22-411045</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.80_UBTU-22-411045" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.80_UBTU-22-411045"></reference>
+            <description>UBTU-22-411045</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231920"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231921" version="1">
+         <metadata>
+            <title>UBTU-22-412010</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.81_UBTU-22-412010" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.81_UBTU-22-412010"></reference>
+            <description>UBTU-22-412010</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231921"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231922" version="1">
+         <metadata>
+            <title>UBTU-22-412020</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.82_UBTU-22-412020" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.82_UBTU-22-412020"></reference>
+            <description>UBTU-22-412020</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231922"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231926" version="1">
+         <metadata>
+            <title>UBTU-22-412035</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.85_UBTU-22-412035" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.85_UBTU-22-412035"></reference>
+            <description>UBTU-22-412035</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231926"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231931" version="1">
+         <metadata>
+            <title>UBTU-22-432010</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.88_UBTU-22-432010" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.88_UBTU-22-432010"></reference>
+            <description>UBTU-22-432010</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231931"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231933" version="1">
+         <metadata>
+            <title>UBTU-22-432010</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.88_UBTU-22-432010" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.88_UBTU-22-432010"></reference>
+            <description>UBTU-22-432010</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231933"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231935" version="1">
+         <metadata>
+            <title>UBTU-22-611010</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.90_UBTU-22-611010" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.90_UBTU-22-611010"></reference>
+            <description>UBTU-22-611010</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231935"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231936" version="1">
+         <metadata>
+            <title>UBTU-22-611015</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.91_UBTU-22-611015" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.91_UBTU-22-611015"></reference>
+            <description>UBTU-22-611015</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231936"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231937" version="1">
+         <metadata>
+            <title>UBTU-22-611020</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.92_UBTU-22-611020" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.92_UBTU-22-611020"></reference>
+            <description>UBTU-22-611020</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231937"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231938" version="1">
+         <metadata>
+            <title>UBTU-22-611025</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.93_UBTU-22-611025" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.93_UBTU-22-611025"></reference>
+            <description>UBTU-22-611025</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231938"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231939" version="1">
+         <metadata>
+            <title>UBTU-22-611030</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.94_UBTU-22-611030" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.94_UBTU-22-611030"></reference>
+            <description>UBTU-22-611030</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231939"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231940" version="1">
+         <metadata>
+            <title>UBTU-22-611035</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.95_UBTU-22-611035" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.95_UBTU-22-611035"></reference>
+            <description>UBTU-22-611035</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231940"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231941" version="1">
+         <metadata>
+            <title>UBTU-22-611040</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.96_UBTU-22-611040" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.96_UBTU-22-611040"></reference>
+            <description>UBTU-22-611040</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231941"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231942" version="1">
+         <metadata>
+            <title>UBTU-22-611045</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.97_UBTU-22-611045" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.97_UBTU-22-611045"></reference>
+            <description>UBTU-22-611045</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231942"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231943" version="1">
+         <metadata>
+            <title>UBTU-22-611045</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.97_UBTU-22-611045" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.97_UBTU-22-611045"></reference>
+            <description>UBTU-22-611045</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231943"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231944" version="1">
+         <metadata>
+            <title>UBTU-22-611055</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.98_UBTU-22-611055" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.98_UBTU-22-611055"></reference>
+            <description>UBTU-22-611055</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231944"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231945" version="1">
+         <metadata>
+            <title>UBTU-22-611060</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.99_UBTU-22-611060" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.99_UBTU-22-611060"></reference>
+            <description>UBTU-22-611060</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231945"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231946" version="1">
+         <metadata>
+            <title>UBTU-22-611060</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.99_UBTU-22-611060" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.99_UBTU-22-611060"></reference>
+            <description>UBTU-22-611060</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231946"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231948" version="1">
+         <metadata>
+            <title>UBTU-22-611070</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.101_UBTU-22-611070" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.101_UBTU-22-611070"></reference>
+            <description>UBTU-22-611070</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231948"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231951" version="1">
+         <metadata>
+            <title>UBTU-22-612020</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.104_UBTU-22-612020" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.104_UBTU-22-612020"></reference>
+            <description>UBTU-22-612020</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231951"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231952" version="1">
+         <metadata>
+            <title>UBTU-22-612020</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.104_UBTU-22-612020" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.104_UBTU-22-612020"></reference>
+            <description>UBTU-22-612020</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231952"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231956" version="1">
+         <metadata>
+            <title>UBTU-22-612040</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.108_UBTU-22-612040" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.108_UBTU-22-612040"></reference>
+            <description>UBTU-22-612040</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231956"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231957" version="1">
+         <metadata>
+            <title>UBTU-22-631010</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.109_UBTU-22-631010" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.109_UBTU-22-631010"></reference>
+            <description>UBTU-22-631010</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231957"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231958" version="1">
+         <metadata>
+            <title>UBTU-22-631015</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.110_UBTU-22-631015" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.110_UBTU-22-631015"></reference>
+            <description>UBTU-22-631015</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231958"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231961" version="1">
+         <metadata>
+            <title>UBTU-22-651020</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.113_UBTU-22-651020" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.113_UBTU-22-651020"></reference>
+            <description>UBTU-22-651020</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231961"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231966" version="1">
+         <metadata>
+            <title>UBTU-22-652015</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.118_UBTU-22-652015" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.118_UBTU-22-652015"></reference>
+            <description>UBTU-22-652015</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231966"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231968" version="1">
+         <metadata>
+            <title>UBTU-22-652015</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.118_UBTU-22-652015" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.118_UBTU-22-652015"></reference>
+            <description>UBTU-22-652015</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231968"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231974" version="1">
+         <metadata>
+            <title>UBTU-22-653020</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.121_UBTU-22-653020" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.121_UBTU-22-653020"></reference>
+            <description>UBTU-22-653020</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231974"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231975" version="1">
+         <metadata>
+            <title>UBTU-22-653020</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.121_UBTU-22-653020" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.121_UBTU-22-653020"></reference>
+            <description>UBTU-22-653020</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231975"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231976" version="1">
+         <metadata>
+            <title>UBTU-22-653025</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.122_UBTU-22-653025" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.122_UBTU-22-653025"></reference>
+            <description>UBTU-22-653025</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231976"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231977" version="1">
+         <metadata>
+            <title>UBTU-22-653030</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.123_UBTU-22-653030" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.123_UBTU-22-653030"></reference>
+            <description>UBTU-22-653030</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231977"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7232054" version="1">
+         <metadata>
+            <title>UBTU-22-671010</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.179_UBTU-22-671010" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.179_UBTU-22-671010"></reference>
+            <description>UBTU-22-671010</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7232054"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231786" version="1">
+         <metadata>
+            <title>UBTU-22-213020</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.6_UBTU-22-213020" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.6_UBTU-22-213020"></reference>
+            <description>UBTU-22-213020</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231786"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231787" version="1">
+         <metadata>
+            <title>UBTU-22-214010</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.8_UBTU-22-214010" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.8_UBTU-22-214010"></reference>
+            <description>UBTU-22-214010</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231787"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231923" version="1">
+         <metadata>
+            <title>UBTU-22-412020</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.82_UBTU-22-412020" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.82_UBTU-22-412020"></reference>
+            <description>UBTU-22-412020</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231923"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231932" version="1">
+         <metadata>
+            <title>UBTU-22-432010</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.88_UBTU-22-432010" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.88_UBTU-22-432010"></reference>
+            <description>UBTU-22-432010</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231932"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231934" version="1">
+         <metadata>
+            <title>UBTU-22-432010</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.88_UBTU-22-432010" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.88_UBTU-22-432010"></reference>
+            <description>UBTU-22-432010</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231934"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231959" version="1">
+         <metadata>
+            <title>UBTU-22-631015</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.110_UBTU-22-631015" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.110_UBTU-22-631015"></reference>
+            <description>UBTU-22-631015</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231959"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231967" version="1">
+         <metadata>
+            <title>UBTU-22-652015</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.118_UBTU-22-652015" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.118_UBTU-22-652015"></reference>
+            <description>UBTU-22-652015</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231967"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231969" version="1">
+         <metadata>
+            <title>UBTU-22-652015</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.118_UBTU-22-652015" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.118_UBTU-22-652015"></reference>
+            <description>UBTU-22-652015</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231969"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231982" version="1">
+         <metadata>
+            <title>UBTU-22-653065</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.130_UBTU-22-653065" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.130_UBTU-22-653065"></reference>
+            <description>UBTU-22-653065</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231982"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231983" version="1">
+         <metadata>
+            <title>UBTU-22-653065</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.130_UBTU-22-653065" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.130_UBTU-22-653065"></reference>
+            <description>UBTU-22-653065</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231983"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231985" version="1">
+         <metadata>
+            <title>UBTU-22-653070</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.131_UBTU-22-653070" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.131_UBTU-22-653070"></reference>
+            <description>UBTU-22-653070</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231985"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231986" version="1">
+         <metadata>
+            <title>UBTU-22-653070</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.131_UBTU-22-653070" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.131_UBTU-22-653070"></reference>
+            <description>UBTU-22-653070</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231986"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231790" version="1">
+         <metadata>
+            <title>UBTU-22-215010</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.10_UBTU-22-215010" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.10_UBTU-22-215010"></reference>
+            <description>UBTU-22-215010</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231790"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231791" version="1">
+         <metadata>
+            <title>UBTU-22-215015</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.11_UBTU-22-215015" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.11_UBTU-22-215015"></reference>
+            <description>UBTU-22-215015</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231791"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231792" version="1">
+         <metadata>
+            <title>UBTU-22-215020</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.12_UBTU-22-215020" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.12_UBTU-22-215020"></reference>
+            <description>UBTU-22-215020</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231792"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231793" version="1">
+         <metadata>
+            <title>UBTU-22-215025</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.13_UBTU-22-215025" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.13_UBTU-22-215025"></reference>
+            <description>UBTU-22-215025</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231793"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231794" version="1">
+         <metadata>
+            <title>UBTU-22-215030</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.14_UBTU-22-215030" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.14_UBTU-22-215030"></reference>
+            <description>UBTU-22-215030</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231794"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231795" version="1">
+         <metadata>
+            <title>UBTU-22-215035</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.15_UBTU-22-215035" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.15_UBTU-22-215035"></reference>
+            <description>UBTU-22-215035</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231795"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231879" version="1">
+         <metadata>
+            <title>UBTU-22-251010</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.46_UBTU-22-251010" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.46_UBTU-22-251010"></reference>
+            <description>UBTU-22-251010</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231879"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231886" version="1">
+         <metadata>
+            <title>UBTU-22-255010</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.55_UBTU-22-255010" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.55_UBTU-22-255010"></reference>
+            <description>UBTU-22-255010</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231886"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231901" version="1">
+         <metadata>
+            <title>UBTU-22-271020</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.69_UBTU-22-271020" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.69_UBTU-22-271020"></reference>
+            <description>UBTU-22-271020</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231901"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231904" version="1">
+         <metadata>
+            <title>UBTU-22-271025</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.70_UBTU-22-271025" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.70_UBTU-22-271025"></reference>
+            <description>UBTU-22-271025</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231904"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231906" version="1">
+         <metadata>
+            <title>UBTU-22-271030</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.71_UBTU-22-271030" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.71_UBTU-22-271030"></reference>
+            <description>UBTU-22-271030</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231906"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231924" version="1">
+         <metadata>
+            <title>UBTU-22-412025</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.83_UBTU-22-412025" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.83_UBTU-22-412025"></reference>
+            <description>UBTU-22-412025</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231924"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231927" version="1">
+         <metadata>
+            <title>UBTU-22-431010</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.86_UBTU-22-431010" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.86_UBTU-22-431010"></reference>
+            <description>UBTU-22-431010</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231927"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231949" version="1">
+         <metadata>
+            <title>UBTU-22-612010</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.102_UBTU-22-612010" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.102_UBTU-22-612010"></reference>
+            <description>UBTU-22-612010</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231949"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231950" version="1">
+         <metadata>
+            <title>UBTU-22-612015</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.103_UBTU-22-612015" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.103_UBTU-22-612015"></reference>
+            <description>UBTU-22-612015</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231950"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231960" version="1">
+         <metadata>
+            <title>UBTU-22-651010</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.111_UBTU-22-651010" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.111_UBTU-22-651010"></reference>
+            <description>UBTU-22-651010</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231960"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231963" version="1">
+         <metadata>
+            <title>UBTU-22-652010</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.117_UBTU-22-652010" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.117_UBTU-22-652010"></reference>
+            <description>UBTU-22-652010</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231963"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231970" version="1">
+         <metadata>
+            <title>UBTU-22-653010</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.119_UBTU-22-653010" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.119_UBTU-22-653010"></reference>
+            <description>UBTU-22-653010</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231970"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231973" version="1">
+         <metadata>
+            <title>UBTU-22-653020</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.121_UBTU-22-653020" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.121_UBTU-22-653020"></reference>
+            <description>UBTU-22-653020</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231973"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231984" version="1">
+         <metadata>
+            <title>UBTU-22-653065</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.130_UBTU-22-653065" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.130_UBTU-22-653065"></reference>
+            <description>UBTU-22-653065</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231984"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231987" version="1">
+         <metadata>
+            <title>UBTU-22-653070</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.131_UBTU-22-653070" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.131_UBTU-22-653070"></reference>
+            <description>UBTU-22-653070</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231987"></criterion>
+         </criteria>
+      </definition>
+      <definition class="compliance" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:def:7231991" version="1">
+         <metadata>
+            <title>UBTU-22-653075</title>
+            <reference ref_id="xccdf_org.cisecurity.benchmarks_rule_1.132_UBTU-22-653075" ref_url="http://benchmarks.cisecurity.org" source="xccdf_org.cisecurity.benchmarks_rule_1.132_UBTU-22-653075"></reference>
+            <description>UBTU-22-653075</description>
+         </metadata>
+         <criteria negate="false" operator="AND">
+            <criterion test_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231991"></criterion>
+         </criteria>
+      </definition>
+   </definitions>
+   <tests>
+      <systemdunitproperty_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" check="all" check_existence="at_least_one_exists" comment="Ensure systemd 'ctrl-alt-del.target' unit 'UnitFileState' property equals 'masked'" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231776" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231776"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:ste:7231776"></state>
+      </systemdunitproperty_test>
+      <systemdunitproperty_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" check="all" check_existence="at_least_one_exists" comment="Ensure systemd 'ctrl-alt-del.target' unit 'UnitFileState' property not equal 'active'" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231777" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231777"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:ste:7231777"></state>
+      </systemdunitproperty_test>
+      <systemdunitproperty_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" check="all" check_existence="at_least_one_exists" comment="Ensure systemd 'kdump-tools.service' unit 'UnitFileState' property equals 'masked'" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231782" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231782"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:ste:7231782"></state>
+      </systemdunitproperty_test>
+      <systemdunitproperty_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" check="all" check_existence="at_least_one_exists" comment="Ensure systemd 'kdump-tools.service' unit 'UnitFileState' property not equal 'active'" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231783" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231783"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:ste:7231783"></state>
+      </systemdunitproperty_test>
+      <systemdunitproperty_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" check="all" check_existence="at_least_one_exists" comment="Ensure systemd 'ufw.service' unit 'ActiveState' property equals 'active'" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231881" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231881"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:ste:7231881"></state>
+      </systemdunitproperty_test>
+      <systemdunitproperty_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" check="all" check_existence="at_least_one_exists" comment="Ensure systemd 'sshd.service' unit 'UnitFileState' property equals 'enabled'" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231887" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231887"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:ste:7231887"></state>
+      </systemdunitproperty_test>
+      <systemdunitproperty_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" check="all" check_existence="at_least_one_exists" comment="Ensure systemd 'sshd.service' unit 'ActiveState' property equals 'active'" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231888" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231888"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:ste:7231888"></state>
+      </systemdunitproperty_test>
+      <systemdunitproperty_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" check="all" check_existence="at_least_one_exists" comment="Ensure systemd 'apparmor.service' unit 'UnitFileState' property equals 'enabled'" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231928" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231928"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:ste:7231928"></state>
+      </systemdunitproperty_test>
+      <systemdunitproperty_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" check="all" check_existence="at_least_one_exists" comment="Ensure systemd 'apparmor.service' unit 'ActiveState' property equals 'active'" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231929" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231929"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:ste:7231929"></state>
+      </systemdunitproperty_test>
+      <systemdunitproperty_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" check="all" check_existence="at_least_one_exists" comment="Ensure systemd 'rsyslog.service' unit 'UnitFileState' property equals 'enabled'" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231964" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231964"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:ste:7231964"></state>
+      </systemdunitproperty_test>
+      <systemdunitproperty_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" check="all" check_existence="at_least_one_exists" comment="Ensure systemd 'rsyslog.service' unit 'ActiveState' property equals 'active'" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231965" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231965"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:ste:7231965"></state>
+      </systemdunitproperty_test>
+      <systemdunitproperty_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" check="all" check_existence="at_least_one_exists" comment="Ensure systemd 'auditd.service' unit 'UnitFileState' property equals 'enabled'" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231971" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231971"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:ste:7231971"></state>
+      </systemdunitproperty_test>
+      <systemdunitproperty_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" check="all" check_existence="at_least_one_exists" comment="Ensure systemd 'auditd.service' unit 'ActiveState' property equals 'active'" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231972" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231972"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:ste:7231972"></state>
+      </systemdunitproperty_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /boot/grub/grub.cfg exists and matches pattern ^\h*set\h+superusers\h*=\h*\&quot;?\H+\b" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231778" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231778"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /boot/grub/grub.cfg exists and matches pattern ^\h*password_pbkdf2\h+\H+\h+\H+\b" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231779" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231779"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure no file named /etec/sysctl.conf exists and matches pattern ^\s*kernel\.randomize_va_space\s*=\s*([0-1]|[3-9]|[0-9][0-9]+)\b" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231785" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231785"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/apt/apt.conf.d/50unattended-upgrades exists and matches pattern ^\h*Unattended-Upgrade::Remove-Unused-Dependencies\h+[&quot;']true[&quot;'];\h*(#.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231788" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231788"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/apt/apt.conf.d/50unattended-upgrades exists and matches pattern ^\h*Unattended-Upgrade::Remove-Unused-Kernel-Packages\h+[&quot;']true[&quot;'];\h*(#.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231789" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231789"></object>
+      </textfilecontent54_test>
+      <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /var/log/syslog exists and does not have permissions --x-wxrwx SUID SGID sticky" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231817" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231817"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:ste:7231817"></state>
+      </file_test>
+      <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /var/log/ exists and is owned by user 0" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231873" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231873"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:ste:7231873"></state>
+      </file_test>
+      <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /usr/bin/journalctl exists and does not have permissions ----wxrwx" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231877" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231877"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:ste:7231877"></state>
+      </file_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/chrony/chrony.conf exists and matches pattern ^\h*server\h+\H+\.mil\h+iburst\h+maxpoll\h+16\h*(#.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231882" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231882"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/chrony/chrony.conf exists and matches pattern ^\h*makestep\h1\h-1\h*(#.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231883" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231883"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/login.defs exists and matches pattern (?i)^\h*PASS_MIN_DAYS\h+[1-9][0-9]*\b" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231911" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231911"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/login.defs exists and matches pattern ^\s*(?i)PASS_MAX_DAYS\s+(60|[1-5][0-9]|[1-9])(\h*#.*)?\h*$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231912" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231912"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/default/useradd exists and matches pattern ^\s*INACTIVE\s*=\s*35\b" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231913" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231913"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/pam.d/common-auth exists and matches pattern (?i)^\h*auth\h+([^#\n\r]+)\h+pam_faillock\.so\h+([^#\n\r]+\h+)?authfail\b" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231914" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231914"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/pam.d/common-auth exists and matches pattern (?i)^\h*auth\h+([^#\n\r]+)\h+pam_faillock\.so\h+([^#\n\r]+\h+)?authsucc\b" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231915" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231915"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/security/faillock.conf exists and matches pattern (?i)^\h*audit\h*\b" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231916" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231916"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/security/faillock.conf exists and matches pattern (?i)^\h*silent\h*\b" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231917" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231917"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/security/faillock.conf exists and matches pattern (?i)^\h*deny\h*=\h*[1-3]\b" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231918" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231918"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/security/faillock.conf exists and matches pattern (?i)^\h*fail_interval\h*=\h*(0|9[0-9][0-9]|[1-9][0-9]{3,})\b" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231919" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231919"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/security/faillock.conf exists and matches pattern (?i)^\h*unlock_time\h*=\h*0\b" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231920" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231920"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/pam.d/common-auth exists and matches pattern ^\h*auth\h+required\h+pam_faildelay\.so\h+([^#\n\r]+\h+)?delay=([4-9]|[1-9][0-9])[0-9][0-9][0-9][0-9][0-9][0-9]+\b" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231921" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231921"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/security/limits.conf exists and matches pattern ^\h*\*\h+hard\h+maxlogins\h+(10|[1-9])\h*(#.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231922" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231922"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/login.defs exists and matches pattern (?i)^\h*UMASK\h+[0-7]77\b" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231926" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231926"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure no file named /etc/sudoers exists and matches pattern (?i)^\h*([^#\n\r]+\h*)?\bNOPASSWD\b(.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231931" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231931"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure no file named /etc/sudoers exists and matches pattern (?i)^\h*([^#\n\r]+\h+)?\!authenticate\b(\.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231933" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231933"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/security/pwquality.conf exists and matches pattern ^\h*ucredit\h*=\h*-[1-9]\h*(\h*#.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231935" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231935"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/security/pwquality.conf exists and matches pattern ^\h*lcredit\h*=\h*-[1-9]\h*(\h*#.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231936" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231936"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/security/pwquality.conf exists and matches pattern ^\h*dcredit\h*=\h*-[1-9]\h*(\h*#.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231937" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231937"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/security/pwquality.conf exists and matches pattern ^\h*ocredit\h*=\h*-[1-9]\h*(\h*#.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231938" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231938"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/security/pwquality.conf exists and matches pattern (?i)^\h*dictcheck\h*=\h*[^0]" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231939" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231939"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/security/pwquality.conf exists and matches pattern ^\h*minlen\h*=\h*(1[5-9]|[2-9][0-9]|[1-9][0-9][0-9]+)\h*(\h*#.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231940" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231940"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/security/pwquality.conf exists and matches pattern ^\h*difok\h*=\h*([8-9]|[1-9][0-9]+)\h*(\h*#.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231941" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231941"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/security/pwquality.conf exists and matches pattern ^\h*enforcing\h*=\h*1\h*(\h*#.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231942" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231942"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/pam.d/common-password exists and matches pattern ^\h*password\h+requisite\h+pam_pwquality\.so\h+([^#\n\r]+\h+)?retry=[1-3]\h*(\h+.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231943" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231943"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/pam.d/common-password exists and matches pattern (?i)^\h*password\h+[^#\n\r]+\h+pam_unix\.so(\h+[^#\n\r]+)?\h+sha512\b" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231944" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231944"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure no file named /etc/pam.d/common-password exists and matches pattern (?i)^\h*([^#\n\r]+\h+)?nullok\b" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231945" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231945"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure no file named /etc/pam.d/common-auth exists and matches pattern (?i)^\h*([^#\n\r]+\h+)?nullok\b" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231946" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231946"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/login.defs exists and matches pattern (?i)^\h*encrypt_method\h+sha512\h*(#.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231948" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231948"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/pam.d/common-auth exists and matches pattern auth\h+([^#\n\r]+\h+)?pam_pkcs11.so\h*(\h+.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231951" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231951"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/ssh/sshd_config exists and matches pattern (?i)^\h*PubkeyAuthentication\h+yes\h*(\h*#.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231952" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231952"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/pam_pkcs11/pam_pkcs11.conf exists and matches pattern ^\h*use_mappers\h*=\h*([^#\n\r]+,\h*)?pwent(\h*,.*)?(\h*#.*)?\h*$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231956" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231956"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/ssl/certs exists and matches pattern (?i)^([^#\n\r]+)?\bDOD(_|\b)" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231957" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231957"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/sssd/sssd.conf exists and matches pattern (?i)^\h*offline_credentials_expiration\h*=\h*1\h*(#.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231958" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231958"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/default/aide exists and matches pattern (?i)^\h*SILENTREPORTS\h*=\h*no\h*(#.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231961" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231961"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/rsyslog.conf exists and matches pattern ^\h*(auth(\.\*)?,authpriv\.\*|authpriv\.\*,auth(\.\*)?)\h+\/var\/log\/secure\/?\h*(#.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231966" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231966"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/rsyslog.conf exists and matches pattern ^\h*daemon\.\*h+\/var\/log\/messages\/?\h*(#.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231968" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231968"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/audit/plugins.d/au-remote.conf exists and matches pattern ^\h*active\h*=\h*yes\b" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231974" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231974"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/audisp/audisp-remote.conf exists and matches pattern ^\h*remote_server\h*=\h*\H+" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231975" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231975"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/audit/auditd.conf exists and matches pattern ^\h*action_mail_acct\h*=\h*\H+" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231976" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231976"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /etc/audit/auditd.conf exists and matches pattern ^\h*disk_full_action\h*=\h*halt\b.*$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231977" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231977"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file named /proc/sys/crypto/fips_enabled exists and matches pattern ^\h*1\h*(#.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7232054" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7232054"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensurefile(s) named ^.+\.conf$ in /etc/sysctl.d/ exists and matches pattern ^\s*kernel\.randomize_va_space\s*=\s*([0-1]|[3-9]|[0-9][0-9]+)\b" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231786" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231786"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure no file(s) named ^.+$ in /etc/apt/apt.conf.d/ exists and matches pattern (?i)^\h*([^#\n\r]+)?::AllowUnauthenticated\h+&quot;?true&quot;?;\h*(#.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231787" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231787"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file(s) named ^.+\.conf$ in /etc/security/limits.d/ exists and matches pattern ^\h*\*\h+hard\h+maxlogins\h+(10|[1-9])\h*(#.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231923" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231923"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure no file(s) named ^.+$ in /etc/sudoers.d/ exists and matches pattern (?i)^\h*([^#\n\r]+\h*)?\bNOPASSWD\b(.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231932" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231932"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="none_exist" comment="Ensure no file(s) named ^.+$ in /etc/sudoers.d/ exists and matches pattern (?i)^\h*([^#\n\r]+\h+)?\!authenticate\b(\.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231934" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231934"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file(s) named ^.+\.conf$ in /etc/sssd/conf.d/ exists and matches pattern (?i)^\h*offline_credentials_expiration\h*=\h*1\h*(#.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231959" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231959"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file(s) named ^.+/.conf in /etc/rsyslog.d/ exists and matches pattern ^\h*(auth(\.\*)?,authpriv\.\*|authpriv\.\*,auth(\.\*)?)\h+\/var\/log\/secure\/?\h*(#.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231967" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231967"></object>
+      </textfilecontent54_test>
+      <textfilecontent54_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" check="all" check_existence="at_least_one_exists" comment="Ensure at least one file(s) named ^.+\.conf in /etc/rsyslog.d/ exists and matches pattern ^\h*daemon\.notice\h+\/var\/log\/messages\/?\h*(#.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231969" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231969"></object>
+      </textfilecontent54_test>
+      <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="any_exist" comment="Ensure any file(s) named ^.*\.(conf|rules|prev)$ in /etc/audit/ exists and does not have permissions --x-wxrwx" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231982" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231982"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:ste:7231982"></state>
+      </file_test>
+      <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="any_exist" comment="Ensure any file(s) named ^.+$ in /etc/audit/rules.d/ exists and does not have permissions --x-wxrwx" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231983" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231983"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:ste:7231983"></state>
+      </file_test>
+      <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="any_exist" comment="Ensure any file(s) named ^.*\.(conf|rules|prev)$ in /etc/audit/ exists and is owned by user 0" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231985" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231985"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:ste:7231985"></state>
+      </file_test>
+      <file_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" check="all" check_existence="any_exist" comment="Ensure any file(s) named ^.+$ in /etc/audit/rules.d/ exists and is owned by user 0" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231986" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231986"></object>
+         <state state_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:ste:7231986"></state>
+      </file_test>
+      <dpkginfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" check="all" check_existence="at_least_one_exists" comment="Ensure package name equals 'libpam-pwquality' is installed" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231790" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231790"></object>
+      </dpkginfo_test>
+      <dpkginfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" check="all" check_existence="at_least_one_exists" comment="Ensure package name equals 'chrony' is installed" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231791" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231791"></object>
+      </dpkginfo_test>
+      <dpkginfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" check="all" check_existence="none_exist" comment="Ensure package name equals 'systemd-timesyncd' is not installed" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231792" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231792"></object>
+      </dpkginfo_test>
+      <dpkginfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" check="all" check_existence="none_exist" comment="Ensure package name equals 'ntp' is not installed" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231793" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231793"></object>
+      </dpkginfo_test>
+      <dpkginfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" check="all" check_existence="none_exist" comment="Ensure package name equals 'rsh-server' is not installed" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231794" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231794"></object>
+      </dpkginfo_test>
+      <dpkginfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" check="all" check_existence="none_exist" comment="Ensure package name equals 'telnetd' is not installed" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231795" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231795"></object>
+      </dpkginfo_test>
+      <dpkginfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" check="all" check_existence="at_least_one_exists" comment="Ensure package name equals 'ufw' is installed" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231879" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231879"></object>
+      </dpkginfo_test>
+      <dpkginfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" check="all" check_existence="at_least_one_exists" comment="Ensure package name equals 'openssh-server' is installed" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231886" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231886"></object>
+      </dpkginfo_test>
+      <dpkginfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" check="all" check_existence="none_exist" comment="Ensure package name equals 'gdm3' is not installed" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231901" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231901"></object>
+      </dpkginfo_test>
+      <dpkginfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" check="all" check_existence="none_exist" comment="Ensure package name equals 'gdm3' is not installed" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231904" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231904"></object>
+      </dpkginfo_test>
+      <dpkginfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" check="all" check_existence="none_exist" comment="Ensure package name equals 'gdm3' is not installed" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231906" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231906"></object>
+      </dpkginfo_test>
+      <dpkginfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" check="all" check_existence="at_least_one_exists" comment="Ensure package name equals 'vlock' is installed" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231924" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231924"></object>
+      </dpkginfo_test>
+      <dpkginfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" check="all" check_existence="at_least_one_exists" comment="Ensure package name equals 'apparmor' is installed" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231927" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231927"></object>
+      </dpkginfo_test>
+      <dpkginfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" check="all" check_existence="at_least_one_exists" comment="Ensure package name equals 'libpam-pkcs11' is installed" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231949" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231949"></object>
+      </dpkginfo_test>
+      <dpkginfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" check="all" check_existence="at_least_one_exists" comment="Ensure package name equals 'opensc-pkcs11' is installed" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231950" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231950"></object>
+      </dpkginfo_test>
+      <dpkginfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" check="all" check_existence="at_least_one_exists" comment="Ensure package name equals 'aide' is installed" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231960" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231960"></object>
+      </dpkginfo_test>
+      <dpkginfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" check="all" check_existence="at_least_one_exists" comment="Ensure package name equals 'rsyslog' is installed" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231963" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231963"></object>
+      </dpkginfo_test>
+      <dpkginfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" check="all" check_existence="at_least_one_exists" comment="Ensure package name equals 'auditd' is installed" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231970" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231970"></object>
+      </dpkginfo_test>
+      <dpkginfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" check="all" check_existence="at_least_one_exists" comment="Ensure package name equals 'audispd-plugins' is installed" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231973" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231973"></object>
+      </dpkginfo_test>
+      <dpkginfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" check="all" check_existence="at_least_one_exists" comment="Ensure package name equals 'auditd' is installed" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231984" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231984"></object>
+      </dpkginfo_test>
+      <dpkginfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" check="all" check_existence="at_least_one_exists" comment="Ensure package name equals 'auditd' is installed" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231987" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231987"></object>
+      </dpkginfo_test>
+      <dpkginfo_test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" check="all" check_existence="at_least_one_exists" comment="Ensure package name equals 'auditd' is installed" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:tst:7231991" version="1">
+         <object object_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231991"></object>
+      </dpkginfo_test>
+   </tests>
+   <objects>
+      <systemdunitproperty_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure systemd 'ctrl-alt-del.target' unit 'UnitFileState' property equals 'masked'" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231776" version="1">
+         <unit>ctrl-alt-del.target</unit>
+         <property>UnitFileState</property>
+      </systemdunitproperty_object>
+      <systemdunitproperty_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure systemd 'ctrl-alt-del.target' unit 'UnitFileState' property not equal 'active'" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231777" version="1">
+         <unit>ctrl-alt-del.target</unit>
+         <property>ActiveState</property>
+      </systemdunitproperty_object>
+      <systemdunitproperty_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure systemd 'kdump-tools.service' unit 'UnitFileState' property equals 'masked'" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231782" version="1">
+         <unit>kdump-tools.service</unit>
+         <property>UnitFileState</property>
+      </systemdunitproperty_object>
+      <systemdunitproperty_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure systemd 'kdump-tools.service' unit 'UnitFileState' property not equal 'active'" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231783" version="1">
+         <unit>kdump-tools.service</unit>
+         <property>ActiveState</property>
+      </systemdunitproperty_object>
+      <systemdunitproperty_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure systemd 'ufw.service' unit 'ActiveState' property equals 'active'" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231881" version="1">
+         <unit>ufw.service</unit>
+         <property>ActiveState</property>
+      </systemdunitproperty_object>
+      <systemdunitproperty_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure systemd 'sshd.service' unit 'UnitFileState' property equals 'enabled'" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231887" version="1">
+         <unit>sshd.service</unit>
+         <property>UnitFileState</property>
+      </systemdunitproperty_object>
+      <systemdunitproperty_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure systemd 'sshd.service' unit 'ActiveState' property equals 'active'" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231888" version="1">
+         <unit>sshd.service</unit>
+         <property>ActiveState</property>
+      </systemdunitproperty_object>
+      <systemdunitproperty_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure systemd 'apparmor.service' unit 'UnitFileState' property equals 'enabled'" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231928" version="1">
+         <unit>apparmor.service</unit>
+         <property>UnitFileState</property>
+      </systemdunitproperty_object>
+      <systemdunitproperty_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure systemd 'apparmor.service' unit 'ActiveState' property equals 'active'" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231929" version="1">
+         <unit>apparmor.service</unit>
+         <property>ActiveState</property>
+      </systemdunitproperty_object>
+      <systemdunitproperty_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure systemd 'rsyslog.service' unit 'UnitFileState' property equals 'enabled'" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231964" version="1">
+         <unit>rsyslog.service</unit>
+         <property>UnitFileState</property>
+      </systemdunitproperty_object>
+      <systemdunitproperty_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure systemd 'rsyslog.service' unit 'ActiveState' property equals 'active'" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231965" version="1">
+         <unit>rsyslog.service</unit>
+         <property>ActiveState</property>
+      </systemdunitproperty_object>
+      <systemdunitproperty_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure systemd 'auditd.service' unit 'UnitFileState' property equals 'enabled'" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231971" version="1">
+         <unit>auditd.service</unit>
+         <property>UnitFileState</property>
+      </systemdunitproperty_object>
+      <systemdunitproperty_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure systemd 'auditd.service' unit 'ActiveState' property equals 'active'" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231972" version="1">
+         <unit>auditd.service</unit>
+         <property>ActiveState</property>
+      </systemdunitproperty_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /boot/grub/grub.cfg exists and matches pattern ^\h*set\h+superusers\h*=\h*\&quot;?\H+\b" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231778" version="1">
+         <filepath>/boot/grub/grub.cfg</filepath>
+         <pattern datatype="string" operation="pattern match">^\h*set\h+superusers\h*=\h*\"?\H+\b</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /boot/grub/grub.cfg exists and matches pattern ^\h*password_pbkdf2\h+\H+\h+\H+\b" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231779" version="1">
+         <filepath>/boot/grub/grub.cfg</filepath>
+         <pattern datatype="string" operation="pattern match">^\h*password_pbkdf2\h+\H+\h+\H+\b</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure no file named /etec/sysctl.conf exists and matches pattern ^\s*kernel\.randomize_va_space\s*=\s*([0-1]|[3-9]|[0-9][0-9]+)\b" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231785" version="1">
+         <filepath>/etec/sysctl.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^\s*kernel\.randomize_va_space\s*=\s*([0-1]|[3-9]|[0-9][0-9]+)\b</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/apt/apt.conf.d/50unattended-upgrades exists and matches pattern ^\h*Unattended-Upgrade::Remove-Unused-Dependencies\h+[&quot;']true[&quot;'];\h*(#.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231788" version="1">
+         <filepath>/etc/apt/apt.conf.d/50unattended-upgrades</filepath>
+         <pattern datatype="string" operation="pattern match">^\h*Unattended-Upgrade::Remove-Unused-Dependencies\h+["']true["'];\h*(#.*)?$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/apt/apt.conf.d/50unattended-upgrades exists and matches pattern ^\h*Unattended-Upgrade::Remove-Unused-Kernel-Packages\h+[&quot;']true[&quot;'];\h*(#.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231789" version="1">
+         <filepath>/etc/apt/apt.conf.d/50unattended-upgrades</filepath>
+         <pattern datatype="string" operation="pattern match">^\h*Unattended-Upgrade::Remove-Unused-Kernel-Packages\h+["']true["'];\h*(#.*)?$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure at least one file named /var/log/syslog exists and does not have permissions --x-wxrwx SUID SGID sticky" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231817" version="1">
+         <filepath>/var/log/syslog</filepath>
+      </file_object>
+      <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure at least one file named /var/log/ exists and is owned by user 0" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231873" version="1">
+         <path>/var/log</path>
+         <filename xsi:nil="true"></filename>
+      </file_object>
+      <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure at least one file named /usr/bin/journalctl exists and does not have permissions ----wxrwx" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231877" version="1">
+         <filepath>/usr/bin/journalctl</filepath>
+      </file_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/chrony/chrony.conf exists and matches pattern ^\h*server\h+\H+\.mil\h+iburst\h+maxpoll\h+16\h*(#.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231882" version="1">
+         <filepath>/etc/chrony/chrony.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^\h*server\h+\H+\.mil\h+iburst\h+maxpoll\h+16\h*(#.*)?$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/chrony/chrony.conf exists and matches pattern ^\h*makestep\h1\h-1\h*(#.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231883" version="1">
+         <filepath>/etc/chrony/chrony.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^\h*makestep\h1\h-1\h*(#.*)?$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/login.defs exists and matches pattern (?i)^\h*PASS_MIN_DAYS\h+[1-9][0-9]*\b" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231911" version="1">
+         <filepath>/etc/login.defs</filepath>
+         <pattern datatype="string" operation="pattern match">(?i)^\h*PASS_MIN_DAYS\h+[1-9][0-9]*\b</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/login.defs exists and matches pattern ^\s*(?i)PASS_MAX_DAYS\s+(60|[1-5][0-9]|[1-9])(\h*#.*)?\h*$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231912" version="1">
+         <filepath>/etc/login.defs</filepath>
+         <pattern datatype="string" operation="pattern match">^\s*(?i)PASS_MAX_DAYS\s+(60|[1-5][0-9]|[1-9])(\h*#.*)?\h*$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/default/useradd exists and matches pattern ^\s*INACTIVE\s*=\s*35\b" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231913" version="1">
+         <filepath>/etc/default/useradd</filepath>
+         <pattern datatype="string" operation="pattern match">^\s*INACTIVE\s*=\s*35\b</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/pam.d/common-auth exists and matches pattern (?i)^\h*auth\h+([^#\n\r]+)\h+pam_faillock\.so\h+([^#\n\r]+\h+)?authfail\b" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231914" version="1">
+         <filepath>/etc/pam.d/common-auth</filepath>
+         <pattern datatype="string" operation="pattern match">(?i)^\h*auth\h+([^#\n\r]+)\h+pam_faillock\.so\h+([^#\n\r]+\h+)?authfail\b</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/pam.d/common-auth exists and matches pattern (?i)^\h*auth\h+([^#\n\r]+)\h+pam_faillock\.so\h+([^#\n\r]+\h+)?authsucc\b" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231915" version="1">
+         <filepath>/etc/pam.d/common-auth</filepath>
+         <pattern datatype="string" operation="pattern match">(?i)^\h*auth\h+([^#\n\r]+)\h+pam_faillock\.so\h+([^#\n\r]+\h+)?authsucc\b</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/security/faillock.conf exists and matches pattern (?i)^\h*audit\h*\b" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231916" version="1">
+         <filepath>/etc/security/faillock.conf</filepath>
+         <pattern datatype="string" operation="pattern match">(?i)^\h*audit\h*\b</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/security/faillock.conf exists and matches pattern (?i)^\h*silent\h*\b" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231917" version="1">
+         <filepath>/etc/security/faillock.conf</filepath>
+         <pattern datatype="string" operation="pattern match">(?i)^\h*silent\h*\b</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/security/faillock.conf exists and matches pattern (?i)^\h*deny\h*=\h*[1-3]\b" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231918" version="1">
+         <filepath>/etc/security/faillock.conf</filepath>
+         <pattern datatype="string" operation="pattern match">(?i)^\h*deny\h*=\h*[1-3]\b</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/security/faillock.conf exists and matches pattern (?i)^\h*fail_interval\h*=\h*(0|9[0-9][0-9]|[1-9][0-9]{3,})\b" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231919" version="1">
+         <filepath>/etc/security/faillock.conf</filepath>
+         <pattern datatype="string" operation="pattern match">(?i)^\h*fail_interval\h*=\h*(0|9[0-9][0-9]|[1-9][0-9]{3,})\b</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/security/faillock.conf exists and matches pattern (?i)^\h*unlock_time\h*=\h*0\b" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231920" version="1">
+         <filepath>/etc/security/faillock.conf</filepath>
+         <pattern datatype="string" operation="pattern match">(?i)^\h*unlock_time\h*=\h*0\b</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/pam.d/common-auth exists and matches pattern ^\h*auth\h+required\h+pam_faildelay\.so\h+([^#\n\r]+\h+)?delay=([4-9]|[1-9][0-9])[0-9][0-9][0-9][0-9][0-9][0-9]+\b" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231921" version="1">
+         <filepath>/etc/pam.d/common-auth</filepath>
+         <pattern datatype="string" operation="pattern match">^\h*auth\h+required\h+pam_faildelay\.so\h+([^#\n\r]+\h+)?delay=([4-9]|[1-9][0-9])[0-9][0-9][0-9][0-9][0-9][0-9]+\b</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/security/limits.conf exists and matches pattern ^\h*\*\h+hard\h+maxlogins\h+(10|[1-9])\h*(#.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231922" version="1">
+         <filepath>/etc/security/limits.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^\h*\*\h+hard\h+maxlogins\h+(10|[1-9])\h*(#.*)?$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/login.defs exists and matches pattern (?i)^\h*UMASK\h+[0-7]77\b" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231926" version="1">
+         <filepath>/etc/login.defs</filepath>
+         <pattern datatype="string" operation="pattern match">(?i)^\h*UMASK\h+[0-7]77\b</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure no file named /etc/sudoers exists and matches pattern (?i)^\h*([^#\n\r]+\h*)?\bNOPASSWD\b(.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231931" version="1">
+         <filepath>/etc/sudoers</filepath>
+         <pattern datatype="string" operation="pattern match">(?i)^\h*([^#\n\r]+\h*)?\bNOPASSWD\b(.*)?$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure no file named /etc/sudoers exists and matches pattern (?i)^\h*([^#\n\r]+\h+)?\!authenticate\b(\.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231933" version="1">
+         <filepath>/etc/sudoers</filepath>
+         <pattern datatype="string" operation="pattern match">(?i)^\h*([^#\n\r]+\h+)?\!authenticate\b(\.*)?$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/security/pwquality.conf exists and matches pattern ^\h*ucredit\h*=\h*-[1-9]\h*(\h*#.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231935" version="1">
+         <filepath>/etc/security/pwquality.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^\h*ucredit\h*=\h*-[1-9]\h*(\h*#.*)?$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/security/pwquality.conf exists and matches pattern ^\h*lcredit\h*=\h*-[1-9]\h*(\h*#.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231936" version="1">
+         <filepath>/etc/security/pwquality.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^\h*lcredit\h*=\h*-[1-9]\h*(\h*#.*)?$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/security/pwquality.conf exists and matches pattern ^\h*dcredit\h*=\h*-[1-9]\h*(\h*#.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231937" version="1">
+         <filepath>/etc/security/pwquality.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^\h*dcredit\h*=\h*-[1-9]\h*(\h*#.*)?$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/security/pwquality.conf exists and matches pattern ^\h*ocredit\h*=\h*-[1-9]\h*(\h*#.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231938" version="1">
+         <filepath>/etc/security/pwquality.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^\h*ocredit\h*=\h*-[1-9]\h*(\h*#.*)?$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/security/pwquality.conf exists and matches pattern (?i)^\h*dictcheck\h*=\h*[^0]" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231939" version="1">
+         <filepath>/etc/security/pwquality.conf</filepath>
+         <pattern datatype="string" operation="pattern match">(?i)^\h*dictcheck\h*=\h*[^0]</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/security/pwquality.conf exists and matches pattern ^\h*minlen\h*=\h*(1[5-9]|[2-9][0-9]|[1-9][0-9][0-9]+)\h*(\h*#.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231940" version="1">
+         <filepath>/etc/security/pwquality.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^\h*minlen\h*=\h*(1[5-9]|[2-9][0-9]|[1-9][0-9][0-9]+)\h*(\h*#.*)?$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/security/pwquality.conf exists and matches pattern ^\h*difok\h*=\h*([8-9]|[1-9][0-9]+)\h*(\h*#.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231941" version="1">
+         <filepath>/etc/security/pwquality.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^\h*difok\h*=\h*([8-9]|[1-9][0-9]+)\h*(\h*#.*)?$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/security/pwquality.conf exists and matches pattern ^\h*enforcing\h*=\h*1\h*(\h*#.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231942" version="1">
+         <filepath>/etc/security/pwquality.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^\h*enforcing\h*=\h*1\h*(\h*#.*)?$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/pam.d/common-password exists and matches pattern ^\h*password\h+requisite\h+pam_pwquality\.so\h+([^#\n\r]+\h+)?retry=[1-3]\h*(\h+.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231943" version="1">
+         <filepath>/etc/pam.d/common-password</filepath>
+         <pattern datatype="string" operation="pattern match">^\h*password\h+requisite\h+pam_pwquality\.so\h+([^#\n\r]+\h+)?retry=[1-3]\h*(\h+.*)?$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/pam.d/common-password exists and matches pattern (?i)^\h*password\h+[^#\n\r]+\h+pam_unix\.so(\h+[^#\n\r]+)?\h+sha512\b" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231944" version="1">
+         <filepath>/etc/pam.d/common-password</filepath>
+         <pattern datatype="string" operation="pattern match">(?i)^\h*password\h+[^#\n\r]+\h+pam_unix\.so(\h+[^#\n\r]+)?\h+sha512\b</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure no file named /etc/pam.d/common-password exists and matches pattern (?i)^\h*([^#\n\r]+\h+)?nullok\b" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231945" version="1">
+         <filepath>/etc/pam.d/common-password</filepath>
+         <pattern datatype="string" operation="pattern match">(?i)^\h*([^#\n\r]+\h+)?nullok\b</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure no file named /etc/pam.d/common-auth exists and matches pattern (?i)^\h*([^#\n\r]+\h+)?nullok\b" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231946" version="1">
+         <filepath>/etc/pam.d/common-auth</filepath>
+         <pattern datatype="string" operation="pattern match">(?i)^\h*([^#\n\r]+\h+)?nullok\b</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/login.defs exists and matches pattern (?i)^\h*encrypt_method\h+sha512\h*(#.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231948" version="1">
+         <filepath>/etc/login.defs</filepath>
+         <pattern datatype="string" operation="pattern match">(?i)^\h*encrypt_method\h+sha512\h*(#.*)?$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/pam.d/common-auth exists and matches pattern auth\h+([^#\n\r]+\h+)?pam_pkcs11.so\h*(\h+.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231951" version="1">
+         <filepath>/etc/pam.d/common-auth</filepath>
+         <pattern datatype="string" operation="pattern match">auth\h+([^#\n\r]+\h+)?pam_pkcs11.so\h*(\h+.*)?$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/ssh/sshd_config exists and matches pattern (?i)^\h*PubkeyAuthentication\h+yes\h*(\h*#.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231952" version="1">
+         <filepath>/etc/ssh/sshd_config</filepath>
+         <pattern datatype="string" operation="pattern match">(?i)^\h*PubkeyAuthentication\h+yes\h*(\h*#.*)?$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/pam_pkcs11/pam_pkcs11.conf exists and matches pattern ^\h*use_mappers\h*=\h*([^#\n\r]+,\h*)?pwent(\h*,.*)?(\h*#.*)?\h*$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231956" version="1">
+         <filepath>/etc/pam_pkcs11/pam_pkcs11.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^\h*use_mappers\h*=\h*([^#\n\r]+,\h*)?pwent(\h*,.*)?(\h*#.*)?\h*$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/ssl/certs exists and matches pattern (?i)^([^#\n\r]+)?\bDOD(_|\b)" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231957" version="1">
+         <filepath>/etc/ssl/certs</filepath>
+         <pattern datatype="string" operation="pattern match">(?i)^([^#\n\r]+)?\bDOD(_|\b)</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/sssd/sssd.conf exists and matches pattern (?i)^\h*offline_credentials_expiration\h*=\h*1\h*(#.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231958" version="1">
+         <filepath>/etc/sssd/sssd.conf</filepath>
+         <pattern datatype="string" operation="pattern match">(?i)^\h*offline_credentials_expiration\h*=\h*1\h*(#.*)?$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/default/aide exists and matches pattern (?i)^\h*SILENTREPORTS\h*=\h*no\h*(#.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231961" version="1">
+         <filepath>/etc/default/aide</filepath>
+         <pattern datatype="string" operation="pattern match">(?i)^\h*SILENTREPORTS\h*=\h*no\h*(#.*)?$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/rsyslog.conf exists and matches pattern ^\h*(auth(\.\*)?,authpriv\.\*|authpriv\.\*,auth(\.\*)?)\h+\/var\/log\/secure\/?\h*(#.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231966" version="1">
+         <filepath>/etc/rsyslog.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^\h*(auth(\.\*)?,authpriv\.\*|authpriv\.\*,auth(\.\*)?)\h+\/var\/log\/secure\/?\h*(#.*)?$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/rsyslog.conf exists and matches pattern ^\h*daemon\.\*h+\/var\/log\/messages\/?\h*(#.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231968" version="1">
+         <filepath>/etc/rsyslog.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^\h*daemon\.\*h+\/var\/log\/messages\/?\h*(#.*)?$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/audit/plugins.d/au-remote.conf exists and matches pattern ^\h*active\h*=\h*yes\b" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231974" version="1">
+         <filepath>/etc/audit/plugins.d/au-remote.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^\h*active\h*=\h*yes\b</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/audisp/audisp-remote.conf exists and matches pattern ^\h*remote_server\h*=\h*\H+" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231975" version="1">
+         <filepath>/etc/audit/audisp-remote.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^\h*remote_server\h*=\h*\H+</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/audit/auditd.conf exists and matches pattern ^\h*action_mail_acct\h*=\h*\H+" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231976" version="1">
+         <filepath>/etc/audit/auditd.conf</filepath>
+         <pattern datatype="string" operation="pattern match">^\h*action_mail_acct\h*=\h*\H+</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /etc/audit/auditd.conf exists and matches pattern ^\h*disk_full_action\h*=\h*halt\b.*$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231977" version="1">
+         <filepath>/etc/audit/auditd.conf</filepath>
+         <pattern datatype="string" operation="pattern match">(?i)^\h*disk_full_action\h*=\h*(syslog|single|halt)\h*(#.*)?$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file named /proc/sys/crypto/fips_enabled exists and matches pattern ^\h*1\h*(#.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7232054" version="1">
+         <filepath>/proc/sys/crypto/fips_enabled</filepath>
+         <pattern datatype="string" operation="pattern match">^\h*1\h*(#.*)?$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensurefile(s) named ^.+\.conf$ in /etc/sysctl.d/ exists and matches pattern ^\s*kernel\.randomize_va_space\s*=\s*([0-1]|[3-9]|[0-9][0-9]+)\b" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231786" version="1">
+         <path>/etc/sysctl.d/</path>
+         <filename operation="pattern match">^.+\.conf$</filename>
+         <pattern datatype="string" operation="pattern match">^\s*kernel\.randomize_va_space\s*=\s*([0-1]|[3-9]|[0-9][0-9]+)\b</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure no file(s) named ^.+$ in /etc/apt/apt.conf.d/ exists and matches pattern (?i)^\h*([^#\n\r]+)?::AllowUnauthenticated\h+&quot;?true&quot;?;\h*(#.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231787" version="1">
+         <path>/etc/apt/apt.conf.d/</path>
+         <filename operation="pattern match">^.+$</filename>
+         <pattern datatype="string" operation="pattern match">(?i)^\h*([^#\n\r]+)?::AllowUnauthenticated\h+"?true"?;\h*(#.*)?$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file(s) named ^.+\.conf$ in /etc/security/limits.d/ exists and matches pattern ^\h*\*\h+hard\h+maxlogins\h+(10|[1-9])\h*(#.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231923" version="1">
+         <path>/etc/security/limits.d/</path>
+         <filename operation="pattern match">^.+\.conf$</filename>
+         <pattern datatype="string" operation="pattern match">^\h*\*\h+hard\h+maxlogins\h+(10|[1-9])\h*(#.*)?$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure no file(s) named ^.+$ in /etc/sudoers.d/ exists and matches pattern (?i)^\h*([^#\n\r]+\h*)?\bNOPASSWD\b(.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231932" version="1">
+         <path>/etc/sudoers.d/</path>
+         <filename operation="pattern match">^.+$</filename>
+         <pattern datatype="string" operation="pattern match">(?i)^\h*([^#\n\r]+\h*)?\bNOPASSWD\b(.*)?$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure no file(s) named ^.+$ in /etc/sudoers.d/ exists and matches pattern (?i)^\h*([^#\n\r]+\h+)?\!authenticate\b(\.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231934" version="1">
+         <path>/etc/sudoers.d/</path>
+         <filename operation="pattern match">^.+$</filename>
+         <pattern datatype="string" operation="pattern match">(?i)^\h*([^#\n\r]+\h+)?\!authenticate\b(\.*)?$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file(s) named ^.+\.conf$ in /etc/sssd/conf.d/ exists and matches pattern (?i)^\h*offline_credentials_expiration\h*=\h*1\h*(#.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231959" version="1">
+         <path>/etc/sssd/conf.d/</path>
+         <filename operation="pattern match">^.+\.conf$</filename>
+         <pattern datatype="string" operation="pattern match">(?i)^\h*offline_credentials_expiration\h*=\h*1\h*(#.*)?$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file(s) named ^.+/.conf in /etc/rsyslog.d/ exists and matches pattern ^\h*(auth(\.\*)?,authpriv\.\*|authpriv\.\*,auth(\.\*)?)\h+\/var\/log\/secure\/?\h*(#.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231967" version="1">
+         <path>/etc/rsyslog.d/</path>
+         <filename operation="pattern match">^.+\.conf</filename>
+         <pattern datatype="string" operation="pattern match">^\h*(auth(\.\*)?,authpriv\.\*|authpriv\.\*,auth(\.\*)?)\h+\/var\/log\/secure\/?\h*(#.*)?$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <textfilecontent54_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" comment="Ensure at least one file(s) named ^.+\.conf in /etc/rsyslog.d/ exists and matches pattern ^\h*daemon\.notice\h+\/var\/log\/messages\/?\h*(#.*)?$" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231969" version="1">
+         <path>/etc/rsyslog.d/</path>
+         <filename operation="pattern match">^.+\.conf</filename>
+         <pattern datatype="string" operation="pattern match">^\h*daemon\.\*\h+\/var\/log\/messages\/?\h*(#.*)?$</pattern>
+         <instance datatype="int" operation="equals">1</instance>
+      </textfilecontent54_object>
+      <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure any file(s) named ^.*\.(conf|rules|prev)$ in /etc/audit/ exists and does not have permissions --x-wxrwx" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231982" version="1">
+         <behaviors max_depth="-1" recurse_direction="down" recurse_file_system="local"></behaviors>
+         <path>/etc/audit/</path>
+         <filename operation="pattern match">^.*\.(conf|rules|prev)$</filename>
+      </file_object>
+      <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure any file(s) named ^.+$ in /etc/audit/rules.d/ exists and does not have permissions --x-wxrwx" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231983" version="1">
+         <behaviors max_depth="-1" recurse_direction="down" recurse_file_system="local"></behaviors>
+         <path>/etc/audit/rules.d/</path>
+         <filename operation="pattern match">^.+$</filename>
+      </file_object>
+      <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure any file(s) named ^.*\.(conf|rules|prev)$ in /etc/audit/ exists and is owned by user 0" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231985" version="1">
+         <behaviors max_depth="-1" recurse_direction="down" recurse_file_system="local"></behaviors>
+         <path>/etc/audit/</path>
+         <filename operation="pattern match">^.*\.(conf|rules|prev)$</filename>
+      </file_object>
+      <file_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure any file(s) named ^.+$ in /etc/audit/rules.d/ exists and is owned by user 0" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231986" version="1">
+         <behaviors max_depth="-1" recurse_direction="down" recurse_file_system="local"></behaviors>
+         <path>/etc/audit/rules.d/</path>
+         <filename operation="pattern match">^.+$</filename>
+      </file_object>
+      <dpkginfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure package name equals 'libpam-pwquality' is installed" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231790" version="1">
+         <name operation="equals">libpam-pwquality</name>
+      </dpkginfo_object>
+      <dpkginfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure package name equals 'chrony' is installed" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231791" version="1">
+         <name operation="equals">chrony</name>
+      </dpkginfo_object>
+      <dpkginfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure package name equals 'systemd-timesyncd' is not installed" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231792" version="1">
+         <name operation="equals">systemd-timesyncd</name>
+      </dpkginfo_object>
+      <dpkginfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure package name equals 'ntp' is not installed" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231793" version="1">
+         <name operation="equals">ntp</name>
+      </dpkginfo_object>
+      <dpkginfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure package name equals 'rsh-server' is not installed" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231794" version="1">
+         <name operation="equals">rsh-server</name>
+      </dpkginfo_object>
+      <dpkginfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure package name equals 'telnetd' is not installed" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231795" version="1">
+         <name operation="equals">telnetd</name>
+      </dpkginfo_object>
+      <dpkginfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure package name equals 'ufw' is installed" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231879" version="1">
+         <name operation="equals">ufw</name>
+      </dpkginfo_object>
+      <dpkginfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure package name equals 'openssh-server' is installed" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231886" version="1">
+         <name operation="equals">openssh-server</name>
+      </dpkginfo_object>
+      <dpkginfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure package name equals 'gdm3' is not installed" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231901" version="1">
+         <name operation="equals">gdm3</name>
+      </dpkginfo_object>
+      <dpkginfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure package name equals 'gdm3' is not installed" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231904" version="1">
+         <name operation="equals">gdm3</name>
+      </dpkginfo_object>
+      <dpkginfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure package name equals 'gdm3' is not installed" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231906" version="1">
+         <name operation="equals">gdm3</name>
+      </dpkginfo_object>
+      <dpkginfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure package name equals 'vlock' is installed" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231924" version="1">
+         <name operation="equals">vlock</name>
+      </dpkginfo_object>
+      <dpkginfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure package name equals 'apparmor' is installed" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231927" version="1">
+         <name operation="equals">apparmor</name>
+      </dpkginfo_object>
+      <dpkginfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure package name equals 'libpam-pkcs11' is installed" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231949" version="1">
+         <name operation="equals">libpam-pkcs11</name>
+      </dpkginfo_object>
+      <dpkginfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure package name equals 'opensc-pkcs11' is installed" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231950" version="1">
+         <name operation="equals">opensc-pkcs11</name>
+      </dpkginfo_object>
+      <dpkginfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure package name equals 'aide' is installed" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231960" version="1">
+         <name operation="equals">aide</name>
+      </dpkginfo_object>
+      <dpkginfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure package name equals 'rsyslog' is installed" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231963" version="1">
+         <name operation="equals">rsyslog</name>
+      </dpkginfo_object>
+      <dpkginfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure package name equals 'auditd' is installed" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231970" version="1">
+         <name operation="equals">auditd</name>
+      </dpkginfo_object>
+      <dpkginfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure package name equals 'audispd-plugins' is installed" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231973" version="1">
+         <name operation="equals">audispd-plugins</name>
+      </dpkginfo_object>
+      <dpkginfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure package name equals 'auditd' is installed" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231984" version="1">
+         <name operation="equals">auditd</name>
+      </dpkginfo_object>
+      <dpkginfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure package name equals 'auditd' is installed" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231987" version="1">
+         <name operation="equals">auditd</name>
+      </dpkginfo_object>
+      <dpkginfo_object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure package name equals 'auditd' is installed" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:obj:7231991" version="1">
+         <name operation="equals">auditd</name>
+      </dpkginfo_object>
+   </objects>
+   <states>
+      <systemdunitproperty_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure systemd 'ctrl-alt-del.target' unit 'UnitFileState' property equals 'masked'" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:ste:7231776" version="1">
+         <value datatype="string" operation="equals" var_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:var:7231776"></value>
+      </systemdunitproperty_state>
+      <systemdunitproperty_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure systemd 'ctrl-alt-del.target' unit 'UnitFileState' property not equal 'active'" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:ste:7231777" version="1">
+         <value datatype="string" operation="not equal" var_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:var:7231777"></value>
+      </systemdunitproperty_state>
+      <systemdunitproperty_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure systemd 'kdump-tools.service' unit 'UnitFileState' property equals 'masked'" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:ste:7231782" version="1">
+         <value datatype="string" operation="equals" var_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:var:7231782"></value>
+      </systemdunitproperty_state>
+      <systemdunitproperty_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure systemd 'kdump-tools.service' unit 'UnitFileState' property not equal 'active'" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:ste:7231783" version="1">
+         <value datatype="string" operation="not equal" var_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:var:7231783"></value>
+      </systemdunitproperty_state>
+      <systemdunitproperty_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure systemd 'ufw.service' unit 'ActiveState' property equals 'active'" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:ste:7231881" version="1">
+         <value datatype="string" operation="equals" var_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:var:7231881"></value>
+      </systemdunitproperty_state>
+      <systemdunitproperty_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure systemd 'sshd.service' unit 'UnitFileState' property equals 'enabled'" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:ste:7231887" version="1">
+         <value datatype="string" operation="equals" var_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:var:7231887"></value>
+      </systemdunitproperty_state>
+      <systemdunitproperty_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure systemd 'sshd.service' unit 'ActiveState' property equals 'active'" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:ste:7231888" version="1">
+         <value datatype="string" operation="equals" var_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:var:7231888"></value>
+      </systemdunitproperty_state>
+      <systemdunitproperty_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure systemd 'apparmor.service' unit 'UnitFileState' property equals 'enabled'" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:ste:7231928" version="1">
+         <value datatype="string" operation="equals" var_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:var:7231928"></value>
+      </systemdunitproperty_state>
+      <systemdunitproperty_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure systemd 'apparmor.service' unit 'ActiveState' property equals 'active'" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:ste:7231929" version="1">
+         <value datatype="string" operation="equals" var_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:var:7231929"></value>
+      </systemdunitproperty_state>
+      <systemdunitproperty_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure systemd 'rsyslog.service' unit 'UnitFileState' property equals 'enabled'" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:ste:7231964" version="1">
+         <value datatype="string" operation="equals" var_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:var:7231964"></value>
+      </systemdunitproperty_state>
+      <systemdunitproperty_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure systemd 'rsyslog.service' unit 'ActiveState' property equals 'active'" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:ste:7231965" version="1">
+         <value datatype="string" operation="equals" var_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:var:7231965"></value>
+      </systemdunitproperty_state>
+      <systemdunitproperty_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure systemd 'auditd.service' unit 'UnitFileState' property equals 'enabled'" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:ste:7231971" version="1">
+         <value datatype="string" operation="equals" var_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:var:7231971"></value>
+      </systemdunitproperty_state>
+      <systemdunitproperty_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" comment="Ensure systemd 'auditd.service' unit 'ActiveState' property equals 'active'" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:ste:7231972" version="1">
+         <value datatype="string" operation="equals" var_ref="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:var:7231972"></value>
+      </systemdunitproperty_state>
+      <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure at least one file named /var/log/syslog exists and does not have permissions --x-wxrwx SUID SGID sticky" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:ste:7231817" version="1">
+         <suid datatype="boolean">false</suid>
+         <sgid datatype="boolean">false</sgid>
+         <sticky datatype="boolean">false</sticky>
+         <uexec datatype="boolean">false</uexec>
+         <gwrite datatype="boolean">false</gwrite>
+         <gexec datatype="boolean">false</gexec>
+         <oread datatype="boolean">false</oread>
+         <owrite datatype="boolean">false</owrite>
+         <oexec datatype="boolean">false</oexec>
+      </file_state>
+      <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure at least one file named /var/log/ exists and is owned by user 0" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:ste:7231873" version="1">
+         <user_id datatype="int">0</user_id>
+      </file_state>
+      <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure at least one file named /usr/bin/journalctl exists and does not have permissions ----wxrwx" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:ste:7231877" version="1">
+         <gwrite datatype="boolean">false</gwrite>
+         <gexec datatype="boolean">false</gexec>
+         <oread datatype="boolean">false</oread>
+         <owrite datatype="boolean">false</owrite>
+         <oexec datatype="boolean">false</oexec>
+      </file_state>
+      <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure any file(s) named ^.*\.(conf|rules|prev)$ in /etc/audit/ exists and does not have permissions --x-wxrwx" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:ste:7231982" version="1">
+         <uexec datatype="boolean">false</uexec>
+         <gwrite datatype="boolean">false</gwrite>
+         <gexec datatype="boolean">false</gexec>
+         <oread datatype="boolean">false</oread>
+         <owrite datatype="boolean">false</owrite>
+         <oexec datatype="boolean">false</oexec>
+      </file_state>
+      <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure any file(s) named ^.+$ in /etc/audit/rules.d/ exists and does not have permissions --x-wxrwx" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:ste:7231983" version="1">
+         <uexec datatype="boolean">false</uexec>
+         <gwrite datatype="boolean">false</gwrite>
+         <gexec datatype="boolean">false</gexec>
+         <oread datatype="boolean">false</oread>
+         <owrite datatype="boolean">false</owrite>
+         <oexec datatype="boolean">false</oexec>
+      </file_state>
+      <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure any file(s) named ^.*\.(conf|rules|prev)$ in /etc/audit/ exists and is owned by user 0" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:ste:7231985" version="1"></file_state>
+      <file_state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix" comment="Ensure any file(s) named ^.+$ in /etc/audit/rules.d/ exists and is owned by user 0" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:ste:7231986" version="1"></file_state>
+   </states>
+   <variables>
+      <external_variable comment="This value is used in Rule: UBTU-22-211015" datatype="string" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:var:7231776" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: UBTU-22-211015" datatype="string" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:var:7231777" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: UBTU-22-213015" datatype="string" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:var:7231782" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: UBTU-22-213015" datatype="string" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:var:7231783" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: UBTU-22-251020" datatype="string" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:var:7231881" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: UBTU-22-255015" datatype="string" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:var:7231887" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: UBTU-22-255015" datatype="string" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:var:7231888" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: UBTU-22-431015" datatype="string" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:var:7231928" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: UBTU-22-431015" datatype="string" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:var:7231929" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: UBTU-22-652010" datatype="string" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:var:7231964" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: UBTU-22-652010" datatype="string" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:var:7231965" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: UBTU-22-653015" datatype="string" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:var:7231971" version="1"></external_variable>
+      <external_variable comment="This value is used in Rule: UBTU-22-653015" datatype="string" id="oval:org.cisecurity.benchmarks.canonical_ubuntu_linux_22:var:7231972" version="1"></external_variable>
+   </variables>
+<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+<ds:SignedInfo>
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"></ds:CanonicalizationMethod>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></ds:SignatureMethod>
+<ds:Reference URI="">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"></ds:Transform>
+<ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"></ds:Transform>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></ds:DigestMethod>
+<ds:DigestValue>DL8Y+36LU/sGZg+VaAyEwwgTfqSLQsTwvdXscj8oDUc=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue>
+sM5qVh58/XeCG/2XdASfThR2tkmCjm6QODVv2yHxR3v9BTEn7wv9FtTQ94hFq50a+LUyLCJj2rkm
+ilBDamZSIdyupq2Wc9VBgutV7sGwdhvCmPHwrJ0mg0jRyZeRk2Pms4/gEUTzS5Ji/Upu8IXhsQia
+y5afbVdqJ5o+WVz+bcyJXpxLF8SZ6+LgikUnyTsM+jSSzD3HXgD7UBzgwtgWylwiyFFgM1Pp4efy
+rLKbzi2dbWlqDWgpPx0BKcbgNfr5zVle3lml/Pp30Uvgg6ga8/Mkv8QNkRedtS+nx9BZ27CWI7JD
+sqY1eTBfUpqeztKucyZlsVJkHFQMxbBC8tm8VWItAQgEYmwzNnOc4MXNHHY8X8dl7kbWJm2DM8vJ
+un8yiu7Ndd088wXpCvQZ10TSfQ1ZdxQkLgR4QHsikOrYyKEc4R4DW3DNX/O3dapXx7bHlHMGuypc
+gkJ3iHbVkC1auyz/99SMIhuBi/SbEy2D8Kb+MLUR4O1OOP0BTb/x8msj
+</ds:SignatureValue>
+<ds:KeyInfo>
+<ds:X509Data>
+<ds:X509Certificate>
+MIIHbDCCBVSgAwIBAgIQCdceADCnzKkglkQGavVKYzANBgkqhkiG9w0BAQsFADBpMQswCQYDVQQG
+EwJVUzEXMBUGA1UEChMORGlnaUNlcnQsIEluYy4xQTA/BgNVBAMTOERpZ2lDZXJ0IFRydXN0ZWQg
+RzQgQ29kZSBTaWduaW5nIFJTQTQwOTYgU0hBMzg0IDIwMjEgQ0ExMB4XDTIzMTAxODAwMDAwMFoX
+DTI2MTAxODIzNTk1OVowgfQxEzARBgsrBgEEAYI3PAIBAxMCVVMxGTAXBgsrBgEEAYI3PAIBAhMI
+TWFyeWxhbmQxHTAbBgNVBA8MFFByaXZhdGUgT3JnYW5pemF0aW9uMRIwEAYDVQQFEwlEMDYwNTg4
+MTIxCzAJBgNVBAYTAlVTMREwDwYDVQQIEwhOZXcgWW9yazEXMBUGA1UEBxMORWFzdCBHcmVlbmJ1
+c2gxKjAoBgNVBAoTIUNlbnRlciBmb3IgSW50ZXJuZXQgU2VjdXJpdHksIEluYzEqMCgGA1UEAxMh
+Q2VudGVyIGZvciBJbnRlcm5ldCBTZWN1cml0eSwgSW5jMIIBojANBgkqhkiG9w0BAQEFAAOCAY8A
+MIIBigKCAYEAyZwTJr4Kb7QEDnVY3BEkPoS3fn+XoxhCTfFvlMk8zXDcR4pFMgPkXTrZ1KbENUIV
+skIhy1vmnh61vwSL0lcdzesCekKSxLqrEA4xunZk1MB5mLbHXchSSpI1co1vaSzJjkTYP1UsUVQz
+NoOzV0LNCoZdahjGTHSduWvbrHTEeD6/jvUj3AVWrTx6krzgYA3ozAxtUnapK7IrZERuGOSwTrgR
+Lr1aieQdFy8haW1YL+ks5HmLRvcoGp+J68GX/zfMTduvWxhcpXm4txKc4iJqGCRmyBU2XjGjpDBX
+ndxHgT4edRLz5PwWSeZUh8/tWOGFwnVw7njoOa0sFixy96H2BqEn+yPeRALyf59rjtPL66tsXuaA
+ilB63yqbH42mnkxHTX5zcEm337GzTOGRccsYzN/ApVuXDeMfsO+sSUosrimnxm9QTOyKcex5h1As
+rxBVfTw+Zf7jP1YRlmMlGPG1zffK2KjJhD6ivFi2sIDThEQLxIAC8XOjp2ZXvhx87yNTAgMBAAGj
+ggICMIIB/jAfBgNVHSMEGDAWgBRoN+Drtjv4XxGG+/5hewiIZfROQjAdBgNVHQ4EFgQUX2/J9FT5
+5BNF7JqfAl9SJkv3pf0wPQYDVR0gBDYwNDAyBgVngQwBAzApMCcGCCsGAQUFBwIBFhtodHRwOi8v
+d3d3LmRpZ2ljZXJ0LmNvbS9DUFMwDgYDVR0PAQH/BAQDAgeAMBMGA1UdJQQMMAoGCCsGAQUFBwMD
+MIG1BgNVHR8Ega0wgaowU6BRoE+GTWh0dHA6Ly9jcmwzLmRpZ2ljZXJ0LmNvbS9EaWdpQ2VydFRy
+dXN0ZWRHNENvZGVTaWduaW5nUlNBNDA5NlNIQTM4NDIwMjFDQTEuY3JsMFOgUaBPhk1odHRwOi8v
+Y3JsNC5kaWdpY2VydC5jb20vRGlnaUNlcnRUcnVzdGVkRzRDb2RlU2lnbmluZ1JTQTQwOTZTSEEz
+ODQyMDIxQ0ExLmNybDCBlAYIKwYBBQUHAQEEgYcwgYQwJAYIKwYBBQUHMAGGGGh0dHA6Ly9vY3Nw
+LmRpZ2ljZXJ0LmNvbTBcBggrBgEFBQcwAoZQaHR0cDovL2NhY2VydHMuZGlnaWNlcnQuY29tL0Rp
+Z2lDZXJ0VHJ1c3RlZEc0Q29kZVNpZ25pbmdSU0E0MDk2U0hBMzg0MjAyMUNBMS5jcnQwCQYDVR0T
+BAIwADANBgkqhkiG9w0BAQsFAAOCAgEASLOHf1FQ7TrGqEoVXYoeNSkRWdVCUGd1JCDs7Hb9sLd3
+eQuipZ4EorQS/9qMiVMhmlJfF75sNVQhr1K5UtjrDRFMTzYmh78hAyovowzgyVKdGFqiVVr5m+mb
+vVyglLlA4V076LMBaKRknm1Dt8r0/5GSRCrkP2origpYMMaocN+iBX9+MImnh3J1Ehn0nRUhW86Q
+mt3/YCVIaQZisv+KmOxyAq1m6fiIYIvXY+cH2dDIheoVteb/NjYnKVqE6xTpOsxF16pykXiM9yk3
+Q9nlJS36KEGRP4wrySU4eIBnTcv4mimZjkWj6bIvk8otNJ14FbyltaPwIc3dE3oPGfSmCrkxs73j
+iqBs2TXLvblEmOhY8ko3xVdTm0zMP50MQVO948fz9yF+xdnPdMPT1/lCmGp6iWYRzxnvEkA1+HFl
+yy9YztrM8WNAhXirpUZg3HWQE2ONLKMtqQrkIHD2nikda77flk6oirqDuCf8Q7g8s86/KabTdxrw
+pRmsRjDkAfKVae58ctaKbmF32oU9BGk+9MPG8HF5Yfoh12DE1fLZcPzZrROrDFJGGxwhv5FlnxGg
+6G7jKi68erZnpaOPayK0bXyZNunqkI9IbIuPqMw5qaCZZgN6AEHIbGTKdrWEf11DmR7MdTjv3/vu
+JWtIXgk3kQFX27w9JhqV6QogVmzIfEQ=
+</ds:X509Certificate>
+</ds:X509Data>
+<ds:KeyValue>
+<ds:RSAKeyValue>
+<ds:Modulus>yZwTJr4Kb7QEDnVY3BEkPoS3fn+XoxhCTfFvlMk8zXDcR4pFMgPkXTrZ1KbENUIVskIhy1vmnh61
+vwSL0lcdzesCekKSxLqrEA4xunZk1MB5mLbHXchSSpI1co1vaSzJjkTYP1UsUVQzNoOzV0LNCoZd
+ahjGTHSduWvbrHTEeD6/jvUj3AVWrTx6krzgYA3ozAxtUnapK7IrZERuGOSwTrgRLr1aieQdFy8h
+aW1YL+ks5HmLRvcoGp+J68GX/zfMTduvWxhcpXm4txKc4iJqGCRmyBU2XjGjpDBXndxHgT4edRLz
+5PwWSeZUh8/tWOGFwnVw7njoOa0sFixy96H2BqEn+yPeRALyf59rjtPL66tsXuaAilB63yqbH42m
+nkxHTX5zcEm337GzTOGRccsYzN/ApVuXDeMfsO+sSUosrimnxm9QTOyKcex5h1AsrxBVfTw+Zf7j
+P1YRlmMlGPG1zffK2KjJhD6ivFi2sIDThEQLxIAC8XOjp2ZXvhx87yNT</ds:Modulus>
+<ds:Exponent>AQAB</ds:Exponent>
+</ds:RSAKeyValue>
+</ds:KeyValue>
+</ds:KeyInfo>
+</ds:Signature></oval_definitions>

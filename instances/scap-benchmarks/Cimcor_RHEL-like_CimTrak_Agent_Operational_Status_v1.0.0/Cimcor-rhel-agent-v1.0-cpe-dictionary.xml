@@ -1,0 +1,93 @@
+<!-- 
+RHEL-like Systems CPE Dictionary for CimTrak Agent Operational Monitoring
+Defines platform identifiers for Red Hat Enterprise Linux and compatible distributions
+-->
+<cpe-list xmlns="http://cpe.mitre.org/dictionary/2.0"
+		  xmlns:cpe-23="http://scap.nist.gov/schema/cpe-extension/2.3"
+		  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		  xsi:schemaLocation="http://cpe.mitre.org/dictionary/2.0 http://cpe.mitre.org/files/cpe-dictionary_2.1.xsd">
+	
+	<!-- CentOS 7 -->
+	<cpe-item name="cpe:/o:centos:centos:7">
+		<title xml:lang="en-US">CentOS Linux 7</title>
+		<check href="Cimcor-rhel-agent-v1.0-cpe-oval.xml" system="http://oval.mitre.org/XMLSchema/oval-definitions-5">oval:com.cimcor.cimtrak.o_rhel:def:2000</check>
+		<cpe-23:cpe23-item name="cpe:2.3:o:centos:centos:7:*:*:*:*:*:*:*"/>
+	</cpe-item>
+	
+	<!-- CentOS 8 (last supported version) -->
+	<cpe-item name="cpe:/o:centos:centos:8">
+		<title xml:lang="en-US">CentOS Linux 8</title>
+		<check href="Cimcor-rhel-agent-v1.0-cpe-oval.xml" system="http://oval.mitre.org/XMLSchema/oval-definitions-5">oval:com.cimcor.cimtrak.o_rhel:def:2001</check>
+		<cpe-23:cpe23-item name="cpe:2.3:o:centos:centos:8:*:*:*:*:*:*:*"/>
+	</cpe-item>
+	
+	<!-- AlmaLinux 8 -->
+	<cpe-item name="cpe:/o:almalinux:almalinux:8">
+		<title xml:lang="en-US">AlmaLinux 8</title>
+		<check href="Cimcor-rhel-agent-v1.0-cpe-oval.xml" system="http://oval.mitre.org/XMLSchema/oval-definitions-5">oval:com.cimcor.cimtrak.o_rhel:def:2002</check>
+		<cpe-23:cpe23-item name="cpe:2.3:o:almalinux:almalinux:8:*:*:*:*:*:*:*"/>
+	</cpe-item>
+	
+	<!-- AlmaLinux 9 -->
+	<cpe-item name="cpe:/o:almalinux:almalinux:9">
+		<title xml:lang="en-US">AlmaLinux 9</title>
+		<check href="Cimcor-rhel-agent-v1.0-cpe-oval.xml" system="http://oval.mitre.org/XMLSchema/oval-definitions-5">oval:com.cimcor.cimtrak.o_rhel:def:2003</check>
+		<cpe-23:cpe23-item name="cpe:2.3:o:almalinux:almalinux:9:*:*:*:*:*:*:*"/>
+	</cpe-item>
+	
+	<!-- AlmaLinux 10 -->
+	<cpe-item name="cpe:/o:almalinux:almalinux:10">
+		<title xml:lang="en-US">AlmaLinux 10</title>
+		<check href="Cimcor-rhel-agent-v1.0-cpe-oval.xml" system="http://oval.mitre.org/XMLSchema/oval-definitions-5">oval:com.cimcor.cimtrak.o_rhel:def:2004</check>
+		<cpe-23:cpe23-item name="cpe:2.3:o:almalinux:almalinux:10:*:*:*:*:*:*:*"/>
+	</cpe-item>
+	
+	<!-- Red Hat Enterprise Linux 7 -->
+	<cpe-item name="cpe:/o:redhat:enterprise_linux:7">
+		<title xml:lang="en-US">Red Hat Enterprise Linux 7</title>
+		<check href="Cimcor-rhel-agent-v1.0-cpe-oval.xml" system="http://oval.mitre.org/XMLSchema/oval-definitions-5">oval:com.cimcor.cimtrak.o_rhel:def:2050</check>
+		<cpe-23:cpe23-item name="cpe:2.3:o:redhat:enterprise_linux:7:*:*:*:*:*:*:*"/>
+	</cpe-item>
+	
+	<!-- Red Hat Enterprise Linux 8 -->
+	<cpe-item name="cpe:/o:redhat:enterprise_linux:8">
+		<title xml:lang="en-US">Red Hat Enterprise Linux 8</title>
+		<check href="Cimcor-rhel-agent-v1.0-cpe-oval.xml" system="http://oval.mitre.org/XMLSchema/oval-definitions-5">oval:com.cimcor.cimtrak.o_rhel:def:2005</check>
+		<cpe-23:cpe23-item name="cpe:2.3:o:redhat:enterprise_linux:8:*:*:*:*:*:*:*"/>
+	</cpe-item>
+	
+	<!-- Red Hat Enterprise Linux 9 -->
+	<cpe-item name="cpe:/o:redhat:enterprise_linux:9">
+		<title xml:lang="en-US">Red Hat Enterprise Linux 9</title>
+		<check href="Cimcor-rhel-agent-v1.0-cpe-oval.xml" system="http://oval.mitre.org/XMLSchema/oval-definitions-5">oval:com.cimcor.cimtrak.o_rhel:def:2006</check>
+		<cpe-23:cpe23-item name="cpe:2.3:o:redhat:enterprise_linux:9:*:*:*:*:*:*:*"/>
+	</cpe-item>
+	
+	<!-- Red Hat Enterprise Linux 10 -->
+	<cpe-item name="cpe:/o:redhat:enterprise_linux:10">
+		<title xml:lang="en-US">Red Hat Enterprise Linux 10</title>
+		<check href="Cimcor-rhel-agent-v1.0-cpe-oval.xml" system="http://oval.mitre.org/XMLSchema/oval-definitions-5">oval:com.cimcor.cimtrak.o_rhel:def:2007</check>
+		<cpe-23:cpe23-item name="cpe:2.3:o:redhat:enterprise_linux:10:*:*:*:*:*:*:*"/>
+	</cpe-item>
+	
+	<!-- Rocky Linux 8 -->
+	<cpe-item name="cpe:/o:rocky:rocky:8">
+		<title xml:lang="en-US">Rocky Linux 8</title>
+		<check href="Cimcor-rhel-agent-v1.0-cpe-oval.xml" system="http://oval.mitre.org/XMLSchema/oval-definitions-5">oval:com.cimcor.cimtrak.o_rhel:def:2008</check>
+		<cpe-23:cpe23-item name="cpe:2.3:o:rocky:rocky:8:*:*:*:*:*:*:*"/>
+	</cpe-item>
+	
+	<!-- Rocky Linux 9 -->
+	<cpe-item name="cpe:/o:rocky:rocky:9">
+		<title xml:lang="en-US">Rocky Linux 9</title>
+		<check href="Cimcor-rhel-agent-v1.0-cpe-oval.xml" system="http://oval.mitre.org/XMLSchema/oval-definitions-5">oval:com.cimcor.cimtrak.o_rhel:def:2009</check>
+		<cpe-23:cpe23-item name="cpe:2.3:o:rocky:rocky:9:*:*:*:*:*:*:*"/>
+	</cpe-item>
+	
+	<!-- Rocky Linux 10 -->
+	<cpe-item name="cpe:/o:rocky:rocky:10">
+		<title xml:lang="en-US">Rocky Linux 10</title>
+		<check href="Cimcor-rhel-agent-v1.0-cpe-oval.xml" system="http://oval.mitre.org/XMLSchema/oval-definitions-5">oval:com.cimcor.cimtrak.o_rhel:def:2010</check>
+		<cpe-23:cpe23-item name="cpe:2.3:o:rocky:rocky:10:*:*:*:*:*:*:*"/>
+	</cpe-item>
+</cpe-list>

@@ -1,0 +1,163 @@
+<!-- 
+IBM AIX CimTrak Agent Operational Benchmark
+Tests CimTrak agent installation, configuration, and operational status
+For IBM AIX 7.1 and later versions
+-->
+<xccdf:Benchmark xmlns:xccdf="http://checklists.nist.gov/xccdf/1.2" 
+				 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				 xmlns:cve="https://cve.mitre.org"
+				 xmlns:cc7="http://cisecurity.org/20-cc/v7.0"
+				 xmlns:cc8="http://cisecurity.org/20-cc/v8.0"
+	             id="xccdf_com.cimcor.cimtrak_benchmark_1.0.0_aix-agent" 
+	             style="SCAP_1.3" 
+	             xsi:schemaLocation="http://checklists.nist.gov/xccdf/1.2 
+				                     https://scap.nist.gov/schema/xccdf/1.2/xccdf_1.2.xsd"
+	>
+   <xccdf:status date="2025-08-20">accepted</xccdf:status>
+   <xccdf:title xml:lang="en">Cimcor IBM AIX CimTrak Agent Operational Status</xccdf:title>
+   <xccdf:description xml:lang="en">
+      <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">This benchmark verifies the operational status of CimTrak agents on IBM AIX systems. It provides enhanced file integrity monitoring capabilities for enterprise security compliance on AIX platforms.</xhtml:p>
+      <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">CimTrak provides real-time file integrity monitoring, automated remediation, and centralized management that enhances the security posture established by baseline controls on AIX systems.</xhtml:p>
+   </xccdf:description>
+
+   <!-- AIX platforms -->
+   <xccdf:platform idref="cpe:2.3:o:ibm:aix:6.1:*:*:*:*:*:*:*"/>
+   <xccdf:platform idref="cpe:2.3:o:ibm:aix:7.1:*:*:*:*:*:*:*"/>
+   <xccdf:platform idref="cpe:2.3:o:ibm:aix:7.2:*:*:*:*:*:*:*"/>
+   <xccdf:platform idref="cpe:2.3:o:ibm:aix:7.3:*:*:*:*:*:*:*"/>
+   <xccdf:version>1.0.0</xccdf:version>
+
+   <!-- Agent operational profile -->
+	<xccdf:Profile id="xccdf_com.cimcor.cimtrak_profile_Agent_Validation">
+		<xccdf:title xml:lang="en">CimTrak Agent Validation</xccdf:title>
+		<xccdf:description xml:lang="en">
+			<xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">Complete CimTrak Agent Validation Profile for IBM AIX</xhtml:p>
+			<xhtml:ul xmlns:xhtml="http://www.w3.org/1999/xhtml">
+				<xhtml:li>Comprehensive file integrity monitoring validation</xhtml:li>
+				<xhtml:li>Validates secure configuration management</xhtml:li>
+				<xhtml:li>Includes System V service monitoring and configuration validation</xhtml:li>
+				<xhtml:li>Provides enterprise-grade capabilities for AIX environments</xhtml:li>
+			</xhtml:ul>
+			<xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">This ensures complete operational readiness with enhanced security capabilities on AIX systems.</xhtml:p>
+		</xccdf:description>
+		<xccdf:select idref="xccdf_com.cimcor.cimtrak_rule_cimtrakagent_service_enabled" selected="true"/>
+		<xccdf:select idref="xccdf_com.cimcor.cimtrak_rule_cimtrakagent_config_valid" selected="true"/>
+	</xccdf:Profile>
+
+	<xccdf:Group id="xccdf_com.cimcor.cimtrak_group_agent_service">
+		<xccdf:title xml:lang="en">CimTrak Agent Service Status</xccdf:title>
+		<xccdf:description xml:lang="en">
+			<xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">Verification of CimTrak agent service status using AIX System V init scripts</xhtml:p>
+		</xccdf:description>
+		
+		<xccdf:Rule id="xccdf_com.cimcor.cimtrak_rule_cimtrakagent_service_enabled" role="full" selected="false" weight="1.0">
+			<xccdf:title xml:lang="en">Ensure CimTrakAgent service is enabled and active</xccdf:title>
+			<xccdf:description xml:lang="en">
+				<xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">This rule ensures CimTrak Agent service is properly configured to start automatically and is currently running on AIX systems using System V init scripts.</xhtml:p>
+				<xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">The CimTrakAgent service on AIX uses traditional System V style init scripts located in /etc/rc.d/init.d/ rather than systemd service files.</xhtml:p>
+			</xccdf:description>
+			<xccdf:rationale xml:lang="en">
+				<xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">A running CimTrakAgent service is essential for:</xhtml:p>
+				<xhtml:ul xmlns:xhtml="http://www.w3.org/1999/xhtml">
+					<xhtml:li>Continuous file integrity monitoring on AIX systems</xhtml:li>
+					<xhtml:li>Real-time change detection and alerting</xhtml:li>
+					<xhtml:li>Automated compliance reporting</xhtml:li>
+					<xhtml:li>Protection against unauthorized system modifications</xhtml:li>
+				</xhtml:ul>
+				<xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">Without an active CimTrakAgent service, the system cannot detect unauthorized changes, leaving it vulnerable to security breaches and compliance violations.</xhtml:p>
+			</xccdf:rationale>
+			<xccdf:ident system="http://cisecurity.org/20-cc/v8.0" cc8:controlURI="http://cisecurity.org/20-cc/v8.0/control/3/subcontrol/14">CC8: 3.14</xccdf:ident>
+			<xccdf:ident system="http://cisecurity.org/20-cc/v7.0" cc7:controlURI="http://cisecurity.org/20-cc/v7.0/control/14/subcontrol/9">CC7: 14.9</xccdf:ident>
+			<xccdf:ident system="http://cisecurity.org/20-cc/v7.0" cc7:controlURI="http://cisecurity.org/20-cc/v7.0/control/16/subcontrol/4">CC7: 16.4</xccdf:ident>
+			<xccdf:ident system="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final">NIST SP 800-53 Rev. 5: AU-02</xccdf:ident>
+			<xccdf:ident system="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final">NIST SP 800-53 Rev. 5: AU-07</xccdf:ident>
+			<xccdf:ident system="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final">NIST SP 800-53 Rev. 5: AU-12</xccdf:ident>
+			<xccdf:fixtext xml:lang="en">
+				<xhtml:div xmlns:xhtml="http://www.w3.org/1999/xhtml">
+					<xhtml:p><xhtml:b>To enable and start CimTrakAgent service on AIX:</xhtml:b></xhtml:p>
+					<xhtml:ol>
+						<xhtml:li>Enable service to start at boot: <xhtml:code>chkconfig CimTrakAgent on</xhtml:code></xhtml:li>
+						<xhtml:li>Start the service: <xhtml:code>service CimTrakAgent start</xhtml:code></xhtml:li>
+						<xhtml:li>Verify status: <xhtml:code>service CimTrakAgent status</xhtml:code></xhtml:li>
+					</xhtml:ol>
+					
+					<xhtml:p><xhtml:b>If service check fails, register the agent:</xhtml:b></xhtml:p>
+					
+					<xhtml:ol>
+						<xhtml:li><xhtml:b>Register CimTrak Agent:</xhtml:b>
+							<xhtml:code>cd /opt/Cimcor/CimTrak/CimTrakAgent &amp;&amp; ./CimTrakAgent.exe -registeragent username=[admin_username],password=[password],server=[cimtrak_repository_ip],overridebyname=1</xhtml:code>
+						</xhtml:li>
+						<xhtml:li><xhtml:b>Test SSL connectivity to CimTrak repository:</xhtml:b>
+							<xhtml:code>echo "Q" | openssl s_client -connect [cimtrak_repository_ip]:3749</xhtml:code>
+						</xhtml:li>
+						<xhtml:li><xhtml:b>Restart service after registration:</xhtml:b>
+							<xhtml:code>service CimTrakAgent restart</xhtml:code>
+						</xhtml:li>
+					</xhtml:ol>
+				</xhtml:div>
+			</xccdf:fixtext>
+			<xccdf:complex-check operator="AND">
+				<xccdf:check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+					<xccdf:check-content-ref href="Cimcor-aix-agent-v1.0-oval.xml" name="oval:com.cimcor.cimtrak.o_aix:def:5001"/>
+				</xccdf:check>
+			</xccdf:complex-check>
+		</xccdf:Rule>
+	</xccdf:Group>
+	
+	<xccdf:Group id="xccdf_com.cimcor.cimtrak_group_agent_config">
+        <xccdf:title xml:lang="en">CimTrak Agent Configuration</xccdf:title>
+        <xccdf:description xml:lang="en">
+            <xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">Validation of CimTrak agent configuration and connectivity on AIX systems</xhtml:p>
+        </xccdf:description>
+		
+		<xccdf:Rule id="xccdf_com.cimcor.cimtrak_rule_cimtrakagent_config_valid" role="full" selected="false" weight="1.0">
+			<xccdf:title xml:lang="en">Ensure CimTrakAgent is properly configured</xccdf:title>
+			<xccdf:description xml:lang="en">
+				<xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">This rule ensures CimTrak Agent configuration maintains secure operational parameters and proper authentication mechanisms on AIX systems.</xhtml:p>
+				<xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">The CimTrakAgent configuration file contains critical settings that enable the agent to connect to the CimTrak repository and perform file integrity monitoring. The configuration must include repository connection details and authentication credentials with proper cryptographic validation.</xhtml:p>
+			</xccdf:description>
+			<xccdf:rationale xml:lang="en">
+				<xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">A properly configured CimTrakAgent is essential for:</xhtml:p>
+				<xhtml:ul xmlns:xhtml="http://www.w3.org/1999/xhtml">
+					<xhtml:li>Establishing secure communication with the CimTrak repository</xhtml:li>
+					<xhtml:li>Ensuring proper file system monitoring capabilities are available</xhtml:li>
+					<xhtml:li>Providing unique agent identification for centralized management</xhtml:li>
+					<xhtml:li>Enabling real-time change detection and reporting</xhtml:li>
+				</xhtml:ul>
+				<xhtml:p xmlns:xhtml="http://www.w3.org/1999/xhtml">Without proper configuration, the CimTrakAgent cannot function effectively, leaving systems vulnerable to undetected changes and compliance violations.</xhtml:p>
+			</xccdf:rationale>
+			<xccdf:ident system="http://cisecurity.org/20-cc/v8.0" cc8:controlURI="http://cisecurity.org/20-cc/v8.0/control/8/subcontrol/2">CC8: 8.2</xccdf:ident>
+			<xccdf:ident system="http://cisecurity.org/20-cc/v7.0" cc7:controlURI="http://cisecurity.org/20-cc/v7.0/control/16/subcontrol/4">CC7: 16.4</xccdf:ident>
+			<xccdf:ident system="http://cisecurity.org/20-cc/v7.0" cc7:controlURI="http://cisecurity.org/20-cc/v7.0/control/6/subcontrol/2">CC7: 6.2</xccdf:ident>
+			<xccdf:ident system="http://cisecurity.org/20-cc/v7.0" cc7:controlURI="http://cisecurity.org/20-cc/v7.0/control/6/subcontrol/3">CC7: 6.3</xccdf:ident>
+			<xccdf:ident system="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final">NIST SP 800-53 Rev. 5: AU-02</xccdf:ident>
+			<xccdf:ident system="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final">NIST SP 800-53 Rev. 5: AU-07</xccdf:ident>
+			<xccdf:ident system="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final">NIST SP 800-53 Rev. 5: AU-12</xccdf:ident>
+			<xccdf:fixtext xml:lang="en">
+				<xhtml:div xmlns:xhtml="http://www.w3.org/1999/xhtml">
+					<xhtml:p><xhtml:b>To test the current configuration:</xhtml:b></xhtml:p>
+					<xhtml:code>cd /opt/Cimcor/CimTrak/CimTrakAgent &amp;&amp; ./CimTrakAgent.exe --checkinstall</xhtml:code>
+					<xhtml:p><xhtml:b>If configuration validation fails, register the agent:</xhtml:b></xhtml:p>
+					<xhtml:ol>
+						<xhtml:li><xhtml:b>Register CimTrak Agent:</xhtml:b>
+							<xhtml:code>cd /opt/Cimcor/CimTrak/CimTrakAgent &amp;&amp; ./CimTrakAgent.exe -registeragent username=[admin_username],password=[password],server=[cimtrak_repository_ip],overridebyname=1</xhtml:code>
+						</xhtml:li>
+						<xhtml:li><xhtml:b>Test SSL connectivity to CimTrak repository:</xhtml:b>
+							<xhtml:code>echo "Q" | openssl s_client -connect [cimtrak_repository_ip]:3749</xhtml:code>
+						</xhtml:li>
+						<xhtml:li><xhtml:b>Restart service after registration:</xhtml:b>
+							<xhtml:code>service CimTrakAgent restart</xhtml:code>
+						</xhtml:li>
+					</xhtml:ol>
+				</xhtml:div>
+			</xccdf:fixtext>
+			<xccdf:complex-check operator="AND">
+				<xccdf:check system="http://oval.mitre.org/XMLSchema/oval-definitions-5">
+					<xccdf:check-content-ref href="Cimcor-aix-agent-v1.0-oval.xml" name="oval:com.cimcor.cimtrak.o_aix:def:5002"/>
+				</xccdf:check>
+			</xccdf:complex-check>
+		</xccdf:Rule>
+	</xccdf:Group>
+	
+
+</xccdf:Benchmark>

@@ -18,8 +18,8 @@ type PackageMetadata struct {
 
 // Metadata provides schema information for this package
 var Metadata = PackageMetadata{
-	Namespace: "http://scap.nist.gov/schema/reporting-core/1.1",
-	SourceXSD: "reporting-core_1.1.0.xsd",
+	Namespace:   "http://scap.nist.gov/schema/reporting-core/1.1",
+	SourceXSD:   "reporting-core_1.1.0.xsd",
 	SchemaFiles: []string{
 		"/home/mmcnew/repos/forgexml-scap/schemas/arf/asset-identification_1.1.0.xsd",
 		"/home/mmcnew/repos/forgexml-scap/schemas/arf/asset-reporting-format_1.0.0-ea1.xsd",

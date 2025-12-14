@@ -18,8 +18,8 @@ type PackageMetadata struct {
 
 // Metadata provides schema information for this package
 var Metadata = PackageMetadata{
-	Namespace: "urn:oasis:names:tc:ciq:xsdschema:xNL:2.0",
-	SourceXSD: "xNL.xsd",
+	Namespace:   "urn:oasis:names:tc:ciq:xsdschema:xNL:2.0",
+	SourceXSD:   "xNL.xsd",
 	SchemaFiles: []string{
 		"/home/mmcnew/repos/forgexml-scap/schemas/arf/asset-identification_1.1.0.xsd",
 		"/home/mmcnew/repos/forgexml-scap/schemas/arf/asset-reporting-format_1.0.0-ea1.xsd",

@@ -1,0 +1,226 @@
+{{define "home-content"}}
+<div class="container">
+    <section class="hero is-primary is-medium">
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <h1 class="title is-1">Asset Reporting Format 1.1 Editor</h1>
+                <h2 class="subtitle">Create and edit Asset Reporting Format 1.1 XML documents</h2>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="columns is-centered">
+            <div class="column is-half">
+                <div class="box">
+                    <h3 class="title is-4">
+                        <span class="icon"><i class="fas fa-file-import"></i></span>
+                        <span>Import Existing Document</span>
+                    </h3>
+                    <p class="mb-4">Upload an existing XML file to view and edit.</p>
+                    
+                    <form id="import-form" enctype="multipart/form-data">
+                        <div class="file has-name is-fullwidth mb-4">
+                            <label class="file-label">
+                                <input class="file-input" type="file" name="file" id="xml-file" accept=".xml">
+                                <span class="file-cta">
+                                    <span class="file-icon">
+                                        <i class="fas fa-upload"></i>
+                                    </span>
+                                    <span class="file-label">Choose XML file...</span>
+                                </span>
+                                <span class="file-name" id="file-name">No file selected</span>
+                            </label>
+                        </div>
+                        <button type="submit" class="button is-primary is-fullwidth" id="import-btn" disabled>
+                            <span class="icon"><i class="fas fa-file-import"></i></span>
+                            <span>Import Document</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="column is-half">
+                <div class="box">
+                    <h3 class="title is-4">
+                        <span class="icon"><i class="fas fa-file-circle-plus"></i></span>
+                        <span>Create New Document</span>
+                    </h3>
+                    <p class="mb-4">Start with a new empty document.</p>
+                    
+                    <div class="field">
+                        <label class="label">Select Root Element Type</label>
+                        <div class="control">
+                            <div class="select is-fullwidth">
+                                <select id="root-type-select">
+                                    <option value="">-- Select Type --</option>
+                                    {{range .RootElementTypes}}
+                                    <option value="{{.}}">{{.}}</option>
+                                    {{end}}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="button is-success is-fullwidth" id="create-btn" disabled>
+                        <span class="icon"><i class="fas fa-plus"></i></span>
+                        <span>Create Document</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h3 class="title is-4 has-text-centered">Features</h3>
+            <div class="columns is-multiline">
+                <div class="column is-4">
+                    <div class="card">
+                        <div class="card-content has-text-centered">
+                            <span class="icon is-large has-text-info">
+                                <i class="fas fa-3x fa-sitemap"></i>
+                            </span>
+                            <p class="title is-5 mt-3">Tree Navigation</p>
+                            <p>Navigate complex XML structures with an interactive tree view.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-4">
+                    <div class="card">
+                        <div class="card-content has-text-centered">
+                            <span class="icon is-large has-text-success">
+                                <i class="fas fa-3x fa-edit"></i>
+                            </span>
+                            <p class="title is-5 mt-3">Visual Editing</p>
+                            <p>Edit elements with type-aware forms and validation.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-4">
+                    <div class="card">
+                        <div class="card-content has-text-centered">
+                            <span class="icon is-large has-text-warning">
+                                <i class="fas fa-3x fa-check-circle"></i>
+                            </span>
+                            <p class="title is-5 mt-3">XSD Validation</p>
+                            <p>Validate documents against the schema before export.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Error Modal -->
+<div class="modal" id="error-modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head has-background-danger">
+            <p class="modal-card-title has-text-white">Error</p>
+            <button class="delete" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+            <p id="error-message"></p>
+        </section>
+        <footer class="modal-card-foot">
+            <button class="button" id="error-modal-close">OK</button>
+        </footer>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const fileInput = document.getElementById('xml-file');
+    const errorModal = document.getElementById('error-modal');
+    
+    // Helper function to show error modal
+    function showError(message) {
+        document.getElementById('error-message').textContent = message;
+        errorModal.classList.add('is-active');
+    }
+    
+    // Error modal close handlers
+    document.querySelector('#error-modal .modal-background').addEventListener('click', () => errorModal.classList.remove('is-active'));
+    document.querySelector('#error-modal .delete').addEventListener('click', () => errorModal.classList.remove('is-active'));
+    document.getElementById('error-modal-close').addEventListener('click', () => errorModal.classList.remove('is-active'));
+    const fileName = document.getElementById('file-name');
+    const importBtn = document.getElementById('import-btn');
+    const importForm = document.getElementById('import-form');
+    const rootTypeSelect = document.getElementById('root-type-select');
+    const createBtn = document.getElementById('create-btn');
+
+    // File selection
+    fileInput.addEventListener('change', function() {
+        if (this.files.length > 0) {
+            fileName.textContent = this.files[0].name;
+            importBtn.disabled = false;
+        } else {
+            fileName.textContent = 'No file selected';
+            importBtn.disabled = true;
+        }
+    });
+
+    // Import form submission
+    importForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const formData = new FormData();
+        formData.append('file', fileInput.files[0]);
+        
+        importBtn.classList.add('is-loading');
+        
+        try {
+            const response = await fetch('/api/import', {
+                method: 'POST',
+                body: formData
+            });
+            
+            if (response.ok) {
+                window.location.href = '/tree';
+            } else {
+                const error = await response.json();
+                showError('Import failed: ' + (error.error || 'Unknown error'));
+            }
+        } catch (err) {
+            showError('Import failed: ' + err.message);
+        } finally {
+            importBtn.classList.remove('is-loading');
+        }
+    });
+
+    // Root type selection
+    rootTypeSelect.addEventListener('change', function() {
+        createBtn.disabled = !this.value;
+    });
+
+    // Create new document
+    createBtn.addEventListener('click', async function() {
+        const typeName = rootTypeSelect.value;
+        if (!typeName) return;
+        
+        createBtn.classList.add('is-loading');
+        
+        try {
+            const response = await fetch('/api/element', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({type: typeName, parentPath: '', data: {}})
+            });
+            
+            if (response.ok) {
+                window.location.href = '/tree';
+            } else {
+                const error = await response.json();
+                showError('Create failed: ' + (error.error || 'Unknown error'));
+            }
+        } catch (err) {
+            showError('Create failed: ' + err.message);
+        } finally {
+            createBtn.classList.remove('is-loading');
+        }
+    });
+});
+</script>
+{{end}}

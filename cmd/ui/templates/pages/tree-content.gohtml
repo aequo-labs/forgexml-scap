@@ -1,0 +1,745 @@
+{{define "tree-content"}}
+<div class="columns is-gapless" style="height: calc(100vh - 52px);">
+    <!-- Tree Panel -->
+    <div class="column is-3 tree-panel">
+        <div class="panel">
+            <p class="panel-heading">
+                <span class="icon"><i class="fas fa-sitemap"></i></span>
+                <span>Document Structure</span>
+            </p>
+            
+            <div class="panel-block">
+                <p class="control has-icons-left has-icons-right" style="width: 100%;">
+                    <input class="input is-small" type="text" id="tree-search" placeholder="Search... (Esc to clear)">
+                    <span class="icon is-left">
+                        <i class="fas fa-search"></i>
+                    </span>
+                    <span class="icon is-right" id="search-clear" style="pointer-events: auto; cursor: pointer; display: none;">
+                        <i class="fas fa-times-circle has-text-grey"></i>
+                    </span>
+                </p>
+                <span class="tag is-light is-small ml-2" id="search-count" style="display: none;">0 matches</span>
+            </div>
+            
+            <div class="panel-block">
+                <div class="buttons are-small">
+                    <button class="button" id="expand-all" title="Expand All">
+                        <span class="icon"><i class="fas fa-expand"></i></span>
+                    </button>
+                    <button class="button" id="collapse-all" title="Collapse All">
+                        <span class="icon"><i class="fas fa-compress"></i></span>
+                    </button>
+                    <button class="button is-success" id="add-element" title="Add Element">
+                        <span class="icon"><i class="fas fa-plus"></i></span>
+                    </button>
+                </div>
+            </div>
+            
+            <div id="tree-container" class="tree-container"></div>
+        </div>
+    </div>
+
+    <!-- Content Panel -->
+    <div class="column is-9 content-panel">
+        <div class="box" id="element-details" style="height: 100%; overflow-y: auto;">
+            <div class="has-text-centered has-text-grey" id="no-selection">
+                <span class="icon is-large">
+                    <i class="fas fa-3x fa-hand-pointer"></i>
+                </span>
+                <p class="mt-4">Select an element from the tree to view details</p>
+            </div>
+            
+            <div id="element-content" style="display: none;">
+                <nav class="level">
+                    <div class="level-left">
+                        <div class="level-item">
+                            <h3 class="title is-4" id="element-title">Element</h3>
+                        </div>
+                        <div class="level-item">
+                            <span class="tag is-info" id="element-type">Type</span>
+                        </div>
+                    </div>
+                    <div class="level-right">
+                        <div class="level-item">
+                            <div class="buttons">
+                                <button class="button is-light is-small" id="prev-element" title="Previous Element" disabled>
+                                    <span class="icon"><i class="fas fa-chevron-left"></i></span>
+                                </button>
+                                <button class="button is-light is-small" id="next-element" title="Next Element" disabled>
+                                    <span class="icon"><i class="fas fa-chevron-right"></i></span>
+                                </button>
+                                <span class="mx-2"></span>
+                                <button class="button is-primary is-small" id="edit-element">
+                                    <span class="icon"><i class="fas fa-edit"></i></span>
+                                    <span>Edit</span>
+                                </button>
+                                <button class="button is-danger is-small" id="delete-element">
+                                    <span class="icon"><i class="fas fa-trash"></i></span>
+                                    <span>Delete</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+                
+                <!-- XPath breadcrumb for disambiguation -->
+                <nav class="breadcrumb is-small has-background-light p-2 mb-3" aria-label="breadcrumbs" id="element-xpath-container" style="border-radius: 4px;">
+                    <ul id="element-xpath">
+                        <!-- XPath segments will be rendered here -->
+                    </ul>
+                </nav>
+                
+                <hr>
+                
+                <div class="content" id="element-fields">
+                    <!-- Element fields will be rendered here -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Element Modal -->
+<div class="modal" id="add-element-modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title" id="add-modal-title">Add Element</p>
+            <button class="delete" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+            <div class="field">
+                <label class="label">Element Type</label>
+                <div class="control">
+                    <div class="select is-fullwidth">
+                        <select id="new-element-type">
+                            <option value="">-- Select Type --</option>
+                        </select>
+                    </div>
+                </div>
+                <p class="help" id="add-modal-help">Select a type to create</p>
+            </div>
+        </section>
+        <footer class="modal-card-foot">
+            <button class="button cancel-modal">Cancel</button>
+            <button class="button is-success" id="confirm-add">Add</button>
+        </footer>
+    </div>
+</div>
+
+<!-- Error Modal -->
+<div class="modal" id="error-modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head has-background-danger">
+            <p class="modal-card-title has-text-white">Error</p>
+            <button class="delete" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+            <p id="error-message"></p>
+        </section>
+        <footer class="modal-card-foot">
+            <button class="button cancel-modal">OK</button>
+        </footer>
+    </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal" id="delete-modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">Confirm Delete</p>
+            <button class="delete" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+            <p>Are you sure you want to delete this element?</p>
+            <p class="has-text-danger mt-2">This action cannot be undone.</p>
+        </section>
+        <footer class="modal-card-foot">
+            <button class="button cancel-modal">Cancel</button>
+            <button class="button is-danger" id="confirm-delete">Delete</button>
+        </footer>
+    </div>
+</div>
+
+<script src="/static/js/components/virtual-tree.js"></script>
+<script src="/app-static/js/tree-config.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    let selectedPath = null;
+    
+    // Navigation history for Previous/Next buttons
+    const navigationHistory = [];
+    let historyIndex = -1;
+    
+    // Update navigation button states
+    function updateNavigationButtons() {
+        const prevBtn = document.getElementById('prev-element');
+        const nextBtn = document.getElementById('next-element');
+        
+        prevBtn.disabled = historyIndex <= 0;
+        nextBtn.disabled = historyIndex >= navigationHistory.length - 1;
+    }
+    
+    // Add path to navigation history
+    function addToHistory(path) {
+        // If we're not at the end of history, truncate forward history
+        if (historyIndex < navigationHistory.length - 1) {
+            navigationHistory.splice(historyIndex + 1);
+        }
+        // Don't add duplicate consecutive entries
+        if (navigationHistory[navigationHistory.length - 1] !== path) {
+            navigationHistory.push(path);
+        }
+        historyIndex = navigationHistory.length - 1;
+        updateNavigationButtons();
+    }
+    
+    // Navigate to previous element
+    document.getElementById('prev-element').addEventListener('click', async function() {
+        if (historyIndex > 0) {
+            historyIndex--;
+            const path = navigationHistory[historyIndex];
+            selectedPath = path;
+            await loadElementDetails(path, false); // false = don't add to history
+            updateNavigationButtons();
+        }
+    });
+    
+    // Navigate to next element
+    document.getElementById('next-element').addEventListener('click', async function() {
+        if (historyIndex < navigationHistory.length - 1) {
+            historyIndex++;
+            const path = navigationHistory[historyIndex];
+            selectedPath = path;
+            await loadElementDetails(path, false); // false = don't add to history
+            updateNavigationButtons();
+        }
+    });
+    
+    // Helper function to show error modal instead of alert
+    function showError(message) {
+        document.getElementById('error-message').textContent = message;
+        document.getElementById('error-modal').classList.add('is-active');
+    }
+    
+    // Initialize tree
+    const tree = new VirtualTreeView({
+        container: document.getElementById('tree-container'),
+        itemHeight: 28,
+        fetchData: async (parentId, offset, limit) => {
+            const url = parentId ? `/api/tree/children?path=${encodeURIComponent(parentId)}` : '/api/tree/root';
+            const response = await fetch(url);
+            const nodes = await response.json();
+            // VirtualTreeView expects {nodes: [], total: N} format
+            return { nodes: nodes, total: nodes.length };
+        },
+        onSelect: async (node) => {
+            selectedPath = node.path;
+            await loadElementDetails(node.path);
+        }
+    });
+    tree.initialize();
+    window.tree = tree; // Expose for debugging
+
+    // Load element details
+    // addToNav: whether to add this navigation to history (default true)
+    async function loadElementDetails(path, addToNav = true) {
+        try {
+            const response = await fetch(`/api/tree/element?path=${encodeURIComponent(path)}`);
+            const element = await response.json();
+            
+            document.getElementById('no-selection').style.display = 'none';
+            document.getElementById('element-content').style.display = 'block';
+            document.getElementById('element-title').textContent = element.label || path;
+            document.getElementById('element-type').textContent = element.type;
+            
+            // Render XPath breadcrumb for disambiguation
+            renderXPathBreadcrumb(path, element.label || element.type);
+            
+            // Add to navigation history if requested
+            if (addToNav) {
+                addToHistory(path);
+            }
+            
+            // Render fields and check for children
+            renderElementFields(element);
+            
+            // Fetch and render children list if this element has children
+            await renderChildrenList(path);
+        } catch (err) {
+            console.error('Failed to load element:', err);
+        }
+    }
+
+    function renderElementFields(element) {
+        const container = document.getElementById('element-fields');
+        if (!element.data || Object.keys(element.data).length === 0) {
+            container.innerHTML = '<p class="has-text-grey-light is-size-7"><em>No attributes</em></p>';
+            return;
+        }
+        
+        let html = '<h5 class="title is-6 mb-2">Attributes</h5>';
+        html += '<table class="table is-fullwidth is-striped is-narrow">';
+        html += '<thead><tr><th>Field</th><th>Value</th></tr></thead><tbody>';
+        
+        for (const [key, value] of Object.entries(element.data)) {
+            const displayValue = typeof value === 'object' ? JSON.stringify(value) : value;
+            html += `<tr><td><strong>${key}</strong></td><td>${displayValue || '<em class="has-text-grey">empty</em>'}</td></tr>`;
+        }
+        
+        html += '</tbody></table>';
+        container.innerHTML = html;
+    }
+    
+    // Render children list view for collection elements
+    async function renderChildrenList(path) {
+        const container = document.getElementById('element-fields');
+        
+        try {
+            // Fetch children for this element
+            const response = await fetch(`/api/tree/children?path=${encodeURIComponent(path)}`);
+            const children = await response.json();
+            
+            if (!children || children.length === 0) {
+                return; // No children to display
+            }
+            
+            // Build children table
+            let html = container.innerHTML;
+            html += `
+                <hr class="my-3">
+                <div class="level mb-2">
+                    <div class="level-left">
+                        <h5 class="title is-6 mb-0">Child Elements (${children.length})</h5>
+                    </div>
+                    <div class="level-right">
+                        <div class="buttons are-small">
+                            <button class="button is-light" id="view-mode-table" title="Table View">
+                                <span class="icon"><i class="fas fa-table"></i></span>
+                            </button>
+                            <button class="button is-light" id="view-mode-cards" title="Card View">
+                                <span class="icon"><i class="fas fa-th-large"></i></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div id="children-container">
+            `;
+            
+            // Table view (default)
+            html += '<table class="table is-fullwidth is-striped is-hoverable is-narrow children-table">';
+            html += '<thead><tr><th style="width:40px">#</th><th>Type</th><th>Label</th><th style="width:80px">Actions</th></tr></thead><tbody>';
+            
+            children.forEach((child, index) => {
+                const childPath = child.path || child.id;
+                html += `
+                    <tr class="child-row" data-path="${childPath}" style="cursor: pointer;">
+                        <td class="has-text-grey">${index + 1}</td>
+                        <td><span class="tag is-info is-light">${child.type || 'Unknown'}</span></td>
+                        <td>${child.label || child.id || '(unnamed)'}</td>
+                        <td>
+                            <div class="buttons are-small">
+                                <button class="button is-small is-primary is-light child-edit-btn" data-path="${childPath}" title="Edit">
+                                    <span class="icon"><i class="fas fa-edit"></i></span>
+                                </button>
+                                <button class="button is-small is-danger is-light child-delete-btn" data-path="${childPath}" title="Delete">
+                                    <span class="icon"><i class="fas fa-trash"></i></span>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            });
+            
+            html += '</tbody></table></div>';
+            container.innerHTML = html;
+            
+            // Add click handlers for child rows
+            container.querySelectorAll('.child-row').forEach(row => {
+                row.addEventListener('click', async (e) => {
+                    // Don't navigate if clicking on buttons
+                    if (e.target.closest('button')) return;
+                    
+                    const childPath = row.dataset.path;
+                    selectedPath = childPath;
+                    await loadElementDetails(childPath);
+                    
+                    // Also select in tree
+                    tree.selectNode(childPath);
+                });
+            });
+            
+            // Add click handlers for edit buttons
+            container.querySelectorAll('.child-edit-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const childPath = btn.dataset.path;
+                    window.location.href = `/edit?path=${encodeURIComponent(childPath)}`;
+                });
+            });
+            
+            // Add click handlers for delete buttons
+            container.querySelectorAll('.child-delete-btn').forEach(btn => {
+                btn.addEventListener('click', async (e) => {
+                    e.stopPropagation();
+                    const childPath = btn.dataset.path;
+                    if (confirm('Delete this child element?')) {
+                        try {
+                            const response = await fetch(`/api/element?path=${encodeURIComponent(childPath)}`, {
+                                method: 'DELETE'
+                            });
+                            if (response.ok) {
+                                tree.initialize();
+                                await loadElementDetails(path);
+                            } else {
+                                const error = await response.json();
+                                showError('Delete failed: ' + error.error);
+                            }
+                        } catch (err) {
+                            showError('Delete failed: ' + err.message);
+                        }
+                    }
+                });
+            });
+            
+        } catch (err) {
+            console.error('Failed to load children:', err);
+        }
+    }
+    
+    // Render XPath breadcrumb for element path disambiguation
+    function renderXPathBreadcrumb(path, elementLabel) {
+        const container = document.getElementById('element-xpath');
+        if (!path) {
+            container.innerHTML = '';
+            return;
+        }
+        
+        // Parse path into segments (e.g., "/root/child[0]/grandchild[1]")
+        const segments = path.split('/').filter(s => s.length > 0);
+        let html = '';
+        let currentPath = '';
+        
+        // Handle root path "/" - show the element label/type
+        if (segments.length === 0 && path === '/') {
+            // For root element, use the label from element details
+            const rootName = elementLabel || 'root';
+            html = `<li class="is-active"><a href="#" aria-current="page">${rootName}</a></li>`;
+        } else {
+            segments.forEach((segment, index) => {
+                currentPath += '/' + segment;
+                const isLast = index === segments.length - 1;
+                
+                // Extract element name and index from segment (e.g., "reports[0]" -> "reports", "[0]")
+                const match = segment.match(/^([^\[]+)(\[\d+\])?$/);
+                const name = match ? match[1] : segment;
+                const indexPart = match && match[2] ? match[2] : '';
+                
+                if (isLast) {
+                    // Last segment is active (current element)
+                    html += `<li class="is-active"><a href="#" aria-current="page">${name}<span class="has-text-grey-light">${indexPart}</span></a></li>`;
+                } else {
+                    // Clickable segment to navigate to parent
+                    const pathToNavigate = currentPath;
+                    html += `<li><a href="#" class="xpath-segment" data-path="${pathToNavigate}">${name}<span class="has-text-grey-light">${indexPart}</span></a></li>`;
+                }
+            });
+        }
+        
+        container.innerHTML = html;
+        
+        // Add click handlers for navigation
+        container.querySelectorAll('.xpath-segment').forEach(link => {
+            link.addEventListener('click', async (e) => {
+                e.preventDefault();
+                const targetPath = link.dataset.path;
+                selectedPath = targetPath;
+                await loadElementDetails(targetPath);
+            });
+        });
+    }
+
+    // Tree controls
+    document.getElementById('expand-all').addEventListener('click', () => tree.expandAll());
+    document.getElementById('collapse-all').addEventListener('click', () => tree.collapseAll());
+    
+    // Search with tree sync
+    let searchTimeout;
+    const searchInput = document.getElementById('tree-search');
+    const searchCount = document.getElementById('search-count');
+    const searchClear = document.getElementById('search-clear');
+    
+    function updateSearchUI(searchText, matchCount) {
+        if (searchText) {
+            searchCount.textContent = matchCount === 1 ? '1 match' : `${matchCount} matches`;
+            searchCount.style.display = 'inline-block';
+            searchClear.style.display = 'flex';
+        } else {
+            searchCount.style.display = 'none';
+            searchClear.style.display = 'none';
+        }
+    }
+    
+    function clearSearch() {
+        searchInput.value = '';
+        tree.filter('');
+        updateSearchUI('', 0);
+    }
+    
+    searchInput.addEventListener('input', function() {
+        clearTimeout(searchTimeout);
+        const searchText = this.value.trim();
+        
+        searchTimeout = setTimeout(async () => {
+            // Apply filter to tree
+            tree.filter(searchText);
+            
+            if (searchText) {
+                // Get filtered/visible nodes and auto-select first match
+                const stats = tree.getStats();
+                const matchCount = stats ? stats.totalNodes : 0;
+                updateSearchUI(searchText, matchCount);
+                
+                if (matchCount > 0) {
+                    // Find first matching node in the flattened visible list
+                    const firstMatch = findFirstMatchingNode(searchText);
+                    if (firstMatch) {
+                        selectedPath = firstMatch.path;
+                        await loadElementDetails(firstMatch.path);
+                    }
+                }
+            } else {
+                updateSearchUI('', 0);
+            }
+        }, 300);
+    });
+    
+    // Helper to find first node matching search text
+    function findFirstMatchingNode(searchText) {
+        const searchLower = searchText.toLowerCase();
+        
+        // Try to access tree's internal flatNodes first
+        const flatNodes = tree.treeView?.flatNodes || [];
+        console.log('findFirstMatchingNode: searching for', searchText, 'in', flatNodes.length, 'flatNodes');
+        
+        for (const node of flatNodes) {
+            const label = (node.label || '').toLowerCase();
+            const id = (node.id || '').toLowerCase();
+            const path = (node.path || '').toLowerCase();
+            if (label.includes(searchLower) || id.includes(searchLower) || path.includes(searchLower)) {
+                console.log('findFirstMatchingNode: found in flatNodes', node);
+                return node;
+            }
+        }
+        
+        // Fallback: recursively search nodes array
+        const nodes = tree.treeView?.nodes || [];
+        console.log('findFirstMatchingNode: fallback to nodes array with', nodes.length, 'nodes');
+        
+        function searchNodes(nodeList) {
+            for (const node of nodeList || []) {
+                const label = (node.label || '').toLowerCase();
+                const id = (node.id || '').toLowerCase();
+                const path = (node.path || '').toLowerCase();
+                if (label.includes(searchLower) || id.includes(searchLower) || path.includes(searchLower)) {
+                    console.log('findFirstMatchingNode: found in nodes', node);
+                    return node;
+                }
+                if (node.children) {
+                    const found = searchNodes(node.children);
+                    if (found) return found;
+                }
+            }
+            return null;
+        }
+        
+        return searchNodes(nodes);
+    }
+    
+    // Clear search on Escape key or clear button click
+    searchInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            clearSearch();
+        }
+    });
+    
+    searchClear.addEventListener('click', clearSearch);
+
+    // Edit button
+    document.getElementById('edit-element').addEventListener('click', function() {
+        if (selectedPath) {
+            window.location.href = `/edit?path=${encodeURIComponent(selectedPath)}`;
+        }
+    });
+
+    // Delete functionality
+    const deleteModal = document.getElementById('delete-modal');
+    document.getElementById('delete-element').addEventListener('click', function() {
+        deleteModal.classList.add('is-active');
+    });
+    
+    document.getElementById('confirm-delete').addEventListener('click', async function() {
+        if (!selectedPath) return;
+        
+        try {
+            const response = await fetch(`/api/element?path=${encodeURIComponent(selectedPath)}`, {
+                method: 'DELETE'
+            });
+            
+            if (response.ok) {
+                deleteModal.classList.remove('is-active');
+                tree.initialize(); // Refresh tree
+                document.getElementById('no-selection').style.display = 'block';
+                document.getElementById('element-content').style.display = 'none';
+                selectedPath = null;
+            } else {
+                const error = await response.json();
+                showError('Delete failed: ' + error.error);
+            }
+        } catch (err) {
+            showError('Delete failed: ' + err.message);
+        }
+    });
+
+    // Add element functionality
+    const addModal = document.getElementById('add-element-modal');
+    const addModalTitle = document.getElementById('add-modal-title');
+    const addModalHelp = document.getElementById('add-modal-help');
+    
+    document.getElementById('add-element').addEventListener('click', async function() {
+        let types = [];
+        let parentType = null;
+        
+        if (selectedPath) {
+            // Get element type to find valid child types
+            const elementResponse = await fetch(`/api/tree/element?path=${encodeURIComponent(selectedPath)}`);
+            const element = await elementResponse.json();
+            parentType = element.type;
+            const childResponse = await fetch(`/api/types/${encodeURIComponent(element.type)}/children`);
+            types = await childResponse.json();
+            addModalTitle.textContent = `Add Child to ${element.label || parentType}`;
+            addModalHelp.textContent = `Select a valid child type for ${parentType}`;
+        } else {
+            // No selection - show root types only
+            const response = await fetch('/api/types/root');
+            types = await response.json();
+            addModalTitle.textContent = 'Create Root Element';
+            addModalHelp.textContent = 'Select a root element type to create';
+        }
+        
+        const select = document.getElementById('new-element-type');
+        select.innerHTML = '<option value="">-- Select Type --</option>';
+        if (types && types.length > 0) {
+            types.forEach(t => {
+                select.innerHTML += `<option value="${t}">${t}</option>`;
+            });
+        } else {
+            select.innerHTML = '<option value="" disabled>No valid child types available</option>';
+            addModalHelp.textContent = parentType ? 
+                `${parentType} does not have any valid child element types` : 
+                'No root element types defined';
+        }
+        
+        addModal.classList.add('is-active');
+    });
+    
+    document.getElementById('confirm-add').addEventListener('click', async function() {
+        const typeName = document.getElementById('new-element-type').value;
+        if (!typeName) return;
+        
+        try {
+            const response = await fetch('/api/element', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    type: typeName,
+                    parentPath: selectedPath || '',
+                    data: {}
+                })
+            });
+            
+            if (response.ok) {
+                addModal.classList.remove('is-active');
+                tree.initialize(); // Refresh tree
+            } else {
+                const error = await response.json();
+                showError('Add failed: ' + error.error);
+            }
+        } catch (err) {
+            showError('Add failed: ' + err.message);
+        }
+    });
+
+    // Modal close handlers
+    document.querySelectorAll('.modal-background, .cancel-modal, .modal .delete').forEach(el => {
+        el.addEventListener('click', function() {
+            this.closest('.modal').classList.remove('is-active');
+        });
+    });
+});
+</script>
+
+<style>
+.tree-panel {
+    border-right: 1px solid #dbdbdb;
+    background: #f5f5f5;
+}
+.tree-panel .panel {
+    height: 100%;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background: inherit;
+}
+.tree-panel .panel-heading {
+    background: #00d1b2;
+    color: white;
+}
+.tree-container {
+    height: calc(100% - 140px);
+    overflow-y: auto;
+}
+.content-panel {
+    padding: 1rem;
+    overflow-y: auto;
+}
+
+/* Dark mode styles for tree panel */
+html.dark-mode .tree-panel {
+    border-right-color: #4a4a4a;
+    background: var(--card-bg, #3a3a3a);
+}
+html.dark-mode .tree-panel .panel-block {
+    background: var(--card-bg, #3a3a3a);
+    border-color: #4a4a4a;
+}
+html.dark-mode .tree-panel .panel-heading {
+    background: #00947e;
+    border-color: #4a4a4a;
+}
+html.dark-mode .tree-panel .input {
+    background-color: #2c2c2c;
+    border-color: #4a4a4a;
+    color: #f5f5f5;
+}
+html.dark-mode .tree-panel .input::placeholder {
+    color: #888;
+}
+
+/* Children list view styles */
+.children-table {
+    font-size: 0.9rem;
+}
+.children-table .child-row:hover {
+    background-color: #f0f8ff !important;
+}
+.children-table .child-row td {
+    vertical-align: middle;
+}
+html.dark-mode .children-table .child-row:hover {
+    background-color: #3a4a5a !important;
+}
+</style>
+{{end}}

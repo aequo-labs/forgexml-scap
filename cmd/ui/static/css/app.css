@@ -1,0 +1,250 @@
+/* Asset Reporting Format 1.1 Editor - Application Styles */
+
+/* Tree panel styles */
+.tree-panel {
+    border-right: 1px solid var(--border-color, #dbdbdb);
+    background: var(--tree-bg, #f5f5f5);
+}
+
+.tree-panel .panel {
+    height: 100%;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.tree-container {
+    height: calc(100% - 140px);
+    overflow-y: auto;
+}
+
+/* Content panel */
+.content-panel {
+    padding: 1rem;
+    overflow-y: auto;
+}
+
+/* XML preview */
+.xml-preview {
+    max-height: 600px;
+    overflow: auto;
+    background: var(--code-bg, #f5f5f5);
+    border-radius: 4px;
+    padding: 1rem;
+}
+
+.xml-preview pre {
+    margin: 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.xml-preview code {
+    font-family: 'Fira Code', 'Consolas', monospace;
+    font-size: 0.85rem;
+}
+
+/* Form styles */
+.field-group {
+    border: 1px solid var(--border-color, #dbdbdb);
+    border-radius: 4px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.field-group-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.field-group-title {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+/* Nested element styles */
+.nested-element {
+    margin-left: 1.5rem;
+    padding-left: 1rem;
+    border-left: 2px solid var(--primary-color, #3273dc);
+}
+
+/* Repeated element list */
+.repeated-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.repeated-list-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    background: var(--item-bg, #fafafa);
+    border-radius: 4px;
+}
+
+.repeated-list-item .item-content {
+    flex: 1;
+}
+
+.repeated-list-item .item-actions {
+    flex-shrink: 0;
+}
+
+/* Abstract type selector */
+.type-selector {
+    margin-bottom: 1rem;
+}
+
+.type-selector .select {
+    width: 100%;
+}
+
+/* Enum select styling */
+.enum-select {
+    width: 100%;
+}
+
+/* Validation states */
+.field.has-error .input,
+.field.has-error .textarea,
+.field.has-error .select select {
+    border-color: var(--danger-color, #ff3860);
+}
+
+.field.has-error .help {
+    color: var(--danger-color, #ff3860);
+}
+
+.field.is-valid .input,
+.field.is-valid .textarea,
+.field.is-valid .select select {
+    border-color: var(--success-color, #23d160);
+}
+
+/* Dark mode overrides */
+
+/* Bulma panel component - dark mode */
+html.dark-mode .panel {
+    background: var(--bg-color, #1a1a1a) !important;
+    color: var(--text-color, #f5f5f5) !important;
+}
+
+html.dark-mode .panel-heading {
+    background: var(--bg-lighter, #2c2c2c) !important;
+    color: var(--text-color, #f5f5f5) !important;
+    border-color: var(--border-color, #3e3e3e) !important;
+}
+
+html.dark-mode .panel-block {
+    background: var(--bg-color, #1a1a1a) !important;
+    color: var(--text-color, #f5f5f5) !important;
+    border-color: var(--border-color, #3e3e3e) !important;
+}
+
+html.dark-mode .panel-block:first-child {
+    border-top-color: var(--border-color, #3e3e3e) !important;
+}
+
+/* Tree panel specific */
+html.dark-mode .tree-panel {
+    background: var(--bg-color, #1a1a1a) !important;
+    border-right-color: var(--border-color, #3e3e3e) !important;
+}
+
+html.dark-mode .tree-panel .panel {
+    background: var(--bg-color, #1a1a1a) !important;
+}
+
+html.dark-mode .tree-panel .panel-heading {
+    background: var(--bg-lighter, #2c2c2c) !important;
+    color: var(--text-color, #f5f5f5) !important;
+}
+
+html.dark-mode .tree-container {
+    background: var(--bg-color, #1a1a1a) !important;
+    color: var(--text-color, #f5f5f5) !important;
+}
+
+/* Tree node styling */
+html.dark-mode .tree-node {
+    color: var(--text-color, #f5f5f5) !important;
+}
+
+html.dark-mode .tree-node-label {
+    color: var(--text-color, #f5f5f5) !important;
+}
+
+html.dark-mode .tree-node:hover {
+    background: var(--bg-lighter, #2c2c2c) !important;
+}
+
+html.dark-mode .tree-node.selected {
+    background: var(--primary-color, #3273dc) !important;
+    color: white !important;
+}
+
+/* Tree toggle and icons */
+html.dark-mode .tree-toggle {
+    color: var(--text-color, #f5f5f5) !important;
+}
+
+html.dark-mode .tree-icon {
+    color: var(--text-muted, #b0b0b0) !important;
+}
+
+html.dark-mode .xml-preview {
+    background: var(--bg-color, #1a1a1a) !important;
+    color: var(--text-color, #f5f5f5) !important;
+}
+
+html.dark-mode .field-group {
+    border-color: var(--border-color, #3e3e3e) !important;
+    background: var(--bg-lighter, #2c2c2c) !important;
+}
+
+html.dark-mode .repeated-list-item {
+    background: var(--bg-lighter, #2c2c2c) !important;
+}
+
+/* Loading overlay */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.dark-mode .loading-overlay {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+/* Drag and drop zone */
+.drop-zone {
+    border: 2px dashed var(--border-color, #dbdbdb);
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.drop-zone.is-active {
+    border-color: var(--primary-color, #3273dc);
+    background: var(--drop-active-bg, rgba(50, 115, 220, 0.1));
+}
+
+.drop-zone.is-hover {
+    border-color: var(--success-color, #23d160);
+    background: var(--drop-hover-bg, rgba(35, 209, 96, 0.1));
+}

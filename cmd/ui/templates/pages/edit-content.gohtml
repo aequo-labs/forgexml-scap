@@ -1,0 +1,379 @@
+{{define "edit-content"}}
+<div class="container">
+    <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/tree">Tree View</a></li>
+            <li class="is-active"><a href="#" aria-current="page">Edit Element</a></li>
+        </ul>
+    </nav>
+
+    <div class="box">
+        <h2 class="title is-3" id="edit-title">Edit Element</h2>
+        <p class="subtitle" id="edit-path"></p>
+        
+        <form id="edit-form">
+            <div id="form-fields">
+                <!-- Dynamic form fields will be rendered here -->
+                <div class="has-text-centered">
+                    <span class="icon is-large">
+                        <i class="fas fa-spinner fa-spin fa-2x"></i>
+                    </span>
+                    <p>Loading...</p>
+                </div>
+            </div>
+            
+            <hr>
+            
+            <div class="field is-grouped">
+                <div class="control">
+                    <a href="/tree" class="button">
+                        <span class="icon"><i class="fas fa-times"></i></span>
+                        <span>Cancel</span>
+                    </a>
+                </div>
+                <div class="control">
+                    <button type="submit" class="button is-primary">
+                        <span class="icon"><i class="fas fa-save"></i></span>
+                        <span>Save Changes</span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="/app-static/js/form-handlers.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', async function() {
+    const params = new URLSearchParams(window.location.search);
+    const path = params.get('path');
+    const typeName = params.get('type');
+    const isCreate = !path && typeName;
+    
+    document.getElementById('edit-path').textContent = isCreate ? 'Creating new ' + typeName : 'Path: ' + path;
+    document.getElementById('edit-title').textContent = isCreate ? 'Create ' + typeName : 'Edit Element';
+    
+    // Load element data or type metadata
+    let element = null;
+    let typeInfo = null;
+    
+    try {
+        if (isCreate) {
+            const response = await fetch(`/api/types/${encodeURIComponent(typeName)}`);
+            typeInfo = await response.json();
+        } else {
+            const response = await fetch(`/api/element?path=${encodeURIComponent(path)}`);
+            element = await response.json();
+            
+            // Also get type info
+            if (element.type) {
+                const typeResponse = await fetch(`/api/types/${encodeURIComponent(element.type)}`);
+                typeInfo = await typeResponse.json();
+            }
+        }
+        
+        renderForm(typeInfo, element);
+    } catch (err) {
+        document.getElementById('form-fields').innerHTML = 
+            `<div class="notification is-danger">Failed to load: ${err.message}</div>`;
+    }
+    
+    // Form submission
+    document.getElementById('edit-form').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const formData = new FormData(this);
+        const data = {};
+        
+        for (const [key, value] of formData.entries()) {
+            // Handle nested fields
+            if (key.includes('.')) {
+                const parts = key.split('.');
+                let obj = data;
+                for (let i = 0; i < parts.length - 1; i++) {
+                    obj[parts[i]] = obj[parts[i]] || {};
+                    obj = obj[parts[i]];
+                }
+                obj[parts[parts.length - 1]] = value;
+            } else {
+                data[key] = value;
+            }
+        }
+        
+        try {
+            const url = isCreate ? '/api/element' : `/api/element?path=${encodeURIComponent(path)}`;
+            const method = isCreate ? 'POST' : 'PUT';
+            const body = isCreate ? {type: typeName, parentPath: params.get('parent') || '', data} : data;
+            
+            const response = await fetch(url, {
+                method: method,
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(body)
+            });
+            
+            if (response.ok) {
+                window.location.href = '/tree';
+            } else {
+                const error = await response.json();
+                showError('Save failed: ' + error.error);
+            }
+        } catch (err) {
+            showError('Save failed: ' + err.message);
+        }
+    });
+});
+
+function showError(message) {
+    document.getElementById('error-message').textContent = message;
+    document.getElementById('error-modal').classList.add('is-active');
+}
+
+function renderForm(typeInfo, element) {
+    const container = document.getElementById('form-fields');
+    
+    if (!typeInfo || !typeInfo.fields) {
+        container.innerHTML = '<p class="has-text-grey">No fields to edit</p>';
+        return;
+    }
+    
+    let html = '';
+    
+    // Group fields by choice group
+    const choiceGroups = {};
+    const regularFields = [];
+    
+    for (const field of typeInfo.fields) {
+        if (field.isChoice && field.choiceGroup) {
+            if (!choiceGroups[field.choiceGroup]) {
+                choiceGroups[field.choiceGroup] = [];
+            }
+            choiceGroups[field.choiceGroup].push(field);
+        } else {
+            regularFields.push(field);
+        }
+    }
+    
+    // Render regular fields
+    for (const field of regularFields) {
+        const value = element && element.data ? element.data[field.name] || '' : '';
+        html += renderField(field, value, element);
+    }
+    
+    // Render choice groups
+    for (const [groupName, fields] of Object.entries(choiceGroups)) {
+        html += renderChoiceGroup(groupName, fields, element);
+    }
+    
+    container.innerHTML = html;
+    
+    // Set up choice group event handlers
+    setupChoiceGroupHandlers();
+}
+
+// Render a choice group as radio buttons with expandable content
+function renderChoiceGroup(groupName, fields, element) {
+    // Determine which choice is currently selected
+    let selectedChoice = null;
+    for (const field of fields) {
+        const value = element && element.data ? element.data[field.name] : null;
+        if (value !== null && value !== undefined && value !== '') {
+            selectedChoice = field.name;
+            break;
+        }
+    }
+    
+    let html = `
+        <div class="field choice-group" data-group="${groupName}">
+            <label class="label">
+                <span class="icon"><i class="fas fa-code-branch"></i></span>
+                Choose one (${groupName})
+            </label>
+            <div class="box has-background-light">
+    `;
+    
+    for (const field of fields) {
+        const isSelected = selectedChoice === field.name;
+        const value = element && element.data ? element.data[field.name] || '' : '';
+        
+        html += `
+            <div class="field">
+                <label class="radio">
+                    <input type="radio" name="_choice_${groupName}" value="${field.name}" ${isSelected ? 'checked' : ''}>
+                    <strong>${field.name}</strong>
+                    ${field.documentation ? `<span class="has-text-grey is-size-7 ml-2">${field.documentation}</span>` : ''}
+                </label>
+                <div class="choice-content ml-5 mt-2" data-field="${field.name}" style="${isSelected ? '' : 'display: none;'}">
+                    ${renderFieldInput(field, value)}
+                </div>
+            </div>
+        `;
+    }
+    
+    html += `
+            </div>
+        </div>
+    `;
+    
+    return html;
+}
+
+// Set up event handlers for choice group radio buttons
+function setupChoiceGroupHandlers() {
+    document.querySelectorAll('.choice-group').forEach(group => {
+        const groupName = group.dataset.group;
+        const radios = group.querySelectorAll(`input[name="_choice_${groupName}"]`);
+        
+        radios.forEach(radio => {
+            radio.addEventListener('change', function() {
+                // Hide all choice contents in this group
+                group.querySelectorAll('.choice-content').forEach(content => {
+                    content.style.display = 'none';
+                    // Clear inputs in hidden choices
+                    content.querySelectorAll('input, textarea, select').forEach(input => {
+                        if (input.type === 'checkbox') {
+                            input.checked = false;
+                        } else {
+                            input.value = '';
+                        }
+                    });
+                });
+                
+                // Show selected choice content
+                const selectedContent = group.querySelector(`.choice-content[data-field="${this.value}"]`);
+                if (selectedContent) {
+                    selectedContent.style.display = 'block';
+                }
+            });
+        });
+    });
+}
+
+function renderField(field, value, element) {
+    const required = field.isRequired ? 'required' : '';
+    const requiredMark = field.isRequired ? '<span class="has-text-danger">*</span>' : '';
+    
+    // Handle xs:any - wildcard element content
+    if (field.isAny) {
+        return `
+            <div class="field">
+                <label class="label">
+                    <span class="icon"><i class="fas fa-code"></i></span>
+                    ${field.name} (XML Content) ${requiredMark}
+                </label>
+                <div class="control">
+                    <textarea class="textarea is-family-monospace" name="${field.name}" ${required}
+                        rows="6" placeholder="Enter raw XML content...">${value || ''}</textarea>
+                </div>
+                <p class="help">
+                    <span class="icon"><i class="fas fa-info-circle"></i></span>
+                    This field accepts arbitrary XML content (xs:any wildcard)
+                </p>
+                ${field.documentation ? `<p class="help">${field.documentation}</p>` : ''}
+            </div>
+        `;
+    }
+    
+    // Handle xs:anyAttribute - wildcard attributes
+    if (field.isAnyAttribute) {
+        return `
+            <div class="field">
+                <label class="label">
+                    <span class="icon"><i class="fas fa-tags"></i></span>
+                    ${field.name} (Custom Attributes) ${requiredMark}
+                </label>
+                <div class="control">
+                    <textarea class="textarea is-family-monospace" name="${field.name}" ${required}
+                        rows="3" placeholder='key1="value1" key2="value2"'>${value || ''}</textarea>
+                </div>
+                <p class="help">
+                    <span class="icon"><i class="fas fa-info-circle"></i></span>
+                    Enter custom attributes as key="value" pairs (xs:anyAttribute wildcard)
+                </p>
+                ${field.documentation ? `<p class="help">${field.documentation}</p>` : ''}
+            </div>
+        `;
+    }
+    
+    const inputHtml = renderFieldInput(field, value);
+    
+    return `
+        <div class="field">
+            <label class="label">${field.name} ${requiredMark}</label>
+            <div class="control">
+                ${inputHtml}
+            </div>
+            ${field.documentation ? `<p class="help">${field.documentation}</p>` : ''}
+            ${field.pattern ? `<p class="help">Pattern: ${field.pattern}</p>` : ''}
+        </div>
+    `;
+}
+
+// Render just the input element (for use in choice groups)
+function renderFieldInput(field, value) {
+    const required = field.isRequired ? 'required' : '';
+    
+    if (field.isEnum && field.enumValues) {
+        // Enum - render as select
+        return `<div class="select is-fullwidth">
+            <select name="${field.name}" ${required}>
+                <option value="">-- Select --</option>
+                ${field.enumValues.map(v => `<option value="${v}" ${value === v ? 'selected' : ''}>${v}</option>`).join('')}
+            </select>
+        </div>`;
+    } else if (field.type === 'bool' || field.type === 'boolean') {
+        // Boolean - render as checkbox
+        return `<label class="checkbox">
+            <input type="checkbox" name="${field.name}" ${value ? 'checked' : ''}>
+            ${field.name}
+        </label>`;
+    } else if (field.type === 'text' || field.maxLength > 500) {
+        // Long text - render as textarea
+        return `<textarea class="textarea" name="${field.name}" ${required}
+            ${field.maxLength ? `maxlength="${field.maxLength}"` : ''}
+            ${field.pattern ? `pattern="${field.pattern}"` : ''}>${value}</textarea>`;
+    } else {
+        // Default - render as input
+        const inputType = getInputType(field.type);
+        const isNumeric = inputType === 'number';
+        return `<input class="input" type="${inputType}" name="${field.name}" value="${value}" ${required}
+            ${field.minLength ? `minlength="${field.minLength}"` : ''}
+            ${field.maxLength ? `maxlength="${field.maxLength}"` : ''}
+            ${field.pattern ? `pattern="${field.pattern}"` : ''}
+            ${isNumeric && field.minValue ? `min="${field.minValue}"` : ''}
+            ${isNumeric && field.maxValue ? `max="${field.maxValue}"` : ''}>`;
+    }
+}
+
+function getInputType(fieldType) {
+    switch (fieldType) {
+        case 'int': case 'int8': case 'int16': case 'int32': case 'int64':
+        case 'uint': case 'uint8': case 'uint16': case 'uint32': case 'uint64':
+            return 'number';
+        case 'float32': case 'float64':
+            return 'number';
+        case 'time.Time':
+            return 'datetime-local';
+        default:
+            return 'text';
+    }
+}
+</script>
+
+<!-- Error Modal -->
+<div class="modal" id="error-modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head has-background-danger">
+            <p class="modal-card-title has-text-white">Error</p>
+            <button class="delete" aria-label="close" onclick="document.getElementById('error-modal').classList.remove('is-active')"></button>
+        </header>
+        <section class="modal-card-body">
+            <p id="error-message"></p>
+        </section>
+        <footer class="modal-card-foot">
+            <button class="button" onclick="document.getElementById('error-modal').classList.remove('is-active')">OK</button>
+        </footer>
+    </div>
+</div>
+{{end}}

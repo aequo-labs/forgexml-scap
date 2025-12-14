@@ -1,0 +1,37 @@
+{
+  "module": "github.com/aequo-labs/forgexml-scap",
+  "go_version": "1.24",
+  "output": {
+    "generated": "internal/generated",
+    "validator": "cmd/validator",
+    "ui": "cmd/ui"
+  },
+  "schemas": [
+    {
+      "name": "arf",
+      "path": "schemas/arf",
+      "namespace": "http://scap.nist.gov/schema/asset-reporting-format/1.1"
+    },
+    {
+      "name": "oval",
+      "path": "schemas/oval",
+      "namespace": "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+    },
+    {
+      "name": "xccdf",
+      "path": "schemas/xccdf",
+      "namespace": "http://checklists.nist.gov/xccdf/1.2"
+    },
+    {
+      "name": "cpe-dictionary",
+      "path": "schemas/cpe-dictionary",
+      "namespace": "http://cpe.mitre.org/dictionary/2.0"
+    }
+  ],
+  "options": {
+    "generate_ui": true,
+    "webserver_core_ui_version": "v1.15.2",
+    "generate_validator": true,
+    "include_common": true
+  }
+}

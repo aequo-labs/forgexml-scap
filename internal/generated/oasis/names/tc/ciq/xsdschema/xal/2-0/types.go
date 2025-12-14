@@ -166,33 +166,104 @@ func replicateXmlnsPlacement(xmlOutput string, elementsWithXmlns map[string]stri
 	return result
 }
 
-// PostOfficeElementType represents the XSD type 'PostOfficeElementType'
+// SubPremiseType represents the XSD type 'SubPremiseType'
 // XSD complex type (W3C XSD §3.4)
-type PostOfficeElementType struct {
+type SubPremiseType struct {
 	// AddressLine represents XSD element 'AddressLine'
 	// minOccurs=0, maxOccurs=-1
 	AddressLine []AddressLineElement `xml:"AddressLine,omitempty"`
-	// PostalRoute represents XSD element 'PostalRoute'
+	// SubPremiseName represents XSD element 'SubPremiseName'
+	// minOccurs=0, maxOccurs=-1
+	SubPremiseName []SubPremiseNameElementType `xml:"SubPremiseName,omitempty"`
+	// SubPremiseNumberPrefix represents XSD element 'SubPremiseNumberPrefix'
+	// minOccurs=0, maxOccurs=-1
+	SubPremiseNumberPrefix []SubPremiseNumberPrefixElementType `xml:"SubPremiseNumberPrefix,omitempty"`
+	// SubPremiseNumberSuffix represents XSD element 'SubPremiseNumberSuffix'
+	// minOccurs=0, maxOccurs=-1
+	SubPremiseNumberSuffix []SubPremiseNumberSuffixElementType `xml:"SubPremiseNumberSuffix,omitempty"`
+	// BuildingName represents XSD element 'BuildingName'
+	// minOccurs=0, maxOccurs=-1
+	BuildingName []BuildingNameType `xml:"BuildingName,omitempty"`
+	// Firm represents XSD element 'Firm'
 	// minOccurs=0, maxOccurs=1
-	PostalRoute *PostalRouteType `xml:"PostalRoute,omitempty"`
-	// PostBox represents XSD element 'PostBox'
+	Firm *FirmType `xml:"Firm,omitempty"`
+	// MailStop represents XSD element 'MailStop'
 	// minOccurs=0, maxOccurs=1
-	PostBox *PostBoxElement `xml:"PostBox,omitempty"`
+	MailStop *MailStopType `xml:"MailStop,omitempty"`
 	// PostalCode represents XSD element 'PostalCode'
 	// minOccurs=0, maxOccurs=1
 	PostalCode *PostalCodeElement `xml:"PostalCode,omitempty"`
-	// PostOfficeName represents XSD element 'PostOfficeName'
-	// minOccurs=0, maxOccurs=-1
-	PostOfficeName []PostOfficeNameElementType `xml:"PostOfficeName,omitempty"`
-	// PostOfficeNumber represents XSD element 'PostOfficeNumber'
+	// SubPremise represents XSD element 'SubPremise'
 	// minOccurs=0, maxOccurs=1
-	PostOfficeNumber *PostOfficeNumberElementType `xml:"PostOfficeNumber,omitempty"`
+	SubPremise *SubPremiseType `xml:"SubPremise,omitempty"`
+	// SubPremiseLocation represents XSD element 'SubPremiseLocation'
+	SubPremiseLocation *SubPremiseLocationElementType `xml:"SubPremiseLocation,omitempty"`
+	// SubPremiseNumber represents XSD element 'SubPremiseNumber'
+	// minOccurs=0, maxOccurs=-1
+	SubPremiseNumber []SubPremiseNumberElementType `xml:"SubPremiseNumber,omitempty"`
 	// Type represents XSD attribute 'Type'
 	// use="optional"
 	Type *string `xml:"Type,attr,omitempty"`
-	// Indicator represents XSD attribute 'Indicator'
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// PremiseNumberPrefixElementType represents the XSD type 'PremiseNumberPrefixElementType'
+// XSD complex type (W3C XSD §3.4)
+type PremiseNumberPrefixElementTypeWithAttrs struct {
+	Value string `xml:",chardata"` // XSD simple content
+	// NumberPrefixSeparator represents XSD attribute 'NumberPrefixSeparator'
 	// use="optional"
-	Indicator *string `xml:"Indicator,attr,omitempty"`
+	NumberPrefixSeparator *string `xml:"NumberPrefixSeparator,attr,omitempty"`
+	// Type represents XSD attribute 'Type'
+	// use="optional"
+	Type *string `xml:"Type,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// PremiseNumberPrefixElementType is an alias for PremiseNumberPrefixElementTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
+type PremiseNumberPrefixElementType = PremiseNumberPrefixElementTypeWithAttrs
+
+// PostalCodeElementType represents the XSD type 'PostalCodeElementType'
+// XSD complex type (W3C XSD §3.4)
+type PostalCodeElementType struct {
+	// AddressLine represents XSD element 'AddressLine'
+	// minOccurs=0, maxOccurs=-1
+	AddressLine []AddressLineElement `xml:"AddressLine,omitempty"`
+	// PostalCodeNumber represents XSD element 'PostalCodeNumber'
+	// minOccurs=0, maxOccurs=-1
+	PostalCodeNumber []PostalCodeNumberElementType `xml:"PostalCodeNumber,omitempty"`
+	// PostalCodeNumberExtension represents XSD element 'PostalCodeNumberExtension'
+	// minOccurs=0, maxOccurs=-1
+	PostalCodeNumberExtension []PostalCodeNumberExtensionElementType `xml:"PostalCodeNumberExtension,omitempty"`
+	// PostTown represents XSD element 'PostTown'
+	// minOccurs=0, maxOccurs=1
+	PostTown *PostTownElementType `xml:"PostTown,omitempty"`
+	// Type represents XSD attribute 'Type'
+	// use="optional"
+	Type *string `xml:"Type,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// LargeMailUserNameElementType represents the XSD type 'LargeMailUserNameElementType'
+// XSD complex type (W3C XSD §3.4)
+// mixed="true"
+type LargeMailUserNameElementType struct {
+	// Type represents XSD attribute 'Type'
+	// use="optional"
+	Type *string `xml:"Type,attr,omitempty"`
+	// Code represents XSD attribute 'Code'
+	// use="optional"
+	Code     *string `xml:"Code,attr,omitempty"`
+	InnerXML string  `xml:",innerxml"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -213,10 +284,24 @@ type BarcodeElementType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// AddressElementType represents the XSD type 'AddressElementType'
+// CountryNameCodeElementType represents the XSD type 'CountryNameCodeElementType'
 // XSD complex type (W3C XSD §3.4)
 // mixed="true"
-type AddressElementType struct {
+type CountryNameCodeElementType struct {
+	// Scheme represents XSD attribute 'Scheme'
+	// use="optional"
+	Scheme   *string `xml:"Scheme,attr,omitempty"`
+	InnerXML string  `xml:",innerxml"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// LocalityNameElementType represents the XSD type 'LocalityNameElementType'
+// XSD complex type (W3C XSD §3.4)
+// mixed="true"
+type LocalityNameElementType struct {
 	// Type represents XSD attribute 'Type'
 	// use="optional"
 	Type     *string `xml:"Type,attr,omitempty"`
@@ -260,10 +345,10 @@ type AdministrativeAreaElementType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// AdministrativeAreaNameElementType represents the XSD type 'AdministrativeAreaNameElementType'
+// PostalCodeNumberElementType represents the XSD type 'PostalCodeNumberElementType'
 // XSD complex type (W3C XSD §3.4)
 // mixed="true"
-type AdministrativeAreaNameElementType struct {
+type PostalCodeNumberElementType struct {
 	// Type represents XSD attribute 'Type'
 	// use="optional"
 	Type     *string `xml:"Type,attr,omitempty"`
@@ -274,10 +359,10 @@ type AdministrativeAreaNameElementType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// DepartmentNameElementType represents the XSD type 'DepartmentNameElementType'
+// MailStopNameElementType represents the XSD type 'MailStopNameElementType'
 // XSD complex type (W3C XSD §3.4)
 // mixed="true"
-type DepartmentNameElementType struct {
+type MailStopNameElementType struct {
 	// Type represents XSD attribute 'Type'
 	// use="optional"
 	Type     *string `xml:"Type,attr,omitempty"`
@@ -288,471 +373,17 @@ type DepartmentNameElementType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// AddressIdentifierElementType represents the XSD type 'AddressIdentifierElementType'
+// LargeMailUserIdentifierElementType represents the XSD type 'LargeMailUserIdentifierElementType'
 // XSD complex type (W3C XSD §3.4)
 // mixed="true"
-type AddressIdentifierElementType struct {
-	// IdentifierType represents XSD attribute 'IdentifierType'
-	// use="optional"
-	IdentifierType *string `xml:"IdentifierType,attr,omitempty"`
-	// Type represents XSD attribute 'Type'
-	// use="optional"
-	Type     *string `xml:"Type,attr,omitempty"`
-	InnerXML string  `xml:",innerxml"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// AddressLatitudeElementType represents the XSD type 'AddressLatitudeElementType'
-// XSD complex type (W3C XSD §3.4)
-// mixed="true"
-type AddressLatitudeElementType struct {
-	// Type represents XSD attribute 'Type'
-	// use="optional"
-	Type     *string `xml:"Type,attr,omitempty"`
-	InnerXML string  `xml:",innerxml"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// FirmType represents the XSD type 'FirmType'
-// XSD complex type (W3C XSD §3.4)
-type FirmType struct {
-	// AddressLine represents XSD element 'AddressLine'
-	// minOccurs=0, maxOccurs=-1
-	AddressLine []AddressLineElement `xml:"AddressLine,omitempty"`
-	// FirmName represents XSD element 'FirmName'
-	// minOccurs=0, maxOccurs=-1
-	FirmName []FirmNameElementType `xml:"FirmName,omitempty"`
-	// Department represents XSD element 'Department'
-	// minOccurs=0, maxOccurs=-1
-	Department []DepartmentElement `xml:"Department,omitempty"`
-	// MailStop represents XSD element 'MailStop'
-	// minOccurs=0, maxOccurs=1
-	MailStop *MailStopType `xml:"MailStop,omitempty"`
-	// PostalCode represents XSD element 'PostalCode'
-	// minOccurs=0, maxOccurs=1
-	PostalCode *PostalCodeElement `xml:"PostalCode,omitempty"`
+type LargeMailUserIdentifierElementType struct {
 	// Type represents XSD attribute 'Type'
 	// use="optional"
 	Type *string `xml:"Type,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// ThoroughfarePreDirectionType represents the XSD type 'ThoroughfarePreDirectionType'
-// XSD complex type (W3C XSD §3.4)
-// mixed="true"
-type ThoroughfarePreDirectionType struct {
-	// Type represents XSD attribute 'Type'
-	// use="optional"
-	Type     *string `xml:"Type,attr,omitempty"`
-	InnerXML string  `xml:",innerxml"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// PostTownSuffixElementType represents the XSD type 'PostTownSuffixElementType'
-// XSD complex type (W3C XSD §3.4)
-// mixed="true"
-type PostTownSuffixElementType struct {
-	InnerXML string `xml:",innerxml"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// XALElementType represents the XSD type 'XALElementType'
-// XSD complex type (W3C XSD §3.4)
-type XALElementType struct {
-	// AddressDetails represents XSD element 'AddressDetails'
-	// minOccurs=1, maxOccurs=-1
-	AddressDetails []AddressDetails `xml:"AddressDetails"`
-	// Version represents XSD attribute 'Version'
-	// use="optional"
-	Version *string `xml:"Version,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// CountryElementType represents the XSD type 'CountryElementType'
-// XSD complex type (W3C XSD §3.4)
-type CountryElementType struct {
-	// AddressLine represents XSD element 'AddressLine'
-	// minOccurs=0, maxOccurs=-1
-	AddressLine []AddressLineElement `xml:"AddressLine,omitempty"`
-	// CountryNameCode represents XSD element 'CountryNameCode'
-	// minOccurs=0, maxOccurs=-1
-	CountryNameCode []CountryNameCodeElementType `xml:"CountryNameCode,omitempty"`
-	// CountryName represents XSD element 'CountryName'
-	// minOccurs=0, maxOccurs=-1
-	CountryName []CountryNameElement `xml:"CountryName,omitempty"`
-	// AdministrativeArea represents XSD element 'AdministrativeArea'
-	AdministrativeArea *AdministrativeAreaElement `xml:"AdministrativeArea,omitempty"`
-	// Locality represents XSD element 'Locality'
-	Locality *LocalityElement `xml:"Locality,omitempty"`
-	// Thoroughfare represents XSD element 'Thoroughfare'
-	Thoroughfare *ThoroughfareElement `xml:"Thoroughfare,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// SubPremiseNumberSuffixElementType represents the XSD type 'SubPremiseNumberSuffixElementType'
-// XSD complex type (W3C XSD §3.4)
-// mixed="true"
-type SubPremiseNumberSuffixElementType struct {
-	// NumberSuffixSeparator represents XSD attribute 'NumberSuffixSeparator'
-	// use="optional"
-	NumberSuffixSeparator *string `xml:"NumberSuffixSeparator,attr,omitempty"`
-	// Type represents XSD attribute 'Type'
-	// use="optional"
-	Type     *string `xml:"Type,attr,omitempty"`
-	InnerXML string  `xml:",innerxml"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// PostalRouteType represents the XSD type 'PostalRouteType'
-// XSD complex type (W3C XSD §3.4)
-type PostalRouteType struct {
-	// AddressLine represents XSD element 'AddressLine'
-	// minOccurs=0, maxOccurs=-1
-	AddressLine []AddressLineElement `xml:"AddressLine,omitempty"`
-	// PostBox represents XSD element 'PostBox'
-	// minOccurs=0, maxOccurs=1
-	PostBox *PostBoxElement `xml:"PostBox,omitempty"`
-	// PostalRouteName represents XSD element 'PostalRouteName'
-	// minOccurs=1, maxOccurs=-1
-	PostalRouteName []PostalRouteNameElementType `xml:"PostalRouteName,omitempty"`
-	// PostalRouteNumber represents XSD element 'PostalRouteNumber'
-	PostalRouteNumber *PostalRouteNumberElementType `xml:"PostalRouteNumber,omitempty"`
-	// Type represents XSD attribute 'Type'
-	// use="optional"
-	Type *string `xml:"Type,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// ThoroughfareNumberPrefixElementType represents the XSD type 'ThoroughfareNumberPrefixElementType'
-// XSD complex type (W3C XSD §3.4)
-// mixed="true"
-type ThoroughfareNumberPrefixElementType struct {
-	// NumberPrefixSeparator represents XSD attribute 'NumberPrefixSeparator'
-	// use="optional"
-	NumberPrefixSeparator *string `xml:"NumberPrefixSeparator,attr,omitempty"`
-	// Type represents XSD attribute 'Type'
-	// use="optional"
-	Type     *string `xml:"Type,attr,omitempty"`
-	InnerXML string  `xml:",innerxml"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// PostalCodeNumberExtensionElementType represents the XSD type 'PostalCodeNumberExtensionElementType'
-// XSD complex type (W3C XSD §3.4)
-// mixed="true"
-type PostalCodeNumberExtensionElementType struct {
-	// Type represents XSD attribute 'Type'
-	// use="optional"
-	Type *string `xml:"Type,attr,omitempty"`
-	// NumberExtensionSeparator represents XSD attribute 'NumberExtensionSeparator'
-	// use="optional"
-	NumberExtensionSeparator *string `xml:"NumberExtensionSeparator,attr,omitempty"`
-	InnerXML                 string  `xml:",innerxml"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// AddressLongitudeDirectionElementType represents the XSD type 'AddressLongitudeDirectionElementType'
-// XSD complex type (W3C XSD §3.4)
-// mixed="true"
-type AddressLongitudeDirectionElementType struct {
-	// Type represents XSD attribute 'Type'
-	// use="optional"
-	Type     *string `xml:"Type,attr,omitempty"`
-	InnerXML string  `xml:",innerxml"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// BuildingNameType represents the XSD type 'BuildingNameType'
-// XSD complex type (W3C XSD §3.4)
-// mixed="true"
-type BuildingNameType struct {
-	// Type represents XSD attribute 'Type'
-	// use="optional"
-	Type *string `xml:"Type,attr,omitempty"`
-	// TypeOccurrence represents XSD attribute 'TypeOccurrence'
-	// use="optional"
-	TypeOccurrence *string `xml:"TypeOccurrence,attr,omitempty"`
-	InnerXML       string  `xml:",innerxml"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// PostOfficeNumberElementType represents the XSD type 'PostOfficeNumberElementType'
-// XSD complex type (W3C XSD §3.4)
-// mixed="true"
-type PostOfficeNumberElementType struct {
 	// Indicator represents XSD attribute 'Indicator'
 	// use="optional"
 	Indicator *string `xml:"Indicator,attr,omitempty"`
-	// IndicatorOccurrence represents XSD attribute 'IndicatorOccurrence'
-	// use="optional"
-	IndicatorOccurrence *string `xml:"IndicatorOccurrence,attr,omitempty"`
-	InnerXML            string  `xml:",innerxml"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// PremiseNumberSuffixElementType represents the XSD type 'PremiseNumberSuffixElementType'
-// XSD complex type (W3C XSD §3.4)
-// mixed="true"
-type PremiseNumberSuffixElementType struct {
-	// NumberSuffixSeparator represents XSD attribute 'NumberSuffixSeparator'
-	// use="optional"
-	NumberSuffixSeparator *string `xml:"NumberSuffixSeparator,attr,omitempty"`
-	// Type represents XSD attribute 'Type'
-	// use="optional"
-	Type     *string `xml:"Type,attr,omitempty"`
-	InnerXML string  `xml:",innerxml"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// ThoroughfareLeadingTypeType represents the XSD type 'ThoroughfareLeadingTypeType'
-// XSD complex type (W3C XSD §3.4)
-// mixed="true"
-type ThoroughfareLeadingTypeType struct {
-	// Type represents XSD attribute 'Type'
-	// use="optional"
-	Type     *string `xml:"Type,attr,omitempty"`
-	InnerXML string  `xml:",innerxml"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// ThoroughfareNameType represents the XSD type 'ThoroughfareNameType'
-// XSD complex type (W3C XSD §3.4)
-// mixed="true"
-type ThoroughfareNameType struct {
-	// Type represents XSD attribute 'Type'
-	// use="optional"
-	Type     *string `xml:"Type,attr,omitempty"`
-	InnerXML string  `xml:",innerxml"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// ThoroughfarePostDirectionType represents the XSD type 'ThoroughfarePostDirectionType'
-// XSD complex type (W3C XSD §3.4)
-// mixed="true"
-type ThoroughfarePostDirectionType struct {
-	// Type represents XSD attribute 'Type'
-	// use="optional"
-	Type     *string `xml:"Type,attr,omitempty"`
-	InnerXML string  `xml:",innerxml"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// LargeMailUserNameElementType represents the XSD type 'LargeMailUserNameElementType'
-// XSD complex type (W3C XSD §3.4)
-// mixed="true"
-type LargeMailUserNameElementType struct {
-	// Type represents XSD attribute 'Type'
-	// use="optional"
-	Type *string `xml:"Type,attr,omitempty"`
-	// Code represents XSD attribute 'Code'
-	// use="optional"
-	Code     *string `xml:"Code,attr,omitempty"`
-	InnerXML string  `xml:",innerxml"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// PostalServiceElementsElementType represents the XSD type 'PostalServiceElementsElementType'
-// XSD complex type (W3C XSD §3.4)
-type PostalServiceElementsElementType struct {
-	// AddressIdentifier represents XSD element 'AddressIdentifier'
-	// minOccurs=0, maxOccurs=-1
-	AddressIdentifier []AddressIdentifierElementType `xml:"AddressIdentifier,omitempty"`
-	// EndorsementLineCode represents XSD element 'EndorsementLineCode'
-	// minOccurs=0, maxOccurs=1
-	EndorsementLineCode *EndorsementLineCodeElementType `xml:"EndorsementLineCode,omitempty"`
-	// KeyLineCode represents XSD element 'KeyLineCode'
-	// minOccurs=0, maxOccurs=1
-	KeyLineCode *KeyLineCodeElementType `xml:"KeyLineCode,omitempty"`
-	// Barcode represents XSD element 'Barcode'
-	// minOccurs=0, maxOccurs=1
-	Barcode *BarcodeElementType `xml:"Barcode,omitempty"`
-	// SortingCode represents XSD element 'SortingCode'
-	// minOccurs=0, maxOccurs=1
-	SortingCode *SortingCodeElementType `xml:"SortingCode,omitempty"`
-	// AddressLatitude represents XSD element 'AddressLatitude'
-	// minOccurs=0, maxOccurs=1
-	AddressLatitude *AddressLatitudeElementType `xml:"AddressLatitude,omitempty"`
-	// AddressLatitudeDirection represents XSD element 'AddressLatitudeDirection'
-	// minOccurs=0, maxOccurs=1
-	AddressLatitudeDirection *AddressLatitudeDirectionElementType `xml:"AddressLatitudeDirection,omitempty"`
-	// AddressLongitude represents XSD element 'AddressLongitude'
-	// minOccurs=0, maxOccurs=1
-	AddressLongitude *AddressLongitudeElementType `xml:"AddressLongitude,omitempty"`
-	// AddressLongitudeDirection represents XSD element 'AddressLongitudeDirection'
-	// minOccurs=0, maxOccurs=1
-	AddressLongitudeDirection *AddressLongitudeDirectionElementType `xml:"AddressLongitudeDirection,omitempty"`
-	// SupplementaryPostalServiceData represents XSD element 'SupplementaryPostalServiceData'
-	// minOccurs=0, maxOccurs=-1
-	SupplementaryPostalServiceData []SupplementaryPostalServiceDataElementType `xml:"SupplementaryPostalServiceData,omitempty"`
-	// Type represents XSD attribute 'Type'
-	// use="optional"
-	Type *string `xml:"Type,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// SortingCodeElementType represents the XSD type 'SortingCodeElementType'
-// XSD complex type (W3C XSD §3.4)
-type SortingCodeElementType struct {
-	// Type represents XSD attribute 'Type'
-	// use="optional"
-	Type *string `xml:"Type,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// SupplementaryPostalServiceDataElementType represents the XSD type 'SupplementaryPostalServiceDataElementType'
-// XSD complex type (W3C XSD §3.4)
-// mixed="true"
-type SupplementaryPostalServiceDataElementType struct {
-	// Type represents XSD attribute 'Type'
-	// use="optional"
-	Type     *string `xml:"Type,attr,omitempty"`
-	InnerXML string  `xml:",innerxml"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// PostBoxNumberSuffixElementType represents the XSD type 'PostBoxNumberSuffixElementType'
-// XSD complex type (W3C XSD §3.4)
-// mixed="true"
-type PostBoxNumberSuffixElementType struct {
-	// NumberSuffixSeparator represents XSD attribute 'NumberSuffixSeparator'
-	// use="optional"
-	NumberSuffixSeparator *string `xml:"NumberSuffixSeparator,attr,omitempty"`
-	InnerXML              string  `xml:",innerxml"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// SubAdministrativeAreaNameElementType represents the XSD type 'SubAdministrativeAreaNameElementType'
-// XSD complex type (W3C XSD §3.4)
-// mixed="true"
-type SubAdministrativeAreaNameElementType struct {
-	// Type represents XSD attribute 'Type'
-	// use="optional"
-	Type     *string `xml:"Type,attr,omitempty"`
-	InnerXML string  `xml:",innerxml"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// PostTownElementType represents the XSD type 'PostTownElementType'
-// XSD complex type (W3C XSD §3.4)
-type PostTownElementType struct {
-	// AddressLine represents XSD element 'AddressLine'
-	// minOccurs=0, maxOccurs=-1
-	AddressLine []AddressLineElement `xml:"AddressLine,omitempty"`
-	// PostTownName represents XSD element 'PostTownName'
-	// minOccurs=0, maxOccurs=-1
-	PostTownName []PostTownNameElementType `xml:"PostTownName,omitempty"`
-	// PostTownSuffix represents XSD element 'PostTownSuffix'
-	// minOccurs=0, maxOccurs=1
-	PostTownSuffix *PostTownSuffixElementType `xml:"PostTownSuffix,omitempty"`
-	// Type represents XSD attribute 'Type'
-	// use="optional"
-	Type *string `xml:"Type,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// ThoroughfareNumberRangeElementType represents the XSD type 'ThoroughfareNumberRangeElementType'
-// XSD complex type (W3C XSD §3.4)
-type ThoroughfareNumberRangeElementType struct {
-	// AddressLine represents XSD element 'AddressLine'
-	// minOccurs=0, maxOccurs=-1
-	AddressLine []AddressLineElement `xml:"AddressLine,omitempty"`
-	// ThoroughfareNumberFrom represents XSD element 'ThoroughfareNumberFrom'
-	ThoroughfareNumberFrom ThoroughfareNumberFromElementType `xml:"ThoroughfareNumberFrom"`
-	// ThoroughfareNumberTo represents XSD element 'ThoroughfareNumberTo'
-	ThoroughfareNumberTo ThoroughfareNumberToElementType `xml:"ThoroughfareNumberTo"`
-	// RangeType represents XSD attribute 'RangeType'
-	// use="optional"
-	RangeType *string `xml:"RangeType,attr,omitempty"`
-	// Indicator represents XSD attribute 'Indicator'
-	// use="optional"
-	Indicator *string `xml:"Indicator,attr,omitempty"`
-	// Separator represents XSD attribute 'Separator'
-	// use="optional"
-	Separator *string `xml:"Separator,attr,omitempty"`
-	// IndicatorOccurrence represents XSD attribute 'IndicatorOccurrence'
-	// use="optional"
-	IndicatorOccurrence *string `xml:"IndicatorOccurrence,attr,omitempty"`
-	// NumberRangeOccurrence represents XSD attribute 'NumberRangeOccurrence'
-	// use="optional"
-	NumberRangeOccurrence *string `xml:"NumberRangeOccurrence,attr,omitempty"`
-	// Type represents XSD attribute 'Type'
-	// use="optional"
-	Type *string `xml:"Type,attr,omitempty"`
+	InnerXML  string  `xml:",innerxml"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -801,73 +432,30 @@ type AddressDetails struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// PostBoxNumberElementType represents the XSD type 'PostBoxNumberElementType'
+// PostOfficeElementType represents the XSD type 'PostOfficeElementType'
 // XSD complex type (W3C XSD §3.4)
-// mixed="true"
-type PostBoxNumberElementType struct {
-	InnerXML string `xml:",innerxml"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// PremiseNumberRangeFromElementType represents the XSD type 'PremiseNumberRangeFromElementType'
-// XSD complex type (W3C XSD §3.4)
-type PremiseNumberRangeFromElementType struct {
+type PostOfficeElementType struct {
 	// AddressLine represents XSD element 'AddressLine'
 	// minOccurs=0, maxOccurs=-1
 	AddressLine []AddressLineElement `xml:"AddressLine,omitempty"`
-	// PremiseNumberPrefix represents XSD element 'PremiseNumberPrefix'
-	// minOccurs=0, maxOccurs=-1
-	PremiseNumberPrefix []PremiseNumberPrefixElement `xml:"PremiseNumberPrefix,omitempty"`
-	// PremiseNumber represents XSD element 'PremiseNumber'
-	// minOccurs=1, maxOccurs=-1
-	PremiseNumber []PremiseNumberElement `xml:"PremiseNumber"`
-	// PremiseNumberSuffix represents XSD element 'PremiseNumberSuffix'
-	// minOccurs=0, maxOccurs=-1
-	PremiseNumberSuffix []PremiseNumberSuffixElement `xml:"PremiseNumberSuffix,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// LocalityElementType represents the XSD type 'LocalityElementType'
-// XSD complex type (W3C XSD §3.4)
-type LocalityElementType struct {
-	// AddressLine represents XSD element 'AddressLine'
-	// minOccurs=0, maxOccurs=-1
-	AddressLine []AddressLineElement `xml:"AddressLine,omitempty"`
-	// LocalityName represents XSD element 'LocalityName'
-	// minOccurs=0, maxOccurs=-1
-	LocalityName []LocalityNameElementType `xml:"LocalityName,omitempty"`
-	// Thoroughfare represents XSD element 'Thoroughfare'
+	// PostalRoute represents XSD element 'PostalRoute'
 	// minOccurs=0, maxOccurs=1
-	Thoroughfare *ThoroughfareElement `xml:"Thoroughfare,omitempty"`
-	// Premise represents XSD element 'Premise'
+	PostalRoute *PostalRouteType `xml:"PostalRoute,omitempty"`
+	// PostBox represents XSD element 'PostBox'
 	// minOccurs=0, maxOccurs=1
-	Premise *PremiseElement `xml:"Premise,omitempty"`
-	// DependentLocality represents XSD element 'DependentLocality'
-	// minOccurs=0, maxOccurs=1
-	DependentLocality *DependentLocalityType `xml:"DependentLocality,omitempty"`
+	PostBox *PostBoxElement `xml:"PostBox,omitempty"`
 	// PostalCode represents XSD element 'PostalCode'
 	// minOccurs=0, maxOccurs=1
 	PostalCode *PostalCodeElement `xml:"PostalCode,omitempty"`
-	// PostBox represents XSD element 'PostBox'
-	PostBox *PostBoxElement `xml:"PostBox,omitempty"`
-	// LargeMailUser represents XSD element 'LargeMailUser'
-	LargeMailUser *LargeMailUserType `xml:"LargeMailUser,omitempty"`
-	// PostOffice represents XSD element 'PostOffice'
-	PostOffice *PostOfficeElement `xml:"PostOffice,omitempty"`
-	// PostalRoute represents XSD element 'PostalRoute'
-	PostalRoute *PostalRouteType `xml:"PostalRoute,omitempty"`
+	// PostOfficeName represents XSD element 'PostOfficeName'
+	// minOccurs=0, maxOccurs=-1
+	PostOfficeName []PostOfficeNameElementType `xml:"PostOfficeName,omitempty"`
+	// PostOfficeNumber represents XSD element 'PostOfficeNumber'
+	// minOccurs=0, maxOccurs=1
+	PostOfficeNumber *PostOfficeNumberElementType `xml:"PostOfficeNumber,omitempty"`
 	// Type represents XSD attribute 'Type'
 	// use="optional"
 	Type *string `xml:"Type,attr,omitempty"`
-	// UsageType represents XSD attribute 'UsageType'
-	// use="optional"
-	UsageType *string `xml:"UsageType,attr,omitempty"`
 	// Indicator represents XSD attribute 'Indicator'
 	// use="optional"
 	Indicator *string `xml:"Indicator,attr,omitempty"`
@@ -877,13 +465,10 @@ type LocalityElementType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// ThoroughfareNumberSuffixElementType represents the XSD type 'ThoroughfareNumberSuffixElementType'
+// PostOfficeNameElementType represents the XSD type 'PostOfficeNameElementType'
 // XSD complex type (W3C XSD §3.4)
 // mixed="true"
-type ThoroughfareNumberSuffixElementType struct {
-	// NumberSuffixSeparator represents XSD attribute 'NumberSuffixSeparator'
-	// use="optional"
-	NumberSuffixSeparator *string `xml:"NumberSuffixSeparator,attr,omitempty"`
+type PostOfficeNameElementType struct {
 	// Type represents XSD attribute 'Type'
 	// use="optional"
 	Type     *string `xml:"Type,attr,omitempty"`
@@ -894,14 +479,56 @@ type ThoroughfareNumberSuffixElementType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// AddressLineElementType represents the XSD type 'AddressLineElementType'
+// DepartmentElementType represents the XSD type 'DepartmentElementType'
 // XSD complex type (W3C XSD §3.4)
-// mixed="true"
-type AddressLineElementType struct {
+type DepartmentElementType struct {
+	// AddressLine represents XSD element 'AddressLine'
+	// minOccurs=0, maxOccurs=-1
+	AddressLine []AddressLineElement `xml:"AddressLine,omitempty"`
+	// DepartmentName represents XSD element 'DepartmentName'
+	// minOccurs=0, maxOccurs=-1
+	DepartmentName []DepartmentNameElementType `xml:"DepartmentName,omitempty"`
+	// MailStop represents XSD element 'MailStop'
+	// minOccurs=0, maxOccurs=1
+	MailStop *MailStopType `xml:"MailStop,omitempty"`
+	// PostalCode represents XSD element 'PostalCode'
+	// minOccurs=0, maxOccurs=1
+	PostalCode *PostalCodeElement `xml:"PostalCode,omitempty"`
 	// Type represents XSD attribute 'Type'
 	// use="optional"
-	Type     *string `xml:"Type,attr,omitempty"`
-	InnerXML string  `xml:",innerxml"`
+	Type *string `xml:"Type,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// PostTownElementType represents the XSD type 'PostTownElementType'
+// XSD complex type (W3C XSD §3.4)
+type PostTownElementType struct {
+	// AddressLine represents XSD element 'AddressLine'
+	// minOccurs=0, maxOccurs=-1
+	AddressLine []AddressLineElement `xml:"AddressLine,omitempty"`
+	// PostTownName represents XSD element 'PostTownName'
+	// minOccurs=0, maxOccurs=-1
+	PostTownName []PostTownNameElementType `xml:"PostTownName,omitempty"`
+	// PostTownSuffix represents XSD element 'PostTownSuffix'
+	// minOccurs=0, maxOccurs=1
+	PostTownSuffix *PostTownSuffixElementType `xml:"PostTownSuffix,omitempty"`
+	// Type represents XSD attribute 'Type'
+	// use="optional"
+	Type *string `xml:"Type,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// PostTownSuffixElementType represents the XSD type 'PostTownSuffixElementType'
+// XSD complex type (W3C XSD §3.4)
+// mixed="true"
+type PostTownSuffixElementType struct {
+	InnerXML string `xml:",innerxml"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -916,6 +543,233 @@ type MailStopNumberElementType struct {
 	// use="optional"
 	NameNumberSeparator *string `xml:"NameNumberSeparator,attr,omitempty"`
 	InnerXML            string  `xml:",innerxml"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// SubPremiseLocationElementType represents the XSD type 'SubPremiseLocationElementType'
+// XSD complex type (W3C XSD §3.4)
+// mixed="true"
+type SubPremiseLocationElementType struct {
+	InnerXML string `xml:",innerxml"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// BuildingNameType represents the XSD type 'BuildingNameType'
+// XSD complex type (W3C XSD §3.4)
+// mixed="true"
+type BuildingNameType struct {
+	// Type represents XSD attribute 'Type'
+	// use="optional"
+	Type *string `xml:"Type,attr,omitempty"`
+	// TypeOccurrence represents XSD attribute 'TypeOccurrence'
+	// use="optional"
+	TypeOccurrence *string `xml:"TypeOccurrence,attr,omitempty"`
+	InnerXML       string  `xml:",innerxml"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// PostBoxNumberSuffixElementType represents the XSD type 'PostBoxNumberSuffixElementType'
+// XSD complex type (W3C XSD §3.4)
+// mixed="true"
+type PostBoxNumberSuffixElementType struct {
+	// NumberSuffixSeparator represents XSD attribute 'NumberSuffixSeparator'
+	// use="optional"
+	NumberSuffixSeparator *string `xml:"NumberSuffixSeparator,attr,omitempty"`
+	InnerXML              string  `xml:",innerxml"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// PostalCodeNumberExtensionElementType represents the XSD type 'PostalCodeNumberExtensionElementType'
+// XSD complex type (W3C XSD §3.4)
+// mixed="true"
+type PostalCodeNumberExtensionElementType struct {
+	// Type represents XSD attribute 'Type'
+	// use="optional"
+	Type *string `xml:"Type,attr,omitempty"`
+	// NumberExtensionSeparator represents XSD attribute 'NumberExtensionSeparator'
+	// use="optional"
+	NumberExtensionSeparator *string `xml:"NumberExtensionSeparator,attr,omitempty"`
+	InnerXML                 string  `xml:",innerxml"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// AddressLongitudeElementType represents the XSD type 'AddressLongitudeElementType'
+// XSD complex type (W3C XSD §3.4)
+// mixed="true"
+type AddressLongitudeElementType struct {
+	// Type represents XSD attribute 'Type'
+	// use="optional"
+	Type     *string `xml:"Type,attr,omitempty"`
+	InnerXML string  `xml:",innerxml"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// ThoroughfareNumberToElementType represents the XSD type 'ThoroughfareNumberToElementType'
+// XSD complex type (W3C XSD §3.4)
+// mixed="true"
+type ThoroughfareNumberToElementType struct {
+	// AddressLine represents XSD element 'AddressLine'
+	// minOccurs=0, maxOccurs=-1
+	AddressLine []AddressLineElement `xml:"AddressLine,omitempty"`
+	// ThoroughfareNumberPrefix represents XSD element 'ThoroughfareNumberPrefix'
+	// minOccurs=0, maxOccurs=-1
+	ThoroughfareNumberPrefix []ThoroughfareNumberPrefixElement `xml:"ThoroughfareNumberPrefix,omitempty"`
+	// ThoroughfareNumber represents XSD element 'ThoroughfareNumber'
+	// minOccurs=1, maxOccurs=-1
+	ThoroughfareNumber []ThoroughfareNumberElement `xml:"ThoroughfareNumber"`
+	// ThoroughfareNumberSuffix represents XSD element 'ThoroughfareNumberSuffix'
+	// minOccurs=0, maxOccurs=-1
+	ThoroughfareNumberSuffix []ThoroughfareNumberSuffixElement `xml:"ThoroughfareNumberSuffix,omitempty"`
+	Value                    string                            `xml:",chardata"` // XSD mixed content
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// PremiseNumberElementType represents the XSD type 'PremiseNumberElementType'
+// XSD complex type (W3C XSD §3.4)
+// mixed="true"
+type PremiseNumberElementType struct {
+	// NumberType represents XSD attribute 'NumberType'
+	// use="optional"
+	NumberType *string `xml:"NumberType,attr,omitempty"`
+	// Type represents XSD attribute 'Type'
+	// use="optional"
+	Type *string `xml:"Type,attr,omitempty"`
+	// Indicator represents XSD attribute 'Indicator'
+	// use="optional"
+	Indicator *string `xml:"Indicator,attr,omitempty"`
+	// IndicatorOccurrence represents XSD attribute 'IndicatorOccurrence'
+	// use="optional"
+	IndicatorOccurrence *string `xml:"IndicatorOccurrence,attr,omitempty"`
+	// NumberTypeOccurrence represents XSD attribute 'NumberTypeOccurrence'
+	// use="optional"
+	NumberTypeOccurrence *string `xml:"NumberTypeOccurrence,attr,omitempty"`
+	InnerXML             string  `xml:",innerxml"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// PremiseNumberRangeElementType represents the XSD type 'PremiseNumberRangeElementType'
+// XSD complex type (W3C XSD §3.4)
+type PremiseNumberRangeElementType struct {
+	// PremiseNumberRangeFrom represents XSD element 'PremiseNumberRangeFrom'
+	PremiseNumberRangeFrom PremiseNumberRangeFromElementType `xml:"PremiseNumberRangeFrom"`
+	// PremiseNumberRangeTo represents XSD element 'PremiseNumberRangeTo'
+	PremiseNumberRangeTo PremiseNumberRangeToElementType `xml:"PremiseNumberRangeTo"`
+	// RangeType represents XSD attribute 'RangeType'
+	// use="optional"
+	RangeType *string `xml:"RangeType,attr,omitempty"`
+	// Indicator represents XSD attribute 'Indicator'
+	// use="optional"
+	Indicator *string `xml:"Indicator,attr,omitempty"`
+	// Separator represents XSD attribute 'Separator'
+	// use="optional"
+	Separator *string `xml:"Separator,attr,omitempty"`
+	// Type represents XSD attribute 'Type'
+	// use="optional"
+	Type *string `xml:"Type,attr,omitempty"`
+	// IndicatorOccurence represents XSD attribute 'IndicatorOccurence'
+	// use="optional"
+	IndicatorOccurence *string `xml:"IndicatorOccurence,attr,omitempty"`
+	// NumberRangeOccurence represents XSD attribute 'NumberRangeOccurence'
+	// use="optional"
+	NumberRangeOccurence *string `xml:"NumberRangeOccurence,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// ThoroughfareNumberElementType represents the XSD type 'ThoroughfareNumberElementType'
+// XSD complex type (W3C XSD §3.4)
+// mixed="true"
+type ThoroughfareNumberElementType struct {
+	// NumberType represents XSD attribute 'NumberType'
+	// use="optional"
+	NumberType *string `xml:"NumberType,attr,omitempty"`
+	// Type represents XSD attribute 'Type'
+	// use="optional"
+	Type *string `xml:"Type,attr,omitempty"`
+	// Indicator represents XSD attribute 'Indicator'
+	// use="optional"
+	Indicator *string `xml:"Indicator,attr,omitempty"`
+	// IndicatorOccurrence represents XSD attribute 'IndicatorOccurrence'
+	// use="optional"
+	IndicatorOccurrence *string `xml:"IndicatorOccurrence,attr,omitempty"`
+	// NumberOccurrence represents XSD attribute 'NumberOccurrence'
+	// use="optional"
+	NumberOccurrence *string `xml:"NumberOccurrence,attr,omitempty"`
+	InnerXML         string  `xml:",innerxml"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// ThoroughfarePreDirectionType represents the XSD type 'ThoroughfarePreDirectionType'
+// XSD complex type (W3C XSD §3.4)
+// mixed="true"
+type ThoroughfarePreDirectionType struct {
+	// Type represents XSD attribute 'Type'
+	// use="optional"
+	Type     *string `xml:"Type,attr,omitempty"`
+	InnerXML string  `xml:",innerxml"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// ThoroughfareNumberPrefixElementType represents the XSD type 'ThoroughfareNumberPrefixElementType'
+// XSD complex type (W3C XSD §3.4)
+// mixed="true"
+type ThoroughfareNumberPrefixElementType struct {
+	// NumberPrefixSeparator represents XSD attribute 'NumberPrefixSeparator'
+	// use="optional"
+	NumberPrefixSeparator *string `xml:"NumberPrefixSeparator,attr,omitempty"`
+	// Type represents XSD attribute 'Type'
+	// use="optional"
+	Type     *string `xml:"Type,attr,omitempty"`
+	InnerXML string  `xml:",innerxml"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// PremiseNameElementType represents the XSD type 'PremiseNameElementType'
+// XSD complex type (W3C XSD §3.4)
+// mixed="true"
+type PremiseNameElementType struct {
+	// Type represents XSD attribute 'Type'
+	// use="optional"
+	Type *string `xml:"Type,attr,omitempty"`
+	// TypeOccurrence represents XSD attribute 'TypeOccurrence'
+	// use="optional"
+	TypeOccurrence *string `xml:"TypeOccurrence,attr,omitempty"`
+	InnerXML       string  `xml:",innerxml"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -948,10 +802,115 @@ type SubPremiseNumberElementType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// PostOfficeNameElementType represents the XSD type 'PostOfficeNameElementType'
+// AddressLatitudeElementType represents the XSD type 'AddressLatitudeElementType'
 // XSD complex type (W3C XSD §3.4)
 // mixed="true"
-type PostOfficeNameElementType struct {
+type AddressLatitudeElementType struct {
+	// Type represents XSD attribute 'Type'
+	// use="optional"
+	Type     *string `xml:"Type,attr,omitempty"`
+	InnerXML string  `xml:",innerxml"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// DepartmentNameElementType represents the XSD type 'DepartmentNameElementType'
+// XSD complex type (W3C XSD §3.4)
+// mixed="true"
+type DepartmentNameElementType struct {
+	// Type represents XSD attribute 'Type'
+	// use="optional"
+	Type     *string `xml:"Type,attr,omitempty"`
+	InnerXML string  `xml:",innerxml"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// PostBoxNumberElementType represents the XSD type 'PostBoxNumberElementType'
+// XSD complex type (W3C XSD §3.4)
+// mixed="true"
+type PostBoxNumberElementType struct {
+	InnerXML string `xml:",innerxml"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// PremiseLocationElementType represents the XSD type 'PremiseLocationElementType'
+// XSD complex type (W3C XSD §3.4)
+// mixed="true"
+type PremiseLocationElementType struct {
+	InnerXML string `xml:",innerxml"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// PremiseNumberRangeToElementType represents the XSD type 'PremiseNumberRangeToElementType'
+// XSD complex type (W3C XSD §3.4)
+type PremiseNumberRangeToElementType struct {
+	// AddressLine represents XSD element 'AddressLine'
+	// minOccurs=0, maxOccurs=-1
+	AddressLine []AddressLineElement `xml:"AddressLine,omitempty"`
+	// PremiseNumberPrefix represents XSD element 'PremiseNumberPrefix'
+	// minOccurs=0, maxOccurs=-1
+	PremiseNumberPrefix []PremiseNumberPrefixElement `xml:"PremiseNumberPrefix,omitempty"`
+	// PremiseNumber represents XSD element 'PremiseNumber'
+	// minOccurs=1, maxOccurs=-1
+	PremiseNumber []PremiseNumberElement `xml:"PremiseNumber"`
+	// PremiseNumberSuffix represents XSD element 'PremiseNumberSuffix'
+	// minOccurs=0, maxOccurs=-1
+	PremiseNumberSuffix []PremiseNumberSuffixElement `xml:"PremiseNumberSuffix,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// SubPremiseNumberPrefixElementType represents the XSD type 'SubPremiseNumberPrefixElementType'
+// XSD complex type (W3C XSD §3.4)
+// mixed="true"
+type SubPremiseNumberPrefixElementType struct {
+	// NumberPrefixSeparator represents XSD attribute 'NumberPrefixSeparator'
+	// use="optional"
+	NumberPrefixSeparator *string `xml:"NumberPrefixSeparator,attr,omitempty"`
+	// Type represents XSD attribute 'Type'
+	// use="optional"
+	Type     *string `xml:"Type,attr,omitempty"`
+	InnerXML string  `xml:",innerxml"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// AddressLongitudeDirectionElementType represents the XSD type 'AddressLongitudeDirectionElementType'
+// XSD complex type (W3C XSD §3.4)
+// mixed="true"
+type AddressLongitudeDirectionElementType struct {
+	// Type represents XSD attribute 'Type'
+	// use="optional"
+	Type     *string `xml:"Type,attr,omitempty"`
+	InnerXML string  `xml:",innerxml"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// ThoroughfareNumberSuffixElementType represents the XSD type 'ThoroughfareNumberSuffixElementType'
+// XSD complex type (W3C XSD §3.4)
+// mixed="true"
+type ThoroughfareNumberSuffixElementType struct {
+	// NumberSuffixSeparator represents XSD attribute 'NumberSuffixSeparator'
+	// use="optional"
+	NumberSuffixSeparator *string `xml:"NumberSuffixSeparator,attr,omitempty"`
 	// Type represents XSD attribute 'Type'
 	// use="optional"
 	Type     *string `xml:"Type,attr,omitempty"`
@@ -1020,10 +979,31 @@ type PremiseElementType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// CountryNameElementType represents the XSD type 'CountryNameElementType'
+// PremiseNumberRangeFromElementType represents the XSD type 'PremiseNumberRangeFromElementType'
+// XSD complex type (W3C XSD §3.4)
+type PremiseNumberRangeFromElementType struct {
+	// AddressLine represents XSD element 'AddressLine'
+	// minOccurs=0, maxOccurs=-1
+	AddressLine []AddressLineElement `xml:"AddressLine,omitempty"`
+	// PremiseNumberPrefix represents XSD element 'PremiseNumberPrefix'
+	// minOccurs=0, maxOccurs=-1
+	PremiseNumberPrefix []PremiseNumberPrefixElement `xml:"PremiseNumberPrefix,omitempty"`
+	// PremiseNumber represents XSD element 'PremiseNumber'
+	// minOccurs=1, maxOccurs=-1
+	PremiseNumber []PremiseNumberElement `xml:"PremiseNumber"`
+	// PremiseNumberSuffix represents XSD element 'PremiseNumberSuffix'
+	// minOccurs=0, maxOccurs=-1
+	PremiseNumberSuffix []PremiseNumberSuffixElement `xml:"PremiseNumberSuffix,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// KeyLineCodeElementType represents the XSD type 'KeyLineCodeElementType'
 // XSD complex type (W3C XSD §3.4)
 // mixed="true"
-type CountryNameElementType struct {
+type KeyLineCodeElementType struct {
 	// Type represents XSD attribute 'Type'
 	// use="optional"
 	Type     *string `xml:"Type,attr,omitempty"`
@@ -1034,34 +1014,10 @@ type CountryNameElementType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// DepartmentElementType represents the XSD type 'DepartmentElementType'
-// XSD complex type (W3C XSD §3.4)
-type DepartmentElementType struct {
-	// AddressLine represents XSD element 'AddressLine'
-	// minOccurs=0, maxOccurs=-1
-	AddressLine []AddressLineElement `xml:"AddressLine,omitempty"`
-	// DepartmentName represents XSD element 'DepartmentName'
-	// minOccurs=0, maxOccurs=-1
-	DepartmentName []DepartmentNameElementType `xml:"DepartmentName,omitempty"`
-	// MailStop represents XSD element 'MailStop'
-	// minOccurs=0, maxOccurs=1
-	MailStop *MailStopType `xml:"MailStop,omitempty"`
-	// PostalCode represents XSD element 'PostalCode'
-	// minOccurs=0, maxOccurs=1
-	PostalCode *PostalCodeElement `xml:"PostalCode,omitempty"`
-	// Type represents XSD attribute 'Type'
-	// use="optional"
-	Type *string `xml:"Type,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// ThoroughfareTrailingTypeType represents the XSD type 'ThoroughfareTrailingTypeType'
+// PostalRouteNameElementType represents the XSD type 'PostalRouteNameElementType'
 // XSD complex type (W3C XSD §3.4)
 // mixed="true"
-type ThoroughfareTrailingTypeType struct {
+type PostalRouteNameElementType struct {
 	// Type represents XSD attribute 'Type'
 	// use="optional"
 	Type     *string `xml:"Type,attr,omitempty"`
@@ -1072,89 +1028,11 @@ type ThoroughfareTrailingTypeType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// SubPremiseType represents the XSD type 'SubPremiseType'
-// XSD complex type (W3C XSD §3.4)
-type SubPremiseType struct {
-	// AddressLine represents XSD element 'AddressLine'
-	// minOccurs=0, maxOccurs=-1
-	AddressLine []AddressLineElement `xml:"AddressLine,omitempty"`
-	// SubPremiseName represents XSD element 'SubPremiseName'
-	// minOccurs=0, maxOccurs=-1
-	SubPremiseName []SubPremiseNameElementType `xml:"SubPremiseName,omitempty"`
-	// SubPremiseNumberPrefix represents XSD element 'SubPremiseNumberPrefix'
-	// minOccurs=0, maxOccurs=-1
-	SubPremiseNumberPrefix []SubPremiseNumberPrefixElementType `xml:"SubPremiseNumberPrefix,omitempty"`
-	// SubPremiseNumberSuffix represents XSD element 'SubPremiseNumberSuffix'
-	// minOccurs=0, maxOccurs=-1
-	SubPremiseNumberSuffix []SubPremiseNumberSuffixElementType `xml:"SubPremiseNumberSuffix,omitempty"`
-	// BuildingName represents XSD element 'BuildingName'
-	// minOccurs=0, maxOccurs=-1
-	BuildingName []BuildingNameType `xml:"BuildingName,omitempty"`
-	// Firm represents XSD element 'Firm'
-	// minOccurs=0, maxOccurs=1
-	Firm *FirmType `xml:"Firm,omitempty"`
-	// MailStop represents XSD element 'MailStop'
-	// minOccurs=0, maxOccurs=1
-	MailStop *MailStopType `xml:"MailStop,omitempty"`
-	// PostalCode represents XSD element 'PostalCode'
-	// minOccurs=0, maxOccurs=1
-	PostalCode *PostalCodeElement `xml:"PostalCode,omitempty"`
-	// SubPremise represents XSD element 'SubPremise'
-	// minOccurs=0, maxOccurs=1
-	SubPremise *SubPremiseType `xml:"SubPremise,omitempty"`
-	// SubPremiseLocation represents XSD element 'SubPremiseLocation'
-	SubPremiseLocation *SubPremiseLocationElementType `xml:"SubPremiseLocation,omitempty"`
-	// SubPremiseNumber represents XSD element 'SubPremiseNumber'
-	// minOccurs=0, maxOccurs=-1
-	SubPremiseNumber []SubPremiseNumberElementType `xml:"SubPremiseNumber,omitempty"`
-	// Type represents XSD attribute 'Type'
-	// use="optional"
-	Type *string `xml:"Type,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// PostBoxNumberPrefixElementType represents the XSD type 'PostBoxNumberPrefixElementType'
+// PostalRouteNumberElementType represents the XSD type 'PostalRouteNumberElementType'
 // XSD complex type (W3C XSD §3.4)
 // mixed="true"
-type PostBoxNumberPrefixElementType struct {
-	// NumberPrefixSeparator represents XSD attribute 'NumberPrefixSeparator'
-	// use="optional"
-	NumberPrefixSeparator *string `xml:"NumberPrefixSeparator,attr,omitempty"`
-	InnerXML              string  `xml:",innerxml"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// PostBoxNumberExtensionElementType represents the XSD type 'PostBoxNumberExtensionElementType'
-// XSD complex type (W3C XSD §3.4)
-// mixed="true"
-type PostBoxNumberExtensionElementType struct {
-	// NumberExtensionSeparator represents XSD attribute 'NumberExtensionSeparator'
-	// use="optional"
-	NumberExtensionSeparator *string `xml:"NumberExtensionSeparator,attr,omitempty"`
-	InnerXML                 string  `xml:",innerxml"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// PremiseNameElementType represents the XSD type 'PremiseNameElementType'
-// XSD complex type (W3C XSD §3.4)
-// mixed="true"
-type PremiseNameElementType struct {
-	// Type represents XSD attribute 'Type'
-	// use="optional"
-	Type *string `xml:"Type,attr,omitempty"`
-	// TypeOccurrence represents XSD attribute 'TypeOccurrence'
-	// use="optional"
-	TypeOccurrence *string `xml:"TypeOccurrence,attr,omitempty"`
-	InnerXML       string  `xml:",innerxml"`
+type PostalRouteNumberElementType struct {
+	InnerXML string `xml:",innerxml"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -1175,169 +1053,12 @@ type DependentLocalityNameElementType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// AddressLongitudeElementType represents the XSD type 'AddressLongitudeElementType'
-// XSD complex type (W3C XSD §3.4)
-// mixed="true"
-type AddressLongitudeElementType struct {
-	// Type represents XSD attribute 'Type'
-	// use="optional"
-	Type     *string `xml:"Type,attr,omitempty"`
-	InnerXML string  `xml:",innerxml"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// SubPremiseNameElementType represents the XSD type 'SubPremiseNameElementType'
-// XSD complex type (W3C XSD §3.4)
-// mixed="true"
-type SubPremiseNameElementType struct {
-	// Type represents XSD attribute 'Type'
-	// use="optional"
-	Type *string `xml:"Type,attr,omitempty"`
-	// TypeOccurrence represents XSD attribute 'TypeOccurrence'
-	// use="optional"
-	TypeOccurrence *string `xml:"TypeOccurrence,attr,omitempty"`
-	InnerXML       string  `xml:",innerxml"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
 // AddressLinesType represents the XSD type 'AddressLinesType'
 // XSD complex type (W3C XSD §3.4)
 type AddressLinesType struct {
 	// AddressLine represents XSD element 'AddressLine'
 	// minOccurs=1, maxOccurs=-1
 	AddressLine []AddressLineElement `xml:"AddressLine"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// PremiseLocationElementType represents the XSD type 'PremiseLocationElementType'
-// XSD complex type (W3C XSD §3.4)
-// mixed="true"
-type PremiseLocationElementType struct {
-	InnerXML string `xml:",innerxml"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// PostalCodeNumberElementType represents the XSD type 'PostalCodeNumberElementType'
-// XSD complex type (W3C XSD §3.4)
-// mixed="true"
-type PostalCodeNumberElementType struct {
-	// Type represents XSD attribute 'Type'
-	// use="optional"
-	Type     *string `xml:"Type,attr,omitempty"`
-	InnerXML string  `xml:",innerxml"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// ThoroughfareNumberFromElementType represents the XSD type 'ThoroughfareNumberFromElementType'
-// XSD complex type (W3C XSD §3.4)
-// mixed="true"
-type ThoroughfareNumberFromElementType struct {
-	// AddressLine represents XSD element 'AddressLine'
-	// minOccurs=0, maxOccurs=-1
-	AddressLine []AddressLineElement `xml:"AddressLine,omitempty"`
-	// ThoroughfareNumberPrefix represents XSD element 'ThoroughfareNumberPrefix'
-	// minOccurs=0, maxOccurs=-1
-	ThoroughfareNumberPrefix []ThoroughfareNumberPrefixElement `xml:"ThoroughfareNumberPrefix,omitempty"`
-	// ThoroughfareNumber represents XSD element 'ThoroughfareNumber'
-	// minOccurs=1, maxOccurs=-1
-	ThoroughfareNumber []ThoroughfareNumberElement `xml:"ThoroughfareNumber"`
-	// ThoroughfareNumberSuffix represents XSD element 'ThoroughfareNumberSuffix'
-	// minOccurs=0, maxOccurs=-1
-	ThoroughfareNumberSuffix []ThoroughfareNumberSuffixElement `xml:"ThoroughfareNumberSuffix,omitempty"`
-	Value                    string                            `xml:",chardata"` // XSD mixed content
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// LargeMailUserIdentifierElementType represents the XSD type 'LargeMailUserIdentifierElementType'
-// XSD complex type (W3C XSD §3.4)
-// mixed="true"
-type LargeMailUserIdentifierElementType struct {
-	// Type represents XSD attribute 'Type'
-	// use="optional"
-	Type *string `xml:"Type,attr,omitempty"`
-	// Indicator represents XSD attribute 'Indicator'
-	// use="optional"
-	Indicator *string `xml:"Indicator,attr,omitempty"`
-	InnerXML  string  `xml:",innerxml"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// PostalRouteNumberElementType represents the XSD type 'PostalRouteNumberElementType'
-// XSD complex type (W3C XSD §3.4)
-// mixed="true"
-type PostalRouteNumberElementType struct {
-	InnerXML string `xml:",innerxml"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// EndorsementLineCodeElementType represents the XSD type 'EndorsementLineCodeElementType'
-// XSD complex type (W3C XSD §3.4)
-// mixed="true"
-type EndorsementLineCodeElementType struct {
-	// Type represents XSD attribute 'Type'
-	// use="optional"
-	Type     *string `xml:"Type,attr,omitempty"`
-	InnerXML string  `xml:",innerxml"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// LargeMailUserType represents the XSD type 'LargeMailUserType'
-// XSD complex type (W3C XSD §3.4)
-type LargeMailUserType struct {
-	// AddressLine represents XSD element 'AddressLine'
-	// minOccurs=0, maxOccurs=-1
-	AddressLine []AddressLineElement `xml:"AddressLine,omitempty"`
-	// LargeMailUserName represents XSD element 'LargeMailUserName'
-	// minOccurs=0, maxOccurs=-1
-	LargeMailUserName []LargeMailUserNameElementType `xml:"LargeMailUserName,omitempty"`
-	// LargeMailUserIdentifier represents XSD element 'LargeMailUserIdentifier'
-	// minOccurs=0, maxOccurs=1
-	LargeMailUserIdentifier *LargeMailUserIdentifierElementType `xml:"LargeMailUserIdentifier,omitempty"`
-	// BuildingName represents XSD element 'BuildingName'
-	// minOccurs=0, maxOccurs=-1
-	BuildingName []BuildingNameType `xml:"BuildingName,omitempty"`
-	// Department represents XSD element 'Department'
-	// minOccurs=0, maxOccurs=1
-	Department *DepartmentElement `xml:"Department,omitempty"`
-	// PostBox represents XSD element 'PostBox'
-	// minOccurs=0, maxOccurs=1
-	PostBox *PostBoxElement `xml:"PostBox,omitempty"`
-	// Thoroughfare represents XSD element 'Thoroughfare'
-	// minOccurs=0, maxOccurs=1
-	Thoroughfare *ThoroughfareElement `xml:"Thoroughfare,omitempty"`
-	// PostalCode represents XSD element 'PostalCode'
-	// minOccurs=0, maxOccurs=1
-	PostalCode *PostalCodeElement `xml:"PostalCode,omitempty"`
-	// Type represents XSD attribute 'Type'
-	// use="optional"
-	Type *string `xml:"Type,attr,omitempty"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -1365,71 +1086,10 @@ type MailStopType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// PostBoxElementType represents the XSD type 'PostBoxElementType'
-// XSD complex type (W3C XSD §3.4)
-type PostBoxElementType struct {
-	// AddressLine represents XSD element 'AddressLine'
-	// minOccurs=0, maxOccurs=-1
-	AddressLine []AddressLineElement `xml:"AddressLine,omitempty"`
-	// PostBoxNumber represents XSD element 'PostBoxNumber'
-	PostBoxNumber PostBoxNumberElementType `xml:"PostBoxNumber"`
-	// PostBoxNumberPrefix represents XSD element 'PostBoxNumberPrefix'
-	// minOccurs=0, maxOccurs=1
-	PostBoxNumberPrefix *PostBoxNumberPrefixElementType `xml:"PostBoxNumberPrefix,omitempty"`
-	// PostBoxNumberSuffix represents XSD element 'PostBoxNumberSuffix'
-	// minOccurs=0, maxOccurs=1
-	PostBoxNumberSuffix *PostBoxNumberSuffixElementType `xml:"PostBoxNumberSuffix,omitempty"`
-	// PostBoxNumberExtension represents XSD element 'PostBoxNumberExtension'
-	// minOccurs=0, maxOccurs=1
-	PostBoxNumberExtension *PostBoxNumberExtensionElementType `xml:"PostBoxNumberExtension,omitempty"`
-	// Firm represents XSD element 'Firm'
-	// minOccurs=0, maxOccurs=1
-	Firm *FirmType `xml:"Firm,omitempty"`
-	// PostalCode represents XSD element 'PostalCode'
-	// minOccurs=0, maxOccurs=1
-	PostalCode *PostalCodeElement `xml:"PostalCode,omitempty"`
-	// Type represents XSD attribute 'Type'
-	// use="optional"
-	Type *string `xml:"Type,attr,omitempty"`
-	// Indicator represents XSD attribute 'Indicator'
-	// use="optional"
-	Indicator *string `xml:"Indicator,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// PremiseNumberElementType represents the XSD type 'PremiseNumberElementType'
+// ThoroughfareNameType represents the XSD type 'ThoroughfareNameType'
 // XSD complex type (W3C XSD §3.4)
 // mixed="true"
-type PremiseNumberElementType struct {
-	// NumberType represents XSD attribute 'NumberType'
-	// use="optional"
-	NumberType *string `xml:"NumberType,attr,omitempty"`
-	// Type represents XSD attribute 'Type'
-	// use="optional"
-	Type *string `xml:"Type,attr,omitempty"`
-	// Indicator represents XSD attribute 'Indicator'
-	// use="optional"
-	Indicator *string `xml:"Indicator,attr,omitempty"`
-	// IndicatorOccurrence represents XSD attribute 'IndicatorOccurrence'
-	// use="optional"
-	IndicatorOccurrence *string `xml:"IndicatorOccurrence,attr,omitempty"`
-	// NumberTypeOccurrence represents XSD attribute 'NumberTypeOccurrence'
-	// use="optional"
-	NumberTypeOccurrence *string `xml:"NumberTypeOccurrence,attr,omitempty"`
-	InnerXML             string  `xml:",innerxml"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// MailStopNameElementType represents the XSD type 'MailStopNameElementType'
-// XSD complex type (W3C XSD §3.4)
-// mixed="true"
-type MailStopNameElementType struct {
+type ThoroughfareNameType struct {
 	// Type represents XSD attribute 'Type'
 	// use="optional"
 	Type     *string `xml:"Type,attr,omitempty"`
@@ -1440,186 +1100,14 @@ type MailStopNameElementType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// ThoroughfareNumberElementType represents the XSD type 'ThoroughfareNumberElementType'
+// AddressLineElementType represents the XSD type 'AddressLineElementType'
 // XSD complex type (W3C XSD §3.4)
 // mixed="true"
-type ThoroughfareNumberElementType struct {
-	// NumberType represents XSD attribute 'NumberType'
-	// use="optional"
-	NumberType *string `xml:"NumberType,attr,omitempty"`
-	// Type represents XSD attribute 'Type'
-	// use="optional"
-	Type *string `xml:"Type,attr,omitempty"`
-	// Indicator represents XSD attribute 'Indicator'
-	// use="optional"
-	Indicator *string `xml:"Indicator,attr,omitempty"`
-	// IndicatorOccurrence represents XSD attribute 'IndicatorOccurrence'
-	// use="optional"
-	IndicatorOccurrence *string `xml:"IndicatorOccurrence,attr,omitempty"`
-	// NumberOccurrence represents XSD attribute 'NumberOccurrence'
-	// use="optional"
-	NumberOccurrence *string `xml:"NumberOccurrence,attr,omitempty"`
-	InnerXML         string  `xml:",innerxml"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// PremiseNumberPrefixElementType represents the XSD type 'PremiseNumberPrefixElementType'
-// XSD complex type (W3C XSD §3.4)
-type PremiseNumberPrefixElementTypeWithAttrs struct {
-	Value string `xml:",chardata"` // XSD simple content
-	// NumberPrefixSeparator represents XSD attribute 'NumberPrefixSeparator'
-	// use="optional"
-	NumberPrefixSeparator *string `xml:"NumberPrefixSeparator,attr,omitempty"`
-	// Type represents XSD attribute 'Type'
-	// use="optional"
-	Type *string `xml:"Type,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// PremiseNumberPrefixElementType is an alias for PremiseNumberPrefixElementTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
-type PremiseNumberPrefixElementType = PremiseNumberPrefixElementTypeWithAttrs
-
-// PostalRouteNameElementType represents the XSD type 'PostalRouteNameElementType'
-// XSD complex type (W3C XSD §3.4)
-// mixed="true"
-type PostalRouteNameElementType struct {
+type AddressLineElementType struct {
 	// Type represents XSD attribute 'Type'
 	// use="optional"
 	Type     *string `xml:"Type,attr,omitempty"`
 	InnerXML string  `xml:",innerxml"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// DependentLocalityNumberElementType represents the XSD type 'DependentLocalityNumberElementType'
-// XSD complex type (W3C XSD §3.4)
-// mixed="true"
-type DependentLocalityNumberElementType struct {
-	// NameNumberOccurrence represents XSD attribute 'NameNumberOccurrence'
-	// use="optional"
-	NameNumberOccurrence *string `xml:"NameNumberOccurrence,attr,omitempty"`
-	InnerXML             string  `xml:",innerxml"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// KeyLineCodeElementType represents the XSD type 'KeyLineCodeElementType'
-// XSD complex type (W3C XSD §3.4)
-// mixed="true"
-type KeyLineCodeElementType struct {
-	// Type represents XSD attribute 'Type'
-	// use="optional"
-	Type     *string `xml:"Type,attr,omitempty"`
-	InnerXML string  `xml:",innerxml"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// AddressLatitudeDirectionElementType represents the XSD type 'AddressLatitudeDirectionElementType'
-// XSD complex type (W3C XSD §3.4)
-// mixed="true"
-type AddressLatitudeDirectionElementType struct {
-	// Type represents XSD attribute 'Type'
-	// use="optional"
-	Type     *string `xml:"Type,attr,omitempty"`
-	InnerXML string  `xml:",innerxml"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// PremiseNumberRangeElementType represents the XSD type 'PremiseNumberRangeElementType'
-// XSD complex type (W3C XSD §3.4)
-type PremiseNumberRangeElementType struct {
-	// PremiseNumberRangeFrom represents XSD element 'PremiseNumberRangeFrom'
-	PremiseNumberRangeFrom PremiseNumberRangeFromElementType `xml:"PremiseNumberRangeFrom"`
-	// PremiseNumberRangeTo represents XSD element 'PremiseNumberRangeTo'
-	PremiseNumberRangeTo PremiseNumberRangeToElementType `xml:"PremiseNumberRangeTo"`
-	// RangeType represents XSD attribute 'RangeType'
-	// use="optional"
-	RangeType *string `xml:"RangeType,attr,omitempty"`
-	// Indicator represents XSD attribute 'Indicator'
-	// use="optional"
-	Indicator *string `xml:"Indicator,attr,omitempty"`
-	// Separator represents XSD attribute 'Separator'
-	// use="optional"
-	Separator *string `xml:"Separator,attr,omitempty"`
-	// Type represents XSD attribute 'Type'
-	// use="optional"
-	Type *string `xml:"Type,attr,omitempty"`
-	// IndicatorOccurence represents XSD attribute 'IndicatorOccurence'
-	// use="optional"
-	IndicatorOccurence *string `xml:"IndicatorOccurence,attr,omitempty"`
-	// NumberRangeOccurence represents XSD attribute 'NumberRangeOccurence'
-	// use="optional"
-	NumberRangeOccurence *string `xml:"NumberRangeOccurence,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// SubAdministrativeAreaElementType represents the XSD type 'SubAdministrativeAreaElementType'
-// XSD complex type (W3C XSD §3.4)
-type SubAdministrativeAreaElementType struct {
-	// AddressLine represents XSD element 'AddressLine'
-	// minOccurs=0, maxOccurs=-1
-	AddressLine []AddressLineElement `xml:"AddressLine,omitempty"`
-	// SubAdministrativeAreaName represents XSD element 'SubAdministrativeAreaName'
-	// minOccurs=0, maxOccurs=-1
-	SubAdministrativeAreaName []SubAdministrativeAreaNameElementType `xml:"SubAdministrativeAreaName,omitempty"`
-	// Locality represents XSD element 'Locality'
-	Locality *LocalityElement `xml:"Locality,omitempty"`
-	// PostOffice represents XSD element 'PostOffice'
-	PostOffice *PostOfficeElement `xml:"PostOffice,omitempty"`
-	// PostalCode represents XSD element 'PostalCode'
-	PostalCode *PostalCodeElement `xml:"PostalCode,omitempty"`
-	// Type represents XSD attribute 'Type'
-	// use="optional"
-	Type *string `xml:"Type,attr,omitempty"`
-	// UsageType represents XSD attribute 'UsageType'
-	// use="optional"
-	UsageType *string `xml:"UsageType,attr,omitempty"`
-	// Indicator represents XSD attribute 'Indicator'
-	// use="optional"
-	Indicator *string `xml:"Indicator,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// PostalCodeElementType represents the XSD type 'PostalCodeElementType'
-// XSD complex type (W3C XSD §3.4)
-type PostalCodeElementType struct {
-	// AddressLine represents XSD element 'AddressLine'
-	// minOccurs=0, maxOccurs=-1
-	AddressLine []AddressLineElement `xml:"AddressLine,omitempty"`
-	// PostalCodeNumber represents XSD element 'PostalCodeNumber'
-	// minOccurs=0, maxOccurs=-1
-	PostalCodeNumber []PostalCodeNumberElementType `xml:"PostalCodeNumber,omitempty"`
-	// PostalCodeNumberExtension represents XSD element 'PostalCodeNumberExtension'
-	// minOccurs=0, maxOccurs=-1
-	PostalCodeNumberExtension []PostalCodeNumberExtensionElementType `xml:"PostalCodeNumberExtension,omitempty"`
-	// PostTown represents XSD element 'PostTown'
-	// minOccurs=0, maxOccurs=1
-	PostTown *PostTownElementType `xml:"PostTown,omitempty"`
-	// Type represents XSD attribute 'Type'
-	// use="optional"
-	Type *string `xml:"Type,attr,omitempty"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -1689,10 +1177,124 @@ type ThoroughfareElementType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// ThoroughfareNumberToElementType represents the XSD type 'ThoroughfareNumberToElementType'
+// SubAdministrativeAreaElementType represents the XSD type 'SubAdministrativeAreaElementType'
+// XSD complex type (W3C XSD §3.4)
+type SubAdministrativeAreaElementType struct {
+	// AddressLine represents XSD element 'AddressLine'
+	// minOccurs=0, maxOccurs=-1
+	AddressLine []AddressLineElement `xml:"AddressLine,omitempty"`
+	// SubAdministrativeAreaName represents XSD element 'SubAdministrativeAreaName'
+	// minOccurs=0, maxOccurs=-1
+	SubAdministrativeAreaName []SubAdministrativeAreaNameElementType `xml:"SubAdministrativeAreaName,omitempty"`
+	// Locality represents XSD element 'Locality'
+	Locality *LocalityElement `xml:"Locality,omitempty"`
+	// PostOffice represents XSD element 'PostOffice'
+	PostOffice *PostOfficeElement `xml:"PostOffice,omitempty"`
+	// PostalCode represents XSD element 'PostalCode'
+	PostalCode *PostalCodeElement `xml:"PostalCode,omitempty"`
+	// Type represents XSD attribute 'Type'
+	// use="optional"
+	Type *string `xml:"Type,attr,omitempty"`
+	// UsageType represents XSD attribute 'UsageType'
+	// use="optional"
+	UsageType *string `xml:"UsageType,attr,omitempty"`
+	// Indicator represents XSD attribute 'Indicator'
+	// use="optional"
+	Indicator *string `xml:"Indicator,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// LargeMailUserType represents the XSD type 'LargeMailUserType'
+// XSD complex type (W3C XSD §3.4)
+type LargeMailUserType struct {
+	// AddressLine represents XSD element 'AddressLine'
+	// minOccurs=0, maxOccurs=-1
+	AddressLine []AddressLineElement `xml:"AddressLine,omitempty"`
+	// LargeMailUserName represents XSD element 'LargeMailUserName'
+	// minOccurs=0, maxOccurs=-1
+	LargeMailUserName []LargeMailUserNameElementType `xml:"LargeMailUserName,omitempty"`
+	// LargeMailUserIdentifier represents XSD element 'LargeMailUserIdentifier'
+	// minOccurs=0, maxOccurs=1
+	LargeMailUserIdentifier *LargeMailUserIdentifierElementType `xml:"LargeMailUserIdentifier,omitempty"`
+	// BuildingName represents XSD element 'BuildingName'
+	// minOccurs=0, maxOccurs=-1
+	BuildingName []BuildingNameType `xml:"BuildingName,omitempty"`
+	// Department represents XSD element 'Department'
+	// minOccurs=0, maxOccurs=1
+	Department *DepartmentElement `xml:"Department,omitempty"`
+	// PostBox represents XSD element 'PostBox'
+	// minOccurs=0, maxOccurs=1
+	PostBox *PostBoxElement `xml:"PostBox,omitempty"`
+	// Thoroughfare represents XSD element 'Thoroughfare'
+	// minOccurs=0, maxOccurs=1
+	Thoroughfare *ThoroughfareElement `xml:"Thoroughfare,omitempty"`
+	// PostalCode represents XSD element 'PostalCode'
+	// minOccurs=0, maxOccurs=1
+	PostalCode *PostalCodeElement `xml:"PostalCode,omitempty"`
+	// Type represents XSD attribute 'Type'
+	// use="optional"
+	Type *string `xml:"Type,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// ThoroughfareLeadingTypeType represents the XSD type 'ThoroughfareLeadingTypeType'
 // XSD complex type (W3C XSD §3.4)
 // mixed="true"
-type ThoroughfareNumberToElementType struct {
+type ThoroughfareLeadingTypeType struct {
+	// Type represents XSD attribute 'Type'
+	// use="optional"
+	Type     *string `xml:"Type,attr,omitempty"`
+	InnerXML string  `xml:",innerxml"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// ThoroughfareNumberRangeElementType represents the XSD type 'ThoroughfareNumberRangeElementType'
+// XSD complex type (W3C XSD §3.4)
+type ThoroughfareNumberRangeElementType struct {
+	// AddressLine represents XSD element 'AddressLine'
+	// minOccurs=0, maxOccurs=-1
+	AddressLine []AddressLineElement `xml:"AddressLine,omitempty"`
+	// ThoroughfareNumberFrom represents XSD element 'ThoroughfareNumberFrom'
+	ThoroughfareNumberFrom ThoroughfareNumberFromElementType `xml:"ThoroughfareNumberFrom"`
+	// ThoroughfareNumberTo represents XSD element 'ThoroughfareNumberTo'
+	ThoroughfareNumberTo ThoroughfareNumberToElementType `xml:"ThoroughfareNumberTo"`
+	// RangeType represents XSD attribute 'RangeType'
+	// use="optional"
+	RangeType *string `xml:"RangeType,attr,omitempty"`
+	// Indicator represents XSD attribute 'Indicator'
+	// use="optional"
+	Indicator *string `xml:"Indicator,attr,omitempty"`
+	// Separator represents XSD attribute 'Separator'
+	// use="optional"
+	Separator *string `xml:"Separator,attr,omitempty"`
+	// IndicatorOccurrence represents XSD attribute 'IndicatorOccurrence'
+	// use="optional"
+	IndicatorOccurrence *string `xml:"IndicatorOccurrence,attr,omitempty"`
+	// NumberRangeOccurrence represents XSD attribute 'NumberRangeOccurrence'
+	// use="optional"
+	NumberRangeOccurrence *string `xml:"NumberRangeOccurrence,attr,omitempty"`
+	// Type represents XSD attribute 'Type'
+	// use="optional"
+	Type *string `xml:"Type,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// ThoroughfareNumberFromElementType represents the XSD type 'ThoroughfareNumberFromElementType'
+// XSD complex type (W3C XSD §3.4)
+// mixed="true"
+type ThoroughfareNumberFromElementType struct {
 	// AddressLine represents XSD element 'AddressLine'
 	// minOccurs=0, maxOccurs=-1
 	AddressLine []AddressLineElement `xml:"AddressLine,omitempty"`
@@ -1706,6 +1308,220 @@ type ThoroughfareNumberToElementType struct {
 	// minOccurs=0, maxOccurs=-1
 	ThoroughfareNumberSuffix []ThoroughfareNumberSuffixElement `xml:"ThoroughfareNumberSuffix,omitempty"`
 	Value                    string                            `xml:",chardata"` // XSD mixed content
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// PremiseNumberSuffixElementType represents the XSD type 'PremiseNumberSuffixElementType'
+// XSD complex type (W3C XSD §3.4)
+// mixed="true"
+type PremiseNumberSuffixElementType struct {
+	// NumberSuffixSeparator represents XSD attribute 'NumberSuffixSeparator'
+	// use="optional"
+	NumberSuffixSeparator *string `xml:"NumberSuffixSeparator,attr,omitempty"`
+	// Type represents XSD attribute 'Type'
+	// use="optional"
+	Type     *string `xml:"Type,attr,omitempty"`
+	InnerXML string  `xml:",innerxml"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// SubAdministrativeAreaNameElementType represents the XSD type 'SubAdministrativeAreaNameElementType'
+// XSD complex type (W3C XSD §3.4)
+// mixed="true"
+type SubAdministrativeAreaNameElementType struct {
+	// Type represents XSD attribute 'Type'
+	// use="optional"
+	Type     *string `xml:"Type,attr,omitempty"`
+	InnerXML string  `xml:",innerxml"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// CountryElementType represents the XSD type 'CountryElementType'
+// XSD complex type (W3C XSD §3.4)
+type CountryElementType struct {
+	// AddressLine represents XSD element 'AddressLine'
+	// minOccurs=0, maxOccurs=-1
+	AddressLine []AddressLineElement `xml:"AddressLine,omitempty"`
+	// CountryNameCode represents XSD element 'CountryNameCode'
+	// minOccurs=0, maxOccurs=-1
+	CountryNameCode []CountryNameCodeElementType `xml:"CountryNameCode,omitempty"`
+	// CountryName represents XSD element 'CountryName'
+	// minOccurs=0, maxOccurs=-1
+	CountryName []CountryNameElement `xml:"CountryName,omitempty"`
+	// AdministrativeArea represents XSD element 'AdministrativeArea'
+	AdministrativeArea *AdministrativeAreaElement `xml:"AdministrativeArea,omitempty"`
+	// Locality represents XSD element 'Locality'
+	Locality *LocalityElement `xml:"Locality,omitempty"`
+	// Thoroughfare represents XSD element 'Thoroughfare'
+	Thoroughfare *ThoroughfareElement `xml:"Thoroughfare,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// DependentLocalityNumberElementType represents the XSD type 'DependentLocalityNumberElementType'
+// XSD complex type (W3C XSD §3.4)
+// mixed="true"
+type DependentLocalityNumberElementType struct {
+	// NameNumberOccurrence represents XSD attribute 'NameNumberOccurrence'
+	// use="optional"
+	NameNumberOccurrence *string `xml:"NameNumberOccurrence,attr,omitempty"`
+	InnerXML             string  `xml:",innerxml"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// DependentThoroughfareElementType represents the XSD type 'DependentThoroughfareElementType'
+// XSD complex type (W3C XSD §3.4)
+type DependentThoroughfareElementType struct {
+	// AddressLine represents XSD element 'AddressLine'
+	// minOccurs=0, maxOccurs=-1
+	AddressLine []AddressLineElement `xml:"AddressLine,omitempty"`
+	// ThoroughfarePreDirection represents XSD element 'ThoroughfarePreDirection'
+	// minOccurs=0, maxOccurs=1
+	ThoroughfarePreDirection *ThoroughfarePreDirectionType `xml:"ThoroughfarePreDirection,omitempty"`
+	// ThoroughfareLeadingType represents XSD element 'ThoroughfareLeadingType'
+	// minOccurs=0, maxOccurs=1
+	ThoroughfareLeadingType *ThoroughfareLeadingTypeType `xml:"ThoroughfareLeadingType,omitempty"`
+	// ThoroughfareName represents XSD element 'ThoroughfareName'
+	// minOccurs=0, maxOccurs=-1
+	ThoroughfareName []ThoroughfareNameType `xml:"ThoroughfareName,omitempty"`
+	// ThoroughfareTrailingType represents XSD element 'ThoroughfareTrailingType'
+	// minOccurs=0, maxOccurs=1
+	ThoroughfareTrailingType *ThoroughfareTrailingTypeType `xml:"ThoroughfareTrailingType,omitempty"`
+	// ThoroughfarePostDirection represents XSD element 'ThoroughfarePostDirection'
+	// minOccurs=0, maxOccurs=1
+	ThoroughfarePostDirection *ThoroughfarePostDirectionType `xml:"ThoroughfarePostDirection,omitempty"`
+	// Type represents XSD attribute 'Type'
+	// use="optional"
+	Type *string `xml:"Type,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// PostBoxNumberExtensionElementType represents the XSD type 'PostBoxNumberExtensionElementType'
+// XSD complex type (W3C XSD §3.4)
+// mixed="true"
+type PostBoxNumberExtensionElementType struct {
+	// NumberExtensionSeparator represents XSD attribute 'NumberExtensionSeparator'
+	// use="optional"
+	NumberExtensionSeparator *string `xml:"NumberExtensionSeparator,attr,omitempty"`
+	InnerXML                 string  `xml:",innerxml"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// SortingCodeElementType represents the XSD type 'SortingCodeElementType'
+// XSD complex type (W3C XSD §3.4)
+type SortingCodeElementType struct {
+	// Type represents XSD attribute 'Type'
+	// use="optional"
+	Type *string `xml:"Type,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// SupplementaryPostalServiceDataElementType represents the XSD type 'SupplementaryPostalServiceDataElementType'
+// XSD complex type (W3C XSD §3.4)
+// mixed="true"
+type SupplementaryPostalServiceDataElementType struct {
+	// Type represents XSD attribute 'Type'
+	// use="optional"
+	Type     *string `xml:"Type,attr,omitempty"`
+	InnerXML string  `xml:",innerxml"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// PostOfficeNumberElementType represents the XSD type 'PostOfficeNumberElementType'
+// XSD complex type (W3C XSD §3.4)
+// mixed="true"
+type PostOfficeNumberElementType struct {
+	// Indicator represents XSD attribute 'Indicator'
+	// use="optional"
+	Indicator *string `xml:"Indicator,attr,omitempty"`
+	// IndicatorOccurrence represents XSD attribute 'IndicatorOccurrence'
+	// use="optional"
+	IndicatorOccurrence *string `xml:"IndicatorOccurrence,attr,omitempty"`
+	InnerXML            string  `xml:",innerxml"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// LocalityElementType represents the XSD type 'LocalityElementType'
+// XSD complex type (W3C XSD §3.4)
+type LocalityElementType struct {
+	// AddressLine represents XSD element 'AddressLine'
+	// minOccurs=0, maxOccurs=-1
+	AddressLine []AddressLineElement `xml:"AddressLine,omitempty"`
+	// LocalityName represents XSD element 'LocalityName'
+	// minOccurs=0, maxOccurs=-1
+	LocalityName []LocalityNameElementType `xml:"LocalityName,omitempty"`
+	// Thoroughfare represents XSD element 'Thoroughfare'
+	// minOccurs=0, maxOccurs=1
+	Thoroughfare *ThoroughfareElement `xml:"Thoroughfare,omitempty"`
+	// Premise represents XSD element 'Premise'
+	// minOccurs=0, maxOccurs=1
+	Premise *PremiseElement `xml:"Premise,omitempty"`
+	// DependentLocality represents XSD element 'DependentLocality'
+	// minOccurs=0, maxOccurs=1
+	DependentLocality *DependentLocalityType `xml:"DependentLocality,omitempty"`
+	// PostalCode represents XSD element 'PostalCode'
+	// minOccurs=0, maxOccurs=1
+	PostalCode *PostalCodeElement `xml:"PostalCode,omitempty"`
+	// PostBox represents XSD element 'PostBox'
+	PostBox *PostBoxElement `xml:"PostBox,omitempty"`
+	// LargeMailUser represents XSD element 'LargeMailUser'
+	LargeMailUser *LargeMailUserType `xml:"LargeMailUser,omitempty"`
+	// PostOffice represents XSD element 'PostOffice'
+	PostOffice *PostOfficeElement `xml:"PostOffice,omitempty"`
+	// PostalRoute represents XSD element 'PostalRoute'
+	PostalRoute *PostalRouteType `xml:"PostalRoute,omitempty"`
+	// Type represents XSD attribute 'Type'
+	// use="optional"
+	Type *string `xml:"Type,attr,omitempty"`
+	// UsageType represents XSD attribute 'UsageType'
+	// use="optional"
+	UsageType *string `xml:"UsageType,attr,omitempty"`
+	// Indicator represents XSD attribute 'Indicator'
+	// use="optional"
+	Indicator *string `xml:"Indicator,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// PostTownNameElementType represents the XSD type 'PostTownNameElementType'
+// XSD complex type (W3C XSD §3.4)
+// mixed="true"
+type PostTownNameElementType struct {
+	// Type represents XSD attribute 'Type'
+	// use="optional"
+	Type     *string `xml:"Type,attr,omitempty"`
+	InnerXML string  `xml:",innerxml"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -1726,13 +1542,85 @@ type FirmNameElementType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// CountryNameCodeElementType represents the XSD type 'CountryNameCodeElementType'
+// PostalRouteType represents the XSD type 'PostalRouteType'
+// XSD complex type (W3C XSD §3.4)
+type PostalRouteType struct {
+	// AddressLine represents XSD element 'AddressLine'
+	// minOccurs=0, maxOccurs=-1
+	AddressLine []AddressLineElement `xml:"AddressLine,omitempty"`
+	// PostBox represents XSD element 'PostBox'
+	// minOccurs=0, maxOccurs=1
+	PostBox *PostBoxElement `xml:"PostBox,omitempty"`
+	// PostalRouteName represents XSD element 'PostalRouteName'
+	// minOccurs=1, maxOccurs=-1
+	PostalRouteName []PostalRouteNameElementType `xml:"PostalRouteName,omitempty"`
+	// PostalRouteNumber represents XSD element 'PostalRouteNumber'
+	PostalRouteNumber *PostalRouteNumberElementType `xml:"PostalRouteNumber,omitempty"`
+	// Type represents XSD attribute 'Type'
+	// use="optional"
+	Type *string `xml:"Type,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// ThoroughfarePostDirectionType represents the XSD type 'ThoroughfarePostDirectionType'
 // XSD complex type (W3C XSD §3.4)
 // mixed="true"
-type CountryNameCodeElementType struct {
-	// Scheme represents XSD attribute 'Scheme'
+type ThoroughfarePostDirectionType struct {
+	// Type represents XSD attribute 'Type'
 	// use="optional"
-	Scheme   *string `xml:"Scheme,attr,omitempty"`
+	Type     *string `xml:"Type,attr,omitempty"`
+	InnerXML string  `xml:",innerxml"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// PostBoxElementType represents the XSD type 'PostBoxElementType'
+// XSD complex type (W3C XSD §3.4)
+type PostBoxElementType struct {
+	// AddressLine represents XSD element 'AddressLine'
+	// minOccurs=0, maxOccurs=-1
+	AddressLine []AddressLineElement `xml:"AddressLine,omitempty"`
+	// PostBoxNumber represents XSD element 'PostBoxNumber'
+	PostBoxNumber PostBoxNumberElementType `xml:"PostBoxNumber"`
+	// PostBoxNumberPrefix represents XSD element 'PostBoxNumberPrefix'
+	// minOccurs=0, maxOccurs=1
+	PostBoxNumberPrefix *PostBoxNumberPrefixElementType `xml:"PostBoxNumberPrefix,omitempty"`
+	// PostBoxNumberSuffix represents XSD element 'PostBoxNumberSuffix'
+	// minOccurs=0, maxOccurs=1
+	PostBoxNumberSuffix *PostBoxNumberSuffixElementType `xml:"PostBoxNumberSuffix,omitempty"`
+	// PostBoxNumberExtension represents XSD element 'PostBoxNumberExtension'
+	// minOccurs=0, maxOccurs=1
+	PostBoxNumberExtension *PostBoxNumberExtensionElementType `xml:"PostBoxNumberExtension,omitempty"`
+	// Firm represents XSD element 'Firm'
+	// minOccurs=0, maxOccurs=1
+	Firm *FirmType `xml:"Firm,omitempty"`
+	// PostalCode represents XSD element 'PostalCode'
+	// minOccurs=0, maxOccurs=1
+	PostalCode *PostalCodeElement `xml:"PostalCode,omitempty"`
+	// Type represents XSD attribute 'Type'
+	// use="optional"
+	Type *string `xml:"Type,attr,omitempty"`
+	// Indicator represents XSD attribute 'Indicator'
+	// use="optional"
+	Indicator *string `xml:"Indicator,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// AddressElementType represents the XSD type 'AddressElementType'
+// XSD complex type (W3C XSD §3.4)
+// mixed="true"
+type AddressElementType struct {
+	// Type represents XSD attribute 'Type'
+	// use="optional"
+	Type     *string `xml:"Type,attr,omitempty"`
 	InnerXML string  `xml:",innerxml"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
@@ -1790,59 +1678,24 @@ type DependentLocalityType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// PremiseNumberRangeToElementType represents the XSD type 'PremiseNumberRangeToElementType'
+// FirmType represents the XSD type 'FirmType'
 // XSD complex type (W3C XSD §3.4)
-type PremiseNumberRangeToElementType struct {
+type FirmType struct {
 	// AddressLine represents XSD element 'AddressLine'
 	// minOccurs=0, maxOccurs=-1
 	AddressLine []AddressLineElement `xml:"AddressLine,omitempty"`
-	// PremiseNumberPrefix represents XSD element 'PremiseNumberPrefix'
+	// FirmName represents XSD element 'FirmName'
 	// minOccurs=0, maxOccurs=-1
-	PremiseNumberPrefix []PremiseNumberPrefixElement `xml:"PremiseNumberPrefix,omitempty"`
-	// PremiseNumber represents XSD element 'PremiseNumber'
-	// minOccurs=1, maxOccurs=-1
-	PremiseNumber []PremiseNumberElement `xml:"PremiseNumber"`
-	// PremiseNumberSuffix represents XSD element 'PremiseNumberSuffix'
+	FirmName []FirmNameElementType `xml:"FirmName,omitempty"`
+	// Department represents XSD element 'Department'
 	// minOccurs=0, maxOccurs=-1
-	PremiseNumberSuffix []PremiseNumberSuffixElement `xml:"PremiseNumberSuffix,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// SubPremiseLocationElementType represents the XSD type 'SubPremiseLocationElementType'
-// XSD complex type (W3C XSD §3.4)
-// mixed="true"
-type SubPremiseLocationElementType struct {
-	InnerXML string `xml:",innerxml"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// DependentThoroughfareElementType represents the XSD type 'DependentThoroughfareElementType'
-// XSD complex type (W3C XSD §3.4)
-type DependentThoroughfareElementType struct {
-	// AddressLine represents XSD element 'AddressLine'
-	// minOccurs=0, maxOccurs=-1
-	AddressLine []AddressLineElement `xml:"AddressLine,omitempty"`
-	// ThoroughfarePreDirection represents XSD element 'ThoroughfarePreDirection'
+	Department []DepartmentElement `xml:"Department,omitempty"`
+	// MailStop represents XSD element 'MailStop'
 	// minOccurs=0, maxOccurs=1
-	ThoroughfarePreDirection *ThoroughfarePreDirectionType `xml:"ThoroughfarePreDirection,omitempty"`
-	// ThoroughfareLeadingType represents XSD element 'ThoroughfareLeadingType'
+	MailStop *MailStopType `xml:"MailStop,omitempty"`
+	// PostalCode represents XSD element 'PostalCode'
 	// minOccurs=0, maxOccurs=1
-	ThoroughfareLeadingType *ThoroughfareLeadingTypeType `xml:"ThoroughfareLeadingType,omitempty"`
-	// ThoroughfareName represents XSD element 'ThoroughfareName'
-	// minOccurs=0, maxOccurs=-1
-	ThoroughfareName []ThoroughfareNameType `xml:"ThoroughfareName,omitempty"`
-	// ThoroughfareTrailingType represents XSD element 'ThoroughfareTrailingType'
-	// minOccurs=0, maxOccurs=1
-	ThoroughfareTrailingType *ThoroughfareTrailingTypeType `xml:"ThoroughfareTrailingType,omitempty"`
-	// ThoroughfarePostDirection represents XSD element 'ThoroughfarePostDirection'
-	// minOccurs=0, maxOccurs=1
-	ThoroughfarePostDirection *ThoroughfarePostDirectionType `xml:"ThoroughfarePostDirection,omitempty"`
+	PostalCode *PostalCodeElement `xml:"PostalCode,omitempty"`
 	// Type represents XSD attribute 'Type'
 	// use="optional"
 	Type *string `xml:"Type,attr,omitempty"`
@@ -1852,10 +1705,25 @@ type DependentThoroughfareElementType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// LocalityNameElementType represents the XSD type 'LocalityNameElementType'
+// XALElementType represents the XSD type 'XALElementType'
+// XSD complex type (W3C XSD §3.4)
+type XALElementType struct {
+	// AddressDetails represents XSD element 'AddressDetails'
+	// minOccurs=1, maxOccurs=-1
+	AddressDetails []AddressDetails `xml:"AddressDetails"`
+	// Version represents XSD attribute 'Version'
+	// use="optional"
+	Version *string `xml:"Version,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// CountryNameElementType represents the XSD type 'CountryNameElementType'
 // XSD complex type (W3C XSD §3.4)
 // mixed="true"
-type LocalityNameElementType struct {
+type CountryNameElementType struct {
 	// Type represents XSD attribute 'Type'
 	// use="optional"
 	Type     *string `xml:"Type,attr,omitempty"`
@@ -1866,10 +1734,30 @@ type LocalityNameElementType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// PostTownNameElementType represents the XSD type 'PostTownNameElementType'
+// SubPremiseNameElementType represents the XSD type 'SubPremiseNameElementType'
 // XSD complex type (W3C XSD §3.4)
 // mixed="true"
-type PostTownNameElementType struct {
+type SubPremiseNameElementType struct {
+	// Type represents XSD attribute 'Type'
+	// use="optional"
+	Type *string `xml:"Type,attr,omitempty"`
+	// TypeOccurrence represents XSD attribute 'TypeOccurrence'
+	// use="optional"
+	TypeOccurrence *string `xml:"TypeOccurrence,attr,omitempty"`
+	InnerXML       string  `xml:",innerxml"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// SubPremiseNumberSuffixElementType represents the XSD type 'SubPremiseNumberSuffixElementType'
+// XSD complex type (W3C XSD §3.4)
+// mixed="true"
+type SubPremiseNumberSuffixElementType struct {
+	// NumberSuffixSeparator represents XSD attribute 'NumberSuffixSeparator'
+	// use="optional"
+	NumberSuffixSeparator *string `xml:"NumberSuffixSeparator,attr,omitempty"`
 	// Type represents XSD attribute 'Type'
 	// use="optional"
 	Type     *string `xml:"Type,attr,omitempty"`
@@ -1880,13 +1768,125 @@ type PostTownNameElementType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// SubPremiseNumberPrefixElementType represents the XSD type 'SubPremiseNumberPrefixElementType'
+// EndorsementLineCodeElementType represents the XSD type 'EndorsementLineCodeElementType'
 // XSD complex type (W3C XSD §3.4)
 // mixed="true"
-type SubPremiseNumberPrefixElementType struct {
+type EndorsementLineCodeElementType struct {
+	// Type represents XSD attribute 'Type'
+	// use="optional"
+	Type     *string `xml:"Type,attr,omitempty"`
+	InnerXML string  `xml:",innerxml"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// AddressLatitudeDirectionElementType represents the XSD type 'AddressLatitudeDirectionElementType'
+// XSD complex type (W3C XSD §3.4)
+// mixed="true"
+type AddressLatitudeDirectionElementType struct {
+	// Type represents XSD attribute 'Type'
+	// use="optional"
+	Type     *string `xml:"Type,attr,omitempty"`
+	InnerXML string  `xml:",innerxml"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// ThoroughfareTrailingTypeType represents the XSD type 'ThoroughfareTrailingTypeType'
+// XSD complex type (W3C XSD §3.4)
+// mixed="true"
+type ThoroughfareTrailingTypeType struct {
+	// Type represents XSD attribute 'Type'
+	// use="optional"
+	Type     *string `xml:"Type,attr,omitempty"`
+	InnerXML string  `xml:",innerxml"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// PostBoxNumberPrefixElementType represents the XSD type 'PostBoxNumberPrefixElementType'
+// XSD complex type (W3C XSD §3.4)
+// mixed="true"
+type PostBoxNumberPrefixElementType struct {
 	// NumberPrefixSeparator represents XSD attribute 'NumberPrefixSeparator'
 	// use="optional"
 	NumberPrefixSeparator *string `xml:"NumberPrefixSeparator,attr,omitempty"`
+	InnerXML              string  `xml:",innerxml"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// AdministrativeAreaNameElementType represents the XSD type 'AdministrativeAreaNameElementType'
+// XSD complex type (W3C XSD §3.4)
+// mixed="true"
+type AdministrativeAreaNameElementType struct {
+	// Type represents XSD attribute 'Type'
+	// use="optional"
+	Type     *string `xml:"Type,attr,omitempty"`
+	InnerXML string  `xml:",innerxml"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// PostalServiceElementsElementType represents the XSD type 'PostalServiceElementsElementType'
+// XSD complex type (W3C XSD §3.4)
+type PostalServiceElementsElementType struct {
+	// AddressIdentifier represents XSD element 'AddressIdentifier'
+	// minOccurs=0, maxOccurs=-1
+	AddressIdentifier []AddressIdentifierElementType `xml:"AddressIdentifier,omitempty"`
+	// EndorsementLineCode represents XSD element 'EndorsementLineCode'
+	// minOccurs=0, maxOccurs=1
+	EndorsementLineCode *EndorsementLineCodeElementType `xml:"EndorsementLineCode,omitempty"`
+	// KeyLineCode represents XSD element 'KeyLineCode'
+	// minOccurs=0, maxOccurs=1
+	KeyLineCode *KeyLineCodeElementType `xml:"KeyLineCode,omitempty"`
+	// Barcode represents XSD element 'Barcode'
+	// minOccurs=0, maxOccurs=1
+	Barcode *BarcodeElementType `xml:"Barcode,omitempty"`
+	// SortingCode represents XSD element 'SortingCode'
+	// minOccurs=0, maxOccurs=1
+	SortingCode *SortingCodeElementType `xml:"SortingCode,omitempty"`
+	// AddressLatitude represents XSD element 'AddressLatitude'
+	// minOccurs=0, maxOccurs=1
+	AddressLatitude *AddressLatitudeElementType `xml:"AddressLatitude,omitempty"`
+	// AddressLatitudeDirection represents XSD element 'AddressLatitudeDirection'
+	// minOccurs=0, maxOccurs=1
+	AddressLatitudeDirection *AddressLatitudeDirectionElementType `xml:"AddressLatitudeDirection,omitempty"`
+	// AddressLongitude represents XSD element 'AddressLongitude'
+	// minOccurs=0, maxOccurs=1
+	AddressLongitude *AddressLongitudeElementType `xml:"AddressLongitude,omitempty"`
+	// AddressLongitudeDirection represents XSD element 'AddressLongitudeDirection'
+	// minOccurs=0, maxOccurs=1
+	AddressLongitudeDirection *AddressLongitudeDirectionElementType `xml:"AddressLongitudeDirection,omitempty"`
+	// SupplementaryPostalServiceData represents XSD element 'SupplementaryPostalServiceData'
+	// minOccurs=0, maxOccurs=-1
+	SupplementaryPostalServiceData []SupplementaryPostalServiceDataElementType `xml:"SupplementaryPostalServiceData,omitempty"`
+	// Type represents XSD attribute 'Type'
+	// use="optional"
+	Type *string `xml:"Type,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// AddressIdentifierElementType represents the XSD type 'AddressIdentifierElementType'
+// XSD complex type (W3C XSD §3.4)
+// mixed="true"
+type AddressIdentifierElementType struct {
+	// IdentifierType represents XSD attribute 'IdentifierType'
+	// use="optional"
+	IdentifierType *string `xml:"IdentifierType,attr,omitempty"`
 	// Type represents XSD attribute 'Type'
 	// use="optional"
 	Type     *string `xml:"Type,attr,omitempty"`

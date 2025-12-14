@@ -71,6 +71,20 @@ go build -o ui ./cmd/ui
 
 The web UI provides form-based XML editing with validation, built on [webserver-core-ui](https://github.com/aequo-labs/webserver-core-ui).
 
+## Dependencies
+
+This project requires access to private Aequo Labs repositories:
+
+- [webserver-core](https://github.com/aequo-labs/webserver-core) - HTTP framework (for UI)
+- [webserver-core-ui](https://github.com/aequo-labs/webserver-core-ui) - UI components (for UI)
+- [legcheck](https://github.com/aequo-labs/legcheck) - License validation library
+
+Configure GOPRIVATE for access:
+
+```bash
+go env -w GOPRIVATE=github.com/aequo-labs/*
+```
+
 ## Regenerating Code
 
 ```bash

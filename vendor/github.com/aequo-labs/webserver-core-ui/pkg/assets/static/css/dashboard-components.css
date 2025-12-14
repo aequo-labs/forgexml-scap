@@ -1,0 +1,165 @@
+/* Dashboard Component Styles - Extracted from template */
+/* This file contains custom styles for dashboard components */
+
+/* Enhanced tag styling with proper transparency */
+.tag.is-primary {
+    background-color: rgba(var(--primary-color-rgb), 0.15) !important;
+    color: var(--primary-color) !important;
+    border: 1px solid rgba(var(--primary-color-rgb), 0.3) !important;
+}
+
+html.dark-mode .tag.is-primary {
+    background-color: rgba(var(--primary-color-rgb), 0.2) !important;
+    color: var(--primary-color) !important;
+    border: 1px solid rgba(var(--primary-color-rgb), 0.4) !important;
+}
+
+/* Enhanced button hover consistency */
+.button.is-success:hover {
+    background-color: transparent !important;
+    border-color: var(--success-color) !important;
+    color: var(--success-color) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(var(--success-color-rgb), 0.25);
+}
+
+.button.is-info:hover {
+    background-color: var(--info-color) !important;
+    border-color: var(--info-color) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(var(--info-color-rgb), 0.25);
+}
+
+.button.is-warning:hover {
+    background-color: var(--warning-color) !important;
+    border-color: var(--warning-color) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(var(--warning-color-rgb), 0.25);
+}
+
+.button.is-primary:hover {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(var(--primary-color-rgb), 0.25);
+}
+
+/* Toggle Switch Styling */
+.switch {
+    display: none;
+}
+
+.switch + label {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+    background-color: var(--input-border);
+    border-radius: 24px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-left: 10px;
+}
+
+.switch + label:before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.3s;
+}
+
+.switch:checked + label {
+    background-color: var(--success-color);
+}
+
+.switch:checked + label:before {
+    transform: translateX(26px);
+}
+
+.switch.is-info:checked + label {
+    background-color: var(--info-color);
+}
+
+.switch.is-success:checked + label {
+    background-color: var(--success-color);
+}
+
+html.dark-mode .switch + label {
+    background-color: var(--secondary-color);
+}
+
+html.dark-mode .switch + label:before {
+    background-color: var(--button-background-color);
+}
+
+/* Dashboard Stats Tiles - Global Spacing */
+/* Container margins for edge spacing */
+.dashboard-stats {
+    padding-top: 1rem !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+}
+
+/* Column padding for gaps between tiles */
+/* 0.5rem per side = 1rem (16px) total gap between tiles */
+.dashboard-stats .column {
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+}
+
+/* Dashboard Stats Tiles - Dark Mode Fixes */
+/* Fix dark mode stats tiles - prevent white-on-white text */
+html.dark-mode .number,
+html.dark-mode p.number,
+body.theme-dark .number,
+body.theme-dark p.number {
+    color: var(--text-color, #f5f5f5) !important;
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+html.dark-mode .heading,
+html.dark-mode p.heading,
+body.theme-dark .heading,
+body.theme-dark p.heading {
+    color: var(--text-muted, #aaaaaa) !important;
+}
+
+/* Ensure stats tiles are properly styled in dark mode */
+html.dark-mode .tool-stat .number,
+body.theme-dark .tool-stat .number {
+    color: var(--primary-color, #4a9eff) !important;
+}
+
+html.dark-mode .tool-stat .heading,
+body.theme-dark .tool-stat .heading {
+    color: var(--text-color, #f5f5f5) !important;
+}
+
+/* Additional dark mode fixes for dashboard tiles */
+html.dark-mode .box.tool-stat,
+[data-theme="dark"] .box.tool-stat {
+    background-color: var(--card-bg, #2c2c2c) !important;
+    color: var(--text-color, #f5f5f5) !important;
+}
+
+/* Ensure numbers are always visible in dark mode */
+html.dark-mode .box.tool-stat .number,
+[data-theme="dark"] .box.tool-stat .number {
+    color: var(--primary-color, #4a9eff) !important;
+    font-weight: bold !important;
+    font-size: 2rem !important;
+}
+
+/* Ensure headings are visible in dark mode */
+html.dark-mode .box.tool-stat .heading,
+[data-theme="dark"] .box.tool-stat .heading {
+    color: var(--text-muted, #aaaaaa) !important;
+    text-transform: uppercase !important;
+    font-size: 0.75rem !important;
+}

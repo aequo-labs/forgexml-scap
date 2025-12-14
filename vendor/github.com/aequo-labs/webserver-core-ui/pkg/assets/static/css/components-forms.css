@@ -1,0 +1,330 @@
+/* Form Components - All form-related styles */
+/* Extracted from site.css - Lines 574-1100 */
+
+/* Form elements with accessibility enhancements */
+.input:focus,
+.textarea:focus,
+.select select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.125em rgba(var(--primary-color-rgb), 0.25);
+}
+
+.label {
+    color: var(--text-color);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.help {
+    color: var(--text-color-muted);
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+/* Form row layout - useful across domains */
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.form-row.is-two-columns {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.form-row.is-three-columns {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+/* Money input wrapper - useful for any financial form inputs */
+.money-input-wrapper {
+    position: relative;
+}
+
+.money-input-wrapper::before {
+    content: '$';
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-color-muted);
+    pointer-events: none;
+}
+
+.money-input-wrapper .input {
+    padding-left: 1.75rem;
+    font-family: 'Courier New', monospace;
+}
+
+.money-input-wrapper .input::placeholder {
+    font-family: inherit;
+}
+
+/* Enhanced form layout */
+.form-section {
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.form-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+/* Form field styles */
+.field.is-required .label::after {
+    content: " *";
+    color: var(--danger-color);
+}
+
+.field.has-error .input,
+.field.has-error .textarea,
+.field.has-error .select select {
+    border-color: var(--danger-color);
+}
+
+.field.has-error .help {
+    color: var(--danger-color);
+}
+
+.checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+}
+
+/* Required field indicator */
+.required-indicator {
+    color: var(--danger-color);
+    font-weight: normal;
+    margin-left: 0.25rem;
+}
+
+/* Error message styling */
+.error-message {
+    color: var(--danger-color);
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+/* Select dropdown improvements */
+.select {
+    width: 100%;
+}
+
+.select select {
+    width: 100%;
+    cursor: pointer;
+}
+
+.select:not(.is-multiple):not(.is-loading)::after {
+    border-color: var(--primary-color);
+}
+
+/* Textarea improvements */
+.textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.textarea.is-small {
+    min-height: 60px;
+}
+
+.textarea.is-large {
+    min-height: 150px;
+}
+
+/* Radio button group */
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.radio-group.is-horizontal {
+    flex-direction: row;
+    gap: 1rem;
+}
+
+/* Switch/Toggle styling */
+.switch-field {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+/* Middleware toggle label alignment */
+.middleware-label {
+    min-width: 140px;
+    display: inline-block;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.switch-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--input-border);
+    transition: 0.3s;
+    border-radius: 24px;
+}
+
+.switch-slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: var(--button-text-inverse);
+    transition: 0.3s;
+    border-radius: 50%;
+}
+
+input:checked + .switch-slider {
+    background-color: var(--success-color);
+}
+
+input:checked + .switch-slider:before {
+    transform: translateX(26px);
+}
+
+/* File upload styling */
+.file {
+    width: 100%;
+}
+
+.file.is-fullwidth .file-label {
+    width: 100%;
+}
+
+.file.has-name .file-cta {
+    border-radius: 4px 0 0 4px;
+}
+
+.file.has-name .file-name {
+    border-radius: 0 4px 4px 0;
+    width: 100%;
+}
+
+/* Input group addon */
+.field.has-addons {
+    display: flex;
+}
+
+.field.has-addons .control:first-child .input,
+.field.has-addons .control:first-child .button {
+    border-radius: 4px 0 0 4px;
+}
+
+.field.has-addons .control:last-child .input,
+.field.has-addons .control:last-child .button {
+    border-radius: 0 4px 4px 0;
+}
+
+.field.has-addons .control:not(:first-child):not(:last-child) .input,
+.field.has-addons .control:not(:first-child):not(:last-child) .button {
+    border-radius: 0;
+}
+
+/* Validation states */
+.input.is-success,
+.textarea.is-success,
+.select.is-success select {
+    border-color: var(--success-color);
+}
+
+.input.is-warning,
+.textarea.is-warning,
+.select.is-warning select {
+    border-color: var(--warning-color);
+}
+
+.input.is-danger,
+.textarea.is-danger,
+.select.is-danger select {
+    border-color: var(--danger-color);
+}/* Toggle Switch Styling from theme-test */
+.switch {
+    display: none;
+}
+
+.switch + label {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+    background-color: var(--input-border);
+    border-radius: 24px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-left: 10px;
+}
+
+.switch + label:before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    background-color: var(--button-text-inverse);
+    border-radius: 50%;
+    transition: transform 0.3s;
+}
+
+.switch:checked + label {
+    background-color: var(--success-color);
+}
+
+.switch:checked + label:before {
+    transform: translateX(26px);
+}
+
+.switch.is-info:checked + label {
+    background-color: var(--info-color);
+}
+
+.switch.is-success:checked + label {
+    background-color: var(--success-color);
+}
+
+html.dark-mode .switch + label {
+    background-color: var(--secondary-color);
+}
+
+html.dark-mode .switch + label:before {
+    background-color: var(--button-background-color);
+}

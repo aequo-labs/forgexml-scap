@@ -1,0 +1,37 @@
+<div class="dark-mode-selector">
+    <label for="darkModeSelect">Theme:</label>
+    <select id="darkModeSelect">
+        <option value="light" {{if eq .ThemePreference "light"}}selected{{end}}>Light</option>
+        <option value="dark" {{if eq .ThemePreference "dark"}}selected{{end}}>Dark</option>
+        <option value="auto" {{if eq .ThemePreference "auto"}}selected{{end}}>System</option>
+    </select>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const darkModeSelect = document.getElementById('darkModeSelect');
+        if (darkModeSelect) {
+            // Set the initial value based on the cookie
+            const savedTheme = getCookie('theme') || 'light';
+            darkModeSelect.value = savedTheme;
+            
+            // Add event listener for changes
+            darkModeSelect.addEventListener('change', function() {
+                const newTheme = this.value;
+                // Set cookie with theme preference
+                document.cookie = `theme=${newTheme}; path=/; max-age=31536000`; // 1 year expiration
+                
+                // Force page reload to apply the new theme
+                window.location.reload();
+            });
+        }
+        
+        // Function to get cookie value by name
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+            return null;
+        }
+    });
+</script>

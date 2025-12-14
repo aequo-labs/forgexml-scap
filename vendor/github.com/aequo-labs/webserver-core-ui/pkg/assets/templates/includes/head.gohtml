@@ -1,0 +1,21 @@
+{{define "head" -}}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{.Title}} - {{.AppName}}</title>
+<meta name="description" content="{{.Description}}">
+<link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+{{template "css-includes" .}}
+<script>
+(function() {
+    const themeConfig = JSON.parse(localStorage.getItem('themeConfig') || '{"siteTheme": "light"}');
+    const theme = themeConfig.siteTheme || 'light';
+    document.documentElement.classList.add(theme + '-mode');
+    document.addEventListener('DOMContentLoaded', function() {
+        const lightTheme = document.getElementById('light-theme');
+        const darkTheme = document.getElementById('dark-theme');
+        if (lightTheme) lightTheme.disabled = (theme === 'dark');
+        if (darkTheme) darkTheme.disabled = (theme === 'light');
+    });
+})();
+</script>
+{{- end}}

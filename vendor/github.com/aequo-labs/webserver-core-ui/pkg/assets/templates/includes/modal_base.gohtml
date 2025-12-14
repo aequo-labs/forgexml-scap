@@ -1,0 +1,32 @@
+<!-- Common Modal Template Include -->
+<div id="{{.ModalID}}" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 class="modal-title">{{.Title}}</h3>
+            <span class="close-modal" onclick="closeModal('{{.ModalID}}')">&times;</span>
+        </div>
+        <div class="modal-body">
+            {{.Content}}
+        </div>
+        <div class="modal-footer">
+            {{.Footer}}
+        </div>
+    </div>
+</div>
+
+<script>
+function closeModal(modalId) {
+    document.getElementById(modalId).style.display = 'none';
+}
+
+function openModal(modalId) {
+    document.getElementById(modalId).style.display = 'block';
+}
+
+// Close modal when clicking outside
+window.addEventListener('click', function(event) {
+    if (event.target.classList.contains('modal')) {
+        event.target.style.display = 'none';
+    }
+});
+</script>

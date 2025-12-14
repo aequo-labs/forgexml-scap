@@ -1,0 +1,137 @@
+/* Core Base Styles - Foundation styles and CSS variables */
+/* Extracted from site.css - Lines 1-279 */
+
+/* Core site-wide styles - independent of light/dark themes */
+
+/* Title and subtitle spacing fixes */
+.title:not(:last-child),
+.subtitle:not(:last-child) {
+    margin-bottom: 1rem !important;
+}
+
+/* Make all colored buttons outlined by default */
+.button.is-primary:not(.is-light):not(.is-outlined),
+.button.is-info:not(.is-light):not(.is-outlined),
+.button.is-success:not(.is-light):not(.is-outlined),
+.button.is-warning:not(.is-light):not(.is-outlined),
+.button.is-danger:not(.is-light):not(.is-outlined) {
+    background-color: transparent !important;
+    border-width: 1px !important;
+    border-style: solid !important;
+}
+
+.button.is-primary:not(.is-light):not(.is-outlined) {
+    color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+}
+
+.button.is-info:not(.is-light):not(.is-outlined) {
+    color: var(--info-color) !important;
+    border-color: var(--info-color) !important;
+}
+
+.button.is-success:not(.is-light):not(.is-outlined) {
+    color: var(--success-color) !important;
+    border-color: var(--success-color) !important;
+}
+
+.button.is-warning:not(.is-light):not(.is-outlined) {
+    color: var(--warning-color) !important;
+    border-color: var(--warning-color) !important;
+}
+
+.button.is-danger:not(.is-light):not(.is-outlined) {
+    color: var(--danger-color) !important;
+    border-color: var(--danger-color) !important;
+}
+
+/* Button hover styles - translucent theme color background */
+.button.is-primary:not(.is-light):hover {
+    background-color: rgba(50, 115, 220, 0.1) !important;
+}
+
+.button.is-info:not(.is-light):hover {
+    background-color: rgba(50, 152, 220, 0.1) !important;
+}
+
+.button.is-success:not(.is-light):hover {
+    background-color: rgba(72, 199, 116, 0.1) !important;
+}
+
+.button.is-warning:not(.is-light):hover {
+    background-color: rgba(255, 221, 87, 0.1) !important;
+}
+
+.button.is-danger:not(.is-light):hover {
+    background-color: rgba(241, 70, 104, 0.1) !important;
+}
+
+.button.is-light:hover {
+    background-color: rgba(245, 245, 245, 0.5) !important;
+}
+
+.button.is-dark:hover {
+    background-color: rgba(54, 54, 54, 0.5) !important;
+}
+
+/* Base styles with animations and transitions */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+* {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Animation variables */
+:root {
+    --animation-duration: 0.3s;
+    --animation-timing: ease-in-out;
+    --hover-scale: 1.02;
+    --hover-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Respect user preferences for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    
+    :root {
+        --animation-duration: 0.01ms;
+        --hover-scale: 1;
+        --hover-shadow: none;
+    }
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Subtle hover animation for interactive elements */
+.card:hover,
+.box:hover {
+    /* transform: scale(var(--hover-scale)); - removed grow effect */
+    box-shadow: var(--hover-shadow);
+}
+
+/* Typography */
+.is-serif {
+    font-family: Georgia, serif;
+}

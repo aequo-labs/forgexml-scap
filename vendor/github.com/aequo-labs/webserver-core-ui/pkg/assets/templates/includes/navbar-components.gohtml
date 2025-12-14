@@ -1,0 +1,61 @@
+{{/*
+Unified Navbar Components for WebServer-Core Applications
+Include this template to get consistent navbar elements across all projects
+*/}}
+
+{{/* Health Status Indicator */}}
+<div class="navbar-item">
+    <div id="nav-health-status" class="nav-health-indicator" title="Checking server connection...">
+        <span class="icon is-small" id="nav-health-icon">
+            ●
+        </span>
+    </div>
+</div>
+
+{{/* Theme Toggle Button */}}
+<div class="navbar-item">
+    {{template "theme-toggle" .}}
+</div>
+
+{{/* Settings Button */}}
+<div class="navbar-item">
+    <a href="{{.SettingsURL | default "/settings"}}" class="nav-settings-button" title="Settings">
+        <span class="icon">
+            <i class="fas fa-cog"></i>
+        </span>
+    </a>
+</div>
+
+{{/* User Dropdown (if authenticated) */}}
+{{if .IsAuthenticated}}
+<div class="navbar-item has-dropdown is-hoverable">
+    <a class="navbar-link">
+        <span class="icon-text">
+            <span class="icon">
+                <i class="fas fa-user-circle"></i>
+            </span>
+            <span>{{.Username}}</span>
+        </span>
+    </a>
+    <div class="navbar-dropdown is-right">
+        {{if .UserMenuItems}}
+            {{range .UserMenuItems}}
+            <a class="navbar-item" href="{{.URL}}">
+                {{if .Icon}}<span class="icon"><i class="{{.Icon}}"></i></span>{{end}}
+                <span>{{.Label}}</span>
+            </a>
+            {{end}}
+            <hr class="navbar-divider">
+        {{end}}
+        <a class="navbar-item" href="{{.LogoutURL | default "/logout"}}">
+            <span class="icon">
+                <i class="fas fa-sign-out-alt"></i>
+            </span>
+            <span>Logout</span>
+        </a>
+    </div>
+</div>
+{{end}}
+
+{{/* Include the health indicator JavaScript */}}
+<script src="/assets/static/js/nav-health-indicator.js"></script>

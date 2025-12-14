@@ -1,0 +1,185 @@
+/* Chart styling that works with both light and dark themes */
+
+/* Chart container styling */
+.chart-container {
+    width: 100%;
+    height: 450px; /* Match the height in chart_builder.go */
+    overflow: hidden;
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    margin-bottom: 20px;
+    padding: 0;
+}
+
+/* Loading template styling */
+.loading-template {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    font-family: var(--font-family);
+    font-size: 16px;
+}
+
+.loading-template.error {
+    color: var(--danger-color);
+}
+
+.echarts-container {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* Direct ECharts element styling */
+.chart-container .ec-canvas {
+    background-color: var(--bg-color) !important;
+}
+
+/* Tooltip styling */
+.chart-container .ec-tooltip {
+    background-color: rgba(var(--primary-color-rgb), 0.9) !important;
+    color: var(--button-text-inverse) !important;
+    border-radius: 4px !important;
+    padding: 6px !important;
+    font-size: 12px !important;
+    font-weight: bold !important;
+    box-shadow: 0 0 10px rgba(var(--shadow-color-rgb), 0.3) !important;
+}
+
+/* Legend styling - target the actual ECharts legend elements */
+.chart-container .ec-legend {
+    background-color: transparent !important;
+}
+
+.chart-container .ec-legend-item {
+    color: var(--text-color) !important;
+}
+
+.chart-container .ec-legend-item-text {
+    color: var(--text-color) !important;
+    fill: var(--text-color) !important;
+}
+
+.chart-container .ec-legend-item.inactive {
+    color: var(--text-muted) !important;
+}
+
+/* Axis styling */
+.chart-container .ec-axis-line {
+    stroke: var(--border-color) !important;
+}
+
+.chart-container .ec-axis-label {
+    fill: var(--text-color) !important;
+}
+
+.chart-container .ec-axis-tick {
+    stroke: var(--border-color) !important;
+}
+
+/* Grid styling */
+.chart-container .ec-grid {
+    stroke: var(--border-color) !important;
+}
+
+/* Title styling */
+.chart-container .ec-title {
+    fill: var(--text-color) !important;
+    color: var(--text-color) !important;
+}
+
+/* Add more space for x-axis labels */
+.echarts-for-react {
+    margin-bottom: 20px !important;
+}
+
+/* Pie chart specific styling */
+.chart-container .ec-pie-label {
+    fill: var(--text-color) !important;
+}
+
+/* General text elements in the chart */
+.chart-container text {
+    fill: var(--text-color) !important;
+}
+
+/* SVG elements */
+.chart-container svg {
+    background-color: var(--bg-color) !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .chart-container {
+        height: 350px;
+    }
+}
+
+/* Ensure chart container has consistent height */
+.chart-section .chart-container {
+    height: 450px !important;
+}
+
+/* ================================================
+   Tab Content Visibility
+   ================================================ */
+/* Tab content visibility - supports both patterns:
+   1. is-active pattern: hidden by default, shown with .is-active
+   2. is-hidden pattern: visible by default, hidden with .is-hidden (Bulma)
+   
+   Note: Do NOT set display:none on .tab-content base class as that
+   breaks pages using the is-hidden pattern (like webhooks).
+   Pages using is-active pattern should set display:none inline or
+   use a page-specific modifier class.
+*/
+.tab-content.is-active {
+    display: block !important;
+}
+
+/* Bulma's is-hidden should always hide */
+.tab-content.is-hidden {
+    display: none !important;
+}
+
+/* ================================================
+   Chart.js Specific Styling
+   ================================================ */
+/* Chart container explicit sizing for Chart.js (different from ECharts) */
+.chart-wrapper {
+    position: relative;
+}
+
+.chart-wrapper .chart-container {
+    position: relative;
+    height: 300px !important;
+    width: 100%;
+}
+
+/* No data overlay for charts */
+.chart-no-data {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-color, #fff);
+    color: var(--text-muted, #6c757d);
+    font-style: italic;
+    z-index: 10;
+}
+
+/* When hidden via JavaScript */
+.chart-no-data[style*="display: none"],
+.chart-no-data[style*="display:none"] {
+    display: none !important;
+}

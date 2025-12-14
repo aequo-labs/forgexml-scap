@@ -1,0 +1,15 @@
+<!-- Early theme script is no longer needed as theme is applied server-side -->
+<script>
+    // Apply the correct class to the HTML element based on the current theme
+    // This is needed for the toggle button to show the correct icon
+    document.addEventListener('DOMContentLoaded', function() {
+        const isDarkTheme = document.getElementById('dark-theme') && !document.getElementById('dark-theme').disabled;
+        if (isDarkTheme) {
+            document.documentElement.classList.add('dark-mode');
+            document.documentElement.classList.remove('light-mode');
+        } else {
+            document.documentElement.classList.remove('dark-mode');
+            document.documentElement.classList.add('light-mode');
+        }
+    });
+</script>

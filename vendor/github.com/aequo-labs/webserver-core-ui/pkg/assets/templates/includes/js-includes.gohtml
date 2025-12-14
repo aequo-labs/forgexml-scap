@@ -1,0 +1,53 @@
+{{define "js-includes" -}}
+<script src="/static/js/core/loading-overlay.js"></script>
+<script src="/static/js/core/theme-switch.js"></script>
+{{- if .ShowStatusIndicator}}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const statusDot = document.getElementById('status-dot');
+    const statusIndicator = document.getElementById('status-indicator');
+    function updateStatus() {
+        const checkTime = new Date().toLocaleTimeString();
+        fetch('/api/health')
+            .then(response => response.json())
+            .then(data => {
+                statusDot.className = 'status-dot';
+                const lastChecked = data.timestamp ? new Date(data.timestamp).toLocaleTimeString() : checkTime;
+                if (data.status === 'healthy') {
+                    statusDot.classList.add('healthy');
+                    statusIndicator.setAttribute('data-tooltip', `Server Status: Online | Last checked: ${lastChecked}`);
+                } else {
+                    statusDot.classList.add('unhealthy');
+                    statusIndicator.setAttribute('data-tooltip', `Server Status: Offline | Last checked: ${lastChecked}`);
+                }
+            })
+            .catch(error => {
+                statusDot.className = 'status-dot unhealthy';
+                statusIndicator.setAttribute('data-tooltip', `Server Status: Error | Last checked: ${checkTime}`);
+            });
+    }
+    updateStatus();
+    setInterval(updateStatus, 30000);
+});
+</script>
+{{- end}}
+{{- if .NeedsCharts}}
+<script src="/static/js/charts/echarts.min.js"></script>
+<script src="/static/js/charts/echarts-gl.min.js"></script>
+<script src="/static/js/charts/echarts-liquidfill.min.js"></script>
+<script src="/static/js/charts/echarts-wordcloud.min.js"></script>
+{{- end}}
+{{- if .NeedsExport}}
+<script src="/static/js/vendor/html2canvas.min.js"></script>
+<script src="/static/js/vendor/jszip.min.js"></script>
+{{- end}}
+{{- if .NeedsMermaid}}
+<script src="/static/js/core/mermaid.min.js"></script>
+{{- end}}
+{{- if .NeedsPanZoom}}
+<script src="/static/js/vendor/svg-pan-zoom.min.js"></script>
+{{- end}}
+{{- if .IsAuthenticated}}
+<script src="/static/js/core/auth.js"></script>
+{{- end}}
+{{- end}}

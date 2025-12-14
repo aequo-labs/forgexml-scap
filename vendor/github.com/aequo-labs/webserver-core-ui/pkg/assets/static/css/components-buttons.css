@@ -1,0 +1,383 @@
+/* Button Components - All button-related styles */
+/* Extracted from site.css - Lines 339-573 */
+
+/* Base button styles that apply to all themes */
+.button {
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.button:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.button:active:before {
+    width: 300px;
+    height: 300px;
+}
+
+.button.is-loading {
+    color: transparent !important;
+    pointer-events: none;
+}
+
+.button.is-loading:after {
+    border-color: transparent transparent var(--primary-color) var(--primary-color) !important;
+}
+
+/* Primary button override for solid style when needed */
+.button.is-primary.is-solid {
+    background-color: var(--primary-color) !important;
+    color: white !important;
+    border-color: var(--primary-color) !important;
+}
+
+.button.is-primary.is-solid:hover {
+    background-color: var(--primary-color-dark) !important;
+    border-color: var(--primary-color-dark) !important;
+}
+
+/* Info button override for solid style when needed */
+.button.is-info.is-solid {
+    background-color: var(--info-color) !important;
+    color: white !important;
+    border-color: var(--info-color) !important;
+}
+
+.button.is-info.is-solid:hover {
+    background-color: var(--info-color) !important;
+    border-color: var(--info-color) !important;
+}
+
+/* Success button override for solid style when needed */
+.button.is-success.is-solid {
+    background-color: var(--success-color) !important;
+    color: white !important;
+    border-color: var(--success-color) !important;
+}
+
+.button.is-success.is-solid:hover {
+    background-color: var(--success-color) !important;
+    border-color: var(--success-color) !important;
+}
+
+/* Warning button override for solid style when needed */
+.button.is-warning.is-solid {
+    background-color: var(--warning-color) !important;
+    color: rgba(0, 0, 0, 0.7) !important;
+    border-color: var(--warning-color) !important;
+}
+
+.button.is-warning.is-solid:hover {
+    background-color: var(--warning-color) !important;
+    border-color: var(--warning-color) !important;
+}
+
+/* Danger button override for solid style when needed */
+.button.is-danger.is-solid {
+    background-color: var(--danger-color) !important;
+    color: white !important;
+    border-color: var(--danger-color) !important;
+}
+
+.button.is-danger.is-solid:hover {
+    background-color: var(--danger-color) !important;
+    border-color: var(--danger-color) !important;
+}
+
+/* Button size variants */
+.button.is-tiny {
+    font-size: 0.625rem;
+}
+
+/* Button group styling */
+.btn-group {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.btn-group .button {
+    flex: 0 0 auto;
+}
+
+.btn-group.is-centered {
+    justify-content: center;
+}
+
+.btn-group.is-right {
+    justify-content: flex-end;
+}
+
+/* Action buttons - consistent styling for all pages */
+.btn-view,
+.btn-edit,
+.btn-delete,
+.btn-add,
+.btn-back,
+.btn-submit {
+    min-width: 80px;
+}
+
+/* View button */
+.btn-view {
+    background-color: transparent;
+    color: var(--info-color);
+    border: 1px solid var(--info-color);
+}
+
+.btn-view:hover {
+    background-color: var(--info-color);
+    color: white;
+    border-color: var(--info-color);
+}
+
+/* Back/Cancel button */
+.btn-back,
+.btn-cancel {
+    background-color: transparent;
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+.btn-back:hover,
+.btn-cancel:hover {
+    background-color: var(--bg-color-secondary);
+    border-color: var(--text-color);
+}
+
+/* Add button */
+.btn-add {
+    background-color: transparent;
+    color: var(--success-color);
+    border: 1px solid var(--success-color);
+}
+
+.btn-add:hover {
+    background-color: var(--success-color);
+    color: white;
+    border-color: var(--success-color);
+}
+
+/* Delete button */
+.btn-delete {
+    background-color: transparent;
+    color: var(--danger-color);
+    border: 1px solid var(--danger-color);
+}
+
+.btn-delete:hover {
+    background-color: var(--danger-color);
+    color: white;
+    border-color: var(--danger-color);
+}
+
+/* Loading state for buttons */
+.button.is-loading {
+    color: transparent !important;
+    pointer-events: none;
+}
+
+.button.is-loading::after {
+    content: "";
+    position: absolute;
+    left: calc(50% - 0.5em);
+    top: calc(50% - 0.5em);
+    border: 2px solid var(--input-border);
+    border-radius: 50%;
+    border-right-color: transparent;
+    border-top-color: transparent;
+    height: 1em;
+    width: 1em;
+    animation: spin 0.5s linear infinite;
+}
+
+/* Loading state for navigation links - keeps text visible */
+.navbar-item.is-loading {
+    pointer-events: none;
+    position: relative;
+}
+
+.navbar-item.is-loading::after {
+    content: "";
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 2px solid var(--input-border);
+    border-radius: 50%;
+    border-right-color: transparent;
+    border-top-color: transparent;
+    height: 1em;
+    width: 1em;
+    animation: spin 0.5s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: translateY(-50%) rotate(360deg);
+    }
+}
+
+/* Ensure buttons are touch-friendly */
+.button {
+    min-height: 2.5rem;
+    padding: 0.75rem 1rem;
+}
+
+/* Default button spacing - prevents buttons from cramping against edges or each other */
+.button:not(:last-child) {
+    margin-right: 0.5rem;
+}
+
+/* Button groups should handle their own spacing */
+.buttons .button,
+.field.is-grouped .button {
+    margin-right: 0;
+}
+
+.buttons .button:not(:last-child),
+.field.is-grouped .control:not(:last-child) .button {
+    margin-right: 0.5rem;
+}
+
+/* Ensure buttons in level containers have proper spacing - always apply margin */
+.level-item > .button,
+.level-item > a.button,
+.level-left > .button,
+.level-left > a.button,
+.level-right > .button,
+.level-right > a.button {
+    margin-right: 0.5rem !important;
+}
+
+/* Enhanced button hover consistency from theme-test */
+.button.is-success:hover {
+    background-color: transparent !important;
+    border-color: var(--success-color) !important;
+    color: var(--success-color) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(72, 199, 142, 0.25);
+}
+
+.button.is-info:hover {
+    background-color: var(--info-color) !important;
+    border-color: var(--info-color) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(62, 142, 208, 0.25);
+}
+
+.button.is-warning:hover {
+    background-color: var(--warning-color) !important;
+    border-color: var(--warning-color) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(255, 221, 87, 0.25);
+}
+
+.button.is-primary:hover {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(50, 115, 220, 0.25);
+}
+
+/* Modal card footer button styling from tools-content */
+.modal-card-foot .button {
+    border-radius: 4px;
+    font-weight: 500;
+    padding: 0.75rem 1.5rem;
+}
+
+.modal-card-foot .button.is-success {
+    background-color: transparent;
+    border-color: var(--success-color);
+    color: var(--success-color);
+}
+
+.modal-card-foot .button.is-success:hover {
+    background-color: rgba(72, 199, 116, 0.1);
+    border-color: var(--success-color);
+    color: var(--success-color);
+}
+
+/* Ensure ALL colored buttons in modals are outlined - override any other styles */
+.modal-card-foot .button.is-info,
+.modal-card-foot .button.is-primary,
+.modal-card-foot .button.is-warning,
+.modal-card-foot .button.is-danger {
+    background-color: transparent !important;
+    border-width: 1px !important;
+    border-style: solid !important;
+}
+
+.modal-card-foot .button.is-info {
+    color: var(--info-color) !important;
+    border-color: var(--info-color) !important;
+}
+
+.modal-card-foot .button.is-primary {
+    color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+}
+
+.modal-card-foot .button.is-warning {
+    color: var(--warning-color) !important;
+    border-color: var(--warning-color) !important;
+}
+
+.modal-card-foot .button.is-danger {
+    color: var(--danger-color) !important;
+    border-color: var(--danger-color) !important;
+}
+
+/* Modal button hover effects */
+.modal-card-foot .button.is-info:hover {
+    background-color: rgba(50, 152, 220, 0.1) !important;
+}
+
+.modal-card-foot .button.is-primary:hover {
+    background-color: rgba(50, 115, 220, 0.1) !important;
+}
+
+.modal-card-foot .button.is-warning:hover {
+    background-color: rgba(255, 221, 87, 0.1) !important;
+}
+
+.modal-card-foot .button.is-danger:hover {
+    background-color: rgba(255, 56, 96, 0.1) !important;
+}
+
+/* Make ALL modal buttons outlined, including Cancel buttons */
+.modal-card-foot .button:not(.is-success):not(.is-info):not(.is-primary):not(.is-warning):not(.is-danger) {
+    background-color: transparent !important;
+    border: 1px solid var(--input-border) !important;
+    color: var(--text-color) !important;
+}
+
+.modal-card-foot .button:not(.is-success):not(.is-info):not(.is-primary):not(.is-warning):not(.is-danger):hover {
+    background-color: rgba(128, 128, 128, 0.1) !important;
+    border-color: var(--border-hover-color) !important;
+}
+
+html.dark-mode .modal-card-foot .button:not(.is-success):not(.is-info):not(.is-primary):not(.is-warning):not(.is-danger) {
+    background-color: transparent !important;
+    border: 1px solid var(--input-border) !important;
+    color: var(--text-color) !important;
+}
+
+html.dark-mode .modal-card-foot .button:not(.is-success):not(.is-info):not(.is-primary):not(.is-warning):not(.is-danger):hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border-color: var(--border-hover-color) !important;
+}

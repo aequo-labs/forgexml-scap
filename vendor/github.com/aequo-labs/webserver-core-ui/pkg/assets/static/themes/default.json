@@ -1,0 +1,14 @@
+{
+  "name": "Default",
+  "description": "Default theme configuration",
+  "light": {
+    "primary": "#3273dc",
+    "background": "#ffffff",
+    "text": "#363636"
+  },
+  "dark": {
+    "primary": "#3273dc", 
+    "background": "#121212",
+    "text": "#ffffff"
+  }
+}

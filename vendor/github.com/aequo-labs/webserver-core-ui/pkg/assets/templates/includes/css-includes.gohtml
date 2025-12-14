@@ -1,0 +1,35 @@
+{{define "css-includes" -}}
+<!-- Bulma CSS Framework -->
+<link rel="stylesheet" href="/static/css/bulma.min.css">
+<!-- Bulma Framework Overrides -->
+<link rel="stylesheet" href="/static/css/bulma-overrides.css">
+<!-- Bulma Modal Component (missing from minified version) -->
+<link rel="stylesheet" href="/static/css/modal.css">
+<!-- FontAwesome for icons -->
+<link rel="stylesheet" href="/static/css/fontawesome.min.css">
+<!-- Theme CSS files - only one active based on user preference -->
+<link rel="stylesheet" href="/static/css/light-mode.css" id="light-theme" {{if eq .ThemePreference "dark"}} disabled{{end}}>
+<link rel="stylesheet" href="/static/css/dark-mode.css" id="dark-theme" {{if ne .ThemePreference "dark"}} disabled{{end}}>
+<link rel="stylesheet" href="/static/css/theme-toggle.css">
+<!-- Core CSS Modules -->
+<link rel="stylesheet" href="/static/css/core-base.css">
+<link rel="stylesheet" href="/static/css/layout.css">
+<link rel="stylesheet" href="/static/css/utilities.css">
+<!-- Component CSS Modules -->
+<link rel="stylesheet" href="/static/css/components-buttons.css">
+<link rel="stylesheet" href="/static/css/components-forms.css">
+<link rel="stylesheet" href="/static/css/components-tables.css">
+<link rel="stylesheet" href="/static/css/components-cards.css">
+<link rel="stylesheet" href="/static/css/components-tags.css">
+<!-- Feature CSS Modules -->
+<link rel="stylesheet" href="/static/css/charts.css">
+<link rel="stylesheet" href="/static/css/dashboard-components.css">
+<link rel="stylesheet" href="/static/css/domain-specific.css">
+<!-- Responsive & Media Queries -->
+<link rel="stylesheet" href="/static/css/responsive.css">
+{{- if .DomainCSS}}
+{{- range .DomainCSS}}
+<link rel="stylesheet" href="{{.}}">
+{{- end}}
+{{- end}}
+{{- end}}

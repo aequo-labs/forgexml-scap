@@ -1,0 +1,868 @@
+/* Light mode theme
+ * 
+ * CSS Custom Properties for light theme
+ * Usage: Apply these variables to ensure consistent theming across all components
+ * 
+ * Base colors: Use --bg-color, --text-color, --border-color for primary surfaces
+ * Brand colors: Use --primary-color, --success-color, etc. for semantic meanings
+ * Component colors: Use specific component variables for UI elements
+ * Health indicators: Use --health-status-* for status indication
+ * Loading UI: Use --loading-overlay-bg and --spinner-* for loading states
+ * 
+ * Example usage:
+ *   .my-component { background-color: var(--bg-color); color: var(--text-color); }
+ *   .status.online { color: var(--health-status-online); }
+ */
+
+:root {
+    /* Base colors */
+    --bg-color: #ffffff;
+    --bg-color-rgb: 255, 255, 255;
+    --bg-lighter: #e8ecf1;
+    --bg-lightest: #f9fafc;
+    --bg-darker: #eef0f3;
+    --text-color: #333333;
+    --text-color-rgb: 51, 51, 51;
+    --text-muted: #666666;
+    --border-color: #e1e4e8;
+    --border-color-rgb: 225, 228, 232;
+    --border-light: #f0f0f0;
+    --light-button-border: #b0b0b0;
+    --light-button-border-rgb: 176, 176, 176;
+    /* Brand colors */
+    --primary-color: #3273dc;
+    --primary-color-rgb: 50, 115, 220;
+    --primary-color-dark: #2160c4;
+    --secondary-color: #4a4a4a;
+    --secondary-color-rgb: 74, 74, 74;
+    --success-color: #23d160;
+    --success-color-rgb: 35, 209, 96;
+    --warning-color: #b8860b;
+    --warning-color-rgb: 184, 134, 11;
+    --danger-color: #ff3860;
+    --danger-color-rgb: 255, 56, 96;
+    --info-color: #17a2b8;
+    --info-color-rgb: 23, 162, 184;
+    /* Component colors */
+    --card-bg: #f5f7fa;
+    --input-bg: #ffffff;
+    --input-border: #dbdbdb;
+    --input-text: #333333;
+    --button-bg: #f5f7fa;
+    --button-text: #333333;
+    --button-text-inverse: #ffffff;
+    --navbar-bg: #3273dc;
+    --navbar-text: #ffffff;
+    --footer-bg: #f5f7fa;
+    --footer-text: #4a4a4a;
+    --table-header-bg: #f5f7fa;
+    --table-row-even: #f9fafc;
+    --table-border: #e1e4e8;
+    --code-bg: #f5f7fa;
+    --code-text: #333333;
+    --secondary-bg-color: #f5f7fa;
+    
+    /* Health status indicators */
+    --health-status-online: #48c774;
+    --health-status-offline: #f14668;
+    --health-status-checking: #ffdd57;
+    --health-status-error: #ff9f43;
+    
+    /* Loading overlay and spinner */
+    --loading-overlay-bg: rgba(255, 255, 255, 0.8);
+    --spinner-primary-color: #3498db;
+    --spinner-secondary-color: #f3f3f3;
+
+    /* Additional theme compatibility variables */
+    --card-background-color: #ffffff;
+    --link-color: #3273dc;
+    --hover-background-color: #f5f5f5;
+    --border-hover-color: #b5b5b5;
+    --button-background-color: #f5f5f5;
+    --button-hover-background-color: #eeeeee;
+    --code-background-color: #f5f5f5;
+    --code-text-color: #dd1144;
+    --input-background-color: #ffffff;
+    --input-focus-border-color: #3273dc;
+    --input-focus-shadow-color: rgba(50, 115, 220, 0.25);
+    
+    /* Shadows */
+    --shadow-color-rgb: 0, 0, 0;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.15), 0 1px 3px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Light mode specific overrides */
+html:not(.dark-mode) body {
+    background-color: var(--bg-lighter);
+    color: var(--text-color);
+}
+
+html:not(.dark-mode) a {
+    color: var(--primary-color);
+}
+
+    html:not(.dark-mode) a:hover {
+        color: var(--primary-color-dark);
+    }
+
+html:not(.dark-mode) .navbar {
+    background-color: var(--navbar-bg);
+    color: var(--navbar-text);
+}
+
+/* Navbar items for light mode */
+html:not(.dark-mode) .navbar-item,
+html:not(.dark-mode) .navbar-link {
+    color: var(--navbar-text);
+}
+
+    html:not(.dark-mode) .navbar-item:hover,
+    html:not(.dark-mode) .navbar-item.is-active {
+        background-color: rgba(255, 255, 255, 0.1) !important;
+        color: var(--navbar-text);
+    }
+
+    html:not(.dark-mode) .navbar-item.is-active {
+        background-color: rgba(255, 255, 255, 0.2) !important;
+    }
+
+/* Navbar buttons */
+html:not(.dark-mode) .navbar-item .button.is-light {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--navbar-text);
+    border: none;
+}
+
+    html:not(.dark-mode) .navbar-item .button.is-light:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+        color: var(--navbar-text);
+    }
+
+/* Theme toggle button in navbar */
+html:not(.dark-mode) .navbar-item .theme-toggle-button {
+    background: none;
+    border: none;
+    color: var(--navbar-text);
+}
+
+    html:not(.dark-mode) .navbar-item .theme-toggle-button:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: var(--navbar-text);
+    }
+
+html:not(.dark-mode) .footer {
+    background-color: var(--footer-bg);
+    color: var(--footer-text);
+}
+
+html:not(.dark-mode) .card,
+html:not(.dark-mode) .box {
+    background-color: var(--card-bg);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+}
+
+/* Card headers */
+html:not(.dark-mode) .card-header {
+    background-color: var(--bg-lighter);
+    border-bottom: 1px solid var(--border-color);
+}
+
+html:not(.dark-mode) .card-header-title {
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+/* Card content */
+html:not(.dark-mode) .card-content {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+}
+
+html:not(.dark-mode) input,
+html:not(.dark-mode) select,
+html:not(.dark-mode) textarea {
+    background-color: var(--input-bg);
+    border-color: var(--input-border);
+    color: var(--input-text);
+}
+
+html:not(.dark-mode) button,
+html:not(.dark-mode) .button {
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: 1px solid var(--border-color);
+}
+
+/* Specific button variants for light mode */
+html:not(.dark-mode) .button.is-primary {
+    background-color: var(--primary-color);
+    color: var(--button-text-inverse);
+    border-color: var(--primary-color);
+}
+
+html:not(.dark-mode) .button.is-light {
+    background-color: var(--bg-lighter);
+    color: var(--text-color);
+    border-color: var(--border-color);
+}
+
+    html:not(.dark-mode) .button.is-light:hover {
+        background-color: var(--bg-lightest);
+        border-color: var(--border-color);
+    }
+
+html:not(.dark-mode) .button.is-ghost {
+    background-color: transparent;
+    color: var(--text-color);
+    border: none;
+}
+
+    html:not(.dark-mode) .button.is-ghost:hover {
+        background-color: var(--bg-lighter);
+        color: var(--text-color);
+    }
+
+/* Button styles for light mode */
+html:not(.dark-mode) .btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+html:not(.dark-mode) .btn-secondary {
+    background-color: var(--secondary-color);
+    color: white;
+    border-color: var(--secondary-color);
+}
+
+html:not(.dark-mode) .btn-danger {
+    background-color: var(--danger-color);
+    color: white;
+    border-color: var(--danger-color);
+}
+
+/* Outlined button variants for light mode */
+html:not(.dark-mode) .btn-outline-primary {
+    background-color: #ffffff;
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+html:not(.dark-mode) .btn-outline-secondary {
+    background-color: #ffffff;
+    color: var(--secondary-color);
+    border-color: var(--secondary-color);
+}
+
+html:not(.dark-mode) .btn-outline-primary:hover {
+    background-color: #f0f5ff;
+}
+
+html:not(.dark-mode) .btn-outline-secondary:hover {
+    background-color: #f5f5f5;
+}
+
+/* Action buttons for light mode */
+html:not(.dark-mode) .btn-outline-view,
+html:not(.dark-mode) .btn-back,
+html:not(.dark-mode) .item-actions .btn-secondary,
+html:not(.dark-mode) .title-actions .btn-secondary,
+html:not(.dark-mode) .section-container .header .btn-secondary,
+html:not(.dark-mode) .modal-footer .btn-secondary {
+    background-color: #ffffff;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}
+
+html:not(.dark-mode) .btn-manage-portfolios,
+html:not(.dark-mode) .btn-add,
+html:not(.dark-mode) .item-actions .btn-primary,
+html:not(.dark-mode) .title-actions .btn-primary,
+html:not(.dark-mode) .section-container .header .btn-primary,
+html:not(.dark-mode) .modal-footer .btn-primary {
+    background-color: #f0f5ff;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}
+
+html:not(.dark-mode) .btn-delete-account,
+html:not(.dark-mode) .item-actions .btn-danger,
+html:not(.dark-mode) .title-actions .btn-danger,
+html:not(.dark-mode) .section-container .header .btn-danger,
+html:not(.dark-mode) .modal-footer .btn-danger {
+    background-color: #ffffff;
+    color: var(--danger-color);
+    border: 1px solid var(--danger-color);
+}
+
+html:not(.dark-mode) .btn-outline-view:hover,
+html:not(.dark-mode) .btn-back:hover,
+html:not(.dark-mode) .item-actions .btn-secondary:hover,
+html:not(.dark-mode) .title-actions .btn-secondary:hover,
+html:not(.dark-mode) .section-container .header .btn-secondary:hover,
+html:not(.dark-mode) .modal-footer .btn-secondary:hover {
+    background-color: #f0f5ff;
+}
+
+html:not(.dark-mode) .btn-manage-portfolios:hover,
+html:not(.dark-mode) .btn-add:hover,
+html:not(.dark-mode) .item-actions .btn-primary:hover,
+html:not(.dark-mode) .title-actions .btn-primary:hover,
+html:not(.dark-mode) .section-container .header .btn-primary:hover,
+html:not(.dark-mode) .modal-footer .btn-primary:hover {
+    background-color: #e0ebff;
+}
+
+html:not(.dark-mode) .btn-delete-account:hover,
+html:not(.dark-mode) .item-actions .btn-danger:hover,
+html:not(.dark-mode) .title-actions .btn-danger:hover,
+html:not(.dark-mode) .section-container .header .btn-danger:hover,
+html:not(.dark-mode) .modal-footer .btn-danger:hover {
+    background-color: #fff0f0;
+}
+
+/* Table styles for light mode */
+html:not(.dark-mode) .data-table th {
+    background-color: var(--table-header-bg);
+    color: var(--text-color);
+    border-bottom-color: var(--border-color);
+}
+
+html:not(.dark-mode) .data-table td {
+    border-bottom-color: var(--border-color);
+    color: var(--text-color);
+}
+
+html:not(.dark-mode) .data-table tr:nth-child(even) {
+    background-color: var(--table-row-even);
+}
+
+html:not(.dark-mode) .data-table tr:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Numeric values in light mode */
+html:not(.dark-mode) .numeric-cell,
+html:not(.dark-mode) .money-value {
+    color: var(--primary-color);
+}
+
+/* Container styling */
+html:not(.dark-mode) .container {
+    background-color: var(--card-bg);
+    box-shadow: var(--shadow-md);
+}
+
+/* Empty state */
+html:not(.dark-mode) .empty-state {
+    background-color: var(--bg-lighter);
+}
+
+/* Breadcrumb styling for light mode */
+html:not(.dark-mode) .breadcrumb a {
+    color: var(--primary-color);
+}
+
+html:not(.dark-mode) .breadcrumb li.is-active a {
+    color: var(--text-muted);
+}
+
+html:not(.dark-mode) .breadcrumb li::before {
+    color: var(--text-muted);
+}
+
+/* Status badge - using strategies domain style */
+html:not(.dark-mode) .status-badge.status-active {
+    background-color: rgba(var(--success-color-rgb), 0.2);
+    color: var(--success-color);
+}
+
+html:not(.dark-mode) .status-badge.status-inactive {
+    background-color: rgba(var(--danger-color-rgb), 0.2);
+    color: var(--danger-color);
+}
+
+/* Item card styling for light mode */
+html:not(.dark-mode) .item-card {
+    background-color: white;
+    border: 1px solid var(--border-color);
+}
+
+html:not(.dark-mode) .item-id {
+    color: var(--text-color);
+}
+
+html:not(.dark-mode) .item-type {
+    color: var(--text-muted);
+}
+
+/* Item summary */
+html:not(.dark-mode) .item-summary {
+    background-color: var(--bg-lighter);
+}
+
+html:not(.dark-mode) .stats-table td:nth-child(odd) {
+    color: var(--text-muted);
+}
+
+html:not(.dark-mode) .stats-table td:nth-child(even) {
+    color: var(--primary-color);
+}
+
+html:not(.dark-mode) .stats-table .status {
+    color: var(--text-color);
+    font-family: inherit;
+}
+
+/* Edit form */
+html:not(.dark-mode) .edit-form {
+    background-color: white;
+}
+
+html:not(.dark-mode) .form-input {
+    background-color: white;
+    border-color: var(--border-color);
+    color: var(--text-color);
+}
+
+/* Section container */
+html:not(.dark-mode) .section-container {
+    background-color: white;
+    border: 1px solid var(--border-color);
+}
+
+    html:not(.dark-mode) .section-container .header {
+        background-color: var(--bg-lighter);
+        border-bottom: 1px solid var(--border-color);
+    }
+
+/* Generic content list styles (formerly doc-item) */
+html:not(.dark-mode) .content-item {
+    background: white;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+}
+
+    html:not(.dark-mode) .content-item:hover {
+        background-color: #f8f9fa;
+        box-shadow: var(--shadow-md);
+        border-color: var(--primary-color);
+    }
+
+html:not(.dark-mode) .content-link {
+    color: var(--primary-color);
+}
+
+html:not(.dark-mode) .section-title {
+    color: var(--primary-color);
+    border-bottom-color: var(--border-color);
+}
+
+/* Generic content container (formerly doc-content) */
+html:not(.dark-mode) .content-container {
+    background: white;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+}
+
+    html:not(.dark-mode) .content-container h1 {
+        border-bottom-color: var(--border-color);
+    }
+
+    html:not(.dark-mode) .content-container h2 {
+        border-bottom-color: var(--border-light);
+    }
+
+    html:not(.dark-mode) .content-container pre {
+        background: #f5f5f5;
+        border: 1px solid #ddd;
+    }
+
+    html:not(.dark-mode) .content-container code {
+        background: #f5f5f5;
+        color: #333;
+    }
+
+    html:not(.dark-mode) .content-container blockquote {
+        color: #555;
+    }
+
+/* Mermaid diagram styling */
+html:not(.dark-mode) .svg-container {
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+}
+
+html:not(.dark-mode) .svg-pan-zoom-control {
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+html:not(.dark-mode) .svg-pan-zoom-control-background {
+    fill: #fff;
+}
+/* Risk badge - light mode */
+html:not(.dark-mode) .risk-low {
+    background-color: rgba(var(--success-color-rgb), 0.2);
+    color: var(--success-color);
+}
+
+html:not(.dark-mode) .risk-medium {
+    background-color: rgba(var(--warning-color-rgb), 0.2);
+    color: #806600; /* Darker yellow for better contrast */
+}
+
+html:not(.dark-mode) .risk-high {
+    background-color: rgba(var(--danger-color-rgb), 0.2);
+    color: var(--danger-color);
+}
+
+/* Status badges - light mode */
+html:not(.dark-mode) .status-badge {
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+html:not(.dark-mode) .status-active {
+    background-color: rgba(var(--success-color-rgb), 0.2);
+    color: var(--success-color);
+}
+
+html:not(.dark-mode) .status-inactive {
+    background-color: rgba(var(--danger-color-rgb), 0.2);
+    color: var(--danger-color);
+}
+
+html:not(.dark-mode) .status-warning {
+    background-color: rgba(var(--warning-color-rgb), 0.2);
+    color: #806600; /* Darker yellow for better contrast */
+}
+
+/* Risk level selector - light mode */
+html:not(.dark-mode) .risk-option {
+    background-color: white;
+    border-color: var(--border-color);
+    color: var(--text-color);
+}
+
+    html:not(.dark-mode) .risk-option:hover {
+        background-color: var(--bg-lighter);
+    }
+
+    html:not(.dark-mode) .risk-option.selected {
+        background-color: var(--primary-color);
+        color: white;
+        border-color: var(--primary-color);
+    }
+
+    html:not(.dark-mode) .risk-option.low {
+        border-color: var(--success-color);
+    }
+
+        html:not(.dark-mode) .risk-option.low.selected {
+            background-color: var(--success-color);
+            color: white;
+        }
+
+    html:not(.dark-mode) .risk-option.medium {
+        border-color: var(--warning-color);
+    }
+
+        html:not(.dark-mode) .risk-option.medium.selected {
+            background-color: var(--warning-color);
+            color: black;
+        }
+
+    html:not(.dark-mode) .risk-option.high {
+        border-color: var(--danger-color);
+    }
+
+        html:not(.dark-mode) .risk-option.high.selected {
+            background-color: var(--danger-color);
+            color: white;
+        }
+
+/* Info details - light mode */
+html:not(.dark-mode) .info-details {
+    background-color: var(--bg-lighter);
+    border-color: var(--border-color);
+}
+
+html:not(.dark-mode) .info-details-table .info-label {
+    color: var(--text-muted);
+}
+
+html:not(.dark-mode) .info-details-table .info-value {
+    color: var(--text-color);
+}
+
+html:not(.dark-mode) .info-details-table .money-value {
+    color: var(--primary-color);
+}
+/* Category badge - light mode */
+html:not(.dark-mode) .category-badge {
+    background-color: var(--bg-lighter);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+/* Entity search results - light mode */
+html:not(.dark-mode) .entity-search-results {
+    background-color: white;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+}
+
+html:not(.dark-mode) .entity-search-item {
+    border-bottom: 1px solid var(--border-color);
+}
+
+    html:not(.dark-mode) .entity-search-item:hover {
+        background-color: var(--bg-lighter);
+    }
+/* Add these styles to the end of your existing light-mode.css file */
+
+/* Portfolio styles for light mode - consolidated from portfolios-light-mode.css */
+
+/* Tag colors - translucent backgrounds, no borders */
+html:not(.dark-mode) .tag.is-success {
+    background-color: rgba(var(--success-color-rgb), 0.15) !important;
+    color: var(--success-color) !important;
+    border: none !important;
+}
+
+html:not(.dark-mode) .tag.is-warning {
+    background-color: rgba(var(--warning-color-rgb), 0.15) !important;
+    color: var(--warning-color) !important;
+    border: none !important;
+}
+
+html:not(.dark-mode) .tag.is-info {
+    background-color: rgba(var(--info-color-rgb), 0.15) !important;
+    color: var(--info-color) !important;
+    border: none !important;
+}
+
+html:not(.dark-mode) .tag.is-danger {
+    background-color: rgba(var(--danger-color-rgb), 0.15) !important;
+    color: var(--danger-color) !important;
+    border: none !important;
+}
+
+/* Chart section */
+html:not(.dark-mode) .chart-section {
+    background-color: white;
+    border: 1px solid var(--border-color);
+}
+
+html:not(.dark-mode) .chart-container {
+    background-color: var(--bg-lighter);
+    border: 1px solid var(--border-color);
+}
+
+/* Content section */
+html:not(.dark-mode) .content-section {
+    background-color: white;
+    border: 1px solid var(--border-color);
+}
+
+/* Button hover enhancements */
+html:not(.dark-mode) .btn-outline-view:hover {
+    background-color: #e0ebff;
+}
+
+html:not(.dark-mode) .btn-add:hover {
+    background-color: #d0e0ff;
+}
+
+html:not(.dark-mode) .btn-primary:hover {
+    background-color: #e0ebff;
+}
+/* Test results styling for light mode */
+html:not(.dark-mode) .test-item.status-active {
+    background-color: rgba(var(--success-color-rgb), 0.2);
+    border: 1px solid var(--success-color);
+}
+
+html:not(.dark-mode) .test-item.status-inactive {
+    background-color: rgba(var(--danger-color-rgb), 0.2);
+    border: 1px solid var(--danger-color);
+}
+
+html:not(.dark-mode) .test-message {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+}
+
+/* Bulma form elements - light mode support */
+html:not(.dark-mode) .field .label {
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+html:not(.dark-mode) .input,
+html:not(.dark-mode) .textarea,
+html:not(.dark-mode) .select select {
+    background-color: var(--input-bg);
+    border-color: var(--input-border);
+    color: var(--input-text);
+}
+
+    html:not(.dark-mode) .input:focus,
+    html:not(.dark-mode) .textarea:focus,
+    html:not(.dark-mode) .select select:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 0.125em rgba(var(--primary-color-rgb), 0.25);
+    }
+
+    html:not(.dark-mode) .input::placeholder,
+    html:not(.dark-mode) .textarea::placeholder {
+        color: var(--text-muted);
+    }
+
+/* Bulma table elements - light mode support */
+html:not(.dark-mode) .table {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+}
+
+html:not(.dark-mode) .table td,
+html:not(.dark-mode) .table th {
+    border-color: var(--border-color);
+    color: var(--text-color);
+}
+
+html:not(.dark-mode) .table th {
+    background-color: var(--table-header-bg);
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+html:not(.dark-mode) .table tr:nth-child(even) {
+    background-color: var(--table-row-even);
+}
+
+html:not(.dark-mode) .table tr:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Bulma table containers */
+html:not(.dark-mode) .table-container {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+/* Help text and form hints */
+html:not(.dark-mode) .help {
+    color: var(--text-muted);
+}
+
+html:not(.dark-mode) .help.is-danger {
+    color: var(--danger-color);
+}
+
+html:not(.dark-mode) .help.is-success {
+    color: var(--success-color);
+}
+
+/* FontAwesome icon spacing */
+html:not(.dark-mode) .fas,
+html:not(.dark-mode) .far,
+html:not(.dark-mode) .fab {
+    margin-right: 0.5em;
+}
+
+/* Icons at end of text */
+html:not(.dark-mode) .fas:last-child,
+html:not(.dark-mode) .far:last-child,
+html:not(.dark-mode) .fab:last-child {
+    margin-right: 0;
+    margin-left: 0.5em;
+}
+
+/* Icons in titles and headers */
+html:not(.dark-mode) .title .fas,
+html:not(.dark-mode) .title .far,
+html:not(.dark-mode) .title .fab,
+html:not(.dark-mode) .card-header-title .fas,
+html:not(.dark-mode) .card-header-title .far,
+html:not(.dark-mode) .card-header-title .fab {
+    margin-right: 0.75em;
+}
+
+/* Icons in buttons */
+html:not(.dark-mode) .button .fas,
+html:not(.dark-mode) .button .far,
+html:not(.dark-mode) .button .fab {
+    margin-right: 0.5em !important;
+}
+
+html:not(.dark-mode) .button .fas:last-child,
+html:not(.dark-mode) .button .far:last-child,
+html:not(.dark-mode) .button .fab:last-child {
+    margin-right: 0;
+    margin-left: 0.5em;
+}
+
+/* Icons in navbar items */
+html:not(.dark-mode) .navbar-item .fas,
+html:not(.dark-mode) .navbar-item .far,
+html:not(.dark-mode) .navbar-item .fab {
+    margin-right: 0.5em;
+}
+
+/* Icons in tags and badges */
+html:not(.dark-mode) .tag .fas,
+html:not(.dark-mode) .tag .far,
+html:not(.dark-mode) .tag .fab {
+    margin-right: 0.5em !important;
+}
+
+html:not(.dark-mode) .tag .fas:last-child,
+html:not(.dark-mode) .tag .far:last-child,
+html:not(.dark-mode) .tag .fab:last-child {
+    margin-right: 0;
+    margin-left: 0.5em;
+}
+
+/* Icons in all span elements */
+html:not(.dark-mode) span .fas,
+html:not(.dark-mode) span .far,
+html:not(.dark-mode) span .fab {
+    margin-right: 0.5em !important;
+}
+
+html:not(.dark-mode) span .fas:last-child,
+html:not(.dark-mode) span .far:last-child,
+html:not(.dark-mode) span .fab:last-child {
+    margin-right: 0;
+    margin-left: 0.5em;
+}
+
+/* Override for icon containers to prevent double spacing */
+html:not(.dark-mode) .icon .fas,
+html:not(.dark-mode) .icon .far,
+html:not(.dark-mode) .icon .fab {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+/* Code box styling for light mode */
+html:not(.dark-mode) .code-box {
+    background-color: var(--code-bg);
+    color: var(--code-text);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 1rem;
+    font-family: 'Courier New', Consolas, Monaco, monospace;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    max-height: 400px;
+    overflow: auto;
+}

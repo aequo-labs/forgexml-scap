@@ -1,0 +1,262 @@
+/* Card Components - All card-related styles */
+/* Extracted from site.css - Lines 309-338, 1619-1760 */
+
+/* Common components */
+.card {
+    background-color: var(--bg-color);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all var(--animation-duration) var(--animation-timing);
+    overflow: hidden;
+}
+
+.card-header {
+    background-color: var(--bg-color-secondary);
+    border-bottom: 1px solid var(--border-color);
+    padding: 1rem 1.5rem;
+}
+
+.card-header-title {
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+.card-content {
+    padding: 1.5rem;
+}
+
+.card-footer {
+    background-color: var(--bg-color-secondary);
+    border-top: 1px solid var(--border-color);
+    padding: 0.75rem 1.5rem;
+}
+
+/* Card title spacing - prevent cramped text between title and subtitle/description */
+.card .title {
+    margin-bottom: 0.5rem !important; /* 8px, equivalent to mb-2 in Bulma */
+}
+
+
+/* Statistics card spacing fixes */
+.stats-card {
+    padding: 1.5rem;
+}
+
+.stats-card .level {
+    margin-bottom: 0;
+}
+
+.stats-card .level-item {
+    flex-direction: column;
+    align-items: center;
+}
+
+.stats-card .heading {
+    color: var(--text-color-muted);
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+}
+
+.stats-card .title {
+    color: var(--text-color);
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+/* Statistics card with media component - vertical layout for narrow columns */
+.stats-card .media {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.stats-card .media-left {
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0.75rem;
+}
+
+.stats-card .media-content {
+    flex: none;
+    overflow: visible;
+    text-overflow: clip;
+}
+
+.stats-card .media-content .title,
+.stats-card .media-content .subtitle {
+    white-space: nowrap;
+    overflow: visible;
+    text-overflow: clip;
+    word-break: keep-all;
+}
+
+/* Ensure proper spacing in stats cards with reduced padding for narrow columns */
+.stats-card .card-content {
+    padding: 1.5rem 0.5rem;
+}
+
+/* Make sure icons are properly sized and centered */
+.stats-card .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Data cards grid layout */
+.data-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* Item card styles */
+.item-card {
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.item-card:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* transform: translateY(-2px); - removed grow effect */
+}
+
+.item-card .item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.item-card .item-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin: 0;
+}
+
+.item-card .item-meta {
+    color: var(--text-color-muted);
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+.item-card .item-body {
+    margin-bottom: 1rem;
+}
+
+.item-card .item-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--bg-color-secondary);
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+.item-card .stat-item {
+    text-align: center;
+}
+
+.item-card .stat-label {
+    color: var(--text-color-muted);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+    margin-bottom: 0.25rem;
+}
+
+.item-card .stat-value {
+    color: var(--text-color);
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+/* Chart section - new component */
+.chart-section {
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.chart-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin: 0;
+}
+
+.chart-controls {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.chart-container {
+    position: relative;
+    height: 400px;
+    margin-top: 1rem;
+}
+
+/* Section container styles */
+.section-container {
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.section-container .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.section-container .section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin: 0;
+}
+
+/* Content sections */
+.content-section {
+    margin-bottom: 3rem;
+}
+
+.content-section:last-child {
+    margin-bottom: 0;
+}
+
+/* Section title - generic version of category-title */
+.section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--border-color);
+}

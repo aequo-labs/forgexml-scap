@@ -1,0 +1,13 @@
+<link rel="stylesheet" href="/static/css/bulma.min.css">
+
+<!-- Theme mode CSS files - only one will be active based on user preference -->
+<link rel="stylesheet" href="/static/css/light-mode.css" id="light-theme" {{if eq .ThemePreference "dark"}} disabled{{end}}>
+<link rel="stylesheet" href="/static/css/dark-mode.css" id="dark-theme" {{if ne .ThemePreference "dark"}} disabled{{end}}>
+<link rel="stylesheet" href="/static/css/theme-toggle.css">
+
+<!-- Core CSS files -->
+<link rel="stylesheet" href="/static/css/site.css">
+<link rel="stylesheet" href="/static/css/charts.css">
+
+<!-- Loading overlay script -->
+<script src="/static/js/loading-overlay.js"></script>

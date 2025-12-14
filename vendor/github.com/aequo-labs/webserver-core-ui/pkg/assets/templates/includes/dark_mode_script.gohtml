@@ -1,0 +1,103 @@
+<!-- Dark mode toggle script - handles theme changes only -->
+<script>
+    // Use an IIFE to avoid polluting the global scope
+    (function() {
+        document.addEventListener('DOMContentLoaded', function () {
+            const htmlElement = document.documentElement;
+            const lightTheme = document.getElementById('light-theme');
+            const darkTheme = document.getElementById('dark-theme');
+            
+            // Domain-specific themes
+            //const domainPrefixes = ['accounts', 'fundamentals', 'strategies', 'dashboard', 'index'];
+            const domainPrefixes = [];
+            const domainThemes = {};
+            domainPrefixes.forEach(prefix => {
+                domainThemes[prefix] = {
+                    light: document.getElementById(prefix + '-light-theme'),
+                    dark: document.getElementById(prefix + '-dark-theme')
+                };
+            });
+            
+            // Function to get cookie value by name
+            function getCookie(name) {
+                const value = `; ${document.cookie}`;
+                const parts = value.split(`; ${name}=`);
+                if (parts.length === 2) return parts.pop().split(';').shift();
+                return null;
+            }
+            
+            // Check for saved preference
+            const savedTheme = getCookie('theme') || 'light';
+            const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+
+            function applyTheme(theme) {
+                // Determine if dark mode should be active
+                const isDark = theme === 'dark' || (theme === 'auto' && prefersDarkScheme.matches);
+
+                // Apply to HTML element
+                if (isDark) {
+                    htmlElement.classList.add('dark-mode');
+                    htmlElement.classList.remove('light-mode');
+
+                    // Disable light theme, enable dark theme
+                    if (lightTheme) lightTheme.disabled = true;
+                    if (darkTheme) darkTheme.disabled = false;
+
+                    // Domain-specific themes
+                    domainPrefixes.forEach(prefix => {
+                        if (domainThemes[prefix].light) domainThemes[prefix].light.disabled = true;
+                        if (domainThemes[prefix].dark) domainThemes[prefix].dark.disabled = false;
+                    });
+                } else {
+                    htmlElement.classList.remove('dark-mode');
+                    htmlElement.classList.add('light-mode');
+
+                    // Enable light theme, disable dark theme
+                    if (lightTheme) lightTheme.disabled = false;
+                    if (darkTheme) darkTheme.disabled = true;
+
+                    // Domain-specific themes
+                    domainPrefixes.forEach(prefix => {
+                        if (domainThemes[prefix].light) domainThemes[prefix].light.disabled = false;
+                        if (domainThemes[prefix].dark) domainThemes[prefix].dark.disabled = true;
+                    });
+                }
+            }
+
+            // Theme toggle handler
+            const themeToggle = document.getElementById('theme-toggle');
+            if (themeToggle) {
+                themeToggle.addEventListener('click', function () {
+                    const currentIsDark = htmlElement.classList.contains('dark-mode');
+                    const newTheme = currentIsDark ? 'light' : 'dark';
+
+                    // Set cookie with theme preference
+                    document.cookie = `theme=${newTheme}; path=/; max-age=31536000`; // 1 year expiration
+                    
+                    // Force page reload to apply the new theme
+                    window.location.reload();
+                });
+            }
+
+            // Apply theme on page load
+            applyTheme(savedTheme);
+            
+            // Make sure the HTML element has the correct class
+            const isDark = savedTheme === 'dark' || (savedTheme === 'auto' && prefersDarkScheme.matches);
+            if (isDark) {
+                htmlElement.classList.add('dark-mode');
+                htmlElement.classList.remove('light-mode');
+            } else {
+                htmlElement.classList.remove('dark-mode');
+                htmlElement.classList.add('light-mode');
+            }
+            
+            // System preference change handler
+            prefersDarkScheme.addEventListener('change', function () {
+                if (savedTheme === 'auto') {
+                    applyTheme('auto');
+                }
+            });
+        });
+    })();
+</script>

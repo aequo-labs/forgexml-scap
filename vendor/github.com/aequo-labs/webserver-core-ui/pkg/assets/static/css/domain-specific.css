@@ -1,0 +1,363 @@
+/* Domain-Specific Styles - Portfolio, Strategy, and other business domain styles */
+/* Extracted from site.css */
+
+/* Portfolio-specific styles */
+.portfolios-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.portfolio-card {
+    border-radius: 4px;
+    padding: 20px;
+    transition: all 0.2s ease;
+    border: 1px solid var(--border-color);
+    background-color: var(--card-bg);
+    box-shadow: var(--shadow-sm);
+}
+
+.portfolio-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.portfolio-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.portfolio-name {
+    font-size: 1.2em;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.portfolio-stats {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.portfolio-stats td {
+    padding: 4px 0;
+}
+
+.portfolio-stats td:nth-child(odd) {
+    color: var(--text-muted);
+    font-size: 0.9em;
+    width: 25%;
+    text-align: left;
+    padding-right: 10px;
+}
+
+.portfolio-stats td:nth-child(even) {
+    color: var(--primary-color);
+    font-family: monospace;
+    font-size: 1.1em;
+    width: 25%;
+    text-align: right;
+    padding-right: 20px;
+}
+
+.portfolio-stats .return {
+    color: var(--text-color);
+    font-family: inherit;
+}
+
+.portfolio-view .portfolio-stats {
+    margin-bottom: 30px;
+}
+
+.portfolio-view .portfolio-stats td {
+    padding: 4px 20px 4px 0;
+    width: 12.5%;
+}
+
+.portfolio-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border-color);
+}
+
+/* Strategy-specific styles */
+.strategy-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border: 1px solid var(--border-color);
+}
+
+.strategy-table th,
+.strategy-table td {
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    text-align: left;
+    vertical-align: middle;
+}
+
+.strategy-table th {
+    font-weight: 500;
+    white-space: nowrap;
+    background-color: var(--table-header-bg);
+}
+
+.strategy-table td.money-col {
+    text-align: right;
+    font-family: monospace;
+}
+
+/* Risk level styles */
+.risk-level-selector {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.risk-option {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.risk-option:hover {
+    background-color: var(--bg-lighter);
+}
+
+.risk-option.selected {
+    background-color: var(--primary-color);
+    color: var(--button-text-inverse);
+    border-color: var(--primary-color);
+}
+
+.risk-low {
+    background-color: rgba(var(--success-color-rgb), 0.2);
+    color: var(--success-color);
+}
+
+.risk-medium {
+    background-color: rgba(var(--warning-color-rgb), 0.2);
+    color: var(--warning-color);
+}
+
+.risk-high {
+    background-color: rgba(var(--danger-color-rgb), 0.2);
+    color: var(--danger-color);
+}
+
+/* Composition table */
+.composition-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border: 1px solid var(--border-color);
+}
+
+.composition-table th,
+.composition-table td {
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    text-align: left;
+    vertical-align: middle;
+}
+
+.composition-table th {
+    font-weight: 500;
+    white-space: nowrap;
+    background-color: var(--table-header-bg);
+}
+
+.composition-table td.money-col {
+    text-align: right;
+    font-family: monospace;
+}
+
+/* Entity search functionality */
+.entity-search-wrapper {
+    position: relative;
+    flex: 1;
+}
+
+.entity-search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 10;
+    display: none;
+    border-radius: 0 0 4px 4px;
+    box-shadow: var(--shadow-md);
+}
+
+.entity-search-results.active {
+    display: block;
+}
+
+.entity-search-item {
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.entity-search-item:last-child {
+    border-bottom: none;
+}
+
+/* Info details section */
+.info-details {
+    background: var(--bg-lighter);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.info-details-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.info-details-table td {
+    padding: 12px 0;
+}
+
+.info-details-table .info-label {
+    color: var(--text-muted);
+    font-size: 0.9em;
+    width: 150px;
+}
+
+.info-details-table .info-value {
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+/* Secondary info row */
+.secondary-info-row {
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+    line-height: 1.4;
+}
+
+.secondary-info-label {
+    font-weight: 500;
+    margin-right: 8px;
+    font-size: 0.9em;
+}
+
+.secondary-info-value {
+    word-wrap: break-word;
+    display: inline-block;
+}
+
+/* Performance chart */
+.performance-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Data cards grid */
+.data-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+@media (max-width: 1200px) {
+    .data-cards-grid {
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    }
+    
+    .portfolios-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .data-cards-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .portfolios-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Dashboard-specific styles */
+.dashboard-card {
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.dashboard-card:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Account-specific styles */
+.account-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 30px 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 20px;
+}
+
+/* Strategy details */
+.strategy-details {
+    background: var(--bg-lighter);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+/* Mermaid diagram styling */
+.mermaid {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.mermaid svg {
+    width: 100%;
+    height: 100%;
+    max-width: none;
+}
+
+/* SVG container for pan and zoom */
+.svg-container {
+    width: 100%;
+    height: 500px;
+    border-radius: 4px;
+    margin: 20px 0;
+    position: relative;
+}
+
+/* Style for the control icons */
+.svg-pan-zoom-control {
+    border-radius: 3px;
+}
+
+/* Add a reset button style */
+.svg-pan-zoom-control-background {
+    fill-opacity: 0.8;
+}

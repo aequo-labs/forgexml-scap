@@ -1,0 +1,68 @@
+/* Theme toggle styling */
+
+/* Base button styling */
+#theme-toggle,
+.icon-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5em 0.75em;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+    font-size: 1.2em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Specific sizing for theme toggle in navbar */
+#theme-toggle {
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+    border-radius: 6px;
+}
+
+#theme-toggle:hover,
+.icon-button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+html.dark-mode #theme-toggle:hover,
+html.dark-mode .icon-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+#theme-toggle:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2);
+}
+
+html.dark-mode #theme-toggle:focus {
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+}
+
+/* Always hide both icons by default */
+#theme-toggle .light-mode-icon,
+#theme-toggle .dark-mode-icon {
+    display: none;
+    font-size: 18px;
+    line-height: 1;
+}
+
+/* When NOT in dark mode (i.e., in light mode), show ONLY the moon icon */
+html:not(.dark-mode) #theme-toggle .dark-mode-icon {
+    display: inline-block;
+}
+
+/* When in dark mode, show ONLY the sun icon */
+html.dark-mode #theme-toggle .light-mode-icon {
+    display: inline-block;
+}
+
+/* Theme toggle container integration */
+.theme-toggle-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}

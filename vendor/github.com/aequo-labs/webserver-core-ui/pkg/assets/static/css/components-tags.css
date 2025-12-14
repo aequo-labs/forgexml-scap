@@ -1,0 +1,167 @@
+/* Tag and Badge Components */
+/* Extracted from site.css - Lines 80-98, 1429-1565, 1760-1773 */
+
+/* Tag styling - colors defined in theme files, force remove all borders */
+.tag {
+    border: none !important;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.tag:hover {
+    /* transform: scale(1.05); - removed grow effect */
+    opacity: 0.9;
+}
+
+/* Override any default tag borders */
+.tag.is-primary,
+.tag.is-info,
+.tag.is-success,
+.tag.is-warning,
+.tag.is-danger {
+    border: none !important;
+}
+
+/* Tag styles */
+.tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.tag.is-rounded {
+    border-radius: 9999px;
+}
+
+/* Risk badge - generalized from strategies */
+.risk-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.risk-badge.is-low {
+    background-color: rgba(var(--success-color-rgb), 0.1);
+    color: var(--success-color);
+}
+
+.risk-badge.is-medium {
+    background-color: rgba(var(--warning-color-rgb), 0.1);
+    color: var(--warning-color);
+}
+
+.risk-badge.is-high {
+    background-color: rgba(var(--danger-color-rgb), 0.1);
+    color: var(--danger-color);
+}
+
+/* Category badge - for categories, sectors, types, etc. */
+.category-badge {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    background: var(--bg-color-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 0.875rem;
+}
+
+/* Status indicators */
+.status-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.status-indicator .status-dot,
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+    background-color: var(--warning-color);
+}
+
+.status-indicator.is-active .status-dot {
+    background-color: var(--success-color);
+    animation: pulse 2s infinite;
+}
+
+.status-indicator.is-inactive .status-dot {
+    background-color: var(--text-color-muted);
+}
+
+.status-indicator.is-pending .status-dot {
+    background-color: var(--warning-color);
+    animation: pulse 2s infinite;
+}
+
+.status-indicator.is-error .status-dot {
+    background-color: var(--danger-color);
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 currentColor;
+    }
+    70% {
+        box-shadow: 0 0 0 10px transparent;
+    }
+    100% {
+        box-shadow: 0 0 0 0 transparent;
+    }
+}
+
+/* Status badge styles */
+.status-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.status-badge.is-active {
+    background-color: rgba(var(--success-color-rgb), 0.1);
+    color: var(--success-color);
+}
+
+.status-badge.is-inactive {
+    background-color: rgba(var(--text-color-rgb), 0.1);
+    color: var(--text-color-muted);
+}
+
+.status-badge.is-pending {
+    background-color: rgba(var(--warning-color-rgb), 0.1);
+    color: var(--warning-color);
+}
+
+.status-badge.is-error {
+    background-color: rgba(var(--danger-color-rgb), 0.1);
+    color: var(--danger-color);
+}
+/* Enhanced tag styling with proper transparency from theme-test */
+.tag.is-primary {
+    background-color: rgba(var(--primary-color-rgb), 0.15) !important;
+    color: var(--primary-color) !important;
+    border: 1px solid rgba(var(--primary-color-rgb), 0.3) !important;
+}
+
+html.dark-mode .tag.is-primary {
+    background-color: rgba(var(--primary-color-rgb), 0.2) !important;
+    color: var(--primary-color) !important;
+    border: 1px solid rgba(var(--primary-color-rgb), 0.4) !important;
+}/* Status dot color classes from js-includes health check */
+.status-dot.healthy {
+    background-color: var(--success-color) !important;
+    animation: none;
+}
+
+.status-dot.unhealthy {
+    background-color: var(--danger-color) !important;
+    animation: none;
+}

@@ -1,0 +1,1508 @@
+/* Dark mode theme
+ * 
+ * CSS Custom Properties for dark theme
+ * Usage: These variables override light mode values when .dark-mode class is applied
+ * 
+ * Colors are adjusted for better visibility on dark backgrounds:
+ * - Text colors are lighter (#f5f5f5) for contrast against dark backgrounds
+ * - Status colors are brightened for better visibility
+ * - Loading overlay uses dark background with transparency
+ * - Spinner colors are adjusted for dark theme aesthetics
+ * 
+ * Theme switching: Add/remove .dark-mode class to html element
+ * JavaScript example: document.documentElement.classList.toggle('dark-mode');
+ */
+
+html.dark-mode {
+    /* Base colors */
+    --bg-color: #1a1a1a;
+    --bg-color-rgb: 26, 26, 26;
+    --bg-lighter: #2c2c2c;
+    --bg-lightest: #333333;
+    --bg-darker: #222222;
+    --text-color: #f5f5f5;
+    --text-color-rgb: 245, 245, 245;
+    --text-muted: #b0b0b0;
+    --border-color: #3e3e3e;
+    --border-color-rgb: 62, 62, 62;
+    --border-light: #444444;
+    --light-button-border: #777777;
+    --light-button-border-rgb: 119, 119, 119;
+    /* Brand colors */
+    --primary-color: #4a9eff;
+    --primary-color-rgb: 74, 158, 255;
+    --primary-color-dark: #3273dc;
+    --secondary-color: #b5b5b5;
+    --secondary-color-rgb: 181, 181, 181;
+    --success-color: #48c774;
+    --success-color-rgb: 72, 199, 116;
+    --warning-color: #ffc107;
+    --warning-color-rgb: 255, 193, 7;
+    --danger-color: #f14668;
+    --danger-color-rgb: 241, 70, 104;
+    --info-color: #17a2b8;
+    --info-color-rgb: 23, 162, 184;
+    /* Component colors */
+    --card-bg: #3a3a3a;
+    --input-bg: #2c2c2c;
+    --input-border: #3e3e3e;
+    --input-text: #f5f5f5;
+    --button-bg: #3e3e3e;
+    --button-text: #f5f5f5;
+    --button-text-inverse: #1a1a1a;
+    --navbar-bg: #1a1a1a;
+    --navbar-text: #f5f5f5;
+    --footer-bg: #1a1a1a;
+    --footer-text: #b5b5b5;
+    --table-header-bg: #3e3e3e;
+    --table-row-even: #333333;
+    --table-border: #3e3e3e;
+    --code-bg: #1a1a1a;
+    --code-text: #f5f5f5;
+    --secondary-bg-color: #2c2c2c;
+    
+    /* Health status indicators - adjusted for dark mode visibility */
+    --health-status-online: #48c774;
+    --health-status-offline: #ff6b84;
+    --health-status-checking: #ffe08a;
+    --health-status-error: #ffab6b;
+    
+    /* Loading overlay and spinner - adjusted for dark theme */
+    --loading-overlay-bg: rgba(26, 26, 26, 0.8);
+    --spinner-primary-color: #4a9eff;
+    --spinner-secondary-color: #3e3e3e;
+
+    /* Additional theme compatibility variables for dark mode */
+    --card-background-color: #2d3748;
+    --link-color: #63b3ed;
+    --hover-background-color: #4a5568;
+    --border-hover-color: #718096;
+    --button-background-color: #4a5568;
+    --button-hover-background-color: #718096;
+    --code-background-color: #2d3748;
+    --code-text-color: #f687b3;
+    --input-background-color: #2d3748;
+    --input-focus-border-color: #63b3ed;
+    --input-focus-shadow-color: rgba(99, 179, 237, 0.25);
+    
+    /* Shadows */
+    --shadow-color-rgb: 0, 0, 0;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.3);
+    
+    /* Background color for the html element */
+    background-color: var(--bg-color);
+}
+
+html.dark-mode body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+html.dark-mode a {
+        color: var(--primary-color);
+    }
+
+        html.dark-mode a:hover {
+            color: var(--primary-color-dark);
+        }
+
+    html.dark-mode .navbar {
+        background-color: var(--navbar-bg);
+        color: var(--navbar-text);
+    }
+
+    html.dark-mode .footer {
+        background-color: var(--footer-bg);
+        color: var(--footer-text);
+    }
+
+    html.dark-mode .card,
+    html.dark-mode .box {
+        background-color: var(--card-bg);
+        box-shadow: var(--shadow-md);
+        border: 1px solid var(--border-color);
+        color: var(--text-color);
+    }
+
+    /* Card headers */
+    html.dark-mode .card-header {
+        background-color: var(--bg-darker);
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    html.dark-mode .card-header-title {
+        color: var(--text-color);
+        font-weight: 600;
+    }
+
+    /* Card content */
+    html.dark-mode .card-content {
+        background-color: var(--card-bg);
+        color: var(--text-color);
+    }
+    
+    html.dark-mode .box h1,
+    html.dark-mode .box h2,
+    html.dark-mode .box h3,
+    html.dark-mode .box h4,
+    html.dark-mode .box h5,
+    html.dark-mode .box h6,
+    html.dark-mode .box p,
+    html.dark-mode .box a:not(.btn) {
+        color: var(--text-color);
+    }
+    
+    html.dark-mode .box .title {
+        color: var(--text-color);
+    }
+
+    html.dark-mode input,
+    html.dark-mode select,
+    html.dark-mode textarea {
+        background-color: var(--input-bg);
+        border-color: var(--input-border);
+        color: var(--input-text);
+    }
+
+    html.dark-mode button,
+    html.dark-mode .button {
+        background-color: var(--button-bg);
+        color: var(--button-text);
+        border: 1px solid var(--border-color);
+    }
+
+    /* Specific button variants for dark mode */
+    html.dark-mode .button.is-primary {
+        background-color: var(--primary-color);
+        color: var(--button-text-inverse);
+        border-color: var(--primary-color);
+    }
+
+    html.dark-mode .button.is-ghost {
+        background-color: transparent;
+        color: var(--text-color);
+        border: none;
+    }
+
+        html.dark-mode .button.is-ghost:hover {
+            background-color: var(--bg-lighter);
+            color: var(--text-color);
+        }
+
+    html.dark-mode .btn {
+        background-color: var(--button-bg);
+        color: var(--button-text);
+    }
+
+    html.dark-mode .btn-primary {
+        background-color: var(--primary-color);
+        color: white;
+        border-color: var(--primary-color);
+    }
+
+    html.dark-mode .btn-secondary {
+        background-color: var(--secondary-color);
+        color: white;
+        border-color: var(--secondary-color);
+    }
+
+    html.dark-mode .btn-danger {
+        background-color: var(--danger-color);
+        color: white;
+        border-color: var(--danger-color);
+    }
+
+    /* Outlined button variants for dark mode */
+    html.dark-mode .btn-outline-primary {
+        background-color: transparent;
+        color: var(--primary-color);
+        border-color: var(--primary-color);
+    }
+
+        html.dark-mode .btn-outline-primary:hover {
+            background-color: rgba(var(--primary-color-rgb), 0.2);
+        }
+
+    html.dark-mode .btn-outline-secondary {
+        background-color: transparent;
+        color: var(--secondary-color);
+        border-color: var(--secondary-color);
+    }
+
+        html.dark-mode .btn-outline-secondary:hover {
+            background-color: rgba(var(--secondary-color-rgb), 0.2);
+        }
+
+    /* Action buttons - dark mode */
+    html.dark-mode .btn-outline-view,
+    html.dark-mode .btn-back,
+    html.dark-mode .item-actions .btn-secondary,
+    html.dark-mode .title-actions .btn-secondary,
+    html.dark-mode .section-container .header .btn-secondary,
+    html.dark-mode .modal-footer .btn-secondary {
+        background-color: transparent;
+        color: var(--primary-color);
+        border: 1px solid var(--primary-color);
+    }
+
+    html.dark-mode .btn-manage-portfolios,
+    html.dark-mode .btn-add,
+    html.dark-mode .item-actions .btn-primary,
+    html.dark-mode .title-actions .btn-primary,
+    html.dark-mode .section-container .header .btn-primary,
+    html.dark-mode .modal-footer .btn-primary {
+        background-color: rgba(var(--primary-color-rgb), 0.2);
+        color: var(--primary-color);
+        border: 1px solid var(--primary-color);
+    }
+
+    html.dark-mode .btn-delete-account,
+    html.dark-mode .item-actions .btn-danger,
+    html.dark-mode .title-actions .btn-danger,
+    html.dark-mode .section-container .header .btn-danger,
+    html.dark-mode .modal-footer .btn-danger {
+        background-color: transparent;
+        color: var(--danger-color);
+        border: 1px solid var(--danger-color);
+    }
+
+    html.dark-mode .btn-outline-view:hover,
+    html.dark-mode .btn-back:hover,
+    html.dark-mode .item-actions .btn-secondary:hover,
+    html.dark-mode .title-actions .btn-secondary:hover,
+    html.dark-mode .section-container .header .btn-secondary:hover,
+    html.dark-mode .modal-footer .btn-secondary:hover {
+        background-color: rgba(var(--primary-color-rgb), 0.2);
+    }
+
+    html.dark-mode .btn-manage-portfolios:hover,
+    html.dark-mode .btn-add:hover,
+    html.dark-mode .item-actions .btn-primary:hover,
+    html.dark-mode .title-actions .btn-primary:hover,
+    html.dark-mode .section-container .header .btn-primary:hover,
+    html.dark-mode .modal-footer .btn-primary:hover {
+        background-color: rgba(var(--primary-color-rgb), 0.3);
+    }
+
+    html.dark-mode .btn-delete-account:hover,
+    html.dark-mode .item-actions .btn-danger:hover,
+    html.dark-mode .title-actions .btn-danger:hover,
+    html.dark-mode .section-container .header .btn-danger:hover,
+    html.dark-mode .modal-footer .btn-danger:hover {
+        background-color: rgba(var(--danger-color-rgb), 0.2);
+    }
+
+    /* Table styles for dark mode */
+    html.dark-mode .data-table th {
+        background-color: var(--table-header-bg);
+        color: var(--text-color);
+        border-bottom-color: var(--border-color);
+    }
+
+    html.dark-mode .data-table td {
+        border-bottom-color: var(--border-color);
+        color: var(--text-color);
+    }
+
+    html.dark-mode .data-table tr:nth-child(even) {
+        background-color: var(--table-row-even);
+    }
+
+    html.dark-mode .data-table tr:hover {
+        background-color: var(--hover-background-color);
+    }
+
+    /* Numeric values in dark mode */
+    html.dark-mode .numeric-cell,
+    html.dark-mode .money-value {
+        color: var(--primary-color);
+    }
+
+    /* Container styling for dark mode */
+    html.dark-mode .container {
+        background-color: var(--card-bg);
+        box-shadow: var(--shadow-md);
+        border: 1px solid var(--border-color);
+    }
+
+    /* Search box */
+    html.dark-mode .search-box {
+        background-color: var(--input-bg);
+        border-color: var(--input-border);
+        color: var(--input-text);
+    }
+
+        html.dark-mode .search-box:focus {
+            border-color: var(--primary-color);
+        }
+
+    /* Modal */
+    /* Modal styling for dark mode - proven working from license-server-ui */
+    html.dark-mode .modal-card-head,
+    html.dark-mode .modal-card-foot {
+        background-color: var(--card-bg) !important;
+        border-color: var(--border-color) !important;
+    }
+
+    /* More specific rule to override Bulma defaults */
+    html.dark-mode .modal .modal-card .modal-card-foot {
+        background-color: var(--card-bg) !important;
+        border-color: var(--border-color) !important;
+        border-top: 1px solid var(--border-color) !important;
+    }
+
+    html.dark-mode .modal-card-body {
+        background-color: var(--card-bg) !important;
+        color: var(--text-color) !important;
+    }
+
+    html.dark-mode .modal-card-title {
+        color: var(--text-color) !important;
+    }
+
+    /* Theme modal classes for consistent styling */
+    html.dark-mode .theme-modal-card {
+        background-color: var(--card-bg) !important;
+        color: var(--text-color) !important;
+    }
+
+    html.dark-mode .theme-modal-header {
+        background-color: var(--card-bg) !important;
+        border-bottom: 1px solid var(--border-color) !important;
+        color: var(--text-color) !important;
+    }
+
+    html.dark-mode .theme-modal-body {
+        background-color: var(--card-bg) !important;
+        color: var(--text-color) !important;
+    }
+
+    html.dark-mode .theme-modal-footer {
+        background-color: var(--card-bg) !important;
+        border-top: 1px solid var(--border-color) !important;
+        color: var(--text-color) !important;
+    }
+
+    /* Modal background styles moved to modal.css for better organization */
+
+    /* Modal form elements */
+    html.dark-mode .modal .input,
+    html.dark-mode .modal .textarea,
+    html.dark-mode .modal .select select {
+        background-color: var(--input-bg);
+        border-color: var(--input-border);
+        color: var(--input-text);
+    }
+
+    html.dark-mode .modal .label {
+        color: var(--text-color);
+    }
+
+    html.dark-mode .modal .button.delete {
+        background-color: transparent;
+        border: none;
+    }
+
+    html.dark-mode .modal .button.delete:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    html.dark-mode .close-modal {
+        color: var(--text-muted);
+    }
+
+        html.dark-mode .close-modal:hover {
+            color: var(--text-color);
+        }
+
+    /* Empty state */
+    html.dark-mode .empty-state {
+        background-color: var(--bg-darker);
+        color: var(--text-muted);
+        border-color: var(--border-color);
+    }
+
+    /* No data message */
+    html.dark-mode .no-data {
+        color: var(--text-muted);
+    }
+
+    /* Dark mode overrides for Bulma components */
+
+    /* Navbar */
+    html.dark-mode .navbar.is-primary {
+        background-color: var(--navbar-bg);
+        color: var(--navbar-text);
+    }
+
+    html.dark-mode .navbar-item,
+    html.dark-mode .navbar-link {
+        color: var(--navbar-text);
+    }
+
+        html.dark-mode .navbar-item:hover,
+        html.dark-mode .navbar-item.is-active {
+            background-color: rgba(255, 255, 255, 0.1) !important;
+        }
+
+    html.dark-mode .button.is-light {
+        background-color: var(--bg-lighter);
+        color: var(--text-color);
+    }
+
+    html.dark-mode .navbar-item .button.is-light:hover {
+        background-color: var(--bg-lightest);
+    }
+
+    /* Breadcrumb - fixing dark mode readability */
+    html.dark-mode .breadcrumb a {
+        color: var(--primary-color);
+    }
+
+    html.dark-mode .breadcrumb li.is-active a {
+        color: var(--text-muted);
+    }
+
+    html.dark-mode .breadcrumb li::before {
+        color: var(--text-muted);
+    }
+
+    html.dark-mode .breadcrumb {
+        background-color: transparent !important;
+    }
+
+    /* Section backgrounds */
+    html.dark-mode .section {
+        background-color: var(--bg-color);
+    }
+
+    html.dark-mode .container .breadcrumb {
+        background-color: transparent;
+    }
+
+    /* Theme toggle button and icon buttons */
+    html.dark-mode #theme-toggle,
+    html.dark-mode .icon-button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0.5em 0.75em;
+        border-radius: 4px;
+        transition: background-color 0.2s ease;
+        font-size: 1.2em;
+    }
+
+        html.dark-mode #theme-toggle:hover,
+        html.dark-mode .icon-button:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        html.dark-mode #theme-toggle:focus,
+        html.dark-mode .icon-button:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+        }
+
+    /* Invert some images for better visibility */
+    html.dark-mode img.invert-on-dark {
+        filter: invert(1);
+    }
+
+    /* Status badge - using strategies domain style with improved contrast */
+    html.dark-mode .status-badge.status-active {
+        background-color: rgba(var(--success-color-rgb), 0.3);
+        color: #5dd687; /* Brighter green for 4.5:1 contrast */
+    }
+
+    html.dark-mode .status-badge.status-inactive {
+        background-color: rgba(var(--danger-color-rgb), 0.3);
+        color: #ff6b84; /* Ensure 4.5:1 contrast */
+    }
+
+    /* Item card styling for dark mode */
+    html.dark-mode .item-card {
+        background-color: var(--card-bg);
+        border-color: var(--border-color);
+        color: var(--text-color);
+    }
+    
+    html.dark-mode .item-card h1,
+    html.dark-mode .item-card h2,
+    html.dark-mode .item-card h3,
+    html.dark-mode .item-card h4,
+    html.dark-mode .item-card h5,
+    html.dark-mode .item-card h6,
+    html.dark-mode .item-card p,
+    html.dark-mode .item-card div:not(.status-badge):not(.risk-badge) {
+        color: var(--text-color);
+    }
+
+    html.dark-mode .item-id {
+        color: var(--text-color);
+    }
+
+    html.dark-mode .item-type {
+        color: var(--text-muted);
+    }
+
+    /* Item summary */
+    html.dark-mode .item-summary {
+        background-color: var(--bg-darker);
+    }
+
+    html.dark-mode .stats-table td:nth-child(odd) {
+        color: var(--text-muted);
+    }
+
+    html.dark-mode .stats-table td:nth-child(even) {
+        color: var(--primary-color);
+    }
+
+    html.dark-mode .stats-table .status {
+        color: var(--text-color);
+        font-family: inherit;
+    }
+
+    /* Edit form */
+    html.dark-mode .edit-form {
+        background-color: var(--card-bg);
+        border-color: var(--border-color);
+    }
+
+    html.dark-mode .form-input {
+        background-color: var(--input-bg);
+        border-color: var(--input-border);
+        color: var(--input-text);
+    }
+
+    /* Section container */
+    html.dark-mode .section-container {
+        background-color: var(--card-bg);
+        border-color: var(--border-color);
+        color: var(--text-color);
+    }
+    
+        html.dark-mode .section-container .header {
+            background-color: var(--bg-darker);
+            border-bottom-color: var(--border-color);
+        }
+        
+        html.dark-mode .section-container h1,
+        html.dark-mode .section-container h2,
+        html.dark-mode .section-container h3,
+        html.dark-mode .section-container h4,
+        html.dark-mode .section-container h5,
+        html.dark-mode .section-container h6,
+        html.dark-mode .section-container p,
+        html.dark-mode .section-container li,
+        html.dark-mode .section-container div {
+            color: var(--text-color);
+        }
+
+    /* Generic content list styles (formerly doc-item) */
+    html.dark-mode .content-item {
+        background: var(--card-bg);
+        border: 1px solid var(--border-color);
+        box-shadow: var(--shadow-sm);
+    }
+
+        html.dark-mode .content-item:hover {
+            background-color: var(--bg-lighter);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-color);
+        }
+
+    html.dark-mode .content-link {
+        color: var(--primary-color);
+    }
+
+    html.dark-mode .section-title {
+        color: var(--primary-color);
+        border-bottom-color: var(--border-color);
+    }
+
+    /* Generic content container (formerly doc-content) */
+    html.dark-mode .content-container {
+        background: var(--bg-lighter);
+        border: 1px solid var(--border-color);
+        box-shadow: var(--shadow-sm);
+        color: var(--text-color);
+    }
+    
+        html.dark-mode .content-container h1 {
+            border-bottom-color: var(--border-color);
+            color: var(--text-color);
+        }
+    
+        html.dark-mode .content-container h2 {
+            border-bottom-color: var(--border-color);
+            color: var(--text-color);
+        }
+    
+        html.dark-mode .content-container h3,
+        html.dark-mode .content-container h4,
+        html.dark-mode .content-container h5,
+        html.dark-mode .content-container h6 {
+            color: var(--text-color);
+        }
+    
+        html.dark-mode .content-container p,
+        html.dark-mode .content-container li,
+        html.dark-mode .content-container td,
+        html.dark-mode .content-container th {
+            color: var(--text-color);
+        }
+
+        html.dark-mode .content-container pre {
+            background: var(--bg-darker);
+            border: 1px solid var(--border-color);
+        }
+
+        html.dark-mode .content-container code {
+            background: var(--bg-darker);
+            color: var(--text-color);
+        }
+
+        html.dark-mode .content-container blockquote {
+            color: var(--text-muted);
+        }
+
+    /* Mermaid diagram styling */
+    html.dark-mode .svg-container {
+        border: 1px solid var(--border-color);
+        background-color: var(--bg-darker);
+    }
+
+    html.dark-mode .svg-pan-zoom-control {
+        background-color: var(--bg-lighter);
+        border: 1px solid var(--border-color);
+    }
+
+    html.dark-mode .svg-pan-zoom-control-background {
+        fill: var(--bg-lighter);
+    }
+
+    /* Ensure mermaid diagrams are visible in dark mode */
+    html.dark-mode .mermaid .label {
+        color: var(--text-color);
+        fill: var(--text-color);
+    }
+
+    html.dark-mode .mermaid .node rect,
+    html.dark-mode .mermaid .node circle,
+    html.dark-mode .mermaid .node ellipse,
+    html.dark-mode .mermaid .node polygon,
+    html.dark-mode .mermaid .node path {
+        fill: var(--bg-lighter);
+        stroke: var(--border-color);
+    }
+
+    html.dark-mode .mermaid .edgePath .path {
+        stroke: var(--text-muted);
+    }
+
+    html.dark-mode .mermaid .edgeLabel {
+        background-color: var(--bg-lighter);
+        color: var(--text-color);
+    }
+
+    html.dark-mode .mermaid .cluster rect {
+        fill: var(--bg-darker);
+        stroke: var(--border-color);
+    }
+    /* Risk badge - dark mode */
+    html.dark-mode .risk-low {
+        background-color: rgba(var(--success-color-rgb), 0.3);
+        color: var(--success-color);
+    }
+
+    html.dark-mode .risk-medium {
+        background-color: rgba(var(--warning-color-rgb), 0.3);
+        color: var(--warning-color);
+    }
+
+    html.dark-mode .risk-high {
+        background-color: rgba(var(--danger-color-rgb), 0.3);
+        color: var(--danger-color);
+    }
+
+    /* Status badges - dark mode */
+    html.dark-mode .status-badge {
+        font-weight: 600;
+        padding: 4px 8px;
+        border-radius: 4px;
+    }
+
+    html.dark-mode .status-active {
+        background-color: rgba(var(--success-color-rgb), 0.3);
+        color: #5dd687; /* Brighter green for 4.5:1 contrast */
+    }
+
+    html.dark-mode .status-inactive {
+        background-color: rgba(var(--danger-color-rgb), 0.3);
+        color: #ff6b84; /* Ensure 4.5:1 contrast */
+    }
+
+    html.dark-mode .status-warning {
+        background-color: rgba(var(--warning-color-rgb), 0.3);
+        color: #ffd83a; /* Brighter yellow for 4.5:1 contrast */
+    }
+
+    /* Risk level selector - dark mode */
+    html.dark-mode .risk-option {
+        background-color: var(--bg-darker);
+        border-color: var(--border-color);
+        color: var(--text-color);
+    }
+
+        html.dark-mode .risk-option:hover {
+            background-color: var(--bg-lightest);
+        }
+
+        html.dark-mode .risk-option.selected {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        html.dark-mode .risk-option.low {
+            border-color: var(--success-color);
+        }
+
+            html.dark-mode .risk-option.low.selected {
+                background-color: var(--success-color);
+                color: white;
+            }
+
+        html.dark-mode .risk-option.medium {
+            border-color: var(--warning-color);
+        }
+
+            html.dark-mode .risk-option.medium.selected {
+                background-color: var(--warning-color);
+                color: black;
+            }
+
+        html.dark-mode .risk-option.high {
+            border-color: var(--danger-color);
+        }
+
+            html.dark-mode .risk-option.high.selected {
+                background-color: var(--danger-color);
+                color: white;
+            }
+
+    /* Info details - dark mode */
+    html.dark-mode .info-details {
+        background-color: var(--bg-darker);
+        border-color: var(--border-color);
+    }
+
+    html.dark-mode .info-details-table .info-label {
+        color: var(--text-muted);
+    }
+
+    html.dark-mode .info-details-table .info-value {
+        color: var(--text-color);
+    }
+
+    html.dark-mode .info-details-table .money-value {
+        color: var(--primary-color);
+    }
+    /* Category badge - dark mode */
+    html.dark-mode .category-badge {
+        background-color: var(--bg-darker);
+        color: var(--text-color);
+        border: 1px solid var(--border-color);
+    }
+
+    /* Entity search results - dark mode */
+    html.dark-mode .entity-search-results {
+        background-color: var(--bg-darker);
+        border-color: var(--border-color);
+        box-shadow: var(--shadow-md);
+    }
+
+    html.dark-mode .entity-search-item {
+        border-bottom: 1px solid var(--border-color);
+    }
+
+        html.dark-mode .entity-search-item:hover {
+            background-color: var(--bg-lightest);
+        }
+    /* Add these styles to the end of your existing dark-mode.css file */
+
+    /* Portfolio styles for dark mode - consolidated from portfolios-dark-mode.css */
+
+    /* Tag colors - translucent backgrounds, no borders, improved contrast for WCAG AA */
+    html.dark-mode .tag.is-success {
+        background-color: rgba(var(--success-color-rgb), 0.15) !important;
+        color: #5dd687 !important; /* Brighter for 4.5:1 contrast */
+        border: none !important;
+    }
+
+    html.dark-mode .tag.is-warning {
+        background-color: rgba(var(--warning-color-rgb), 0.15) !important;
+        color: #ffd83a !important; /* Brighter for 4.5:1 contrast */
+        border: none !important;
+    }
+
+    html.dark-mode .tag.is-info {
+        background-color: rgba(var(--info-color-rgb), 0.15) !important;
+        color: #4fb3d4 !important; /* Brighter cyan for 4.5:1 contrast */
+        border: none !important;
+    }
+
+    html.dark-mode .tag.is-danger {
+        background-color: rgba(var(--danger-color-rgb), 0.15) !important;
+        color: #ff6b84 !important; /* Ensure 4.5:1 contrast */
+        border: none !important;
+    }
+
+    /* Portfolio card - improved contrast */
+    html.dark-mode .portfolio-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border-color);
+        box-shadow: var(--shadow-sm);
+        color: var(--text-color);
+    }
+    
+    html.dark-mode .portfolio-card h1,
+    html.dark-mode .portfolio-card h2,
+    html.dark-mode .portfolio-card h3,
+    html.dark-mode .portfolio-card h4,
+    html.dark-mode .portfolio-card h5,
+    html.dark-mode .portfolio-card h6,
+    html.dark-mode .portfolio-card p,
+    html.dark-mode .portfolio-card div:not(.status-badge):not(.risk-badge) {
+        color: var(--text-color);
+    }
+
+        html.dark-mode .portfolio-card:hover {
+            box-shadow: var(--shadow-md);
+            background-color: var(--bg-lightest);
+        }
+
+    /* Portfolio stats */
+    html.dark-mode .portfolio-stats td:nth-child(odd) {
+        color: var(--text-muted);
+    }
+
+    html.dark-mode .portfolio-stats td:nth-child(even) {
+        color: var(--primary-color);
+    }
+
+    html.dark-mode .portfolio-stats .return {
+        color: var(--text-color);
+    }
+
+    /* Chart section - improved contrast */
+    html.dark-mode .chart-section {
+        background-color: var(--bg-lighter);
+        border: 1px solid var(--border-color);
+        box-shadow: var(--shadow-sm);
+    }
+
+    html.dark-mode .chart-container {
+        background-color: var(--bg-darker);
+        border: 1px solid var(--border-color);
+    }
+
+    /* Content section - improved contrast */
+    html.dark-mode .content-section {
+        background-color: var(--bg-lighter);
+        border: 1px solid var(--border-color);
+        box-shadow: var(--shadow-sm);
+    }
+
+    /* Tables - improved contrast */
+    html.dark-mode .composition-table th,
+    html.dark-mode .strategy-table th {
+        background-color: var(--table-header-bg);
+        color: var(--text-color);
+    }
+
+    html.dark-mode .composition-table tr:nth-child(even),
+    html.dark-mode .strategy-table tr:nth-child(even) {
+        background-color: var(--table-row-even);
+    }
+
+    html.dark-mode .composition-table tr:hover,
+    html.dark-mode .strategy-table tr:hover {
+        background-color: var(--hover-background-color);
+    }
+
+    /* Chart iframe */
+    html.dark-mode #performance-chart {
+        background-color: var(--bg-darker);
+    }
+
+    /* Button - improved contrast */
+    html.dark-mode .btn-outline-view:hover {
+        background-color: rgba(var(--primary-color-rgb), 0.4);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    }
+
+    html.dark-mode .btn-add:hover {
+        background-color: rgba(var(--primary-color-rgb), 0.4);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    }
+
+    html.dark-mode .btn-primary:hover {
+        background-color: var(--primary-color-dark);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    }
+    /* Test results styling for dark mode */
+    html.dark-mode .test-item.status-active {
+        background-color: rgba(var(--success-color-rgb), 0.2);
+        border: 1px solid var(--success-color);
+    }
+
+    html.dark-mode .test-item.status-inactive {
+        background-color: rgba(var(--danger-color-rgb), 0.2);
+        border: 1px solid var(--danger-color);
+    }
+
+    html.dark-mode .test-message {
+        background-color: #1a1a1a;
+        border: 1px solid #3e3e3e;
+    }
+
+    html.dark-mode strong {
+        color: var(--secondary-color); /* Use your primary accent color */
+        font-weight: 600;
+    }
+
+    /* Bulma-specific classes for dark mode */
+    html.dark-mode .title,
+    html.dark-mode .subtitle {
+        color: var(--text-color);
+    }
+
+    html.dark-mode .content h1,
+    html.dark-mode .content h2,
+    html.dark-mode .content h3,
+    html.dark-mode .content h4,
+    html.dark-mode .content h5,
+    html.dark-mode .content h6,
+    html.dark-mode .content p,
+    html.dark-mode .content ul,
+    html.dark-mode .content ol,
+    html.dark-mode .content li {
+        color: var(--text-color);
+    }
+
+    html.dark-mode .has-text-right,
+    html.dark-mode .has-text-left,
+    html.dark-mode .has-text-centered {
+        color: var(--text-color);
+    }
+
+    /* Bulma tabs component - dark mode support */
+    html.dark-mode .tabs ul {
+        border-bottom-color: var(--border-color);
+    }
+
+    html.dark-mode .tabs a {
+        border-bottom-color: var(--border-color);
+        color: var(--text-color);
+    }
+
+        html.dark-mode .tabs a:hover {
+            border-bottom-color: var(--text-color);
+            color: var(--text-color);
+        }
+
+    html.dark-mode .tabs li.is-active a {
+        border-bottom-color: var(--primary-color);
+        color: var(--primary-color);
+    }
+
+    /* Boxed tabs - dark mode */
+    html.dark-mode .tabs.is-boxed a {
+        border-color: var(--border-color);
+    }
+
+        html.dark-mode .tabs.is-boxed a:hover {
+            background-color: var(--bg-lighter);
+            border-bottom-color: var(--border-color);
+        }
+
+    html.dark-mode .tabs.is-boxed li.is-active a {
+        background-color: var(--card-bg);
+        border-color: var(--border-color);
+        border-bottom-color: transparent !important;
+        color: var(--text-color);
+    }
+
+    /* Toggle tabs - dark mode */
+    html.dark-mode .tabs.is-toggle a {
+        border-color: var(--border-color);
+        background-color: var(--bg-darker);
+        color: var(--text-color);
+    }
+
+        html.dark-mode .tabs.is-toggle a:hover {
+            background-color: var(--bg-lighter);
+            border-color: var(--border-light);
+        }
+
+    html.dark-mode .tabs.is-toggle li.is-active a {
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+        color: var(--button-text-inverse);
+    }
+
+    html.dark-mode .tabs.is-toggle ul {
+        border-bottom: none;
+    }
+
+    /* Bulma form elements - dark mode support */
+    html.dark-mode .field .label {
+        color: var(--text-color);
+        font-weight: 600;
+    }
+
+    html.dark-mode .input,
+    html.dark-mode .textarea,
+    html.dark-mode .select select {
+        background-color: var(--input-bg);
+        border-color: var(--input-border);
+        color: var(--input-text);
+    }
+
+        html.dark-mode .input:focus,
+        html.dark-mode .textarea:focus,
+        html.dark-mode .select select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.125em rgba(var(--primary-color-rgb), 0.25);
+        }
+
+        html.dark-mode .input::placeholder,
+        html.dark-mode .textarea::placeholder {
+            color: var(--text-muted);
+        }
+
+    /* Bulma table elements - dark mode support */
+    html.dark-mode .table {
+        background-color: var(--card-bg);
+        color: var(--text-color);
+    }
+
+    html.dark-mode .table td,
+    html.dark-mode .table th {
+        border-color: var(--border-color);
+        color: var(--text-color);
+    }
+
+    html.dark-mode .table th {
+        background-color: var(--table-header-bg);
+        color: var(--text-color);
+        font-weight: 600;
+    }
+
+    html.dark-mode .table tr:nth-child(even) {
+        background-color: var(--table-row-even);
+    }
+
+    /* Bulma striped tables in dark mode */
+    html.dark-mode .table.is-striped tbody tr:nth-child(even) {
+        background-color: var(--table-row-even) !important;
+    }
+
+    html.dark-mode .table tr:hover {
+        background-color: var(--hover-background-color);
+    }
+
+    /* Override Bulma's is-hoverable table styles in dark mode */
+    html.dark-mode .table.is-hoverable tbody tr:not(.is-selected):hover {
+        background-color: var(--hover-background-color) !important;
+        color: var(--text-color) !important;
+    }
+
+    html.dark-mode .table.is-hoverable tbody tr:not(.is-selected):hover td {
+        color: var(--text-color) !important;
+    }
+
+    html.dark-mode .table.is-hoverable.is-striped tbody tr:not(.is-selected):hover {
+        background-color: var(--hover-background-color) !important;
+        color: var(--text-color) !important;
+    }
+
+    html.dark-mode .table.is-hoverable.is-striped tbody tr:not(.is-selected):hover td {
+        color: var(--text-color) !important;
+    }
+
+    html.dark-mode .table.is-hoverable.is-striped tbody tr:not(.is-selected):hover:nth-child(even) {
+        background-color: var(--hover-background-color) !important;
+        color: var(--text-color) !important;
+    }
+
+    html.dark-mode .table.is-hoverable.is-striped tbody tr:not(.is-selected):hover:nth-child(even) td {
+        color: var(--text-color) !important;
+    }
+
+    /* Bulma table containers */
+    html.dark-mode .table-container {
+        background-color: var(--card-bg);
+        border-color: var(--border-color);
+    }
+
+    /* Help text and form hints */
+    html.dark-mode .help {
+        color: var(--text-muted);
+    }
+
+    html.dark-mode .help.is-danger {
+        color: var(--danger-color);
+    }
+
+    html.dark-mode .help.is-success {
+        color: var(--success-color);
+    }
+
+    /* Section and content area styling */
+    html.dark-mode .section {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+    }
+
+    html.dark-mode .container {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+    }
+
+    /* Breadcrumb navigation */
+    html.dark-mode .breadcrumb {
+        background-color: transparent;
+    }
+
+    html.dark-mode .breadcrumb a {
+        color: var(--primary-color);
+    }
+
+    html.dark-mode .breadcrumb li.is-active a {
+        color: var(--text-color);
+    }
+
+    /* Column and layout elements */
+    html.dark-mode .column {
+        color: var(--text-color);
+    }
+
+    /* Text content styling */
+    html.dark-mode .content,
+    html.dark-mode .content p,
+    html.dark-mode .content h1,
+    html.dark-mode .content h2,
+    html.dark-mode .content h3,
+    html.dark-mode .content h4,
+    html.dark-mode .content h5,
+    html.dark-mode .content h6 {
+        color: var(--text-color);
+    }
+
+    /* Message boxes and notifications */
+    html.dark-mode .message {
+        background-color: var(--card-bg);
+        border: 1px solid var(--border-color);
+    }
+
+    html.dark-mode .message-body {
+        background-color: var(--card-bg);
+        color: var(--text-color);
+        border-color: var(--border-color);
+    }
+
+    html.dark-mode .message-header {
+        background-color: var(--bg-darker);
+        color: var(--text-color);
+    }
+
+    /* Notification styles for dark mode */
+    html.dark-mode .notification {
+        background-color: var(--card-bg);
+        color: var(--text-color);
+    }
+
+    /* Light notification variants - override white backgrounds */
+    html.dark-mode .notification.is-info.is-light {
+        background-color: rgba(58, 114, 187, 0.15) !important;
+        color: #8bb6e8 !important;
+    }
+
+    html.dark-mode .notification.is-success.is-light {
+        background-color: rgba(72, 199, 116, 0.15) !important;
+        color: #8de0a8 !important;
+    }
+
+    html.dark-mode .notification.is-warning.is-light {
+        background-color: rgba(255, 221, 87, 0.15) !important;
+        color: #ffd83a !important;
+    }
+
+    html.dark-mode .notification.is-danger.is-light {
+        background-color: rgba(255, 56, 96, 0.15) !important;
+        color: #ff7aa3 !important;
+    }
+
+    html.dark-mode .notification.is-primary.is-light {
+        background-color: rgba(0, 209, 178, 0.15) !important;
+        color: #5fd3bc !important;
+    }
+
+    /* FontAwesome icon spacing */
+    html.dark-mode .fas,
+    html.dark-mode .far,
+    html.dark-mode .fab {
+        margin-right: 0.5em;
+    }
+
+    /* Icons at end of text */
+    html.dark-mode .fas:last-child,
+    html.dark-mode .far:last-child,
+    html.dark-mode .fab:last-child {
+        margin-right: 0;
+        margin-left: 0.5em;
+    }
+
+    /* Icons in titles and headers */
+    html.dark-mode .title .fas,
+    html.dark-mode .title .far,
+    html.dark-mode .title .fab,
+    html.dark-mode .card-header-title .fas,
+    html.dark-mode .card-header-title .far,
+    html.dark-mode .card-header-title .fab {
+        margin-right: 0.75em;
+    }
+
+    /* Icons in buttons */
+    html.dark-mode .button .fas,
+    html.dark-mode .button .far,
+    html.dark-mode .button .fab {
+        margin-right: 0.5em !important;
+    }
+
+    html.dark-mode .button .fas:last-child,
+    html.dark-mode .button .far:last-child,
+    html.dark-mode .button .fab:last-child {
+        margin-right: 0;
+        margin-left: 0.5em;
+    }
+
+    /* Icons in navbar items */
+    html.dark-mode .navbar-item .fas,
+    html.dark-mode .navbar-item .far,
+    html.dark-mode .navbar-item .fab {
+        margin-right: 0.5em;
+    }
+
+    /* Icons in tags and badges */
+    html.dark-mode .tag .fas,
+    html.dark-mode .tag .far,
+    html.dark-mode .tag .fab {
+        margin-right: 0.5em !important;
+    }
+
+    html.dark-mode .tag .fas:last-child,
+    html.dark-mode .tag .far:last-child,
+    html.dark-mode .tag .fab:last-child {
+        margin-right: 0;
+        margin-left: 0.5em;
+    }
+
+    /* Icons in all span elements */
+    html.dark-mode span .fas,
+    html.dark-mode span .far,
+    html.dark-mode span .fab {
+        margin-right: 0.5em !important;
+    }
+
+    html.dark-mode span .fas:last-child,
+    html.dark-mode span .far:last-child,
+    html.dark-mode span .fab:last-child {
+        margin-right: 0;
+        margin-left: 0.5em;
+    }
+
+    /* Override for icon containers to prevent double spacing */
+    html.dark-mode .icon .fas,
+    html.dark-mode .icon .far,
+    html.dark-mode .icon .fab {
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    /* Fix code background in dark mode */
+    html.dark-mode code {
+        background-color: var(--bg-darker);
+        color: var(--text-color);
+        border: 1px solid var(--border-color);
+        padding: 0.25em 0.5em;
+        border-radius: 3px;
+    }
+
+    /* Table code elements */
+    html.dark-mode table code {
+        background-color: var(--bg-darker);
+        color: var(--text-color);
+    }
+
+    /* Better contrast for light buttons in dark mode */
+    html.dark-mode .button.is-light {
+        background-color: var(--bg-darker);
+        color: var(--text-color);
+        border: 1px solid var(--border-color);
+    }
+
+    html.dark-mode .button.is-light:hover {
+        background-color: var(--bg-lighter);
+        color: var(--text-color);
+        border-color: var(--border-color);
+    }
+
+    /* Fix actions column button spacing and contrast */
+    html.dark-mode .buttons.are-small .button.is-light {
+        background-color: var(--bg-darker);
+        color: var(--text-color);
+        border: 1px solid var(--border-color);
+    }
+    /* Dark mode modal theming overrides */
+    html.dark-mode .modal .modal-card,
+    html.dark-mode .modal .modal-card-head,
+    html.dark-mode .modal .modal-card-body,
+    html.dark-mode .modal .modal-card-foot,
+    html.dark-mode .modal .modal-content,
+    html.dark-mode .modal .modal-header,
+    html.dark-mode .modal .modal-body,
+    html.dark-mode .modal .modal-footer,
+    html body .dark-mode .modal .modal-card,
+    html body .dark-mode .modal .modal-card-head,
+    html body .dark-mode .modal .modal-card-body,
+    html body .dark-mode .modal .modal-card-foot,
+    html body .dark-mode .modal .modal-content,
+    html body .dark-mode .modal .modal-header,
+    html body .dark-mode .modal .modal-body,
+    html body .dark-mode .modal .modal-footer {
+        background-color: var(--card-bg) !important;
+        color: var(--text-color) !important;
+        border: 1px solid var(--border-color) !important;
+        border-radius: 6px !important;
+    }
+
+    /* Bulma modal card specific overrides */
+    html.dark-mode .modal-card-head,
+    html.dark-mode .modal-card-foot,
+    html body .dark-mode .modal-card-head,
+    html body .dark-mode .modal-card-foot {
+        background-color: var(--card-bg) !important;
+        border-color: var(--border-color) !important;
+        border-top: 1px solid var(--border-color) !important;
+        border-bottom: 1px solid var(--border-color) !important;
+    }
+
+    /* Modal content structure for go-algo style */
+    html.dark-mode .modal-content,
+    html.dark-mode .modal-header,
+    html.dark-mode .modal-body,
+    html.dark-mode .modal-footer,
+    html body .dark-mode .modal-content,
+    html body .dark-mode .modal-header,
+    html body .dark-mode .modal-body,
+    html body .dark-mode .modal-footer {
+        background-color: var(--card-bg) !important;
+        color: var(--text-color) !important;
+        border-color: var(--border-color) !important;
+    }
+
+    /* Modal titles and text elements */
+    html.dark-mode .modal-card-title,
+    html.dark-mode .modal-title,
+    html.dark-mode .modal h1,
+    html.dark-mode .modal h2,
+    html.dark-mode .modal h3,
+    html.dark-mode .modal h4,
+    html.dark-mode .modal h5,
+    html.dark-mode .modal h6,
+    html.dark-mode .modal p,
+    html.dark-mode .modal label,
+    html body .dark-mode .modal-card-title,
+    html body .dark-mode .modal-title,
+    html body .dark-mode .modal h1,
+    html body .dark-mode .modal h2,
+    html body .dark-mode .modal h3,
+    html body .dark-mode .modal h4,
+    html body .dark-mode .modal h5,
+    html body .dark-mode .modal h6,
+    html body .dark-mode .modal p,
+    html body .dark-mode .modal label {
+        color: var(--text-color) !important;
+    }
+/* Dark button contrast fix in dark mode */
+html.dark-mode .button.is-dark {
+    background-color: transparent !important;
+    border-color: #8a8a8a !important;
+    color: #b0b0b0 !important;
+}
+
+html.dark-mode .button.is-dark:hover {
+    background-color: transparent !important;
+    border-color: #a0a0a0 !important;
+    color: #c0c0c0 !important;
+}
+
+html.dark-mode .button.is-dark.is-outlined {
+    background-color: transparent !important;
+    border-color: #8a8a8a !important;
+    color: #b0b0b0 !important;
+}
+
+html.dark-mode .button.is-dark.is-outlined:hover {
+    background-color: rgba(138, 138, 138, 0.1) !important;
+    border-color: #a0a0a0 !important;
+    color: #c0c0c0 !important;
+}
+/* Code box styling for dark mode */
+html.dark-mode .code-box {
+    background-color: var(--bg-darker);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 1rem;
+    font-family: 'Courier New', Consolas, Monaco, monospace;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    max-height: 400px;
+    overflow: auto;
+}
+
+/* Pagination disabled state - dark mode contrast fix */
+html.dark-mode .pagination-previous.is-disabled,
+html.dark-mode .pagination-next.is-disabled,
+html.dark-mode .pagination-previous[disabled],
+html.dark-mode .pagination-next[disabled],
+html.dark-mode .pagination-link.is-disabled,
+html.dark-mode .pagination-link[disabled] {
+    background-color: var(--bg-darker) !important;
+    border-color: var(--border-color) !important;
+    color: #666666 !important;
+    cursor: not-allowed !important;
+    opacity: 0.6 !important;
+    pointer-events: none;
+}
+
+/* General disabled button state - dark mode contrast fix */
+html.dark-mode .button.is-disabled,
+html.dark-mode .button[disabled],
+html.dark-mode button:disabled,
+html.dark-mode .button:disabled {
+    background-color: var(--bg-darker) !important;
+    border-color: var(--border-color) !important;
+    color: #666666 !important;
+    cursor: not-allowed !important;
+    opacity: 0.6 !important;
+}

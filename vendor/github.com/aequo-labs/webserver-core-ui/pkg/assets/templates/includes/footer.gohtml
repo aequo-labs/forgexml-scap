@@ -1,0 +1,18 @@
+{{define "footer"}}
+<footer class="footer">
+    <div class="content has-text-centered">
+        <p>
+            <strong>{{.AppName}}</strong> {{if .Version}}{{.Version}}{{end}}
+            {{if .Copyright}}© {{.Copyright}}{{end}}
+        </p>
+        {{if .FooterLinks}}
+        <p>
+            {{range $i, $link := .FooterLinks}}
+                {{if $i}} | {{end}}
+                <a href="{{$link.URL}}">{{$link.Title}}</a>
+            {{end}}
+        </p>
+        {{end}}
+    </div>
+</footer>
+{{end}}

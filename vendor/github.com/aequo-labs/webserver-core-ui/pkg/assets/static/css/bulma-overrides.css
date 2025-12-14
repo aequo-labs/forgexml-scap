@@ -1,0 +1,119 @@
+/* Bulma Framework Overrides and Fixes */
+/* These styles override Bulma defaults for our specific needs */
+
+/* Title and subtitle spacing fixes */
+.title-row .page-title .title {
+    margin-bottom: 1rem !important;
+}
+
+.title-row .page-title .subtitle {
+    margin-top: 0 !important;
+    margin-bottom: 1.5rem !important;
+}
+
+/* Make all colored buttons outlined by default */
+.button.is-primary,
+.button.is-info,
+.button.is-warning,
+.button.is-danger,
+.button.is-light {
+    background-color: transparent !important;
+    border-width: 1px !important;
+    border-style: solid !important;
+}
+
+.button.is-primary {
+    color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+}
+
+.button.is-info {
+    color: var(--info-color) !important;
+    border-color: var(--info-color) !important;
+}
+
+.button.is-warning {
+    color: var(--warning-color) !important;
+    border-color: var(--warning-color) !important;
+}
+
+.button.is-danger {
+    color: var(--danger-color) !important;
+    border-color: var(--danger-color) !important;
+}
+
+.button.is-light {
+    color: var(--text-color) !important;
+    border-color: var(--light-button-border) !important;
+}
+
+/* Button hover styles - translucent theme color background */
+.button.is-primary:hover {
+    background-color: rgba(var(--primary-color-rgb), 0.1) !important;
+    border-color: var(--primary-color) !important;
+    color: var(--primary-color) !important;
+}
+
+.button.is-info:hover {
+    background-color: rgba(var(--info-color-rgb), 0.1) !important;
+    border-color: var(--info-color) !important;
+    color: var(--info-color) !important;
+}
+
+.button.is-warning:hover {
+    background-color: rgba(var(--warning-color-rgb), 0.1) !important;
+    border-color: var(--warning-color) !important;
+    color: var(--warning-color) !important;
+}
+
+.button.is-danger:hover {
+    background-color: rgba(var(--danger-color-rgb), 0.1) !important;
+    border-color: var(--danger-color) !important;
+    color: var(--danger-color) !important;
+}
+
+.button.is-light:hover {
+    background-color: rgba(var(--light-button-border-rgb), 0.1) !important;
+    border-color: var(--light-button-border) !important;
+    color: var(--text-color) !important;
+}
+
+/* Statistics card spacing fixes */
+.stats-card .card-content {
+    padding: 1.5rem !important;
+}
+
+.stats-card .media {
+    align-items: flex-start !important;
+}
+
+.stats-card .media-left {
+    margin-right: 1.5rem !important;
+    margin-top: 0.5rem !important;
+}
+
+.stats-card .media-content {
+    overflow: visible !important;
+}
+
+.stats-card .media-content .title {
+    margin-bottom: 0.75rem !important;
+    line-height: 1.1 !important;
+    font-size: 1.75rem !important;
+    font-weight: 600 !important;
+}
+
+.stats-card .media-content .subtitle {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    line-height: 1.3 !important;
+    font-size: 0.875rem !important;
+}
+/* Fix title + subtitle cramped spacing - override Bulma negative margin */
+.title + .subtitle {
+    margin-top: 0.5rem !important;  /* Override Bulma's -1.25rem negative margin */
+}
+
+.title.is-spaced + .subtitle {
+    margin-top: 0.75rem !important;
+}

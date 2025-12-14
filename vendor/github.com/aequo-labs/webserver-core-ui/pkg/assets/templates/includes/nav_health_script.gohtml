@@ -1,0 +1,10 @@
+<script src="/static/js/nav-health-indicator.js"></script>
+<script>
+// Initialize nav health indicator on page load
+document.addEventListener('DOMContentLoaded', function() {
+    // Start health monitoring if nav health indicator is present
+    if (document.getElementById('nav-health-status')) {
+        window.startNavHealthMonitoring();
+    }
+});
+</script>

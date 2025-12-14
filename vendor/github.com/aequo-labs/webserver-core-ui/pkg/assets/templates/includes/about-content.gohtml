@@ -1,0 +1,142 @@
+{{define "about-content"}}
+<section class="section">
+    <div class="container">
+        <div class="columns is-centered">
+            <div class="column is-10">
+                <h1 class="title">
+                    <span class="icon-text">
+                        <span class="icon"><i class="fas fa-info-circle"></i></span>
+                        <span>About {{if .AboutInfo}}{{.AboutInfo.AppName}}{{else}}{{.AppName}}{{end}}</span>
+                    </span>
+                </h1>
+
+                {{if .AboutInfo}}
+                {{if .AboutInfo.Description}}
+                <div class="box">
+                    <h2 class="subtitle">
+                        <span class="icon-text">
+                            <span class="icon"><i class="fas fa-file-alt"></i></span>
+                            <span>Overview</span>
+                        </span>
+                    </h2>
+                    <div class="content">
+                        <p>{{.AboutInfo.Description}}</p>
+                    </div>
+                </div>
+                {{end}}
+
+                {{if .AboutInfo.Version}}
+                <div class="box">
+                    <h2 class="subtitle">
+                        <span class="icon-text">
+                            <span class="icon"><i class="fas fa-code-branch"></i></span>
+                            <span>Version Information</span>
+                        </span>
+                    </h2>
+                    <table class="table is-fullwidth">
+                        <tbody>
+                            <tr>
+                                <th style="width: 200px;">Application</th>
+                                <td>{{.AboutInfo.AppName}}</td>
+                            </tr>
+                            <tr>
+                                <th>Version</th>
+                                <td>{{.AboutInfo.Version}}</td>
+                            </tr>
+                            {{range $key, $value := .AboutInfo.ExtraInfo}}
+                            <tr>
+                                <th>{{$key}}</th>
+                                <td>{{$value}}</td>
+                            </tr>
+                            {{end}}
+                        </tbody>
+                    </table>
+                </div>
+                {{end}}
+
+                {{if .AboutInfo.Features}}
+                <div class="box">
+                    <h2 class="subtitle">
+                        <span class="icon-text">
+                            <span class="icon"><i class="fas fa-list-check"></i></span>
+                            <span>Key Features</span>
+                        </span>
+                    </h2>
+                    <div class="content">
+                        <ul>
+                            {{range .AboutInfo.Features}}
+                            <li>{{.}}</li>
+                            {{end}}
+                        </ul>
+                    </div>
+                </div>
+                {{end}}
+
+                {{if .AboutInfo.License}}
+                <div class="box">
+                    <h2 class="subtitle">
+                        <span class="icon-text">
+                            <span class="icon"><i class="fas fa-certificate"></i></span>
+                            <span>License Information</span>
+                        </span>
+                    </h2>
+                    <div class="content">
+                        {{template "about-license" .}}
+                    </div>
+                </div>
+                {{end}}
+
+                {{if .AboutInfo.Links}}
+                <div class="box">
+                    <h2 class="subtitle">
+                        <span class="icon-text">
+                            <span class="icon"><i class="fas fa-link"></i></span>
+                            <span>Useful Links</span>
+                        </span>
+                    </h2>
+                    <div class="buttons">
+                        {{range .AboutInfo.Links}}
+                        <a href="{{.URL}}" class="button is-link is-outlined">
+                            {{if .Icon}}<span class="icon"><i class="{{.Icon}}"></i></span>{{end}}
+                            <span>{{.Title}}</span>
+                        </a>
+                        {{end}}
+                    </div>
+                </div>
+                {{end}}
+
+                {{else}}
+                <div class="box">
+                    <div class="content has-text-centered">
+                        <p class="has-text-grey">No application information available.</p>
+                    </div>
+                </div>
+                {{end}}
+
+                {{if .ShowDocs}}
+                <div class="box">
+                    <h2 class="subtitle">
+                        <span class="icon-text">
+                            <span class="icon"><i class="fas fa-book"></i></span>
+                            <span>Documentation</span>
+                        </span>
+                    </h2>
+                    <div class="content">
+                        <p>View the application documentation for guides, API references, and more.</p>
+                        <a href="/docs" class="button is-primary">
+                            <span class="icon"><i class="fas fa-book-open"></i></span>
+                            <span>View Documentation</span>
+                        </a>
+                    </div>
+                </div>
+                {{end}}
+            </div>
+        </div>
+    </div>
+</section>
+{{end}}
+
+{{define "about-license"}}
+{{/* Default empty license template - applications can override this */}}
+<p class="has-text-grey-light">License details provided by application.</p>
+{{end}}

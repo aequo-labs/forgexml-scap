@@ -1,0 +1,246 @@
+/* Bulma Modal Component Styles - v0.9.4 */
+/* These styles were missing from bulma.min.css */
+
+.modal {
+  align-items: center;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  position: fixed;
+  z-index: 40;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.modal.is-active {
+  display: flex;
+}
+
+.modal-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* Background styles are handled in utilities.css with !important */
+}
+
+.modal-card,
+.modal-content {
+  margin: 0 20px;
+  max-height: calc(100vh - 40px);
+  overflow: auto;
+  position: relative;
+  width: 100%;
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+
+@media screen and (min-width: 769px) {
+  .modal-card,
+  .modal-content {
+    margin: 0 auto;
+    max-height: calc(100vh - 40px);
+    width: 640px;
+  }
+}
+
+/* Modal width utilities */
+@media screen and (min-width: 769px) {
+  .modal-wide .modal-card,
+  .modal-wide .modal-content {
+    width: 90%;
+    max-width: 800px;
+  }
+
+  .modal-narrow .modal-card,
+  .modal-narrow .modal-content {
+    width: 400px;
+    max-width: 90%;
+  }
+
+  .modal-extra-wide .modal-card,
+  .modal-extra-wide .modal-content {
+    width: 95%;
+    max-width: 1200px;
+  }
+}
+
+.modal-close {
+  background: none;
+  height: 40px;
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  width: 40px;
+}
+
+.modal-card {
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 40px);
+  overflow: hidden;
+  -ms-overflow-y: visible;
+}
+
+.modal-card-head,
+.modal-card-foot {
+  align-items: center;
+  background-color: #f5f5f5;
+  display: flex;
+  flex-shrink: 0;
+  padding: 20px;
+  position: relative;
+}
+
+.modal-card-head {
+  justify-content: flex-start;
+  border-bottom: 1px solid #dbdbdb;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+
+.modal-card-title {
+  color: #363636;
+  flex-grow: 1;
+  flex-shrink: 0;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.modal-card-foot {
+  justify-content: flex-end;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  border-top: 1px solid #dbdbdb;
+}
+
+.modal-card-foot .button:not(:last-child) {
+  margin-right: 0.5em;
+}
+
+.modal-card-body {
+  -webkit-overflow-scrolling: touch;
+  background-color: white;
+  flex-grow: 1;
+  flex-shrink: 1;
+  overflow: auto;
+  padding: 20px;
+}
+
+/* Dark mode adjustments */
+html.dark-mode .modal-card,
+html.dark-mode .modal-content {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+}
+
+html.dark-mode .modal-card-head,
+html.dark-mode .modal-card-foot {
+  background-color: #2b2b2b;
+  border-color: #444;
+}
+
+html.dark-mode .modal-card-title {
+  color: #f5f5f5;
+}
+
+html.dark-mode .modal-card-body {
+  background-color: #1e1e1e;
+  color: #f5f5f5;
+}
+
+/* Delete button styles */
+.delete {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: rgba(10, 10, 10, 0.2);
+  border: none;
+  border-radius: 290486px;
+  cursor: pointer;
+  pointer-events: auto;
+  display: inline-block;
+  flex-grow: 0;
+  flex-shrink: 0;
+  font-size: 0;
+  height: 20px;
+  max-height: 20px;
+  max-width: 20px;
+  min-height: 20px;
+  min-width: 20px;
+  outline: none;
+  position: relative;
+  vertical-align: top;
+  width: 20px;
+}
+
+.delete::before,
+.delete::after {
+  background-color: white;
+  content: "";
+  display: block;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%) rotate(45deg);
+  transform-origin: center center;
+}
+
+.delete::before {
+  height: 2px;
+  width: 50%;
+}
+
+.delete::after {
+  height: 50%;
+  width: 2px;
+}
+
+.delete:hover,
+.delete:focus {
+  background-color: rgba(10, 10, 10, 0.3);
+}
+
+.delete:active {
+  background-color: rgba(10, 10, 10, 0.4);
+}
+
+/* Size modifiers for delete button */
+.delete.is-small {
+  height: 16px;
+  max-height: 16px;
+  max-width: 16px;
+  min-height: 16px;
+  min-width: 16px;
+  width: 16px;
+}
+
+.delete.is-medium {
+  height: 24px;
+  max-height: 24px;
+  max-width: 24px;
+  min-height: 24px;
+  min-width: 24px;
+  width: 24px;
+}
+
+.delete.is-large {
+  height: 32px;
+  max-height: 32px;
+  max-width: 32px;
+  min-height: 32px;
+  min-width: 32px;
+  width: 32px;
+}
+
+/* IMPORTANT: Modal background transparency overrides */
+/* These MUST come after the default styles to take precedence */
+
+/* Modal transparency moved to utilities.css for higher precedence */

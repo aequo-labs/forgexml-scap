@@ -1,0 +1,415 @@
+/* Responsive Design - Media Queries and Mobile Optimizations */
+/* Extracted from site.css */
+
+/* Respect user preferences for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Desktop and larger screens */
+@media (min-width: 1024px) {
+    .container {
+        max-width: 1200px;
+    }
+    
+    /* Hide mobile-only elements */
+    .mobile-only {
+        display: none !important;
+    }
+}
+
+/* Tablet landscape */
+@media (max-width: 1023px) {
+    .columns.is-desktop-reversed {
+        flex-direction: column-reverse;
+    }
+    
+    .container {
+        max-width: 100%;
+        padding: 20px;
+    }
+}
+
+/* Tablet portrait and mobile landscape */
+@media (max-width: 768px) {
+    /* Container adjustments */
+    .container {
+        padding: 15px;
+        gap: 15px;
+    }
+
+    /* Typography adjustments */
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.25rem;
+    }
+
+    h3 {
+        font-size: 1.1rem;
+    }
+
+    /* Title row adjustments */
+    .title-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .title-actions {
+        width: 100%;
+        flex-direction: column;
+        padding-left: 0;
+    }
+
+    .title-actions .btn {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    /* Form adjustments */
+    .form-row {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .data-row {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    /* Table adjustments */
+    .table-container {
+        overflow-x: auto;
+        max-width: 100%;
+    }
+
+    .data-table {
+        min-width: 600px;
+    }
+
+    /* Item list adjustments */
+    .item-list {
+        grid-template-columns: 1fr;
+    }
+
+    /* Item actions adjustments */
+    .item-actions {
+        flex-direction: column;
+    }
+
+    .item-actions .btn {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 5px;
+    }
+
+    /* Modal adjustments */
+    .modal-content {
+        width: 90%;
+        margin: 10% auto;
+        padding: 20px;
+    }
+
+    .modal-card {
+        width: calc(100% - 20px);
+        margin: 0 10px;
+    }
+
+    /* Section container adjustments */
+    .section-container {
+        margin-bottom: 20px;
+    }
+
+    .section-container .header {
+        padding: 12px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .section-container .header h2 {
+        margin-bottom: 8px;
+    }
+
+    /* Navigation adjustments */
+    .navbar-menu {
+        box-shadow: none;
+    }
+
+    .navbar-burger {
+        display: block;
+    }
+
+    /* Button group adjustments */
+    .btn-group {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .btn-group .btn {
+        width: 100%;
+        margin: 2px 0;
+    }
+
+    /* Card grid adjustments */
+    .data-cards {
+        grid-template-columns: 1fr;
+    }
+
+    /* Stats table adjustments */
+    .stats-table td {
+        padding: 6px 10px;
+    }
+
+    .stats-table td:nth-child(even) {
+        padding-right: 10px;
+    }
+
+    /* Filter controls adjustments */
+    .filter-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filter-group {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    /* Search box adjustments */
+    .search-box {
+        width: 100%;
+        min-width: 0;
+    }
+
+    /* Hide desktop-only elements */
+    .desktop-only {
+        display: none !important;
+    }
+}
+
+/* Mobile devices */
+@media (max-width: 480px) {
+    /* Container adjustments */
+    .container {
+        padding: 10px;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    /* Typography adjustments */
+    h1 {
+        font-size: 1.3em;
+    }
+
+    h2 {
+        font-size: 1.1em;
+    }
+
+    h3 {
+        font-size: 1em;
+    }
+
+    /* Button adjustments */
+    .btn {
+        padding: 12px 16px;
+        font-size: 14px;
+    }
+
+    .btn-sm {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+
+    /* Form adjustments */
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+
+    /* Table adjustments */
+    .data-table th,
+    .data-table td {
+        padding: 6px;
+        font-size: 12px;
+    }
+
+    /* Modal adjustments */
+    .modal-content {
+        width: 95%;
+        margin: 5% auto;
+        padding: 15px;
+    }
+
+    .modal-card {
+        width: 100%;
+        margin: 0;
+        height: 100%;
+        max-height: 100vh;
+    }
+
+    /* Section container adjustments */
+    .section-container {
+        border-radius: 0;
+        margin-left: -10px;
+        margin-right: -10px;
+    }
+
+    /* Item card adjustments */
+    .item-card {
+        padding: 15px;
+    }
+
+    /* Stats card adjustments */
+    .stats-card {
+        padding: 15px;
+    }
+
+    .stats-card .title {
+        font-size: 1.5rem;
+    }
+
+    /* Remove hover effects on touch devices */
+    @media (hover: none) {
+        .btn:hover {
+            transform: none;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .item-card:hover {
+            transform: none;
+            box-shadow: none;
+        }
+
+        .navigation-link:hover {
+            background-color: transparent;
+        }
+    }
+}
+
+/* Landscape orientation adjustments */
+@media (orientation: landscape) and (max-height: 500px) {
+    .modal-card {
+        max-height: 90vh;
+        margin-top: 5vh;
+    }
+
+    .container {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+}
+
+/* High resolution displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    /* Sharper borders and shadows */
+    .btn,
+    .card,
+    .modal-content {
+        border-width: 0.5px;
+    }
+}
+
+/* Print styles */
+@media print {
+    /* Remove backgrounds and shadows */
+    * {
+        background: transparent !important;
+        color: black !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    /* Hide unnecessary elements */
+    .btn,
+    .navbar,
+    .footer,
+    .modal,
+    .no-print {
+        display: none !important;
+    }
+
+    /* Ensure proper page breaks */
+    .page-break {
+        page-break-after: always;
+    }
+
+    .no-page-break {
+        page-break-inside: avoid;
+    }
+
+    /* Adjust typography for print */
+    body {
+        font-size: 12pt;
+        line-height: 1.5;
+    }
+
+    h1 {
+        font-size: 18pt;
+    }
+
+    h2 {
+        font-size: 16pt;
+    }
+
+    h3 {
+        font-size: 14pt;
+    }
+
+    /* Show URLs for links */
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    /* Expand abbreviated content */
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+}
+
+/* Accessibility - Focus visible */
+@media (prefers-reduced-motion: no-preference) {
+    :focus-visible {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
+    }
+}
+
+/* Dark mode preference */
+@media (prefers-color-scheme: dark) {
+    /* Dark mode styles if not already handled */
+    :root {
+        color-scheme: dark;
+    }
+}
+
+/* Light mode preference */
+@media (prefers-color-scheme: light) {
+    /* Light mode styles if not already handled */
+    :root {
+        color-scheme: light;
+    }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    /* Increase contrast for better readability */
+    * {
+        border-width: 2px !important;
+    }
+
+    .btn,
+    .card,
+    .modal-content {
+        border: 2px solid currentColor !important;
+    }
+}

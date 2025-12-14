@@ -1,0 +1,34 @@
+{{define "flash-messages" -}}
+{{- if .FlashMessages}}
+<div class="section" style="padding-top: 1rem; padding-bottom: 0;">
+{{- range .FlashMessages}}
+    <div class="notification {{.Type}} is-light">
+        <button class="delete"></button>
+        {{.Message}}
+    </div>
+{{- end}}
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const notifications = document.querySelectorAll('.notification');
+    notifications.forEach(function(notification) {
+        const deleteBtn = notification.querySelector('.delete');
+        if (deleteBtn) {
+            deleteBtn.addEventListener('click', function() {
+                notification.style.display = 'none';
+            });
+        }
+        setTimeout(function() {
+            notification.style.transition = 'opacity 0.5s';
+            notification.style.opacity = '0';
+            setTimeout(function() {
+                if (notification.parentNode) {
+                    notification.style.display = 'none';
+                }
+            }, 500);
+        }, 5000);
+    });
+});
+</script>
+{{- end}}
+{{- end}}

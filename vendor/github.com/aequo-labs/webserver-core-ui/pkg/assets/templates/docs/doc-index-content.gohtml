@@ -1,0 +1,57 @@
+{{define "doc-index-content"}}
+<section class="section">
+    <div class="container">
+        <div class="columns is-centered">
+            <div class="column is-10">
+                <h1 class="title">
+                    <span class="icon-text">
+                        <span class="icon"><i class="fas fa-book"></i></span>
+                        <span>Documentation</span>
+                    </span>
+                </h1>
+
+                {{if .DocCategories}}
+                {{range $category, $docs := .DocCategories}}
+                <div class="box">
+                    <h2 class="subtitle">
+                        <span class="icon-text">
+                            <span class="icon"><i class="fas fa-folder-open"></i></span>
+                            <span>{{$category}}</span>
+                        </span>
+                    </h2>
+                    <div class="content">
+                        <ul class="doc-list">
+                            {{range $docs}}
+                            <li>
+                                <a href="/docs/{{.Path}}" class="doc-link">
+                                    <span class="icon"><i class="fas fa-file-alt"></i></span>
+                                    <span>{{.Title}}</span>
+                                </a>
+                            </li>
+                            {{end}}
+                        </ul>
+                    </div>
+                </div>
+                {{end}}
+                {{else}}
+                <div class="box">
+                    <div class="content has-text-centered">
+                        <p class="has-text-grey">
+                            <span class="icon is-large"><i class="fas fa-folder-open fa-2x"></i></span>
+                        </p>
+                        <p class="has-text-grey">No documentation files found.</p>
+                    </div>
+                </div>
+                {{end}}
+
+                <div class="buttons is-centered mt-5">
+                    <a href="/about" class="button is-link is-outlined">
+                        <span class="icon"><i class="fas fa-arrow-left"></i></span>
+                        <span>Back to About</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{{end}}

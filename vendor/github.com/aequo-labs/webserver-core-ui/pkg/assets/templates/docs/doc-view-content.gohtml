@@ -1,0 +1,72 @@
+{{define "doc-view-content"}}
+<section class="section">
+    <div class="container">
+        <div class="columns is-centered">
+            <div class="column is-10">
+                <nav class="breadcrumb" aria-label="breadcrumbs">
+                    <ul>
+                        <li><a href="/about">About</a></li>
+                        <li><a href="/docs">Documentation</a></li>
+                        <li class="is-active"><a href="#" aria-current="page">{{.DocTitle}}</a></li>
+                    </ul>
+                </nav>
+
+                <h1 class="title">
+                    <span class="icon-text">
+                        <span class="icon"><i class="fas fa-file-alt"></i></span>
+                        <span>{{.DocTitle}}</span>
+                    </span>
+                </h1>
+
+                <div class="box">
+                    <div class="content doc-content">
+                        {{.DocContent}}
+                    </div>
+                </div>
+
+                <div class="buttons mt-5">
+                    <a href="/docs" class="button is-link is-outlined">
+                        <span class="icon"><i class="fas fa-arrow-left"></i></span>
+                        <span>Back to Documentation</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{{end}}
+
+{{define "doc-view-page-scripts"}}
+<script>
+// Initialize mermaid diagrams if present
+document.addEventListener('DOMContentLoaded', function() {
+    if (typeof mermaid !== 'undefined') {
+        // Check if there are any mermaid diagrams on the page
+        const mermaidDivs = document.querySelectorAll('.mermaid');
+        if (mermaidDivs.length > 0) {
+            mermaid.initialize({
+                startOnLoad: true,
+                theme: document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default',
+                securityLevel: 'loose'
+            });
+            mermaid.run();
+        }
+    }
+});
+
+// Re-render mermaid on theme change
+document.addEventListener('themeChanged', function(e) {
+    if (typeof mermaid !== 'undefined') {
+        const mermaidDivs = document.querySelectorAll('.mermaid');
+        if (mermaidDivs.length > 0) {
+            mermaid.initialize({
+                startOnLoad: false,
+                theme: e.detail.theme === 'dark' ? 'dark' : 'default',
+                securityLevel: 'loose'
+            });
+            mermaid.run();
+        }
+    }
+});
+</script>
+{{end}}

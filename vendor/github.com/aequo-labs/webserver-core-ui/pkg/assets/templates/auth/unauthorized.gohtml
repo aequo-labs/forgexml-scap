@@ -1,0 +1,23 @@
+{{define "content"}}
+<div class="columns is-centered">
+    <div class="column is-half">
+        <div class="notification is-warning">
+            <h1 class="title">Access Denied</h1>
+            <p class="subtitle">You don't have permission to access this page.</p>
+            
+            {{if not .IsAuthenticated}}
+            <p>You need to <a href="/login">login</a> to access this resource.</p>
+            {{else}}
+            <p>Your account doesn't have sufficient privileges for this action.</p>
+            {{end}}
+            
+            <div class="buttons is-centered" style="margin-top: 2rem;">
+                <a class="button is-primary" href="/">Go to Home</a>
+                {{if not .IsAuthenticated}}
+                <a class="button is-link" href="/login">Login</a>
+                {{end}}
+            </div>
+        </div>
+    </div>
+</div>
+{{end}}

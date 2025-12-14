@@ -1,0 +1,348 @@
+/* Layout Styles - Page structure and layout components */
+/* Extracted from site.css - Lines 286-308, 1322-1420 */
+
+/* Title row layout */
+.title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.page-title {
+    flex: 1;
+}
+
+.page-title .title {
+    margin-bottom: 0.5rem !important;
+    margin-top: 0.5rem !important;
+}
+
+/* Add margin around the text inside page headers */
+.page-title .title span {
+    margin: 0 0.5rem;
+}
+
+.page-title .subtitle {
+    margin-bottom: 0 !important;
+}
+
+/* Column layout */
+.columns.is-desktop-reversed {
+    flex-direction: row;
+}
+
+@media (max-width: 1023px) {
+    .columns.is-desktop-reversed {
+        flex-direction: column-reverse;
+    }
+}
+
+/* Content container - generic version of doc-content */
+.content-container {
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.content-container h1,
+.content-container h2,
+.content-container h3,
+.content-container h4,
+.content-container h5,
+.content-container h6 {
+    color: var(--text-color);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.content-container h1:first-child,
+.content-container h2:first-child,
+.content-container h3:first-child {
+    margin-top: 0;
+}
+
+.content-container p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.content-container ul,
+.content-container ol {
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+}
+
+.content-container li {
+    margin-bottom: 0.5rem;
+}
+
+.content-container code {
+    background: var(--bg-color-secondary);
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-size: 0.875em;
+}
+
+.content-container pre {
+    background: var(--bg-color-secondary);
+    padding: 1rem;
+    border-radius: 4px;
+    overflow-x: auto;
+    margin-bottom: 1rem;
+}
+
+.content-container blockquote {
+    border-left: 4px solid var(--primary-color);
+    padding-left: 1rem;
+    margin: 1rem 0;
+    color: var(--text-color-muted);
+}
+
+/* Content list styles - generic version of doc-list */
+.content-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.content-item {
+    display: block;
+    padding: 1rem 1.5rem;
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    margin-bottom: 0.75rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.content-item:hover {
+    background: var(--bg-color-hover);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transform: translateX(4px);
+}
+
+.content-item-title {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    color: var(--primary-color);
+}
+
+.content-item-description {
+    color: var(--text-color-muted);
+    font-size: 0.875rem;
+}
+
+/* Item list styles - adapted from account-list */
+.item-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.item-list-item {
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+}
+
+.item-list-item:hover {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.item-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.item-meta {
+    color: var(--text-color-muted);
+    font-size: 0.875rem;
+}
+
+/* Item details */
+.item-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* Detail item layout */
+.detail-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.detail-label {
+    color: var(--text-color-muted);
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+}
+
+.detail-value {
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+/* Item summary styles */
+.item-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
+    background: var(--bg-color-secondary);
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+.summary-item {
+    text-align: center;
+}
+
+.summary-label {
+    color: var(--text-color-muted);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+    margin-bottom: 0.25rem;
+}
+
+.summary-value {
+    color: var(--text-color);
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.summary-value.is-success {
+    color: var(--success-color);
+}
+
+.summary-value.is-danger {
+    color: var(--danger-color);
+}
+
+.summary-value.is-warning {
+    color: var(--warning-color);
+}
+
+/* Item actions */
+.item-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+/* Data display layout for view mode - useful for any detail view */
+.data-display {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.data-display-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.data-display-label {
+    color: var(--text-color-muted);
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+}
+
+.data-display-value {
+    color: var(--text-color);
+    font-size: 1.125rem;
+    font-weight: 500;
+}
+
+/* Loading template for iframes */
+.loading-template {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+    background: var(--bg-color-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+}
+
+.loading-overlay {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background-color: var(--loading-overlay-bg, rgba(0,0,0,0.5)) !important;
+    z-index: 9999 !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-direction: column !important;
+}
+
+.loading-overlay[style*="display: none"],
+.loading-overlay[style*="display:none"],
+.loading-overlay[style*="display: None"],
+.loading-overlay[style*="display:None"] {
+    pointer-events: none !important;
+}
+
+.loading-overlay[style*="display: block"],
+.loading-overlay[style*="display:block"],
+.loading-overlay[style*="display: flex"],
+.loading-overlay[style*="display:flex"] {
+    display: flex !important;
+    pointer-events: auto !important;
+}
+
+.loading-spinner {
+    width: 48px;
+    height: 48px;
+    border: 4px solid var(--border-color);
+    border-top-color: var(--primary-color);
+    border-radius: 50%;
+    animation: loading-spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+.loading-text {
+    color: var(--text-color);
+    font-size: 16px;
+    margin: 0;
+}
+
+@keyframes loading-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}/* Subtitle text margin adjustment */
+.page-title .subtitle {
+    margin-left: 2rem !important;
+}/* Add Tool button margin */
+.page-actions {
+    margin-right: 1rem;
+}
+
+.page-actions .buttons {
+    margin-right: 1rem;
+}

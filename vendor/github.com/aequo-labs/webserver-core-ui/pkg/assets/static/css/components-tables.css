@@ -1,0 +1,329 @@
+/* Table Components - All table-related styles */
+/* Extracted from site.css - Lines 131-216 */
+
+/* Core table styles that all tables should use */
+.table {
+    width: 100%;
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.table thead {
+    background-color: var(--bg-color-secondary);
+    border-bottom: 2px solid var(--border-color);
+}
+
+.table th {
+    color: var(--text-color);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    letter-spacing: 0.025em;
+    padding: 1rem;
+}
+
+.table td {
+    padding: 0.875rem 1rem;
+    color: var(--text-color);
+    border-bottom: 1px solid var(--border-color-light);
+}
+
+.table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.table tbody tr:hover {
+    background-color: var(--bg-color-hover);
+}
+
+.table.is-striped tbody tr:nth-child(even) {
+    background-color: var(--bg-color-secondary);
+}
+
+.table.is-striped tbody tr:nth-child(even):hover {
+    background-color: var(--bg-color-hover);
+}
+
+.table.is-hoverable tbody tr:hover {
+    background-color: var(--bg-color-hover);
+    cursor: pointer;
+}
+
+.table.is-narrow td,
+.table.is-narrow th {
+    padding: 0.5rem 0.75rem;
+}
+
+/* Text alignment classes */
+.table .has-text-left {
+    text-align: left !important;
+}
+
+.table .has-text-centered {
+    text-align: center !important;
+}
+
+.table .has-text-right {
+    text-align: right !important;
+}
+
+/* Numeric cell styling for financial data */
+.table td.numeric,
+.table td.currency {
+    text-align: right;
+    font-family: 'Courier New', monospace;
+}
+
+/* Special styling for status and last columns in tables */
+.table td:last-child {
+    text-align: center;
+}
+
+/* No data message */
+.no-data {
+    text-align: center;
+    padding: 3rem;
+    color: var(--text-color-muted);
+    font-style: italic;
+}
+
+/* Enhanced sticky table component - use with data-table class */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    border: 1px solid var(--border-color);
+}
+
+.data-table th {
+    background-color: var(--table-header-bg, var(--bg-color-secondary)) !important;
+    font-weight: 500;
+    padding: 10px 15px;
+    white-space: nowrap;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+    border-bottom: 2px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+    text-align: left;
+    color: var(--text-color);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
+    isolation: isolate;
+    contain: layout style;
+}
+
+.data-table th::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: var(--table-header-bg, var(--bg-color-secondary));
+    z-index: -1;
+}
+
+.data-table td {
+    padding: 10px 15px;
+    border-bottom: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+    white-space: nowrap;
+    text-align: left;
+    color: var(--text-color);
+}
+
+.data-table tbody tr:hover {
+    background-color: var(--bg-color-hover, rgba(0,0,0,0.05));
+}
+
+html.dark-mode .data-table tbody tr:hover {
+    background-color: rgba(255,255,255,0.05);
+}
+
+/* ==========================================================================
+   SCROLLABLE TABLES WITH FIXED HEADERS
+   ==========================================================================
+   
+   WHY THIS APPROACH:
+   Standard CSS `position: sticky` on <thead> does NOT work reliably with 
+   HTML tables due to how table layout algorithms work. The display:block 
+   approach below is the reliable cross-browser solution.
+   
+   HOW IT WORKS:
+   1. Table gets display:block (breaks normal table layout)
+   2. Thead gets display:table with width:100% and table-layout:fixed
+      (recreates table layout for header row only)
+   3. Tbody gets display:block with overflow-y:auto and max-height
+      (makes body scrollable independently)
+   4. Tbody tr gets display:table with width:100% and table-layout:fixed
+      (ensures columns align with thead)
+   
+   USAGE - Just wrap your table in a container with one of these classes:
+   
+   <div class="table-container scrollable">        <- viewport-based height
+       <table class="table">...</table>
+   </div>
+   
+   <div class="table-container scrollable-compact"> <- smaller, for pages with filters
+       <table class="table">...</table>
+   </div>
+   
+   <div class="table-container sticky">            <- fixed 350px height
+       <table class="table">...</table>
+   </div>
+   
+   VARIANTS:
+   - .scrollable        : max-height: calc(100vh - 400px) - standard pages
+   - .scrollable-compact: max-height: calc(100vh - 530px) - pages with filters/controls
+   - .sticky            : max-height: 350px - fixed height tables
+   
+   IMPORTANT: The table should use .table-fixed or table-layout:fixed for 
+   consistent column widths between thead and tbody.
+   
+   TESTS: See cmd/theme-test/scrollable_table_test.go for regression tests
+   ========================================================================== */
+
+/* Base scrollable container styles */
+.table-container.sticky,
+.table-container.scrollable,
+.table-container.scrollable-compact {
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden; /* Container doesn't scroll, tbody does */
+}
+
+/* Table inside scrollable container needs display:block */
+.table-container.sticky .table,
+.table-container.scrollable .table,
+.table-container.scrollable-compact .table {
+    display: block !important;
+    width: 100%;
+}
+
+/* Fixed header - stays at top */
+.table-container.sticky .table thead,
+.table-container.scrollable .table thead,
+.table-container.scrollable-compact .table thead {
+    display: table !important;
+    width: 100%;
+    table-layout: fixed;
+    background-color: var(--table-header-bg, var(--bg-color-secondary, #f5f5f5)) !important;
+}
+
+.table-container.sticky .table thead tr,
+.table-container.scrollable .table thead tr,
+.table-container.scrollable-compact .table thead tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.table-container.sticky .table thead th,
+.table-container.scrollable .table thead th,
+.table-container.scrollable-compact .table thead th {
+    display: table-cell;
+    background-color: var(--table-header-bg, var(--bg-color-secondary, #f5f5f5)) !important;
+    border-bottom: 2px solid var(--border-color) !important;
+}
+
+/* Scrollable tbody */
+.table-container.sticky .table tbody,
+.table-container.scrollable .table tbody,
+.table-container.scrollable-compact .table tbody {
+    display: block !important;
+    overflow-y: auto !important;
+    overflow-x: hidden;
+}
+
+/* Height constraints for different scrollable types */
+.table-container.sticky .table tbody {
+    max-height: 350px;
+}
+
+.table-container.scrollable .table tbody {
+    max-height: calc(100vh - 400px); /* Viewport height minus header/footer space */
+    min-height: 250px;
+}
+
+.table-container.scrollable-compact .table tbody {
+    max-height: calc(100vh - 530px); /* More space for filters/controls above */
+    min-height: 200px;
+}
+
+/* tbody rows need table display for proper column alignment */
+.table-container.sticky .table tbody tr,
+.table-container.scrollable .table tbody tr,
+.table-container.scrollable-compact .table tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.table-container.sticky .table tbody td,
+.table-container.scrollable .table tbody td,
+.table-container.scrollable-compact .table tbody td {
+    display: table-cell;
+}
+/* Prevent table header and cell text truncation */
+.table th,
+.table td {
+    white-space: nowrap;
+    overflow: visible;
+    text-overflow: clip;
+}
+
+/* For tables that might be too wide, enable horizontal scrolling */
+.table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Minimum column widths for common table types */
+.table th:first-child,
+.table td:first-child {
+    min-width: 120px; /* License ID column */
+}
+
+/* Status column should have enough width for badges */
+.table th:has(+ th + th + th),
+.table td:has(+ td + td + td) {
+    min-width: 100px;
+}
+
+/* Actions column should be right-aligned with enough space */
+.table th:last-child,
+.table td:last-child {
+    min-width: 100px;
+    text-align: right !important;
+}
+
+
+/* Right-align button groups in table cells - Bulma .buttons is flex, so text-align doesn't work */
+.table td .buttons,
+.table td.has-text-right .buttons,
+.data-table td .buttons,
+.data-table td.has-text-right .buttons {
+    justify-content: flex-end;
+    margin-bottom: 0; /* Remove Bulma default bottom margin */
+}
+
+/* Ensure action column cells have proper alignment */
+.table td:last-child,
+.table td.has-text-right {
+    text-align: right !important;
+}
+
+/* Remove any unwanted margins from buttons in action column */
+.table td:last-child .buttons .button:last-child,
+.table td.has-text-right .buttons .button:last-child {
+    margin-right: 0;
+}
+

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" class="{{.ThemeMode}}-mode">
+<head>
+{{- template "head" .}}
+</head>
+<body class="{{.ThemeMode}}-mode">
+    <div id="loading-overlay" class="loading-overlay" style="display: none;">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Loading...</div>
+    </div>
+{{- if .ShowNavigation}}
+{{- template "navigation" .}}
+{{- end}}
+    <main class="main-content">
+{{- template "flash-messages" .}}
+        <div class="container">
+{{- template "content" .}}
+        </div>
+    </main>
+{{- if .ShowFooter}}
+{{- template "footer" .}}
+{{- end}}
+{{- template "js-includes" .}}
+{{- template "page-scripts" .}}
+</body>
+</html>

@@ -1,0 +1,104 @@
+{{define "navigation" -}}
+<nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+            <strong>{{.AppName}}</strong>
+        </a>
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="main-navbar">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+    <div id="main-navbar" class="navbar-menu">
+        <div class="navbar-start">
+{{- range .NavItems}}
+            <a class="navbar-item {{if .IsActive}}is-active{{end}}" href="{{.URL}}">
+                {{- if .Icon}}<i class="{{.Icon}}"></i>&nbsp;{{end}}{{.Title}}
+            </a>
+{{- end}}
+{{- if .HasDropdownMenus}}
+{{- range .DropdownMenus}}
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">{{.Title}}</a>
+                <div class="navbar-dropdown">
+{{- range .Items}}
+                    <a class="navbar-item" href="{{.URL}}">{{.Title}}</a>
+{{- end}}
+                </div>
+            </div>
+{{- end}}
+{{- end}}
+        </div>
+        <div class="navbar-end">
+{{- if .ShowStatusIndicator}}
+            <div class="navbar-item">
+                <div class="status-indicator" id="status-indicator" data-tooltip="Server Status">
+                    <span class="status-dot" id="status-dot"></span>
+                </div>
+            </div>
+{{- end}}
+{{- template "theme-toggle" .}}
+{{- if .ShowAbout}}
+            <div class="navbar-item">
+                <button id="about-button" class="button is-ghost" data-tooltip="About" style="background: transparent; border: none;">
+                    <span class="icon">
+                        <i class="fas fa-info-circle"></i>
+                    </span>
+                </button>
+            </div>
+{{- end}}
+{{- if .ShowSettings}}
+            <div class="navbar-item">
+                <a class="button is-ghost" href="{{if .SettingsURL}}{{.SettingsURL}}{{else}}/config{{end}}" data-tooltip="Settings">
+                    <span class="icon">
+                        <i class="fas fa-cog"></i>
+                    </span>
+                </a>
+            </div>
+{{- end}}
+{{- if .ShowLogin}}
+{{- if .IsAuthenticated}}
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">
+                    <span class="icon">
+                        <i class="fas fa-user"></i>
+                    </span>
+                    <span>{{.Username}}</span>
+                </a>
+                <div class="navbar-dropdown">
+                    <a class="navbar-item" href="/profile">Profile</a>
+                    <a class="navbar-item" href="/settings">Settings</a>
+                    <hr class="navbar-divider">
+                    <a class="navbar-item" href="/logout">Logout</a>
+                </div>
+            </div>
+{{- else}}
+            <div class="navbar-item">
+                <a class="button is-ghost" href="/login" data-tooltip="Login">
+                    <span class="icon">
+                        <i class="fas fa-user"></i>
+                    </span>
+                </a>
+            </div>
+{{- end}}
+{{- end}}
+        </div>
+    </div>
+</nav>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+    if ($navbarBurgers.length > 0) {
+        $navbarBurgers.forEach(el => {
+            el.addEventListener('click', () => {
+                const target = el.dataset.target;
+                const $target = document.getElementById(target);
+                el.classList.toggle('is-active');
+                $target.classList.toggle('is-active');
+            });
+        });
+    }
+});
+</script>
+{{- end}}

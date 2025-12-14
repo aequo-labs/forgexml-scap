@@ -2,7 +2,10 @@
   "output": "/home/mmcnew/repos/forgexml-scap/internal/generated",
   "rootPackage": "github.com/aequo-labs/forgexml-scap/internal/generated",
   "schemas": [
-    "/home/mmcnew/repos/forgexml-scap/schemas/arf/asset-reporting-format_1.1.0.xsd"
+    "/home/mmcnew/repos/forgexml-scap/schemas/arf/asset-reporting-format_1.1.0.xsd",
+    "/home/mmcnew/repos/forgexml-scap/schemas/oval/5.11.2/oval-definitions-schema.xsd",
+    "/home/mmcnew/repos/forgexml-scap/schemas/xccdf/xccdf_1.2.xsd",
+    "/home/mmcnew/repos/forgexml-scap/schemas/cpe-dictionary/cpe-dictionary_2.1.xsd"
   ],
   "recursive": false,
   "generateTests": true,

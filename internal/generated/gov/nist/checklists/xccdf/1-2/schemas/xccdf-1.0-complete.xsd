@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Begin definition of XCCDF schema -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:cdf="http://checklists.nist.gov/xccdf/1.0"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:cdfp="http://www.cisecurity.org/xccdf/platform/0.2.3"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-Instance"
+    targetNamespace="http://checklists.nist.gov/xccdf/1.0"
+    elementFormDefault="qualified"
+    attributeFormDefault="unqualified">
+
+    <xsd:annotation>
+        <xsd:documentation xml:lang="en">
+          This schema defines the eXtensible Configuration Checklist 
+          Description Format (XCCDF), a data format for defining 
+          security benchmarks and checklists, and for recording
+          the results of applying such benchmarks.
+          For more information, consult the specification
+          document, "Specification for the Extensible Configuration
+          Checklist Description Format", version 1.0.
+
+          This schema was developed by Neal Ziring, with
+          assistance from David Waltermire.  The following
+          individuals contributed ideas to the construction
+          of this schema: David Proulx, Andrew Buttner, and
+          Ryan Wilson.
+          <version date="7 December 2004">1.0</version>
+        </xsd:documentation>
+    </xsd:annotation>
+
+
+    <!-- Import base XML namespace -->
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"
+       schemaLocation="xml.xsd">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="en">
+                Import the XML namespace because this schema uses
+                the xml:lang and xml:base attributes.
+            </xsd:documentation>
+        </xsd:annotation>
+    </xsd:import>
+
+    <!-- Import Dublin Core metadata namespace -->
+    <xsd:import namespace="http://purl.org/dc/elements/1.1/" 
+      schemaLocation="simpledc20021212.xsd">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="en">
+                Import the simple Dublin Core namespace because
+                this schema uses it for benchmark metadata and for
+                references.
+            </xsd:documentation>
+        </xsd:annotation>
+    </xsd:import>
+
+    <!-- Import CIS platform specification namespace -->
+    <xsd:import namespace="http://www.cisecurity.org/xccdf/platform/0.2.3" 
+      schemaLocation="platform-0.2.3.xsd">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="en">
+                Import the CIS platform schema, which we use for
+                describing target IT platforms in the Benchmark.
+                The CIS platform schema was designed by David
+                Waltermire.
+            </xsd:documentation>
+        </xsd:annotation>
+    </xsd:import>
+
+    <!-- Type definitions -->
+    <xsd:simpleType name="statusType">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="en">
+                Data type for holding the status of a benchmark, rule, or group.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:token">
+            <xsd:enumeration value="accepted"/>
+            <xsd:enumeration value="deprecated"/>
+            <xsd:enumeration value="draft"/>
+            <xsd:enumeration value="incomplete"/>
+            <xsd:enumeration value="interim"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="idrefType">
+        <xsd:restriction base="xsd:NCName"/>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="severityType">
+        <xsd:restriction base="xsd:token">
+            <xsd:enumeration value="unknown"/>
+            <xsd:enumeration value="info"/>
+            <xsd:enumeration value="low"/>
+            <xsd:enumeration value="medium"/>
+            <xsd:enumeration value="high"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="weightType">
+        <xsd:restriction base="xsd:decimal">
+            <xsd:fractionDigits value="1"/>
+            <xsd:minInclusive value="0.0"/>
+            <xsd:maxInclusive value="100.0"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:complexType name="textType" mixed="true">
+        <xsd:choice minOccurs="0" maxOccurs="unbounded">
+            <xsd:element ref="cdf:sub"/>
+        </xsd:choice>
+        <xsd:attribute ref="xml:lang" use="optional"/>
+        <xsd:attribute name="override" type="xsd:boolean" use="optional" default="false"/>
+    </xsd:complexType>
+
+    <xsd:complexType name="htmlTextType" mixed="true">
+        <xsd:sequence>
+            <xsd:any namespace="##other" minOccurs="0" maxOccurs="unbounded" processContents="lax"/>
+        </xsd:sequence>
+        <xsd:anyAttribute namespace="##other" processContents="lax"/>
+    </xsd:complexType>
+
+    <xsd:complexType name="htmlTextWithSubType" mixed="true">
+        <xsd:complexContent mixed="true">
+            <xsd:extension base="cdf:htmlTextType">
+                <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                    <xsd:element ref="cdf:sub"/>
+                </xsd:choice>
+                <xsd:attribute ref="xml:lang" use="optional"/>
+                <xsd:attribute name="override" type="xsd:boolean" use="optional" default="false"/>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="noticeType">
+        <xsd:complexContent>
+            <xsd:extension base="cdf:htmlTextWithSubType">
+                <xsd:attribute name="id" type="xsd:NCName" use="required"/>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="referenceType">
+        <xsd:simpleContent>
+            <xsd:extension base="xsd:string">
+                <xsd:attribute name="href" type="xsd:anyURI" use="optional"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="metadataType">
+        <xsd:sequence>
+            <xsd:any namespace="##other" minOccurs="0" maxOccurs="unbounded" processContents="lax"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- Elements -->
+    <xsd:element name="sub">
+        <xsd:complexType>
+            <xsd:attribute name="idref" type="xsd:NCName" use="required"/>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="status" type="cdf:statusType"/>
+
+    <!-- Main elements -->
+    <xsd:element name="Benchmark">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="en">
+             The benchmark tag is the top level element representing a 
+             complete security checklist, including descriptive text
+             and test items.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="cdf:status" minOccurs="1" maxOccurs="1"/>
+                <xsd:element name="title" type="cdf:textType" 
+                             minOccurs="0" maxOccurs="unbounded"/>
+                <xsd:element name="description" type="cdf:htmlTextWithSubType" 
+                             minOccurs="0" maxOccurs="unbounded"/>
+                <xsd:element name="notice" type="cdf:noticeType" 
+                             minOccurs="0" maxOccurs="unbounded"/>
+                <xsd:element name="front-matter" type="cdf:htmlTextWithSubType"
+                             minOccurs="0" maxOccurs="unbounded"/>
+                <xsd:element name="rear-matter" type="cdf:htmlTextWithSubType" 
+                             minOccurs="0" maxOccurs="unbounded"/>
+                <xsd:element name="reference" type="cdf:referenceType" 
+                             minOccurs="0" maxOccurs="unbounded"/>
+                <xsd:element name="platform" type="cdf:idrefType"
+                             minOccurs="0" maxOccurs="unbounded"/>
+                <xsd:element name="version" type="xsd:string"/>
+                <xsd:element name="metadata" type="cdf:metadataType" 
+                             minOccurs="0" maxOccurs="unbounded"/>
+                <xsd:element ref="cdf:Profile"
+                             minOccurs="0" maxOccurs="unbounded"/>
+                <xsd:element ref="cdf:Value" 
+                             minOccurs="0" maxOccurs="unbounded"/>
+                <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                    <xsd:element ref="cdf:Group"/>
+                    <xsd:element ref="cdf:Rule"/>
+                </xsd:choice>
+                <xsd:element ref="cdf:TestResult" 
+                             minOccurs="0" maxOccurs="unbounded"/>
+            </xsd:sequence>
+            <xsd:attribute name="id" type="xsd:NCName" use="required"/>
+            <xsd:attribute ref="xml:lang" use="optional"/>
+            <xsd:anyAttribute namespace="##other" processContents="lax"/>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="Group">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="cdf:status" minOccurs="1" maxOccurs="1"/>
+                <xsd:element name="title" type="cdf:textType" minOccurs="0" maxOccurs="unbounded"/>
+                <xsd:element name="description" type="cdf:htmlTextWithSubType" minOccurs="0" maxOccurs="unbounded"/>
+                <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                    <xsd:element ref="cdf:Group"/>
+                    <xsd:element ref="cdf:Rule"/>
+                    <xsd:element ref="cdf:Value"/>
+                </xsd:choice>
+            </xsd:sequence>
+            <xsd:attribute name="id" type="xsd:NCName" use="required"/>
+            <xsd:attribute name="selected" type="xsd:boolean" use="optional" default="true"/>
+            <xsd:attribute name="weight" type="cdf:weightType" use="optional" default="1.0"/>
+            <xsd:anyAttribute namespace="##other" processContents="lax"/>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="Rule">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="cdf:status" minOccurs="1" maxOccurs="1"/>
+                <xsd:element name="title" type="cdf:textType" minOccurs="0" maxOccurs="unbounded"/>
+                <xsd:element name="description" type="cdf:htmlTextWithSubType" minOccurs="0" maxOccurs="unbounded"/>
+                <xsd:element name="check" type="cdf:checkType" minOccurs="0" maxOccurs="unbounded"/>
+            </xsd:sequence>
+            <xsd:attribute name="id" type="xsd:NCName" use="required"/>
+            <xsd:attribute name="selected" type="xsd:boolean" use="optional" default="true"/>
+            <xsd:attribute name="weight" type="cdf:weightType" use="optional" default="1.0"/>
+            <xsd:attribute name="severity" type="cdf:severityType" use="optional" default="unknown"/>
+            <xsd:anyAttribute namespace="##other" processContents="lax"/>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="Value">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="cdf:status" minOccurs="1" maxOccurs="1"/>
+                <xsd:element name="title" type="cdf:textType" minOccurs="0" maxOccurs="unbounded"/>
+                <xsd:element name="description" type="cdf:htmlTextWithSubType" minOccurs="0" maxOccurs="unbounded"/>
+                <xsd:element name="value" type="cdf:valueType" minOccurs="0" maxOccurs="unbounded"/>
+            </xsd:sequence>
+            <xsd:attribute name="id" type="xsd:NCName" use="required"/>
+            <xsd:attribute name="type" type="cdf:valueTypeEnum" use="optional" default="string"/>
+            <xsd:attribute name="interactive" type="xsd:boolean" use="optional" default="false"/>
+            <xsd:anyAttribute namespace="##other" processContents="lax"/>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="Profile">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="cdf:status" minOccurs="1" maxOccurs="1"/>
+                <xsd:element name="title" type="cdf:textType" minOccurs="0" maxOccurs="unbounded"/>
+                <xsd:element name="description" type="cdf:htmlTextWithSubType" minOccurs="0" maxOccurs="unbounded"/>
+                <xsd:element name="select" type="cdf:selectType" minOccurs="0" maxOccurs="unbounded"/>
+            </xsd:sequence>
+            <xsd:attribute name="id" type="xsd:NCName" use="required"/>
+            <xsd:anyAttribute namespace="##other" processContents="lax"/>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="TestResult">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="benchmark" type="cdf:benchmarkRefType" minOccurs="1" maxOccurs="1"/>
+                <xsd:element name="title" type="cdf:textType" minOccurs="0" maxOccurs="unbounded"/>
+                <xsd:element name="target" type="cdf:textType" minOccurs="1" maxOccurs="unbounded"/>
+                <xsd:element name="rule-result" type="cdf:ruleResultType" minOccurs="0" maxOccurs="unbounded"/>
+                <xsd:element name="score" type="cdf:scoreType" minOccurs="0" maxOccurs="unbounded"/>
+            </xsd:sequence>
+            <xsd:attribute name="id" type="xsd:NCName" use="required"/>
+            <xsd:anyAttribute namespace="##other" processContents="lax"/>
+        </xsd:complexType>
+    </xsd:element>
+
+    <!-- Supporting types -->
+    <xsd:complexType name="checkType">
+        <xsd:sequence>
+            <xsd:element name="check-content" type="cdf:checkContentType" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+        <xsd:attribute name="system" type="xsd:anyURI" use="required"/>
+        <xsd:anyAttribute namespace="##other" processContents="lax"/>
+    </xsd:complexType>
+
+    <xsd:complexType name="checkContentType" mixed="true">
+        <xsd:sequence>
+            <xsd:any namespace="##other" minOccurs="0" maxOccurs="unbounded" processContents="lax"/>
+        </xsd:sequence>
+        <xsd:anyAttribute namespace="##other" processContents="lax"/>
+    </xsd:complexType>
+
+    <xsd:complexType name="valueType">
+        <xsd:simpleContent>
+            <xsd:extension base="xsd:string">
+                <xsd:attribute name="selector" type="xsd:token" use="optional"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+
+    <xsd:simpleType name="valueTypeEnum">
+        <xsd:restriction base="xsd:token">
+            <xsd:enumeration value="number"/>
+            <xsd:enumeration value="string"/>
+            <xsd:enumeration value="boolean"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:complexType name="selectType">
+        <xsd:attribute name="idref" type="xsd:NCName" use="required"/>
+        <xsd:attribute name="selected" type="xsd:boolean" use="optional" default="true"/>
+    </xsd:complexType>
+
+    <xsd:complexType name="benchmarkRefType">
+        <xsd:attribute name="href" type="xsd:anyURI" use="optional"/>
+        <xsd:attribute name="id" type="xsd:NCName" use="optional"/>
+    </xsd:complexType>
+
+    <xsd:complexType name="ruleResultType">
+        <xsd:sequence>
+            <xsd:element name="result" type="cdf:testResultEnumType" minOccurs="1" maxOccurs="1"/>
+        </xsd:sequence>
+        <xsd:attribute name="idref" type="xsd:NCName" use="required"/>
+        <xsd:anyAttribute namespace="##other" processContents="lax"/>
+    </xsd:complexType>
+
+    <xsd:simpleType name="testResultEnumType">
+        <xsd:restriction base="xsd:token">
+            <xsd:enumeration value="pass"/>
+            <xsd:enumeration value="fail"/>
+            <xsd:enumeration value="error"/>
+            <xsd:enumeration value="unknown"/>
+            <xsd:enumeration value="notapplicable"/>
+            <xsd:enumeration value="notchecked"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="scoreType">
+        <xsd:restriction base="xsd:decimal">
+            <xsd:fractionDigits value="1"/>
+            <xsd:minInclusive value="0.0"/>
+            <xsd:maxInclusive value="100.0"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+</xsd:schema>

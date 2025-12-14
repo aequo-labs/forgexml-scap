@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Begin definition of XCCDF schema -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:cdf="http://checklists.nist.gov/xccdf/1.0"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:cdfp="http://www.cisecurity.org/xccdf/platform/0.2.3"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-Instance"
+    targetNamespace="http://checklists.nist.gov/xccdf/1.0"
+    elementFormDefault="qualified"
+    attributeFormDefault="unqualified">
+
+    <xsd:annotation>
+        <xsd:documentation xml:lang="en">
+          This schema defines the eXtensible Configuration Checklist 
+          Description Format (XCCDF), a data format for defining 
+          security benchmarks and checklists, and for recording
+          the results of applying such benchmarks.
+          For more information, consult the specification
+          document, "Specification for the Extensible Configuration
+          Checklist Description Format", version 1.0.
+
+          This schema was developed by Neal Ziring, with
+          assistance from David Waltermire.  The following
+          individuals contributed ideas to the construction
+          of this schema: David Proulx, Andrew Buttner, and
+          Ryan Wilson.
+          <version date="7 December 2004">1.0</version>
+        </xsd:documentation>
+    </xsd:annotation>
+
+    <!-- Rest of schema content would be here - truncated for space -->
+
+</xsd:schema>

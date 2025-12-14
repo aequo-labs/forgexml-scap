@@ -543,7 +543,7 @@ func runRoundTripTest(inputPath, outputPath string, writeOutput bool) error {
 	if err := xml.Unmarshal(xmlData, &data); err != nil {
 		return fmt.Errorf("unmarshal failed: %w", err)
 	}
-	fmt.Println("✅ Unmarshal successful\n")
+	fmt.Println("✅ Unmarshal successful")
 
 	// Extract element prefixes from raw XML for proper prefix restoration
 	fmt.Println("🔍 Extracting element prefixes from input XML...")
@@ -589,7 +589,7 @@ func runRoundTripTest(inputPath, outputPath string, writeOutput bool) error {
 		}
 		fmt.Printf("✅ Output written: %s\n\n", outputPath)
 	} else {
-		fmt.Println("💾 Skipping file write (in-memory processing)\n")
+		fmt.Println("💾 Skipping file write (in-memory processing)")
 	}
 
 	// Count output XML items with xmlns breakdown
@@ -615,7 +615,7 @@ func runRoundTripTest(inputPath, outputPath string, writeOutput bool) error {
 		fmt.Printf("⚠️  Deep comparison error: %v\n", err)
 		// Continue with basic validation even if deep comparison fails
 	} else {
-		fmt.Println("✅ Deep comparison completed\n")
+		fmt.Println("✅ Deep comparison completed")
 		// Display comprehensive deep comparison report
 		PrintDeepComparisonReport(deepResult)
 	}

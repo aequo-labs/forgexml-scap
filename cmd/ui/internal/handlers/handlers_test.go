@@ -5893,6 +5893,19 @@ func TestCheckType_GetTypeMetadata(t *testing.T) {
 	}
 }
 
+// TestCheckType_GetValidChildTypes tests getting valid child types for CheckType.
+func TestCheckType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/CheckType/children", nil)
+	req.SetPathValue("name", "CheckType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
 // TestCidrElementType_CRUD tests Create, Read, Update, Delete for CidrElementType.
 func TestCidrElementType_CRUD(t *testing.T) {
 	ts := setupTestSuite(t)
@@ -22045,121 +22058,6 @@ func TestItemIDPattern_GetTypeMetadata(t *testing.T) {
 	}
 }
 
-// TestItemType_CRUD tests Create, Read, Update, Delete for ItemType.
-func TestItemType_CRUD(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	// CREATE
-	createBody := map[string]interface{}{
-		"type":       "ItemType",
-		"parentPath": "",
-		"data":       map[string]interface{}{},
-	}
-	jsonBytes, _ := json.Marshal(createBody)
-
-	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
-	createReq.Header.Set("Content-Type", "application/json")
-	createRR := httptest.NewRecorder()
-
-	ts.handlers.HandleCreateElementAPI(createRR, createReq)
-
-	if createRR.Code == http.StatusOK {
-		var createResp map[string]string
-		json.Unmarshal(createRR.Body.Bytes(), &createResp)
-		path := createResp["path"]
-
-		if path == "" {
-			t.Fatal("Create succeeded but no path returned")
-		}
-
-		// READ
-		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
-		readRR := httptest.NewRecorder()
-		ts.handlers.HandleGetElement(readRR, readReq)
-
-		if readRR.Code != http.StatusOK {
-			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
-		}
-
-		// UPDATE
-		updateBody := map[string]interface{}{}
-		updateBytes, _ := json.Marshal(updateBody)
-		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
-		updateReq.Header.Set("Content-Type", "application/json")
-		updateRR := httptest.NewRecorder()
-		ts.handlers.HandleUpdateElement(updateRR, updateReq)
-
-		if updateRR.Code != http.StatusOK {
-			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
-		}
-
-		// DELETE
-		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
-		deleteRR := httptest.NewRecorder()
-		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
-
-		if deleteRR.Code != http.StatusOK {
-			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
-		}
-
-		// VERIFY DELETED
-		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
-		verifyRR := httptest.NewRecorder()
-		ts.handlers.HandleGetElement(verifyRR, verifyReq)
-
-		if verifyRR.Code == http.StatusOK {
-			t.Error("Element should not exist after delete")
-		}
-	} else {
-		t.Logf("Create ItemType returned %d (type may not be creatable): %s",
-			createRR.Code, createRR.Body.String())
-	}
-}
-
-// TestItemType_ListByType tests listing elements of type ItemType.
-func TestItemType_ListByType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	req := httptest.NewRequest("GET", "/api/elements/type/ItemType", nil)
-	req.SetPathValue("type", "ItemType")
-	rr := httptest.NewRecorder()
-
-	ts.handlers.HandleListElements(rr, req)
-
-	// Should return OK with empty list or list of elements
-	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
-		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
-	}
-}
-
-// TestItemType_GetTypeMetadata tests getting type metadata for ItemType.
-func TestItemType_GetTypeMetadata(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	req := httptest.NewRequest("GET", "/api/types/ItemType", nil)
-	req.SetPathValue("name", "ItemType")
-	rr := httptest.NewRecorder()
-
-	ts.handlers.HandleGetType(rr, req)
-
-	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
-		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
-	}
-}
-
-// TestItemType_GetValidChildTypes tests getting valid child types for ItemType.
-func TestItemType_GetValidChildTypes(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	req := httptest.NewRequest("GET", "/api/types/ItemType/children", nil)
-	req.SetPathValue("name", "ItemType")
-	rr := httptest.NewRecorder()
-
-	ts.handlers.HandleGetValidChildTypes(rr, req)
-
-	assertStatusCode(t, rr, http.StatusOK)
-}
-
 // TestJointPersonNameElement_CRUD tests Create, Read, Update, Delete for JointPersonNameElement.
 func TestJointPersonNameElement_CRUD(t *testing.T) {
 	ts := setupTestSuite(t)
@@ -29942,6 +29840,19 @@ func TestObjectType_GetTypeMetadata(t *testing.T) {
 	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
 		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
 	}
+}
+
+// TestObjectType_GetValidChildTypes tests getting valid child types for ObjectType.
+func TestObjectType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ObjectType/children", nil)
+	req.SetPathValue("name", "ObjectType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
 }
 
 // TestObjectsType_CRUD tests Create, Read, Update, Delete for ObjectsType.
@@ -39147,19 +39058,6 @@ func TestReferenceType_GetTypeMetadata(t *testing.T) {
 	}
 }
 
-// TestReferenceType_GetValidChildTypes tests getting valid child types for ReferenceType.
-func TestReferenceType_GetValidChildTypes(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	req := httptest.NewRequest("GET", "/api/types/ReferenceType/children", nil)
-	req.SetPathValue("name", "ReferenceType")
-	rr := httptest.NewRecorder()
-
-	ts.handlers.HandleGetValidChildTypes(rr, req)
-
-	assertStatusCode(t, rr, http.StatusOK)
-}
-
 // TestReferencesType_CRUD tests Create, Read, Update, Delete for ReferencesType.
 func TestReferencesType_CRUD(t *testing.T) {
 	ts := setupTestSuite(t)
@@ -44353,19 +44251,6 @@ func TestSignatureType_GetTypeMetadata(t *testing.T) {
 	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
 		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
 	}
-}
-
-// TestSignatureType_GetValidChildTypes tests getting valid child types for SignatureType.
-func TestSignatureType_GetValidChildTypes(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	req := httptest.NewRequest("GET", "/api/types/SignatureType/children", nil)
-	req.SetPathValue("name", "SignatureType")
-	rr := httptest.NewRecorder()
-
-	ts.handlers.HandleGetValidChildTypes(rr, req)
-
-	assertStatusCode(t, rr, http.StatusOK)
 }
 
 // TestSignatureValueElement_CRUD tests Create, Read, Update, Delete for SignatureValueElement.

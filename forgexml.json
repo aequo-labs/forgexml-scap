@@ -12,5 +12,8 @@
   "generateValidators": false,
   "generateUI": true,
   "uiOutput": "/home/mmcnew/repos/forgexml-scap/cmd/ui",
+  "generateDAL": true,
+  "dalOutput": "/home/mmcnew/repos/forgexml-scap/internal/dal",
+  "dalDatabases": ["sqlite"],
   "verbose": true
 }

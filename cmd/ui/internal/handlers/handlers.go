@@ -9,7 +9,7 @@ import (
 	"net/http"
 	"time"
 
-	_ "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/oval/xmlschema/oval-definitions-5"
+	_ "github.com/aequo-labs/forgexml-scap/internal/generated/gov/nist/checklists/xccdf/1-2"
 	"github.com/aequo-labs/webserver-core-ui/pkg/webserver"
 
 	"github.com/aequo-labs/forgexml-scap/cmd/ui/internal/state"
@@ -40,7 +40,7 @@ type HomePageData struct {
 // HandleHome renders the home page.
 func (h *Handlers) HandleHome(w http.ResponseWriter, r *http.Request) {
 	baseData := h.srv.GetBasePageData("home")
-	baseData.Title = "Xmlschema Editor - Home"
+	baseData.Title = "Xccdf 1.2 Editor - Home"
 	data := HomePageData{
 		PageData:         baseData,
 		RootElementTypes: h.state.GetRootElementTypes(),
@@ -51,7 +51,7 @@ func (h *Handlers) HandleHome(w http.ResponseWriter, r *http.Request) {
 // HandleTreeView renders the tree navigation view.
 func (h *Handlers) HandleTreeView(w http.ResponseWriter, r *http.Request) {
 	data := h.srv.GetBasePageData("tree")
-	data.Title = "Xmlschema Editor - Tree View"
+	data.Title = "Xccdf 1.2 Editor - Tree View"
 	h.srv.RenderPageWithContent(w, "tree-content", data)
 }
 
@@ -64,7 +64,7 @@ func (h *Handlers) HandleEditElement(w http.ResponseWriter, r *http.Request) {
 	}
 
 	data := h.srv.GetBasePageData("edit")
-	data.Title = "Xmlschema Editor - Edit Element"
+	data.Title = "Xccdf 1.2 Editor - Edit Element"
 	h.srv.RenderPageWithContent(w, "edit-content", data)
 }
 
@@ -77,14 +77,14 @@ func (h *Handlers) HandleCreateElement(w http.ResponseWriter, r *http.Request) {
 	}
 
 	data := h.srv.GetBasePageData("create")
-	data.Title = "Xmlschema Editor - Create Element"
+	data.Title = "Xccdf 1.2 Editor - Create Element"
 	h.srv.RenderPageWithContent(w, "edit-content", data)
 }
 
 // HandleExportPage renders the export page.
 func (h *Handlers) HandleExportPage(w http.ResponseWriter, r *http.Request) {
 	data := h.srv.GetBasePageData("export")
-	data.Title = "Xmlschema Editor - Export"
+	data.Title = "Xccdf 1.2 Editor - Export"
 	h.srv.RenderPageWithContent(w, "export-content", data)
 }
 
@@ -361,6 +361,25 @@ func (h *Handlers) HandleHealth(w http.ResponseWriter, r *http.Request) {
 	h.jsonResponse(w, map[string]interface{}{
 		"status":    "healthy",
 		"timestamp": time.Now().UTC().Format(time.RFC3339),
+	})
+}
+
+// HandleInstanceDiagram generates a Mermaid diagram from the current XML document.
+func (h *Handlers) HandleInstanceDiagram(w http.ResponseWriter, r *http.Request) {
+	diagramType := r.URL.Query().Get("type")
+	if diagramType == "" {
+		diagramType = "flowchart"
+	}
+
+	diagram, err := h.state.GenerateInstanceDiagram(diagramType)
+	if err != nil {
+		h.jsonError(w, "Failed to generate diagram", err, http.StatusInternalServerError)
+		return
+	}
+
+	h.jsonResponse(w, map[string]string{
+		"diagram": diagram,
+		"type":    diagramType,
 	})
 }
 

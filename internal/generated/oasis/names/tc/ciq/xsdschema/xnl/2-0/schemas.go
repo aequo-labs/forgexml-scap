@@ -1,7 +1,7 @@
-// Package pkg_2_01 schema metadata and embedded XSD files
+// Package pkg_2_0 schema metadata and embedded XSD files
 // This file is auto-generated - do not edit manually
 
-package pkg_2_01
+package pkg_2_0
 
 import "embed"
 

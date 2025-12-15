@@ -166,6 +166,23 @@ func replicateXmlnsPlacement(xmlOutput string, elementsWithXmlns map[string]stri
 	return result
 }
 
+// SignaturePropertyType represents the XSD type 'SignaturePropertyType'
+// XSD complex type (W3C XSD §3.4)
+// mixed="true"
+type SignaturePropertyType struct {
+	// Target represents XSD attribute 'Target'
+	// use="required"
+	Target string `xml:"Target,attr"`
+	// Id represents XSD attribute 'Id'
+	// use="optional"
+	Id       *string `xml:"Id,attr,omitempty"`
+	InnerXML string  `xml:",innerxml"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
 // DSAKeyValueType represents the XSD type 'DSAKeyValueType'
 // XSD complex type (W3C XSD §3.4)
 type DSAKeyValueType struct {
@@ -191,138 +208,6 @@ type DSAKeyValueType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// CanonicalizationMethodType represents the XSD type 'CanonicalizationMethodType'
-// XSD complex type (W3C XSD §3.4)
-// mixed="true"
-type CanonicalizationMethodType struct {
-	// Algorithm represents XSD attribute 'Algorithm'
-	// use="required"
-	Algorithm string `xml:"Algorithm,attr"`
-	InnerXML  string `xml:",innerxml"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// RetrievalMethodType represents the XSD type 'RetrievalMethodType'
-// XSD complex type (W3C XSD §3.4)
-type RetrievalMethodType struct {
-	// Transforms represents XSD element 'Transforms'
-	// minOccurs=0, maxOccurs=1
-	Transforms *TransformsType `xml:"Transforms,omitempty"`
-	// URI represents XSD attribute 'URI'
-	// use="optional"
-	URI *string `xml:"URI,attr,omitempty"`
-	// Type represents XSD attribute 'Type'
-	// use="optional"
-	Type *string `xml:"Type,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// SPKIDataType represents the XSD type 'SPKIDataType'
-// XSD complex type (W3C XSD §3.4)
-type SPKIDataType struct {
-	// SPKISexp represents XSD element 'SPKISexp'
-	SPKISexp [][]byte `xml:"SPKISexp"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// ObjectType represents the XSD type 'ObjectType'
-// XSD complex type (W3C XSD §3.4)
-// mixed="true"
-type ObjectType struct {
-	// Id represents XSD attribute 'Id'
-	// use="optional"
-	Id *string `xml:"Id,attr,omitempty"`
-	// MimeType represents XSD attribute 'MimeType'
-	// use="optional"
-	MimeType *string `xml:"MimeType,attr,omitempty"`
-	// Encoding represents XSD attribute 'Encoding'
-	// use="optional"
-	Encoding *string `xml:"Encoding,attr,omitempty"`
-	InnerXML string  `xml:",innerxml"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// ManifestType represents the XSD type 'ManifestType'
-// XSD complex type (W3C XSD §3.4)
-type ManifestType struct {
-	// Reference represents XSD element 'Reference'
-	// minOccurs=1, maxOccurs=-1
-	Reference []ReferenceType `xml:"Reference"`
-	// Id represents XSD attribute 'Id'
-	// use="optional"
-	Id *string `xml:"Id,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// SignaturePropertiesType represents the XSD type 'SignaturePropertiesType'
-// XSD complex type (W3C XSD §3.4)
-type SignaturePropertiesType struct {
-	// SignatureProperty represents XSD element 'SignatureProperty'
-	// minOccurs=1, maxOccurs=-1
-	SignatureProperty []SignaturePropertyType `xml:"SignatureProperty"`
-	// Id represents XSD attribute 'Id'
-	// use="optional"
-	Id *string `xml:"Id,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// RSAKeyValueType represents the XSD type 'RSAKeyValueType'
-// XSD complex type (W3C XSD §3.4)
-type RSAKeyValueType struct {
-	// Modulus represents XSD element 'Modulus'
-	Modulus CryptoBinary `xml:"Modulus"`
-	// Exponent represents XSD element 'Exponent'
-	Exponent CryptoBinary `xml:"Exponent"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// HMACOutputLengthType represents the XSD type 'HMACOutputLengthType'
-// XSD simple type (W3C XSD §4.1)
-type HMACOutputLengthType int64
-
-// SignatureType represents the XSD type 'SignatureType'
-// XSD complex type (W3C XSD §3.4)
-type SignatureType struct {
-	// SignedInfo represents XSD element 'SignedInfo'
-	SignedInfo SignedInfoType `xml:"SignedInfo"`
-	// SignatureValue represents XSD element 'SignatureValue'
-	SignatureValue SignatureValueTypeWithAttrs `xml:"SignatureValue"`
-	// KeyInfo represents XSD element 'KeyInfo'
-	// minOccurs=0, maxOccurs=1
-	KeyInfo *KeyInfoType `xml:"KeyInfo,omitempty"`
-	// Object represents XSD element 'Object'
-	// minOccurs=0, maxOccurs=-1
-	Object []ObjectType `xml:"Object,omitempty"`
-	// Id represents XSD attribute 'Id'
-	// use="optional"
-	Id *string `xml:"Id,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
 // SignatureValueType represents the XSD type 'SignatureValueType'
 // XSD complex type (W3C XSD §3.4)
 type SignatureValueTypeWithAttrs struct {
@@ -338,120 +223,6 @@ type SignatureValueTypeWithAttrs struct {
 
 // SignatureValueType is an alias for SignatureValueTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
 type SignatureValueType = SignatureValueTypeWithAttrs
-
-// SignatureMethodType represents the XSD type 'SignatureMethodType'
-// XSD complex type (W3C XSD §3.4)
-// mixed="true"
-type SignatureMethodType struct {
-	// HMACOutputLength represents XSD element 'HMACOutputLength'
-	// minOccurs=0, maxOccurs=1
-	HMACOutputLength *HMACOutputLengthType `xml:"HMACOutputLength,omitempty"`
-	// Algorithm represents XSD attribute 'Algorithm'
-	// use="required"
-	Algorithm string `xml:"Algorithm,attr"`
-	Value     string `xml:",chardata"` // XSD mixed content
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// KeyInfoType represents the XSD type 'KeyInfoType'
-// XSD complex type (W3C XSD §3.4)
-// mixed="true"
-type KeyInfoType struct {
-	// KeyName represents XSD element 'KeyName'
-	KeyName []string `xml:"KeyName,omitempty"`
-	// KeyValue represents XSD element 'KeyValue'
-	KeyValue []KeyValueType `xml:"KeyValue,omitempty"`
-	// RetrievalMethod represents XSD element 'RetrievalMethod'
-	RetrievalMethod []RetrievalMethodType `xml:"RetrievalMethod,omitempty"`
-	// X509Data represents XSD element 'X509Data'
-	X509Data []X509DataType `xml:"X509Data,omitempty"`
-	// PGPData represents XSD element 'PGPData'
-	PGPData []PGPDataType `xml:"PGPData,omitempty"`
-	// SPKIData represents XSD element 'SPKIData'
-	SPKIData []SPKIDataType `xml:"SPKIData,omitempty"`
-	// MgmtData represents XSD element 'MgmtData'
-	MgmtData []string `xml:"MgmtData,omitempty"`
-	// Id represents XSD attribute 'Id'
-	// use="optional"
-	Id    *string `xml:"Id,attr,omitempty"`
-	Value string  `xml:",chardata"` // XSD mixed content
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// X509IssuerSerialType represents the XSD type 'X509IssuerSerialType'
-// XSD complex type (W3C XSD §3.4)
-type X509IssuerSerialType struct {
-	// X509IssuerName represents XSD element 'X509IssuerName'
-	X509IssuerName string `xml:"X509IssuerName"`
-	// X509SerialNumber represents XSD element 'X509SerialNumber'
-	X509SerialNumber int64 `xml:"X509SerialNumber"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// SignaturePropertyType represents the XSD type 'SignaturePropertyType'
-// XSD complex type (W3C XSD §3.4)
-// mixed="true"
-type SignaturePropertyType struct {
-	// Target represents XSD attribute 'Target'
-	// use="required"
-	Target string `xml:"Target,attr"`
-	// Id represents XSD attribute 'Id'
-	// use="optional"
-	Id       *string `xml:"Id,attr,omitempty"`
-	InnerXML string  `xml:",innerxml"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// DigestValueType represents the XSD type 'DigestValueType'
-// XSD simple type (W3C XSD §4.1)
-type DigestValueType []byte
-
-// TransformsType represents the XSD type 'TransformsType'
-// XSD complex type (W3C XSD §3.4)
-type TransformsType struct {
-	// Transform represents XSD element 'Transform'
-	// minOccurs=1, maxOccurs=-1
-	Transform []TransformType `xml:"Transform"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// X509DataType represents the XSD type 'X509DataType'
-// XSD complex type (W3C XSD §3.4)
-type X509DataType struct {
-	// X509IssuerSerial represents XSD element 'X509IssuerSerial'
-	X509IssuerSerial *X509IssuerSerialType `xml:"X509IssuerSerial,omitempty"`
-	// X509SKI represents XSD element 'X509SKI'
-	X509SKI []byte `xml:"X509SKI,omitempty"`
-	// X509SubjectName represents XSD element 'X509SubjectName'
-	X509SubjectName *string `xml:"X509SubjectName,omitempty"`
-	// X509Certificate represents XSD element 'X509Certificate'
-	X509Certificate []byte `xml:"X509Certificate,omitempty"`
-	// X509CRL represents XSD element 'X509CRL'
-	X509CRL []byte `xml:"X509CRL,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// CryptoBinary represents the XSD type 'CryptoBinary'
-// XSD simple type (W3C XSD §4.1)
-type CryptoBinary []byte
 
 // SignedInfoType represents the XSD type 'SignedInfoType'
 // XSD complex type (W3C XSD §3.4)
@@ -527,6 +298,112 @@ type DigestMethodType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
+// X509IssuerSerialType represents the XSD type 'X509IssuerSerialType'
+// XSD complex type (W3C XSD §3.4)
+type X509IssuerSerialType struct {
+	// X509IssuerName represents XSD element 'X509IssuerName'
+	X509IssuerName string `xml:"X509IssuerName"`
+	// X509SerialNumber represents XSD element 'X509SerialNumber'
+	X509SerialNumber int64 `xml:"X509SerialNumber"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// SPKIDataType represents the XSD type 'SPKIDataType'
+// XSD complex type (W3C XSD §3.4)
+type SPKIDataType struct {
+	// SPKISexp represents XSD element 'SPKISexp'
+	SPKISexp [][]byte `xml:"SPKISexp"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// ManifestType represents the XSD type 'ManifestType'
+// XSD complex type (W3C XSD §3.4)
+type ManifestType struct {
+	// Reference represents XSD element 'Reference'
+	// minOccurs=1, maxOccurs=-1
+	Reference []ReferenceType `xml:"Reference"`
+	// Id represents XSD attribute 'Id'
+	// use="optional"
+	Id *string `xml:"Id,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// SignatureType represents the XSD type 'SignatureType'
+// XSD complex type (W3C XSD §3.4)
+type SignatureType struct {
+	// SignedInfo represents XSD element 'SignedInfo'
+	SignedInfo SignedInfoType `xml:"SignedInfo"`
+	// SignatureValue represents XSD element 'SignatureValue'
+	SignatureValue SignatureValueTypeWithAttrs `xml:"SignatureValue"`
+	// KeyInfo represents XSD element 'KeyInfo'
+	// minOccurs=0, maxOccurs=1
+	KeyInfo *KeyInfoType `xml:"KeyInfo,omitempty"`
+	// Object represents XSD element 'Object'
+	// minOccurs=0, maxOccurs=-1
+	Object []ObjectType `xml:"Object,omitempty"`
+	// Id represents XSD attribute 'Id'
+	// use="optional"
+	Id *string `xml:"Id,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// SignatureMethodType represents the XSD type 'SignatureMethodType'
+// XSD complex type (W3C XSD §3.4)
+// mixed="true"
+type SignatureMethodType struct {
+	// HMACOutputLength represents XSD element 'HMACOutputLength'
+	// minOccurs=0, maxOccurs=1
+	HMACOutputLength *HMACOutputLengthType `xml:"HMACOutputLength,omitempty"`
+	// Algorithm represents XSD attribute 'Algorithm'
+	// use="required"
+	Algorithm string `xml:"Algorithm,attr"`
+	Value     string `xml:",chardata"` // XSD mixed content
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// KeyInfoType represents the XSD type 'KeyInfoType'
+// XSD complex type (W3C XSD §3.4)
+// mixed="true"
+type KeyInfoType struct {
+	// KeyName represents XSD element 'KeyName'
+	KeyName []string `xml:"KeyName,omitempty"`
+	// KeyValue represents XSD element 'KeyValue'
+	KeyValue []KeyValueType `xml:"KeyValue,omitempty"`
+	// RetrievalMethod represents XSD element 'RetrievalMethod'
+	RetrievalMethod []RetrievalMethodType `xml:"RetrievalMethod,omitempty"`
+	// X509Data represents XSD element 'X509Data'
+	X509Data []X509DataType `xml:"X509Data,omitempty"`
+	// PGPData represents XSD element 'PGPData'
+	PGPData []PGPDataType `xml:"PGPData,omitempty"`
+	// SPKIData represents XSD element 'SPKIData'
+	SPKIData []SPKIDataType `xml:"SPKIData,omitempty"`
+	// MgmtData represents XSD element 'MgmtData'
+	MgmtData []string `xml:"MgmtData,omitempty"`
+	// Id represents XSD attribute 'Id'
+	// use="optional"
+	Id    *string `xml:"Id,attr,omitempty"`
+	Value string  `xml:",chardata"` // XSD mixed content
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
 // KeyValueType represents the XSD type 'KeyValueType'
 // XSD complex type (W3C XSD §3.4)
 // mixed="true"
@@ -550,6 +427,129 @@ type PGPDataType struct {
 	// PGPKeyPacket represents XSD element 'PGPKeyPacket'
 	// minOccurs=0, maxOccurs=1
 	PGPKeyPacket []byte `xml:"PGPKeyPacket,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// SignaturePropertiesType represents the XSD type 'SignaturePropertiesType'
+// XSD complex type (W3C XSD §3.4)
+type SignaturePropertiesType struct {
+	// SignatureProperty represents XSD element 'SignatureProperty'
+	// minOccurs=1, maxOccurs=-1
+	SignatureProperty []SignaturePropertyType `xml:"SignatureProperty"`
+	// Id represents XSD attribute 'Id'
+	// use="optional"
+	Id *string `xml:"Id,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// RSAKeyValueType represents the XSD type 'RSAKeyValueType'
+// XSD complex type (W3C XSD §3.4)
+type RSAKeyValueType struct {
+	// Modulus represents XSD element 'Modulus'
+	Modulus CryptoBinary `xml:"Modulus"`
+	// Exponent represents XSD element 'Exponent'
+	Exponent CryptoBinary `xml:"Exponent"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// HMACOutputLengthType represents the XSD type 'HMACOutputLengthType'
+// XSD simple type (W3C XSD §4.1)
+type HMACOutputLengthType int64
+
+// CanonicalizationMethodType represents the XSD type 'CanonicalizationMethodType'
+// XSD complex type (W3C XSD §3.4)
+// mixed="true"
+type CanonicalizationMethodType struct {
+	// Algorithm represents XSD attribute 'Algorithm'
+	// use="required"
+	Algorithm string `xml:"Algorithm,attr"`
+	InnerXML  string `xml:",innerxml"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// RetrievalMethodType represents the XSD type 'RetrievalMethodType'
+// XSD complex type (W3C XSD §3.4)
+type RetrievalMethodType struct {
+	// Transforms represents XSD element 'Transforms'
+	// minOccurs=0, maxOccurs=1
+	Transforms *TransformsType `xml:"Transforms,omitempty"`
+	// URI represents XSD attribute 'URI'
+	// use="optional"
+	URI *string `xml:"URI,attr,omitempty"`
+	// Type represents XSD attribute 'Type'
+	// use="optional"
+	Type *string `xml:"Type,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// CryptoBinary represents the XSD type 'CryptoBinary'
+// XSD simple type (W3C XSD §4.1)
+type CryptoBinary []byte
+
+// DigestValueType represents the XSD type 'DigestValueType'
+// XSD simple type (W3C XSD §4.1)
+type DigestValueType []byte
+
+// TransformsType represents the XSD type 'TransformsType'
+// XSD complex type (W3C XSD §3.4)
+type TransformsType struct {
+	// Transform represents XSD element 'Transform'
+	// minOccurs=1, maxOccurs=-1
+	Transform []TransformType `xml:"Transform"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// X509DataType represents the XSD type 'X509DataType'
+// XSD complex type (W3C XSD §3.4)
+type X509DataType struct {
+	// X509IssuerSerial represents XSD element 'X509IssuerSerial'
+	X509IssuerSerial *X509IssuerSerialType `xml:"X509IssuerSerial,omitempty"`
+	// X509SKI represents XSD element 'X509SKI'
+	X509SKI []byte `xml:"X509SKI,omitempty"`
+	// X509SubjectName represents XSD element 'X509SubjectName'
+	X509SubjectName *string `xml:"X509SubjectName,omitempty"`
+	// X509Certificate represents XSD element 'X509Certificate'
+	X509Certificate []byte `xml:"X509Certificate,omitempty"`
+	// X509CRL represents XSD element 'X509CRL'
+	X509CRL []byte `xml:"X509CRL,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// ObjectType represents the XSD type 'ObjectType'
+// XSD complex type (W3C XSD §3.4)
+// mixed="true"
+type ObjectType struct {
+	// Id represents XSD attribute 'Id'
+	// use="optional"
+	Id *string `xml:"Id,attr,omitempty"`
+	// MimeType represents XSD attribute 'MimeType'
+	// use="optional"
+	MimeType *string `xml:"MimeType,attr,omitempty"`
+	// Encoding represents XSD attribute 'Encoding'
+	// use="optional"
+	Encoding *string `xml:"Encoding,attr,omitempty"`
+	InnerXML string  `xml:",innerxml"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD

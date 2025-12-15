@@ -166,29 +166,6 @@ func replicateXmlnsPlacement(xmlOutput string, elementsWithXmlns map[string]stri
 	return result
 }
 
-// PlatformSpecificationElementType represents the XSD type 'PlatformSpecificationElementType'
-// XSD complex type (W3C XSD §3.4)
-type PlatformSpecificationElementType struct {
-	// Platform represents XSD element 'platform'
-	// minOccurs=1, maxOccurs=-1
-	Platform []*PlatformType `xml:"platform"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// OperatorEnumeration represents the XSD type 'OperatorEnumeration'
-// XSD simple type (W3C XSD §4.1)
-// enumeration="AND"
-// enumeration="OR"
-type OperatorEnumeration string
-
-// NamePattern represents the XSD type 'namePattern'
-// XSD simple type (W3C XSD §4.1)
-// pattern="cpe:/([aho](:[A-Za-z0-9\._\-~]*(:[A-Za-z0-9\._\-~]*(:[A-Za-z0-9\._\.\-~]*(:[A-Za-z0-9\._\-~]*)?)?)?)?)?"
-type NamePattern string
-
 // PlatformType represents the XSD type 'PlatformType'
 // XSD complex type (W3C XSD §3.4)
 type PlatformType struct {
@@ -254,3 +231,26 @@ type TextTypeWithAttrs struct {
 
 // TextType is an alias for TextTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
 type TextType = TextTypeWithAttrs
+
+// PlatformSpecificationElementType represents the XSD type 'PlatformSpecificationElementType'
+// XSD complex type (W3C XSD §3.4)
+type PlatformSpecificationElementType struct {
+	// Platform represents XSD element 'platform'
+	// minOccurs=1, maxOccurs=-1
+	Platform []*PlatformType `xml:"platform"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// OperatorEnumeration represents the XSD type 'OperatorEnumeration'
+// XSD simple type (W3C XSD §4.1)
+// enumeration="AND"
+// enumeration="OR"
+type OperatorEnumeration string
+
+// NamePattern represents the XSD type 'namePattern'
+// XSD simple type (W3C XSD §4.1)
+// pattern="cpe:/([aho](:[A-Za-z0-9\._\-~]*(:[A-Za-z0-9\._\-~]*(:[A-Za-z0-9\._\.\-~]*(:[A-Za-z0-9\._\-~]*)?)?)?)?)?"
+type NamePattern string

@@ -166,6 +166,11 @@ func replicateXmlnsPlacement(xmlOutput string, elementsWithXmlns map[string]stri
 	return result
 }
 
+// NamePattern represents the XSD type 'namePattern'
+// XSD simple type (W3C XSD §4.1)
+// pattern="cpe:/([aho](:[A-Za-z0-9\._\-~]*(:[A-Za-z0-9\._\-~]*(:[A-Za-z0-9\._\.\-~]*(:[A-Za-z0-9\._\-~]*)?)?)?)?)?"
+type NamePattern string
+
 // PlatformType represents the XSD type 'PlatformType'
 // XSD complex type (W3C XSD §3.4)
 type PlatformType struct {
@@ -249,8 +254,3 @@ type PlatformSpecificationElementType struct {
 // enumeration="AND"
 // enumeration="OR"
 type OperatorEnumeration string
-
-// NamePattern represents the XSD type 'namePattern'
-// XSD simple type (W3C XSD §4.1)
-// pattern="cpe:/([aho](:[A-Za-z0-9\._\-~]*(:[A-Za-z0-9\._\-~]*(:[A-Za-z0-9\._\.\-~]*(:[A-Za-z0-9\._\-~]*)?)?)?)?)?"
-type NamePattern string

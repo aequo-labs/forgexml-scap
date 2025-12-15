@@ -1,6 +1,7 @@
 {
   "output": "/home/mmcnew/repos/forgexml-scap/internal/generated",
   "rootPackage": "github.com/aequo-labs/forgexml-scap/internal/generated",
+  "appName": "SCAP Editor",
   "schemas": [
     "/home/mmcnew/repos/forgexml-scap/schemas/arf/asset-reporting-format_1.1.0.xsd",
     "/home/mmcnew/repos/forgexml-scap/schemas/oval/5.11.2/oval-definitions-schema.xsd",

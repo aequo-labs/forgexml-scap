@@ -125,7 +125,7 @@ func TestXMLRoundTripWithDB(t *testing.T) {
 		styleHref = *original.StyleHref
 	}
 
-	result, err := db.ExecContext(ctx, 
+	result, err := db.ExecContext(ctx,
 		"INSERT INTO benchmark (benchmark_id, resolved, style, style_href) VALUES (?, ?, ?, ?)",
 		string(original.Id), resolved, style, styleHref)
 	if err != nil {

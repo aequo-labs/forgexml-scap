@@ -166,22 +166,26 @@ func replicateXmlnsPlacement(xmlOutput string, elementsWithXmlns map[string]stri
 	return result
 }
 
-// LabelType represents the XSD type 'labelType'
+// HrefType represents the XSD type 'hrefType'
 // XSD simple type (W3C XSD §4.1)
-type LabelType string
+type HrefType string
+
+// RoleType represents the XSD type 'roleType'
+// XSD simple type (W3C XSD §4.1)
+// minLength="1"
+type RoleType string
+
+// ActuateType represents the XSD type 'actuateType'
+// XSD simple type (W3C XSD §4.1)
+// enumeration="onLoad"
+// enumeration="onRequest"
+// enumeration="other"
+// enumeration="none"
+type ActuateType string
 
 // ToType represents the XSD type 'toType'
 // XSD simple type (W3C XSD §4.1)
 type ToType string
-
-// ArcType represents the XSD type 'arcType'
-// XSD complex type (W3C XSD §3.4)
-type ArcType struct {
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
 
 // Extended represents the XSD type 'extended'
 // XSD complex type (W3C XSD §3.4)
@@ -203,19 +207,19 @@ type ResourceType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// TypeType represents the XSD type 'typeType'
-// XSD simple type (W3C XSD §4.1)
-// enumeration="simple"
-// enumeration="extended"
-// enumeration="title"
-// enumeration="resource"
-// enumeration="locator"
-// enumeration="arc"
-type TypeType string
+// LocatorType represents the XSD type 'locatorType'
+// XSD complex type (W3C XSD §3.4)
+type LocatorType struct {
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
 
-// TitleAttrType represents the XSD type 'titleAttrType'
+// ArcroleType represents the XSD type 'arcroleType'
 // XSD simple type (W3C XSD §4.1)
-type TitleAttrType string
+// minLength="1"
+type ArcroleType string
 
 // ShowType represents the XSD type 'showType'
 // XSD simple type (W3C XSD §4.1)
@@ -226,23 +230,28 @@ type TitleAttrType string
 // enumeration="none"
 type ShowType string
 
-// LocatorType represents the XSD type 'locatorType'
-// XSD complex type (W3C XSD §3.4)
-type LocatorType struct {
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
+// LabelType represents the XSD type 'labelType'
+// XSD simple type (W3C XSD §4.1)
+type LabelType string
 
 // FromType represents the XSD type 'fromType'
 // XSD simple type (W3C XSD §4.1)
 type FromType string
 
-// TitleEltType represents the XSD type 'titleEltType'
+// TypeType represents the XSD type 'typeType'
+// XSD simple type (W3C XSD §4.1)
+// enumeration="simple"
+// enumeration="extended"
+// enumeration="title"
+// enumeration="resource"
+// enumeration="locator"
+// enumeration="arc"
+type TypeType string
+
+// Simple represents the XSD type 'simple'
 // XSD complex type (W3C XSD §3.4)
 // mixed="true"
-type TitleEltType struct {
+type Simple struct {
 	InnerXML string `xml:",innerxml"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
@@ -250,32 +259,23 @@ type TitleEltType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// HrefType represents the XSD type 'hrefType'
-// XSD simple type (W3C XSD §4.1)
-type HrefType string
+// ArcType represents the XSD type 'arcType'
+// XSD complex type (W3C XSD §3.4)
+type ArcType struct {
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
 
-// RoleType represents the XSD type 'roleType'
+// TitleAttrType represents the XSD type 'titleAttrType'
 // XSD simple type (W3C XSD §4.1)
-// minLength="1"
-type RoleType string
+type TitleAttrType string
 
-// ArcroleType represents the XSD type 'arcroleType'
-// XSD simple type (W3C XSD §4.1)
-// minLength="1"
-type ArcroleType string
-
-// ActuateType represents the XSD type 'actuateType'
-// XSD simple type (W3C XSD §4.1)
-// enumeration="onLoad"
-// enumeration="onRequest"
-// enumeration="other"
-// enumeration="none"
-type ActuateType string
-
-// Simple represents the XSD type 'simple'
+// TitleEltType represents the XSD type 'titleEltType'
 // XSD complex type (W3C XSD §3.4)
 // mixed="true"
-type Simple struct {
+type TitleEltType struct {
 	InnerXML string `xml:",innerxml"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`

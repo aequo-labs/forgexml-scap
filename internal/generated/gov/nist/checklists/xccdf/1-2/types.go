@@ -169,36 +169,17 @@ func replicateXmlnsPlacement(xmlOutput string, elementsWithXmlns map[string]stri
 	return result
 }
 
-// TestresultIdType represents the XSD type 'testresultIdType'
-// XSD simple type (W3C XSD §4.1)
-// pattern="xccdf_[^_]+_testresult_.+"
-type TestresultIdType string
-
-// IdentType represents the XSD type 'identType'
+// CheckImportType represents the XSD type 'checkImportType'
 // XSD complex type (W3C XSD §3.4)
-type IdentTypeWithAttrs struct {
-	Value string `xml:",chardata"` // XSD simple content
-	// System represents XSD attribute 'system'
+// mixed="true"
+type CheckImportType struct {
+	// ImportName represents XSD attribute 'import-name'
 	// use="required"
-	System string `xml:"system,attr"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// IdentType is an alias for IdentTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
-type IdentType = IdentTypeWithAttrs
-
-// CheckExportType represents the XSD type 'checkExportType'
-// XSD complex type (W3C XSD §3.4)
-type CheckExportType struct {
-	// ValueId represents XSD attribute 'value-id'
-	// use="required"
-	ValueId string `xml:"value-id,attr"`
-	// ExportName represents XSD attribute 'export-name'
-	// use="required"
-	ExportName string `xml:"export-name,attr"`
+	ImportName string `xml:"import-name,attr"`
+	// ImportXpath represents XSD attribute 'import-xpath'
+	// use="optional"
+	ImportXpath *string `xml:"import-xpath,attr,omitempty"`
+	InnerXML    string  `xml:",innerxml"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -218,149 +199,22 @@ type ProfileSetComplexValueType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// TargetIdRefType represents the XSD type 'targetIdRefType'
+// CPE2idrefType represents the XSD type 'CPE2idrefType'
 // XSD complex type (W3C XSD §3.4)
-type TargetIdRefType struct {
-	// System represents XSD attribute 'system'
-	// use="required"
-	System string `xml:"system,attr"`
-	// Href represents XSD attribute 'href'
-	// use="required"
-	Href string `xml:"href,attr"`
-	// Name represents XSD attribute 'name'
-	// use="optional"
-	Name *string `xml:"name,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// StatusType represents the XSD type 'statusType'
-// XSD simple type (W3C XSD §4.1)
-// enumeration="accepted"
-// enumeration="deprecated"
-// enumeration="draft"
-// enumeration="incomplete"
-// enumeration="interim"
-type StatusType string
-
-// TailoringIdType represents the XSD type 'tailoringIdType'
-// XSD simple type (W3C XSD §4.1)
-// pattern="xccdf_[^_]+_tailoring_.+"
-type TailoringIdType string
-
-// IdrefListType represents the XSD type 'idrefListType'
-// XSD complex type (W3C XSD §3.4)
-type IdrefListType struct {
+type CPE2idrefType struct {
 	// Idref represents XSD attribute 'idref'
 	// use="required"
-	Idref []string `xml:"idref,attr"`
+	Idref string `xml:"idref,attr"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// SelChoicesType represents the XSD type 'selChoicesType'
+// OverrideableCPE2idrefType represents the XSD type 'overrideableCPE2idrefType'
 // XSD complex type (W3C XSD §3.4)
-type SelChoicesType struct {
-	// Choice represents XSD element 'choice'
-	Choice []string `xml:"choice,omitempty"`
-	// ComplexChoice represents XSD element 'complex-choice'
-	ComplexChoice []ComplexValueType `xml:"complex-choice,omitempty"`
-	// MustMatch represents XSD attribute 'mustMatch'
-	// use="optional"
-	MustMatch *bool `xml:"mustMatch,attr,omitempty"`
-	// Selector represents XSD attribute 'selector'
-	// use="optional"
-	Selector *string `xml:"selector,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// ScoreType represents the XSD type 'scoreType'
-// XSD complex type (W3C XSD §3.4)
-type ScoreTypeWithAttrs struct {
-	Value string `xml:",chardata"` // XSD simple content
-	// System represents XSD attribute 'system'
-	// use="optional"
-	System *string `xml:"system,attr,omitempty"`
-	// Maximum represents XSD attribute 'maximum'
-	// use="optional"
-	Maximum *string `xml:"maximum,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// ScoreType is an alias for ScoreTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
-type ScoreType = ScoreTypeWithAttrs
-
-// OverrideType represents the XSD type 'overrideType'
-// XSD complex type (W3C XSD §3.4)
-type OverrideType struct {
-	// OldResult represents XSD element 'old-result'
-	OldResult ResultEnumType `xml:"old-result"`
-	// NewResult represents XSD element 'new-result'
-	NewResult ResultEnumType `xml:"new-result"`
-	// Remark represents XSD element 'remark'
-	Remark TextTypeWithAttrs `xml:"remark"`
-	// Time represents XSD attribute 'time'
-	// use="required"
-	Time types.DateTime `xml:"time,attr"`
-	// Authority represents XSD attribute 'authority'
-	// use="required"
-	Authority string `xml:"authority,attr"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// RatingEnumType represents the XSD type 'ratingEnumType'
-// XSD simple type (W3C XSD §4.1)
-// enumeration="unknown"
-// enumeration="low"
-// enumeration="medium"
-// enumeration="high"
-type RatingEnumType string
-
-// SeverityEnumType represents the XSD type 'severityEnumType'
-// XSD simple type (W3C XSD §4.1)
-// enumeration="unknown"
-// enumeration="info"
-// enumeration="low"
-// enumeration="medium"
-// enumeration="high"
-type SeverityEnumType string
-
-// VersionType represents the XSD type 'versionType'
-// XSD complex type (W3C XSD §3.4)
-type VersionTypeWithAttrs struct {
-	Value string `xml:",chardata"` // XSD simple content
-	// Time represents XSD attribute 'time'
-	// use="optional"
-	Time *types.DateTime `xml:"time,attr,omitempty"`
-	// Update represents XSD attribute 'update'
-	// use="optional"
-	Update *string `xml:"update,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// VersionType is an alias for VersionTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
-type VersionType = VersionTypeWithAttrs
-
-// TextType represents the XSD type 'textType'
-// XSD complex type (W3C XSD §3.4)
-type TextTypeWithAttrs struct {
-	Value string `xml:",chardata"` // XSD simple content
+type OverrideableCPE2idrefType struct {
+	CPE2idrefType // XSD extension base
 	// Override represents XSD attribute 'override'
 	// use="optional"
 	Override *bool `xml:"override,attr,omitempty"`
@@ -370,170 +224,79 @@ type TextTypeWithAttrs struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// TextType is an alias for TextTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
-type TextType = TextTypeWithAttrs
-
-// SelNumType represents the XSD type 'selNumType'
-// XSD complex type (W3C XSD §3.4)
-type SelNumTypeWithAttrs struct {
-	Value string `xml:",chardata"` // XSD simple content
-	// Selector represents XSD attribute 'selector'
-	// use="optional"
-	Selector *string `xml:"selector,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// SelNumType is an alias for SelNumTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
-type SelNumType = SelNumTypeWithAttrs
-
-// UriRefType represents the XSD type 'uriRefType'
-// XSD complex type (W3C XSD §3.4)
-type UriRefType struct {
-	// Uri represents XSD attribute 'uri'
-	// use="required"
-	Uri string `xml:"uri,attr"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// InstanceResultType represents the XSD type 'instanceResultType'
-// XSD complex type (W3C XSD §3.4)
-type InstanceResultTypeWithAttrs struct {
-	Value string `xml:",chardata"` // XSD simple content
-	// Context represents XSD attribute 'context'
-	// use="optional"
-	Context *string `xml:"context,attr,omitempty"`
-	// ParentContext represents XSD attribute 'parentContext'
-	// use="optional"
-	ParentContext *string `xml:"parentContext,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// InstanceResultType is an alias for InstanceResultTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
-type InstanceResultType = InstanceResultTypeWithAttrs
-
-// GroupIdType represents the XSD type 'groupIdType'
-// XSD simple type (W3C XSD §4.1)
-// pattern="xccdf_[^_]+_group_.+"
-type GroupIdType string
-
-// ProfileIdType represents the XSD type 'profileIdType'
-// XSD simple type (W3C XSD §4.1)
-// pattern="xccdf_[^_]+_profile_.+"
-type ProfileIdType string
-
-// MsgSevEnumType represents the XSD type 'msgSevEnumType'
-// XSD simple type (W3C XSD §4.1)
-// enumeration="error"
-// enumeration="warning"
-// enumeration="info"
-type MsgSevEnumType string
-
-// RoleEnumType represents the XSD type 'roleEnumType'
-// XSD simple type (W3C XSD §4.1)
-// enumeration="full"
-// enumeration="unscored"
-// enumeration="unchecked"
-type RoleEnumType string
-
-// HtmlTextType represents the XSD type 'htmlTextType'
+// FixType represents the XSD type 'fixType'
 // XSD complex type (W3C XSD §3.4)
 // mixed="true"
-type HtmlTextType struct {
+type FixType struct {
+	// Sub represents XSD element 'sub'
+	Sub []SubType `xml:"sub,omitempty"`
+	// Instance represents XSD element 'instance'
+	Instance []InstanceFixType `xml:"instance,omitempty"`
+	// Id represents XSD attribute 'id'
+	// use="optional"
+	Id *string `xml:"id,attr,omitempty"`
+	// Reboot represents XSD attribute 'reboot'
+	// use="optional"
+	Reboot *bool `xml:"reboot,attr,omitempty"`
+	// Strategy represents XSD attribute 'strategy'
+	// use="optional"
+	Strategy *FixStrategyEnumType `xml:"strategy,attr,omitempty"`
+	// Disruption represents XSD attribute 'disruption'
+	// use="optional"
+	Disruption *RatingEnumType `xml:"disruption,attr,omitempty"`
+	// Complexity represents XSD attribute 'complexity'
+	// use="optional"
+	Complexity *RatingEnumType `xml:"complexity,attr,omitempty"`
+	// System represents XSD attribute 'system'
+	// use="optional"
+	System *string `xml:"system,attr,omitempty"`
+	// Platform represents XSD attribute 'platform'
+	// use="optional"
+	Platform *string `xml:"platform,attr,omitempty"`
+	Value    string  `xml:",chardata"` // XSD mixed content
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// BenchmarkReferenceType represents the XSD type 'benchmarkReferenceType'
+// XSD complex type (W3C XSD §3.4)
+type BenchmarkReferenceType struct {
+	// Href represents XSD attribute 'href'
+	// use="required"
+	Href string `xml:"href,attr"`
+	// Id represents XSD attribute 'id'
+	// use="optional"
+	Id *string `xml:"id,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// RuleIdType represents the XSD type 'ruleIdType'
+// XSD simple type (W3C XSD §4.1)
+// pattern="xccdf_[^_]+_rule_.+"
+type RuleIdType string
+
+// WeightType represents the XSD type 'weightType'
+// XSD simple type (W3C XSD §4.1)
+// minInclusive="0.0"
+// totalDigits="3"
+type WeightType string
+
+// TextWithSubType represents the XSD type 'textWithSubType'
+// XSD complex type (W3C XSD §3.4)
+// mixed="true"
+type TextWithSubType struct {
+	// Sub represents XSD element 'sub'
+	// minOccurs=0, maxOccurs=-1
+	Sub []SubType `xml:"sub,omitempty"`
 	// Override represents XSD attribute 'override'
 	// use="optional"
 	Override *bool  `xml:"override,attr,omitempty"`
-	InnerXML string `xml:",innerxml"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// ProfileNoteType represents the XSD type 'profileNoteType'
-// XSD complex type (W3C XSD §3.4)
-// mixed="true"
-type ProfileNoteType struct {
-	// Sub represents XSD element 'sub'
-	Sub []SubType `xml:"sub,omitempty"`
-	// Tag represents XSD attribute 'tag'
-	// use="required"
-	Tag   string `xml:"tag,attr"`
-	Value string `xml:",chardata"` // XSD mixed content
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// SelectableItemType represents the XSD type 'selectableItemType'
-// XSD complex type (W3C XSD §3.4)
-// abstract="true"
-type SelectableItemType struct {
-	ItemType // XSD extension base
-	// Rationale represents XSD element 'rationale'
-	// minOccurs=0, maxOccurs=-1
-	Rationale []HtmlTextWithSubType `xml:"rationale,omitempty"`
-	// Platform represents XSD element 'platform'
-	// minOccurs=0, maxOccurs=-1
-	Platform []OverrideableCPE2idrefType `xml:"platform,omitempty"`
-	// Requires represents XSD element 'requires'
-	// minOccurs=0, maxOccurs=-1
-	Requires []IdrefListType `xml:"requires,omitempty"`
-	// Conflicts represents XSD element 'conflicts'
-	// minOccurs=0, maxOccurs=-1
-	Conflicts []IdrefType `xml:"conflicts,omitempty"`
-	// Selected represents XSD attribute 'selected'
-	// use="optional"
-	Selected *bool `xml:"selected,attr,omitempty"`
-	// Weight represents XSD attribute 'weight'
-	// use="optional"
-	Weight *WeightType `xml:"weight,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// ProfileSetValueType represents the XSD type 'profileSetValueType'
-// XSD complex type (W3C XSD §3.4)
-type ProfileSetValueTypeWithAttrs struct {
-	Value string `xml:",chardata"` // XSD simple content
-	// Idref represents XSD attribute 'idref'
-	// use="required"
-	Idref string `xml:"idref,attr"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// ProfileSetValueType is an alias for ProfileSetValueTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
-type ProfileSetValueType = ProfileSetValueTypeWithAttrs
-
-// DcStatusType represents the XSD type 'dc-statusType'
-// XSD complex type (W3C XSD §3.4)
-type DcStatusType struct {
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// CPE2idrefType represents the XSD type 'CPE2idrefType'
-// XSD complex type (W3C XSD §3.4)
-type CPE2idrefType struct {
-	// Idref represents XSD attribute 'idref'
-	// use="required"
-	Idref string `xml:"idref,attr"`
+	Value    string `xml:",chardata"` // XSD mixed content
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -567,274 +330,56 @@ type FixTextType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// InstanceFixType represents the XSD type 'instanceFixType'
+// ProfileSetValueType represents the XSD type 'profileSetValueType'
 // XSD complex type (W3C XSD §3.4)
-type InstanceFixType struct {
-	// Context represents XSD attribute 'context'
-	// use="optional"
-	Context *string `xml:"context,attr,omitempty"`
+type ProfileSetValueTypeWithAttrs struct {
+	Value string `xml:",chardata"` // XSD simple content
+	// Idref represents XSD attribute 'idref'
+	// use="required"
+	Idref string `xml:"idref,attr"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// CheckContentRefType represents the XSD type 'checkContentRefType'
+// ProfileSetValueType is an alias for ProfileSetValueTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
+type ProfileSetValueType = ProfileSetValueTypeWithAttrs
+
+// FactType represents the XSD type 'factType'
 // XSD complex type (W3C XSD §3.4)
-type CheckContentRefType struct {
-	// Href represents XSD attribute 'href'
-	// use="required"
-	Href string `xml:"href,attr"`
+type FactTypeWithAttrs struct {
+	Value string `xml:",chardata"` // XSD simple content
 	// Name represents XSD attribute 'name'
+	// use="required"
+	Name string `xml:"name,attr"`
+	// Type represents XSD attribute 'type'
 	// use="optional"
-	Name *string `xml:"name,attr,omitempty"`
+	Type *ValueTypeType `xml:"type,attr,omitempty"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// TailoringReferenceType represents the XSD type 'tailoringReferenceType'
+// FactType is an alias for FactTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
+type FactType = FactTypeWithAttrs
+
+// OverrideType represents the XSD type 'overrideType'
 // XSD complex type (W3C XSD §3.4)
-type TailoringReferenceType struct {
-	// Href represents XSD attribute 'href'
-	// use="required"
-	Href string `xml:"href,attr"`
-	// Id represents XSD attribute 'id'
-	// use="required"
-	Id string `xml:"id,attr"`
-	// Version represents XSD attribute 'version'
-	// use="required"
-	Version string `xml:"version,attr"`
+type OverrideType struct {
+	// OldResult represents XSD element 'old-result'
+	OldResult ResultEnumType `xml:"old-result"`
+	// NewResult represents XSD element 'new-result'
+	NewResult ResultEnumType `xml:"new-result"`
+	// Remark represents XSD element 'remark'
+	Remark TextTypeWithAttrs `xml:"remark"`
 	// Time represents XSD attribute 'time'
 	// use="required"
 	Time types.DateTime `xml:"time,attr"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// SubType represents the XSD type 'subType'
-// XSD complex type (W3C XSD §3.4)
-type SubType struct {
-	IdrefType // XSD extension base
-	// Use represents XSD attribute 'use'
-	// use="optional"
-	Use *SubUseEnumType `xml:"use,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// IdentityType represents the XSD type 'identityType'
-// XSD complex type (W3C XSD §3.4)
-type IdentityTypeWithAttrs struct {
-	Value string `xml:",chardata"` // XSD simple content
-	// Authenticated represents XSD attribute 'authenticated'
+	// Authority represents XSD attribute 'authority'
 	// use="required"
-	Authenticated bool `xml:"authenticated,attr"`
-	// Privileged represents XSD attribute 'privileged'
-	// use="required"
-	Privileged bool `xml:"privileged,attr"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// IdentityType is an alias for IdentityTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
-type IdentityType = IdentityTypeWithAttrs
-
-// BenchmarkElementType represents the XSD type 'BenchmarkElementType'
-// XSD complex type (W3C XSD §3.4)
-type BenchmarkElementType struct {
-	// Status represents XSD element 'status'
-	// minOccurs=1, maxOccurs=-1
-	Status []StatusElement `xml:"status"`
-	// DcStatus represents XSD element 'dc-status'
-	// minOccurs=0, maxOccurs=-1
-	DcStatus []DcStatusType `xml:"dc-status,omitempty"`
-	// Title represents XSD element 'title'
-	// minOccurs=0, maxOccurs=-1
-	Title []TextTypeWithAttrs `xml:"title,omitempty"`
-	// Description represents XSD element 'description'
-	// minOccurs=0, maxOccurs=-1
-	Description []HtmlTextWithSubType `xml:"description,omitempty"`
-	// Notice represents XSD element 'notice'
-	// minOccurs=0, maxOccurs=-1
-	Notice []NoticeType `xml:"notice,omitempty"`
-	// FrontMatter represents XSD element 'front-matter'
-	// minOccurs=0, maxOccurs=-1
-	FrontMatter []HtmlTextWithSubType `xml:"front-matter,omitempty"`
-	// RearMatter represents XSD element 'rear-matter'
-	// minOccurs=0, maxOccurs=-1
-	RearMatter []HtmlTextWithSubType `xml:"rear-matter,omitempty"`
-	// Reference represents XSD element 'reference'
-	// minOccurs=0, maxOccurs=-1
-	Reference []ReferenceType `xml:"reference,omitempty"`
-	// PlainText represents XSD element 'plain-text'
-	// minOccurs=0, maxOccurs=-1
-	PlainText []PlainTextTypeWithAttrs `xml:"plain-text,omitempty"`
-	// PlatformSpecification represents XSD element 'platform-specification'
-	// minOccurs=0, maxOccurs=1
-	PlatformSpecification *language2_0.PlatformSpecificationElement `xml:"platform-specification,omitempty"`
-	// Platform represents XSD element 'platform'
-	// minOccurs=0, maxOccurs=-1
-	Platform []CPE2idrefType `xml:"platform,omitempty"`
-	// Version represents XSD element 'version'
-	Version VersionTypeWithAttrs `xml:"version"`
-	// Metadata represents XSD element 'metadata'
-	// minOccurs=0, maxOccurs=-1
-	Metadata []MetadataType `xml:"metadata,omitempty"`
-	// Model represents XSD element 'model'
-	// minOccurs=0, maxOccurs=-1
-	Model []ModelElement `xml:"model,omitempty"`
-	// Profile represents XSD element 'Profile'
-	// minOccurs=0, maxOccurs=-1
-	Profile []ProfileType `xml:"Profile,omitempty"`
-	// Value represents XSD element 'Value'
-	// minOccurs=0, maxOccurs=-1
-	Value []ValueType `xml:"Value,omitempty"`
-	// TestResult represents XSD element 'TestResult'
-	// minOccurs=0, maxOccurs=-1
-	TestResult []TestResultType `xml:"TestResult,omitempty"`
-	// Signature represents XSD element 'signature'
-	// minOccurs=0, maxOccurs=1
-	Signature *SignatureType `xml:"signature,omitempty"`
-	// Group represents XSD element 'Group'
-	Group []GroupType `xml:"Group,omitempty"`
-	// Rule represents XSD element 'Rule'
-	Rule []RuleType `xml:"Rule,omitempty"`
-	// Id represents XSD attribute 'id'
-	// use="required"
-	Id BenchmarkIdType `xml:"id,attr"`
-	// Id2 represents XSD attribute 'Id'
-	// use="optional"
-	Id2 *string `xml:"Id,attr,omitempty"`
-	// Resolved represents XSD attribute 'resolved'
-	// use="optional"
-	Resolved *bool `xml:"resolved,attr,omitempty"`
-	// Style represents XSD attribute 'style'
-	// use="optional"
-	Style *string `xml:"style,attr,omitempty"`
-	// StyleHref represents XSD attribute 'style-href'
-	// use="optional"
-	StyleHref *string `xml:"style-href,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// SignatureType represents the XSD type 'signatureType'
-// XSD complex type (W3C XSD §3.4)
-type SignatureType struct {
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// IdrefType represents the XSD type 'idrefType'
-// XSD complex type (W3C XSD §3.4)
-type IdrefType struct {
-	// Idref represents XSD attribute 'idref'
-	// use="required"
-	Idref string `xml:"idref,attr"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// CheckType represents the XSD type 'checkType'
-// XSD complex type (W3C XSD §3.4)
-type CheckType struct {
-	// CheckImport represents XSD element 'check-import'
-	// minOccurs=0, maxOccurs=-1
-	CheckImport []CheckImportType `xml:"check-import,omitempty"`
-	// CheckExport represents XSD element 'check-export'
-	// minOccurs=0, maxOccurs=-1
-	CheckExport []CheckExportType `xml:"check-export,omitempty"`
-	// CheckContentRef represents XSD element 'check-content-ref'
-	// minOccurs=0, maxOccurs=-1
-	CheckContentRef []CheckContentRefType `xml:"check-content-ref,omitempty"`
-	// CheckContent represents XSD element 'check-content'
-	// minOccurs=0, maxOccurs=1
-	CheckContent *CheckContentType `xml:"check-content,omitempty"`
-	// System represents XSD attribute 'system'
-	// use="required"
-	System string `xml:"system,attr"`
-	// Negate represents XSD attribute 'negate'
-	// use="optional"
-	Negate *bool `xml:"negate,attr,omitempty"`
-	// Id represents XSD attribute 'id'
-	// use="optional"
-	Id *string `xml:"id,attr,omitempty"`
-	// Selector represents XSD attribute 'selector'
-	// use="optional"
-	Selector *string `xml:"selector,attr,omitempty"`
-	// MultiCheck represents XSD attribute 'multi-check'
-	// use="optional"
-	MultiCheck *bool `xml:"multi-check,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// ProfileRefineValueType represents the XSD type 'profileRefineValueType'
-// XSD complex type (W3C XSD §3.4)
-type ProfileRefineValueType struct {
-	// Remark represents XSD element 'remark'
-	// minOccurs=0, maxOccurs=-1
-	Remark []TextTypeWithAttrs `xml:"remark,omitempty"`
-	// Idref represents XSD attribute 'idref'
-	// use="required"
-	Idref string `xml:"idref,attr"`
-	// Selector represents XSD attribute 'selector'
-	// use="optional"
-	Selector *string `xml:"selector,attr,omitempty"`
-	// Operator represents XSD attribute 'operator'
-	// use="optional"
-	Operator *ValueOperatorType `xml:"operator,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// TailoringType represents the XSD type 'tailoringType'
-// XSD complex type (W3C XSD §3.4)
-type TailoringType struct {
-	// Benchmark represents XSD element 'benchmark'
-	// minOccurs=0, maxOccurs=1
-	Benchmark *TailoringBenchmarkReferenceType `xml:"benchmark,omitempty"`
-	// Status represents XSD element 'status'
-	// minOccurs=0, maxOccurs=-1
-	Status []StatusElement `xml:"status,omitempty"`
-	// DcStatus represents XSD element 'dc-status'
-	// minOccurs=0, maxOccurs=-1
-	DcStatus []DcStatusType `xml:"dc-status,omitempty"`
-	// Version represents XSD element 'version'
-	Version TailoringVersionTypeWithAttrs `xml:"version"`
-	// Metadata represents XSD element 'metadata'
-	// minOccurs=0, maxOccurs=-1
-	Metadata []MetadataType `xml:"metadata,omitempty"`
-	// Profile represents XSD element 'Profile'
-	// minOccurs=1, maxOccurs=-1
-	Profile []ProfileType `xml:"Profile"`
-	// Signature represents XSD element 'signature'
-	// minOccurs=0, maxOccurs=1
-	Signature *SignatureType `xml:"signature,omitempty"`
-	// Id represents XSD attribute 'id'
-	// use="required"
-	Id TailoringIdType `xml:"id,attr"`
-	// Id2 represents XSD attribute 'Id'
-	// use="optional"
-	Id2 *string `xml:"Id,attr,omitempty"`
+	Authority string `xml:"authority,attr"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -857,207 +402,33 @@ type StatusElementTypeWithAttrs struct {
 // StatusElementType is an alias for StatusElementTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
 type StatusElementType = StatusElementTypeWithAttrs
 
-// FixStrategyEnumType represents the XSD type 'fixStrategyEnumType'
+// StatusType represents the XSD type 'statusType'
+// XSD simple type (W3C XSD §4.1)
+// enumeration="accepted"
+// enumeration="deprecated"
+// enumeration="draft"
+// enumeration="incomplete"
+// enumeration="interim"
+type StatusType string
+
+// SeverityEnumType represents the XSD type 'severityEnumType'
 // XSD simple type (W3C XSD §4.1)
 // enumeration="unknown"
-// enumeration="configure"
-// enumeration="combination"
-// enumeration="disable"
-// enumeration="enable"
-// enumeration="patch"
-// enumeration="policy"
-// enumeration="restrict"
-// enumeration="update"
-type FixStrategyEnumType string
+// enumeration="info"
+// enumeration="low"
+// enumeration="medium"
+// enumeration="high"
+type SeverityEnumType string
 
-// ValueTypeType represents the XSD type 'valueTypeType'
-// XSD simple type (W3C XSD §4.1)
-// enumeration="number"
-// enumeration="string"
-// enumeration="boolean"
-type ValueTypeType string
-
-// ResultEnumType represents the XSD type 'resultEnumType'
-// XSD simple type (W3C XSD §4.1)
-// enumeration="pass"
-// enumeration="fail"
-// enumeration="error"
-// enumeration="unknown"
-// enumeration="notapplicable"
-// enumeration="notchecked"
-// enumeration="notselected"
-// enumeration="informational"
-// enumeration="fixed"
-type ResultEnumType string
-
-// PlainTextType represents the XSD type 'plainTextType'
+// CheckContentRefType represents the XSD type 'checkContentRefType'
 // XSD complex type (W3C XSD §3.4)
-type PlainTextTypeWithAttrs struct {
-	Value string `xml:",chardata"` // XSD simple content
-	// Id represents XSD attribute 'id'
-	// use="required"
-	Id string `xml:"id,attr"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// PlainTextType is an alias for PlainTextTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
-type PlainTextType = PlainTextTypeWithAttrs
-
-// WarningType represents the XSD type 'warningType'
-// XSD complex type (W3C XSD §3.4)
-// mixed="true"
-type WarningType struct {
-	HtmlTextWithSubType // XSD extension base
-	// Category represents XSD attribute 'category'
-	// use="optional"
-	Category *WarningCategoryEnumType `xml:"category,attr,omitempty"`
-	InnerXML string                   `xml:",innerxml"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// BenchmarkReferenceType represents the XSD type 'benchmarkReferenceType'
-// XSD complex type (W3C XSD §3.4)
-type BenchmarkReferenceType struct {
+type CheckContentRefType struct {
 	// Href represents XSD attribute 'href'
 	// use="required"
 	Href string `xml:"href,attr"`
-	// Id represents XSD attribute 'id'
-	// use="optional"
-	Id *string `xml:"id,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// RuleResultType represents the XSD type 'ruleResultType'
-// XSD complex type (W3C XSD §3.4)
-type RuleResultType struct {
-	// Result represents XSD element 'result'
-	Result ResultEnumType `xml:"result"`
-	// Override represents XSD element 'override'
-	// minOccurs=0, maxOccurs=-1
-	Override []OverrideType `xml:"override,omitempty"`
-	// Ident represents XSD element 'ident'
-	// minOccurs=0, maxOccurs=-1
-	Ident []IdentTypeWithAttrs `xml:"ident,omitempty"`
-	// Metadata represents XSD element 'metadata'
-	// minOccurs=0, maxOccurs=-1
-	Metadata []MetadataType `xml:"metadata,omitempty"`
-	// Message represents XSD element 'message'
-	// minOccurs=0, maxOccurs=-1
-	Message []MessageTypeWithAttrs `xml:"message,omitempty"`
-	// Instance represents XSD element 'instance'
-	// minOccurs=0, maxOccurs=-1
-	Instance []InstanceResultTypeWithAttrs `xml:"instance,omitempty"`
-	// Fix represents XSD element 'fix'
-	// minOccurs=0, maxOccurs=-1
-	Fix []FixType `xml:"fix,omitempty"`
-	// Check represents XSD element 'check'
-	// minOccurs=0, maxOccurs=-1
-	Check []CheckType `xml:"check,omitempty"`
-	// ComplexCheck represents XSD element 'complex-check'
-	// minOccurs=0, maxOccurs=1
-	ComplexCheck *ComplexCheckType `xml:"complex-check,omitempty"`
-	// Idref represents XSD attribute 'idref'
-	// use="required"
-	Idref string `xml:"idref,attr"`
-	// Role represents XSD attribute 'role'
-	// use="optional"
-	Role *RoleEnumType `xml:"role,attr,omitempty"`
-	// Severity represents XSD attribute 'severity'
-	// use="optional"
-	Severity *SeverityEnumType `xml:"severity,attr,omitempty"`
-	// Time represents XSD attribute 'time'
-	// use="optional"
-	Time *types.DateTime `xml:"time,attr,omitempty"`
-	// Version represents XSD attribute 'version'
-	// use="optional"
-	Version *string `xml:"version,attr,omitempty"`
-	// Weight represents XSD attribute 'weight'
-	// use="optional"
-	Weight *WeightType `xml:"weight,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// SubUseEnumType represents the XSD type 'subUseEnumType'
-// XSD simple type (W3C XSD §4.1)
-// enumeration="value"
-// enumeration="title"
-// enumeration="legacy"
-type SubUseEnumType string
-
-// ReferenceType represents the XSD type 'referenceType'
-// XSD complex type (W3C XSD §3.4)
-// mixed="true"
-type ReferenceType struct {
-	// Href represents XSD attribute 'href'
-	// use="optional"
-	Href *string `xml:"href,attr,omitempty"`
-	// Override represents XSD attribute 'override'
-	// use="optional"
-	Override *bool  `xml:"override,attr,omitempty"`
-	InnerXML string `xml:",innerxml"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// ParamType represents the XSD type 'paramType'
-// XSD complex type (W3C XSD §3.4)
-type ParamTypeWithAttrs struct {
-	Value string `xml:",chardata"` // XSD simple content
 	// Name represents XSD attribute 'name'
-	// use="required"
-	Name string `xml:"name,attr"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// ParamType is an alias for ParamTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
-type ParamType = ParamTypeWithAttrs
-
-// HtmlTextWithSubType represents the XSD type 'htmlTextWithSubType'
-// XSD complex type (W3C XSD §3.4)
-// mixed="true"
-type HtmlTextWithSubType struct {
-	// Sub represents XSD element 'sub'
-	Sub []SubType `xml:"sub,omitempty"`
-	// Override represents XSD attribute 'override'
 	// use="optional"
-	Override *bool  `xml:"override,attr,omitempty"`
-	Value    string `xml:",chardata"` // XSD mixed content
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// ComplexCheckType represents the XSD type 'complexCheckType'
-// XSD complex type (W3C XSD §3.4)
-type ComplexCheckType struct {
-	// Check represents XSD element 'check'
-	Check []CheckType `xml:"check,omitempty"`
-	// ComplexCheck represents XSD element 'complex-check'
-	ComplexCheck []*ComplexCheckType `xml:"complex-check,omitempty"`
-	// Operator represents XSD attribute 'operator'
-	// use="required"
-	Operator CcOperatorEnumType `xml:"operator,attr"`
-	// Negate represents XSD attribute 'negate'
-	// use="optional"
-	Negate *bool `xml:"negate,attr,omitempty"`
+	Name *string `xml:"name,attr,omitempty"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -1142,38 +513,104 @@ type TestResultType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// BenchmarkIdType represents the XSD type 'benchmarkIdType'
-// XSD simple type (W3C XSD §4.1)
-// pattern="xccdf_[^_]+_benchmark_.+"
-type BenchmarkIdType string
-
-// ValueIdType represents the XSD type 'valueIdType'
-// XSD simple type (W3C XSD §4.1)
-// pattern="xccdf_[^_]+_value_.+"
-type ValueIdType string
-
-// WeightType represents the XSD type 'weightType'
-// XSD simple type (W3C XSD §4.1)
-// minInclusive="0.0"
-// totalDigits="3"
-type WeightType string
-
-// ComplexValueType represents the XSD type 'complexValueType'
+// BenchmarkElementType represents the XSD type 'BenchmarkElementType'
 // XSD complex type (W3C XSD §3.4)
-type ComplexValueType struct {
-	// Item represents XSD element 'item'
+type BenchmarkElementType struct {
+	// Status represents XSD element 'status'
+	// minOccurs=1, maxOccurs=-1
+	Status []StatusElement `xml:"status"`
+	// DcStatus represents XSD element 'dc-status'
 	// minOccurs=0, maxOccurs=-1
-	Item []string `xml:"item,omitempty"`
+	DcStatus []DcStatusType `xml:"dc-status,omitempty"`
+	// Title represents XSD element 'title'
+	// minOccurs=0, maxOccurs=-1
+	Title []TextTypeWithAttrs `xml:"title,omitempty"`
+	// Description represents XSD element 'description'
+	// minOccurs=0, maxOccurs=-1
+	Description []HtmlTextWithSubType `xml:"description,omitempty"`
+	// Notice represents XSD element 'notice'
+	// minOccurs=0, maxOccurs=-1
+	Notice []NoticeType `xml:"notice,omitempty"`
+	// FrontMatter represents XSD element 'front-matter'
+	// minOccurs=0, maxOccurs=-1
+	FrontMatter []HtmlTextWithSubType `xml:"front-matter,omitempty"`
+	// RearMatter represents XSD element 'rear-matter'
+	// minOccurs=0, maxOccurs=-1
+	RearMatter []HtmlTextWithSubType `xml:"rear-matter,omitempty"`
+	// Reference represents XSD element 'reference'
+	// minOccurs=0, maxOccurs=-1
+	Reference []ReferenceType `xml:"reference,omitempty"`
+	// PlainText represents XSD element 'plain-text'
+	// minOccurs=0, maxOccurs=-1
+	PlainText []PlainTextTypeWithAttrs `xml:"plain-text,omitempty"`
+	// PlatformSpecification represents XSD element 'platform-specification'
+	// minOccurs=0, maxOccurs=1
+	PlatformSpecification *language2_0.PlatformSpecificationElement `xml:"platform-specification,omitempty"`
+	// Platform represents XSD element 'platform'
+	// minOccurs=0, maxOccurs=-1
+	Platform []CPE2idrefType `xml:"platform,omitempty"`
+	// Version represents XSD element 'version'
+	Version VersionTypeWithAttrs `xml:"version"`
+	// Metadata represents XSD element 'metadata'
+	// minOccurs=0, maxOccurs=-1
+	Metadata []MetadataType `xml:"metadata,omitempty"`
+	// Model represents XSD element 'model'
+	// minOccurs=0, maxOccurs=-1
+	Model []ModelElement `xml:"model,omitempty"`
+	// Profile represents XSD element 'Profile'
+	// minOccurs=0, maxOccurs=-1
+	Profile []ProfileType `xml:"Profile,omitempty"`
+	// Value represents XSD element 'Value'
+	// minOccurs=0, maxOccurs=-1
+	Value []ValueType `xml:"Value,omitempty"`
+	// TestResult represents XSD element 'TestResult'
+	// minOccurs=0, maxOccurs=-1
+	TestResult []TestResultType `xml:"TestResult,omitempty"`
+	// Signature represents XSD element 'signature'
+	// minOccurs=0, maxOccurs=1
+	Signature *SignatureType `xml:"signature,omitempty"`
+	// Group represents XSD element 'Group'
+	Group []GroupType `xml:"Group,omitempty"`
+	// Rule represents XSD element 'Rule'
+	Rule []RuleType `xml:"Rule,omitempty"`
+	// Id represents XSD attribute 'id'
+	// use="required"
+	Id BenchmarkIdType `xml:"id,attr"`
+	// Id2 represents XSD attribute 'Id'
+	// use="optional"
+	Id2 *string `xml:"Id,attr,omitempty"`
+	// Resolved represents XSD attribute 'resolved'
+	// use="optional"
+	Resolved *bool `xml:"resolved,attr,omitempty"`
+	// Style represents XSD attribute 'style'
+	// use="optional"
+	Style *string `xml:"style,attr,omitempty"`
+	// StyleHref represents XSD attribute 'style-href'
+	// use="optional"
+	StyleHref *string `xml:"style-href,attr,omitempty"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// SelComplexValueType represents the XSD type 'selComplexValueType'
+// SubType represents the XSD type 'subType'
 // XSD complex type (W3C XSD §3.4)
-type SelComplexValueType struct {
-	ComplexValueType // XSD extension base
+type SubType struct {
+	IdrefType // XSD extension base
+	// Use represents XSD attribute 'use'
+	// use="optional"
+	Use *SubUseEnumType `xml:"use,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// SelNumType represents the XSD type 'selNumType'
+// XSD complex type (W3C XSD §3.4)
+type SelNumTypeWithAttrs struct {
+	Value string `xml:",chardata"` // XSD simple content
 	// Selector represents XSD attribute 'selector'
 	// use="optional"
 	Selector *string `xml:"selector,attr,omitempty"`
@@ -1183,56 +620,39 @@ type SelComplexValueType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// FactType represents the XSD type 'factType'
+// SelNumType is an alias for SelNumTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
+type SelNumType = SelNumTypeWithAttrs
+
+// TargetFactsType represents the XSD type 'targetFactsType'
 // XSD complex type (W3C XSD §3.4)
-type FactTypeWithAttrs struct {
+type TargetFactsType struct {
+	// Fact represents XSD element 'fact'
+	// minOccurs=0, maxOccurs=-1
+	Fact []FactTypeWithAttrs `xml:"fact,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// InstanceResultType represents the XSD type 'instanceResultType'
+// XSD complex type (W3C XSD §3.4)
+type InstanceResultTypeWithAttrs struct {
 	Value string `xml:",chardata"` // XSD simple content
-	// Name represents XSD attribute 'name'
-	// use="required"
-	Name string `xml:"name,attr"`
-	// Type represents XSD attribute 'type'
+	// Context represents XSD attribute 'context'
 	// use="optional"
-	Type *ValueTypeType `xml:"type,attr,omitempty"`
+	Context *string `xml:"context,attr,omitempty"`
+	// ParentContext represents XSD attribute 'parentContext'
+	// use="optional"
+	ParentContext *string `xml:"parentContext,attr,omitempty"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// FactType is an alias for FactTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
-type FactType = FactTypeWithAttrs
-
-// TailoringVersionType represents the XSD type 'tailoringVersionType'
-// XSD complex type (W3C XSD §3.4)
-type TailoringVersionTypeWithAttrs struct {
-	Value string `xml:",chardata"` // XSD simple content
-	// Time represents XSD attribute 'time'
-	// use="required"
-	Time types.DateTime `xml:"time,attr"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// TailoringVersionType is an alias for TailoringVersionTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
-type TailoringVersionType = TailoringVersionTypeWithAttrs
-
-// RuleIdType represents the XSD type 'ruleIdType'
-// XSD simple type (W3C XSD §4.1)
-// pattern="xccdf_[^_]+_rule_.+"
-type RuleIdType string
-
-// ValueOperatorType represents the XSD type 'valueOperatorType'
-// XSD simple type (W3C XSD §4.1)
-// enumeration="equals"
-// enumeration="not equal"
-// enumeration="greater than"
-// enumeration="less than"
-// enumeration="greater than or equal"
-// enumeration="less than or equal"
-// enumeration="pattern match"
-type ValueOperatorType string
+// InstanceResultType is an alias for InstanceResultTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
+type InstanceResultType = InstanceResultTypeWithAttrs
 
 // InterfaceHintType represents the XSD type 'interfaceHintType'
 // XSD simple type (W3C XSD §4.1)
@@ -1242,6 +662,94 @@ type ValueOperatorType string
 // enumeration="date"
 // enumeration="datetime"
 type InterfaceHintType string
+
+// MsgSevEnumType represents the XSD type 'msgSevEnumType'
+// XSD simple type (W3C XSD §4.1)
+// enumeration="error"
+// enumeration="warning"
+// enumeration="info"
+type MsgSevEnumType string
+
+// SubUseEnumType represents the XSD type 'subUseEnumType'
+// XSD simple type (W3C XSD §4.1)
+// enumeration="value"
+// enumeration="title"
+// enumeration="legacy"
+type SubUseEnumType string
+
+// CheckType represents the XSD type 'checkType'
+// XSD complex type (W3C XSD §3.4)
+type CheckType struct {
+	// CheckImport represents XSD element 'check-import'
+	// minOccurs=0, maxOccurs=-1
+	CheckImport []CheckImportType `xml:"check-import,omitempty"`
+	// CheckExport represents XSD element 'check-export'
+	// minOccurs=0, maxOccurs=-1
+	CheckExport []CheckExportType `xml:"check-export,omitempty"`
+	// CheckContentRef represents XSD element 'check-content-ref'
+	// minOccurs=0, maxOccurs=-1
+	CheckContentRef []CheckContentRefType `xml:"check-content-ref,omitempty"`
+	// CheckContent represents XSD element 'check-content'
+	// minOccurs=0, maxOccurs=1
+	CheckContent *CheckContentType `xml:"check-content,omitempty"`
+	// System represents XSD attribute 'system'
+	// use="required"
+	System string `xml:"system,attr"`
+	// Negate represents XSD attribute 'negate'
+	// use="optional"
+	Negate *bool `xml:"negate,attr,omitempty"`
+	// Id represents XSD attribute 'id'
+	// use="optional"
+	Id *string `xml:"id,attr,omitempty"`
+	// Selector represents XSD attribute 'selector'
+	// use="optional"
+	Selector *string `xml:"selector,attr,omitempty"`
+	// MultiCheck represents XSD attribute 'multi-check'
+	// use="optional"
+	MultiCheck *bool `xml:"multi-check,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// CheckContentType represents the XSD type 'checkContentType'
+// XSD complex type (W3C XSD §3.4)
+// mixed="true"
+type CheckContentType struct {
+	InnerXML string `xml:",innerxml"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// ScoreType represents the XSD type 'scoreType'
+// XSD complex type (W3C XSD §3.4)
+type ScoreTypeWithAttrs struct {
+	Value string `xml:",chardata"` // XSD simple content
+	// System represents XSD attribute 'system'
+	// use="optional"
+	System *string `xml:"system,attr,omitempty"`
+	// Maximum represents XSD attribute 'maximum'
+	// use="optional"
+	Maximum *string `xml:"maximum,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// ScoreType is an alias for ScoreTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
+type ScoreType = ScoreTypeWithAttrs
+
+// RatingEnumType represents the XSD type 'ratingEnumType'
+// XSD simple type (W3C XSD §4.1)
+// enumeration="unknown"
+// enumeration="low"
+// enumeration="medium"
+// enumeration="high"
+type RatingEnumType string
 
 // ItemType represents the XSD type 'itemType'
 // XSD complex type (W3C XSD §3.4)
@@ -1292,6 +800,29 @@ type ItemType struct {
 	// Id represents XSD attribute 'Id'
 	// use="optional"
 	Id *string `xml:"Id,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// GroupType represents the XSD type 'groupType'
+// XSD complex type (W3C XSD §3.4)
+type GroupType struct {
+	*SelectableItemType // XSD extension base
+	// Value represents XSD element 'Value'
+	// minOccurs=0, maxOccurs=-1
+	Value []ValueType `xml:"Value,omitempty"`
+	// Signature represents XSD element 'signature'
+	// minOccurs=0, maxOccurs=1
+	Signature *SignatureType `xml:"signature,omitempty"`
+	// Group represents XSD element 'Group'
+	Group []*GroupType `xml:"Group,omitempty"`
+	// Rule represents XSD element 'Rule'
+	Rule []*RuleType `xml:"Rule,omitempty"`
+	// Id represents XSD attribute 'id'
+	// use="required"
+	Id GroupIdType `xml:"id,attr"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -1367,50 +898,140 @@ type ProfileType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// WarningCategoryEnumType represents the XSD type 'warningCategoryEnumType'
+// BenchmarkIdType represents the XSD type 'benchmarkIdType'
 // XSD simple type (W3C XSD §4.1)
-// enumeration="general"
-// enumeration="functionality"
-// enumeration="performance"
-// enumeration="hardware"
-// enumeration="legal"
-// enumeration="regulatory"
-// enumeration="management"
-// enumeration="audit"
-// enumeration="dependency"
-type WarningCategoryEnumType string
+// pattern="xccdf_[^_]+_benchmark_.+"
+type BenchmarkIdType string
 
-// GroupType represents the XSD type 'groupType'
+// ValueIdType represents the XSD type 'valueIdType'
+// XSD simple type (W3C XSD §4.1)
+// pattern="xccdf_[^_]+_value_.+"
+type ValueIdType string
+
+// DcStatusType represents the XSD type 'dc-statusType'
 // XSD complex type (W3C XSD §3.4)
-type GroupType struct {
-	*SelectableItemType // XSD extension base
-	// Value represents XSD element 'Value'
-	// minOccurs=0, maxOccurs=-1
-	Value []ValueType `xml:"Value,omitempty"`
-	// Signature represents XSD element 'signature'
-	// minOccurs=0, maxOccurs=1
-	Signature *SignatureType `xml:"signature,omitempty"`
-	// Group represents XSD element 'Group'
-	Group []*GroupType `xml:"Group,omitempty"`
-	// Rule represents XSD element 'Rule'
-	Rule []*RuleType `xml:"Rule,omitempty"`
-	// Id represents XSD attribute 'id'
-	// use="required"
-	Id GroupIdType `xml:"id,attr"`
+type DcStatusType struct {
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// NoticeType represents the XSD type 'noticeType'
+// ReferenceType represents the XSD type 'referenceType'
 // XSD complex type (W3C XSD §3.4)
 // mixed="true"
-type NoticeType struct {
-	// Id represents XSD attribute 'id'
+type ReferenceType struct {
+	// Href represents XSD attribute 'href'
 	// use="optional"
-	Id       *string `xml:"id,attr,omitempty"`
-	InnerXML string  `xml:",innerxml"`
+	Href *string `xml:"href,attr,omitempty"`
+	// Override represents XSD attribute 'override'
+	// use="optional"
+	Override *bool  `xml:"override,attr,omitempty"`
+	InnerXML string `xml:",innerxml"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// RuleResultType represents the XSD type 'ruleResultType'
+// XSD complex type (W3C XSD §3.4)
+type RuleResultType struct {
+	// Result represents XSD element 'result'
+	Result ResultEnumType `xml:"result"`
+	// Override represents XSD element 'override'
+	// minOccurs=0, maxOccurs=-1
+	Override []OverrideType `xml:"override,omitempty"`
+	// Ident represents XSD element 'ident'
+	// minOccurs=0, maxOccurs=-1
+	Ident []IdentTypeWithAttrs `xml:"ident,omitempty"`
+	// Metadata represents XSD element 'metadata'
+	// minOccurs=0, maxOccurs=-1
+	Metadata []MetadataType `xml:"metadata,omitempty"`
+	// Message represents XSD element 'message'
+	// minOccurs=0, maxOccurs=-1
+	Message []MessageTypeWithAttrs `xml:"message,omitempty"`
+	// Instance represents XSD element 'instance'
+	// minOccurs=0, maxOccurs=-1
+	Instance []InstanceResultTypeWithAttrs `xml:"instance,omitempty"`
+	// Fix represents XSD element 'fix'
+	// minOccurs=0, maxOccurs=-1
+	Fix []FixType `xml:"fix,omitempty"`
+	// Check represents XSD element 'check'
+	// minOccurs=0, maxOccurs=-1
+	Check []CheckType `xml:"check,omitempty"`
+	// ComplexCheck represents XSD element 'complex-check'
+	// minOccurs=0, maxOccurs=1
+	ComplexCheck *ComplexCheckType `xml:"complex-check,omitempty"`
+	// Idref represents XSD attribute 'idref'
+	// use="required"
+	Idref string `xml:"idref,attr"`
+	// Role represents XSD attribute 'role'
+	// use="optional"
+	Role *RoleEnumType `xml:"role,attr,omitempty"`
+	// Severity represents XSD attribute 'severity'
+	// use="optional"
+	Severity *SeverityEnumType `xml:"severity,attr,omitempty"`
+	// Time represents XSD attribute 'time'
+	// use="optional"
+	Time *types.DateTime `xml:"time,attr,omitempty"`
+	// Version represents XSD attribute 'version'
+	// use="optional"
+	Version *string `xml:"version,attr,omitempty"`
+	// Weight represents XSD attribute 'weight'
+	// use="optional"
+	Weight *WeightType `xml:"weight,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// MessageType represents the XSD type 'messageType'
+// XSD complex type (W3C XSD §3.4)
+type MessageTypeWithAttrs struct {
+	Value string `xml:",chardata"` // XSD simple content
+	// Severity represents XSD attribute 'severity'
+	// use="required"
+	Severity MsgSevEnumType `xml:"severity,attr"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// MessageType is an alias for MessageTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
+type MessageType = MessageTypeWithAttrs
+
+// TailoringType represents the XSD type 'tailoringType'
+// XSD complex type (W3C XSD §3.4)
+type TailoringType struct {
+	// Benchmark represents XSD element 'benchmark'
+	// minOccurs=0, maxOccurs=1
+	Benchmark *TailoringBenchmarkReferenceType `xml:"benchmark,omitempty"`
+	// Status represents XSD element 'status'
+	// minOccurs=0, maxOccurs=-1
+	Status []StatusElement `xml:"status,omitempty"`
+	// DcStatus represents XSD element 'dc-status'
+	// minOccurs=0, maxOccurs=-1
+	DcStatus []DcStatusType `xml:"dc-status,omitempty"`
+	// Version represents XSD element 'version'
+	Version TailoringVersionTypeWithAttrs `xml:"version"`
+	// Metadata represents XSD element 'metadata'
+	// minOccurs=0, maxOccurs=-1
+	Metadata []MetadataType `xml:"metadata,omitempty"`
+	// Profile represents XSD element 'Profile'
+	// minOccurs=1, maxOccurs=-1
+	Profile []ProfileType `xml:"Profile"`
+	// Signature represents XSD element 'signature'
+	// minOccurs=0, maxOccurs=1
+	Signature *SignatureType `xml:"signature,omitempty"`
+	// Id represents XSD attribute 'id'
+	// use="required"
+	Id TailoringIdType `xml:"id,attr"`
+	// Id2 represents XSD attribute 'Id'
+	// use="optional"
+	Id2 *string `xml:"Id,attr,omitempty"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -1426,114 +1047,30 @@ type MetadataType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// CheckImportType represents the XSD type 'checkImportType'
+// VersionType represents the XSD type 'versionType'
+// XSD complex type (W3C XSD §3.4)
+type VersionTypeWithAttrs struct {
+	Value string `xml:",chardata"` // XSD simple content
+	// Time represents XSD attribute 'time'
+	// use="optional"
+	Time *types.DateTime `xml:"time,attr,omitempty"`
+	// Update represents XSD attribute 'update'
+	// use="optional"
+	Update *string `xml:"update,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// VersionType is an alias for VersionTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
+type VersionType = VersionTypeWithAttrs
+
+// HtmlTextWithSubType represents the XSD type 'htmlTextWithSubType'
 // XSD complex type (W3C XSD §3.4)
 // mixed="true"
-type CheckImportType struct {
-	// ImportName represents XSD attribute 'import-name'
-	// use="required"
-	ImportName string `xml:"import-name,attr"`
-	// ImportXpath represents XSD attribute 'import-xpath'
-	// use="optional"
-	ImportXpath *string `xml:"import-xpath,attr,omitempty"`
-	InnerXML    string  `xml:",innerxml"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// ProfileSelectType represents the XSD type 'profileSelectType'
-// XSD complex type (W3C XSD §3.4)
-type ProfileSelectType struct {
-	// Remark represents XSD element 'remark'
-	// minOccurs=0, maxOccurs=-1
-	Remark []TextTypeWithAttrs `xml:"remark,omitempty"`
-	// Idref represents XSD attribute 'idref'
-	// use="required"
-	Idref string `xml:"idref,attr"`
-	// Selected represents XSD attribute 'selected'
-	// use="required"
-	Selected bool `xml:"selected,attr"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// CcOperatorEnumType represents the XSD type 'ccOperatorEnumType'
-// XSD simple type (W3C XSD §4.1)
-// enumeration="OR"
-// enumeration="AND"
-type CcOperatorEnumType string
-
-// RuleType represents the XSD type 'ruleType'
-// XSD complex type (W3C XSD §3.4)
-type RuleType struct {
-	*SelectableItemType // XSD extension base
-	// Ident represents XSD element 'ident'
-	// minOccurs=0, maxOccurs=-1
-	Ident []IdentTypeWithAttrs `xml:"ident,omitempty"`
-	// ImpactMetric represents XSD element 'impact-metric'
-	// minOccurs=0, maxOccurs=1
-	ImpactMetric *string `xml:"impact-metric,omitempty"`
-	// ProfileNote represents XSD element 'profile-note'
-	// minOccurs=0, maxOccurs=-1
-	ProfileNote []ProfileNoteType `xml:"profile-note,omitempty"`
-	// Fixtext represents XSD element 'fixtext'
-	// minOccurs=0, maxOccurs=-1
-	Fixtext []FixTextType `xml:"fixtext,omitempty"`
-	// Fix represents XSD element 'fix'
-	// minOccurs=0, maxOccurs=-1
-	Fix []FixType `xml:"fix,omitempty"`
-	// Signature represents XSD element 'signature'
-	// minOccurs=0, maxOccurs=1
-	Signature *SignatureType `xml:"signature,omitempty"`
-	// Check represents XSD element 'check'
-	// minOccurs=0, maxOccurs=-1
-	Check []CheckType `xml:"check,omitempty"`
-	// ComplexCheck represents XSD element 'complex-check'
-	// minOccurs=0, maxOccurs=1
-	ComplexCheck *ComplexCheckType `xml:"complex-check,omitempty"`
-	// Id represents XSD attribute 'id'
-	// use="required"
-	Id RuleIdType `xml:"id,attr"`
-	// Role represents XSD attribute 'role'
-	// use="optional"
-	Role *RoleEnumType `xml:"role,attr,omitempty"`
-	// Severity represents XSD attribute 'severity'
-	// use="optional"
-	Severity *SeverityEnumType `xml:"severity,attr,omitempty"`
-	// Multiple represents XSD attribute 'multiple'
-	// use="optional"
-	Multiple *bool `xml:"multiple,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// ModelElementType represents the XSD type 'ModelElementType'
-// XSD complex type (W3C XSD §3.4)
-type ModelElementType struct {
-	// Param represents XSD element 'param'
-	// minOccurs=0, maxOccurs=-1
-	Param []ParamTypeWithAttrs `xml:"param,omitempty"`
-	// System represents XSD attribute 'system'
-	// use="required"
-	System string `xml:"system,attr"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// TextWithSubType represents the XSD type 'textWithSubType'
-// XSD complex type (W3C XSD §3.4)
-// mixed="true"
-type TextWithSubType struct {
+type HtmlTextWithSubType struct {
 	// Sub represents XSD element 'sub'
-	// minOccurs=0, maxOccurs=-1
 	Sub []SubType `xml:"sub,omitempty"`
 	// Override represents XSD attribute 'override'
 	// use="optional"
@@ -1545,10 +1082,37 @@ type TextWithSubType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// OverrideableCPE2idrefType represents the XSD type 'overrideableCPE2idrefType'
+// IdentType represents the XSD type 'identType'
 // XSD complex type (W3C XSD §3.4)
-type OverrideableCPE2idrefType struct {
-	CPE2idrefType // XSD extension base
+type IdentTypeWithAttrs struct {
+	Value string `xml:",chardata"` // XSD simple content
+	// System represents XSD attribute 'system'
+	// use="required"
+	System string `xml:"system,attr"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// IdentType is an alias for IdentTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
+type IdentType = IdentTypeWithAttrs
+
+// ValueOperatorType represents the XSD type 'valueOperatorType'
+// XSD simple type (W3C XSD §4.1)
+// enumeration="equals"
+// enumeration="not equal"
+// enumeration="greater than"
+// enumeration="less than"
+// enumeration="greater than or equal"
+// enumeration="less than or equal"
+// enumeration="pattern match"
+type ValueOperatorType string
+
+// TextType represents the XSD type 'textType'
+// XSD complex type (W3C XSD §3.4)
+type TextTypeWithAttrs struct {
+	Value string `xml:",chardata"` // XSD simple content
 	// Override represents XSD attribute 'override'
 	// use="optional"
 	Override *bool `xml:"override,attr,omitempty"`
@@ -1558,36 +1122,229 @@ type OverrideableCPE2idrefType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// FixType represents the XSD type 'fixType'
+// TextType is an alias for TextTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
+type TextType = TextTypeWithAttrs
+
+// GroupIdType represents the XSD type 'groupIdType'
+// XSD simple type (W3C XSD §4.1)
+// pattern="xccdf_[^_]+_group_.+"
+type GroupIdType string
+
+// WarningCategoryEnumType represents the XSD type 'warningCategoryEnumType'
+// XSD simple type (W3C XSD §4.1)
+// enumeration="general"
+// enumeration="functionality"
+// enumeration="performance"
+// enumeration="hardware"
+// enumeration="legal"
+// enumeration="regulatory"
+// enumeration="management"
+// enumeration="audit"
+// enumeration="dependency"
+type WarningCategoryEnumType string
+
+// CcOperatorEnumType represents the XSD type 'ccOperatorEnumType'
+// XSD simple type (W3C XSD §4.1)
+// enumeration="OR"
+// enumeration="AND"
+type CcOperatorEnumType string
+
+// InstanceFixType represents the XSD type 'instanceFixType'
+// XSD complex type (W3C XSD §3.4)
+type InstanceFixType struct {
+	// Context represents XSD attribute 'context'
+	// use="optional"
+	Context *string `xml:"context,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// CheckExportType represents the XSD type 'checkExportType'
+// XSD complex type (W3C XSD §3.4)
+type CheckExportType struct {
+	// ValueId represents XSD attribute 'value-id'
+	// use="required"
+	ValueId string `xml:"value-id,attr"`
+	// ExportName represents XSD attribute 'export-name'
+	// use="required"
+	ExportName string `xml:"export-name,attr"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// IdentityType represents the XSD type 'identityType'
+// XSD complex type (W3C XSD §3.4)
+type IdentityTypeWithAttrs struct {
+	Value string `xml:",chardata"` // XSD simple content
+	// Authenticated represents XSD attribute 'authenticated'
+	// use="required"
+	Authenticated bool `xml:"authenticated,attr"`
+	// Privileged represents XSD attribute 'privileged'
+	// use="required"
+	Privileged bool `xml:"privileged,attr"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// IdentityType is an alias for IdentityTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
+type IdentityType = IdentityTypeWithAttrs
+
+// TailoringVersionType represents the XSD type 'tailoringVersionType'
+// XSD complex type (W3C XSD §3.4)
+type TailoringVersionTypeWithAttrs struct {
+	Value string `xml:",chardata"` // XSD simple content
+	// Time represents XSD attribute 'time'
+	// use="required"
+	Time types.DateTime `xml:"time,attr"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// TailoringVersionType is an alias for TailoringVersionTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
+type TailoringVersionType = TailoringVersionTypeWithAttrs
+
+// ParamType represents the XSD type 'paramType'
+// XSD complex type (W3C XSD §3.4)
+type ParamTypeWithAttrs struct {
+	Value string `xml:",chardata"` // XSD simple content
+	// Name represents XSD attribute 'name'
+	// use="required"
+	Name string `xml:"name,attr"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// ParamType is an alias for ParamTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
+type ParamType = ParamTypeWithAttrs
+
+// IdrefType represents the XSD type 'idrefType'
+// XSD complex type (W3C XSD §3.4)
+type IdrefType struct {
+	// Idref represents XSD attribute 'idref'
+	// use="required"
+	Idref string `xml:"idref,attr"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// ComplexCheckType represents the XSD type 'complexCheckType'
+// XSD complex type (W3C XSD §3.4)
+type ComplexCheckType struct {
+	// Check represents XSD element 'check'
+	Check []CheckType `xml:"check,omitempty"`
+	// ComplexCheck represents XSD element 'complex-check'
+	ComplexCheck []*ComplexCheckType `xml:"complex-check,omitempty"`
+	// Operator represents XSD attribute 'operator'
+	// use="required"
+	Operator CcOperatorEnumType `xml:"operator,attr"`
+	// Negate represents XSD attribute 'negate'
+	// use="optional"
+	Negate *bool `xml:"negate,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// SelChoicesType represents the XSD type 'selChoicesType'
+// XSD complex type (W3C XSD §3.4)
+type SelChoicesType struct {
+	// Choice represents XSD element 'choice'
+	Choice []string `xml:"choice,omitempty"`
+	// ComplexChoice represents XSD element 'complex-choice'
+	ComplexChoice []ComplexValueType `xml:"complex-choice,omitempty"`
+	// MustMatch represents XSD attribute 'mustMatch'
+	// use="optional"
+	MustMatch *bool `xml:"mustMatch,attr,omitempty"`
+	// Selector represents XSD attribute 'selector'
+	// use="optional"
+	Selector *string `xml:"selector,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// HtmlTextType represents the XSD type 'htmlTextType'
 // XSD complex type (W3C XSD §3.4)
 // mixed="true"
-type FixType struct {
-	// Sub represents XSD element 'sub'
-	Sub []SubType `xml:"sub,omitempty"`
-	// Instance represents XSD element 'instance'
-	Instance []InstanceFixType `xml:"instance,omitempty"`
+type HtmlTextType struct {
+	// Override represents XSD attribute 'override'
+	// use="optional"
+	Override *bool  `xml:"override,attr,omitempty"`
+	InnerXML string `xml:",innerxml"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// WarningType represents the XSD type 'warningType'
+// XSD complex type (W3C XSD §3.4)
+// mixed="true"
+type WarningType struct {
+	HtmlTextWithSubType // XSD extension base
+	// Category represents XSD attribute 'category'
+	// use="optional"
+	Category *WarningCategoryEnumType `xml:"category,attr,omitempty"`
+	InnerXML string                   `xml:",innerxml"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// ComplexValueType represents the XSD type 'complexValueType'
+// XSD complex type (W3C XSD §3.4)
+type ComplexValueType struct {
+	// Item represents XSD element 'item'
+	// minOccurs=0, maxOccurs=-1
+	Item []string `xml:"item,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// UriRefType represents the XSD type 'uriRefType'
+// XSD complex type (W3C XSD §3.4)
+type UriRefType struct {
+	// Uri represents XSD attribute 'uri'
+	// use="required"
+	Uri string `xml:"uri,attr"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// TailoringReferenceType represents the XSD type 'tailoringReferenceType'
+// XSD complex type (W3C XSD §3.4)
+type TailoringReferenceType struct {
+	// Href represents XSD attribute 'href'
+	// use="required"
+	Href string `xml:"href,attr"`
 	// Id represents XSD attribute 'id'
-	// use="optional"
-	Id *string `xml:"id,attr,omitempty"`
-	// Reboot represents XSD attribute 'reboot'
-	// use="optional"
-	Reboot *bool `xml:"reboot,attr,omitempty"`
-	// Strategy represents XSD attribute 'strategy'
-	// use="optional"
-	Strategy *FixStrategyEnumType `xml:"strategy,attr,omitempty"`
-	// Disruption represents XSD attribute 'disruption'
-	// use="optional"
-	Disruption *RatingEnumType `xml:"disruption,attr,omitempty"`
-	// Complexity represents XSD attribute 'complexity'
-	// use="optional"
-	Complexity *RatingEnumType `xml:"complexity,attr,omitempty"`
-	// System represents XSD attribute 'system'
-	// use="optional"
-	System *string `xml:"system,attr,omitempty"`
-	// Platform represents XSD attribute 'platform'
-	// use="optional"
-	Platform *string `xml:"platform,attr,omitempty"`
-	Value    string  `xml:",chardata"` // XSD mixed content
+	// use="required"
+	Id string `xml:"id,attr"`
+	// Version represents XSD attribute 'version'
+	// use="required"
+	Version string `xml:"version,attr"`
+	// Time represents XSD attribute 'time'
+	// use="required"
+	Time types.DateTime `xml:"time,attr"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -1645,6 +1402,41 @@ type ValueType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
+// ValueTypeType represents the XSD type 'valueTypeType'
+// XSD simple type (W3C XSD §4.1)
+// enumeration="number"
+// enumeration="string"
+// enumeration="boolean"
+type ValueTypeType string
+
+// ProfileNoteType represents the XSD type 'profileNoteType'
+// XSD complex type (W3C XSD §3.4)
+// mixed="true"
+type ProfileNoteType struct {
+	// Sub represents XSD element 'sub'
+	Sub []SubType `xml:"sub,omitempty"`
+	// Tag represents XSD attribute 'tag'
+	// use="required"
+	Tag   string `xml:"tag,attr"`
+	Value string `xml:",chardata"` // XSD mixed content
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// IdrefListType represents the XSD type 'idrefListType'
+// XSD complex type (W3C XSD §3.4)
+type IdrefListType struct {
+	// Idref represents XSD attribute 'idref'
+	// use="required"
+	Idref []string `xml:"idref,attr"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
 // SelStringType represents the XSD type 'selStringType'
 // XSD complex type (W3C XSD §3.4)
 type SelStringTypeWithAttrs struct {
@@ -1660,6 +1452,208 @@ type SelStringTypeWithAttrs struct {
 
 // SelStringType is an alias for SelStringTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
 type SelStringType = SelStringTypeWithAttrs
+
+// ProfileRefineValueType represents the XSD type 'profileRefineValueType'
+// XSD complex type (W3C XSD §3.4)
+type ProfileRefineValueType struct {
+	// Remark represents XSD element 'remark'
+	// minOccurs=0, maxOccurs=-1
+	Remark []TextTypeWithAttrs `xml:"remark,omitempty"`
+	// Idref represents XSD attribute 'idref'
+	// use="required"
+	Idref string `xml:"idref,attr"`
+	// Selector represents XSD attribute 'selector'
+	// use="optional"
+	Selector *string `xml:"selector,attr,omitempty"`
+	// Operator represents XSD attribute 'operator'
+	// use="optional"
+	Operator *ValueOperatorType `xml:"operator,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// TailoringBenchmarkReferenceType represents the XSD type 'tailoringBenchmarkReferenceType'
+// XSD complex type (W3C XSD §3.4)
+type TailoringBenchmarkReferenceType struct {
+	BenchmarkReferenceType // XSD extension base
+	// Version represents XSD attribute 'version'
+	// use="optional"
+	Version *string `xml:"version,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// TailoringIdType represents the XSD type 'tailoringIdType'
+// XSD simple type (W3C XSD §4.1)
+// pattern="xccdf_[^_]+_tailoring_.+"
+type TailoringIdType string
+
+// ResultEnumType represents the XSD type 'resultEnumType'
+// XSD simple type (W3C XSD §4.1)
+// enumeration="pass"
+// enumeration="fail"
+// enumeration="error"
+// enumeration="unknown"
+// enumeration="notapplicable"
+// enumeration="notchecked"
+// enumeration="notselected"
+// enumeration="informational"
+// enumeration="fixed"
+type ResultEnumType string
+
+// SelectableItemType represents the XSD type 'selectableItemType'
+// XSD complex type (W3C XSD §3.4)
+// abstract="true"
+type SelectableItemType struct {
+	ItemType // XSD extension base
+	// Rationale represents XSD element 'rationale'
+	// minOccurs=0, maxOccurs=-1
+	Rationale []HtmlTextWithSubType `xml:"rationale,omitempty"`
+	// Platform represents XSD element 'platform'
+	// minOccurs=0, maxOccurs=-1
+	Platform []OverrideableCPE2idrefType `xml:"platform,omitempty"`
+	// Requires represents XSD element 'requires'
+	// minOccurs=0, maxOccurs=-1
+	Requires []IdrefListType `xml:"requires,omitempty"`
+	// Conflicts represents XSD element 'conflicts'
+	// minOccurs=0, maxOccurs=-1
+	Conflicts []IdrefType `xml:"conflicts,omitempty"`
+	// Selected represents XSD attribute 'selected'
+	// use="optional"
+	Selected *bool `xml:"selected,attr,omitempty"`
+	// Weight represents XSD attribute 'weight'
+	// use="optional"
+	Weight *WeightType `xml:"weight,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// RuleType represents the XSD type 'ruleType'
+// XSD complex type (W3C XSD §3.4)
+type RuleType struct {
+	*SelectableItemType // XSD extension base
+	// Ident represents XSD element 'ident'
+	// minOccurs=0, maxOccurs=-1
+	Ident []IdentTypeWithAttrs `xml:"ident,omitempty"`
+	// ImpactMetric represents XSD element 'impact-metric'
+	// minOccurs=0, maxOccurs=1
+	ImpactMetric *string `xml:"impact-metric,omitempty"`
+	// ProfileNote represents XSD element 'profile-note'
+	// minOccurs=0, maxOccurs=-1
+	ProfileNote []ProfileNoteType `xml:"profile-note,omitempty"`
+	// Fixtext represents XSD element 'fixtext'
+	// minOccurs=0, maxOccurs=-1
+	Fixtext []FixTextType `xml:"fixtext,omitempty"`
+	// Fix represents XSD element 'fix'
+	// minOccurs=0, maxOccurs=-1
+	Fix []FixType `xml:"fix,omitempty"`
+	// Signature represents XSD element 'signature'
+	// minOccurs=0, maxOccurs=1
+	Signature *SignatureType `xml:"signature,omitempty"`
+	// Check represents XSD element 'check'
+	// minOccurs=0, maxOccurs=-1
+	Check []CheckType `xml:"check,omitempty"`
+	// ComplexCheck represents XSD element 'complex-check'
+	// minOccurs=0, maxOccurs=1
+	ComplexCheck *ComplexCheckType `xml:"complex-check,omitempty"`
+	// Id represents XSD attribute 'id'
+	// use="required"
+	Id RuleIdType `xml:"id,attr"`
+	// Role represents XSD attribute 'role'
+	// use="optional"
+	Role *RoleEnumType `xml:"role,attr,omitempty"`
+	// Severity represents XSD attribute 'severity'
+	// use="optional"
+	Severity *SeverityEnumType `xml:"severity,attr,omitempty"`
+	// Multiple represents XSD attribute 'multiple'
+	// use="optional"
+	Multiple *bool `xml:"multiple,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// SelComplexValueType represents the XSD type 'selComplexValueType'
+// XSD complex type (W3C XSD §3.4)
+type SelComplexValueType struct {
+	ComplexValueType // XSD extension base
+	// Selector represents XSD attribute 'selector'
+	// use="optional"
+	Selector *string `xml:"selector,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// TargetIdRefType represents the XSD type 'targetIdRefType'
+// XSD complex type (W3C XSD §3.4)
+type TargetIdRefType struct {
+	// System represents XSD attribute 'system'
+	// use="required"
+	System string `xml:"system,attr"`
+	// Href represents XSD attribute 'href'
+	// use="required"
+	Href string `xml:"href,attr"`
+	// Name represents XSD attribute 'name'
+	// use="optional"
+	Name *string `xml:"name,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// ProfileIdType represents the XSD type 'profileIdType'
+// XSD simple type (W3C XSD §4.1)
+// pattern="xccdf_[^_]+_profile_.+"
+type ProfileIdType string
+
+// TestresultIdType represents the XSD type 'testresultIdType'
+// XSD simple type (W3C XSD §4.1)
+// pattern="xccdf_[^_]+_testresult_.+"
+type TestresultIdType string
+
+// RoleEnumType represents the XSD type 'roleEnumType'
+// XSD simple type (W3C XSD §4.1)
+// enumeration="full"
+// enumeration="unscored"
+// enumeration="unchecked"
+type RoleEnumType string
+
+// SignatureType represents the XSD type 'signatureType'
+// XSD complex type (W3C XSD §3.4)
+type SignatureType struct {
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// ProfileSelectType represents the XSD type 'profileSelectType'
+// XSD complex type (W3C XSD §3.4)
+type ProfileSelectType struct {
+	// Remark represents XSD element 'remark'
+	// minOccurs=0, maxOccurs=-1
+	Remark []TextTypeWithAttrs `xml:"remark,omitempty"`
+	// Idref represents XSD attribute 'idref'
+	// use="required"
+	Idref string `xml:"idref,attr"`
+	// Selected represents XSD attribute 'selected'
+	// use="required"
+	Selected bool `xml:"selected,attr"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
 
 // ProfileRefineRuleType represents the XSD type 'profileRefineRuleType'
 // XSD complex type (W3C XSD §3.4)
@@ -1688,54 +1682,60 @@ type ProfileRefineRuleType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// MessageType represents the XSD type 'messageType'
+// ModelElementType represents the XSD type 'ModelElementType'
 // XSD complex type (W3C XSD §3.4)
-type MessageTypeWithAttrs struct {
-	Value string `xml:",chardata"` // XSD simple content
-	// Severity represents XSD attribute 'severity'
+type ModelElementType struct {
+	// Param represents XSD element 'param'
+	// minOccurs=0, maxOccurs=-1
+	Param []ParamTypeWithAttrs `xml:"param,omitempty"`
+	// System represents XSD attribute 'system'
 	// use="required"
-	Severity MsgSevEnumType `xml:"severity,attr"`
+	System string `xml:"system,attr"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// MessageType is an alias for MessageTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
-type MessageType = MessageTypeWithAttrs
+// FixStrategyEnumType represents the XSD type 'fixStrategyEnumType'
+// XSD simple type (W3C XSD §4.1)
+// enumeration="unknown"
+// enumeration="configure"
+// enumeration="combination"
+// enumeration="disable"
+// enumeration="enable"
+// enumeration="patch"
+// enumeration="policy"
+// enumeration="restrict"
+// enumeration="update"
+type FixStrategyEnumType string
 
-// TailoringBenchmarkReferenceType represents the XSD type 'tailoringBenchmarkReferenceType'
-// XSD complex type (W3C XSD §3.4)
-type TailoringBenchmarkReferenceType struct {
-	BenchmarkReferenceType // XSD extension base
-	// Version represents XSD attribute 'version'
-	// use="optional"
-	Version *string `xml:"version,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// CheckContentType represents the XSD type 'checkContentType'
+// NoticeType represents the XSD type 'noticeType'
 // XSD complex type (W3C XSD §3.4)
 // mixed="true"
-type CheckContentType struct {
-	InnerXML string `xml:",innerxml"`
+type NoticeType struct {
+	// Id represents XSD attribute 'id'
+	// use="optional"
+	Id       *string `xml:"id,attr,omitempty"`
+	InnerXML string  `xml:",innerxml"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// TargetFactsType represents the XSD type 'targetFactsType'
+// PlainTextType represents the XSD type 'plainTextType'
 // XSD complex type (W3C XSD §3.4)
-type TargetFactsType struct {
-	// Fact represents XSD element 'fact'
-	// minOccurs=0, maxOccurs=-1
-	Fact []FactTypeWithAttrs `xml:"fact,omitempty"`
+type PlainTextTypeWithAttrs struct {
+	Value string `xml:",chardata"` // XSD simple content
+	// Id represents XSD attribute 'id'
+	// use="required"
+	Id string `xml:"id,attr"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
+
+// PlainTextType is an alias for PlainTextTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
+type PlainTextType = PlainTextTypeWithAttrs

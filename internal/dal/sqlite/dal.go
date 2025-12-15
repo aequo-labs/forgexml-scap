@@ -8,10 +8,10 @@ import (
 	_ "embed"
 	"encoding/json"
 	"fmt"
+	_ "github.com/mattn/go-sqlite3"
 	"reflect"
 	"strings"
 	"time"
-	_ "github.com/mattn/go-sqlite3"
 
 	parent "github.com/aequo-labs/forgexml-scap/internal/generated/dal"
 )
@@ -50,7 +50,7 @@ func (nt *NullTime) Scan(value interface{}) error {
 		nt.Time, nt.Valid = time.Time{}, false
 		return nil
 	}
-	
+
 	switch v := value.(type) {
 	case time.Time:
 		nt.Time, nt.Valid = v, true
@@ -605,13 +605,13 @@ func (r *addressDetailsRepository) Create(ctx context.Context, entity *parent.Ad
 
 func (r *addressDetailsRepository) CreateBatch(ctx context.Context, entities []*parent.AddressDetails) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO address_details (address_type, current_status, valid_from_date, valid_to_date, usage, address_details_key, postal_service_elements, address, address_lines_id, country) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -635,11 +635,11 @@ func (r *addressDetailsRepository) CreateBatch(ctx context.Context, entities []*
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -706,7 +706,7 @@ func (r *addressDetailsRepository) GetAll(ctx context.Context, limit, offset int
 
 func (r *addressDetailsRepository) Update(ctx context.Context, entity *parent.AddressDetails) error {
 	query := "UPDATE address_details SET address_type = ?, current_status = ?, valid_from_date = ?, valid_to_date = ?, usage = ?, address_details_key = ?, postal_service_elements = ?, address = ?, address_lines_id = ?, country = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.AddressType,
 		entity.CurrentStatus,
@@ -733,19 +733,19 @@ func (r *addressDetailsRepository) DeleteBatch(ctx context.Context, ids []int64)
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM address_details WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -778,13 +778,13 @@ func (r *addressElementTypeRepository) Create(ctx context.Context, entity *paren
 
 func (r *addressElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.AddressElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO address_element_type (type) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -799,11 +799,11 @@ func (r *addressElementTypeRepository) CreateBatch(ctx context.Context, entities
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -852,7 +852,7 @@ func (r *addressElementTypeRepository) GetAll(ctx context.Context, limit, offset
 
 func (r *addressElementTypeRepository) Update(ctx context.Context, entity *parent.AddressElementType) error {
 	query := "UPDATE address_element_type SET type = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.ID,
@@ -870,19 +870,19 @@ func (r *addressElementTypeRepository) DeleteBatch(ctx context.Context, ids []in
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM address_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -916,13 +916,13 @@ func (r *addressIdentifierElementTypeRepository) Create(ctx context.Context, ent
 
 func (r *addressIdentifierElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.AddressIdentifierElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO address_identifier_element_type (identifier_type, type) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -938,11 +938,11 @@ func (r *addressIdentifierElementTypeRepository) CreateBatch(ctx context.Context
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -993,7 +993,7 @@ func (r *addressIdentifierElementTypeRepository) GetAll(ctx context.Context, lim
 
 func (r *addressIdentifierElementTypeRepository) Update(ctx context.Context, entity *parent.AddressIdentifierElementType) error {
 	query := "UPDATE address_identifier_element_type SET identifier_type = ?, type = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.IdentifierType,
 		entity.Type,
@@ -1012,19 +1012,19 @@ func (r *addressIdentifierElementTypeRepository) DeleteBatch(ctx context.Context
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM address_identifier_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -1057,13 +1057,13 @@ func (r *addressLatitudeDirectionElementTypeRepository) Create(ctx context.Conte
 
 func (r *addressLatitudeDirectionElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.AddressLatitudeDirectionElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO address_latitude_direction_element_type (type) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -1078,11 +1078,11 @@ func (r *addressLatitudeDirectionElementTypeRepository) CreateBatch(ctx context.
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -1131,7 +1131,7 @@ func (r *addressLatitudeDirectionElementTypeRepository) GetAll(ctx context.Conte
 
 func (r *addressLatitudeDirectionElementTypeRepository) Update(ctx context.Context, entity *parent.AddressLatitudeDirectionElementType) error {
 	query := "UPDATE address_latitude_direction_element_type SET type = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.ID,
@@ -1149,19 +1149,19 @@ func (r *addressLatitudeDirectionElementTypeRepository) DeleteBatch(ctx context.
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM address_latitude_direction_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -1194,13 +1194,13 @@ func (r *addressLatitudeElementTypeRepository) Create(ctx context.Context, entit
 
 func (r *addressLatitudeElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.AddressLatitudeElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO address_latitude_element_type (type) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -1215,11 +1215,11 @@ func (r *addressLatitudeElementTypeRepository) CreateBatch(ctx context.Context, 
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -1268,7 +1268,7 @@ func (r *addressLatitudeElementTypeRepository) GetAll(ctx context.Context, limit
 
 func (r *addressLatitudeElementTypeRepository) Update(ctx context.Context, entity *parent.AddressLatitudeElementType) error {
 	query := "UPDATE address_latitude_element_type SET type = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.ID,
@@ -1286,19 +1286,19 @@ func (r *addressLatitudeElementTypeRepository) DeleteBatch(ctx context.Context, 
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM address_latitude_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -1331,13 +1331,13 @@ func (r *addressLineRepository) Create(ctx context.Context, entity *parent.Addre
 
 func (r *addressLineRepository) CreateBatch(ctx context.Context, entities []*parent.AddressLine) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO address_line (type) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -1352,11 +1352,11 @@ func (r *addressLineRepository) CreateBatch(ctx context.Context, entities []*par
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -1405,7 +1405,7 @@ func (r *addressLineRepository) GetAll(ctx context.Context, limit, offset int) (
 
 func (r *addressLineRepository) Update(ctx context.Context, entity *parent.AddressLine) error {
 	query := "UPDATE address_line SET type = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.ID,
@@ -1423,19 +1423,19 @@ func (r *addressLineRepository) DeleteBatch(ctx context.Context, ids []int64) er
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM address_line WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -1468,13 +1468,13 @@ func (r *addressLineElementTypeRepository) Create(ctx context.Context, entity *p
 
 func (r *addressLineElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.AddressLineElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO address_line_element_type (type) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -1489,11 +1489,11 @@ func (r *addressLineElementTypeRepository) CreateBatch(ctx context.Context, enti
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -1542,7 +1542,7 @@ func (r *addressLineElementTypeRepository) GetAll(ctx context.Context, limit, of
 
 func (r *addressLineElementTypeRepository) Update(ctx context.Context, entity *parent.AddressLineElementType) error {
 	query := "UPDATE address_line_element_type SET type = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.ID,
@@ -1560,19 +1560,19 @@ func (r *addressLineElementTypeRepository) DeleteBatch(ctx context.Context, ids 
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM address_line_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -1603,13 +1603,13 @@ func (r *addressLinesTypeRepository) Create(ctx context.Context, entity *parent.
 
 func (r *addressLinesTypeRepository) CreateBatch(ctx context.Context, entities []*parent.AddressLinesType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO address_lines_type DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -1622,11 +1622,11 @@ func (r *addressLinesTypeRepository) CreateBatch(ctx context.Context, entities [
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -1686,19 +1686,19 @@ func (r *addressLinesTypeRepository) DeleteBatch(ctx context.Context, ids []int6
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM address_lines_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -1731,13 +1731,13 @@ func (r *addressLongitudeDirectionElementTypeRepository) Create(ctx context.Cont
 
 func (r *addressLongitudeDirectionElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.AddressLongitudeDirectionElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO address_longitude_direction_element_type (type) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -1752,11 +1752,11 @@ func (r *addressLongitudeDirectionElementTypeRepository) CreateBatch(ctx context
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -1805,7 +1805,7 @@ func (r *addressLongitudeDirectionElementTypeRepository) GetAll(ctx context.Cont
 
 func (r *addressLongitudeDirectionElementTypeRepository) Update(ctx context.Context, entity *parent.AddressLongitudeDirectionElementType) error {
 	query := "UPDATE address_longitude_direction_element_type SET type = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.ID,
@@ -1823,19 +1823,19 @@ func (r *addressLongitudeDirectionElementTypeRepository) DeleteBatch(ctx context
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM address_longitude_direction_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -1868,13 +1868,13 @@ func (r *addressLongitudeElementTypeRepository) Create(ctx context.Context, enti
 
 func (r *addressLongitudeElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.AddressLongitudeElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO address_longitude_element_type (type) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -1889,11 +1889,11 @@ func (r *addressLongitudeElementTypeRepository) CreateBatch(ctx context.Context,
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -1942,7 +1942,7 @@ func (r *addressLongitudeElementTypeRepository) GetAll(ctx context.Context, limi
 
 func (r *addressLongitudeElementTypeRepository) Update(ctx context.Context, entity *parent.AddressLongitudeElementType) error {
 	query := "UPDATE address_longitude_element_type SET type = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.ID,
@@ -1960,19 +1960,19 @@ func (r *addressLongitudeElementTypeRepository) DeleteBatch(ctx context.Context,
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM address_longitude_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -2005,13 +2005,13 @@ func (r *addresseeIndicatorElementTypeRepository) Create(ctx context.Context, en
 
 func (r *addresseeIndicatorElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.AddresseeIndicatorElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO addressee_indicator_element_type (code) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -2026,11 +2026,11 @@ func (r *addresseeIndicatorElementTypeRepository) CreateBatch(ctx context.Contex
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -2079,7 +2079,7 @@ func (r *addresseeIndicatorElementTypeRepository) GetAll(ctx context.Context, li
 
 func (r *addresseeIndicatorElementTypeRepository) Update(ctx context.Context, entity *parent.AddresseeIndicatorElementType) error {
 	query := "UPDATE addressee_indicator_element_type SET code = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Code,
 		entity.ID,
@@ -2097,19 +2097,19 @@ func (r *addresseeIndicatorElementTypeRepository) DeleteBatch(ctx context.Contex
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM addressee_indicator_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -2146,13 +2146,13 @@ func (r *administrativeAreaRepository) Create(ctx context.Context, entity *paren
 
 func (r *administrativeAreaRepository) CreateBatch(ctx context.Context, entities []*parent.AdministrativeArea) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO administrative_area (type, usage_type, indicator, administrative_area_name, sub_administrative_area) VALUES (?, ?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -2171,11 +2171,11 @@ func (r *administrativeAreaRepository) CreateBatch(ctx context.Context, entities
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -2232,7 +2232,7 @@ func (r *administrativeAreaRepository) GetAll(ctx context.Context, limit, offset
 
 func (r *administrativeAreaRepository) Update(ctx context.Context, entity *parent.AdministrativeArea) error {
 	query := "UPDATE administrative_area SET type = ?, usage_type = ?, indicator = ?, administrative_area_name = ?, sub_administrative_area = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.UsageType,
@@ -2254,19 +2254,19 @@ func (r *administrativeAreaRepository) DeleteBatch(ctx context.Context, ids []in
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM administrative_area WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -2303,13 +2303,13 @@ func (r *administrativeAreaElementTypeRepository) Create(ctx context.Context, en
 
 func (r *administrativeAreaElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.AdministrativeAreaElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO administrative_area_element_type (type, usage_type, indicator, administrative_area_name, sub_administrative_area) VALUES (?, ?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -2328,11 +2328,11 @@ func (r *administrativeAreaElementTypeRepository) CreateBatch(ctx context.Contex
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -2389,7 +2389,7 @@ func (r *administrativeAreaElementTypeRepository) GetAll(ctx context.Context, li
 
 func (r *administrativeAreaElementTypeRepository) Update(ctx context.Context, entity *parent.AdministrativeAreaElementType) error {
 	query := "UPDATE administrative_area_element_type SET type = ?, usage_type = ?, indicator = ?, administrative_area_name = ?, sub_administrative_area = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.UsageType,
@@ -2411,19 +2411,19 @@ func (r *administrativeAreaElementTypeRepository) DeleteBatch(ctx context.Contex
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM administrative_area_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -2456,13 +2456,13 @@ func (r *administrativeAreaNameElementTypeRepository) Create(ctx context.Context
 
 func (r *administrativeAreaNameElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.AdministrativeAreaNameElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO administrative_area_name_element_type (type) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -2477,11 +2477,11 @@ func (r *administrativeAreaNameElementTypeRepository) CreateBatch(ctx context.Co
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -2530,7 +2530,7 @@ func (r *administrativeAreaNameElementTypeRepository) GetAll(ctx context.Context
 
 func (r *administrativeAreaNameElementTypeRepository) Update(ctx context.Context, entity *parent.AdministrativeAreaNameElementType) error {
 	query := "UPDATE administrative_area_name_element_type SET type = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.ID,
@@ -2548,19 +2548,19 @@ func (r *administrativeAreaNameElementTypeRepository) DeleteBatch(ctx context.Co
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM administrative_area_name_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -2595,13 +2595,13 @@ func (r *affectedTypeRepository) Create(ctx context.Context, entity *parent.Affe
 
 func (r *affectedTypeRepository) CreateBatch(ctx context.Context, entities []*parent.AffectedType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO affected_type (family, platform, product) VALUES (?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -2618,11 +2618,11 @@ func (r *affectedTypeRepository) CreateBatch(ctx context.Context, entities []*pa
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -2675,7 +2675,7 @@ func (r *affectedTypeRepository) GetAll(ctx context.Context, limit, offset int) 
 
 func (r *affectedTypeRepository) Update(ctx context.Context, entity *parent.AffectedType) error {
 	query := "UPDATE affected_type SET family = ?, platform = ?, product = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Family,
 		entity.Platform,
@@ -2695,19 +2695,19 @@ func (r *affectedTypeRepository) DeleteBatch(ctx context.Context, ids []int64) e
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM affected_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -2742,13 +2742,13 @@ func (r *aliasElementTypeRepository) Create(ctx context.Context, entity *parent.
 
 func (r *aliasElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.AliasElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO alias_element_type (type, name_type, code) VALUES (?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -2765,11 +2765,11 @@ func (r *aliasElementTypeRepository) CreateBatch(ctx context.Context, entities [
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -2822,7 +2822,7 @@ func (r *aliasElementTypeRepository) GetAll(ctx context.Context, limit, offset i
 
 func (r *aliasElementTypeRepository) Update(ctx context.Context, entity *parent.AliasElementType) error {
 	query := "UPDATE alias_element_type SET type = ?, name_type = ?, code = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.NameType,
@@ -2842,19 +2842,19 @@ func (r *aliasElementTypeRepository) DeleteBatch(ctx context.Context, ids []int6
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM alias_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -2885,13 +2885,13 @@ func (r *arcTypeRepository) Create(ctx context.Context, entity *parent.ArcType) 
 
 func (r *arcTypeRepository) CreateBatch(ctx context.Context, entities []*parent.ArcType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO arc_type DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -2904,11 +2904,11 @@ func (r *arcTypeRepository) CreateBatch(ctx context.Context, entities []*parent.
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -2968,19 +2968,19 @@ func (r *arcTypeRepository) DeleteBatch(ctx context.Context, ids []int64) error 
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM arc_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -3013,13 +3013,13 @@ func (r *arithmeticFunctionTypeRepository) Create(ctx context.Context, entity *p
 
 func (r *arithmeticFunctionTypeRepository) CreateBatch(ctx context.Context, entities []*parent.ArithmeticFunctionType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO arithmetic_function_type (arithmetic_operation) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -3034,11 +3034,11 @@ func (r *arithmeticFunctionTypeRepository) CreateBatch(ctx context.Context, enti
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -3087,7 +3087,7 @@ func (r *arithmeticFunctionTypeRepository) GetAll(ctx context.Context, limit, of
 
 func (r *arithmeticFunctionTypeRepository) Update(ctx context.Context, entity *parent.ArithmeticFunctionType) error {
 	query := "UPDATE arithmetic_function_type SET arithmetic_operation = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Arithmetic_operation,
 		entity.ID,
@@ -3105,19 +3105,19 @@ func (r *arithmeticFunctionTypeRepository) DeleteBatch(ctx context.Context, ids 
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM arithmetic_function_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -3150,13 +3150,13 @@ func (r *assetIdentificationAssetElementTypeRepository) Create(ctx context.Conte
 
 func (r *assetIdentificationAssetElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.AssetIdentificationAssetElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO asset_identification_asset_element_type (xsd_id) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -3171,11 +3171,11 @@ func (r *assetIdentificationAssetElementTypeRepository) CreateBatch(ctx context.
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -3224,7 +3224,7 @@ func (r *assetIdentificationAssetElementTypeRepository) GetAll(ctx context.Conte
 
 func (r *assetIdentificationAssetElementTypeRepository) Update(ctx context.Context, entity *parent.AssetIdentificationAssetElementType) error {
 	query := "UPDATE asset_identification_asset_element_type SET xsd_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.XsdId,
 		entity.ID,
@@ -3242,19 +3242,19 @@ func (r *assetIdentificationAssetElementTypeRepository) DeleteBatch(ctx context.
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM asset_identification_asset_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -3288,13 +3288,13 @@ func (r *assetIdentificationTypeRepository) Create(ctx context.Context, entity *
 
 func (r *assetIdentificationTypeRepository) CreateBatch(ctx context.Context, entities []*parent.AssetIdentificationType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO asset_identification_type (asset_ref, parent_id) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -3310,11 +3310,11 @@ func (r *assetIdentificationTypeRepository) CreateBatch(ctx context.Context, ent
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -3365,7 +3365,7 @@ func (r *assetIdentificationTypeRepository) GetAll(ctx context.Context, limit, o
 
 func (r *assetIdentificationTypeRepository) Update(ctx context.Context, entity *parent.AssetIdentificationType) error {
 	query := "UPDATE asset_identification_type SET asset_ref = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.AssetRef,
 		entity.ParentID,
@@ -3384,19 +3384,19 @@ func (r *assetIdentificationTypeRepository) DeleteBatch(ctx context.Context, ids
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM asset_identification_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -3460,13 +3460,13 @@ func (r *assetReportCollectionRepository) Create(ctx context.Context, entity *pa
 
 func (r *assetReportCollectionRepository) CreateBatch(ctx context.Context, entities []*parent.AssetReportCollection) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO asset_report_collection (xsd_id, report_requests, assets, reports, extended_infos, parent_id) VALUES (?, ?, ?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -3486,11 +3486,11 @@ func (r *assetReportCollectionRepository) CreateBatch(ctx context.Context, entit
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -3549,7 +3549,7 @@ func (r *assetReportCollectionRepository) GetAll(ctx context.Context, limit, off
 
 func (r *assetReportCollectionRepository) Update(ctx context.Context, entity *parent.AssetReportCollection) error {
 	query := "UPDATE asset_report_collection SET xsd_id = ?, report_requests = ?, assets = ?, reports = ?, extended_infos = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.XsdId,
 		entity.ReportRequests,
@@ -3572,19 +3572,19 @@ func (r *assetReportCollectionRepository) DeleteBatch(ctx context.Context, ids [
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM asset_report_collection WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -3652,13 +3652,13 @@ func (r *assetReportCollectionElementTypeRepository) Create(ctx context.Context,
 
 func (r *assetReportCollectionElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.AssetReportCollectionElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO asset_report_collection_element_type (xsd_id, report_requests, assets, reports, extended_infos, parent_id) VALUES (?, ?, ?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -3678,11 +3678,11 @@ func (r *assetReportCollectionElementTypeRepository) CreateBatch(ctx context.Con
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -3741,7 +3741,7 @@ func (r *assetReportCollectionElementTypeRepository) GetAll(ctx context.Context,
 
 func (r *assetReportCollectionElementTypeRepository) Update(ctx context.Context, entity *parent.AssetReportCollectionElementType) error {
 	query := "UPDATE asset_report_collection_element_type SET xsd_id = ?, report_requests = ?, assets = ?, reports = ?, extended_infos = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.XsdId,
 		entity.ReportRequests,
@@ -3764,19 +3764,19 @@ func (r *assetReportCollectionElementTypeRepository) DeleteBatch(ctx context.Con
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM asset_report_collection_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -3839,13 +3839,13 @@ func (r *assetReportingFormAssetElementTypeRepository) Create(ctx context.Contex
 
 func (r *assetReportingFormAssetElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.AssetReportingFormAssetElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO asset_reporting_form_asset_element_type (xsd_id) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -3860,11 +3860,11 @@ func (r *assetReportingFormAssetElementTypeRepository) CreateBatch(ctx context.C
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -3913,7 +3913,7 @@ func (r *assetReportingFormAssetElementTypeRepository) GetAll(ctx context.Contex
 
 func (r *assetReportingFormAssetElementTypeRepository) Update(ctx context.Context, entity *parent.AssetReportingFormAssetElementType) error {
 	query := "UPDATE asset_reporting_form_asset_element_type SET xsd_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.XsdId,
 		entity.ID,
@@ -3931,19 +3931,19 @@ func (r *assetReportingFormAssetElementTypeRepository) DeleteBatch(ctx context.C
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM asset_reporting_form_asset_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -3976,13 +3976,13 @@ func (r *assetsElementTypeRepository) Create(ctx context.Context, entity *parent
 
 func (r *assetsElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.AssetsElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO assets_element_type (asset) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -3997,11 +3997,11 @@ func (r *assetsElementTypeRepository) CreateBatch(ctx context.Context, entities 
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -4050,7 +4050,7 @@ func (r *assetsElementTypeRepository) GetAll(ctx context.Context, limit, offset 
 
 func (r *assetsElementTypeRepository) Update(ctx context.Context, entity *parent.AssetsElementType) error {
 	query := "UPDATE assets_element_type SET asset = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Asset,
 		entity.ID,
@@ -4068,19 +4068,19 @@ func (r *assetsElementTypeRepository) DeleteBatch(ctx context.Context, ids []int
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM assets_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -4114,13 +4114,13 @@ func (r *assetsTypeRepository) Create(ctx context.Context, entity *parent.Assets
 
 func (r *assetsTypeRepository) CreateBatch(ctx context.Context, entities []*parent.AssetsType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO assets_type (asset, parent_id) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -4136,11 +4136,11 @@ func (r *assetsTypeRepository) CreateBatch(ctx context.Context, entities []*pare
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -4191,7 +4191,7 @@ func (r *assetsTypeRepository) GetAll(ctx context.Context, limit, offset int) ([
 
 func (r *assetsTypeRepository) Update(ctx context.Context, entity *parent.AssetsType) error {
 	query := "UPDATE assets_type SET asset = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Asset,
 		entity.ParentID,
@@ -4210,19 +4210,19 @@ func (r *assetsTypeRepository) DeleteBatch(ctx context.Context, ids []int64) err
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM assets_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -4281,13 +4281,13 @@ func (r *barcodeElementTypeRepository) Create(ctx context.Context, entity *paren
 
 func (r *barcodeElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.BarcodeElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO barcode_element_type (type) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -4302,11 +4302,11 @@ func (r *barcodeElementTypeRepository) CreateBatch(ctx context.Context, entities
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -4355,7 +4355,7 @@ func (r *barcodeElementTypeRepository) GetAll(ctx context.Context, limit, offset
 
 func (r *barcodeElementTypeRepository) Update(ctx context.Context, entity *parent.BarcodeElementType) error {
 	query := "UPDATE barcode_element_type SET type = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.ID,
@@ -4373,19 +4373,19 @@ func (r *barcodeElementTypeRepository) DeleteBatch(ctx context.Context, ids []in
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM barcode_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -4418,13 +4418,13 @@ func (r *beginFunctionTypeRepository) Create(ctx context.Context, entity *parent
 
 func (r *beginFunctionTypeRepository) CreateBatch(ctx context.Context, entities []*parent.BeginFunctionType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO begin_function_type (character) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -4439,11 +4439,11 @@ func (r *beginFunctionTypeRepository) CreateBatch(ctx context.Context, entities 
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -4492,7 +4492,7 @@ func (r *beginFunctionTypeRepository) GetAll(ctx context.Context, limit, offset 
 
 func (r *beginFunctionTypeRepository) Update(ctx context.Context, entity *parent.BeginFunctionType) error {
 	query := "UPDATE begin_function_type SET character = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Character,
 		entity.ID,
@@ -4510,19 +4510,19 @@ func (r *beginFunctionTypeRepository) DeleteBatch(ctx context.Context, ids []int
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM begin_function_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -4560,13 +4560,13 @@ func (r *benchmarkRepository) Create(ctx context.Context, entity *parent.Benchma
 
 func (r *benchmarkRepository) CreateBatch(ctx context.Context, entities []*parent.Benchmark) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO benchmark (xsd_id, resolved, style, style_href, version_id, signature_id) VALUES (?, ?, ?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -4586,11 +4586,11 @@ func (r *benchmarkRepository) CreateBatch(ctx context.Context, entities []*paren
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -4649,7 +4649,7 @@ func (r *benchmarkRepository) GetAll(ctx context.Context, limit, offset int) ([]
 
 func (r *benchmarkRepository) Update(ctx context.Context, entity *parent.Benchmark) error {
 	query := "UPDATE benchmark SET xsd_id = ?, resolved = ?, style = ?, style_href = ?, version_id = ?, signature_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.XsdId,
 		entity.Resolved,
@@ -4672,19 +4672,19 @@ func (r *benchmarkRepository) DeleteBatch(ctx context.Context, ids []int64) erro
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM benchmark WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -4722,13 +4722,13 @@ func (r *benchmarkElementTypeRepository) Create(ctx context.Context, entity *par
 
 func (r *benchmarkElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.BenchmarkElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO benchmark_element_type (xsd_id, resolved, style, style_href, version_id, signature_id) VALUES (?, ?, ?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -4748,11 +4748,11 @@ func (r *benchmarkElementTypeRepository) CreateBatch(ctx context.Context, entiti
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -4811,7 +4811,7 @@ func (r *benchmarkElementTypeRepository) GetAll(ctx context.Context, limit, offs
 
 func (r *benchmarkElementTypeRepository) Update(ctx context.Context, entity *parent.BenchmarkElementType) error {
 	query := "UPDATE benchmark_element_type SET xsd_id = ?, resolved = ?, style = ?, style_href = ?, version_id = ?, signature_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.XsdId,
 		entity.Resolved,
@@ -4834,19 +4834,19 @@ func (r *benchmarkElementTypeRepository) DeleteBatch(ctx context.Context, ids []
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM benchmark_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -4910,13 +4910,13 @@ func (r *benchmarkReferenceTypeRepository) Create(ctx context.Context, entity *p
 
 func (r *benchmarkReferenceTypeRepository) CreateBatch(ctx context.Context, entities []*parent.BenchmarkReferenceType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO benchmark_reference_type (href, xsd_id) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -4932,11 +4932,11 @@ func (r *benchmarkReferenceTypeRepository) CreateBatch(ctx context.Context, enti
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -4987,7 +4987,7 @@ func (r *benchmarkReferenceTypeRepository) GetAll(ctx context.Context, limit, of
 
 func (r *benchmarkReferenceTypeRepository) Update(ctx context.Context, entity *parent.BenchmarkReferenceType) error {
 	query := "UPDATE benchmark_reference_type SET href = ?, xsd_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Href,
 		entity.XsdId,
@@ -5006,19 +5006,19 @@ func (r *benchmarkReferenceTypeRepository) DeleteBatch(ctx context.Context, ids 
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM benchmark_reference_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -5049,13 +5049,13 @@ func (r *birthdateElementTypeRepository) Create(ctx context.Context, entity *par
 
 func (r *birthdateElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.BirthdateElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO birthdate_element_type DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -5068,11 +5068,11 @@ func (r *birthdateElementTypeRepository) CreateBatch(ctx context.Context, entiti
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -5132,19 +5132,19 @@ func (r *birthdateElementTypeRepository) DeleteBatch(ctx context.Context, ids []
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM birthdate_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -5178,13 +5178,13 @@ func (r *buildingNameTypeRepository) Create(ctx context.Context, entity *parent.
 
 func (r *buildingNameTypeRepository) CreateBatch(ctx context.Context, entities []*parent.BuildingNameType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO building_name_type (type, type_occurrence) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -5200,11 +5200,11 @@ func (r *buildingNameTypeRepository) CreateBatch(ctx context.Context, entities [
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -5255,7 +5255,7 @@ func (r *buildingNameTypeRepository) GetAll(ctx context.Context, limit, offset i
 
 func (r *buildingNameTypeRepository) Update(ctx context.Context, entity *parent.BuildingNameType) error {
 	query := "UPDATE building_name_type SET type = ?, type_occurrence = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.TypeOccurrence,
@@ -5274,19 +5274,19 @@ func (r *buildingNameTypeRepository) DeleteBatch(ctx context.Context, ids []int6
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM building_name_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -5319,13 +5319,13 @@ func (r *cPE2idrefTypeRepository) Create(ctx context.Context, entity *parent.CPE
 
 func (r *cPE2idrefTypeRepository) CreateBatch(ctx context.Context, entities []*parent.CPE2idrefType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO c_p_e2idref_type (idref) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -5340,11 +5340,11 @@ func (r *cPE2idrefTypeRepository) CreateBatch(ctx context.Context, entities []*p
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -5393,7 +5393,7 @@ func (r *cPE2idrefTypeRepository) GetAll(ctx context.Context, limit, offset int)
 
 func (r *cPE2idrefTypeRepository) Update(ctx context.Context, entity *parent.CPE2idrefType) error {
 	query := "UPDATE c_p_e2idref_type SET idref = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Idref,
 		entity.ID,
@@ -5411,19 +5411,19 @@ func (r *cPE2idrefTypeRepository) DeleteBatch(ctx context.Context, ids []int64) 
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM c_p_e2idref_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -5456,13 +5456,13 @@ func (r *canonicalizationMethodTypeRepository) Create(ctx context.Context, entit
 
 func (r *canonicalizationMethodTypeRepository) CreateBatch(ctx context.Context, entities []*parent.CanonicalizationMethodType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO canonicalization_method_type (algorithm) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -5477,11 +5477,11 @@ func (r *canonicalizationMethodTypeRepository) CreateBatch(ctx context.Context, 
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -5530,7 +5530,7 @@ func (r *canonicalizationMethodTypeRepository) GetAll(ctx context.Context, limit
 
 func (r *canonicalizationMethodTypeRepository) Update(ctx context.Context, entity *parent.CanonicalizationMethodType) error {
 	query := "UPDATE canonicalization_method_type SET algorithm = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Algorithm,
 		entity.ID,
@@ -5548,19 +5548,19 @@ func (r *canonicalizationMethodTypeRepository) DeleteBatch(ctx context.Context, 
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM canonicalization_method_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -5594,13 +5594,13 @@ func (r *checkContentRefTypeRepository) Create(ctx context.Context, entity *pare
 
 func (r *checkContentRefTypeRepository) CreateBatch(ctx context.Context, entities []*parent.CheckContentRefType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO \"check_content_ref_type\" (href, name) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -5616,11 +5616,11 @@ func (r *checkContentRefTypeRepository) CreateBatch(ctx context.Context, entitie
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -5671,7 +5671,7 @@ func (r *checkContentRefTypeRepository) GetAll(ctx context.Context, limit, offse
 
 func (r *checkContentRefTypeRepository) Update(ctx context.Context, entity *parent.CheckContentRefType) error {
 	query := "UPDATE \"check_content_ref_type\" SET href = ?, name = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Href,
 		entity.Name,
@@ -5690,19 +5690,19 @@ func (r *checkContentRefTypeRepository) DeleteBatch(ctx context.Context, ids []i
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM \"check_content_ref_type\" WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -5733,13 +5733,13 @@ func (r *checkContentTypeRepository) Create(ctx context.Context, entity *parent.
 
 func (r *checkContentTypeRepository) CreateBatch(ctx context.Context, entities []*parent.CheckContentType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO \"check_content_type\" DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -5752,11 +5752,11 @@ func (r *checkContentTypeRepository) CreateBatch(ctx context.Context, entities [
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -5816,19 +5816,19 @@ func (r *checkContentTypeRepository) DeleteBatch(ctx context.Context, ids []int6
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM \"check_content_type\" WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -5862,13 +5862,13 @@ func (r *checkExportTypeRepository) Create(ctx context.Context, entity *parent.C
 
 func (r *checkExportTypeRepository) CreateBatch(ctx context.Context, entities []*parent.CheckExportType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO \"check_export_type\" (value_id, export_name) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -5884,11 +5884,11 @@ func (r *checkExportTypeRepository) CreateBatch(ctx context.Context, entities []
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -5939,7 +5939,7 @@ func (r *checkExportTypeRepository) GetAll(ctx context.Context, limit, offset in
 
 func (r *checkExportTypeRepository) Update(ctx context.Context, entity *parent.CheckExportType) error {
 	query := "UPDATE \"check_export_type\" SET value_id = ?, export_name = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.ValueId,
 		entity.ExportName,
@@ -5958,19 +5958,19 @@ func (r *checkExportTypeRepository) DeleteBatch(ctx context.Context, ids []int64
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM \"check_export_type\" WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -6004,13 +6004,13 @@ func (r *checkImportTypeRepository) Create(ctx context.Context, entity *parent.C
 
 func (r *checkImportTypeRepository) CreateBatch(ctx context.Context, entities []*parent.CheckImportType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO \"check_import_type\" (import_name, import_xpath) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -6026,11 +6026,11 @@ func (r *checkImportTypeRepository) CreateBatch(ctx context.Context, entities []
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -6081,7 +6081,7 @@ func (r *checkImportTypeRepository) GetAll(ctx context.Context, limit, offset in
 
 func (r *checkImportTypeRepository) Update(ctx context.Context, entity *parent.CheckImportType) error {
 	query := "UPDATE \"check_import_type\" SET import_name = ?, import_xpath = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.ImportName,
 		entity.ImportXpath,
@@ -6100,19 +6100,19 @@ func (r *checkImportTypeRepository) DeleteBatch(ctx context.Context, ids []int64
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM \"check_import_type\" WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -6145,13 +6145,13 @@ func (r *cidrElementTypeRepository) Create(ctx context.Context, entity *parent.C
 
 func (r *cidrElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.CidrElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO cidr_element_type (parent_id) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -6166,11 +6166,11 @@ func (r *cidrElementTypeRepository) CreateBatch(ctx context.Context, entities []
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -6219,7 +6219,7 @@ func (r *cidrElementTypeRepository) GetAll(ctx context.Context, limit, offset in
 
 func (r *cidrElementTypeRepository) Update(ctx context.Context, entity *parent.CidrElementType) error {
 	query := "UPDATE cidr_element_type SET parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.ParentID,
 		entity.ID,
@@ -6237,19 +6237,19 @@ func (r *cidrElementTypeRepository) DeleteBatch(ctx context.Context, ids []int64
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM cidr_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -6280,13 +6280,13 @@ func (r *circuitNameElementTypeRepository) Create(ctx context.Context, entity *p
 
 func (r *circuitNameElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.CircuitNameElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO circuit_name_element_type DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -6299,11 +6299,11 @@ func (r *circuitNameElementTypeRepository) CreateBatch(ctx context.Context, enti
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -6363,19 +6363,19 @@ func (r *circuitNameElementTypeRepository) DeleteBatch(ctx context.Context, ids 
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM circuit_name_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -6409,13 +6409,13 @@ func (r *circuitTypeRepository) Create(ctx context.Context, entity *parent.Circu
 
 func (r *circuitTypeRepository) CreateBatch(ctx context.Context, entities []*parent.CircuitType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO circuit_type (circuit_name, parent_id) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -6431,11 +6431,11 @@ func (r *circuitTypeRepository) CreateBatch(ctx context.Context, entities []*par
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -6486,7 +6486,7 @@ func (r *circuitTypeRepository) GetAll(ctx context.Context, limit, offset int) (
 
 func (r *circuitTypeRepository) Update(ctx context.Context, entity *parent.CircuitType) error {
 	query := "UPDATE circuit_type SET circuit_name = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.CircuitName,
 		entity.ParentID,
@@ -6505,19 +6505,19 @@ func (r *circuitTypeRepository) DeleteBatch(ctx context.Context, ids []int64) er
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM circuit_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -6579,13 +6579,13 @@ func (r *complexCheckTypeRepository) Create(ctx context.Context, entity *parent.
 
 func (r *complexCheckTypeRepository) CreateBatch(ctx context.Context, entities []*parent.ComplexCheckType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO \"complex_check_type\" (operator, negate, check_id, complex_check_id) VALUES (?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -6603,11 +6603,11 @@ func (r *complexCheckTypeRepository) CreateBatch(ctx context.Context, entities [
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -6662,7 +6662,7 @@ func (r *complexCheckTypeRepository) GetAll(ctx context.Context, limit, offset i
 
 func (r *complexCheckTypeRepository) Update(ctx context.Context, entity *parent.ComplexCheckType) error {
 	query := "UPDATE \"complex_check_type\" SET operator = ?, negate = ?, check_id = ?, complex_check_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Operator,
 		entity.Negate,
@@ -6683,19 +6683,19 @@ func (r *complexCheckTypeRepository) DeleteBatch(ctx context.Context, ids []int6
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM \"complex_check_type\" WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -6756,13 +6756,13 @@ func (r *complexValueTypeRepository) Create(ctx context.Context, entity *parent.
 
 func (r *complexValueTypeRepository) CreateBatch(ctx context.Context, entities []*parent.ComplexValueType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO complex_value_type (item) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -6777,11 +6777,11 @@ func (r *complexValueTypeRepository) CreateBatch(ctx context.Context, entities [
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -6830,7 +6830,7 @@ func (r *complexValueTypeRepository) GetAll(ctx context.Context, limit, offset i
 
 func (r *complexValueTypeRepository) Update(ctx context.Context, entity *parent.ComplexValueType) error {
 	query := "UPDATE complex_value_type SET item = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Item,
 		entity.ID,
@@ -6848,19 +6848,19 @@ func (r *complexValueTypeRepository) DeleteBatch(ctx context.Context, ids []int6
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM complex_value_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -6897,13 +6897,13 @@ func (r *computingDeviceTypeRepository) Create(ctx context.Context, entity *pare
 
 func (r *computingDeviceTypeRepository) CreateBatch(ctx context.Context, entities []*parent.ComputingDeviceType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO computing_device_type (distinguished_name, connections, hostname, motherboard_guid, parent_id) VALUES (?, ?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -6922,11 +6922,11 @@ func (r *computingDeviceTypeRepository) CreateBatch(ctx context.Context, entitie
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -6983,7 +6983,7 @@ func (r *computingDeviceTypeRepository) GetAll(ctx context.Context, limit, offse
 
 func (r *computingDeviceTypeRepository) Update(ctx context.Context, entity *parent.ComputingDeviceType) error {
 	query := "UPDATE computing_device_type SET distinguished_name = ?, connections = ?, hostname = ?, motherboard_guid = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.DistinguishedName,
 		entity.Connections,
@@ -7005,19 +7005,19 @@ func (r *computingDeviceTypeRepository) DeleteBatch(ctx context.Context, ids []i
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM computing_device_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -7077,13 +7077,13 @@ func (r *concatFunctionTypeRepository) Create(ctx context.Context, entity *paren
 
 func (r *concatFunctionTypeRepository) CreateBatch(ctx context.Context, entities []*parent.ConcatFunctionType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO concat_function_type DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -7096,11 +7096,11 @@ func (r *concatFunctionTypeRepository) CreateBatch(ctx context.Context, entities
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -7160,19 +7160,19 @@ func (r *concatFunctionTypeRepository) DeleteBatch(ctx context.Context, ids []in
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM concat_function_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -7203,13 +7203,13 @@ func (r *connectionsElementTypeRepository) Create(ctx context.Context, entity *p
 
 func (r *connectionsElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.ConnectionsElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO connections_element_type DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -7222,11 +7222,11 @@ func (r *connectionsElementTypeRepository) CreateBatch(ctx context.Context, enti
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -7286,19 +7286,19 @@ func (r *connectionsElementTypeRepository) DeleteBatch(ctx context.Context, ids 
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM connections_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -7331,13 +7331,13 @@ func (r *constantVariableRepository) Create(ctx context.Context, entity *parent.
 
 func (r *constantVariableRepository) CreateBatch(ctx context.Context, entities []*parent.ConstantVariable) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO constant_variable (parent_id) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -7352,11 +7352,11 @@ func (r *constantVariableRepository) CreateBatch(ctx context.Context, entities [
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -7405,7 +7405,7 @@ func (r *constantVariableRepository) GetAll(ctx context.Context, limit, offset i
 
 func (r *constantVariableRepository) Update(ctx context.Context, entity *parent.ConstantVariable) error {
 	query := "UPDATE constant_variable SET parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.ParentID,
 		entity.ID,
@@ -7423,19 +7423,19 @@ func (r *constantVariableRepository) DeleteBatch(ctx context.Context, ids []int6
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM constant_variable WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -7493,13 +7493,13 @@ func (r *constantVariableElementTypeRepository) Create(ctx context.Context, enti
 
 func (r *constantVariableElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.ConstantVariableElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO constant_variable_element_type (parent_id) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -7514,11 +7514,11 @@ func (r *constantVariableElementTypeRepository) CreateBatch(ctx context.Context,
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -7567,7 +7567,7 @@ func (r *constantVariableElementTypeRepository) GetAll(ctx context.Context, limi
 
 func (r *constantVariableElementTypeRepository) Update(ctx context.Context, entity *parent.ConstantVariableElementType) error {
 	query := "UPDATE constant_variable_element_type SET parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.ParentID,
 		entity.ID,
@@ -7585,19 +7585,19 @@ func (r *constantVariableElementTypeRepository) DeleteBatch(ctx context.Context,
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM constant_variable_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -7641,7 +7641,133 @@ type contentElementTypeRepository struct {
 }
 
 func (r *contentElementTypeRepository) Create(ctx context.Context, entity *parent.ContentElementType) (int64, error) {
-	query := "INSERT INTO content_element_type (data_valid_start_date, data_valid_end_date) VALUES (?, ?)"
+	query := "INSERT INTO content_element_type DEFAULT VALUES"
+
+	result, err := r.db.ExecContext(ctx, query)
+	if err != nil {
+		return 0, err
+	}
+
+	return result.LastInsertId()
+}
+
+func (r *contentElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.ContentElementType) ([]int64, error) {
+	ids := make([]int64, 0, len(entities))
+
+	tx, err := r.db.BeginTx(ctx, nil)
+	if err != nil {
+		return nil, err
+	}
+	defer tx.Rollback()
+
+	query := "INSERT INTO content_element_type DEFAULT VALUES"
+	for range entities {
+		result, err := tx.ExecContext(ctx, query)
+		if err != nil {
+			return nil, err
+		}
+		id, err := result.LastInsertId()
+		if err != nil {
+			return nil, err
+		}
+		ids = append(ids, id)
+	}
+
+	if err := tx.Commit(); err != nil {
+		return nil, err
+	}
+
+	return ids, nil
+}
+
+func (r *contentElementTypeRepository) GetByID(ctx context.Context, id int64) (*parent.ContentElementType, error) {
+	query := "SELECT id FROM content_element_type WHERE id = ?"
+
+	entity := &parent.ContentElementType{}
+	err := r.db.QueryRowContext(ctx, query, id).Scan(
+		&entity.ID,
+	)
+	if err != nil {
+		if err == sql.ErrNoRows {
+			return nil, nil
+		}
+		return nil, err
+	}
+
+	return entity, nil
+}
+
+func (r *contentElementTypeRepository) GetAll(ctx context.Context, limit, offset int) ([]*parent.ContentElementType, error) {
+	query := "SELECT id FROM content_element_type LIMIT ? OFFSET ?"
+
+	rows, err := r.db.QueryContext(ctx, query, limit, offset)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	var entities []*parent.ContentElementType
+	for rows.Next() {
+		entity := &parent.ContentElementType{}
+		err := rows.Scan(
+			&entity.ID,
+		)
+		if err != nil {
+			return nil, err
+		}
+		entities = append(entities, entity)
+	}
+
+	return entities, nil
+}
+
+func (r *contentElementTypeRepository) Update(ctx context.Context, entity *parent.ContentElementType) error {
+	// Table has only ID column, nothing to update
+	return nil
+}
+
+func (r *contentElementTypeRepository) Delete(ctx context.Context, id int64) error {
+	query := "DELETE FROM content_element_type WHERE id = ?"
+	_, err := r.db.ExecContext(ctx, query, id)
+	return err
+}
+
+func (r *contentElementTypeRepository) DeleteBatch(ctx context.Context, ids []int64) error {
+	if len(ids) == 0 {
+		return nil
+	}
+
+	tx, err := r.db.BeginTx(ctx, nil)
+	if err != nil {
+		return err
+	}
+	defer tx.Rollback()
+
+	for _, id := range ids {
+		if _, err := tx.ExecContext(ctx, "DELETE FROM content_element_type WHERE id = ?", id); err != nil {
+			return err
+		}
+	}
+
+	return tx.Commit()
+}
+
+func (r *contentElementTypeRepository) Count(ctx context.Context) (int64, error) {
+	var count int64
+	err := r.db.QueryRowContext(ctx, "SELECT COUNT(*) FROM content_element_type").Scan(&count)
+	return count, err
+}
+
+func (d *dal) ContentElementType1() parent.ContentElementType1Repository {
+	return &contentElementType1Repository{db: d.db}
+}
+
+type contentElementType1Repository struct {
+	db *sql.DB
+}
+
+func (r *contentElementType1Repository) Create(ctx context.Context, entity *parent.ContentElementType1) (int64, error) {
+	query := "INSERT INTO content_element_type1 (data_valid_start_date, data_valid_end_date) VALUES (?, ?)"
 
 	result, err := r.db.ExecContext(ctx, query,
 		entity.DataValidStartDate,
@@ -7654,16 +7780,16 @@ func (r *contentElementTypeRepository) Create(ctx context.Context, entity *paren
 	return result.LastInsertId()
 }
 
-func (r *contentElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.ContentElementType) ([]int64, error) {
+func (r *contentElementType1Repository) CreateBatch(ctx context.Context, entities []*parent.ContentElementType1) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
-	query := "INSERT INTO content_element_type (data_valid_start_date, data_valid_end_date) VALUES (?, ?)"
+
+	query := "INSERT INTO content_element_type1 (data_valid_start_date, data_valid_end_date) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
 			entity.DataValidStartDate,
@@ -7678,18 +7804,18 @@ func (r *contentElementTypeRepository) CreateBatch(ctx context.Context, entities
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
-func (r *contentElementTypeRepository) GetByID(ctx context.Context, id int64) (*parent.ContentElementType, error) {
-	query := "SELECT id, data_valid_start_date, data_valid_end_date FROM content_element_type WHERE id = ?"
+func (r *contentElementType1Repository) GetByID(ctx context.Context, id int64) (*parent.ContentElementType1, error) {
+	query := "SELECT id, data_valid_start_date, data_valid_end_date FROM content_element_type1 WHERE id = ?"
 
-	entity := &parent.ContentElementType{}
+	entity := &parent.ContentElementType1{}
 	var datavalidstartdateTime NullTime
 	var datavalidenddateTime NullTime
 	err := r.db.QueryRowContext(ctx, query, id).Scan(
@@ -7709,8 +7835,8 @@ func (r *contentElementTypeRepository) GetByID(ctx context.Context, id int64) (*
 	return entity, nil
 }
 
-func (r *contentElementTypeRepository) GetAll(ctx context.Context, limit, offset int) ([]*parent.ContentElementType, error) {
-	query := "SELECT id, data_valid_start_date, data_valid_end_date FROM content_element_type LIMIT ? OFFSET ?"
+func (r *contentElementType1Repository) GetAll(ctx context.Context, limit, offset int) ([]*parent.ContentElementType1, error) {
+	query := "SELECT id, data_valid_start_date, data_valid_end_date FROM content_element_type1 LIMIT ? OFFSET ?"
 
 	rows, err := r.db.QueryContext(ctx, query, limit, offset)
 	if err != nil {
@@ -7718,9 +7844,9 @@ func (r *contentElementTypeRepository) GetAll(ctx context.Context, limit, offset
 	}
 	defer rows.Close()
 
-	var entities []*parent.ContentElementType
+	var entities []*parent.ContentElementType1
 	for rows.Next() {
-		entity := &parent.ContentElementType{}
+		entity := &parent.ContentElementType1{}
 		var datavalidstartdateTime NullTime
 		var datavalidenddateTime NullTime
 		err := rows.Scan(
@@ -7739,141 +7865,15 @@ func (r *contentElementTypeRepository) GetAll(ctx context.Context, limit, offset
 	return entities, nil
 }
 
-func (r *contentElementTypeRepository) Update(ctx context.Context, entity *parent.ContentElementType) error {
-	query := "UPDATE content_element_type SET data_valid_start_date = ?, data_valid_end_date = ? WHERE id = ?"
-	
+func (r *contentElementType1Repository) Update(ctx context.Context, entity *parent.ContentElementType1) error {
+	query := "UPDATE content_element_type1 SET data_valid_start_date = ?, data_valid_end_date = ? WHERE id = ?"
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.DataValidStartDate,
 		entity.DataValidEndDate,
 		entity.ID,
 	)
 	return err
-}
-
-func (r *contentElementTypeRepository) Delete(ctx context.Context, id int64) error {
-	query := "DELETE FROM content_element_type WHERE id = ?"
-	_, err := r.db.ExecContext(ctx, query, id)
-	return err
-}
-
-func (r *contentElementTypeRepository) DeleteBatch(ctx context.Context, ids []int64) error {
-	if len(ids) == 0 {
-		return nil
-	}
-	
-	tx, err := r.db.BeginTx(ctx, nil)
-	if err != nil {
-		return err
-	}
-	defer tx.Rollback()
-	
-	for _, id := range ids {
-		if _, err := tx.ExecContext(ctx, "DELETE FROM content_element_type WHERE id = ?", id); err != nil {
-			return err
-		}
-	}
-	
-	return tx.Commit()
-}
-
-func (r *contentElementTypeRepository) Count(ctx context.Context) (int64, error) {
-	var count int64
-	err := r.db.QueryRowContext(ctx, "SELECT COUNT(*) FROM content_element_type").Scan(&count)
-	return count, err
-}
-
-func (d *dal) ContentElementType1() parent.ContentElementType1Repository {
-	return &contentElementType1Repository{db: d.db}
-}
-
-type contentElementType1Repository struct {
-	db *sql.DB
-}
-
-func (r *contentElementType1Repository) Create(ctx context.Context, entity *parent.ContentElementType1) (int64, error) {
-	query := "INSERT INTO content_element_type1 DEFAULT VALUES"
-
-	result, err := r.db.ExecContext(ctx, query)
-	if err != nil {
-		return 0, err
-	}
-
-	return result.LastInsertId()
-}
-
-func (r *contentElementType1Repository) CreateBatch(ctx context.Context, entities []*parent.ContentElementType1) ([]int64, error) {
-	ids := make([]int64, 0, len(entities))
-	
-	tx, err := r.db.BeginTx(ctx, nil)
-	if err != nil {
-		return nil, err
-	}
-	defer tx.Rollback()
-	
-	query := "INSERT INTO content_element_type1 DEFAULT VALUES"
-	for range entities {
-		result, err := tx.ExecContext(ctx, query)
-		if err != nil {
-			return nil, err
-		}
-		id, err := result.LastInsertId()
-		if err != nil {
-			return nil, err
-		}
-		ids = append(ids, id)
-	}
-	
-	if err := tx.Commit(); err != nil {
-		return nil, err
-	}
-	
-	return ids, nil
-}
-
-func (r *contentElementType1Repository) GetByID(ctx context.Context, id int64) (*parent.ContentElementType1, error) {
-	query := "SELECT id FROM content_element_type1 WHERE id = ?"
-
-	entity := &parent.ContentElementType1{}
-	err := r.db.QueryRowContext(ctx, query, id).Scan(
-		&entity.ID,
-	)
-	if err != nil {
-		if err == sql.ErrNoRows {
-			return nil, nil
-		}
-		return nil, err
-	}
-
-	return entity, nil
-}
-
-func (r *contentElementType1Repository) GetAll(ctx context.Context, limit, offset int) ([]*parent.ContentElementType1, error) {
-	query := "SELECT id FROM content_element_type1 LIMIT ? OFFSET ?"
-
-	rows, err := r.db.QueryContext(ctx, query, limit, offset)
-	if err != nil {
-		return nil, err
-	}
-	defer rows.Close()
-
-	var entities []*parent.ContentElementType1
-	for rows.Next() {
-		entity := &parent.ContentElementType1{}
-		err := rows.Scan(
-			&entity.ID,
-		)
-		if err != nil {
-			return nil, err
-		}
-		entities = append(entities, entity)
-	}
-
-	return entities, nil
-}
-
-func (r *contentElementType1Repository) Update(ctx context.Context, entity *parent.ContentElementType1) error {
-	// Table has only ID column, nothing to update
-	return nil
 }
 
 func (r *contentElementType1Repository) Delete(ctx context.Context, id int64) error {
@@ -7886,19 +7886,19 @@ func (r *contentElementType1Repository) DeleteBatch(ctx context.Context, ids []i
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM content_element_type1 WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -7929,13 +7929,13 @@ func (r *countFunctionTypeRepository) Create(ctx context.Context, entity *parent
 
 func (r *countFunctionTypeRepository) CreateBatch(ctx context.Context, entities []*parent.CountFunctionType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO count_function_type DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -7948,11 +7948,11 @@ func (r *countFunctionTypeRepository) CreateBatch(ctx context.Context, entities 
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -8012,19 +8012,19 @@ func (r *countFunctionTypeRepository) DeleteBatch(ctx context.Context, ids []int
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM count_function_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -8057,13 +8057,13 @@ func (r *countryElementTypeRepository) Create(ctx context.Context, entity *paren
 
 func (r *countryElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.CountryElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO country_element_type (country_name_code) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -8078,11 +8078,11 @@ func (r *countryElementTypeRepository) CreateBatch(ctx context.Context, entities
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -8131,7 +8131,7 @@ func (r *countryElementTypeRepository) GetAll(ctx context.Context, limit, offset
 
 func (r *countryElementTypeRepository) Update(ctx context.Context, entity *parent.CountryElementType) error {
 	query := "UPDATE country_element_type SET country_name_code = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.CountryNameCode,
 		entity.ID,
@@ -8149,19 +8149,19 @@ func (r *countryElementTypeRepository) DeleteBatch(ctx context.Context, ids []in
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM country_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -8194,13 +8194,13 @@ func (r *countryNameRepository) Create(ctx context.Context, entity *parent.Count
 
 func (r *countryNameRepository) CreateBatch(ctx context.Context, entities []*parent.CountryName) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO country_name (type) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -8215,11 +8215,11 @@ func (r *countryNameRepository) CreateBatch(ctx context.Context, entities []*par
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -8268,7 +8268,7 @@ func (r *countryNameRepository) GetAll(ctx context.Context, limit, offset int) (
 
 func (r *countryNameRepository) Update(ctx context.Context, entity *parent.CountryName) error {
 	query := "UPDATE country_name SET type = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.ID,
@@ -8286,19 +8286,19 @@ func (r *countryNameRepository) DeleteBatch(ctx context.Context, ids []int64) er
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM country_name WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -8331,13 +8331,13 @@ func (r *countryNameCodeElementTypeRepository) Create(ctx context.Context, entit
 
 func (r *countryNameCodeElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.CountryNameCodeElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO country_name_code_element_type (scheme) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -8352,11 +8352,11 @@ func (r *countryNameCodeElementTypeRepository) CreateBatch(ctx context.Context, 
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -8405,7 +8405,7 @@ func (r *countryNameCodeElementTypeRepository) GetAll(ctx context.Context, limit
 
 func (r *countryNameCodeElementTypeRepository) Update(ctx context.Context, entity *parent.CountryNameCodeElementType) error {
 	query := "UPDATE country_name_code_element_type SET scheme = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Scheme,
 		entity.ID,
@@ -8423,19 +8423,19 @@ func (r *countryNameCodeElementTypeRepository) DeleteBatch(ctx context.Context, 
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM country_name_code_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -8468,13 +8468,13 @@ func (r *countryNameElementTypeRepository) Create(ctx context.Context, entity *p
 
 func (r *countryNameElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.CountryNameElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO country_name_element_type (type) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -8489,11 +8489,11 @@ func (r *countryNameElementTypeRepository) CreateBatch(ctx context.Context, enti
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -8542,7 +8542,7 @@ func (r *countryNameElementTypeRepository) GetAll(ctx context.Context, limit, of
 
 func (r *countryNameElementTypeRepository) Update(ctx context.Context, entity *parent.CountryNameElementType) error {
 	query := "UPDATE country_name_element_type SET type = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.ID,
@@ -8560,19 +8560,19 @@ func (r *countryNameElementTypeRepository) DeleteBatch(ctx context.Context, ids 
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM country_name_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -8605,13 +8605,13 @@ func (r *cpeRepository) Create(ctx context.Context, entity *parent.Cpe) (int64, 
 
 func (r *cpeRepository) CreateBatch(ctx context.Context, entities []*parent.Cpe) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO cpe (parent_id) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -8626,11 +8626,11 @@ func (r *cpeRepository) CreateBatch(ctx context.Context, entities []*parent.Cpe)
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -8679,7 +8679,7 @@ func (r *cpeRepository) GetAll(ctx context.Context, limit, offset int) ([]*paren
 
 func (r *cpeRepository) Update(ctx context.Context, entity *parent.Cpe) error {
 	query := "UPDATE cpe SET parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.ParentID,
 		entity.ID,
@@ -8697,19 +8697,19 @@ func (r *cpeRepository) DeleteBatch(ctx context.Context, ids []int64) error {
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM cpe WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -8742,13 +8742,13 @@ func (r *cpeElementTypeRepository) Create(ctx context.Context, entity *parent.Cp
 
 func (r *cpeElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.CpeElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO cpe_element_type (parent_id) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -8763,11 +8763,11 @@ func (r *cpeElementTypeRepository) CreateBatch(ctx context.Context, entities []*
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -8816,7 +8816,7 @@ func (r *cpeElementTypeRepository) GetAll(ctx context.Context, limit, offset int
 
 func (r *cpeElementTypeRepository) Update(ctx context.Context, entity *parent.CpeElementType) error {
 	query := "UPDATE cpe_element_type SET parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.ParentID,
 		entity.ID,
@@ -8834,19 +8834,19 @@ func (r *cpeElementTypeRepository) DeleteBatch(ctx context.Context, ids []int64)
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM cpe_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -8885,13 +8885,13 @@ func (r *criteriaTypeRepository) Create(ctx context.Context, entity *parent.Crit
 
 func (r *criteriaTypeRepository) CreateBatch(ctx context.Context, entities []*parent.CriteriaType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO criteria_type (applicability_check, operator, negate, comment, criteria_id, criterion_id, extend_definition_id) VALUES (?, ?, ?, ?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -8912,11 +8912,11 @@ func (r *criteriaTypeRepository) CreateBatch(ctx context.Context, entities []*pa
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -8977,7 +8977,7 @@ func (r *criteriaTypeRepository) GetAll(ctx context.Context, limit, offset int) 
 
 func (r *criteriaTypeRepository) Update(ctx context.Context, entity *parent.CriteriaType) error {
 	query := "UPDATE criteria_type SET applicability_check = ?, operator = ?, negate = ?, comment = ?, criteria_id = ?, criterion_id = ?, extend_definition_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Applicability_check,
 		entity.Operator,
@@ -9001,19 +9001,19 @@ func (r *criteriaTypeRepository) DeleteBatch(ctx context.Context, ids []int64) e
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM criteria_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -9142,13 +9142,13 @@ func (r *criterionTypeRepository) Create(ctx context.Context, entity *parent.Cri
 
 func (r *criterionTypeRepository) CreateBatch(ctx context.Context, entities []*parent.CriterionType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO criterion_type (applicability_check, test_ref, negate, comment) VALUES (?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -9166,11 +9166,11 @@ func (r *criterionTypeRepository) CreateBatch(ctx context.Context, entities []*p
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -9225,7 +9225,7 @@ func (r *criterionTypeRepository) GetAll(ctx context.Context, limit, offset int)
 
 func (r *criterionTypeRepository) Update(ctx context.Context, entity *parent.CriterionType) error {
 	query := "UPDATE criterion_type SET applicability_check = ?, test_ref = ?, negate = ?, comment = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Applicability_check,
 		entity.Test_ref,
@@ -9246,19 +9246,19 @@ func (r *criterionTypeRepository) DeleteBatch(ctx context.Context, ids []int64) 
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM criterion_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -9297,13 +9297,13 @@ func (r *dSAKeyValueTypeRepository) Create(ctx context.Context, entity *parent.D
 
 func (r *dSAKeyValueTypeRepository) CreateBatch(ctx context.Context, entities []*parent.DSAKeyValueType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO \"d_s_a_key_value_type\" (g_id, y_id, j_id, p_id, q_id, seed_id, pgen_counter_id) VALUES (?, ?, ?, ?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -9324,11 +9324,11 @@ func (r *dSAKeyValueTypeRepository) CreateBatch(ctx context.Context, entities []
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -9389,7 +9389,7 @@ func (r *dSAKeyValueTypeRepository) GetAll(ctx context.Context, limit, offset in
 
 func (r *dSAKeyValueTypeRepository) Update(ctx context.Context, entity *parent.DSAKeyValueType) error {
 	query := "UPDATE \"d_s_a_key_value_type\" SET g_id = ?, y_id = ?, j_id = ?, p_id = ?, q_id = ?, seed_id = ?, pgen_counter_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.GID,
 		entity.YID,
@@ -9413,19 +9413,19 @@ func (r *dSAKeyValueTypeRepository) DeleteBatch(ctx context.Context, ids []int64
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM \"d_s_a_key_value_type\" WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -9458,13 +9458,13 @@ func (r *dataTypeRepository) Create(ctx context.Context, entity *parent.DataType
 
 func (r *dataTypeRepository) CreateBatch(ctx context.Context, entities []*parent.DataType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO data_type (parent_id) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -9479,11 +9479,11 @@ func (r *dataTypeRepository) CreateBatch(ctx context.Context, entities []*parent
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -9532,7 +9532,7 @@ func (r *dataTypeRepository) GetAll(ctx context.Context, limit, offset int) ([]*
 
 func (r *dataTypeRepository) Update(ctx context.Context, entity *parent.DataType) error {
 	query := "UPDATE data_type SET parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.ParentID,
 		entity.ID,
@@ -9550,19 +9550,19 @@ func (r *dataTypeRepository) DeleteBatch(ctx context.Context, ids []int64) error
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM data_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -9621,13 +9621,13 @@ func (r *databaseTypeRepository) Create(ctx context.Context, entity *parent.Data
 
 func (r *databaseTypeRepository) CreateBatch(ctx context.Context, entities []*parent.DatabaseType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO database_type (instance_name, parent_id) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -9643,11 +9643,11 @@ func (r *databaseTypeRepository) CreateBatch(ctx context.Context, entities []*pa
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -9698,7 +9698,7 @@ func (r *databaseTypeRepository) GetAll(ctx context.Context, limit, offset int) 
 
 func (r *databaseTypeRepository) Update(ctx context.Context, entity *parent.DatabaseType) error {
 	query := "UPDATE database_type SET instance_name = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.InstanceName,
 		entity.ParentID,
@@ -9717,19 +9717,19 @@ func (r *databaseTypeRepository) DeleteBatch(ctx context.Context, ids []int64) e
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM database_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -9786,13 +9786,13 @@ func (r *dcStatusTypeRepository) Create(ctx context.Context, entity *parent.DcSt
 
 func (r *dcStatusTypeRepository) CreateBatch(ctx context.Context, entities []*parent.DcStatusType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO dc_status_type DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -9805,11 +9805,11 @@ func (r *dcStatusTypeRepository) CreateBatch(ctx context.Context, entities []*pa
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -9869,19 +9869,19 @@ func (r *dcStatusTypeRepository) DeleteBatch(ctx context.Context, ids []int64) e
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM dc_status_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -9919,13 +9919,13 @@ func (r *definitionTypeRepository) Create(ctx context.Context, entity *parent.De
 
 func (r *definitionTypeRepository) CreateBatch(ctx context.Context, entities []*parent.DefinitionType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO definition_type (xsd_id, version, class, deprecated, metadata_id, criteria_id) VALUES (?, ?, ?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -9945,11 +9945,11 @@ func (r *definitionTypeRepository) CreateBatch(ctx context.Context, entities []*
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -10008,7 +10008,7 @@ func (r *definitionTypeRepository) GetAll(ctx context.Context, limit, offset int
 
 func (r *definitionTypeRepository) Update(ctx context.Context, entity *parent.DefinitionType) error {
 	query := "UPDATE definition_type SET xsd_id = ?, version = ?, class = ?, deprecated = ?, metadata_id = ?, criteria_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.XsdId,
 		entity.Version,
@@ -10031,19 +10031,19 @@ func (r *definitionTypeRepository) DeleteBatch(ctx context.Context, ids []int64)
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM definition_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -10104,13 +10104,13 @@ func (r *definitionsTypeRepository) Create(ctx context.Context, entity *parent.D
 
 func (r *definitionsTypeRepository) CreateBatch(ctx context.Context, entities []*parent.DefinitionsType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO definitions_type DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -10123,11 +10123,11 @@ func (r *definitionsTypeRepository) CreateBatch(ctx context.Context, entities []
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -10187,19 +10187,19 @@ func (r *definitionsTypeRepository) DeleteBatch(ctx context.Context, ids []int64
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM definitions_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -10234,13 +10234,13 @@ func (r *departmentRepository) Create(ctx context.Context, entity *parent.Depart
 
 func (r *departmentRepository) CreateBatch(ctx context.Context, entities []*parent.Department) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO department (type, department_name, mail_stop_id) VALUES (?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -10257,11 +10257,11 @@ func (r *departmentRepository) CreateBatch(ctx context.Context, entities []*pare
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -10314,7 +10314,7 @@ func (r *departmentRepository) GetAll(ctx context.Context, limit, offset int) ([
 
 func (r *departmentRepository) Update(ctx context.Context, entity *parent.Department) error {
 	query := "UPDATE department SET type = ?, department_name = ?, mail_stop_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.DepartmentName,
@@ -10334,19 +10334,19 @@ func (r *departmentRepository) DeleteBatch(ctx context.Context, ids []int64) err
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM department WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -10381,13 +10381,13 @@ func (r *departmentElementTypeRepository) Create(ctx context.Context, entity *pa
 
 func (r *departmentElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.DepartmentElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO department_element_type (type, department_name, mail_stop_id) VALUES (?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -10404,11 +10404,11 @@ func (r *departmentElementTypeRepository) CreateBatch(ctx context.Context, entit
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -10461,7 +10461,7 @@ func (r *departmentElementTypeRepository) GetAll(ctx context.Context, limit, off
 
 func (r *departmentElementTypeRepository) Update(ctx context.Context, entity *parent.DepartmentElementType) error {
 	query := "UPDATE department_element_type SET type = ?, department_name = ?, mail_stop_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.DepartmentName,
@@ -10481,19 +10481,19 @@ func (r *departmentElementTypeRepository) DeleteBatch(ctx context.Context, ids [
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM department_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -10553,13 +10553,13 @@ func (r *departmentNameElementTypeRepository) Create(ctx context.Context, entity
 
 func (r *departmentNameElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.DepartmentNameElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO department_name_element_type (type) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -10574,11 +10574,11 @@ func (r *departmentNameElementTypeRepository) CreateBatch(ctx context.Context, e
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -10627,7 +10627,7 @@ func (r *departmentNameElementTypeRepository) GetAll(ctx context.Context, limit,
 
 func (r *departmentNameElementTypeRepository) Update(ctx context.Context, entity *parent.DepartmentNameElementType) error {
 	query := "UPDATE department_name_element_type SET type = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.ID,
@@ -10645,19 +10645,19 @@ func (r *departmentNameElementTypeRepository) DeleteBatch(ctx context.Context, i
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM department_name_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -10691,13 +10691,13 @@ func (r *dependencyNameElementTypeRepository) Create(ctx context.Context, entity
 
 func (r *dependencyNameElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.DependencyNameElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO dependency_name_element_type (dependency_type, parent_id) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -10713,11 +10713,11 @@ func (r *dependencyNameElementTypeRepository) CreateBatch(ctx context.Context, e
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -10768,7 +10768,7 @@ func (r *dependencyNameElementTypeRepository) GetAll(ctx context.Context, limit,
 
 func (r *dependencyNameElementTypeRepository) Update(ctx context.Context, entity *parent.DependencyNameElementType) error {
 	query := "UPDATE dependency_name_element_type SET dependency_type = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.DependencyType,
 		entity.ParentID,
@@ -10787,19 +10787,19 @@ func (r *dependencyNameElementTypeRepository) DeleteBatch(ctx context.Context, i
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM dependency_name_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -10832,13 +10832,13 @@ func (r *dependentLocalityNameElementTypeRepository) Create(ctx context.Context,
 
 func (r *dependentLocalityNameElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.DependentLocalityNameElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO dependent_locality_name_element_type (type) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -10853,11 +10853,11 @@ func (r *dependentLocalityNameElementTypeRepository) CreateBatch(ctx context.Con
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -10906,7 +10906,7 @@ func (r *dependentLocalityNameElementTypeRepository) GetAll(ctx context.Context,
 
 func (r *dependentLocalityNameElementTypeRepository) Update(ctx context.Context, entity *parent.DependentLocalityNameElementType) error {
 	query := "UPDATE dependent_locality_name_element_type SET type = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.ID,
@@ -10924,19 +10924,19 @@ func (r *dependentLocalityNameElementTypeRepository) DeleteBatch(ctx context.Con
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM dependent_locality_name_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -10969,13 +10969,13 @@ func (r *dependentLocalityNumberElementTypeRepository) Create(ctx context.Contex
 
 func (r *dependentLocalityNumberElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.DependentLocalityNumberElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO dependent_locality_number_element_type (name_number_occurrence) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -10990,11 +10990,11 @@ func (r *dependentLocalityNumberElementTypeRepository) CreateBatch(ctx context.C
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -11043,7 +11043,7 @@ func (r *dependentLocalityNumberElementTypeRepository) GetAll(ctx context.Contex
 
 func (r *dependentLocalityNumberElementTypeRepository) Update(ctx context.Context, entity *parent.DependentLocalityNumberElementType) error {
 	query := "UPDATE dependent_locality_number_element_type SET name_number_occurrence = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.NameNumberOccurrence,
 		entity.ID,
@@ -11061,19 +11061,19 @@ func (r *dependentLocalityNumberElementTypeRepository) DeleteBatch(ctx context.C
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM dependent_locality_number_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -11114,13 +11114,13 @@ func (r *dependentLocalityTypeRepository) Create(ctx context.Context, entity *pa
 
 func (r *dependentLocalityTypeRepository) CreateBatch(ctx context.Context, entities []*parent.DependentLocalityType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO dependent_locality_type (type, usage_type, connector, indicator, dependent_locality_name, dependent_locality_number, dependent_locality_id, large_mail_user_id, postal_route_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -11143,11 +11143,11 @@ func (r *dependentLocalityTypeRepository) CreateBatch(ctx context.Context, entit
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -11212,7 +11212,7 @@ func (r *dependentLocalityTypeRepository) GetAll(ctx context.Context, limit, off
 
 func (r *dependentLocalityTypeRepository) Update(ctx context.Context, entity *parent.DependentLocalityType) error {
 	query := "UPDATE dependent_locality_type SET type = ?, usage_type = ?, connector = ?, indicator = ?, dependent_locality_name = ?, dependent_locality_number = ?, dependent_locality_id = ?, large_mail_user_id = ?, postal_route_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.UsageType,
@@ -11238,19 +11238,19 @@ func (r *dependentLocalityTypeRepository) DeleteBatch(ctx context.Context, ids [
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM dependent_locality_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -11320,13 +11320,13 @@ func (r *dependentThoroughfareElementTypeRepository) Create(ctx context.Context,
 
 func (r *dependentThoroughfareElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.DependentThoroughfareElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO dependent_thoroughfare_element_type (type, thoroughfare_pre_direction_id, thoroughfare_leading_type_id, thoroughfare_trailing_type_id, thoroughfare_post_direction_id) VALUES (?, ?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -11345,11 +11345,11 @@ func (r *dependentThoroughfareElementTypeRepository) CreateBatch(ctx context.Con
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -11406,7 +11406,7 @@ func (r *dependentThoroughfareElementTypeRepository) GetAll(ctx context.Context,
 
 func (r *dependentThoroughfareElementTypeRepository) Update(ctx context.Context, entity *parent.DependentThoroughfareElementType) error {
 	query := "UPDATE dependent_thoroughfare_element_type SET type = ?, thoroughfare_pre_direction_id = ?, thoroughfare_leading_type_id = ?, thoroughfare_trailing_type_id = ?, thoroughfare_post_direction_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.ThoroughfarePreDirectionID,
@@ -11428,19 +11428,19 @@ func (r *dependentThoroughfareElementTypeRepository) DeleteBatch(ctx context.Con
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM dependent_thoroughfare_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -11591,13 +11591,13 @@ func (r *deprecatedInfoTypeRepository) Create(ctx context.Context, entity *paren
 
 func (r *deprecatedInfoTypeRepository) CreateBatch(ctx context.Context, entities []*parent.DeprecatedInfoType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO deprecated_info_type (version, reason, comment) VALUES (?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -11614,11 +11614,11 @@ func (r *deprecatedInfoTypeRepository) CreateBatch(ctx context.Context, entities
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -11671,7 +11671,7 @@ func (r *deprecatedInfoTypeRepository) GetAll(ctx context.Context, limit, offset
 
 func (r *deprecatedInfoTypeRepository) Update(ctx context.Context, entity *parent.DeprecatedInfoType) error {
 	query := "UPDATE deprecated_info_type SET version = ?, reason = ?, comment = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Version,
 		entity.Reason,
@@ -11691,19 +11691,19 @@ func (r *deprecatedInfoTypeRepository) DeleteBatch(ctx context.Context, ids []in
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM deprecated_info_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -11737,13 +11737,13 @@ func (r *dictionary20CheckTypeRepository) Create(ctx context.Context, entity *pa
 
 func (r *dictionary20CheckTypeRepository) CreateBatch(ctx context.Context, entities []*parent.Dictionary20CheckType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO \"dictionary_2_0_check_type\" (system, href) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -11759,11 +11759,11 @@ func (r *dictionary20CheckTypeRepository) CreateBatch(ctx context.Context, entit
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -11814,7 +11814,7 @@ func (r *dictionary20CheckTypeRepository) GetAll(ctx context.Context, limit, off
 
 func (r *dictionary20CheckTypeRepository) Update(ctx context.Context, entity *parent.Dictionary20CheckType) error {
 	query := "UPDATE \"dictionary_2_0_check_type\" SET system = ?, href = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.System,
 		entity.Href,
@@ -11833,19 +11833,19 @@ func (r *dictionary20CheckTypeRepository) DeleteBatch(ctx context.Context, ids [
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM \"dictionary_2_0_check_type\" WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -11881,13 +11881,13 @@ func (r *dictionary20GeneratorTypeRepository) Create(ctx context.Context, entity
 
 func (r *dictionary20GeneratorTypeRepository) CreateBatch(ctx context.Context, entities []*parent.Dictionary20GeneratorType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO dictionary_2_0_generator_type (product_name, product_version, schema_version, timestamp) VALUES (?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -11905,11 +11905,11 @@ func (r *dictionary20GeneratorTypeRepository) CreateBatch(ctx context.Context, e
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -11968,7 +11968,7 @@ func (r *dictionary20GeneratorTypeRepository) GetAll(ctx context.Context, limit,
 
 func (r *dictionary20GeneratorTypeRepository) Update(ctx context.Context, entity *parent.Dictionary20GeneratorType) error {
 	query := "UPDATE dictionary_2_0_generator_type SET product_name = ?, product_version = ?, schema_version = ?, timestamp = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Product_name,
 		entity.Product_version,
@@ -11989,19 +11989,19 @@ func (r *dictionary20GeneratorTypeRepository) DeleteBatch(ctx context.Context, i
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM dictionary_2_0_generator_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -12068,13 +12068,13 @@ func (r *dictionary20ItemTypeRepository) Create(ctx context.Context, entity *par
 
 func (r *dictionary20ItemTypeRepository) CreateBatch(ctx context.Context, entities []*parent.Dictionary20ItemType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO dictionary_2_0_item_type (name, deprecated, deprecated_by, deprecation_date, references_id) VALUES (?, ?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -12093,11 +12093,11 @@ func (r *dictionary20ItemTypeRepository) CreateBatch(ctx context.Context, entiti
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -12158,7 +12158,7 @@ func (r *dictionary20ItemTypeRepository) GetAll(ctx context.Context, limit, offs
 
 func (r *dictionary20ItemTypeRepository) Update(ctx context.Context, entity *parent.Dictionary20ItemType) error {
 	query := "UPDATE dictionary_2_0_item_type SET name = ?, deprecated = ?, deprecated_by = ?, deprecation_date = ?, references_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Name,
 		entity.Deprecated,
@@ -12180,19 +12180,19 @@ func (r *dictionary20ItemTypeRepository) DeleteBatch(ctx context.Context, ids []
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM dictionary_2_0_item_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -12256,13 +12256,13 @@ func (r *dictionary20NotesTypeRepository) Create(ctx context.Context, entity *pa
 
 func (r *dictionary20NotesTypeRepository) CreateBatch(ctx context.Context, entities []*parent.Dictionary20NotesType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO dictionary_2_0_notes_type (note) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -12277,11 +12277,11 @@ func (r *dictionary20NotesTypeRepository) CreateBatch(ctx context.Context, entit
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -12330,7 +12330,7 @@ func (r *dictionary20NotesTypeRepository) GetAll(ctx context.Context, limit, off
 
 func (r *dictionary20NotesTypeRepository) Update(ctx context.Context, entity *parent.Dictionary20NotesType) error {
 	query := "UPDATE dictionary_2_0_notes_type SET note = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Note,
 		entity.ID,
@@ -12348,19 +12348,19 @@ func (r *dictionary20NotesTypeRepository) DeleteBatch(ctx context.Context, ids [
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM dictionary_2_0_notes_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -12391,13 +12391,13 @@ func (r *dictionary20TextTypeRepository) Create(ctx context.Context, entity *par
 
 func (r *dictionary20TextTypeRepository) CreateBatch(ctx context.Context, entities []*parent.Dictionary20TextType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO dictionary_2_0_text_type DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -12410,11 +12410,11 @@ func (r *dictionary20TextTypeRepository) CreateBatch(ctx context.Context, entiti
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -12474,19 +12474,19 @@ func (r *dictionary20TextTypeRepository) DeleteBatch(ctx context.Context, ids []
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM dictionary_2_0_text_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -12519,13 +12519,13 @@ func (r *digestMethodTypeRepository) Create(ctx context.Context, entity *parent.
 
 func (r *digestMethodTypeRepository) CreateBatch(ctx context.Context, entities []*parent.DigestMethodType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO digest_method_type (algorithm) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -12540,11 +12540,11 @@ func (r *digestMethodTypeRepository) CreateBatch(ctx context.Context, entities [
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -12593,7 +12593,7 @@ func (r *digestMethodTypeRepository) GetAll(ctx context.Context, limit, offset i
 
 func (r *digestMethodTypeRepository) Update(ctx context.Context, entity *parent.DigestMethodType) error {
 	query := "UPDATE digest_method_type SET algorithm = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Algorithm,
 		entity.ID,
@@ -12611,19 +12611,19 @@ func (r *digestMethodTypeRepository) DeleteBatch(ctx context.Context, ids []int6
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM digest_method_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -12654,13 +12654,13 @@ func (r *distinguishedNameElementTypeRepository) Create(ctx context.Context, ent
 
 func (r *distinguishedNameElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.DistinguishedNameElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO distinguished_name_element_type DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -12673,11 +12673,11 @@ func (r *distinguishedNameElementTypeRepository) CreateBatch(ctx context.Context
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -12737,19 +12737,19 @@ func (r *distinguishedNameElementTypeRepository) DeleteBatch(ctx context.Context
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM distinguished_name_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -12780,13 +12780,13 @@ func (r *documentRootElementTypeRepository) Create(ctx context.Context, entity *
 
 func (r *documentRootElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.DocumentRootElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO document_root_element_type DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -12799,11 +12799,11 @@ func (r *documentRootElementTypeRepository) CreateBatch(ctx context.Context, ent
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -12863,19 +12863,19 @@ func (r *documentRootElementTypeRepository) DeleteBatch(ctx context.Context, ids
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM document_root_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -12908,13 +12908,13 @@ func (r *elementMapItemTypeRepository) Create(ctx context.Context, entity *paren
 
 func (r *elementMapItemTypeRepository) CreateBatch(ctx context.Context, entities []*parent.ElementMapItemType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO element_map_item_type (target_namespace) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -12929,11 +12929,11 @@ func (r *elementMapItemTypeRepository) CreateBatch(ctx context.Context, entities
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -12982,7 +12982,7 @@ func (r *elementMapItemTypeRepository) GetAll(ctx context.Context, limit, offset
 
 func (r *elementMapItemTypeRepository) Update(ctx context.Context, entity *parent.ElementMapItemType) error {
 	query := "UPDATE element_map_item_type SET target_namespace = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Target_namespace,
 		entity.ID,
@@ -13000,19 +13000,19 @@ func (r *elementMapItemTypeRepository) DeleteBatch(ctx context.Context, ids []in
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM element_map_item_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -13048,13 +13048,13 @@ func (r *elementMapTypeRepository) Create(ctx context.Context, entity *parent.El
 
 func (r *elementMapTypeRepository) CreateBatch(ctx context.Context, entities []*parent.ElementMapType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO element_map_type (test_id, object_id, state_id, item_id) VALUES (?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -13072,11 +13072,11 @@ func (r *elementMapTypeRepository) CreateBatch(ctx context.Context, entities []*
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -13131,7 +13131,7 @@ func (r *elementMapTypeRepository) GetAll(ctx context.Context, limit, offset int
 
 func (r *elementMapTypeRepository) Update(ctx context.Context, entity *parent.ElementMapType) error {
 	query := "UPDATE element_map_type SET test_id = ?, object_id = ?, state_id = ?, item_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.TestID,
 		entity.ObjectID,
@@ -13152,19 +13152,19 @@ func (r *elementMapTypeRepository) DeleteBatch(ctx context.Context, ids []int64)
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM element_map_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -13223,13 +13223,13 @@ func (r *emailAddressRepository) Create(ctx context.Context, entity *parent.Emai
 
 func (r *emailAddressRepository) CreateBatch(ctx context.Context, entities []*parent.EmailAddress) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO email_address DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -13242,11 +13242,11 @@ func (r *emailAddressRepository) CreateBatch(ctx context.Context, entities []*pa
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -13306,19 +13306,19 @@ func (r *emailAddressRepository) DeleteBatch(ctx context.Context, ids []int64) e
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM email_address WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -13349,13 +13349,13 @@ func (r *emailAddressElementTypeRepository) Create(ctx context.Context, entity *
 
 func (r *emailAddressElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.EmailAddressElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO email_address_element_type DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -13368,11 +13368,11 @@ func (r *emailAddressElementTypeRepository) CreateBatch(ctx context.Context, ent
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -13432,19 +13432,19 @@ func (r *emailAddressElementTypeRepository) DeleteBatch(ctx context.Context, ids
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM email_address_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -13477,13 +13477,13 @@ func (r *endFunctionTypeRepository) Create(ctx context.Context, entity *parent.E
 
 func (r *endFunctionTypeRepository) CreateBatch(ctx context.Context, entities []*parent.EndFunctionType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO \"end_function_type\" (character) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -13498,11 +13498,11 @@ func (r *endFunctionTypeRepository) CreateBatch(ctx context.Context, entities []
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -13551,7 +13551,7 @@ func (r *endFunctionTypeRepository) GetAll(ctx context.Context, limit, offset in
 
 func (r *endFunctionTypeRepository) Update(ctx context.Context, entity *parent.EndFunctionType) error {
 	query := "UPDATE \"end_function_type\" SET character = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Character,
 		entity.ID,
@@ -13569,19 +13569,19 @@ func (r *endFunctionTypeRepository) DeleteBatch(ctx context.Context, ids []int64
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM \"end_function_type\" WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -13614,13 +13614,13 @@ func (r *endorsementLineCodeElementTypeRepository) Create(ctx context.Context, e
 
 func (r *endorsementLineCodeElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.EndorsementLineCodeElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO endorsement_line_code_element_type (type) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -13635,11 +13635,11 @@ func (r *endorsementLineCodeElementTypeRepository) CreateBatch(ctx context.Conte
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -13688,7 +13688,7 @@ func (r *endorsementLineCodeElementTypeRepository) GetAll(ctx context.Context, l
 
 func (r *endorsementLineCodeElementTypeRepository) Update(ctx context.Context, entity *parent.EndorsementLineCodeElementType) error {
 	query := "UPDATE endorsement_line_code_element_type SET type = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.ID,
@@ -13706,19 +13706,19 @@ func (r *endorsementLineCodeElementTypeRepository) DeleteBatch(ctx context.Conte
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM endorsement_line_code_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -13752,13 +13752,13 @@ func (r *entityObjectAnySimpleTypeRepository) Create(ctx context.Context, entity
 
 func (r *entityObjectAnySimpleTypeRepository) CreateBatch(ctx context.Context, entities []*parent.EntityObjectAnySimpleType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO \"entity_object_any_simple_type\" (datatype, parent_id) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -13774,11 +13774,11 @@ func (r *entityObjectAnySimpleTypeRepository) CreateBatch(ctx context.Context, e
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -13829,7 +13829,7 @@ func (r *entityObjectAnySimpleTypeRepository) GetAll(ctx context.Context, limit,
 
 func (r *entityObjectAnySimpleTypeRepository) Update(ctx context.Context, entity *parent.EntityObjectAnySimpleType) error {
 	query := "UPDATE \"entity_object_any_simple_type\" SET datatype = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Datatype,
 		entity.ParentID,
@@ -13848,19 +13848,19 @@ func (r *entityObjectAnySimpleTypeRepository) DeleteBatch(ctx context.Context, i
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM \"entity_object_any_simple_type\" WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -13920,13 +13920,13 @@ func (r *entityObjectBinaryTypeRepository) Create(ctx context.Context, entity *p
 
 func (r *entityObjectBinaryTypeRepository) CreateBatch(ctx context.Context, entities []*parent.EntityObjectBinaryType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO entity_object_binary_type (datatype, parent_id) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -13942,11 +13942,11 @@ func (r *entityObjectBinaryTypeRepository) CreateBatch(ctx context.Context, enti
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -13997,7 +13997,7 @@ func (r *entityObjectBinaryTypeRepository) GetAll(ctx context.Context, limit, of
 
 func (r *entityObjectBinaryTypeRepository) Update(ctx context.Context, entity *parent.EntityObjectBinaryType) error {
 	query := "UPDATE entity_object_binary_type SET datatype = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Datatype,
 		entity.ParentID,
@@ -14016,19 +14016,19 @@ func (r *entityObjectBinaryTypeRepository) DeleteBatch(ctx context.Context, ids 
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM entity_object_binary_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -14088,13 +14088,13 @@ func (r *entityObjectBoolTypeRepository) Create(ctx context.Context, entity *par
 
 func (r *entityObjectBoolTypeRepository) CreateBatch(ctx context.Context, entities []*parent.EntityObjectBoolType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO entity_object_bool_type (datatype, parent_id) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -14110,11 +14110,11 @@ func (r *entityObjectBoolTypeRepository) CreateBatch(ctx context.Context, entiti
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -14165,7 +14165,7 @@ func (r *entityObjectBoolTypeRepository) GetAll(ctx context.Context, limit, offs
 
 func (r *entityObjectBoolTypeRepository) Update(ctx context.Context, entity *parent.EntityObjectBoolType) error {
 	query := "UPDATE entity_object_bool_type SET datatype = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Datatype,
 		entity.ParentID,
@@ -14184,19 +14184,19 @@ func (r *entityObjectBoolTypeRepository) DeleteBatch(ctx context.Context, ids []
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM entity_object_bool_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -14256,13 +14256,13 @@ func (r *entityObjectFieldTypeRepository) Create(ctx context.Context, entity *pa
 
 func (r *entityObjectFieldTypeRepository) CreateBatch(ctx context.Context, entities []*parent.EntityObjectFieldType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO entity_object_field_type (name, entity_check) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -14278,11 +14278,11 @@ func (r *entityObjectFieldTypeRepository) CreateBatch(ctx context.Context, entit
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -14333,7 +14333,7 @@ func (r *entityObjectFieldTypeRepository) GetAll(ctx context.Context, limit, off
 
 func (r *entityObjectFieldTypeRepository) Update(ctx context.Context, entity *parent.EntityObjectFieldType) error {
 	query := "UPDATE entity_object_field_type SET name = ?, entity_check = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Name,
 		entity.Entity_check,
@@ -14352,19 +14352,19 @@ func (r *entityObjectFieldTypeRepository) DeleteBatch(ctx context.Context, ids [
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM entity_object_field_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -14398,13 +14398,13 @@ func (r *entityObjectFloatTypeRepository) Create(ctx context.Context, entity *pa
 
 func (r *entityObjectFloatTypeRepository) CreateBatch(ctx context.Context, entities []*parent.EntityObjectFloatType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO entity_object_float_type (datatype, parent_id) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -14420,11 +14420,11 @@ func (r *entityObjectFloatTypeRepository) CreateBatch(ctx context.Context, entit
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -14475,7 +14475,7 @@ func (r *entityObjectFloatTypeRepository) GetAll(ctx context.Context, limit, off
 
 func (r *entityObjectFloatTypeRepository) Update(ctx context.Context, entity *parent.EntityObjectFloatType) error {
 	query := "UPDATE entity_object_float_type SET datatype = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Datatype,
 		entity.ParentID,
@@ -14494,19 +14494,19 @@ func (r *entityObjectFloatTypeRepository) DeleteBatch(ctx context.Context, ids [
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM entity_object_float_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -14566,13 +14566,13 @@ func (r *entityObjectIPAddressStringTypeRepository) Create(ctx context.Context, 
 
 func (r *entityObjectIPAddressStringTypeRepository) CreateBatch(ctx context.Context, entities []*parent.EntityObjectIPAddressStringType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO entity_object_i_p_address_string_type (datatype, parent_id) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -14588,11 +14588,11 @@ func (r *entityObjectIPAddressStringTypeRepository) CreateBatch(ctx context.Cont
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -14643,7 +14643,7 @@ func (r *entityObjectIPAddressStringTypeRepository) GetAll(ctx context.Context, 
 
 func (r *entityObjectIPAddressStringTypeRepository) Update(ctx context.Context, entity *parent.EntityObjectIPAddressStringType) error {
 	query := "UPDATE entity_object_i_p_address_string_type SET datatype = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Datatype,
 		entity.ParentID,
@@ -14662,19 +14662,19 @@ func (r *entityObjectIPAddressStringTypeRepository) DeleteBatch(ctx context.Cont
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM entity_object_i_p_address_string_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -14734,13 +14734,13 @@ func (r *entityObjectIPAddressTypeRepository) Create(ctx context.Context, entity
 
 func (r *entityObjectIPAddressTypeRepository) CreateBatch(ctx context.Context, entities []*parent.EntityObjectIPAddressType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO entity_object_i_p_address_type (datatype, parent_id) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -14756,11 +14756,11 @@ func (r *entityObjectIPAddressTypeRepository) CreateBatch(ctx context.Context, e
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -14811,7 +14811,7 @@ func (r *entityObjectIPAddressTypeRepository) GetAll(ctx context.Context, limit,
 
 func (r *entityObjectIPAddressTypeRepository) Update(ctx context.Context, entity *parent.EntityObjectIPAddressType) error {
 	query := "UPDATE entity_object_i_p_address_type SET datatype = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Datatype,
 		entity.ParentID,
@@ -14830,19 +14830,19 @@ func (r *entityObjectIPAddressTypeRepository) DeleteBatch(ctx context.Context, i
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM entity_object_i_p_address_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -14902,13 +14902,13 @@ func (r *entityObjectIntTypeRepository) Create(ctx context.Context, entity *pare
 
 func (r *entityObjectIntTypeRepository) CreateBatch(ctx context.Context, entities []*parent.EntityObjectIntType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO entity_object_int_type (datatype, parent_id) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -14924,11 +14924,11 @@ func (r *entityObjectIntTypeRepository) CreateBatch(ctx context.Context, entitie
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -14979,7 +14979,7 @@ func (r *entityObjectIntTypeRepository) GetAll(ctx context.Context, limit, offse
 
 func (r *entityObjectIntTypeRepository) Update(ctx context.Context, entity *parent.EntityObjectIntType) error {
 	query := "UPDATE entity_object_int_type SET datatype = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Datatype,
 		entity.ParentID,
@@ -14998,19 +14998,19 @@ func (r *entityObjectIntTypeRepository) DeleteBatch(ctx context.Context, ids []i
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM entity_object_int_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -15069,13 +15069,13 @@ func (r *entityObjectRecordTypeRepository) Create(ctx context.Context, entity *p
 
 func (r *entityObjectRecordTypeRepository) CreateBatch(ctx context.Context, entities []*parent.EntityObjectRecordType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO entity_object_record_type (parent_id) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -15090,11 +15090,11 @@ func (r *entityObjectRecordTypeRepository) CreateBatch(ctx context.Context, enti
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -15143,7 +15143,7 @@ func (r *entityObjectRecordTypeRepository) GetAll(ctx context.Context, limit, of
 
 func (r *entityObjectRecordTypeRepository) Update(ctx context.Context, entity *parent.EntityObjectRecordType) error {
 	query := "UPDATE entity_object_record_type SET parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.ParentID,
 		entity.ID,
@@ -15161,19 +15161,19 @@ func (r *entityObjectRecordTypeRepository) DeleteBatch(ctx context.Context, ids 
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM entity_object_record_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -15232,13 +15232,13 @@ func (r *entityObjectStringTypeRepository) Create(ctx context.Context, entity *p
 
 func (r *entityObjectStringTypeRepository) CreateBatch(ctx context.Context, entities []*parent.EntityObjectStringType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO entity_object_string_type (datatype, parent_id) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -15254,11 +15254,11 @@ func (r *entityObjectStringTypeRepository) CreateBatch(ctx context.Context, enti
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -15309,7 +15309,7 @@ func (r *entityObjectStringTypeRepository) GetAll(ctx context.Context, limit, of
 
 func (r *entityObjectStringTypeRepository) Update(ctx context.Context, entity *parent.EntityObjectStringType) error {
 	query := "UPDATE entity_object_string_type SET datatype = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Datatype,
 		entity.ParentID,
@@ -15328,19 +15328,19 @@ func (r *entityObjectStringTypeRepository) DeleteBatch(ctx context.Context, ids 
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM entity_object_string_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -15400,13 +15400,13 @@ func (r *entityObjectVersionTypeRepository) Create(ctx context.Context, entity *
 
 func (r *entityObjectVersionTypeRepository) CreateBatch(ctx context.Context, entities []*parent.EntityObjectVersionType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO entity_object_version_type (datatype, parent_id) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -15422,11 +15422,11 @@ func (r *entityObjectVersionTypeRepository) CreateBatch(ctx context.Context, ent
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -15477,7 +15477,7 @@ func (r *entityObjectVersionTypeRepository) GetAll(ctx context.Context, limit, o
 
 func (r *entityObjectVersionTypeRepository) Update(ctx context.Context, entity *parent.EntityObjectVersionType) error {
 	query := "UPDATE entity_object_version_type SET datatype = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Datatype,
 		entity.ParentID,
@@ -15496,19 +15496,19 @@ func (r *entityObjectVersionTypeRepository) DeleteBatch(ctx context.Context, ids
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM entity_object_version_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -15568,13 +15568,13 @@ func (r *entityStateAnySimpleTypeRepository) Create(ctx context.Context, entity 
 
 func (r *entityStateAnySimpleTypeRepository) CreateBatch(ctx context.Context, entities []*parent.EntityStateAnySimpleType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO \"entity_state_any_simple_type\" (datatype, parent_id) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -15590,11 +15590,11 @@ func (r *entityStateAnySimpleTypeRepository) CreateBatch(ctx context.Context, en
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -15645,7 +15645,7 @@ func (r *entityStateAnySimpleTypeRepository) GetAll(ctx context.Context, limit, 
 
 func (r *entityStateAnySimpleTypeRepository) Update(ctx context.Context, entity *parent.EntityStateAnySimpleType) error {
 	query := "UPDATE \"entity_state_any_simple_type\" SET datatype = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Datatype,
 		entity.ParentID,
@@ -15664,19 +15664,19 @@ func (r *entityStateAnySimpleTypeRepository) DeleteBatch(ctx context.Context, id
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM \"entity_state_any_simple_type\" WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -15736,13 +15736,13 @@ func (r *entityStateBinaryTypeRepository) Create(ctx context.Context, entity *pa
 
 func (r *entityStateBinaryTypeRepository) CreateBatch(ctx context.Context, entities []*parent.EntityStateBinaryType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO entity_state_binary_type (datatype, parent_id) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -15758,11 +15758,11 @@ func (r *entityStateBinaryTypeRepository) CreateBatch(ctx context.Context, entit
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -15813,7 +15813,7 @@ func (r *entityStateBinaryTypeRepository) GetAll(ctx context.Context, limit, off
 
 func (r *entityStateBinaryTypeRepository) Update(ctx context.Context, entity *parent.EntityStateBinaryType) error {
 	query := "UPDATE entity_state_binary_type SET datatype = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Datatype,
 		entity.ParentID,
@@ -15832,19 +15832,19 @@ func (r *entityStateBinaryTypeRepository) DeleteBatch(ctx context.Context, ids [
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM entity_state_binary_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -15904,13 +15904,13 @@ func (r *entityStateBoolTypeRepository) Create(ctx context.Context, entity *pare
 
 func (r *entityStateBoolTypeRepository) CreateBatch(ctx context.Context, entities []*parent.EntityStateBoolType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO entity_state_bool_type (datatype, parent_id) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -15926,11 +15926,11 @@ func (r *entityStateBoolTypeRepository) CreateBatch(ctx context.Context, entitie
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -15981,7 +15981,7 @@ func (r *entityStateBoolTypeRepository) GetAll(ctx context.Context, limit, offse
 
 func (r *entityStateBoolTypeRepository) Update(ctx context.Context, entity *parent.EntityStateBoolType) error {
 	query := "UPDATE entity_state_bool_type SET datatype = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Datatype,
 		entity.ParentID,
@@ -16000,19 +16000,19 @@ func (r *entityStateBoolTypeRepository) DeleteBatch(ctx context.Context, ids []i
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM entity_state_bool_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -16072,13 +16072,13 @@ func (r *entityStateDebianEVRStringTypeRepository) Create(ctx context.Context, e
 
 func (r *entityStateDebianEVRStringTypeRepository) CreateBatch(ctx context.Context, entities []*parent.EntityStateDebianEVRStringType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO entity_state_debian_e_v_r_string_type (datatype, parent_id) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -16094,11 +16094,11 @@ func (r *entityStateDebianEVRStringTypeRepository) CreateBatch(ctx context.Conte
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -16149,7 +16149,7 @@ func (r *entityStateDebianEVRStringTypeRepository) GetAll(ctx context.Context, l
 
 func (r *entityStateDebianEVRStringTypeRepository) Update(ctx context.Context, entity *parent.EntityStateDebianEVRStringType) error {
 	query := "UPDATE entity_state_debian_e_v_r_string_type SET datatype = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Datatype,
 		entity.ParentID,
@@ -16168,19 +16168,19 @@ func (r *entityStateDebianEVRStringTypeRepository) DeleteBatch(ctx context.Conte
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM entity_state_debian_e_v_r_string_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -16240,13 +16240,13 @@ func (r *entityStateEVRStringTypeRepository) Create(ctx context.Context, entity 
 
 func (r *entityStateEVRStringTypeRepository) CreateBatch(ctx context.Context, entities []*parent.EntityStateEVRStringType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO entity_state_e_v_r_string_type (datatype, parent_id) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -16262,11 +16262,11 @@ func (r *entityStateEVRStringTypeRepository) CreateBatch(ctx context.Context, en
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -16317,7 +16317,7 @@ func (r *entityStateEVRStringTypeRepository) GetAll(ctx context.Context, limit, 
 
 func (r *entityStateEVRStringTypeRepository) Update(ctx context.Context, entity *parent.EntityStateEVRStringType) error {
 	query := "UPDATE entity_state_e_v_r_string_type SET datatype = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Datatype,
 		entity.ParentID,
@@ -16336,19 +16336,19 @@ func (r *entityStateEVRStringTypeRepository) DeleteBatch(ctx context.Context, id
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM entity_state_e_v_r_string_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -16408,13 +16408,13 @@ func (r *entityStateFieldTypeRepository) Create(ctx context.Context, entity *par
 
 func (r *entityStateFieldTypeRepository) CreateBatch(ctx context.Context, entities []*parent.EntityStateFieldType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO entity_state_field_type (name, entity_check) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -16430,11 +16430,11 @@ func (r *entityStateFieldTypeRepository) CreateBatch(ctx context.Context, entiti
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -16485,7 +16485,7 @@ func (r *entityStateFieldTypeRepository) GetAll(ctx context.Context, limit, offs
 
 func (r *entityStateFieldTypeRepository) Update(ctx context.Context, entity *parent.EntityStateFieldType) error {
 	query := "UPDATE entity_state_field_type SET name = ?, entity_check = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Name,
 		entity.Entity_check,
@@ -16504,19 +16504,19 @@ func (r *entityStateFieldTypeRepository) DeleteBatch(ctx context.Context, ids []
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM entity_state_field_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -16550,13 +16550,13 @@ func (r *entityStateFileSetRevisionTypeRepository) Create(ctx context.Context, e
 
 func (r *entityStateFileSetRevisionTypeRepository) CreateBatch(ctx context.Context, entities []*parent.EntityStateFileSetRevisionType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO \"entity_state_file_set_revision_type\" (datatype, parent_id) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -16572,11 +16572,11 @@ func (r *entityStateFileSetRevisionTypeRepository) CreateBatch(ctx context.Conte
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -16627,7 +16627,7 @@ func (r *entityStateFileSetRevisionTypeRepository) GetAll(ctx context.Context, l
 
 func (r *entityStateFileSetRevisionTypeRepository) Update(ctx context.Context, entity *parent.EntityStateFileSetRevisionType) error {
 	query := "UPDATE \"entity_state_file_set_revision_type\" SET datatype = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Datatype,
 		entity.ParentID,
@@ -16646,19 +16646,19 @@ func (r *entityStateFileSetRevisionTypeRepository) DeleteBatch(ctx context.Conte
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM \"entity_state_file_set_revision_type\" WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -16718,13 +16718,13 @@ func (r *entityStateFloatTypeRepository) Create(ctx context.Context, entity *par
 
 func (r *entityStateFloatTypeRepository) CreateBatch(ctx context.Context, entities []*parent.EntityStateFloatType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO entity_state_float_type (datatype, parent_id) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -16740,11 +16740,11 @@ func (r *entityStateFloatTypeRepository) CreateBatch(ctx context.Context, entiti
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -16795,7 +16795,7 @@ func (r *entityStateFloatTypeRepository) GetAll(ctx context.Context, limit, offs
 
 func (r *entityStateFloatTypeRepository) Update(ctx context.Context, entity *parent.EntityStateFloatType) error {
 	query := "UPDATE entity_state_float_type SET datatype = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Datatype,
 		entity.ParentID,
@@ -16814,19 +16814,19 @@ func (r *entityStateFloatTypeRepository) DeleteBatch(ctx context.Context, ids []
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM entity_state_float_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -16886,13 +16886,13 @@ func (r *entityStateIOSVersionTypeRepository) Create(ctx context.Context, entity
 
 func (r *entityStateIOSVersionTypeRepository) CreateBatch(ctx context.Context, entities []*parent.EntityStateIOSVersionType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO entity_state_i_o_s_version_type (datatype, parent_id) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -16908,11 +16908,11 @@ func (r *entityStateIOSVersionTypeRepository) CreateBatch(ctx context.Context, e
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -16963,7 +16963,7 @@ func (r *entityStateIOSVersionTypeRepository) GetAll(ctx context.Context, limit,
 
 func (r *entityStateIOSVersionTypeRepository) Update(ctx context.Context, entity *parent.EntityStateIOSVersionType) error {
 	query := "UPDATE entity_state_i_o_s_version_type SET datatype = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Datatype,
 		entity.ParentID,
@@ -16982,19 +16982,19 @@ func (r *entityStateIOSVersionTypeRepository) DeleteBatch(ctx context.Context, i
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM entity_state_i_o_s_version_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -17054,13 +17054,13 @@ func (r *entityStateIPAddressStringTypeRepository) Create(ctx context.Context, e
 
 func (r *entityStateIPAddressStringTypeRepository) CreateBatch(ctx context.Context, entities []*parent.EntityStateIPAddressStringType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO entity_state_i_p_address_string_type (datatype, parent_id) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -17076,11 +17076,11 @@ func (r *entityStateIPAddressStringTypeRepository) CreateBatch(ctx context.Conte
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -17131,7 +17131,7 @@ func (r *entityStateIPAddressStringTypeRepository) GetAll(ctx context.Context, l
 
 func (r *entityStateIPAddressStringTypeRepository) Update(ctx context.Context, entity *parent.EntityStateIPAddressStringType) error {
 	query := "UPDATE entity_state_i_p_address_string_type SET datatype = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Datatype,
 		entity.ParentID,
@@ -17150,19 +17150,19 @@ func (r *entityStateIPAddressStringTypeRepository) DeleteBatch(ctx context.Conte
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM entity_state_i_p_address_string_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -17222,13 +17222,13 @@ func (r *entityStateIPAddressTypeRepository) Create(ctx context.Context, entity 
 
 func (r *entityStateIPAddressTypeRepository) CreateBatch(ctx context.Context, entities []*parent.EntityStateIPAddressType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO entity_state_i_p_address_type (datatype, parent_id) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -17244,11 +17244,11 @@ func (r *entityStateIPAddressTypeRepository) CreateBatch(ctx context.Context, en
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -17299,7 +17299,7 @@ func (r *entityStateIPAddressTypeRepository) GetAll(ctx context.Context, limit, 
 
 func (r *entityStateIPAddressTypeRepository) Update(ctx context.Context, entity *parent.EntityStateIPAddressType) error {
 	query := "UPDATE entity_state_i_p_address_type SET datatype = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Datatype,
 		entity.ParentID,
@@ -17318,19 +17318,19 @@ func (r *entityStateIPAddressTypeRepository) DeleteBatch(ctx context.Context, id
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM entity_state_i_p_address_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -17390,13 +17390,13 @@ func (r *entityStateIntTypeRepository) Create(ctx context.Context, entity *paren
 
 func (r *entityStateIntTypeRepository) CreateBatch(ctx context.Context, entities []*parent.EntityStateIntType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO entity_state_int_type (datatype, parent_id) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -17412,11 +17412,11 @@ func (r *entityStateIntTypeRepository) CreateBatch(ctx context.Context, entities
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -17467,7 +17467,7 @@ func (r *entityStateIntTypeRepository) GetAll(ctx context.Context, limit, offset
 
 func (r *entityStateIntTypeRepository) Update(ctx context.Context, entity *parent.EntityStateIntType) error {
 	query := "UPDATE entity_state_int_type SET datatype = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Datatype,
 		entity.ParentID,
@@ -17486,19 +17486,19 @@ func (r *entityStateIntTypeRepository) DeleteBatch(ctx context.Context, ids []in
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM entity_state_int_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -17557,13 +17557,13 @@ func (r *entityStateRecordTypeRepository) Create(ctx context.Context, entity *pa
 
 func (r *entityStateRecordTypeRepository) CreateBatch(ctx context.Context, entities []*parent.EntityStateRecordType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO entity_state_record_type (parent_id) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -17578,11 +17578,11 @@ func (r *entityStateRecordTypeRepository) CreateBatch(ctx context.Context, entit
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -17631,7 +17631,7 @@ func (r *entityStateRecordTypeRepository) GetAll(ctx context.Context, limit, off
 
 func (r *entityStateRecordTypeRepository) Update(ctx context.Context, entity *parent.EntityStateRecordType) error {
 	query := "UPDATE entity_state_record_type SET parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.ParentID,
 		entity.ID,
@@ -17649,19 +17649,19 @@ func (r *entityStateRecordTypeRepository) DeleteBatch(ctx context.Context, ids [
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM entity_state_record_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -17720,13 +17720,13 @@ func (r *entityStateStringTypeRepository) Create(ctx context.Context, entity *pa
 
 func (r *entityStateStringTypeRepository) CreateBatch(ctx context.Context, entities []*parent.EntityStateStringType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO entity_state_string_type (datatype, parent_id) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -17742,11 +17742,11 @@ func (r *entityStateStringTypeRepository) CreateBatch(ctx context.Context, entit
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -17797,7 +17797,7 @@ func (r *entityStateStringTypeRepository) GetAll(ctx context.Context, limit, off
 
 func (r *entityStateStringTypeRepository) Update(ctx context.Context, entity *parent.EntityStateStringType) error {
 	query := "UPDATE entity_state_string_type SET datatype = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Datatype,
 		entity.ParentID,
@@ -17816,19 +17816,19 @@ func (r *entityStateStringTypeRepository) DeleteBatch(ctx context.Context, ids [
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM entity_state_string_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -17888,13 +17888,13 @@ func (r *entityStateVersionTypeRepository) Create(ctx context.Context, entity *p
 
 func (r *entityStateVersionTypeRepository) CreateBatch(ctx context.Context, entities []*parent.EntityStateVersionType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO entity_state_version_type (datatype, parent_id) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -17910,11 +17910,11 @@ func (r *entityStateVersionTypeRepository) CreateBatch(ctx context.Context, enti
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -17965,7 +17965,7 @@ func (r *entityStateVersionTypeRepository) GetAll(ctx context.Context, limit, of
 
 func (r *entityStateVersionTypeRepository) Update(ctx context.Context, entity *parent.EntityStateVersionType) error {
 	query := "UPDATE entity_state_version_type SET datatype = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Datatype,
 		entity.ParentID,
@@ -17984,19 +17984,19 @@ func (r *entityStateVersionTypeRepository) DeleteBatch(ctx context.Context, ids 
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM entity_state_version_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -18053,13 +18053,13 @@ func (r *escapeRegexFunctionTypeRepository) Create(ctx context.Context, entity *
 
 func (r *escapeRegexFunctionTypeRepository) CreateBatch(ctx context.Context, entities []*parent.EscapeRegexFunctionType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO \"escape_regex_function_type\" DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -18072,11 +18072,11 @@ func (r *escapeRegexFunctionTypeRepository) CreateBatch(ctx context.Context, ent
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -18136,19 +18136,19 @@ func (r *escapeRegexFunctionTypeRepository) DeleteBatch(ctx context.Context, ids
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM \"escape_regex_function_type\" WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -18184,13 +18184,13 @@ func (r *extendDefinitionTypeRepository) Create(ctx context.Context, entity *par
 
 func (r *extendDefinitionTypeRepository) CreateBatch(ctx context.Context, entities []*parent.ExtendDefinitionType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO extend_definition_type (applicability_check, definition_ref, negate, comment) VALUES (?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -18208,11 +18208,11 @@ func (r *extendDefinitionTypeRepository) CreateBatch(ctx context.Context, entiti
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -18267,7 +18267,7 @@ func (r *extendDefinitionTypeRepository) GetAll(ctx context.Context, limit, offs
 
 func (r *extendDefinitionTypeRepository) Update(ctx context.Context, entity *parent.ExtendDefinitionType) error {
 	query := "UPDATE extend_definition_type SET applicability_check = ?, definition_ref = ?, negate = ?, comment = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Applicability_check,
 		entity.Definition_ref,
@@ -18288,19 +18288,19 @@ func (r *extendDefinitionTypeRepository) DeleteBatch(ctx context.Context, ids []
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM extend_definition_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -18331,13 +18331,13 @@ func (r *extendedRepository) Create(ctx context.Context, entity *parent.Extended
 
 func (r *extendedRepository) CreateBatch(ctx context.Context, entities []*parent.Extended) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO extended DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -18350,11 +18350,11 @@ func (r *extendedRepository) CreateBatch(ctx context.Context, entities []*parent
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -18414,19 +18414,19 @@ func (r *extendedRepository) DeleteBatch(ctx context.Context, ids []int64) error
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM extended WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -18459,13 +18459,13 @@ func (r *extendedInfoElementTypeRepository) Create(ctx context.Context, entity *
 
 func (r *extendedInfoElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.ExtendedInfoElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO extended_info_element_type (xsd_id) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -18480,11 +18480,11 @@ func (r *extendedInfoElementTypeRepository) CreateBatch(ctx context.Context, ent
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -18533,7 +18533,7 @@ func (r *extendedInfoElementTypeRepository) GetAll(ctx context.Context, limit, o
 
 func (r *extendedInfoElementTypeRepository) Update(ctx context.Context, entity *parent.ExtendedInfoElementType) error {
 	query := "UPDATE extended_info_element_type SET xsd_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.XsdId,
 		entity.ID,
@@ -18551,19 +18551,19 @@ func (r *extendedInfoElementTypeRepository) DeleteBatch(ctx context.Context, ids
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM extended_info_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -18594,13 +18594,13 @@ func (r *extendedInformationElementTypeRepository) Create(ctx context.Context, e
 
 func (r *extendedInformationElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.ExtendedInformationElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO extended_information_element_type DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -18613,11 +18613,11 @@ func (r *extendedInformationElementTypeRepository) CreateBatch(ctx context.Conte
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -18677,19 +18677,19 @@ func (r *extendedInformationElementTypeRepository) DeleteBatch(ctx context.Conte
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM extended_information_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -18722,13 +18722,13 @@ func (r *extendedInfosElementTypeRepository) Create(ctx context.Context, entity 
 
 func (r *extendedInfosElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.ExtendedInfosElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO extended_infos_element_type (extended_info) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -18743,11 +18743,11 @@ func (r *extendedInfosElementTypeRepository) CreateBatch(ctx context.Context, en
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -18796,7 +18796,7 @@ func (r *extendedInfosElementTypeRepository) GetAll(ctx context.Context, limit, 
 
 func (r *extendedInfosElementTypeRepository) Update(ctx context.Context, entity *parent.ExtendedInfosElementType) error {
 	query := "UPDATE extended_infos_element_type SET extended_info = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.ExtendedInfo,
 		entity.ID,
@@ -18814,19 +18814,19 @@ func (r *extendedInfosElementTypeRepository) DeleteBatch(ctx context.Context, id
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM extended_infos_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -18861,13 +18861,13 @@ func (r *externalVariableRepository) Create(ctx context.Context, entity *parent.
 
 func (r *externalVariableRepository) CreateBatch(ctx context.Context, entities []*parent.ExternalVariable) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO external_variable (possible_value_id, possible_restriction_id, parent_id) VALUES (?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -18884,11 +18884,11 @@ func (r *externalVariableRepository) CreateBatch(ctx context.Context, entities [
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -18941,7 +18941,7 @@ func (r *externalVariableRepository) GetAll(ctx context.Context, limit, offset i
 
 func (r *externalVariableRepository) Update(ctx context.Context, entity *parent.ExternalVariable) error {
 	query := "UPDATE external_variable SET possible_value_id = ?, possible_restriction_id = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Possible_valueID,
 		entity.Possible_restrictionID,
@@ -18961,19 +18961,19 @@ func (r *externalVariableRepository) DeleteBatch(ctx context.Context, ids []int6
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM external_variable WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -19035,13 +19035,13 @@ func (r *externalVariableElementTypeRepository) Create(ctx context.Context, enti
 
 func (r *externalVariableElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.ExternalVariableElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO external_variable_element_type (possible_value_id, possible_restriction_id, parent_id) VALUES (?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -19058,11 +19058,11 @@ func (r *externalVariableElementTypeRepository) CreateBatch(ctx context.Context,
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -19115,7 +19115,7 @@ func (r *externalVariableElementTypeRepository) GetAll(ctx context.Context, limi
 
 func (r *externalVariableElementTypeRepository) Update(ctx context.Context, entity *parent.ExternalVariableElementType) error {
 	query := "UPDATE external_variable_element_type SET possible_value_id = ?, possible_restriction_id = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Possible_valueID,
 		entity.Possible_restrictionID,
@@ -19135,19 +19135,19 @@ func (r *externalVariableElementTypeRepository) DeleteBatch(ctx context.Context,
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM external_variable_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -19261,13 +19261,13 @@ func (r *factRefTypeRepository) Create(ctx context.Context, entity *parent.FactR
 
 func (r *factRefTypeRepository) CreateBatch(ctx context.Context, entities []*parent.FactRefType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO fact_ref_type (name) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -19282,11 +19282,11 @@ func (r *factRefTypeRepository) CreateBatch(ctx context.Context, entities []*par
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -19335,7 +19335,7 @@ func (r *factRefTypeRepository) GetAll(ctx context.Context, limit, offset int) (
 
 func (r *factRefTypeRepository) Update(ctx context.Context, entity *parent.FactRefType) error {
 	query := "UPDATE fact_ref_type SET name = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Name,
 		entity.ID,
@@ -19353,19 +19353,19 @@ func (r *factRefTypeRepository) DeleteBatch(ctx context.Context, ids []int64) er
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM fact_ref_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -19399,13 +19399,13 @@ func (r *factTypeRepository) Create(ctx context.Context, entity *parent.FactType
 
 func (r *factTypeRepository) CreateBatch(ctx context.Context, entities []*parent.FactType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO fact_type (name, type) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -19421,11 +19421,11 @@ func (r *factTypeRepository) CreateBatch(ctx context.Context, entities []*parent
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -19476,7 +19476,7 @@ func (r *factTypeRepository) GetAll(ctx context.Context, limit, offset int) ([]*
 
 func (r *factTypeRepository) Update(ctx context.Context, entity *parent.FactType) error {
 	query := "UPDATE fact_type SET name = ?, type = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Name,
 		entity.Type,
@@ -19495,19 +19495,19 @@ func (r *factTypeRepository) DeleteBatch(ctx context.Context, ids []int64) error
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM fact_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -19541,13 +19541,13 @@ func (r *filterRepository) Create(ctx context.Context, entity *parent.Filter) (i
 
 func (r *filterRepository) CreateBatch(ctx context.Context, entities []*parent.Filter) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO filter (action, parent_id) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -19563,11 +19563,11 @@ func (r *filterRepository) CreateBatch(ctx context.Context, entities []*parent.F
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -19618,7 +19618,7 @@ func (r *filterRepository) GetAll(ctx context.Context, limit, offset int) ([]*pa
 
 func (r *filterRepository) Update(ctx context.Context, entity *parent.Filter) error {
 	query := "UPDATE filter SET action = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Action,
 		entity.ParentID,
@@ -19637,19 +19637,19 @@ func (r *filterRepository) DeleteBatch(ctx context.Context, ids []int64) error {
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM filter WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -19683,13 +19683,13 @@ func (r *filterElementTypeRepository) Create(ctx context.Context, entity *parent
 
 func (r *filterElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.FilterElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO filter_element_type (action, parent_id) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -19705,11 +19705,11 @@ func (r *filterElementTypeRepository) CreateBatch(ctx context.Context, entities 
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -19760,7 +19760,7 @@ func (r *filterElementTypeRepository) GetAll(ctx context.Context, limit, offset 
 
 func (r *filterElementTypeRepository) Update(ctx context.Context, entity *parent.FilterElementType) error {
 	query := "UPDATE filter_element_type SET action = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Action,
 		entity.ParentID,
@@ -19779,19 +19779,19 @@ func (r *filterElementTypeRepository) DeleteBatch(ctx context.Context, ids []int
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM filter_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -19824,13 +19824,13 @@ func (r *firmNameElementTypeRepository) Create(ctx context.Context, entity *pare
 
 func (r *firmNameElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.FirmNameElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO firm_name_element_type (type) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -19845,11 +19845,11 @@ func (r *firmNameElementTypeRepository) CreateBatch(ctx context.Context, entitie
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -19898,7 +19898,7 @@ func (r *firmNameElementTypeRepository) GetAll(ctx context.Context, limit, offse
 
 func (r *firmNameElementTypeRepository) Update(ctx context.Context, entity *parent.FirmNameElementType) error {
 	query := "UPDATE firm_name_element_type SET type = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.ID,
@@ -19916,19 +19916,19 @@ func (r *firmNameElementTypeRepository) DeleteBatch(ctx context.Context, ids []i
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM firm_name_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -19963,13 +19963,13 @@ func (r *firmTypeRepository) Create(ctx context.Context, entity *parent.FirmType
 
 func (r *firmTypeRepository) CreateBatch(ctx context.Context, entities []*parent.FirmType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO firm_type (type, firm_name, mail_stop_id) VALUES (?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -19986,11 +19986,11 @@ func (r *firmTypeRepository) CreateBatch(ctx context.Context, entities []*parent
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -20043,7 +20043,7 @@ func (r *firmTypeRepository) GetAll(ctx context.Context, limit, offset int) ([]*
 
 func (r *firmTypeRepository) Update(ctx context.Context, entity *parent.FirmType) error {
 	query := "UPDATE firm_type SET type = ?, firm_name = ?, mail_stop_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.FirmName,
@@ -20063,19 +20063,19 @@ func (r *firmTypeRepository) DeleteBatch(ctx context.Context, ids []int64) error
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM firm_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -20137,13 +20137,13 @@ func (r *firstNameElementTypeRepository) Create(ctx context.Context, entity *par
 
 func (r *firstNameElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.FirstNameElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO first_name_element_type (type, name_type, code) VALUES (?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -20160,11 +20160,11 @@ func (r *firstNameElementTypeRepository) CreateBatch(ctx context.Context, entiti
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -20217,7 +20217,7 @@ func (r *firstNameElementTypeRepository) GetAll(ctx context.Context, limit, offs
 
 func (r *firstNameElementTypeRepository) Update(ctx context.Context, entity *parent.FirstNameElementType) error {
 	query := "UPDATE first_name_element_type SET type = ?, name_type = ?, code = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.NameType,
@@ -20237,19 +20237,19 @@ func (r *firstNameElementTypeRepository) DeleteBatch(ctx context.Context, ids []
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM first_name_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -20287,13 +20287,13 @@ func (r *fixTextTypeRepository) Create(ctx context.Context, entity *parent.FixTe
 
 func (r *fixTextTypeRepository) CreateBatch(ctx context.Context, entities []*parent.FixTextType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO fix_text_type (fixref, reboot, strategy, disruption, complexity, parent_id) VALUES (?, ?, ?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -20313,11 +20313,11 @@ func (r *fixTextTypeRepository) CreateBatch(ctx context.Context, entities []*par
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -20376,7 +20376,7 @@ func (r *fixTextTypeRepository) GetAll(ctx context.Context, limit, offset int) (
 
 func (r *fixTextTypeRepository) Update(ctx context.Context, entity *parent.FixTextType) error {
 	query := "UPDATE fix_text_type SET fixref = ?, reboot = ?, strategy = ?, disruption = ?, complexity = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Fixref,
 		entity.Reboot,
@@ -20399,19 +20399,19 @@ func (r *fixTextTypeRepository) DeleteBatch(ctx context.Context, ids []int64) er
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM fix_text_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -20482,13 +20482,13 @@ func (r *fixTypeRepository) Create(ctx context.Context, entity *parent.FixType) 
 
 func (r *fixTypeRepository) CreateBatch(ctx context.Context, entities []*parent.FixType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO fix_type (xsd_id, reboot, strategy, disruption, complexity, system, platform, sub_id, instance_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -20511,11 +20511,11 @@ func (r *fixTypeRepository) CreateBatch(ctx context.Context, entities []*parent.
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -20580,7 +20580,7 @@ func (r *fixTypeRepository) GetAll(ctx context.Context, limit, offset int) ([]*p
 
 func (r *fixTypeRepository) Update(ctx context.Context, entity *parent.FixType) error {
 	query := "UPDATE fix_type SET xsd_id = ?, reboot = ?, strategy = ?, disruption = ?, complexity = ?, system = ?, platform = ?, sub_id = ?, instance_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.XsdId,
 		entity.Reboot,
@@ -20606,19 +20606,19 @@ func (r *fixTypeRepository) DeleteBatch(ctx context.Context, ids []int64) error 
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM fix_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -20719,13 +20719,13 @@ func (r *formerNameElementTypeRepository) Create(ctx context.Context, entity *pa
 
 func (r *formerNameElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.FormerNameElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO former_name_element_type (valid_from, valid_to, parent_id) VALUES (?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -20742,11 +20742,11 @@ func (r *formerNameElementTypeRepository) CreateBatch(ctx context.Context, entit
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -20799,7 +20799,7 @@ func (r *formerNameElementTypeRepository) GetAll(ctx context.Context, limit, off
 
 func (r *formerNameElementTypeRepository) Update(ctx context.Context, entity *parent.FormerNameElementType) error {
 	query := "UPDATE former_name_element_type SET valid_from = ?, valid_to = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.ValidFrom,
 		entity.ValidTo,
@@ -20819,19 +20819,19 @@ func (r *formerNameElementTypeRepository) DeleteBatch(ctx context.Context, ids [
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM former_name_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -20862,13 +20862,13 @@ func (r *fqdnRepository) Create(ctx context.Context, entity *parent.Fqdn) (int64
 
 func (r *fqdnRepository) CreateBatch(ctx context.Context, entities []*parent.Fqdn) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO fqdn DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -20881,11 +20881,11 @@ func (r *fqdnRepository) CreateBatch(ctx context.Context, entities []*parent.Fqd
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -20945,19 +20945,19 @@ func (r *fqdnRepository) DeleteBatch(ctx context.Context, ids []int64) error {
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM fqdn WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -20988,13 +20988,13 @@ func (r *fqdnElementTypeRepository) Create(ctx context.Context, entity *parent.F
 
 func (r *fqdnElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.FqdnElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO fqdn_element_type DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -21007,11 +21007,11 @@ func (r *fqdnElementTypeRepository) CreateBatch(ctx context.Context, entities []
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -21071,19 +21071,19 @@ func (r *fqdnElementTypeRepository) DeleteBatch(ctx context.Context, ids []int64
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM fqdn_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -21116,13 +21116,13 @@ func (r *functionRepository) Create(ctx context.Context, entity *parent.Function
 
 func (r *functionRepository) CreateBatch(ctx context.Context, entities []*parent.Function) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO function (code) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -21137,11 +21137,11 @@ func (r *functionRepository) CreateBatch(ctx context.Context, entities []*parent
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -21190,7 +21190,7 @@ func (r *functionRepository) GetAll(ctx context.Context, limit, offset int) ([]*
 
 func (r *functionRepository) Update(ctx context.Context, entity *parent.Function) error {
 	query := "UPDATE function SET code = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Code,
 		entity.ID,
@@ -21208,19 +21208,19 @@ func (r *functionRepository) DeleteBatch(ctx context.Context, ids []int64) error
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM function WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -21254,13 +21254,13 @@ func (r *generalSuffixElementTypeRepository) Create(ctx context.Context, entity 
 
 func (r *generalSuffixElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.GeneralSuffixElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO general_suffix_element_type (type, code) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -21276,11 +21276,11 @@ func (r *generalSuffixElementTypeRepository) CreateBatch(ctx context.Context, en
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -21331,7 +21331,7 @@ func (r *generalSuffixElementTypeRepository) GetAll(ctx context.Context, limit, 
 
 func (r *generalSuffixElementTypeRepository) Update(ctx context.Context, entity *parent.GeneralSuffixElementType) error {
 	query := "UPDATE general_suffix_element_type SET type = ?, code = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.Code,
@@ -21350,19 +21350,19 @@ func (r *generalSuffixElementTypeRepository) DeleteBatch(ctx context.Context, id
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM general_suffix_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -21396,13 +21396,13 @@ func (r *generationIdentifierElementTypeRepository) Create(ctx context.Context, 
 
 func (r *generationIdentifierElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.GenerationIdentifierElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO generation_identifier_element_type (type, code) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -21418,11 +21418,11 @@ func (r *generationIdentifierElementTypeRepository) CreateBatch(ctx context.Cont
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -21473,7 +21473,7 @@ func (r *generationIdentifierElementTypeRepository) GetAll(ctx context.Context, 
 
 func (r *generationIdentifierElementTypeRepository) Update(ctx context.Context, entity *parent.GenerationIdentifierElementType) error {
 	query := "UPDATE generation_identifier_element_type SET type = ?, code = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.Code,
@@ -21492,19 +21492,19 @@ func (r *generationIdentifierElementTypeRepository) DeleteBatch(ctx context.Cont
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM generation_identifier_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -21537,13 +21537,13 @@ func (r *globToRegexFunctionTypeRepository) Create(ctx context.Context, entity *
 
 func (r *globToRegexFunctionTypeRepository) CreateBatch(ctx context.Context, entities []*parent.GlobToRegexFunctionType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO \"glob_to_regex_function_type\" (glob_noescape) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -21558,11 +21558,11 @@ func (r *globToRegexFunctionTypeRepository) CreateBatch(ctx context.Context, ent
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -21611,7 +21611,7 @@ func (r *globToRegexFunctionTypeRepository) GetAll(ctx context.Context, limit, o
 
 func (r *globToRegexFunctionTypeRepository) Update(ctx context.Context, entity *parent.GlobToRegexFunctionType) error {
 	query := "UPDATE \"glob_to_regex_function_type\" SET glob_noescape = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Glob_noescape,
 		entity.ID,
@@ -21629,19 +21629,19 @@ func (r *globToRegexFunctionTypeRepository) DeleteBatch(ctx context.Context, ids
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM \"glob_to_regex_function_type\" WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -21676,13 +21676,13 @@ func (r *groupTypeRepository) Create(ctx context.Context, entity *parent.GroupTy
 
 func (r *groupTypeRepository) CreateBatch(ctx context.Context, entities []*parent.GroupType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO \"group_type\" (xsd_id, signature_id, parent_id) VALUES (?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -21699,11 +21699,11 @@ func (r *groupTypeRepository) CreateBatch(ctx context.Context, entities []*paren
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -21756,7 +21756,7 @@ func (r *groupTypeRepository) GetAll(ctx context.Context, limit, offset int) ([]
 
 func (r *groupTypeRepository) Update(ctx context.Context, entity *parent.GroupType) error {
 	query := "UPDATE \"group_type\" SET xsd_id = ?, signature_id = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.XsdId,
 		entity.SignatureID,
@@ -21776,19 +21776,19 @@ func (r *groupTypeRepository) DeleteBatch(ctx context.Context, ids []int64) erro
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM \"group_type\" WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -21846,13 +21846,13 @@ func (r *hostElementTypeRepository) Create(ctx context.Context, entity *parent.H
 
 func (r *hostElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.HostElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO host_element_type DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -21865,11 +21865,11 @@ func (r *hostElementTypeRepository) CreateBatch(ctx context.Context, entities []
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -21929,19 +21929,19 @@ func (r *hostElementTypeRepository) DeleteBatch(ctx context.Context, ids []int64
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM host_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -21974,13 +21974,13 @@ func (r *hostnameElementTypeRepository) Create(ctx context.Context, entity *pare
 
 func (r *hostnameElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.HostnameElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO hostname_element_type (parent_id) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -21995,11 +21995,11 @@ func (r *hostnameElementTypeRepository) CreateBatch(ctx context.Context, entitie
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -22048,7 +22048,7 @@ func (r *hostnameElementTypeRepository) GetAll(ctx context.Context, limit, offse
 
 func (r *hostnameElementTypeRepository) Update(ctx context.Context, entity *parent.HostnameElementType) error {
 	query := "UPDATE hostname_element_type SET parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.ParentID,
 		entity.ID,
@@ -22066,19 +22066,19 @@ func (r *hostnameElementTypeRepository) DeleteBatch(ctx context.Context, ids []i
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM hostname_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -22111,13 +22111,13 @@ func (r *htmlTextTypeRepository) Create(ctx context.Context, entity *parent.Html
 
 func (r *htmlTextTypeRepository) CreateBatch(ctx context.Context, entities []*parent.HtmlTextType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO html_text_type (override) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -22132,11 +22132,11 @@ func (r *htmlTextTypeRepository) CreateBatch(ctx context.Context, entities []*pa
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -22185,7 +22185,7 @@ func (r *htmlTextTypeRepository) GetAll(ctx context.Context, limit, offset int) 
 
 func (r *htmlTextTypeRepository) Update(ctx context.Context, entity *parent.HtmlTextType) error {
 	query := "UPDATE html_text_type SET override = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Override,
 		entity.ID,
@@ -22203,19 +22203,19 @@ func (r *htmlTextTypeRepository) DeleteBatch(ctx context.Context, ids []int64) e
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM html_text_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -22249,13 +22249,13 @@ func (r *htmlTextWithSubTypeRepository) Create(ctx context.Context, entity *pare
 
 func (r *htmlTextWithSubTypeRepository) CreateBatch(ctx context.Context, entities []*parent.HtmlTextWithSubType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO \"html_text_with_sub_type\" (override, sub_id) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -22271,11 +22271,11 @@ func (r *htmlTextWithSubTypeRepository) CreateBatch(ctx context.Context, entitie
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -22326,7 +22326,7 @@ func (r *htmlTextWithSubTypeRepository) GetAll(ctx context.Context, limit, offse
 
 func (r *htmlTextWithSubTypeRepository) Update(ctx context.Context, entity *parent.HtmlTextWithSubType) error {
 	query := "UPDATE \"html_text_with_sub_type\" SET override = ?, sub_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Override,
 		entity.SubID,
@@ -22345,19 +22345,19 @@ func (r *htmlTextWithSubTypeRepository) DeleteBatch(ctx context.Context, ids []i
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM \"html_text_with_sub_type\" WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -22416,13 +22416,13 @@ func (r *identTypeRepository) Create(ctx context.Context, entity *parent.IdentTy
 
 func (r *identTypeRepository) CreateBatch(ctx context.Context, entities []*parent.IdentType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO ident_type (system) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -22437,11 +22437,11 @@ func (r *identTypeRepository) CreateBatch(ctx context.Context, entities []*paren
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -22490,7 +22490,7 @@ func (r *identTypeRepository) GetAll(ctx context.Context, limit, offset int) ([]
 
 func (r *identTypeRepository) Update(ctx context.Context, entity *parent.IdentType) error {
 	query := "UPDATE ident_type SET system = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.System,
 		entity.ID,
@@ -22508,19 +22508,19 @@ func (r *identTypeRepository) DeleteBatch(ctx context.Context, ids []int64) erro
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM ident_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -22554,13 +22554,13 @@ func (r *identityTypeRepository) Create(ctx context.Context, entity *parent.Iden
 
 func (r *identityTypeRepository) CreateBatch(ctx context.Context, entities []*parent.IdentityType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO identity_type (authenticated, privileged) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -22576,11 +22576,11 @@ func (r *identityTypeRepository) CreateBatch(ctx context.Context, entities []*pa
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -22631,7 +22631,7 @@ func (r *identityTypeRepository) GetAll(ctx context.Context, limit, offset int) 
 
 func (r *identityTypeRepository) Update(ctx context.Context, entity *parent.IdentityType) error {
 	query := "UPDATE identity_type SET authenticated = ?, privileged = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Authenticated,
 		entity.Privileged,
@@ -22650,19 +22650,19 @@ func (r *identityTypeRepository) DeleteBatch(ctx context.Context, ids []int64) e
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM identity_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -22699,13 +22699,13 @@ func (r *idrefListTypeRepository) Create(ctx context.Context, entity *parent.Idr
 
 func (r *idrefListTypeRepository) CreateBatch(ctx context.Context, entities []*parent.IdrefListType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO idref_list_type (idref) VALUES (?)"
 	for _, entity := range entities {
 		idrefJSON, err := json.Marshal(entity.Idref)
@@ -22724,11 +22724,11 @@ func (r *idrefListTypeRepository) CreateBatch(ctx context.Context, entities []*p
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -22793,7 +22793,7 @@ func (r *idrefListTypeRepository) Update(ctx context.Context, entity *parent.Idr
 		return fmt.Errorf("failed to marshal Idref: %w", err)
 	}
 	query := "UPDATE idref_list_type SET idref = ? WHERE id = ?"
-	
+
 	_, err = r.db.ExecContext(ctx, query,
 		string(idrefJSON),
 		entity.ID,
@@ -22811,19 +22811,19 @@ func (r *idrefListTypeRepository) DeleteBatch(ctx context.Context, ids []int64) 
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM idref_list_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -22856,13 +22856,13 @@ func (r *idrefTypeRepository) Create(ctx context.Context, entity *parent.IdrefTy
 
 func (r *idrefTypeRepository) CreateBatch(ctx context.Context, entities []*parent.IdrefType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO idref_type (idref) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -22877,11 +22877,11 @@ func (r *idrefTypeRepository) CreateBatch(ctx context.Context, entities []*paren
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -22930,7 +22930,7 @@ func (r *idrefTypeRepository) GetAll(ctx context.Context, limit, offset int) ([]
 
 func (r *idrefTypeRepository) Update(ctx context.Context, entity *parent.IdrefType) error {
 	query := "UPDATE idref_type SET idref = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Idref,
 		entity.ID,
@@ -22948,19 +22948,19 @@ func (r *idrefTypeRepository) DeleteBatch(ctx context.Context, ids []int64) erro
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM idref_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -22991,13 +22991,13 @@ func (r *installationIdElementTypeRepository) Create(ctx context.Context, entity
 
 func (r *installationIdElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.InstallationIdElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO installation_id_element_type DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -23010,11 +23010,11 @@ func (r *installationIdElementTypeRepository) CreateBatch(ctx context.Context, e
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -23074,19 +23074,19 @@ func (r *installationIdElementTypeRepository) DeleteBatch(ctx context.Context, i
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM installation_id_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -23119,13 +23119,13 @@ func (r *instanceFixTypeRepository) Create(ctx context.Context, entity *parent.I
 
 func (r *instanceFixTypeRepository) CreateBatch(ctx context.Context, entities []*parent.InstanceFixType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO instance_fix_type (context) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -23140,11 +23140,11 @@ func (r *instanceFixTypeRepository) CreateBatch(ctx context.Context, entities []
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -23193,7 +23193,7 @@ func (r *instanceFixTypeRepository) GetAll(ctx context.Context, limit, offset in
 
 func (r *instanceFixTypeRepository) Update(ctx context.Context, entity *parent.InstanceFixType) error {
 	query := "UPDATE instance_fix_type SET context = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Context,
 		entity.ID,
@@ -23211,19 +23211,19 @@ func (r *instanceFixTypeRepository) DeleteBatch(ctx context.Context, ids []int64
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM instance_fix_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -23254,13 +23254,13 @@ func (r *instanceNameElementTypeRepository) Create(ctx context.Context, entity *
 
 func (r *instanceNameElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.InstanceNameElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO instance_name_element_type DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -23273,11 +23273,11 @@ func (r *instanceNameElementTypeRepository) CreateBatch(ctx context.Context, ent
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -23337,19 +23337,19 @@ func (r *instanceNameElementTypeRepository) DeleteBatch(ctx context.Context, ids
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM instance_name_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -23383,13 +23383,13 @@ func (r *instanceResultTypeRepository) Create(ctx context.Context, entity *paren
 
 func (r *instanceResultTypeRepository) CreateBatch(ctx context.Context, entities []*parent.InstanceResultType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO instance_result_type (context, parent_context) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -23405,11 +23405,11 @@ func (r *instanceResultTypeRepository) CreateBatch(ctx context.Context, entities
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -23460,7 +23460,7 @@ func (r *instanceResultTypeRepository) GetAll(ctx context.Context, limit, offset
 
 func (r *instanceResultTypeRepository) Update(ctx context.Context, entity *parent.InstanceResultType) error {
 	query := "UPDATE instance_result_type SET context = ?, parent_context = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Context,
 		entity.ParentContext,
@@ -23479,19 +23479,19 @@ func (r *instanceResultTypeRepository) DeleteBatch(ctx context.Context, ids []in
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM instance_result_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -23525,13 +23525,13 @@ func (r *ipAddressTypeRepository) Create(ctx context.Context, entity *parent.IpA
 
 func (r *ipAddressTypeRepository) CreateBatch(ctx context.Context, entities []*parent.IpAddressType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO ip_address_type (ip_v4, ip_v6) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -23547,11 +23547,11 @@ func (r *ipAddressTypeRepository) CreateBatch(ctx context.Context, entities []*p
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -23602,7 +23602,7 @@ func (r *ipAddressTypeRepository) GetAll(ctx context.Context, limit, offset int)
 
 func (r *ipAddressTypeRepository) Update(ctx context.Context, entity *parent.IpAddressType) error {
 	query := "UPDATE ip_address_type SET ip_v4 = ?, ip_v6 = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.IpV4,
 		entity.IpV6,
@@ -23621,19 +23621,19 @@ func (r *ipAddressTypeRepository) DeleteBatch(ctx context.Context, ids []int64) 
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM ip_address_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -23667,13 +23667,13 @@ func (r *ipNetRangeElementTypeRepository) Create(ctx context.Context, entity *pa
 
 func (r *ipNetRangeElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.IpNetRangeElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO ip_net_range_element_type (ip_net_range_start_id, ip_net_range_end_id) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -23689,11 +23689,11 @@ func (r *ipNetRangeElementTypeRepository) CreateBatch(ctx context.Context, entit
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -23744,7 +23744,7 @@ func (r *ipNetRangeElementTypeRepository) GetAll(ctx context.Context, limit, off
 
 func (r *ipNetRangeElementTypeRepository) Update(ctx context.Context, entity *parent.IpNetRangeElementType) error {
 	query := "UPDATE ip_net_range_element_type SET ip_net_range_start_id = ?, ip_net_range_end_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.IpNetRangeStartID,
 		entity.IpNetRangeEndID,
@@ -23763,19 +23763,19 @@ func (r *ipNetRangeElementTypeRepository) DeleteBatch(ctx context.Context, ids [
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM ip_net_range_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -23834,13 +23834,13 @@ func (r *ipV4ElementTypeRepository) Create(ctx context.Context, entity *parent.I
 
 func (r *ipV4ElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.IpV4ElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO ip_v4_element_type (parent_id) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -23855,11 +23855,11 @@ func (r *ipV4ElementTypeRepository) CreateBatch(ctx context.Context, entities []
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -23908,7 +23908,7 @@ func (r *ipV4ElementTypeRepository) GetAll(ctx context.Context, limit, offset in
 
 func (r *ipV4ElementTypeRepository) Update(ctx context.Context, entity *parent.IpV4ElementType) error {
 	query := "UPDATE ip_v4_element_type SET parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.ParentID,
 		entity.ID,
@@ -23926,19 +23926,19 @@ func (r *ipV4ElementTypeRepository) DeleteBatch(ctx context.Context, ids []int64
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM ip_v4_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -23971,13 +23971,13 @@ func (r *ipV6ElementTypeRepository) Create(ctx context.Context, entity *parent.I
 
 func (r *ipV6ElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.IpV6ElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO ip_v6_element_type (parent_id) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -23992,11 +23992,11 @@ func (r *ipV6ElementTypeRepository) CreateBatch(ctx context.Context, entities []
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -24045,7 +24045,7 @@ func (r *ipV6ElementTypeRepository) GetAll(ctx context.Context, limit, offset in
 
 func (r *ipV6ElementTypeRepository) Update(ctx context.Context, entity *parent.IpV6ElementType) error {
 	query := "UPDATE ip_v6_element_type SET parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.ParentID,
 		entity.ID,
@@ -24063,19 +24063,19 @@ func (r *ipV6ElementTypeRepository) DeleteBatch(ctx context.Context, ids []int64
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM ip_v6_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -24109,13 +24109,13 @@ func (r *jointPersonNameRepository) Create(ctx context.Context, entity *parent.J
 
 func (r *jointPersonNameRepository) CreateBatch(ctx context.Context, entities []*parent.JointPersonName) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO joint_person_name (joint_name_connector, code) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -24131,11 +24131,11 @@ func (r *jointPersonNameRepository) CreateBatch(ctx context.Context, entities []
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -24186,7 +24186,7 @@ func (r *jointPersonNameRepository) GetAll(ctx context.Context, limit, offset in
 
 func (r *jointPersonNameRepository) Update(ctx context.Context, entity *parent.JointPersonName) error {
 	query := "UPDATE joint_person_name SET joint_name_connector = ?, code = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.JointNameConnector,
 		entity.Code,
@@ -24205,19 +24205,19 @@ func (r *jointPersonNameRepository) DeleteBatch(ctx context.Context, ids []int64
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM joint_person_name WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -24251,13 +24251,13 @@ func (r *jointPersonNameElementTypeRepository) Create(ctx context.Context, entit
 
 func (r *jointPersonNameElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.JointPersonNameElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO joint_person_name_element_type (joint_name_connector, code) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -24273,11 +24273,11 @@ func (r *jointPersonNameElementTypeRepository) CreateBatch(ctx context.Context, 
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -24328,7 +24328,7 @@ func (r *jointPersonNameElementTypeRepository) GetAll(ctx context.Context, limit
 
 func (r *jointPersonNameElementTypeRepository) Update(ctx context.Context, entity *parent.JointPersonNameElementType) error {
 	query := "UPDATE joint_person_name_element_type SET joint_name_connector = ?, code = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.JointNameConnector,
 		entity.Code,
@@ -24347,19 +24347,19 @@ func (r *jointPersonNameElementTypeRepository) DeleteBatch(ctx context.Context, 
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM joint_person_name_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -24392,13 +24392,13 @@ func (r *keyInfoTypeRepository) Create(ctx context.Context, entity *parent.KeyIn
 
 func (r *keyInfoTypeRepository) CreateBatch(ctx context.Context, entities []*parent.KeyInfoType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO \"key_info_type\" (xsd_id) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -24413,11 +24413,11 @@ func (r *keyInfoTypeRepository) CreateBatch(ctx context.Context, entities []*par
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -24466,7 +24466,7 @@ func (r *keyInfoTypeRepository) GetAll(ctx context.Context, limit, offset int) (
 
 func (r *keyInfoTypeRepository) Update(ctx context.Context, entity *parent.KeyInfoType) error {
 	query := "UPDATE \"key_info_type\" SET xsd_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.XsdId,
 		entity.ID,
@@ -24484,19 +24484,19 @@ func (r *keyInfoTypeRepository) DeleteBatch(ctx context.Context, ids []int64) er
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM \"key_info_type\" WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -24529,13 +24529,13 @@ func (r *keyLineCodeElementTypeRepository) Create(ctx context.Context, entity *p
 
 func (r *keyLineCodeElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.KeyLineCodeElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO \"key_line_code_element_type\" (type) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -24550,11 +24550,11 @@ func (r *keyLineCodeElementTypeRepository) CreateBatch(ctx context.Context, enti
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -24603,7 +24603,7 @@ func (r *keyLineCodeElementTypeRepository) GetAll(ctx context.Context, limit, of
 
 func (r *keyLineCodeElementTypeRepository) Update(ctx context.Context, entity *parent.KeyLineCodeElementType) error {
 	query := "UPDATE \"key_line_code_element_type\" SET type = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.ID,
@@ -24621,19 +24621,19 @@ func (r *keyLineCodeElementTypeRepository) DeleteBatch(ctx context.Context, ids 
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM \"key_line_code_element_type\" WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -24664,13 +24664,13 @@ func (r *keyValueTypeRepository) Create(ctx context.Context, entity *parent.KeyV
 
 func (r *keyValueTypeRepository) CreateBatch(ctx context.Context, entities []*parent.KeyValueType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO \"key_value_type\" DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -24683,11 +24683,11 @@ func (r *keyValueTypeRepository) CreateBatch(ctx context.Context, entities []*pa
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -24747,19 +24747,19 @@ func (r *keyValueTypeRepository) DeleteBatch(ctx context.Context, ids []int64) e
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM \"key_value_type\" WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -24794,13 +24794,13 @@ func (r *knownAsElementTypeRepository) Create(ctx context.Context, entity *paren
 
 func (r *knownAsElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.KnownAsElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO \"known_as_element_type\" (valid_from, valid_to, parent_id) VALUES (?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -24817,11 +24817,11 @@ func (r *knownAsElementTypeRepository) CreateBatch(ctx context.Context, entities
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -24874,7 +24874,7 @@ func (r *knownAsElementTypeRepository) GetAll(ctx context.Context, limit, offset
 
 func (r *knownAsElementTypeRepository) Update(ctx context.Context, entity *parent.KnownAsElementType) error {
 	query := "UPDATE \"known_as_element_type\" SET valid_from = ?, valid_to = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.ValidFrom,
 		entity.ValidTo,
@@ -24894,19 +24894,19 @@ func (r *knownAsElementTypeRepository) DeleteBatch(ctx context.Context, ids []in
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM \"known_as_element_type\" WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -24937,13 +24937,13 @@ func (r *language20TextTypeRepository) Create(ctx context.Context, entity *paren
 
 func (r *language20TextTypeRepository) CreateBatch(ctx context.Context, entities []*parent.Language20TextType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO language_2_0_text_type DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -24956,11 +24956,11 @@ func (r *language20TextTypeRepository) CreateBatch(ctx context.Context, entities
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -25020,19 +25020,19 @@ func (r *language20TextTypeRepository) DeleteBatch(ctx context.Context, ids []in
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM language_2_0_text_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -25066,13 +25066,13 @@ func (r *largeMailUserIdentifierElementTypeRepository) Create(ctx context.Contex
 
 func (r *largeMailUserIdentifierElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.LargeMailUserIdentifierElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO large_mail_user_identifier_element_type (type, indicator) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -25088,11 +25088,11 @@ func (r *largeMailUserIdentifierElementTypeRepository) CreateBatch(ctx context.C
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -25143,7 +25143,7 @@ func (r *largeMailUserIdentifierElementTypeRepository) GetAll(ctx context.Contex
 
 func (r *largeMailUserIdentifierElementTypeRepository) Update(ctx context.Context, entity *parent.LargeMailUserIdentifierElementType) error {
 	query := "UPDATE large_mail_user_identifier_element_type SET type = ?, indicator = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.Indicator,
@@ -25162,19 +25162,19 @@ func (r *largeMailUserIdentifierElementTypeRepository) DeleteBatch(ctx context.C
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM large_mail_user_identifier_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -25208,13 +25208,13 @@ func (r *largeMailUserNameElementTypeRepository) Create(ctx context.Context, ent
 
 func (r *largeMailUserNameElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.LargeMailUserNameElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO large_mail_user_name_element_type (type, code) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -25230,11 +25230,11 @@ func (r *largeMailUserNameElementTypeRepository) CreateBatch(ctx context.Context
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -25285,7 +25285,7 @@ func (r *largeMailUserNameElementTypeRepository) GetAll(ctx context.Context, lim
 
 func (r *largeMailUserNameElementTypeRepository) Update(ctx context.Context, entity *parent.LargeMailUserNameElementType) error {
 	query := "UPDATE large_mail_user_name_element_type SET type = ?, code = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.Code,
@@ -25304,19 +25304,19 @@ func (r *largeMailUserNameElementTypeRepository) DeleteBatch(ctx context.Context
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM large_mail_user_name_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -25351,13 +25351,13 @@ func (r *largeMailUserTypeRepository) Create(ctx context.Context, entity *parent
 
 func (r *largeMailUserTypeRepository) CreateBatch(ctx context.Context, entities []*parent.LargeMailUserType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO large_mail_user_type (type, large_mail_user_name, large_mail_user_identifier) VALUES (?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -25374,11 +25374,11 @@ func (r *largeMailUserTypeRepository) CreateBatch(ctx context.Context, entities 
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -25431,7 +25431,7 @@ func (r *largeMailUserTypeRepository) GetAll(ctx context.Context, limit, offset 
 
 func (r *largeMailUserTypeRepository) Update(ctx context.Context, entity *parent.LargeMailUserType) error {
 	query := "UPDATE large_mail_user_type SET type = ?, large_mail_user_name = ?, large_mail_user_identifier = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.LargeMailUserName,
@@ -25451,19 +25451,19 @@ func (r *largeMailUserTypeRepository) DeleteBatch(ctx context.Context, ids []int
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM large_mail_user_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -25498,13 +25498,13 @@ func (r *lastNameElementTypeRepository) Create(ctx context.Context, entity *pare
 
 func (r *lastNameElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.LastNameElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO last_name_element_type (type, name_type, code) VALUES (?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -25521,11 +25521,11 @@ func (r *lastNameElementTypeRepository) CreateBatch(ctx context.Context, entitie
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -25578,7 +25578,7 @@ func (r *lastNameElementTypeRepository) GetAll(ctx context.Context, limit, offse
 
 func (r *lastNameElementTypeRepository) Update(ctx context.Context, entity *parent.LastNameElementType) error {
 	query := "UPDATE last_name_element_type SET type = ?, name_type = ?, code = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.NameType,
@@ -25598,19 +25598,19 @@ func (r *lastNameElementTypeRepository) DeleteBatch(ctx context.Context, ids []i
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM last_name_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -25641,13 +25641,13 @@ func (r *licenseElementTypeRepository) Create(ctx context.Context, entity *paren
 
 func (r *licenseElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.LicenseElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO license_element_type DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -25660,11 +25660,11 @@ func (r *licenseElementTypeRepository) CreateBatch(ctx context.Context, entities
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -25724,19 +25724,19 @@ func (r *licenseElementTypeRepository) DeleteBatch(ctx context.Context, ids []in
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM license_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -25769,13 +25769,13 @@ func (r *listTypeRepository) Create(ctx context.Context, entity *parent.ListType
 
 func (r *listTypeRepository) CreateBatch(ctx context.Context, entities []*parent.ListType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO list_type (generator_id) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -25790,11 +25790,11 @@ func (r *listTypeRepository) CreateBatch(ctx context.Context, entities []*parent
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -25843,7 +25843,7 @@ func (r *listTypeRepository) GetAll(ctx context.Context, limit, offset int) ([]*
 
 func (r *listTypeRepository) Update(ctx context.Context, entity *parent.ListType) error {
 	query := "UPDATE list_type SET generator_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.GeneratorID,
 		entity.ID,
@@ -25861,19 +25861,19 @@ func (r *listTypeRepository) DeleteBatch(ctx context.Context, ids []int64) error
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM list_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -25906,13 +25906,13 @@ func (r *literalComponentTypeRepository) Create(ctx context.Context, entity *par
 
 func (r *literalComponentTypeRepository) CreateBatch(ctx context.Context, entities []*parent.LiteralComponentType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO literal_component_type (datatype) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -25927,11 +25927,11 @@ func (r *literalComponentTypeRepository) CreateBatch(ctx context.Context, entiti
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -25980,7 +25980,7 @@ func (r *literalComponentTypeRepository) GetAll(ctx context.Context, limit, offs
 
 func (r *literalComponentTypeRepository) Update(ctx context.Context, entity *parent.LiteralComponentType) error {
 	query := "UPDATE literal_component_type SET datatype = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Datatype,
 		entity.ID,
@@ -25998,19 +25998,19 @@ func (r *literalComponentTypeRepository) DeleteBatch(ctx context.Context, ids []
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM literal_component_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -26043,13 +26043,13 @@ func (r *localVariableRepository) Create(ctx context.Context, entity *parent.Loc
 
 func (r *localVariableRepository) CreateBatch(ctx context.Context, entities []*parent.LocalVariable) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO local_variable (parent_id) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -26064,11 +26064,11 @@ func (r *localVariableRepository) CreateBatch(ctx context.Context, entities []*p
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -26117,7 +26117,7 @@ func (r *localVariableRepository) GetAll(ctx context.Context, limit, offset int)
 
 func (r *localVariableRepository) Update(ctx context.Context, entity *parent.LocalVariable) error {
 	query := "UPDATE local_variable SET parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.ParentID,
 		entity.ID,
@@ -26135,19 +26135,19 @@ func (r *localVariableRepository) DeleteBatch(ctx context.Context, ids []int64) 
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM local_variable WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -26205,13 +26205,13 @@ func (r *localVariableElementTypeRepository) Create(ctx context.Context, entity 
 
 func (r *localVariableElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.LocalVariableElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO local_variable_element_type (parent_id) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -26226,11 +26226,11 @@ func (r *localVariableElementTypeRepository) CreateBatch(ctx context.Context, en
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -26279,7 +26279,7 @@ func (r *localVariableElementTypeRepository) GetAll(ctx context.Context, limit, 
 
 func (r *localVariableElementTypeRepository) Update(ctx context.Context, entity *parent.LocalVariableElementType) error {
 	query := "UPDATE local_variable_element_type SET parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.ParentID,
 		entity.ID,
@@ -26297,19 +26297,19 @@ func (r *localVariableElementTypeRepository) DeleteBatch(ctx context.Context, id
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM local_variable_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -26367,13 +26367,13 @@ func (r *localeElementTypeRepository) Create(ctx context.Context, entity *parent
 
 func (r *localeElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.LocaleElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO locale_element_type (parent_id) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -26388,11 +26388,11 @@ func (r *localeElementTypeRepository) CreateBatch(ctx context.Context, entities 
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -26441,7 +26441,7 @@ func (r *localeElementTypeRepository) GetAll(ctx context.Context, limit, offset 
 
 func (r *localeElementTypeRepository) Update(ctx context.Context, entity *parent.LocaleElementType) error {
 	query := "UPDATE locale_element_type SET parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.ParentID,
 		entity.ID,
@@ -26459,19 +26459,19 @@ func (r *localeElementTypeRepository) DeleteBatch(ctx context.Context, ids []int
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM locale_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -26510,13 +26510,13 @@ func (r *localityRepository) Create(ctx context.Context, entity *parent.Locality
 
 func (r *localityRepository) CreateBatch(ctx context.Context, entities []*parent.Locality) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO locality (type, usage_type, indicator, locality_name, dependent_locality_id, large_mail_user_id, postal_route_id) VALUES (?, ?, ?, ?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -26537,11 +26537,11 @@ func (r *localityRepository) CreateBatch(ctx context.Context, entities []*parent
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -26602,7 +26602,7 @@ func (r *localityRepository) GetAll(ctx context.Context, limit, offset int) ([]*
 
 func (r *localityRepository) Update(ctx context.Context, entity *parent.Locality) error {
 	query := "UPDATE locality SET type = ?, usage_type = ?, indicator = ?, locality_name = ?, dependent_locality_id = ?, large_mail_user_id = ?, postal_route_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.UsageType,
@@ -26626,19 +26626,19 @@ func (r *localityRepository) DeleteBatch(ctx context.Context, ids []int64) error
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM locality WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -26677,13 +26677,13 @@ func (r *localityElementTypeRepository) Create(ctx context.Context, entity *pare
 
 func (r *localityElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.LocalityElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO locality_element_type (type, usage_type, indicator, locality_name, dependent_locality_id, large_mail_user_id, postal_route_id) VALUES (?, ?, ?, ?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -26704,11 +26704,11 @@ func (r *localityElementTypeRepository) CreateBatch(ctx context.Context, entitie
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -26769,7 +26769,7 @@ func (r *localityElementTypeRepository) GetAll(ctx context.Context, limit, offse
 
 func (r *localityElementTypeRepository) Update(ctx context.Context, entity *parent.LocalityElementType) error {
 	query := "UPDATE locality_element_type SET type = ?, usage_type = ?, indicator = ?, locality_name = ?, dependent_locality_id = ?, large_mail_user_id = ?, postal_route_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.UsageType,
@@ -26793,19 +26793,19 @@ func (r *localityElementTypeRepository) DeleteBatch(ctx context.Context, ids []i
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM locality_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -26869,13 +26869,13 @@ func (r *localityNameElementTypeRepository) Create(ctx context.Context, entity *
 
 func (r *localityNameElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.LocalityNameElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO locality_name_element_type (type) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -26890,11 +26890,11 @@ func (r *localityNameElementTypeRepository) CreateBatch(ctx context.Context, ent
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -26943,7 +26943,7 @@ func (r *localityNameElementTypeRepository) GetAll(ctx context.Context, limit, o
 
 func (r *localityNameElementTypeRepository) Update(ctx context.Context, entity *parent.LocalityNameElementType) error {
 	query := "UPDATE locality_name_element_type SET type = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.ID,
@@ -26961,19 +26961,19 @@ func (r *localityNameElementTypeRepository) DeleteBatch(ctx context.Context, ids
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM locality_name_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -27009,13 +27009,13 @@ func (r *locationPointRepository) Create(ctx context.Context, entity *parent.Loc
 
 func (r *locationPointRepository) CreateBatch(ctx context.Context, entities []*parent.LocationPoint) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO location_point (latitude, longitude, elevation, radius) VALUES (?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -27033,11 +27033,11 @@ func (r *locationPointRepository) CreateBatch(ctx context.Context, entities []*p
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -27092,7 +27092,7 @@ func (r *locationPointRepository) GetAll(ctx context.Context, limit, offset int)
 
 func (r *locationPointRepository) Update(ctx context.Context, entity *parent.LocationPoint) error {
 	query := "UPDATE location_point SET latitude = ?, longitude = ?, elevation = ?, radius = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Latitude,
 		entity.Longitude,
@@ -27113,19 +27113,19 @@ func (r *locationPointRepository) DeleteBatch(ctx context.Context, ids []int64) 
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM location_point WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -27161,13 +27161,13 @@ func (r *locationPointElementTypeRepository) Create(ctx context.Context, entity 
 
 func (r *locationPointElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.LocationPointElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO location_point_element_type (latitude, longitude, elevation, radius) VALUES (?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -27185,11 +27185,11 @@ func (r *locationPointElementTypeRepository) CreateBatch(ctx context.Context, en
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -27244,7 +27244,7 @@ func (r *locationPointElementTypeRepository) GetAll(ctx context.Context, limit, 
 
 func (r *locationPointElementTypeRepository) Update(ctx context.Context, entity *parent.LocationPointElementType) error {
 	query := "UPDATE location_point_element_type SET latitude = ?, longitude = ?, elevation = ?, radius = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Latitude,
 		entity.Longitude,
@@ -27265,19 +27265,19 @@ func (r *locationPointElementTypeRepository) DeleteBatch(ctx context.Context, id
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM location_point_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -27308,13 +27308,13 @@ func (r *locationRegionRepository) Create(ctx context.Context, entity *parent.Lo
 
 func (r *locationRegionRepository) CreateBatch(ctx context.Context, entities []*parent.LocationRegion) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO location_region DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -27327,11 +27327,11 @@ func (r *locationRegionRepository) CreateBatch(ctx context.Context, entities []*
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -27391,19 +27391,19 @@ func (r *locationRegionRepository) DeleteBatch(ctx context.Context, ids []int64)
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM location_region WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -27434,13 +27434,13 @@ func (r *locationRegionElementTypeRepository) Create(ctx context.Context, entity
 
 func (r *locationRegionElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.LocationRegionElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO location_region_element_type DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -27453,11 +27453,11 @@ func (r *locationRegionElementTypeRepository) CreateBatch(ctx context.Context, e
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -27517,19 +27517,19 @@ func (r *locationRegionElementTypeRepository) DeleteBatch(ctx context.Context, i
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM location_region_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -27560,13 +27560,13 @@ func (r *locationsRepository) Create(ctx context.Context, entity *parent.Locatio
 
 func (r *locationsRepository) CreateBatch(ctx context.Context, entities []*parent.Locations) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO locations DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -27579,11 +27579,11 @@ func (r *locationsRepository) CreateBatch(ctx context.Context, entities []*paren
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -27643,19 +27643,19 @@ func (r *locationsRepository) DeleteBatch(ctx context.Context, ids []int64) erro
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM locations WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -27686,13 +27686,13 @@ func (r *locationsElementTypeRepository) Create(ctx context.Context, entity *par
 
 func (r *locationsElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.LocationsElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO locations_element_type DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -27705,11 +27705,11 @@ func (r *locationsElementTypeRepository) CreateBatch(ctx context.Context, entiti
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -27769,19 +27769,19 @@ func (r *locationsElementTypeRepository) DeleteBatch(ctx context.Context, ids []
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM locations_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -27812,13 +27812,13 @@ func (r *locatorTypeRepository) Create(ctx context.Context, entity *parent.Locat
 
 func (r *locatorTypeRepository) CreateBatch(ctx context.Context, entities []*parent.LocatorType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO locator_type DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -27831,11 +27831,11 @@ func (r *locatorTypeRepository) CreateBatch(ctx context.Context, entities []*par
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -27895,19 +27895,19 @@ func (r *locatorTypeRepository) DeleteBatch(ctx context.Context, ids []int64) er
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM locator_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -27941,13 +27941,13 @@ func (r *logicalTestTypeRepository) Create(ctx context.Context, entity *parent.L
 
 func (r *logicalTestTypeRepository) CreateBatch(ctx context.Context, entities []*parent.LogicalTestType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO logical_test_type (operator, negate) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -27963,11 +27963,11 @@ func (r *logicalTestTypeRepository) CreateBatch(ctx context.Context, entities []
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -28018,7 +28018,7 @@ func (r *logicalTestTypeRepository) GetAll(ctx context.Context, limit, offset in
 
 func (r *logicalTestTypeRepository) Update(ctx context.Context, entity *parent.LogicalTestType) error {
 	query := "UPDATE logical_test_type SET operator = ?, negate = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Operator,
 		entity.Negate,
@@ -28037,19 +28037,19 @@ func (r *logicalTestTypeRepository) DeleteBatch(ctx context.Context, ids []int64
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM logical_test_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -28082,13 +28082,13 @@ func (r *macAddressElementTypeRepository) Create(ctx context.Context, entity *pa
 
 func (r *macAddressElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.MacAddressElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO mac_address_element_type (parent_id) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -28103,11 +28103,11 @@ func (r *macAddressElementTypeRepository) CreateBatch(ctx context.Context, entit
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -28156,7 +28156,7 @@ func (r *macAddressElementTypeRepository) GetAll(ctx context.Context, limit, off
 
 func (r *macAddressElementTypeRepository) Update(ctx context.Context, entity *parent.MacAddressElementType) error {
 	query := "UPDATE mac_address_element_type SET parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.ParentID,
 		entity.ID,
@@ -28174,19 +28174,19 @@ func (r *macAddressElementTypeRepository) DeleteBatch(ctx context.Context, ids [
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM mac_address_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -28219,13 +28219,13 @@ func (r *mailStopNameElementTypeRepository) Create(ctx context.Context, entity *
 
 func (r *mailStopNameElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.MailStopNameElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO mail_stop_name_element_type (type) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -28240,11 +28240,11 @@ func (r *mailStopNameElementTypeRepository) CreateBatch(ctx context.Context, ent
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -28293,7 +28293,7 @@ func (r *mailStopNameElementTypeRepository) GetAll(ctx context.Context, limit, o
 
 func (r *mailStopNameElementTypeRepository) Update(ctx context.Context, entity *parent.MailStopNameElementType) error {
 	query := "UPDATE mail_stop_name_element_type SET type = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.ID,
@@ -28311,19 +28311,19 @@ func (r *mailStopNameElementTypeRepository) DeleteBatch(ctx context.Context, ids
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM mail_stop_name_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -28356,13 +28356,13 @@ func (r *mailStopNumberElementTypeRepository) Create(ctx context.Context, entity
 
 func (r *mailStopNumberElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.MailStopNumberElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO mail_stop_number_element_type (name_number_separator) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -28377,11 +28377,11 @@ func (r *mailStopNumberElementTypeRepository) CreateBatch(ctx context.Context, e
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -28430,7 +28430,7 @@ func (r *mailStopNumberElementTypeRepository) GetAll(ctx context.Context, limit,
 
 func (r *mailStopNumberElementTypeRepository) Update(ctx context.Context, entity *parent.MailStopNumberElementType) error {
 	query := "UPDATE mail_stop_number_element_type SET name_number_separator = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.NameNumberSeparator,
 		entity.ID,
@@ -28448,19 +28448,19 @@ func (r *mailStopNumberElementTypeRepository) DeleteBatch(ctx context.Context, i
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM mail_stop_number_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -28495,13 +28495,13 @@ func (r *mailStopTypeRepository) Create(ctx context.Context, entity *parent.Mail
 
 func (r *mailStopTypeRepository) CreateBatch(ctx context.Context, entities []*parent.MailStopType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO mail_stop_type (type, mail_stop_name, mail_stop_number) VALUES (?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -28518,11 +28518,11 @@ func (r *mailStopTypeRepository) CreateBatch(ctx context.Context, entities []*pa
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -28575,7 +28575,7 @@ func (r *mailStopTypeRepository) GetAll(ctx context.Context, limit, offset int) 
 
 func (r *mailStopTypeRepository) Update(ctx context.Context, entity *parent.MailStopType) error {
 	query := "UPDATE mail_stop_type SET type = ?, mail_stop_name = ?, mail_stop_number = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.MailStopName,
@@ -28595,19 +28595,19 @@ func (r *mailStopTypeRepository) DeleteBatch(ctx context.Context, ids []int64) e
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM mail_stop_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -28640,13 +28640,13 @@ func (r *manifestTypeRepository) Create(ctx context.Context, entity *parent.Mani
 
 func (r *manifestTypeRepository) CreateBatch(ctx context.Context, entities []*parent.ManifestType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO manifest_type (xsd_id) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -28661,11 +28661,11 @@ func (r *manifestTypeRepository) CreateBatch(ctx context.Context, entities []*pa
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -28714,7 +28714,7 @@ func (r *manifestTypeRepository) GetAll(ctx context.Context, limit, offset int) 
 
 func (r *manifestTypeRepository) Update(ctx context.Context, entity *parent.ManifestType) error {
 	query := "UPDATE manifest_type SET xsd_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.XsdId,
 		entity.ID,
@@ -28732,19 +28732,19 @@ func (r *manifestTypeRepository) DeleteBatch(ctx context.Context, ids []int64) e
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM manifest_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -28779,13 +28779,13 @@ func (r *middleNameElementTypeRepository) Create(ctx context.Context, entity *pa
 
 func (r *middleNameElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.MiddleNameElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO middle_name_element_type (type, name_type, code) VALUES (?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -28802,11 +28802,11 @@ func (r *middleNameElementTypeRepository) CreateBatch(ctx context.Context, entit
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -28859,7 +28859,7 @@ func (r *middleNameElementTypeRepository) GetAll(ctx context.Context, limit, off
 
 func (r *middleNameElementTypeRepository) Update(ctx context.Context, entity *parent.MiddleNameElementType) error {
 	query := "UPDATE middle_name_element_type SET type = ?, name_type = ?, code = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.NameType,
@@ -28879,19 +28879,19 @@ func (r *middleNameElementTypeRepository) DeleteBatch(ctx context.Context, ids [
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM middle_name_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -28924,13 +28924,13 @@ func (r *modelRepository) Create(ctx context.Context, entity *parent.Model) (int
 
 func (r *modelRepository) CreateBatch(ctx context.Context, entities []*parent.Model) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO model (system) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -28945,11 +28945,11 @@ func (r *modelRepository) CreateBatch(ctx context.Context, entities []*parent.Mo
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -28998,7 +28998,7 @@ func (r *modelRepository) GetAll(ctx context.Context, limit, offset int) ([]*par
 
 func (r *modelRepository) Update(ctx context.Context, entity *parent.Model) error {
 	query := "UPDATE model SET system = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.System,
 		entity.ID,
@@ -29016,19 +29016,19 @@ func (r *modelRepository) DeleteBatch(ctx context.Context, ids []int64) error {
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM model WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -29061,13 +29061,13 @@ func (r *modelElementTypeRepository) Create(ctx context.Context, entity *parent.
 
 func (r *modelElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.ModelElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO model_element_type (system) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -29082,11 +29082,11 @@ func (r *modelElementTypeRepository) CreateBatch(ctx context.Context, entities [
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -29135,7 +29135,7 @@ func (r *modelElementTypeRepository) GetAll(ctx context.Context, limit, offset i
 
 func (r *modelElementTypeRepository) Update(ctx context.Context, entity *parent.ModelElementType) error {
 	query := "UPDATE model_element_type SET system = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.System,
 		entity.ID,
@@ -29153,19 +29153,19 @@ func (r *modelElementTypeRepository) DeleteBatch(ctx context.Context, ids []int6
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM model_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -29196,13 +29196,13 @@ func (r *motherboardGuidElementTypeRepository) Create(ctx context.Context, entit
 
 func (r *motherboardGuidElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.MotherboardGuidElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO motherboard_guid_element_type DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -29215,11 +29215,11 @@ func (r *motherboardGuidElementTypeRepository) CreateBatch(ctx context.Context, 
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -29279,19 +29279,19 @@ func (r *motherboardGuidElementTypeRepository) DeleteBatch(ctx context.Context, 
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM motherboard_guid_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -29327,13 +29327,13 @@ func (r *nameDetailsElementTypeRepository) Create(ctx context.Context, entity *p
 
 func (r *nameDetailsElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.NameDetailsElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO name_details_element_type (name_details_key, addressee_indicator, dependency_name, parent_id) VALUES (?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -29351,11 +29351,11 @@ func (r *nameDetailsElementTypeRepository) CreateBatch(ctx context.Context, enti
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -29410,7 +29410,7 @@ func (r *nameDetailsElementTypeRepository) GetAll(ctx context.Context, limit, of
 
 func (r *nameDetailsElementTypeRepository) Update(ctx context.Context, entity *parent.NameDetailsElementType) error {
 	query := "UPDATE name_details_element_type SET name_details_key = ?, addressee_indicator = ?, dependency_name = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.NameDetailsKey,
 		entity.AddresseeIndicator,
@@ -29431,19 +29431,19 @@ func (r *nameDetailsElementTypeRepository) DeleteBatch(ctx context.Context, ids 
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM name_details_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -29478,13 +29478,13 @@ func (r *nameLineTypeRepository) Create(ctx context.Context, entity *parent.Name
 
 func (r *nameLineTypeRepository) CreateBatch(ctx context.Context, entities []*parent.NameLineType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO name_line_type (type, name_type, code) VALUES (?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -29501,11 +29501,11 @@ func (r *nameLineTypeRepository) CreateBatch(ctx context.Context, entities []*pa
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -29558,7 +29558,7 @@ func (r *nameLineTypeRepository) GetAll(ctx context.Context, limit, offset int) 
 
 func (r *nameLineTypeRepository) Update(ctx context.Context, entity *parent.NameLineType) error {
 	query := "UPDATE name_line_type SET type = ?, name_type = ?, code = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.NameType,
@@ -29578,19 +29578,19 @@ func (r *nameLineTypeRepository) DeleteBatch(ctx context.Context, ids []int64) e
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM name_line_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -29625,13 +29625,13 @@ func (r *namePrefixElementTypeRepository) Create(ctx context.Context, entity *pa
 
 func (r *namePrefixElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.NamePrefixElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO name_prefix_element_type (type, name_type, code) VALUES (?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -29648,11 +29648,11 @@ func (r *namePrefixElementTypeRepository) CreateBatch(ctx context.Context, entit
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -29705,7 +29705,7 @@ func (r *namePrefixElementTypeRepository) GetAll(ctx context.Context, limit, off
 
 func (r *namePrefixElementTypeRepository) Update(ctx context.Context, entity *parent.NamePrefixElementType) error {
 	query := "UPDATE name_prefix_element_type SET type = ?, name_type = ?, code = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.NameType,
@@ -29725,19 +29725,19 @@ func (r *namePrefixElementTypeRepository) DeleteBatch(ctx context.Context, ids [
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM name_prefix_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -29773,13 +29773,13 @@ func (r *networkInterfaceTypeRepository) Create(ctx context.Context, entity *par
 
 func (r *networkInterfaceTypeRepository) CreateBatch(ctx context.Context, entities []*parent.NetworkInterfaceType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO network_interface_type (mac_address, url, subnet_mask_id, default_route_id) VALUES (?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -29797,11 +29797,11 @@ func (r *networkInterfaceTypeRepository) CreateBatch(ctx context.Context, entiti
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -29856,7 +29856,7 @@ func (r *networkInterfaceTypeRepository) GetAll(ctx context.Context, limit, offs
 
 func (r *networkInterfaceTypeRepository) Update(ctx context.Context, entity *parent.NetworkInterfaceType) error {
 	query := "UPDATE network_interface_type SET mac_address = ?, url = ?, subnet_mask_id = ?, default_route_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.MacAddress,
 		entity.Url,
@@ -29877,19 +29877,19 @@ func (r *networkInterfaceTypeRepository) DeleteBatch(ctx context.Context, ids []
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM network_interface_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -29948,13 +29948,13 @@ func (r *networkNameElementTypeRepository) Create(ctx context.Context, entity *p
 
 func (r *networkNameElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.NetworkNameElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO network_name_element_type DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -29967,11 +29967,11 @@ func (r *networkNameElementTypeRepository) CreateBatch(ctx context.Context, enti
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -30031,19 +30031,19 @@ func (r *networkNameElementTypeRepository) DeleteBatch(ctx context.Context, ids 
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM network_name_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -30079,13 +30079,13 @@ func (r *networkTypeRepository) Create(ctx context.Context, entity *parent.Netwo
 
 func (r *networkTypeRepository) CreateBatch(ctx context.Context, entities []*parent.NetworkType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO network_type (network_name, ip_net_range, cidr, parent_id) VALUES (?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -30103,11 +30103,11 @@ func (r *networkTypeRepository) CreateBatch(ctx context.Context, entities []*par
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -30162,7 +30162,7 @@ func (r *networkTypeRepository) GetAll(ctx context.Context, limit, offset int) (
 
 func (r *networkTypeRepository) Update(ctx context.Context, entity *parent.NetworkType) error {
 	query := "UPDATE network_type SET network_name = ?, ip_net_range = ?, cidr = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.NetworkName,
 		entity.IpNetRange,
@@ -30183,19 +30183,19 @@ func (r *networkTypeRepository) DeleteBatch(ctx context.Context, ids []int64) er
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM network_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -30257,13 +30257,13 @@ func (r *notesRepository) Create(ctx context.Context, entity *parent.Notes) (int
 
 func (r *notesRepository) CreateBatch(ctx context.Context, entities []*parent.Notes) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO notes (note, parent_id) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -30279,11 +30279,11 @@ func (r *notesRepository) CreateBatch(ctx context.Context, entities []*parent.No
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -30334,7 +30334,7 @@ func (r *notesRepository) GetAll(ctx context.Context, limit, offset int) ([]*par
 
 func (r *notesRepository) Update(ctx context.Context, entity *parent.Notes) error {
 	query := "UPDATE notes SET note = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Note,
 		entity.ParentID,
@@ -30353,19 +30353,19 @@ func (r *notesRepository) DeleteBatch(ctx context.Context, ids []int64) error {
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM notes WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -30399,13 +30399,13 @@ func (r *notesElementTypeRepository) Create(ctx context.Context, entity *parent.
 
 func (r *notesElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.NotesElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO notes_element_type (note, parent_id) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -30421,11 +30421,11 @@ func (r *notesElementTypeRepository) CreateBatch(ctx context.Context, entities [
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -30476,7 +30476,7 @@ func (r *notesElementTypeRepository) GetAll(ctx context.Context, limit, offset i
 
 func (r *notesElementTypeRepository) Update(ctx context.Context, entity *parent.NotesElementType) error {
 	query := "UPDATE notes_element_type SET note = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Note,
 		entity.ParentID,
@@ -30495,19 +30495,19 @@ func (r *notesElementTypeRepository) DeleteBatch(ctx context.Context, ids []int6
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM notes_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -30540,13 +30540,13 @@ func (r *noticeTypeRepository) Create(ctx context.Context, entity *parent.Notice
 
 func (r *noticeTypeRepository) CreateBatch(ctx context.Context, entities []*parent.NoticeType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO notice_type (xsd_id) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -30561,11 +30561,11 @@ func (r *noticeTypeRepository) CreateBatch(ctx context.Context, entities []*pare
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -30614,7 +30614,7 @@ func (r *noticeTypeRepository) GetAll(ctx context.Context, limit, offset int) ([
 
 func (r *noticeTypeRepository) Update(ctx context.Context, entity *parent.NoticeType) error {
 	query := "UPDATE notice_type SET xsd_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.XsdId,
 		entity.ID,
@@ -30632,19 +30632,19 @@ func (r *noticeTypeRepository) DeleteBatch(ctx context.Context, ids []int64) err
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM notice_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -30679,13 +30679,13 @@ func (r *ns09XmldsigObjectTypeRepository) Create(ctx context.Context, entity *pa
 
 func (r *ns09XmldsigObjectTypeRepository) CreateBatch(ctx context.Context, entities []*parent.Ns09XmldsigObjectType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO ns_09_xmldsig_object_type (xsd_id, mime_type, encoding) VALUES (?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -30702,11 +30702,11 @@ func (r *ns09XmldsigObjectTypeRepository) CreateBatch(ctx context.Context, entit
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -30759,7 +30759,7 @@ func (r *ns09XmldsigObjectTypeRepository) GetAll(ctx context.Context, limit, off
 
 func (r *ns09XmldsigObjectTypeRepository) Update(ctx context.Context, entity *parent.Ns09XmldsigObjectType) error {
 	query := "UPDATE ns_09_xmldsig_object_type SET xsd_id = ?, mime_type = ?, encoding = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.XsdId,
 		entity.MimeType,
@@ -30779,19 +30779,19 @@ func (r *ns09XmldsigObjectTypeRepository) DeleteBatch(ctx context.Context, ids [
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM ns_09_xmldsig_object_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -30826,13 +30826,13 @@ func (r *ns09XmldsigReferenceTypeRepository) Create(ctx context.Context, entity 
 
 func (r *ns09XmldsigReferenceTypeRepository) CreateBatch(ctx context.Context, entities []*parent.Ns09XmldsigReferenceType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO ns_09_xmldsig_reference_type (xsd_id, u_r_i, type) VALUES (?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -30849,11 +30849,11 @@ func (r *ns09XmldsigReferenceTypeRepository) CreateBatch(ctx context.Context, en
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -30906,7 +30906,7 @@ func (r *ns09XmldsigReferenceTypeRepository) GetAll(ctx context.Context, limit, 
 
 func (r *ns09XmldsigReferenceTypeRepository) Update(ctx context.Context, entity *parent.Ns09XmldsigReferenceType) error {
 	query := "UPDATE ns_09_xmldsig_reference_type SET xsd_id = ?, u_r_i = ?, type = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.XsdId,
 		entity.URI,
@@ -30926,19 +30926,19 @@ func (r *ns09XmldsigReferenceTypeRepository) DeleteBatch(ctx context.Context, id
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM ns_09_xmldsig_reference_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -30971,13 +30971,13 @@ func (r *ns09XmldsigSignatureTypeRepository) Create(ctx context.Context, entity 
 
 func (r *ns09XmldsigSignatureTypeRepository) CreateBatch(ctx context.Context, entities []*parent.Ns09XmldsigSignatureType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO ns_09_xmldsig_signature_type (xsd_id) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -30992,11 +30992,11 @@ func (r *ns09XmldsigSignatureTypeRepository) CreateBatch(ctx context.Context, en
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -31045,7 +31045,7 @@ func (r *ns09XmldsigSignatureTypeRepository) GetAll(ctx context.Context, limit, 
 
 func (r *ns09XmldsigSignatureTypeRepository) Update(ctx context.Context, entity *parent.Ns09XmldsigSignatureType) error {
 	query := "UPDATE ns_09_xmldsig_signature_type SET xsd_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.XsdId,
 		entity.ID,
@@ -31063,19 +31063,19 @@ func (r *ns09XmldsigSignatureTypeRepository) DeleteBatch(ctx context.Context, id
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM ns_09_xmldsig_signature_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -31111,13 +31111,13 @@ func (r *oasisNamesTcCiqXNameDetailsRepository) Create(ctx context.Context, enti
 
 func (r *oasisNamesTcCiqXNameDetailsRepository) CreateBatch(ctx context.Context, entities []*parent.OasisNamesTcCiqXNameDetails) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO oasis_names_tc_ciq_x_name_details (name_details_key, addressee_indicator, dependency_name, parent_id) VALUES (?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -31135,11 +31135,11 @@ func (r *oasisNamesTcCiqXNameDetailsRepository) CreateBatch(ctx context.Context,
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -31194,7 +31194,7 @@ func (r *oasisNamesTcCiqXNameDetailsRepository) GetAll(ctx context.Context, limi
 
 func (r *oasisNamesTcCiqXNameDetailsRepository) Update(ctx context.Context, entity *parent.OasisNamesTcCiqXNameDetails) error {
 	query := "UPDATE oasis_names_tc_ciq_x_name_details SET name_details_key = ?, addressee_indicator = ?, dependency_name = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.NameDetailsKey,
 		entity.AddresseeIndicator,
@@ -31215,19 +31215,19 @@ func (r *oasisNamesTcCiqXNameDetailsRepository) DeleteBatch(ctx context.Context,
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM oasis_names_tc_ciq_x_name_details WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -31262,13 +31262,13 @@ func (r *oasisNamesTcCiqXOrganisationNameDetailsRepository) Create(ctx context.C
 
 func (r *oasisNamesTcCiqXOrganisationNameDetailsRepository) CreateBatch(ctx context.Context, entities []*parent.OasisNamesTcCiqXOrganisationNameDetails) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO oasis_names_tc_ciq_x_organisation_name_details (organisation_former_name, organisation_known_as, parent_id) VALUES (?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -31285,11 +31285,11 @@ func (r *oasisNamesTcCiqXOrganisationNameDetailsRepository) CreateBatch(ctx cont
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -31342,7 +31342,7 @@ func (r *oasisNamesTcCiqXOrganisationNameDetailsRepository) GetAll(ctx context.C
 
 func (r *oasisNamesTcCiqXOrganisationNameDetailsRepository) Update(ctx context.Context, entity *parent.OasisNamesTcCiqXOrganisationNameDetails) error {
 	query := "UPDATE oasis_names_tc_ciq_x_organisation_name_details SET organisation_former_name = ?, organisation_known_as = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.OrganisationFormerName,
 		entity.OrganisationKnownAs,
@@ -31362,19 +31362,19 @@ func (r *oasisNamesTcCiqXOrganisationNameDetailsRepository) DeleteBatch(ctx cont
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM oasis_names_tc_ciq_x_organisation_name_details WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -31409,13 +31409,13 @@ func (r *oasisNamesTcCiqXPersonNameRepository) Create(ctx context.Context, entit
 
 func (r *oasisNamesTcCiqXPersonNameRepository) CreateBatch(ctx context.Context, entities []*parent.OasisNamesTcCiqXPersonName) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO oasis_names_tc_ciq_x_person_name (former_name, known_as, parent_id) VALUES (?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -31432,11 +31432,11 @@ func (r *oasisNamesTcCiqXPersonNameRepository) CreateBatch(ctx context.Context, 
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -31489,7 +31489,7 @@ func (r *oasisNamesTcCiqXPersonNameRepository) GetAll(ctx context.Context, limit
 
 func (r *oasisNamesTcCiqXPersonNameRepository) Update(ctx context.Context, entity *parent.OasisNamesTcCiqXPersonName) error {
 	query := "UPDATE oasis_names_tc_ciq_x_person_name SET former_name = ?, known_as = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.FormerName,
 		entity.KnownAs,
@@ -31509,19 +31509,19 @@ func (r *oasisNamesTcCiqXPersonNameRepository) DeleteBatch(ctx context.Context, 
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM oasis_names_tc_ciq_x_person_name WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -31556,13 +31556,13 @@ func (r *objectComponentTypeRepository) Create(ctx context.Context, entity *pare
 
 func (r *objectComponentTypeRepository) CreateBatch(ctx context.Context, entities []*parent.ObjectComponentType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO object_component_type (object_ref, item_field, record_field) VALUES (?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -31579,11 +31579,11 @@ func (r *objectComponentTypeRepository) CreateBatch(ctx context.Context, entitie
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -31636,7 +31636,7 @@ func (r *objectComponentTypeRepository) GetAll(ctx context.Context, limit, offse
 
 func (r *objectComponentTypeRepository) Update(ctx context.Context, entity *parent.ObjectComponentType) error {
 	query := "UPDATE object_component_type SET object_ref = ?, item_field = ?, record_field = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Object_ref,
 		entity.Item_field,
@@ -31656,19 +31656,19 @@ func (r *objectComponentTypeRepository) DeleteBatch(ctx context.Context, ids []i
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM object_component_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -31701,13 +31701,13 @@ func (r *objectRefRepository) Create(ctx context.Context, entity *parent.ObjectR
 
 func (r *objectRefRepository) CreateBatch(ctx context.Context, entities []*parent.ObjectRef) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO object_ref (ref_id) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -31722,11 +31722,11 @@ func (r *objectRefRepository) CreateBatch(ctx context.Context, entities []*paren
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -31775,7 +31775,7 @@ func (r *objectRefRepository) GetAll(ctx context.Context, limit, offset int) ([]
 
 func (r *objectRefRepository) Update(ctx context.Context, entity *parent.ObjectRef) error {
 	query := "UPDATE object_ref SET ref_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.RefId,
 		entity.ID,
@@ -31793,19 +31793,19 @@ func (r *objectRefRepository) DeleteBatch(ctx context.Context, ids []int64) erro
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM object_ref WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -31838,13 +31838,13 @@ func (r *objectRefElementTypeRepository) Create(ctx context.Context, entity *par
 
 func (r *objectRefElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.ObjectRefElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO object_ref_element_type (ref_id) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -31859,11 +31859,11 @@ func (r *objectRefElementTypeRepository) CreateBatch(ctx context.Context, entiti
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -31912,7 +31912,7 @@ func (r *objectRefElementTypeRepository) GetAll(ctx context.Context, limit, offs
 
 func (r *objectRefElementTypeRepository) Update(ctx context.Context, entity *parent.ObjectRefElementType) error {
 	query := "UPDATE object_ref_element_type SET ref_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.RefId,
 		entity.ID,
@@ -31930,19 +31930,19 @@ func (r *objectRefElementTypeRepository) DeleteBatch(ctx context.Context, ids []
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM object_ref_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -31975,13 +31975,13 @@ func (r *objectRefTypeRepository) Create(ctx context.Context, entity *parent.Obj
 
 func (r *objectRefTypeRepository) CreateBatch(ctx context.Context, entities []*parent.ObjectRefType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO object_ref_type (object_ref) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -31996,11 +31996,11 @@ func (r *objectRefTypeRepository) CreateBatch(ctx context.Context, entities []*p
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -32049,7 +32049,7 @@ func (r *objectRefTypeRepository) GetAll(ctx context.Context, limit, offset int)
 
 func (r *objectRefTypeRepository) Update(ctx context.Context, entity *parent.ObjectRefType) error {
 	query := "UPDATE object_ref_type SET object_ref = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Object_ref,
 		entity.ID,
@@ -32067,19 +32067,19 @@ func (r *objectRefTypeRepository) DeleteBatch(ctx context.Context, ids []int64) 
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM object_ref_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -32110,13 +32110,13 @@ func (r *objectsTypeRepository) Create(ctx context.Context, entity *parent.Objec
 
 func (r *objectsTypeRepository) CreateBatch(ctx context.Context, entities []*parent.ObjectsType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO objects_type DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -32129,11 +32129,11 @@ func (r *objectsTypeRepository) CreateBatch(ctx context.Context, entities []*par
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -32193,19 +32193,19 @@ func (r *objectsTypeRepository) DeleteBatch(ctx context.Context, ids []int64) er
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM objects_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -32240,13 +32240,13 @@ func (r *organisationFormerNameElementTypeRepository) Create(ctx context.Context
 
 func (r *organisationFormerNameElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.OrganisationFormerNameElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO organisation_former_name_element_type (valid_from, valid_to, parent_id) VALUES (?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -32263,11 +32263,11 @@ func (r *organisationFormerNameElementTypeRepository) CreateBatch(ctx context.Co
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -32320,7 +32320,7 @@ func (r *organisationFormerNameElementTypeRepository) GetAll(ctx context.Context
 
 func (r *organisationFormerNameElementTypeRepository) Update(ctx context.Context, entity *parent.OrganisationFormerNameElementType) error {
 	query := "UPDATE organisation_former_name_element_type SET valid_from = ?, valid_to = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.ValidFrom,
 		entity.ValidTo,
@@ -32340,19 +32340,19 @@ func (r *organisationFormerNameElementTypeRepository) DeleteBatch(ctx context.Co
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM organisation_former_name_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -32387,13 +32387,13 @@ func (r *organisationKnownAsElementTypeRepository) Create(ctx context.Context, e
 
 func (r *organisationKnownAsElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.OrganisationKnownAsElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO \"organisation_known_as_element_type\" (valid_from, valid_to, parent_id) VALUES (?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -32410,11 +32410,11 @@ func (r *organisationKnownAsElementTypeRepository) CreateBatch(ctx context.Conte
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -32467,7 +32467,7 @@ func (r *organisationKnownAsElementTypeRepository) GetAll(ctx context.Context, l
 
 func (r *organisationKnownAsElementTypeRepository) Update(ctx context.Context, entity *parent.OrganisationKnownAsElementType) error {
 	query := "UPDATE \"organisation_known_as_element_type\" SET valid_from = ?, valid_to = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.ValidFrom,
 		entity.ValidTo,
@@ -32487,19 +32487,19 @@ func (r *organisationKnownAsElementTypeRepository) DeleteBatch(ctx context.Conte
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM \"organisation_known_as_element_type\" WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -32534,13 +32534,13 @@ func (r *organisationNameDetailsElementTypeRepository) Create(ctx context.Contex
 
 func (r *organisationNameDetailsElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.OrganisationNameDetailsElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO organisation_name_details_element_type (organisation_former_name, organisation_known_as, parent_id) VALUES (?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -32557,11 +32557,11 @@ func (r *organisationNameDetailsElementTypeRepository) CreateBatch(ctx context.C
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -32614,7 +32614,7 @@ func (r *organisationNameDetailsElementTypeRepository) GetAll(ctx context.Contex
 
 func (r *organisationNameDetailsElementTypeRepository) Update(ctx context.Context, entity *parent.OrganisationNameDetailsElementType) error {
 	query := "UPDATE organisation_name_details_element_type SET organisation_former_name = ?, organisation_known_as = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.OrganisationFormerName,
 		entity.OrganisationKnownAs,
@@ -32634,19 +32634,19 @@ func (r *organisationNameDetailsElementTypeRepository) DeleteBatch(ctx context.C
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM organisation_name_details_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -32681,13 +32681,13 @@ func (r *organisationNameElementTypeRepository) Create(ctx context.Context, enti
 
 func (r *organisationNameElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.OrganisationNameElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO organisation_name_element_type (type, name_type, code) VALUES (?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -32704,11 +32704,11 @@ func (r *organisationNameElementTypeRepository) CreateBatch(ctx context.Context,
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -32761,7 +32761,7 @@ func (r *organisationNameElementTypeRepository) GetAll(ctx context.Context, limi
 
 func (r *organisationNameElementTypeRepository) Update(ctx context.Context, entity *parent.OrganisationNameElementType) error {
 	query := "UPDATE organisation_name_element_type SET type = ?, name_type = ?, code = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.NameType,
@@ -32781,19 +32781,19 @@ func (r *organisationNameElementTypeRepository) DeleteBatch(ctx context.Context,
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM organisation_name_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -32828,13 +32828,13 @@ func (r *organisationTypeElementTypeRepository) Create(ctx context.Context, enti
 
 func (r *organisationTypeElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.OrganisationTypeElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO organisation_type_element_type (type, name_type, code) VALUES (?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -32851,11 +32851,11 @@ func (r *organisationTypeElementTypeRepository) CreateBatch(ctx context.Context,
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -32908,7 +32908,7 @@ func (r *organisationTypeElementTypeRepository) GetAll(ctx context.Context, limi
 
 func (r *organisationTypeElementTypeRepository) Update(ctx context.Context, entity *parent.OrganisationTypeElementType) error {
 	query := "UPDATE organisation_type_element_type SET type = ?, name_type = ?, code = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.NameType,
@@ -32928,19 +32928,19 @@ func (r *organisationTypeElementTypeRepository) DeleteBatch(ctx context.Context,
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM organisation_type_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -32973,13 +32973,13 @@ func (r *organizationTypeRepository) Create(ctx context.Context, entity *parent.
 
 func (r *organizationTypeRepository) CreateBatch(ctx context.Context, entities []*parent.OrganizationType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO organization_type (parent_id) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -32994,11 +32994,11 @@ func (r *organizationTypeRepository) CreateBatch(ctx context.Context, entities [
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -33047,7 +33047,7 @@ func (r *organizationTypeRepository) GetAll(ctx context.Context, limit, offset i
 
 func (r *organizationTypeRepository) Update(ctx context.Context, entity *parent.OrganizationType) error {
 	query := "UPDATE organization_type SET parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.ParentID,
 		entity.ID,
@@ -33065,19 +33065,19 @@ func (r *organizationTypeRepository) DeleteBatch(ctx context.Context, ids []int6
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM organization_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -33137,13 +33137,13 @@ func (r *otherNameElementTypeRepository) Create(ctx context.Context, entity *par
 
 func (r *otherNameElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.OtherNameElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO other_name_element_type (type, name_type, code) VALUES (?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -33160,11 +33160,11 @@ func (r *otherNameElementTypeRepository) CreateBatch(ctx context.Context, entiti
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -33217,7 +33217,7 @@ func (r *otherNameElementTypeRepository) GetAll(ctx context.Context, limit, offs
 
 func (r *otherNameElementTypeRepository) Update(ctx context.Context, entity *parent.OtherNameElementType) error {
 	query := "UPDATE other_name_element_type SET type = ?, name_type = ?, code = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.NameType,
@@ -33237,19 +33237,19 @@ func (r *otherNameElementTypeRepository) DeleteBatch(ctx context.Context, ids []
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM other_name_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -33287,13 +33287,13 @@ func (r *ovalDefinitionsRepository) Create(ctx context.Context, entity *parent.O
 
 func (r *ovalDefinitionsRepository) CreateBatch(ctx context.Context, entities []*parent.OvalDefinitions) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO oval_definitions (generator_id, definitions_id, tests_id, objects_id, states_id, variables_id) VALUES (?, ?, ?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -33313,11 +33313,11 @@ func (r *ovalDefinitionsRepository) CreateBatch(ctx context.Context, entities []
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -33376,7 +33376,7 @@ func (r *ovalDefinitionsRepository) GetAll(ctx context.Context, limit, offset in
 
 func (r *ovalDefinitionsRepository) Update(ctx context.Context, entity *parent.OvalDefinitions) error {
 	query := "UPDATE oval_definitions SET generator_id = ?, definitions_id = ?, tests_id = ?, objects_id = ?, states_id = ?, variables_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.GeneratorID,
 		entity.DefinitionsID,
@@ -33399,19 +33399,19 @@ func (r *ovalDefinitionsRepository) DeleteBatch(ctx context.Context, ids []int64
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM oval_definitions WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -33449,13 +33449,13 @@ func (r *ovalDefinitionsElementTypeRepository) Create(ctx context.Context, entit
 
 func (r *ovalDefinitionsElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.OvalDefinitionsElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO oval_definitions_element_type (generator_id, definitions_id, tests_id, objects_id, states_id, variables_id) VALUES (?, ?, ?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -33475,11 +33475,11 @@ func (r *ovalDefinitionsElementTypeRepository) CreateBatch(ctx context.Context, 
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -33538,7 +33538,7 @@ func (r *ovalDefinitionsElementTypeRepository) GetAll(ctx context.Context, limit
 
 func (r *ovalDefinitionsElementTypeRepository) Update(ctx context.Context, entity *parent.OvalDefinitionsElementType) error {
 	query := "UPDATE oval_definitions_element_type SET generator_id = ?, definitions_id = ?, tests_id = ?, objects_id = ?, states_id = ?, variables_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.GeneratorID,
 		entity.DefinitionsID,
@@ -33561,19 +33561,19 @@ func (r *ovalDefinitionsElementTypeRepository) DeleteBatch(ctx context.Context, 
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM oval_definitions_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -33758,13 +33758,13 @@ func (r *ovalMitreOrgOvalGeneratorTypeRepository) Create(ctx context.Context, en
 
 func (r *ovalMitreOrgOvalGeneratorTypeRepository) CreateBatch(ctx context.Context, entities []*parent.OvalMitreOrgOvalGeneratorType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO oval_mitre_org_oval__generator_type (product_name, product_version, timestamp) VALUES (?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -33781,11 +33781,11 @@ func (r *ovalMitreOrgOvalGeneratorTypeRepository) CreateBatch(ctx context.Contex
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -33842,7 +33842,7 @@ func (r *ovalMitreOrgOvalGeneratorTypeRepository) GetAll(ctx context.Context, li
 
 func (r *ovalMitreOrgOvalGeneratorTypeRepository) Update(ctx context.Context, entity *parent.OvalMitreOrgOvalGeneratorType) error {
 	query := "UPDATE oval_mitre_org_oval__generator_type SET product_name = ?, product_version = ?, timestamp = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Product_name,
 		entity.Product_version,
@@ -33862,19 +33862,19 @@ func (r *ovalMitreOrgOvalGeneratorTypeRepository) DeleteBatch(ctx context.Contex
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM oval_mitre_org_oval__generator_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -33907,13 +33907,13 @@ func (r *ovalMitreOrgOvalMessageTypeRepository) Create(ctx context.Context, enti
 
 func (r *ovalMitreOrgOvalMessageTypeRepository) CreateBatch(ctx context.Context, entities []*parent.OvalMitreOrgOvalMessageType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO oval_mitre_org_oval__message_type (level) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -33928,11 +33928,11 @@ func (r *ovalMitreOrgOvalMessageTypeRepository) CreateBatch(ctx context.Context,
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -33981,7 +33981,7 @@ func (r *ovalMitreOrgOvalMessageTypeRepository) GetAll(ctx context.Context, limi
 
 func (r *ovalMitreOrgOvalMessageTypeRepository) Update(ctx context.Context, entity *parent.OvalMitreOrgOvalMessageType) error {
 	query := "UPDATE oval_mitre_org_oval__message_type SET level = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Level,
 		entity.ID,
@@ -33999,19 +33999,19 @@ func (r *ovalMitreOrgOvalMessageTypeRepository) DeleteBatch(ctx context.Context,
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM oval_mitre_org_oval__message_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -34045,13 +34045,13 @@ func (r *ovalMitreOrgOvalMetadataTypeRepository) Create(ctx context.Context, ent
 
 func (r *ovalMitreOrgOvalMetadataTypeRepository) CreateBatch(ctx context.Context, entities []*parent.OvalMitreOrgOvalMetadataType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO oval_mitre_org_oval__metadata_type (title, description) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -34067,11 +34067,11 @@ func (r *ovalMitreOrgOvalMetadataTypeRepository) CreateBatch(ctx context.Context
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -34122,7 +34122,7 @@ func (r *ovalMitreOrgOvalMetadataTypeRepository) GetAll(ctx context.Context, lim
 
 func (r *ovalMitreOrgOvalMetadataTypeRepository) Update(ctx context.Context, entity *parent.OvalMitreOrgOvalMetadataType) error {
 	query := "UPDATE oval_mitre_org_oval__metadata_type SET title = ?, description = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Title,
 		entity.Description,
@@ -34141,19 +34141,19 @@ func (r *ovalMitreOrgOvalMetadataTypeRepository) DeleteBatch(ctx context.Context
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM oval_mitre_org_oval__metadata_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -34186,13 +34186,13 @@ func (r *ovalMitreOrgOvalNotesTypeRepository) Create(ctx context.Context, entity
 
 func (r *ovalMitreOrgOvalNotesTypeRepository) CreateBatch(ctx context.Context, entities []*parent.OvalMitreOrgOvalNotesType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO oval_mitre_org_oval__notes_type (note) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -34207,11 +34207,11 @@ func (r *ovalMitreOrgOvalNotesTypeRepository) CreateBatch(ctx context.Context, e
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -34260,7 +34260,7 @@ func (r *ovalMitreOrgOvalNotesTypeRepository) GetAll(ctx context.Context, limit,
 
 func (r *ovalMitreOrgOvalNotesTypeRepository) Update(ctx context.Context, entity *parent.OvalMitreOrgOvalNotesType) error {
 	query := "UPDATE oval_mitre_org_oval__notes_type SET note = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Note,
 		entity.ID,
@@ -34278,19 +34278,19 @@ func (r *ovalMitreOrgOvalNotesTypeRepository) DeleteBatch(ctx context.Context, i
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM oval_mitre_org_oval__notes_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -34326,13 +34326,13 @@ func (r *ovalMitreOrgOvalObjectTypeRepository) Create(ctx context.Context, entit
 
 func (r *ovalMitreOrgOvalObjectTypeRepository) CreateBatch(ctx context.Context, entities []*parent.OvalMitreOrgOvalObjectType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO oval_mitre_org_oval__object_type (xsd_id, version, comment, deprecated) VALUES (?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -34350,11 +34350,11 @@ func (r *ovalMitreOrgOvalObjectTypeRepository) CreateBatch(ctx context.Context, 
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -34409,7 +34409,7 @@ func (r *ovalMitreOrgOvalObjectTypeRepository) GetAll(ctx context.Context, limit
 
 func (r *ovalMitreOrgOvalObjectTypeRepository) Update(ctx context.Context, entity *parent.OvalMitreOrgOvalObjectType) error {
 	query := "UPDATE oval_mitre_org_oval__object_type SET xsd_id = ?, version = ?, comment = ?, deprecated = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.XsdId,
 		entity.Version,
@@ -34430,19 +34430,19 @@ func (r *ovalMitreOrgOvalObjectTypeRepository) DeleteBatch(ctx context.Context, 
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM oval_mitre_org_oval__object_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -34477,13 +34477,13 @@ func (r *ovalMitreOrgOvalReferenceTypeRepository) Create(ctx context.Context, en
 
 func (r *ovalMitreOrgOvalReferenceTypeRepository) CreateBatch(ctx context.Context, entities []*parent.OvalMitreOrgOvalReferenceType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO oval_mitre_org_oval__reference_type (source, ref_id, ref_url) VALUES (?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -34500,11 +34500,11 @@ func (r *ovalMitreOrgOvalReferenceTypeRepository) CreateBatch(ctx context.Contex
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -34557,7 +34557,7 @@ func (r *ovalMitreOrgOvalReferenceTypeRepository) GetAll(ctx context.Context, li
 
 func (r *ovalMitreOrgOvalReferenceTypeRepository) Update(ctx context.Context, entity *parent.OvalMitreOrgOvalReferenceType) error {
 	query := "UPDATE oval_mitre_org_oval__reference_type SET source = ?, ref_id = ?, ref_url = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Source,
 		entity.Ref_id,
@@ -34577,19 +34577,19 @@ func (r *ovalMitreOrgOvalReferenceTypeRepository) DeleteBatch(ctx context.Contex
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM oval_mitre_org_oval__reference_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -34620,13 +34620,13 @@ func (r *ovalMitreOrgOvalValueTypeRepository) Create(ctx context.Context, entity
 
 func (r *ovalMitreOrgOvalValueTypeRepository) CreateBatch(ctx context.Context, entities []*parent.OvalMitreOrgOvalValueType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO oval_mitre_org_oval__value_type DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -34639,11 +34639,11 @@ func (r *ovalMitreOrgOvalValueTypeRepository) CreateBatch(ctx context.Context, e
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -34703,19 +34703,19 @@ func (r *ovalMitreOrgOvalValueTypeRepository) DeleteBatch(ctx context.Context, i
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM oval_mitre_org_oval__value_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -34752,13 +34752,13 @@ func (r *overrideTypeRepository) Create(ctx context.Context, entity *parent.Over
 
 func (r *overrideTypeRepository) CreateBatch(ctx context.Context, entities []*parent.OverrideType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO override_type (time, authority, old_result_id, new_result_id, remark_id) VALUES (?, ?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -34777,11 +34777,11 @@ func (r *overrideTypeRepository) CreateBatch(ctx context.Context, entities []*pa
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -34842,7 +34842,7 @@ func (r *overrideTypeRepository) GetAll(ctx context.Context, limit, offset int) 
 
 func (r *overrideTypeRepository) Update(ctx context.Context, entity *parent.OverrideType) error {
 	query := "UPDATE override_type SET time = ?, authority = ?, old_result_id = ?, new_result_id = ?, remark_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Time,
 		entity.Authority,
@@ -34864,19 +34864,19 @@ func (r *overrideTypeRepository) DeleteBatch(ctx context.Context, ids []int64) e
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM override_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -34910,13 +34910,13 @@ func (r *overrideableCPE2idrefTypeRepository) Create(ctx context.Context, entity
 
 func (r *overrideableCPE2idrefTypeRepository) CreateBatch(ctx context.Context, entities []*parent.OverrideableCPE2idrefType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO overrideable_c_p_e2idref_type (override, parent_id) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -34932,11 +34932,11 @@ func (r *overrideableCPE2idrefTypeRepository) CreateBatch(ctx context.Context, e
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -34987,7 +34987,7 @@ func (r *overrideableCPE2idrefTypeRepository) GetAll(ctx context.Context, limit,
 
 func (r *overrideableCPE2idrefTypeRepository) Update(ctx context.Context, entity *parent.OverrideableCPE2idrefType) error {
 	query := "UPDATE overrideable_c_p_e2idref_type SET override = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Override,
 		entity.ParentID,
@@ -35006,19 +35006,19 @@ func (r *overrideableCPE2idrefTypeRepository) DeleteBatch(ctx context.Context, i
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM overrideable_c_p_e2idref_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -35078,13 +35078,13 @@ func (r *pGPDataTypeRepository) Create(ctx context.Context, entity *parent.PGPDa
 
 func (r *pGPDataTypeRepository) CreateBatch(ctx context.Context, entities []*parent.PGPDataType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO p_g_p_data_type (p_g_p_key_i_d, p_g_p_key_packet) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -35100,11 +35100,11 @@ func (r *pGPDataTypeRepository) CreateBatch(ctx context.Context, entities []*par
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -35155,7 +35155,7 @@ func (r *pGPDataTypeRepository) GetAll(ctx context.Context, limit, offset int) (
 
 func (r *pGPDataTypeRepository) Update(ctx context.Context, entity *parent.PGPDataType) error {
 	query := "UPDATE p_g_p_data_type SET p_g_p_key_i_d = ?, p_g_p_key_packet = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.PGPKeyID,
 		entity.PGPKeyPacket,
@@ -35174,19 +35174,19 @@ func (r *pGPDataTypeRepository) DeleteBatch(ctx context.Context, ids []int64) er
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM p_g_p_data_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -35219,13 +35219,13 @@ func (r *paramTypeRepository) Create(ctx context.Context, entity *parent.ParamTy
 
 func (r *paramTypeRepository) CreateBatch(ctx context.Context, entities []*parent.ParamType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO param_type (name) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -35240,11 +35240,11 @@ func (r *paramTypeRepository) CreateBatch(ctx context.Context, entities []*paren
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -35293,7 +35293,7 @@ func (r *paramTypeRepository) GetAll(ctx context.Context, limit, offset int) ([]
 
 func (r *paramTypeRepository) Update(ctx context.Context, entity *parent.ParamType) error {
 	query := "UPDATE param_type SET name = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Name,
 		entity.ID,
@@ -35311,19 +35311,19 @@ func (r *paramTypeRepository) DeleteBatch(ctx context.Context, ids []int64) erro
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM param_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -35358,13 +35358,13 @@ func (r *personNameElementTypeRepository) Create(ctx context.Context, entity *pa
 
 func (r *personNameElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.PersonNameElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO person_name_element_type (former_name, known_as, parent_id) VALUES (?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -35381,11 +35381,11 @@ func (r *personNameElementTypeRepository) CreateBatch(ctx context.Context, entit
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -35438,7 +35438,7 @@ func (r *personNameElementTypeRepository) GetAll(ctx context.Context, limit, off
 
 func (r *personNameElementTypeRepository) Update(ctx context.Context, entity *parent.PersonNameElementType) error {
 	query := "UPDATE person_name_element_type SET former_name = ?, known_as = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.FormerName,
 		entity.KnownAs,
@@ -35458,19 +35458,19 @@ func (r *personNameElementTypeRepository) DeleteBatch(ctx context.Context, ids [
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM person_name_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -35504,13 +35504,13 @@ func (r *personTypeRepository) Create(ctx context.Context, entity *parent.Person
 
 func (r *personTypeRepository) CreateBatch(ctx context.Context, entities []*parent.PersonType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO person_type (birthdate, parent_id) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -35526,11 +35526,11 @@ func (r *personTypeRepository) CreateBatch(ctx context.Context, entities []*pare
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -35581,7 +35581,7 @@ func (r *personTypeRepository) GetAll(ctx context.Context, limit, offset int) ([
 
 func (r *personTypeRepository) Update(ctx context.Context, entity *parent.PersonType) error {
 	query := "UPDATE person_type SET birthdate = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Birthdate,
 		entity.ParentID,
@@ -35600,19 +35600,19 @@ func (r *personTypeRepository) DeleteBatch(ctx context.Context, ids []int64) err
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM person_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -35671,13 +35671,13 @@ func (r *plainTextTypeRepository) Create(ctx context.Context, entity *parent.Pla
 
 func (r *plainTextTypeRepository) CreateBatch(ctx context.Context, entities []*parent.PlainTextType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO plain_text_type (xsd_id) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -35692,11 +35692,11 @@ func (r *plainTextTypeRepository) CreateBatch(ctx context.Context, entities []*p
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -35745,7 +35745,7 @@ func (r *plainTextTypeRepository) GetAll(ctx context.Context, limit, offset int)
 
 func (r *plainTextTypeRepository) Update(ctx context.Context, entity *parent.PlainTextType) error {
 	query := "UPDATE plain_text_type SET xsd_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.XsdId,
 		entity.ID,
@@ -35763,19 +35763,19 @@ func (r *plainTextTypeRepository) DeleteBatch(ctx context.Context, ids []int64) 
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM plain_text_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -35806,13 +35806,13 @@ func (r *platformSpecificationRepository) Create(ctx context.Context, entity *pa
 
 func (r *platformSpecificationRepository) CreateBatch(ctx context.Context, entities []*parent.PlatformSpecification) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO platform_specification DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -35825,11 +35825,11 @@ func (r *platformSpecificationRepository) CreateBatch(ctx context.Context, entit
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -35889,19 +35889,19 @@ func (r *platformSpecificationRepository) DeleteBatch(ctx context.Context, ids [
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM platform_specification WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -35932,13 +35932,13 @@ func (r *platformSpecificationElementTypeRepository) Create(ctx context.Context,
 
 func (r *platformSpecificationElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.PlatformSpecificationElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO platform_specification_element_type DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -35951,11 +35951,11 @@ func (r *platformSpecificationElementTypeRepository) CreateBatch(ctx context.Con
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -36015,19 +36015,19 @@ func (r *platformSpecificationElementTypeRepository) DeleteBatch(ctx context.Con
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM platform_specification_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -36061,13 +36061,13 @@ func (r *platformTypeRepository) Create(ctx context.Context, entity *parent.Plat
 
 func (r *platformTypeRepository) CreateBatch(ctx context.Context, entities []*parent.PlatformType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO platform_type (xsd_id, logical_test_id) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -36083,11 +36083,11 @@ func (r *platformTypeRepository) CreateBatch(ctx context.Context, entities []*pa
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -36138,7 +36138,7 @@ func (r *platformTypeRepository) GetAll(ctx context.Context, limit, offset int) 
 
 func (r *platformTypeRepository) Update(ctx context.Context, entity *parent.PlatformType) error {
 	query := "UPDATE platform_type SET xsd_id = ?, logical_test_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.XsdId,
 		entity.LogicalTestID,
@@ -36157,19 +36157,19 @@ func (r *platformTypeRepository) DeleteBatch(ctx context.Context, ids []int64) e
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM platform_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -36228,13 +36228,13 @@ func (r *portElementTypeRepository) Create(ctx context.Context, entity *parent.P
 
 func (r *portElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.PortElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO port_element_type (parent_id) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -36249,11 +36249,11 @@ func (r *portElementTypeRepository) CreateBatch(ctx context.Context, entities []
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -36302,7 +36302,7 @@ func (r *portElementTypeRepository) GetAll(ctx context.Context, limit, offset in
 
 func (r *portElementTypeRepository) Update(ctx context.Context, entity *parent.PortElementType) error {
 	query := "UPDATE port_element_type SET parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.ParentID,
 		entity.ID,
@@ -36320,19 +36320,19 @@ func (r *portElementTypeRepository) DeleteBatch(ctx context.Context, ids []int64
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM port_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -36366,13 +36366,13 @@ func (r *portRangeElementTypeRepository) Create(ctx context.Context, entity *par
 
 func (r *portRangeElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.PortRangeElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO port_range_element_type (lower_bound, upper_bound) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -36388,11 +36388,11 @@ func (r *portRangeElementTypeRepository) CreateBatch(ctx context.Context, entiti
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -36443,7 +36443,7 @@ func (r *portRangeElementTypeRepository) GetAll(ctx context.Context, limit, offs
 
 func (r *portRangeElementTypeRepository) Update(ctx context.Context, entity *parent.PortRangeElementType) error {
 	query := "UPDATE port_range_element_type SET lower_bound = ?, upper_bound = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.LowerBound,
 		entity.UpperBound,
@@ -36462,19 +36462,19 @@ func (r *portRangeElementTypeRepository) DeleteBatch(ctx context.Context, ids []
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM port_range_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -36508,13 +36508,13 @@ func (r *possibleRestrictionTypeRepository) Create(ctx context.Context, entity *
 
 func (r *possibleRestrictionTypeRepository) CreateBatch(ctx context.Context, entities []*parent.PossibleRestrictionType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO possible_restriction_type (operator, hint) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -36530,11 +36530,11 @@ func (r *possibleRestrictionTypeRepository) CreateBatch(ctx context.Context, ent
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -36585,7 +36585,7 @@ func (r *possibleRestrictionTypeRepository) GetAll(ctx context.Context, limit, o
 
 func (r *possibleRestrictionTypeRepository) Update(ctx context.Context, entity *parent.PossibleRestrictionType) error {
 	query := "UPDATE possible_restriction_type SET operator = ?, hint = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Operator,
 		entity.Hint,
@@ -36604,19 +36604,19 @@ func (r *possibleRestrictionTypeRepository) DeleteBatch(ctx context.Context, ids
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM possible_restriction_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -36649,13 +36649,13 @@ func (r *possibleValueTypeRepository) Create(ctx context.Context, entity *parent
 
 func (r *possibleValueTypeRepository) CreateBatch(ctx context.Context, entities []*parent.PossibleValueType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO possible_value_type (hint) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -36670,11 +36670,11 @@ func (r *possibleValueTypeRepository) CreateBatch(ctx context.Context, entities 
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -36723,7 +36723,7 @@ func (r *possibleValueTypeRepository) GetAll(ctx context.Context, limit, offset 
 
 func (r *possibleValueTypeRepository) Update(ctx context.Context, entity *parent.PossibleValueType) error {
 	query := "UPDATE possible_value_type SET hint = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Hint,
 		entity.ID,
@@ -36741,19 +36741,19 @@ func (r *possibleValueTypeRepository) DeleteBatch(ctx context.Context, ids []int
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM possible_value_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -36792,13 +36792,13 @@ func (r *postBoxRepository) Create(ctx context.Context, entity *parent.PostBox) 
 
 func (r *postBoxRepository) CreateBatch(ctx context.Context, entities []*parent.PostBox) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO post_box (type, indicator, post_box_number, post_box_number_prefix, post_box_number_suffix, post_box_number_extension, firm_id) VALUES (?, ?, ?, ?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -36819,11 +36819,11 @@ func (r *postBoxRepository) CreateBatch(ctx context.Context, entities []*parent.
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -36884,7 +36884,7 @@ func (r *postBoxRepository) GetAll(ctx context.Context, limit, offset int) ([]*p
 
 func (r *postBoxRepository) Update(ctx context.Context, entity *parent.PostBox) error {
 	query := "UPDATE post_box SET type = ?, indicator = ?, post_box_number = ?, post_box_number_prefix = ?, post_box_number_suffix = ?, post_box_number_extension = ?, firm_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.Indicator,
@@ -36908,19 +36908,19 @@ func (r *postBoxRepository) DeleteBatch(ctx context.Context, ids []int64) error 
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM post_box WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -36959,13 +36959,13 @@ func (r *postBoxElementTypeRepository) Create(ctx context.Context, entity *paren
 
 func (r *postBoxElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.PostBoxElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO post_box_element_type (type, indicator, post_box_number, post_box_number_prefix, post_box_number_suffix, post_box_number_extension, firm_id) VALUES (?, ?, ?, ?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -36986,11 +36986,11 @@ func (r *postBoxElementTypeRepository) CreateBatch(ctx context.Context, entities
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -37051,7 +37051,7 @@ func (r *postBoxElementTypeRepository) GetAll(ctx context.Context, limit, offset
 
 func (r *postBoxElementTypeRepository) Update(ctx context.Context, entity *parent.PostBoxElementType) error {
 	query := "UPDATE post_box_element_type SET type = ?, indicator = ?, post_box_number = ?, post_box_number_prefix = ?, post_box_number_suffix = ?, post_box_number_extension = ?, firm_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.Indicator,
@@ -37075,19 +37075,19 @@ func (r *postBoxElementTypeRepository) DeleteBatch(ctx context.Context, ids []in
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM post_box_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -37149,13 +37149,13 @@ func (r *postBoxNumberElementTypeRepository) Create(ctx context.Context, entity 
 
 func (r *postBoxNumberElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.PostBoxNumberElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO post_box_number_element_type DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -37168,11 +37168,11 @@ func (r *postBoxNumberElementTypeRepository) CreateBatch(ctx context.Context, en
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -37232,19 +37232,19 @@ func (r *postBoxNumberElementTypeRepository) DeleteBatch(ctx context.Context, id
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM post_box_number_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -37277,13 +37277,13 @@ func (r *postBoxNumberExtensionElementTypeRepository) Create(ctx context.Context
 
 func (r *postBoxNumberExtensionElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.PostBoxNumberExtensionElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO post_box_number_extension_element_type (number_extension_separator) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -37298,11 +37298,11 @@ func (r *postBoxNumberExtensionElementTypeRepository) CreateBatch(ctx context.Co
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -37351,7 +37351,7 @@ func (r *postBoxNumberExtensionElementTypeRepository) GetAll(ctx context.Context
 
 func (r *postBoxNumberExtensionElementTypeRepository) Update(ctx context.Context, entity *parent.PostBoxNumberExtensionElementType) error {
 	query := "UPDATE post_box_number_extension_element_type SET number_extension_separator = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.NumberExtensionSeparator,
 		entity.ID,
@@ -37369,19 +37369,19 @@ func (r *postBoxNumberExtensionElementTypeRepository) DeleteBatch(ctx context.Co
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM post_box_number_extension_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -37414,13 +37414,13 @@ func (r *postBoxNumberPrefixElementTypeRepository) Create(ctx context.Context, e
 
 func (r *postBoxNumberPrefixElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.PostBoxNumberPrefixElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO post_box_number_prefix_element_type (number_prefix_separator) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -37435,11 +37435,11 @@ func (r *postBoxNumberPrefixElementTypeRepository) CreateBatch(ctx context.Conte
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -37488,7 +37488,7 @@ func (r *postBoxNumberPrefixElementTypeRepository) GetAll(ctx context.Context, l
 
 func (r *postBoxNumberPrefixElementTypeRepository) Update(ctx context.Context, entity *parent.PostBoxNumberPrefixElementType) error {
 	query := "UPDATE post_box_number_prefix_element_type SET number_prefix_separator = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.NumberPrefixSeparator,
 		entity.ID,
@@ -37506,19 +37506,19 @@ func (r *postBoxNumberPrefixElementTypeRepository) DeleteBatch(ctx context.Conte
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM post_box_number_prefix_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -37551,13 +37551,13 @@ func (r *postBoxNumberSuffixElementTypeRepository) Create(ctx context.Context, e
 
 func (r *postBoxNumberSuffixElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.PostBoxNumberSuffixElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO post_box_number_suffix_element_type (number_suffix_separator) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -37572,11 +37572,11 @@ func (r *postBoxNumberSuffixElementTypeRepository) CreateBatch(ctx context.Conte
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -37625,7 +37625,7 @@ func (r *postBoxNumberSuffixElementTypeRepository) GetAll(ctx context.Context, l
 
 func (r *postBoxNumberSuffixElementTypeRepository) Update(ctx context.Context, entity *parent.PostBoxNumberSuffixElementType) error {
 	query := "UPDATE post_box_number_suffix_element_type SET number_suffix_separator = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.NumberSuffixSeparator,
 		entity.ID,
@@ -37643,19 +37643,19 @@ func (r *postBoxNumberSuffixElementTypeRepository) DeleteBatch(ctx context.Conte
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM post_box_number_suffix_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -37692,13 +37692,13 @@ func (r *postOfficeRepository) Create(ctx context.Context, entity *parent.PostOf
 
 func (r *postOfficeRepository) CreateBatch(ctx context.Context, entities []*parent.PostOffice) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO post_office (type, indicator, postal_route_id, post_office_name, post_office_number) VALUES (?, ?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -37717,11 +37717,11 @@ func (r *postOfficeRepository) CreateBatch(ctx context.Context, entities []*pare
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -37778,7 +37778,7 @@ func (r *postOfficeRepository) GetAll(ctx context.Context, limit, offset int) ([
 
 func (r *postOfficeRepository) Update(ctx context.Context, entity *parent.PostOffice) error {
 	query := "UPDATE post_office SET type = ?, indicator = ?, postal_route_id = ?, post_office_name = ?, post_office_number = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.Indicator,
@@ -37800,19 +37800,19 @@ func (r *postOfficeRepository) DeleteBatch(ctx context.Context, ids []int64) err
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM post_office WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -37849,13 +37849,13 @@ func (r *postOfficeElementTypeRepository) Create(ctx context.Context, entity *pa
 
 func (r *postOfficeElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.PostOfficeElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO post_office_element_type (type, indicator, postal_route_id, post_office_name, post_office_number) VALUES (?, ?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -37874,11 +37874,11 @@ func (r *postOfficeElementTypeRepository) CreateBatch(ctx context.Context, entit
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -37935,7 +37935,7 @@ func (r *postOfficeElementTypeRepository) GetAll(ctx context.Context, limit, off
 
 func (r *postOfficeElementTypeRepository) Update(ctx context.Context, entity *parent.PostOfficeElementType) error {
 	query := "UPDATE post_office_element_type SET type = ?, indicator = ?, postal_route_id = ?, post_office_name = ?, post_office_number = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.Indicator,
@@ -37957,19 +37957,19 @@ func (r *postOfficeElementTypeRepository) DeleteBatch(ctx context.Context, ids [
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM post_office_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -38031,13 +38031,13 @@ func (r *postOfficeNameElementTypeRepository) Create(ctx context.Context, entity
 
 func (r *postOfficeNameElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.PostOfficeNameElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO post_office_name_element_type (type) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -38052,11 +38052,11 @@ func (r *postOfficeNameElementTypeRepository) CreateBatch(ctx context.Context, e
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -38105,7 +38105,7 @@ func (r *postOfficeNameElementTypeRepository) GetAll(ctx context.Context, limit,
 
 func (r *postOfficeNameElementTypeRepository) Update(ctx context.Context, entity *parent.PostOfficeNameElementType) error {
 	query := "UPDATE post_office_name_element_type SET type = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.ID,
@@ -38123,19 +38123,19 @@ func (r *postOfficeNameElementTypeRepository) DeleteBatch(ctx context.Context, i
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM post_office_name_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -38169,13 +38169,13 @@ func (r *postOfficeNumberElementTypeRepository) Create(ctx context.Context, enti
 
 func (r *postOfficeNumberElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.PostOfficeNumberElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO post_office_number_element_type (indicator, indicator_occurrence) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -38191,11 +38191,11 @@ func (r *postOfficeNumberElementTypeRepository) CreateBatch(ctx context.Context,
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -38246,7 +38246,7 @@ func (r *postOfficeNumberElementTypeRepository) GetAll(ctx context.Context, limi
 
 func (r *postOfficeNumberElementTypeRepository) Update(ctx context.Context, entity *parent.PostOfficeNumberElementType) error {
 	query := "UPDATE post_office_number_element_type SET indicator = ?, indicator_occurrence = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Indicator,
 		entity.IndicatorOccurrence,
@@ -38265,19 +38265,19 @@ func (r *postOfficeNumberElementTypeRepository) DeleteBatch(ctx context.Context,
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM post_office_number_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -38312,13 +38312,13 @@ func (r *postTownElementTypeRepository) Create(ctx context.Context, entity *pare
 
 func (r *postTownElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.PostTownElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO post_town_element_type (type, post_town_name, post_town_suffix) VALUES (?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -38335,11 +38335,11 @@ func (r *postTownElementTypeRepository) CreateBatch(ctx context.Context, entitie
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -38392,7 +38392,7 @@ func (r *postTownElementTypeRepository) GetAll(ctx context.Context, limit, offse
 
 func (r *postTownElementTypeRepository) Update(ctx context.Context, entity *parent.PostTownElementType) error {
 	query := "UPDATE post_town_element_type SET type = ?, post_town_name = ?, post_town_suffix = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.PostTownName,
@@ -38412,19 +38412,19 @@ func (r *postTownElementTypeRepository) DeleteBatch(ctx context.Context, ids []i
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM post_town_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -38457,13 +38457,13 @@ func (r *postTownNameElementTypeRepository) Create(ctx context.Context, entity *
 
 func (r *postTownNameElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.PostTownNameElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO post_town_name_element_type (type) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -38478,11 +38478,11 @@ func (r *postTownNameElementTypeRepository) CreateBatch(ctx context.Context, ent
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -38531,7 +38531,7 @@ func (r *postTownNameElementTypeRepository) GetAll(ctx context.Context, limit, o
 
 func (r *postTownNameElementTypeRepository) Update(ctx context.Context, entity *parent.PostTownNameElementType) error {
 	query := "UPDATE post_town_name_element_type SET type = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.ID,
@@ -38549,19 +38549,19 @@ func (r *postTownNameElementTypeRepository) DeleteBatch(ctx context.Context, ids
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM post_town_name_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -38592,13 +38592,13 @@ func (r *postTownSuffixElementTypeRepository) Create(ctx context.Context, entity
 
 func (r *postTownSuffixElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.PostTownSuffixElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO post_town_suffix_element_type DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -38611,11 +38611,11 @@ func (r *postTownSuffixElementTypeRepository) CreateBatch(ctx context.Context, e
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -38675,19 +38675,19 @@ func (r *postTownSuffixElementTypeRepository) DeleteBatch(ctx context.Context, i
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM post_town_suffix_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -38723,13 +38723,13 @@ func (r *postalCodeRepository) Create(ctx context.Context, entity *parent.Postal
 
 func (r *postalCodeRepository) CreateBatch(ctx context.Context, entities []*parent.PostalCode) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO postal_code (type, postal_code_number, postal_code_number_extension, post_town) VALUES (?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -38747,11 +38747,11 @@ func (r *postalCodeRepository) CreateBatch(ctx context.Context, entities []*pare
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -38806,7 +38806,7 @@ func (r *postalCodeRepository) GetAll(ctx context.Context, limit, offset int) ([
 
 func (r *postalCodeRepository) Update(ctx context.Context, entity *parent.PostalCode) error {
 	query := "UPDATE postal_code SET type = ?, postal_code_number = ?, postal_code_number_extension = ?, post_town = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.PostalCodeNumber,
@@ -38827,19 +38827,19 @@ func (r *postalCodeRepository) DeleteBatch(ctx context.Context, ids []int64) err
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM postal_code WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -38875,13 +38875,13 @@ func (r *postalCodeElementTypeRepository) Create(ctx context.Context, entity *pa
 
 func (r *postalCodeElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.PostalCodeElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO postal_code_element_type (type, postal_code_number, postal_code_number_extension, post_town) VALUES (?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -38899,11 +38899,11 @@ func (r *postalCodeElementTypeRepository) CreateBatch(ctx context.Context, entit
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -38958,7 +38958,7 @@ func (r *postalCodeElementTypeRepository) GetAll(ctx context.Context, limit, off
 
 func (r *postalCodeElementTypeRepository) Update(ctx context.Context, entity *parent.PostalCodeElementType) error {
 	query := "UPDATE postal_code_element_type SET type = ?, postal_code_number = ?, postal_code_number_extension = ?, post_town = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.PostalCodeNumber,
@@ -38979,19 +38979,19 @@ func (r *postalCodeElementTypeRepository) DeleteBatch(ctx context.Context, ids [
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM postal_code_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -39024,13 +39024,13 @@ func (r *postalCodeNumberElementTypeRepository) Create(ctx context.Context, enti
 
 func (r *postalCodeNumberElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.PostalCodeNumberElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO postal_code_number_element_type (type) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -39045,11 +39045,11 @@ func (r *postalCodeNumberElementTypeRepository) CreateBatch(ctx context.Context,
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -39098,7 +39098,7 @@ func (r *postalCodeNumberElementTypeRepository) GetAll(ctx context.Context, limi
 
 func (r *postalCodeNumberElementTypeRepository) Update(ctx context.Context, entity *parent.PostalCodeNumberElementType) error {
 	query := "UPDATE postal_code_number_element_type SET type = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.ID,
@@ -39116,19 +39116,19 @@ func (r *postalCodeNumberElementTypeRepository) DeleteBatch(ctx context.Context,
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM postal_code_number_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -39162,13 +39162,13 @@ func (r *postalCodeNumberExtensionElementTypeRepository) Create(ctx context.Cont
 
 func (r *postalCodeNumberExtensionElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.PostalCodeNumberExtensionElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO postal_code_number_extension_element_type (type, number_extension_separator) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -39184,11 +39184,11 @@ func (r *postalCodeNumberExtensionElementTypeRepository) CreateBatch(ctx context
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -39239,7 +39239,7 @@ func (r *postalCodeNumberExtensionElementTypeRepository) GetAll(ctx context.Cont
 
 func (r *postalCodeNumberExtensionElementTypeRepository) Update(ctx context.Context, entity *parent.PostalCodeNumberExtensionElementType) error {
 	query := "UPDATE postal_code_number_extension_element_type SET type = ?, number_extension_separator = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.NumberExtensionSeparator,
@@ -39258,19 +39258,19 @@ func (r *postalCodeNumberExtensionElementTypeRepository) DeleteBatch(ctx context
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM postal_code_number_extension_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -39303,13 +39303,13 @@ func (r *postalRouteNameElementTypeRepository) Create(ctx context.Context, entit
 
 func (r *postalRouteNameElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.PostalRouteNameElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO postal_route_name_element_type (type) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -39324,11 +39324,11 @@ func (r *postalRouteNameElementTypeRepository) CreateBatch(ctx context.Context, 
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -39377,7 +39377,7 @@ func (r *postalRouteNameElementTypeRepository) GetAll(ctx context.Context, limit
 
 func (r *postalRouteNameElementTypeRepository) Update(ctx context.Context, entity *parent.PostalRouteNameElementType) error {
 	query := "UPDATE postal_route_name_element_type SET type = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.ID,
@@ -39395,19 +39395,19 @@ func (r *postalRouteNameElementTypeRepository) DeleteBatch(ctx context.Context, 
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM postal_route_name_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -39438,13 +39438,13 @@ func (r *postalRouteNumberElementTypeRepository) Create(ctx context.Context, ent
 
 func (r *postalRouteNumberElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.PostalRouteNumberElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO postal_route_number_element_type DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -39457,11 +39457,11 @@ func (r *postalRouteNumberElementTypeRepository) CreateBatch(ctx context.Context
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -39521,19 +39521,19 @@ func (r *postalRouteNumberElementTypeRepository) DeleteBatch(ctx context.Context
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM postal_route_number_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -39568,13 +39568,13 @@ func (r *postalRouteTypeRepository) Create(ctx context.Context, entity *parent.P
 
 func (r *postalRouteTypeRepository) CreateBatch(ctx context.Context, entities []*parent.PostalRouteType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO postal_route_type (type, postal_route_name, postal_route_number) VALUES (?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -39591,11 +39591,11 @@ func (r *postalRouteTypeRepository) CreateBatch(ctx context.Context, entities []
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -39648,7 +39648,7 @@ func (r *postalRouteTypeRepository) GetAll(ctx context.Context, limit, offset in
 
 func (r *postalRouteTypeRepository) Update(ctx context.Context, entity *parent.PostalRouteType) error {
 	query := "UPDATE postal_route_type SET type = ?, postal_route_name = ?, postal_route_number = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.PostalRouteName,
@@ -39668,19 +39668,19 @@ func (r *postalRouteTypeRepository) DeleteBatch(ctx context.Context, ids []int64
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM postal_route_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -39723,13 +39723,13 @@ func (r *postalServiceElementsElementTypeRepository) Create(ctx context.Context,
 
 func (r *postalServiceElementsElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.PostalServiceElementsElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO postal_service_elements_element_type (type, address_identifier, endorsement_line_code, key_line_code, barcode, sorting_code, address_latitude, address_latitude_direction, address_longitude, address_longitude_direction, supplementary_postal_service_data) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -39754,11 +39754,11 @@ func (r *postalServiceElementsElementTypeRepository) CreateBatch(ctx context.Con
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -39827,7 +39827,7 @@ func (r *postalServiceElementsElementTypeRepository) GetAll(ctx context.Context,
 
 func (r *postalServiceElementsElementTypeRepository) Update(ctx context.Context, entity *parent.PostalServiceElementsElementType) error {
 	query := "UPDATE postal_service_elements_element_type SET type = ?, address_identifier = ?, endorsement_line_code = ?, key_line_code = ?, barcode = ?, sorting_code = ?, address_latitude = ?, address_latitude_direction = ?, address_longitude = ?, address_longitude_direction = ?, supplementary_postal_service_data = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.AddressIdentifier,
@@ -39855,19 +39855,19 @@ func (r *postalServiceElementsElementTypeRepository) DeleteBatch(ctx context.Con
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM postal_service_elements_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -39901,13 +39901,13 @@ func (r *precedingTitleElementTypeRepository) Create(ctx context.Context, entity
 
 func (r *precedingTitleElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.PrecedingTitleElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO preceding_title_element_type (type, code) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -39923,11 +39923,11 @@ func (r *precedingTitleElementTypeRepository) CreateBatch(ctx context.Context, e
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -39978,7 +39978,7 @@ func (r *precedingTitleElementTypeRepository) GetAll(ctx context.Context, limit,
 
 func (r *precedingTitleElementTypeRepository) Update(ctx context.Context, entity *parent.PrecedingTitleElementType) error {
 	query := "UPDATE preceding_title_element_type SET type = ?, code = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.Code,
@@ -39997,19 +39997,19 @@ func (r *precedingTitleElementTypeRepository) DeleteBatch(ctx context.Context, i
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM preceding_title_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -40050,13 +40050,13 @@ func (r *premiseRepository) Create(ctx context.Context, entity *parent.Premise) 
 
 func (r *premiseRepository) CreateBatch(ctx context.Context, entities []*parent.Premise) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO premise (type, premise_dependency, premise_dependency_type, premise_thoroughfare_connector, premise_name, mail_stop_id, premise_location, premise_number_range, firm_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -40079,11 +40079,11 @@ func (r *premiseRepository) CreateBatch(ctx context.Context, entities []*parent.
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -40148,7 +40148,7 @@ func (r *premiseRepository) GetAll(ctx context.Context, limit, offset int) ([]*p
 
 func (r *premiseRepository) Update(ctx context.Context, entity *parent.Premise) error {
 	query := "UPDATE premise SET type = ?, premise_dependency = ?, premise_dependency_type = ?, premise_thoroughfare_connector = ?, premise_name = ?, mail_stop_id = ?, premise_location = ?, premise_number_range = ?, firm_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.PremiseDependency,
@@ -40174,19 +40174,19 @@ func (r *premiseRepository) DeleteBatch(ctx context.Context, ids []int64) error 
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM premise WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -40227,13 +40227,13 @@ func (r *premiseElementTypeRepository) Create(ctx context.Context, entity *paren
 
 func (r *premiseElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.PremiseElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO premise_element_type (type, premise_dependency, premise_dependency_type, premise_thoroughfare_connector, premise_name, mail_stop_id, premise_location, premise_number_range, firm_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -40256,11 +40256,11 @@ func (r *premiseElementTypeRepository) CreateBatch(ctx context.Context, entities
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -40325,7 +40325,7 @@ func (r *premiseElementTypeRepository) GetAll(ctx context.Context, limit, offset
 
 func (r *premiseElementTypeRepository) Update(ctx context.Context, entity *parent.PremiseElementType) error {
 	query := "UPDATE premise_element_type SET type = ?, premise_dependency = ?, premise_dependency_type = ?, premise_thoroughfare_connector = ?, premise_name = ?, mail_stop_id = ?, premise_location = ?, premise_number_range = ?, firm_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.PremiseDependency,
@@ -40351,19 +40351,19 @@ func (r *premiseElementTypeRepository) DeleteBatch(ctx context.Context, ids []in
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM premise_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -40427,13 +40427,13 @@ func (r *premiseLocationElementTypeRepository) Create(ctx context.Context, entit
 
 func (r *premiseLocationElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.PremiseLocationElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO premise_location_element_type DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -40446,11 +40446,11 @@ func (r *premiseLocationElementTypeRepository) CreateBatch(ctx context.Context, 
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -40510,19 +40510,19 @@ func (r *premiseLocationElementTypeRepository) DeleteBatch(ctx context.Context, 
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM premise_location_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -40556,13 +40556,13 @@ func (r *premiseNameElementTypeRepository) Create(ctx context.Context, entity *p
 
 func (r *premiseNameElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.PremiseNameElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO premise_name_element_type (type, type_occurrence) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -40578,11 +40578,11 @@ func (r *premiseNameElementTypeRepository) CreateBatch(ctx context.Context, enti
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -40633,7 +40633,7 @@ func (r *premiseNameElementTypeRepository) GetAll(ctx context.Context, limit, of
 
 func (r *premiseNameElementTypeRepository) Update(ctx context.Context, entity *parent.PremiseNameElementType) error {
 	query := "UPDATE premise_name_element_type SET type = ?, type_occurrence = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.TypeOccurrence,
@@ -40652,19 +40652,19 @@ func (r *premiseNameElementTypeRepository) DeleteBatch(ctx context.Context, ids 
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM premise_name_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -40701,13 +40701,13 @@ func (r *premiseNumberRepository) Create(ctx context.Context, entity *parent.Pre
 
 func (r *premiseNumberRepository) CreateBatch(ctx context.Context, entities []*parent.PremiseNumber) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO premise_number (number_type, type, indicator, indicator_occurrence, number_type_occurrence) VALUES (?, ?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -40726,11 +40726,11 @@ func (r *premiseNumberRepository) CreateBatch(ctx context.Context, entities []*p
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -40787,7 +40787,7 @@ func (r *premiseNumberRepository) GetAll(ctx context.Context, limit, offset int)
 
 func (r *premiseNumberRepository) Update(ctx context.Context, entity *parent.PremiseNumber) error {
 	query := "UPDATE premise_number SET number_type = ?, type = ?, indicator = ?, indicator_occurrence = ?, number_type_occurrence = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.NumberType,
 		entity.Type,
@@ -40809,19 +40809,19 @@ func (r *premiseNumberRepository) DeleteBatch(ctx context.Context, ids []int64) 
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM premise_number WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -40858,13 +40858,13 @@ func (r *premiseNumberElementTypeRepository) Create(ctx context.Context, entity 
 
 func (r *premiseNumberElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.PremiseNumberElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO premise_number_element_type (number_type, type, indicator, indicator_occurrence, number_type_occurrence) VALUES (?, ?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -40883,11 +40883,11 @@ func (r *premiseNumberElementTypeRepository) CreateBatch(ctx context.Context, en
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -40944,7 +40944,7 @@ func (r *premiseNumberElementTypeRepository) GetAll(ctx context.Context, limit, 
 
 func (r *premiseNumberElementTypeRepository) Update(ctx context.Context, entity *parent.PremiseNumberElementType) error {
 	query := "UPDATE premise_number_element_type SET number_type = ?, type = ?, indicator = ?, indicator_occurrence = ?, number_type_occurrence = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.NumberType,
 		entity.Type,
@@ -40966,19 +40966,19 @@ func (r *premiseNumberElementTypeRepository) DeleteBatch(ctx context.Context, id
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM premise_number_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -41012,13 +41012,13 @@ func (r *premiseNumberPrefixRepository) Create(ctx context.Context, entity *pare
 
 func (r *premiseNumberPrefixRepository) CreateBatch(ctx context.Context, entities []*parent.PremiseNumberPrefix) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO premise_number_prefix (number_prefix_separator, type) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -41034,11 +41034,11 @@ func (r *premiseNumberPrefixRepository) CreateBatch(ctx context.Context, entitie
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -41089,7 +41089,7 @@ func (r *premiseNumberPrefixRepository) GetAll(ctx context.Context, limit, offse
 
 func (r *premiseNumberPrefixRepository) Update(ctx context.Context, entity *parent.PremiseNumberPrefix) error {
 	query := "UPDATE premise_number_prefix SET number_prefix_separator = ?, type = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.NumberPrefixSeparator,
 		entity.Type,
@@ -41108,19 +41108,19 @@ func (r *premiseNumberPrefixRepository) DeleteBatch(ctx context.Context, ids []i
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM premise_number_prefix WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -41154,13 +41154,13 @@ func (r *premiseNumberPrefixElementTypeRepository) Create(ctx context.Context, e
 
 func (r *premiseNumberPrefixElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.PremiseNumberPrefixElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO premise_number_prefix_element_type (number_prefix_separator, type) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -41176,11 +41176,11 @@ func (r *premiseNumberPrefixElementTypeRepository) CreateBatch(ctx context.Conte
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -41231,7 +41231,7 @@ func (r *premiseNumberPrefixElementTypeRepository) GetAll(ctx context.Context, l
 
 func (r *premiseNumberPrefixElementTypeRepository) Update(ctx context.Context, entity *parent.PremiseNumberPrefixElementType) error {
 	query := "UPDATE premise_number_prefix_element_type SET number_prefix_separator = ?, type = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.NumberPrefixSeparator,
 		entity.Type,
@@ -41250,19 +41250,19 @@ func (r *premiseNumberPrefixElementTypeRepository) DeleteBatch(ctx context.Conte
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM premise_number_prefix_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -41302,13 +41302,13 @@ func (r *premiseNumberRangeElementTypeRepository) Create(ctx context.Context, en
 
 func (r *premiseNumberRangeElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.PremiseNumberRangeElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO premise_number_range_element_type (range_type, indicator, separator, type, indicator_occurence, number_range_occurence, premise_number_range_from, premise_number_range_to) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -41330,11 +41330,11 @@ func (r *premiseNumberRangeElementTypeRepository) CreateBatch(ctx context.Contex
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -41397,7 +41397,7 @@ func (r *premiseNumberRangeElementTypeRepository) GetAll(ctx context.Context, li
 
 func (r *premiseNumberRangeElementTypeRepository) Update(ctx context.Context, entity *parent.PremiseNumberRangeElementType) error {
 	query := "UPDATE premise_number_range_element_type SET range_type = ?, indicator = ?, separator = ?, type = ?, indicator_occurence = ?, number_range_occurence = ?, premise_number_range_from = ?, premise_number_range_to = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.RangeType,
 		entity.Indicator,
@@ -41422,19 +41422,19 @@ func (r *premiseNumberRangeElementTypeRepository) DeleteBatch(ctx context.Contex
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM premise_number_range_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -41465,13 +41465,13 @@ func (r *premiseNumberRangeFromElementTypeRepository) Create(ctx context.Context
 
 func (r *premiseNumberRangeFromElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.PremiseNumberRangeFromElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO \"premise_number_range_from_element_type\" DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -41484,11 +41484,11 @@ func (r *premiseNumberRangeFromElementTypeRepository) CreateBatch(ctx context.Co
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -41548,19 +41548,19 @@ func (r *premiseNumberRangeFromElementTypeRepository) DeleteBatch(ctx context.Co
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM \"premise_number_range_from_element_type\" WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -41591,13 +41591,13 @@ func (r *premiseNumberRangeToElementTypeRepository) Create(ctx context.Context, 
 
 func (r *premiseNumberRangeToElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.PremiseNumberRangeToElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO \"premise_number_range_to_element_type\" DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -41610,11 +41610,11 @@ func (r *premiseNumberRangeToElementTypeRepository) CreateBatch(ctx context.Cont
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -41674,19 +41674,19 @@ func (r *premiseNumberRangeToElementTypeRepository) DeleteBatch(ctx context.Cont
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM \"premise_number_range_to_element_type\" WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -41720,13 +41720,13 @@ func (r *premiseNumberSuffixRepository) Create(ctx context.Context, entity *pare
 
 func (r *premiseNumberSuffixRepository) CreateBatch(ctx context.Context, entities []*parent.PremiseNumberSuffix) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO premise_number_suffix (number_suffix_separator, type) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -41742,11 +41742,11 @@ func (r *premiseNumberSuffixRepository) CreateBatch(ctx context.Context, entitie
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -41797,7 +41797,7 @@ func (r *premiseNumberSuffixRepository) GetAll(ctx context.Context, limit, offse
 
 func (r *premiseNumberSuffixRepository) Update(ctx context.Context, entity *parent.PremiseNumberSuffix) error {
 	query := "UPDATE premise_number_suffix SET number_suffix_separator = ?, type = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.NumberSuffixSeparator,
 		entity.Type,
@@ -41816,19 +41816,19 @@ func (r *premiseNumberSuffixRepository) DeleteBatch(ctx context.Context, ids []i
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM premise_number_suffix WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -41862,13 +41862,13 @@ func (r *premiseNumberSuffixElementTypeRepository) Create(ctx context.Context, e
 
 func (r *premiseNumberSuffixElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.PremiseNumberSuffixElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO premise_number_suffix_element_type (number_suffix_separator, type) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -41884,11 +41884,11 @@ func (r *premiseNumberSuffixElementTypeRepository) CreateBatch(ctx context.Conte
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -41939,7 +41939,7 @@ func (r *premiseNumberSuffixElementTypeRepository) GetAll(ctx context.Context, l
 
 func (r *premiseNumberSuffixElementTypeRepository) Update(ctx context.Context, entity *parent.PremiseNumberSuffixElementType) error {
 	query := "UPDATE premise_number_suffix_element_type SET number_suffix_separator = ?, type = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.NumberSuffixSeparator,
 		entity.Type,
@@ -41958,19 +41958,19 @@ func (r *premiseNumberSuffixElementTypeRepository) DeleteBatch(ctx context.Conte
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM premise_number_suffix_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -42004,13 +42004,13 @@ func (r *profileNoteTypeRepository) Create(ctx context.Context, entity *parent.P
 
 func (r *profileNoteTypeRepository) CreateBatch(ctx context.Context, entities []*parent.ProfileNoteType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO profile_note_type (tag, sub_id) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -42026,11 +42026,11 @@ func (r *profileNoteTypeRepository) CreateBatch(ctx context.Context, entities []
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -42081,7 +42081,7 @@ func (r *profileNoteTypeRepository) GetAll(ctx context.Context, limit, offset in
 
 func (r *profileNoteTypeRepository) Update(ctx context.Context, entity *parent.ProfileNoteType) error {
 	query := "UPDATE profile_note_type SET tag = ?, sub_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Tag,
 		entity.SubID,
@@ -42100,19 +42100,19 @@ func (r *profileNoteTypeRepository) DeleteBatch(ctx context.Context, ids []int64
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM profile_note_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -42175,13 +42175,13 @@ func (r *profileRefineRuleTypeRepository) Create(ctx context.Context, entity *pa
 
 func (r *profileRefineRuleTypeRepository) CreateBatch(ctx context.Context, entities []*parent.ProfileRefineRuleType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO profile_refine_rule_type (idref, weight, selector, severity, role) VALUES (?, ?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -42200,11 +42200,11 @@ func (r *profileRefineRuleTypeRepository) CreateBatch(ctx context.Context, entit
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -42261,7 +42261,7 @@ func (r *profileRefineRuleTypeRepository) GetAll(ctx context.Context, limit, off
 
 func (r *profileRefineRuleTypeRepository) Update(ctx context.Context, entity *parent.ProfileRefineRuleType) error {
 	query := "UPDATE profile_refine_rule_type SET idref = ?, weight = ?, selector = ?, severity = ?, role = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Idref,
 		entity.Weight,
@@ -42283,19 +42283,19 @@ func (r *profileRefineRuleTypeRepository) DeleteBatch(ctx context.Context, ids [
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM profile_refine_rule_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -42330,13 +42330,13 @@ func (r *profileRefineValueTypeRepository) Create(ctx context.Context, entity *p
 
 func (r *profileRefineValueTypeRepository) CreateBatch(ctx context.Context, entities []*parent.ProfileRefineValueType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO profile_refine_value_type (idref, selector, operator) VALUES (?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -42353,11 +42353,11 @@ func (r *profileRefineValueTypeRepository) CreateBatch(ctx context.Context, enti
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -42410,7 +42410,7 @@ func (r *profileRefineValueTypeRepository) GetAll(ctx context.Context, limit, of
 
 func (r *profileRefineValueTypeRepository) Update(ctx context.Context, entity *parent.ProfileRefineValueType) error {
 	query := "UPDATE profile_refine_value_type SET idref = ?, selector = ?, operator = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Idref,
 		entity.Selector,
@@ -42430,19 +42430,19 @@ func (r *profileRefineValueTypeRepository) DeleteBatch(ctx context.Context, ids 
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM profile_refine_value_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -42476,13 +42476,13 @@ func (r *profileSelectTypeRepository) Create(ctx context.Context, entity *parent
 
 func (r *profileSelectTypeRepository) CreateBatch(ctx context.Context, entities []*parent.ProfileSelectType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO \"profile_select_type\" (idref, selected) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -42498,11 +42498,11 @@ func (r *profileSelectTypeRepository) CreateBatch(ctx context.Context, entities 
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -42553,7 +42553,7 @@ func (r *profileSelectTypeRepository) GetAll(ctx context.Context, limit, offset 
 
 func (r *profileSelectTypeRepository) Update(ctx context.Context, entity *parent.ProfileSelectType) error {
 	query := "UPDATE \"profile_select_type\" SET idref = ?, selected = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Idref,
 		entity.Selected,
@@ -42572,19 +42572,19 @@ func (r *profileSelectTypeRepository) DeleteBatch(ctx context.Context, ids []int
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM \"profile_select_type\" WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -42618,13 +42618,13 @@ func (r *profileSetComplexValueTypeRepository) Create(ctx context.Context, entit
 
 func (r *profileSetComplexValueTypeRepository) CreateBatch(ctx context.Context, entities []*parent.ProfileSetComplexValueType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO \"profile_set_complex_value_type\" (idref, parent_id) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -42640,11 +42640,11 @@ func (r *profileSetComplexValueTypeRepository) CreateBatch(ctx context.Context, 
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -42695,7 +42695,7 @@ func (r *profileSetComplexValueTypeRepository) GetAll(ctx context.Context, limit
 
 func (r *profileSetComplexValueTypeRepository) Update(ctx context.Context, entity *parent.ProfileSetComplexValueType) error {
 	query := "UPDATE \"profile_set_complex_value_type\" SET idref = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Idref,
 		entity.ParentID,
@@ -42714,19 +42714,19 @@ func (r *profileSetComplexValueTypeRepository) DeleteBatch(ctx context.Context, 
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM \"profile_set_complex_value_type\" WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -42785,13 +42785,13 @@ func (r *profileSetValueTypeRepository) Create(ctx context.Context, entity *pare
 
 func (r *profileSetValueTypeRepository) CreateBatch(ctx context.Context, entities []*parent.ProfileSetValueType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO \"profile_set_value_type\" (idref) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -42806,11 +42806,11 @@ func (r *profileSetValueTypeRepository) CreateBatch(ctx context.Context, entitie
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -42859,7 +42859,7 @@ func (r *profileSetValueTypeRepository) GetAll(ctx context.Context, limit, offse
 
 func (r *profileSetValueTypeRepository) Update(ctx context.Context, entity *parent.ProfileSetValueType) error {
 	query := "UPDATE \"profile_set_value_type\" SET idref = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Idref,
 		entity.ID,
@@ -42877,19 +42877,19 @@ func (r *profileSetValueTypeRepository) DeleteBatch(ctx context.Context, ids []i
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM \"profile_set_value_type\" WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -42933,13 +42933,13 @@ func (r *profileTypeRepository) Create(ctx context.Context, entity *parent.Profi
 
 func (r *profileTypeRepository) CreateBatch(ctx context.Context, entities []*parent.ProfileType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO profile_type (xsd_id, prohibit_changes, abstract, note_tag, extends, version_id, signature_id, select_id, set_complex_value_id, set_value_id, refine_value_id, refine_rule_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -42965,11 +42965,11 @@ func (r *profileTypeRepository) CreateBatch(ctx context.Context, entities []*par
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -43040,7 +43040,7 @@ func (r *profileTypeRepository) GetAll(ctx context.Context, limit, offset int) (
 
 func (r *profileTypeRepository) Update(ctx context.Context, entity *parent.ProfileType) error {
 	query := "UPDATE profile_type SET xsd_id = ?, prohibit_changes = ?, abstract = ?, note_tag = ?, extends = ?, version_id = ?, signature_id = ?, select_id = ?, set_complex_value_id = ?, set_value_id = ?, refine_value_id = ?, refine_rule_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.XsdId,
 		entity.ProhibitChanges,
@@ -43069,19 +43069,19 @@ func (r *profileTypeRepository) DeleteBatch(ctx context.Context, ids []int64) er
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM profile_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -43148,13 +43148,13 @@ func (r *protocolElementTypeRepository) Create(ctx context.Context, entity *pare
 
 func (r *protocolElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.ProtocolElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO protocol_element_type DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -43167,11 +43167,11 @@ func (r *protocolElementTypeRepository) CreateBatch(ctx context.Context, entitie
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -43231,19 +43231,19 @@ func (r *protocolElementTypeRepository) DeleteBatch(ctx context.Context, ids []i
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM protocol_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -43277,13 +43277,13 @@ func (r *rSAKeyValueTypeRepository) Create(ctx context.Context, entity *parent.R
 
 func (r *rSAKeyValueTypeRepository) CreateBatch(ctx context.Context, entities []*parent.RSAKeyValueType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO \"r_s_a_key_value_type\" (modulus_id, exponent_id) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -43299,11 +43299,11 @@ func (r *rSAKeyValueTypeRepository) CreateBatch(ctx context.Context, entities []
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -43354,7 +43354,7 @@ func (r *rSAKeyValueTypeRepository) GetAll(ctx context.Context, limit, offset in
 
 func (r *rSAKeyValueTypeRepository) Update(ctx context.Context, entity *parent.RSAKeyValueType) error {
 	query := "UPDATE \"r_s_a_key_value_type\" SET modulus_id = ?, exponent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.ModulusID,
 		entity.ExponentID,
@@ -43373,19 +43373,19 @@ func (r *rSAKeyValueTypeRepository) DeleteBatch(ctx context.Context, ids []int64
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM \"r_s_a_key_value_type\" WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -43418,13 +43418,13 @@ func (r *referenceElementTypeRepository) Create(ctx context.Context, entity *par
 
 func (r *referenceElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.ReferenceElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO reference_element_type (href) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -43439,11 +43439,11 @@ func (r *referenceElementTypeRepository) CreateBatch(ctx context.Context, entiti
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -43492,7 +43492,7 @@ func (r *referenceElementTypeRepository) GetAll(ctx context.Context, limit, offs
 
 func (r *referenceElementTypeRepository) Update(ctx context.Context, entity *parent.ReferenceElementType) error {
 	query := "UPDATE reference_element_type SET href = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Href,
 		entity.ID,
@@ -43510,19 +43510,19 @@ func (r *referenceElementTypeRepository) DeleteBatch(ctx context.Context, ids []
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM reference_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -43555,13 +43555,13 @@ func (r *referencesTypeRepository) Create(ctx context.Context, entity *parent.Re
 
 func (r *referencesTypeRepository) CreateBatch(ctx context.Context, entities []*parent.ReferencesType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO \"references_type\" (reference) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -43576,11 +43576,11 @@ func (r *referencesTypeRepository) CreateBatch(ctx context.Context, entities []*
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -43629,7 +43629,7 @@ func (r *referencesTypeRepository) GetAll(ctx context.Context, limit, offset int
 
 func (r *referencesTypeRepository) Update(ctx context.Context, entity *parent.ReferencesType) error {
 	query := "UPDATE \"references_type\" SET reference = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Reference,
 		entity.ID,
@@ -43647,19 +43647,19 @@ func (r *referencesTypeRepository) DeleteBatch(ctx context.Context, ids []int64)
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM \"references_type\" WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -43692,13 +43692,13 @@ func (r *regexCaptureFunctionTypeRepository) Create(ctx context.Context, entity 
 
 func (r *regexCaptureFunctionTypeRepository) CreateBatch(ctx context.Context, entities []*parent.RegexCaptureFunctionType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO regex_capture_function_type (pattern) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -43713,11 +43713,11 @@ func (r *regexCaptureFunctionTypeRepository) CreateBatch(ctx context.Context, en
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -43766,7 +43766,7 @@ func (r *regexCaptureFunctionTypeRepository) GetAll(ctx context.Context, limit, 
 
 func (r *regexCaptureFunctionTypeRepository) Update(ctx context.Context, entity *parent.RegexCaptureFunctionType) error {
 	query := "UPDATE regex_capture_function_type SET pattern = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Pattern,
 		entity.ID,
@@ -43784,19 +43784,19 @@ func (r *regexCaptureFunctionTypeRepository) DeleteBatch(ctx context.Context, id
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM regex_capture_function_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -43832,13 +43832,13 @@ func (r *relationshipTypeRepository) Create(ctx context.Context, entity *parent.
 
 func (r *relationshipTypeRepository) CreateBatch(ctx context.Context, entities []*parent.RelationshipType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO relationship_type (type, scope, subject, ref) VALUES (?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -43856,11 +43856,11 @@ func (r *relationshipTypeRepository) CreateBatch(ctx context.Context, entities [
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -43915,7 +43915,7 @@ func (r *relationshipTypeRepository) GetAll(ctx context.Context, limit, offset i
 
 func (r *relationshipTypeRepository) Update(ctx context.Context, entity *parent.RelationshipType) error {
 	query := "UPDATE relationship_type SET type = ?, scope = ?, subject = ?, ref = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.Scope,
@@ -43936,19 +43936,19 @@ func (r *relationshipTypeRepository) DeleteBatch(ctx context.Context, ids []int6
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM relationship_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -43981,13 +43981,13 @@ func (r *relationshipsContainerTypeRepository) Create(ctx context.Context, entit
 
 func (r *relationshipsContainerTypeRepository) CreateBatch(ctx context.Context, entities []*parent.RelationshipsContainerType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO relationships_container_type (relationships) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -44002,11 +44002,11 @@ func (r *relationshipsContainerTypeRepository) CreateBatch(ctx context.Context, 
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -44055,7 +44055,7 @@ func (r *relationshipsContainerTypeRepository) GetAll(ctx context.Context, limit
 
 func (r *relationshipsContainerTypeRepository) Update(ctx context.Context, entity *parent.RelationshipsContainerType) error {
 	query := "UPDATE relationships_container_type SET relationships = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Relationships,
 		entity.ID,
@@ -44073,19 +44073,19 @@ func (r *relationshipsContainerTypeRepository) DeleteBatch(ctx context.Context, 
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM relationships_container_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -44116,13 +44116,13 @@ func (r *relationshipsElementTypeRepository) Create(ctx context.Context, entity 
 
 func (r *relationshipsElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.RelationshipsElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO relationships_element_type DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -44135,11 +44135,11 @@ func (r *relationshipsElementTypeRepository) CreateBatch(ctx context.Context, en
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -44199,19 +44199,19 @@ func (r *relationshipsElementTypeRepository) DeleteBatch(ctx context.Context, id
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM relationships_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -44242,13 +44242,13 @@ func (r *remoteResourceRepository) Create(ctx context.Context, entity *parent.Re
 
 func (r *remoteResourceRepository) CreateBatch(ctx context.Context, entities []*parent.RemoteResource) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO remote_resource DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -44261,11 +44261,11 @@ func (r *remoteResourceRepository) CreateBatch(ctx context.Context, entities []*
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -44325,19 +44325,19 @@ func (r *remoteResourceRepository) DeleteBatch(ctx context.Context, ids []int64)
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM remote_resource WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -44368,13 +44368,13 @@ func (r *remoteResourceElementTypeRepository) Create(ctx context.Context, entity
 
 func (r *remoteResourceElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.RemoteResourceElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO remote_resource_element_type DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -44387,11 +44387,11 @@ func (r *remoteResourceElementTypeRepository) CreateBatch(ctx context.Context, e
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -44451,19 +44451,19 @@ func (r *remoteResourceElementTypeRepository) DeleteBatch(ctx context.Context, i
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM remote_resource_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -44497,13 +44497,13 @@ func (r *reportRequestTypeRepository) Create(ctx context.Context, entity *parent
 
 func (r *reportRequestTypeRepository) CreateBatch(ctx context.Context, entities []*parent.ReportRequestType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO report_request_type (xsd_id, content) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -44519,11 +44519,11 @@ func (r *reportRequestTypeRepository) CreateBatch(ctx context.Context, entities 
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -44574,7 +44574,7 @@ func (r *reportRequestTypeRepository) GetAll(ctx context.Context, limit, offset 
 
 func (r *reportRequestTypeRepository) Update(ctx context.Context, entity *parent.ReportRequestType) error {
 	query := "UPDATE report_request_type SET xsd_id = ?, content = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.XsdId,
 		entity.Content,
@@ -44593,19 +44593,19 @@ func (r *reportRequestTypeRepository) DeleteBatch(ctx context.Context, ids []int
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM report_request_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -44636,13 +44636,13 @@ func (r *reportRequestsElementTypeRepository) Create(ctx context.Context, entity
 
 func (r *reportRequestsElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.ReportRequestsElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO report_requests_element_type DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -44655,11 +44655,11 @@ func (r *reportRequestsElementTypeRepository) CreateBatch(ctx context.Context, e
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -44719,19 +44719,19 @@ func (r *reportRequestsElementTypeRepository) DeleteBatch(ctx context.Context, i
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM report_requests_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -44765,13 +44765,13 @@ func (r *reportTypeRepository) Create(ctx context.Context, entity *parent.Report
 
 func (r *reportTypeRepository) CreateBatch(ctx context.Context, entities []*parent.ReportType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO report_type (xsd_id, content) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -44787,11 +44787,11 @@ func (r *reportTypeRepository) CreateBatch(ctx context.Context, entities []*pare
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -44842,7 +44842,7 @@ func (r *reportTypeRepository) GetAll(ctx context.Context, limit, offset int) ([
 
 func (r *reportTypeRepository) Update(ctx context.Context, entity *parent.ReportType) error {
 	query := "UPDATE report_type SET xsd_id = ?, content = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.XsdId,
 		entity.Content,
@@ -44861,19 +44861,19 @@ func (r *reportTypeRepository) DeleteBatch(ctx context.Context, ids []int64) err
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM report_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -44904,13 +44904,13 @@ func (r *reportsElementTypeRepository) Create(ctx context.Context, entity *paren
 
 func (r *reportsElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.ReportsElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO reports_element_type DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -44923,11 +44923,11 @@ func (r *reportsElementTypeRepository) CreateBatch(ctx context.Context, entities
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -44987,19 +44987,19 @@ func (r *reportsElementTypeRepository) DeleteBatch(ctx context.Context, ids []in
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM reports_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -45030,13 +45030,13 @@ func (r *resourceTypeRepository) Create(ctx context.Context, entity *parent.Reso
 
 func (r *resourceTypeRepository) CreateBatch(ctx context.Context, entities []*parent.ResourceType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO resource_type DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -45049,11 +45049,11 @@ func (r *resourceTypeRepository) CreateBatch(ctx context.Context, entities []*pa
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -45113,19 +45113,19 @@ func (r *resourceTypeRepository) DeleteBatch(ctx context.Context, ids []int64) e
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM resource_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -45158,13 +45158,13 @@ func (r *restrictionTypeRepository) Create(ctx context.Context, entity *parent.R
 
 func (r *restrictionTypeRepository) CreateBatch(ctx context.Context, entities []*parent.RestrictionType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO restriction_type (operation) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -45179,11 +45179,11 @@ func (r *restrictionTypeRepository) CreateBatch(ctx context.Context, entities []
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -45232,7 +45232,7 @@ func (r *restrictionTypeRepository) GetAll(ctx context.Context, limit, offset in
 
 func (r *restrictionTypeRepository) Update(ctx context.Context, entity *parent.RestrictionType) error {
 	query := "UPDATE restriction_type SET operation = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Operation,
 		entity.ID,
@@ -45250,19 +45250,19 @@ func (r *restrictionTypeRepository) DeleteBatch(ctx context.Context, ids []int64
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM restriction_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -45296,13 +45296,13 @@ func (r *retrievalMethodTypeRepository) Create(ctx context.Context, entity *pare
 
 func (r *retrievalMethodTypeRepository) CreateBatch(ctx context.Context, entities []*parent.RetrievalMethodType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO retrieval_method_type (u_r_i, type) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -45318,11 +45318,11 @@ func (r *retrievalMethodTypeRepository) CreateBatch(ctx context.Context, entitie
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -45373,7 +45373,7 @@ func (r *retrievalMethodTypeRepository) GetAll(ctx context.Context, limit, offse
 
 func (r *retrievalMethodTypeRepository) Update(ctx context.Context, entity *parent.RetrievalMethodType) error {
 	query := "UPDATE retrieval_method_type SET u_r_i = ?, type = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.URI,
 		entity.Type,
@@ -45392,19 +45392,19 @@ func (r *retrievalMethodTypeRepository) DeleteBatch(ctx context.Context, ids []i
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM retrieval_method_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -45444,13 +45444,13 @@ func (r *ruleResultTypeRepository) Create(ctx context.Context, entity *parent.Ru
 
 func (r *ruleResultTypeRepository) CreateBatch(ctx context.Context, entities []*parent.RuleResultType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO rule_result_type (idref, role, severity, time, version, weight, result_id, complex_check_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -45472,11 +45472,11 @@ func (r *ruleResultTypeRepository) CreateBatch(ctx context.Context, entities []*
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -45543,7 +45543,7 @@ func (r *ruleResultTypeRepository) GetAll(ctx context.Context, limit, offset int
 
 func (r *ruleResultTypeRepository) Update(ctx context.Context, entity *parent.RuleResultType) error {
 	query := "UPDATE rule_result_type SET idref = ?, role = ?, severity = ?, time = ?, version = ?, weight = ?, result_id = ?, complex_check_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Idref,
 		entity.Role,
@@ -45568,19 +45568,19 @@ func (r *ruleResultTypeRepository) DeleteBatch(ctx context.Context, ids []int64)
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM rule_result_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -45620,13 +45620,13 @@ func (r *ruleTypeRepository) Create(ctx context.Context, entity *parent.RuleType
 
 func (r *ruleTypeRepository) CreateBatch(ctx context.Context, entities []*parent.RuleType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO rule_type (xsd_id, role, severity, multiple, impact_metric, signature_id, complex_check_id, parent_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -45648,11 +45648,11 @@ func (r *ruleTypeRepository) CreateBatch(ctx context.Context, entities []*parent
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -45715,7 +45715,7 @@ func (r *ruleTypeRepository) GetAll(ctx context.Context, limit, offset int) ([]*
 
 func (r *ruleTypeRepository) Update(ctx context.Context, entity *parent.RuleType) error {
 	query := "UPDATE rule_type SET xsd_id = ?, role = ?, severity = ?, multiple = ?, impact_metric = ?, signature_id = ?, complex_check_id = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.XsdId,
 		entity.Role,
@@ -45740,19 +45740,19 @@ func (r *ruleTypeRepository) DeleteBatch(ctx context.Context, ids []int64) error
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM rule_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -45817,13 +45817,13 @@ func (r *sPKIDataTypeRepository) Create(ctx context.Context, entity *parent.SPKI
 
 func (r *sPKIDataTypeRepository) CreateBatch(ctx context.Context, entities []*parent.SPKIDataType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO s_p_k_i_data_type (s_p_k_i_sexp) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -45838,11 +45838,11 @@ func (r *sPKIDataTypeRepository) CreateBatch(ctx context.Context, entities []*pa
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -45891,7 +45891,7 @@ func (r *sPKIDataTypeRepository) GetAll(ctx context.Context, limit, offset int) 
 
 func (r *sPKIDataTypeRepository) Update(ctx context.Context, entity *parent.SPKIDataType) error {
 	query := "UPDATE s_p_k_i_data_type SET s_p_k_i_sexp = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.SPKISexp,
 		entity.ID,
@@ -45909,19 +45909,19 @@ func (r *sPKIDataTypeRepository) DeleteBatch(ctx context.Context, ids []int64) e
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM s_p_k_i_data_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -45955,13 +45955,13 @@ func (r *schemaVersionTypeRepository) Create(ctx context.Context, entity *parent
 
 func (r *schemaVersionTypeRepository) CreateBatch(ctx context.Context, entities []*parent.SchemaVersionType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO schema_version_type (platform, parent_id) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -45977,11 +45977,11 @@ func (r *schemaVersionTypeRepository) CreateBatch(ctx context.Context, entities 
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -46032,7 +46032,7 @@ func (r *schemaVersionTypeRepository) GetAll(ctx context.Context, limit, offset 
 
 func (r *schemaVersionTypeRepository) Update(ctx context.Context, entity *parent.SchemaVersionType) error {
 	query := "UPDATE schema_version_type SET platform = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Platform,
 		entity.ParentID,
@@ -46051,19 +46051,19 @@ func (r *schemaVersionTypeRepository) DeleteBatch(ctx context.Context, ids []int
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM schema_version_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -46097,13 +46097,13 @@ func (r *scoreTypeRepository) Create(ctx context.Context, entity *parent.ScoreTy
 
 func (r *scoreTypeRepository) CreateBatch(ctx context.Context, entities []*parent.ScoreType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO score_type (system, maximum) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -46119,11 +46119,11 @@ func (r *scoreTypeRepository) CreateBatch(ctx context.Context, entities []*paren
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -46174,7 +46174,7 @@ func (r *scoreTypeRepository) GetAll(ctx context.Context, limit, offset int) ([]
 
 func (r *scoreTypeRepository) Update(ctx context.Context, entity *parent.ScoreType) error {
 	query := "UPDATE score_type SET system = ?, maximum = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.System,
 		entity.Maximum,
@@ -46193,19 +46193,19 @@ func (r *scoreTypeRepository) DeleteBatch(ctx context.Context, ids []int64) erro
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM score_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -46241,13 +46241,13 @@ func (r *selChoicesTypeRepository) Create(ctx context.Context, entity *parent.Se
 
 func (r *selChoicesTypeRepository) CreateBatch(ctx context.Context, entities []*parent.SelChoicesType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO sel_choices_type (must_match, selector, choice, complex_choice_id) VALUES (?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -46265,11 +46265,11 @@ func (r *selChoicesTypeRepository) CreateBatch(ctx context.Context, entities []*
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -46324,7 +46324,7 @@ func (r *selChoicesTypeRepository) GetAll(ctx context.Context, limit, offset int
 
 func (r *selChoicesTypeRepository) Update(ctx context.Context, entity *parent.SelChoicesType) error {
 	query := "UPDATE sel_choices_type SET must_match = ?, selector = ?, choice = ?, complex_choice_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.MustMatch,
 		entity.Selector,
@@ -46345,19 +46345,19 @@ func (r *selChoicesTypeRepository) DeleteBatch(ctx context.Context, ids []int64)
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM sel_choices_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -46419,13 +46419,13 @@ func (r *selComplexValueTypeRepository) Create(ctx context.Context, entity *pare
 
 func (r *selComplexValueTypeRepository) CreateBatch(ctx context.Context, entities []*parent.SelComplexValueType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO sel_complex_value_type (selector, parent_id) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -46441,11 +46441,11 @@ func (r *selComplexValueTypeRepository) CreateBatch(ctx context.Context, entitie
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -46496,7 +46496,7 @@ func (r *selComplexValueTypeRepository) GetAll(ctx context.Context, limit, offse
 
 func (r *selComplexValueTypeRepository) Update(ctx context.Context, entity *parent.SelComplexValueType) error {
 	query := "UPDATE sel_complex_value_type SET selector = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Selector,
 		entity.ParentID,
@@ -46515,19 +46515,19 @@ func (r *selComplexValueTypeRepository) DeleteBatch(ctx context.Context, ids []i
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM sel_complex_value_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -46586,13 +46586,13 @@ func (r *selNumTypeRepository) Create(ctx context.Context, entity *parent.SelNum
 
 func (r *selNumTypeRepository) CreateBatch(ctx context.Context, entities []*parent.SelNumType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO sel_num_type (selector) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -46607,11 +46607,11 @@ func (r *selNumTypeRepository) CreateBatch(ctx context.Context, entities []*pare
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -46660,7 +46660,7 @@ func (r *selNumTypeRepository) GetAll(ctx context.Context, limit, offset int) ([
 
 func (r *selNumTypeRepository) Update(ctx context.Context, entity *parent.SelNumType) error {
 	query := "UPDATE sel_num_type SET selector = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Selector,
 		entity.ID,
@@ -46678,19 +46678,19 @@ func (r *selNumTypeRepository) DeleteBatch(ctx context.Context, ids []int64) err
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM sel_num_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -46723,13 +46723,13 @@ func (r *selStringTypeRepository) Create(ctx context.Context, entity *parent.Sel
 
 func (r *selStringTypeRepository) CreateBatch(ctx context.Context, entities []*parent.SelStringType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO sel_string_type (selector) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -46744,11 +46744,11 @@ func (r *selStringTypeRepository) CreateBatch(ctx context.Context, entities []*p
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -46797,7 +46797,7 @@ func (r *selStringTypeRepository) GetAll(ctx context.Context, limit, offset int)
 
 func (r *selStringTypeRepository) Update(ctx context.Context, entity *parent.SelStringType) error {
 	query := "UPDATE sel_string_type SET selector = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Selector,
 		entity.ID,
@@ -46815,19 +46815,19 @@ func (r *selStringTypeRepository) DeleteBatch(ctx context.Context, ids []int64) 
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM sel_string_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -46864,13 +46864,13 @@ func (r *serviceTypeRepository) Create(ctx context.Context, entity *parent.Servi
 
 func (r *serviceTypeRepository) CreateBatch(ctx context.Context, entities []*parent.ServiceType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO service_type (host, port, port_range, protocol, parent_id) VALUES (?, ?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -46889,11 +46889,11 @@ func (r *serviceTypeRepository) CreateBatch(ctx context.Context, entities []*par
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -46950,7 +46950,7 @@ func (r *serviceTypeRepository) GetAll(ctx context.Context, limit, offset int) (
 
 func (r *serviceTypeRepository) Update(ctx context.Context, entity *parent.ServiceType) error {
 	query := "UPDATE service_type SET host = ?, port = ?, port_range = ?, protocol = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Host,
 		entity.Port,
@@ -46972,19 +46972,19 @@ func (r *serviceTypeRepository) DeleteBatch(ctx context.Context, ids []int64) er
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM service_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -47046,13 +47046,13 @@ func (r *setRepository) Create(ctx context.Context, entity *parent.Set) (int64, 
 
 func (r *setRepository) CreateBatch(ctx context.Context, entities []*parent.Set) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO \"set\" (set_operator) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -47067,11 +47067,11 @@ func (r *setRepository) CreateBatch(ctx context.Context, entities []*parent.Set)
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -47120,7 +47120,7 @@ func (r *setRepository) GetAll(ctx context.Context, limit, offset int) ([]*paren
 
 func (r *setRepository) Update(ctx context.Context, entity *parent.Set) error {
 	query := "UPDATE \"set\" SET set_operator = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Set_operator,
 		entity.ID,
@@ -47138,19 +47138,19 @@ func (r *setRepository) DeleteBatch(ctx context.Context, ids []int64) error {
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM \"set\" WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -47183,13 +47183,13 @@ func (r *setElementTypeRepository) Create(ctx context.Context, entity *parent.Se
 
 func (r *setElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.SetElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO \"set_element_type\" (set_operator) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -47204,11 +47204,11 @@ func (r *setElementTypeRepository) CreateBatch(ctx context.Context, entities []*
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -47257,7 +47257,7 @@ func (r *setElementTypeRepository) GetAll(ctx context.Context, limit, offset int
 
 func (r *setElementTypeRepository) Update(ctx context.Context, entity *parent.SetElementType) error {
 	query := "UPDATE \"set_element_type\" SET set_operator = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Set_operator,
 		entity.ID,
@@ -47275,19 +47275,19 @@ func (r *setElementTypeRepository) DeleteBatch(ctx context.Context, ids []int64)
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM \"set_element_type\" WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -47321,13 +47321,13 @@ func (r *signatureMethodTypeRepository) Create(ctx context.Context, entity *pare
 
 func (r *signatureMethodTypeRepository) CreateBatch(ctx context.Context, entities []*parent.SignatureMethodType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO signature_method_type (algorithm, h_m_a_c_output_length_id) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -47343,11 +47343,11 @@ func (r *signatureMethodTypeRepository) CreateBatch(ctx context.Context, entitie
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -47398,7 +47398,7 @@ func (r *signatureMethodTypeRepository) GetAll(ctx context.Context, limit, offse
 
 func (r *signatureMethodTypeRepository) Update(ctx context.Context, entity *parent.SignatureMethodType) error {
 	query := "UPDATE signature_method_type SET algorithm = ?, h_m_a_c_output_length_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Algorithm,
 		entity.HMACOutputLengthID,
@@ -47417,19 +47417,19 @@ func (r *signatureMethodTypeRepository) DeleteBatch(ctx context.Context, ids []i
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM signature_method_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -47462,13 +47462,13 @@ func (r *signaturePropertiesTypeRepository) Create(ctx context.Context, entity *
 
 func (r *signaturePropertiesTypeRepository) CreateBatch(ctx context.Context, entities []*parent.SignaturePropertiesType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO signature_properties_type (xsd_id) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -47483,11 +47483,11 @@ func (r *signaturePropertiesTypeRepository) CreateBatch(ctx context.Context, ent
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -47536,7 +47536,7 @@ func (r *signaturePropertiesTypeRepository) GetAll(ctx context.Context, limit, o
 
 func (r *signaturePropertiesTypeRepository) Update(ctx context.Context, entity *parent.SignaturePropertiesType) error {
 	query := "UPDATE signature_properties_type SET xsd_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.XsdId,
 		entity.ID,
@@ -47554,19 +47554,19 @@ func (r *signaturePropertiesTypeRepository) DeleteBatch(ctx context.Context, ids
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM signature_properties_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -47600,13 +47600,13 @@ func (r *signaturePropertyTypeRepository) Create(ctx context.Context, entity *pa
 
 func (r *signaturePropertyTypeRepository) CreateBatch(ctx context.Context, entities []*parent.SignaturePropertyType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO signature_property_type (target, xsd_id) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -47622,11 +47622,11 @@ func (r *signaturePropertyTypeRepository) CreateBatch(ctx context.Context, entit
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -47677,7 +47677,7 @@ func (r *signaturePropertyTypeRepository) GetAll(ctx context.Context, limit, off
 
 func (r *signaturePropertyTypeRepository) Update(ctx context.Context, entity *parent.SignaturePropertyType) error {
 	query := "UPDATE signature_property_type SET target = ?, xsd_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Target,
 		entity.XsdId,
@@ -47696,19 +47696,19 @@ func (r *signaturePropertyTypeRepository) DeleteBatch(ctx context.Context, ids [
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM signature_property_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -47741,13 +47741,13 @@ func (r *signatureValueTypeRepository) Create(ctx context.Context, entity *paren
 
 func (r *signatureValueTypeRepository) CreateBatch(ctx context.Context, entities []*parent.SignatureValueType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO signature_value_type (xsd_id) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -47762,11 +47762,11 @@ func (r *signatureValueTypeRepository) CreateBatch(ctx context.Context, entities
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -47815,7 +47815,7 @@ func (r *signatureValueTypeRepository) GetAll(ctx context.Context, limit, offset
 
 func (r *signatureValueTypeRepository) Update(ctx context.Context, entity *parent.SignatureValueType) error {
 	query := "UPDATE signature_value_type SET xsd_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.XsdId,
 		entity.ID,
@@ -47833,19 +47833,19 @@ func (r *signatureValueTypeRepository) DeleteBatch(ctx context.Context, ids []in
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM signature_value_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -47878,13 +47878,13 @@ func (r *signedInfoTypeRepository) Create(ctx context.Context, entity *parent.Si
 
 func (r *signedInfoTypeRepository) CreateBatch(ctx context.Context, entities []*parent.SignedInfoType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO signed_info_type (xsd_id) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -47899,11 +47899,11 @@ func (r *signedInfoTypeRepository) CreateBatch(ctx context.Context, entities []*
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -47952,7 +47952,7 @@ func (r *signedInfoTypeRepository) GetAll(ctx context.Context, limit, offset int
 
 func (r *signedInfoTypeRepository) Update(ctx context.Context, entity *parent.SignedInfoType) error {
 	query := "UPDATE signed_info_type SET xsd_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.XsdId,
 		entity.ID,
@@ -47970,19 +47970,19 @@ func (r *signedInfoTypeRepository) DeleteBatch(ctx context.Context, ids []int64)
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM signed_info_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -48013,13 +48013,13 @@ func (r *simpleRepository) Create(ctx context.Context, entity *parent.Simple) (i
 
 func (r *simpleRepository) CreateBatch(ctx context.Context, entities []*parent.Simple) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO simple DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -48032,11 +48032,11 @@ func (r *simpleRepository) CreateBatch(ctx context.Context, entities []*parent.S
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -48096,19 +48096,19 @@ func (r *simpleRepository) DeleteBatch(ctx context.Context, ids []int64) error {
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM simple WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -48143,13 +48143,13 @@ func (r *softwareTypeRepository) Create(ctx context.Context, entity *parent.Soft
 
 func (r *softwareTypeRepository) CreateBatch(ctx context.Context, entities []*parent.SoftwareType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO software_type (installation_id, license, parent_id) VALUES (?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -48166,11 +48166,11 @@ func (r *softwareTypeRepository) CreateBatch(ctx context.Context, entities []*pa
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -48223,7 +48223,7 @@ func (r *softwareTypeRepository) GetAll(ctx context.Context, limit, offset int) 
 
 func (r *softwareTypeRepository) Update(ctx context.Context, entity *parent.SoftwareType) error {
 	query := "UPDATE software_type SET installation_id = ?, license = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.InstallationId,
 		entity.License,
@@ -48243,19 +48243,19 @@ func (r *softwareTypeRepository) DeleteBatch(ctx context.Context, ids []int64) e
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM software_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -48315,13 +48315,13 @@ func (r *sortingCodeElementTypeRepository) Create(ctx context.Context, entity *p
 
 func (r *sortingCodeElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.SortingCodeElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO sorting_code_element_type (type) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -48336,11 +48336,11 @@ func (r *sortingCodeElementTypeRepository) CreateBatch(ctx context.Context, enti
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -48389,7 +48389,7 @@ func (r *sortingCodeElementTypeRepository) GetAll(ctx context.Context, limit, of
 
 func (r *sortingCodeElementTypeRepository) Update(ctx context.Context, entity *parent.SortingCodeElementType) error {
 	query := "UPDATE sorting_code_element_type SET type = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.ID,
@@ -48407,19 +48407,19 @@ func (r *sortingCodeElementTypeRepository) DeleteBatch(ctx context.Context, ids 
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM sorting_code_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -48452,13 +48452,13 @@ func (r *splitFunctionTypeRepository) Create(ctx context.Context, entity *parent
 
 func (r *splitFunctionTypeRepository) CreateBatch(ctx context.Context, entities []*parent.SplitFunctionType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO split_function_type (delimiter) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -48473,11 +48473,11 @@ func (r *splitFunctionTypeRepository) CreateBatch(ctx context.Context, entities 
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -48526,7 +48526,7 @@ func (r *splitFunctionTypeRepository) GetAll(ctx context.Context, limit, offset 
 
 func (r *splitFunctionTypeRepository) Update(ctx context.Context, entity *parent.SplitFunctionType) error {
 	query := "UPDATE split_function_type SET delimiter = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Delimiter,
 		entity.ID,
@@ -48544,19 +48544,19 @@ func (r *splitFunctionTypeRepository) DeleteBatch(ctx context.Context, ids []int
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM split_function_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -48589,13 +48589,13 @@ func (r *stateRefTypeRepository) Create(ctx context.Context, entity *parent.Stat
 
 func (r *stateRefTypeRepository) CreateBatch(ctx context.Context, entities []*parent.StateRefType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO state_ref_type (state_ref) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -48610,11 +48610,11 @@ func (r *stateRefTypeRepository) CreateBatch(ctx context.Context, entities []*pa
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -48663,7 +48663,7 @@ func (r *stateRefTypeRepository) GetAll(ctx context.Context, limit, offset int) 
 
 func (r *stateRefTypeRepository) Update(ctx context.Context, entity *parent.StateRefType) error {
 	query := "UPDATE state_ref_type SET state_ref = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.State_ref,
 		entity.ID,
@@ -48681,19 +48681,19 @@ func (r *stateRefTypeRepository) DeleteBatch(ctx context.Context, ids []int64) e
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM state_ref_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -48730,13 +48730,13 @@ func (r *stateTypeRepository) Create(ctx context.Context, entity *parent.StateTy
 
 func (r *stateTypeRepository) CreateBatch(ctx context.Context, entities []*parent.StateType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO state_type (xsd_id, version, operator, comment, deprecated) VALUES (?, ?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -48755,11 +48755,11 @@ func (r *stateTypeRepository) CreateBatch(ctx context.Context, entities []*paren
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -48816,7 +48816,7 @@ func (r *stateTypeRepository) GetAll(ctx context.Context, limit, offset int) ([]
 
 func (r *stateTypeRepository) Update(ctx context.Context, entity *parent.StateType) error {
 	query := "UPDATE state_type SET xsd_id = ?, version = ?, operator = ?, comment = ?, deprecated = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.XsdId,
 		entity.Version,
@@ -48838,19 +48838,19 @@ func (r *stateTypeRepository) DeleteBatch(ctx context.Context, ids []int64) erro
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM state_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -48881,13 +48881,13 @@ func (r *statesTypeRepository) Create(ctx context.Context, entity *parent.States
 
 func (r *statesTypeRepository) CreateBatch(ctx context.Context, entities []*parent.StatesType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO states_type DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -48900,11 +48900,11 @@ func (r *statesTypeRepository) CreateBatch(ctx context.Context, entities []*pare
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -48964,19 +48964,19 @@ func (r *statesTypeRepository) DeleteBatch(ctx context.Context, ids []int64) err
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM states_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -49010,13 +49010,13 @@ func (r *statusRepository) Create(ctx context.Context, entity *parent.Status) (i
 
 func (r *statusRepository) CreateBatch(ctx context.Context, entities []*parent.Status) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO status (date, parent_id) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -49032,11 +49032,11 @@ func (r *statusRepository) CreateBatch(ctx context.Context, entities []*parent.S
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -49091,7 +49091,7 @@ func (r *statusRepository) GetAll(ctx context.Context, limit, offset int) ([]*pa
 
 func (r *statusRepository) Update(ctx context.Context, entity *parent.Status) error {
 	query := "UPDATE status SET date = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Date,
 		entity.ParentID,
@@ -49110,19 +49110,19 @@ func (r *statusRepository) DeleteBatch(ctx context.Context, ids []int64) error {
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM status WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -49156,13 +49156,13 @@ func (r *statusElementTypeRepository) Create(ctx context.Context, entity *parent
 
 func (r *statusElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.StatusElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO status_element_type (date, parent_id) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -49178,11 +49178,11 @@ func (r *statusElementTypeRepository) CreateBatch(ctx context.Context, entities 
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -49237,7 +49237,7 @@ func (r *statusElementTypeRepository) GetAll(ctx context.Context, limit, offset 
 
 func (r *statusElementTypeRepository) Update(ctx context.Context, entity *parent.StatusElementType) error {
 	query := "UPDATE status_element_type SET date = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Date,
 		entity.ParentID,
@@ -49256,19 +49256,19 @@ func (r *statusElementTypeRepository) DeleteBatch(ctx context.Context, ids []int
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM status_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -49304,13 +49304,13 @@ func (r *subAdministrativeAreaElementTypeRepository) Create(ctx context.Context,
 
 func (r *subAdministrativeAreaElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.SubAdministrativeAreaElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO sub_administrative_area_element_type (type, usage_type, indicator, sub_administrative_area_name) VALUES (?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -49328,11 +49328,11 @@ func (r *subAdministrativeAreaElementTypeRepository) CreateBatch(ctx context.Con
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -49387,7 +49387,7 @@ func (r *subAdministrativeAreaElementTypeRepository) GetAll(ctx context.Context,
 
 func (r *subAdministrativeAreaElementTypeRepository) Update(ctx context.Context, entity *parent.SubAdministrativeAreaElementType) error {
 	query := "UPDATE sub_administrative_area_element_type SET type = ?, usage_type = ?, indicator = ?, sub_administrative_area_name = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.UsageType,
@@ -49408,19 +49408,19 @@ func (r *subAdministrativeAreaElementTypeRepository) DeleteBatch(ctx context.Con
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM sub_administrative_area_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -49453,13 +49453,13 @@ func (r *subAdministrativeAreaNameElementTypeRepository) Create(ctx context.Cont
 
 func (r *subAdministrativeAreaNameElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.SubAdministrativeAreaNameElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO sub_administrative_area_name_element_type (type) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -49474,11 +49474,11 @@ func (r *subAdministrativeAreaNameElementTypeRepository) CreateBatch(ctx context
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -49527,7 +49527,7 @@ func (r *subAdministrativeAreaNameElementTypeRepository) GetAll(ctx context.Cont
 
 func (r *subAdministrativeAreaNameElementTypeRepository) Update(ctx context.Context, entity *parent.SubAdministrativeAreaNameElementType) error {
 	query := "UPDATE sub_administrative_area_name_element_type SET type = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.ID,
@@ -49545,19 +49545,19 @@ func (r *subAdministrativeAreaNameElementTypeRepository) DeleteBatch(ctx context
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM sub_administrative_area_name_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -49588,13 +49588,13 @@ func (r *subPremiseLocationElementTypeRepository) Create(ctx context.Context, en
 
 func (r *subPremiseLocationElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.SubPremiseLocationElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO sub_premise_location_element_type DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -49607,11 +49607,11 @@ func (r *subPremiseLocationElementTypeRepository) CreateBatch(ctx context.Contex
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -49671,19 +49671,19 @@ func (r *subPremiseLocationElementTypeRepository) DeleteBatch(ctx context.Contex
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM sub_premise_location_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -49717,13 +49717,13 @@ func (r *subPremiseNameElementTypeRepository) Create(ctx context.Context, entity
 
 func (r *subPremiseNameElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.SubPremiseNameElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO sub_premise_name_element_type (type, type_occurrence) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -49739,11 +49739,11 @@ func (r *subPremiseNameElementTypeRepository) CreateBatch(ctx context.Context, e
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -49794,7 +49794,7 @@ func (r *subPremiseNameElementTypeRepository) GetAll(ctx context.Context, limit,
 
 func (r *subPremiseNameElementTypeRepository) Update(ctx context.Context, entity *parent.SubPremiseNameElementType) error {
 	query := "UPDATE sub_premise_name_element_type SET type = ?, type_occurrence = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.TypeOccurrence,
@@ -49813,19 +49813,19 @@ func (r *subPremiseNameElementTypeRepository) DeleteBatch(ctx context.Context, i
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM sub_premise_name_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -49862,13 +49862,13 @@ func (r *subPremiseNumberElementTypeRepository) Create(ctx context.Context, enti
 
 func (r *subPremiseNumberElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.SubPremiseNumberElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO sub_premise_number_element_type (indicator, indicator_occurrence, number_type_occurrence, premise_number_separator, type) VALUES (?, ?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -49887,11 +49887,11 @@ func (r *subPremiseNumberElementTypeRepository) CreateBatch(ctx context.Context,
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -49948,7 +49948,7 @@ func (r *subPremiseNumberElementTypeRepository) GetAll(ctx context.Context, limi
 
 func (r *subPremiseNumberElementTypeRepository) Update(ctx context.Context, entity *parent.SubPremiseNumberElementType) error {
 	query := "UPDATE sub_premise_number_element_type SET indicator = ?, indicator_occurrence = ?, number_type_occurrence = ?, premise_number_separator = ?, type = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Indicator,
 		entity.IndicatorOccurrence,
@@ -49970,19 +49970,19 @@ func (r *subPremiseNumberElementTypeRepository) DeleteBatch(ctx context.Context,
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM sub_premise_number_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -50016,13 +50016,13 @@ func (r *subPremiseNumberPrefixElementTypeRepository) Create(ctx context.Context
 
 func (r *subPremiseNumberPrefixElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.SubPremiseNumberPrefixElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO sub_premise_number_prefix_element_type (number_prefix_separator, type) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -50038,11 +50038,11 @@ func (r *subPremiseNumberPrefixElementTypeRepository) CreateBatch(ctx context.Co
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -50093,7 +50093,7 @@ func (r *subPremiseNumberPrefixElementTypeRepository) GetAll(ctx context.Context
 
 func (r *subPremiseNumberPrefixElementTypeRepository) Update(ctx context.Context, entity *parent.SubPremiseNumberPrefixElementType) error {
 	query := "UPDATE sub_premise_number_prefix_element_type SET number_prefix_separator = ?, type = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.NumberPrefixSeparator,
 		entity.Type,
@@ -50112,19 +50112,19 @@ func (r *subPremiseNumberPrefixElementTypeRepository) DeleteBatch(ctx context.Co
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM sub_premise_number_prefix_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -50158,13 +50158,13 @@ func (r *subPremiseNumberSuffixElementTypeRepository) Create(ctx context.Context
 
 func (r *subPremiseNumberSuffixElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.SubPremiseNumberSuffixElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO sub_premise_number_suffix_element_type (number_suffix_separator, type) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -50180,11 +50180,11 @@ func (r *subPremiseNumberSuffixElementTypeRepository) CreateBatch(ctx context.Co
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -50235,7 +50235,7 @@ func (r *subPremiseNumberSuffixElementTypeRepository) GetAll(ctx context.Context
 
 func (r *subPremiseNumberSuffixElementTypeRepository) Update(ctx context.Context, entity *parent.SubPremiseNumberSuffixElementType) error {
 	query := "UPDATE sub_premise_number_suffix_element_type SET number_suffix_separator = ?, type = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.NumberSuffixSeparator,
 		entity.Type,
@@ -50254,19 +50254,19 @@ func (r *subPremiseNumberSuffixElementTypeRepository) DeleteBatch(ctx context.Co
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM sub_premise_number_suffix_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -50307,13 +50307,13 @@ func (r *subPremiseTypeRepository) Create(ctx context.Context, entity *parent.Su
 
 func (r *subPremiseTypeRepository) CreateBatch(ctx context.Context, entities []*parent.SubPremiseType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO sub_premise_type (type, sub_premise_name, sub_premise_number_prefix, sub_premise_number_suffix, firm_id, mail_stop_id, sub_premise_id, sub_premise_location, sub_premise_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -50336,11 +50336,11 @@ func (r *subPremiseTypeRepository) CreateBatch(ctx context.Context, entities []*
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -50405,7 +50405,7 @@ func (r *subPremiseTypeRepository) GetAll(ctx context.Context, limit, offset int
 
 func (r *subPremiseTypeRepository) Update(ctx context.Context, entity *parent.SubPremiseType) error {
 	query := "UPDATE sub_premise_type SET type = ?, sub_premise_name = ?, sub_premise_number_prefix = ?, sub_premise_number_suffix = ?, firm_id = ?, mail_stop_id = ?, sub_premise_id = ?, sub_premise_location = ?, sub_premise_number = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.SubPremiseName,
@@ -50431,19 +50431,19 @@ func (r *subPremiseTypeRepository) DeleteBatch(ctx context.Context, ids []int64)
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM sub_premise_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -50576,13 +50576,13 @@ func (r *subTypeRepository) Create(ctx context.Context, entity *parent.SubType) 
 
 func (r *subTypeRepository) CreateBatch(ctx context.Context, entities []*parent.SubType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO sub_type (use, parent_id) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -50598,11 +50598,11 @@ func (r *subTypeRepository) CreateBatch(ctx context.Context, entities []*parent.
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -50653,7 +50653,7 @@ func (r *subTypeRepository) GetAll(ctx context.Context, limit, offset int) ([]*p
 
 func (r *subTypeRepository) Update(ctx context.Context, entity *parent.SubType) error {
 	query := "UPDATE sub_type SET use = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Use,
 		entity.ParentID,
@@ -50672,19 +50672,19 @@ func (r *subTypeRepository) DeleteBatch(ctx context.Context, ids []int64) error 
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM sub_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -50744,13 +50744,13 @@ func (r *substringFunctionTypeRepository) Create(ctx context.Context, entity *pa
 
 func (r *substringFunctionTypeRepository) CreateBatch(ctx context.Context, entities []*parent.SubstringFunctionType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO substring_function_type (substring_start, substring_length) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -50766,11 +50766,11 @@ func (r *substringFunctionTypeRepository) CreateBatch(ctx context.Context, entit
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -50821,7 +50821,7 @@ func (r *substringFunctionTypeRepository) GetAll(ctx context.Context, limit, off
 
 func (r *substringFunctionTypeRepository) Update(ctx context.Context, entity *parent.SubstringFunctionType) error {
 	query := "UPDATE substring_function_type SET substring_start = ?, substring_length = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Substring_start,
 		entity.Substring_length,
@@ -50840,19 +50840,19 @@ func (r *substringFunctionTypeRepository) DeleteBatch(ctx context.Context, ids [
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM substring_function_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -50886,13 +50886,13 @@ func (r *suffixElementTypeRepository) Create(ctx context.Context, entity *parent
 
 func (r *suffixElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.SuffixElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO suffix_element_type (type, code) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -50908,11 +50908,11 @@ func (r *suffixElementTypeRepository) CreateBatch(ctx context.Context, entities 
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -50963,7 +50963,7 @@ func (r *suffixElementTypeRepository) GetAll(ctx context.Context, limit, offset 
 
 func (r *suffixElementTypeRepository) Update(ctx context.Context, entity *parent.SuffixElementType) error {
 	query := "UPDATE suffix_element_type SET type = ?, code = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.Code,
@@ -50982,19 +50982,19 @@ func (r *suffixElementTypeRepository) DeleteBatch(ctx context.Context, ids []int
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM suffix_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -51027,13 +51027,13 @@ func (r *supplementaryPostalServiceDataElementTypeRepository) Create(ctx context
 
 func (r *supplementaryPostalServiceDataElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.SupplementaryPostalServiceDataElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO supplementary_postal_service_data_element_type (type) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -51048,11 +51048,11 @@ func (r *supplementaryPostalServiceDataElementTypeRepository) CreateBatch(ctx co
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -51101,7 +51101,7 @@ func (r *supplementaryPostalServiceDataElementTypeRepository) GetAll(ctx context
 
 func (r *supplementaryPostalServiceDataElementTypeRepository) Update(ctx context.Context, entity *parent.SupplementaryPostalServiceDataElementType) error {
 	query := "UPDATE supplementary_postal_service_data_element_type SET type = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.ID,
@@ -51119,19 +51119,19 @@ func (r *supplementaryPostalServiceDataElementTypeRepository) DeleteBatch(ctx co
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM supplementary_postal_service_data_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -51165,13 +51165,13 @@ func (r *syntheticIdRepository) Create(ctx context.Context, entity *parent.Synth
 
 func (r *syntheticIdRepository) CreateBatch(ctx context.Context, entities []*parent.SyntheticId) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO synthetic_id (resource, xsd_id) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -51187,11 +51187,11 @@ func (r *syntheticIdRepository) CreateBatch(ctx context.Context, entities []*par
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -51242,7 +51242,7 @@ func (r *syntheticIdRepository) GetAll(ctx context.Context, limit, offset int) (
 
 func (r *syntheticIdRepository) Update(ctx context.Context, entity *parent.SyntheticId) error {
 	query := "UPDATE synthetic_id SET resource = ?, xsd_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Resource,
 		entity.XsdId,
@@ -51261,19 +51261,19 @@ func (r *syntheticIdRepository) DeleteBatch(ctx context.Context, ids []int64) er
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM synthetic_id WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -51307,13 +51307,13 @@ func (r *syntheticIdElementTypeRepository) Create(ctx context.Context, entity *p
 
 func (r *syntheticIdElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.SyntheticIdElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO synthetic_id_element_type (resource, xsd_id) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -51329,11 +51329,11 @@ func (r *syntheticIdElementTypeRepository) CreateBatch(ctx context.Context, enti
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -51384,7 +51384,7 @@ func (r *syntheticIdElementTypeRepository) GetAll(ctx context.Context, limit, of
 
 func (r *syntheticIdElementTypeRepository) Update(ctx context.Context, entity *parent.SyntheticIdElementType) error {
 	query := "UPDATE synthetic_id_element_type SET resource = ?, xsd_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Resource,
 		entity.XsdId,
@@ -51403,19 +51403,19 @@ func (r *syntheticIdElementTypeRepository) DeleteBatch(ctx context.Context, ids 
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM synthetic_id_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -51446,13 +51446,13 @@ func (r *systemNameElementTypeRepository) Create(ctx context.Context, entity *pa
 
 func (r *systemNameElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.SystemNameElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO system_name_element_type DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -51465,11 +51465,11 @@ func (r *systemNameElementTypeRepository) CreateBatch(ctx context.Context, entit
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -51529,19 +51529,19 @@ func (r *systemNameElementTypeRepository) DeleteBatch(ctx context.Context, ids [
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM system_name_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -51576,13 +51576,13 @@ func (r *systemTypeRepository) Create(ctx context.Context, entity *parent.System
 
 func (r *systemTypeRepository) CreateBatch(ctx context.Context, entities []*parent.SystemType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO system_type (system_name, version, parent_id) VALUES (?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -51599,11 +51599,11 @@ func (r *systemTypeRepository) CreateBatch(ctx context.Context, entities []*pare
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -51656,7 +51656,7 @@ func (r *systemTypeRepository) GetAll(ctx context.Context, limit, offset int) ([
 
 func (r *systemTypeRepository) Update(ctx context.Context, entity *parent.SystemType) error {
 	query := "UPDATE system_type SET system_name = ?, version = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.SystemName,
 		entity.Version,
@@ -51676,19 +51676,19 @@ func (r *systemTypeRepository) DeleteBatch(ctx context.Context, ids []int64) err
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM system_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -51749,13 +51749,13 @@ func (r *tailoringBenchmarkReferenceTypeRepository) Create(ctx context.Context, 
 
 func (r *tailoringBenchmarkReferenceTypeRepository) CreateBatch(ctx context.Context, entities []*parent.TailoringBenchmarkReferenceType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO tailoring_benchmark_reference_type (version, parent_id) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -51771,11 +51771,11 @@ func (r *tailoringBenchmarkReferenceTypeRepository) CreateBatch(ctx context.Cont
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -51826,7 +51826,7 @@ func (r *tailoringBenchmarkReferenceTypeRepository) GetAll(ctx context.Context, 
 
 func (r *tailoringBenchmarkReferenceTypeRepository) Update(ctx context.Context, entity *parent.TailoringBenchmarkReferenceType) error {
 	query := "UPDATE tailoring_benchmark_reference_type SET version = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Version,
 		entity.ParentID,
@@ -51845,19 +51845,19 @@ func (r *tailoringBenchmarkReferenceTypeRepository) DeleteBatch(ctx context.Cont
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM tailoring_benchmark_reference_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -51919,13 +51919,13 @@ func (r *tailoringReferenceTypeRepository) Create(ctx context.Context, entity *p
 
 func (r *tailoringReferenceTypeRepository) CreateBatch(ctx context.Context, entities []*parent.TailoringReferenceType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO tailoring_reference_type (href, xsd_id, version, time) VALUES (?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -51943,11 +51943,11 @@ func (r *tailoringReferenceTypeRepository) CreateBatch(ctx context.Context, enti
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -52006,7 +52006,7 @@ func (r *tailoringReferenceTypeRepository) GetAll(ctx context.Context, limit, of
 
 func (r *tailoringReferenceTypeRepository) Update(ctx context.Context, entity *parent.TailoringReferenceType) error {
 	query := "UPDATE tailoring_reference_type SET href = ?, xsd_id = ?, version = ?, time = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Href,
 		entity.XsdId,
@@ -52027,19 +52027,19 @@ func (r *tailoringReferenceTypeRepository) DeleteBatch(ctx context.Context, ids 
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM tailoring_reference_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -52075,13 +52075,13 @@ func (r *tailoringTypeRepository) Create(ctx context.Context, entity *parent.Tai
 
 func (r *tailoringTypeRepository) CreateBatch(ctx context.Context, entities []*parent.TailoringType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO tailoring_type (xsd_id, benchmark_id, version_id, signature_id) VALUES (?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -52099,11 +52099,11 @@ func (r *tailoringTypeRepository) CreateBatch(ctx context.Context, entities []*p
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -52158,7 +52158,7 @@ func (r *tailoringTypeRepository) GetAll(ctx context.Context, limit, offset int)
 
 func (r *tailoringTypeRepository) Update(ctx context.Context, entity *parent.TailoringType) error {
 	query := "UPDATE tailoring_type SET xsd_id = ?, benchmark_id = ?, version_id = ?, signature_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.XsdId,
 		entity.BenchmarkID,
@@ -52179,19 +52179,19 @@ func (r *tailoringTypeRepository) DeleteBatch(ctx context.Context, ids []int64) 
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM tailoring_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -52280,13 +52280,13 @@ func (r *tailoringVersionTypeRepository) Create(ctx context.Context, entity *par
 
 func (r *tailoringVersionTypeRepository) CreateBatch(ctx context.Context, entities []*parent.TailoringVersionType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO tailoring_version_type (time) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -52301,11 +52301,11 @@ func (r *tailoringVersionTypeRepository) CreateBatch(ctx context.Context, entiti
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -52358,7 +52358,7 @@ func (r *tailoringVersionTypeRepository) GetAll(ctx context.Context, limit, offs
 
 func (r *tailoringVersionTypeRepository) Update(ctx context.Context, entity *parent.TailoringVersionType) error {
 	query := "UPDATE tailoring_version_type SET time = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Time,
 		entity.ID,
@@ -52376,19 +52376,19 @@ func (r *tailoringVersionTypeRepository) DeleteBatch(ctx context.Context, ids []
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM tailoring_version_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -52419,13 +52419,13 @@ func (r *targetFactsTypeRepository) Create(ctx context.Context, entity *parent.T
 
 func (r *targetFactsTypeRepository) CreateBatch(ctx context.Context, entities []*parent.TargetFactsType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO target_facts_type DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -52438,11 +52438,11 @@ func (r *targetFactsTypeRepository) CreateBatch(ctx context.Context, entities []
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -52502,19 +52502,19 @@ func (r *targetFactsTypeRepository) DeleteBatch(ctx context.Context, ids []int64
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM target_facts_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -52549,13 +52549,13 @@ func (r *targetIdRefTypeRepository) Create(ctx context.Context, entity *parent.T
 
 func (r *targetIdRefTypeRepository) CreateBatch(ctx context.Context, entities []*parent.TargetIdRefType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO target_id_ref_type (system, href, name) VALUES (?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -52572,11 +52572,11 @@ func (r *targetIdRefTypeRepository) CreateBatch(ctx context.Context, entities []
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -52629,7 +52629,7 @@ func (r *targetIdRefTypeRepository) GetAll(ctx context.Context, limit, offset in
 
 func (r *targetIdRefTypeRepository) Update(ctx context.Context, entity *parent.TargetIdRefType) error {
 	query := "UPDATE target_id_ref_type SET system = ?, href = ?, name = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.System,
 		entity.Href,
@@ -52649,19 +52649,19 @@ func (r *targetIdRefTypeRepository) DeleteBatch(ctx context.Context, ids []int64
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM target_id_ref_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -52694,13 +52694,13 @@ func (r *telephoneNumberRepository) Create(ctx context.Context, entity *parent.T
 
 func (r *telephoneNumberRepository) CreateBatch(ctx context.Context, entities []*parent.TelephoneNumber) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO telephone_number (parent_id) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -52715,11 +52715,11 @@ func (r *telephoneNumberRepository) CreateBatch(ctx context.Context, entities []
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -52768,7 +52768,7 @@ func (r *telephoneNumberRepository) GetAll(ctx context.Context, limit, offset in
 
 func (r *telephoneNumberRepository) Update(ctx context.Context, entity *parent.TelephoneNumber) error {
 	query := "UPDATE telephone_number SET parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.ParentID,
 		entity.ID,
@@ -52786,19 +52786,19 @@ func (r *telephoneNumberRepository) DeleteBatch(ctx context.Context, ids []int64
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM telephone_number WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -52831,13 +52831,13 @@ func (r *telephoneNumberElementTypeRepository) Create(ctx context.Context, entit
 
 func (r *telephoneNumberElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.TelephoneNumberElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO telephone_number_element_type (parent_id) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -52852,11 +52852,11 @@ func (r *telephoneNumberElementTypeRepository) CreateBatch(ctx context.Context, 
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -52905,7 +52905,7 @@ func (r *telephoneNumberElementTypeRepository) GetAll(ctx context.Context, limit
 
 func (r *telephoneNumberElementTypeRepository) Update(ctx context.Context, entity *parent.TelephoneNumberElementType) error {
 	query := "UPDATE telephone_number_element_type SET parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.ParentID,
 		entity.ID,
@@ -52923,19 +52923,19 @@ func (r *telephoneNumberElementTypeRepository) DeleteBatch(ctx context.Context, 
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM telephone_number_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -52984,13 +52984,13 @@ func (r *testResultTypeRepository) Create(ctx context.Context, entity *parent.Te
 
 func (r *testResultTypeRepository) CreateBatch(ctx context.Context, entities []*parent.TestResultType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO test_result_type (xsd_id, start_time, end_time, test_system, version, benchmark_id, tailoring_file_id, organization, identity_id, profile_id, target, target_address, target_facts_id, signature_id, target_id_ref_id, set_value_id, set_complex_value_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -53021,11 +53021,11 @@ func (r *testResultTypeRepository) CreateBatch(ctx context.Context, entities []*
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -53114,7 +53114,7 @@ func (r *testResultTypeRepository) GetAll(ctx context.Context, limit, offset int
 
 func (r *testResultTypeRepository) Update(ctx context.Context, entity *parent.TestResultType) error {
 	query := "UPDATE test_result_type SET xsd_id = ?, start_time = ?, end_time = ?, test_system = ?, version = ?, benchmark_id = ?, tailoring_file_id = ?, organization = ?, identity_id = ?, profile_id = ?, target = ?, target_address = ?, target_facts_id = ?, signature_id = ?, target_id_ref_id = ?, set_value_id = ?, set_complex_value_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.XsdId,
 		entity.StartTime,
@@ -53148,19 +53148,19 @@ func (r *testResultTypeRepository) DeleteBatch(ctx context.Context, ids []int64)
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM test_result_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -53424,13 +53424,13 @@ func (r *testTypeRepository) Create(ctx context.Context, entity *parent.TestType
 
 func (r *testTypeRepository) CreateBatch(ctx context.Context, entities []*parent.TestType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO test_type (xsd_id, version, check_existence, \"check\", state_operator, comment, deprecated) VALUES (?, ?, ?, ?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -53451,11 +53451,11 @@ func (r *testTypeRepository) CreateBatch(ctx context.Context, entities []*parent
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -53516,7 +53516,7 @@ func (r *testTypeRepository) GetAll(ctx context.Context, limit, offset int) ([]*
 
 func (r *testTypeRepository) Update(ctx context.Context, entity *parent.TestType) error {
 	query := "UPDATE test_type SET xsd_id = ?, version = ?, check_existence = ?, \"check\" = ?, state_operator = ?, comment = ?, deprecated = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.XsdId,
 		entity.Version,
@@ -53540,19 +53540,19 @@ func (r *testTypeRepository) DeleteBatch(ctx context.Context, ids []int64) error
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM test_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -53583,13 +53583,13 @@ func (r *testsTypeRepository) Create(ctx context.Context, entity *parent.TestsTy
 
 func (r *testsTypeRepository) CreateBatch(ctx context.Context, entities []*parent.TestsType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO tests_type DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -53602,11 +53602,11 @@ func (r *testsTypeRepository) CreateBatch(ctx context.Context, entities []*paren
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -53666,19 +53666,19 @@ func (r *testsTypeRepository) DeleteBatch(ctx context.Context, ids []int64) erro
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM tests_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -53711,13 +53711,13 @@ func (r *textWithSubTypeRepository) Create(ctx context.Context, entity *parent.T
 
 func (r *textWithSubTypeRepository) CreateBatch(ctx context.Context, entities []*parent.TextWithSubType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO \"text_with_sub_type\" (override) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -53732,11 +53732,11 @@ func (r *textWithSubTypeRepository) CreateBatch(ctx context.Context, entities []
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -53785,7 +53785,7 @@ func (r *textWithSubTypeRepository) GetAll(ctx context.Context, limit, offset in
 
 func (r *textWithSubTypeRepository) Update(ctx context.Context, entity *parent.TextWithSubType) error {
 	query := "UPDATE \"text_with_sub_type\" SET override = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Override,
 		entity.ID,
@@ -53803,19 +53803,19 @@ func (r *textWithSubTypeRepository) DeleteBatch(ctx context.Context, ids []int64
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM \"text_with_sub_type\" WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -53860,13 +53860,13 @@ func (r *thoroughfareRepository) Create(ctx context.Context, entity *parent.Thor
 
 func (r *thoroughfareRepository) CreateBatch(ctx context.Context, entities []*parent.Thoroughfare) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO thoroughfare (type, dependent_thoroughfares, dependent_thoroughfares_indicator, dependent_thoroughfares_connector, dependent_thoroughfares_type, thoroughfare_pre_direction_id, thoroughfare_leading_type_id, thoroughfare_trailing_type_id, thoroughfare_post_direction_id, dependent_thoroughfare, thoroughfare_number_range, dependent_locality_id, firm_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -53893,11 +53893,11 @@ func (r *thoroughfareRepository) CreateBatch(ctx context.Context, entities []*pa
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -53970,7 +53970,7 @@ func (r *thoroughfareRepository) GetAll(ctx context.Context, limit, offset int) 
 
 func (r *thoroughfareRepository) Update(ctx context.Context, entity *parent.Thoroughfare) error {
 	query := "UPDATE thoroughfare SET type = ?, dependent_thoroughfares = ?, dependent_thoroughfares_indicator = ?, dependent_thoroughfares_connector = ?, dependent_thoroughfares_type = ?, thoroughfare_pre_direction_id = ?, thoroughfare_leading_type_id = ?, thoroughfare_trailing_type_id = ?, thoroughfare_post_direction_id = ?, dependent_thoroughfare = ?, thoroughfare_number_range = ?, dependent_locality_id = ?, firm_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.DependentThoroughfares,
@@ -54000,19 +54000,19 @@ func (r *thoroughfareRepository) DeleteBatch(ctx context.Context, ids []int64) e
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM thoroughfare WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -54057,13 +54057,13 @@ func (r *thoroughfareElementTypeRepository) Create(ctx context.Context, entity *
 
 func (r *thoroughfareElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.ThoroughfareElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO thoroughfare_element_type (type, dependent_thoroughfares, dependent_thoroughfares_indicator, dependent_thoroughfares_connector, dependent_thoroughfares_type, thoroughfare_pre_direction_id, thoroughfare_leading_type_id, thoroughfare_trailing_type_id, thoroughfare_post_direction_id, dependent_thoroughfare, thoroughfare_number_range, dependent_locality_id, firm_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -54090,11 +54090,11 @@ func (r *thoroughfareElementTypeRepository) CreateBatch(ctx context.Context, ent
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -54167,7 +54167,7 @@ func (r *thoroughfareElementTypeRepository) GetAll(ctx context.Context, limit, o
 
 func (r *thoroughfareElementTypeRepository) Update(ctx context.Context, entity *parent.ThoroughfareElementType) error {
 	query := "UPDATE thoroughfare_element_type SET type = ?, dependent_thoroughfares = ?, dependent_thoroughfares_indicator = ?, dependent_thoroughfares_connector = ?, dependent_thoroughfares_type = ?, thoroughfare_pre_direction_id = ?, thoroughfare_leading_type_id = ?, thoroughfare_trailing_type_id = ?, thoroughfare_post_direction_id = ?, dependent_thoroughfare = ?, thoroughfare_number_range = ?, dependent_locality_id = ?, firm_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.DependentThoroughfares,
@@ -54197,19 +54197,19 @@ func (r *thoroughfareElementTypeRepository) DeleteBatch(ctx context.Context, ids
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM thoroughfare_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -54390,13 +54390,13 @@ func (r *thoroughfareLeadingTypeTypeRepository) Create(ctx context.Context, enti
 
 func (r *thoroughfareLeadingTypeTypeRepository) CreateBatch(ctx context.Context, entities []*parent.ThoroughfareLeadingTypeType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO thoroughfare_leading_type_type (type) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -54411,11 +54411,11 @@ func (r *thoroughfareLeadingTypeTypeRepository) CreateBatch(ctx context.Context,
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -54464,7 +54464,7 @@ func (r *thoroughfareLeadingTypeTypeRepository) GetAll(ctx context.Context, limi
 
 func (r *thoroughfareLeadingTypeTypeRepository) Update(ctx context.Context, entity *parent.ThoroughfareLeadingTypeType) error {
 	query := "UPDATE thoroughfare_leading_type_type SET type = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.ID,
@@ -54482,19 +54482,19 @@ func (r *thoroughfareLeadingTypeTypeRepository) DeleteBatch(ctx context.Context,
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM thoroughfare_leading_type_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -54527,13 +54527,13 @@ func (r *thoroughfareNameTypeRepository) Create(ctx context.Context, entity *par
 
 func (r *thoroughfareNameTypeRepository) CreateBatch(ctx context.Context, entities []*parent.ThoroughfareNameType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO thoroughfare_name_type (type) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -54548,11 +54548,11 @@ func (r *thoroughfareNameTypeRepository) CreateBatch(ctx context.Context, entiti
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -54601,7 +54601,7 @@ func (r *thoroughfareNameTypeRepository) GetAll(ctx context.Context, limit, offs
 
 func (r *thoroughfareNameTypeRepository) Update(ctx context.Context, entity *parent.ThoroughfareNameType) error {
 	query := "UPDATE thoroughfare_name_type SET type = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.ID,
@@ -54619,19 +54619,19 @@ func (r *thoroughfareNameTypeRepository) DeleteBatch(ctx context.Context, ids []
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM thoroughfare_name_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -54668,13 +54668,13 @@ func (r *thoroughfareNumberRepository) Create(ctx context.Context, entity *paren
 
 func (r *thoroughfareNumberRepository) CreateBatch(ctx context.Context, entities []*parent.ThoroughfareNumber) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO thoroughfare_number (number_type, type, indicator, indicator_occurrence, number_occurrence) VALUES (?, ?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -54693,11 +54693,11 @@ func (r *thoroughfareNumberRepository) CreateBatch(ctx context.Context, entities
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -54754,7 +54754,7 @@ func (r *thoroughfareNumberRepository) GetAll(ctx context.Context, limit, offset
 
 func (r *thoroughfareNumberRepository) Update(ctx context.Context, entity *parent.ThoroughfareNumber) error {
 	query := "UPDATE thoroughfare_number SET number_type = ?, type = ?, indicator = ?, indicator_occurrence = ?, number_occurrence = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.NumberType,
 		entity.Type,
@@ -54776,19 +54776,19 @@ func (r *thoroughfareNumberRepository) DeleteBatch(ctx context.Context, ids []in
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM thoroughfare_number WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -54825,13 +54825,13 @@ func (r *thoroughfareNumberElementTypeRepository) Create(ctx context.Context, en
 
 func (r *thoroughfareNumberElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.ThoroughfareNumberElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO thoroughfare_number_element_type (number_type, type, indicator, indicator_occurrence, number_occurrence) VALUES (?, ?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -54850,11 +54850,11 @@ func (r *thoroughfareNumberElementTypeRepository) CreateBatch(ctx context.Contex
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -54911,7 +54911,7 @@ func (r *thoroughfareNumberElementTypeRepository) GetAll(ctx context.Context, li
 
 func (r *thoroughfareNumberElementTypeRepository) Update(ctx context.Context, entity *parent.ThoroughfareNumberElementType) error {
 	query := "UPDATE thoroughfare_number_element_type SET number_type = ?, type = ?, indicator = ?, indicator_occurrence = ?, number_occurrence = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.NumberType,
 		entity.Type,
@@ -54933,19 +54933,19 @@ func (r *thoroughfareNumberElementTypeRepository) DeleteBatch(ctx context.Contex
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM thoroughfare_number_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -54976,13 +54976,13 @@ func (r *thoroughfareNumberFromElementTypeRepository) Create(ctx context.Context
 
 func (r *thoroughfareNumberFromElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.ThoroughfareNumberFromElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO \"thoroughfare_number_from_element_type\" DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -54995,11 +54995,11 @@ func (r *thoroughfareNumberFromElementTypeRepository) CreateBatch(ctx context.Co
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -55059,19 +55059,19 @@ func (r *thoroughfareNumberFromElementTypeRepository) DeleteBatch(ctx context.Co
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM \"thoroughfare_number_from_element_type\" WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -55105,13 +55105,13 @@ func (r *thoroughfareNumberPrefixRepository) Create(ctx context.Context, entity 
 
 func (r *thoroughfareNumberPrefixRepository) CreateBatch(ctx context.Context, entities []*parent.ThoroughfareNumberPrefix) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO thoroughfare_number_prefix (number_prefix_separator, type) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -55127,11 +55127,11 @@ func (r *thoroughfareNumberPrefixRepository) CreateBatch(ctx context.Context, en
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -55182,7 +55182,7 @@ func (r *thoroughfareNumberPrefixRepository) GetAll(ctx context.Context, limit, 
 
 func (r *thoroughfareNumberPrefixRepository) Update(ctx context.Context, entity *parent.ThoroughfareNumberPrefix) error {
 	query := "UPDATE thoroughfare_number_prefix SET number_prefix_separator = ?, type = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.NumberPrefixSeparator,
 		entity.Type,
@@ -55201,19 +55201,19 @@ func (r *thoroughfareNumberPrefixRepository) DeleteBatch(ctx context.Context, id
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM thoroughfare_number_prefix WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -55247,13 +55247,13 @@ func (r *thoroughfareNumberPrefixElementTypeRepository) Create(ctx context.Conte
 
 func (r *thoroughfareNumberPrefixElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.ThoroughfareNumberPrefixElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO thoroughfare_number_prefix_element_type (number_prefix_separator, type) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -55269,11 +55269,11 @@ func (r *thoroughfareNumberPrefixElementTypeRepository) CreateBatch(ctx context.
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -55324,7 +55324,7 @@ func (r *thoroughfareNumberPrefixElementTypeRepository) GetAll(ctx context.Conte
 
 func (r *thoroughfareNumberPrefixElementTypeRepository) Update(ctx context.Context, entity *parent.ThoroughfareNumberPrefixElementType) error {
 	query := "UPDATE thoroughfare_number_prefix_element_type SET number_prefix_separator = ?, type = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.NumberPrefixSeparator,
 		entity.Type,
@@ -55343,19 +55343,19 @@ func (r *thoroughfareNumberPrefixElementTypeRepository) DeleteBatch(ctx context.
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM thoroughfare_number_prefix_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -55395,13 +55395,13 @@ func (r *thoroughfareNumberRangeElementTypeRepository) Create(ctx context.Contex
 
 func (r *thoroughfareNumberRangeElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.ThoroughfareNumberRangeElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO thoroughfare_number_range_element_type (range_type, indicator, separator, indicator_occurrence, number_range_occurrence, type, thoroughfare_number_from, thoroughfare_number_to) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -55423,11 +55423,11 @@ func (r *thoroughfareNumberRangeElementTypeRepository) CreateBatch(ctx context.C
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -55490,7 +55490,7 @@ func (r *thoroughfareNumberRangeElementTypeRepository) GetAll(ctx context.Contex
 
 func (r *thoroughfareNumberRangeElementTypeRepository) Update(ctx context.Context, entity *parent.ThoroughfareNumberRangeElementType) error {
 	query := "UPDATE thoroughfare_number_range_element_type SET range_type = ?, indicator = ?, separator = ?, indicator_occurrence = ?, number_range_occurrence = ?, type = ?, thoroughfare_number_from = ?, thoroughfare_number_to = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.RangeType,
 		entity.Indicator,
@@ -55515,19 +55515,19 @@ func (r *thoroughfareNumberRangeElementTypeRepository) DeleteBatch(ctx context.C
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM thoroughfare_number_range_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -55561,13 +55561,13 @@ func (r *thoroughfareNumberSuffixRepository) Create(ctx context.Context, entity 
 
 func (r *thoroughfareNumberSuffixRepository) CreateBatch(ctx context.Context, entities []*parent.ThoroughfareNumberSuffix) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO thoroughfare_number_suffix (number_suffix_separator, type) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -55583,11 +55583,11 @@ func (r *thoroughfareNumberSuffixRepository) CreateBatch(ctx context.Context, en
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -55638,7 +55638,7 @@ func (r *thoroughfareNumberSuffixRepository) GetAll(ctx context.Context, limit, 
 
 func (r *thoroughfareNumberSuffixRepository) Update(ctx context.Context, entity *parent.ThoroughfareNumberSuffix) error {
 	query := "UPDATE thoroughfare_number_suffix SET number_suffix_separator = ?, type = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.NumberSuffixSeparator,
 		entity.Type,
@@ -55657,19 +55657,19 @@ func (r *thoroughfareNumberSuffixRepository) DeleteBatch(ctx context.Context, id
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM thoroughfare_number_suffix WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -55703,13 +55703,13 @@ func (r *thoroughfareNumberSuffixElementTypeRepository) Create(ctx context.Conte
 
 func (r *thoroughfareNumberSuffixElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.ThoroughfareNumberSuffixElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO thoroughfare_number_suffix_element_type (number_suffix_separator, type) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -55725,11 +55725,11 @@ func (r *thoroughfareNumberSuffixElementTypeRepository) CreateBatch(ctx context.
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -55780,7 +55780,7 @@ func (r *thoroughfareNumberSuffixElementTypeRepository) GetAll(ctx context.Conte
 
 func (r *thoroughfareNumberSuffixElementTypeRepository) Update(ctx context.Context, entity *parent.ThoroughfareNumberSuffixElementType) error {
 	query := "UPDATE thoroughfare_number_suffix_element_type SET number_suffix_separator = ?, type = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.NumberSuffixSeparator,
 		entity.Type,
@@ -55799,19 +55799,19 @@ func (r *thoroughfareNumberSuffixElementTypeRepository) DeleteBatch(ctx context.
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM thoroughfare_number_suffix_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -55842,13 +55842,13 @@ func (r *thoroughfareNumberToElementTypeRepository) Create(ctx context.Context, 
 
 func (r *thoroughfareNumberToElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.ThoroughfareNumberToElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO \"thoroughfare_number_to_element_type\" DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -55861,11 +55861,11 @@ func (r *thoroughfareNumberToElementTypeRepository) CreateBatch(ctx context.Cont
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -55925,19 +55925,19 @@ func (r *thoroughfareNumberToElementTypeRepository) DeleteBatch(ctx context.Cont
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM \"thoroughfare_number_to_element_type\" WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -55970,13 +55970,13 @@ func (r *thoroughfarePostDirectionTypeRepository) Create(ctx context.Context, en
 
 func (r *thoroughfarePostDirectionTypeRepository) CreateBatch(ctx context.Context, entities []*parent.ThoroughfarePostDirectionType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO thoroughfare_post_direction_type (type) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -55991,11 +55991,11 @@ func (r *thoroughfarePostDirectionTypeRepository) CreateBatch(ctx context.Contex
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -56044,7 +56044,7 @@ func (r *thoroughfarePostDirectionTypeRepository) GetAll(ctx context.Context, li
 
 func (r *thoroughfarePostDirectionTypeRepository) Update(ctx context.Context, entity *parent.ThoroughfarePostDirectionType) error {
 	query := "UPDATE thoroughfare_post_direction_type SET type = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.ID,
@@ -56062,19 +56062,19 @@ func (r *thoroughfarePostDirectionTypeRepository) DeleteBatch(ctx context.Contex
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM thoroughfare_post_direction_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -56107,13 +56107,13 @@ func (r *thoroughfarePreDirectionTypeRepository) Create(ctx context.Context, ent
 
 func (r *thoroughfarePreDirectionTypeRepository) CreateBatch(ctx context.Context, entities []*parent.ThoroughfarePreDirectionType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO thoroughfare_pre_direction_type (type) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -56128,11 +56128,11 @@ func (r *thoroughfarePreDirectionTypeRepository) CreateBatch(ctx context.Context
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -56181,7 +56181,7 @@ func (r *thoroughfarePreDirectionTypeRepository) GetAll(ctx context.Context, lim
 
 func (r *thoroughfarePreDirectionTypeRepository) Update(ctx context.Context, entity *parent.ThoroughfarePreDirectionType) error {
 	query := "UPDATE thoroughfare_pre_direction_type SET type = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.ID,
@@ -56199,19 +56199,19 @@ func (r *thoroughfarePreDirectionTypeRepository) DeleteBatch(ctx context.Context
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM thoroughfare_pre_direction_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -56244,13 +56244,13 @@ func (r *thoroughfareTrailingTypeTypeRepository) Create(ctx context.Context, ent
 
 func (r *thoroughfareTrailingTypeTypeRepository) CreateBatch(ctx context.Context, entities []*parent.ThoroughfareTrailingTypeType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO thoroughfare_trailing_type_type (type) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -56265,11 +56265,11 @@ func (r *thoroughfareTrailingTypeTypeRepository) CreateBatch(ctx context.Context
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -56318,7 +56318,7 @@ func (r *thoroughfareTrailingTypeTypeRepository) GetAll(ctx context.Context, lim
 
 func (r *thoroughfareTrailingTypeTypeRepository) Update(ctx context.Context, entity *parent.ThoroughfareTrailingTypeType) error {
 	query := "UPDATE thoroughfare_trailing_type_type SET type = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.ID,
@@ -56336,19 +56336,19 @@ func (r *thoroughfareTrailingTypeTypeRepository) DeleteBatch(ctx context.Context
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM thoroughfare_trailing_type_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -56382,13 +56382,13 @@ func (r *timeDifferenceFunctionTypeRepository) Create(ctx context.Context, entit
 
 func (r *timeDifferenceFunctionTypeRepository) CreateBatch(ctx context.Context, entities []*parent.TimeDifferenceFunctionType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO time_difference_function_type (format_1, format_2) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -56404,11 +56404,11 @@ func (r *timeDifferenceFunctionTypeRepository) CreateBatch(ctx context.Context, 
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -56459,7 +56459,7 @@ func (r *timeDifferenceFunctionTypeRepository) GetAll(ctx context.Context, limit
 
 func (r *timeDifferenceFunctionTypeRepository) Update(ctx context.Context, entity *parent.TimeDifferenceFunctionType) error {
 	query := "UPDATE time_difference_function_type SET format_1 = ?, format_2 = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Format_1,
 		entity.Format_2,
@@ -56478,19 +56478,19 @@ func (r *timeDifferenceFunctionTypeRepository) DeleteBatch(ctx context.Context, 
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM time_difference_function_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -56524,13 +56524,13 @@ func (r *titleElementTypeRepository) Create(ctx context.Context, entity *parent.
 
 func (r *titleElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.TitleElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO title_element_type (type, code) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -56546,11 +56546,11 @@ func (r *titleElementTypeRepository) CreateBatch(ctx context.Context, entities [
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -56601,7 +56601,7 @@ func (r *titleElementTypeRepository) GetAll(ctx context.Context, limit, offset i
 
 func (r *titleElementTypeRepository) Update(ctx context.Context, entity *parent.TitleElementType) error {
 	query := "UPDATE title_element_type SET type = ?, code = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Type,
 		entity.Code,
@@ -56620,19 +56620,19 @@ func (r *titleElementTypeRepository) DeleteBatch(ctx context.Context, ids []int6
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM title_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -56663,13 +56663,13 @@ func (r *titleEltTypeRepository) Create(ctx context.Context, entity *parent.Titl
 
 func (r *titleEltTypeRepository) CreateBatch(ctx context.Context, entities []*parent.TitleEltType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO title_elt_type DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -56682,11 +56682,11 @@ func (r *titleEltTypeRepository) CreateBatch(ctx context.Context, entities []*pa
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -56746,19 +56746,19 @@ func (r *titleEltTypeRepository) DeleteBatch(ctx context.Context, ids []int64) e
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM title_elt_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -56792,13 +56792,13 @@ func (r *transformTypeRepository) Create(ctx context.Context, entity *parent.Tra
 
 func (r *transformTypeRepository) CreateBatch(ctx context.Context, entities []*parent.TransformType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO transform_type (algorithm, x_path) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -56814,11 +56814,11 @@ func (r *transformTypeRepository) CreateBatch(ctx context.Context, entities []*p
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -56869,7 +56869,7 @@ func (r *transformTypeRepository) GetAll(ctx context.Context, limit, offset int)
 
 func (r *transformTypeRepository) Update(ctx context.Context, entity *parent.TransformType) error {
 	query := "UPDATE transform_type SET algorithm = ?, x_path = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Algorithm,
 		entity.XPath,
@@ -56888,19 +56888,19 @@ func (r *transformTypeRepository) DeleteBatch(ctx context.Context, ids []int64) 
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM transform_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -56931,13 +56931,13 @@ func (r *transformsTypeRepository) Create(ctx context.Context, entity *parent.Tr
 
 func (r *transformsTypeRepository) CreateBatch(ctx context.Context, entities []*parent.TransformsType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO transforms_type DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -56950,11 +56950,11 @@ func (r *transformsTypeRepository) CreateBatch(ctx context.Context, entities []*
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -57014,19 +57014,19 @@ func (r *transformsTypeRepository) DeleteBatch(ctx context.Context, ids []int64)
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM transforms_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -57057,13 +57057,13 @@ func (r *uniqueFunctionTypeRepository) Create(ctx context.Context, entity *paren
 
 func (r *uniqueFunctionTypeRepository) CreateBatch(ctx context.Context, entities []*parent.UniqueFunctionType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO \"unique_function_type\" DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -57076,11 +57076,11 @@ func (r *uniqueFunctionTypeRepository) CreateBatch(ctx context.Context, entities
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -57140,19 +57140,19 @@ func (r *uniqueFunctionTypeRepository) DeleteBatch(ctx context.Context, ids []in
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM \"unique_function_type\" WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -57185,13 +57185,13 @@ func (r *uriRefTypeRepository) Create(ctx context.Context, entity *parent.UriRef
 
 func (r *uriRefTypeRepository) CreateBatch(ctx context.Context, entities []*parent.UriRefType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO uri_ref_type (uri) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -57206,11 +57206,11 @@ func (r *uriRefTypeRepository) CreateBatch(ctx context.Context, entities []*pare
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -57259,7 +57259,7 @@ func (r *uriRefTypeRepository) GetAll(ctx context.Context, limit, offset int) ([
 
 func (r *uriRefTypeRepository) Update(ctx context.Context, entity *parent.UriRefType) error {
 	query := "UPDATE uri_ref_type SET uri = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Uri,
 		entity.ID,
@@ -57277,19 +57277,19 @@ func (r *uriRefTypeRepository) DeleteBatch(ctx context.Context, ids []int64) err
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM uri_ref_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -57320,13 +57320,13 @@ func (r *urlElementTypeRepository) Create(ctx context.Context, entity *parent.Ur
 
 func (r *urlElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.UrlElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO url_element_type DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -57339,11 +57339,11 @@ func (r *urlElementTypeRepository) CreateBatch(ctx context.Context, entities []*
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -57403,19 +57403,19 @@ func (r *urlElementTypeRepository) DeleteBatch(ctx context.Context, ids []int64)
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM url_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -57448,13 +57448,13 @@ func (r *variableComponentTypeRepository) Create(ctx context.Context, entity *pa
 
 func (r *variableComponentTypeRepository) CreateBatch(ctx context.Context, entities []*parent.VariableComponentType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO variable_component_type (var_ref) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -57469,11 +57469,11 @@ func (r *variableComponentTypeRepository) CreateBatch(ctx context.Context, entit
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -57522,7 +57522,7 @@ func (r *variableComponentTypeRepository) GetAll(ctx context.Context, limit, off
 
 func (r *variableComponentTypeRepository) Update(ctx context.Context, entity *parent.VariableComponentType) error {
 	query := "UPDATE variable_component_type SET var_ref = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Var_ref,
 		entity.ID,
@@ -57540,19 +57540,19 @@ func (r *variableComponentTypeRepository) DeleteBatch(ctx context.Context, ids [
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM variable_component_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -57589,13 +57589,13 @@ func (r *variableTypeRepository) Create(ctx context.Context, entity *parent.Vari
 
 func (r *variableTypeRepository) CreateBatch(ctx context.Context, entities []*parent.VariableType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO variable_type (xsd_id, version, datatype, comment, deprecated) VALUES (?, ?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -57614,11 +57614,11 @@ func (r *variableTypeRepository) CreateBatch(ctx context.Context, entities []*pa
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -57675,7 +57675,7 @@ func (r *variableTypeRepository) GetAll(ctx context.Context, limit, offset int) 
 
 func (r *variableTypeRepository) Update(ctx context.Context, entity *parent.VariableType) error {
 	query := "UPDATE variable_type SET xsd_id = ?, version = ?, datatype = ?, comment = ?, deprecated = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.XsdId,
 		entity.Version,
@@ -57697,19 +57697,19 @@ func (r *variableTypeRepository) DeleteBatch(ctx context.Context, ids []int64) e
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM variable_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -57740,13 +57740,13 @@ func (r *variablesTypeRepository) Create(ctx context.Context, entity *parent.Var
 
 func (r *variablesTypeRepository) CreateBatch(ctx context.Context, entities []*parent.VariablesType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO variables_type DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -57759,11 +57759,11 @@ func (r *variablesTypeRepository) CreateBatch(ctx context.Context, entities []*p
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -57823,19 +57823,19 @@ func (r *variablesTypeRepository) DeleteBatch(ctx context.Context, ids []int64) 
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM variables_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -57866,13 +57866,13 @@ func (r *versionElementTypeRepository) Create(ctx context.Context, entity *paren
 
 func (r *versionElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.VersionElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO version_element_type DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -57885,11 +57885,11 @@ func (r *versionElementTypeRepository) CreateBatch(ctx context.Context, entities
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -57949,19 +57949,19 @@ func (r *versionElementTypeRepository) DeleteBatch(ctx context.Context, ids []in
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM version_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -57995,13 +57995,13 @@ func (r *versionTypeRepository) Create(ctx context.Context, entity *parent.Versi
 
 func (r *versionTypeRepository) CreateBatch(ctx context.Context, entities []*parent.VersionType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO version_type (time, \"update\") VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -58017,11 +58017,11 @@ func (r *versionTypeRepository) CreateBatch(ctx context.Context, entities []*par
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -58076,7 +58076,7 @@ func (r *versionTypeRepository) GetAll(ctx context.Context, limit, offset int) (
 
 func (r *versionTypeRepository) Update(ctx context.Context, entity *parent.VersionType) error {
 	query := "UPDATE version_type SET time = ?, \"update\" = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Time,
 		entity.Update,
@@ -58095,19 +58095,19 @@ func (r *versionTypeRepository) DeleteBatch(ctx context.Context, ids []int64) er
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM version_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -58141,13 +58141,13 @@ func (r *warningTypeRepository) Create(ctx context.Context, entity *parent.Warni
 
 func (r *warningTypeRepository) CreateBatch(ctx context.Context, entities []*parent.WarningType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO warning_type (category, parent_id) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -58163,11 +58163,11 @@ func (r *warningTypeRepository) CreateBatch(ctx context.Context, entities []*par
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -58218,7 +58218,7 @@ func (r *warningTypeRepository) GetAll(ctx context.Context, limit, offset int) (
 
 func (r *warningTypeRepository) Update(ctx context.Context, entity *parent.WarningType) error {
 	query := "UPDATE warning_type SET category = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Category,
 		entity.ParentID,
@@ -58237,19 +58237,19 @@ func (r *warningTypeRepository) DeleteBatch(ctx context.Context, ids []int64) er
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM warning_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -58310,13 +58310,13 @@ func (r *websiteTypeRepository) Create(ctx context.Context, entity *parent.Websi
 
 func (r *websiteTypeRepository) CreateBatch(ctx context.Context, entities []*parent.WebsiteType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO website_type (document_root, locale, parent_id) VALUES (?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -58333,11 +58333,11 @@ func (r *websiteTypeRepository) CreateBatch(ctx context.Context, entities []*par
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -58390,7 +58390,7 @@ func (r *websiteTypeRepository) GetAll(ctx context.Context, limit, offset int) (
 
 func (r *websiteTypeRepository) Update(ctx context.Context, entity *parent.WebsiteType) error {
 	query := "UPDATE website_type SET document_root = ?, locale = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.DocumentRoot,
 		entity.Locale,
@@ -58410,19 +58410,19 @@ func (r *websiteTypeRepository) DeleteBatch(ctx context.Context, ids []int64) er
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM website_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -58480,13 +58480,13 @@ func (r *websiteUrlRepository) Create(ctx context.Context, entity *parent.Websit
 
 func (r *websiteUrlRepository) CreateBatch(ctx context.Context, entities []*parent.WebsiteUrl) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO website_url DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -58499,11 +58499,11 @@ func (r *websiteUrlRepository) CreateBatch(ctx context.Context, entities []*pare
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -58563,19 +58563,19 @@ func (r *websiteUrlRepository) DeleteBatch(ctx context.Context, ids []int64) err
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM website_url WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -58606,13 +58606,13 @@ func (r *websiteUrlElementTypeRepository) Create(ctx context.Context, entity *pa
 
 func (r *websiteUrlElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.WebsiteUrlElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO website_url_element_type DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -58625,11 +58625,11 @@ func (r *websiteUrlElementTypeRepository) CreateBatch(ctx context.Context, entit
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -58689,19 +58689,19 @@ func (r *websiteUrlElementTypeRepository) DeleteBatch(ctx context.Context, ids [
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM website_url_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -58738,13 +58738,13 @@ func (r *x509DataTypeRepository) Create(ctx context.Context, entity *parent.X509
 
 func (r *x509DataTypeRepository) CreateBatch(ctx context.Context, entities []*parent.X509DataType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO x509_data_type (x509_issuer_serial_id, x509_s_k_i, x509_subject_name, x509_certificate, x509_c_r_l) VALUES (?, ?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -58763,11 +58763,11 @@ func (r *x509DataTypeRepository) CreateBatch(ctx context.Context, entities []*pa
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -58824,7 +58824,7 @@ func (r *x509DataTypeRepository) GetAll(ctx context.Context, limit, offset int) 
 
 func (r *x509DataTypeRepository) Update(ctx context.Context, entity *parent.X509DataType) error {
 	query := "UPDATE x509_data_type SET x509_issuer_serial_id = ?, x509_s_k_i = ?, x509_subject_name = ?, x509_certificate = ?, x509_c_r_l = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.X509IssuerSerialID,
 		entity.X509SKI,
@@ -58846,19 +58846,19 @@ func (r *x509DataTypeRepository) DeleteBatch(ctx context.Context, ids []int64) e
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM x509_data_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -58892,13 +58892,13 @@ func (r *x509IssuerSerialTypeRepository) Create(ctx context.Context, entity *par
 
 func (r *x509IssuerSerialTypeRepository) CreateBatch(ctx context.Context, entities []*parent.X509IssuerSerialType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO x509_issuer_serial_type (x509_issuer_name, x509_serial_number) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -58914,11 +58914,11 @@ func (r *x509IssuerSerialTypeRepository) CreateBatch(ctx context.Context, entiti
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -58969,7 +58969,7 @@ func (r *x509IssuerSerialTypeRepository) GetAll(ctx context.Context, limit, offs
 
 func (r *x509IssuerSerialTypeRepository) Update(ctx context.Context, entity *parent.X509IssuerSerialType) error {
 	query := "UPDATE x509_issuer_serial_type SET x509_issuer_name = ?, x509_serial_number = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.X509IssuerName,
 		entity.X509SerialNumber,
@@ -58988,19 +58988,19 @@ func (r *x509IssuerSerialTypeRepository) DeleteBatch(ctx context.Context, ids []
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM x509_issuer_serial_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -59033,13 +59033,13 @@ func (r *xALRepository) Create(ctx context.Context, entity *parent.XAL) (int64, 
 
 func (r *xALRepository) CreateBatch(ctx context.Context, entities []*parent.XAL) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO x_a_l (version) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -59054,11 +59054,11 @@ func (r *xALRepository) CreateBatch(ctx context.Context, entities []*parent.XAL)
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -59107,7 +59107,7 @@ func (r *xALRepository) GetAll(ctx context.Context, limit, offset int) ([]*paren
 
 func (r *xALRepository) Update(ctx context.Context, entity *parent.XAL) error {
 	query := "UPDATE x_a_l SET version = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Version,
 		entity.ID,
@@ -59125,19 +59125,19 @@ func (r *xALRepository) DeleteBatch(ctx context.Context, ids []int64) error {
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM x_a_l WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -59170,13 +59170,13 @@ func (r *xALElementTypeRepository) Create(ctx context.Context, entity *parent.XA
 
 func (r *xALElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.XALElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO x_a_l_element_type (version) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -59191,11 +59191,11 @@ func (r *xALElementTypeRepository) CreateBatch(ctx context.Context, entities []*
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -59244,7 +59244,7 @@ func (r *xALElementTypeRepository) GetAll(ctx context.Context, limit, offset int
 
 func (r *xALElementTypeRepository) Update(ctx context.Context, entity *parent.XALElementType) error {
 	query := "UPDATE x_a_l_element_type SET version = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Version,
 		entity.ID,
@@ -59262,19 +59262,19 @@ func (r *xALElementTypeRepository) DeleteBatch(ctx context.Context, ids []int64)
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM x_a_l_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -59307,13 +59307,13 @@ func (r *xNLRepository) Create(ctx context.Context, entity *parent.XNL) (int64, 
 
 func (r *xNLRepository) CreateBatch(ctx context.Context, entities []*parent.XNL) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO x_n_l (version) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -59328,11 +59328,11 @@ func (r *xNLRepository) CreateBatch(ctx context.Context, entities []*parent.XNL)
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -59381,7 +59381,7 @@ func (r *xNLRepository) GetAll(ctx context.Context, limit, offset int) ([]*paren
 
 func (r *xNLRepository) Update(ctx context.Context, entity *parent.XNL) error {
 	query := "UPDATE x_n_l SET version = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Version,
 		entity.ID,
@@ -59399,19 +59399,19 @@ func (r *xNLRepository) DeleteBatch(ctx context.Context, ids []int64) error {
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM x_n_l WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -59444,13 +59444,13 @@ func (r *xNLElementTypeRepository) Create(ctx context.Context, entity *parent.XN
 
 func (r *xNLElementTypeRepository) CreateBatch(ctx context.Context, entities []*parent.XNLElementType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO x_n_l_element_type (version) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -59465,11 +59465,11 @@ func (r *xNLElementTypeRepository) CreateBatch(ctx context.Context, entities []*
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -59518,7 +59518,7 @@ func (r *xNLElementTypeRepository) GetAll(ctx context.Context, limit, offset int
 
 func (r *xNLElementTypeRepository) Update(ctx context.Context, entity *parent.XNLElementType) error {
 	query := "UPDATE x_n_l_element_type SET version = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Version,
 		entity.ID,
@@ -59536,19 +59536,19 @@ func (r *xNLElementTypeRepository) DeleteBatch(ctx context.Context, ids []int64)
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM x_n_l_element_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -59586,13 +59586,13 @@ func (r *xccdf12CheckTypeRepository) Create(ctx context.Context, entity *parent.
 
 func (r *xccdf12CheckTypeRepository) CreateBatch(ctx context.Context, entities []*parent.Xccdf12CheckType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO \"xccdf_1_2_check_type\" (system, negate, xsd_id, selector, multi_check, check_content_id) VALUES (?, ?, ?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -59612,11 +59612,11 @@ func (r *xccdf12CheckTypeRepository) CreateBatch(ctx context.Context, entities [
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -59675,7 +59675,7 @@ func (r *xccdf12CheckTypeRepository) GetAll(ctx context.Context, limit, offset i
 
 func (r *xccdf12CheckTypeRepository) Update(ctx context.Context, entity *parent.Xccdf12CheckType) error {
 	query := "UPDATE \"xccdf_1_2_check_type\" SET system = ?, negate = ?, xsd_id = ?, selector = ?, multi_check = ?, check_content_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.System,
 		entity.Negate,
@@ -59698,19 +59698,19 @@ func (r *xccdf12CheckTypeRepository) DeleteBatch(ctx context.Context, ids []int6
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM \"xccdf_1_2_check_type\" WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -59773,13 +59773,13 @@ func (r *xccdf12MessageTypeRepository) Create(ctx context.Context, entity *paren
 
 func (r *xccdf12MessageTypeRepository) CreateBatch(ctx context.Context, entities []*parent.Xccdf12MessageType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO xccdf_1_2_message_type (severity) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -59794,11 +59794,11 @@ func (r *xccdf12MessageTypeRepository) CreateBatch(ctx context.Context, entities
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -59847,7 +59847,7 @@ func (r *xccdf12MessageTypeRepository) GetAll(ctx context.Context, limit, offset
 
 func (r *xccdf12MessageTypeRepository) Update(ctx context.Context, entity *parent.Xccdf12MessageType) error {
 	query := "UPDATE xccdf_1_2_message_type SET severity = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Severity,
 		entity.ID,
@@ -59865,19 +59865,19 @@ func (r *xccdf12MessageTypeRepository) DeleteBatch(ctx context.Context, ids []in
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM xccdf_1_2_message_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -59908,13 +59908,13 @@ func (r *xccdf12MetadataTypeRepository) Create(ctx context.Context, entity *pare
 
 func (r *xccdf12MetadataTypeRepository) CreateBatch(ctx context.Context, entities []*parent.Xccdf12MetadataType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO xccdf_1_2_metadata_type DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -59927,11 +59927,11 @@ func (r *xccdf12MetadataTypeRepository) CreateBatch(ctx context.Context, entitie
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -59991,19 +59991,19 @@ func (r *xccdf12MetadataTypeRepository) DeleteBatch(ctx context.Context, ids []i
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM xccdf_1_2_metadata_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -60037,13 +60037,13 @@ func (r *xccdf12ReferenceTypeRepository) Create(ctx context.Context, entity *par
 
 func (r *xccdf12ReferenceTypeRepository) CreateBatch(ctx context.Context, entities []*parent.Xccdf12ReferenceType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO xccdf_1_2_reference_type (href, override) VALUES (?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -60059,11 +60059,11 @@ func (r *xccdf12ReferenceTypeRepository) CreateBatch(ctx context.Context, entiti
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -60114,7 +60114,7 @@ func (r *xccdf12ReferenceTypeRepository) GetAll(ctx context.Context, limit, offs
 
 func (r *xccdf12ReferenceTypeRepository) Update(ctx context.Context, entity *parent.Xccdf12ReferenceType) error {
 	query := "UPDATE xccdf_1_2_reference_type SET href = ?, override = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Href,
 		entity.Override,
@@ -60133,19 +60133,19 @@ func (r *xccdf12ReferenceTypeRepository) DeleteBatch(ctx context.Context, ids []
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM xccdf_1_2_reference_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -60176,13 +60176,13 @@ func (r *xccdf12SignatureTypeRepository) Create(ctx context.Context, entity *par
 
 func (r *xccdf12SignatureTypeRepository) CreateBatch(ctx context.Context, entities []*parent.Xccdf12SignatureType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO xccdf_1_2_signature_type DEFAULT VALUES"
 	for range entities {
 		result, err := tx.ExecContext(ctx, query)
@@ -60195,11 +60195,11 @@ func (r *xccdf12SignatureTypeRepository) CreateBatch(ctx context.Context, entiti
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -60259,19 +60259,19 @@ func (r *xccdf12SignatureTypeRepository) DeleteBatch(ctx context.Context, ids []
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM xccdf_1_2_signature_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -60304,13 +60304,13 @@ func (r *xccdf12TextTypeRepository) Create(ctx context.Context, entity *parent.X
 
 func (r *xccdf12TextTypeRepository) CreateBatch(ctx context.Context, entities []*parent.Xccdf12TextType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO xccdf_1_2_text_type (override) VALUES (?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -60325,11 +60325,11 @@ func (r *xccdf12TextTypeRepository) CreateBatch(ctx context.Context, entities []
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -60378,7 +60378,7 @@ func (r *xccdf12TextTypeRepository) GetAll(ctx context.Context, limit, offset in
 
 func (r *xccdf12TextTypeRepository) Update(ctx context.Context, entity *parent.Xccdf12TextType) error {
 	query := "UPDATE xccdf_1_2_text_type SET override = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.Override,
 		entity.ID,
@@ -60396,19 +60396,19 @@ func (r *xccdf12TextTypeRepository) DeleteBatch(ctx context.Context, ids []int64
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM xccdf_1_2_text_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -60451,13 +60451,13 @@ func (r *xccdf12ValueTypeRepository) Create(ctx context.Context, entity *parent.
 
 func (r *xccdf12ValueTypeRepository) CreateBatch(ctx context.Context, entities []*parent.Xccdf12ValueType) ([]int64, error) {
 	ids := make([]int64, 0, len(entities))
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
 	defer tx.Rollback()
-	
+
 	query := "INSERT INTO xccdf_1_2_value_type (xsd_id, type, operator, interactive, interface_hint, signature_id, value_id, complex_value_id, default_id, complex_default_id, parent_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
 	for _, entity := range entities {
 		result, err := tx.ExecContext(ctx, query,
@@ -60482,11 +60482,11 @@ func (r *xccdf12ValueTypeRepository) CreateBatch(ctx context.Context, entities [
 		}
 		ids = append(ids, id)
 	}
-	
+
 	if err := tx.Commit(); err != nil {
 		return nil, err
 	}
-	
+
 	return ids, nil
 }
 
@@ -60555,7 +60555,7 @@ func (r *xccdf12ValueTypeRepository) GetAll(ctx context.Context, limit, offset i
 
 func (r *xccdf12ValueTypeRepository) Update(ctx context.Context, entity *parent.Xccdf12ValueType) error {
 	query := "UPDATE xccdf_1_2_value_type SET xsd_id = ?, type = ?, operator = ?, interactive = ?, interface_hint = ?, signature_id = ?, value_id = ?, complex_value_id = ?, default_id = ?, complex_default_id = ?, parent_id = ? WHERE id = ?"
-	
+
 	_, err := r.db.ExecContext(ctx, query,
 		entity.XsdId,
 		entity.Type,
@@ -60583,19 +60583,19 @@ func (r *xccdf12ValueTypeRepository) DeleteBatch(ctx context.Context, ids []int6
 	if len(ids) == 0 {
 		return nil
 	}
-	
+
 	tx, err := r.db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
 	defer tx.Rollback()
-	
+
 	for _, id := range ids {
 		if _, err := tx.ExecContext(ctx, "DELETE FROM xccdf_1_2_value_type WHERE id = ?", id); err != nil {
 			return err
 		}
 	}
-	
+
 	return tx.Commit()
 }
 
@@ -60605,22 +60605,13 @@ func (r *xccdf12ValueTypeRepository) Count(ctx context.Context) (int64, error) {
 	return count, err
 }
 
-
-// GraphSaver provides methods for saving and loading entire object graphs
-type GraphSaver interface {
-	// SaveGraph saves an entity and all its children recursively within a transaction
-	SaveGraph(ctx context.Context, entity interface{}) error
-	// LoadGraph loads an entity by ID and populates all child relationships
-	LoadGraph(ctx context.Context, entityType string, id int64) (interface{}, error)
-}
-
-// graphSaver implements GraphSaver interface
+// graphSaver implements parent.GraphSaver interface
 type graphSaver struct {
 	dal *dal
 }
 
 // NewGraphSaver creates a new GraphSaver instance
-func (d *dal) NewGraphSaver() GraphSaver {
+func (d *dal) NewGraphSaver() parent.GraphSaver {
 	return &graphSaver{dal: d}
 }
 
@@ -60749,8 +60740,8 @@ func (gs *graphSaver) saveEntityGraph(ctx context.Context, tx *sql.Tx, entity in
 		if field.Kind() == reflect.Slice {
 			elemType := fieldType.Type.Elem()
 			// Skip primitive slices
-			if elemType.Kind() != reflect.Struct && 
-			   (elemType.Kind() != reflect.Ptr || elemType.Elem().Kind() != reflect.Struct) {
+			if elemType.Kind() != reflect.Struct &&
+				(elemType.Kind() != reflect.Ptr || elemType.Elem().Kind() != reflect.Struct) {
 				continue
 			}
 

@@ -8,8 +8,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	oval "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/oval/xmlschema/oval-definitions-5"
 	xccdf "github.com/aequo-labs/forgexml-scap/internal/generated/gov/nist/checklists/xccdf/1-2"
+	oval "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/oval/xmlschema/oval-definitions-5"
 )
 
 func main() {
@@ -20,7 +20,7 @@ func main() {
 	}
 
 	xmlFile := os.Args[1]
-	
+
 	// Read the XML file
 	data, err := os.ReadFile(xmlFile)
 	if err != nil {
@@ -29,7 +29,7 @@ func main() {
 	}
 
 	filename := filepath.Base(xmlFile)
-	
+
 	// Detect type and parse accordingly
 	if strings.Contains(strings.ToLower(filename), "oval") {
 		validateOVAL(data, filename)
@@ -69,14 +69,14 @@ func validateOVAL(data []byte, filename string) {
 
 	fmt.Printf("Successfully parsed OVAL: %s\n", filename)
 	fmt.Println("---")
-	
+
 	// Generator info
 	fmt.Println("Generator:")
 	if ovalDef.Generator.Product_name != nil {
 		fmt.Printf("  Product: %s\n", *ovalDef.Generator.Product_name)
 	}
-	if ovalDef.Generator.Schema_version != "" {
-		fmt.Printf("  Schema Version: %s\n", ovalDef.Generator.Schema_version)
+	if len(ovalDef.Generator.Schema_version) > 0 {
+		fmt.Printf("  Schema Version: %v\n", ovalDef.Generator.Schema_version[0])
 	}
 	fmt.Printf("  Timestamp: %v\n", ovalDef.Generator.Timestamp)
 
@@ -118,7 +118,7 @@ func validateXCCDF(data []byte, filename string) {
 
 	fmt.Printf("Successfully parsed XCCDF: %s\n", filename)
 	fmt.Println("---")
-	
+
 	// Title
 	if len(benchmark.Title) > 0 {
 		fmt.Printf("Title: %s\n", benchmark.Title[0].Value)

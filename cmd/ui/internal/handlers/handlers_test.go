@@ -18894,6 +18894,19 @@ func TestGeneratorType_GetTypeMetadata(t *testing.T) {
 	}
 }
 
+// TestGeneratorType_GetValidChildTypes tests getting valid child types for GeneratorType.
+func TestGeneratorType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/GeneratorType/children", nil)
+	req.SetPathValue("name", "GeneratorType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
 // TestGlobToRegexFunctionType_CRUD tests Create, Read, Update, Delete for GlobToRegexFunctionType.
 func TestGlobToRegexFunctionType_CRUD(t *testing.T) {
 	ts := setupTestSuite(t)

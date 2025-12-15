@@ -3,6 +3,7 @@ package handlers
 
 import (
 	"bytes"
+	"embed"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -91,6 +92,41 @@ func assertStatusCode(t *testing.T, rr *httptest.ResponseRecorder, expected int)
 }
 
 // =============================================================================
+// Constructor Tests
+// =============================================================================
+
+func TestNewHandlers(t *testing.T) {
+	xmlState := state.NewXMLDocumentState()
+
+	// Test with nil server (API-only mode)
+	handlers := NewHandlers(nil, xmlState, embed.FS{})
+
+	if handlers == nil {
+		t.Fatal("NewHandlers returned nil")
+	}
+	if handlers.state != xmlState {
+		t.Error("NewHandlers did not set state correctly")
+	}
+}
+
+func TestNewHandlers_WithState(t *testing.T) {
+	xmlState := state.NewXMLDocumentState()
+
+	handlers := NewHandlers(nil, xmlState, embed.FS{})
+
+	// Verify the handlers can use the state
+	if handlers.state == nil {
+		t.Fatal("Handlers state is nil")
+	}
+
+	// Verify state methods are accessible
+	types := handlers.state.GetRootElementTypes()
+	if types == nil {
+		t.Error("GetRootElementTypes returned nil")
+	}
+}
+
+// =============================================================================
 // Health API Tests
 // =============================================================================
 
@@ -114,6 +150,98 @@ func TestHandleHealth(t *testing.T) {
 }
 
 // =============================================================================
+// Instance Diagram API Tests
+// =============================================================================
+
+func TestHandleInstanceDiagram_DefaultType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/diagram", nil)
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleInstanceDiagram(rr, req)
+
+	// Should return OK or error if no document loaded
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+
+	if rr.Code == http.StatusOK {
+		result := assertJSONResponse(t, rr)
+		if result["type"] != "flowchart" {
+			t.Errorf("Expected default type 'flowchart', got %v", result["type"])
+		}
+		if _, ok := result["diagram"]; !ok {
+			t.Error("Expected 'diagram' field in response")
+		}
+	}
+}
+
+func TestHandleInstanceDiagram_FlowchartType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/diagram?type=flowchart", nil)
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleInstanceDiagram(rr, req)
+
+	if rr.Code == http.StatusOK {
+		result := assertJSONResponse(t, rr)
+		if result["type"] != "flowchart" {
+			t.Errorf("Expected type 'flowchart', got %v", result["type"])
+		}
+	}
+}
+
+func TestHandleInstanceDiagram_SequenceType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/diagram?type=sequence", nil)
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleInstanceDiagram(rr, req)
+
+	if rr.Code == http.StatusOK {
+		result := assertJSONResponse(t, rr)
+		if result["type"] != "sequence" {
+			t.Errorf("Expected type 'sequence', got %v", result["type"])
+		}
+	}
+}
+
+// =============================================================================
+// Page Handler Tests (validation only - no template rendering)
+// =============================================================================
+
+func TestHandleEditElement_MissingPath(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/edit", nil)
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleEditElement(rr, req)
+
+	assertStatusCode(t, rr, http.StatusBadRequest)
+	if !strings.Contains(rr.Body.String(), "path parameter required") {
+		t.Errorf("Expected 'path parameter required' error, got: %s", rr.Body.String())
+	}
+}
+
+func TestHandleCreateElement_MissingType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/create", nil)
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElement(rr, req)
+
+	assertStatusCode(t, rr, http.StatusBadRequest)
+	if !strings.Contains(rr.Body.String(), "type parameter required") {
+		t.Errorf("Expected 'type parameter required' error, got: %s", rr.Body.String())
+	}
+}
+
+// =============================================================================
 // Tree API Tests
 // =============================================================================
 
@@ -127,6 +255,54 @@ func TestHandleTreeRoot_Empty(t *testing.T) {
 
 	assertStatusCode(t, rr, http.StatusOK)
 	// Empty state should return empty array or null
+}
+
+func TestHandleTreeRoot_WithDocument(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// Get root types
+	rootTypesReq := httptest.NewRequest("GET", "/api/types/root", nil)
+	rootTypesRR := httptest.NewRecorder()
+	ts.handlers.HandleGetRootTypes(rootTypesRR, rootTypesReq)
+
+	if rootTypesRR.Code != http.StatusOK {
+		t.Skip("Could not get root types")
+	}
+
+	var rootTypes []string
+	if err := json.Unmarshal(rootTypesRR.Body.Bytes(), &rootTypes); err != nil || len(rootTypes) == 0 {
+		t.Skip("No root types available")
+	}
+
+	// Create a root element
+	createBody := map[string]interface{}{
+		"type":       rootTypes[0],
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code != http.StatusOK {
+		t.Skip("Could not create element")
+	}
+
+	// Now get tree root - should have the created element
+	req := httptest.NewRequest("GET", "/api/tree/root", nil)
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleTreeRoot(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+
+	// Check that response is an array (possibly with our element)
+	var nodes []interface{}
+	if err := json.Unmarshal(rr.Body.Bytes(), &nodes); err != nil {
+		t.Logf("Response is not an array: %s", rr.Body.String())
+	}
 }
 
 func TestHandleTreeChildren_MissingPath(t *testing.T) {
@@ -160,6 +336,52 @@ func TestHandleTreeChildren_WithPath(t *testing.T) {
 	}
 }
 
+func TestHandleTreeChildren_AfterCreate(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// Get root types
+	rootReq := httptest.NewRequest("GET", "/api/types/root", nil)
+	rootRR := httptest.NewRecorder()
+	ts.handlers.HandleGetRootTypes(rootRR, rootReq)
+
+	if rootRR.Code != http.StatusOK {
+		t.Skip("Could not get root types")
+	}
+
+	var rootTypes []string
+	if err := json.Unmarshal(rootRR.Body.Bytes(), &rootTypes); err != nil || len(rootTypes) == 0 {
+		t.Skip("No root types available")
+	}
+
+	// Create a root element
+	createBody := map[string]interface{}{
+		"type":       rootTypes[0],
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code != http.StatusOK {
+		t.Skip("Could not create element")
+	}
+
+	var createResp map[string]string
+	json.Unmarshal(createRR.Body.Bytes(), &createResp)
+	path := createResp["path"]
+
+	// Now get children of the created element
+	req := httptest.NewRequest("GET", "/api/tree/children?path="+path, nil)
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleTreeChildren(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
 func TestHandleTreeElement_MissingPath(t *testing.T) {
 	ts := setupTestSuite(t)
 
@@ -169,6 +391,20 @@ func TestHandleTreeElement_MissingPath(t *testing.T) {
 	ts.handlers.HandleTreeElement(rr, req)
 
 	assertStatusCode(t, rr, http.StatusBadRequest)
+}
+
+func TestHandleTreeElement_WithPath(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/tree/element?path=/root", nil)
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleTreeElement(rr, req)
+
+	// Should return error for non-existent path or OK if found
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d", rr.Code)
+	}
 }
 
 // =============================================================================
@@ -208,6 +444,48 @@ func TestHandleGetType_MissingName(t *testing.T) {
 	assertStatusCode(t, rr, http.StatusBadRequest)
 }
 
+func TestHandleGetType_WithValidName(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// Get available types first to find a valid type name
+	typesReq := httptest.NewRequest("GET", "/api/types", nil)
+	typesRR := httptest.NewRecorder()
+	ts.handlers.HandleListTypes(typesRR, typesReq)
+
+	if typesRR.Code != http.StatusOK {
+		t.Skipf("Could not get types: %d", typesRR.Code)
+	}
+
+	// Parse types to get a valid name
+	var types []string
+	if err := json.Unmarshal(typesRR.Body.Bytes(), &types); err != nil {
+		t.Skipf("Failed to parse types: %v", err)
+	}
+
+	if len(types) == 0 {
+		t.Skip("No types available")
+	}
+
+	// Get metadata for the first type
+	typeName := types[0]
+	req := httptest.NewRequest("GET", "/api/types/"+typeName, nil)
+	req.SetPathValue("name", typeName)
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+
+	if rr.Code == http.StatusOK {
+		result := assertJSONResponse(t, rr)
+		if result["name"] == nil {
+			t.Error("Expected 'name' field in type metadata")
+		}
+	}
+}
+
 func TestHandleGetConcreteTypes_MissingName(t *testing.T) {
 	ts := setupTestSuite(t)
 
@@ -217,6 +495,31 @@ func TestHandleGetConcreteTypes_MissingName(t *testing.T) {
 	ts.handlers.HandleGetConcreteTypes(rr, req)
 
 	assertStatusCode(t, rr, http.StatusBadRequest)
+}
+
+func TestHandleGetConcreteTypes_WithName(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// Get available types first
+	typesReq := httptest.NewRequest("GET", "/api/types", nil)
+	typesRR := httptest.NewRecorder()
+	ts.handlers.HandleListTypes(typesRR, typesReq)
+
+	if typesRR.Code != http.StatusOK {
+		t.Skipf("Could not get types: %d", typesRR.Code)
+	}
+
+	// Try to get concrete types for any available type
+	req := httptest.NewRequest("GET", "/api/types/TestType/concrete", nil)
+	req.SetPathValue("name", "TestType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetConcreteTypes(rr, req)
+
+	// Should return OK (empty list or concrete types) or NotFound
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
 }
 
 func TestHandleGetValidChildTypes_MissingName(t *testing.T) {
@@ -308,6 +611,34 @@ func TestHandleListElements_MissingType(t *testing.T) {
 	assertStatusCode(t, rr, http.StatusBadRequest)
 }
 
+func TestHandleListElements_WithValidType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// Get available types
+	typesReq := httptest.NewRequest("GET", "/api/types", nil)
+	typesRR := httptest.NewRecorder()
+	ts.handlers.HandleListTypes(typesRR, typesReq)
+
+	if typesRR.Code != http.StatusOK {
+		t.Skipf("Could not get types: %d", typesRR.Code)
+	}
+
+	var types []string
+	if err := json.Unmarshal(typesRR.Body.Bytes(), &types); err != nil || len(types) == 0 {
+		t.Skip("No types available")
+	}
+
+	// List elements of the first type
+	req := httptest.NewRequest("GET", "/api/elements/type/"+types[0], nil)
+	req.SetPathValue("type", types[0])
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
 // =============================================================================
 // CRUD API Tests - Update
 // =============================================================================
@@ -334,6 +665,25 @@ func TestHandleUpdateElement_InvalidJSON(t *testing.T) {
 	ts.handlers.HandleUpdateElement(rr, req)
 
 	assertStatusCode(t, rr, http.StatusBadRequest)
+}
+
+func TestHandleUpdateElement_ValidJSON(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// Test with valid JSON but non-existent path
+	updateBody := map[string]interface{}{"id": "test"}
+	jsonBytes, _ := json.Marshal(updateBody)
+
+	req := httptest.NewRequest("PUT", "/api/elements?path=/nonexistent", bytes.NewReader(jsonBytes))
+	req.Header.Set("Content-Type", "application/json")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleUpdateElement(rr, req)
+
+	// Should return error for non-existent path
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d", rr.Code)
+	}
 }
 
 // =============================================================================
@@ -393,6 +743,53 @@ func TestHandleExportPreview_EmptyDocument(t *testing.T) {
 
 	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
 		t.Errorf("Unexpected status: %d", rr.Code)
+	}
+}
+
+func TestHandleExportPreview_ContentType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// Create a document first
+	rootReq := httptest.NewRequest("GET", "/api/types/root", nil)
+	rootRR := httptest.NewRecorder()
+	ts.handlers.HandleGetRootTypes(rootRR, rootReq)
+
+	if rootRR.Code != http.StatusOK {
+		t.Skip("Could not get root types")
+	}
+
+	var rootTypes []string
+	if err := json.Unmarshal(rootRR.Body.Bytes(), &rootTypes); err != nil || len(rootTypes) == 0 {
+		t.Skip("No root types available")
+	}
+
+	// Create root element
+	createBody := map[string]interface{}{
+		"type":       rootTypes[0],
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code != http.StatusOK {
+		t.Skip("Could not create element")
+	}
+
+	// Now test preview
+	req := httptest.NewRequest("GET", "/api/export/preview", nil)
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleExportPreview(rr, req)
+
+	if rr.Code == http.StatusOK {
+		contentType := rr.Header().Get("Content-Type")
+		if contentType != "application/xml" {
+			t.Errorf("Expected Content-Type application/xml, got %s", contentType)
+		}
 	}
 }
 
@@ -604,6 +1001,78 @@ func TestHandleImport_WithFile(t *testing.T) {
 	// May fail if XML doesn't match expected schema, but should process the request
 	if rr.Code != http.StatusOK && rr.Code != http.StatusBadRequest && rr.Code != http.StatusInternalServerError {
 		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+func TestHandleImport_Success(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// First export a valid document to get valid XML
+	rootReq := httptest.NewRequest("GET", "/api/types/root", nil)
+	rootRR := httptest.NewRecorder()
+	ts.handlers.HandleGetRootTypes(rootRR, rootReq)
+
+	if rootRR.Code != http.StatusOK {
+		t.Skip("Could not get root types")
+	}
+
+	var rootTypes []string
+	if err := json.Unmarshal(rootRR.Body.Bytes(), &rootTypes); err != nil || len(rootTypes) == 0 {
+		t.Skip("No root types available")
+	}
+
+	// Create element
+	createBody := map[string]interface{}{
+		"type":       rootTypes[0],
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code != http.StatusOK {
+		t.Skip("Could not create element")
+	}
+
+	// Export
+	exportReq := httptest.NewRequest("GET", "/api/export", nil)
+	exportRR := httptest.NewRecorder()
+	ts.handlers.HandleExport(exportRR, exportReq)
+
+	if exportRR.Code != http.StatusOK {
+		t.Skip("Could not export")
+	}
+
+	validXML := exportRR.Body.Bytes()
+
+	// Now test import with valid XML
+	ts2 := setupTestSuite(t)
+
+	var buf bytes.Buffer
+	writer := multipart.NewWriter(&buf)
+	part, _ := writer.CreateFormFile("file", "valid.xml")
+	part.Write(validXML)
+	writer.Close()
+
+	importReq := httptest.NewRequest("POST", "/api/import", &buf)
+	importReq.Header.Set("Content-Type", writer.FormDataContentType())
+	importRR := httptest.NewRecorder()
+
+	ts2.handlers.HandleImport(importRR, importReq)
+
+	if importRR.Code == http.StatusOK {
+		result := assertJSONResponse(t, importRR)
+		if result["status"] != "imported" {
+			t.Errorf("Expected status 'imported', got %v", result["status"])
+		}
+		if result["filename"] != "valid.xml" {
+			t.Errorf("Expected filename 'valid.xml', got %v", result["filename"])
+		}
+	} else {
+		t.Logf("Import returned %d (may be expected for some schemas): %s", importRR.Code, importRR.Body.String())
 	}
 }
 
@@ -18894,19 +19363,6 @@ func TestGeneratorType_GetTypeMetadata(t *testing.T) {
 	}
 }
 
-// TestGeneratorType_GetValidChildTypes tests getting valid child types for GeneratorType.
-func TestGeneratorType_GetValidChildTypes(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	req := httptest.NewRequest("GET", "/api/types/GeneratorType/children", nil)
-	req.SetPathValue("name", "GeneratorType")
-	rr := httptest.NewRecorder()
-
-	ts.handlers.HandleGetValidChildTypes(rr, req)
-
-	assertStatusCode(t, rr, http.StatusOK)
-}
-
 // TestGlobToRegexFunctionType_CRUD tests Create, Read, Update, Delete for GlobToRegexFunctionType.
 func TestGlobToRegexFunctionType_CRUD(t *testing.T) {
 	ts := setupTestSuite(t)
@@ -29332,6 +29788,19 @@ func TestObjectElement_GetTypeMetadata(t *testing.T) {
 	}
 }
 
+// TestObjectElement_GetValidChildTypes tests getting valid child types for ObjectElement.
+func TestObjectElement_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ObjectElement/children", nil)
+	req.SetPathValue("name", "ObjectElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
 // TestObjectIDPattern_CRUD tests Create, Read, Update, Delete for ObjectIDPattern.
 func TestObjectIDPattern_CRUD(t *testing.T) {
 	ts := setupTestSuite(t)
@@ -29840,6 +30309,19 @@ func TestObjectType_GetTypeMetadata(t *testing.T) {
 	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
 		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
 	}
+}
+
+// TestObjectType_GetValidChildTypes tests getting valid child types for ObjectType.
+func TestObjectType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ObjectType/children", nil)
+	req.SetPathValue("name", "ObjectType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
 }
 
 // TestObjectsType_CRUD tests Create, Read, Update, Delete for ObjectsType.
@@ -39045,19 +39527,6 @@ func TestReferenceType_GetTypeMetadata(t *testing.T) {
 	}
 }
 
-// TestReferenceType_GetValidChildTypes tests getting valid child types for ReferenceType.
-func TestReferenceType_GetValidChildTypes(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	req := httptest.NewRequest("GET", "/api/types/ReferenceType/children", nil)
-	req.SetPathValue("name", "ReferenceType")
-	rr := httptest.NewRecorder()
-
-	ts.handlers.HandleGetValidChildTypes(rr, req)
-
-	assertStatusCode(t, rr, http.StatusOK)
-}
-
 // TestReferencesType_CRUD tests Create, Read, Update, Delete for ReferencesType.
 func TestReferencesType_CRUD(t *testing.T) {
 	ts := setupTestSuite(t)
@@ -44251,19 +44720,6 @@ func TestSignatureType_GetTypeMetadata(t *testing.T) {
 	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
 		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
 	}
-}
-
-// TestSignatureType_GetValidChildTypes tests getting valid child types for SignatureType.
-func TestSignatureType_GetValidChildTypes(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	req := httptest.NewRequest("GET", "/api/types/SignatureType/children", nil)
-	req.SetPathValue("name", "SignatureType")
-	rr := httptest.NewRecorder()
-
-	ts.handlers.HandleGetValidChildTypes(rr, req)
-
-	assertStatusCode(t, rr, http.StatusOK)
 }
 
 // TestSignatureValueElement_CRUD tests Create, Read, Update, Delete for SignatureValueElement.

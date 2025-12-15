@@ -9,7 +9,7 @@ import (
 	"net/http"
 	"time"
 
-	_ "github.com/aequo-labs/forgexml-scap/internal/generated/gov/nist/checklists/xccdf/1-2"
+	_ "github.com/aequo-labs/forgexml-scap/internal/generated/gov/nist/scap/schema/asset-reporting-format/1-1"
 	"github.com/aequo-labs/webserver-core-ui/pkg/webserver"
 
 	"github.com/aequo-labs/forgexml-scap/cmd/ui/internal/state"
@@ -40,7 +40,8 @@ type HomePageData struct {
 // HandleHome renders the home page.
 func (h *Handlers) HandleHome(w http.ResponseWriter, r *http.Request) {
 	baseData := h.srv.GetBasePageData("home")
-	baseData.Title = "Xccdf 1.2 Editor - Home"
+	baseData.Title = "Asset Reporting Format 1.1 Editor - Home"
+	h.srv.EnrichPageData(&baseData)
 	data := HomePageData{
 		PageData:         baseData,
 		RootElementTypes: h.state.GetRootElementTypes(),
@@ -51,7 +52,8 @@ func (h *Handlers) HandleHome(w http.ResponseWriter, r *http.Request) {
 // HandleTreeView renders the tree navigation view.
 func (h *Handlers) HandleTreeView(w http.ResponseWriter, r *http.Request) {
 	data := h.srv.GetBasePageData("tree")
-	data.Title = "Xccdf 1.2 Editor - Tree View"
+	data.Title = "Asset Reporting Format 1.1 Editor - Tree View"
+	h.srv.EnrichPageData(&data)
 	h.srv.RenderPageWithContent(w, "tree-content", data)
 }
 
@@ -64,7 +66,8 @@ func (h *Handlers) HandleEditElement(w http.ResponseWriter, r *http.Request) {
 	}
 
 	data := h.srv.GetBasePageData("edit")
-	data.Title = "Xccdf 1.2 Editor - Edit Element"
+	data.Title = "Asset Reporting Format 1.1 Editor - Edit Element"
+	h.srv.EnrichPageData(&data)
 	h.srv.RenderPageWithContent(w, "edit-content", data)
 }
 
@@ -77,14 +80,16 @@ func (h *Handlers) HandleCreateElement(w http.ResponseWriter, r *http.Request) {
 	}
 
 	data := h.srv.GetBasePageData("create")
-	data.Title = "Xccdf 1.2 Editor - Create Element"
+	data.Title = "Asset Reporting Format 1.1 Editor - Create Element"
+	h.srv.EnrichPageData(&data)
 	h.srv.RenderPageWithContent(w, "edit-content", data)
 }
 
 // HandleExportPage renders the export page.
 func (h *Handlers) HandleExportPage(w http.ResponseWriter, r *http.Request) {
 	data := h.srv.GetBasePageData("export")
-	data.Title = "Xccdf 1.2 Editor - Export"
+	data.Title = "Asset Reporting Format 1.1 Editor - Export"
+	h.srv.EnrichPageData(&data)
 	h.srv.RenderPageWithContent(w, "export-content", data)
 }
 

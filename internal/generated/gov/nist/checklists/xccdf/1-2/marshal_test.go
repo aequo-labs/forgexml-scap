@@ -5,6 +5,8 @@ package xccdf1_2
 
 import (
 	"encoding/xml"
+	"os"
+	"path/filepath"
 	"regexp"
 	"testing"
 )
@@ -46,6 +48,101 @@ func TestBenchmarkElement_MarshalUnmarshal(t *testing.T) {
 	normalized2 := normalizeXML(xmlData2)
 	if normalized1 != normalized2 {
 		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestBenchmarkElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestBenchmarkElement_MarshalIndentClean(t *testing.T) {
+	elem := &BenchmarkElement{
+		XMLName: xml.Name{Space: "http://checklists.nist.gov/xccdf/1.2", Local: "Benchmark"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestBenchmarkElement_ToBytes tests the ToBytes method
+func TestBenchmarkElement_ToBytes(t *testing.T) {
+	elem := &BenchmarkElement{
+		XMLName: xml.Name{Space: "http://checklists.nist.gov/xccdf/1.2", Local: "Benchmark"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestBenchmarkElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestBenchmarkElement_SetElementPrefixes(t *testing.T) {
+	elem := &BenchmarkElement{
+		XMLName: xml.Name{Space: "http://checklists.nist.gov/xccdf/1.2", Local: "Benchmark"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestBenchmarkElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestBenchmarkElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &BenchmarkElement{
+		XMLName: xml.Name{Space: "http://checklists.nist.gov/xccdf/1.2", Local: "Benchmark"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestBenchmarkElement_SaveAndLoad tests SaveToFile and LoadBenchmarkFromFile
+func TestBenchmarkElement_SaveAndLoad(t *testing.T) {
+	elem := &BenchmarkElement{
+		XMLName: xml.Name{Space: "http://checklists.nist.gov/xccdf/1.2", Local: "Benchmark"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadBenchmarkFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestBenchmarkElement_LoadFromBytes tests the LoadBenchmarkFromBytes function
+func TestBenchmarkElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<Benchmark xmlns="http://checklists.nist.gov/xccdf/1.2"></Benchmark>`)
+
+	loaded, err := LoadBenchmarkFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
 	}
 }
 
@@ -501,6 +598,101 @@ func TestGroupElement_MarshalUnmarshal(t *testing.T) {
 	}
 }
 
+// TestGroupElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestGroupElement_MarshalIndentClean(t *testing.T) {
+	elem := &GroupElement{
+		XMLName: xml.Name{Space: "http://checklists.nist.gov/xccdf/1.2", Local: "Group"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestGroupElement_ToBytes tests the ToBytes method
+func TestGroupElement_ToBytes(t *testing.T) {
+	elem := &GroupElement{
+		XMLName: xml.Name{Space: "http://checklists.nist.gov/xccdf/1.2", Local: "Group"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestGroupElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestGroupElement_SetElementPrefixes(t *testing.T) {
+	elem := &GroupElement{
+		XMLName: xml.Name{Space: "http://checklists.nist.gov/xccdf/1.2", Local: "Group"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestGroupElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestGroupElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &GroupElement{
+		XMLName: xml.Name{Space: "http://checklists.nist.gov/xccdf/1.2", Local: "Group"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestGroupElement_SaveAndLoad tests SaveToFile and LoadGroupFromFile
+func TestGroupElement_SaveAndLoad(t *testing.T) {
+	elem := &GroupElement{
+		XMLName: xml.Name{Space: "http://checklists.nist.gov/xccdf/1.2", Local: "Group"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadGroupFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestGroupElement_LoadFromBytes tests the LoadGroupFromBytes function
+func TestGroupElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<Group xmlns="http://checklists.nist.gov/xccdf/1.2"></Group>`)
+
+	loaded, err := LoadGroupFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
+}
+
 // TestGroupType_MarshalUnmarshal tests XML round-trip for GroupType
 func TestGroupType_MarshalUnmarshal(t *testing.T) {
 	original := &GroupType{}
@@ -803,6 +995,101 @@ func TestItemElement_MarshalUnmarshal(t *testing.T) {
 	}
 }
 
+// TestItemElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestItemElement_MarshalIndentClean(t *testing.T) {
+	elem := &ItemElement{
+		XMLName: xml.Name{Space: "http://checklists.nist.gov/xccdf/1.2", Local: "Item"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestItemElement_ToBytes tests the ToBytes method
+func TestItemElement_ToBytes(t *testing.T) {
+	elem := &ItemElement{
+		XMLName: xml.Name{Space: "http://checklists.nist.gov/xccdf/1.2", Local: "Item"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestItemElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestItemElement_SetElementPrefixes(t *testing.T) {
+	elem := &ItemElement{
+		XMLName: xml.Name{Space: "http://checklists.nist.gov/xccdf/1.2", Local: "Item"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestItemElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestItemElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &ItemElement{
+		XMLName: xml.Name{Space: "http://checklists.nist.gov/xccdf/1.2", Local: "Item"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestItemElement_SaveAndLoad tests SaveToFile and LoadItemFromFile
+func TestItemElement_SaveAndLoad(t *testing.T) {
+	elem := &ItemElement{
+		XMLName: xml.Name{Space: "http://checklists.nist.gov/xccdf/1.2", Local: "Item"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadItemFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestItemElement_LoadFromBytes tests the LoadItemFromBytes function
+func TestItemElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<Item xmlns="http://checklists.nist.gov/xccdf/1.2"></Item>`)
+
+	loaded, err := LoadItemFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
+}
+
 // TestItemType_MarshalUnmarshal tests XML round-trip for ItemType
 func TestItemType_MarshalUnmarshal(t *testing.T) {
 	original := &ItemType{}
@@ -922,6 +1209,101 @@ func TestModelElement_MarshalUnmarshal(t *testing.T) {
 	normalized2 := normalizeXML(xmlData2)
 	if normalized1 != normalized2 {
 		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestModelElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestModelElement_MarshalIndentClean(t *testing.T) {
+	elem := &ModelElement{
+		XMLName: xml.Name{Space: "http://checklists.nist.gov/xccdf/1.2", Local: "model"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestModelElement_ToBytes tests the ToBytes method
+func TestModelElement_ToBytes(t *testing.T) {
+	elem := &ModelElement{
+		XMLName: xml.Name{Space: "http://checklists.nist.gov/xccdf/1.2", Local: "model"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestModelElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestModelElement_SetElementPrefixes(t *testing.T) {
+	elem := &ModelElement{
+		XMLName: xml.Name{Space: "http://checklists.nist.gov/xccdf/1.2", Local: "model"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestModelElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestModelElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &ModelElement{
+		XMLName: xml.Name{Space: "http://checklists.nist.gov/xccdf/1.2", Local: "model"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestModelElement_SaveAndLoad tests SaveToFile and LoadModelFromFile
+func TestModelElement_SaveAndLoad(t *testing.T) {
+	elem := &ModelElement{
+		XMLName: xml.Name{Space: "http://checklists.nist.gov/xccdf/1.2", Local: "model"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadModelFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestModelElement_LoadFromBytes tests the LoadModelFromBytes function
+func TestModelElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<model xmlns="http://checklists.nist.gov/xccdf/1.2"></model>`)
+
+	loaded, err := LoadModelFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
 	}
 }
 
@@ -1134,6 +1516,101 @@ func TestProfileElement_MarshalUnmarshal(t *testing.T) {
 	normalized2 := normalizeXML(xmlData2)
 	if normalized1 != normalized2 {
 		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestProfileElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestProfileElement_MarshalIndentClean(t *testing.T) {
+	elem := &ProfileElement{
+		XMLName: xml.Name{Space: "http://checklists.nist.gov/xccdf/1.2", Local: "Profile"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestProfileElement_ToBytes tests the ToBytes method
+func TestProfileElement_ToBytes(t *testing.T) {
+	elem := &ProfileElement{
+		XMLName: xml.Name{Space: "http://checklists.nist.gov/xccdf/1.2", Local: "Profile"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestProfileElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestProfileElement_SetElementPrefixes(t *testing.T) {
+	elem := &ProfileElement{
+		XMLName: xml.Name{Space: "http://checklists.nist.gov/xccdf/1.2", Local: "Profile"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestProfileElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestProfileElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &ProfileElement{
+		XMLName: xml.Name{Space: "http://checklists.nist.gov/xccdf/1.2", Local: "Profile"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestProfileElement_SaveAndLoad tests SaveToFile and LoadProfileFromFile
+func TestProfileElement_SaveAndLoad(t *testing.T) {
+	elem := &ProfileElement{
+		XMLName: xml.Name{Space: "http://checklists.nist.gov/xccdf/1.2", Local: "Profile"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadProfileFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestProfileElement_LoadFromBytes tests the LoadProfileFromBytes function
+func TestProfileElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<Profile xmlns="http://checklists.nist.gov/xccdf/1.2"></Profile>`)
+
+	loaded, err := LoadProfileFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
 	}
 }
 
@@ -1406,6 +1883,101 @@ func TestRuleElement_MarshalUnmarshal(t *testing.T) {
 	normalized2 := normalizeXML(xmlData2)
 	if normalized1 != normalized2 {
 		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestRuleElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestRuleElement_MarshalIndentClean(t *testing.T) {
+	elem := &RuleElement{
+		XMLName: xml.Name{Space: "http://checklists.nist.gov/xccdf/1.2", Local: "Rule"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestRuleElement_ToBytes tests the ToBytes method
+func TestRuleElement_ToBytes(t *testing.T) {
+	elem := &RuleElement{
+		XMLName: xml.Name{Space: "http://checklists.nist.gov/xccdf/1.2", Local: "Rule"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestRuleElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestRuleElement_SetElementPrefixes(t *testing.T) {
+	elem := &RuleElement{
+		XMLName: xml.Name{Space: "http://checklists.nist.gov/xccdf/1.2", Local: "Rule"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestRuleElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestRuleElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &RuleElement{
+		XMLName: xml.Name{Space: "http://checklists.nist.gov/xccdf/1.2", Local: "Rule"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestRuleElement_SaveAndLoad tests SaveToFile and LoadRuleFromFile
+func TestRuleElement_SaveAndLoad(t *testing.T) {
+	elem := &RuleElement{
+		XMLName: xml.Name{Space: "http://checklists.nist.gov/xccdf/1.2", Local: "Rule"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadRuleFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestRuleElement_LoadFromBytes tests the LoadRuleFromBytes function
+func TestRuleElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<Rule xmlns="http://checklists.nist.gov/xccdf/1.2"></Rule>`)
+
+	loaded, err := LoadRuleFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
 	}
 }
 
@@ -1711,6 +2283,101 @@ func TestStatusElement_MarshalUnmarshal(t *testing.T) {
 	}
 }
 
+// TestStatusElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestStatusElement_MarshalIndentClean(t *testing.T) {
+	elem := &StatusElement{
+		XMLName: xml.Name{Space: "http://checklists.nist.gov/xccdf/1.2", Local: "status"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestStatusElement_ToBytes tests the ToBytes method
+func TestStatusElement_ToBytes(t *testing.T) {
+	elem := &StatusElement{
+		XMLName: xml.Name{Space: "http://checklists.nist.gov/xccdf/1.2", Local: "status"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestStatusElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestStatusElement_SetElementPrefixes(t *testing.T) {
+	elem := &StatusElement{
+		XMLName: xml.Name{Space: "http://checklists.nist.gov/xccdf/1.2", Local: "status"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestStatusElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestStatusElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &StatusElement{
+		XMLName: xml.Name{Space: "http://checklists.nist.gov/xccdf/1.2", Local: "status"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestStatusElement_SaveAndLoad tests SaveToFile and LoadStatusFromFile
+func TestStatusElement_SaveAndLoad(t *testing.T) {
+	elem := &StatusElement{
+		XMLName: xml.Name{Space: "http://checklists.nist.gov/xccdf/1.2", Local: "status"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadStatusFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestStatusElement_LoadFromBytes tests the LoadStatusFromBytes function
+func TestStatusElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<status xmlns="http://checklists.nist.gov/xccdf/1.2"></status>`)
+
+	loaded, err := LoadStatusFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
+}
+
 // TestStatusElementType_MarshalUnmarshal tests XML round-trip for StatusElementType
 func TestStatusElementType_MarshalUnmarshal(t *testing.T) {
 	original := &StatusElementType{}
@@ -1830,6 +2497,101 @@ func TestTailoringElement_MarshalUnmarshal(t *testing.T) {
 	normalized2 := normalizeXML(xmlData2)
 	if normalized1 != normalized2 {
 		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestTailoringElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestTailoringElement_MarshalIndentClean(t *testing.T) {
+	elem := &TailoringElement{
+		XMLName: xml.Name{Space: "http://checklists.nist.gov/xccdf/1.2", Local: "Tailoring"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestTailoringElement_ToBytes tests the ToBytes method
+func TestTailoringElement_ToBytes(t *testing.T) {
+	elem := &TailoringElement{
+		XMLName: xml.Name{Space: "http://checklists.nist.gov/xccdf/1.2", Local: "Tailoring"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestTailoringElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestTailoringElement_SetElementPrefixes(t *testing.T) {
+	elem := &TailoringElement{
+		XMLName: xml.Name{Space: "http://checklists.nist.gov/xccdf/1.2", Local: "Tailoring"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestTailoringElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestTailoringElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &TailoringElement{
+		XMLName: xml.Name{Space: "http://checklists.nist.gov/xccdf/1.2", Local: "Tailoring"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestTailoringElement_SaveAndLoad tests SaveToFile and LoadTailoringFromFile
+func TestTailoringElement_SaveAndLoad(t *testing.T) {
+	elem := &TailoringElement{
+		XMLName: xml.Name{Space: "http://checklists.nist.gov/xccdf/1.2", Local: "Tailoring"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadTailoringFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestTailoringElement_LoadFromBytes tests the LoadTailoringFromBytes function
+func TestTailoringElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<Tailoring xmlns="http://checklists.nist.gov/xccdf/1.2"></Tailoring>`)
+
+	loaded, err := LoadTailoringFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
 	}
 }
 
@@ -2015,6 +2777,101 @@ func TestTestResultElement_MarshalUnmarshal(t *testing.T) {
 	}
 }
 
+// TestTestResultElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestTestResultElement_MarshalIndentClean(t *testing.T) {
+	elem := &TestResultElement{
+		XMLName: xml.Name{Space: "http://checklists.nist.gov/xccdf/1.2", Local: "TestResult"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestTestResultElement_ToBytes tests the ToBytes method
+func TestTestResultElement_ToBytes(t *testing.T) {
+	elem := &TestResultElement{
+		XMLName: xml.Name{Space: "http://checklists.nist.gov/xccdf/1.2", Local: "TestResult"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestTestResultElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestTestResultElement_SetElementPrefixes(t *testing.T) {
+	elem := &TestResultElement{
+		XMLName: xml.Name{Space: "http://checklists.nist.gov/xccdf/1.2", Local: "TestResult"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestTestResultElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestTestResultElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &TestResultElement{
+		XMLName: xml.Name{Space: "http://checklists.nist.gov/xccdf/1.2", Local: "TestResult"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestTestResultElement_SaveAndLoad tests SaveToFile and LoadTestResultFromFile
+func TestTestResultElement_SaveAndLoad(t *testing.T) {
+	elem := &TestResultElement{
+		XMLName: xml.Name{Space: "http://checklists.nist.gov/xccdf/1.2", Local: "TestResult"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadTestResultFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestTestResultElement_LoadFromBytes tests the LoadTestResultFromBytes function
+func TestTestResultElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<TestResult xmlns="http://checklists.nist.gov/xccdf/1.2"></TestResult>`)
+
+	loaded, err := LoadTestResultFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
+}
+
 // TestTestResultType_MarshalUnmarshal tests XML round-trip for TestResultType
 func TestTestResultType_MarshalUnmarshal(t *testing.T) {
 	original := &TestResultType{}
@@ -2167,6 +3024,101 @@ func TestValueElement_MarshalUnmarshal(t *testing.T) {
 	}
 }
 
+// TestValueElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestValueElement_MarshalIndentClean(t *testing.T) {
+	elem := &ValueElement{
+		XMLName: xml.Name{Space: "http://checklists.nist.gov/xccdf/1.2", Local: "Value"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestValueElement_ToBytes tests the ToBytes method
+func TestValueElement_ToBytes(t *testing.T) {
+	elem := &ValueElement{
+		XMLName: xml.Name{Space: "http://checklists.nist.gov/xccdf/1.2", Local: "Value"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestValueElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestValueElement_SetElementPrefixes(t *testing.T) {
+	elem := &ValueElement{
+		XMLName: xml.Name{Space: "http://checklists.nist.gov/xccdf/1.2", Local: "Value"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestValueElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestValueElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &ValueElement{
+		XMLName: xml.Name{Space: "http://checklists.nist.gov/xccdf/1.2", Local: "Value"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestValueElement_SaveAndLoad tests SaveToFile and LoadValueFromFile
+func TestValueElement_SaveAndLoad(t *testing.T) {
+	elem := &ValueElement{
+		XMLName: xml.Name{Space: "http://checklists.nist.gov/xccdf/1.2", Local: "Value"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadValueFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestValueElement_LoadFromBytes tests the LoadValueFromBytes function
+func TestValueElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<Value xmlns="http://checklists.nist.gov/xccdf/1.2"></Value>`)
+
+	loaded, err := LoadValueFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
+}
+
 // TestValueType_MarshalUnmarshal tests XML round-trip for ValueType
 func TestValueType_MarshalUnmarshal(t *testing.T) {
 	original := &ValueType{}
@@ -2254,5 +3206,23 @@ func TestWarningType_MarshalUnmarshal(t *testing.T) {
 	normalized2 := normalizeXML(xmlData2)
 	if normalized1 != normalized2 {
 		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestExtractElementPrefixes tests the ExtractElementPrefixes helper function
+func TestExtractElementPrefixes(t *testing.T) {
+	xmlData := []byte(`<root xmlns:ex="http://example.com"><ex:child/></root>`)
+	prefixes := ExtractElementPrefixes(xmlData)
+	if prefixes == nil {
+		t.Error("ExtractElementPrefixes returned nil")
+	}
+}
+
+// TestExtractElementsWithXmlns tests the ExtractElementsWithXmlns helper function
+func TestExtractElementsWithXmlns(t *testing.T) {
+	xmlData := []byte(`<root xmlns="http://example.com"><child xmlns="http://other.com"/></root>`)
+	elemXmlns := ExtractElementsWithXmlns(xmlData)
+	if elemXmlns == nil {
+		t.Error("ExtractElementsWithXmlns returned nil")
 	}
 }

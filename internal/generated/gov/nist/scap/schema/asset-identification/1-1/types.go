@@ -171,6 +171,116 @@ func replicateXmlnsPlacement(xmlOutput string, elementsWithXmlns map[string]stri
 	return result
 }
 
+// BirthdateElementType represents the XSD type 'BirthdateElementType'
+// XSD complex type (W3C XSD §3.4)
+type BirthdateElementTypeWithAttrs struct {
+	Value types.DateTime `xml:",chardata"` // XSD simple content
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// BirthdateElementType is an alias for BirthdateElementTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
+type BirthdateElementType = BirthdateElementTypeWithAttrs
+
+// AssetType represents the XSD type 'asset-type'
+// XSD complex type (W3C XSD §3.4)
+// abstract="true"
+type AssetType struct {
+	// SyntheticId represents XSD element 'synthetic-id'
+	// minOccurs=0, maxOccurs=-1
+	SyntheticId []SyntheticIdElement `xml:"synthetic-id,omitempty"`
+	// Locations represents XSD element 'locations'
+	// minOccurs=0, maxOccurs=1
+	Locations *LocationsElement `xml:"locations,omitempty"`
+	// ExtendedInformation represents XSD element 'extended-information'
+	// minOccurs=0, maxOccurs=1
+	ExtendedInformation *ExtendedInformationElementType `xml:"extended-information,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// SystemType represents the XSD type 'system-type'
+// XSD complex type (W3C XSD §3.4)
+type SystemType struct {
+	ItAssetType // XSD extension base
+	// SystemName represents XSD element 'system-name'
+	// minOccurs=0, maxOccurs=-1
+	SystemName []SystemNameElementType `xml:"system-name,omitempty"`
+	// Version represents XSD element 'version'
+	// minOccurs=0, maxOccurs=1
+	Version *VersionElementType `xml:"version,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// LocationPointElementType represents the XSD type 'LocationPointElementType'
+// XSD complex type (W3C XSD §3.4)
+type LocationPointElementType struct {
+	// Latitude represents XSD attribute 'latitude'
+	// use="required"
+	Latitude string `xml:"latitude,attr"`
+	// Longitude represents XSD attribute 'longitude'
+	// use="required"
+	Longitude string `xml:"longitude,attr"`
+	// Elevation represents XSD attribute 'elevation'
+	// use="optional"
+	Elevation *float64 `xml:"elevation,attr,omitempty"`
+	// Radius represents XSD attribute 'radius'
+	// use="optional"
+	Radius *string `xml:"radius,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// EmailAddressElementType represents the XSD type 'EmailAddressElementType'
+// XSD complex type (W3C XSD §3.4)
+type EmailAddressElementTypeWithAttrs struct {
+	Value string `xml:",chardata"` // XSD simple content
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// EmailAddressElementType is an alias for EmailAddressElementTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
+type EmailAddressElementType = EmailAddressElementTypeWithAttrs
+
+// ComputingDeviceType represents the XSD type 'computing-device-type'
+// XSD complex type (W3C XSD §3.4)
+type ComputingDeviceType struct {
+	ItAssetType // XSD extension base
+	// DistinguishedName represents XSD element 'distinguished-name'
+	// minOccurs=0, maxOccurs=1
+	DistinguishedName *DistinguishedNameElementType `xml:"distinguished-name,omitempty"`
+	// Cpe represents XSD element 'cpe'
+	// minOccurs=0, maxOccurs=-1
+	Cpe []CpeElement `xml:"cpe,omitempty"`
+	// Connections represents XSD element 'connections'
+	// minOccurs=0, maxOccurs=1
+	Connections *ConnectionsElementType `xml:"connections,omitempty"`
+	// Fqdn represents XSD element 'fqdn'
+	// minOccurs=0, maxOccurs=1
+	Fqdn *FqdnElement `xml:"fqdn,omitempty"`
+	// Hostname represents XSD element 'hostname'
+	// minOccurs=0, maxOccurs=1
+	Hostname *HostnameElementType `xml:"hostname,omitempty"`
+	// MotherboardGuid represents XSD element 'motherboard-guid'
+	// minOccurs=0, maxOccurs=1
+	MotherboardGuid *MotherboardGuidElementType `xml:"motherboard-guid,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
 // ServiceType represents the XSD type 'service-type'
 // XSD complex type (W3C XSD §3.4)
 type ServiceType struct {
@@ -193,6 +303,19 @@ type ServiceType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
+// VersionElementType represents the XSD type 'VersionElementType'
+// XSD complex type (W3C XSD §3.4)
+type VersionElementTypeWithAttrs struct {
+	Value string `xml:",chardata"` // XSD simple content
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// VersionElementType is an alias for VersionElementTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
+type VersionElementType = VersionElementTypeWithAttrs
+
 // CircuitNameElementType represents the XSD type 'CircuitNameElementType'
 // XSD complex type (W3C XSD §3.4)
 type CircuitNameElementTypeWithAttrs struct {
@@ -206,51 +329,24 @@ type CircuitNameElementTypeWithAttrs struct {
 // CircuitNameElementType is an alias for CircuitNameElementTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
 type CircuitNameElementType = CircuitNameElementTypeWithAttrs
 
-// DocumentRootElementType represents the XSD type 'DocumentRootElementType'
-// XSD complex type (W3C XSD §3.4)
-type DocumentRootElementTypeWithAttrs struct {
-	Value string `xml:",chardata"` // XSD simple content
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+// CpeType represents the XSD type 'cpe-type'
+// XSD union type (W3C XSD §4.2.3.3)
+type CpeType struct {
+	Value interface{} // Union type - can hold any member type
 }
 
-// DocumentRootElementType is an alias for DocumentRootElementTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
-type DocumentRootElementType = DocumentRootElementTypeWithAttrs
-
-// Ipv4Type represents the XSD type 'ipv4-type'
+// MacAddressType represents the XSD type 'mac-address-type'
 // XSD simple type (W3C XSD §4.1)
-// pattern="([0-9]|[1-9][0-9]|1([0-9][0-9])|2([0-4][0-9]|5[0-5]))\.([0-9]|[1-9][0-9]|1([0-9][0-9])|2([0-4][0-9]|5[0-5]))\.([0-9]|[1-9][0-9]|1([0-9][0-9])|2([0-4][0-9]|5[0-5]))\.([0-9]|[1-9][0-9]|1([0-9][0-9])|2([0-4][0-9]|5[0-5]))"
-type Ipv4Type string
+// pattern="([0-9a-fA-F]{2}:){5}[0-9a-fA-F]{2}"
+type MacAddressType string
 
-// TelephoneNumberType represents the XSD type 'telephone-number-type'
-// XSD simple type (W3C XSD §4.1)
-// pattern="(([2-9][0-8]\d-[2-9]\d{2}-[0-9]{4})|(\+([0-9] ?){6,14}[0-9]))"
-type TelephoneNumberType string
-
-// HostnameType represents the XSD type 'hostname-type'
-// XSD simple type (W3C XSD §4.1)
-// pattern="[\w\-]+(\.[\w\-]+){0,}"
-type HostnameType string
-
-// DataType represents the XSD type 'data-type'
+// CircuitType represents the XSD type 'circuit-type'
 // XSD complex type (W3C XSD §3.4)
-type DataType struct {
-	AssetType // XSD extension base
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// HostElementType represents the XSD type 'HostElementType'
-// XSD complex type (W3C XSD §3.4)
-type HostElementType struct {
-	// Fqdn represents XSD element 'fqdn'
-	Fqdn *FqdnElement `xml:"fqdn,omitempty"`
-	// IpAddress represents XSD element 'ip-address'
-	IpAddress *IpAddressType `xml:"ip-address,omitempty"`
+type CircuitType struct {
+	ItAssetType // XSD extension base
+	// CircuitName represents XSD element 'circuit-name'
+	// minOccurs=0, maxOccurs=1
+	CircuitName *CircuitNameElementType `xml:"circuit-name,omitempty"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -270,6 +366,11 @@ type UrlElementTypeWithAttrs struct {
 // UrlElementType is an alias for UrlElementTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
 type UrlElementType = UrlElementTypeWithAttrs
 
+// CidrType represents the XSD type 'cidr-type'
+// XSD simple type (W3C XSD §4.1)
+// pattern="([0-9]|[1-9][0-9]|1([0-9][0-9])|2([0-4][0-9]|5[0-5]))\.([0-9]|[1-9][0-9]|1([0-9][0-9])|2([0-4][0-9]|5[0-5]))\.([0-9]|[1-9][0-9]|1([0-9][0-9])|2([0-4][0-9]|5[0-5]))\.([0-9]|[1-9][0-9]|1([0-9][0-9])|2([0-4][0-9]|5[0-5]))/([0-9]|[1-2][0-9]|3[0-2])"
+type CidrType string
+
 // NetworkType represents the XSD type 'network-type'
 // XSD complex type (W3C XSD §3.4)
 type NetworkType struct {
@@ -281,117 +382,6 @@ type NetworkType struct {
 	IpNetRange *IpNetRangeElementType `xml:"ip-net-range,omitempty"`
 	// Cidr represents XSD element 'cidr'
 	Cidr *CidrElementType `xml:"cidr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// ConnectionsElementType represents the XSD type 'ConnectionsElementType'
-// XSD complex type (W3C XSD §3.4)
-type ConnectionsElementType struct {
-	// Connection represents XSD element 'connection'
-	// minOccurs=1, maxOccurs=-1
-	Connection []NetworkInterfaceType `xml:"connection"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// HostnameElementType represents the XSD type 'HostnameElementType'
-// XSD complex type (W3C XSD §3.4)
-type HostnameElementTypeWithAttrs struct {
-	Value HostnameType `xml:",chardata"` // XSD simple content
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// HostnameElementType is an alias for HostnameElementTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
-type HostnameElementType = HostnameElementTypeWithAttrs
-
-// MotherboardGuidElementType represents the XSD type 'MotherboardGuidElementType'
-// XSD complex type (W3C XSD §3.4)
-type MotherboardGuidElementTypeWithAttrs struct {
-	Value string `xml:",chardata"` // XSD simple content
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// MotherboardGuidElementType is an alias for MotherboardGuidElementTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
-type MotherboardGuidElementType = MotherboardGuidElementTypeWithAttrs
-
-// LocaleType represents the XSD type 'locale-type'
-// XSD simple type (W3C XSD §4.1)
-// pattern="[a-zA-Z]{2,3}(-([a-zA-Z]{2}|[0-9]{3}))?"
-type LocaleType string
-
-// SystemType represents the XSD type 'system-type'
-// XSD complex type (W3C XSD §3.4)
-type SystemType struct {
-	ItAssetType // XSD extension base
-	// SystemName represents XSD element 'system-name'
-	// minOccurs=0, maxOccurs=-1
-	SystemName []SystemNameElementType `xml:"system-name,omitempty"`
-	// Version represents XSD element 'version'
-	// minOccurs=0, maxOccurs=1
-	Version *VersionElementType `xml:"version,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// CpeElementType represents the XSD type 'CpeElementType'
-// XSD complex type (W3C XSD §3.4)
-type CpeElementType struct {
-	CpeType // XSD extension base
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// ProtocolElementType represents the XSD type 'ProtocolElementType'
-// XSD complex type (W3C XSD §3.4)
-type ProtocolElementTypeWithAttrs struct {
-	Value string `xml:",chardata"` // XSD simple content
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// ProtocolElementType is an alias for ProtocolElementTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
-type ProtocolElementType = ProtocolElementTypeWithAttrs
-
-// BirthdateElementType represents the XSD type 'BirthdateElementType'
-// XSD complex type (W3C XSD §3.4)
-type BirthdateElementTypeWithAttrs struct {
-	Value types.DateTime `xml:",chardata"` // XSD simple content
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// BirthdateElementType is an alias for BirthdateElementTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
-type BirthdateElementType = BirthdateElementTypeWithAttrs
-
-// Ipv6Type represents the XSD type 'ipv6-type'
-// XSD simple type (W3C XSD §4.1)
-// pattern="([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}"
-type Ipv6Type string
-
-// ItAssetType represents the XSD type 'it-asset-type'
-// XSD complex type (W3C XSD §3.4)
-// abstract="true"
-type ItAssetType struct {
-	AssetType // XSD extension base
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -420,68 +410,6 @@ type PersonType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// WebsiteType represents the XSD type 'website-type'
-// XSD complex type (W3C XSD §3.4)
-type WebsiteType struct {
-	ItAssetType // XSD extension base
-	// DocumentRoot represents XSD element 'document-root'
-	// minOccurs=0, maxOccurs=1
-	DocumentRoot *DocumentRootElementType `xml:"document-root,omitempty"`
-	// Locale represents XSD element 'locale'
-	// minOccurs=0, maxOccurs=1
-	Locale *LocaleElementType `xml:"locale,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// PortRangeElementType represents the XSD type 'PortRangeElementType'
-// XSD complex type (W3C XSD §3.4)
-type PortRangeElementType struct {
-	// LowerBound represents XSD attribute 'lower-bound'
-	// use="required"
-	LowerBound PortType `xml:"lower-bound,attr"`
-	// UpperBound represents XSD attribute 'upper-bound'
-	// use="required"
-	UpperBound PortType `xml:"upper-bound,attr"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// LicenseElementType represents the XSD type 'LicenseElementType'
-// XSD complex type (W3C XSD §3.4)
-type LicenseElementTypeWithAttrs struct {
-	Value string `xml:",chardata"` // XSD simple content
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// LicenseElementType is an alias for LicenseElementTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
-type LicenseElementType = LicenseElementTypeWithAttrs
-
-// AssetIdentificationType represents the XSD type 'asset-identification-type'
-// XSD complex type (W3C XSD §3.4)
-type AssetIdentificationType struct {
-	AssetsType // XSD extension base
-	// AssetRef represents XSD attribute 'asset-ref'
-	// use="required"
-	AssetRef string `xml:"asset-ref,attr"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// CidrType represents the XSD type 'cidr-type'
-// XSD simple type (W3C XSD §4.1)
-// pattern="([0-9]|[1-9][0-9]|1([0-9][0-9])|2([0-4][0-9]|5[0-5]))\.([0-9]|[1-9][0-9]|1([0-9][0-9])|2([0-4][0-9]|5[0-5]))\.([0-9]|[1-9][0-9]|1([0-9][0-9])|2([0-4][0-9]|5[0-5]))\.([0-9]|[1-9][0-9]|1([0-9][0-9])|2([0-4][0-9]|5[0-5]))/([0-9]|[1-2][0-9]|3[0-2])"
-type CidrType string
-
 // NetworkInterfaceType represents the XSD type 'network-interface-type'
 // XSD complex type (W3C XSD §3.4)
 type NetworkInterfaceType struct {
@@ -506,30 +434,321 @@ type NetworkInterfaceType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// LocationPointElementType represents the XSD type 'LocationPointElementType'
+// TelephoneNumberElementType represents the XSD type 'TelephoneNumberElementType'
 // XSD complex type (W3C XSD §3.4)
-type LocationPointElementType struct {
-	// Latitude represents XSD attribute 'latitude'
-	// use="required"
-	Latitude string `xml:"latitude,attr"`
-	// Longitude represents XSD attribute 'longitude'
-	// use="required"
-	Longitude string `xml:"longitude,attr"`
-	// Elevation represents XSD attribute 'elevation'
-	// use="optional"
-	Elevation *float64 `xml:"elevation,attr,omitempty"`
-	// Radius represents XSD attribute 'radius'
-	// use="optional"
-	Radius *string `xml:"radius,attr,omitempty"`
+type TelephoneNumberElementTypeWithAttrs struct {
+	Value TelephoneNumberType `xml:",chardata"` // XSD simple content
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
+// TelephoneNumberElementType is an alias for TelephoneNumberElementTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
+type TelephoneNumberElementType = TelephoneNumberElementTypeWithAttrs
+
+// LicenseElementType represents the XSD type 'LicenseElementType'
+// XSD complex type (W3C XSD §3.4)
+type LicenseElementTypeWithAttrs struct {
+	Value string `xml:",chardata"` // XSD simple content
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// LicenseElementType is an alias for LicenseElementTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
+type LicenseElementType = LicenseElementTypeWithAttrs
+
+// IpV4ElementType represents the XSD type 'IpV4ElementType'
+// XSD complex type (W3C XSD §3.4)
+type IpV4ElementTypeWithAttrs struct {
+	Value Ipv4Type `xml:",chardata"` // XSD simple content
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// IpV4ElementType is an alias for IpV4ElementTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
+type IpV4ElementType = IpV4ElementTypeWithAttrs
+
+// HostnameElementType represents the XSD type 'HostnameElementType'
+// XSD complex type (W3C XSD §3.4)
+type HostnameElementTypeWithAttrs struct {
+	Value HostnameType `xml:",chardata"` // XSD simple content
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// HostnameElementType is an alias for HostnameElementTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
+type HostnameElementType = HostnameElementTypeWithAttrs
+
 // ExtendedInformationElementType represents the XSD type 'ExtendedInformationElementType'
 // XSD complex type (W3C XSD §3.4)
 type ExtendedInformationElementType struct {
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// IpV6ElementType represents the XSD type 'IpV6ElementType'
+// XSD complex type (W3C XSD §3.4)
+type IpV6ElementTypeWithAttrs struct {
+	Value Ipv6Type `xml:",chardata"` // XSD simple content
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// IpV6ElementType is an alias for IpV6ElementTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
+type IpV6ElementType = IpV6ElementTypeWithAttrs
+
+// MotherboardGuidElementType represents the XSD type 'MotherboardGuidElementType'
+// XSD complex type (W3C XSD §3.4)
+type MotherboardGuidElementTypeWithAttrs struct {
+	Value string `xml:",chardata"` // XSD simple content
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// MotherboardGuidElementType is an alias for MotherboardGuidElementTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
+type MotherboardGuidElementType = MotherboardGuidElementTypeWithAttrs
+
+// HostElementType represents the XSD type 'HostElementType'
+// XSD complex type (W3C XSD §3.4)
+type HostElementType struct {
+	// Fqdn represents XSD element 'fqdn'
+	Fqdn *FqdnElement `xml:"fqdn,omitempty"`
+	// IpAddress represents XSD element 'ip-address'
+	IpAddress *IpAddressType `xml:"ip-address,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// ProtocolElementType represents the XSD type 'ProtocolElementType'
+// XSD complex type (W3C XSD §3.4)
+type ProtocolElementTypeWithAttrs struct {
+	Value string `xml:",chardata"` // XSD simple content
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// ProtocolElementType is an alias for ProtocolElementTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
+type ProtocolElementType = ProtocolElementTypeWithAttrs
+
+// MacAddressElementType represents the XSD type 'MacAddressElementType'
+// XSD complex type (W3C XSD §3.4)
+type MacAddressElementTypeWithAttrs struct {
+	Value MacAddressType `xml:",chardata"` // XSD simple content
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// MacAddressElementType is an alias for MacAddressElementTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
+type MacAddressElementType = MacAddressElementTypeWithAttrs
+
+// LocationRegionElementType represents the XSD type 'LocationRegionElementType'
+// XSD complex type (W3C XSD §3.4)
+type LocationRegionElementTypeWithAttrs struct {
+	Value string `xml:",chardata"` // XSD simple content
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// LocationRegionElementType is an alias for LocationRegionElementTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
+type LocationRegionElementType = LocationRegionElementTypeWithAttrs
+
+// SystemNameElementType represents the XSD type 'SystemNameElementType'
+// XSD complex type (W3C XSD §3.4)
+type SystemNameElementTypeWithAttrs struct {
+	Value string `xml:",chardata"` // XSD simple content
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// SystemNameElementType is an alias for SystemNameElementTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
+type SystemNameElementType = SystemNameElementTypeWithAttrs
+
+// PortType represents the XSD type 'port-type'
+// XSD simple type (W3C XSD §4.1)
+// minInclusive="0"
+// maxInclusive="65535"
+type PortType int64
+
+// LocationsElementType represents the XSD type 'LocationsElementType'
+// XSD complex type (W3C XSD §3.4)
+type LocationsElementType struct {
+	// X1_1LocationPoint represents substitution group member 'location-point' (namespace: http://scap.nist.gov/schema/asset-identification/1.1)
+	// Substitutes for abstract element 'location'
+	X1_1LocationPoint []LocationPointElement `xml:"http://scap.nist.gov/schema/asset-identification/1.1 location-point,omitempty"`
+	// X1_1LocationAddress represents substitution group member 'location-address' (namespace: http://scap.nist.gov/schema/asset-identification/1.1)
+	// Substitutes for abstract element 'location'
+	X1_1LocationAddress []pkg_2_0.AddressDetails `xml:"http://scap.nist.gov/schema/asset-identification/1.1 location-address,omitempty"`
+	// X1_1LocationRegion represents substitution group member 'location-region' (namespace: http://scap.nist.gov/schema/asset-identification/1.1)
+	// Substitutes for abstract element 'location'
+	X1_1LocationRegion []LocationRegionElement `xml:"http://scap.nist.gov/schema/asset-identification/1.1 location-region,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// IpNetRangeElementType represents the XSD type 'IpNetRangeElementType'
+// XSD complex type (W3C XSD §3.4)
+type IpNetRangeElementType struct {
+	// IpNetRangeStart represents XSD element 'ip-net-range-start'
+	IpNetRangeStart IpAddressType `xml:"ip-net-range-start"`
+	// IpNetRangeEnd represents XSD element 'ip-net-range-end'
+	IpNetRangeEnd IpAddressType `xml:"ip-net-range-end"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// AssetElementType represents the XSD type 'AssetElementType'
+// XSD complex type (W3C XSD §3.4)
+type AssetElementType struct {
+	// X1_1Data represents substitution group member 'data' (namespace: http://scap.nist.gov/schema/asset-identification/1.1)
+	// Substitutes for abstract element 'asset'
+	X1_1Data []DataType `xml:"http://scap.nist.gov/schema/asset-identification/1.1 data,omitempty"`
+	// X1_1ItAsset represents substitution group member 'it-asset' (namespace: http://scap.nist.gov/schema/asset-identification/1.1)
+	// Substitutes for abstract element 'asset'
+	X1_1ItAsset []ItAssetType `xml:"http://scap.nist.gov/schema/asset-identification/1.1 it-asset,omitempty"`
+	// X1_1Organization represents substitution group member 'organization' (namespace: http://scap.nist.gov/schema/asset-identification/1.1)
+	// Substitutes for abstract element 'asset'
+	X1_1Organization []OrganizationType `xml:"http://scap.nist.gov/schema/asset-identification/1.1 organization,omitempty"`
+	// X1_1Person represents substitution group member 'person' (namespace: http://scap.nist.gov/schema/asset-identification/1.1)
+	// Substitutes for abstract element 'asset'
+	X1_1Person []PersonType `xml:"http://scap.nist.gov/schema/asset-identification/1.1 person,omitempty"`
+	// Id represents XSD attribute 'id'
+	// use="required"
+	Id string `xml:"id,attr"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// TelephoneNumberType represents the XSD type 'telephone-number-type'
+// XSD simple type (W3C XSD §4.1)
+// pattern="(([2-9][0-8]\d-[2-9]\d{2}-[0-9]{4})|(\+([0-9] ?){6,14}[0-9]))"
+type TelephoneNumberType string
+
+// WebsiteUrlElementType represents the XSD type 'WebsiteUrlElementType'
+// XSD complex type (W3C XSD §3.4)
+type WebsiteUrlElementTypeWithAttrs struct {
+	Value string `xml:",chardata"` // XSD simple content
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// WebsiteUrlElementType is an alias for WebsiteUrlElementTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
+type WebsiteUrlElementType = WebsiteUrlElementTypeWithAttrs
+
+// PortElementType represents the XSD type 'PortElementType'
+// XSD complex type (W3C XSD §3.4)
+type PortElementTypeWithAttrs struct {
+	Value PortType `xml:",chardata"` // XSD simple content
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// PortElementType is an alias for PortElementTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
+type PortElementType = PortElementTypeWithAttrs
+
+// PortRangeElementType represents the XSD type 'PortRangeElementType'
+// XSD complex type (W3C XSD §3.4)
+type PortRangeElementType struct {
+	// LowerBound represents XSD attribute 'lower-bound'
+	// use="required"
+	LowerBound PortType `xml:"lower-bound,attr"`
+	// UpperBound represents XSD attribute 'upper-bound'
+	// use="required"
+	UpperBound PortType `xml:"upper-bound,attr"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// CidrElementType represents the XSD type 'CidrElementType'
+// XSD complex type (W3C XSD §3.4)
+type CidrElementTypeWithAttrs struct {
+	Value CidrType `xml:",chardata"` // XSD simple content
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// CidrElementType is an alias for CidrElementTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
+type CidrElementType = CidrElementTypeWithAttrs
+
+// SoftwareType represents the XSD type 'software-type'
+// XSD complex type (W3C XSD §3.4)
+type SoftwareType struct {
+	ItAssetType // XSD extension base
+	// InstallationId represents XSD element 'installation-id'
+	// minOccurs=0, maxOccurs=1
+	InstallationId *InstallationIdElementType `xml:"installation-id,omitempty"`
+	// Cpe represents XSD element 'cpe'
+	// minOccurs=0, maxOccurs=1
+	Cpe *CpeElement `xml:"cpe,omitempty"`
+	// License represents XSD element 'license'
+	// minOccurs=0, maxOccurs=-1
+	License []LicenseElementType `xml:"license,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// IpAddressType represents the XSD type 'ip-address-type'
+// XSD complex type (W3C XSD §3.4)
+type IpAddressType struct {
+	// IpV4 represents XSD element 'ip-v4'
+	// minOccurs=0, maxOccurs=1
+	IpV4 *IpV4ElementType `xml:"ip-v4,omitempty"`
+	// IpV6 represents XSD element 'ip-v6'
+	// minOccurs=0, maxOccurs=1
+	IpV6 *IpV6ElementType `xml:"ip-v6,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// SyntheticIdElementType represents the XSD type 'SyntheticIdElementType'
+// XSD complex type (W3C XSD §3.4)
+type SyntheticIdElementType struct {
+	// Resource represents XSD attribute 'resource'
+	// use="required"
+	Resource string `xml:"resource,attr"`
+	// Id represents XSD attribute 'id'
+	// use="required"
+	Id string `xml:"id,attr"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -549,9 +768,9 @@ type InstallationIdElementTypeWithAttrs struct {
 // InstallationIdElementType is an alias for InstallationIdElementTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
 type InstallationIdElementType = InstallationIdElementTypeWithAttrs
 
-// SystemNameElementType represents the XSD type 'SystemNameElementType'
+// DistinguishedNameElementType represents the XSD type 'DistinguishedNameElementType'
 // XSD complex type (W3C XSD §3.4)
-type SystemNameElementTypeWithAttrs struct {
+type DistinguishedNameElementTypeWithAttrs struct {
 	Value string `xml:",chardata"` // XSD simple content
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
@@ -559,8 +778,42 @@ type SystemNameElementTypeWithAttrs struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// SystemNameElementType is an alias for SystemNameElementTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
-type SystemNameElementType = SystemNameElementTypeWithAttrs
+// DistinguishedNameElementType is an alias for DistinguishedNameElementTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
+type DistinguishedNameElementType = DistinguishedNameElementTypeWithAttrs
+
+// LocaleType represents the XSD type 'locale-type'
+// XSD simple type (W3C XSD §4.1)
+// pattern="[a-zA-Z]{2,3}(-([a-zA-Z]{2}|[0-9]{3}))?"
+type LocaleType string
+
+// AssetIdentificationType represents the XSD type 'asset-identification-type'
+// XSD complex type (W3C XSD §3.4)
+type AssetIdentificationType struct {
+	AssetsType // XSD extension base
+	// AssetRef represents XSD attribute 'asset-ref'
+	// use="required"
+	AssetRef string `xml:"asset-ref,attr"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// WebsiteType represents the XSD type 'website-type'
+// XSD complex type (W3C XSD §3.4)
+type WebsiteType struct {
+	ItAssetType // XSD extension base
+	// DocumentRoot represents XSD element 'document-root'
+	// minOccurs=0, maxOccurs=1
+	DocumentRoot *DocumentRootElementType `xml:"document-root,omitempty"`
+	// Locale represents XSD element 'locale'
+	// minOccurs=0, maxOccurs=1
+	Locale *LocaleElementType `xml:"locale,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
 
 // LocaleElementType represents the XSD type 'LocaleElementType'
 // XSD complex type (W3C XSD §3.4)
@@ -575,9 +828,34 @@ type LocaleElementTypeWithAttrs struct {
 // LocaleElementType is an alias for LocaleElementTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
 type LocaleElementType = LocaleElementTypeWithAttrs
 
-// DistinguishedNameElementType represents the XSD type 'DistinguishedNameElementType'
+// Ipv6Type represents the XSD type 'ipv6-type'
+// XSD simple type (W3C XSD §4.1)
+// pattern="([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}"
+type Ipv6Type string
+
+// DataType represents the XSD type 'data-type'
 // XSD complex type (W3C XSD §3.4)
-type DistinguishedNameElementTypeWithAttrs struct {
+type DataType struct {
+	AssetType // XSD extension base
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// CpeElementType represents the XSD type 'CpeElementType'
+// XSD complex type (W3C XSD §3.4)
+type CpeElementType struct {
+	CpeType // XSD extension base
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// NetworkNameElementType represents the XSD type 'NetworkNameElementType'
+// XSD complex type (W3C XSD §3.4)
+type NetworkNameElementTypeWithAttrs struct {
 	Value string `xml:",chardata"` // XSD simple content
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
@@ -585,36 +863,25 @@ type DistinguishedNameElementTypeWithAttrs struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// DistinguishedNameElementType is an alias for DistinguishedNameElementTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
-type DistinguishedNameElementType = DistinguishedNameElementTypeWithAttrs
+// NetworkNameElementType is an alias for NetworkNameElementTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
+type NetworkNameElementType = NetworkNameElementTypeWithAttrs
 
-// SyntheticIdElementType represents the XSD type 'SyntheticIdElementType'
+// HostnameType represents the XSD type 'hostname-type'
+// XSD simple type (W3C XSD §4.1)
+// pattern="[\w\-]+(\.[\w\-]+){0,}"
+type HostnameType string
+
+// ConnectionsElementType represents the XSD type 'ConnectionsElementType'
 // XSD complex type (W3C XSD §3.4)
-type SyntheticIdElementType struct {
-	// Resource represents XSD attribute 'resource'
-	// use="required"
-	Resource string `xml:"resource,attr"`
-	// Id represents XSD attribute 'id'
-	// use="required"
-	Id string `xml:"id,attr"`
+type ConnectionsElementType struct {
+	// Connection represents XSD element 'connection'
+	// minOccurs=1, maxOccurs=-1
+	Connection []NetworkInterfaceType `xml:"connection"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
-
-// TelephoneNumberElementType represents the XSD type 'TelephoneNumberElementType'
-// XSD complex type (W3C XSD §3.4)
-type TelephoneNumberElementTypeWithAttrs struct {
-	Value TelephoneNumberType `xml:",chardata"` // XSD simple content
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// TelephoneNumberElementType is an alias for TelephoneNumberElementTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
-type TelephoneNumberElementType = TelephoneNumberElementTypeWithAttrs
 
 // InstanceNameElementType represents the XSD type 'InstanceNameElementType'
 // XSD complex type (W3C XSD §3.4)
@@ -629,24 +896,18 @@ type InstanceNameElementTypeWithAttrs struct {
 // InstanceNameElementType is an alias for InstanceNameElementTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
 type InstanceNameElementType = InstanceNameElementTypeWithAttrs
 
-// VersionElementType represents the XSD type 'VersionElementType'
+// AssetsType represents the XSD type 'assets-type'
 // XSD complex type (W3C XSD §3.4)
-type VersionElementTypeWithAttrs struct {
-	Value string `xml:",chardata"` // XSD simple content
+type AssetsType struct {
+	reporting_core1_1.RelationshipsContainerType // XSD extension base
+	// Asset represents XSD element 'asset'
+	// minOccurs=1, maxOccurs=-1
+	Asset []AssetElementType `xml:"asset"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
-
-// VersionElementType is an alias for VersionElementTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
-type VersionElementType = VersionElementTypeWithAttrs
-
-// PortType represents the XSD type 'port-type'
-// XSD simple type (W3C XSD §4.1)
-// minInclusive="0"
-// maxInclusive="65535"
-type PortType int64
 
 // DatabaseType represents the XSD type 'database-type'
 // XSD complex type (W3C XSD §3.4)
@@ -661,19 +922,29 @@ type DatabaseType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// AssetType represents the XSD type 'asset-type'
+// Ipv4Type represents the XSD type 'ipv4-type'
+// XSD simple type (W3C XSD §4.1)
+// pattern="([0-9]|[1-9][0-9]|1([0-9][0-9])|2([0-4][0-9]|5[0-5]))\.([0-9]|[1-9][0-9]|1([0-9][0-9])|2([0-4][0-9]|5[0-5]))\.([0-9]|[1-9][0-9]|1([0-9][0-9])|2([0-4][0-9]|5[0-5]))\.([0-9]|[1-9][0-9]|1([0-9][0-9])|2([0-4][0-9]|5[0-5]))"
+type Ipv4Type string
+
+// DocumentRootElementType represents the XSD type 'DocumentRootElementType'
+// XSD complex type (W3C XSD §3.4)
+type DocumentRootElementTypeWithAttrs struct {
+	Value string `xml:",chardata"` // XSD simple content
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// DocumentRootElementType is an alias for DocumentRootElementTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
+type DocumentRootElementType = DocumentRootElementTypeWithAttrs
+
+// ItAssetType represents the XSD type 'it-asset-type'
 // XSD complex type (W3C XSD §3.4)
 // abstract="true"
-type AssetType struct {
-	// SyntheticId represents XSD element 'synthetic-id'
-	// minOccurs=0, maxOccurs=-1
-	SyntheticId []SyntheticIdElement `xml:"synthetic-id,omitempty"`
-	// Locations represents XSD element 'locations'
-	// minOccurs=0, maxOccurs=1
-	Locations *LocationsElement `xml:"locations,omitempty"`
-	// ExtendedInformation represents XSD element 'extended-information'
-	// minOccurs=0, maxOccurs=1
-	ExtendedInformation *ExtendedInformationElementType `xml:"extended-information,omitempty"`
+type ItAssetType struct {
+	AssetType // XSD extension base
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -714,274 +985,3 @@ type FqdnElementTypeWithAttrs struct {
 
 // FqdnElementType is an alias for FqdnElementTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
 type FqdnElementType = FqdnElementTypeWithAttrs
-
-// IpNetRangeElementType represents the XSD type 'IpNetRangeElementType'
-// XSD complex type (W3C XSD §3.4)
-type IpNetRangeElementType struct {
-	// IpNetRangeStart represents XSD element 'ip-net-range-start'
-	IpNetRangeStart IpAddressType `xml:"ip-net-range-start"`
-	// IpNetRangeEnd represents XSD element 'ip-net-range-end'
-	IpNetRangeEnd IpAddressType `xml:"ip-net-range-end"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// CidrElementType represents the XSD type 'CidrElementType'
-// XSD complex type (W3C XSD §3.4)
-type CidrElementTypeWithAttrs struct {
-	Value CidrType `xml:",chardata"` // XSD simple content
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// CidrElementType is an alias for CidrElementTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
-type CidrElementType = CidrElementTypeWithAttrs
-
-// AssetsType represents the XSD type 'assets-type'
-// XSD complex type (W3C XSD §3.4)
-type AssetsType struct {
-	reporting_core1_1.RelationshipsContainerType // XSD extension base
-	// Asset represents XSD element 'asset'
-	// minOccurs=1, maxOccurs=-1
-	Asset []AssetElementType `xml:"asset"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// CircuitType represents the XSD type 'circuit-type'
-// XSD complex type (W3C XSD §3.4)
-type CircuitType struct {
-	ItAssetType // XSD extension base
-	// CircuitName represents XSD element 'circuit-name'
-	// minOccurs=0, maxOccurs=1
-	CircuitName *CircuitNameElementType `xml:"circuit-name,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// SoftwareType represents the XSD type 'software-type'
-// XSD complex type (W3C XSD §3.4)
-type SoftwareType struct {
-	ItAssetType // XSD extension base
-	// InstallationId represents XSD element 'installation-id'
-	// minOccurs=0, maxOccurs=1
-	InstallationId *InstallationIdElementType `xml:"installation-id,omitempty"`
-	// Cpe represents XSD element 'cpe'
-	// minOccurs=0, maxOccurs=1
-	Cpe *CpeElement `xml:"cpe,omitempty"`
-	// License represents XSD element 'license'
-	// minOccurs=0, maxOccurs=-1
-	License []LicenseElementType `xml:"license,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// WebsiteUrlElementType represents the XSD type 'WebsiteUrlElementType'
-// XSD complex type (W3C XSD §3.4)
-type WebsiteUrlElementTypeWithAttrs struct {
-	Value string `xml:",chardata"` // XSD simple content
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// WebsiteUrlElementType is an alias for WebsiteUrlElementTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
-type WebsiteUrlElementType = WebsiteUrlElementTypeWithAttrs
-
-// MacAddressElementType represents the XSD type 'MacAddressElementType'
-// XSD complex type (W3C XSD §3.4)
-type MacAddressElementTypeWithAttrs struct {
-	Value MacAddressType `xml:",chardata"` // XSD simple content
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// MacAddressElementType is an alias for MacAddressElementTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
-type MacAddressElementType = MacAddressElementTypeWithAttrs
-
-// NetworkNameElementType represents the XSD type 'NetworkNameElementType'
-// XSD complex type (W3C XSD §3.4)
-type NetworkNameElementTypeWithAttrs struct {
-	Value string `xml:",chardata"` // XSD simple content
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// NetworkNameElementType is an alias for NetworkNameElementTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
-type NetworkNameElementType = NetworkNameElementTypeWithAttrs
-
-// MacAddressType represents the XSD type 'mac-address-type'
-// XSD simple type (W3C XSD §4.1)
-// pattern="([0-9a-fA-F]{2}:){5}[0-9a-fA-F]{2}"
-type MacAddressType string
-
-// LocationRegionElementType represents the XSD type 'LocationRegionElementType'
-// XSD complex type (W3C XSD §3.4)
-type LocationRegionElementTypeWithAttrs struct {
-	Value string `xml:",chardata"` // XSD simple content
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// LocationRegionElementType is an alias for LocationRegionElementTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
-type LocationRegionElementType = LocationRegionElementTypeWithAttrs
-
-// PortElementType represents the XSD type 'PortElementType'
-// XSD complex type (W3C XSD §3.4)
-type PortElementTypeWithAttrs struct {
-	Value PortType `xml:",chardata"` // XSD simple content
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// PortElementType is an alias for PortElementTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
-type PortElementType = PortElementTypeWithAttrs
-
-// AssetElementType represents the XSD type 'AssetElementType'
-// XSD complex type (W3C XSD §3.4)
-type AssetElementType struct {
-	// X1_1Organization represents substitution group member 'organization' (namespace: http://scap.nist.gov/schema/asset-identification/1.1)
-	// Substitutes for abstract element 'asset'
-	X1_1Organization []OrganizationType `xml:"http://scap.nist.gov/schema/asset-identification/1.1 organization,omitempty"`
-	// X1_1Person represents substitution group member 'person' (namespace: http://scap.nist.gov/schema/asset-identification/1.1)
-	// Substitutes for abstract element 'asset'
-	X1_1Person []PersonType `xml:"http://scap.nist.gov/schema/asset-identification/1.1 person,omitempty"`
-	// X1_1Data represents substitution group member 'data' (namespace: http://scap.nist.gov/schema/asset-identification/1.1)
-	// Substitutes for abstract element 'asset'
-	X1_1Data []DataType `xml:"http://scap.nist.gov/schema/asset-identification/1.1 data,omitempty"`
-	// X1_1ItAsset represents substitution group member 'it-asset' (namespace: http://scap.nist.gov/schema/asset-identification/1.1)
-	// Substitutes for abstract element 'asset'
-	X1_1ItAsset []ItAssetType `xml:"http://scap.nist.gov/schema/asset-identification/1.1 it-asset,omitempty"`
-	// Id represents XSD attribute 'id'
-	// use="required"
-	Id string `xml:"id,attr"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// IpV6ElementType represents the XSD type 'IpV6ElementType'
-// XSD complex type (W3C XSD §3.4)
-type IpV6ElementTypeWithAttrs struct {
-	Value Ipv6Type `xml:",chardata"` // XSD simple content
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// IpV6ElementType is an alias for IpV6ElementTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
-type IpV6ElementType = IpV6ElementTypeWithAttrs
-
-// LocationsElementType represents the XSD type 'LocationsElementType'
-// XSD complex type (W3C XSD §3.4)
-type LocationsElementType struct {
-	// X1_1LocationPoint represents substitution group member 'location-point' (namespace: http://scap.nist.gov/schema/asset-identification/1.1)
-	// Substitutes for abstract element 'location'
-	X1_1LocationPoint []LocationPointElement `xml:"http://scap.nist.gov/schema/asset-identification/1.1 location-point,omitempty"`
-	// X1_1LocationRegion represents substitution group member 'location-region' (namespace: http://scap.nist.gov/schema/asset-identification/1.1)
-	// Substitutes for abstract element 'location'
-	X1_1LocationRegion []LocationRegionElement `xml:"http://scap.nist.gov/schema/asset-identification/1.1 location-region,omitempty"`
-	// X1_1LocationAddress represents substitution group member 'location-address' (namespace: http://scap.nist.gov/schema/asset-identification/1.1)
-	// Substitutes for abstract element 'location'
-	X1_1LocationAddress []pkg_2_0.AddressDetails `xml:"http://scap.nist.gov/schema/asset-identification/1.1 location-address,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// EmailAddressElementType represents the XSD type 'EmailAddressElementType'
-// XSD complex type (W3C XSD §3.4)
-type EmailAddressElementTypeWithAttrs struct {
-	Value string `xml:",chardata"` // XSD simple content
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// EmailAddressElementType is an alias for EmailAddressElementTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
-type EmailAddressElementType = EmailAddressElementTypeWithAttrs
-
-// IpV4ElementType represents the XSD type 'IpV4ElementType'
-// XSD complex type (W3C XSD §3.4)
-type IpV4ElementTypeWithAttrs struct {
-	Value Ipv4Type `xml:",chardata"` // XSD simple content
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// IpV4ElementType is an alias for IpV4ElementTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
-type IpV4ElementType = IpV4ElementTypeWithAttrs
-
-// CpeType represents the XSD type 'cpe-type'
-// XSD union type (W3C XSD §4.2.3.3)
-type CpeType struct {
-	Value interface{} // Union type - can hold any member type
-}
-
-// ComputingDeviceType represents the XSD type 'computing-device-type'
-// XSD complex type (W3C XSD §3.4)
-type ComputingDeviceType struct {
-	ItAssetType // XSD extension base
-	// DistinguishedName represents XSD element 'distinguished-name'
-	// minOccurs=0, maxOccurs=1
-	DistinguishedName *DistinguishedNameElementType `xml:"distinguished-name,omitempty"`
-	// Cpe represents XSD element 'cpe'
-	// minOccurs=0, maxOccurs=-1
-	Cpe []CpeElement `xml:"cpe,omitempty"`
-	// Connections represents XSD element 'connections'
-	// minOccurs=0, maxOccurs=1
-	Connections *ConnectionsElementType `xml:"connections,omitempty"`
-	// Fqdn represents XSD element 'fqdn'
-	// minOccurs=0, maxOccurs=1
-	Fqdn *FqdnElement `xml:"fqdn,omitempty"`
-	// Hostname represents XSD element 'hostname'
-	// minOccurs=0, maxOccurs=1
-	Hostname *HostnameElementType `xml:"hostname,omitempty"`
-	// MotherboardGuid represents XSD element 'motherboard-guid'
-	// minOccurs=0, maxOccurs=1
-	MotherboardGuid *MotherboardGuidElementType `xml:"motherboard-guid,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// IpAddressType represents the XSD type 'ip-address-type'
-// XSD complex type (W3C XSD §3.4)
-type IpAddressType struct {
-	// IpV4 represents XSD element 'ip-v4'
-	// minOccurs=0, maxOccurs=1
-	IpV4 *IpV4ElementType `xml:"ip-v4,omitempty"`
-	// IpV6 represents XSD element 'ip-v6'
-	// minOccurs=0, maxOccurs=1
-	IpV6 *IpV6ElementType `xml:"ip-v6,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}

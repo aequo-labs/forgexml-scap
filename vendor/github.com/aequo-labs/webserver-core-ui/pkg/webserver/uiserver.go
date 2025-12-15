@@ -511,8 +511,10 @@ func (s *UIServer) SetPageDataEnricher(enricher PageDataEnricher) {
 	s.pageDataEnricher = enricher
 }
 
-// enrichPageData applies the page data enricher if one is configured
-func (s *UIServer) enrichPageData(data *PageData) {
+// EnrichPageData applies the page data enricher if one is configured.
+// Applications should call this after GetBasePageData to apply any
+// configured enricher (NavItems, AppName, etc.) to their page data.
+func (s *UIServer) EnrichPageData(data *PageData) {
 	if s.pageDataEnricher != nil {
 		s.pageDataEnricher(data)
 	}
@@ -527,7 +529,7 @@ func (s *UIServer) handleAbout(w http.ResponseWriter, r *http.Request) {
 	data.AboutInfo = s.aboutInfo
 
 	// Allow application to enrich page data with NavItems, etc.
-	s.enrichPageData(&data)
+	s.EnrichPageData(&data)
 
 	// Set description from AboutInfo if available
 	if s.aboutInfo != nil && s.aboutInfo.Description != "" {
@@ -584,7 +586,7 @@ func (s *UIServer) handleDocIndex(w http.ResponseWriter, r *http.Request) {
 	data.NeedsMermaid = true
 
 	// Allow application to enrich page data with NavItems, etc.
-	s.enrichPageData(&data.PageData)
+	s.EnrichPageData(&data.PageData)
 
 	// List all docs from the filesystem
 	categories := make(map[string][]DocInfo)
@@ -663,7 +665,7 @@ func (s *UIServer) handleDocView(w http.ResponseWriter, r *http.Request) {
 	data.NeedsMermaid = true
 
 	// Allow application to enrich page data with NavItems, etc.
-	s.enrichPageData(&data.PageData)
+	s.EnrichPageData(&data.PageData)
 
 	// Extract title from filename
 	filename := docPath

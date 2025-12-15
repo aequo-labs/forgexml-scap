@@ -7641,12 +7641,9 @@ type contentElementTypeRepository struct {
 }
 
 func (r *contentElementTypeRepository) Create(ctx context.Context, entity *parent.ContentElementType) (int64, error) {
-	query := "INSERT INTO content_element_type (data_valid_start_date, data_valid_end_date) VALUES (?, ?)"
+	query := "INSERT INTO content_element_type DEFAULT VALUES"
 
-	result, err := r.db.ExecContext(ctx, query,
-		entity.DataValidStartDate,
-		entity.DataValidEndDate,
-	)
+	result, err := r.db.ExecContext(ctx, query)
 	if err != nil {
 		return 0, err
 	}
@@ -7663,12 +7660,9 @@ func (r *contentElementTypeRepository) CreateBatch(ctx context.Context, entities
 	}
 	defer tx.Rollback()
 	
-	query := "INSERT INTO content_element_type (data_valid_start_date, data_valid_end_date) VALUES (?, ?)"
-	for _, entity := range entities {
-		result, err := tx.ExecContext(ctx, query,
-			entity.DataValidStartDate,
-			entity.DataValidEndDate,
-		)
+	query := "INSERT INTO content_element_type DEFAULT VALUES"
+	for range entities {
+		result, err := tx.ExecContext(ctx, query)
 		if err != nil {
 			return nil, err
 		}
@@ -7687,15 +7681,11 @@ func (r *contentElementTypeRepository) CreateBatch(ctx context.Context, entities
 }
 
 func (r *contentElementTypeRepository) GetByID(ctx context.Context, id int64) (*parent.ContentElementType, error) {
-	query := "SELECT id, data_valid_start_date, data_valid_end_date FROM content_element_type WHERE id = ?"
+	query := "SELECT id FROM content_element_type WHERE id = ?"
 
 	entity := &parent.ContentElementType{}
-	var datavalidstartdateTime NullTime
-	var datavalidenddateTime NullTime
 	err := r.db.QueryRowContext(ctx, query, id).Scan(
 		&entity.ID,
-		&datavalidstartdateTime,
-		&datavalidenddateTime,
 	)
 	if err != nil {
 		if err == sql.ErrNoRows {
@@ -7703,14 +7693,12 @@ func (r *contentElementTypeRepository) GetByID(ctx context.Context, id int64) (*
 		}
 		return nil, err
 	}
-	entity.DataValidStartDate = datavalidstartdateTime.ToTimePtr()
-	entity.DataValidEndDate = datavalidenddateTime.ToTimePtr()
 
 	return entity, nil
 }
 
 func (r *contentElementTypeRepository) GetAll(ctx context.Context, limit, offset int) ([]*parent.ContentElementType, error) {
-	query := "SELECT id, data_valid_start_date, data_valid_end_date FROM content_element_type LIMIT ? OFFSET ?"
+	query := "SELECT id FROM content_element_type LIMIT ? OFFSET ?"
 
 	rows, err := r.db.QueryContext(ctx, query, limit, offset)
 	if err != nil {
@@ -7721,18 +7709,12 @@ func (r *contentElementTypeRepository) GetAll(ctx context.Context, limit, offset
 	var entities []*parent.ContentElementType
 	for rows.Next() {
 		entity := &parent.ContentElementType{}
-		var datavalidstartdateTime NullTime
-		var datavalidenddateTime NullTime
 		err := rows.Scan(
 			&entity.ID,
-			&datavalidstartdateTime,
-			&datavalidenddateTime,
 		)
 		if err != nil {
 			return nil, err
 		}
-		entity.DataValidStartDate = datavalidstartdateTime.ToTimePtr()
-		entity.DataValidEndDate = datavalidenddateTime.ToTimePtr()
 		entities = append(entities, entity)
 	}
 
@@ -7740,14 +7722,8 @@ func (r *contentElementTypeRepository) GetAll(ctx context.Context, limit, offset
 }
 
 func (r *contentElementTypeRepository) Update(ctx context.Context, entity *parent.ContentElementType) error {
-	query := "UPDATE content_element_type SET data_valid_start_date = ?, data_valid_end_date = ? WHERE id = ?"
-	
-	_, err := r.db.ExecContext(ctx, query,
-		entity.DataValidStartDate,
-		entity.DataValidEndDate,
-		entity.ID,
-	)
-	return err
+	// Table has only ID column, nothing to update
+	return nil
 }
 
 func (r *contentElementTypeRepository) Delete(ctx context.Context, id int64) error {
@@ -7791,9 +7767,12 @@ type contentElementType1Repository struct {
 }
 
 func (r *contentElementType1Repository) Create(ctx context.Context, entity *parent.ContentElementType1) (int64, error) {
-	query := "INSERT INTO content_element_type1 DEFAULT VALUES"
+	query := "INSERT INTO content_element_type1 (data_valid_start_date, data_valid_end_date) VALUES (?, ?)"
 
-	result, err := r.db.ExecContext(ctx, query)
+	result, err := r.db.ExecContext(ctx, query,
+		entity.DataValidStartDate,
+		entity.DataValidEndDate,
+	)
 	if err != nil {
 		return 0, err
 	}
@@ -7810,9 +7789,12 @@ func (r *contentElementType1Repository) CreateBatch(ctx context.Context, entitie
 	}
 	defer tx.Rollback()
 	
-	query := "INSERT INTO content_element_type1 DEFAULT VALUES"
-	for range entities {
-		result, err := tx.ExecContext(ctx, query)
+	query := "INSERT INTO content_element_type1 (data_valid_start_date, data_valid_end_date) VALUES (?, ?)"
+	for _, entity := range entities {
+		result, err := tx.ExecContext(ctx, query,
+			entity.DataValidStartDate,
+			entity.DataValidEndDate,
+		)
 		if err != nil {
 			return nil, err
 		}
@@ -7831,11 +7813,15 @@ func (r *contentElementType1Repository) CreateBatch(ctx context.Context, entitie
 }
 
 func (r *contentElementType1Repository) GetByID(ctx context.Context, id int64) (*parent.ContentElementType1, error) {
-	query := "SELECT id FROM content_element_type1 WHERE id = ?"
+	query := "SELECT id, data_valid_start_date, data_valid_end_date FROM content_element_type1 WHERE id = ?"
 
 	entity := &parent.ContentElementType1{}
+	var datavalidstartdateTime NullTime
+	var datavalidenddateTime NullTime
 	err := r.db.QueryRowContext(ctx, query, id).Scan(
 		&entity.ID,
+		&datavalidstartdateTime,
+		&datavalidenddateTime,
 	)
 	if err != nil {
 		if err == sql.ErrNoRows {
@@ -7843,12 +7829,14 @@ func (r *contentElementType1Repository) GetByID(ctx context.Context, id int64) (
 		}
 		return nil, err
 	}
+	entity.DataValidStartDate = datavalidstartdateTime.ToTimePtr()
+	entity.DataValidEndDate = datavalidenddateTime.ToTimePtr()
 
 	return entity, nil
 }
 
 func (r *contentElementType1Repository) GetAll(ctx context.Context, limit, offset int) ([]*parent.ContentElementType1, error) {
-	query := "SELECT id FROM content_element_type1 LIMIT ? OFFSET ?"
+	query := "SELECT id, data_valid_start_date, data_valid_end_date FROM content_element_type1 LIMIT ? OFFSET ?"
 
 	rows, err := r.db.QueryContext(ctx, query, limit, offset)
 	if err != nil {
@@ -7859,12 +7847,18 @@ func (r *contentElementType1Repository) GetAll(ctx context.Context, limit, offse
 	var entities []*parent.ContentElementType1
 	for rows.Next() {
 		entity := &parent.ContentElementType1{}
+		var datavalidstartdateTime NullTime
+		var datavalidenddateTime NullTime
 		err := rows.Scan(
 			&entity.ID,
+			&datavalidstartdateTime,
+			&datavalidenddateTime,
 		)
 		if err != nil {
 			return nil, err
 		}
+		entity.DataValidStartDate = datavalidstartdateTime.ToTimePtr()
+		entity.DataValidEndDate = datavalidenddateTime.ToTimePtr()
 		entities = append(entities, entity)
 	}
 
@@ -7872,8 +7866,14 @@ func (r *contentElementType1Repository) GetAll(ctx context.Context, limit, offse
 }
 
 func (r *contentElementType1Repository) Update(ctx context.Context, entity *parent.ContentElementType1) error {
-	// Table has only ID column, nothing to update
-	return nil
+	query := "UPDATE content_element_type1 SET data_valid_start_date = ?, data_valid_end_date = ? WHERE id = ?"
+	
+	_, err := r.db.ExecContext(ctx, query,
+		entity.DataValidStartDate,
+		entity.DataValidEndDate,
+		entity.ID,
+	)
+	return err
 }
 
 func (r *contentElementType1Repository) Delete(ctx context.Context, id int64) error {

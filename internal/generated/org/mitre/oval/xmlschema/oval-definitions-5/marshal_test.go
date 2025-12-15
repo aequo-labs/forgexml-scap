@@ -5,6 +5,8 @@ package xmlschemaoval_definitions_5
 
 import (
 	"encoding/xml"
+	"os"
+	"path/filepath"
 	"regexp"
 	"testing"
 )
@@ -169,6 +171,101 @@ func TestConstant_variableElement_MarshalUnmarshal(t *testing.T) {
 	}
 }
 
+// TestConstant_variableElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestConstant_variableElement_MarshalIndentClean(t *testing.T) {
+	elem := &Constant_variableElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "constant_variable"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestConstant_variableElement_ToBytes tests the ToBytes method
+func TestConstant_variableElement_ToBytes(t *testing.T) {
+	elem := &Constant_variableElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "constant_variable"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestConstant_variableElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestConstant_variableElement_SetElementPrefixes(t *testing.T) {
+	elem := &Constant_variableElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "constant_variable"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestConstant_variableElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestConstant_variableElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &Constant_variableElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "constant_variable"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestConstant_variableElement_SaveAndLoad tests SaveToFile and LoadConstant_variableFromFile
+func TestConstant_variableElement_SaveAndLoad(t *testing.T) {
+	elem := &Constant_variableElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "constant_variable"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadConstant_variableFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestConstant_variableElement_LoadFromBytes tests the LoadConstant_variableFromBytes function
+func TestConstant_variableElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<constant_variable xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5"></constant_variable>`)
+
+	loaded, err := LoadConstant_variableFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
+}
+
 // TestConstant_variableElementType_MarshalUnmarshal tests XML round-trip for Constant_variableElementType
 func TestConstant_variableElementType_MarshalUnmarshal(t *testing.T) {
 	original := &Constant_variableElementType{}
@@ -318,6 +415,101 @@ func TestDefinitionElement_MarshalUnmarshal(t *testing.T) {
 	normalized2 := normalizeXML(xmlData2)
 	if normalized1 != normalized2 {
 		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestDefinitionElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestDefinitionElement_MarshalIndentClean(t *testing.T) {
+	elem := &DefinitionElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "definition"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestDefinitionElement_ToBytes tests the ToBytes method
+func TestDefinitionElement_ToBytes(t *testing.T) {
+	elem := &DefinitionElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "definition"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestDefinitionElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestDefinitionElement_SetElementPrefixes(t *testing.T) {
+	elem := &DefinitionElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "definition"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestDefinitionElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestDefinitionElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &DefinitionElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "definition"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestDefinitionElement_SaveAndLoad tests SaveToFile and LoadDefinitionFromFile
+func TestDefinitionElement_SaveAndLoad(t *testing.T) {
+	elem := &DefinitionElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "definition"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadDefinitionFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestDefinitionElement_LoadFromBytes tests the LoadDefinitionFromBytes function
+func TestDefinitionElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<definition xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5"></definition>`)
+
+	loaded, err := LoadDefinitionFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
 	}
 }
 
@@ -1403,6 +1595,101 @@ func TestExternal_variableElement_MarshalUnmarshal(t *testing.T) {
 	}
 }
 
+// TestExternal_variableElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestExternal_variableElement_MarshalIndentClean(t *testing.T) {
+	elem := &External_variableElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "external_variable"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestExternal_variableElement_ToBytes tests the ToBytes method
+func TestExternal_variableElement_ToBytes(t *testing.T) {
+	elem := &External_variableElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "external_variable"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestExternal_variableElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestExternal_variableElement_SetElementPrefixes(t *testing.T) {
+	elem := &External_variableElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "external_variable"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestExternal_variableElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestExternal_variableElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &External_variableElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "external_variable"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestExternal_variableElement_SaveAndLoad tests SaveToFile and LoadExternal_variableFromFile
+func TestExternal_variableElement_SaveAndLoad(t *testing.T) {
+	elem := &External_variableElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "external_variable"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadExternal_variableFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestExternal_variableElement_LoadFromBytes tests the LoadExternal_variableFromBytes function
+func TestExternal_variableElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<external_variable xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5"></external_variable>`)
+
+	loaded, err := LoadExternal_variableFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
+}
+
 // TestExternal_variableElementType_MarshalUnmarshal tests XML round-trip for External_variableElementType
 func TestExternal_variableElementType_MarshalUnmarshal(t *testing.T) {
 	original := &External_variableElementType{}
@@ -1462,6 +1749,101 @@ func TestFilterElement_MarshalUnmarshal(t *testing.T) {
 	normalized2 := normalizeXML(xmlData2)
 	if normalized1 != normalized2 {
 		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestFilterElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestFilterElement_MarshalIndentClean(t *testing.T) {
+	elem := &FilterElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "filter"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestFilterElement_ToBytes tests the ToBytes method
+func TestFilterElement_ToBytes(t *testing.T) {
+	elem := &FilterElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "filter"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestFilterElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestFilterElement_SetElementPrefixes(t *testing.T) {
+	elem := &FilterElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "filter"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestFilterElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestFilterElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &FilterElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "filter"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestFilterElement_SaveAndLoad tests SaveToFile and LoadFilterFromFile
+func TestFilterElement_SaveAndLoad(t *testing.T) {
+	elem := &FilterElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "filter"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadFilterFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestFilterElement_LoadFromBytes tests the LoadFilterFromBytes function
+func TestFilterElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<filter xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5"></filter>`)
+
+	loaded, err := LoadFilterFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
 	}
 }
 
@@ -1587,6 +1969,101 @@ func TestLocal_variableElement_MarshalUnmarshal(t *testing.T) {
 	}
 }
 
+// TestLocal_variableElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestLocal_variableElement_MarshalIndentClean(t *testing.T) {
+	elem := &Local_variableElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "local_variable"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestLocal_variableElement_ToBytes tests the ToBytes method
+func TestLocal_variableElement_ToBytes(t *testing.T) {
+	elem := &Local_variableElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "local_variable"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestLocal_variableElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestLocal_variableElement_SetElementPrefixes(t *testing.T) {
+	elem := &Local_variableElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "local_variable"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestLocal_variableElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestLocal_variableElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &Local_variableElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "local_variable"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestLocal_variableElement_SaveAndLoad tests SaveToFile and LoadLocal_variableFromFile
+func TestLocal_variableElement_SaveAndLoad(t *testing.T) {
+	elem := &Local_variableElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "local_variable"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadLocal_variableFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestLocal_variableElement_LoadFromBytes tests the LoadLocal_variableFromBytes function
+func TestLocal_variableElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<local_variable xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5"></local_variable>`)
+
+	loaded, err := LoadLocal_variableFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
+}
+
 // TestLocal_variableElementType_MarshalUnmarshal tests XML round-trip for Local_variableElementType
 func TestLocal_variableElementType_MarshalUnmarshal(t *testing.T) {
 	original := &Local_variableElementType{}
@@ -1679,6 +2156,101 @@ func TestNotesElement_MarshalUnmarshal(t *testing.T) {
 	}
 }
 
+// TestNotesElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestNotesElement_MarshalIndentClean(t *testing.T) {
+	elem := &NotesElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "notes"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestNotesElement_ToBytes tests the ToBytes method
+func TestNotesElement_ToBytes(t *testing.T) {
+	elem := &NotesElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "notes"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestNotesElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestNotesElement_SetElementPrefixes(t *testing.T) {
+	elem := &NotesElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "notes"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestNotesElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestNotesElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &NotesElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "notes"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestNotesElement_SaveAndLoad tests SaveToFile and LoadNotesFromFile
+func TestNotesElement_SaveAndLoad(t *testing.T) {
+	elem := &NotesElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "notes"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadNotesFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestNotesElement_LoadFromBytes tests the LoadNotesFromBytes function
+func TestNotesElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<notes xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5"></notes>`)
+
+	loaded, err := LoadNotesFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
+}
+
 // TestNotesElementType_MarshalUnmarshal tests XML round-trip for NotesElementType
 func TestNotesElementType_MarshalUnmarshal(t *testing.T) {
 	original := &NotesElementType{}
@@ -1736,6 +2308,133 @@ func TestObjectComponentType_MarshalUnmarshal(t *testing.T) {
 	normalized2 := normalizeXML(xmlData2)
 	if normalized1 != normalized2 {
 		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestObjectElement_MarshalUnmarshal tests XML round-trip for ObjectElement
+func TestObjectElement_MarshalUnmarshal(t *testing.T) {
+	original := &ObjectElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "object"},
+	}
+
+	// Marshal to XML
+	xmlData, err := xml.MarshalIndent(original, "", "  ")
+	if err != nil {
+		t.Fatalf("Marshal failed: %v", err)
+	}
+
+	// Unmarshal back
+	var decoded ObjectElement
+	if err := xml.Unmarshal(xmlData, &decoded); err != nil {
+		t.Fatalf("Unmarshal failed: %v", err)
+	}
+
+	// Re-marshal to compare
+	xmlData2, err := xml.MarshalIndent(&decoded, "", "  ")
+	if err != nil {
+		t.Fatalf("Re-marshal failed: %v", err)
+	}
+
+	// Compare XML outputs (normalize to handle Go encoder quirks)
+	normalized1 := normalizeXML(xmlData)
+	normalized2 := normalizeXML(xmlData2)
+	if normalized1 != normalized2 {
+		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestObjectElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestObjectElement_MarshalIndentClean(t *testing.T) {
+	elem := &ObjectElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "object"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestObjectElement_ToBytes tests the ToBytes method
+func TestObjectElement_ToBytes(t *testing.T) {
+	elem := &ObjectElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "object"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestObjectElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestObjectElement_SetElementPrefixes(t *testing.T) {
+	elem := &ObjectElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "object"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestObjectElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestObjectElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &ObjectElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "object"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestObjectElement_SaveAndLoad tests SaveToFile and LoadObjectFromFile
+func TestObjectElement_SaveAndLoad(t *testing.T) {
+	elem := &ObjectElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "object"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadObjectFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestObjectElement_LoadFromBytes tests the LoadObjectFromBytes function
+func TestObjectElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<object xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5"></object>`)
+
+	loaded, err := LoadObjectFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
 	}
 }
 
@@ -1858,6 +2557,101 @@ func TestOval_definitionsElement_MarshalUnmarshal(t *testing.T) {
 	normalized2 := normalizeXML(xmlData2)
 	if normalized1 != normalized2 {
 		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestOval_definitionsElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestOval_definitionsElement_MarshalIndentClean(t *testing.T) {
+	elem := &Oval_definitionsElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "oval_definitions"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestOval_definitionsElement_ToBytes tests the ToBytes method
+func TestOval_definitionsElement_ToBytes(t *testing.T) {
+	elem := &Oval_definitionsElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "oval_definitions"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestOval_definitionsElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestOval_definitionsElement_SetElementPrefixes(t *testing.T) {
+	elem := &Oval_definitionsElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "oval_definitions"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestOval_definitionsElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestOval_definitionsElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &Oval_definitionsElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "oval_definitions"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestOval_definitionsElement_SaveAndLoad tests SaveToFile and LoadOval_definitionsFromFile
+func TestOval_definitionsElement_SaveAndLoad(t *testing.T) {
+	elem := &Oval_definitionsElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "oval_definitions"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadOval_definitionsFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestOval_definitionsElement_LoadFromBytes tests the LoadOval_definitionsFromBytes function
+func TestOval_definitionsElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<oval_definitions xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5"></oval_definitions>`)
+
+	loaded, err := LoadOval_definitionsFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
 	}
 }
 
@@ -2073,6 +2867,101 @@ func TestSetElement_MarshalUnmarshal(t *testing.T) {
 	}
 }
 
+// TestSetElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestSetElement_MarshalIndentClean(t *testing.T) {
+	elem := &SetElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "set"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestSetElement_ToBytes tests the ToBytes method
+func TestSetElement_ToBytes(t *testing.T) {
+	elem := &SetElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "set"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestSetElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestSetElement_SetElementPrefixes(t *testing.T) {
+	elem := &SetElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "set"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestSetElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestSetElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &SetElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "set"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestSetElement_SaveAndLoad tests SaveToFile and LoadSetFromFile
+func TestSetElement_SaveAndLoad(t *testing.T) {
+	elem := &SetElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "set"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadSetFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestSetElement_LoadFromBytes tests the LoadSetFromBytes function
+func TestSetElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<set xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5"></set>`)
+
+	loaded, err := LoadSetFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
+}
+
 // TestSetElementType_MarshalUnmarshal tests XML round-trip for SetElementType
 func TestSetElementType_MarshalUnmarshal(t *testing.T) {
 	original := &SetElementType{}
@@ -2130,6 +3019,133 @@ func TestSplitFunctionType_MarshalUnmarshal(t *testing.T) {
 	normalized2 := normalizeXML(xmlData2)
 	if normalized1 != normalized2 {
 		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestStateElement_MarshalUnmarshal tests XML round-trip for StateElement
+func TestStateElement_MarshalUnmarshal(t *testing.T) {
+	original := &StateElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "state"},
+	}
+
+	// Marshal to XML
+	xmlData, err := xml.MarshalIndent(original, "", "  ")
+	if err != nil {
+		t.Fatalf("Marshal failed: %v", err)
+	}
+
+	// Unmarshal back
+	var decoded StateElement
+	if err := xml.Unmarshal(xmlData, &decoded); err != nil {
+		t.Fatalf("Unmarshal failed: %v", err)
+	}
+
+	// Re-marshal to compare
+	xmlData2, err := xml.MarshalIndent(&decoded, "", "  ")
+	if err != nil {
+		t.Fatalf("Re-marshal failed: %v", err)
+	}
+
+	// Compare XML outputs (normalize to handle Go encoder quirks)
+	normalized1 := normalizeXML(xmlData)
+	normalized2 := normalizeXML(xmlData2)
+	if normalized1 != normalized2 {
+		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestStateElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestStateElement_MarshalIndentClean(t *testing.T) {
+	elem := &StateElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "state"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestStateElement_ToBytes tests the ToBytes method
+func TestStateElement_ToBytes(t *testing.T) {
+	elem := &StateElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "state"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestStateElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestStateElement_SetElementPrefixes(t *testing.T) {
+	elem := &StateElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "state"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestStateElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestStateElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &StateElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "state"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestStateElement_SaveAndLoad tests SaveToFile and LoadStateFromFile
+func TestStateElement_SaveAndLoad(t *testing.T) {
+	elem := &StateElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "state"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadStateFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestStateElement_LoadFromBytes tests the LoadStateFromBytes function
+func TestStateElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<state xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5"></state>`)
+
+	loaded, err := LoadStateFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
 	}
 }
 
@@ -2250,6 +3266,133 @@ func TestSubstringFunctionType_MarshalUnmarshal(t *testing.T) {
 	normalized2 := normalizeXML(xmlData2)
 	if normalized1 != normalized2 {
 		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestTestElement_MarshalUnmarshal tests XML round-trip for TestElement
+func TestTestElement_MarshalUnmarshal(t *testing.T) {
+	original := &TestElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "test"},
+	}
+
+	// Marshal to XML
+	xmlData, err := xml.MarshalIndent(original, "", "  ")
+	if err != nil {
+		t.Fatalf("Marshal failed: %v", err)
+	}
+
+	// Unmarshal back
+	var decoded TestElement
+	if err := xml.Unmarshal(xmlData, &decoded); err != nil {
+		t.Fatalf("Unmarshal failed: %v", err)
+	}
+
+	// Re-marshal to compare
+	xmlData2, err := xml.MarshalIndent(&decoded, "", "  ")
+	if err != nil {
+		t.Fatalf("Re-marshal failed: %v", err)
+	}
+
+	// Compare XML outputs (normalize to handle Go encoder quirks)
+	normalized1 := normalizeXML(xmlData)
+	normalized2 := normalizeXML(xmlData2)
+	if normalized1 != normalized2 {
+		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestTestElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestTestElement_MarshalIndentClean(t *testing.T) {
+	elem := &TestElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "test"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestTestElement_ToBytes tests the ToBytes method
+func TestTestElement_ToBytes(t *testing.T) {
+	elem := &TestElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "test"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestTestElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestTestElement_SetElementPrefixes(t *testing.T) {
+	elem := &TestElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "test"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestTestElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestTestElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &TestElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "test"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestTestElement_SaveAndLoad tests SaveToFile and LoadTestFromFile
+func TestTestElement_SaveAndLoad(t *testing.T) {
+	elem := &TestElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "test"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadTestFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestTestElement_LoadFromBytes tests the LoadTestFromBytes function
+func TestTestElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<test xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5"></test>`)
+
+	loaded, err := LoadTestFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
 	}
 }
 
@@ -2433,6 +3576,133 @@ func TestVariableComponentType_MarshalUnmarshal(t *testing.T) {
 	}
 }
 
+// TestVariableElement_MarshalUnmarshal tests XML round-trip for VariableElement
+func TestVariableElement_MarshalUnmarshal(t *testing.T) {
+	original := &VariableElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "variable"},
+	}
+
+	// Marshal to XML
+	xmlData, err := xml.MarshalIndent(original, "", "  ")
+	if err != nil {
+		t.Fatalf("Marshal failed: %v", err)
+	}
+
+	// Unmarshal back
+	var decoded VariableElement
+	if err := xml.Unmarshal(xmlData, &decoded); err != nil {
+		t.Fatalf("Unmarshal failed: %v", err)
+	}
+
+	// Re-marshal to compare
+	xmlData2, err := xml.MarshalIndent(&decoded, "", "  ")
+	if err != nil {
+		t.Fatalf("Re-marshal failed: %v", err)
+	}
+
+	// Compare XML outputs (normalize to handle Go encoder quirks)
+	normalized1 := normalizeXML(xmlData)
+	normalized2 := normalizeXML(xmlData2)
+	if normalized1 != normalized2 {
+		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestVariableElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestVariableElement_MarshalIndentClean(t *testing.T) {
+	elem := &VariableElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "variable"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestVariableElement_ToBytes tests the ToBytes method
+func TestVariableElement_ToBytes(t *testing.T) {
+	elem := &VariableElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "variable"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestVariableElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestVariableElement_SetElementPrefixes(t *testing.T) {
+	elem := &VariableElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "variable"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestVariableElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestVariableElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &VariableElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "variable"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestVariableElement_SaveAndLoad tests SaveToFile and LoadVariableFromFile
+func TestVariableElement_SaveAndLoad(t *testing.T) {
+	elem := &VariableElement{
+		XMLName: xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "variable"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadVariableFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestVariableElement_LoadFromBytes tests the LoadVariableFromBytes function
+func TestVariableElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<variable xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5"></variable>`)
+
+	loaded, err := LoadVariableFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
+}
+
 // TestVariableType_MarshalUnmarshal tests XML round-trip for VariableType
 func TestVariableType_MarshalUnmarshal(t *testing.T) {
 	original := &VariableType{}
@@ -2490,5 +3760,23 @@ func TestVariablesType_MarshalUnmarshal(t *testing.T) {
 	normalized2 := normalizeXML(xmlData2)
 	if normalized1 != normalized2 {
 		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestExtractElementPrefixes tests the ExtractElementPrefixes helper function
+func TestExtractElementPrefixes(t *testing.T) {
+	xmlData := []byte(`<root xmlns:ex="http://example.com"><ex:child/></root>`)
+	prefixes := ExtractElementPrefixes(xmlData)
+	if prefixes == nil {
+		t.Error("ExtractElementPrefixes returned nil")
+	}
+}
+
+// TestExtractElementsWithXmlns tests the ExtractElementsWithXmlns helper function
+func TestExtractElementsWithXmlns(t *testing.T) {
+	xmlData := []byte(`<root xmlns="http://example.com"><child xmlns="http://other.com"/></root>`)
+	elemXmlns := ExtractElementsWithXmlns(xmlData)
+	if elemXmlns == nil {
+		t.Error("ExtractElementsWithXmlns returned nil")
 	}
 }

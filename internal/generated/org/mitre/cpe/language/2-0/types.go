@@ -166,18 +166,6 @@ func replicateXmlnsPlacement(xmlOutput string, elementsWithXmlns map[string]stri
 	return result
 }
 
-// FactRefType represents the XSD type 'FactRefType'
-// XSD complex type (W3C XSD §3.4)
-type FactRefType struct {
-	// Name represents XSD attribute 'name'
-	// use="required"
-	Name NamePattern `xml:"name,attr"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
 // TextType represents the XSD type 'textType'
 // XSD complex type (W3C XSD §3.4)
 type TextTypeWithAttrs struct {
@@ -249,6 +237,18 @@ type LogicalTestType struct {
 	// Negate represents XSD attribute 'negate'
 	// use="required"
 	Negate bool `xml:"negate,attr"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// FactRefType represents the XSD type 'FactRefType'
+// XSD complex type (W3C XSD §3.4)
+type FactRefType struct {
+	// Name represents XSD attribute 'name'
+	// use="required"
+	Name NamePattern `xml:"name,attr"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD

@@ -1506,3 +1506,40 @@ html.dark-mode .button:disabled {
     cursor: not-allowed !important;
     opacity: 0.6 !important;
 }
+
+
+/* Bulma panel component - dark mode support */
+html.dark-mode .panel {
+    background-color: var(--bg-color) !important;
+    color: var(--text-color) !important;
+}
+
+html.dark-mode .panel-heading {
+    background-color: var(--bg-lighter) !important;
+    color: var(--text-color) !important;
+    border-bottom-color: var(--border-color) !important;
+}
+
+html.dark-mode .panel-block {
+    background-color: var(--bg-color) !important;
+    color: var(--text-color) !important;
+    border-bottom-color: var(--border-color) !important;
+}
+
+html.dark-mode .panel-block:first-child {
+    border-top-color: var(--border-color) !important;
+}
+
+html.dark-mode .panel-tabs a {
+    color: var(--text-color) !important;
+    border-bottom-color: var(--border-color) !important;
+}
+
+html.dark-mode .panel-tabs a.is-active {
+    border-bottom-color: var(--primary-color) !important;
+    color: var(--primary-color) !important;
+}
+
+html.dark-mode .panel-icon {
+    color: var(--text-muted) !important;
+}

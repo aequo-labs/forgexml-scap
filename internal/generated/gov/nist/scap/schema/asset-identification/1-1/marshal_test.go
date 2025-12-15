@@ -5,6 +5,8 @@ package asset_identification1_1
 
 import (
 	"encoding/xml"
+	"os"
+	"path/filepath"
 	"regexp"
 	"testing"
 )
@@ -15,6 +17,133 @@ func normalizeXML(xmlData []byte) string {
 	// Remove duplicate xmlns declarations (Go encoder quirk with embedded structs)
 	pattern := regexp.MustCompile(`(xmlns="[^"]+")\s+xmlns="[^"]+"`)
 	return pattern.ReplaceAllString(xmlStr, "$1")
+}
+
+// TestAssetElement_MarshalUnmarshal tests XML round-trip for AssetElement
+func TestAssetElement_MarshalUnmarshal(t *testing.T) {
+	original := &AssetElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "asset"},
+	}
+
+	// Marshal to XML
+	xmlData, err := xml.MarshalIndent(original, "", "  ")
+	if err != nil {
+		t.Fatalf("Marshal failed: %v", err)
+	}
+
+	// Unmarshal back
+	var decoded AssetElement
+	if err := xml.Unmarshal(xmlData, &decoded); err != nil {
+		t.Fatalf("Unmarshal failed: %v", err)
+	}
+
+	// Re-marshal to compare
+	xmlData2, err := xml.MarshalIndent(&decoded, "", "  ")
+	if err != nil {
+		t.Fatalf("Re-marshal failed: %v", err)
+	}
+
+	// Compare XML outputs (normalize to handle Go encoder quirks)
+	normalized1 := normalizeXML(xmlData)
+	normalized2 := normalizeXML(xmlData2)
+	if normalized1 != normalized2 {
+		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestAssetElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestAssetElement_MarshalIndentClean(t *testing.T) {
+	elem := &AssetElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "asset"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestAssetElement_ToBytes tests the ToBytes method
+func TestAssetElement_ToBytes(t *testing.T) {
+	elem := &AssetElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "asset"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestAssetElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestAssetElement_SetElementPrefixes(t *testing.T) {
+	elem := &AssetElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "asset"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestAssetElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestAssetElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &AssetElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "asset"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestAssetElement_SaveAndLoad tests SaveToFile and LoadAssetFromFile
+func TestAssetElement_SaveAndLoad(t *testing.T) {
+	elem := &AssetElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "asset"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadAssetFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestAssetElement_LoadFromBytes tests the LoadAssetFromBytes function
+func TestAssetElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<asset xmlns="http://scap.nist.gov/schema/asset-identification/1.1"></asset>`)
+
+	loaded, err := LoadAssetFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
 }
 
 // TestAssetElementType_MarshalUnmarshal tests XML round-trip for AssetElementType
@@ -109,6 +238,101 @@ func TestAssetRelatedElement_MarshalUnmarshal(t *testing.T) {
 	}
 }
 
+// TestAssetRelatedElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestAssetRelatedElement_MarshalIndentClean(t *testing.T) {
+	elem := &AssetRelatedElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "asset-related"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestAssetRelatedElement_ToBytes tests the ToBytes method
+func TestAssetRelatedElement_ToBytes(t *testing.T) {
+	elem := &AssetRelatedElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "asset-related"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestAssetRelatedElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestAssetRelatedElement_SetElementPrefixes(t *testing.T) {
+	elem := &AssetRelatedElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "asset-related"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestAssetRelatedElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestAssetRelatedElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &AssetRelatedElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "asset-related"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestAssetRelatedElement_SaveAndLoad tests SaveToFile and LoadAssetRelatedFromFile
+func TestAssetRelatedElement_SaveAndLoad(t *testing.T) {
+	elem := &AssetRelatedElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "asset-related"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadAssetRelatedFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestAssetRelatedElement_LoadFromBytes tests the LoadAssetRelatedFromBytes function
+func TestAssetRelatedElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<asset-related xmlns="http://scap.nist.gov/schema/asset-identification/1.1"></asset-related>`)
+
+	loaded, err := LoadAssetRelatedFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
+}
+
 // TestAssetType_MarshalUnmarshal tests XML round-trip for AssetType
 func TestAssetType_MarshalUnmarshal(t *testing.T) {
 	original := &AssetType{}
@@ -168,6 +392,101 @@ func TestAssetsElement_MarshalUnmarshal(t *testing.T) {
 	normalized2 := normalizeXML(xmlData2)
 	if normalized1 != normalized2 {
 		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestAssetsElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestAssetsElement_MarshalIndentClean(t *testing.T) {
+	elem := &AssetsElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "assets"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestAssetsElement_ToBytes tests the ToBytes method
+func TestAssetsElement_ToBytes(t *testing.T) {
+	elem := &AssetsElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "assets"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestAssetsElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestAssetsElement_SetElementPrefixes(t *testing.T) {
+	elem := &AssetsElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "assets"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestAssetsElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestAssetsElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &AssetsElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "assets"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestAssetsElement_SaveAndLoad tests SaveToFile and LoadAssetsFromFile
+func TestAssetsElement_SaveAndLoad(t *testing.T) {
+	elem := &AssetsElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "assets"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadAssetsFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestAssetsElement_LoadFromBytes tests the LoadAssetsFromBytes function
+func TestAssetsElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<assets xmlns="http://scap.nist.gov/schema/asset-identification/1.1"></assets>`)
+
+	loaded, err := LoadAssetsFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
 	}
 }
 
@@ -293,6 +612,101 @@ func TestCircuitElement_MarshalUnmarshal(t *testing.T) {
 	}
 }
 
+// TestCircuitElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestCircuitElement_MarshalIndentClean(t *testing.T) {
+	elem := &CircuitElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "circuit"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestCircuitElement_ToBytes tests the ToBytes method
+func TestCircuitElement_ToBytes(t *testing.T) {
+	elem := &CircuitElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "circuit"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestCircuitElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestCircuitElement_SetElementPrefixes(t *testing.T) {
+	elem := &CircuitElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "circuit"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestCircuitElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestCircuitElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &CircuitElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "circuit"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestCircuitElement_SaveAndLoad tests SaveToFile and LoadCircuitFromFile
+func TestCircuitElement_SaveAndLoad(t *testing.T) {
+	elem := &CircuitElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "circuit"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadCircuitFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestCircuitElement_LoadFromBytes tests the LoadCircuitFromBytes function
+func TestCircuitElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<circuit xmlns="http://scap.nist.gov/schema/asset-identification/1.1"></circuit>`)
+
+	loaded, err := LoadCircuitFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
+}
+
 // TestCircuitNameElementType_MarshalUnmarshal tests XML round-trip for CircuitNameElementType
 func TestCircuitNameElementType_MarshalUnmarshal(t *testing.T) {
 	original := &CircuitNameElementType{}
@@ -382,6 +796,101 @@ func TestComputingDeviceElement_MarshalUnmarshal(t *testing.T) {
 	normalized2 := normalizeXML(xmlData2)
 	if normalized1 != normalized2 {
 		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestComputingDeviceElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestComputingDeviceElement_MarshalIndentClean(t *testing.T) {
+	elem := &ComputingDeviceElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "computing-device"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestComputingDeviceElement_ToBytes tests the ToBytes method
+func TestComputingDeviceElement_ToBytes(t *testing.T) {
+	elem := &ComputingDeviceElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "computing-device"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestComputingDeviceElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestComputingDeviceElement_SetElementPrefixes(t *testing.T) {
+	elem := &ComputingDeviceElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "computing-device"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestComputingDeviceElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestComputingDeviceElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &ComputingDeviceElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "computing-device"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestComputingDeviceElement_SaveAndLoad tests SaveToFile and LoadComputingDeviceFromFile
+func TestComputingDeviceElement_SaveAndLoad(t *testing.T) {
+	elem := &ComputingDeviceElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "computing-device"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadComputingDeviceFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestComputingDeviceElement_LoadFromBytes tests the LoadComputingDeviceFromBytes function
+func TestComputingDeviceElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<computing-device xmlns="http://scap.nist.gov/schema/asset-identification/1.1"></computing-device>`)
+
+	loaded, err := LoadComputingDeviceFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
 	}
 }
 
@@ -477,6 +986,101 @@ func TestCpeElement_MarshalUnmarshal(t *testing.T) {
 	}
 }
 
+// TestCpeElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestCpeElement_MarshalIndentClean(t *testing.T) {
+	elem := &CpeElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "cpe"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestCpeElement_ToBytes tests the ToBytes method
+func TestCpeElement_ToBytes(t *testing.T) {
+	elem := &CpeElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "cpe"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestCpeElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestCpeElement_SetElementPrefixes(t *testing.T) {
+	elem := &CpeElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "cpe"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestCpeElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestCpeElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &CpeElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "cpe"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestCpeElement_SaveAndLoad tests SaveToFile and LoadCpeFromFile
+func TestCpeElement_SaveAndLoad(t *testing.T) {
+	elem := &CpeElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "cpe"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadCpeFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestCpeElement_LoadFromBytes tests the LoadCpeFromBytes function
+func TestCpeElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<cpe xmlns="http://scap.nist.gov/schema/asset-identification/1.1"></cpe>`)
+
+	loaded, err := LoadCpeFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
+}
+
 // TestCpeElementType_MarshalUnmarshal tests XML round-trip for CpeElementType
 func TestCpeElementType_MarshalUnmarshal(t *testing.T) {
 	original := &CpeElementType{}
@@ -569,6 +1173,101 @@ func TestDataElement_MarshalUnmarshal(t *testing.T) {
 	}
 }
 
+// TestDataElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestDataElement_MarshalIndentClean(t *testing.T) {
+	elem := &DataElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "data"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestDataElement_ToBytes tests the ToBytes method
+func TestDataElement_ToBytes(t *testing.T) {
+	elem := &DataElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "data"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestDataElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestDataElement_SetElementPrefixes(t *testing.T) {
+	elem := &DataElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "data"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestDataElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestDataElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &DataElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "data"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestDataElement_SaveAndLoad tests SaveToFile and LoadDataFromFile
+func TestDataElement_SaveAndLoad(t *testing.T) {
+	elem := &DataElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "data"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadDataFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestDataElement_LoadFromBytes tests the LoadDataFromBytes function
+func TestDataElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<data xmlns="http://scap.nist.gov/schema/asset-identification/1.1"></data>`)
+
+	loaded, err := LoadDataFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
+}
+
 // TestDataType_MarshalUnmarshal tests XML round-trip for DataType
 func TestDataType_MarshalUnmarshal(t *testing.T) {
 	original := &DataType{}
@@ -628,6 +1327,101 @@ func TestDatabaseElement_MarshalUnmarshal(t *testing.T) {
 	normalized2 := normalizeXML(xmlData2)
 	if normalized1 != normalized2 {
 		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestDatabaseElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestDatabaseElement_MarshalIndentClean(t *testing.T) {
+	elem := &DatabaseElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "database"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestDatabaseElement_ToBytes tests the ToBytes method
+func TestDatabaseElement_ToBytes(t *testing.T) {
+	elem := &DatabaseElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "database"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestDatabaseElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestDatabaseElement_SetElementPrefixes(t *testing.T) {
+	elem := &DatabaseElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "database"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestDatabaseElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestDatabaseElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &DatabaseElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "database"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestDatabaseElement_SaveAndLoad tests SaveToFile and LoadDatabaseFromFile
+func TestDatabaseElement_SaveAndLoad(t *testing.T) {
+	elem := &DatabaseElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "database"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadDatabaseFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestDatabaseElement_LoadFromBytes tests the LoadDatabaseFromBytes function
+func TestDatabaseElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<database xmlns="http://scap.nist.gov/schema/asset-identification/1.1"></database>`)
+
+	loaded, err := LoadDatabaseFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
 	}
 }
 
@@ -753,6 +1547,101 @@ func TestEmailAddressElement_MarshalUnmarshal(t *testing.T) {
 	}
 }
 
+// TestEmailAddressElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestEmailAddressElement_MarshalIndentClean(t *testing.T) {
+	elem := &EmailAddressElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "email-address"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestEmailAddressElement_ToBytes tests the ToBytes method
+func TestEmailAddressElement_ToBytes(t *testing.T) {
+	elem := &EmailAddressElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "email-address"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestEmailAddressElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestEmailAddressElement_SetElementPrefixes(t *testing.T) {
+	elem := &EmailAddressElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "email-address"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestEmailAddressElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestEmailAddressElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &EmailAddressElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "email-address"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestEmailAddressElement_SaveAndLoad tests SaveToFile and LoadEmailAddressFromFile
+func TestEmailAddressElement_SaveAndLoad(t *testing.T) {
+	elem := &EmailAddressElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "email-address"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadEmailAddressFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestEmailAddressElement_LoadFromBytes tests the LoadEmailAddressFromBytes function
+func TestEmailAddressElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<email-address xmlns="http://scap.nist.gov/schema/asset-identification/1.1"></email-address>`)
+
+	loaded, err := LoadEmailAddressFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
+}
+
 // TestEmailAddressElementType_MarshalUnmarshal tests XML round-trip for EmailAddressElementType
 func TestEmailAddressElementType_MarshalUnmarshal(t *testing.T) {
 	original := &EmailAddressElementType{}
@@ -842,6 +1731,101 @@ func TestFqdnElement_MarshalUnmarshal(t *testing.T) {
 	normalized2 := normalizeXML(xmlData2)
 	if normalized1 != normalized2 {
 		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestFqdnElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestFqdnElement_MarshalIndentClean(t *testing.T) {
+	elem := &FqdnElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "fqdn"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestFqdnElement_ToBytes tests the ToBytes method
+func TestFqdnElement_ToBytes(t *testing.T) {
+	elem := &FqdnElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "fqdn"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestFqdnElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestFqdnElement_SetElementPrefixes(t *testing.T) {
+	elem := &FqdnElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "fqdn"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestFqdnElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestFqdnElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &FqdnElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "fqdn"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestFqdnElement_SaveAndLoad tests SaveToFile and LoadFqdnFromFile
+func TestFqdnElement_SaveAndLoad(t *testing.T) {
+	elem := &FqdnElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "fqdn"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadFqdnFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestFqdnElement_LoadFromBytes tests the LoadFqdnFromBytes function
+func TestFqdnElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<fqdn xmlns="http://scap.nist.gov/schema/asset-identification/1.1"></fqdn>`)
+
+	loaded, err := LoadFqdnFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
 	}
 }
 
@@ -1027,6 +2011,101 @@ func TestIpAddressElement_MarshalUnmarshal(t *testing.T) {
 	}
 }
 
+// TestIpAddressElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestIpAddressElement_MarshalIndentClean(t *testing.T) {
+	elem := &IpAddressElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "ip-address"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestIpAddressElement_ToBytes tests the ToBytes method
+func TestIpAddressElement_ToBytes(t *testing.T) {
+	elem := &IpAddressElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "ip-address"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestIpAddressElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestIpAddressElement_SetElementPrefixes(t *testing.T) {
+	elem := &IpAddressElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "ip-address"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestIpAddressElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestIpAddressElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &IpAddressElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "ip-address"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestIpAddressElement_SaveAndLoad tests SaveToFile and LoadIpAddressFromFile
+func TestIpAddressElement_SaveAndLoad(t *testing.T) {
+	elem := &IpAddressElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "ip-address"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadIpAddressFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestIpAddressElement_LoadFromBytes tests the LoadIpAddressFromBytes function
+func TestIpAddressElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<ip-address xmlns="http://scap.nist.gov/schema/asset-identification/1.1"></ip-address>`)
+
+	loaded, err := LoadIpAddressFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
+}
+
 // TestIpAddressType_MarshalUnmarshal tests XML round-trip for IpAddressType
 func TestIpAddressType_MarshalUnmarshal(t *testing.T) {
 	original := &IpAddressType{}
@@ -1144,6 +2223,133 @@ func TestIpV6ElementType_MarshalUnmarshal(t *testing.T) {
 	normalized2 := normalizeXML(xmlData2)
 	if normalized1 != normalized2 {
 		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestItAssetElement_MarshalUnmarshal tests XML round-trip for ItAssetElement
+func TestItAssetElement_MarshalUnmarshal(t *testing.T) {
+	original := &ItAssetElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "it-asset"},
+	}
+
+	// Marshal to XML
+	xmlData, err := xml.MarshalIndent(original, "", "  ")
+	if err != nil {
+		t.Fatalf("Marshal failed: %v", err)
+	}
+
+	// Unmarshal back
+	var decoded ItAssetElement
+	if err := xml.Unmarshal(xmlData, &decoded); err != nil {
+		t.Fatalf("Unmarshal failed: %v", err)
+	}
+
+	// Re-marshal to compare
+	xmlData2, err := xml.MarshalIndent(&decoded, "", "  ")
+	if err != nil {
+		t.Fatalf("Re-marshal failed: %v", err)
+	}
+
+	// Compare XML outputs (normalize to handle Go encoder quirks)
+	normalized1 := normalizeXML(xmlData)
+	normalized2 := normalizeXML(xmlData2)
+	if normalized1 != normalized2 {
+		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestItAssetElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestItAssetElement_MarshalIndentClean(t *testing.T) {
+	elem := &ItAssetElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "it-asset"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestItAssetElement_ToBytes tests the ToBytes method
+func TestItAssetElement_ToBytes(t *testing.T) {
+	elem := &ItAssetElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "it-asset"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestItAssetElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestItAssetElement_SetElementPrefixes(t *testing.T) {
+	elem := &ItAssetElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "it-asset"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestItAssetElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestItAssetElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &ItAssetElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "it-asset"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestItAssetElement_SaveAndLoad tests SaveToFile and LoadItAssetFromFile
+func TestItAssetElement_SaveAndLoad(t *testing.T) {
+	elem := &ItAssetElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "it-asset"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadItAssetFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestItAssetElement_LoadFromBytes tests the LoadItAssetFromBytes function
+func TestItAssetElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<it-asset xmlns="http://scap.nist.gov/schema/asset-identification/1.1"></it-asset>`)
+
+	loaded, err := LoadItAssetFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
 	}
 }
 
@@ -1269,6 +2475,228 @@ func TestLocationAddressElement_MarshalUnmarshal(t *testing.T) {
 	}
 }
 
+// TestLocationAddressElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestLocationAddressElement_MarshalIndentClean(t *testing.T) {
+	elem := &LocationAddressElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "location-address"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestLocationAddressElement_ToBytes tests the ToBytes method
+func TestLocationAddressElement_ToBytes(t *testing.T) {
+	elem := &LocationAddressElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "location-address"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestLocationAddressElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestLocationAddressElement_SetElementPrefixes(t *testing.T) {
+	elem := &LocationAddressElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "location-address"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestLocationAddressElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestLocationAddressElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &LocationAddressElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "location-address"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestLocationAddressElement_SaveAndLoad tests SaveToFile and LoadLocationAddressFromFile
+func TestLocationAddressElement_SaveAndLoad(t *testing.T) {
+	elem := &LocationAddressElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "location-address"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadLocationAddressFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestLocationAddressElement_LoadFromBytes tests the LoadLocationAddressFromBytes function
+func TestLocationAddressElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<location-address xmlns="http://scap.nist.gov/schema/asset-identification/1.1"></location-address>`)
+
+	loaded, err := LoadLocationAddressFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
+}
+
+// TestLocationElement_MarshalUnmarshal tests XML round-trip for LocationElement
+func TestLocationElement_MarshalUnmarshal(t *testing.T) {
+	original := &LocationElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "location"},
+	}
+
+	// Marshal to XML
+	xmlData, err := xml.MarshalIndent(original, "", "  ")
+	if err != nil {
+		t.Fatalf("Marshal failed: %v", err)
+	}
+
+	// Unmarshal back
+	var decoded LocationElement
+	if err := xml.Unmarshal(xmlData, &decoded); err != nil {
+		t.Fatalf("Unmarshal failed: %v", err)
+	}
+
+	// Re-marshal to compare
+	xmlData2, err := xml.MarshalIndent(&decoded, "", "  ")
+	if err != nil {
+		t.Fatalf("Re-marshal failed: %v", err)
+	}
+
+	// Compare XML outputs (normalize to handle Go encoder quirks)
+	normalized1 := normalizeXML(xmlData)
+	normalized2 := normalizeXML(xmlData2)
+	if normalized1 != normalized2 {
+		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestLocationElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestLocationElement_MarshalIndentClean(t *testing.T) {
+	elem := &LocationElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "location"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestLocationElement_ToBytes tests the ToBytes method
+func TestLocationElement_ToBytes(t *testing.T) {
+	elem := &LocationElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "location"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestLocationElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestLocationElement_SetElementPrefixes(t *testing.T) {
+	elem := &LocationElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "location"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestLocationElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestLocationElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &LocationElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "location"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestLocationElement_SaveAndLoad tests SaveToFile and LoadLocationFromFile
+func TestLocationElement_SaveAndLoad(t *testing.T) {
+	elem := &LocationElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "location"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadLocationFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestLocationElement_LoadFromBytes tests the LoadLocationFromBytes function
+func TestLocationElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<location xmlns="http://scap.nist.gov/schema/asset-identification/1.1"></location>`)
+
+	loaded, err := LoadLocationFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
+}
+
 // TestLocationPointElement_MarshalUnmarshal tests XML round-trip for LocationPointElement
 func TestLocationPointElement_MarshalUnmarshal(t *testing.T) {
 	original := &LocationPointElement{
@@ -1298,6 +2726,101 @@ func TestLocationPointElement_MarshalUnmarshal(t *testing.T) {
 	normalized2 := normalizeXML(xmlData2)
 	if normalized1 != normalized2 {
 		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestLocationPointElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestLocationPointElement_MarshalIndentClean(t *testing.T) {
+	elem := &LocationPointElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "location-point"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestLocationPointElement_ToBytes tests the ToBytes method
+func TestLocationPointElement_ToBytes(t *testing.T) {
+	elem := &LocationPointElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "location-point"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestLocationPointElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestLocationPointElement_SetElementPrefixes(t *testing.T) {
+	elem := &LocationPointElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "location-point"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestLocationPointElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestLocationPointElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &LocationPointElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "location-point"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestLocationPointElement_SaveAndLoad tests SaveToFile and LoadLocationPointFromFile
+func TestLocationPointElement_SaveAndLoad(t *testing.T) {
+	elem := &LocationPointElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "location-point"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadLocationPointFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestLocationPointElement_LoadFromBytes tests the LoadLocationPointFromBytes function
+func TestLocationPointElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<location-point xmlns="http://scap.nist.gov/schema/asset-identification/1.1"></location-point>`)
+
+	loaded, err := LoadLocationPointFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
 	}
 }
 
@@ -1363,6 +2886,101 @@ func TestLocationRegionElement_MarshalUnmarshal(t *testing.T) {
 	}
 }
 
+// TestLocationRegionElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestLocationRegionElement_MarshalIndentClean(t *testing.T) {
+	elem := &LocationRegionElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "location-region"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestLocationRegionElement_ToBytes tests the ToBytes method
+func TestLocationRegionElement_ToBytes(t *testing.T) {
+	elem := &LocationRegionElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "location-region"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestLocationRegionElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestLocationRegionElement_SetElementPrefixes(t *testing.T) {
+	elem := &LocationRegionElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "location-region"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestLocationRegionElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestLocationRegionElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &LocationRegionElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "location-region"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestLocationRegionElement_SaveAndLoad tests SaveToFile and LoadLocationRegionFromFile
+func TestLocationRegionElement_SaveAndLoad(t *testing.T) {
+	elem := &LocationRegionElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "location-region"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadLocationRegionFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestLocationRegionElement_LoadFromBytes tests the LoadLocationRegionFromBytes function
+func TestLocationRegionElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<location-region xmlns="http://scap.nist.gov/schema/asset-identification/1.1"></location-region>`)
+
+	loaded, err := LoadLocationRegionFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
+}
+
 // TestLocationRegionElementType_MarshalUnmarshal tests XML round-trip for LocationRegionElementType
 func TestLocationRegionElementType_MarshalUnmarshal(t *testing.T) {
 	original := &LocationRegionElementType{}
@@ -1422,6 +3040,101 @@ func TestLocationsElement_MarshalUnmarshal(t *testing.T) {
 	normalized2 := normalizeXML(xmlData2)
 	if normalized1 != normalized2 {
 		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestLocationsElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestLocationsElement_MarshalIndentClean(t *testing.T) {
+	elem := &LocationsElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "locations"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestLocationsElement_ToBytes tests the ToBytes method
+func TestLocationsElement_ToBytes(t *testing.T) {
+	elem := &LocationsElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "locations"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestLocationsElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestLocationsElement_SetElementPrefixes(t *testing.T) {
+	elem := &LocationsElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "locations"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestLocationsElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestLocationsElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &LocationsElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "locations"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestLocationsElement_SaveAndLoad tests SaveToFile and LoadLocationsFromFile
+func TestLocationsElement_SaveAndLoad(t *testing.T) {
+	elem := &LocationsElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "locations"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadLocationsFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestLocationsElement_LoadFromBytes tests the LoadLocationsFromBytes function
+func TestLocationsElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<locations xmlns="http://scap.nist.gov/schema/asset-identification/1.1"></locations>`)
+
+	loaded, err := LoadLocationsFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
 	}
 }
 
@@ -1547,6 +3260,101 @@ func TestNetworkElement_MarshalUnmarshal(t *testing.T) {
 	}
 }
 
+// TestNetworkElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestNetworkElement_MarshalIndentClean(t *testing.T) {
+	elem := &NetworkElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "network"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestNetworkElement_ToBytes tests the ToBytes method
+func TestNetworkElement_ToBytes(t *testing.T) {
+	elem := &NetworkElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "network"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestNetworkElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestNetworkElement_SetElementPrefixes(t *testing.T) {
+	elem := &NetworkElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "network"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestNetworkElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestNetworkElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &NetworkElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "network"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestNetworkElement_SaveAndLoad tests SaveToFile and LoadNetworkFromFile
+func TestNetworkElement_SaveAndLoad(t *testing.T) {
+	elem := &NetworkElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "network"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadNetworkFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestNetworkElement_LoadFromBytes tests the LoadNetworkFromBytes function
+func TestNetworkElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<network xmlns="http://scap.nist.gov/schema/asset-identification/1.1"></network>`)
+
+	loaded, err := LoadNetworkFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
+}
+
 // TestNetworkInterfaceType_MarshalUnmarshal tests XML round-trip for NetworkInterfaceType
 func TestNetworkInterfaceType_MarshalUnmarshal(t *testing.T) {
 	original := &NetworkInterfaceType{}
@@ -1669,6 +3477,101 @@ func TestOrganizationElement_MarshalUnmarshal(t *testing.T) {
 	}
 }
 
+// TestOrganizationElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestOrganizationElement_MarshalIndentClean(t *testing.T) {
+	elem := &OrganizationElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "organization"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestOrganizationElement_ToBytes tests the ToBytes method
+func TestOrganizationElement_ToBytes(t *testing.T) {
+	elem := &OrganizationElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "organization"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestOrganizationElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestOrganizationElement_SetElementPrefixes(t *testing.T) {
+	elem := &OrganizationElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "organization"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestOrganizationElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestOrganizationElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &OrganizationElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "organization"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestOrganizationElement_SaveAndLoad tests SaveToFile and LoadOrganizationFromFile
+func TestOrganizationElement_SaveAndLoad(t *testing.T) {
+	elem := &OrganizationElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "organization"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadOrganizationFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestOrganizationElement_LoadFromBytes tests the LoadOrganizationFromBytes function
+func TestOrganizationElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<organization xmlns="http://scap.nist.gov/schema/asset-identification/1.1"></organization>`)
+
+	loaded, err := LoadOrganizationFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
+}
+
 // TestOrganizationType_MarshalUnmarshal tests XML round-trip for OrganizationType
 func TestOrganizationType_MarshalUnmarshal(t *testing.T) {
 	original := &OrganizationType{}
@@ -1728,6 +3631,101 @@ func TestPersonElement_MarshalUnmarshal(t *testing.T) {
 	normalized2 := normalizeXML(xmlData2)
 	if normalized1 != normalized2 {
 		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestPersonElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestPersonElement_MarshalIndentClean(t *testing.T) {
+	elem := &PersonElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "person"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestPersonElement_ToBytes tests the ToBytes method
+func TestPersonElement_ToBytes(t *testing.T) {
+	elem := &PersonElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "person"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestPersonElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestPersonElement_SetElementPrefixes(t *testing.T) {
+	elem := &PersonElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "person"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestPersonElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestPersonElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &PersonElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "person"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestPersonElement_SaveAndLoad tests SaveToFile and LoadPersonFromFile
+func TestPersonElement_SaveAndLoad(t *testing.T) {
+	elem := &PersonElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "person"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadPersonFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestPersonElement_LoadFromBytes tests the LoadPersonFromBytes function
+func TestPersonElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<person xmlns="http://scap.nist.gov/schema/asset-identification/1.1"></person>`)
+
+	loaded, err := LoadPersonFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
 	}
 }
 
@@ -1883,6 +3881,101 @@ func TestServedByElement_MarshalUnmarshal(t *testing.T) {
 	}
 }
 
+// TestServedByElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestServedByElement_MarshalIndentClean(t *testing.T) {
+	elem := &ServedByElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "served-by"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestServedByElement_ToBytes tests the ToBytes method
+func TestServedByElement_ToBytes(t *testing.T) {
+	elem := &ServedByElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "served-by"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestServedByElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestServedByElement_SetElementPrefixes(t *testing.T) {
+	elem := &ServedByElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "served-by"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestServedByElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestServedByElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &ServedByElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "served-by"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestServedByElement_SaveAndLoad tests SaveToFile and LoadServedByFromFile
+func TestServedByElement_SaveAndLoad(t *testing.T) {
+	elem := &ServedByElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "served-by"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadServedByFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestServedByElement_LoadFromBytes tests the LoadServedByFromBytes function
+func TestServedByElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<served-by xmlns="http://scap.nist.gov/schema/asset-identification/1.1"></served-by>`)
+
+	loaded, err := LoadServedByFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
+}
+
 // TestServiceElement_MarshalUnmarshal tests XML round-trip for ServiceElement
 func TestServiceElement_MarshalUnmarshal(t *testing.T) {
 	original := &ServiceElement{
@@ -1912,6 +4005,101 @@ func TestServiceElement_MarshalUnmarshal(t *testing.T) {
 	normalized2 := normalizeXML(xmlData2)
 	if normalized1 != normalized2 {
 		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestServiceElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestServiceElement_MarshalIndentClean(t *testing.T) {
+	elem := &ServiceElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "service"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestServiceElement_ToBytes tests the ToBytes method
+func TestServiceElement_ToBytes(t *testing.T) {
+	elem := &ServiceElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "service"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestServiceElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestServiceElement_SetElementPrefixes(t *testing.T) {
+	elem := &ServiceElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "service"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestServiceElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestServiceElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &ServiceElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "service"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestServiceElement_SaveAndLoad tests SaveToFile and LoadServiceFromFile
+func TestServiceElement_SaveAndLoad(t *testing.T) {
+	elem := &ServiceElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "service"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadServiceFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestServiceElement_LoadFromBytes tests the LoadServiceFromBytes function
+func TestServiceElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<service xmlns="http://scap.nist.gov/schema/asset-identification/1.1"></service>`)
+
+	loaded, err := LoadServiceFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
 	}
 }
 
@@ -1977,6 +4165,101 @@ func TestSoftwareElement_MarshalUnmarshal(t *testing.T) {
 	}
 }
 
+// TestSoftwareElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestSoftwareElement_MarshalIndentClean(t *testing.T) {
+	elem := &SoftwareElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "software"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestSoftwareElement_ToBytes tests the ToBytes method
+func TestSoftwareElement_ToBytes(t *testing.T) {
+	elem := &SoftwareElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "software"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestSoftwareElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestSoftwareElement_SetElementPrefixes(t *testing.T) {
+	elem := &SoftwareElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "software"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestSoftwareElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestSoftwareElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &SoftwareElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "software"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestSoftwareElement_SaveAndLoad tests SaveToFile and LoadSoftwareFromFile
+func TestSoftwareElement_SaveAndLoad(t *testing.T) {
+	elem := &SoftwareElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "software"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadSoftwareFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestSoftwareElement_LoadFromBytes tests the LoadSoftwareFromBytes function
+func TestSoftwareElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<software xmlns="http://scap.nist.gov/schema/asset-identification/1.1"></software>`)
+
+	loaded, err := LoadSoftwareFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
+}
+
 // TestSoftwareType_MarshalUnmarshal tests XML round-trip for SoftwareType
 func TestSoftwareType_MarshalUnmarshal(t *testing.T) {
 	original := &SoftwareType{}
@@ -2039,6 +4322,101 @@ func TestSyntheticIdElement_MarshalUnmarshal(t *testing.T) {
 	}
 }
 
+// TestSyntheticIdElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestSyntheticIdElement_MarshalIndentClean(t *testing.T) {
+	elem := &SyntheticIdElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "synthetic-id"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestSyntheticIdElement_ToBytes tests the ToBytes method
+func TestSyntheticIdElement_ToBytes(t *testing.T) {
+	elem := &SyntheticIdElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "synthetic-id"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestSyntheticIdElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestSyntheticIdElement_SetElementPrefixes(t *testing.T) {
+	elem := &SyntheticIdElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "synthetic-id"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestSyntheticIdElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestSyntheticIdElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &SyntheticIdElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "synthetic-id"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestSyntheticIdElement_SaveAndLoad tests SaveToFile and LoadSyntheticIdFromFile
+func TestSyntheticIdElement_SaveAndLoad(t *testing.T) {
+	elem := &SyntheticIdElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "synthetic-id"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadSyntheticIdFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestSyntheticIdElement_LoadFromBytes tests the LoadSyntheticIdFromBytes function
+func TestSyntheticIdElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<synthetic-id xmlns="http://scap.nist.gov/schema/asset-identification/1.1"></synthetic-id>`)
+
+	loaded, err := LoadSyntheticIdFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
+}
+
 // TestSyntheticIdElementType_MarshalUnmarshal tests XML round-trip for SyntheticIdElementType
 func TestSyntheticIdElementType_MarshalUnmarshal(t *testing.T) {
 	original := &SyntheticIdElementType{}
@@ -2098,6 +4476,101 @@ func TestSystemElement_MarshalUnmarshal(t *testing.T) {
 	normalized2 := normalizeXML(xmlData2)
 	if normalized1 != normalized2 {
 		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestSystemElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestSystemElement_MarshalIndentClean(t *testing.T) {
+	elem := &SystemElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "system"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestSystemElement_ToBytes tests the ToBytes method
+func TestSystemElement_ToBytes(t *testing.T) {
+	elem := &SystemElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "system"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestSystemElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestSystemElement_SetElementPrefixes(t *testing.T) {
+	elem := &SystemElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "system"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestSystemElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestSystemElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &SystemElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "system"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestSystemElement_SaveAndLoad tests SaveToFile and LoadSystemFromFile
+func TestSystemElement_SaveAndLoad(t *testing.T) {
+	elem := &SystemElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "system"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadSystemFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestSystemElement_LoadFromBytes tests the LoadSystemFromBytes function
+func TestSystemElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<system xmlns="http://scap.nist.gov/schema/asset-identification/1.1"></system>`)
+
+	loaded, err := LoadSystemFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
 	}
 }
 
@@ -2190,6 +4663,101 @@ func TestTelephoneNumberElement_MarshalUnmarshal(t *testing.T) {
 	normalized2 := normalizeXML(xmlData2)
 	if normalized1 != normalized2 {
 		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestTelephoneNumberElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestTelephoneNumberElement_MarshalIndentClean(t *testing.T) {
+	elem := &TelephoneNumberElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "telephone-number"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestTelephoneNumberElement_ToBytes tests the ToBytes method
+func TestTelephoneNumberElement_ToBytes(t *testing.T) {
+	elem := &TelephoneNumberElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "telephone-number"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestTelephoneNumberElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestTelephoneNumberElement_SetElementPrefixes(t *testing.T) {
+	elem := &TelephoneNumberElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "telephone-number"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestTelephoneNumberElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestTelephoneNumberElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &TelephoneNumberElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "telephone-number"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestTelephoneNumberElement_SaveAndLoad tests SaveToFile and LoadTelephoneNumberFromFile
+func TestTelephoneNumberElement_SaveAndLoad(t *testing.T) {
+	elem := &TelephoneNumberElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "telephone-number"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadTelephoneNumberFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestTelephoneNumberElement_LoadFromBytes tests the LoadTelephoneNumberFromBytes function
+func TestTelephoneNumberElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<telephone-number xmlns="http://scap.nist.gov/schema/asset-identification/1.1"></telephone-number>`)
+
+	loaded, err := LoadTelephoneNumberFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
 	}
 }
 
@@ -2315,6 +4883,101 @@ func TestWebsiteElement_MarshalUnmarshal(t *testing.T) {
 	}
 }
 
+// TestWebsiteElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestWebsiteElement_MarshalIndentClean(t *testing.T) {
+	elem := &WebsiteElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "website"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestWebsiteElement_ToBytes tests the ToBytes method
+func TestWebsiteElement_ToBytes(t *testing.T) {
+	elem := &WebsiteElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "website"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestWebsiteElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestWebsiteElement_SetElementPrefixes(t *testing.T) {
+	elem := &WebsiteElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "website"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestWebsiteElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestWebsiteElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &WebsiteElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "website"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestWebsiteElement_SaveAndLoad tests SaveToFile and LoadWebsiteFromFile
+func TestWebsiteElement_SaveAndLoad(t *testing.T) {
+	elem := &WebsiteElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "website"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadWebsiteFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestWebsiteElement_LoadFromBytes tests the LoadWebsiteFromBytes function
+func TestWebsiteElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<website xmlns="http://scap.nist.gov/schema/asset-identification/1.1"></website>`)
+
+	loaded, err := LoadWebsiteFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
+}
+
 // TestWebsiteType_MarshalUnmarshal tests XML round-trip for WebsiteType
 func TestWebsiteType_MarshalUnmarshal(t *testing.T) {
 	original := &WebsiteType{}
@@ -2377,6 +5040,101 @@ func TestWebsiteUrlElement_MarshalUnmarshal(t *testing.T) {
 	}
 }
 
+// TestWebsiteUrlElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestWebsiteUrlElement_MarshalIndentClean(t *testing.T) {
+	elem := &WebsiteUrlElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "website-url"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestWebsiteUrlElement_ToBytes tests the ToBytes method
+func TestWebsiteUrlElement_ToBytes(t *testing.T) {
+	elem := &WebsiteUrlElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "website-url"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestWebsiteUrlElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestWebsiteUrlElement_SetElementPrefixes(t *testing.T) {
+	elem := &WebsiteUrlElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "website-url"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestWebsiteUrlElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestWebsiteUrlElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &WebsiteUrlElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "website-url"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestWebsiteUrlElement_SaveAndLoad tests SaveToFile and LoadWebsiteUrlFromFile
+func TestWebsiteUrlElement_SaveAndLoad(t *testing.T) {
+	elem := &WebsiteUrlElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "website-url"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadWebsiteUrlFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestWebsiteUrlElement_LoadFromBytes tests the LoadWebsiteUrlFromBytes function
+func TestWebsiteUrlElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<website-url xmlns="http://scap.nist.gov/schema/asset-identification/1.1"></website-url>`)
+
+	loaded, err := LoadWebsiteUrlFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
+}
+
 // TestWebsiteUrlElementType_MarshalUnmarshal tests XML round-trip for WebsiteUrlElementType
 func TestWebsiteUrlElementType_MarshalUnmarshal(t *testing.T) {
 	original := &WebsiteUrlElementType{}
@@ -2404,5 +5162,23 @@ func TestWebsiteUrlElementType_MarshalUnmarshal(t *testing.T) {
 	normalized2 := normalizeXML(xmlData2)
 	if normalized1 != normalized2 {
 		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestExtractElementPrefixes tests the ExtractElementPrefixes helper function
+func TestExtractElementPrefixes(t *testing.T) {
+	xmlData := []byte(`<root xmlns:ex="http://example.com"><ex:child/></root>`)
+	prefixes := ExtractElementPrefixes(xmlData)
+	if prefixes == nil {
+		t.Error("ExtractElementPrefixes returned nil")
+	}
+}
+
+// TestExtractElementsWithXmlns tests the ExtractElementsWithXmlns helper function
+func TestExtractElementsWithXmlns(t *testing.T) {
+	xmlData := []byte(`<root xmlns="http://example.com"><child xmlns="http://other.com"/></root>`)
+	elemXmlns := ExtractElementsWithXmlns(xmlData)
+	if elemXmlns == nil {
+		t.Error("ExtractElementsWithXmlns returned nil")
 	}
 }

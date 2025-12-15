@@ -5,6 +5,8 @@ package pkg_2_0
 
 import (
 	"encoding/xml"
+	"os"
+	"path/filepath"
 	"regexp"
 	"testing"
 )
@@ -76,6 +78,101 @@ func TestAddressDetailsElement_MarshalUnmarshal(t *testing.T) {
 	normalized2 := normalizeXML(xmlData2)
 	if normalized1 != normalized2 {
 		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestAddressDetailsElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestAddressDetailsElement_MarshalIndentClean(t *testing.T) {
+	elem := &AddressDetailsElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "AddressDetails"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestAddressDetailsElement_ToBytes tests the ToBytes method
+func TestAddressDetailsElement_ToBytes(t *testing.T) {
+	elem := &AddressDetailsElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "AddressDetails"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestAddressDetailsElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestAddressDetailsElement_SetElementPrefixes(t *testing.T) {
+	elem := &AddressDetailsElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "AddressDetails"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestAddressDetailsElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestAddressDetailsElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &AddressDetailsElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "AddressDetails"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestAddressDetailsElement_SaveAndLoad tests SaveToFile and LoadAddressDetailsFromFile
+func TestAddressDetailsElement_SaveAndLoad(t *testing.T) {
+	elem := &AddressDetailsElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "AddressDetails"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadAddressDetailsFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestAddressDetailsElement_LoadFromBytes tests the LoadAddressDetailsFromBytes function
+func TestAddressDetailsElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<AddressDetails xmlns="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0"></AddressDetails>`)
+
+	loaded, err := LoadAddressDetailsFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
 	}
 }
 
@@ -231,6 +328,101 @@ func TestAddressLineElement_MarshalUnmarshal(t *testing.T) {
 	}
 }
 
+// TestAddressLineElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestAddressLineElement_MarshalIndentClean(t *testing.T) {
+	elem := &AddressLineElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "AddressLine"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestAddressLineElement_ToBytes tests the ToBytes method
+func TestAddressLineElement_ToBytes(t *testing.T) {
+	elem := &AddressLineElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "AddressLine"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestAddressLineElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestAddressLineElement_SetElementPrefixes(t *testing.T) {
+	elem := &AddressLineElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "AddressLine"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestAddressLineElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestAddressLineElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &AddressLineElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "AddressLine"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestAddressLineElement_SaveAndLoad tests SaveToFile and LoadAddressLineFromFile
+func TestAddressLineElement_SaveAndLoad(t *testing.T) {
+	elem := &AddressLineElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "AddressLine"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadAddressLineFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestAddressLineElement_LoadFromBytes tests the LoadAddressLineFromBytes function
+func TestAddressLineElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<AddressLine xmlns="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0"></AddressLine>`)
+
+	loaded, err := LoadAddressLineFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
+}
+
 // TestAddressLineElementType_MarshalUnmarshal tests XML round-trip for AddressLineElementType
 func TestAddressLineElementType_MarshalUnmarshal(t *testing.T) {
 	original := &AddressLineElementType{}
@@ -380,6 +572,101 @@ func TestAdministrativeAreaElement_MarshalUnmarshal(t *testing.T) {
 	normalized2 := normalizeXML(xmlData2)
 	if normalized1 != normalized2 {
 		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestAdministrativeAreaElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestAdministrativeAreaElement_MarshalIndentClean(t *testing.T) {
+	elem := &AdministrativeAreaElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "AdministrativeArea"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestAdministrativeAreaElement_ToBytes tests the ToBytes method
+func TestAdministrativeAreaElement_ToBytes(t *testing.T) {
+	elem := &AdministrativeAreaElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "AdministrativeArea"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestAdministrativeAreaElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestAdministrativeAreaElement_SetElementPrefixes(t *testing.T) {
+	elem := &AdministrativeAreaElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "AdministrativeArea"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestAdministrativeAreaElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestAdministrativeAreaElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &AdministrativeAreaElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "AdministrativeArea"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestAdministrativeAreaElement_SaveAndLoad tests SaveToFile and LoadAdministrativeAreaFromFile
+func TestAdministrativeAreaElement_SaveAndLoad(t *testing.T) {
+	elem := &AdministrativeAreaElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "AdministrativeArea"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadAdministrativeAreaFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestAdministrativeAreaElement_LoadFromBytes tests the LoadAdministrativeAreaFromBytes function
+func TestAdministrativeAreaElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<AdministrativeArea xmlns="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0"></AdministrativeArea>`)
+
+	loaded, err := LoadAdministrativeAreaFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
 	}
 }
 
@@ -595,6 +882,101 @@ func TestCountryNameElement_MarshalUnmarshal(t *testing.T) {
 	}
 }
 
+// TestCountryNameElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestCountryNameElement_MarshalIndentClean(t *testing.T) {
+	elem := &CountryNameElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "CountryName"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestCountryNameElement_ToBytes tests the ToBytes method
+func TestCountryNameElement_ToBytes(t *testing.T) {
+	elem := &CountryNameElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "CountryName"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestCountryNameElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestCountryNameElement_SetElementPrefixes(t *testing.T) {
+	elem := &CountryNameElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "CountryName"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestCountryNameElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestCountryNameElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &CountryNameElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "CountryName"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestCountryNameElement_SaveAndLoad tests SaveToFile and LoadCountryNameFromFile
+func TestCountryNameElement_SaveAndLoad(t *testing.T) {
+	elem := &CountryNameElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "CountryName"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadCountryNameFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestCountryNameElement_LoadFromBytes tests the LoadCountryNameFromBytes function
+func TestCountryNameElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<CountryName xmlns="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0"></CountryName>`)
+
+	loaded, err := LoadCountryNameFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
+}
+
 // TestCountryNameElementType_MarshalUnmarshal tests XML round-trip for CountryNameElementType
 func TestCountryNameElementType_MarshalUnmarshal(t *testing.T) {
 	original := &CountryNameElementType{}
@@ -654,6 +1036,101 @@ func TestDepartmentElement_MarshalUnmarshal(t *testing.T) {
 	normalized2 := normalizeXML(xmlData2)
 	if normalized1 != normalized2 {
 		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestDepartmentElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestDepartmentElement_MarshalIndentClean(t *testing.T) {
+	elem := &DepartmentElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "Department"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestDepartmentElement_ToBytes tests the ToBytes method
+func TestDepartmentElement_ToBytes(t *testing.T) {
+	elem := &DepartmentElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "Department"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestDepartmentElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestDepartmentElement_SetElementPrefixes(t *testing.T) {
+	elem := &DepartmentElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "Department"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestDepartmentElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestDepartmentElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &DepartmentElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "Department"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestDepartmentElement_SaveAndLoad tests SaveToFile and LoadDepartmentFromFile
+func TestDepartmentElement_SaveAndLoad(t *testing.T) {
+	elem := &DepartmentElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "Department"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadDepartmentFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestDepartmentElement_LoadFromBytes tests the LoadDepartmentFromBytes function
+func TestDepartmentElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<Department xmlns="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0"></Department>`)
+
+	loaded, err := LoadDepartmentFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
 	}
 }
 
@@ -1079,6 +1556,101 @@ func TestLocalityElement_MarshalUnmarshal(t *testing.T) {
 	}
 }
 
+// TestLocalityElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestLocalityElement_MarshalIndentClean(t *testing.T) {
+	elem := &LocalityElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "Locality"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestLocalityElement_ToBytes tests the ToBytes method
+func TestLocalityElement_ToBytes(t *testing.T) {
+	elem := &LocalityElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "Locality"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestLocalityElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestLocalityElement_SetElementPrefixes(t *testing.T) {
+	elem := &LocalityElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "Locality"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestLocalityElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestLocalityElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &LocalityElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "Locality"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestLocalityElement_SaveAndLoad tests SaveToFile and LoadLocalityFromFile
+func TestLocalityElement_SaveAndLoad(t *testing.T) {
+	elem := &LocalityElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "Locality"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadLocalityFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestLocalityElement_LoadFromBytes tests the LoadLocalityFromBytes function
+func TestLocalityElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<Locality xmlns="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0"></Locality>`)
+
+	loaded, err := LoadLocalityFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
+}
+
 // TestLocalityElementType_MarshalUnmarshal tests XML round-trip for LocalityElementType
 func TestLocalityElementType_MarshalUnmarshal(t *testing.T) {
 	original := &LocalityElementType{}
@@ -1261,6 +1833,101 @@ func TestPostBoxElement_MarshalUnmarshal(t *testing.T) {
 	}
 }
 
+// TestPostBoxElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestPostBoxElement_MarshalIndentClean(t *testing.T) {
+	elem := &PostBoxElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "PostBox"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestPostBoxElement_ToBytes tests the ToBytes method
+func TestPostBoxElement_ToBytes(t *testing.T) {
+	elem := &PostBoxElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "PostBox"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestPostBoxElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestPostBoxElement_SetElementPrefixes(t *testing.T) {
+	elem := &PostBoxElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "PostBox"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestPostBoxElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestPostBoxElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &PostBoxElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "PostBox"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestPostBoxElement_SaveAndLoad tests SaveToFile and LoadPostBoxFromFile
+func TestPostBoxElement_SaveAndLoad(t *testing.T) {
+	elem := &PostBoxElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "PostBox"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadPostBoxFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestPostBoxElement_LoadFromBytes tests the LoadPostBoxFromBytes function
+func TestPostBoxElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<PostBox xmlns="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0"></PostBox>`)
+
+	loaded, err := LoadPostBoxFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
+}
+
 // TestPostBoxElementType_MarshalUnmarshal tests XML round-trip for PostBoxElementType
 func TestPostBoxElementType_MarshalUnmarshal(t *testing.T) {
 	original := &PostBoxElementType{}
@@ -1440,6 +2107,101 @@ func TestPostOfficeElement_MarshalUnmarshal(t *testing.T) {
 	normalized2 := normalizeXML(xmlData2)
 	if normalized1 != normalized2 {
 		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestPostOfficeElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestPostOfficeElement_MarshalIndentClean(t *testing.T) {
+	elem := &PostOfficeElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "PostOffice"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestPostOfficeElement_ToBytes tests the ToBytes method
+func TestPostOfficeElement_ToBytes(t *testing.T) {
+	elem := &PostOfficeElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "PostOffice"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestPostOfficeElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestPostOfficeElement_SetElementPrefixes(t *testing.T) {
+	elem := &PostOfficeElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "PostOffice"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestPostOfficeElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestPostOfficeElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &PostOfficeElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "PostOffice"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestPostOfficeElement_SaveAndLoad tests SaveToFile and LoadPostOfficeFromFile
+func TestPostOfficeElement_SaveAndLoad(t *testing.T) {
+	elem := &PostOfficeElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "PostOffice"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadPostOfficeFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestPostOfficeElement_LoadFromBytes tests the LoadPostOfficeFromBytes function
+func TestPostOfficeElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<PostOffice xmlns="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0"></PostOffice>`)
+
+	loaded, err := LoadPostOfficeFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
 	}
 }
 
@@ -1652,6 +2414,101 @@ func TestPostalCodeElement_MarshalUnmarshal(t *testing.T) {
 	normalized2 := normalizeXML(xmlData2)
 	if normalized1 != normalized2 {
 		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestPostalCodeElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestPostalCodeElement_MarshalIndentClean(t *testing.T) {
+	elem := &PostalCodeElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "PostalCode"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestPostalCodeElement_ToBytes tests the ToBytes method
+func TestPostalCodeElement_ToBytes(t *testing.T) {
+	elem := &PostalCodeElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "PostalCode"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestPostalCodeElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestPostalCodeElement_SetElementPrefixes(t *testing.T) {
+	elem := &PostalCodeElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "PostalCode"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestPostalCodeElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestPostalCodeElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &PostalCodeElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "PostalCode"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestPostalCodeElement_SaveAndLoad tests SaveToFile and LoadPostalCodeFromFile
+func TestPostalCodeElement_SaveAndLoad(t *testing.T) {
+	elem := &PostalCodeElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "PostalCode"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadPostalCodeFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestPostalCodeElement_LoadFromBytes tests the LoadPostalCodeFromBytes function
+func TestPostalCodeElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<PostalCode xmlns="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0"></PostalCode>`)
+
+	loaded, err := LoadPostalCodeFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
 	}
 }
 
@@ -1897,6 +2754,101 @@ func TestPremiseElement_MarshalUnmarshal(t *testing.T) {
 	}
 }
 
+// TestPremiseElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestPremiseElement_MarshalIndentClean(t *testing.T) {
+	elem := &PremiseElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "Premise"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestPremiseElement_ToBytes tests the ToBytes method
+func TestPremiseElement_ToBytes(t *testing.T) {
+	elem := &PremiseElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "Premise"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestPremiseElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestPremiseElement_SetElementPrefixes(t *testing.T) {
+	elem := &PremiseElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "Premise"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestPremiseElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestPremiseElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &PremiseElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "Premise"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestPremiseElement_SaveAndLoad tests SaveToFile and LoadPremiseFromFile
+func TestPremiseElement_SaveAndLoad(t *testing.T) {
+	elem := &PremiseElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "Premise"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadPremiseFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestPremiseElement_LoadFromBytes tests the LoadPremiseFromBytes function
+func TestPremiseElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<Premise xmlns="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0"></Premise>`)
+
+	loaded, err := LoadPremiseFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
+}
+
 // TestPremiseElementType_MarshalUnmarshal tests XML round-trip for PremiseElementType
 func TestPremiseElementType_MarshalUnmarshal(t *testing.T) {
 	original := &PremiseElementType{}
@@ -2019,6 +2971,101 @@ func TestPremiseNumberElement_MarshalUnmarshal(t *testing.T) {
 	}
 }
 
+// TestPremiseNumberElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestPremiseNumberElement_MarshalIndentClean(t *testing.T) {
+	elem := &PremiseNumberElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "PremiseNumber"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestPremiseNumberElement_ToBytes tests the ToBytes method
+func TestPremiseNumberElement_ToBytes(t *testing.T) {
+	elem := &PremiseNumberElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "PremiseNumber"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestPremiseNumberElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestPremiseNumberElement_SetElementPrefixes(t *testing.T) {
+	elem := &PremiseNumberElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "PremiseNumber"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestPremiseNumberElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestPremiseNumberElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &PremiseNumberElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "PremiseNumber"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestPremiseNumberElement_SaveAndLoad tests SaveToFile and LoadPremiseNumberFromFile
+func TestPremiseNumberElement_SaveAndLoad(t *testing.T) {
+	elem := &PremiseNumberElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "PremiseNumber"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadPremiseNumberFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestPremiseNumberElement_LoadFromBytes tests the LoadPremiseNumberFromBytes function
+func TestPremiseNumberElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<PremiseNumber xmlns="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0"></PremiseNumber>`)
+
+	loaded, err := LoadPremiseNumberFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
+}
+
 // TestPremiseNumberElementType_MarshalUnmarshal tests XML round-trip for PremiseNumberElementType
 func TestPremiseNumberElementType_MarshalUnmarshal(t *testing.T) {
 	original := &PremiseNumberElementType{}
@@ -2078,6 +3125,101 @@ func TestPremiseNumberPrefixElement_MarshalUnmarshal(t *testing.T) {
 	normalized2 := normalizeXML(xmlData2)
 	if normalized1 != normalized2 {
 		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestPremiseNumberPrefixElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestPremiseNumberPrefixElement_MarshalIndentClean(t *testing.T) {
+	elem := &PremiseNumberPrefixElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "PremiseNumberPrefix"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestPremiseNumberPrefixElement_ToBytes tests the ToBytes method
+func TestPremiseNumberPrefixElement_ToBytes(t *testing.T) {
+	elem := &PremiseNumberPrefixElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "PremiseNumberPrefix"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestPremiseNumberPrefixElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestPremiseNumberPrefixElement_SetElementPrefixes(t *testing.T) {
+	elem := &PremiseNumberPrefixElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "PremiseNumberPrefix"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestPremiseNumberPrefixElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestPremiseNumberPrefixElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &PremiseNumberPrefixElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "PremiseNumberPrefix"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestPremiseNumberPrefixElement_SaveAndLoad tests SaveToFile and LoadPremiseNumberPrefixFromFile
+func TestPremiseNumberPrefixElement_SaveAndLoad(t *testing.T) {
+	elem := &PremiseNumberPrefixElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "PremiseNumberPrefix"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadPremiseNumberPrefixFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestPremiseNumberPrefixElement_LoadFromBytes tests the LoadPremiseNumberPrefixFromBytes function
+func TestPremiseNumberPrefixElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<PremiseNumberPrefix xmlns="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0"></PremiseNumberPrefix>`)
+
+	loaded, err := LoadPremiseNumberPrefixFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
 	}
 }
 
@@ -2230,6 +3372,101 @@ func TestPremiseNumberSuffixElement_MarshalUnmarshal(t *testing.T) {
 	normalized2 := normalizeXML(xmlData2)
 	if normalized1 != normalized2 {
 		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestPremiseNumberSuffixElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestPremiseNumberSuffixElement_MarshalIndentClean(t *testing.T) {
+	elem := &PremiseNumberSuffixElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "PremiseNumberSuffix"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestPremiseNumberSuffixElement_ToBytes tests the ToBytes method
+func TestPremiseNumberSuffixElement_ToBytes(t *testing.T) {
+	elem := &PremiseNumberSuffixElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "PremiseNumberSuffix"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestPremiseNumberSuffixElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestPremiseNumberSuffixElement_SetElementPrefixes(t *testing.T) {
+	elem := &PremiseNumberSuffixElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "PremiseNumberSuffix"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestPremiseNumberSuffixElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestPremiseNumberSuffixElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &PremiseNumberSuffixElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "PremiseNumberSuffix"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestPremiseNumberSuffixElement_SaveAndLoad tests SaveToFile and LoadPremiseNumberSuffixFromFile
+func TestPremiseNumberSuffixElement_SaveAndLoad(t *testing.T) {
+	elem := &PremiseNumberSuffixElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "PremiseNumberSuffix"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadPremiseNumberSuffixFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestPremiseNumberSuffixElement_LoadFromBytes tests the LoadPremiseNumberSuffixFromBytes function
+func TestPremiseNumberSuffixElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<PremiseNumberSuffix xmlns="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0"></PremiseNumberSuffix>`)
+
+	loaded, err := LoadPremiseNumberSuffixFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
 	}
 }
 
@@ -2595,6 +3832,101 @@ func TestThoroughfareElement_MarshalUnmarshal(t *testing.T) {
 	}
 }
 
+// TestThoroughfareElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestThoroughfareElement_MarshalIndentClean(t *testing.T) {
+	elem := &ThoroughfareElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "Thoroughfare"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestThoroughfareElement_ToBytes tests the ToBytes method
+func TestThoroughfareElement_ToBytes(t *testing.T) {
+	elem := &ThoroughfareElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "Thoroughfare"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestThoroughfareElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestThoroughfareElement_SetElementPrefixes(t *testing.T) {
+	elem := &ThoroughfareElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "Thoroughfare"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestThoroughfareElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestThoroughfareElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &ThoroughfareElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "Thoroughfare"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestThoroughfareElement_SaveAndLoad tests SaveToFile and LoadThoroughfareFromFile
+func TestThoroughfareElement_SaveAndLoad(t *testing.T) {
+	elem := &ThoroughfareElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "Thoroughfare"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadThoroughfareFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestThoroughfareElement_LoadFromBytes tests the LoadThoroughfareFromBytes function
+func TestThoroughfareElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<Thoroughfare xmlns="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0"></Thoroughfare>`)
+
+	loaded, err := LoadThoroughfareFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
+}
+
 // TestThoroughfareElementType_MarshalUnmarshal tests XML round-trip for ThoroughfareElementType
 func TestThoroughfareElementType_MarshalUnmarshal(t *testing.T) {
 	original := &ThoroughfareElementType{}
@@ -2717,6 +4049,101 @@ func TestThoroughfareNumberElement_MarshalUnmarshal(t *testing.T) {
 	}
 }
 
+// TestThoroughfareNumberElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestThoroughfareNumberElement_MarshalIndentClean(t *testing.T) {
+	elem := &ThoroughfareNumberElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "ThoroughfareNumber"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestThoroughfareNumberElement_ToBytes tests the ToBytes method
+func TestThoroughfareNumberElement_ToBytes(t *testing.T) {
+	elem := &ThoroughfareNumberElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "ThoroughfareNumber"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestThoroughfareNumberElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestThoroughfareNumberElement_SetElementPrefixes(t *testing.T) {
+	elem := &ThoroughfareNumberElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "ThoroughfareNumber"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestThoroughfareNumberElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestThoroughfareNumberElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &ThoroughfareNumberElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "ThoroughfareNumber"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestThoroughfareNumberElement_SaveAndLoad tests SaveToFile and LoadThoroughfareNumberFromFile
+func TestThoroughfareNumberElement_SaveAndLoad(t *testing.T) {
+	elem := &ThoroughfareNumberElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "ThoroughfareNumber"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadThoroughfareNumberFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestThoroughfareNumberElement_LoadFromBytes tests the LoadThoroughfareNumberFromBytes function
+func TestThoroughfareNumberElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<ThoroughfareNumber xmlns="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0"></ThoroughfareNumber>`)
+
+	loaded, err := LoadThoroughfareNumberFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
+}
+
 // TestThoroughfareNumberElementType_MarshalUnmarshal tests XML round-trip for ThoroughfareNumberElementType
 func TestThoroughfareNumberElementType_MarshalUnmarshal(t *testing.T) {
 	original := &ThoroughfareNumberElementType{}
@@ -2809,6 +4236,101 @@ func TestThoroughfareNumberPrefixElement_MarshalUnmarshal(t *testing.T) {
 	}
 }
 
+// TestThoroughfareNumberPrefixElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestThoroughfareNumberPrefixElement_MarshalIndentClean(t *testing.T) {
+	elem := &ThoroughfareNumberPrefixElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "ThoroughfareNumberPrefix"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestThoroughfareNumberPrefixElement_ToBytes tests the ToBytes method
+func TestThoroughfareNumberPrefixElement_ToBytes(t *testing.T) {
+	elem := &ThoroughfareNumberPrefixElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "ThoroughfareNumberPrefix"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestThoroughfareNumberPrefixElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestThoroughfareNumberPrefixElement_SetElementPrefixes(t *testing.T) {
+	elem := &ThoroughfareNumberPrefixElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "ThoroughfareNumberPrefix"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestThoroughfareNumberPrefixElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestThoroughfareNumberPrefixElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &ThoroughfareNumberPrefixElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "ThoroughfareNumberPrefix"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestThoroughfareNumberPrefixElement_SaveAndLoad tests SaveToFile and LoadThoroughfareNumberPrefixFromFile
+func TestThoroughfareNumberPrefixElement_SaveAndLoad(t *testing.T) {
+	elem := &ThoroughfareNumberPrefixElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "ThoroughfareNumberPrefix"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadThoroughfareNumberPrefixFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestThoroughfareNumberPrefixElement_LoadFromBytes tests the LoadThoroughfareNumberPrefixFromBytes function
+func TestThoroughfareNumberPrefixElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<ThoroughfareNumberPrefix xmlns="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0"></ThoroughfareNumberPrefix>`)
+
+	loaded, err := LoadThoroughfareNumberPrefixFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
+}
+
 // TestThoroughfareNumberPrefixElementType_MarshalUnmarshal tests XML round-trip for ThoroughfareNumberPrefixElementType
 func TestThoroughfareNumberPrefixElementType_MarshalUnmarshal(t *testing.T) {
 	original := &ThoroughfareNumberPrefixElementType{}
@@ -2898,6 +4420,101 @@ func TestThoroughfareNumberSuffixElement_MarshalUnmarshal(t *testing.T) {
 	normalized2 := normalizeXML(xmlData2)
 	if normalized1 != normalized2 {
 		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestThoroughfareNumberSuffixElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestThoroughfareNumberSuffixElement_MarshalIndentClean(t *testing.T) {
+	elem := &ThoroughfareNumberSuffixElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "ThoroughfareNumberSuffix"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestThoroughfareNumberSuffixElement_ToBytes tests the ToBytes method
+func TestThoroughfareNumberSuffixElement_ToBytes(t *testing.T) {
+	elem := &ThoroughfareNumberSuffixElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "ThoroughfareNumberSuffix"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestThoroughfareNumberSuffixElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestThoroughfareNumberSuffixElement_SetElementPrefixes(t *testing.T) {
+	elem := &ThoroughfareNumberSuffixElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "ThoroughfareNumberSuffix"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestThoroughfareNumberSuffixElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestThoroughfareNumberSuffixElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &ThoroughfareNumberSuffixElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "ThoroughfareNumberSuffix"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestThoroughfareNumberSuffixElement_SaveAndLoad tests SaveToFile and LoadThoroughfareNumberSuffixFromFile
+func TestThoroughfareNumberSuffixElement_SaveAndLoad(t *testing.T) {
+	elem := &ThoroughfareNumberSuffixElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "ThoroughfareNumberSuffix"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadThoroughfareNumberSuffixFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestThoroughfareNumberSuffixElement_LoadFromBytes tests the LoadThoroughfareNumberSuffixFromBytes function
+func TestThoroughfareNumberSuffixElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<ThoroughfareNumberSuffix xmlns="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0"></ThoroughfareNumberSuffix>`)
+
+	loaded, err := LoadThoroughfareNumberSuffixFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
 	}
 }
 
@@ -3083,6 +4700,101 @@ func TestXALElement_MarshalUnmarshal(t *testing.T) {
 	}
 }
 
+// TestXALElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestXALElement_MarshalIndentClean(t *testing.T) {
+	elem := &XALElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "xAL"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestXALElement_ToBytes tests the ToBytes method
+func TestXALElement_ToBytes(t *testing.T) {
+	elem := &XALElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "xAL"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestXALElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestXALElement_SetElementPrefixes(t *testing.T) {
+	elem := &XALElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "xAL"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestXALElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestXALElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &XALElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "xAL"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestXALElement_SaveAndLoad tests SaveToFile and LoadXALFromFile
+func TestXALElement_SaveAndLoad(t *testing.T) {
+	elem := &XALElement{
+		XMLName: xml.Name{Space: "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0", Local: "xAL"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadXALFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestXALElement_LoadFromBytes tests the LoadXALFromBytes function
+func TestXALElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<xAL xmlns="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0"></xAL>`)
+
+	loaded, err := LoadXALFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
+}
+
 // TestXALElementType_MarshalUnmarshal tests XML round-trip for XALElementType
 func TestXALElementType_MarshalUnmarshal(t *testing.T) {
 	original := &XALElementType{}
@@ -3110,5 +4822,23 @@ func TestXALElementType_MarshalUnmarshal(t *testing.T) {
 	normalized2 := normalizeXML(xmlData2)
 	if normalized1 != normalized2 {
 		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestExtractElementPrefixes tests the ExtractElementPrefixes helper function
+func TestExtractElementPrefixes(t *testing.T) {
+	xmlData := []byte(`<root xmlns:ex="http://example.com"><ex:child/></root>`)
+	prefixes := ExtractElementPrefixes(xmlData)
+	if prefixes == nil {
+		t.Error("ExtractElementPrefixes returned nil")
+	}
+}
+
+// TestExtractElementsWithXmlns tests the ExtractElementsWithXmlns helper function
+func TestExtractElementsWithXmlns(t *testing.T) {
+	xmlData := []byte(`<root xmlns="http://example.com"><child xmlns="http://other.com"/></root>`)
+	elemXmlns := ExtractElementsWithXmlns(xmlData)
+	if elemXmlns == nil {
+		t.Error("ExtractElementsWithXmlns returned nil")
 	}
 }

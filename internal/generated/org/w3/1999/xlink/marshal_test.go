@@ -5,6 +5,8 @@ package pkg_1999xlink
 
 import (
 	"encoding/xml"
+	"os"
+	"path/filepath"
 	"regexp"
 	"testing"
 )
@@ -15,6 +17,133 @@ func normalizeXML(xmlData []byte) string {
 	// Remove duplicate xmlns declarations (Go encoder quirk with embedded structs)
 	pattern := regexp.MustCompile(`(xmlns="[^"]+")\s+xmlns="[^"]+"`)
 	return pattern.ReplaceAllString(xmlStr, "$1")
+}
+
+// TestArcElement_MarshalUnmarshal tests XML round-trip for ArcElement
+func TestArcElement_MarshalUnmarshal(t *testing.T) {
+	original := &ArcElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/1999/xlink", Local: "arc"},
+	}
+
+	// Marshal to XML
+	xmlData, err := xml.MarshalIndent(original, "", "  ")
+	if err != nil {
+		t.Fatalf("Marshal failed: %v", err)
+	}
+
+	// Unmarshal back
+	var decoded ArcElement
+	if err := xml.Unmarshal(xmlData, &decoded); err != nil {
+		t.Fatalf("Unmarshal failed: %v", err)
+	}
+
+	// Re-marshal to compare
+	xmlData2, err := xml.MarshalIndent(&decoded, "", "  ")
+	if err != nil {
+		t.Fatalf("Re-marshal failed: %v", err)
+	}
+
+	// Compare XML outputs (normalize to handle Go encoder quirks)
+	normalized1 := normalizeXML(xmlData)
+	normalized2 := normalizeXML(xmlData2)
+	if normalized1 != normalized2 {
+		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestArcElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestArcElement_MarshalIndentClean(t *testing.T) {
+	elem := &ArcElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/1999/xlink", Local: "arc"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestArcElement_ToBytes tests the ToBytes method
+func TestArcElement_ToBytes(t *testing.T) {
+	elem := &ArcElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/1999/xlink", Local: "arc"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestArcElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestArcElement_SetElementPrefixes(t *testing.T) {
+	elem := &ArcElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/1999/xlink", Local: "arc"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestArcElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestArcElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &ArcElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/1999/xlink", Local: "arc"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestArcElement_SaveAndLoad tests SaveToFile and LoadArcFromFile
+func TestArcElement_SaveAndLoad(t *testing.T) {
+	elem := &ArcElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/1999/xlink", Local: "arc"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadArcFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestArcElement_LoadFromBytes tests the LoadArcFromBytes function
+func TestArcElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<arc xmlns="http://www.w3.org/1999/xlink"></arc>`)
+
+	loaded, err := LoadArcFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
 }
 
 // TestArcType_MarshalUnmarshal tests XML round-trip for ArcType
@@ -77,6 +206,133 @@ func TestExtended_MarshalUnmarshal(t *testing.T) {
 	}
 }
 
+// TestLocatorElement_MarshalUnmarshal tests XML round-trip for LocatorElement
+func TestLocatorElement_MarshalUnmarshal(t *testing.T) {
+	original := &LocatorElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/1999/xlink", Local: "locator"},
+	}
+
+	// Marshal to XML
+	xmlData, err := xml.MarshalIndent(original, "", "  ")
+	if err != nil {
+		t.Fatalf("Marshal failed: %v", err)
+	}
+
+	// Unmarshal back
+	var decoded LocatorElement
+	if err := xml.Unmarshal(xmlData, &decoded); err != nil {
+		t.Fatalf("Unmarshal failed: %v", err)
+	}
+
+	// Re-marshal to compare
+	xmlData2, err := xml.MarshalIndent(&decoded, "", "  ")
+	if err != nil {
+		t.Fatalf("Re-marshal failed: %v", err)
+	}
+
+	// Compare XML outputs (normalize to handle Go encoder quirks)
+	normalized1 := normalizeXML(xmlData)
+	normalized2 := normalizeXML(xmlData2)
+	if normalized1 != normalized2 {
+		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestLocatorElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestLocatorElement_MarshalIndentClean(t *testing.T) {
+	elem := &LocatorElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/1999/xlink", Local: "locator"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestLocatorElement_ToBytes tests the ToBytes method
+func TestLocatorElement_ToBytes(t *testing.T) {
+	elem := &LocatorElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/1999/xlink", Local: "locator"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestLocatorElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestLocatorElement_SetElementPrefixes(t *testing.T) {
+	elem := &LocatorElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/1999/xlink", Local: "locator"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestLocatorElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestLocatorElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &LocatorElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/1999/xlink", Local: "locator"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestLocatorElement_SaveAndLoad tests SaveToFile and LoadLocatorFromFile
+func TestLocatorElement_SaveAndLoad(t *testing.T) {
+	elem := &LocatorElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/1999/xlink", Local: "locator"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadLocatorFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestLocatorElement_LoadFromBytes tests the LoadLocatorFromBytes function
+func TestLocatorElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<locator xmlns="http://www.w3.org/1999/xlink"></locator>`)
+
+	loaded, err := LoadLocatorFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
+}
+
 // TestLocatorType_MarshalUnmarshal tests XML round-trip for LocatorType
 func TestLocatorType_MarshalUnmarshal(t *testing.T) {
 	original := &LocatorType{}
@@ -104,6 +360,133 @@ func TestLocatorType_MarshalUnmarshal(t *testing.T) {
 	normalized2 := normalizeXML(xmlData2)
 	if normalized1 != normalized2 {
 		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestResourceElement_MarshalUnmarshal tests XML round-trip for ResourceElement
+func TestResourceElement_MarshalUnmarshal(t *testing.T) {
+	original := &ResourceElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/1999/xlink", Local: "resource"},
+	}
+
+	// Marshal to XML
+	xmlData, err := xml.MarshalIndent(original, "", "  ")
+	if err != nil {
+		t.Fatalf("Marshal failed: %v", err)
+	}
+
+	// Unmarshal back
+	var decoded ResourceElement
+	if err := xml.Unmarshal(xmlData, &decoded); err != nil {
+		t.Fatalf("Unmarshal failed: %v", err)
+	}
+
+	// Re-marshal to compare
+	xmlData2, err := xml.MarshalIndent(&decoded, "", "  ")
+	if err != nil {
+		t.Fatalf("Re-marshal failed: %v", err)
+	}
+
+	// Compare XML outputs (normalize to handle Go encoder quirks)
+	normalized1 := normalizeXML(xmlData)
+	normalized2 := normalizeXML(xmlData2)
+	if normalized1 != normalized2 {
+		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestResourceElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestResourceElement_MarshalIndentClean(t *testing.T) {
+	elem := &ResourceElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/1999/xlink", Local: "resource"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestResourceElement_ToBytes tests the ToBytes method
+func TestResourceElement_ToBytes(t *testing.T) {
+	elem := &ResourceElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/1999/xlink", Local: "resource"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestResourceElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestResourceElement_SetElementPrefixes(t *testing.T) {
+	elem := &ResourceElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/1999/xlink", Local: "resource"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestResourceElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestResourceElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &ResourceElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/1999/xlink", Local: "resource"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestResourceElement_SaveAndLoad tests SaveToFile and LoadResourceFromFile
+func TestResourceElement_SaveAndLoad(t *testing.T) {
+	elem := &ResourceElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/1999/xlink", Local: "resource"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadResourceFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestResourceElement_LoadFromBytes tests the LoadResourceFromBytes function
+func TestResourceElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<resource xmlns="http://www.w3.org/1999/xlink"></resource>`)
+
+	loaded, err := LoadResourceFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
 	}
 }
 
@@ -167,6 +550,133 @@ func TestSimple_MarshalUnmarshal(t *testing.T) {
 	}
 }
 
+// TestTitleElement_MarshalUnmarshal tests XML round-trip for TitleElement
+func TestTitleElement_MarshalUnmarshal(t *testing.T) {
+	original := &TitleElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/1999/xlink", Local: "title"},
+	}
+
+	// Marshal to XML
+	xmlData, err := xml.MarshalIndent(original, "", "  ")
+	if err != nil {
+		t.Fatalf("Marshal failed: %v", err)
+	}
+
+	// Unmarshal back
+	var decoded TitleElement
+	if err := xml.Unmarshal(xmlData, &decoded); err != nil {
+		t.Fatalf("Unmarshal failed: %v", err)
+	}
+
+	// Re-marshal to compare
+	xmlData2, err := xml.MarshalIndent(&decoded, "", "  ")
+	if err != nil {
+		t.Fatalf("Re-marshal failed: %v", err)
+	}
+
+	// Compare XML outputs (normalize to handle Go encoder quirks)
+	normalized1 := normalizeXML(xmlData)
+	normalized2 := normalizeXML(xmlData2)
+	if normalized1 != normalized2 {
+		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestTitleElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestTitleElement_MarshalIndentClean(t *testing.T) {
+	elem := &TitleElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/1999/xlink", Local: "title"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestTitleElement_ToBytes tests the ToBytes method
+func TestTitleElement_ToBytes(t *testing.T) {
+	elem := &TitleElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/1999/xlink", Local: "title"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestTitleElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestTitleElement_SetElementPrefixes(t *testing.T) {
+	elem := &TitleElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/1999/xlink", Local: "title"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestTitleElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestTitleElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &TitleElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/1999/xlink", Local: "title"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestTitleElement_SaveAndLoad tests SaveToFile and LoadTitleFromFile
+func TestTitleElement_SaveAndLoad(t *testing.T) {
+	elem := &TitleElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/1999/xlink", Local: "title"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadTitleFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestTitleElement_LoadFromBytes tests the LoadTitleFromBytes function
+func TestTitleElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<title xmlns="http://www.w3.org/1999/xlink"></title>`)
+
+	loaded, err := LoadTitleFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
+}
+
 // TestTitleEltType_MarshalUnmarshal tests XML round-trip for TitleEltType
 func TestTitleEltType_MarshalUnmarshal(t *testing.T) {
 	original := &TitleEltType{}
@@ -194,5 +704,23 @@ func TestTitleEltType_MarshalUnmarshal(t *testing.T) {
 	normalized2 := normalizeXML(xmlData2)
 	if normalized1 != normalized2 {
 		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestExtractElementPrefixes tests the ExtractElementPrefixes helper function
+func TestExtractElementPrefixes(t *testing.T) {
+	xmlData := []byte(`<root xmlns:ex="http://example.com"><ex:child/></root>`)
+	prefixes := ExtractElementPrefixes(xmlData)
+	if prefixes == nil {
+		t.Error("ExtractElementPrefixes returned nil")
+	}
+}
+
+// TestExtractElementsWithXmlns tests the ExtractElementsWithXmlns helper function
+func TestExtractElementsWithXmlns(t *testing.T) {
+	xmlData := []byte(`<root xmlns="http://example.com"><child xmlns="http://other.com"/></root>`)
+	elemXmlns := ExtractElementsWithXmlns(xmlData)
+	if elemXmlns == nil {
+		t.Error("ExtractElementsWithXmlns returned nil")
 	}
 }

@@ -5,6 +5,8 @@ package dictionary2_0
 
 import (
 	"encoding/xml"
+	"os"
+	"path/filepath"
 	"regexp"
 	"testing"
 )
@@ -79,6 +81,101 @@ func TestCpeItemElement_MarshalUnmarshal(t *testing.T) {
 	}
 }
 
+// TestCpeItemElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestCpeItemElement_MarshalIndentClean(t *testing.T) {
+	elem := &CpeItemElement{
+		XMLName: xml.Name{Space: "http://cpe.mitre.org/dictionary/2.0", Local: "cpe-item"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestCpeItemElement_ToBytes tests the ToBytes method
+func TestCpeItemElement_ToBytes(t *testing.T) {
+	elem := &CpeItemElement{
+		XMLName: xml.Name{Space: "http://cpe.mitre.org/dictionary/2.0", Local: "cpe-item"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestCpeItemElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestCpeItemElement_SetElementPrefixes(t *testing.T) {
+	elem := &CpeItemElement{
+		XMLName: xml.Name{Space: "http://cpe.mitre.org/dictionary/2.0", Local: "cpe-item"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestCpeItemElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestCpeItemElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &CpeItemElement{
+		XMLName: xml.Name{Space: "http://cpe.mitre.org/dictionary/2.0", Local: "cpe-item"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestCpeItemElement_SaveAndLoad tests SaveToFile and LoadCpeItemFromFile
+func TestCpeItemElement_SaveAndLoad(t *testing.T) {
+	elem := &CpeItemElement{
+		XMLName: xml.Name{Space: "http://cpe.mitre.org/dictionary/2.0", Local: "cpe-item"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadCpeItemFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestCpeItemElement_LoadFromBytes tests the LoadCpeItemFromBytes function
+func TestCpeItemElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<cpe-item xmlns="http://cpe.mitre.org/dictionary/2.0"></cpe-item>`)
+
+	loaded, err := LoadCpeItemFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
+}
+
 // TestCpeListElement_MarshalUnmarshal tests XML round-trip for CpeListElement
 func TestCpeListElement_MarshalUnmarshal(t *testing.T) {
 	original := &CpeListElement{
@@ -108,6 +205,101 @@ func TestCpeListElement_MarshalUnmarshal(t *testing.T) {
 	normalized2 := normalizeXML(xmlData2)
 	if normalized1 != normalized2 {
 		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestCpeListElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestCpeListElement_MarshalIndentClean(t *testing.T) {
+	elem := &CpeListElement{
+		XMLName: xml.Name{Space: "http://cpe.mitre.org/dictionary/2.0", Local: "cpe-list"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestCpeListElement_ToBytes tests the ToBytes method
+func TestCpeListElement_ToBytes(t *testing.T) {
+	elem := &CpeListElement{
+		XMLName: xml.Name{Space: "http://cpe.mitre.org/dictionary/2.0", Local: "cpe-list"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestCpeListElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestCpeListElement_SetElementPrefixes(t *testing.T) {
+	elem := &CpeListElement{
+		XMLName: xml.Name{Space: "http://cpe.mitre.org/dictionary/2.0", Local: "cpe-list"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestCpeListElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestCpeListElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &CpeListElement{
+		XMLName: xml.Name{Space: "http://cpe.mitre.org/dictionary/2.0", Local: "cpe-list"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestCpeListElement_SaveAndLoad tests SaveToFile and LoadCpeListFromFile
+func TestCpeListElement_SaveAndLoad(t *testing.T) {
+	elem := &CpeListElement{
+		XMLName: xml.Name{Space: "http://cpe.mitre.org/dictionary/2.0", Local: "cpe-list"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadCpeListFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestCpeListElement_LoadFromBytes tests the LoadCpeListFromBytes function
+func TestCpeListElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<cpe-list xmlns="http://cpe.mitre.org/dictionary/2.0"></cpe-list>`)
+
+	loaded, err := LoadCpeListFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
 	}
 }
 
@@ -318,5 +510,23 @@ func TestTextType_MarshalUnmarshal(t *testing.T) {
 	normalized2 := normalizeXML(xmlData2)
 	if normalized1 != normalized2 {
 		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestExtractElementPrefixes tests the ExtractElementPrefixes helper function
+func TestExtractElementPrefixes(t *testing.T) {
+	xmlData := []byte(`<root xmlns:ex="http://example.com"><ex:child/></root>`)
+	prefixes := ExtractElementPrefixes(xmlData)
+	if prefixes == nil {
+		t.Error("ExtractElementPrefixes returned nil")
+	}
+}
+
+// TestExtractElementsWithXmlns tests the ExtractElementsWithXmlns helper function
+func TestExtractElementsWithXmlns(t *testing.T) {
+	xmlData := []byte(`<root xmlns="http://example.com"><child xmlns="http://other.com"/></root>`)
+	elemXmlns := ExtractElementsWithXmlns(xmlData)
+	if elemXmlns == nil {
+		t.Error("ExtractElementsWithXmlns returned nil")
 	}
 }

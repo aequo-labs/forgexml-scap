@@ -5,6 +5,8 @@ package pkg_200009xmldsig
 
 import (
 	"encoding/xml"
+	"os"
+	"path/filepath"
 	"regexp"
 	"testing"
 )
@@ -46,6 +48,101 @@ func TestCanonicalizationMethodElement_MarshalUnmarshal(t *testing.T) {
 	normalized2 := normalizeXML(xmlData2)
 	if normalized1 != normalized2 {
 		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestCanonicalizationMethodElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestCanonicalizationMethodElement_MarshalIndentClean(t *testing.T) {
+	elem := &CanonicalizationMethodElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "CanonicalizationMethod"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestCanonicalizationMethodElement_ToBytes tests the ToBytes method
+func TestCanonicalizationMethodElement_ToBytes(t *testing.T) {
+	elem := &CanonicalizationMethodElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "CanonicalizationMethod"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestCanonicalizationMethodElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestCanonicalizationMethodElement_SetElementPrefixes(t *testing.T) {
+	elem := &CanonicalizationMethodElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "CanonicalizationMethod"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestCanonicalizationMethodElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestCanonicalizationMethodElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &CanonicalizationMethodElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "CanonicalizationMethod"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestCanonicalizationMethodElement_SaveAndLoad tests SaveToFile and LoadCanonicalizationMethodFromFile
+func TestCanonicalizationMethodElement_SaveAndLoad(t *testing.T) {
+	elem := &CanonicalizationMethodElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "CanonicalizationMethod"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadCanonicalizationMethodFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestCanonicalizationMethodElement_LoadFromBytes tests the LoadCanonicalizationMethodFromBytes function
+func TestCanonicalizationMethodElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<CanonicalizationMethod xmlns="http://www.w3.org/2000/09/xmldsig#"></CanonicalizationMethod>`)
+
+	loaded, err := LoadCanonicalizationMethodFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
 	}
 }
 
@@ -111,6 +208,101 @@ func TestDSAKeyValueElement_MarshalUnmarshal(t *testing.T) {
 	}
 }
 
+// TestDSAKeyValueElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestDSAKeyValueElement_MarshalIndentClean(t *testing.T) {
+	elem := &DSAKeyValueElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "DSAKeyValue"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestDSAKeyValueElement_ToBytes tests the ToBytes method
+func TestDSAKeyValueElement_ToBytes(t *testing.T) {
+	elem := &DSAKeyValueElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "DSAKeyValue"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestDSAKeyValueElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestDSAKeyValueElement_SetElementPrefixes(t *testing.T) {
+	elem := &DSAKeyValueElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "DSAKeyValue"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestDSAKeyValueElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestDSAKeyValueElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &DSAKeyValueElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "DSAKeyValue"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestDSAKeyValueElement_SaveAndLoad tests SaveToFile and LoadDSAKeyValueFromFile
+func TestDSAKeyValueElement_SaveAndLoad(t *testing.T) {
+	elem := &DSAKeyValueElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "DSAKeyValue"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadDSAKeyValueFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestDSAKeyValueElement_LoadFromBytes tests the LoadDSAKeyValueFromBytes function
+func TestDSAKeyValueElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<DSAKeyValue xmlns="http://www.w3.org/2000/09/xmldsig#"></DSAKeyValue>`)
+
+	loaded, err := LoadDSAKeyValueFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
+}
+
 // TestDSAKeyValueType_MarshalUnmarshal tests XML round-trip for DSAKeyValueType
 func TestDSAKeyValueType_MarshalUnmarshal(t *testing.T) {
 	original := &DSAKeyValueType{}
@@ -170,6 +362,101 @@ func TestDigestMethodElement_MarshalUnmarshal(t *testing.T) {
 	normalized2 := normalizeXML(xmlData2)
 	if normalized1 != normalized2 {
 		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestDigestMethodElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestDigestMethodElement_MarshalIndentClean(t *testing.T) {
+	elem := &DigestMethodElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "DigestMethod"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestDigestMethodElement_ToBytes tests the ToBytes method
+func TestDigestMethodElement_ToBytes(t *testing.T) {
+	elem := &DigestMethodElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "DigestMethod"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestDigestMethodElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestDigestMethodElement_SetElementPrefixes(t *testing.T) {
+	elem := &DigestMethodElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "DigestMethod"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestDigestMethodElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestDigestMethodElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &DigestMethodElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "DigestMethod"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestDigestMethodElement_SaveAndLoad tests SaveToFile and LoadDigestMethodFromFile
+func TestDigestMethodElement_SaveAndLoad(t *testing.T) {
+	elem := &DigestMethodElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "DigestMethod"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadDigestMethodFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestDigestMethodElement_LoadFromBytes tests the LoadDigestMethodFromBytes function
+func TestDigestMethodElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<DigestMethod xmlns="http://www.w3.org/2000/09/xmldsig#"></DigestMethod>`)
+
+	loaded, err := LoadDigestMethodFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
 	}
 }
 
@@ -235,6 +522,101 @@ func TestDigestValueElement_MarshalUnmarshal(t *testing.T) {
 	}
 }
 
+// TestDigestValueElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestDigestValueElement_MarshalIndentClean(t *testing.T) {
+	elem := &DigestValueElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "DigestValue"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestDigestValueElement_ToBytes tests the ToBytes method
+func TestDigestValueElement_ToBytes(t *testing.T) {
+	elem := &DigestValueElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "DigestValue"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestDigestValueElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestDigestValueElement_SetElementPrefixes(t *testing.T) {
+	elem := &DigestValueElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "DigestValue"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestDigestValueElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestDigestValueElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &DigestValueElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "DigestValue"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestDigestValueElement_SaveAndLoad tests SaveToFile and LoadDigestValueFromFile
+func TestDigestValueElement_SaveAndLoad(t *testing.T) {
+	elem := &DigestValueElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "DigestValue"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadDigestValueFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestDigestValueElement_LoadFromBytes tests the LoadDigestValueFromBytes function
+func TestDigestValueElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<DigestValue xmlns="http://www.w3.org/2000/09/xmldsig#"></DigestValue>`)
+
+	loaded, err := LoadDigestValueFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
+}
+
 // TestKeyInfoElement_MarshalUnmarshal tests XML round-trip for KeyInfoElement
 func TestKeyInfoElement_MarshalUnmarshal(t *testing.T) {
 	original := &KeyInfoElement{
@@ -264,6 +646,101 @@ func TestKeyInfoElement_MarshalUnmarshal(t *testing.T) {
 	normalized2 := normalizeXML(xmlData2)
 	if normalized1 != normalized2 {
 		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestKeyInfoElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestKeyInfoElement_MarshalIndentClean(t *testing.T) {
+	elem := &KeyInfoElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "KeyInfo"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestKeyInfoElement_ToBytes tests the ToBytes method
+func TestKeyInfoElement_ToBytes(t *testing.T) {
+	elem := &KeyInfoElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "KeyInfo"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestKeyInfoElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestKeyInfoElement_SetElementPrefixes(t *testing.T) {
+	elem := &KeyInfoElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "KeyInfo"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestKeyInfoElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestKeyInfoElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &KeyInfoElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "KeyInfo"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestKeyInfoElement_SaveAndLoad tests SaveToFile and LoadKeyInfoFromFile
+func TestKeyInfoElement_SaveAndLoad(t *testing.T) {
+	elem := &KeyInfoElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "KeyInfo"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadKeyInfoFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestKeyInfoElement_LoadFromBytes tests the LoadKeyInfoFromBytes function
+func TestKeyInfoElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#"></KeyInfo>`)
+
+	loaded, err := LoadKeyInfoFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
 	}
 }
 
@@ -329,6 +806,101 @@ func TestKeyNameElement_MarshalUnmarshal(t *testing.T) {
 	}
 }
 
+// TestKeyNameElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestKeyNameElement_MarshalIndentClean(t *testing.T) {
+	elem := &KeyNameElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "KeyName"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestKeyNameElement_ToBytes tests the ToBytes method
+func TestKeyNameElement_ToBytes(t *testing.T) {
+	elem := &KeyNameElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "KeyName"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestKeyNameElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestKeyNameElement_SetElementPrefixes(t *testing.T) {
+	elem := &KeyNameElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "KeyName"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestKeyNameElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestKeyNameElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &KeyNameElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "KeyName"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestKeyNameElement_SaveAndLoad tests SaveToFile and LoadKeyNameFromFile
+func TestKeyNameElement_SaveAndLoad(t *testing.T) {
+	elem := &KeyNameElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "KeyName"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadKeyNameFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestKeyNameElement_LoadFromBytes tests the LoadKeyNameFromBytes function
+func TestKeyNameElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<KeyName xmlns="http://www.w3.org/2000/09/xmldsig#"></KeyName>`)
+
+	loaded, err := LoadKeyNameFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
+}
+
 // TestKeyValueElement_MarshalUnmarshal tests XML round-trip for KeyValueElement
 func TestKeyValueElement_MarshalUnmarshal(t *testing.T) {
 	original := &KeyValueElement{
@@ -358,6 +930,101 @@ func TestKeyValueElement_MarshalUnmarshal(t *testing.T) {
 	normalized2 := normalizeXML(xmlData2)
 	if normalized1 != normalized2 {
 		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestKeyValueElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestKeyValueElement_MarshalIndentClean(t *testing.T) {
+	elem := &KeyValueElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "KeyValue"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestKeyValueElement_ToBytes tests the ToBytes method
+func TestKeyValueElement_ToBytes(t *testing.T) {
+	elem := &KeyValueElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "KeyValue"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestKeyValueElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestKeyValueElement_SetElementPrefixes(t *testing.T) {
+	elem := &KeyValueElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "KeyValue"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestKeyValueElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestKeyValueElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &KeyValueElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "KeyValue"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestKeyValueElement_SaveAndLoad tests SaveToFile and LoadKeyValueFromFile
+func TestKeyValueElement_SaveAndLoad(t *testing.T) {
+	elem := &KeyValueElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "KeyValue"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadKeyValueFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestKeyValueElement_LoadFromBytes tests the LoadKeyValueFromBytes function
+func TestKeyValueElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<KeyValue xmlns="http://www.w3.org/2000/09/xmldsig#"></KeyValue>`)
+
+	loaded, err := LoadKeyValueFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
 	}
 }
 
@@ -423,6 +1090,101 @@ func TestManifestElement_MarshalUnmarshal(t *testing.T) {
 	}
 }
 
+// TestManifestElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestManifestElement_MarshalIndentClean(t *testing.T) {
+	elem := &ManifestElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "Manifest"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestManifestElement_ToBytes tests the ToBytes method
+func TestManifestElement_ToBytes(t *testing.T) {
+	elem := &ManifestElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "Manifest"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestManifestElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestManifestElement_SetElementPrefixes(t *testing.T) {
+	elem := &ManifestElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "Manifest"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestManifestElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestManifestElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &ManifestElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "Manifest"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestManifestElement_SaveAndLoad tests SaveToFile and LoadManifestFromFile
+func TestManifestElement_SaveAndLoad(t *testing.T) {
+	elem := &ManifestElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "Manifest"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadManifestFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestManifestElement_LoadFromBytes tests the LoadManifestFromBytes function
+func TestManifestElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<Manifest xmlns="http://www.w3.org/2000/09/xmldsig#"></Manifest>`)
+
+	loaded, err := LoadManifestFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
+}
+
 // TestManifestType_MarshalUnmarshal tests XML round-trip for ManifestType
 func TestManifestType_MarshalUnmarshal(t *testing.T) {
 	original := &ManifestType{}
@@ -485,6 +1247,101 @@ func TestMgmtDataElement_MarshalUnmarshal(t *testing.T) {
 	}
 }
 
+// TestMgmtDataElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestMgmtDataElement_MarshalIndentClean(t *testing.T) {
+	elem := &MgmtDataElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "MgmtData"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestMgmtDataElement_ToBytes tests the ToBytes method
+func TestMgmtDataElement_ToBytes(t *testing.T) {
+	elem := &MgmtDataElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "MgmtData"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestMgmtDataElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestMgmtDataElement_SetElementPrefixes(t *testing.T) {
+	elem := &MgmtDataElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "MgmtData"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestMgmtDataElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestMgmtDataElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &MgmtDataElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "MgmtData"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestMgmtDataElement_SaveAndLoad tests SaveToFile and LoadMgmtDataFromFile
+func TestMgmtDataElement_SaveAndLoad(t *testing.T) {
+	elem := &MgmtDataElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "MgmtData"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadMgmtDataFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestMgmtDataElement_LoadFromBytes tests the LoadMgmtDataFromBytes function
+func TestMgmtDataElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<MgmtData xmlns="http://www.w3.org/2000/09/xmldsig#"></MgmtData>`)
+
+	loaded, err := LoadMgmtDataFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
+}
+
 // TestObjectElement_MarshalUnmarshal tests XML round-trip for ObjectElement
 func TestObjectElement_MarshalUnmarshal(t *testing.T) {
 	original := &ObjectElement{
@@ -514,6 +1371,101 @@ func TestObjectElement_MarshalUnmarshal(t *testing.T) {
 	normalized2 := normalizeXML(xmlData2)
 	if normalized1 != normalized2 {
 		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestObjectElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestObjectElement_MarshalIndentClean(t *testing.T) {
+	elem := &ObjectElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "Object"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestObjectElement_ToBytes tests the ToBytes method
+func TestObjectElement_ToBytes(t *testing.T) {
+	elem := &ObjectElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "Object"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestObjectElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestObjectElement_SetElementPrefixes(t *testing.T) {
+	elem := &ObjectElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "Object"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestObjectElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestObjectElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &ObjectElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "Object"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestObjectElement_SaveAndLoad tests SaveToFile and LoadObjectFromFile
+func TestObjectElement_SaveAndLoad(t *testing.T) {
+	elem := &ObjectElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "Object"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadObjectFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestObjectElement_LoadFromBytes tests the LoadObjectFromBytes function
+func TestObjectElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<Object xmlns="http://www.w3.org/2000/09/xmldsig#"></Object>`)
+
+	loaded, err := LoadObjectFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
 	}
 }
 
@@ -579,6 +1531,101 @@ func TestPGPDataElement_MarshalUnmarshal(t *testing.T) {
 	}
 }
 
+// TestPGPDataElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestPGPDataElement_MarshalIndentClean(t *testing.T) {
+	elem := &PGPDataElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "PGPData"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestPGPDataElement_ToBytes tests the ToBytes method
+func TestPGPDataElement_ToBytes(t *testing.T) {
+	elem := &PGPDataElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "PGPData"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestPGPDataElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestPGPDataElement_SetElementPrefixes(t *testing.T) {
+	elem := &PGPDataElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "PGPData"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestPGPDataElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestPGPDataElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &PGPDataElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "PGPData"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestPGPDataElement_SaveAndLoad tests SaveToFile and LoadPGPDataFromFile
+func TestPGPDataElement_SaveAndLoad(t *testing.T) {
+	elem := &PGPDataElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "PGPData"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadPGPDataFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestPGPDataElement_LoadFromBytes tests the LoadPGPDataFromBytes function
+func TestPGPDataElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<PGPData xmlns="http://www.w3.org/2000/09/xmldsig#"></PGPData>`)
+
+	loaded, err := LoadPGPDataFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
+}
+
 // TestPGPDataType_MarshalUnmarshal tests XML round-trip for PGPDataType
 func TestPGPDataType_MarshalUnmarshal(t *testing.T) {
 	original := &PGPDataType{}
@@ -638,6 +1685,101 @@ func TestRSAKeyValueElement_MarshalUnmarshal(t *testing.T) {
 	normalized2 := normalizeXML(xmlData2)
 	if normalized1 != normalized2 {
 		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestRSAKeyValueElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestRSAKeyValueElement_MarshalIndentClean(t *testing.T) {
+	elem := &RSAKeyValueElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "RSAKeyValue"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestRSAKeyValueElement_ToBytes tests the ToBytes method
+func TestRSAKeyValueElement_ToBytes(t *testing.T) {
+	elem := &RSAKeyValueElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "RSAKeyValue"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestRSAKeyValueElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestRSAKeyValueElement_SetElementPrefixes(t *testing.T) {
+	elem := &RSAKeyValueElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "RSAKeyValue"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestRSAKeyValueElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestRSAKeyValueElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &RSAKeyValueElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "RSAKeyValue"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestRSAKeyValueElement_SaveAndLoad tests SaveToFile and LoadRSAKeyValueFromFile
+func TestRSAKeyValueElement_SaveAndLoad(t *testing.T) {
+	elem := &RSAKeyValueElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "RSAKeyValue"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadRSAKeyValueFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestRSAKeyValueElement_LoadFromBytes tests the LoadRSAKeyValueFromBytes function
+func TestRSAKeyValueElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<RSAKeyValue xmlns="http://www.w3.org/2000/09/xmldsig#"></RSAKeyValue>`)
+
+	loaded, err := LoadRSAKeyValueFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
 	}
 }
 
@@ -703,6 +1845,101 @@ func TestReferenceElement_MarshalUnmarshal(t *testing.T) {
 	}
 }
 
+// TestReferenceElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestReferenceElement_MarshalIndentClean(t *testing.T) {
+	elem := &ReferenceElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "Reference"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestReferenceElement_ToBytes tests the ToBytes method
+func TestReferenceElement_ToBytes(t *testing.T) {
+	elem := &ReferenceElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "Reference"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestReferenceElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestReferenceElement_SetElementPrefixes(t *testing.T) {
+	elem := &ReferenceElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "Reference"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestReferenceElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestReferenceElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &ReferenceElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "Reference"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestReferenceElement_SaveAndLoad tests SaveToFile and LoadReferenceFromFile
+func TestReferenceElement_SaveAndLoad(t *testing.T) {
+	elem := &ReferenceElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "Reference"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadReferenceFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestReferenceElement_LoadFromBytes tests the LoadReferenceFromBytes function
+func TestReferenceElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<Reference xmlns="http://www.w3.org/2000/09/xmldsig#"></Reference>`)
+
+	loaded, err := LoadReferenceFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
+}
+
 // TestReferenceType_MarshalUnmarshal tests XML round-trip for ReferenceType
 func TestReferenceType_MarshalUnmarshal(t *testing.T) {
 	original := &ReferenceType{}
@@ -762,6 +1999,101 @@ func TestRetrievalMethodElement_MarshalUnmarshal(t *testing.T) {
 	normalized2 := normalizeXML(xmlData2)
 	if normalized1 != normalized2 {
 		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestRetrievalMethodElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestRetrievalMethodElement_MarshalIndentClean(t *testing.T) {
+	elem := &RetrievalMethodElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "RetrievalMethod"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestRetrievalMethodElement_ToBytes tests the ToBytes method
+func TestRetrievalMethodElement_ToBytes(t *testing.T) {
+	elem := &RetrievalMethodElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "RetrievalMethod"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestRetrievalMethodElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestRetrievalMethodElement_SetElementPrefixes(t *testing.T) {
+	elem := &RetrievalMethodElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "RetrievalMethod"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestRetrievalMethodElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestRetrievalMethodElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &RetrievalMethodElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "RetrievalMethod"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestRetrievalMethodElement_SaveAndLoad tests SaveToFile and LoadRetrievalMethodFromFile
+func TestRetrievalMethodElement_SaveAndLoad(t *testing.T) {
+	elem := &RetrievalMethodElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "RetrievalMethod"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadRetrievalMethodFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestRetrievalMethodElement_LoadFromBytes tests the LoadRetrievalMethodFromBytes function
+func TestRetrievalMethodElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<RetrievalMethod xmlns="http://www.w3.org/2000/09/xmldsig#"></RetrievalMethod>`)
+
+	loaded, err := LoadRetrievalMethodFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
 	}
 }
 
@@ -827,6 +2159,101 @@ func TestSPKIDataElement_MarshalUnmarshal(t *testing.T) {
 	}
 }
 
+// TestSPKIDataElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestSPKIDataElement_MarshalIndentClean(t *testing.T) {
+	elem := &SPKIDataElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "SPKIData"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestSPKIDataElement_ToBytes tests the ToBytes method
+func TestSPKIDataElement_ToBytes(t *testing.T) {
+	elem := &SPKIDataElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "SPKIData"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestSPKIDataElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestSPKIDataElement_SetElementPrefixes(t *testing.T) {
+	elem := &SPKIDataElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "SPKIData"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestSPKIDataElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestSPKIDataElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &SPKIDataElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "SPKIData"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestSPKIDataElement_SaveAndLoad tests SaveToFile and LoadSPKIDataFromFile
+func TestSPKIDataElement_SaveAndLoad(t *testing.T) {
+	elem := &SPKIDataElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "SPKIData"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadSPKIDataFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestSPKIDataElement_LoadFromBytes tests the LoadSPKIDataFromBytes function
+func TestSPKIDataElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<SPKIData xmlns="http://www.w3.org/2000/09/xmldsig#"></SPKIData>`)
+
+	loaded, err := LoadSPKIDataFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
+}
+
 // TestSPKIDataType_MarshalUnmarshal tests XML round-trip for SPKIDataType
 func TestSPKIDataType_MarshalUnmarshal(t *testing.T) {
 	original := &SPKIDataType{}
@@ -889,6 +2316,101 @@ func TestSignatureElement_MarshalUnmarshal(t *testing.T) {
 	}
 }
 
+// TestSignatureElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestSignatureElement_MarshalIndentClean(t *testing.T) {
+	elem := &SignatureElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "Signature"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestSignatureElement_ToBytes tests the ToBytes method
+func TestSignatureElement_ToBytes(t *testing.T) {
+	elem := &SignatureElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "Signature"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestSignatureElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestSignatureElement_SetElementPrefixes(t *testing.T) {
+	elem := &SignatureElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "Signature"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestSignatureElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestSignatureElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &SignatureElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "Signature"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestSignatureElement_SaveAndLoad tests SaveToFile and LoadSignatureFromFile
+func TestSignatureElement_SaveAndLoad(t *testing.T) {
+	elem := &SignatureElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "Signature"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadSignatureFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestSignatureElement_LoadFromBytes tests the LoadSignatureFromBytes function
+func TestSignatureElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<Signature xmlns="http://www.w3.org/2000/09/xmldsig#"></Signature>`)
+
+	loaded, err := LoadSignatureFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
+}
+
 // TestSignatureMethodElement_MarshalUnmarshal tests XML round-trip for SignatureMethodElement
 func TestSignatureMethodElement_MarshalUnmarshal(t *testing.T) {
 	original := &SignatureMethodElement{
@@ -918,6 +2440,101 @@ func TestSignatureMethodElement_MarshalUnmarshal(t *testing.T) {
 	normalized2 := normalizeXML(xmlData2)
 	if normalized1 != normalized2 {
 		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestSignatureMethodElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestSignatureMethodElement_MarshalIndentClean(t *testing.T) {
+	elem := &SignatureMethodElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "SignatureMethod"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestSignatureMethodElement_ToBytes tests the ToBytes method
+func TestSignatureMethodElement_ToBytes(t *testing.T) {
+	elem := &SignatureMethodElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "SignatureMethod"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestSignatureMethodElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestSignatureMethodElement_SetElementPrefixes(t *testing.T) {
+	elem := &SignatureMethodElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "SignatureMethod"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestSignatureMethodElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestSignatureMethodElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &SignatureMethodElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "SignatureMethod"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestSignatureMethodElement_SaveAndLoad tests SaveToFile and LoadSignatureMethodFromFile
+func TestSignatureMethodElement_SaveAndLoad(t *testing.T) {
+	elem := &SignatureMethodElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "SignatureMethod"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadSignatureMethodFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestSignatureMethodElement_LoadFromBytes tests the LoadSignatureMethodFromBytes function
+func TestSignatureMethodElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<SignatureMethod xmlns="http://www.w3.org/2000/09/xmldsig#"></SignatureMethod>`)
+
+	loaded, err := LoadSignatureMethodFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
 	}
 }
 
@@ -983,6 +2600,101 @@ func TestSignaturePropertiesElement_MarshalUnmarshal(t *testing.T) {
 	}
 }
 
+// TestSignaturePropertiesElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestSignaturePropertiesElement_MarshalIndentClean(t *testing.T) {
+	elem := &SignaturePropertiesElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "SignatureProperties"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestSignaturePropertiesElement_ToBytes tests the ToBytes method
+func TestSignaturePropertiesElement_ToBytes(t *testing.T) {
+	elem := &SignaturePropertiesElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "SignatureProperties"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestSignaturePropertiesElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestSignaturePropertiesElement_SetElementPrefixes(t *testing.T) {
+	elem := &SignaturePropertiesElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "SignatureProperties"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestSignaturePropertiesElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestSignaturePropertiesElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &SignaturePropertiesElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "SignatureProperties"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestSignaturePropertiesElement_SaveAndLoad tests SaveToFile and LoadSignaturePropertiesFromFile
+func TestSignaturePropertiesElement_SaveAndLoad(t *testing.T) {
+	elem := &SignaturePropertiesElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "SignatureProperties"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadSignaturePropertiesFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestSignaturePropertiesElement_LoadFromBytes tests the LoadSignaturePropertiesFromBytes function
+func TestSignaturePropertiesElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<SignatureProperties xmlns="http://www.w3.org/2000/09/xmldsig#"></SignatureProperties>`)
+
+	loaded, err := LoadSignaturePropertiesFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
+}
+
 // TestSignaturePropertiesType_MarshalUnmarshal tests XML round-trip for SignaturePropertiesType
 func TestSignaturePropertiesType_MarshalUnmarshal(t *testing.T) {
 	original := &SignaturePropertiesType{}
@@ -1042,6 +2754,101 @@ func TestSignaturePropertyElement_MarshalUnmarshal(t *testing.T) {
 	normalized2 := normalizeXML(xmlData2)
 	if normalized1 != normalized2 {
 		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestSignaturePropertyElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestSignaturePropertyElement_MarshalIndentClean(t *testing.T) {
+	elem := &SignaturePropertyElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "SignatureProperty"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestSignaturePropertyElement_ToBytes tests the ToBytes method
+func TestSignaturePropertyElement_ToBytes(t *testing.T) {
+	elem := &SignaturePropertyElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "SignatureProperty"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestSignaturePropertyElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestSignaturePropertyElement_SetElementPrefixes(t *testing.T) {
+	elem := &SignaturePropertyElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "SignatureProperty"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestSignaturePropertyElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestSignaturePropertyElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &SignaturePropertyElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "SignatureProperty"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestSignaturePropertyElement_SaveAndLoad tests SaveToFile and LoadSignaturePropertyFromFile
+func TestSignaturePropertyElement_SaveAndLoad(t *testing.T) {
+	elem := &SignaturePropertyElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "SignatureProperty"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadSignaturePropertyFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestSignaturePropertyElement_LoadFromBytes tests the LoadSignaturePropertyFromBytes function
+func TestSignaturePropertyElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<SignatureProperty xmlns="http://www.w3.org/2000/09/xmldsig#"></SignatureProperty>`)
+
+	loaded, err := LoadSignaturePropertyFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
 	}
 }
 
@@ -1137,6 +2944,101 @@ func TestSignatureValueElement_MarshalUnmarshal(t *testing.T) {
 	}
 }
 
+// TestSignatureValueElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestSignatureValueElement_MarshalIndentClean(t *testing.T) {
+	elem := &SignatureValueElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "SignatureValue"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestSignatureValueElement_ToBytes tests the ToBytes method
+func TestSignatureValueElement_ToBytes(t *testing.T) {
+	elem := &SignatureValueElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "SignatureValue"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestSignatureValueElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestSignatureValueElement_SetElementPrefixes(t *testing.T) {
+	elem := &SignatureValueElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "SignatureValue"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestSignatureValueElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestSignatureValueElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &SignatureValueElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "SignatureValue"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestSignatureValueElement_SaveAndLoad tests SaveToFile and LoadSignatureValueFromFile
+func TestSignatureValueElement_SaveAndLoad(t *testing.T) {
+	elem := &SignatureValueElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "SignatureValue"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadSignatureValueFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestSignatureValueElement_LoadFromBytes tests the LoadSignatureValueFromBytes function
+func TestSignatureValueElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<SignatureValue xmlns="http://www.w3.org/2000/09/xmldsig#"></SignatureValue>`)
+
+	loaded, err := LoadSignatureValueFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
+}
+
 // TestSignatureValueType_MarshalUnmarshal tests XML round-trip for SignatureValueType
 func TestSignatureValueType_MarshalUnmarshal(t *testing.T) {
 	original := &SignatureValueType{}
@@ -1196,6 +3098,101 @@ func TestSignedInfoElement_MarshalUnmarshal(t *testing.T) {
 	normalized2 := normalizeXML(xmlData2)
 	if normalized1 != normalized2 {
 		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestSignedInfoElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestSignedInfoElement_MarshalIndentClean(t *testing.T) {
+	elem := &SignedInfoElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "SignedInfo"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestSignedInfoElement_ToBytes tests the ToBytes method
+func TestSignedInfoElement_ToBytes(t *testing.T) {
+	elem := &SignedInfoElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "SignedInfo"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestSignedInfoElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestSignedInfoElement_SetElementPrefixes(t *testing.T) {
+	elem := &SignedInfoElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "SignedInfo"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestSignedInfoElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestSignedInfoElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &SignedInfoElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "SignedInfo"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestSignedInfoElement_SaveAndLoad tests SaveToFile and LoadSignedInfoFromFile
+func TestSignedInfoElement_SaveAndLoad(t *testing.T) {
+	elem := &SignedInfoElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "SignedInfo"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadSignedInfoFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestSignedInfoElement_LoadFromBytes tests the LoadSignedInfoFromBytes function
+func TestSignedInfoElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<SignedInfo xmlns="http://www.w3.org/2000/09/xmldsig#"></SignedInfo>`)
+
+	loaded, err := LoadSignedInfoFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
 	}
 }
 
@@ -1261,6 +3258,101 @@ func TestTransformElement_MarshalUnmarshal(t *testing.T) {
 	}
 }
 
+// TestTransformElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestTransformElement_MarshalIndentClean(t *testing.T) {
+	elem := &TransformElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "Transform"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestTransformElement_ToBytes tests the ToBytes method
+func TestTransformElement_ToBytes(t *testing.T) {
+	elem := &TransformElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "Transform"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestTransformElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestTransformElement_SetElementPrefixes(t *testing.T) {
+	elem := &TransformElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "Transform"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestTransformElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestTransformElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &TransformElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "Transform"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestTransformElement_SaveAndLoad tests SaveToFile and LoadTransformFromFile
+func TestTransformElement_SaveAndLoad(t *testing.T) {
+	elem := &TransformElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "Transform"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadTransformFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestTransformElement_LoadFromBytes tests the LoadTransformFromBytes function
+func TestTransformElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<Transform xmlns="http://www.w3.org/2000/09/xmldsig#"></Transform>`)
+
+	loaded, err := LoadTransformFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
+}
+
 // TestTransformType_MarshalUnmarshal tests XML round-trip for TransformType
 func TestTransformType_MarshalUnmarshal(t *testing.T) {
 	original := &TransformType{}
@@ -1320,6 +3412,101 @@ func TestTransformsElement_MarshalUnmarshal(t *testing.T) {
 	normalized2 := normalizeXML(xmlData2)
 	if normalized1 != normalized2 {
 		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestTransformsElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestTransformsElement_MarshalIndentClean(t *testing.T) {
+	elem := &TransformsElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "Transforms"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestTransformsElement_ToBytes tests the ToBytes method
+func TestTransformsElement_ToBytes(t *testing.T) {
+	elem := &TransformsElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "Transforms"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestTransformsElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestTransformsElement_SetElementPrefixes(t *testing.T) {
+	elem := &TransformsElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "Transforms"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestTransformsElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestTransformsElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &TransformsElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "Transforms"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestTransformsElement_SaveAndLoad tests SaveToFile and LoadTransformsFromFile
+func TestTransformsElement_SaveAndLoad(t *testing.T) {
+	elem := &TransformsElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "Transforms"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadTransformsFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestTransformsElement_LoadFromBytes tests the LoadTransformsFromBytes function
+func TestTransformsElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<Transforms xmlns="http://www.w3.org/2000/09/xmldsig#"></Transforms>`)
+
+	loaded, err := LoadTransformsFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
 	}
 }
 
@@ -1385,6 +3572,101 @@ func TestX509DataElement_MarshalUnmarshal(t *testing.T) {
 	}
 }
 
+// TestX509DataElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestX509DataElement_MarshalIndentClean(t *testing.T) {
+	elem := &X509DataElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "X509Data"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestX509DataElement_ToBytes tests the ToBytes method
+func TestX509DataElement_ToBytes(t *testing.T) {
+	elem := &X509DataElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "X509Data"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestX509DataElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestX509DataElement_SetElementPrefixes(t *testing.T) {
+	elem := &X509DataElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "X509Data"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestX509DataElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestX509DataElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &X509DataElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "X509Data"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestX509DataElement_SaveAndLoad tests SaveToFile and LoadX509DataFromFile
+func TestX509DataElement_SaveAndLoad(t *testing.T) {
+	elem := &X509DataElement{
+		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "X509Data"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadX509DataFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestX509DataElement_LoadFromBytes tests the LoadX509DataFromBytes function
+func TestX509DataElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<X509Data xmlns="http://www.w3.org/2000/09/xmldsig#"></X509Data>`)
+
+	loaded, err := LoadX509DataFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
+}
+
 // TestX509DataType_MarshalUnmarshal tests XML round-trip for X509DataType
 func TestX509DataType_MarshalUnmarshal(t *testing.T) {
 	original := &X509DataType{}
@@ -1442,5 +3724,23 @@ func TestX509IssuerSerialType_MarshalUnmarshal(t *testing.T) {
 	normalized2 := normalizeXML(xmlData2)
 	if normalized1 != normalized2 {
 		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestExtractElementPrefixes tests the ExtractElementPrefixes helper function
+func TestExtractElementPrefixes(t *testing.T) {
+	xmlData := []byte(`<root xmlns:ex="http://example.com"><ex:child/></root>`)
+	prefixes := ExtractElementPrefixes(xmlData)
+	if prefixes == nil {
+		t.Error("ExtractElementPrefixes returned nil")
+	}
+}
+
+// TestExtractElementsWithXmlns tests the ExtractElementsWithXmlns helper function
+func TestExtractElementsWithXmlns(t *testing.T) {
+	xmlData := []byte(`<root xmlns="http://example.com"><child xmlns="http://other.com"/></root>`)
+	elemXmlns := ExtractElementsWithXmlns(xmlData)
+	if elemXmlns == nil {
+		t.Error("ExtractElementsWithXmlns returned nil")
 	}
 }

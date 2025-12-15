@@ -5,6 +5,8 @@ package asset_reporting_format1_1
 
 import (
 	"encoding/xml"
+	"os"
+	"path/filepath"
 	"regexp"
 	"testing"
 )
@@ -76,6 +78,101 @@ func TestAssetReportCollectionElement_MarshalUnmarshal(t *testing.T) {
 	normalized2 := normalizeXML(xmlData2)
 	if normalized1 != normalized2 {
 		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestAssetReportCollectionElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestAssetReportCollectionElement_MarshalIndentClean(t *testing.T) {
+	elem := &AssetReportCollectionElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-reporting-format/1.1", Local: "asset-report-collection"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestAssetReportCollectionElement_ToBytes tests the ToBytes method
+func TestAssetReportCollectionElement_ToBytes(t *testing.T) {
+	elem := &AssetReportCollectionElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-reporting-format/1.1", Local: "asset-report-collection"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestAssetReportCollectionElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestAssetReportCollectionElement_SetElementPrefixes(t *testing.T) {
+	elem := &AssetReportCollectionElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-reporting-format/1.1", Local: "asset-report-collection"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestAssetReportCollectionElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestAssetReportCollectionElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &AssetReportCollectionElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-reporting-format/1.1", Local: "asset-report-collection"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestAssetReportCollectionElement_SaveAndLoad tests SaveToFile and LoadAssetReportCollectionFromFile
+func TestAssetReportCollectionElement_SaveAndLoad(t *testing.T) {
+	elem := &AssetReportCollectionElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-reporting-format/1.1", Local: "asset-report-collection"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadAssetReportCollectionFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestAssetReportCollectionElement_LoadFromBytes tests the LoadAssetReportCollectionFromBytes function
+func TestAssetReportCollectionElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<asset-report-collection xmlns="http://scap.nist.gov/schema/asset-reporting-format/1.1"></asset-report-collection>`)
+
+	loaded, err := LoadAssetReportCollectionFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
 	}
 }
 
@@ -291,6 +388,101 @@ func TestObjectRefElement_MarshalUnmarshal(t *testing.T) {
 	}
 }
 
+// TestObjectRefElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestObjectRefElement_MarshalIndentClean(t *testing.T) {
+	elem := &ObjectRefElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-reporting-format/1.1", Local: "object-ref"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestObjectRefElement_ToBytes tests the ToBytes method
+func TestObjectRefElement_ToBytes(t *testing.T) {
+	elem := &ObjectRefElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-reporting-format/1.1", Local: "object-ref"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestObjectRefElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestObjectRefElement_SetElementPrefixes(t *testing.T) {
+	elem := &ObjectRefElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-reporting-format/1.1", Local: "object-ref"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestObjectRefElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestObjectRefElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &ObjectRefElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-reporting-format/1.1", Local: "object-ref"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestObjectRefElement_SaveAndLoad tests SaveToFile and LoadObjectRefFromFile
+func TestObjectRefElement_SaveAndLoad(t *testing.T) {
+	elem := &ObjectRefElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-reporting-format/1.1", Local: "object-ref"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadObjectRefFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestObjectRefElement_LoadFromBytes tests the LoadObjectRefFromBytes function
+func TestObjectRefElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<object-ref xmlns="http://scap.nist.gov/schema/asset-reporting-format/1.1"></object-ref>`)
+
+	loaded, err := LoadObjectRefFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
+	}
+}
+
 // TestObjectRefElementType_MarshalUnmarshal tests XML round-trip for ObjectRefElementType
 func TestObjectRefElementType_MarshalUnmarshal(t *testing.T) {
 	original := &ObjectRefElementType{}
@@ -350,6 +542,101 @@ func TestRemoteResourceElement_MarshalUnmarshal(t *testing.T) {
 	normalized2 := normalizeXML(xmlData2)
 	if normalized1 != normalized2 {
 		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestRemoteResourceElement_MarshalIndentClean tests the MarshalIndentClean method
+func TestRemoteResourceElement_MarshalIndentClean(t *testing.T) {
+	elem := &RemoteResourceElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-reporting-format/1.1", Local: "remote-resource"},
+	}
+
+	data, err := elem.MarshalIndentClean("", "  ")
+	if err != nil {
+		t.Fatalf("MarshalIndentClean failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("MarshalIndentClean returned empty data")
+	}
+}
+
+// TestRemoteResourceElement_ToBytes tests the ToBytes method
+func TestRemoteResourceElement_ToBytes(t *testing.T) {
+	elem := &RemoteResourceElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-reporting-format/1.1", Local: "remote-resource"},
+	}
+
+	data, err := elem.ToBytes()
+	if err != nil {
+		t.Fatalf("ToBytes failed: %v", err)
+	}
+	if len(data) == 0 {
+		t.Error("ToBytes returned empty data")
+	}
+}
+
+// TestRemoteResourceElement_SetElementPrefixes tests the SetElementPrefixes method
+func TestRemoteResourceElement_SetElementPrefixes(t *testing.T) {
+	elem := &RemoteResourceElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-reporting-format/1.1", Local: "remote-resource"},
+	}
+
+	prefixes := map[string]string{"http://example.com": "ex"}
+	elem.SetElementPrefixes(prefixes)
+	// Method should not panic - that's the test
+}
+
+// TestRemoteResourceElement_SetElementsWithXmlns tests the SetElementsWithXmlns method
+func TestRemoteResourceElement_SetElementsWithXmlns(t *testing.T) {
+	elem := &RemoteResourceElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-reporting-format/1.1", Local: "remote-resource"},
+	}
+
+	elemXmlns := map[string]string{"child": "http://example.com"}
+	elem.SetElementsWithXmlns(elemXmlns)
+	// Method should not panic - that's the test
+}
+
+// TestRemoteResourceElement_SaveAndLoad tests SaveToFile and LoadRemoteResourceFromFile
+func TestRemoteResourceElement_SaveAndLoad(t *testing.T) {
+	elem := &RemoteResourceElement{
+		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-reporting-format/1.1", Local: "remote-resource"},
+	}
+
+	// Create temp file
+	tmpDir := t.TempDir()
+	tmpFile := filepath.Join(tmpDir, "test.xml")
+
+	// Save to file
+	if err := elem.SaveToFile(tmpFile); err != nil {
+		t.Fatalf("SaveToFile failed: %v", err)
+	}
+
+	// Verify file exists
+	if _, err := os.Stat(tmpFile); os.IsNotExist(err) {
+		t.Fatal("SaveToFile did not create file")
+	}
+
+	// Load from file
+	loaded, err := LoadRemoteResourceFromFile(tmpFile)
+	if err != nil {
+		t.Fatalf("LoadFromFile failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromFile returned nil")
+	}
+}
+
+// TestRemoteResourceElement_LoadFromBytes tests the LoadRemoteResourceFromBytes function
+func TestRemoteResourceElement_LoadFromBytes(t *testing.T) {
+	xmlData := []byte(`<remote-resource xmlns="http://scap.nist.gov/schema/asset-reporting-format/1.1"></remote-resource>`)
+
+	loaded, err := LoadRemoteResourceFromBytes(xmlData)
+	if err != nil {
+		t.Fatalf("LoadFromBytes failed: %v", err)
+	}
+	if loaded == nil {
+		t.Error("LoadFromBytes returned nil")
 	}
 }
 
@@ -500,5 +787,23 @@ func TestReportsElementType_MarshalUnmarshal(t *testing.T) {
 	normalized2 := normalizeXML(xmlData2)
 	if normalized1 != normalized2 {
 		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestExtractElementPrefixes tests the ExtractElementPrefixes helper function
+func TestExtractElementPrefixes(t *testing.T) {
+	xmlData := []byte(`<root xmlns:ex="http://example.com"><ex:child/></root>`)
+	prefixes := ExtractElementPrefixes(xmlData)
+	if prefixes == nil {
+		t.Error("ExtractElementPrefixes returned nil")
+	}
+}
+
+// TestExtractElementsWithXmlns tests the ExtractElementsWithXmlns helper function
+func TestExtractElementsWithXmlns(t *testing.T) {
+	xmlData := []byte(`<root xmlns="http://example.com"><child xmlns="http://other.com"/></root>`)
+	elemXmlns := ExtractElementsWithXmlns(xmlData)
+	if elemXmlns == nil {
+		t.Error("ExtractElementsWithXmlns returned nil")
 	}
 }

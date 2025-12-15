@@ -1,0 +1,3 @@
+2025/12/14 19:30:32 [INFO] Logging system initialized with level:
+2025/12/14 19:30:32 [ERROR] Error reading template directorydirtemplates/formserroropen templates/forms: file does not exist
+2025/12/14 19:30:32 [ERROR] Error reading template directorydirtemplates/includeserroropen templates/includes: file does not exist

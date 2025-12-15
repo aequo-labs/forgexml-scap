@@ -1,0 +1,2269 @@
+classDiagram
+    class AddressDetails {
+        #int64 ID
+        +string AddressType
+        +string CurrentStatus
+        +string ValidFromDate
+        +string ValidToDate
+        +string Usage
+        +string AddressDetailsKey
+        +string PostalServiceElements
+        +string Address
+        +*int64 AddressLinesID
+        +string Country
+    }
+    class AddressElementType {
+        #int64 ID
+        +string Type
+    }
+    class AddressIdentifierElementType {
+        #int64 ID
+        +string IdentifierType
+        +string Type
+    }
+    class AddressLatitudeDirectionElementType {
+        #int64 ID
+        +string Type
+    }
+    class AddressLatitudeElementType {
+        #int64 ID
+        +string Type
+    }
+    class AddressLine {
+        #int64 ID
+        +string Type
+    }
+    class AddressLineElementType {
+        #int64 ID
+        +string Type
+    }
+    class AddressLinesType {
+        #int64 ID
+    }
+    class AddressLongitudeDirectionElementType {
+        #int64 ID
+        +string Type
+    }
+    class AddressLongitudeElementType {
+        #int64 ID
+        +string Type
+    }
+    class AddresseeIndicatorElementType {
+        #int64 ID
+        +string Code
+    }
+    class AdministrativeArea {
+        #int64 ID
+        +string Type
+        +string UsageType
+        +string Indicator
+        +string AdministrativeAreaName
+        +string SubAdministrativeArea
+    }
+    class AdministrativeAreaElementType {
+        #int64 ID
+        +string Type
+        +string UsageType
+        +string Indicator
+        +string AdministrativeAreaName
+        +string SubAdministrativeArea
+    }
+    class AdministrativeAreaNameElementType {
+        #int64 ID
+        +string Type
+    }
+    class AffectedType {
+        #int64 ID
+        +string Family
+        +string Platform
+        +string Product
+    }
+    class AliasElementType {
+        #int64 ID
+        +string Type
+        +string NameType
+        +string Code
+    }
+    class ArcType {
+        #int64 ID
+    }
+    class ArithmeticFunctionType {
+        #int64 ID
+        +string Arithmetic_operation
+    }
+    class AssetIdentificationAssetElementType {
+        #int64 ID
+        +string XsdId
+    }
+    class RelationshipsContainerType {
+        #int64 ID
+        +string Relationships
+    }
+    class AssetsType {
+        #int64 ID
+        +string Asset
+        +*int64 ParentID
+    }
+    class AssetIdentificationType {
+        #int64 ID
+        +string AssetRef
+        +*int64 ParentID
+    }
+    class AssetReportCollection {
+        #int64 ID
+        +string XsdId
+        +string ReportRequests
+        +string Assets
+        +string Reports
+        +string ExtendedInfos
+        +*int64 ParentID
+    }
+    class AssetReportCollectionElementType {
+        #int64 ID
+        +string XsdId
+        +string ReportRequests
+        +string Assets
+        +string Reports
+        +string ExtendedInfos
+        +*int64 ParentID
+    }
+    class AssetReportingFormAssetElementType {
+        #int64 ID
+        +string XsdId
+    }
+    class AssetType {
+        #int64 ID
+        +string ExtendedInformation
+    }
+    class AssetsElementType {
+        #int64 ID
+        +string Asset
+    }
+    class BarcodeElementType {
+        #int64 ID
+        +string Type
+    }
+    class BeginFunctionType {
+        #int64 ID
+        +string Character
+    }
+    class Benchmark {
+        #int64 ID
+        +string XsdId
+        +bool Resolved
+        +string Style
+        +string StyleHref
+        +*int64 VersionID
+        +*int64 SignatureID
+    }
+    class VersionType {
+        #int64 ID
+        +time.Time Time
+        +string Update
+    }
+    class BenchmarkElementType {
+        #int64 ID
+        +string XsdId
+        +bool Resolved
+        +string Style
+        +string StyleHref
+        +*int64 VersionID
+        +*int64 SignatureID
+    }
+    class BenchmarkReferenceType {
+        #int64 ID
+        +string Href
+        +string XsdId
+    }
+    class BirthdateElementType {
+        #int64 ID
+    }
+    class BuildingNameType {
+        #int64 ID
+        +string Type
+        +string TypeOccurrence
+    }
+    class CPE2idrefType {
+        #int64 ID
+        +string Idref
+    }
+    class CanonicalizationMethodType {
+        #int64 ID
+        +string Algorithm
+    }
+    class CheckContentRefType {
+        #int64 ID
+        +string Href
+        +string Name
+    }
+    class CheckContentType {
+        #int64 ID
+    }
+    class CheckExportType {
+        #int64 ID
+        +string ValueId
+        +string ExportName
+    }
+    class CheckImportType {
+        #int64 ID
+        +string ImportName
+        +string ImportXpath
+    }
+    class CidrElementType {
+        #int64 ID
+        +*int64 ParentID
+    }
+    class CircuitNameElementType {
+        #int64 ID
+    }
+    class ItAssetType {
+        #int64 ID
+        +*int64 ParentID
+    }
+    class CircuitType {
+        #int64 ID
+        +string CircuitName
+        +*int64 ParentID
+    }
+    class ComplexCheckType {
+        #int64 ID
+        +string Operator
+        +bool Negate
+        +*int64 CheckID
+        +*int64 ComplexCheckID
+    }
+    class ComplexValueType {
+        #int64 ID
+        +string Item
+    }
+    class ComputingDeviceType {
+        #int64 ID
+        +string DistinguishedName
+        +string Connections
+        +string Hostname
+        +string MotherboardGuid
+        +*int64 ParentID
+    }
+    class ConcatFunctionType {
+        #int64 ID
+    }
+    class ConnectionsElementType {
+        #int64 ID
+    }
+    class VariableType {
+        #int64 ID
+        +string XsdId
+        +uint64 Version
+        +string Datatype
+        +string Comment
+        +bool Deprecated
+    }
+    class ConstantVariable {
+        #int64 ID
+        +*int64 ParentID
+    }
+    class ConstantVariableElementType {
+        #int64 ID
+        +*int64 ParentID
+    }
+    class ContentElementType {
+        #int64 ID
+        +time.Time DataValidStartDate
+        +time.Time DataValidEndDate
+    }
+    class ContentElementType1 {
+        #int64 ID
+    }
+    class CountFunctionType {
+        #int64 ID
+    }
+    class CountryElementType {
+        #int64 ID
+        +string CountryNameCode
+    }
+    class CountryName {
+        #int64 ID
+        +string Type
+    }
+    class CountryNameCodeElementType {
+        #int64 ID
+        +string Scheme
+    }
+    class CountryNameElementType {
+        #int64 ID
+        +string Type
+    }
+    class Cpe {
+        #int64 ID
+        +*int64 ParentID
+    }
+    class CpeElementType {
+        #int64 ID
+        +*int64 ParentID
+    }
+    class CriterionType {
+        #int64 ID
+        +bool Applicability_check
+        +string Test_ref
+        +bool Negate
+        +string Comment
+    }
+    class ExtendDefinitionType {
+        #int64 ID
+        +bool Applicability_check
+        +string Definition_ref
+        +bool Negate
+        +string Comment
+    }
+    class CriteriaType {
+        #int64 ID
+        +bool Applicability_check
+        +string Operator
+        +bool Negate
+        +string Comment
+        +*int64 CriteriaID
+        +*int64 CriterionID
+        +*int64 Extend_definitionID
+    }
+    class DSAKeyValueType {
+        #int64 ID
+        +*int64 GID
+        +*int64 YID
+        +*int64 JID
+        +*int64 PID
+        +*int64 QID
+        +*int64 SeedID
+        +*int64 PgenCounterID
+    }
+    class DataType {
+        #int64 ID
+        +*int64 ParentID
+    }
+    class DatabaseType {
+        #int64 ID
+        +string InstanceName
+        +*int64 ParentID
+    }
+    class DcStatusType {
+        #int64 ID
+    }
+    class DefinitionType {
+        #int64 ID
+        +string XsdId
+        +uint64 Version
+        +string Class
+        +bool Deprecated
+        +*int64 MetadataID
+        +*int64 CriteriaID
+    }
+    class DefinitionsType {
+        #int64 ID
+    }
+    class Department {
+        #int64 ID
+        +string Type
+        +string DepartmentName
+        +*int64 MailStopID
+    }
+    class MailStopType {
+        #int64 ID
+        +string Type
+        +string MailStopName
+        +string MailStopNumber
+    }
+    class DepartmentElementType {
+        #int64 ID
+        +string Type
+        +string DepartmentName
+        +*int64 MailStopID
+    }
+    class DepartmentNameElementType {
+        #int64 ID
+        +string Type
+    }
+    class DependencyNameElementType {
+        #int64 ID
+        +string DependencyType
+        +*int64 ParentID
+    }
+    class DependentLocalityNameElementType {
+        #int64 ID
+        +string Type
+    }
+    class DependentLocalityNumberElementType {
+        #int64 ID
+        +string NameNumberOccurrence
+    }
+    class DependentLocalityType {
+        #int64 ID
+        +string Type
+        +string UsageType
+        +string Connector
+        +string Indicator
+        +string DependentLocalityName
+        +string DependentLocalityNumber
+        +*int64 DependentLocalityID
+        +*int64 LargeMailUserID
+        +*int64 PostalRouteID
+    }
+    class ThoroughfarePreDirectionType {
+        #int64 ID
+        +string Type
+    }
+    class ThoroughfareLeadingTypeType {
+        #int64 ID
+        +string Type
+    }
+    class ThoroughfareTrailingTypeType {
+        #int64 ID
+        +string Type
+    }
+    class ThoroughfarePostDirectionType {
+        #int64 ID
+        +string Type
+    }
+    class DependentThoroughfareElementType {
+        #int64 ID
+        +string Type
+        +*int64 ThoroughfarePreDirectionID
+        +*int64 ThoroughfareLeadingTypeID
+        +*int64 ThoroughfareTrailingTypeID
+        +*int64 ThoroughfarePostDirectionID
+    }
+    class DeprecatedInfoType {
+        #int64 ID
+        +string Version
+        +string Reason
+        +string Comment
+    }
+    class Dictionary20CheckType {
+        #int64 ID
+        +string System
+        +string Href
+    }
+    class SchemaVersionType {
+        #int64 ID
+        +string Platform
+        +*int64 ParentID
+    }
+    class Dictionary20GeneratorType {
+        #int64 ID
+        +string Product_name
+        +string Product_version
+        +string Schema_version
+        +time.Time Timestamp
+    }
+    class ReferencesType {
+        #int64 ID
+        +string Reference
+    }
+    class Dictionary20ItemType {
+        #int64 ID
+        +string Name
+        +bool Deprecated
+        +string Deprecated_by
+        +time.Time Deprecation_date
+        +*int64 ReferencesID
+    }
+    class Dictionary20NotesType {
+        #int64 ID
+        +string Note
+    }
+    class Dictionary20TextType {
+        #int64 ID
+    }
+    class DigestMethodType {
+        #int64 ID
+        +string Algorithm
+    }
+    class DistinguishedNameElementType {
+        #int64 ID
+    }
+    class DocumentRootElementType {
+        #int64 ID
+    }
+    class ElementMapItemType {
+        #int64 ID
+        +string Target_namespace
+    }
+    class ElementMapType {
+        #int64 ID
+        +*int64 TestID
+        +*int64 ObjectID
+        +*int64 StateID
+        +*int64 ItemID
+    }
+    class EmailAddress {
+        #int64 ID
+    }
+    class EmailAddressElementType {
+        #int64 ID
+    }
+    class EndFunctionType {
+        #int64 ID
+        +string Character
+    }
+    class EndorsementLineCodeElementType {
+        #int64 ID
+        +string Type
+    }
+    class EntityComplexBaseType {
+        #int64 ID
+    }
+    class EntitySimpleBaseType {
+        #int64 ID
+    }
+    class EntityObjectAnySimpleType {
+        #int64 ID
+        +string Datatype
+        +*int64 ParentID
+    }
+    class EntityObjectBinaryType {
+        #int64 ID
+        +string Datatype
+        +*int64 ParentID
+    }
+    class EntityObjectBoolType {
+        #int64 ID
+        +string Datatype
+        +*int64 ParentID
+    }
+    class EntityObjectFieldType {
+        #int64 ID
+        +string Name
+        +string Entity_check
+    }
+    class EntityObjectFloatType {
+        #int64 ID
+        +string Datatype
+        +*int64 ParentID
+    }
+    class EntityObjectIPAddressStringType {
+        #int64 ID
+        +string Datatype
+        +*int64 ParentID
+    }
+    class EntityObjectIPAddressType {
+        #int64 ID
+        +string Datatype
+        +*int64 ParentID
+    }
+    class EntityObjectIntType {
+        #int64 ID
+        +string Datatype
+        +*int64 ParentID
+    }
+    class EntityObjectRecordType {
+        #int64 ID
+        +*int64 ParentID
+    }
+    class EntityObjectStringType {
+        #int64 ID
+        +string Datatype
+        +*int64 ParentID
+    }
+    class EntityObjectVersionType {
+        #int64 ID
+        +string Datatype
+        +*int64 ParentID
+    }
+    class EntityStateSimpleBaseType {
+        #int64 ID
+        +string Entity_check
+        +string Check_existence
+        +*int64 ParentID
+    }
+    class EntityStateAnySimpleType {
+        #int64 ID
+        +string Datatype
+        +*int64 ParentID
+    }
+    class EntityStateBinaryType {
+        #int64 ID
+        +string Datatype
+        +*int64 ParentID
+    }
+    class EntityStateBoolType {
+        #int64 ID
+        +string Datatype
+        +*int64 ParentID
+    }
+    class EntityStateComplexBaseType {
+        #int64 ID
+        +string Entity_check
+        +string Check_existence
+        +*int64 ParentID
+    }
+    class EntityStateDebianEVRStringType {
+        #int64 ID
+        +string Datatype
+        +*int64 ParentID
+    }
+    class EntityStateEVRStringType {
+        #int64 ID
+        +string Datatype
+        +*int64 ParentID
+    }
+    class EntityStateFieldType {
+        #int64 ID
+        +string Name
+        +string Entity_check
+    }
+    class EntityStateFileSetRevisionType {
+        #int64 ID
+        +string Datatype
+        +*int64 ParentID
+    }
+    class EntityStateFloatType {
+        #int64 ID
+        +string Datatype
+        +*int64 ParentID
+    }
+    class EntityStateIOSVersionType {
+        #int64 ID
+        +string Datatype
+        +*int64 ParentID
+    }
+    class EntityStateIPAddressStringType {
+        #int64 ID
+        +string Datatype
+        +*int64 ParentID
+    }
+    class EntityStateIPAddressType {
+        #int64 ID
+        +string Datatype
+        +*int64 ParentID
+    }
+    class EntityStateIntType {
+        #int64 ID
+        +string Datatype
+        +*int64 ParentID
+    }
+    class EntityStateRecordType {
+        #int64 ID
+        +*int64 ParentID
+    }
+    class EntityStateStringType {
+        #int64 ID
+        +string Datatype
+        +*int64 ParentID
+    }
+    class EntityStateVersionType {
+        #int64 ID
+        +string Datatype
+        +*int64 ParentID
+    }
+    class EscapeRegexFunctionType {
+        #int64 ID
+    }
+    class Extended {
+        #int64 ID
+    }
+    class ExtendedInfoElementType {
+        #int64 ID
+        +string XsdId
+    }
+    class ExtendedInformationElementType {
+        #int64 ID
+    }
+    class ExtendedInfosElementType {
+        #int64 ID
+        +string ExtendedInfo
+    }
+    class ExternalVariable {
+        #int64 ID
+        +*int64 Possible_valueID
+        +*int64 Possible_restrictionID
+        +*int64 ParentID
+    }
+    class PossibleValueType {
+        #int64 ID
+        +string Hint
+    }
+    class PossibleRestrictionType {
+        #int64 ID
+        +string Operator
+        +string Hint
+    }
+    class ExternalVariableElementType {
+        #int64 ID
+        +*int64 Possible_valueID
+        +*int64 Possible_restrictionID
+        +*int64 ParentID
+    }
+    class FactRefType {
+        #int64 ID
+        +string Name
+    }
+    class FactType {
+        #int64 ID
+        +string Name
+        +string Type
+    }
+    class Filter {
+        #int64 ID
+        +string Action
+        +*int64 ParentID
+    }
+    class FilterElementType {
+        #int64 ID
+        +string Action
+        +*int64 ParentID
+    }
+    class FirmNameElementType {
+        #int64 ID
+        +string Type
+    }
+    class FirmType {
+        #int64 ID
+        +string Type
+        +string FirmName
+        +*int64 MailStopID
+    }
+    class FirstNameElementType {
+        #int64 ID
+        +string Type
+        +string NameType
+        +string Code
+    }
+    class IdrefType {
+        #int64 ID
+        +string Idref
+    }
+    class SubType {
+        #int64 ID
+        +string Use
+        +*int64 ParentID
+    }
+    class HtmlTextWithSubType {
+        #int64 ID
+        +bool Override
+        +*int64 SubID
+    }
+    class FixTextType {
+        #int64 ID
+        +string Fixref
+        +bool Reboot
+        +string Strategy
+        +string Disruption
+        +string Complexity
+        +*int64 ParentID
+    }
+    class InstanceFixType {
+        #int64 ID
+        +string Context
+    }
+    class FixType {
+        #int64 ID
+        +string XsdId
+        +bool Reboot
+        +string Strategy
+        +string Disruption
+        +string Complexity
+        +string System
+        +string Platform
+        +*int64 SubID
+        +*int64 InstanceID
+    }
+    class FormerNameElementType {
+        #int64 ID
+        +string ValidFrom
+        +string ValidTo
+        +*int64 ParentID
+    }
+    class Fqdn {
+        #int64 ID
+    }
+    class FqdnElementType {
+        #int64 ID
+    }
+    class Function {
+        #int64 ID
+        +string Code
+    }
+    class GeneralSuffixElementType {
+        #int64 ID
+        +string Type
+        +string Code
+    }
+    class GenerationIdentifierElementType {
+        #int64 ID
+        +string Type
+        +string Code
+    }
+    class GlobToRegexFunctionType {
+        #int64 ID
+        +bool Glob_noescape
+    }
+    class SelectableItemType {
+        #int64 ID
+        +bool Selected
+        +string Weight
+        +*int64 ParentID
+    }
+    class GroupType {
+        #int64 ID
+        +string XsdId
+        +*int64 SignatureID
+        +*int64 ParentID
+    }
+    class HostElementType {
+        #int64 ID
+    }
+    class HostnameElementType {
+        #int64 ID
+        +*int64 ParentID
+    }
+    class HtmlTextType {
+        #int64 ID
+        +bool Override
+    }
+    class IdentType {
+        #int64 ID
+        +string System
+    }
+    class IdentityType {
+        #int64 ID
+        +bool Authenticated
+        +bool Privileged
+    }
+    class IdrefListType {
+        #int64 ID
+        +[]string Idref
+    }
+    class InstallationIdElementType {
+        #int64 ID
+    }
+    class InstanceNameElementType {
+        #int64 ID
+    }
+    class InstanceResultType {
+        #int64 ID
+        +string Context
+        +string ParentContext
+    }
+    class IpAddressType {
+        #int64 ID
+        +string IpV4
+        +string IpV6
+    }
+    class IpNetRangeElementType {
+        #int64 ID
+        +*int64 IpNetRangeStartID
+        +*int64 IpNetRangeEndID
+    }
+    class IpV4ElementType {
+        #int64 ID
+        +*int64 ParentID
+    }
+    class IpV6ElementType {
+        #int64 ID
+        +*int64 ParentID
+    }
+    class JointPersonName {
+        #int64 ID
+        +string JointNameConnector
+        +string Code
+    }
+    class JointPersonNameElementType {
+        #int64 ID
+        +string JointNameConnector
+        +string Code
+    }
+    class KeyInfoType {
+        #int64 ID
+        +string XsdId
+    }
+    class KeyLineCodeElementType {
+        #int64 ID
+        +string Type
+    }
+    class KeyValueType {
+        #int64 ID
+    }
+    class KnownAsElementType {
+        #int64 ID
+        +string ValidFrom
+        +string ValidTo
+        +*int64 ParentID
+    }
+    class Language20TextType {
+        #int64 ID
+    }
+    class LargeMailUserIdentifierElementType {
+        #int64 ID
+        +string Type
+        +string Indicator
+    }
+    class LargeMailUserNameElementType {
+        #int64 ID
+        +string Type
+        +string Code
+    }
+    class LargeMailUserType {
+        #int64 ID
+        +string Type
+        +string LargeMailUserName
+        +string LargeMailUserIdentifier
+    }
+    class LastNameElementType {
+        #int64 ID
+        +string Type
+        +string NameType
+        +string Code
+    }
+    class LicenseElementType {
+        #int64 ID
+    }
+    class ListType {
+        #int64 ID
+        +*int64 GeneratorID
+    }
+    class LiteralComponentType {
+        #int64 ID
+        +string Datatype
+    }
+    class LocalVariable {
+        #int64 ID
+        +*int64 ParentID
+    }
+    class LocalVariableElementType {
+        #int64 ID
+        +*int64 ParentID
+    }
+    class LocaleElementType {
+        #int64 ID
+        +*int64 ParentID
+    }
+    class Locality {
+        #int64 ID
+        +string Type
+        +string UsageType
+        +string Indicator
+        +string LocalityName
+        +*int64 DependentLocalityID
+        +*int64 LargeMailUserID
+        +*int64 PostalRouteID
+    }
+    class LocalityElementType {
+        #int64 ID
+        +string Type
+        +string UsageType
+        +string Indicator
+        +string LocalityName
+        +*int64 DependentLocalityID
+        +*int64 LargeMailUserID
+        +*int64 PostalRouteID
+    }
+    class LocalityNameElementType {
+        #int64 ID
+        +string Type
+    }
+    class LocationPoint {
+        #int64 ID
+        +string Latitude
+        +string Longitude
+        +float64 Elevation
+        +string Radius
+    }
+    class LocationPointElementType {
+        #int64 ID
+        +string Latitude
+        +string Longitude
+        +float64 Elevation
+        +string Radius
+    }
+    class LocationRegion {
+        #int64 ID
+    }
+    class LocationRegionElementType {
+        #int64 ID
+    }
+    class Locations {
+        #int64 ID
+    }
+    class LocationsElementType {
+        #int64 ID
+    }
+    class LocatorType {
+        #int64 ID
+    }
+    class LogicalTestType {
+        #int64 ID
+        +string Operator
+        +bool Negate
+    }
+    class MacAddressElementType {
+        #int64 ID
+        +*int64 ParentID
+    }
+    class MailStopNameElementType {
+        #int64 ID
+        +string Type
+    }
+    class MailStopNumberElementType {
+        #int64 ID
+        +string NameNumberSeparator
+    }
+    class ManifestType {
+        #int64 ID
+        +string XsdId
+    }
+    class MiddleNameElementType {
+        #int64 ID
+        +string Type
+        +string NameType
+        +string Code
+    }
+    class Model {
+        #int64 ID
+        +string System
+    }
+    class ModelElementType {
+        #int64 ID
+        +string System
+    }
+    class MotherboardGuidElementType {
+        #int64 ID
+    }
+    class NameDetailsElementType {
+        #int64 ID
+        +string NameDetailsKey
+        +string AddresseeIndicator
+        +string DependencyName
+        +*int64 ParentID
+    }
+    class NameLineType {
+        #int64 ID
+        +string Type
+        +string NameType
+        +string Code
+    }
+    class NamePrefixElementType {
+        #int64 ID
+        +string Type
+        +string NameType
+        +string Code
+    }
+    class NetworkInterfaceType {
+        #int64 ID
+        +string MacAddress
+        +string Url
+        +*int64 SubnetMaskID
+        +*int64 DefaultRouteID
+    }
+    class NetworkNameElementType {
+        #int64 ID
+    }
+    class NetworkType {
+        #int64 ID
+        +string NetworkName
+        +string IpNetRange
+        +string Cidr
+        +*int64 ParentID
+    }
+    class Notes {
+        #int64 ID
+        +string Note
+        +*int64 ParentID
+    }
+    class NotesElementType {
+        #int64 ID
+        +string Note
+        +*int64 ParentID
+    }
+    class NoticeType {
+        #int64 ID
+        +string XsdId
+    }
+    class Ns09XmldsigObjectType {
+        #int64 ID
+        +string XsdId
+        +string MimeType
+        +string Encoding
+    }
+    class Ns09XmldsigReferenceType {
+        #int64 ID
+        +string XsdId
+        +string URI
+        +string Type
+    }
+    class Ns09XmldsigSignatureType {
+        #int64 ID
+        +string XsdId
+    }
+    class OasisNamesTcCiqXNameDetails {
+        #int64 ID
+        +string NameDetailsKey
+        +string AddresseeIndicator
+        +string DependencyName
+        +*int64 ParentID
+    }
+    class OasisNamesTcCiqXOrganisationNameDetails {
+        #int64 ID
+        +string OrganisationFormerName
+        +string OrganisationKnownAs
+        +*int64 ParentID
+    }
+    class OasisNamesTcCiqXPersonName {
+        #int64 ID
+        +string FormerName
+        +string KnownAs
+        +*int64 ParentID
+    }
+    class ObjectComponentType {
+        #int64 ID
+        +string Object_ref
+        +string Item_field
+        +string Record_field
+    }
+    class ObjectRef {
+        #int64 ID
+        +string RefId
+    }
+    class ObjectRefElementType {
+        #int64 ID
+        +string RefId
+    }
+    class ObjectRefType {
+        #int64 ID
+        +string Object_ref
+    }
+    class ObjectsType {
+        #int64 ID
+    }
+    class OrganisationFormerNameElementType {
+        #int64 ID
+        +string ValidFrom
+        +string ValidTo
+        +*int64 ParentID
+    }
+    class OrganisationKnownAsElementType {
+        #int64 ID
+        +string ValidFrom
+        +string ValidTo
+        +*int64 ParentID
+    }
+    class OrganisationNameDetailsElementType {
+        #int64 ID
+        +string OrganisationFormerName
+        +string OrganisationKnownAs
+        +*int64 ParentID
+    }
+    class OrganisationNameElementType {
+        #int64 ID
+        +string Type
+        +string NameType
+        +string Code
+    }
+    class OrganisationTypeElementType {
+        #int64 ID
+        +string Type
+        +string NameType
+        +string Code
+    }
+    class OrganizationType {
+        #int64 ID
+        +*int64 ParentID
+    }
+    class OtherNameElementType {
+        #int64 ID
+        +string Type
+        +string NameType
+        +string Code
+    }
+    class OvalDefinitions {
+        #int64 ID
+        +*int64 GeneratorID
+        +*int64 DefinitionsID
+        +*int64 TestsID
+        +*int64 ObjectsID
+        +*int64 StatesID
+        +*int64 VariablesID
+    }
+    class TestsType {
+        #int64 ID
+    }
+    class StatesType {
+        #int64 ID
+    }
+    class VariablesType {
+        #int64 ID
+    }
+    class OvalDefinitionsElementType {
+        #int64 ID
+        +*int64 GeneratorID
+        +*int64 DefinitionsID
+        +*int64 TestsID
+        +*int64 ObjectsID
+        +*int64 StatesID
+        +*int64 VariablesID
+    }
+    class OvalMitreOrgOvalGeneratorType {
+        #int64 ID
+        +string Product_name
+        +string Product_version
+        +time.Time Timestamp
+    }
+    class OvalMitreOrgOvalMessageType {
+        #int64 ID
+        +string Level
+    }
+    class OvalMitreOrgOvalMetadataType {
+        #int64 ID
+        +string Title
+        +string Description
+    }
+    class OvalMitreOrgOvalNotesType {
+        #int64 ID
+        +string Note
+    }
+    class OvalMitreOrgOvalObjectType {
+        #int64 ID
+        +string XsdId
+        +uint64 Version
+        +string Comment
+        +bool Deprecated
+    }
+    class OvalMitreOrgOvalReferenceType {
+        #int64 ID
+        +string Source
+        +string Ref_id
+        +string Ref_url
+    }
+    class OvalMitreOrgOvalValueType {
+        #int64 ID
+    }
+    class OverrideType {
+        #int64 ID
+        +time.Time Time
+        +string Authority
+        +*int64 OldResultID
+        +*int64 NewResultID
+        +*int64 RemarkID
+    }
+    class OverrideableCPE2idrefType {
+        #int64 ID
+        +bool Override
+        +*int64 ParentID
+    }
+    class PGPDataType {
+        #int64 ID
+        +[]byte PGPKeyID
+        +[]byte PGPKeyPacket
+    }
+    class ParamType {
+        #int64 ID
+        +string Name
+    }
+    class PersonNameElementType {
+        #int64 ID
+        +string FormerName
+        +string KnownAs
+        +*int64 ParentID
+    }
+    class PersonType {
+        #int64 ID
+        +string Birthdate
+        +*int64 ParentID
+    }
+    class PlainTextType {
+        #int64 ID
+        +string XsdId
+    }
+    class PlatformSpecification {
+        #int64 ID
+    }
+    class PlatformSpecificationElementType {
+        #int64 ID
+    }
+    class PlatformType {
+        #int64 ID
+        +string XsdId
+        +*int64 LogicalTestID
+    }
+    class PortElementType {
+        #int64 ID
+        +*int64 ParentID
+    }
+    class PortRangeElementType {
+        #int64 ID
+        +string LowerBound
+        +string UpperBound
+    }
+    class PostBox {
+        #int64 ID
+        +string Type
+        +string Indicator
+        +string PostBoxNumber
+        +string PostBoxNumberPrefix
+        +string PostBoxNumberSuffix
+        +string PostBoxNumberExtension
+        +*int64 FirmID
+    }
+    class PostBoxElementType {
+        #int64 ID
+        +string Type
+        +string Indicator
+        +string PostBoxNumber
+        +string PostBoxNumberPrefix
+        +string PostBoxNumberSuffix
+        +string PostBoxNumberExtension
+        +*int64 FirmID
+    }
+    class PostBoxNumberElementType {
+        #int64 ID
+    }
+    class PostBoxNumberExtensionElementType {
+        #int64 ID
+        +string NumberExtensionSeparator
+    }
+    class PostBoxNumberPrefixElementType {
+        #int64 ID
+        +string NumberPrefixSeparator
+    }
+    class PostBoxNumberSuffixElementType {
+        #int64 ID
+        +string NumberSuffixSeparator
+    }
+    class PostOffice {
+        #int64 ID
+        +string Type
+        +string Indicator
+        +*int64 PostalRouteID
+        +string PostOfficeName
+        +string PostOfficeNumber
+    }
+    class PostalRouteType {
+        #int64 ID
+        +string Type
+        +string PostalRouteName
+        +string PostalRouteNumber
+    }
+    class PostOfficeElementType {
+        #int64 ID
+        +string Type
+        +string Indicator
+        +*int64 PostalRouteID
+        +string PostOfficeName
+        +string PostOfficeNumber
+    }
+    class PostOfficeNameElementType {
+        #int64 ID
+        +string Type
+    }
+    class PostOfficeNumberElementType {
+        #int64 ID
+        +string Indicator
+        +string IndicatorOccurrence
+    }
+    class PostTownElementType {
+        #int64 ID
+        +string Type
+        +string PostTownName
+        +string PostTownSuffix
+    }
+    class PostTownNameElementType {
+        #int64 ID
+        +string Type
+    }
+    class PostTownSuffixElementType {
+        #int64 ID
+    }
+    class PostalCode {
+        #int64 ID
+        +string Type
+        +string PostalCodeNumber
+        +string PostalCodeNumberExtension
+        +string PostTown
+    }
+    class PostalCodeElementType {
+        #int64 ID
+        +string Type
+        +string PostalCodeNumber
+        +string PostalCodeNumberExtension
+        +string PostTown
+    }
+    class PostalCodeNumberElementType {
+        #int64 ID
+        +string Type
+    }
+    class PostalCodeNumberExtensionElementType {
+        #int64 ID
+        +string Type
+        +string NumberExtensionSeparator
+    }
+    class PostalRouteNameElementType {
+        #int64 ID
+        +string Type
+    }
+    class PostalRouteNumberElementType {
+        #int64 ID
+    }
+    class PostalServiceElementsElementType {
+        #int64 ID
+        +string Type
+        +string AddressIdentifier
+        +string EndorsementLineCode
+        +string KeyLineCode
+        +string Barcode
+        +string SortingCode
+        +string AddressLatitude
+        +string AddressLatitudeDirection
+        +string AddressLongitude
+        +string AddressLongitudeDirection
+        +string SupplementaryPostalServiceData
+    }
+    class PrecedingTitleElementType {
+        #int64 ID
+        +string Type
+        +string Code
+    }
+    class Premise {
+        #int64 ID
+        +string Type
+        +string PremiseDependency
+        +string PremiseDependencyType
+        +string PremiseThoroughfareConnector
+        +string PremiseName
+        +*int64 MailStopID
+        +string PremiseLocation
+        +string PremiseNumberRange
+        +*int64 FirmID
+    }
+    class PremiseElementType {
+        #int64 ID
+        +string Type
+        +string PremiseDependency
+        +string PremiseDependencyType
+        +string PremiseThoroughfareConnector
+        +string PremiseName
+        +*int64 MailStopID
+        +string PremiseLocation
+        +string PremiseNumberRange
+        +*int64 FirmID
+    }
+    class PremiseLocationElementType {
+        #int64 ID
+    }
+    class PremiseNameElementType {
+        #int64 ID
+        +string Type
+        +string TypeOccurrence
+    }
+    class PremiseNumber {
+        #int64 ID
+        +string NumberType
+        +string Type
+        +string Indicator
+        +string IndicatorOccurrence
+        +string NumberTypeOccurrence
+    }
+    class PremiseNumberElementType {
+        #int64 ID
+        +string NumberType
+        +string Type
+        +string Indicator
+        +string IndicatorOccurrence
+        +string NumberTypeOccurrence
+    }
+    class PremiseNumberPrefix {
+        #int64 ID
+        +string NumberPrefixSeparator
+        +string Type
+    }
+    class PremiseNumberPrefixElementType {
+        #int64 ID
+        +string NumberPrefixSeparator
+        +string Type
+    }
+    class PremiseNumberRangeElementType {
+        #int64 ID
+        +string RangeType
+        +string Indicator
+        +string Separator
+        +string Type
+        +string IndicatorOccurence
+        +string NumberRangeOccurence
+        +string PremiseNumberRangeFrom
+        +string PremiseNumberRangeTo
+    }
+    class PremiseNumberRangeFromElementType {
+        #int64 ID
+    }
+    class PremiseNumberRangeToElementType {
+        #int64 ID
+    }
+    class PremiseNumberSuffix {
+        #int64 ID
+        +string NumberSuffixSeparator
+        +string Type
+    }
+    class PremiseNumberSuffixElementType {
+        #int64 ID
+        +string NumberSuffixSeparator
+        +string Type
+    }
+    class ProfileNoteType {
+        #int64 ID
+        +string Tag
+        +*int64 SubID
+    }
+    class ProfileRefineRuleType {
+        #int64 ID
+        +string Idref
+        +string Weight
+        +string Selector
+        +string Severity
+        +string Role
+    }
+    class ProfileRefineValueType {
+        #int64 ID
+        +string Idref
+        +string Selector
+        +string Operator
+    }
+    class ProfileSelectType {
+        #int64 ID
+        +string Idref
+        +bool Selected
+    }
+    class ProfileSetComplexValueType {
+        #int64 ID
+        +string Idref
+        +*int64 ParentID
+    }
+    class ProfileSetValueType {
+        #int64 ID
+        +string Idref
+    }
+    class ProfileType {
+        #int64 ID
+        +string XsdId
+        +bool ProhibitChanges
+        +bool Abstract
+        +string NoteTag
+        +string Extends
+        +*int64 VersionID
+        +*int64 SignatureID
+        +*int64 SelectID
+        +*int64 SetComplexValueID
+        +*int64 SetValueID
+        +*int64 RefineValueID
+        +*int64 RefineRuleID
+    }
+    class ProtocolElementType {
+        #int64 ID
+    }
+    class RSAKeyValueType {
+        #int64 ID
+        +*int64 ModulusID
+        +*int64 ExponentID
+    }
+    class ReferenceElementType {
+        #int64 ID
+        +string Href
+    }
+    class RegexCaptureFunctionType {
+        #int64 ID
+        +string Pattern
+    }
+    class RelationshipType {
+        #int64 ID
+        +string Type
+        +string Scope
+        +string Subject
+        +string Ref
+    }
+    class RelationshipsElementType {
+        #int64 ID
+    }
+    class RemoteResource {
+        #int64 ID
+    }
+    class RemoteResourceElementType {
+        #int64 ID
+    }
+    class ReportRequestType {
+        #int64 ID
+        +string XsdId
+        +string Content
+    }
+    class ReportRequestsElementType {
+        #int64 ID
+    }
+    class ReportType {
+        #int64 ID
+        +string XsdId
+        +string Content
+    }
+    class ReportsElementType {
+        #int64 ID
+    }
+    class ResourceType {
+        #int64 ID
+    }
+    class RestrictionType {
+        #int64 ID
+        +string Operation
+    }
+    class RetrievalMethodType {
+        #int64 ID
+        +string URI
+        +string Type
+    }
+    class RuleResultType {
+        #int64 ID
+        +string Idref
+        +string Role
+        +string Severity
+        +time.Time Time
+        +string Version
+        +string Weight
+        +*int64 ResultID
+        +*int64 ComplexCheckID
+    }
+    class RuleType {
+        #int64 ID
+        +string XsdId
+        +string Role
+        +string Severity
+        +bool Multiple
+        +string ImpactMetric
+        +*int64 SignatureID
+        +*int64 ComplexCheckID
+        +*int64 ParentID
+    }
+    class SPKIDataType {
+        #int64 ID
+        +[]byte SPKISexp
+    }
+    class ScoreType {
+        #int64 ID
+        +string System
+        +string Maximum
+    }
+    class SelChoicesType {
+        #int64 ID
+        +bool MustMatch
+        +string Selector
+        +string Choice
+        +*int64 ComplexChoiceID
+    }
+    class SelComplexValueType {
+        #int64 ID
+        +string Selector
+        +*int64 ParentID
+    }
+    class SelNumType {
+        #int64 ID
+        +string Selector
+    }
+    class SelStringType {
+        #int64 ID
+        +string Selector
+    }
+    class ServiceType {
+        #int64 ID
+        +string Host
+        +string Port
+        +string PortRange
+        +string Protocol
+        +*int64 ParentID
+    }
+    class Set {
+        #int64 ID
+        +string Set_operator
+    }
+    class SetElementType {
+        #int64 ID
+        +string Set_operator
+    }
+    class SignatureMethodType {
+        #int64 ID
+        +string Algorithm
+        +*int64 HMACOutputLengthID
+    }
+    class SignaturePropertiesType {
+        #int64 ID
+        +string XsdId
+    }
+    class SignaturePropertyType {
+        #int64 ID
+        +string Target
+        +string XsdId
+    }
+    class SignatureValueType {
+        #int64 ID
+        +string XsdId
+    }
+    class SignedInfoType {
+        #int64 ID
+        +string XsdId
+    }
+    class Simple {
+        #int64 ID
+    }
+    class SoftwareType {
+        #int64 ID
+        +string InstallationId
+        +string License
+        +*int64 ParentID
+    }
+    class SortingCodeElementType {
+        #int64 ID
+        +string Type
+    }
+    class SplitFunctionType {
+        #int64 ID
+        +string Delimiter
+    }
+    class StateRefType {
+        #int64 ID
+        +string State_ref
+    }
+    class StateType {
+        #int64 ID
+        +string XsdId
+        +uint64 Version
+        +string Operator
+        +string Comment
+        +bool Deprecated
+    }
+    class Status {
+        #int64 ID
+        +time.Time Date
+        +*int64 ParentID
+    }
+    class StatusElementType {
+        #int64 ID
+        +time.Time Date
+        +*int64 ParentID
+    }
+    class SubAdministrativeAreaElementType {
+        #int64 ID
+        +string Type
+        +string UsageType
+        +string Indicator
+        +string SubAdministrativeAreaName
+    }
+    class SubAdministrativeAreaNameElementType {
+        #int64 ID
+        +string Type
+    }
+    class SubPremiseLocationElementType {
+        #int64 ID
+    }
+    class SubPremiseNameElementType {
+        #int64 ID
+        +string Type
+        +string TypeOccurrence
+    }
+    class SubPremiseNumberElementType {
+        #int64 ID
+        +string Indicator
+        +string IndicatorOccurrence
+        +string NumberTypeOccurrence
+        +string PremiseNumberSeparator
+        +string Type
+    }
+    class SubPremiseNumberPrefixElementType {
+        #int64 ID
+        +string NumberPrefixSeparator
+        +string Type
+    }
+    class SubPremiseNumberSuffixElementType {
+        #int64 ID
+        +string NumberSuffixSeparator
+        +string Type
+    }
+    class SubPremiseType {
+        #int64 ID
+        +string Type
+        +string SubPremiseName
+        +string SubPremiseNumberPrefix
+        +string SubPremiseNumberSuffix
+        +*int64 FirmID
+        +*int64 MailStopID
+        +*int64 SubPremiseID
+        +string SubPremiseLocation
+        +string SubPremiseNumber
+    }
+    class SubstringFunctionType {
+        #int64 ID
+        +int32 Substring_start
+        +int32 Substring_length
+    }
+    class SuffixElementType {
+        #int64 ID
+        +string Type
+        +string Code
+    }
+    class SupplementaryPostalServiceDataElementType {
+        #int64 ID
+        +string Type
+    }
+    class SyntheticId {
+        #int64 ID
+        +string Resource
+        +string XsdId
+    }
+    class SyntheticIdElementType {
+        #int64 ID
+        +string Resource
+        +string XsdId
+    }
+    class SystemNameElementType {
+        #int64 ID
+    }
+    class SystemType {
+        #int64 ID
+        +string SystemName
+        +string Version
+        +*int64 ParentID
+    }
+    class TailoringBenchmarkReferenceType {
+        #int64 ID
+        +string Version
+        +*int64 ParentID
+    }
+    class TailoringReferenceType {
+        #int64 ID
+        +string Href
+        +string XsdId
+        +string Version
+        +time.Time Time
+    }
+    class TailoringVersionType {
+        #int64 ID
+        +time.Time Time
+    }
+    class TailoringType {
+        #int64 ID
+        +string XsdId
+        +*int64 BenchmarkID
+        +*int64 VersionID
+        +*int64 SignatureID
+    }
+    class TargetFactsType {
+        #int64 ID
+    }
+    class TargetIdRefType {
+        #int64 ID
+        +string System
+        +string Href
+        +string Name
+    }
+    class TelephoneNumber {
+        #int64 ID
+        +*int64 ParentID
+    }
+    class TelephoneNumberElementType {
+        #int64 ID
+        +*int64 ParentID
+    }
+    class TestResultType {
+        #int64 ID
+        +string XsdId
+        +time.Time StartTime
+        +time.Time EndTime
+        +string TestSystem
+        +string Version
+        +*int64 BenchmarkID
+        +*int64 TailoringFileID
+        +string Organization
+        +*int64 IdentityID
+        +*int64 ProfileID
+        +string Target
+        +string TargetAddress
+        +*int64 TargetFactsID
+        +*int64 SignatureID
+        +*int64 TargetIdRefID
+        +*int64 SetValueID
+        +*int64 SetComplexValueID
+    }
+    class TestType {
+        #int64 ID
+        +string XsdId
+        +uint64 Version
+        +string Check_existence
+        +string Check
+        +string State_operator
+        +string Comment
+        +bool Deprecated
+    }
+    class TextWithSubType {
+        #int64 ID
+        +bool Override
+    }
+    class Thoroughfare {
+        #int64 ID
+        +string Type
+        +string DependentThoroughfares
+        +string DependentThoroughfaresIndicator
+        +string DependentThoroughfaresConnector
+        +string DependentThoroughfaresType
+        +*int64 ThoroughfarePreDirectionID
+        +*int64 ThoroughfareLeadingTypeID
+        +*int64 ThoroughfareTrailingTypeID
+        +*int64 ThoroughfarePostDirectionID
+        +string DependentThoroughfare
+        +string ThoroughfareNumberRange
+        +*int64 DependentLocalityID
+        +*int64 FirmID
+    }
+    class ThoroughfareElementType {
+        #int64 ID
+        +string Type
+        +string DependentThoroughfares
+        +string DependentThoroughfaresIndicator
+        +string DependentThoroughfaresConnector
+        +string DependentThoroughfaresType
+        +*int64 ThoroughfarePreDirectionID
+        +*int64 ThoroughfareLeadingTypeID
+        +*int64 ThoroughfareTrailingTypeID
+        +*int64 ThoroughfarePostDirectionID
+        +string DependentThoroughfare
+        +string ThoroughfareNumberRange
+        +*int64 DependentLocalityID
+        +*int64 FirmID
+    }
+    class ThoroughfareNameType {
+        #int64 ID
+        +string Type
+    }
+    class ThoroughfareNumber {
+        #int64 ID
+        +string NumberType
+        +string Type
+        +string Indicator
+        +string IndicatorOccurrence
+        +string NumberOccurrence
+    }
+    class ThoroughfareNumberElementType {
+        #int64 ID
+        +string NumberType
+        +string Type
+        +string Indicator
+        +string IndicatorOccurrence
+        +string NumberOccurrence
+    }
+    class ThoroughfareNumberFromElementType {
+        #int64 ID
+    }
+    class ThoroughfareNumberPrefix {
+        #int64 ID
+        +string NumberPrefixSeparator
+        +string Type
+    }
+    class ThoroughfareNumberPrefixElementType {
+        #int64 ID
+        +string NumberPrefixSeparator
+        +string Type
+    }
+    class ThoroughfareNumberRangeElementType {
+        #int64 ID
+        +string RangeType
+        +string Indicator
+        +string Separator
+        +string IndicatorOccurrence
+        +string NumberRangeOccurrence
+        +string Type
+        +string ThoroughfareNumberFrom
+        +string ThoroughfareNumberTo
+    }
+    class ThoroughfareNumberSuffix {
+        #int64 ID
+        +string NumberSuffixSeparator
+        +string Type
+    }
+    class ThoroughfareNumberSuffixElementType {
+        #int64 ID
+        +string NumberSuffixSeparator
+        +string Type
+    }
+    class ThoroughfareNumberToElementType {
+        #int64 ID
+    }
+    class TimeDifferenceFunctionType {
+        #int64 ID
+        +string Format_1
+        +string Format_2
+    }
+    class TitleElementType {
+        #int64 ID
+        +string Type
+        +string Code
+    }
+    class TitleEltType {
+        #int64 ID
+    }
+    class TransformType {
+        #int64 ID
+        +string Algorithm
+        +string XPath
+    }
+    class TransformsType {
+        #int64 ID
+    }
+    class UniqueFunctionType {
+        #int64 ID
+    }
+    class UriRefType {
+        #int64 ID
+        +string Uri
+    }
+    class UrlElementType {
+        #int64 ID
+    }
+    class VariableComponentType {
+        #int64 ID
+        +string Var_ref
+    }
+    class VersionElementType {
+        #int64 ID
+    }
+    class WarningType {
+        #int64 ID
+        +string Category
+        +*int64 ParentID
+    }
+    class WebsiteType {
+        #int64 ID
+        +string DocumentRoot
+        +string Locale
+        +*int64 ParentID
+    }
+    class WebsiteUrl {
+        #int64 ID
+    }
+    class WebsiteUrlElementType {
+        #int64 ID
+    }
+    class X509DataType {
+        #int64 ID
+        +*int64 X509IssuerSerialID
+        +[]byte X509SKI
+        +string X509SubjectName
+        +[]byte X509Certificate
+        +[]byte X509CRL
+    }
+    class X509IssuerSerialType {
+        #int64 ID
+        +string X509IssuerName
+        +int64 X509SerialNumber
+    }
+    class XAL {
+        #int64 ID
+        +string Version
+    }
+    class XALElementType {
+        #int64 ID
+        +string Version
+    }
+    class XNL {
+        #int64 ID
+        +string Version
+    }
+    class XNLElementType {
+        #int64 ID
+        +string Version
+    }
+    class Xccdf12CheckType {
+        #int64 ID
+        +string System
+        +bool Negate
+        +string XsdId
+        +string Selector
+        +bool MultiCheck
+        +*int64 CheckContentID
+    }
+    class Xccdf12ItemType {
+        #int64 ID
+        +bool Abstract
+        +string ClusterId
+        +string Extends
+        +bool Hidden
+        +bool ProhibitChanges
+        +string XsdId
+        +*int64 VersionID
+    }
+    class Xccdf12MessageType {
+        #int64 ID
+        +string Severity
+    }
+    class Xccdf12MetadataType {
+        #int64 ID
+    }
+    class Xccdf12ReferenceType {
+        #int64 ID
+        +string Href
+        +bool Override
+    }
+    class Xccdf12SignatureType {
+        #int64 ID
+    }
+    class Xccdf12TextType {
+        #int64 ID
+        +bool Override
+    }
+    class Xccdf12ValueType {
+        #int64 ID
+        +string XsdId
+        +string Type
+        +string Operator
+        +bool Interactive
+        +string InterfaceHint
+        +*int64 SignatureID
+        +*int64 ValueID
+        +*int64 ComplexValueID
+        +*int64 DefaultID
+        +*int64 ComplexDefaultID
+        +*int64 ParentID
+    }
+
+    RelationshipsContainerType <|-- AssetsType
+    AssetsType <|-- AssetIdentificationType
+    RelationshipsContainerType <|-- AssetReportCollection
+    RelationshipsContainerType <|-- AssetReportCollectionElementType
+    VersionType "1" o-- "*" BenchmarkElementType
+    CidrType <|-- CidrElementType
+    AssetType <|-- ItAssetType
+    ItAssetType <|-- CircuitType
+    ComplexCheckType "1" o-- "*" ComplexCheckType
+    ItAssetType <|-- ComputingDeviceType
+    VariableType <|-- ConstantVariable
+    VariableType <|-- ConstantVariableElementType
+    CpeType <|-- Cpe
+    CpeType <|-- CpeElementType
+    CriteriaType "1" o-- "*" CriteriaType
+    CriterionType "1" o-- "*" CriteriaType
+    ExtendDefinitionType "1" o-- "*" CriteriaType
+    AssetType <|-- DataType
+    ItAssetType <|-- DatabaseType
+    CriteriaType "1" o-- "*" DefinitionType
+    MailStopType "1" o-- "*" DepartmentElementType
+    NameDetails <|-- DependencyNameElementType
+    DependentLocalityType "1" o-- "*" DependentLocalityType
+    ThoroughfarePreDirectionType "1" o-- "*" DependentThoroughfareElementType
+    ThoroughfareLeadingTypeType "1" o-- "*" DependentThoroughfareElementType
+    ThoroughfareTrailingTypeType "1" o-- "*" DependentThoroughfareElementType
+    ThoroughfarePostDirectionType "1" o-- "*" DependentThoroughfareElementType
+    SchemaVersionPattern <|-- SchemaVersionType
+    SchemaVersionType "1" o-- "*" Dictionary20GeneratorType
+    ReferencesType "1" o-- "*" Dictionary20ItemType
+    ElementMapItemType "1" o-- "*" ElementMapType
+    ElementMapItemType "1" o-- "*" ElementMapType
+    ElementMapItemType "1" o-- "*" ElementMapType
+    ElementMapItemType "1" o-- "*" ElementMapType
+    EntitySimpleBaseType <|-- EntityObjectAnySimpleType
+    EntitySimpleBaseType <|-- EntityObjectBinaryType
+    EntitySimpleBaseType <|-- EntityObjectBoolType
+    EntitySimpleBaseType <|-- EntityObjectFloatType
+    EntitySimpleBaseType <|-- EntityObjectIPAddressStringType
+    EntitySimpleBaseType <|-- EntityObjectIPAddressType
+    EntitySimpleBaseType <|-- EntityObjectIntType
+    EntityComplexBaseType <|-- EntityObjectRecordType
+    EntitySimpleBaseType <|-- EntityObjectStringType
+    EntitySimpleBaseType <|-- EntityObjectVersionType
+    EntitySimpleBaseType <|-- EntityStateSimpleBaseType
+    EntityStateSimpleBaseType <|-- EntityStateAnySimpleType
+    EntityStateSimpleBaseType <|-- EntityStateBinaryType
+    EntityStateSimpleBaseType <|-- EntityStateBoolType
+    EntityComplexBaseType <|-- EntityStateComplexBaseType
+    EntityStateSimpleBaseType <|-- EntityStateDebianEVRStringType
+    EntityStateSimpleBaseType <|-- EntityStateEVRStringType
+    EntityStateSimpleBaseType <|-- EntityStateFileSetRevisionType
+    EntityStateSimpleBaseType <|-- EntityStateFloatType
+    EntityStateSimpleBaseType <|-- EntityStateIOSVersionType
+    EntityStateSimpleBaseType <|-- EntityStateIPAddressStringType
+    EntityStateSimpleBaseType <|-- EntityStateIPAddressType
+    EntityStateSimpleBaseType <|-- EntityStateIntType
+    EntityStateComplexBaseType <|-- EntityStateRecordType
+    EntityStateSimpleBaseType <|-- EntityStateStringType
+    EntityStateSimpleBaseType <|-- EntityStateVersionType
+    VariableType <|-- ExternalVariable
+    VariableType <|-- ExternalVariableElementType
+    PossibleValueType "1" o-- "*" ExternalVariableElementType
+    PossibleRestrictionType "1" o-- "*" ExternalVariableElementType
+    StateIDPattern <|-- Filter
+    StateIDPattern <|-- FilterElementType
+    MailStopType "1" o-- "*" FirmType
+    IdrefType <|-- SubType
+    SubType "1" o-- "*" HtmlTextWithSubType
+    HtmlTextWithSubType <|-- FixTextType
+    SubType "1" o-- "*" FixType
+    InstanceFixType "1" o-- "*" FixType
+    PersonName <|-- FormerNameElementType
+    ItemType <|-- SelectableItemType
+    SelectableItemType <|-- GroupType
+    HostnameType <|-- HostnameElementType
+    IpAddressType "1" o-- "*" IpNetRangeElementType
+    IpAddressType "1" o-- "*" IpNetRangeElementType
+    Ipv4Type <|-- IpV4ElementType
+    Ipv6Type <|-- IpV6ElementType
+    PersonName <|-- KnownAsElementType
+    VariableType <|-- LocalVariable
+    VariableType <|-- LocalVariableElementType
+    LocaleType <|-- LocaleElementType
+    DependentLocalityType "1" o-- "*" LocalityElementType
+    MacAddressType <|-- MacAddressElementType
+    NameDetails <|-- NameDetailsElementType
+    IpAddressType "1" o-- "*" NetworkInterfaceType
+    IpAddressType "1" o-- "*" NetworkInterfaceType
+    ItAssetType <|-- NetworkType
+    NotesType <|-- Notes
+    NotesType <|-- NotesElementType
+    NameDetails <|-- OasisNamesTcCiqXNameDetails
+    OrganisationNameDetails <|-- OasisNamesTcCiqXOrganisationNameDetails
+    PersonName <|-- OasisNamesTcCiqXPersonName
+    OrganisationNameDetails <|-- OrganisationFormerNameElementType
+    OrganisationNameDetails <|-- OrganisationKnownAsElementType
+    OrganisationNameDetails <|-- OrganisationNameDetailsElementType
+    AssetType <|-- OrganizationType
+    DefinitionsType "1" o-- "*" OvalDefinitionsElementType
+    TestsType "1" o-- "*" OvalDefinitionsElementType
+    ObjectsType "1" o-- "*" OvalDefinitionsElementType
+    StatesType "1" o-- "*" OvalDefinitionsElementType
+    VariablesType "1" o-- "*" OvalDefinitionsElementType
+    CPE2idrefType <|-- OverrideableCPE2idrefType
+    PersonName <|-- PersonNameElementType
+    AssetType <|-- PersonType
+    LogicalTestType "1" o-- "*" PlatformType
+    PortType <|-- PortElementType
+    FirmType "1" o-- "*" PostBoxElementType
+    PostalRouteType "1" o-- "*" PostOfficeElementType
+    MailStopType "1" o-- "*" PremiseElementType
+    SubType "1" o-- "*" ProfileNoteType
+    ComplexValueType <|-- ProfileSetComplexValueType
+    VersionType "1" o-- "*" ProfileType
+    SelectableItemType <|-- RuleType
+    ComplexValueType "1" o-- "*" SelChoicesType
+    ComplexValueType <|-- SelComplexValueType
+    ItAssetType <|-- ServiceType
+    ItAssetType <|-- SoftwareType
+    StatusType <|-- Status
+    StatusType <|-- StatusElementType
+    FirmType "1" o-- "*" SubPremiseType
+    MailStopType "1" o-- "*" SubPremiseType
+    SubPremiseType "1" o-- "*" SubPremiseType
+    ItAssetType <|-- SystemType
+    BenchmarkReferenceType <|-- TailoringBenchmarkReferenceType
+    TailoringBenchmarkReferenceType "1" o-- "*" TailoringType
+    TailoringVersionType "1" o-- "*" TailoringType
+    TelephoneNumberType <|-- TelephoneNumber
+    TelephoneNumberType <|-- TelephoneNumberElementType
+    BenchmarkReferenceType "1" o-- "*" TestResultType
+    TailoringReferenceType "1" o-- "*" TestResultType
+    IdentityType "1" o-- "*" TestResultType
+    IdrefType "1" o-- "*" TestResultType
+    TargetFactsType "1" o-- "*" TestResultType
+    ThoroughfarePreDirectionType "1" o-- "*" ThoroughfareElementType
+    ThoroughfareLeadingTypeType "1" o-- "*" ThoroughfareElementType
+    ThoroughfareTrailingTypeType "1" o-- "*" ThoroughfareElementType
+    ThoroughfarePostDirectionType "1" o-- "*" ThoroughfareElementType
+    HtmlTextWithSubType <|-- WarningType
+    ItAssetType <|-- WebsiteType
+    CheckContentType "1" o-- "*" Xccdf12CheckType
+    VersionType "1" o-- "*" Xccdf12ItemType
+    ItemType <|-- Xccdf12ValueType

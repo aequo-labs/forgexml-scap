@@ -6,12 +6,18 @@ import (
 	"encoding/json"
 	"encoding/xml"
 	"fmt"
+	xccdf1_2 "github.com/aequo-labs/forgexml-scap/internal/generated/gov/nist/checklists/xccdf/1-2"
 	asset_identification1_1 "github.com/aequo-labs/forgexml-scap/internal/generated/gov/nist/scap/schema/asset-identification/1-1"
 	asset_reporting_format1_1 "github.com/aequo-labs/forgexml-scap/internal/generated/gov/nist/scap/schema/asset-reporting-format/1-1"
 	reporting_core1_1 "github.com/aequo-labs/forgexml-scap/internal/generated/gov/nist/scap/schema/reporting-core/1-1"
-	pkg_2_0 "github.com/aequo-labs/forgexml-scap/internal/generated/oasis/names/tc/ciq/xsdschema/xal/2-0"
-	pkg_2_01 "github.com/aequo-labs/forgexml-scap/internal/generated/oasis/names/tc/ciq/xsdschema/xnl/2-0"
+	pkg_2_01 "github.com/aequo-labs/forgexml-scap/internal/generated/oasis/names/tc/ciq/xsdschema/xal/2-0"
+	pkg_2_0 "github.com/aequo-labs/forgexml-scap/internal/generated/oasis/names/tc/ciq/xsdschema/xnl/2-0"
+	dictionary2_0 "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/cpe/dictionary/2-0"
+	language2_0 "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/cpe/language/2-0"
+	xmlschemaoval_common_5 "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/oval/xmlschema/oval-common-5"
+	xmlschemaoval_definitions_5 "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/oval/xmlschema/oval-definitions-5"
 	pkg_1999xlink "github.com/aequo-labs/forgexml-scap/internal/generated/org/w3/1999/xlink"
+	pkg_200009xmldsig "github.com/aequo-labs/forgexml-scap/internal/generated/org/w3/2000/09/xmldsig"
 	"os"
 	"regexp"
 	"sync"
@@ -123,7 +129,7 @@ func detectRootElementName(content []byte) (string, string, error) {
 // xmlNameToGoType maps XML element names to Go type names.
 // Only includes root element types (global elements with proper XMLName tags).
 var xmlNameToGoType = map[string]string{
-	"asset-report-collection": "AssetReportCollectionElement",
+	"oval_definitions": "Oval_definitionsElement",
 }
 
 // LoadFromBytes loads an XML document from bytes.
@@ -145,14 +151,14 @@ func (s *XMLDocumentState) LoadFromBytes(content []byte, filename string) error 
 
 	// Unmarshal based on the detected root element type
 	switch goType {
-	case "AssetReportCollectionElement":
-		var root asset_reporting_format1_1.AssetReportCollectionElement
+	case "Oval_definitionsElement":
+		var root xmlschemaoval_definitions_5.Oval_definitionsElement
 		if err := xml.Unmarshal(content, &root); err != nil {
-			return fmt.Errorf("failed to unmarshal AssetReportCollectionElement: %w", err)
+			return fmt.Errorf("failed to unmarshal Oval_definitionsElement: %w", err)
 		}
 		s.rootElement = &root
-		s.rootType = "AssetReportCollectionElement"
-		s.namespace = "http://scap.nist.gov/schema/asset-reporting-format/1.1"
+		s.rootType = "Oval_definitionsElement"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
 		s.sourceFile = filename
 		s.lastModified = time.Now()
 		s.isDirty = false
@@ -232,41 +238,59 @@ func (s *XMLDocumentState) getRootChildNodes() ([]TreeNode, error) {
 	var nodes []TreeNode
 
 	switch root := s.rootElement.(type) {
-	case *asset_reporting_format1_1.AssetReportCollectionElement:
+	case *xmlschemaoval_definitions_5.Oval_definitionsElement:
 		_ = root // Ensure root is used even when only static TreeNodes are generated
-		// ReportRequests is a required element
+		// Generator is a required element
 		nodes = append(nodes, TreeNode{
-			ID:          "/report-requests",
-			Label:       "ReportRequests",
-			Type:        "ReportRequests",
-			Path:        "/report-requests",
+			ID:          "/generator",
+			Label:       "Generator",
+			Type:        "GeneratorType",
+			Path:        "/generator",
 			HasChildren: true,
 			Icon:        "fa-cube",
 		})
-		// Assets is a required element
+		// Definitions is a required element
 		nodes = append(nodes, TreeNode{
-			ID:          "/assets",
-			Label:       "Assets",
-			Type:        "Assets",
-			Path:        "/assets",
+			ID:          "/definitions",
+			Label:       "Definitions",
+			Type:        "DefinitionsType",
+			Path:        "/definitions",
 			HasChildren: true,
 			Icon:        "fa-cube",
 		})
-		// Reports is a required element
+		// Tests is a required element
 		nodes = append(nodes, TreeNode{
-			ID:          "/reports",
-			Label:       "Reports",
-			Type:        "Reports",
-			Path:        "/reports",
+			ID:          "/tests",
+			Label:       "Tests",
+			Type:        "TestsType",
+			Path:        "/tests",
 			HasChildren: true,
 			Icon:        "fa-cube",
 		})
-		// ExtendedInfos is a required element
+		// Objects is a required element
 		nodes = append(nodes, TreeNode{
-			ID:          "/extended-infos",
-			Label:       "ExtendedInfos",
-			Type:        "ExtendedInfos",
-			Path:        "/extended-infos",
+			ID:          "/objects",
+			Label:       "Objects",
+			Type:        "ObjectsType",
+			Path:        "/objects",
+			HasChildren: true,
+			Icon:        "fa-cube",
+		})
+		// States is a required element
+		nodes = append(nodes, TreeNode{
+			ID:          "/states",
+			Label:       "States",
+			Type:        "StatesType",
+			Path:        "/states",
+			HasChildren: true,
+			Icon:        "fa-cube",
+		})
+		// Variables is a required element
+		nodes = append(nodes, TreeNode{
+			ID:          "/variables",
+			Label:       "Variables",
+			Type:        "VariablesType",
+			Path:        "/variables",
 			HasChildren: true,
 			Icon:        "fa-cube",
 		})
@@ -300,90 +324,68 @@ func (s *XMLDocumentState) getFirstLevelChildNodes(name string) ([]TreeNode, err
 	var nodes []TreeNode
 
 	switch root := s.rootElement.(type) {
-	case *asset_reporting_format1_1.AssetReportCollectionElement:
+	case *xmlschemaoval_definitions_5.Oval_definitionsElement:
 		_ = root // Ensure root is used even when element fields don't access it directly
-		if name == "report-requests" {
+		if name == "generator" {
 			// Required element - traverse into its child fields
-			if len(root.ReportRequests.ReportRequest) > 0 {
-				for i, item := range root.ReportRequests.ReportRequest {
-					label := fmt.Sprintf("ReportRequest[%d]", i)
-					// Use Id field for better label if available
-					if item.Id != "" {
-						label = item.Id
-					}
-					nodes = append(nodes, TreeNode{
-						ID:          fmt.Sprintf("/report-requests/report-request/%d", i),
-						Label:       label,
-						Type:        "ReportRequestType",
-						Path:        fmt.Sprintf("/report-requests/report-request/%d", i),
-						HasChildren: true,
-						Icon:        "fa-cube",
-					})
-				}
+			if root.Generator.Product_name != nil {
+				nodes = append(nodes, TreeNode{
+					ID:          "/generator/product_name",
+					Label:       "Product_name",
+					Type:        "string",
+					Path:        "/generator/product_name",
+					HasChildren: true,
+					Icon:        "fa-cube",
+				})
 			}
+			if root.Generator.Product_version != nil {
+				nodes = append(nodes, TreeNode{
+					ID:          "/generator/product_version",
+					Label:       "Product_version",
+					Type:        "string",
+					Path:        "/generator/product_version",
+					HasChildren: true,
+					Icon:        "fa-cube",
+				})
+			}
+			// Required nested element
+			nodes = append(nodes, TreeNode{
+				ID:          "/generator/schema_version",
+				Label:       "Schema_version",
+				Type:        "float32",
+				Path:        "/generator/schema_version",
+				HasChildren: true,
+				Icon:        "fa-cube",
+			})
+			// Required nested element
+			nodes = append(nodes, TreeNode{
+				ID:          "/generator/timestamp",
+				Label:       "Timestamp",
+				Type:        "time.Time",
+				Path:        "/generator/timestamp",
+				HasChildren: true,
+				Icon:        "fa-cube",
+			})
 			return nodes, nil
 		}
-		if name == "assets" {
+		if name == "definitions" {
 			// Required element - traverse into its child fields
-			if len(root.Assets.Asset) > 0 {
-				for i, item := range root.Assets.Asset {
-					label := fmt.Sprintf("Asset[%d]", i)
-					// Use Id field for better label if available
-					if item.Id != "" {
-						label = item.Id
-					}
-					nodes = append(nodes, TreeNode{
-						ID:          fmt.Sprintf("/assets/asset/%d", i),
-						Label:       label,
-						Type:        "Asset",
-						Path:        fmt.Sprintf("/assets/asset/%d", i),
-						HasChildren: true,
-						Icon:        "fa-cube",
-					})
-				}
-			}
 			return nodes, nil
 		}
-		if name == "reports" {
+		if name == "tests" {
 			// Required element - traverse into its child fields
-			if len(root.Reports.Report) > 0 {
-				for i, item := range root.Reports.Report {
-					label := fmt.Sprintf("Report[%d]", i)
-					// Use Id field for better label if available
-					if item.Id != "" {
-						label = item.Id
-					}
-					nodes = append(nodes, TreeNode{
-						ID:          fmt.Sprintf("/reports/report/%d", i),
-						Label:       label,
-						Type:        "ReportType",
-						Path:        fmt.Sprintf("/reports/report/%d", i),
-						HasChildren: true,
-						Icon:        "fa-cube",
-					})
-				}
-			}
 			return nodes, nil
 		}
-		if name == "extended-infos" {
+		if name == "objects" {
 			// Required element - traverse into its child fields
-			if len(root.ExtendedInfos.ExtendedInfo) > 0 {
-				for i, item := range root.ExtendedInfos.ExtendedInfo {
-					label := fmt.Sprintf("ExtendedInfo[%d]", i)
-					// Use Id field for better label if available
-					if item.Id != "" {
-						label = item.Id
-					}
-					nodes = append(nodes, TreeNode{
-						ID:          fmt.Sprintf("/extended-infos/extended-info/%d", i),
-						Label:       label,
-						Type:        "ExtendedInfo",
-						Path:        fmt.Sprintf("/extended-infos/extended-info/%d", i),
-						HasChildren: true,
-						Icon:        "fa-cube",
-					})
-				}
-			}
+			return nodes, nil
+		}
+		if name == "states" {
+			// Required element - traverse into its child fields
+			return nodes, nil
+		}
+		if name == "variables" {
+			// Required element - traverse into its child fields
 			return nodes, nil
 		}
 	}
@@ -412,11 +414,8 @@ func (s *XMLDocumentState) getRootElementDetails() (*ElementDetails, error) {
 	data := make(map[string]interface{})
 
 	switch root := s.rootElement.(type) {
-	case *asset_reporting_format1_1.AssetReportCollectionElement:
+	case *xmlschemaoval_definitions_5.Oval_definitionsElement:
 		_ = root // Ensure root is used even when no attribute fields match
-		if root.Id != nil {
-			data["id"] = *root.Id
-		}
 	}
 
 	return &ElementDetails{
@@ -475,24 +474,32 @@ func (s *XMLDocumentState) getFirstLevelElement(name string) (*ElementDetails, e
 	var label, typeName string
 
 	switch root := s.rootElement.(type) {
-	case *asset_reporting_format1_1.AssetReportCollectionElement:
+	case *xmlschemaoval_definitions_5.Oval_definitionsElement:
 		_ = root // Ensure root is used even when only static data is set
 		switch name {
-		case "report-requests":
-			label = "ReportRequests"
-			typeName = "ReportRequests"
+		case "generator":
+			label = "Generator"
+			typeName = "GeneratorType"
 			data["present"] = true
-		case "assets":
-			label = "Assets"
-			typeName = "Assets"
+		case "definitions":
+			label = "Definitions"
+			typeName = "DefinitionsType"
 			data["present"] = true
-		case "reports":
-			label = "Reports"
-			typeName = "Reports"
+		case "tests":
+			label = "Tests"
+			typeName = "TestsType"
 			data["present"] = true
-		case "extended-infos":
-			label = "ExtendedInfos"
-			typeName = "ExtendedInfos"
+		case "objects":
+			label = "Objects"
+			typeName = "ObjectsType"
+			data["present"] = true
+		case "states":
+			label = "States"
+			typeName = "StatesType"
+			data["present"] = true
+		case "variables":
+			label = "Variables"
+			typeName = "VariablesType"
 			data["present"] = true
 		}
 	}
@@ -549,7 +556,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "AddressDetails":
-		var element pkg_2_0.AddressDetails
+		var element pkg_2_01.AddressDetails
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for AddressDetails: %w", err)
@@ -562,7 +569,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "AddressDetailsElement":
-		var element pkg_2_0.AddressDetailsElement
+		var element pkg_2_01.AddressDetailsElement
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for AddressDetailsElement: %w", err)
@@ -575,7 +582,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "AddressElementType":
-		var element pkg_2_0.AddressElementType
+		var element pkg_2_01.AddressElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for AddressElementType: %w", err)
@@ -588,7 +595,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "AddressIdentifierElementType":
-		var element pkg_2_0.AddressIdentifierElementType
+		var element pkg_2_01.AddressIdentifierElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for AddressIdentifierElementType: %w", err)
@@ -601,7 +608,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "AddressLatitudeDirectionElementType":
-		var element pkg_2_0.AddressLatitudeDirectionElementType
+		var element pkg_2_01.AddressLatitudeDirectionElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for AddressLatitudeDirectionElementType: %w", err)
@@ -614,7 +621,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "AddressLatitudeElementType":
-		var element pkg_2_0.AddressLatitudeElementType
+		var element pkg_2_01.AddressLatitudeElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for AddressLatitudeElementType: %w", err)
@@ -627,7 +634,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "AddressLineElement":
-		var element pkg_2_0.AddressLineElement
+		var element pkg_2_01.AddressLineElement
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for AddressLineElement: %w", err)
@@ -640,7 +647,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "AddressLineElementType":
-		var element pkg_2_0.AddressLineElementType
+		var element pkg_2_01.AddressLineElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for AddressLineElementType: %w", err)
@@ -653,7 +660,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "AddressLinesType":
-		var element pkg_2_0.AddressLinesType
+		var element pkg_2_01.AddressLinesType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for AddressLinesType: %w", err)
@@ -666,7 +673,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "AddressLongitudeDirectionElementType":
-		var element pkg_2_0.AddressLongitudeDirectionElementType
+		var element pkg_2_01.AddressLongitudeDirectionElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for AddressLongitudeDirectionElementType: %w", err)
@@ -679,7 +686,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "AddressLongitudeElementType":
-		var element pkg_2_0.AddressLongitudeElementType
+		var element pkg_2_01.AddressLongitudeElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for AddressLongitudeElementType: %w", err)
@@ -692,7 +699,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "AddresseeIndicatorElementType":
-		var element pkg_2_01.AddresseeIndicatorElementType
+		var element pkg_2_0.AddresseeIndicatorElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for AddresseeIndicatorElementType: %w", err)
@@ -705,7 +712,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "AdministrativeAreaElement":
-		var element pkg_2_0.AdministrativeAreaElement
+		var element pkg_2_01.AdministrativeAreaElement
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for AdministrativeAreaElement: %w", err)
@@ -718,7 +725,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "AdministrativeAreaElementType":
-		var element pkg_2_0.AdministrativeAreaElementType
+		var element pkg_2_01.AdministrativeAreaElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for AdministrativeAreaElementType: %w", err)
@@ -731,7 +738,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "AdministrativeAreaNameElementType":
-		var element pkg_2_0.AdministrativeAreaNameElementType
+		var element pkg_2_01.AdministrativeAreaNameElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for AdministrativeAreaNameElementType: %w", err)
@@ -743,8 +750,21 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
+	case "AffectedType":
+		var element xmlschemaoval_definitions_5.AffectedType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for AffectedType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "AffectedType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
 	case "AliasElementType":
-		var element pkg_2_01.AliasElementType
+		var element pkg_2_0.AliasElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for AliasElementType: %w", err)
@@ -792,6 +812,32 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.rootElement = &element
 		s.rootType = "ArcroleType"
 		s.namespace = "http://www.w3.org/1999/xlink"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "ArithmeticEnumeration":
+		var element xmlschemaoval_definitions_5.ArithmeticEnumeration
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for ArithmeticEnumeration: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "ArithmeticEnumeration"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "ArithmeticFunctionType":
+		var element xmlschemaoval_definitions_5.ArithmeticFunctionType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for ArithmeticFunctionType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "ArithmeticFunctionType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
@@ -854,8 +900,6 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 				return "", fmt.Errorf("failed to unmarshal data for AssetReportCollectionElement: %w", err)
 			}
 		}
-		// Initialize XMLName for proper XML serialization (root elements only)
-		element.XMLName = xml.Name{Space: "http://scap.nist.gov/schema/asset-reporting-format/1.1", Local: "asset-report-collection"}
 		s.rootElement = &element
 		s.rootType = "AssetReportCollectionElement"
 		s.namespace = "http://scap.nist.gov/schema/asset-reporting-format/1.1"
@@ -915,7 +959,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "BarcodeElementType":
-		var element pkg_2_0.BarcodeElementType
+		var element pkg_2_01.BarcodeElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for BarcodeElementType: %w", err)
@@ -924,6 +968,71 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.rootElement = &element
 		s.rootType = "BarcodeElementType"
 		s.namespace = "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "BeginFunctionType":
+		var element xmlschemaoval_definitions_5.BeginFunctionType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for BeginFunctionType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "BeginFunctionType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "BenchmarkElement":
+		var element xccdf1_2.BenchmarkElement
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for BenchmarkElement: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "BenchmarkElement"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "BenchmarkElementType":
+		var element xccdf1_2.BenchmarkElementType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for BenchmarkElementType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "BenchmarkElementType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "BenchmarkIdType":
+		var element xccdf1_2.BenchmarkIdType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for BenchmarkIdType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "BenchmarkIdType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "BenchmarkReferenceType":
+		var element xccdf1_2.BenchmarkReferenceType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for BenchmarkReferenceType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "BenchmarkReferenceType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
@@ -941,7 +1050,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "BuildingNameType":
-		var element pkg_2_0.BuildingNameType
+		var element pkg_2_01.BuildingNameType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for BuildingNameType: %w", err)
@@ -950,6 +1059,136 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.rootElement = &element
 		s.rootType = "BuildingNameType"
 		s.namespace = "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "CPE2idrefType":
+		var element xccdf1_2.CPE2idrefType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for CPE2idrefType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "CPE2idrefType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "CanonicalizationMethodElement":
+		var element pkg_200009xmldsig.CanonicalizationMethodElement
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for CanonicalizationMethodElement: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "CanonicalizationMethodElement"
+		s.namespace = "http://www.w3.org/2000/09/xmldsig#"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "CanonicalizationMethodType":
+		var element pkg_200009xmldsig.CanonicalizationMethodType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for CanonicalizationMethodType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "CanonicalizationMethodType"
+		s.namespace = "http://www.w3.org/2000/09/xmldsig#"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "CcOperatorEnumType":
+		var element xccdf1_2.CcOperatorEnumType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for CcOperatorEnumType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "CcOperatorEnumType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "CheckContentRefType":
+		var element xccdf1_2.CheckContentRefType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for CheckContentRefType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "CheckContentRefType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "CheckContentType":
+		var element xccdf1_2.CheckContentType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for CheckContentType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "CheckContentType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "CheckEnumeration":
+		var element xmlschemaoval_common_5.CheckEnumeration
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for CheckEnumeration: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "CheckEnumeration"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-common-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "CheckExportType":
+		var element xccdf1_2.CheckExportType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for CheckExportType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "CheckExportType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "CheckImportType":
+		var element xccdf1_2.CheckImportType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for CheckImportType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "CheckImportType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "CheckType":
+		var element dictionary2_0.CheckType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for CheckType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "CheckType"
+		s.namespace = "http://cpe.mitre.org/dictionary/2.0"
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
@@ -1018,6 +1257,58 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
+	case "ClassEnumeration":
+		var element xmlschemaoval_common_5.ClassEnumeration
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for ClassEnumeration: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "ClassEnumeration"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-common-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "ComplexCheckType":
+		var element xccdf1_2.ComplexCheckType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for ComplexCheckType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "ComplexCheckType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "ComplexDatatypeEnumeration":
+		var element xmlschemaoval_common_5.ComplexDatatypeEnumeration
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for ComplexDatatypeEnumeration: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "ComplexDatatypeEnumeration"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-common-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "ComplexValueType":
+		var element xccdf1_2.ComplexValueType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for ComplexValueType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "ComplexValueType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
 	case "ComputingDeviceElement":
 		var element asset_identification1_1.ComputingDeviceElement
 		if len(data) > 0 && string(data) != "{}" {
@@ -1044,6 +1335,19 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
+	case "ConcatFunctionType":
+		var element xmlschemaoval_definitions_5.ConcatFunctionType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for ConcatFunctionType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "ConcatFunctionType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
 	case "ConnectionsElementType":
 		var element asset_identification1_1.ConnectionsElementType
 		if len(data) > 0 && string(data) != "{}" {
@@ -1054,6 +1358,32 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.rootElement = &element
 		s.rootType = "ConnectionsElementType"
 		s.namespace = "http://scap.nist.gov/schema/asset-identification/1.1"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "Constant_variableElement":
+		var element xmlschemaoval_definitions_5.Constant_variableElement
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for Constant_variableElement: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "Constant_variableElement"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "Constant_variableElementType":
+		var element xmlschemaoval_definitions_5.Constant_variableElementType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for Constant_variableElementType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "Constant_variableElementType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
@@ -1083,8 +1413,21 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
+	case "CountFunctionType":
+		var element xmlschemaoval_definitions_5.CountFunctionType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for CountFunctionType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "CountFunctionType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
 	case "CountryElementType":
-		var element pkg_2_0.CountryElementType
+		var element pkg_2_01.CountryElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for CountryElementType: %w", err)
@@ -1097,7 +1440,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "CountryNameCodeElementType":
-		var element pkg_2_0.CountryNameCodeElementType
+		var element pkg_2_01.CountryNameCodeElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for CountryNameCodeElementType: %w", err)
@@ -1110,7 +1453,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "CountryNameElement":
-		var element pkg_2_0.CountryNameElement
+		var element pkg_2_01.CountryNameElement
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for CountryNameElement: %w", err)
@@ -1123,7 +1466,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "CountryNameElementType":
-		var element pkg_2_0.CountryNameElementType
+		var element pkg_2_01.CountryNameElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for CountryNameElementType: %w", err)
@@ -1161,6 +1504,32 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
+	case "CpeItemElement":
+		var element dictionary2_0.CpeItemElement
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for CpeItemElement: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "CpeItemElement"
+		s.namespace = "http://cpe.mitre.org/dictionary/2.0"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "CpeListElement":
+		var element dictionary2_0.CpeListElement
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for CpeListElement: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "CpeListElement"
+		s.namespace = "http://cpe.mitre.org/dictionary/2.0"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
 	case "CpeType":
 		var element asset_identification1_1.CpeType
 		if len(data) > 0 && string(data) != "{}" {
@@ -1171,6 +1540,71 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.rootElement = &element
 		s.rootType = "CpeType"
 		s.namespace = "http://scap.nist.gov/schema/asset-identification/1.1"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "CriteriaType":
+		var element xmlschemaoval_definitions_5.CriteriaType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for CriteriaType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "CriteriaType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "CriterionType":
+		var element xmlschemaoval_definitions_5.CriterionType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for CriterionType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "CriterionType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "CryptoBinary":
+		var element pkg_200009xmldsig.CryptoBinary
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for CryptoBinary: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "CryptoBinary"
+		s.namespace = "http://www.w3.org/2000/09/xmldsig#"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "DSAKeyValueElement":
+		var element pkg_200009xmldsig.DSAKeyValueElement
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for DSAKeyValueElement: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "DSAKeyValueElement"
+		s.namespace = "http://www.w3.org/2000/09/xmldsig#"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "DSAKeyValueType":
+		var element pkg_200009xmldsig.DSAKeyValueType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for DSAKeyValueType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "DSAKeyValueType"
+		s.namespace = "http://www.w3.org/2000/09/xmldsig#"
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
@@ -1226,8 +1660,99 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
+	case "DatatypeEnumeration":
+		var element xmlschemaoval_common_5.DatatypeEnumeration
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for DatatypeEnumeration: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "DatatypeEnumeration"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-common-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "DateTimeFormatEnumeration":
+		var element xmlschemaoval_definitions_5.DateTimeFormatEnumeration
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for DateTimeFormatEnumeration: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "DateTimeFormatEnumeration"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "DcStatusType":
+		var element xccdf1_2.DcStatusType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for DcStatusType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "DcStatusType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "DefinitionElement":
+		var element xmlschemaoval_definitions_5.DefinitionElement
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for DefinitionElement: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "DefinitionElement"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "DefinitionIDPattern":
+		var element xmlschemaoval_common_5.DefinitionIDPattern
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for DefinitionIDPattern: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "DefinitionIDPattern"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-common-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "DefinitionType":
+		var element xmlschemaoval_definitions_5.DefinitionType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for DefinitionType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "DefinitionType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "DefinitionsType":
+		var element xmlschemaoval_definitions_5.DefinitionsType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for DefinitionsType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "DefinitionsType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
 	case "DepartmentElement":
-		var element pkg_2_0.DepartmentElement
+		var element pkg_2_01.DepartmentElement
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for DepartmentElement: %w", err)
@@ -1240,7 +1765,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "DepartmentElementType":
-		var element pkg_2_0.DepartmentElementType
+		var element pkg_2_01.DepartmentElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for DepartmentElementType: %w", err)
@@ -1253,7 +1778,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "DepartmentNameElementType":
-		var element pkg_2_0.DepartmentNameElementType
+		var element pkg_2_01.DepartmentNameElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for DepartmentNameElementType: %w", err)
@@ -1266,7 +1791,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "DependencyNameElementType":
-		var element pkg_2_01.DependencyNameElementType
+		var element pkg_2_0.DependencyNameElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for DependencyNameElementType: %w", err)
@@ -1279,7 +1804,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "DependentLocalityNameElementType":
-		var element pkg_2_0.DependentLocalityNameElementType
+		var element pkg_2_01.DependentLocalityNameElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for DependentLocalityNameElementType: %w", err)
@@ -1292,7 +1817,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "DependentLocalityNumberElementType":
-		var element pkg_2_0.DependentLocalityNumberElementType
+		var element pkg_2_01.DependentLocalityNumberElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for DependentLocalityNumberElementType: %w", err)
@@ -1305,7 +1830,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "DependentLocalityType":
-		var element pkg_2_0.DependentLocalityType
+		var element pkg_2_01.DependentLocalityType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for DependentLocalityType: %w", err)
@@ -1318,7 +1843,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "DependentThoroughfareElementType":
-		var element pkg_2_0.DependentThoroughfareElementType
+		var element pkg_2_01.DependentThoroughfareElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for DependentThoroughfareElementType: %w", err)
@@ -1327,6 +1852,84 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.rootElement = &element
 		s.rootType = "DependentThoroughfareElementType"
 		s.namespace = "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "DeprecatedInfoType":
+		var element xmlschemaoval_common_5.DeprecatedInfoType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for DeprecatedInfoType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "DeprecatedInfoType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-common-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "Deprecated_infoElement":
+		var element xmlschemaoval_common_5.Deprecated_infoElement
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for Deprecated_infoElement: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "Deprecated_infoElement"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-common-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "DigestMethodElement":
+		var element pkg_200009xmldsig.DigestMethodElement
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for DigestMethodElement: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "DigestMethodElement"
+		s.namespace = "http://www.w3.org/2000/09/xmldsig#"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "DigestMethodType":
+		var element pkg_200009xmldsig.DigestMethodType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for DigestMethodType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "DigestMethodType"
+		s.namespace = "http://www.w3.org/2000/09/xmldsig#"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "DigestValueElement":
+		var element pkg_200009xmldsig.DigestValueElement
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for DigestValueElement: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "DigestValueElement"
+		s.namespace = "http://www.w3.org/2000/09/xmldsig#"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "DigestValueType":
+		var element pkg_200009xmldsig.DigestValueType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for DigestValueType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "DigestValueType"
+		s.namespace = "http://www.w3.org/2000/09/xmldsig#"
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
@@ -1356,6 +1959,45 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
+	case "ElementMapItemType":
+		var element xmlschemaoval_common_5.ElementMapItemType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for ElementMapItemType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "ElementMapItemType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-common-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "ElementMapType":
+		var element xmlschemaoval_common_5.ElementMapType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for ElementMapType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "ElementMapType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-common-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "Element_mappingElement":
+		var element xmlschemaoval_common_5.Element_mappingElement
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for Element_mappingElement: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "Element_mappingElement"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-common-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
 	case "EmailAddressElement":
 		var element asset_identification1_1.EmailAddressElement
 		if len(data) > 0 && string(data) != "{}" {
@@ -1382,8 +2024,34 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
+	case "EmptyStringType":
+		var element xmlschemaoval_common_5.EmptyStringType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for EmptyStringType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "EmptyStringType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-common-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "EndFunctionType":
+		var element xmlschemaoval_definitions_5.EndFunctionType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for EndFunctionType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "EndFunctionType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
 	case "EndorsementLineCodeElementType":
-		var element pkg_2_0.EndorsementLineCodeElementType
+		var element pkg_2_01.EndorsementLineCodeElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for EndorsementLineCodeElementType: %w", err)
@@ -1392,6 +2060,383 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.rootElement = &element
 		s.rootType = "EndorsementLineCodeElementType"
 		s.namespace = "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "EntityObjectAnySimpleType":
+		var element xmlschemaoval_definitions_5.EntityObjectAnySimpleType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for EntityObjectAnySimpleType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "EntityObjectAnySimpleType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "EntityObjectBinaryType":
+		var element xmlschemaoval_definitions_5.EntityObjectBinaryType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for EntityObjectBinaryType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "EntityObjectBinaryType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "EntityObjectBoolType":
+		var element xmlschemaoval_definitions_5.EntityObjectBoolType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for EntityObjectBoolType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "EntityObjectBoolType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "EntityObjectFieldType":
+		var element xmlschemaoval_definitions_5.EntityObjectFieldType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for EntityObjectFieldType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "EntityObjectFieldType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "EntityObjectFloatType":
+		var element xmlschemaoval_definitions_5.EntityObjectFloatType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for EntityObjectFloatType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "EntityObjectFloatType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "EntityObjectIPAddressStringType":
+		var element xmlschemaoval_definitions_5.EntityObjectIPAddressStringType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for EntityObjectIPAddressStringType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "EntityObjectIPAddressStringType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "EntityObjectIPAddressType":
+		var element xmlschemaoval_definitions_5.EntityObjectIPAddressType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for EntityObjectIPAddressType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "EntityObjectIPAddressType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "EntityObjectIntType":
+		var element xmlschemaoval_definitions_5.EntityObjectIntType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for EntityObjectIntType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "EntityObjectIntType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "EntityObjectRecordType":
+		var element xmlschemaoval_definitions_5.EntityObjectRecordType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for EntityObjectRecordType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "EntityObjectRecordType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "EntityObjectStringType":
+		var element xmlschemaoval_definitions_5.EntityObjectStringType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for EntityObjectStringType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "EntityObjectStringType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "EntityObjectVersionType":
+		var element xmlschemaoval_definitions_5.EntityObjectVersionType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for EntityObjectVersionType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "EntityObjectVersionType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "EntityStateAnySimpleType":
+		var element xmlschemaoval_definitions_5.EntityStateAnySimpleType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for EntityStateAnySimpleType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "EntityStateAnySimpleType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "EntityStateBinaryType":
+		var element xmlschemaoval_definitions_5.EntityStateBinaryType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for EntityStateBinaryType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "EntityStateBinaryType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "EntityStateBoolType":
+		var element xmlschemaoval_definitions_5.EntityStateBoolType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for EntityStateBoolType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "EntityStateBoolType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "EntityStateDebianEVRStringType":
+		var element xmlschemaoval_definitions_5.EntityStateDebianEVRStringType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for EntityStateDebianEVRStringType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "EntityStateDebianEVRStringType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "EntityStateEVRStringType":
+		var element xmlschemaoval_definitions_5.EntityStateEVRStringType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for EntityStateEVRStringType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "EntityStateEVRStringType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "EntityStateFieldType":
+		var element xmlschemaoval_definitions_5.EntityStateFieldType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for EntityStateFieldType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "EntityStateFieldType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "EntityStateFileSetRevisionType":
+		var element xmlschemaoval_definitions_5.EntityStateFileSetRevisionType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for EntityStateFileSetRevisionType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "EntityStateFileSetRevisionType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "EntityStateFloatType":
+		var element xmlschemaoval_definitions_5.EntityStateFloatType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for EntityStateFloatType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "EntityStateFloatType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "EntityStateIOSVersionType":
+		var element xmlschemaoval_definitions_5.EntityStateIOSVersionType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for EntityStateIOSVersionType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "EntityStateIOSVersionType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "EntityStateIPAddressStringType":
+		var element xmlschemaoval_definitions_5.EntityStateIPAddressStringType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for EntityStateIPAddressStringType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "EntityStateIPAddressStringType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "EntityStateIPAddressType":
+		var element xmlschemaoval_definitions_5.EntityStateIPAddressType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for EntityStateIPAddressType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "EntityStateIPAddressType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "EntityStateIntType":
+		var element xmlschemaoval_definitions_5.EntityStateIntType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for EntityStateIntType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "EntityStateIntType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "EntityStateRecordType":
+		var element xmlschemaoval_definitions_5.EntityStateRecordType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for EntityStateRecordType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "EntityStateRecordType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "EntityStateStringType":
+		var element xmlschemaoval_definitions_5.EntityStateStringType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for EntityStateStringType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "EntityStateStringType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "EntityStateVersionType":
+		var element xmlschemaoval_definitions_5.EntityStateVersionType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for EntityStateVersionType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "EntityStateVersionType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "EscapeRegexFunctionType":
+		var element xmlschemaoval_definitions_5.EscapeRegexFunctionType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for EscapeRegexFunctionType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "EscapeRegexFunctionType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "ExistenceEnumeration":
+		var element xmlschemaoval_common_5.ExistenceEnumeration
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for ExistenceEnumeration: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "ExistenceEnumeration"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-common-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "ExtendDefinitionType":
+		var element xmlschemaoval_definitions_5.ExtendDefinitionType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for ExtendDefinitionType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "ExtendDefinitionType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
@@ -1447,8 +2492,112 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
+	case "External_variableElement":
+		var element xmlschemaoval_definitions_5.External_variableElement
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for External_variableElement: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "External_variableElement"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "External_variableElementType":
+		var element xmlschemaoval_definitions_5.External_variableElementType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for External_variableElementType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "External_variableElementType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "FactRefType":
+		var element language2_0.FactRefType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for FactRefType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "FactRefType"
+		s.namespace = "http://cpe.mitre.org/language/2.0"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "FactType":
+		var element xccdf1_2.FactType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for FactType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "FactType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "FamilyEnumeration":
+		var element xmlschemaoval_common_5.FamilyEnumeration
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for FamilyEnumeration: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "FamilyEnumeration"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-common-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "FilterActionEnumeration":
+		var element xmlschemaoval_definitions_5.FilterActionEnumeration
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for FilterActionEnumeration: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "FilterActionEnumeration"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "FilterElement":
+		var element xmlschemaoval_definitions_5.FilterElement
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for FilterElement: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "FilterElement"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "FilterElementType":
+		var element xmlschemaoval_definitions_5.FilterElementType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for FilterElementType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "FilterElementType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
 	case "FirmNameElementType":
-		var element pkg_2_0.FirmNameElementType
+		var element pkg_2_01.FirmNameElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for FirmNameElementType: %w", err)
@@ -1461,7 +2610,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "FirmType":
-		var element pkg_2_0.FirmType
+		var element pkg_2_01.FirmType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for FirmType: %w", err)
@@ -1474,7 +2623,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "FirstNameElementType":
-		var element pkg_2_01.FirstNameElementType
+		var element pkg_2_0.FirstNameElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for FirstNameElementType: %w", err)
@@ -1486,8 +2635,47 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
+	case "FixStrategyEnumType":
+		var element xccdf1_2.FixStrategyEnumType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for FixStrategyEnumType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "FixStrategyEnumType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "FixTextType":
+		var element xccdf1_2.FixTextType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for FixTextType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "FixTextType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "FixType":
+		var element xccdf1_2.FixType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for FixType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "FixType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
 	case "FormerNameElementType":
-		var element pkg_2_01.FormerNameElementType
+		var element pkg_2_0.FormerNameElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for FormerNameElementType: %w", err)
@@ -1539,7 +2727,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "Function":
-		var element pkg_2_01.Function
+		var element pkg_2_0.Function
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for Function: %w", err)
@@ -1552,7 +2740,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "FunctionElement":
-		var element pkg_2_01.FunctionElement
+		var element pkg_2_0.FunctionElement
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for FunctionElement: %w", err)
@@ -1565,7 +2753,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "GeneralSuffixElementType":
-		var element pkg_2_01.GeneralSuffixElementType
+		var element pkg_2_0.GeneralSuffixElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for GeneralSuffixElementType: %w", err)
@@ -1578,7 +2766,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "GenerationIdentifierElementType":
-		var element pkg_2_01.GenerationIdentifierElementType
+		var element pkg_2_0.GenerationIdentifierElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for GenerationIdentifierElementType: %w", err)
@@ -1587,6 +2775,84 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.rootElement = &element
 		s.rootType = "GenerationIdentifierElementType"
 		s.namespace = "urn:oasis:names:tc:ciq:xsdschema:xNL:2.0"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "GeneratorType":
+		var element dictionary2_0.GeneratorType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for GeneratorType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "GeneratorType"
+		s.namespace = "http://cpe.mitre.org/dictionary/2.0"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "GlobToRegexFunctionType":
+		var element xmlschemaoval_definitions_5.GlobToRegexFunctionType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for GlobToRegexFunctionType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "GlobToRegexFunctionType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "GroupElement":
+		var element xccdf1_2.GroupElement
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for GroupElement: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "GroupElement"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "GroupIdType":
+		var element xccdf1_2.GroupIdType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for GroupIdType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "GroupIdType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "GroupType":
+		var element xccdf1_2.GroupType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for GroupType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "GroupType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "HMACOutputLengthType":
+		var element pkg_200009xmldsig.HMACOutputLengthType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for HMACOutputLengthType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "HMACOutputLengthType"
+		s.namespace = "http://www.w3.org/2000/09/xmldsig#"
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
@@ -1642,6 +2908,84 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
+	case "HtmlTextType":
+		var element xccdf1_2.HtmlTextType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for HtmlTextType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "HtmlTextType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "HtmlTextWithSubType":
+		var element xccdf1_2.HtmlTextWithSubType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for HtmlTextWithSubType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "HtmlTextWithSubType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "IdentType":
+		var element xccdf1_2.IdentType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for IdentType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "IdentType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "IdentityType":
+		var element xccdf1_2.IdentityType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for IdentityType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "IdentityType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "IdrefListType":
+		var element xccdf1_2.IdrefListType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for IdrefListType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "IdrefListType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "IdrefType":
+		var element xccdf1_2.IdrefType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for IdrefType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "IdrefType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
 	case "InstallationIdElementType":
 		var element asset_identification1_1.InstallationIdElementType
 		if len(data) > 0 && string(data) != "{}" {
@@ -1655,6 +2999,19 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
+	case "InstanceFixType":
+		var element xccdf1_2.InstanceFixType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for InstanceFixType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "InstanceFixType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
 	case "InstanceNameElementType":
 		var element asset_identification1_1.InstanceNameElementType
 		if len(data) > 0 && string(data) != "{}" {
@@ -1665,6 +3022,32 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.rootElement = &element
 		s.rootType = "InstanceNameElementType"
 		s.namespace = "http://scap.nist.gov/schema/asset-identification/1.1"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "InstanceResultType":
+		var element xccdf1_2.InstanceResultType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for InstanceResultType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "InstanceResultType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "InterfaceHintType":
+		var element xccdf1_2.InterfaceHintType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for InterfaceHintType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "InterfaceHintType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
@@ -1772,8 +3155,47 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
+	case "ItemElement":
+		var element xccdf1_2.ItemElement
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for ItemElement: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "ItemElement"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "ItemIDPattern":
+		var element xmlschemaoval_common_5.ItemIDPattern
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for ItemIDPattern: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "ItemIDPattern"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-common-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "ItemType":
+		var element dictionary2_0.ItemType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for ItemType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "ItemType"
+		s.namespace = "http://cpe.mitre.org/dictionary/2.0"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
 	case "JointPersonNameElement":
-		var element pkg_2_01.JointPersonNameElement
+		var element pkg_2_0.JointPersonNameElement
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for JointPersonNameElement: %w", err)
@@ -1786,7 +3208,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "JointPersonNameElementType":
-		var element pkg_2_01.JointPersonNameElementType
+		var element pkg_2_0.JointPersonNameElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for JointPersonNameElementType: %w", err)
@@ -1798,8 +3220,34 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
+	case "KeyInfoElement":
+		var element pkg_200009xmldsig.KeyInfoElement
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for KeyInfoElement: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "KeyInfoElement"
+		s.namespace = "http://www.w3.org/2000/09/xmldsig#"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "KeyInfoType":
+		var element pkg_200009xmldsig.KeyInfoType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for KeyInfoType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "KeyInfoType"
+		s.namespace = "http://www.w3.org/2000/09/xmldsig#"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
 	case "KeyLineCodeElementType":
-		var element pkg_2_0.KeyLineCodeElementType
+		var element pkg_2_01.KeyLineCodeElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for KeyLineCodeElementType: %w", err)
@@ -1811,8 +3259,47 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
+	case "KeyNameElement":
+		var element pkg_200009xmldsig.KeyNameElement
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for KeyNameElement: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "KeyNameElement"
+		s.namespace = "http://www.w3.org/2000/09/xmldsig#"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "KeyValueElement":
+		var element pkg_200009xmldsig.KeyValueElement
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for KeyValueElement: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "KeyValueElement"
+		s.namespace = "http://www.w3.org/2000/09/xmldsig#"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "KeyValueType":
+		var element pkg_200009xmldsig.KeyValueType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for KeyValueType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "KeyValueType"
+		s.namespace = "http://www.w3.org/2000/09/xmldsig#"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
 	case "KnownAsElementType":
-		var element pkg_2_01.KnownAsElementType
+		var element pkg_2_0.KnownAsElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for KnownAsElementType: %w", err)
@@ -1838,7 +3325,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "LargeMailUserIdentifierElementType":
-		var element pkg_2_0.LargeMailUserIdentifierElementType
+		var element pkg_2_01.LargeMailUserIdentifierElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for LargeMailUserIdentifierElementType: %w", err)
@@ -1851,7 +3338,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "LargeMailUserNameElementType":
-		var element pkg_2_0.LargeMailUserNameElementType
+		var element pkg_2_01.LargeMailUserNameElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for LargeMailUserNameElementType: %w", err)
@@ -1864,7 +3351,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "LargeMailUserType":
-		var element pkg_2_0.LargeMailUserType
+		var element pkg_2_01.LargeMailUserType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for LargeMailUserType: %w", err)
@@ -1877,7 +3364,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "LastNameElementType":
-		var element pkg_2_01.LastNameElementType
+		var element pkg_2_0.LastNameElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for LastNameElementType: %w", err)
@@ -1899,6 +3386,58 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.rootElement = &element
 		s.rootType = "LicenseElementType"
 		s.namespace = "http://scap.nist.gov/schema/asset-identification/1.1"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "ListType":
+		var element dictionary2_0.ListType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for ListType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "ListType"
+		s.namespace = "http://cpe.mitre.org/dictionary/2.0"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "LiteralComponentType":
+		var element xmlschemaoval_definitions_5.LiteralComponentType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for LiteralComponentType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "LiteralComponentType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "Local_variableElement":
+		var element xmlschemaoval_definitions_5.Local_variableElement
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for Local_variableElement: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "Local_variableElement"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "Local_variableElementType":
+		var element xmlschemaoval_definitions_5.Local_variableElementType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for Local_variableElementType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "Local_variableElementType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
@@ -1929,7 +3468,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "LocalityElement":
-		var element pkg_2_0.LocalityElement
+		var element pkg_2_01.LocalityElement
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for LocalityElement: %w", err)
@@ -1942,7 +3481,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "LocalityElementType":
-		var element pkg_2_0.LocalityElementType
+		var element pkg_2_01.LocalityElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for LocalityElementType: %w", err)
@@ -1955,7 +3494,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "LocalityNameElementType":
-		var element pkg_2_0.LocalityNameElementType
+		var element pkg_2_01.LocalityNameElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for LocalityNameElementType: %w", err)
@@ -2097,6 +3636,19 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
+	case "LogicalTestType":
+		var element language2_0.LogicalTestType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for LogicalTestType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "LogicalTestType"
+		s.namespace = "http://cpe.mitre.org/language/2.0"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
 	case "MacAddressElementType":
 		var element asset_identification1_1.MacAddressElementType
 		if len(data) > 0 && string(data) != "{}" {
@@ -2124,7 +3676,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "MailStopNameElementType":
-		var element pkg_2_0.MailStopNameElementType
+		var element pkg_2_01.MailStopNameElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for MailStopNameElementType: %w", err)
@@ -2137,7 +3689,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "MailStopNumberElementType":
-		var element pkg_2_0.MailStopNumberElementType
+		var element pkg_2_01.MailStopNumberElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for MailStopNumberElementType: %w", err)
@@ -2150,7 +3702,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "MailStopType":
-		var element pkg_2_0.MailStopType
+		var element pkg_2_01.MailStopType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for MailStopType: %w", err)
@@ -2162,8 +3714,86 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
+	case "ManifestElement":
+		var element pkg_200009xmldsig.ManifestElement
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for ManifestElement: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "ManifestElement"
+		s.namespace = "http://www.w3.org/2000/09/xmldsig#"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "ManifestType":
+		var element pkg_200009xmldsig.ManifestType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for ManifestType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "ManifestType"
+		s.namespace = "http://www.w3.org/2000/09/xmldsig#"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "MessageLevelEnumeration":
+		var element xmlschemaoval_common_5.MessageLevelEnumeration
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for MessageLevelEnumeration: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "MessageLevelEnumeration"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-common-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "MessageType":
+		var element xmlschemaoval_common_5.MessageType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for MessageType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "MessageType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-common-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "MetadataType":
+		var element xmlschemaoval_definitions_5.MetadataType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for MetadataType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "MetadataType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "MgmtDataElement":
+		var element pkg_200009xmldsig.MgmtDataElement
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for MgmtDataElement: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "MgmtDataElement"
+		s.namespace = "http://www.w3.org/2000/09/xmldsig#"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
 	case "MiddleNameElementType":
-		var element pkg_2_01.MiddleNameElementType
+		var element pkg_2_0.MiddleNameElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for MiddleNameElementType: %w", err)
@@ -2172,6 +3802,32 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.rootElement = &element
 		s.rootType = "MiddleNameElementType"
 		s.namespace = "urn:oasis:names:tc:ciq:xsdschema:xNL:2.0"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "ModelElement":
+		var element xccdf1_2.ModelElement
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for ModelElement: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "ModelElement"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "ModelElementType":
+		var element xccdf1_2.ModelElementType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for ModelElementType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "ModelElementType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
@@ -2188,8 +3844,21 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
+	case "MsgSevEnumType":
+		var element xccdf1_2.MsgSevEnumType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for MsgSevEnumType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "MsgSevEnumType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
 	case "NameDetails":
-		var element pkg_2_01.NameDetails
+		var element pkg_2_0.NameDetails
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for NameDetails: %w", err)
@@ -2202,7 +3871,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "NameDetailsElement":
-		var element pkg_2_01.NameDetailsElement
+		var element pkg_2_0.NameDetailsElement
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for NameDetailsElement: %w", err)
@@ -2215,7 +3884,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "NameDetailsElementType":
-		var element pkg_2_01.NameDetailsElementType
+		var element pkg_2_0.NameDetailsElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for NameDetailsElementType: %w", err)
@@ -2228,7 +3897,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "NameLineType":
-		var element pkg_2_01.NameLineType
+		var element pkg_2_0.NameLineType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for NameLineType: %w", err)
@@ -2240,8 +3909,21 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
+	case "NamePattern":
+		var element language2_0.NamePattern
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for NamePattern: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "NamePattern"
+		s.namespace = "http://cpe.mitre.org/language/2.0"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
 	case "NamePrefixElementType":
-		var element pkg_2_01.NamePrefixElementType
+		var element pkg_2_0.NamePrefixElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for NamePrefixElementType: %w", err)
@@ -2305,6 +3987,110 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
+	case "NonEmptyStringType":
+		var element xmlschemaoval_common_5.NonEmptyStringType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for NonEmptyStringType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "NonEmptyStringType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-common-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "NotesElement":
+		var element xmlschemaoval_definitions_5.NotesElement
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for NotesElement: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "NotesElement"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "NotesElementType":
+		var element xmlschemaoval_definitions_5.NotesElementType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for NotesElementType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "NotesElementType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "NotesType":
+		var element dictionary2_0.NotesType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for NotesType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "NotesType"
+		s.namespace = "http://cpe.mitre.org/dictionary/2.0"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "NoticeType":
+		var element xccdf1_2.NoticeType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for NoticeType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "NoticeType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "ObjectComponentType":
+		var element xmlschemaoval_definitions_5.ObjectComponentType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for ObjectComponentType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "ObjectComponentType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "ObjectElement":
+		var element xmlschemaoval_definitions_5.ObjectElement
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for ObjectElement: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "ObjectElement"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "ObjectIDPattern":
+		var element xmlschemaoval_common_5.ObjectIDPattern
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for ObjectIDPattern: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "ObjectIDPattern"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-common-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
 	case "ObjectRefElement":
 		var element asset_reporting_format1_1.ObjectRefElement
 		if len(data) > 0 && string(data) != "{}" {
@@ -2331,8 +4117,73 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
+	case "ObjectRefType":
+		var element xmlschemaoval_definitions_5.ObjectRefType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for ObjectRefType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "ObjectRefType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "ObjectType":
+		var element pkg_200009xmldsig.ObjectType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for ObjectType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "ObjectType"
+		s.namespace = "http://www.w3.org/2000/09/xmldsig#"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "ObjectsType":
+		var element xmlschemaoval_definitions_5.ObjectsType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for ObjectsType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "ObjectsType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "OperationEnumeration":
+		var element xmlschemaoval_common_5.OperationEnumeration
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for OperationEnumeration: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "OperationEnumeration"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-common-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "OperatorEnumeration":
+		var element language2_0.OperatorEnumeration
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for OperatorEnumeration: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "OperatorEnumeration"
+		s.namespace = "http://cpe.mitre.org/language/2.0"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
 	case "OrganisationFormerNameElementType":
-		var element pkg_2_01.OrganisationFormerNameElementType
+		var element pkg_2_0.OrganisationFormerNameElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for OrganisationFormerNameElementType: %w", err)
@@ -2345,7 +4196,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "OrganisationKnownAsElementType":
-		var element pkg_2_01.OrganisationKnownAsElementType
+		var element pkg_2_0.OrganisationKnownAsElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for OrganisationKnownAsElementType: %w", err)
@@ -2358,7 +4209,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "OrganisationNameDetails":
-		var element pkg_2_01.OrganisationNameDetails
+		var element pkg_2_0.OrganisationNameDetails
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for OrganisationNameDetails: %w", err)
@@ -2371,7 +4222,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "OrganisationNameDetailsElement":
-		var element pkg_2_01.OrganisationNameDetailsElement
+		var element pkg_2_0.OrganisationNameDetailsElement
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for OrganisationNameDetailsElement: %w", err)
@@ -2384,7 +4235,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "OrganisationNameDetailsElementType":
-		var element pkg_2_01.OrganisationNameDetailsElementType
+		var element pkg_2_0.OrganisationNameDetailsElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for OrganisationNameDetailsElementType: %w", err)
@@ -2397,7 +4248,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "OrganisationNameElementType":
-		var element pkg_2_01.OrganisationNameElementType
+		var element pkg_2_0.OrganisationNameElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for OrganisationNameElementType: %w", err)
@@ -2410,7 +4261,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "OrganisationTypeElementType":
-		var element pkg_2_01.OrganisationTypeElementType
+		var element pkg_2_0.OrganisationTypeElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for OrganisationTypeElementType: %w", err)
@@ -2449,7 +4300,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "OtherNameElementType":
-		var element pkg_2_01.OtherNameElementType
+		var element pkg_2_0.OtherNameElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for OtherNameElementType: %w", err)
@@ -2458,6 +4309,99 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.rootElement = &element
 		s.rootType = "OtherNameElementType"
 		s.namespace = "urn:oasis:names:tc:ciq:xsdschema:xNL:2.0"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "Oval_definitionsElement":
+		var element xmlschemaoval_definitions_5.Oval_definitionsElement
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for Oval_definitionsElement: %w", err)
+			}
+		}
+		// Initialize XMLName for proper XML serialization (root elements only)
+		element.XMLName = xml.Name{Space: "http://oval.mitre.org/XMLSchema/oval-definitions-5", Local: "oval_definitions"}
+		s.rootElement = &element
+		s.rootType = "Oval_definitionsElement"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "Oval_definitionsElementType":
+		var element xmlschemaoval_definitions_5.Oval_definitionsElementType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for Oval_definitionsElementType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "Oval_definitionsElementType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "OverrideType":
+		var element xccdf1_2.OverrideType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for OverrideType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "OverrideType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "OverrideableCPE2idrefType":
+		var element xccdf1_2.OverrideableCPE2idrefType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for OverrideableCPE2idrefType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "OverrideableCPE2idrefType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "PGPDataElement":
+		var element pkg_200009xmldsig.PGPDataElement
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for PGPDataElement: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "PGPDataElement"
+		s.namespace = "http://www.w3.org/2000/09/xmldsig#"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "PGPDataType":
+		var element pkg_200009xmldsig.PGPDataType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for PGPDataType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "PGPDataType"
+		s.namespace = "http://www.w3.org/2000/09/xmldsig#"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "ParamType":
+		var element xccdf1_2.ParamType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for ParamType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "ParamType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
@@ -2475,7 +4419,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PersonName":
-		var element pkg_2_01.PersonName
+		var element pkg_2_0.PersonName
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PersonName: %w", err)
@@ -2488,7 +4432,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PersonNameElement":
-		var element pkg_2_01.PersonNameElement
+		var element pkg_2_0.PersonNameElement
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PersonNameElement: %w", err)
@@ -2501,7 +4445,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PersonNameElementType":
-		var element pkg_2_01.PersonNameElementType
+		var element pkg_2_0.PersonNameElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PersonNameElementType: %w", err)
@@ -2523,6 +4467,58 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.rootElement = &element
 		s.rootType = "PersonType"
 		s.namespace = "http://scap.nist.gov/schema/asset-identification/1.1"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "PlainTextType":
+		var element xccdf1_2.PlainTextType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for PlainTextType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "PlainTextType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "PlatformSpecificationElement":
+		var element language2_0.PlatformSpecificationElement
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for PlatformSpecificationElement: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "PlatformSpecificationElement"
+		s.namespace = "http://cpe.mitre.org/language/2.0"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "PlatformSpecificationElementType":
+		var element language2_0.PlatformSpecificationElementType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for PlatformSpecificationElementType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "PlatformSpecificationElementType"
+		s.namespace = "http://cpe.mitre.org/language/2.0"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "PlatformType":
+		var element language2_0.PlatformType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for PlatformType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "PlatformType"
+		s.namespace = "http://cpe.mitre.org/language/2.0"
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
@@ -2565,8 +4561,34 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
+	case "PossibleRestrictionType":
+		var element xmlschemaoval_definitions_5.PossibleRestrictionType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for PossibleRestrictionType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "PossibleRestrictionType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "PossibleValueType":
+		var element xmlschemaoval_definitions_5.PossibleValueType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for PossibleValueType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "PossibleValueType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
 	case "PostBoxElement":
-		var element pkg_2_0.PostBoxElement
+		var element pkg_2_01.PostBoxElement
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PostBoxElement: %w", err)
@@ -2579,7 +4601,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PostBoxElementType":
-		var element pkg_2_0.PostBoxElementType
+		var element pkg_2_01.PostBoxElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PostBoxElementType: %w", err)
@@ -2592,7 +4614,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PostBoxNumberElementType":
-		var element pkg_2_0.PostBoxNumberElementType
+		var element pkg_2_01.PostBoxNumberElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PostBoxNumberElementType: %w", err)
@@ -2605,7 +4627,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PostBoxNumberExtensionElementType":
-		var element pkg_2_0.PostBoxNumberExtensionElementType
+		var element pkg_2_01.PostBoxNumberExtensionElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PostBoxNumberExtensionElementType: %w", err)
@@ -2618,7 +4640,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PostBoxNumberPrefixElementType":
-		var element pkg_2_0.PostBoxNumberPrefixElementType
+		var element pkg_2_01.PostBoxNumberPrefixElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PostBoxNumberPrefixElementType: %w", err)
@@ -2631,7 +4653,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PostBoxNumberSuffixElementType":
-		var element pkg_2_0.PostBoxNumberSuffixElementType
+		var element pkg_2_01.PostBoxNumberSuffixElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PostBoxNumberSuffixElementType: %w", err)
@@ -2644,7 +4666,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PostOfficeElement":
-		var element pkg_2_0.PostOfficeElement
+		var element pkg_2_01.PostOfficeElement
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PostOfficeElement: %w", err)
@@ -2657,7 +4679,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PostOfficeElementType":
-		var element pkg_2_0.PostOfficeElementType
+		var element pkg_2_01.PostOfficeElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PostOfficeElementType: %w", err)
@@ -2670,7 +4692,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PostOfficeNameElementType":
-		var element pkg_2_0.PostOfficeNameElementType
+		var element pkg_2_01.PostOfficeNameElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PostOfficeNameElementType: %w", err)
@@ -2683,7 +4705,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PostOfficeNumberElementType":
-		var element pkg_2_0.PostOfficeNumberElementType
+		var element pkg_2_01.PostOfficeNumberElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PostOfficeNumberElementType: %w", err)
@@ -2696,7 +4718,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PostTownElementType":
-		var element pkg_2_0.PostTownElementType
+		var element pkg_2_01.PostTownElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PostTownElementType: %w", err)
@@ -2709,7 +4731,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PostTownNameElementType":
-		var element pkg_2_0.PostTownNameElementType
+		var element pkg_2_01.PostTownNameElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PostTownNameElementType: %w", err)
@@ -2722,7 +4744,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PostTownSuffixElementType":
-		var element pkg_2_0.PostTownSuffixElementType
+		var element pkg_2_01.PostTownSuffixElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PostTownSuffixElementType: %w", err)
@@ -2735,7 +4757,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PostalCodeElement":
-		var element pkg_2_0.PostalCodeElement
+		var element pkg_2_01.PostalCodeElement
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PostalCodeElement: %w", err)
@@ -2748,7 +4770,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PostalCodeElementType":
-		var element pkg_2_0.PostalCodeElementType
+		var element pkg_2_01.PostalCodeElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PostalCodeElementType: %w", err)
@@ -2761,7 +4783,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PostalCodeNumberElementType":
-		var element pkg_2_0.PostalCodeNumberElementType
+		var element pkg_2_01.PostalCodeNumberElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PostalCodeNumberElementType: %w", err)
@@ -2774,7 +4796,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PostalCodeNumberExtensionElementType":
-		var element pkg_2_0.PostalCodeNumberExtensionElementType
+		var element pkg_2_01.PostalCodeNumberExtensionElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PostalCodeNumberExtensionElementType: %w", err)
@@ -2787,7 +4809,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PostalRouteNameElementType":
-		var element pkg_2_0.PostalRouteNameElementType
+		var element pkg_2_01.PostalRouteNameElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PostalRouteNameElementType: %w", err)
@@ -2800,7 +4822,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PostalRouteNumberElementType":
-		var element pkg_2_0.PostalRouteNumberElementType
+		var element pkg_2_01.PostalRouteNumberElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PostalRouteNumberElementType: %w", err)
@@ -2813,7 +4835,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PostalRouteType":
-		var element pkg_2_0.PostalRouteType
+		var element pkg_2_01.PostalRouteType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PostalRouteType: %w", err)
@@ -2826,7 +4848,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PostalServiceElementsElementType":
-		var element pkg_2_0.PostalServiceElementsElementType
+		var element pkg_2_01.PostalServiceElementsElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PostalServiceElementsElementType: %w", err)
@@ -2839,7 +4861,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PrecedingTitleElementType":
-		var element pkg_2_01.PrecedingTitleElementType
+		var element pkg_2_0.PrecedingTitleElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PrecedingTitleElementType: %w", err)
@@ -2852,7 +4874,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PremiseElement":
-		var element pkg_2_0.PremiseElement
+		var element pkg_2_01.PremiseElement
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PremiseElement: %w", err)
@@ -2865,7 +4887,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PremiseElementType":
-		var element pkg_2_0.PremiseElementType
+		var element pkg_2_01.PremiseElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PremiseElementType: %w", err)
@@ -2878,7 +4900,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PremiseLocationElementType":
-		var element pkg_2_0.PremiseLocationElementType
+		var element pkg_2_01.PremiseLocationElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PremiseLocationElementType: %w", err)
@@ -2891,7 +4913,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PremiseNameElementType":
-		var element pkg_2_0.PremiseNameElementType
+		var element pkg_2_01.PremiseNameElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PremiseNameElementType: %w", err)
@@ -2904,7 +4926,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PremiseNumberElement":
-		var element pkg_2_0.PremiseNumberElement
+		var element pkg_2_01.PremiseNumberElement
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PremiseNumberElement: %w", err)
@@ -2917,7 +4939,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PremiseNumberElementType":
-		var element pkg_2_0.PremiseNumberElementType
+		var element pkg_2_01.PremiseNumberElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PremiseNumberElementType: %w", err)
@@ -2930,7 +4952,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PremiseNumberPrefixElement":
-		var element pkg_2_0.PremiseNumberPrefixElement
+		var element pkg_2_01.PremiseNumberPrefixElement
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PremiseNumberPrefixElement: %w", err)
@@ -2943,7 +4965,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PremiseNumberPrefixElementType":
-		var element pkg_2_0.PremiseNumberPrefixElementType
+		var element pkg_2_01.PremiseNumberPrefixElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PremiseNumberPrefixElementType: %w", err)
@@ -2956,7 +4978,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PremiseNumberRangeElementType":
-		var element pkg_2_0.PremiseNumberRangeElementType
+		var element pkg_2_01.PremiseNumberRangeElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PremiseNumberRangeElementType: %w", err)
@@ -2969,7 +4991,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PremiseNumberRangeFromElementType":
-		var element pkg_2_0.PremiseNumberRangeFromElementType
+		var element pkg_2_01.PremiseNumberRangeFromElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PremiseNumberRangeFromElementType: %w", err)
@@ -2982,7 +5004,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PremiseNumberRangeToElementType":
-		var element pkg_2_0.PremiseNumberRangeToElementType
+		var element pkg_2_01.PremiseNumberRangeToElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PremiseNumberRangeToElementType: %w", err)
@@ -2995,7 +5017,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PremiseNumberSuffixElement":
-		var element pkg_2_0.PremiseNumberSuffixElement
+		var element pkg_2_01.PremiseNumberSuffixElement
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PremiseNumberSuffixElement: %w", err)
@@ -3008,7 +5030,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PremiseNumberSuffixElementType":
-		var element pkg_2_0.PremiseNumberSuffixElementType
+		var element pkg_2_01.PremiseNumberSuffixElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PremiseNumberSuffixElementType: %w", err)
@@ -3017,6 +5039,123 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.rootElement = &element
 		s.rootType = "PremiseNumberSuffixElementType"
 		s.namespace = "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "ProfileElement":
+		var element xccdf1_2.ProfileElement
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for ProfileElement: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "ProfileElement"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "ProfileIdType":
+		var element xccdf1_2.ProfileIdType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for ProfileIdType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "ProfileIdType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "ProfileNoteType":
+		var element xccdf1_2.ProfileNoteType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for ProfileNoteType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "ProfileNoteType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "ProfileRefineRuleType":
+		var element xccdf1_2.ProfileRefineRuleType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for ProfileRefineRuleType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "ProfileRefineRuleType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "ProfileRefineValueType":
+		var element xccdf1_2.ProfileRefineValueType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for ProfileRefineValueType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "ProfileRefineValueType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "ProfileSelectType":
+		var element xccdf1_2.ProfileSelectType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for ProfileSelectType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "ProfileSelectType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "ProfileSetComplexValueType":
+		var element xccdf1_2.ProfileSetComplexValueType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for ProfileSetComplexValueType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "ProfileSetComplexValueType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "ProfileSetValueType":
+		var element xccdf1_2.ProfileSetValueType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for ProfileSetValueType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "ProfileSetValueType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "ProfileType":
+		var element xccdf1_2.ProfileType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for ProfileType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "ProfileType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
@@ -3030,6 +5169,110 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.rootElement = &element
 		s.rootType = "ProtocolElementType"
 		s.namespace = "http://scap.nist.gov/schema/asset-identification/1.1"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "RSAKeyValueElement":
+		var element pkg_200009xmldsig.RSAKeyValueElement
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for RSAKeyValueElement: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "RSAKeyValueElement"
+		s.namespace = "http://www.w3.org/2000/09/xmldsig#"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "RSAKeyValueType":
+		var element pkg_200009xmldsig.RSAKeyValueType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for RSAKeyValueType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "RSAKeyValueType"
+		s.namespace = "http://www.w3.org/2000/09/xmldsig#"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "RatingEnumType":
+		var element xccdf1_2.RatingEnumType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for RatingEnumType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "RatingEnumType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "ReferenceElement":
+		var element pkg_200009xmldsig.ReferenceElement
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for ReferenceElement: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "ReferenceElement"
+		s.namespace = "http://www.w3.org/2000/09/xmldsig#"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "ReferenceElementType":
+		var element dictionary2_0.ReferenceElementType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for ReferenceElementType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "ReferenceElementType"
+		s.namespace = "http://cpe.mitre.org/dictionary/2.0"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "ReferenceType":
+		var element pkg_200009xmldsig.ReferenceType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for ReferenceType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "ReferenceType"
+		s.namespace = "http://www.w3.org/2000/09/xmldsig#"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "ReferencesType":
+		var element dictionary2_0.ReferencesType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for ReferencesType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "ReferencesType"
+		s.namespace = "http://cpe.mitre.org/dictionary/2.0"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "RegexCaptureFunctionType":
+		var element xmlschemaoval_definitions_5.RegexCaptureFunctionType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for RegexCaptureFunctionType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "RegexCaptureFunctionType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
@@ -3176,6 +5419,71 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
+	case "RestrictionType":
+		var element xmlschemaoval_definitions_5.RestrictionType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for RestrictionType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "RestrictionType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "ResultEnumType":
+		var element xccdf1_2.ResultEnumType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for ResultEnumType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "ResultEnumType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "RetrievalMethodElement":
+		var element pkg_200009xmldsig.RetrievalMethodElement
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for RetrievalMethodElement: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "RetrievalMethodElement"
+		s.namespace = "http://www.w3.org/2000/09/xmldsig#"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "RetrievalMethodType":
+		var element pkg_200009xmldsig.RetrievalMethodType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for RetrievalMethodType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "RetrievalMethodType"
+		s.namespace = "http://www.w3.org/2000/09/xmldsig#"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "RoleEnumType":
+		var element xccdf1_2.RoleEnumType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for RoleEnumType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "RoleEnumType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
 	case "RoleType":
 		var element pkg_1999xlink.RoleType
 		if len(data) > 0 && string(data) != "{}" {
@@ -3186,6 +5494,175 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.rootElement = &element
 		s.rootType = "RoleType"
 		s.namespace = "http://www.w3.org/1999/xlink"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "RuleElement":
+		var element xccdf1_2.RuleElement
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for RuleElement: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "RuleElement"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "RuleIdType":
+		var element xccdf1_2.RuleIdType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for RuleIdType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "RuleIdType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "RuleResultType":
+		var element xccdf1_2.RuleResultType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for RuleResultType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "RuleResultType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "RuleType":
+		var element xccdf1_2.RuleType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for RuleType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "RuleType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "SPKIDataElement":
+		var element pkg_200009xmldsig.SPKIDataElement
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for SPKIDataElement: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "SPKIDataElement"
+		s.namespace = "http://www.w3.org/2000/09/xmldsig#"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "SPKIDataType":
+		var element pkg_200009xmldsig.SPKIDataType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for SPKIDataType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "SPKIDataType"
+		s.namespace = "http://www.w3.org/2000/09/xmldsig#"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "SchemaVersionPattern":
+		var element xmlschemaoval_common_5.SchemaVersionPattern
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for SchemaVersionPattern: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "SchemaVersionPattern"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-common-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "SchemaVersionType":
+		var element xmlschemaoval_common_5.SchemaVersionType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for SchemaVersionType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "SchemaVersionType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-common-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "ScoreType":
+		var element xccdf1_2.ScoreType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for ScoreType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "ScoreType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "SelChoicesType":
+		var element xccdf1_2.SelChoicesType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for SelChoicesType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "SelChoicesType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "SelComplexValueType":
+		var element xccdf1_2.SelComplexValueType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for SelComplexValueType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "SelComplexValueType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "SelNumType":
+		var element xccdf1_2.SelNumType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for SelNumType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "SelNumType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "SelStringType":
+		var element xccdf1_2.SelStringType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for SelStringType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "SelStringType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
@@ -3228,6 +5705,58 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
+	case "SetElement":
+		var element xmlschemaoval_definitions_5.SetElement
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for SetElement: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "SetElement"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "SetElementType":
+		var element xmlschemaoval_definitions_5.SetElementType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for SetElementType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "SetElementType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "SetOperatorEnumeration":
+		var element xmlschemaoval_definitions_5.SetOperatorEnumeration
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for SetOperatorEnumeration: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "SetOperatorEnumeration"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "SeverityEnumType":
+		var element xccdf1_2.SeverityEnumType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for SeverityEnumType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "SeverityEnumType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
 	case "ShowType":
 		var element pkg_1999xlink.ShowType
 		if len(data) > 0 && string(data) != "{}" {
@@ -3241,6 +5770,162 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
+	case "SignatureElement":
+		var element pkg_200009xmldsig.SignatureElement
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for SignatureElement: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "SignatureElement"
+		s.namespace = "http://www.w3.org/2000/09/xmldsig#"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "SignatureMethodElement":
+		var element pkg_200009xmldsig.SignatureMethodElement
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for SignatureMethodElement: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "SignatureMethodElement"
+		s.namespace = "http://www.w3.org/2000/09/xmldsig#"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "SignatureMethodType":
+		var element pkg_200009xmldsig.SignatureMethodType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for SignatureMethodType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "SignatureMethodType"
+		s.namespace = "http://www.w3.org/2000/09/xmldsig#"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "SignaturePropertiesElement":
+		var element pkg_200009xmldsig.SignaturePropertiesElement
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for SignaturePropertiesElement: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "SignaturePropertiesElement"
+		s.namespace = "http://www.w3.org/2000/09/xmldsig#"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "SignaturePropertiesType":
+		var element pkg_200009xmldsig.SignaturePropertiesType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for SignaturePropertiesType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "SignaturePropertiesType"
+		s.namespace = "http://www.w3.org/2000/09/xmldsig#"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "SignaturePropertyElement":
+		var element pkg_200009xmldsig.SignaturePropertyElement
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for SignaturePropertyElement: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "SignaturePropertyElement"
+		s.namespace = "http://www.w3.org/2000/09/xmldsig#"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "SignaturePropertyType":
+		var element pkg_200009xmldsig.SignaturePropertyType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for SignaturePropertyType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "SignaturePropertyType"
+		s.namespace = "http://www.w3.org/2000/09/xmldsig#"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "SignatureType":
+		var element pkg_200009xmldsig.SignatureType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for SignatureType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "SignatureType"
+		s.namespace = "http://www.w3.org/2000/09/xmldsig#"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "SignatureValueElement":
+		var element pkg_200009xmldsig.SignatureValueElement
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for SignatureValueElement: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "SignatureValueElement"
+		s.namespace = "http://www.w3.org/2000/09/xmldsig#"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "SignatureValueType":
+		var element pkg_200009xmldsig.SignatureValueType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for SignatureValueType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "SignatureValueType"
+		s.namespace = "http://www.w3.org/2000/09/xmldsig#"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "SignedInfoElement":
+		var element pkg_200009xmldsig.SignedInfoElement
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for SignedInfoElement: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "SignedInfoElement"
+		s.namespace = "http://www.w3.org/2000/09/xmldsig#"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "SignedInfoType":
+		var element pkg_200009xmldsig.SignedInfoType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for SignedInfoType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "SignedInfoType"
+		s.namespace = "http://www.w3.org/2000/09/xmldsig#"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
 	case "Simple":
 		var element pkg_1999xlink.Simple
 		if len(data) > 0 && string(data) != "{}" {
@@ -3251,6 +5936,19 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.rootElement = &element
 		s.rootType = "Simple"
 		s.namespace = "http://www.w3.org/1999/xlink"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "SimpleDatatypeEnumeration":
+		var element xmlschemaoval_common_5.SimpleDatatypeEnumeration
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for SimpleDatatypeEnumeration: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "SimpleDatatypeEnumeration"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-common-5"
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
@@ -3281,7 +5979,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "SortingCodeElementType":
-		var element pkg_2_0.SortingCodeElementType
+		var element pkg_2_01.SortingCodeElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for SortingCodeElementType: %w", err)
@@ -3293,8 +5991,125 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
+	case "SplitFunctionType":
+		var element xmlschemaoval_definitions_5.SplitFunctionType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for SplitFunctionType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "SplitFunctionType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "StateElement":
+		var element xmlschemaoval_definitions_5.StateElement
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for StateElement: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "StateElement"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "StateIDPattern":
+		var element xmlschemaoval_common_5.StateIDPattern
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for StateIDPattern: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "StateIDPattern"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-common-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "StateRefType":
+		var element xmlschemaoval_definitions_5.StateRefType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for StateRefType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "StateRefType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "StateType":
+		var element xmlschemaoval_definitions_5.StateType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for StateType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "StateType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "StatesType":
+		var element xmlschemaoval_definitions_5.StatesType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for StatesType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "StatesType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "StatusElement":
+		var element xccdf1_2.StatusElement
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for StatusElement: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "StatusElement"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "StatusElementType":
+		var element xccdf1_2.StatusElementType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for StatusElementType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "StatusElementType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "StatusType":
+		var element xccdf1_2.StatusType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for StatusType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "StatusType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
 	case "SubAdministrativeAreaElementType":
-		var element pkg_2_0.SubAdministrativeAreaElementType
+		var element pkg_2_01.SubAdministrativeAreaElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for SubAdministrativeAreaElementType: %w", err)
@@ -3307,7 +6122,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "SubAdministrativeAreaNameElementType":
-		var element pkg_2_0.SubAdministrativeAreaNameElementType
+		var element pkg_2_01.SubAdministrativeAreaNameElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for SubAdministrativeAreaNameElementType: %w", err)
@@ -3320,7 +6135,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "SubPremiseLocationElementType":
-		var element pkg_2_0.SubPremiseLocationElementType
+		var element pkg_2_01.SubPremiseLocationElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for SubPremiseLocationElementType: %w", err)
@@ -3333,7 +6148,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "SubPremiseNameElementType":
-		var element pkg_2_0.SubPremiseNameElementType
+		var element pkg_2_01.SubPremiseNameElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for SubPremiseNameElementType: %w", err)
@@ -3346,7 +6161,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "SubPremiseNumberElementType":
-		var element pkg_2_0.SubPremiseNumberElementType
+		var element pkg_2_01.SubPremiseNumberElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for SubPremiseNumberElementType: %w", err)
@@ -3359,7 +6174,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "SubPremiseNumberPrefixElementType":
-		var element pkg_2_0.SubPremiseNumberPrefixElementType
+		var element pkg_2_01.SubPremiseNumberPrefixElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for SubPremiseNumberPrefixElementType: %w", err)
@@ -3372,7 +6187,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "SubPremiseNumberSuffixElementType":
-		var element pkg_2_0.SubPremiseNumberSuffixElementType
+		var element pkg_2_01.SubPremiseNumberSuffixElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for SubPremiseNumberSuffixElementType: %w", err)
@@ -3385,7 +6200,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "SubPremiseType":
-		var element pkg_2_0.SubPremiseType
+		var element pkg_2_01.SubPremiseType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for SubPremiseType: %w", err)
@@ -3397,8 +6212,47 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
+	case "SubType":
+		var element xccdf1_2.SubType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for SubType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "SubType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "SubUseEnumType":
+		var element xccdf1_2.SubUseEnumType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for SubUseEnumType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "SubUseEnumType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "SubstringFunctionType":
+		var element xmlschemaoval_definitions_5.SubstringFunctionType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for SubstringFunctionType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "SubstringFunctionType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
 	case "SuffixElementType":
-		var element pkg_2_01.SuffixElementType
+		var element pkg_2_0.SuffixElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for SuffixElementType: %w", err)
@@ -3411,7 +6265,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "SupplementaryPostalServiceDataElementType":
-		var element pkg_2_0.SupplementaryPostalServiceDataElementType
+		var element pkg_2_01.SupplementaryPostalServiceDataElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for SupplementaryPostalServiceDataElementType: %w", err)
@@ -3488,6 +6342,110 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
+	case "TailoringBenchmarkReferenceType":
+		var element xccdf1_2.TailoringBenchmarkReferenceType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for TailoringBenchmarkReferenceType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "TailoringBenchmarkReferenceType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "TailoringElement":
+		var element xccdf1_2.TailoringElement
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for TailoringElement: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "TailoringElement"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "TailoringIdType":
+		var element xccdf1_2.TailoringIdType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for TailoringIdType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "TailoringIdType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "TailoringReferenceType":
+		var element xccdf1_2.TailoringReferenceType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for TailoringReferenceType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "TailoringReferenceType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "TailoringType":
+		var element xccdf1_2.TailoringType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for TailoringType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "TailoringType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "TailoringVersionType":
+		var element xccdf1_2.TailoringVersionType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for TailoringVersionType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "TailoringVersionType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "TargetFactsType":
+		var element xccdf1_2.TargetFactsType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for TargetFactsType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "TargetFactsType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "TargetIdRefType":
+		var element xccdf1_2.TargetIdRefType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for TargetIdRefType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "TargetIdRefType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
 	case "TelephoneNumberElement":
 		var element asset_identification1_1.TelephoneNumberElement
 		if len(data) > 0 && string(data) != "{}" {
@@ -3527,8 +6485,125 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
+	case "TestElement":
+		var element xmlschemaoval_definitions_5.TestElement
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for TestElement: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "TestElement"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "TestIDPattern":
+		var element xmlschemaoval_common_5.TestIDPattern
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for TestIDPattern: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "TestIDPattern"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-common-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "TestResultElement":
+		var element xccdf1_2.TestResultElement
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for TestResultElement: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "TestResultElement"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "TestResultType":
+		var element xccdf1_2.TestResultType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for TestResultType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "TestResultType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "TestType":
+		var element xmlschemaoval_definitions_5.TestType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for TestType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "TestType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "TestresultIdType":
+		var element xccdf1_2.TestresultIdType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for TestresultIdType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "TestresultIdType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "TestsType":
+		var element xmlschemaoval_definitions_5.TestsType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for TestsType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "TestsType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "TextType":
+		var element language2_0.TextType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for TextType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "TextType"
+		s.namespace = "http://cpe.mitre.org/language/2.0"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "TextWithSubType":
+		var element xccdf1_2.TextWithSubType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for TextWithSubType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "TextWithSubType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
 	case "ThoroughfareElement":
-		var element pkg_2_0.ThoroughfareElement
+		var element pkg_2_01.ThoroughfareElement
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for ThoroughfareElement: %w", err)
@@ -3541,7 +6616,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "ThoroughfareElementType":
-		var element pkg_2_0.ThoroughfareElementType
+		var element pkg_2_01.ThoroughfareElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for ThoroughfareElementType: %w", err)
@@ -3554,7 +6629,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "ThoroughfareLeadingTypeType":
-		var element pkg_2_0.ThoroughfareLeadingTypeType
+		var element pkg_2_01.ThoroughfareLeadingTypeType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for ThoroughfareLeadingTypeType: %w", err)
@@ -3567,7 +6642,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "ThoroughfareNameType":
-		var element pkg_2_0.ThoroughfareNameType
+		var element pkg_2_01.ThoroughfareNameType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for ThoroughfareNameType: %w", err)
@@ -3580,7 +6655,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "ThoroughfareNumberElement":
-		var element pkg_2_0.ThoroughfareNumberElement
+		var element pkg_2_01.ThoroughfareNumberElement
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for ThoroughfareNumberElement: %w", err)
@@ -3593,7 +6668,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "ThoroughfareNumberElementType":
-		var element pkg_2_0.ThoroughfareNumberElementType
+		var element pkg_2_01.ThoroughfareNumberElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for ThoroughfareNumberElementType: %w", err)
@@ -3606,7 +6681,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "ThoroughfareNumberFromElementType":
-		var element pkg_2_0.ThoroughfareNumberFromElementType
+		var element pkg_2_01.ThoroughfareNumberFromElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for ThoroughfareNumberFromElementType: %w", err)
@@ -3619,7 +6694,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "ThoroughfareNumberPrefixElement":
-		var element pkg_2_0.ThoroughfareNumberPrefixElement
+		var element pkg_2_01.ThoroughfareNumberPrefixElement
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for ThoroughfareNumberPrefixElement: %w", err)
@@ -3632,7 +6707,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "ThoroughfareNumberPrefixElementType":
-		var element pkg_2_0.ThoroughfareNumberPrefixElementType
+		var element pkg_2_01.ThoroughfareNumberPrefixElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for ThoroughfareNumberPrefixElementType: %w", err)
@@ -3645,7 +6720,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "ThoroughfareNumberRangeElementType":
-		var element pkg_2_0.ThoroughfareNumberRangeElementType
+		var element pkg_2_01.ThoroughfareNumberRangeElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for ThoroughfareNumberRangeElementType: %w", err)
@@ -3658,7 +6733,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "ThoroughfareNumberSuffixElement":
-		var element pkg_2_0.ThoroughfareNumberSuffixElement
+		var element pkg_2_01.ThoroughfareNumberSuffixElement
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for ThoroughfareNumberSuffixElement: %w", err)
@@ -3671,7 +6746,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "ThoroughfareNumberSuffixElementType":
-		var element pkg_2_0.ThoroughfareNumberSuffixElementType
+		var element pkg_2_01.ThoroughfareNumberSuffixElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for ThoroughfareNumberSuffixElementType: %w", err)
@@ -3684,7 +6759,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "ThoroughfareNumberToElementType":
-		var element pkg_2_0.ThoroughfareNumberToElementType
+		var element pkg_2_01.ThoroughfareNumberToElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for ThoroughfareNumberToElementType: %w", err)
@@ -3697,7 +6772,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "ThoroughfarePostDirectionType":
-		var element pkg_2_0.ThoroughfarePostDirectionType
+		var element pkg_2_01.ThoroughfarePostDirectionType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for ThoroughfarePostDirectionType: %w", err)
@@ -3710,7 +6785,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "ThoroughfarePreDirectionType":
-		var element pkg_2_0.ThoroughfarePreDirectionType
+		var element pkg_2_01.ThoroughfarePreDirectionType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for ThoroughfarePreDirectionType: %w", err)
@@ -3723,7 +6798,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "ThoroughfareTrailingTypeType":
-		var element pkg_2_0.ThoroughfareTrailingTypeType
+		var element pkg_2_01.ThoroughfareTrailingTypeType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for ThoroughfareTrailingTypeType: %w", err)
@@ -3732,6 +6807,19 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.rootElement = &element
 		s.rootType = "ThoroughfareTrailingTypeType"
 		s.namespace = "urn:oasis:names:tc:ciq:xsdschema:xAL:2.0"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "TimeDifferenceFunctionType":
+		var element xmlschemaoval_definitions_5.TimeDifferenceFunctionType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for TimeDifferenceFunctionType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "TimeDifferenceFunctionType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
@@ -3762,7 +6850,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "TitleElementType":
-		var element pkg_2_01.TitleElementType
+		var element pkg_2_0.TitleElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for TitleElementType: %w", err)
@@ -3800,6 +6888,58 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
+	case "TransformElement":
+		var element pkg_200009xmldsig.TransformElement
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for TransformElement: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "TransformElement"
+		s.namespace = "http://www.w3.org/2000/09/xmldsig#"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "TransformType":
+		var element pkg_200009xmldsig.TransformType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for TransformType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "TransformType"
+		s.namespace = "http://www.w3.org/2000/09/xmldsig#"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "TransformsElement":
+		var element pkg_200009xmldsig.TransformsElement
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for TransformsElement: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "TransformsElement"
+		s.namespace = "http://www.w3.org/2000/09/xmldsig#"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "TransformsType":
+		var element pkg_200009xmldsig.TransformsType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for TransformsType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "TransformsType"
+		s.namespace = "http://www.w3.org/2000/09/xmldsig#"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
 	case "TypeType":
 		var element pkg_1999xlink.TypeType
 		if len(data) > 0 && string(data) != "{}" {
@@ -3810,6 +6950,32 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.rootElement = &element
 		s.rootType = "TypeType"
 		s.namespace = "http://www.w3.org/1999/xlink"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "UniqueFunctionType":
+		var element xmlschemaoval_definitions_5.UniqueFunctionType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for UniqueFunctionType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "UniqueFunctionType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "UriRefType":
+		var element xccdf1_2.UriRefType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for UriRefType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "UriRefType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
@@ -3826,8 +6992,138 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
+	case "ValueElement":
+		var element xccdf1_2.ValueElement
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for ValueElement: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "ValueElement"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "ValueIdType":
+		var element xccdf1_2.ValueIdType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for ValueIdType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "ValueIdType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "ValueOperatorType":
+		var element xccdf1_2.ValueOperatorType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for ValueOperatorType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "ValueOperatorType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "ValueType":
+		var element xmlschemaoval_definitions_5.ValueType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for ValueType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "ValueType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "ValueTypeType":
+		var element xccdf1_2.ValueTypeType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for ValueTypeType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "ValueTypeType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "VariableComponentType":
+		var element xmlschemaoval_definitions_5.VariableComponentType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for VariableComponentType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "VariableComponentType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "VariableElement":
+		var element xmlschemaoval_definitions_5.VariableElement
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for VariableElement: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "VariableElement"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "VariableIDPattern":
+		var element xmlschemaoval_common_5.VariableIDPattern
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for VariableIDPattern: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "VariableIDPattern"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-common-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "VariableType":
+		var element xmlschemaoval_definitions_5.VariableType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for VariableType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "VariableType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "VariablesType":
+		var element xmlschemaoval_definitions_5.VariablesType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for VariablesType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "VariablesType"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
 	case "VersionElementType":
-		var element asset_identification1_1.VersionElementType
+		var element xmlschemaoval_common_5.VersionElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for VersionElementType: %w", err)
@@ -3835,7 +7131,46 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		}
 		s.rootElement = &element
 		s.rootType = "VersionElementType"
-		s.namespace = "http://scap.nist.gov/schema/asset-identification/1.1"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-common-5"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "VersionType":
+		var element xccdf1_2.VersionType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for VersionType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "VersionType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "WarningCategoryEnumType":
+		var element xccdf1_2.WarningCategoryEnumType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for WarningCategoryEnumType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "WarningCategoryEnumType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "WarningType":
+		var element xccdf1_2.WarningType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for WarningType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "WarningType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
@@ -3891,8 +7226,60 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
+	case "WeightType":
+		var element xccdf1_2.WeightType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for WeightType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "WeightType"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "X509DataElement":
+		var element pkg_200009xmldsig.X509DataElement
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for X509DataElement: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "X509DataElement"
+		s.namespace = "http://www.w3.org/2000/09/xmldsig#"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "X509DataType":
+		var element pkg_200009xmldsig.X509DataType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for X509DataType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "X509DataType"
+		s.namespace = "http://www.w3.org/2000/09/xmldsig#"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
+	case "X509IssuerSerialType":
+		var element pkg_200009xmldsig.X509IssuerSerialType
+		if len(data) > 0 && string(data) != "{}" {
+			if err := json.Unmarshal(data, &element); err != nil {
+				return "", fmt.Errorf("failed to unmarshal data for X509IssuerSerialType: %w", err)
+			}
+		}
+		s.rootElement = &element
+		s.rootType = "X509IssuerSerialType"
+		s.namespace = "http://www.w3.org/2000/09/xmldsig#"
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return "/", nil
 	case "XALElement":
-		var element pkg_2_0.XALElement
+		var element pkg_2_01.XALElement
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for XALElement: %w", err)
@@ -3905,7 +7292,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "XALElementType":
-		var element pkg_2_0.XALElementType
+		var element pkg_2_01.XALElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for XALElementType: %w", err)
@@ -3918,7 +7305,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "XNLElement":
-		var element pkg_2_01.XNLElement
+		var element pkg_2_0.XNLElement
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for XNLElement: %w", err)
@@ -3931,7 +7318,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "XNLElementType":
-		var element pkg_2_01.XNLElementType
+		var element pkg_2_0.XNLElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for XNLElementType: %w", err)
@@ -4003,7 +7390,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.AddressDetails:
+	case *pkg_2_01.AddressDetails:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -4013,7 +7400,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.AddressDetailsElement:
+	case *pkg_2_01.AddressDetailsElement:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -4023,7 +7410,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.AddressElementType:
+	case *pkg_2_01.AddressElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -4033,7 +7420,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.AddressIdentifierElementType:
+	case *pkg_2_01.AddressIdentifierElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -4043,7 +7430,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.AddressLatitudeDirectionElementType:
+	case *pkg_2_01.AddressLatitudeDirectionElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -4053,7 +7440,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.AddressLatitudeElementType:
+	case *pkg_2_01.AddressLatitudeElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -4063,7 +7450,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.AddressLineElement:
+	case *pkg_2_01.AddressLineElement:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -4073,7 +7460,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.AddressLineElementType:
+	case *pkg_2_01.AddressLineElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -4083,7 +7470,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.AddressLinesType:
+	case *pkg_2_01.AddressLinesType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -4093,7 +7480,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.AddressLongitudeDirectionElementType:
+	case *pkg_2_01.AddressLongitudeDirectionElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -4103,7 +7490,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.AddressLongitudeElementType:
+	case *pkg_2_01.AddressLongitudeElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -4113,7 +7500,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.AddresseeIndicatorElementType:
+	case *pkg_2_0.AddresseeIndicatorElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -4123,7 +7510,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.AdministrativeAreaElement:
+	case *pkg_2_01.AdministrativeAreaElement:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -4133,7 +7520,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.AdministrativeAreaElementType:
+	case *pkg_2_01.AdministrativeAreaElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -4143,7 +7530,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.AdministrativeAreaNameElementType:
+	case *pkg_2_01.AdministrativeAreaNameElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -4153,7 +7540,21 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.AliasElementType:
+	case *xmlschemaoval_definitions_5.AffectedType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "family":
+				if v, ok := value.(string); ok {
+					root.Family = xmlschemaoval_common_5.FamilyEnumeration(v)
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_2_0.AliasElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -4188,6 +7589,30 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		for key, value := range updates {
 			_ = value // Avoid unused variable
 			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.ArithmeticEnumeration:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.ArithmeticFunctionType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "arithmetic_operation":
+				if v, ok := value.(string); ok {
+					root.Arithmetic_operation = xmlschemaoval_definitions_5.ArithmeticEnumeration(v)
+				}
 			}
 		}
 		s.isDirty = true
@@ -4303,11 +7728,105 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.BarcodeElementType:
+	case *pkg_2_01.BarcodeElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
 			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.BeginFunctionType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "character":
+				if v, ok := value.(string); ok {
+					root.Character = v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.BenchmarkElement:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "id":
+				if v, ok := value.(string); ok {
+					root.Id = xccdf1_2.BenchmarkIdType(v)
+				}
+			case "Id":
+				if v, ok := value.(string); ok {
+					root.Id2 = &v
+				}
+			case "style":
+				if v, ok := value.(string); ok {
+					root.Style = &v
+				}
+			case "style-href":
+				if v, ok := value.(string); ok {
+					root.StyleHref = &v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.BenchmarkElementType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "id":
+				if v, ok := value.(string); ok {
+					root.Id = xccdf1_2.BenchmarkIdType(v)
+				}
+			case "Id":
+				if v, ok := value.(string); ok {
+					root.Id2 = &v
+				}
+			case "style":
+				if v, ok := value.(string); ok {
+					root.Style = &v
+				}
+			case "style-href":
+				if v, ok := value.(string); ok {
+					root.StyleHref = &v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.BenchmarkIdType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.BenchmarkReferenceType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "href":
+				if v, ok := value.(string); ok {
+					root.Href = v
+				}
+			case "id":
+				if v, ok := value.(string); ok {
+					root.Id = &v
+				}
 			}
 		}
 		s.isDirty = true
@@ -4323,11 +7842,155 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.BuildingNameType:
+	case *pkg_2_01.BuildingNameType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
 			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.CPE2idrefType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "idref":
+				if v, ok := value.(string); ok {
+					root.Idref = v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_200009xmldsig.CanonicalizationMethodElement:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "Algorithm":
+				if v, ok := value.(string); ok {
+					root.Algorithm = v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_200009xmldsig.CanonicalizationMethodType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "Algorithm":
+				if v, ok := value.(string); ok {
+					root.Algorithm = v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.CcOperatorEnumType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.CheckContentRefType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "href":
+				if v, ok := value.(string); ok {
+					root.Href = v
+				}
+			case "name":
+				if v, ok := value.(string); ok {
+					root.Name = &v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.CheckContentType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_common_5.CheckEnumeration:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.CheckExportType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "value-id":
+				if v, ok := value.(string); ok {
+					root.ValueId = v
+				}
+			case "export-name":
+				if v, ok := value.(string); ok {
+					root.ExportName = v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.CheckImportType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "import-name":
+				if v, ok := value.(string); ok {
+					root.ImportName = v
+				}
+			case "import-xpath":
+				if v, ok := value.(string); ok {
+					root.ImportXpath = &v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *dictionary2_0.CheckType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "system":
+				if v, ok := value.(string); ok {
+					root.System = v
+				}
+			case "href":
+				if v, ok := value.(string); ok {
+					root.Href = &v
+				}
 			}
 		}
 		s.isDirty = true
@@ -4383,6 +8046,50 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
+	case *xmlschemaoval_common_5.ClassEnumeration:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.ComplexCheckType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "operator":
+				if v, ok := value.(string); ok {
+					root.Operator = xccdf1_2.CcOperatorEnumType(v)
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_common_5.ComplexDatatypeEnumeration:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.ComplexValueType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
 	case *asset_identification1_1.ComputingDeviceElement:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
@@ -4403,7 +8110,37 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
+	case *xmlschemaoval_definitions_5.ConcatFunctionType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
 	case *asset_identification1_1.ConnectionsElementType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.Constant_variableElement:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.Constant_variableElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -4433,7 +8170,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.CountryElementType:
+	case *xmlschemaoval_definitions_5.CountFunctionType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -4443,7 +8180,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.CountryNameCodeElementType:
+	case *pkg_2_01.CountryElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -4453,7 +8190,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.CountryNameElement:
+	case *pkg_2_01.CountryNameCodeElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -4463,7 +8200,17 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.CountryNameElementType:
+	case *pkg_2_01.CountryNameElement:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_2_01.CountryNameElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -4493,7 +8240,85 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
+	case *dictionary2_0.CpeItemElement:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "name":
+				if v, ok := value.(string); ok {
+					root.Name = dictionary2_0.NamePattern(v)
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *dictionary2_0.CpeListElement:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
 	case *asset_identification1_1.CpeType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.CriteriaType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.CriterionType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "test_ref":
+				if v, ok := value.(string); ok {
+					root.Test_ref = xmlschemaoval_common_5.TestIDPattern(v)
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_200009xmldsig.CryptoBinary:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_200009xmldsig.DSAKeyValueElement:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_200009xmldsig.DSAKeyValueType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -4543,7 +8368,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.DepartmentElement:
+	case *xmlschemaoval_common_5.DatatypeEnumeration:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -4553,7 +8378,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.DepartmentElementType:
+	case *xmlschemaoval_definitions_5.DateTimeFormatEnumeration:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -4563,7 +8388,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.DepartmentNameElementType:
+	case *xccdf1_2.DcStatusType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -4573,7 +8398,25 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.DependencyNameElementType:
+	case *xmlschemaoval_definitions_5.DefinitionElement:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "id":
+				if v, ok := value.(string); ok {
+					root.Id = xmlschemaoval_common_5.DefinitionIDPattern(v)
+				}
+			case "class":
+				if v, ok := value.(string); ok {
+					root.Class = xmlschemaoval_common_5.ClassEnumeration(v)
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_common_5.DefinitionIDPattern:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -4583,7 +8426,25 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.DependentLocalityNameElementType:
+	case *xmlschemaoval_definitions_5.DefinitionType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "id":
+				if v, ok := value.(string); ok {
+					root.Id = xmlschemaoval_common_5.DefinitionIDPattern(v)
+				}
+			case "class":
+				if v, ok := value.(string); ok {
+					root.Class = xmlschemaoval_common_5.ClassEnumeration(v)
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.DefinitionsType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -4593,7 +8454,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.DependentLocalityNumberElementType:
+	case *pkg_2_01.DepartmentElement:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -4603,7 +8464,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.DependentLocalityType:
+	case *pkg_2_01.DepartmentElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -4613,7 +8474,125 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.DependentThoroughfareElementType:
+	case *pkg_2_01.DepartmentNameElementType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_2_0.DependencyNameElementType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_2_01.DependentLocalityNameElementType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_2_01.DependentLocalityNumberElementType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_2_01.DependentLocalityType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_2_01.DependentThoroughfareElementType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_common_5.DeprecatedInfoType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_common_5.Deprecated_infoElement:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_200009xmldsig.DigestMethodElement:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "Algorithm":
+				if v, ok := value.(string); ok {
+					root.Algorithm = v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_200009xmldsig.DigestMethodType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "Algorithm":
+				if v, ok := value.(string); ok {
+					root.Algorithm = v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_200009xmldsig.DigestValueElement:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_200009xmldsig.DigestValueType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -4643,6 +8622,40 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
+	case *xmlschemaoval_common_5.ElementMapItemType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "target_namespace":
+				if v, ok := value.(string); ok {
+					root.Target_namespace = &v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_common_5.ElementMapType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_common_5.Element_mappingElement:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
 	case *asset_identification1_1.EmailAddressElement:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
@@ -4663,11 +8676,381 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.EndorsementLineCodeElementType:
+	case *xmlschemaoval_common_5.EmptyStringType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
 			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.EndFunctionType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "character":
+				if v, ok := value.(string); ok {
+					root.Character = v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_2_01.EndorsementLineCodeElementType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.EntityObjectAnySimpleType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.EntityObjectBinaryType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "datatype":
+				if v, ok := value.(string); ok {
+					root.Datatype = xmlschemaoval_common_5.SimpleDatatypeEnumeration(v)
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.EntityObjectBoolType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "datatype":
+				if v, ok := value.(string); ok {
+					root.Datatype = xmlschemaoval_common_5.SimpleDatatypeEnumeration(v)
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.EntityObjectFieldType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.EntityObjectFloatType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "datatype":
+				if v, ok := value.(string); ok {
+					root.Datatype = xmlschemaoval_common_5.SimpleDatatypeEnumeration(v)
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.EntityObjectIPAddressStringType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.EntityObjectIPAddressType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.EntityObjectIntType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "datatype":
+				if v, ok := value.(string); ok {
+					root.Datatype = xmlschemaoval_common_5.SimpleDatatypeEnumeration(v)
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.EntityObjectRecordType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.EntityObjectStringType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.EntityObjectVersionType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "datatype":
+				if v, ok := value.(string); ok {
+					root.Datatype = xmlschemaoval_common_5.SimpleDatatypeEnumeration(v)
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.EntityStateAnySimpleType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.EntityStateBinaryType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "datatype":
+				if v, ok := value.(string); ok {
+					root.Datatype = xmlschemaoval_common_5.SimpleDatatypeEnumeration(v)
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.EntityStateBoolType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "datatype":
+				if v, ok := value.(string); ok {
+					root.Datatype = xmlschemaoval_common_5.SimpleDatatypeEnumeration(v)
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.EntityStateDebianEVRStringType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "datatype":
+				if v, ok := value.(string); ok {
+					root.Datatype = xmlschemaoval_common_5.SimpleDatatypeEnumeration(v)
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.EntityStateEVRStringType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "datatype":
+				if v, ok := value.(string); ok {
+					root.Datatype = xmlschemaoval_common_5.SimpleDatatypeEnumeration(v)
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.EntityStateFieldType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.EntityStateFileSetRevisionType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "datatype":
+				if v, ok := value.(string); ok {
+					root.Datatype = xmlschemaoval_common_5.SimpleDatatypeEnumeration(v)
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.EntityStateFloatType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "datatype":
+				if v, ok := value.(string); ok {
+					root.Datatype = xmlschemaoval_common_5.SimpleDatatypeEnumeration(v)
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.EntityStateIOSVersionType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.EntityStateIPAddressStringType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.EntityStateIPAddressType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.EntityStateIntType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "datatype":
+				if v, ok := value.(string); ok {
+					root.Datatype = xmlschemaoval_common_5.SimpleDatatypeEnumeration(v)
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.EntityStateRecordType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.EntityStateStringType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.EntityStateVersionType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "datatype":
+				if v, ok := value.(string); ok {
+					root.Datatype = xmlschemaoval_common_5.SimpleDatatypeEnumeration(v)
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.EscapeRegexFunctionType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_common_5.ExistenceEnumeration:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.ExtendDefinitionType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "definition_ref":
+				if v, ok := value.(string); ok {
+					root.Definition_ref = xmlschemaoval_common_5.DefinitionIDPattern(v)
+				}
 			}
 		}
 		s.isDirty = true
@@ -4717,7 +9100,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.FirmNameElementType:
+	case *xmlschemaoval_definitions_5.External_variableElement:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -4727,7 +9110,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.FirmType:
+	case *xmlschemaoval_definitions_5.External_variableElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -4737,7 +9120,35 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.FirstNameElementType:
+	case *language2_0.FactRefType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "name":
+				if v, ok := value.(string); ok {
+					root.Name = language2_0.NamePattern(v)
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.FactType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "name":
+				if v, ok := value.(string); ok {
+					root.Name = v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_common_5.FamilyEnumeration:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -4747,7 +9158,113 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.FormerNameElementType:
+	case *xmlschemaoval_definitions_5.FilterActionEnumeration:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.FilterElement:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.FilterElementType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_2_01.FirmNameElementType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_2_01.FirmType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_2_0.FirstNameElementType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.FixStrategyEnumType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.FixTextType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "fixref":
+				if v, ok := value.(string); ok {
+					root.Fixref = &v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.FixType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "id":
+				if v, ok := value.(string); ok {
+					root.Id = &v
+				}
+			case "system":
+				if v, ok := value.(string); ok {
+					root.System = &v
+				}
+			case "platform":
+				if v, ok := value.(string); ok {
+					root.Platform = &v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_2_0.FormerNameElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -4787,7 +9304,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.Function:
+	case *pkg_2_0.Function:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -4797,7 +9314,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.FunctionElement:
+	case *pkg_2_0.FunctionElement:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -4807,7 +9324,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.GeneralSuffixElementType:
+	case *pkg_2_0.GeneralSuffixElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -4817,7 +9334,75 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.GenerationIdentifierElementType:
+	case *pkg_2_0.GenerationIdentifierElementType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *dictionary2_0.GeneratorType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.GlobToRegexFunctionType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.GroupElement:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "id":
+				if v, ok := value.(string); ok {
+					root.Id = xccdf1_2.GroupIdType(v)
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.GroupIdType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.GroupType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "id":
+				if v, ok := value.(string); ok {
+					root.Id = xccdf1_2.GroupIdType(v)
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_200009xmldsig.HMACOutputLengthType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -4867,6 +9452,74 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
+	case *xccdf1_2.HtmlTextType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.HtmlTextWithSubType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.IdentType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "system":
+				if v, ok := value.(string); ok {
+					root.System = v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.IdentityType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.IdrefListType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.IdrefType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "idref":
+				if v, ok := value.(string); ok {
+					root.Idref = v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
 	case *asset_identification1_1.InstallationIdElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
@@ -4877,7 +9530,49 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
+	case *xccdf1_2.InstanceFixType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "context":
+				if v, ok := value.(string); ok {
+					root.Context = &v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
 	case *asset_identification1_1.InstanceNameElementType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.InstanceResultType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "context":
+				if v, ok := value.(string); ok {
+					root.Context = &v
+				}
+			case "parentContext":
+				if v, ok := value.(string); ok {
+					root.ParentContext = &v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.InterfaceHintType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -4967,7 +9662,29 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.JointPersonNameElement:
+	case *xccdf1_2.ItemElement:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "cluster-id":
+				if v, ok := value.(string); ok {
+					root.ClusterId = &v
+				}
+			case "extends":
+				if v, ok := value.(string); ok {
+					root.Extends = &v
+				}
+			case "Id":
+				if v, ok := value.(string); ok {
+					root.Id = &v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_common_5.ItemIDPattern:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -4977,7 +9694,21 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.JointPersonNameElementType:
+	case *dictionary2_0.ItemType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "name":
+				if v, ok := value.(string); ok {
+					root.Name = dictionary2_0.NamePattern(v)
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_2_0.JointPersonNameElement:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -4987,7 +9718,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.KeyLineCodeElementType:
+	case *pkg_2_0.JointPersonNameElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -4997,7 +9728,75 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.KnownAsElementType:
+	case *pkg_200009xmldsig.KeyInfoElement:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "Id":
+				if v, ok := value.(string); ok {
+					root.Id = &v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_200009xmldsig.KeyInfoType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "Id":
+				if v, ok := value.(string); ok {
+					root.Id = &v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_2_01.KeyLineCodeElementType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_200009xmldsig.KeyNameElement:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_200009xmldsig.KeyValueElement:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_200009xmldsig.KeyValueType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_2_0.KnownAsElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5017,7 +9816,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.LargeMailUserIdentifierElementType:
+	case *pkg_2_01.LargeMailUserIdentifierElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5031,7 +9830,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.LargeMailUserNameElementType:
+	case *pkg_2_01.LargeMailUserNameElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5049,7 +9848,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.LargeMailUserType:
+	case *pkg_2_01.LargeMailUserType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5063,7 +9862,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.LastNameElementType:
+	case *pkg_2_0.LastNameElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5074,6 +9873,46 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.lastModified = time.Now()
 		return nil
 	case *asset_identification1_1.LicenseElementType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *dictionary2_0.ListType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.LiteralComponentType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.Local_variableElement:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.Local_variableElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5103,7 +9942,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.LocalityElement:
+	case *pkg_2_01.LocalityElement:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5113,7 +9952,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.LocalityElementType:
+	case *pkg_2_01.LocalityElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5123,7 +9962,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.LocalityNameElementType:
+	case *pkg_2_01.LocalityNameElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5233,6 +10072,20 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
+	case *language2_0.LogicalTestType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "operator":
+				if v, ok := value.(string); ok {
+					root.Operator = language2_0.OperatorEnumeration(v)
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
 	case *asset_identification1_1.MacAddressElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
@@ -5253,7 +10106,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.MailStopNameElementType:
+	case *pkg_2_01.MailStopNameElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5263,7 +10116,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.MailStopNumberElementType:
+	case *pkg_2_01.MailStopNumberElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5273,7 +10126,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.MailStopType:
+	case *pkg_2_01.MailStopType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5283,11 +10136,107 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.MiddleNameElementType:
+	case *pkg_200009xmldsig.ManifestElement:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
 			switch key {
+			case "Id":
+				if v, ok := value.(string); ok {
+					root.Id = &v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_200009xmldsig.ManifestType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "Id":
+				if v, ok := value.(string); ok {
+					root.Id = &v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_common_5.MessageLevelEnumeration:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_common_5.MessageType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.MetadataType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_200009xmldsig.MgmtDataElement:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_2_0.MiddleNameElementType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.ModelElement:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "system":
+				if v, ok := value.(string); ok {
+					root.System = v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.ModelElementType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "system":
+				if v, ok := value.(string); ok {
+					root.System = v
+				}
 			}
 		}
 		s.isDirty = true
@@ -5303,7 +10252,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.NameDetails:
+	case *xccdf1_2.MsgSevEnumType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5313,7 +10262,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.NameDetailsElement:
+	case *pkg_2_0.NameDetails:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5323,7 +10272,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.NameDetailsElementType:
+	case *pkg_2_0.NameDetailsElement:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5333,7 +10282,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.NameLineType:
+	case *pkg_2_0.NameDetailsElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5343,7 +10292,27 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.NamePrefixElementType:
+	case *pkg_2_0.NameLineType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *language2_0.NamePattern:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_2_0.NamePrefixElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5393,6 +10362,102 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
+	case *xmlschemaoval_common_5.NonEmptyStringType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.NotesElement:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.NotesElementType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *dictionary2_0.NotesType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.NoticeType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "id":
+				if v, ok := value.(string); ok {
+					root.Id = &v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.ObjectComponentType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "object_ref":
+				if v, ok := value.(string); ok {
+					root.Object_ref = xmlschemaoval_common_5.ObjectIDPattern(v)
+				}
+			case "item_field":
+				if v, ok := value.(string); ok {
+					root.Item_field = xmlschemaoval_common_5.NonEmptyStringType(v)
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.ObjectElement:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "id":
+				if v, ok := value.(string); ok {
+					root.Id = xmlschemaoval_common_5.ObjectIDPattern(v)
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_common_5.ObjectIDPattern:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
 	case *asset_reporting_format1_1.ObjectRefElement:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
@@ -5421,7 +10486,43 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.OrganisationFormerNameElementType:
+	case *xmlschemaoval_definitions_5.ObjectRefType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "object_ref":
+				if v, ok := value.(string); ok {
+					root.Object_ref = xmlschemaoval_common_5.ObjectIDPattern(v)
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_200009xmldsig.ObjectType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "Id":
+				if v, ok := value.(string); ok {
+					root.Id = &v
+				}
+			case "MimeType":
+				if v, ok := value.(string); ok {
+					root.MimeType = &v
+				}
+			case "Encoding":
+				if v, ok := value.(string); ok {
+					root.Encoding = &v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.ObjectsType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5431,7 +10532,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.OrganisationKnownAsElementType:
+	case *xmlschemaoval_common_5.OperationEnumeration:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5441,7 +10542,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.OrganisationNameDetails:
+	case *language2_0.OperatorEnumeration:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5451,7 +10552,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.OrganisationNameDetailsElement:
+	case *pkg_2_0.OrganisationFormerNameElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5461,7 +10562,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.OrganisationNameDetailsElementType:
+	case *pkg_2_0.OrganisationKnownAsElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5471,7 +10572,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.OrganisationNameElementType:
+	case *pkg_2_0.OrganisationNameDetails:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5481,7 +10582,37 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.OrganisationTypeElementType:
+	case *pkg_2_0.OrganisationNameDetailsElement:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_2_0.OrganisationNameDetailsElementType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_2_0.OrganisationNameElementType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_2_0.OrganisationTypeElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5511,11 +10642,89 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.OtherNameElementType:
+	case *pkg_2_0.OtherNameElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
 			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.Oval_definitionsElement:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.Oval_definitionsElementType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.OverrideType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "authority":
+				if v, ok := value.(string); ok {
+					root.Authority = v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.OverrideableCPE2idrefType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_200009xmldsig.PGPDataElement:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_200009xmldsig.PGPDataType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.ParamType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "name":
+				if v, ok := value.(string); ok {
+					root.Name = v
+				}
 			}
 		}
 		s.isDirty = true
@@ -5531,7 +10740,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.PersonName:
+	case *pkg_2_0.PersonName:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5541,7 +10750,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.PersonNameElement:
+	case *pkg_2_0.PersonNameElement:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5551,7 +10760,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.PersonNameElementType:
+	case *pkg_2_0.PersonNameElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5566,6 +10775,54 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		for key, value := range updates {
 			_ = value // Avoid unused variable
 			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.PlainTextType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "id":
+				if v, ok := value.(string); ok {
+					root.Id = v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *language2_0.PlatformSpecificationElement:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *language2_0.PlatformSpecificationElementType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *language2_0.PlatformType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "id":
+				if v, ok := value.(string); ok {
+					root.Id = v
+				}
 			}
 		}
 		s.isDirty = true
@@ -5601,7 +10858,35 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.PostBoxElement:
+	case *xmlschemaoval_definitions_5.PossibleRestrictionType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "hint":
+				if v, ok := value.(string); ok {
+					root.Hint = v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.PossibleValueType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "hint":
+				if v, ok := value.(string); ok {
+					root.Hint = v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_2_01.PostBoxElement:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5611,7 +10896,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.PostBoxElementType:
+	case *pkg_2_01.PostBoxElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5621,7 +10906,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.PostBoxNumberElementType:
+	case *pkg_2_01.PostBoxNumberElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5631,7 +10916,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.PostBoxNumberExtensionElementType:
+	case *pkg_2_01.PostBoxNumberExtensionElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5641,7 +10926,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.PostBoxNumberPrefixElementType:
+	case *pkg_2_01.PostBoxNumberPrefixElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5651,7 +10936,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.PostBoxNumberSuffixElementType:
+	case *pkg_2_01.PostBoxNumberSuffixElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5661,7 +10946,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.PostOfficeElement:
+	case *pkg_2_01.PostOfficeElement:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5671,7 +10956,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.PostOfficeElementType:
+	case *pkg_2_01.PostOfficeElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5681,7 +10966,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.PostOfficeNameElementType:
+	case *pkg_2_01.PostOfficeNameElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5691,7 +10976,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.PostOfficeNumberElementType:
+	case *pkg_2_01.PostOfficeNumberElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5701,7 +10986,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.PostTownElementType:
+	case *pkg_2_01.PostTownElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5711,7 +10996,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.PostTownNameElementType:
+	case *pkg_2_01.PostTownNameElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5721,7 +11006,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.PostTownSuffixElementType:
+	case *pkg_2_01.PostTownSuffixElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5731,7 +11016,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.PostalCodeElement:
+	case *pkg_2_01.PostalCodeElement:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5741,7 +11026,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.PostalCodeElementType:
+	case *pkg_2_01.PostalCodeElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5751,7 +11036,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.PostalCodeNumberElementType:
+	case *pkg_2_01.PostalCodeNumberElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5761,7 +11046,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.PostalCodeNumberExtensionElementType:
+	case *pkg_2_01.PostalCodeNumberExtensionElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5771,7 +11056,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.PostalRouteNameElementType:
+	case *pkg_2_01.PostalRouteNameElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5781,7 +11066,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.PostalRouteNumberElementType:
+	case *pkg_2_01.PostalRouteNumberElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5791,7 +11076,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.PostalRouteType:
+	case *pkg_2_01.PostalRouteType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5801,7 +11086,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.PostalServiceElementsElementType:
+	case *pkg_2_01.PostalServiceElementsElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5811,7 +11096,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.PrecedingTitleElementType:
+	case *pkg_2_0.PrecedingTitleElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5821,7 +11106,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.PremiseElement:
+	case *pkg_2_01.PremiseElement:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5831,7 +11116,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.PremiseElementType:
+	case *pkg_2_01.PremiseElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5841,7 +11126,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.PremiseLocationElementType:
+	case *pkg_2_01.PremiseLocationElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5851,7 +11136,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.PremiseNameElementType:
+	case *pkg_2_01.PremiseNameElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5861,7 +11146,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.PremiseNumberElement:
+	case *pkg_2_01.PremiseNumberElement:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5871,7 +11156,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.PremiseNumberElementType:
+	case *pkg_2_01.PremiseNumberElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5881,7 +11166,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.PremiseNumberPrefixElement:
+	case *pkg_2_01.PremiseNumberPrefixElement:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5891,7 +11176,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.PremiseNumberPrefixElementType:
+	case *pkg_2_01.PremiseNumberPrefixElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5901,7 +11186,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.PremiseNumberRangeElementType:
+	case *pkg_2_01.PremiseNumberRangeElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5911,7 +11196,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.PremiseNumberRangeFromElementType:
+	case *pkg_2_01.PremiseNumberRangeFromElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5921,7 +11206,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.PremiseNumberRangeToElementType:
+	case *pkg_2_01.PremiseNumberRangeToElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5931,7 +11216,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.PremiseNumberSuffixElement:
+	case *pkg_2_01.PremiseNumberSuffixElement:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -5941,11 +11226,165 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.PremiseNumberSuffixElementType:
+	case *pkg_2_01.PremiseNumberSuffixElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
 			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.ProfileElement:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "id":
+				if v, ok := value.(string); ok {
+					root.Id = xccdf1_2.ProfileIdType(v)
+				}
+			case "note-tag":
+				if v, ok := value.(string); ok {
+					root.NoteTag = &v
+				}
+			case "extends":
+				if v, ok := value.(string); ok {
+					root.Extends = &v
+				}
+			case "Id":
+				if v, ok := value.(string); ok {
+					root.Id2 = &v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.ProfileIdType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.ProfileNoteType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "tag":
+				if v, ok := value.(string); ok {
+					root.Tag = v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.ProfileRefineRuleType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "idref":
+				if v, ok := value.(string); ok {
+					root.Idref = v
+				}
+			case "selector":
+				if v, ok := value.(string); ok {
+					root.Selector = &v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.ProfileRefineValueType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "idref":
+				if v, ok := value.(string); ok {
+					root.Idref = v
+				}
+			case "selector":
+				if v, ok := value.(string); ok {
+					root.Selector = &v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.ProfileSelectType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "idref":
+				if v, ok := value.(string); ok {
+					root.Idref = v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.ProfileSetComplexValueType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "idref":
+				if v, ok := value.(string); ok {
+					root.Idref = v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.ProfileSetValueType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "idref":
+				if v, ok := value.(string); ok {
+					root.Idref = v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.ProfileType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "id":
+				if v, ok := value.(string); ok {
+					root.Id = xccdf1_2.ProfileIdType(v)
+				}
+			case "note-tag":
+				if v, ok := value.(string); ok {
+					root.NoteTag = &v
+				}
+			case "extends":
+				if v, ok := value.(string); ok {
+					root.Extends = &v
+				}
+			case "Id":
+				if v, ok := value.(string); ok {
+					root.Id2 = &v
+				}
 			}
 		}
 		s.isDirty = true
@@ -5956,6 +11395,118 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		for key, value := range updates {
 			_ = value // Avoid unused variable
 			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_200009xmldsig.RSAKeyValueElement:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_200009xmldsig.RSAKeyValueType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.RatingEnumType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_200009xmldsig.ReferenceElement:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "Id":
+				if v, ok := value.(string); ok {
+					root.Id = &v
+				}
+			case "URI":
+				if v, ok := value.(string); ok {
+					root.URI = &v
+				}
+			case "Type":
+				if v, ok := value.(string); ok {
+					root.Type = &v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *dictionary2_0.ReferenceElementType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "href":
+				if v, ok := value.(string); ok {
+					root.Href = &v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_200009xmldsig.ReferenceType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "Id":
+				if v, ok := value.(string); ok {
+					root.Id = &v
+				}
+			case "URI":
+				if v, ok := value.(string); ok {
+					root.URI = &v
+				}
+			case "Type":
+				if v, ok := value.(string); ok {
+					root.Type = &v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *dictionary2_0.ReferencesType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.RegexCaptureFunctionType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "pattern":
+				if v, ok := value.(string); ok {
+					root.Pattern = &v
+				}
 			}
 		}
 		s.isDirty = true
@@ -6087,11 +11638,251 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
+	case *xmlschemaoval_definitions_5.RestrictionType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "operation":
+				if v, ok := value.(string); ok {
+					root.Operation = xmlschemaoval_common_5.OperationEnumeration(v)
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.ResultEnumType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_200009xmldsig.RetrievalMethodElement:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "URI":
+				if v, ok := value.(string); ok {
+					root.URI = &v
+				}
+			case "Type":
+				if v, ok := value.(string); ok {
+					root.Type = &v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_200009xmldsig.RetrievalMethodType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "URI":
+				if v, ok := value.(string); ok {
+					root.URI = &v
+				}
+			case "Type":
+				if v, ok := value.(string); ok {
+					root.Type = &v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.RoleEnumType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
 	case *pkg_1999xlink.RoleType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
 			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.RuleElement:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "id":
+				if v, ok := value.(string); ok {
+					root.Id = xccdf1_2.RuleIdType(v)
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.RuleIdType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.RuleResultType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "idref":
+				if v, ok := value.(string); ok {
+					root.Idref = v
+				}
+			case "version":
+				if v, ok := value.(string); ok {
+					root.Version = &v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.RuleType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "id":
+				if v, ok := value.(string); ok {
+					root.Id = xccdf1_2.RuleIdType(v)
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_200009xmldsig.SPKIDataElement:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_200009xmldsig.SPKIDataType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_common_5.SchemaVersionPattern:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_common_5.SchemaVersionType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "platform":
+				if v, ok := value.(string); ok {
+					root.Platform = &v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.ScoreType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "system":
+				if v, ok := value.(string); ok {
+					root.System = &v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.SelChoicesType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "selector":
+				if v, ok := value.(string); ok {
+					root.Selector = &v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.SelComplexValueType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "selector":
+				if v, ok := value.(string); ok {
+					root.Selector = &v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.SelNumType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "selector":
+				if v, ok := value.(string); ok {
+					root.Selector = &v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.SelStringType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "selector":
+				if v, ok := value.(string); ok {
+					root.Selector = &v
+				}
 			}
 		}
 		s.isDirty = true
@@ -6127,6 +11918,46 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
+	case *xmlschemaoval_definitions_5.SetElement:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.SetElementType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.SetOperatorEnumeration:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.SeverityEnumType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
 	case *pkg_1999xlink.ShowType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
@@ -6137,7 +11968,189 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
+	case *pkg_200009xmldsig.SignatureElement:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "Id":
+				if v, ok := value.(string); ok {
+					root.Id = &v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_200009xmldsig.SignatureMethodElement:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "Algorithm":
+				if v, ok := value.(string); ok {
+					root.Algorithm = v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_200009xmldsig.SignatureMethodType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "Algorithm":
+				if v, ok := value.(string); ok {
+					root.Algorithm = v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_200009xmldsig.SignaturePropertiesElement:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "Id":
+				if v, ok := value.(string); ok {
+					root.Id = &v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_200009xmldsig.SignaturePropertiesType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "Id":
+				if v, ok := value.(string); ok {
+					root.Id = &v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_200009xmldsig.SignaturePropertyElement:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "Target":
+				if v, ok := value.(string); ok {
+					root.Target = v
+				}
+			case "Id":
+				if v, ok := value.(string); ok {
+					root.Id = &v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_200009xmldsig.SignaturePropertyType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "Target":
+				if v, ok := value.(string); ok {
+					root.Target = v
+				}
+			case "Id":
+				if v, ok := value.(string); ok {
+					root.Id = &v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_200009xmldsig.SignatureType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "Id":
+				if v, ok := value.(string); ok {
+					root.Id = &v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_200009xmldsig.SignatureValueElement:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_200009xmldsig.SignatureValueType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "Id":
+				if v, ok := value.(string); ok {
+					root.Id = &v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_200009xmldsig.SignedInfoElement:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "Id":
+				if v, ok := value.(string); ok {
+					root.Id = &v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_200009xmldsig.SignedInfoType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "Id":
+				if v, ok := value.(string); ok {
+					root.Id = &v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
 	case *pkg_1999xlink.Simple:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_common_5.SimpleDatatypeEnumeration:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -6167,7 +12180,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.SortingCodeElementType:
+	case *pkg_2_01.SortingCodeElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -6177,7 +12190,35 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.SubAdministrativeAreaElementType:
+	case *xmlschemaoval_definitions_5.SplitFunctionType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "delimiter":
+				if v, ok := value.(string); ok {
+					root.Delimiter = v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.StateElement:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "id":
+				if v, ok := value.(string); ok {
+					root.Id = xmlschemaoval_common_5.StateIDPattern(v)
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_common_5.StateIDPattern:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -6187,7 +12228,35 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.SubAdministrativeAreaNameElementType:
+	case *xmlschemaoval_definitions_5.StateRefType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "state_ref":
+				if v, ok := value.(string); ok {
+					root.State_ref = xmlschemaoval_common_5.StateIDPattern(v)
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.StateType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "id":
+				if v, ok := value.(string); ok {
+					root.Id = xmlschemaoval_common_5.StateIDPattern(v)
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.StatesType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -6197,7 +12266,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.SubPremiseLocationElementType:
+	case *xccdf1_2.StatusElement:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -6207,7 +12276,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.SubPremiseNameElementType:
+	case *xccdf1_2.StatusElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -6217,7 +12286,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.SubPremiseNumberElementType:
+	case *xccdf1_2.StatusType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -6227,7 +12296,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.SubPremiseNumberPrefixElementType:
+	case *pkg_2_01.SubAdministrativeAreaElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -6237,7 +12306,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.SubPremiseNumberSuffixElementType:
+	case *pkg_2_01.SubAdministrativeAreaNameElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -6247,7 +12316,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.SubPremiseType:
+	case *pkg_2_01.SubPremiseLocationElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -6257,7 +12326,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.SuffixElementType:
+	case *pkg_2_01.SubPremiseNameElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -6267,7 +12336,87 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.SupplementaryPostalServiceDataElementType:
+	case *pkg_2_01.SubPremiseNumberElementType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_2_01.SubPremiseNumberPrefixElementType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_2_01.SubPremiseNumberSuffixElementType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_2_01.SubPremiseType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.SubType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.SubUseEnumType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.SubstringFunctionType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_2_0.SuffixElementType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_2_01.SupplementaryPostalServiceDataElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -6343,6 +12492,130 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
+	case *xccdf1_2.TailoringBenchmarkReferenceType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "version":
+				if v, ok := value.(string); ok {
+					root.Version = &v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.TailoringElement:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "id":
+				if v, ok := value.(string); ok {
+					root.Id = xccdf1_2.TailoringIdType(v)
+				}
+			case "Id":
+				if v, ok := value.(string); ok {
+					root.Id2 = &v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.TailoringIdType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.TailoringReferenceType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "href":
+				if v, ok := value.(string); ok {
+					root.Href = v
+				}
+			case "id":
+				if v, ok := value.(string); ok {
+					root.Id = v
+				}
+			case "version":
+				if v, ok := value.(string); ok {
+					root.Version = v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.TailoringType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "id":
+				if v, ok := value.(string); ok {
+					root.Id = xccdf1_2.TailoringIdType(v)
+				}
+			case "Id":
+				if v, ok := value.(string); ok {
+					root.Id2 = &v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.TailoringVersionType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.TargetFactsType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.TargetIdRefType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "system":
+				if v, ok := value.(string); ok {
+					root.System = v
+				}
+			case "href":
+				if v, ok := value.(string); ok {
+					root.Href = v
+				}
+			case "name":
+				if v, ok := value.(string); ok {
+					root.Name = &v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
 	case *asset_identification1_1.TelephoneNumberElement:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
@@ -6373,7 +12646,29 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.ThoroughfareElement:
+	case *xmlschemaoval_definitions_5.TestElement:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "id":
+				if v, ok := value.(string); ok {
+					root.Id = xmlschemaoval_common_5.TestIDPattern(v)
+				}
+			case "check":
+				if v, ok := value.(string); ok {
+					root.Check = xmlschemaoval_common_5.CheckEnumeration(v)
+				}
+			case "comment":
+				if v, ok := value.(string); ok {
+					root.Comment = xmlschemaoval_common_5.NonEmptyStringType(v)
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_common_5.TestIDPattern:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -6383,7 +12678,81 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.ThoroughfareElementType:
+	case *xccdf1_2.TestResultElement:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "id":
+				if v, ok := value.(string); ok {
+					root.Id = xccdf1_2.TestresultIdType(v)
+				}
+			case "test-system":
+				if v, ok := value.(string); ok {
+					root.TestSystem = &v
+				}
+			case "version":
+				if v, ok := value.(string); ok {
+					root.Version = &v
+				}
+			case "Id":
+				if v, ok := value.(string); ok {
+					root.Id2 = &v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.TestResultType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "id":
+				if v, ok := value.(string); ok {
+					root.Id = xccdf1_2.TestresultIdType(v)
+				}
+			case "test-system":
+				if v, ok := value.(string); ok {
+					root.TestSystem = &v
+				}
+			case "version":
+				if v, ok := value.(string); ok {
+					root.Version = &v
+				}
+			case "Id":
+				if v, ok := value.(string); ok {
+					root.Id2 = &v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.TestType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "id":
+				if v, ok := value.(string); ok {
+					root.Id = xmlschemaoval_common_5.TestIDPattern(v)
+				}
+			case "check":
+				if v, ok := value.(string); ok {
+					root.Check = xmlschemaoval_common_5.CheckEnumeration(v)
+				}
+			case "comment":
+				if v, ok := value.(string); ok {
+					root.Comment = xmlschemaoval_common_5.NonEmptyStringType(v)
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.TestresultIdType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -6393,7 +12762,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.ThoroughfareLeadingTypeType:
+	case *xmlschemaoval_definitions_5.TestsType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -6403,7 +12772,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.ThoroughfareNameType:
+	case *language2_0.TextType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -6413,7 +12782,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.ThoroughfareNumberElement:
+	case *xccdf1_2.TextWithSubType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -6423,7 +12792,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.ThoroughfareNumberElementType:
+	case *pkg_2_01.ThoroughfareElement:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -6433,7 +12802,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.ThoroughfareNumberFromElementType:
+	case *pkg_2_01.ThoroughfareElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -6443,7 +12812,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.ThoroughfareNumberPrefixElement:
+	case *pkg_2_01.ThoroughfareLeadingTypeType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -6453,7 +12822,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.ThoroughfareNumberPrefixElementType:
+	case *pkg_2_01.ThoroughfareNameType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -6463,7 +12832,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.ThoroughfareNumberRangeElementType:
+	case *pkg_2_01.ThoroughfareNumberElement:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -6473,7 +12842,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.ThoroughfareNumberSuffixElement:
+	case *pkg_2_01.ThoroughfareNumberElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -6483,7 +12852,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.ThoroughfareNumberSuffixElementType:
+	case *pkg_2_01.ThoroughfareNumberFromElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -6493,7 +12862,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.ThoroughfareNumberToElementType:
+	case *pkg_2_01.ThoroughfareNumberPrefixElement:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -6503,7 +12872,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.ThoroughfarePostDirectionType:
+	case *pkg_2_01.ThoroughfareNumberPrefixElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -6513,7 +12882,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.ThoroughfarePreDirectionType:
+	case *pkg_2_01.ThoroughfareNumberRangeElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -6523,7 +12892,67 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.ThoroughfareTrailingTypeType:
+	case *pkg_2_01.ThoroughfareNumberSuffixElement:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_2_01.ThoroughfareNumberSuffixElementType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_2_01.ThoroughfareNumberToElementType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_2_01.ThoroughfarePostDirectionType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_2_01.ThoroughfarePreDirectionType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_2_01.ThoroughfareTrailingTypeType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.TimeDifferenceFunctionType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -6553,7 +12982,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.TitleElementType:
+	case *pkg_2_0.TitleElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -6583,11 +13012,83 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
+	case *pkg_200009xmldsig.TransformElement:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "Algorithm":
+				if v, ok := value.(string); ok {
+					root.Algorithm = v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_200009xmldsig.TransformType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "Algorithm":
+				if v, ok := value.(string); ok {
+					root.Algorithm = v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_200009xmldsig.TransformsElement:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_200009xmldsig.TransformsType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
 	case *pkg_1999xlink.TypeType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
 			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.UniqueFunctionType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.UriRefType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "uri":
+				if v, ok := value.(string); ok {
+					root.Uri = v
+				}
 			}
 		}
 		s.isDirty = true
@@ -6603,7 +13104,173 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *asset_identification1_1.VersionElementType:
+	case *xccdf1_2.ValueElement:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "id":
+				if v, ok := value.(string); ok {
+					root.Id = xccdf1_2.ValueIdType(v)
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.ValueIdType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.ValueOperatorType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.ValueType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.ValueTypeType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.VariableComponentType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "var_ref":
+				if v, ok := value.(string); ok {
+					root.Var_ref = xmlschemaoval_common_5.VariableIDPattern(v)
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.VariableElement:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "id":
+				if v, ok := value.(string); ok {
+					root.Id = xmlschemaoval_common_5.VariableIDPattern(v)
+				}
+			case "datatype":
+				if v, ok := value.(string); ok {
+					root.Datatype = xmlschemaoval_common_5.SimpleDatatypeEnumeration(v)
+				}
+			case "comment":
+				if v, ok := value.(string); ok {
+					root.Comment = xmlschemaoval_common_5.NonEmptyStringType(v)
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_common_5.VariableIDPattern:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.VariableType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "id":
+				if v, ok := value.(string); ok {
+					root.Id = xmlschemaoval_common_5.VariableIDPattern(v)
+				}
+			case "datatype":
+				if v, ok := value.(string); ok {
+					root.Datatype = xmlschemaoval_common_5.SimpleDatatypeEnumeration(v)
+				}
+			case "comment":
+				if v, ok := value.(string); ok {
+					root.Comment = xmlschemaoval_common_5.NonEmptyStringType(v)
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_definitions_5.VariablesType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xmlschemaoval_common_5.VersionElementType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.VersionType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			case "update":
+				if v, ok := value.(string); ok {
+					root.Update = &v
+				}
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.WarningCategoryEnumType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *xccdf1_2.WarningType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -6653,7 +13320,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.XALElement:
+	case *xccdf1_2.WeightType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -6663,7 +13330,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.XALElementType:
+	case *pkg_200009xmldsig.X509DataElement:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -6673,7 +13340,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.XNLElement:
+	case *pkg_200009xmldsig.X509DataType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -6683,7 +13350,47 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.XNLElementType:
+	case *pkg_200009xmldsig.X509IssuerSerialType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_2_01.XALElement:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_2_01.XALElementType:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_2_0.XNLElement:
+		_ = root // Avoid unused variable if no updatable fields
+		for key, value := range updates {
+			_ = value // Avoid unused variable
+			switch key {
+			}
+		}
+		s.isDirty = true
+		s.lastModified = time.Now()
+		return nil
+	case *pkg_2_0.XNLElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -6742,21 +13449,27 @@ func (s *XMLDocumentState) DeleteElement(path string) error {
 // deleteFirstLevelElement deletes a first-level child element.
 func (s *XMLDocumentState) deleteFirstLevelElement(name string) error {
 	switch root := s.rootElement.(type) {
-	case *asset_reporting_format1_1.AssetReportCollectionElement:
+	case *xmlschemaoval_definitions_5.Oval_definitionsElement:
 		_ = root // Ensure root is used even when all fields are required (non-deletable)
 		switch name {
-		case "report-requests":
+		case "generator":
 			// Cannot delete required non-pointer field
-			return fmt.Errorf("cannot delete required field: ReportRequests")
-		case "assets":
+			return fmt.Errorf("cannot delete required field: Generator")
+		case "definitions":
 			// Cannot delete required non-pointer field
-			return fmt.Errorf("cannot delete required field: Assets")
-		case "reports":
+			return fmt.Errorf("cannot delete required field: Definitions")
+		case "tests":
 			// Cannot delete required non-pointer field
-			return fmt.Errorf("cannot delete required field: Reports")
-		case "extended-infos":
+			return fmt.Errorf("cannot delete required field: Tests")
+		case "objects":
 			// Cannot delete required non-pointer field
-			return fmt.Errorf("cannot delete required field: ExtendedInfos")
+			return fmt.Errorf("cannot delete required field: Objects")
+		case "states":
+			// Cannot delete required non-pointer field
+			return fmt.Errorf("cannot delete required field: States")
+		case "variables":
+			// Cannot delete required non-pointer field
+			return fmt.Errorf("cannot delete required field: Variables")
 		}
 	}
 
@@ -6780,15 +13493,15 @@ func (s *XMLDocumentState) Validate() ([]ValidationError, error) {
 
 	// Validate based on root element type
 	switch root := s.rootElement.(type) {
-	case *asset_reporting_format1_1.AssetReportCollectionElement:
-		errors = append(errors, s.validateAssetReportCollectionElement(root, "/")...)
+	case *xmlschemaoval_definitions_5.Oval_definitionsElement:
+		errors = append(errors, s.validateOval_definitionsElement(root, "/")...)
 	}
 
 	return errors, nil
 }
 
 // validateAddressDetails validates a AddressDetails element.
-func (s *XMLDocumentState) validateAddressDetails(elem *pkg_2_0.AddressDetails, path string) []ValidationError {
+func (s *XMLDocumentState) validateAddressDetails(elem *pkg_2_01.AddressDetails, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -6808,7 +13521,7 @@ func (s *XMLDocumentState) validateAddressDetails(elem *pkg_2_0.AddressDetails, 
 }
 
 // validateAddressDetailsElement validates a AddressDetailsElement element.
-func (s *XMLDocumentState) validateAddressDetailsElement(elem *pkg_2_0.AddressDetailsElement, path string) []ValidationError {
+func (s *XMLDocumentState) validateAddressDetailsElement(elem *pkg_2_01.AddressDetailsElement, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -6828,7 +13541,7 @@ func (s *XMLDocumentState) validateAddressDetailsElement(elem *pkg_2_0.AddressDe
 }
 
 // validateAddressElementType validates a AddressElementType element.
-func (s *XMLDocumentState) validateAddressElementType(elem *pkg_2_0.AddressElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateAddressElementType(elem *pkg_2_01.AddressElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -6839,7 +13552,7 @@ func (s *XMLDocumentState) validateAddressElementType(elem *pkg_2_0.AddressEleme
 }
 
 // validateAddressIdentifierElementType validates a AddressIdentifierElementType element.
-func (s *XMLDocumentState) validateAddressIdentifierElementType(elem *pkg_2_0.AddressIdentifierElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateAddressIdentifierElementType(elem *pkg_2_01.AddressIdentifierElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -6851,7 +13564,7 @@ func (s *XMLDocumentState) validateAddressIdentifierElementType(elem *pkg_2_0.Ad
 }
 
 // validateAddressLatitudeDirectionElementType validates a AddressLatitudeDirectionElementType element.
-func (s *XMLDocumentState) validateAddressLatitudeDirectionElementType(elem *pkg_2_0.AddressLatitudeDirectionElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateAddressLatitudeDirectionElementType(elem *pkg_2_01.AddressLatitudeDirectionElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -6862,7 +13575,7 @@ func (s *XMLDocumentState) validateAddressLatitudeDirectionElementType(elem *pkg
 }
 
 // validateAddressLatitudeElementType validates a AddressLatitudeElementType element.
-func (s *XMLDocumentState) validateAddressLatitudeElementType(elem *pkg_2_0.AddressLatitudeElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateAddressLatitudeElementType(elem *pkg_2_01.AddressLatitudeElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -6873,7 +13586,7 @@ func (s *XMLDocumentState) validateAddressLatitudeElementType(elem *pkg_2_0.Addr
 }
 
 // validateAddressLineElement validates a AddressLineElement element.
-func (s *XMLDocumentState) validateAddressLineElement(elem *pkg_2_0.AddressLineElement, path string) []ValidationError {
+func (s *XMLDocumentState) validateAddressLineElement(elem *pkg_2_01.AddressLineElement, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -6884,7 +13597,7 @@ func (s *XMLDocumentState) validateAddressLineElement(elem *pkg_2_0.AddressLineE
 }
 
 // validateAddressLineElementType validates a AddressLineElementType element.
-func (s *XMLDocumentState) validateAddressLineElementType(elem *pkg_2_0.AddressLineElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateAddressLineElementType(elem *pkg_2_01.AddressLineElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -6895,7 +13608,7 @@ func (s *XMLDocumentState) validateAddressLineElementType(elem *pkg_2_0.AddressL
 }
 
 // validateAddressLinesType validates a AddressLinesType element.
-func (s *XMLDocumentState) validateAddressLinesType(elem *pkg_2_0.AddressLinesType, path string) []ValidationError {
+func (s *XMLDocumentState) validateAddressLinesType(elem *pkg_2_01.AddressLinesType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -6905,7 +13618,7 @@ func (s *XMLDocumentState) validateAddressLinesType(elem *pkg_2_0.AddressLinesTy
 }
 
 // validateAddressLongitudeDirectionElementType validates a AddressLongitudeDirectionElementType element.
-func (s *XMLDocumentState) validateAddressLongitudeDirectionElementType(elem *pkg_2_0.AddressLongitudeDirectionElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateAddressLongitudeDirectionElementType(elem *pkg_2_01.AddressLongitudeDirectionElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -6916,7 +13629,7 @@ func (s *XMLDocumentState) validateAddressLongitudeDirectionElementType(elem *pk
 }
 
 // validateAddressLongitudeElementType validates a AddressLongitudeElementType element.
-func (s *XMLDocumentState) validateAddressLongitudeElementType(elem *pkg_2_0.AddressLongitudeElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateAddressLongitudeElementType(elem *pkg_2_01.AddressLongitudeElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -6927,7 +13640,7 @@ func (s *XMLDocumentState) validateAddressLongitudeElementType(elem *pkg_2_0.Add
 }
 
 // validateAddresseeIndicatorElementType validates a AddresseeIndicatorElementType element.
-func (s *XMLDocumentState) validateAddresseeIndicatorElementType(elem *pkg_2_01.AddresseeIndicatorElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateAddresseeIndicatorElementType(elem *pkg_2_0.AddresseeIndicatorElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -6938,7 +13651,7 @@ func (s *XMLDocumentState) validateAddresseeIndicatorElementType(elem *pkg_2_01.
 }
 
 // validateAdministrativeAreaElement validates a AdministrativeAreaElement element.
-func (s *XMLDocumentState) validateAdministrativeAreaElement(elem *pkg_2_0.AdministrativeAreaElement, path string) []ValidationError {
+func (s *XMLDocumentState) validateAdministrativeAreaElement(elem *pkg_2_01.AdministrativeAreaElement, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -6953,7 +13666,7 @@ func (s *XMLDocumentState) validateAdministrativeAreaElement(elem *pkg_2_0.Admin
 }
 
 // validateAdministrativeAreaElementType validates a AdministrativeAreaElementType element.
-func (s *XMLDocumentState) validateAdministrativeAreaElementType(elem *pkg_2_0.AdministrativeAreaElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateAdministrativeAreaElementType(elem *pkg_2_01.AdministrativeAreaElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -6968,7 +13681,7 @@ func (s *XMLDocumentState) validateAdministrativeAreaElementType(elem *pkg_2_0.A
 }
 
 // validateAdministrativeAreaNameElementType validates a AdministrativeAreaNameElementType element.
-func (s *XMLDocumentState) validateAdministrativeAreaNameElementType(elem *pkg_2_0.AdministrativeAreaNameElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateAdministrativeAreaNameElementType(elem *pkg_2_01.AdministrativeAreaNameElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -6978,8 +13691,43 @@ func (s *XMLDocumentState) validateAdministrativeAreaNameElementType(elem *pkg_2
 	return errors
 }
 
+// validateAffectedType validates a AffectedType element.
+func (s *XMLDocumentState) validateAffectedType(elem *xmlschemaoval_definitions_5.AffectedType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Platform
+	// Validate Product
+	// Validate Family
+	if elem.Family == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/family",
+			Message: "Required field 'family' is missing or empty",
+		})
+	}
+	if string(elem.Family) != "" {
+		validValues := []string{"android", "asa", "apple_ios", "catos", "ios", "iosxe", "junos", "macos", "pixos", "undefined", "unix", "vmware_infrastructure", "windows"}
+		isValid := false
+		for _, v := range validValues {
+			if string(elem.Family) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/family",
+				Message: fmt.Sprintf("Field 'family' has invalid value '%s'", string(elem.Family)),
+			})
+		}
+	}
+
+	return errors
+}
+
 // validateAliasElementType validates a AliasElementType element.
-func (s *XMLDocumentState) validateAliasElementType(elem *pkg_2_01.AliasElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateAliasElementType(elem *pkg_2_0.AliasElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -6987,6 +13735,39 @@ func (s *XMLDocumentState) validateAliasElementType(elem *pkg_2_01.AliasElementT
 	// Validate Type
 	// Validate NameType
 	// Validate Code
+
+	return errors
+}
+
+// validateArithmeticFunctionType validates a ArithmeticFunctionType element.
+func (s *XMLDocumentState) validateArithmeticFunctionType(elem *xmlschemaoval_definitions_5.ArithmeticFunctionType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Arithmetic_operation
+	if elem.Arithmetic_operation == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/arithmetic_operation",
+			Message: "Required field 'arithmetic_operation' is missing or empty",
+		})
+	}
+	if string(elem.Arithmetic_operation) != "" {
+		validValues := []string{"add", "multiply"}
+		isValid := false
+		for _, v := range validValues {
+			if string(elem.Arithmetic_operation) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/arithmetic_operation",
+				Message: fmt.Sprintf("Field 'arithmetic_operation' has invalid value '%s'", string(elem.Arithmetic_operation)),
+			})
+		}
+	}
 
 	return errors
 }
@@ -7153,12 +13934,131 @@ func (s *XMLDocumentState) validateAssetsType(elem *asset_identification1_1.Asse
 }
 
 // validateBarcodeElementType validates a BarcodeElementType element.
-func (s *XMLDocumentState) validateBarcodeElementType(elem *pkg_2_0.BarcodeElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateBarcodeElementType(elem *pkg_2_01.BarcodeElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
 	}
 	// Validate Type
+
+	return errors
+}
+
+// validateBeginFunctionType validates a BeginFunctionType element.
+func (s *XMLDocumentState) validateBeginFunctionType(elem *xmlschemaoval_definitions_5.BeginFunctionType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Character
+	if elem.Character == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/character",
+			Message: "Required field 'character' is missing or empty",
+		})
+	}
+
+	return errors
+}
+
+// validateBenchmarkElement validates a BenchmarkElement element.
+func (s *XMLDocumentState) validateBenchmarkElement(elem *xccdf1_2.BenchmarkElement, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate DcStatus
+	// Validate Title
+	// Validate Description
+	// Validate Notice
+	// Validate FrontMatter
+	// Validate RearMatter
+	// Validate Reference
+	// Validate PlainText
+	// Validate Platform
+	// Validate Version
+	// Validate Metadata
+	// Validate Signature
+	// Validate Id
+	if elem.Id == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/id",
+			Message: "Required field 'id' is missing or empty",
+		})
+	}
+	if string(elem.Id) != "" {
+		matched, _ := regexp.MatchString(`xccdf_[^_]+_benchmark_.+`, string(elem.Id))
+		if !matched {
+			errors = append(errors, ValidationError{
+				Path:    path + "/id",
+				Message: "Field 'id' does not match required pattern",
+			})
+		}
+	}
+	// Validate Id2
+	// Validate Resolved
+	// Validate Style
+	// Validate StyleHref
+
+	return errors
+}
+
+// validateBenchmarkElementType validates a BenchmarkElementType element.
+func (s *XMLDocumentState) validateBenchmarkElementType(elem *xccdf1_2.BenchmarkElementType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate DcStatus
+	// Validate Title
+	// Validate Description
+	// Validate Notice
+	// Validate FrontMatter
+	// Validate RearMatter
+	// Validate Reference
+	// Validate PlainText
+	// Validate Platform
+	// Validate Version
+	// Validate Metadata
+	// Validate Signature
+	// Validate Id
+	if elem.Id == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/id",
+			Message: "Required field 'id' is missing or empty",
+		})
+	}
+	if string(elem.Id) != "" {
+		matched, _ := regexp.MatchString(`xccdf_[^_]+_benchmark_.+`, string(elem.Id))
+		if !matched {
+			errors = append(errors, ValidationError{
+				Path:    path + "/id",
+				Message: "Field 'id' does not match required pattern",
+			})
+		}
+	}
+	// Validate Id2
+	// Validate Resolved
+	// Validate Style
+	// Validate StyleHref
+
+	return errors
+}
+
+// validateBenchmarkReferenceType validates a BenchmarkReferenceType element.
+func (s *XMLDocumentState) validateBenchmarkReferenceType(elem *xccdf1_2.BenchmarkReferenceType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Href
+	if elem.Href == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/href",
+			Message: "Required field 'href' is missing or empty",
+		})
+	}
+	// Validate Id
 
 	return errors
 }
@@ -7174,13 +14074,142 @@ func (s *XMLDocumentState) validateBirthdateElementType(elem *asset_identificati
 }
 
 // validateBuildingNameType validates a BuildingNameType element.
-func (s *XMLDocumentState) validateBuildingNameType(elem *pkg_2_0.BuildingNameType, path string) []ValidationError {
+func (s *XMLDocumentState) validateBuildingNameType(elem *pkg_2_01.BuildingNameType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
 	}
 	// Validate Type
 	// Validate TypeOccurrence
+
+	return errors
+}
+
+// validateCPE2idrefType validates a CPE2idrefType element.
+func (s *XMLDocumentState) validateCPE2idrefType(elem *xccdf1_2.CPE2idrefType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Idref
+	if elem.Idref == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/idref",
+			Message: "Required field 'idref' is missing or empty",
+		})
+	}
+
+	return errors
+}
+
+// validateCanonicalizationMethodElement validates a CanonicalizationMethodElement element.
+func (s *XMLDocumentState) validateCanonicalizationMethodElement(elem *pkg_200009xmldsig.CanonicalizationMethodElement, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Algorithm
+	if elem.Algorithm == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/Algorithm",
+			Message: "Required field 'Algorithm' is missing or empty",
+		})
+	}
+
+	return errors
+}
+
+// validateCanonicalizationMethodType validates a CanonicalizationMethodType element.
+func (s *XMLDocumentState) validateCanonicalizationMethodType(elem *pkg_200009xmldsig.CanonicalizationMethodType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Algorithm
+	if elem.Algorithm == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/Algorithm",
+			Message: "Required field 'Algorithm' is missing or empty",
+		})
+	}
+
+	return errors
+}
+
+// validateCheckContentRefType validates a CheckContentRefType element.
+func (s *XMLDocumentState) validateCheckContentRefType(elem *xccdf1_2.CheckContentRefType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Href
+	if elem.Href == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/href",
+			Message: "Required field 'href' is missing or empty",
+		})
+	}
+	// Validate Name
+
+	return errors
+}
+
+// validateCheckExportType validates a CheckExportType element.
+func (s *XMLDocumentState) validateCheckExportType(elem *xccdf1_2.CheckExportType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate ValueId
+	if elem.ValueId == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/value-id",
+			Message: "Required field 'value-id' is missing or empty",
+		})
+	}
+	// Validate ExportName
+	if elem.ExportName == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/export-name",
+			Message: "Required field 'export-name' is missing or empty",
+		})
+	}
+
+	return errors
+}
+
+// validateCheckImportType validates a CheckImportType element.
+func (s *XMLDocumentState) validateCheckImportType(elem *xccdf1_2.CheckImportType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate ImportName
+	if elem.ImportName == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/import-name",
+			Message: "Required field 'import-name' is missing or empty",
+		})
+	}
+	// Validate ImportXpath
+
+	return errors
+}
+
+// validateCheckType validates a CheckType element.
+func (s *XMLDocumentState) validateCheckType(elem *dictionary2_0.CheckType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate System
+	if elem.System == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/system",
+			Message: "Required field 'system' is missing or empty",
+		})
+	}
+	// Validate Href
 
 	return errors
 }
@@ -7223,6 +14252,53 @@ func (s *XMLDocumentState) validateCircuitType(elem *asset_identification1_1.Cir
 		return errors
 	}
 	// Validate CircuitName
+
+	return errors
+}
+
+// validateComplexCheckType validates a ComplexCheckType element.
+func (s *XMLDocumentState) validateComplexCheckType(elem *xccdf1_2.ComplexCheckType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Check
+	// Validate ComplexCheck
+	// Validate Operator
+	if elem.Operator == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/operator",
+			Message: "Required field 'operator' is missing or empty",
+		})
+	}
+	if string(elem.Operator) != "" {
+		validValues := []string{"OR", "AND"}
+		isValid := false
+		for _, v := range validValues {
+			if string(elem.Operator) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/operator",
+				Message: fmt.Sprintf("Field 'operator' has invalid value '%s'", string(elem.Operator)),
+			})
+		}
+	}
+	// Validate Negate
+
+	return errors
+}
+
+// validateComplexValueType validates a ComplexValueType element.
+func (s *XMLDocumentState) validateComplexValueType(elem *xccdf1_2.ComplexValueType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Item
 
 	return errors
 }
@@ -7278,8 +14354,54 @@ func (s *XMLDocumentState) validateConnectionsElementType(elem *asset_identifica
 	return errors
 }
 
-// validateContentElementType1 validates a ContentElementType1 element.
-func (s *XMLDocumentState) validateContentElementType1(elem *asset_reporting_format1_1.ContentElementType1, path string) []ValidationError {
+// validateConstant_variableElement validates a Constant_variableElement element.
+func (s *XMLDocumentState) validateConstant_variableElement(elem *xmlschemaoval_definitions_5.Constant_variableElement, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Value
+	if len(elem.Value) == 0 {
+		errors = append(errors, ValidationError{
+			Path:    path + "/value",
+			Message: "Required field 'value' must have at least one element",
+		})
+	}
+	if len(elem.Value) < 1 {
+		errors = append(errors, ValidationError{
+			Path:    path + "/value",
+			Message: fmt.Sprintf("Field 'value' requires at least 1 elements, got %d", len(elem.Value)),
+		})
+	}
+
+	return errors
+}
+
+// validateConstant_variableElementType validates a Constant_variableElementType element.
+func (s *XMLDocumentState) validateConstant_variableElementType(elem *xmlschemaoval_definitions_5.Constant_variableElementType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Value
+	if len(elem.Value) == 0 {
+		errors = append(errors, ValidationError{
+			Path:    path + "/value",
+			Message: "Required field 'value' must have at least one element",
+		})
+	}
+	if len(elem.Value) < 1 {
+		errors = append(errors, ValidationError{
+			Path:    path + "/value",
+			Message: fmt.Sprintf("Field 'value' requires at least 1 elements, got %d", len(elem.Value)),
+		})
+	}
+
+	return errors
+}
+
+// validateContentElementType validates a ContentElementType element.
+func (s *XMLDocumentState) validateContentElementType(elem *asset_reporting_format1_1.ContentElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -7291,7 +14413,7 @@ func (s *XMLDocumentState) validateContentElementType1(elem *asset_reporting_for
 }
 
 // validateCountryElementType validates a CountryElementType element.
-func (s *XMLDocumentState) validateCountryElementType(elem *pkg_2_0.CountryElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateCountryElementType(elem *pkg_2_01.CountryElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -7302,7 +14424,7 @@ func (s *XMLDocumentState) validateCountryElementType(elem *pkg_2_0.CountryEleme
 }
 
 // validateCountryNameCodeElementType validates a CountryNameCodeElementType element.
-func (s *XMLDocumentState) validateCountryNameCodeElementType(elem *pkg_2_0.CountryNameCodeElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateCountryNameCodeElementType(elem *pkg_2_01.CountryNameCodeElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -7313,7 +14435,7 @@ func (s *XMLDocumentState) validateCountryNameCodeElementType(elem *pkg_2_0.Coun
 }
 
 // validateCountryNameElement validates a CountryNameElement element.
-func (s *XMLDocumentState) validateCountryNameElement(elem *pkg_2_0.CountryNameElement, path string) []ValidationError {
+func (s *XMLDocumentState) validateCountryNameElement(elem *pkg_2_01.CountryNameElement, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -7324,7 +14446,7 @@ func (s *XMLDocumentState) validateCountryNameElement(elem *pkg_2_0.CountryNameE
 }
 
 // validateCountryNameElementType validates a CountryNameElementType element.
-func (s *XMLDocumentState) validateCountryNameElementType(elem *pkg_2_0.CountryNameElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateCountryNameElementType(elem *pkg_2_01.CountryNameElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -7354,6 +14476,179 @@ func (s *XMLDocumentState) validateCpeElementType(elem *asset_identification1_1.
 	return errors
 }
 
+// validateCpeItemElement validates a CpeItemElement element.
+func (s *XMLDocumentState) validateCpeItemElement(elem *dictionary2_0.CpeItemElement, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Title
+	if len(elem.Title) == 0 {
+		errors = append(errors, ValidationError{
+			Path:    path + "/title",
+			Message: "Required field 'title' must have at least one element",
+		})
+	}
+	if len(elem.Title) < 1 {
+		errors = append(errors, ValidationError{
+			Path:    path + "/title",
+			Message: fmt.Sprintf("Field 'title' requires at least 1 elements, got %d", len(elem.Title)),
+		})
+	}
+	// Validate Notes
+	// Validate References
+	// Validate Check
+	// Validate Name
+	if elem.Name == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/name",
+			Message: "Required field 'name' is missing or empty",
+		})
+	}
+	if string(elem.Name) != "" {
+		matched, _ := regexp.MatchString(`[c][pP][eE]:/[AHOaho]?(:[A-Za-z0-9\._\-~%]*){0,6}`, string(elem.Name))
+		if !matched {
+			errors = append(errors, ValidationError{
+				Path:    path + "/name",
+				Message: "Field 'name' does not match required pattern",
+			})
+		}
+	}
+	// Validate Deprecated
+	// Validate Deprecated_by
+	if elem.Deprecated_by != nil && string(*elem.Deprecated_by) != "" {
+		matched, _ := regexp.MatchString(`[c][pP][eE]:/[AHOaho]?(:[A-Za-z0-9\._\-~%]*){0,6}`, string(*elem.Deprecated_by))
+		if !matched {
+			errors = append(errors, ValidationError{
+				Path:    path + "/deprecated_by",
+				Message: "Field 'deprecated_by' does not match required pattern",
+			})
+		}
+	}
+	// Validate Deprecation_date
+
+	return errors
+}
+
+// validateCpeListElement validates a CpeListElement element.
+func (s *XMLDocumentState) validateCpeListElement(elem *dictionary2_0.CpeListElement, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Generator
+
+	return errors
+}
+
+// validateCriteriaType validates a CriteriaType element.
+func (s *XMLDocumentState) validateCriteriaType(elem *xmlschemaoval_definitions_5.CriteriaType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Criteria
+	// Validate Criterion
+	// Validate Extend_definition
+	// Validate Applicability_check
+	// Validate Operator
+	if elem.Operator != nil && string(*elem.Operator) != "" {
+		validValues := []string{"AND", "ONE", "OR", "XOR"}
+		isValid := false
+		for _, v := range validValues {
+			if string(*elem.Operator) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/operator",
+				Message: fmt.Sprintf("Field 'operator' has invalid value '%s'", string(*elem.Operator)),
+			})
+		}
+	}
+	// Validate Negate
+	// Validate Comment
+	if elem.Comment != nil && string(*elem.Comment) != "" && len(string(*elem.Comment)) < 1 {
+		errors = append(errors, ValidationError{
+			Path:    path + "/comment",
+			Message: fmt.Sprintf("Field 'comment' must be at least 1 characters"),
+		})
+	}
+
+	return errors
+}
+
+// validateCriterionType validates a CriterionType element.
+func (s *XMLDocumentState) validateCriterionType(elem *xmlschemaoval_definitions_5.CriterionType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Applicability_check
+	// Validate Test_ref
+	if elem.Test_ref == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/test_ref",
+			Message: "Required field 'test_ref' is missing or empty",
+		})
+	}
+	if string(elem.Test_ref) != "" {
+		matched, _ := regexp.MatchString(`oval:[A-Za-z0-9_\-\.]+:tst:[1-9][0-9]*`, string(elem.Test_ref))
+		if !matched {
+			errors = append(errors, ValidationError{
+				Path:    path + "/test_ref",
+				Message: "Field 'test_ref' does not match required pattern",
+			})
+		}
+	}
+	// Validate Negate
+	// Validate Comment
+	if elem.Comment != nil && string(*elem.Comment) != "" && len(string(*elem.Comment)) < 1 {
+		errors = append(errors, ValidationError{
+			Path:    path + "/comment",
+			Message: fmt.Sprintf("Field 'comment' must be at least 1 characters"),
+		})
+	}
+
+	return errors
+}
+
+// validateDSAKeyValueElement validates a DSAKeyValueElement element.
+func (s *XMLDocumentState) validateDSAKeyValueElement(elem *pkg_200009xmldsig.DSAKeyValueElement, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate G
+	// Validate Y
+	// Validate J
+	// Validate P
+	// Validate Q
+	// Validate Seed
+	// Validate PgenCounter
+
+	return errors
+}
+
+// validateDSAKeyValueType validates a DSAKeyValueType element.
+func (s *XMLDocumentState) validateDSAKeyValueType(elem *pkg_200009xmldsig.DSAKeyValueType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate G
+	// Validate Y
+	// Validate J
+	// Validate P
+	// Validate Q
+	// Validate Seed
+	// Validate PgenCounter
+
+	return errors
+}
+
 // validateDatabaseElement validates a DatabaseElement element.
 func (s *XMLDocumentState) validateDatabaseElement(elem *asset_identification1_1.DatabaseElement, path string) []ValidationError {
 	var errors []ValidationError
@@ -7376,8 +14671,124 @@ func (s *XMLDocumentState) validateDatabaseType(elem *asset_identification1_1.Da
 	return errors
 }
 
+// validateDefinitionElement validates a DefinitionElement element.
+func (s *XMLDocumentState) validateDefinitionElement(elem *xmlschemaoval_definitions_5.DefinitionElement, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Metadata
+	// Validate Criteria
+	// Validate Id
+	if elem.Id == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/id",
+			Message: "Required field 'id' is missing or empty",
+		})
+	}
+	if string(elem.Id) != "" {
+		matched, _ := regexp.MatchString(`oval:[A-Za-z0-9_\-\.]+:def:[1-9][0-9]*`, string(elem.Id))
+		if !matched {
+			errors = append(errors, ValidationError{
+				Path:    path + "/id",
+				Message: "Field 'id' does not match required pattern",
+			})
+		}
+	}
+	// Validate Version
+	// Validate Class
+	if elem.Class == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/class",
+			Message: "Required field 'class' is missing or empty",
+		})
+	}
+	if string(elem.Class) != "" {
+		validValues := []string{"compliance", "inventory", "miscellaneous", "patch", "vulnerability"}
+		isValid := false
+		for _, v := range validValues {
+			if string(elem.Class) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/class",
+				Message: fmt.Sprintf("Field 'class' has invalid value '%s'", string(elem.Class)),
+			})
+		}
+	}
+	// Validate Deprecated
+
+	return errors
+}
+
+// validateDefinitionType validates a DefinitionType element.
+func (s *XMLDocumentState) validateDefinitionType(elem *xmlschemaoval_definitions_5.DefinitionType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Metadata
+	// Validate Criteria
+	// Validate Id
+	if elem.Id == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/id",
+			Message: "Required field 'id' is missing or empty",
+		})
+	}
+	if string(elem.Id) != "" {
+		matched, _ := regexp.MatchString(`oval:[A-Za-z0-9_\-\.]+:def:[1-9][0-9]*`, string(elem.Id))
+		if !matched {
+			errors = append(errors, ValidationError{
+				Path:    path + "/id",
+				Message: "Field 'id' does not match required pattern",
+			})
+		}
+	}
+	// Validate Version
+	// Validate Class
+	if elem.Class == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/class",
+			Message: "Required field 'class' is missing or empty",
+		})
+	}
+	if string(elem.Class) != "" {
+		validValues := []string{"compliance", "inventory", "miscellaneous", "patch", "vulnerability"}
+		isValid := false
+		for _, v := range validValues {
+			if string(elem.Class) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/class",
+				Message: fmt.Sprintf("Field 'class' has invalid value '%s'", string(elem.Class)),
+			})
+		}
+	}
+	// Validate Deprecated
+
+	return errors
+}
+
+// validateDefinitionsType validates a DefinitionsType element.
+func (s *XMLDocumentState) validateDefinitionsType(elem *xmlschemaoval_definitions_5.DefinitionsType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+
+	return errors
+}
+
 // validateDepartmentElement validates a DepartmentElement element.
-func (s *XMLDocumentState) validateDepartmentElement(elem *pkg_2_0.DepartmentElement, path string) []ValidationError {
+func (s *XMLDocumentState) validateDepartmentElement(elem *pkg_2_01.DepartmentElement, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -7390,7 +14801,7 @@ func (s *XMLDocumentState) validateDepartmentElement(elem *pkg_2_0.DepartmentEle
 }
 
 // validateDepartmentElementType validates a DepartmentElementType element.
-func (s *XMLDocumentState) validateDepartmentElementType(elem *pkg_2_0.DepartmentElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateDepartmentElementType(elem *pkg_2_01.DepartmentElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -7403,7 +14814,7 @@ func (s *XMLDocumentState) validateDepartmentElementType(elem *pkg_2_0.Departmen
 }
 
 // validateDepartmentNameElementType validates a DepartmentNameElementType element.
-func (s *XMLDocumentState) validateDepartmentNameElementType(elem *pkg_2_0.DepartmentNameElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateDepartmentNameElementType(elem *pkg_2_01.DepartmentNameElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -7414,7 +14825,7 @@ func (s *XMLDocumentState) validateDepartmentNameElementType(elem *pkg_2_0.Depar
 }
 
 // validateDependencyNameElementType validates a DependencyNameElementType element.
-func (s *XMLDocumentState) validateDependencyNameElementType(elem *pkg_2_01.DependencyNameElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateDependencyNameElementType(elem *pkg_2_0.DependencyNameElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -7425,7 +14836,7 @@ func (s *XMLDocumentState) validateDependencyNameElementType(elem *pkg_2_01.Depe
 }
 
 // validateDependentLocalityNameElementType validates a DependentLocalityNameElementType element.
-func (s *XMLDocumentState) validateDependentLocalityNameElementType(elem *pkg_2_0.DependentLocalityNameElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateDependentLocalityNameElementType(elem *pkg_2_01.DependentLocalityNameElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -7436,7 +14847,7 @@ func (s *XMLDocumentState) validateDependentLocalityNameElementType(elem *pkg_2_
 }
 
 // validateDependentLocalityNumberElementType validates a DependentLocalityNumberElementType element.
-func (s *XMLDocumentState) validateDependentLocalityNumberElementType(elem *pkg_2_0.DependentLocalityNumberElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateDependentLocalityNumberElementType(elem *pkg_2_01.DependentLocalityNumberElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -7447,7 +14858,7 @@ func (s *XMLDocumentState) validateDependentLocalityNumberElementType(elem *pkg_
 }
 
 // validateDependentLocalityType validates a DependentLocalityType element.
-func (s *XMLDocumentState) validateDependentLocalityType(elem *pkg_2_0.DependentLocalityType, path string) []ValidationError {
+func (s *XMLDocumentState) validateDependentLocalityType(elem *pkg_2_01.DependentLocalityType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -7466,7 +14877,7 @@ func (s *XMLDocumentState) validateDependentLocalityType(elem *pkg_2_0.Dependent
 }
 
 // validateDependentThoroughfareElementType validates a DependentThoroughfareElementType element.
-func (s *XMLDocumentState) validateDependentThoroughfareElementType(elem *pkg_2_0.DependentThoroughfareElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateDependentThoroughfareElementType(elem *pkg_2_01.DependentThoroughfareElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -7477,6 +14888,66 @@ func (s *XMLDocumentState) validateDependentThoroughfareElementType(elem *pkg_2_
 	// Validate ThoroughfareTrailingType
 	// Validate ThoroughfarePostDirection
 	// Validate Type
+
+	return errors
+}
+
+// validateDeprecatedInfoType validates a DeprecatedInfoType element.
+func (s *XMLDocumentState) validateDeprecatedInfoType(elem *xmlschemaoval_common_5.DeprecatedInfoType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Version
+	// Validate Reason
+	// Validate Comment
+
+	return errors
+}
+
+// validateDeprecated_infoElement validates a Deprecated_infoElement element.
+func (s *XMLDocumentState) validateDeprecated_infoElement(elem *xmlschemaoval_common_5.Deprecated_infoElement, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Version
+	// Validate Reason
+	// Validate Comment
+
+	return errors
+}
+
+// validateDigestMethodElement validates a DigestMethodElement element.
+func (s *XMLDocumentState) validateDigestMethodElement(elem *pkg_200009xmldsig.DigestMethodElement, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Algorithm
+	if elem.Algorithm == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/Algorithm",
+			Message: "Required field 'Algorithm' is missing or empty",
+		})
+	}
+
+	return errors
+}
+
+// validateDigestMethodType validates a DigestMethodType element.
+func (s *XMLDocumentState) validateDigestMethodType(elem *pkg_200009xmldsig.DigestMethodType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Algorithm
+	if elem.Algorithm == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/Algorithm",
+			Message: "Required field 'Algorithm' is missing or empty",
+		})
+	}
 
 	return errors
 }
@@ -7501,6 +14972,45 @@ func (s *XMLDocumentState) validateDocumentRootElementType(elem *asset_identific
 	return errors
 }
 
+// validateElementMapItemType validates a ElementMapItemType element.
+func (s *XMLDocumentState) validateElementMapItemType(elem *xmlschemaoval_common_5.ElementMapItemType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Target_namespace
+
+	return errors
+}
+
+// validateElementMapType validates a ElementMapType element.
+func (s *XMLDocumentState) validateElementMapType(elem *xmlschemaoval_common_5.ElementMapType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Test
+	// Validate Object
+	// Validate State
+	// Validate Item
+
+	return errors
+}
+
+// validateElement_mappingElement validates a Element_mappingElement element.
+func (s *XMLDocumentState) validateElement_mappingElement(elem *xmlschemaoval_common_5.Element_mappingElement, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Test
+	// Validate Object
+	// Validate State
+	// Validate Item
+
+	return errors
+}
+
 // validateEmailAddressElement validates a EmailAddressElement element.
 func (s *XMLDocumentState) validateEmailAddressElement(elem *asset_identification1_1.EmailAddressElement, path string) []ValidationError {
 	var errors []ValidationError
@@ -7521,13 +15031,735 @@ func (s *XMLDocumentState) validateEmailAddressElementType(elem *asset_identific
 	return errors
 }
 
+// validateEndFunctionType validates a EndFunctionType element.
+func (s *XMLDocumentState) validateEndFunctionType(elem *xmlschemaoval_definitions_5.EndFunctionType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Character
+	if elem.Character == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/character",
+			Message: "Required field 'character' is missing or empty",
+		})
+	}
+
+	return errors
+}
+
 // validateEndorsementLineCodeElementType validates a EndorsementLineCodeElementType element.
-func (s *XMLDocumentState) validateEndorsementLineCodeElementType(elem *pkg_2_0.EndorsementLineCodeElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateEndorsementLineCodeElementType(elem *pkg_2_01.EndorsementLineCodeElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
 	}
 	// Validate Type
+
+	return errors
+}
+
+// validateEntityObjectAnySimpleType validates a EntityObjectAnySimpleType element.
+func (s *XMLDocumentState) validateEntityObjectAnySimpleType(elem *xmlschemaoval_definitions_5.EntityObjectAnySimpleType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Datatype
+	if elem.Datatype != nil && string(*elem.Datatype) != "" {
+		validValues := []string{"binary", "boolean", "evr_string", "debian_evr_string", "fileset_revision", "float", "ios_version", "int", "ipv4_address", "ipv6_address", "string", "version"}
+		isValid := false
+		for _, v := range validValues {
+			if string(*elem.Datatype) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/datatype",
+				Message: fmt.Sprintf("Field 'datatype' has invalid value '%s'", string(*elem.Datatype)),
+			})
+		}
+	}
+
+	return errors
+}
+
+// validateEntityObjectBinaryType validates a EntityObjectBinaryType element.
+func (s *XMLDocumentState) validateEntityObjectBinaryType(elem *xmlschemaoval_definitions_5.EntityObjectBinaryType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Datatype
+	if elem.Datatype == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/datatype",
+			Message: "Required field 'datatype' is missing or empty",
+		})
+	}
+	if string(elem.Datatype) != "" {
+		validValues := []string{"binary", "boolean", "evr_string", "debian_evr_string", "fileset_revision", "float", "ios_version", "int", "ipv4_address", "ipv6_address", "string", "version"}
+		isValid := false
+		for _, v := range validValues {
+			if string(elem.Datatype) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/datatype",
+				Message: fmt.Sprintf("Field 'datatype' has invalid value '%s'", string(elem.Datatype)),
+			})
+		}
+	}
+
+	return errors
+}
+
+// validateEntityObjectBoolType validates a EntityObjectBoolType element.
+func (s *XMLDocumentState) validateEntityObjectBoolType(elem *xmlschemaoval_definitions_5.EntityObjectBoolType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Datatype
+	if elem.Datatype == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/datatype",
+			Message: "Required field 'datatype' is missing or empty",
+		})
+	}
+	if string(elem.Datatype) != "" {
+		validValues := []string{"binary", "boolean", "evr_string", "debian_evr_string", "fileset_revision", "float", "ios_version", "int", "ipv4_address", "ipv6_address", "string", "version"}
+		isValid := false
+		for _, v := range validValues {
+			if string(elem.Datatype) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/datatype",
+				Message: fmt.Sprintf("Field 'datatype' has invalid value '%s'", string(elem.Datatype)),
+			})
+		}
+	}
+
+	return errors
+}
+
+// validateEntityObjectFieldType validates a EntityObjectFieldType element.
+func (s *XMLDocumentState) validateEntityObjectFieldType(elem *xmlschemaoval_definitions_5.EntityObjectFieldType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Name
+	// Validate Entity_check
+	if elem.Entity_check != nil && string(*elem.Entity_check) != "" {
+		validValues := []string{"all", "at least one", "none exist", "none satisfy", "only one"}
+		isValid := false
+		for _, v := range validValues {
+			if string(*elem.Entity_check) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/entity_check",
+				Message: fmt.Sprintf("Field 'entity_check' has invalid value '%s'", string(*elem.Entity_check)),
+			})
+		}
+	}
+
+	return errors
+}
+
+// validateEntityObjectFloatType validates a EntityObjectFloatType element.
+func (s *XMLDocumentState) validateEntityObjectFloatType(elem *xmlschemaoval_definitions_5.EntityObjectFloatType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Datatype
+	if elem.Datatype == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/datatype",
+			Message: "Required field 'datatype' is missing or empty",
+		})
+	}
+	if string(elem.Datatype) != "" {
+		validValues := []string{"binary", "boolean", "evr_string", "debian_evr_string", "fileset_revision", "float", "ios_version", "int", "ipv4_address", "ipv6_address", "string", "version"}
+		isValid := false
+		for _, v := range validValues {
+			if string(elem.Datatype) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/datatype",
+				Message: fmt.Sprintf("Field 'datatype' has invalid value '%s'", string(elem.Datatype)),
+			})
+		}
+	}
+
+	return errors
+}
+
+// validateEntityObjectIPAddressStringType validates a EntityObjectIPAddressStringType element.
+func (s *XMLDocumentState) validateEntityObjectIPAddressStringType(elem *xmlschemaoval_definitions_5.EntityObjectIPAddressStringType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Datatype
+
+	return errors
+}
+
+// validateEntityObjectIPAddressType validates a EntityObjectIPAddressType element.
+func (s *XMLDocumentState) validateEntityObjectIPAddressType(elem *xmlschemaoval_definitions_5.EntityObjectIPAddressType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Datatype
+
+	return errors
+}
+
+// validateEntityObjectIntType validates a EntityObjectIntType element.
+func (s *XMLDocumentState) validateEntityObjectIntType(elem *xmlschemaoval_definitions_5.EntityObjectIntType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Datatype
+	if elem.Datatype == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/datatype",
+			Message: "Required field 'datatype' is missing or empty",
+		})
+	}
+	if string(elem.Datatype) != "" {
+		validValues := []string{"binary", "boolean", "evr_string", "debian_evr_string", "fileset_revision", "float", "ios_version", "int", "ipv4_address", "ipv6_address", "string", "version"}
+		isValid := false
+		for _, v := range validValues {
+			if string(elem.Datatype) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/datatype",
+				Message: fmt.Sprintf("Field 'datatype' has invalid value '%s'", string(elem.Datatype)),
+			})
+		}
+	}
+
+	return errors
+}
+
+// validateEntityObjectRecordType validates a EntityObjectRecordType element.
+func (s *XMLDocumentState) validateEntityObjectRecordType(elem *xmlschemaoval_definitions_5.EntityObjectRecordType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Field
+
+	return errors
+}
+
+// validateEntityObjectStringType validates a EntityObjectStringType element.
+func (s *XMLDocumentState) validateEntityObjectStringType(elem *xmlschemaoval_definitions_5.EntityObjectStringType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Datatype
+	if elem.Datatype != nil && string(*elem.Datatype) != "" {
+		validValues := []string{"binary", "boolean", "evr_string", "debian_evr_string", "fileset_revision", "float", "ios_version", "int", "ipv4_address", "ipv6_address", "string", "version"}
+		isValid := false
+		for _, v := range validValues {
+			if string(*elem.Datatype) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/datatype",
+				Message: fmt.Sprintf("Field 'datatype' has invalid value '%s'", string(*elem.Datatype)),
+			})
+		}
+	}
+
+	return errors
+}
+
+// validateEntityObjectVersionType validates a EntityObjectVersionType element.
+func (s *XMLDocumentState) validateEntityObjectVersionType(elem *xmlschemaoval_definitions_5.EntityObjectVersionType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Datatype
+	if elem.Datatype == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/datatype",
+			Message: "Required field 'datatype' is missing or empty",
+		})
+	}
+	if string(elem.Datatype) != "" {
+		validValues := []string{"binary", "boolean", "evr_string", "debian_evr_string", "fileset_revision", "float", "ios_version", "int", "ipv4_address", "ipv6_address", "string", "version"}
+		isValid := false
+		for _, v := range validValues {
+			if string(elem.Datatype) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/datatype",
+				Message: fmt.Sprintf("Field 'datatype' has invalid value '%s'", string(elem.Datatype)),
+			})
+		}
+	}
+
+	return errors
+}
+
+// validateEntityStateAnySimpleType validates a EntityStateAnySimpleType element.
+func (s *XMLDocumentState) validateEntityStateAnySimpleType(elem *xmlschemaoval_definitions_5.EntityStateAnySimpleType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Datatype
+	if elem.Datatype != nil && string(*elem.Datatype) != "" {
+		validValues := []string{"binary", "boolean", "evr_string", "debian_evr_string", "fileset_revision", "float", "ios_version", "int", "ipv4_address", "ipv6_address", "string", "version"}
+		isValid := false
+		for _, v := range validValues {
+			if string(*elem.Datatype) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/datatype",
+				Message: fmt.Sprintf("Field 'datatype' has invalid value '%s'", string(*elem.Datatype)),
+			})
+		}
+	}
+
+	return errors
+}
+
+// validateEntityStateBinaryType validates a EntityStateBinaryType element.
+func (s *XMLDocumentState) validateEntityStateBinaryType(elem *xmlschemaoval_definitions_5.EntityStateBinaryType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Datatype
+	if elem.Datatype == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/datatype",
+			Message: "Required field 'datatype' is missing or empty",
+		})
+	}
+	if string(elem.Datatype) != "" {
+		validValues := []string{"binary", "boolean", "evr_string", "debian_evr_string", "fileset_revision", "float", "ios_version", "int", "ipv4_address", "ipv6_address", "string", "version"}
+		isValid := false
+		for _, v := range validValues {
+			if string(elem.Datatype) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/datatype",
+				Message: fmt.Sprintf("Field 'datatype' has invalid value '%s'", string(elem.Datatype)),
+			})
+		}
+	}
+
+	return errors
+}
+
+// validateEntityStateBoolType validates a EntityStateBoolType element.
+func (s *XMLDocumentState) validateEntityStateBoolType(elem *xmlschemaoval_definitions_5.EntityStateBoolType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Datatype
+	if elem.Datatype == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/datatype",
+			Message: "Required field 'datatype' is missing or empty",
+		})
+	}
+	if string(elem.Datatype) != "" {
+		validValues := []string{"binary", "boolean", "evr_string", "debian_evr_string", "fileset_revision", "float", "ios_version", "int", "ipv4_address", "ipv6_address", "string", "version"}
+		isValid := false
+		for _, v := range validValues {
+			if string(elem.Datatype) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/datatype",
+				Message: fmt.Sprintf("Field 'datatype' has invalid value '%s'", string(elem.Datatype)),
+			})
+		}
+	}
+
+	return errors
+}
+
+// validateEntityStateDebianEVRStringType validates a EntityStateDebianEVRStringType element.
+func (s *XMLDocumentState) validateEntityStateDebianEVRStringType(elem *xmlschemaoval_definitions_5.EntityStateDebianEVRStringType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Datatype
+	if elem.Datatype == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/datatype",
+			Message: "Required field 'datatype' is missing or empty",
+		})
+	}
+	if string(elem.Datatype) != "" {
+		validValues := []string{"binary", "boolean", "evr_string", "debian_evr_string", "fileset_revision", "float", "ios_version", "int", "ipv4_address", "ipv6_address", "string", "version"}
+		isValid := false
+		for _, v := range validValues {
+			if string(elem.Datatype) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/datatype",
+				Message: fmt.Sprintf("Field 'datatype' has invalid value '%s'", string(elem.Datatype)),
+			})
+		}
+	}
+
+	return errors
+}
+
+// validateEntityStateEVRStringType validates a EntityStateEVRStringType element.
+func (s *XMLDocumentState) validateEntityStateEVRStringType(elem *xmlschemaoval_definitions_5.EntityStateEVRStringType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Datatype
+	if elem.Datatype == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/datatype",
+			Message: "Required field 'datatype' is missing or empty",
+		})
+	}
+	if string(elem.Datatype) != "" {
+		validValues := []string{"binary", "boolean", "evr_string", "debian_evr_string", "fileset_revision", "float", "ios_version", "int", "ipv4_address", "ipv6_address", "string", "version"}
+		isValid := false
+		for _, v := range validValues {
+			if string(elem.Datatype) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/datatype",
+				Message: fmt.Sprintf("Field 'datatype' has invalid value '%s'", string(elem.Datatype)),
+			})
+		}
+	}
+
+	return errors
+}
+
+// validateEntityStateFieldType validates a EntityStateFieldType element.
+func (s *XMLDocumentState) validateEntityStateFieldType(elem *xmlschemaoval_definitions_5.EntityStateFieldType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Name
+	// Validate Entity_check
+	if elem.Entity_check != nil && string(*elem.Entity_check) != "" {
+		validValues := []string{"all", "at least one", "none exist", "none satisfy", "only one"}
+		isValid := false
+		for _, v := range validValues {
+			if string(*elem.Entity_check) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/entity_check",
+				Message: fmt.Sprintf("Field 'entity_check' has invalid value '%s'", string(*elem.Entity_check)),
+			})
+		}
+	}
+
+	return errors
+}
+
+// validateEntityStateFileSetRevisionType validates a EntityStateFileSetRevisionType element.
+func (s *XMLDocumentState) validateEntityStateFileSetRevisionType(elem *xmlschemaoval_definitions_5.EntityStateFileSetRevisionType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Datatype
+	if elem.Datatype == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/datatype",
+			Message: "Required field 'datatype' is missing or empty",
+		})
+	}
+	if string(elem.Datatype) != "" {
+		validValues := []string{"binary", "boolean", "evr_string", "debian_evr_string", "fileset_revision", "float", "ios_version", "int", "ipv4_address", "ipv6_address", "string", "version"}
+		isValid := false
+		for _, v := range validValues {
+			if string(elem.Datatype) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/datatype",
+				Message: fmt.Sprintf("Field 'datatype' has invalid value '%s'", string(elem.Datatype)),
+			})
+		}
+	}
+
+	return errors
+}
+
+// validateEntityStateFloatType validates a EntityStateFloatType element.
+func (s *XMLDocumentState) validateEntityStateFloatType(elem *xmlschemaoval_definitions_5.EntityStateFloatType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Datatype
+	if elem.Datatype == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/datatype",
+			Message: "Required field 'datatype' is missing or empty",
+		})
+	}
+	if string(elem.Datatype) != "" {
+		validValues := []string{"binary", "boolean", "evr_string", "debian_evr_string", "fileset_revision", "float", "ios_version", "int", "ipv4_address", "ipv6_address", "string", "version"}
+		isValid := false
+		for _, v := range validValues {
+			if string(elem.Datatype) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/datatype",
+				Message: fmt.Sprintf("Field 'datatype' has invalid value '%s'", string(elem.Datatype)),
+			})
+		}
+	}
+
+	return errors
+}
+
+// validateEntityStateIOSVersionType validates a EntityStateIOSVersionType element.
+func (s *XMLDocumentState) validateEntityStateIOSVersionType(elem *xmlschemaoval_definitions_5.EntityStateIOSVersionType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Datatype
+
+	return errors
+}
+
+// validateEntityStateIPAddressStringType validates a EntityStateIPAddressStringType element.
+func (s *XMLDocumentState) validateEntityStateIPAddressStringType(elem *xmlschemaoval_definitions_5.EntityStateIPAddressStringType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Datatype
+
+	return errors
+}
+
+// validateEntityStateIPAddressType validates a EntityStateIPAddressType element.
+func (s *XMLDocumentState) validateEntityStateIPAddressType(elem *xmlschemaoval_definitions_5.EntityStateIPAddressType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Datatype
+
+	return errors
+}
+
+// validateEntityStateIntType validates a EntityStateIntType element.
+func (s *XMLDocumentState) validateEntityStateIntType(elem *xmlschemaoval_definitions_5.EntityStateIntType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Datatype
+	if elem.Datatype == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/datatype",
+			Message: "Required field 'datatype' is missing or empty",
+		})
+	}
+	if string(elem.Datatype) != "" {
+		validValues := []string{"binary", "boolean", "evr_string", "debian_evr_string", "fileset_revision", "float", "ios_version", "int", "ipv4_address", "ipv6_address", "string", "version"}
+		isValid := false
+		for _, v := range validValues {
+			if string(elem.Datatype) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/datatype",
+				Message: fmt.Sprintf("Field 'datatype' has invalid value '%s'", string(elem.Datatype)),
+			})
+		}
+	}
+
+	return errors
+}
+
+// validateEntityStateRecordType validates a EntityStateRecordType element.
+func (s *XMLDocumentState) validateEntityStateRecordType(elem *xmlschemaoval_definitions_5.EntityStateRecordType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Field
+
+	return errors
+}
+
+// validateEntityStateStringType validates a EntityStateStringType element.
+func (s *XMLDocumentState) validateEntityStateStringType(elem *xmlschemaoval_definitions_5.EntityStateStringType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Datatype
+	if elem.Datatype != nil && string(*elem.Datatype) != "" {
+		validValues := []string{"binary", "boolean", "evr_string", "debian_evr_string", "fileset_revision", "float", "ios_version", "int", "ipv4_address", "ipv6_address", "string", "version"}
+		isValid := false
+		for _, v := range validValues {
+			if string(*elem.Datatype) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/datatype",
+				Message: fmt.Sprintf("Field 'datatype' has invalid value '%s'", string(*elem.Datatype)),
+			})
+		}
+	}
+
+	return errors
+}
+
+// validateEntityStateVersionType validates a EntityStateVersionType element.
+func (s *XMLDocumentState) validateEntityStateVersionType(elem *xmlschemaoval_definitions_5.EntityStateVersionType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Datatype
+	if elem.Datatype == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/datatype",
+			Message: "Required field 'datatype' is missing or empty",
+		})
+	}
+	if string(elem.Datatype) != "" {
+		validValues := []string{"binary", "boolean", "evr_string", "debian_evr_string", "fileset_revision", "float", "ios_version", "int", "ipv4_address", "ipv6_address", "string", "version"}
+		isValid := false
+		for _, v := range validValues {
+			if string(elem.Datatype) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/datatype",
+				Message: fmt.Sprintf("Field 'datatype' has invalid value '%s'", string(elem.Datatype)),
+			})
+		}
+	}
+
+	return errors
+}
+
+// validateExtendDefinitionType validates a ExtendDefinitionType element.
+func (s *XMLDocumentState) validateExtendDefinitionType(elem *xmlschemaoval_definitions_5.ExtendDefinitionType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Applicability_check
+	// Validate Definition_ref
+	if elem.Definition_ref == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/definition_ref",
+			Message: "Required field 'definition_ref' is missing or empty",
+		})
+	}
+	if string(elem.Definition_ref) != "" {
+		matched, _ := regexp.MatchString(`oval:[A-Za-z0-9_\-\.]+:def:[1-9][0-9]*`, string(elem.Definition_ref))
+		if !matched {
+			errors = append(errors, ValidationError{
+				Path:    path + "/definition_ref",
+				Message: "Field 'definition_ref' does not match required pattern",
+			})
+		}
+	}
+	// Validate Negate
+	// Validate Comment
+	if elem.Comment != nil && string(*elem.Comment) != "" && len(string(*elem.Comment)) < 1 {
+		errors = append(errors, ValidationError{
+			Path:    path + "/comment",
+			Message: fmt.Sprintf("Field 'comment' must be at least 1 characters"),
+		})
+	}
 
 	return errors
 }
@@ -7572,8 +15804,146 @@ func (s *XMLDocumentState) validateExtendedInfosElementType(elem *asset_reportin
 	return errors
 }
 
+// validateExternal_variableElement validates a External_variableElement element.
+func (s *XMLDocumentState) validateExternal_variableElement(elem *xmlschemaoval_definitions_5.External_variableElement, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Possible_value
+	// Validate Possible_restriction
+
+	return errors
+}
+
+// validateExternal_variableElementType validates a External_variableElementType element.
+func (s *XMLDocumentState) validateExternal_variableElementType(elem *xmlschemaoval_definitions_5.External_variableElementType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Possible_value
+	// Validate Possible_restriction
+
+	return errors
+}
+
+// validateFactRefType validates a FactRefType element.
+func (s *XMLDocumentState) validateFactRefType(elem *language2_0.FactRefType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Name
+	if elem.Name == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/name",
+			Message: "Required field 'name' is missing or empty",
+		})
+	}
+	if string(elem.Name) != "" {
+		matched, _ := regexp.MatchString(`cpe:/([aho](:[A-Za-z0-9\._\-~]*(:[A-Za-z0-9\._\-~]*(:[A-Za-z0-9\._\.\-~]*(:[A-Za-z0-9\._\-~]*)?)?)?)?)?`, string(elem.Name))
+		if !matched {
+			errors = append(errors, ValidationError{
+				Path:    path + "/name",
+				Message: "Field 'name' does not match required pattern",
+			})
+		}
+	}
+
+	return errors
+}
+
+// validateFactType validates a FactType element.
+func (s *XMLDocumentState) validateFactType(elem *xccdf1_2.FactType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Name
+	if elem.Name == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/name",
+			Message: "Required field 'name' is missing or empty",
+		})
+	}
+	// Validate Type
+	if elem.Type != nil && string(*elem.Type) != "" {
+		validValues := []string{"number", "string", "boolean"}
+		isValid := false
+		for _, v := range validValues {
+			if string(*elem.Type) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/type",
+				Message: fmt.Sprintf("Field 'type' has invalid value '%s'", string(*elem.Type)),
+			})
+		}
+	}
+
+	return errors
+}
+
+// validateFilterElement validates a FilterElement element.
+func (s *XMLDocumentState) validateFilterElement(elem *xmlschemaoval_definitions_5.FilterElement, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Action
+	if elem.Action != nil && string(*elem.Action) != "" {
+		validValues := []string{"exclude", "include"}
+		isValid := false
+		for _, v := range validValues {
+			if string(*elem.Action) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/action",
+				Message: fmt.Sprintf("Field 'action' has invalid value '%s'", string(*elem.Action)),
+			})
+		}
+	}
+
+	return errors
+}
+
+// validateFilterElementType validates a FilterElementType element.
+func (s *XMLDocumentState) validateFilterElementType(elem *xmlschemaoval_definitions_5.FilterElementType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Action
+	if elem.Action != nil && string(*elem.Action) != "" {
+		validValues := []string{"exclude", "include"}
+		isValid := false
+		for _, v := range validValues {
+			if string(*elem.Action) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/action",
+				Message: fmt.Sprintf("Field 'action' has invalid value '%s'", string(*elem.Action)),
+			})
+		}
+	}
+
+	return errors
+}
+
 // validateFirmNameElementType validates a FirmNameElementType element.
-func (s *XMLDocumentState) validateFirmNameElementType(elem *pkg_2_0.FirmNameElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateFirmNameElementType(elem *pkg_2_01.FirmNameElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -7584,7 +15954,7 @@ func (s *XMLDocumentState) validateFirmNameElementType(elem *pkg_2_0.FirmNameEle
 }
 
 // validateFirmType validates a FirmType element.
-func (s *XMLDocumentState) validateFirmType(elem *pkg_2_0.FirmType, path string) []ValidationError {
+func (s *XMLDocumentState) validateFirmType(elem *pkg_2_01.FirmType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -7597,7 +15967,7 @@ func (s *XMLDocumentState) validateFirmType(elem *pkg_2_0.FirmType, path string)
 }
 
 // validateFirstNameElementType validates a FirstNameElementType element.
-func (s *XMLDocumentState) validateFirstNameElementType(elem *pkg_2_01.FirstNameElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateFirstNameElementType(elem *pkg_2_0.FirstNameElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -7609,8 +15979,138 @@ func (s *XMLDocumentState) validateFirstNameElementType(elem *pkg_2_01.FirstName
 	return errors
 }
 
+// validateFixTextType validates a FixTextType element.
+func (s *XMLDocumentState) validateFixTextType(elem *xccdf1_2.FixTextType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Fixref
+	// Validate Reboot
+	// Validate Strategy
+	if elem.Strategy != nil && string(*elem.Strategy) != "" {
+		validValues := []string{"unknown", "configure", "combination", "disable", "enable", "patch", "policy", "restrict", "update"}
+		isValid := false
+		for _, v := range validValues {
+			if string(*elem.Strategy) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/strategy",
+				Message: fmt.Sprintf("Field 'strategy' has invalid value '%s'", string(*elem.Strategy)),
+			})
+		}
+	}
+	// Validate Disruption
+	if elem.Disruption != nil && string(*elem.Disruption) != "" {
+		validValues := []string{"unknown", "low", "medium", "high"}
+		isValid := false
+		for _, v := range validValues {
+			if string(*elem.Disruption) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/disruption",
+				Message: fmt.Sprintf("Field 'disruption' has invalid value '%s'", string(*elem.Disruption)),
+			})
+		}
+	}
+	// Validate Complexity
+	if elem.Complexity != nil && string(*elem.Complexity) != "" {
+		validValues := []string{"unknown", "low", "medium", "high"}
+		isValid := false
+		for _, v := range validValues {
+			if string(*elem.Complexity) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/complexity",
+				Message: fmt.Sprintf("Field 'complexity' has invalid value '%s'", string(*elem.Complexity)),
+			})
+		}
+	}
+
+	return errors
+}
+
+// validateFixType validates a FixType element.
+func (s *XMLDocumentState) validateFixType(elem *xccdf1_2.FixType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Sub
+	// Validate Instance
+	// Validate Id
+	// Validate Reboot
+	// Validate Strategy
+	if elem.Strategy != nil && string(*elem.Strategy) != "" {
+		validValues := []string{"unknown", "configure", "combination", "disable", "enable", "patch", "policy", "restrict", "update"}
+		isValid := false
+		for _, v := range validValues {
+			if string(*elem.Strategy) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/strategy",
+				Message: fmt.Sprintf("Field 'strategy' has invalid value '%s'", string(*elem.Strategy)),
+			})
+		}
+	}
+	// Validate Disruption
+	if elem.Disruption != nil && string(*elem.Disruption) != "" {
+		validValues := []string{"unknown", "low", "medium", "high"}
+		isValid := false
+		for _, v := range validValues {
+			if string(*elem.Disruption) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/disruption",
+				Message: fmt.Sprintf("Field 'disruption' has invalid value '%s'", string(*elem.Disruption)),
+			})
+		}
+	}
+	// Validate Complexity
+	if elem.Complexity != nil && string(*elem.Complexity) != "" {
+		validValues := []string{"unknown", "low", "medium", "high"}
+		isValid := false
+		for _, v := range validValues {
+			if string(*elem.Complexity) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/complexity",
+				Message: fmt.Sprintf("Field 'complexity' has invalid value '%s'", string(*elem.Complexity)),
+			})
+		}
+	}
+	// Validate System
+	// Validate Platform
+
+	return errors
+}
+
 // validateFormerNameElementType validates a FormerNameElementType element.
-func (s *XMLDocumentState) validateFormerNameElementType(elem *pkg_2_01.FormerNameElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateFormerNameElementType(elem *pkg_2_0.FormerNameElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -7642,7 +16142,7 @@ func (s *XMLDocumentState) validateFqdnElementType(elem *asset_identification1_1
 }
 
 // validateFunction validates a Function element.
-func (s *XMLDocumentState) validateFunction(elem *pkg_2_01.Function, path string) []ValidationError {
+func (s *XMLDocumentState) validateFunction(elem *pkg_2_0.Function, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -7653,7 +16153,7 @@ func (s *XMLDocumentState) validateFunction(elem *pkg_2_01.Function, path string
 }
 
 // validateFunctionElement validates a FunctionElement element.
-func (s *XMLDocumentState) validateFunctionElement(elem *pkg_2_01.FunctionElement, path string) []ValidationError {
+func (s *XMLDocumentState) validateFunctionElement(elem *pkg_2_0.FunctionElement, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -7664,7 +16164,7 @@ func (s *XMLDocumentState) validateFunctionElement(elem *pkg_2_01.FunctionElemen
 }
 
 // validateGeneralSuffixElementType validates a GeneralSuffixElementType element.
-func (s *XMLDocumentState) validateGeneralSuffixElementType(elem *pkg_2_01.GeneralSuffixElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateGeneralSuffixElementType(elem *pkg_2_0.GeneralSuffixElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -7676,13 +16176,92 @@ func (s *XMLDocumentState) validateGeneralSuffixElementType(elem *pkg_2_01.Gener
 }
 
 // validateGenerationIdentifierElementType validates a GenerationIdentifierElementType element.
-func (s *XMLDocumentState) validateGenerationIdentifierElementType(elem *pkg_2_01.GenerationIdentifierElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateGenerationIdentifierElementType(elem *pkg_2_0.GenerationIdentifierElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
 	}
 	// Validate Type
 	// Validate Code
+
+	return errors
+}
+
+// validateGeneratorType validates a GeneratorType element.
+func (s *XMLDocumentState) validateGeneratorType(elem *dictionary2_0.GeneratorType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Product_name
+	// Validate Product_version
+	// Validate Schema_version
+	// Validate Timestamp
+
+	return errors
+}
+
+// validateGlobToRegexFunctionType validates a GlobToRegexFunctionType element.
+func (s *XMLDocumentState) validateGlobToRegexFunctionType(elem *xmlschemaoval_definitions_5.GlobToRegexFunctionType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Glob_noescape
+
+	return errors
+}
+
+// validateGroupElement validates a GroupElement element.
+func (s *XMLDocumentState) validateGroupElement(elem *xccdf1_2.GroupElement, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Signature
+	// Validate Id
+	if elem.Id == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/id",
+			Message: "Required field 'id' is missing or empty",
+		})
+	}
+	if string(elem.Id) != "" {
+		matched, _ := regexp.MatchString(`xccdf_[^_]+_group_.+`, string(elem.Id))
+		if !matched {
+			errors = append(errors, ValidationError{
+				Path:    path + "/id",
+				Message: "Field 'id' does not match required pattern",
+			})
+		}
+	}
+
+	return errors
+}
+
+// validateGroupType validates a GroupType element.
+func (s *XMLDocumentState) validateGroupType(elem *xccdf1_2.GroupType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Signature
+	// Validate Id
+	if elem.Id == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/id",
+			Message: "Required field 'id' is missing or empty",
+		})
+	}
+	if string(elem.Id) != "" {
+		matched, _ := regexp.MatchString(`xccdf_[^_]+_group_.+`, string(elem.Id))
+		if !matched {
+			errors = append(errors, ValidationError{
+				Path:    path + "/id",
+				Message: "Field 'id' does not match required pattern",
+			})
+		}
+	}
 
 	return errors
 }
@@ -7707,6 +16286,92 @@ func (s *XMLDocumentState) validateHostnameElementType(elem *asset_identificatio
 	return errors
 }
 
+// validateHtmlTextType validates a HtmlTextType element.
+func (s *XMLDocumentState) validateHtmlTextType(elem *xccdf1_2.HtmlTextType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Override
+
+	return errors
+}
+
+// validateHtmlTextWithSubType validates a HtmlTextWithSubType element.
+func (s *XMLDocumentState) validateHtmlTextWithSubType(elem *xccdf1_2.HtmlTextWithSubType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Sub
+	// Validate Override
+
+	return errors
+}
+
+// validateIdentType validates a IdentType element.
+func (s *XMLDocumentState) validateIdentType(elem *xccdf1_2.IdentType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate System
+	if elem.System == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/system",
+			Message: "Required field 'system' is missing or empty",
+		})
+	}
+
+	return errors
+}
+
+// validateIdentityType validates a IdentityType element.
+func (s *XMLDocumentState) validateIdentityType(elem *xccdf1_2.IdentityType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Authenticated
+	// Validate Privileged
+
+	return errors
+}
+
+// validateIdrefListType validates a IdrefListType element.
+func (s *XMLDocumentState) validateIdrefListType(elem *xccdf1_2.IdrefListType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Idref
+	if len(elem.Idref) == 0 {
+		errors = append(errors, ValidationError{
+			Path:    path + "/idref",
+			Message: "Required field 'idref' must have at least one element",
+		})
+	}
+
+	return errors
+}
+
+// validateIdrefType validates a IdrefType element.
+func (s *XMLDocumentState) validateIdrefType(elem *xccdf1_2.IdrefType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Idref
+	if elem.Idref == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/idref",
+			Message: "Required field 'idref' is missing or empty",
+		})
+	}
+
+	return errors
+}
+
 // validateInstallationIdElementType validates a InstallationIdElementType element.
 func (s *XMLDocumentState) validateInstallationIdElementType(elem *asset_identification1_1.InstallationIdElementType, path string) []ValidationError {
 	var errors []ValidationError
@@ -7717,12 +16382,35 @@ func (s *XMLDocumentState) validateInstallationIdElementType(elem *asset_identif
 	return errors
 }
 
+// validateInstanceFixType validates a InstanceFixType element.
+func (s *XMLDocumentState) validateInstanceFixType(elem *xccdf1_2.InstanceFixType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Context
+
+	return errors
+}
+
 // validateInstanceNameElementType validates a InstanceNameElementType element.
 func (s *XMLDocumentState) validateInstanceNameElementType(elem *asset_identification1_1.InstanceNameElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
 	}
+
+	return errors
+}
+
+// validateInstanceResultType validates a InstanceResultType element.
+func (s *XMLDocumentState) validateInstanceResultType(elem *xccdf1_2.InstanceResultType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Context
+	// Validate ParentContext
 
 	return errors
 }
@@ -7783,8 +16471,86 @@ func (s *XMLDocumentState) validateIpV6ElementType(elem *asset_identification1_1
 	return errors
 }
 
+// validateItemElement validates a ItemElement element.
+func (s *XMLDocumentState) validateItemElement(elem *xccdf1_2.ItemElement, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate DcStatus
+	// Validate Version
+	// Validate Title
+	// Validate Description
+	// Validate Warning
+	// Validate Question
+	// Validate Reference
+	// Validate Metadata
+	// Validate Abstract
+	// Validate ClusterId
+	// Validate Extends
+	// Validate Hidden
+	// Validate ProhibitChanges
+	// Validate Id
+
+	return errors
+}
+
+// validateItemType validates a ItemType element.
+func (s *XMLDocumentState) validateItemType(elem *dictionary2_0.ItemType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Title
+	if len(elem.Title) == 0 {
+		errors = append(errors, ValidationError{
+			Path:    path + "/title",
+			Message: "Required field 'title' must have at least one element",
+		})
+	}
+	if len(elem.Title) < 1 {
+		errors = append(errors, ValidationError{
+			Path:    path + "/title",
+			Message: fmt.Sprintf("Field 'title' requires at least 1 elements, got %d", len(elem.Title)),
+		})
+	}
+	// Validate Notes
+	// Validate References
+	// Validate Check
+	// Validate Name
+	if elem.Name == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/name",
+			Message: "Required field 'name' is missing or empty",
+		})
+	}
+	if string(elem.Name) != "" {
+		matched, _ := regexp.MatchString(`[c][pP][eE]:/[AHOaho]?(:[A-Za-z0-9\._\-~%]*){0,6}`, string(elem.Name))
+		if !matched {
+			errors = append(errors, ValidationError{
+				Path:    path + "/name",
+				Message: "Field 'name' does not match required pattern",
+			})
+		}
+	}
+	// Validate Deprecated
+	// Validate Deprecated_by
+	if elem.Deprecated_by != nil && string(*elem.Deprecated_by) != "" {
+		matched, _ := regexp.MatchString(`[c][pP][eE]:/[AHOaho]?(:[A-Za-z0-9\._\-~%]*){0,6}`, string(*elem.Deprecated_by))
+		if !matched {
+			errors = append(errors, ValidationError{
+				Path:    path + "/deprecated_by",
+				Message: "Field 'deprecated_by' does not match required pattern",
+			})
+		}
+	}
+	// Validate Deprecation_date
+
+	return errors
+}
+
 // validateJointPersonNameElement validates a JointPersonNameElement element.
-func (s *XMLDocumentState) validateJointPersonNameElement(elem *pkg_2_01.JointPersonNameElement, path string) []ValidationError {
+func (s *XMLDocumentState) validateJointPersonNameElement(elem *pkg_2_0.JointPersonNameElement, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -7809,7 +16575,7 @@ func (s *XMLDocumentState) validateJointPersonNameElement(elem *pkg_2_01.JointPe
 }
 
 // validateJointPersonNameElementType validates a JointPersonNameElementType element.
-func (s *XMLDocumentState) validateJointPersonNameElementType(elem *pkg_2_01.JointPersonNameElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateJointPersonNameElementType(elem *pkg_2_0.JointPersonNameElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -7833,8 +16599,30 @@ func (s *XMLDocumentState) validateJointPersonNameElementType(elem *pkg_2_01.Joi
 	return errors
 }
 
+// validateKeyInfoElement validates a KeyInfoElement element.
+func (s *XMLDocumentState) validateKeyInfoElement(elem *pkg_200009xmldsig.KeyInfoElement, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Id
+
+	return errors
+}
+
+// validateKeyInfoType validates a KeyInfoType element.
+func (s *XMLDocumentState) validateKeyInfoType(elem *pkg_200009xmldsig.KeyInfoType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Id
+
+	return errors
+}
+
 // validateKeyLineCodeElementType validates a KeyLineCodeElementType element.
-func (s *XMLDocumentState) validateKeyLineCodeElementType(elem *pkg_2_0.KeyLineCodeElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateKeyLineCodeElementType(elem *pkg_2_01.KeyLineCodeElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -7844,8 +16632,28 @@ func (s *XMLDocumentState) validateKeyLineCodeElementType(elem *pkg_2_0.KeyLineC
 	return errors
 }
 
+// validateKeyValueElement validates a KeyValueElement element.
+func (s *XMLDocumentState) validateKeyValueElement(elem *pkg_200009xmldsig.KeyValueElement, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+
+	return errors
+}
+
+// validateKeyValueType validates a KeyValueType element.
+func (s *XMLDocumentState) validateKeyValueType(elem *pkg_200009xmldsig.KeyValueType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+
+	return errors
+}
+
 // validateKnownAsElementType validates a KnownAsElementType element.
-func (s *XMLDocumentState) validateKnownAsElementType(elem *pkg_2_01.KnownAsElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateKnownAsElementType(elem *pkg_2_0.KnownAsElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -7857,7 +16665,7 @@ func (s *XMLDocumentState) validateKnownAsElementType(elem *pkg_2_01.KnownAsElem
 }
 
 // validateLargeMailUserIdentifierElementType validates a LargeMailUserIdentifierElementType element.
-func (s *XMLDocumentState) validateLargeMailUserIdentifierElementType(elem *pkg_2_0.LargeMailUserIdentifierElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateLargeMailUserIdentifierElementType(elem *pkg_2_01.LargeMailUserIdentifierElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -7869,7 +16677,7 @@ func (s *XMLDocumentState) validateLargeMailUserIdentifierElementType(elem *pkg_
 }
 
 // validateLargeMailUserNameElementType validates a LargeMailUserNameElementType element.
-func (s *XMLDocumentState) validateLargeMailUserNameElementType(elem *pkg_2_0.LargeMailUserNameElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateLargeMailUserNameElementType(elem *pkg_2_01.LargeMailUserNameElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -7881,7 +16689,7 @@ func (s *XMLDocumentState) validateLargeMailUserNameElementType(elem *pkg_2_0.La
 }
 
 // validateLargeMailUserType validates a LargeMailUserType element.
-func (s *XMLDocumentState) validateLargeMailUserType(elem *pkg_2_0.LargeMailUserType, path string) []ValidationError {
+func (s *XMLDocumentState) validateLargeMailUserType(elem *pkg_2_01.LargeMailUserType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -7895,7 +16703,7 @@ func (s *XMLDocumentState) validateLargeMailUserType(elem *pkg_2_0.LargeMailUser
 }
 
 // validateLastNameElementType validates a LastNameElementType element.
-func (s *XMLDocumentState) validateLastNameElementType(elem *pkg_2_01.LastNameElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateLastNameElementType(elem *pkg_2_0.LastNameElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -7917,6 +16725,44 @@ func (s *XMLDocumentState) validateLicenseElementType(elem *asset_identification
 	return errors
 }
 
+// validateListType validates a ListType element.
+func (s *XMLDocumentState) validateListType(elem *dictionary2_0.ListType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Generator
+
+	return errors
+}
+
+// validateLiteralComponentType validates a LiteralComponentType element.
+func (s *XMLDocumentState) validateLiteralComponentType(elem *xmlschemaoval_definitions_5.LiteralComponentType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Datatype
+	if elem.Datatype != nil && string(*elem.Datatype) != "" {
+		validValues := []string{"binary", "boolean", "evr_string", "debian_evr_string", "fileset_revision", "float", "ios_version", "int", "ipv4_address", "ipv6_address", "string", "version"}
+		isValid := false
+		for _, v := range validValues {
+			if string(*elem.Datatype) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/datatype",
+				Message: fmt.Sprintf("Field 'datatype' has invalid value '%s'", string(*elem.Datatype)),
+			})
+		}
+	}
+
+	return errors
+}
+
 // validateLocaleElementType validates a LocaleElementType element.
 func (s *XMLDocumentState) validateLocaleElementType(elem *asset_identification1_1.LocaleElementType, path string) []ValidationError {
 	var errors []ValidationError
@@ -7928,7 +16774,7 @@ func (s *XMLDocumentState) validateLocaleElementType(elem *asset_identification1
 }
 
 // validateLocalityElement validates a LocalityElement element.
-func (s *XMLDocumentState) validateLocalityElement(elem *pkg_2_0.LocalityElement, path string) []ValidationError {
+func (s *XMLDocumentState) validateLocalityElement(elem *pkg_2_01.LocalityElement, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -7945,7 +16791,7 @@ func (s *XMLDocumentState) validateLocalityElement(elem *pkg_2_0.LocalityElement
 }
 
 // validateLocalityElementType validates a LocalityElementType element.
-func (s *XMLDocumentState) validateLocalityElementType(elem *pkg_2_0.LocalityElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateLocalityElementType(elem *pkg_2_01.LocalityElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -7962,7 +16808,7 @@ func (s *XMLDocumentState) validateLocalityElementType(elem *pkg_2_0.LocalityEle
 }
 
 // validateLocalityNameElementType validates a LocalityNameElementType element.
-func (s *XMLDocumentState) validateLocalityNameElementType(elem *pkg_2_0.LocalityNameElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateLocalityNameElementType(elem *pkg_2_01.LocalityNameElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -8040,6 +16886,42 @@ func (s *XMLDocumentState) validateLocationsElementType(elem *asset_identificati
 	return errors
 }
 
+// validateLogicalTestType validates a LogicalTestType element.
+func (s *XMLDocumentState) validateLogicalTestType(elem *language2_0.LogicalTestType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate LogicalTest
+	// Validate FactRef
+	// Validate Operator
+	if elem.Operator == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/operator",
+			Message: "Required field 'operator' is missing or empty",
+		})
+	}
+	if string(elem.Operator) != "" {
+		validValues := []string{"AND", "OR"}
+		isValid := false
+		for _, v := range validValues {
+			if string(elem.Operator) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/operator",
+				Message: fmt.Sprintf("Field 'operator' has invalid value '%s'", string(elem.Operator)),
+			})
+		}
+	}
+	// Validate Negate
+
+	return errors
+}
+
 // validateMacAddressElementType validates a MacAddressElementType element.
 func (s *XMLDocumentState) validateMacAddressElementType(elem *asset_identification1_1.MacAddressElementType, path string) []ValidationError {
 	var errors []ValidationError
@@ -8051,7 +16933,7 @@ func (s *XMLDocumentState) validateMacAddressElementType(elem *asset_identificat
 }
 
 // validateMailStopNameElementType validates a MailStopNameElementType element.
-func (s *XMLDocumentState) validateMailStopNameElementType(elem *pkg_2_0.MailStopNameElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateMailStopNameElementType(elem *pkg_2_01.MailStopNameElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -8062,7 +16944,7 @@ func (s *XMLDocumentState) validateMailStopNameElementType(elem *pkg_2_0.MailSto
 }
 
 // validateMailStopNumberElementType validates a MailStopNumberElementType element.
-func (s *XMLDocumentState) validateMailStopNumberElementType(elem *pkg_2_0.MailStopNumberElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateMailStopNumberElementType(elem *pkg_2_01.MailStopNumberElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -8073,7 +16955,7 @@ func (s *XMLDocumentState) validateMailStopNumberElementType(elem *pkg_2_0.MailS
 }
 
 // validateMailStopType validates a MailStopType element.
-func (s *XMLDocumentState) validateMailStopType(elem *pkg_2_0.MailStopType, path string) []ValidationError {
+func (s *XMLDocumentState) validateMailStopType(elem *pkg_2_01.MailStopType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -8085,8 +16967,71 @@ func (s *XMLDocumentState) validateMailStopType(elem *pkg_2_0.MailStopType, path
 	return errors
 }
 
+// validateManifestElement validates a ManifestElement element.
+func (s *XMLDocumentState) validateManifestElement(elem *pkg_200009xmldsig.ManifestElement, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Id
+
+	return errors
+}
+
+// validateManifestType validates a ManifestType element.
+func (s *XMLDocumentState) validateManifestType(elem *pkg_200009xmldsig.ManifestType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Id
+
+	return errors
+}
+
+// validateMessageType validates a MessageType element.
+func (s *XMLDocumentState) validateMessageType(elem *xmlschemaoval_common_5.MessageType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Level
+	if elem.Level != nil && string(*elem.Level) != "" {
+		validValues := []string{"debug", "error", "fatal", "info", "warning"}
+		isValid := false
+		for _, v := range validValues {
+			if string(*elem.Level) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/level",
+				Message: fmt.Sprintf("Field 'level' has invalid value '%s'", string(*elem.Level)),
+			})
+		}
+	}
+
+	return errors
+}
+
+// validateMetadataType validates a MetadataType element.
+func (s *XMLDocumentState) validateMetadataType(elem *xmlschemaoval_definitions_5.MetadataType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Title
+	// Validate Affected
+	// Validate Reference
+	// Validate Description
+
+	return errors
+}
+
 // validateMiddleNameElementType validates a MiddleNameElementType element.
-func (s *XMLDocumentState) validateMiddleNameElementType(elem *pkg_2_01.MiddleNameElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateMiddleNameElementType(elem *pkg_2_0.MiddleNameElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -8094,6 +17039,42 @@ func (s *XMLDocumentState) validateMiddleNameElementType(elem *pkg_2_01.MiddleNa
 	// Validate Type
 	// Validate NameType
 	// Validate Code
+
+	return errors
+}
+
+// validateModelElement validates a ModelElement element.
+func (s *XMLDocumentState) validateModelElement(elem *xccdf1_2.ModelElement, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Param
+	// Validate System
+	if elem.System == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/system",
+			Message: "Required field 'system' is missing or empty",
+		})
+	}
+
+	return errors
+}
+
+// validateModelElementType validates a ModelElementType element.
+func (s *XMLDocumentState) validateModelElementType(elem *xccdf1_2.ModelElementType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Param
+	// Validate System
+	if elem.System == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/system",
+			Message: "Required field 'system' is missing or empty",
+		})
+	}
 
 	return errors
 }
@@ -8109,7 +17090,7 @@ func (s *XMLDocumentState) validateMotherboardGuidElementType(elem *asset_identi
 }
 
 // validateNameDetails validates a NameDetails element.
-func (s *XMLDocumentState) validateNameDetails(elem *pkg_2_01.NameDetails, path string) []ValidationError {
+func (s *XMLDocumentState) validateNameDetails(elem *pkg_2_0.NameDetails, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -8134,7 +17115,7 @@ func (s *XMLDocumentState) validateNameDetails(elem *pkg_2_01.NameDetails, path 
 }
 
 // validateNameDetailsElement validates a NameDetailsElement element.
-func (s *XMLDocumentState) validateNameDetailsElement(elem *pkg_2_01.NameDetailsElement, path string) []ValidationError {
+func (s *XMLDocumentState) validateNameDetailsElement(elem *pkg_2_0.NameDetailsElement, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -8147,7 +17128,7 @@ func (s *XMLDocumentState) validateNameDetailsElement(elem *pkg_2_01.NameDetails
 }
 
 // validateNameDetailsElementType validates a NameDetailsElementType element.
-func (s *XMLDocumentState) validateNameDetailsElementType(elem *pkg_2_01.NameDetailsElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateNameDetailsElementType(elem *pkg_2_0.NameDetailsElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -8160,7 +17141,7 @@ func (s *XMLDocumentState) validateNameDetailsElementType(elem *pkg_2_01.NameDet
 }
 
 // validateNameLineType validates a NameLineType element.
-func (s *XMLDocumentState) validateNameLineType(elem *pkg_2_01.NameLineType, path string) []ValidationError {
+func (s *XMLDocumentState) validateNameLineType(elem *pkg_2_0.NameLineType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -8173,7 +17154,7 @@ func (s *XMLDocumentState) validateNameLineType(elem *pkg_2_01.NameLineType, pat
 }
 
 // validateNamePrefixElementType validates a NamePrefixElementType element.
-func (s *XMLDocumentState) validateNamePrefixElementType(elem *pkg_2_01.NamePrefixElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateNamePrefixElementType(elem *pkg_2_0.NamePrefixElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -8235,6 +17216,143 @@ func (s *XMLDocumentState) validateNetworkType(elem *asset_identification1_1.Net
 	return errors
 }
 
+// validateNotesElement validates a NotesElement element.
+func (s *XMLDocumentState) validateNotesElement(elem *xmlschemaoval_definitions_5.NotesElement, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Note
+
+	return errors
+}
+
+// validateNotesElementType validates a NotesElementType element.
+func (s *XMLDocumentState) validateNotesElementType(elem *xmlschemaoval_definitions_5.NotesElementType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Note
+
+	return errors
+}
+
+// validateNotesType validates a NotesType element.
+func (s *XMLDocumentState) validateNotesType(elem *dictionary2_0.NotesType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Note
+	if len(elem.Note) == 0 {
+		errors = append(errors, ValidationError{
+			Path:    path + "/note",
+			Message: "Required field 'note' must have at least one element",
+		})
+	}
+	if len(elem.Note) < 1 {
+		errors = append(errors, ValidationError{
+			Path:    path + "/note",
+			Message: fmt.Sprintf("Field 'note' requires at least 1 elements, got %d", len(elem.Note)),
+		})
+	}
+
+	return errors
+}
+
+// validateNoticeType validates a NoticeType element.
+func (s *XMLDocumentState) validateNoticeType(elem *xccdf1_2.NoticeType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Id
+
+	return errors
+}
+
+// validateObjectComponentType validates a ObjectComponentType element.
+func (s *XMLDocumentState) validateObjectComponentType(elem *xmlschemaoval_definitions_5.ObjectComponentType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Object_ref
+	if elem.Object_ref == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/object_ref",
+			Message: "Required field 'object_ref' is missing or empty",
+		})
+	}
+	if string(elem.Object_ref) != "" {
+		matched, _ := regexp.MatchString(`oval:[A-Za-z0-9_\-\.]+:obj:[1-9][0-9]*`, string(elem.Object_ref))
+		if !matched {
+			errors = append(errors, ValidationError{
+				Path:    path + "/object_ref",
+				Message: "Field 'object_ref' does not match required pattern",
+			})
+		}
+	}
+	// Validate Item_field
+	if elem.Item_field == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/item_field",
+			Message: "Required field 'item_field' is missing or empty",
+		})
+	}
+	if string(elem.Item_field) != "" && len(string(elem.Item_field)) < 1 {
+		errors = append(errors, ValidationError{
+			Path:    path + "/item_field",
+			Message: fmt.Sprintf("Field 'item_field' must be at least 1 characters"),
+		})
+	}
+	// Validate Record_field
+	if elem.Record_field != nil && string(*elem.Record_field) != "" && len(string(*elem.Record_field)) < 1 {
+		errors = append(errors, ValidationError{
+			Path:    path + "/record_field",
+			Message: fmt.Sprintf("Field 'record_field' must be at least 1 characters"),
+		})
+	}
+
+	return errors
+}
+
+// validateObjectElement validates a ObjectElement element.
+func (s *XMLDocumentState) validateObjectElement(elem *xmlschemaoval_definitions_5.ObjectElement, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Id
+	if elem.Id == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/id",
+			Message: "Required field 'id' is missing or empty",
+		})
+	}
+	if string(elem.Id) != "" {
+		matched, _ := regexp.MatchString(`oval:[A-Za-z0-9_\-\.]+:obj:[1-9][0-9]*`, string(elem.Id))
+		if !matched {
+			errors = append(errors, ValidationError{
+				Path:    path + "/id",
+				Message: "Field 'id' does not match required pattern",
+			})
+		}
+	}
+	// Validate Version
+	// Validate Comment
+	if elem.Comment != nil && string(*elem.Comment) != "" && len(string(*elem.Comment)) < 1 {
+		errors = append(errors, ValidationError{
+			Path:    path + "/comment",
+			Message: fmt.Sprintf("Field 'comment' must be at least 1 characters"),
+		})
+	}
+	// Validate Deprecated
+
+	return errors
+}
+
 // validateObjectRefElement validates a ObjectRefElement element.
 func (s *XMLDocumentState) validateObjectRefElement(elem *asset_reporting_format1_1.ObjectRefElement, path string) []ValidationError {
 	var errors []ValidationError
@@ -8257,8 +17375,57 @@ func (s *XMLDocumentState) validateObjectRefElementType(elem *asset_reporting_fo
 	return errors
 }
 
+// validateObjectRefType validates a ObjectRefType element.
+func (s *XMLDocumentState) validateObjectRefType(elem *xmlschemaoval_definitions_5.ObjectRefType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Object_ref
+	if elem.Object_ref == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/object_ref",
+			Message: "Required field 'object_ref' is missing or empty",
+		})
+	}
+	if string(elem.Object_ref) != "" {
+		matched, _ := regexp.MatchString(`oval:[A-Za-z0-9_\-\.]+:obj:[1-9][0-9]*`, string(elem.Object_ref))
+		if !matched {
+			errors = append(errors, ValidationError{
+				Path:    path + "/object_ref",
+				Message: "Field 'object_ref' does not match required pattern",
+			})
+		}
+	}
+
+	return errors
+}
+
+// validateObjectType validates a ObjectType element.
+func (s *XMLDocumentState) validateObjectType(elem *pkg_200009xmldsig.ObjectType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Id
+	// Validate MimeType
+	// Validate Encoding
+
+	return errors
+}
+
+// validateObjectsType validates a ObjectsType element.
+func (s *XMLDocumentState) validateObjectsType(elem *xmlschemaoval_definitions_5.ObjectsType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+
+	return errors
+}
+
 // validateOrganisationFormerNameElementType validates a OrganisationFormerNameElementType element.
-func (s *XMLDocumentState) validateOrganisationFormerNameElementType(elem *pkg_2_01.OrganisationFormerNameElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateOrganisationFormerNameElementType(elem *pkg_2_0.OrganisationFormerNameElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -8270,7 +17437,7 @@ func (s *XMLDocumentState) validateOrganisationFormerNameElementType(elem *pkg_2
 }
 
 // validateOrganisationKnownAsElementType validates a OrganisationKnownAsElementType element.
-func (s *XMLDocumentState) validateOrganisationKnownAsElementType(elem *pkg_2_01.OrganisationKnownAsElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateOrganisationKnownAsElementType(elem *pkg_2_0.OrganisationKnownAsElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -8282,7 +17449,7 @@ func (s *XMLDocumentState) validateOrganisationKnownAsElementType(elem *pkg_2_01
 }
 
 // validateOrganisationNameDetails validates a OrganisationNameDetails element.
-func (s *XMLDocumentState) validateOrganisationNameDetails(elem *pkg_2_01.OrganisationNameDetails, path string) []ValidationError {
+func (s *XMLDocumentState) validateOrganisationNameDetails(elem *pkg_2_0.OrganisationNameDetails, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -8296,7 +17463,7 @@ func (s *XMLDocumentState) validateOrganisationNameDetails(elem *pkg_2_01.Organi
 }
 
 // validateOrganisationNameDetailsElement validates a OrganisationNameDetailsElement element.
-func (s *XMLDocumentState) validateOrganisationNameDetailsElement(elem *pkg_2_01.OrganisationNameDetailsElement, path string) []ValidationError {
+func (s *XMLDocumentState) validateOrganisationNameDetailsElement(elem *pkg_2_0.OrganisationNameDetailsElement, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -8308,7 +17475,7 @@ func (s *XMLDocumentState) validateOrganisationNameDetailsElement(elem *pkg_2_01
 }
 
 // validateOrganisationNameDetailsElementType validates a OrganisationNameDetailsElementType element.
-func (s *XMLDocumentState) validateOrganisationNameDetailsElementType(elem *pkg_2_01.OrganisationNameDetailsElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateOrganisationNameDetailsElementType(elem *pkg_2_0.OrganisationNameDetailsElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -8320,7 +17487,7 @@ func (s *XMLDocumentState) validateOrganisationNameDetailsElementType(elem *pkg_
 }
 
 // validateOrganisationNameElementType validates a OrganisationNameElementType element.
-func (s *XMLDocumentState) validateOrganisationNameElementType(elem *pkg_2_01.OrganisationNameElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateOrganisationNameElementType(elem *pkg_2_0.OrganisationNameElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -8333,7 +17500,7 @@ func (s *XMLDocumentState) validateOrganisationNameElementType(elem *pkg_2_01.Or
 }
 
 // validateOrganisationTypeElementType validates a OrganisationTypeElementType element.
-func (s *XMLDocumentState) validateOrganisationTypeElementType(elem *pkg_2_01.OrganisationTypeElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateOrganisationTypeElementType(elem *pkg_2_0.OrganisationTypeElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -8366,7 +17533,7 @@ func (s *XMLDocumentState) validateOrganizationType(elem *asset_identification1_
 }
 
 // validateOtherNameElementType validates a OtherNameElementType element.
-func (s *XMLDocumentState) validateOtherNameElementType(elem *pkg_2_01.OtherNameElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateOtherNameElementType(elem *pkg_2_0.OtherNameElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -8374,6 +17541,113 @@ func (s *XMLDocumentState) validateOtherNameElementType(elem *pkg_2_01.OtherName
 	// Validate Type
 	// Validate NameType
 	// Validate Code
+
+	return errors
+}
+
+// validateOval_definitionsElement validates a Oval_definitionsElement element.
+func (s *XMLDocumentState) validateOval_definitionsElement(elem *xmlschemaoval_definitions_5.Oval_definitionsElement, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Generator
+	// Validate Definitions
+	// Validate Tests
+	// Validate Objects
+	// Validate States
+	// Validate Variables
+
+	return errors
+}
+
+// validateOval_definitionsElementType validates a Oval_definitionsElementType element.
+func (s *XMLDocumentState) validateOval_definitionsElementType(elem *xmlschemaoval_definitions_5.Oval_definitionsElementType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Generator
+	// Validate Definitions
+	// Validate Tests
+	// Validate Objects
+	// Validate States
+	// Validate Variables
+
+	return errors
+}
+
+// validateOverrideType validates a OverrideType element.
+func (s *XMLDocumentState) validateOverrideType(elem *xccdf1_2.OverrideType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate OldResult
+	// Validate NewResult
+	// Validate Remark
+	// Validate Time
+	// Validate Authority
+	if elem.Authority == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/authority",
+			Message: "Required field 'authority' is missing or empty",
+		})
+	}
+
+	return errors
+}
+
+// validateOverrideableCPE2idrefType validates a OverrideableCPE2idrefType element.
+func (s *XMLDocumentState) validateOverrideableCPE2idrefType(elem *xccdf1_2.OverrideableCPE2idrefType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Override
+
+	return errors
+}
+
+// validatePGPDataElement validates a PGPDataElement element.
+func (s *XMLDocumentState) validatePGPDataElement(elem *pkg_200009xmldsig.PGPDataElement, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate PGPKeyID
+	// Validate PGPKeyPacket
+	// Validate PGPKeyPacket2
+
+	return errors
+}
+
+// validatePGPDataType validates a PGPDataType element.
+func (s *XMLDocumentState) validatePGPDataType(elem *pkg_200009xmldsig.PGPDataType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate PGPKeyID
+	// Validate PGPKeyPacket
+	// Validate PGPKeyPacket2
+
+	return errors
+}
+
+// validateParamType validates a ParamType element.
+func (s *XMLDocumentState) validateParamType(elem *xccdf1_2.ParamType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Name
+	if elem.Name == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/name",
+			Message: "Required field 'name' is missing or empty",
+		})
+	}
 
 	return errors
 }
@@ -8390,7 +17664,7 @@ func (s *XMLDocumentState) validatePersonElement(elem *asset_identification1_1.P
 }
 
 // validatePersonName validates a PersonName element.
-func (s *XMLDocumentState) validatePersonName(elem *pkg_2_01.PersonName, path string) []ValidationError {
+func (s *XMLDocumentState) validatePersonName(elem *pkg_2_0.PersonName, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -8414,7 +17688,7 @@ func (s *XMLDocumentState) validatePersonName(elem *pkg_2_01.PersonName, path st
 }
 
 // validatePersonNameElement validates a PersonNameElement element.
-func (s *XMLDocumentState) validatePersonNameElement(elem *pkg_2_01.PersonNameElement, path string) []ValidationError {
+func (s *XMLDocumentState) validatePersonNameElement(elem *pkg_2_0.PersonNameElement, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -8426,7 +17700,7 @@ func (s *XMLDocumentState) validatePersonNameElement(elem *pkg_2_01.PersonNameEl
 }
 
 // validatePersonNameElementType validates a PersonNameElementType element.
-func (s *XMLDocumentState) validatePersonNameElementType(elem *pkg_2_01.PersonNameElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validatePersonNameElementType(elem *pkg_2_0.PersonNameElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -8444,6 +17718,89 @@ func (s *XMLDocumentState) validatePersonType(elem *asset_identification1_1.Pers
 		return errors
 	}
 	// Validate Birthdate
+
+	return errors
+}
+
+// validatePlainTextType validates a PlainTextType element.
+func (s *XMLDocumentState) validatePlainTextType(elem *xccdf1_2.PlainTextType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Id
+	if elem.Id == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/id",
+			Message: "Required field 'id' is missing or empty",
+		})
+	}
+
+	return errors
+}
+
+// validatePlatformSpecificationElement validates a PlatformSpecificationElement element.
+func (s *XMLDocumentState) validatePlatformSpecificationElement(elem *language2_0.PlatformSpecificationElement, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Platform
+	if len(elem.Platform) == 0 {
+		errors = append(errors, ValidationError{
+			Path:    path + "/platform",
+			Message: "Required field 'platform' must have at least one element",
+		})
+	}
+	if len(elem.Platform) < 1 {
+		errors = append(errors, ValidationError{
+			Path:    path + "/platform",
+			Message: fmt.Sprintf("Field 'platform' requires at least 1 elements, got %d", len(elem.Platform)),
+		})
+	}
+
+	return errors
+}
+
+// validatePlatformSpecificationElementType validates a PlatformSpecificationElementType element.
+func (s *XMLDocumentState) validatePlatformSpecificationElementType(elem *language2_0.PlatformSpecificationElementType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Platform
+	if len(elem.Platform) == 0 {
+		errors = append(errors, ValidationError{
+			Path:    path + "/platform",
+			Message: "Required field 'platform' must have at least one element",
+		})
+	}
+	if len(elem.Platform) < 1 {
+		errors = append(errors, ValidationError{
+			Path:    path + "/platform",
+			Message: fmt.Sprintf("Field 'platform' requires at least 1 elements, got %d", len(elem.Platform)),
+		})
+	}
+
+	return errors
+}
+
+// validatePlatformType validates a PlatformType element.
+func (s *XMLDocumentState) validatePlatformType(elem *language2_0.PlatformType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Title
+	// Validate Remark
+	// Validate LogicalTest
+	// Validate Id
+	if elem.Id == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/id",
+			Message: "Required field 'id' is missing or empty",
+		})
+	}
 
 	return errors
 }
@@ -8470,8 +17827,72 @@ func (s *XMLDocumentState) validatePortRangeElementType(elem *asset_identificati
 	return errors
 }
 
+// validatePossibleRestrictionType validates a PossibleRestrictionType element.
+func (s *XMLDocumentState) validatePossibleRestrictionType(elem *xmlschemaoval_definitions_5.PossibleRestrictionType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Restriction
+	if len(elem.Restriction) == 0 {
+		errors = append(errors, ValidationError{
+			Path:    path + "/restriction",
+			Message: "Required field 'restriction' must have at least one element",
+		})
+	}
+	if len(elem.Restriction) < 1 {
+		errors = append(errors, ValidationError{
+			Path:    path + "/restriction",
+			Message: fmt.Sprintf("Field 'restriction' requires at least 1 elements, got %d", len(elem.Restriction)),
+		})
+	}
+	// Validate Operator
+	if elem.Operator != nil && string(*elem.Operator) != "" {
+		validValues := []string{"AND", "OR"}
+		isValid := false
+		for _, v := range validValues {
+			if string(*elem.Operator) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/operator",
+				Message: fmt.Sprintf("Field 'operator' has invalid value '%s'", string(*elem.Operator)),
+			})
+		}
+	}
+	// Validate Hint
+	if elem.Hint == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/hint",
+			Message: "Required field 'hint' is missing or empty",
+		})
+	}
+
+	return errors
+}
+
+// validatePossibleValueType validates a PossibleValueType element.
+func (s *XMLDocumentState) validatePossibleValueType(elem *xmlschemaoval_definitions_5.PossibleValueType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Hint
+	if elem.Hint == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/hint",
+			Message: "Required field 'hint' is missing or empty",
+		})
+	}
+
+	return errors
+}
+
 // validatePostBoxElement validates a PostBoxElement element.
-func (s *XMLDocumentState) validatePostBoxElement(elem *pkg_2_0.PostBoxElement, path string) []ValidationError {
+func (s *XMLDocumentState) validatePostBoxElement(elem *pkg_2_01.PostBoxElement, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -8488,7 +17909,7 @@ func (s *XMLDocumentState) validatePostBoxElement(elem *pkg_2_0.PostBoxElement, 
 }
 
 // validatePostBoxElementType validates a PostBoxElementType element.
-func (s *XMLDocumentState) validatePostBoxElementType(elem *pkg_2_0.PostBoxElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validatePostBoxElementType(elem *pkg_2_01.PostBoxElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -8505,7 +17926,7 @@ func (s *XMLDocumentState) validatePostBoxElementType(elem *pkg_2_0.PostBoxEleme
 }
 
 // validatePostBoxNumberExtensionElementType validates a PostBoxNumberExtensionElementType element.
-func (s *XMLDocumentState) validatePostBoxNumberExtensionElementType(elem *pkg_2_0.PostBoxNumberExtensionElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validatePostBoxNumberExtensionElementType(elem *pkg_2_01.PostBoxNumberExtensionElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -8516,7 +17937,7 @@ func (s *XMLDocumentState) validatePostBoxNumberExtensionElementType(elem *pkg_2
 }
 
 // validatePostBoxNumberPrefixElementType validates a PostBoxNumberPrefixElementType element.
-func (s *XMLDocumentState) validatePostBoxNumberPrefixElementType(elem *pkg_2_0.PostBoxNumberPrefixElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validatePostBoxNumberPrefixElementType(elem *pkg_2_01.PostBoxNumberPrefixElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -8527,7 +17948,7 @@ func (s *XMLDocumentState) validatePostBoxNumberPrefixElementType(elem *pkg_2_0.
 }
 
 // validatePostBoxNumberSuffixElementType validates a PostBoxNumberSuffixElementType element.
-func (s *XMLDocumentState) validatePostBoxNumberSuffixElementType(elem *pkg_2_0.PostBoxNumberSuffixElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validatePostBoxNumberSuffixElementType(elem *pkg_2_01.PostBoxNumberSuffixElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -8538,7 +17959,7 @@ func (s *XMLDocumentState) validatePostBoxNumberSuffixElementType(elem *pkg_2_0.
 }
 
 // validatePostOfficeElement validates a PostOfficeElement element.
-func (s *XMLDocumentState) validatePostOfficeElement(elem *pkg_2_0.PostOfficeElement, path string) []ValidationError {
+func (s *XMLDocumentState) validatePostOfficeElement(elem *pkg_2_01.PostOfficeElement, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -8553,7 +17974,7 @@ func (s *XMLDocumentState) validatePostOfficeElement(elem *pkg_2_0.PostOfficeEle
 }
 
 // validatePostOfficeElementType validates a PostOfficeElementType element.
-func (s *XMLDocumentState) validatePostOfficeElementType(elem *pkg_2_0.PostOfficeElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validatePostOfficeElementType(elem *pkg_2_01.PostOfficeElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -8568,7 +17989,7 @@ func (s *XMLDocumentState) validatePostOfficeElementType(elem *pkg_2_0.PostOffic
 }
 
 // validatePostOfficeNameElementType validates a PostOfficeNameElementType element.
-func (s *XMLDocumentState) validatePostOfficeNameElementType(elem *pkg_2_0.PostOfficeNameElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validatePostOfficeNameElementType(elem *pkg_2_01.PostOfficeNameElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -8579,7 +18000,7 @@ func (s *XMLDocumentState) validatePostOfficeNameElementType(elem *pkg_2_0.PostO
 }
 
 // validatePostOfficeNumberElementType validates a PostOfficeNumberElementType element.
-func (s *XMLDocumentState) validatePostOfficeNumberElementType(elem *pkg_2_0.PostOfficeNumberElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validatePostOfficeNumberElementType(elem *pkg_2_01.PostOfficeNumberElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -8591,7 +18012,7 @@ func (s *XMLDocumentState) validatePostOfficeNumberElementType(elem *pkg_2_0.Pos
 }
 
 // validatePostTownElementType validates a PostTownElementType element.
-func (s *XMLDocumentState) validatePostTownElementType(elem *pkg_2_0.PostTownElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validatePostTownElementType(elem *pkg_2_01.PostTownElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -8604,7 +18025,7 @@ func (s *XMLDocumentState) validatePostTownElementType(elem *pkg_2_0.PostTownEle
 }
 
 // validatePostTownNameElementType validates a PostTownNameElementType element.
-func (s *XMLDocumentState) validatePostTownNameElementType(elem *pkg_2_0.PostTownNameElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validatePostTownNameElementType(elem *pkg_2_01.PostTownNameElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -8615,7 +18036,7 @@ func (s *XMLDocumentState) validatePostTownNameElementType(elem *pkg_2_0.PostTow
 }
 
 // validatePostalCodeElement validates a PostalCodeElement element.
-func (s *XMLDocumentState) validatePostalCodeElement(elem *pkg_2_0.PostalCodeElement, path string) []ValidationError {
+func (s *XMLDocumentState) validatePostalCodeElement(elem *pkg_2_01.PostalCodeElement, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -8629,7 +18050,7 @@ func (s *XMLDocumentState) validatePostalCodeElement(elem *pkg_2_0.PostalCodeEle
 }
 
 // validatePostalCodeElementType validates a PostalCodeElementType element.
-func (s *XMLDocumentState) validatePostalCodeElementType(elem *pkg_2_0.PostalCodeElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validatePostalCodeElementType(elem *pkg_2_01.PostalCodeElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -8643,7 +18064,7 @@ func (s *XMLDocumentState) validatePostalCodeElementType(elem *pkg_2_0.PostalCod
 }
 
 // validatePostalCodeNumberElementType validates a PostalCodeNumberElementType element.
-func (s *XMLDocumentState) validatePostalCodeNumberElementType(elem *pkg_2_0.PostalCodeNumberElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validatePostalCodeNumberElementType(elem *pkg_2_01.PostalCodeNumberElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -8654,7 +18075,7 @@ func (s *XMLDocumentState) validatePostalCodeNumberElementType(elem *pkg_2_0.Pos
 }
 
 // validatePostalCodeNumberExtensionElementType validates a PostalCodeNumberExtensionElementType element.
-func (s *XMLDocumentState) validatePostalCodeNumberExtensionElementType(elem *pkg_2_0.PostalCodeNumberExtensionElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validatePostalCodeNumberExtensionElementType(elem *pkg_2_01.PostalCodeNumberExtensionElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -8666,7 +18087,7 @@ func (s *XMLDocumentState) validatePostalCodeNumberExtensionElementType(elem *pk
 }
 
 // validatePostalRouteNameElementType validates a PostalRouteNameElementType element.
-func (s *XMLDocumentState) validatePostalRouteNameElementType(elem *pkg_2_0.PostalRouteNameElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validatePostalRouteNameElementType(elem *pkg_2_01.PostalRouteNameElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -8677,7 +18098,7 @@ func (s *XMLDocumentState) validatePostalRouteNameElementType(elem *pkg_2_0.Post
 }
 
 // validatePostalRouteType validates a PostalRouteType element.
-func (s *XMLDocumentState) validatePostalRouteType(elem *pkg_2_0.PostalRouteType, path string) []ValidationError {
+func (s *XMLDocumentState) validatePostalRouteType(elem *pkg_2_01.PostalRouteType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -8702,7 +18123,7 @@ func (s *XMLDocumentState) validatePostalRouteType(elem *pkg_2_0.PostalRouteType
 }
 
 // validatePostalServiceElementsElementType validates a PostalServiceElementsElementType element.
-func (s *XMLDocumentState) validatePostalServiceElementsElementType(elem *pkg_2_0.PostalServiceElementsElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validatePostalServiceElementsElementType(elem *pkg_2_01.PostalServiceElementsElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -8723,7 +18144,7 @@ func (s *XMLDocumentState) validatePostalServiceElementsElementType(elem *pkg_2_
 }
 
 // validatePrecedingTitleElementType validates a PrecedingTitleElementType element.
-func (s *XMLDocumentState) validatePrecedingTitleElementType(elem *pkg_2_01.PrecedingTitleElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validatePrecedingTitleElementType(elem *pkg_2_0.PrecedingTitleElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -8735,7 +18156,7 @@ func (s *XMLDocumentState) validatePrecedingTitleElementType(elem *pkg_2_01.Prec
 }
 
 // validatePremiseElement validates a PremiseElement element.
-func (s *XMLDocumentState) validatePremiseElement(elem *pkg_2_0.PremiseElement, path string) []ValidationError {
+func (s *XMLDocumentState) validatePremiseElement(elem *pkg_2_01.PremiseElement, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -8756,7 +18177,7 @@ func (s *XMLDocumentState) validatePremiseElement(elem *pkg_2_0.PremiseElement, 
 }
 
 // validatePremiseElementType validates a PremiseElementType element.
-func (s *XMLDocumentState) validatePremiseElementType(elem *pkg_2_0.PremiseElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validatePremiseElementType(elem *pkg_2_01.PremiseElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -8777,7 +18198,7 @@ func (s *XMLDocumentState) validatePremiseElementType(elem *pkg_2_0.PremiseEleme
 }
 
 // validatePremiseNameElementType validates a PremiseNameElementType element.
-func (s *XMLDocumentState) validatePremiseNameElementType(elem *pkg_2_0.PremiseNameElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validatePremiseNameElementType(elem *pkg_2_01.PremiseNameElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -8789,7 +18210,7 @@ func (s *XMLDocumentState) validatePremiseNameElementType(elem *pkg_2_0.PremiseN
 }
 
 // validatePremiseNumberElement validates a PremiseNumberElement element.
-func (s *XMLDocumentState) validatePremiseNumberElement(elem *pkg_2_0.PremiseNumberElement, path string) []ValidationError {
+func (s *XMLDocumentState) validatePremiseNumberElement(elem *pkg_2_01.PremiseNumberElement, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -8804,7 +18225,7 @@ func (s *XMLDocumentState) validatePremiseNumberElement(elem *pkg_2_0.PremiseNum
 }
 
 // validatePremiseNumberElementType validates a PremiseNumberElementType element.
-func (s *XMLDocumentState) validatePremiseNumberElementType(elem *pkg_2_0.PremiseNumberElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validatePremiseNumberElementType(elem *pkg_2_01.PremiseNumberElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -8819,7 +18240,7 @@ func (s *XMLDocumentState) validatePremiseNumberElementType(elem *pkg_2_0.Premis
 }
 
 // validatePremiseNumberPrefixElement validates a PremiseNumberPrefixElement element.
-func (s *XMLDocumentState) validatePremiseNumberPrefixElement(elem *pkg_2_0.PremiseNumberPrefixElement, path string) []ValidationError {
+func (s *XMLDocumentState) validatePremiseNumberPrefixElement(elem *pkg_2_01.PremiseNumberPrefixElement, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -8831,7 +18252,7 @@ func (s *XMLDocumentState) validatePremiseNumberPrefixElement(elem *pkg_2_0.Prem
 }
 
 // validatePremiseNumberPrefixElementType validates a PremiseNumberPrefixElementType element.
-func (s *XMLDocumentState) validatePremiseNumberPrefixElementType(elem *pkg_2_0.PremiseNumberPrefixElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validatePremiseNumberPrefixElementType(elem *pkg_2_01.PremiseNumberPrefixElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -8843,7 +18264,7 @@ func (s *XMLDocumentState) validatePremiseNumberPrefixElementType(elem *pkg_2_0.
 }
 
 // validatePremiseNumberRangeElementType validates a PremiseNumberRangeElementType element.
-func (s *XMLDocumentState) validatePremiseNumberRangeElementType(elem *pkg_2_0.PremiseNumberRangeElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validatePremiseNumberRangeElementType(elem *pkg_2_01.PremiseNumberRangeElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -8861,7 +18282,7 @@ func (s *XMLDocumentState) validatePremiseNumberRangeElementType(elem *pkg_2_0.P
 }
 
 // validatePremiseNumberRangeFromElementType validates a PremiseNumberRangeFromElementType element.
-func (s *XMLDocumentState) validatePremiseNumberRangeFromElementType(elem *pkg_2_0.PremiseNumberRangeFromElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validatePremiseNumberRangeFromElementType(elem *pkg_2_01.PremiseNumberRangeFromElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -8871,7 +18292,7 @@ func (s *XMLDocumentState) validatePremiseNumberRangeFromElementType(elem *pkg_2
 }
 
 // validatePremiseNumberRangeToElementType validates a PremiseNumberRangeToElementType element.
-func (s *XMLDocumentState) validatePremiseNumberRangeToElementType(elem *pkg_2_0.PremiseNumberRangeToElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validatePremiseNumberRangeToElementType(elem *pkg_2_01.PremiseNumberRangeToElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -8881,7 +18302,7 @@ func (s *XMLDocumentState) validatePremiseNumberRangeToElementType(elem *pkg_2_0
 }
 
 // validatePremiseNumberSuffixElement validates a PremiseNumberSuffixElement element.
-func (s *XMLDocumentState) validatePremiseNumberSuffixElement(elem *pkg_2_0.PremiseNumberSuffixElement, path string) []ValidationError {
+func (s *XMLDocumentState) validatePremiseNumberSuffixElement(elem *pkg_2_01.PremiseNumberSuffixElement, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -8893,7 +18314,7 @@ func (s *XMLDocumentState) validatePremiseNumberSuffixElement(elem *pkg_2_0.Prem
 }
 
 // validatePremiseNumberSuffixElementType validates a PremiseNumberSuffixElementType element.
-func (s *XMLDocumentState) validatePremiseNumberSuffixElementType(elem *pkg_2_0.PremiseNumberSuffixElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validatePremiseNumberSuffixElementType(elem *pkg_2_01.PremiseNumberSuffixElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -8904,12 +18325,380 @@ func (s *XMLDocumentState) validatePremiseNumberSuffixElementType(elem *pkg_2_0.
 	return errors
 }
 
+// validateProfileElement validates a ProfileElement element.
+func (s *XMLDocumentState) validateProfileElement(elem *xccdf1_2.ProfileElement, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate DcStatus
+	// Validate Version
+	// Validate Title
+	if len(elem.Title) == 0 {
+		errors = append(errors, ValidationError{
+			Path:    path + "/title",
+			Message: "Required field 'title' must have at least one element",
+		})
+	}
+	if len(elem.Title) < 1 {
+		errors = append(errors, ValidationError{
+			Path:    path + "/title",
+			Message: fmt.Sprintf("Field 'title' requires at least 1 elements, got %d", len(elem.Title)),
+		})
+	}
+	// Validate Description
+	// Validate Reference
+	// Validate Platform
+	// Validate Metadata
+	// Validate Signature
+	// Validate Select
+	// Validate SetComplexValue
+	// Validate SetValue
+	// Validate RefineValue
+	// Validate RefineRule
+	// Validate Id
+	if elem.Id == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/id",
+			Message: "Required field 'id' is missing or empty",
+		})
+	}
+	if string(elem.Id) != "" {
+		matched, _ := regexp.MatchString(`xccdf_[^_]+_profile_.+`, string(elem.Id))
+		if !matched {
+			errors = append(errors, ValidationError{
+				Path:    path + "/id",
+				Message: "Field 'id' does not match required pattern",
+			})
+		}
+	}
+	// Validate ProhibitChanges
+	// Validate Abstract
+	// Validate NoteTag
+	// Validate Extends
+	// Validate Id2
+
+	return errors
+}
+
+// validateProfileNoteType validates a ProfileNoteType element.
+func (s *XMLDocumentState) validateProfileNoteType(elem *xccdf1_2.ProfileNoteType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Sub
+	// Validate Tag
+	if elem.Tag == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/tag",
+			Message: "Required field 'tag' is missing or empty",
+		})
+	}
+
+	return errors
+}
+
+// validateProfileRefineRuleType validates a ProfileRefineRuleType element.
+func (s *XMLDocumentState) validateProfileRefineRuleType(elem *xccdf1_2.ProfileRefineRuleType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Remark
+	// Validate Idref
+	if elem.Idref == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/idref",
+			Message: "Required field 'idref' is missing or empty",
+		})
+	}
+	// Validate Weight
+	// Validate Selector
+	// Validate Severity
+	if elem.Severity != nil && string(*elem.Severity) != "" {
+		validValues := []string{"unknown", "info", "low", "medium", "high"}
+		isValid := false
+		for _, v := range validValues {
+			if string(*elem.Severity) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/severity",
+				Message: fmt.Sprintf("Field 'severity' has invalid value '%s'", string(*elem.Severity)),
+			})
+		}
+	}
+	// Validate Role
+	if elem.Role != nil && string(*elem.Role) != "" {
+		validValues := []string{"full", "unscored", "unchecked"}
+		isValid := false
+		for _, v := range validValues {
+			if string(*elem.Role) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/role",
+				Message: fmt.Sprintf("Field 'role' has invalid value '%s'", string(*elem.Role)),
+			})
+		}
+	}
+
+	return errors
+}
+
+// validateProfileRefineValueType validates a ProfileRefineValueType element.
+func (s *XMLDocumentState) validateProfileRefineValueType(elem *xccdf1_2.ProfileRefineValueType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Remark
+	// Validate Idref
+	if elem.Idref == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/idref",
+			Message: "Required field 'idref' is missing or empty",
+		})
+	}
+	// Validate Selector
+	// Validate Operator
+	if elem.Operator != nil && string(*elem.Operator) != "" {
+		validValues := []string{"equals", "not equal", "greater than", "less than", "greater than or equal", "less than or equal", "pattern match"}
+		isValid := false
+		for _, v := range validValues {
+			if string(*elem.Operator) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/operator",
+				Message: fmt.Sprintf("Field 'operator' has invalid value '%s'", string(*elem.Operator)),
+			})
+		}
+	}
+
+	return errors
+}
+
+// validateProfileSelectType validates a ProfileSelectType element.
+func (s *XMLDocumentState) validateProfileSelectType(elem *xccdf1_2.ProfileSelectType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Remark
+	// Validate Idref
+	if elem.Idref == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/idref",
+			Message: "Required field 'idref' is missing or empty",
+		})
+	}
+	// Validate Selected
+
+	return errors
+}
+
+// validateProfileSetComplexValueType validates a ProfileSetComplexValueType element.
+func (s *XMLDocumentState) validateProfileSetComplexValueType(elem *xccdf1_2.ProfileSetComplexValueType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Idref
+	if elem.Idref == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/idref",
+			Message: "Required field 'idref' is missing or empty",
+		})
+	}
+
+	return errors
+}
+
+// validateProfileSetValueType validates a ProfileSetValueType element.
+func (s *XMLDocumentState) validateProfileSetValueType(elem *xccdf1_2.ProfileSetValueType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Idref
+	if elem.Idref == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/idref",
+			Message: "Required field 'idref' is missing or empty",
+		})
+	}
+
+	return errors
+}
+
+// validateProfileType validates a ProfileType element.
+func (s *XMLDocumentState) validateProfileType(elem *xccdf1_2.ProfileType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate DcStatus
+	// Validate Version
+	// Validate Title
+	if len(elem.Title) == 0 {
+		errors = append(errors, ValidationError{
+			Path:    path + "/title",
+			Message: "Required field 'title' must have at least one element",
+		})
+	}
+	if len(elem.Title) < 1 {
+		errors = append(errors, ValidationError{
+			Path:    path + "/title",
+			Message: fmt.Sprintf("Field 'title' requires at least 1 elements, got %d", len(elem.Title)),
+		})
+	}
+	// Validate Description
+	// Validate Reference
+	// Validate Platform
+	// Validate Metadata
+	// Validate Signature
+	// Validate Select
+	// Validate SetComplexValue
+	// Validate SetValue
+	// Validate RefineValue
+	// Validate RefineRule
+	// Validate Id
+	if elem.Id == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/id",
+			Message: "Required field 'id' is missing or empty",
+		})
+	}
+	if string(elem.Id) != "" {
+		matched, _ := regexp.MatchString(`xccdf_[^_]+_profile_.+`, string(elem.Id))
+		if !matched {
+			errors = append(errors, ValidationError{
+				Path:    path + "/id",
+				Message: "Field 'id' does not match required pattern",
+			})
+		}
+	}
+	// Validate ProhibitChanges
+	// Validate Abstract
+	// Validate NoteTag
+	// Validate Extends
+	// Validate Id2
+
+	return errors
+}
+
 // validateProtocolElementType validates a ProtocolElementType element.
 func (s *XMLDocumentState) validateProtocolElementType(elem *asset_identification1_1.ProtocolElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
 	}
+
+	return errors
+}
+
+// validateRSAKeyValueElement validates a RSAKeyValueElement element.
+func (s *XMLDocumentState) validateRSAKeyValueElement(elem *pkg_200009xmldsig.RSAKeyValueElement, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Modulus
+	// Validate Exponent
+
+	return errors
+}
+
+// validateRSAKeyValueType validates a RSAKeyValueType element.
+func (s *XMLDocumentState) validateRSAKeyValueType(elem *pkg_200009xmldsig.RSAKeyValueType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Modulus
+	// Validate Exponent
+
+	return errors
+}
+
+// validateReferenceElement validates a ReferenceElement element.
+func (s *XMLDocumentState) validateReferenceElement(elem *pkg_200009xmldsig.ReferenceElement, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Id
+	// Validate URI
+	// Validate Type
+
+	return errors
+}
+
+// validateReferenceElementType validates a ReferenceElementType element.
+func (s *XMLDocumentState) validateReferenceElementType(elem *dictionary2_0.ReferenceElementType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Href
+
+	return errors
+}
+
+// validateReferenceType validates a ReferenceType element.
+func (s *XMLDocumentState) validateReferenceType(elem *pkg_200009xmldsig.ReferenceType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Id
+	// Validate URI
+	// Validate Type
+
+	return errors
+}
+
+// validateReferencesType validates a ReferencesType element.
+func (s *XMLDocumentState) validateReferencesType(elem *dictionary2_0.ReferencesType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Reference
+	if len(elem.Reference) == 0 {
+		errors = append(errors, ValidationError{
+			Path:    path + "/reference",
+			Message: "Required field 'reference' must have at least one element",
+		})
+	}
+	if len(elem.Reference) < 1 {
+		errors = append(errors, ValidationError{
+			Path:    path + "/reference",
+			Message: fmt.Sprintf("Field 'reference' requires at least 1 elements, got %d", len(elem.Reference)),
+		})
+	}
+
+	return errors
+}
+
+// validateRegexCaptureFunctionType validates a RegexCaptureFunctionType element.
+func (s *XMLDocumentState) validateRegexCaptureFunctionType(elem *xmlschemaoval_definitions_5.RegexCaptureFunctionType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Pattern
 
 	return errors
 }
@@ -9088,6 +18877,356 @@ func (s *XMLDocumentState) validateReportsElementType(elem *asset_reporting_form
 	return errors
 }
 
+// validateRestrictionType validates a RestrictionType element.
+func (s *XMLDocumentState) validateRestrictionType(elem *xmlschemaoval_definitions_5.RestrictionType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Operation
+	if elem.Operation == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/operation",
+			Message: "Required field 'operation' is missing or empty",
+		})
+	}
+	if string(elem.Operation) != "" {
+		validValues := []string{"equals", "not equal", "case insensitive equals", "case insensitive not equal", "greater than", "less than", "greater than or equal", "less than or equal", "bitwise and", "bitwise or", "pattern match", "subset of", "superset of"}
+		isValid := false
+		for _, v := range validValues {
+			if string(elem.Operation) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/operation",
+				Message: fmt.Sprintf("Field 'operation' has invalid value '%s'", string(elem.Operation)),
+			})
+		}
+	}
+
+	return errors
+}
+
+// validateRetrievalMethodElement validates a RetrievalMethodElement element.
+func (s *XMLDocumentState) validateRetrievalMethodElement(elem *pkg_200009xmldsig.RetrievalMethodElement, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate URI
+	// Validate Type
+
+	return errors
+}
+
+// validateRetrievalMethodType validates a RetrievalMethodType element.
+func (s *XMLDocumentState) validateRetrievalMethodType(elem *pkg_200009xmldsig.RetrievalMethodType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate URI
+	// Validate Type
+
+	return errors
+}
+
+// validateRuleElement validates a RuleElement element.
+func (s *XMLDocumentState) validateRuleElement(elem *xccdf1_2.RuleElement, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Ident
+	// Validate ImpactMetric
+	// Validate ProfileNote
+	// Validate Fixtext
+	// Validate Fix
+	// Validate Signature
+	// Validate Check
+	// Validate ComplexCheck
+	// Validate Id
+	if elem.Id == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/id",
+			Message: "Required field 'id' is missing or empty",
+		})
+	}
+	if string(elem.Id) != "" {
+		matched, _ := regexp.MatchString(`xccdf_[^_]+_rule_.+`, string(elem.Id))
+		if !matched {
+			errors = append(errors, ValidationError{
+				Path:    path + "/id",
+				Message: "Field 'id' does not match required pattern",
+			})
+		}
+	}
+	// Validate Role
+	if elem.Role != nil && string(*elem.Role) != "" {
+		validValues := []string{"full", "unscored", "unchecked"}
+		isValid := false
+		for _, v := range validValues {
+			if string(*elem.Role) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/role",
+				Message: fmt.Sprintf("Field 'role' has invalid value '%s'", string(*elem.Role)),
+			})
+		}
+	}
+	// Validate Severity
+	if elem.Severity != nil && string(*elem.Severity) != "" {
+		validValues := []string{"unknown", "info", "low", "medium", "high"}
+		isValid := false
+		for _, v := range validValues {
+			if string(*elem.Severity) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/severity",
+				Message: fmt.Sprintf("Field 'severity' has invalid value '%s'", string(*elem.Severity)),
+			})
+		}
+	}
+	// Validate Multiple
+
+	return errors
+}
+
+// validateRuleResultType validates a RuleResultType element.
+func (s *XMLDocumentState) validateRuleResultType(elem *xccdf1_2.RuleResultType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Result
+	// Validate Override
+	// Validate Ident
+	// Validate Metadata
+	// Validate Message
+	// Validate Instance
+	// Validate Fix
+	// Validate Check
+	// Validate ComplexCheck
+	// Validate Idref
+	if elem.Idref == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/idref",
+			Message: "Required field 'idref' is missing or empty",
+		})
+	}
+	// Validate Role
+	if elem.Role != nil && string(*elem.Role) != "" {
+		validValues := []string{"full", "unscored", "unchecked"}
+		isValid := false
+		for _, v := range validValues {
+			if string(*elem.Role) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/role",
+				Message: fmt.Sprintf("Field 'role' has invalid value '%s'", string(*elem.Role)),
+			})
+		}
+	}
+	// Validate Severity
+	if elem.Severity != nil && string(*elem.Severity) != "" {
+		validValues := []string{"unknown", "info", "low", "medium", "high"}
+		isValid := false
+		for _, v := range validValues {
+			if string(*elem.Severity) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/severity",
+				Message: fmt.Sprintf("Field 'severity' has invalid value '%s'", string(*elem.Severity)),
+			})
+		}
+	}
+	// Validate Time
+	// Validate Version
+	// Validate Weight
+
+	return errors
+}
+
+// validateRuleType validates a RuleType element.
+func (s *XMLDocumentState) validateRuleType(elem *xccdf1_2.RuleType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Ident
+	// Validate ImpactMetric
+	// Validate ProfileNote
+	// Validate Fixtext
+	// Validate Fix
+	// Validate Signature
+	// Validate Check
+	// Validate ComplexCheck
+	// Validate Id
+	if elem.Id == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/id",
+			Message: "Required field 'id' is missing or empty",
+		})
+	}
+	if string(elem.Id) != "" {
+		matched, _ := regexp.MatchString(`xccdf_[^_]+_rule_.+`, string(elem.Id))
+		if !matched {
+			errors = append(errors, ValidationError{
+				Path:    path + "/id",
+				Message: "Field 'id' does not match required pattern",
+			})
+		}
+	}
+	// Validate Role
+	if elem.Role != nil && string(*elem.Role) != "" {
+		validValues := []string{"full", "unscored", "unchecked"}
+		isValid := false
+		for _, v := range validValues {
+			if string(*elem.Role) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/role",
+				Message: fmt.Sprintf("Field 'role' has invalid value '%s'", string(*elem.Role)),
+			})
+		}
+	}
+	// Validate Severity
+	if elem.Severity != nil && string(*elem.Severity) != "" {
+		validValues := []string{"unknown", "info", "low", "medium", "high"}
+		isValid := false
+		for _, v := range validValues {
+			if string(*elem.Severity) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/severity",
+				Message: fmt.Sprintf("Field 'severity' has invalid value '%s'", string(*elem.Severity)),
+			})
+		}
+	}
+	// Validate Multiple
+
+	return errors
+}
+
+// validateSPKIDataElement validates a SPKIDataElement element.
+func (s *XMLDocumentState) validateSPKIDataElement(elem *pkg_200009xmldsig.SPKIDataElement, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate SPKISexp
+
+	return errors
+}
+
+// validateSPKIDataType validates a SPKIDataType element.
+func (s *XMLDocumentState) validateSPKIDataType(elem *pkg_200009xmldsig.SPKIDataType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate SPKISexp
+
+	return errors
+}
+
+// validateSchemaVersionType validates a SchemaVersionType element.
+func (s *XMLDocumentState) validateSchemaVersionType(elem *xmlschemaoval_common_5.SchemaVersionType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Platform
+
+	return errors
+}
+
+// validateScoreType validates a ScoreType element.
+func (s *XMLDocumentState) validateScoreType(elem *xccdf1_2.ScoreType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate System
+	// Validate Maximum
+
+	return errors
+}
+
+// validateSelChoicesType validates a SelChoicesType element.
+func (s *XMLDocumentState) validateSelChoicesType(elem *xccdf1_2.SelChoicesType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Choice
+	// Validate ComplexChoice
+	// Validate MustMatch
+	// Validate Selector
+
+	return errors
+}
+
+// validateSelComplexValueType validates a SelComplexValueType element.
+func (s *XMLDocumentState) validateSelComplexValueType(elem *xccdf1_2.SelComplexValueType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Selector
+
+	return errors
+}
+
+// validateSelNumType validates a SelNumType element.
+func (s *XMLDocumentState) validateSelNumType(elem *xccdf1_2.SelNumType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Selector
+
+	return errors
+}
+
+// validateSelStringType validates a SelStringType element.
+func (s *XMLDocumentState) validateSelStringType(elem *xccdf1_2.SelStringType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Selector
+
+	return errors
+}
+
 // validateServedByElement validates a ServedByElement element.
 func (s *XMLDocumentState) validateServedByElement(elem *asset_identification1_1.ServedByElement, path string) []ValidationError {
 	var errors []ValidationError
@@ -9130,6 +19269,258 @@ func (s *XMLDocumentState) validateServiceType(elem *asset_identification1_1.Ser
 	return errors
 }
 
+// validateSetElement validates a SetElement element.
+func (s *XMLDocumentState) validateSetElement(elem *xmlschemaoval_definitions_5.SetElement, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Object_reference
+	if len(elem.Object_reference) == 0 {
+		errors = append(errors, ValidationError{
+			Path:    path + "/object_reference",
+			Message: "Required field 'object_reference' must have at least one element",
+		})
+	}
+	if len(elem.Object_reference) < 1 {
+		errors = append(errors, ValidationError{
+			Path:    path + "/object_reference",
+			Message: fmt.Sprintf("Field 'object_reference' requires at least 1 elements, got %d", len(elem.Object_reference)),
+		})
+	}
+	if len(elem.Object_reference) > 2 {
+		errors = append(errors, ValidationError{
+			Path:    path + "/object_reference",
+			Message: fmt.Sprintf("Field 'object_reference' allows at most 2 elements, got %d", len(elem.Object_reference)),
+		})
+	}
+	// Validate Set_operator
+	if elem.Set_operator != nil && string(*elem.Set_operator) != "" {
+		validValues := []string{"COMPLEMENT", "INTERSECTION", "UNION"}
+		isValid := false
+		for _, v := range validValues {
+			if string(*elem.Set_operator) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/set_operator",
+				Message: fmt.Sprintf("Field 'set_operator' has invalid value '%s'", string(*elem.Set_operator)),
+			})
+		}
+	}
+
+	return errors
+}
+
+// validateSetElementType validates a SetElementType element.
+func (s *XMLDocumentState) validateSetElementType(elem *xmlschemaoval_definitions_5.SetElementType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Object_reference
+	if len(elem.Object_reference) == 0 {
+		errors = append(errors, ValidationError{
+			Path:    path + "/object_reference",
+			Message: "Required field 'object_reference' must have at least one element",
+		})
+	}
+	if len(elem.Object_reference) < 1 {
+		errors = append(errors, ValidationError{
+			Path:    path + "/object_reference",
+			Message: fmt.Sprintf("Field 'object_reference' requires at least 1 elements, got %d", len(elem.Object_reference)),
+		})
+	}
+	if len(elem.Object_reference) > 2 {
+		errors = append(errors, ValidationError{
+			Path:    path + "/object_reference",
+			Message: fmt.Sprintf("Field 'object_reference' allows at most 2 elements, got %d", len(elem.Object_reference)),
+		})
+	}
+	// Validate Set_operator
+	if elem.Set_operator != nil && string(*elem.Set_operator) != "" {
+		validValues := []string{"COMPLEMENT", "INTERSECTION", "UNION"}
+		isValid := false
+		for _, v := range validValues {
+			if string(*elem.Set_operator) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/set_operator",
+				Message: fmt.Sprintf("Field 'set_operator' has invalid value '%s'", string(*elem.Set_operator)),
+			})
+		}
+	}
+
+	return errors
+}
+
+// validateSignatureElement validates a SignatureElement element.
+func (s *XMLDocumentState) validateSignatureElement(elem *pkg_200009xmldsig.SignatureElement, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Id
+
+	return errors
+}
+
+// validateSignatureMethodElement validates a SignatureMethodElement element.
+func (s *XMLDocumentState) validateSignatureMethodElement(elem *pkg_200009xmldsig.SignatureMethodElement, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate HMACOutputLength
+	// Validate Algorithm
+	if elem.Algorithm == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/Algorithm",
+			Message: "Required field 'Algorithm' is missing or empty",
+		})
+	}
+
+	return errors
+}
+
+// validateSignatureMethodType validates a SignatureMethodType element.
+func (s *XMLDocumentState) validateSignatureMethodType(elem *pkg_200009xmldsig.SignatureMethodType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate HMACOutputLength
+	// Validate Algorithm
+	if elem.Algorithm == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/Algorithm",
+			Message: "Required field 'Algorithm' is missing or empty",
+		})
+	}
+
+	return errors
+}
+
+// validateSignaturePropertiesElement validates a SignaturePropertiesElement element.
+func (s *XMLDocumentState) validateSignaturePropertiesElement(elem *pkg_200009xmldsig.SignaturePropertiesElement, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Id
+
+	return errors
+}
+
+// validateSignaturePropertiesType validates a SignaturePropertiesType element.
+func (s *XMLDocumentState) validateSignaturePropertiesType(elem *pkg_200009xmldsig.SignaturePropertiesType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Id
+
+	return errors
+}
+
+// validateSignaturePropertyElement validates a SignaturePropertyElement element.
+func (s *XMLDocumentState) validateSignaturePropertyElement(elem *pkg_200009xmldsig.SignaturePropertyElement, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Target
+	if elem.Target == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/Target",
+			Message: "Required field 'Target' is missing or empty",
+		})
+	}
+	// Validate Id
+
+	return errors
+}
+
+// validateSignaturePropertyType validates a SignaturePropertyType element.
+func (s *XMLDocumentState) validateSignaturePropertyType(elem *pkg_200009xmldsig.SignaturePropertyType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Target
+	if elem.Target == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/Target",
+			Message: "Required field 'Target' is missing or empty",
+		})
+	}
+	// Validate Id
+
+	return errors
+}
+
+// validateSignatureType validates a SignatureType element.
+func (s *XMLDocumentState) validateSignatureType(elem *pkg_200009xmldsig.SignatureType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Id
+
+	return errors
+}
+
+// validateSignatureValueElement validates a SignatureValueElement element.
+func (s *XMLDocumentState) validateSignatureValueElement(elem *pkg_200009xmldsig.SignatureValueElement, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Id
+
+	return errors
+}
+
+// validateSignatureValueType validates a SignatureValueType element.
+func (s *XMLDocumentState) validateSignatureValueType(elem *pkg_200009xmldsig.SignatureValueType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Id
+
+	return errors
+}
+
+// validateSignedInfoElement validates a SignedInfoElement element.
+func (s *XMLDocumentState) validateSignedInfoElement(elem *pkg_200009xmldsig.SignedInfoElement, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Id
+
+	return errors
+}
+
+// validateSignedInfoType validates a SignedInfoType element.
+func (s *XMLDocumentState) validateSignedInfoType(elem *pkg_200009xmldsig.SignedInfoType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Id
+
+	return errors
+}
+
 // validateSoftwareElement validates a SoftwareElement element.
 func (s *XMLDocumentState) validateSoftwareElement(elem *asset_identification1_1.SoftwareElement, path string) []ValidationError {
 	var errors []ValidationError
@@ -9155,7 +19546,7 @@ func (s *XMLDocumentState) validateSoftwareType(elem *asset_identification1_1.So
 }
 
 // validateSortingCodeElementType validates a SortingCodeElementType element.
-func (s *XMLDocumentState) validateSortingCodeElementType(elem *pkg_2_0.SortingCodeElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateSortingCodeElementType(elem *pkg_2_01.SortingCodeElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -9165,8 +19556,187 @@ func (s *XMLDocumentState) validateSortingCodeElementType(elem *pkg_2_0.SortingC
 	return errors
 }
 
+// validateSplitFunctionType validates a SplitFunctionType element.
+func (s *XMLDocumentState) validateSplitFunctionType(elem *xmlschemaoval_definitions_5.SplitFunctionType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Delimiter
+	if elem.Delimiter == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/delimiter",
+			Message: "Required field 'delimiter' is missing or empty",
+		})
+	}
+
+	return errors
+}
+
+// validateStateElement validates a StateElement element.
+func (s *XMLDocumentState) validateStateElement(elem *xmlschemaoval_definitions_5.StateElement, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Id
+	if elem.Id == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/id",
+			Message: "Required field 'id' is missing or empty",
+		})
+	}
+	if string(elem.Id) != "" {
+		matched, _ := regexp.MatchString(`oval:[A-Za-z0-9_\-\.]+:ste:[1-9][0-9]*`, string(elem.Id))
+		if !matched {
+			errors = append(errors, ValidationError{
+				Path:    path + "/id",
+				Message: "Field 'id' does not match required pattern",
+			})
+		}
+	}
+	// Validate Version
+	// Validate Operator
+	if elem.Operator != nil && string(*elem.Operator) != "" {
+		validValues := []string{"AND", "ONE", "OR", "XOR"}
+		isValid := false
+		for _, v := range validValues {
+			if string(*elem.Operator) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/operator",
+				Message: fmt.Sprintf("Field 'operator' has invalid value '%s'", string(*elem.Operator)),
+			})
+		}
+	}
+	// Validate Comment
+	if elem.Comment != nil && string(*elem.Comment) != "" && len(string(*elem.Comment)) < 1 {
+		errors = append(errors, ValidationError{
+			Path:    path + "/comment",
+			Message: fmt.Sprintf("Field 'comment' must be at least 1 characters"),
+		})
+	}
+	// Validate Deprecated
+
+	return errors
+}
+
+// validateStateRefType validates a StateRefType element.
+func (s *XMLDocumentState) validateStateRefType(elem *xmlschemaoval_definitions_5.StateRefType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate State_ref
+	if elem.State_ref == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/state_ref",
+			Message: "Required field 'state_ref' is missing or empty",
+		})
+	}
+	if string(elem.State_ref) != "" {
+		matched, _ := regexp.MatchString(`oval:[A-Za-z0-9_\-\.]+:ste:[1-9][0-9]*`, string(elem.State_ref))
+		if !matched {
+			errors = append(errors, ValidationError{
+				Path:    path + "/state_ref",
+				Message: "Field 'state_ref' does not match required pattern",
+			})
+		}
+	}
+
+	return errors
+}
+
+// validateStateType validates a StateType element.
+func (s *XMLDocumentState) validateStateType(elem *xmlschemaoval_definitions_5.StateType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Id
+	if elem.Id == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/id",
+			Message: "Required field 'id' is missing or empty",
+		})
+	}
+	if string(elem.Id) != "" {
+		matched, _ := regexp.MatchString(`oval:[A-Za-z0-9_\-\.]+:ste:[1-9][0-9]*`, string(elem.Id))
+		if !matched {
+			errors = append(errors, ValidationError{
+				Path:    path + "/id",
+				Message: "Field 'id' does not match required pattern",
+			})
+		}
+	}
+	// Validate Version
+	// Validate Operator
+	if elem.Operator != nil && string(*elem.Operator) != "" {
+		validValues := []string{"AND", "ONE", "OR", "XOR"}
+		isValid := false
+		for _, v := range validValues {
+			if string(*elem.Operator) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/operator",
+				Message: fmt.Sprintf("Field 'operator' has invalid value '%s'", string(*elem.Operator)),
+			})
+		}
+	}
+	// Validate Comment
+	if elem.Comment != nil && string(*elem.Comment) != "" && len(string(*elem.Comment)) < 1 {
+		errors = append(errors, ValidationError{
+			Path:    path + "/comment",
+			Message: fmt.Sprintf("Field 'comment' must be at least 1 characters"),
+		})
+	}
+	// Validate Deprecated
+
+	return errors
+}
+
+// validateStatesType validates a StatesType element.
+func (s *XMLDocumentState) validateStatesType(elem *xmlschemaoval_definitions_5.StatesType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+
+	return errors
+}
+
+// validateStatusElement validates a StatusElement element.
+func (s *XMLDocumentState) validateStatusElement(elem *xccdf1_2.StatusElement, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Date
+
+	return errors
+}
+
+// validateStatusElementType validates a StatusElementType element.
+func (s *XMLDocumentState) validateStatusElementType(elem *xccdf1_2.StatusElementType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Date
+
+	return errors
+}
+
 // validateSubAdministrativeAreaElementType validates a SubAdministrativeAreaElementType element.
-func (s *XMLDocumentState) validateSubAdministrativeAreaElementType(elem *pkg_2_0.SubAdministrativeAreaElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateSubAdministrativeAreaElementType(elem *pkg_2_01.SubAdministrativeAreaElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -9180,7 +19750,7 @@ func (s *XMLDocumentState) validateSubAdministrativeAreaElementType(elem *pkg_2_
 }
 
 // validateSubAdministrativeAreaNameElementType validates a SubAdministrativeAreaNameElementType element.
-func (s *XMLDocumentState) validateSubAdministrativeAreaNameElementType(elem *pkg_2_0.SubAdministrativeAreaNameElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateSubAdministrativeAreaNameElementType(elem *pkg_2_01.SubAdministrativeAreaNameElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -9191,7 +19761,7 @@ func (s *XMLDocumentState) validateSubAdministrativeAreaNameElementType(elem *pk
 }
 
 // validateSubPremiseNameElementType validates a SubPremiseNameElementType element.
-func (s *XMLDocumentState) validateSubPremiseNameElementType(elem *pkg_2_0.SubPremiseNameElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateSubPremiseNameElementType(elem *pkg_2_01.SubPremiseNameElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -9203,7 +19773,7 @@ func (s *XMLDocumentState) validateSubPremiseNameElementType(elem *pkg_2_0.SubPr
 }
 
 // validateSubPremiseNumberElementType validates a SubPremiseNumberElementType element.
-func (s *XMLDocumentState) validateSubPremiseNumberElementType(elem *pkg_2_0.SubPremiseNumberElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateSubPremiseNumberElementType(elem *pkg_2_01.SubPremiseNumberElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -9218,7 +19788,7 @@ func (s *XMLDocumentState) validateSubPremiseNumberElementType(elem *pkg_2_0.Sub
 }
 
 // validateSubPremiseNumberPrefixElementType validates a SubPremiseNumberPrefixElementType element.
-func (s *XMLDocumentState) validateSubPremiseNumberPrefixElementType(elem *pkg_2_0.SubPremiseNumberPrefixElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateSubPremiseNumberPrefixElementType(elem *pkg_2_01.SubPremiseNumberPrefixElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -9230,7 +19800,7 @@ func (s *XMLDocumentState) validateSubPremiseNumberPrefixElementType(elem *pkg_2
 }
 
 // validateSubPremiseNumberSuffixElementType validates a SubPremiseNumberSuffixElementType element.
-func (s *XMLDocumentState) validateSubPremiseNumberSuffixElementType(elem *pkg_2_0.SubPremiseNumberSuffixElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateSubPremiseNumberSuffixElementType(elem *pkg_2_01.SubPremiseNumberSuffixElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -9242,7 +19812,7 @@ func (s *XMLDocumentState) validateSubPremiseNumberSuffixElementType(elem *pkg_2
 }
 
 // validateSubPremiseType validates a SubPremiseType element.
-func (s *XMLDocumentState) validateSubPremiseType(elem *pkg_2_0.SubPremiseType, path string) []ValidationError {
+func (s *XMLDocumentState) validateSubPremiseType(elem *pkg_2_01.SubPremiseType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -9261,8 +19831,47 @@ func (s *XMLDocumentState) validateSubPremiseType(elem *pkg_2_0.SubPremiseType, 
 	return errors
 }
 
+// validateSubType validates a SubType element.
+func (s *XMLDocumentState) validateSubType(elem *xccdf1_2.SubType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Use
+	if elem.Use != nil && string(*elem.Use) != "" {
+		validValues := []string{"value", "title", "legacy"}
+		isValid := false
+		for _, v := range validValues {
+			if string(*elem.Use) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/use",
+				Message: fmt.Sprintf("Field 'use' has invalid value '%s'", string(*elem.Use)),
+			})
+		}
+	}
+
+	return errors
+}
+
+// validateSubstringFunctionType validates a SubstringFunctionType element.
+func (s *XMLDocumentState) validateSubstringFunctionType(elem *xmlschemaoval_definitions_5.SubstringFunctionType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Substring_start
+	// Validate Substring_length
+
+	return errors
+}
+
 // validateSuffixElementType validates a SuffixElementType element.
-func (s *XMLDocumentState) validateSuffixElementType(elem *pkg_2_01.SuffixElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateSuffixElementType(elem *pkg_2_0.SuffixElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -9274,7 +19883,7 @@ func (s *XMLDocumentState) validateSuffixElementType(elem *pkg_2_01.SuffixElemen
 }
 
 // validateSupplementaryPostalServiceDataElementType validates a SupplementaryPostalServiceDataElementType element.
-func (s *XMLDocumentState) validateSupplementaryPostalServiceDataElementType(elem *pkg_2_0.SupplementaryPostalServiceDataElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateSupplementaryPostalServiceDataElementType(elem *pkg_2_01.SupplementaryPostalServiceDataElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -9366,6 +19975,160 @@ func (s *XMLDocumentState) validateSystemType(elem *asset_identification1_1.Syst
 	return errors
 }
 
+// validateTailoringBenchmarkReferenceType validates a TailoringBenchmarkReferenceType element.
+func (s *XMLDocumentState) validateTailoringBenchmarkReferenceType(elem *xccdf1_2.TailoringBenchmarkReferenceType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Version
+
+	return errors
+}
+
+// validateTailoringElement validates a TailoringElement element.
+func (s *XMLDocumentState) validateTailoringElement(elem *xccdf1_2.TailoringElement, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Benchmark
+	// Validate DcStatus
+	// Validate Version
+	// Validate Metadata
+	// Validate Signature
+	// Validate Id
+	if elem.Id == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/id",
+			Message: "Required field 'id' is missing or empty",
+		})
+	}
+	if string(elem.Id) != "" {
+		matched, _ := regexp.MatchString(`xccdf_[^_]+_tailoring_.+`, string(elem.Id))
+		if !matched {
+			errors = append(errors, ValidationError{
+				Path:    path + "/id",
+				Message: "Field 'id' does not match required pattern",
+			})
+		}
+	}
+	// Validate Id2
+
+	return errors
+}
+
+// validateTailoringReferenceType validates a TailoringReferenceType element.
+func (s *XMLDocumentState) validateTailoringReferenceType(elem *xccdf1_2.TailoringReferenceType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Href
+	if elem.Href == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/href",
+			Message: "Required field 'href' is missing or empty",
+		})
+	}
+	// Validate Id
+	if elem.Id == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/id",
+			Message: "Required field 'id' is missing or empty",
+		})
+	}
+	// Validate Version
+	if elem.Version == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/version",
+			Message: "Required field 'version' is missing or empty",
+		})
+	}
+	// Validate Time
+
+	return errors
+}
+
+// validateTailoringType validates a TailoringType element.
+func (s *XMLDocumentState) validateTailoringType(elem *xccdf1_2.TailoringType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Benchmark
+	// Validate DcStatus
+	// Validate Version
+	// Validate Metadata
+	// Validate Signature
+	// Validate Id
+	if elem.Id == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/id",
+			Message: "Required field 'id' is missing or empty",
+		})
+	}
+	if string(elem.Id) != "" {
+		matched, _ := regexp.MatchString(`xccdf_[^_]+_tailoring_.+`, string(elem.Id))
+		if !matched {
+			errors = append(errors, ValidationError{
+				Path:    path + "/id",
+				Message: "Field 'id' does not match required pattern",
+			})
+		}
+	}
+	// Validate Id2
+
+	return errors
+}
+
+// validateTailoringVersionType validates a TailoringVersionType element.
+func (s *XMLDocumentState) validateTailoringVersionType(elem *xccdf1_2.TailoringVersionType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Time
+
+	return errors
+}
+
+// validateTargetFactsType validates a TargetFactsType element.
+func (s *XMLDocumentState) validateTargetFactsType(elem *xccdf1_2.TargetFactsType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Fact
+
+	return errors
+}
+
+// validateTargetIdRefType validates a TargetIdRefType element.
+func (s *XMLDocumentState) validateTargetIdRefType(elem *xccdf1_2.TargetIdRefType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate System
+	if elem.System == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/system",
+			Message: "Required field 'system' is missing or empty",
+		})
+	}
+	// Validate Href
+	if elem.Href == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/href",
+			Message: "Required field 'href' is missing or empty",
+		})
+	}
+	// Validate Name
+
+	return errors
+}
+
 // validateTelephoneNumberElement validates a TelephoneNumberElement element.
 func (s *XMLDocumentState) validateTelephoneNumberElement(elem *asset_identification1_1.TelephoneNumberElement, path string) []ValidationError {
 	var errors []ValidationError
@@ -9386,8 +20149,382 @@ func (s *XMLDocumentState) validateTelephoneNumberElementType(elem *asset_identi
 	return errors
 }
 
+// validateTestElement validates a TestElement element.
+func (s *XMLDocumentState) validateTestElement(elem *xmlschemaoval_definitions_5.TestElement, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Id
+	if elem.Id == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/id",
+			Message: "Required field 'id' is missing or empty",
+		})
+	}
+	if string(elem.Id) != "" {
+		matched, _ := regexp.MatchString(`oval:[A-Za-z0-9_\-\.]+:tst:[1-9][0-9]*`, string(elem.Id))
+		if !matched {
+			errors = append(errors, ValidationError{
+				Path:    path + "/id",
+				Message: "Field 'id' does not match required pattern",
+			})
+		}
+	}
+	// Validate Version
+	// Validate Check_existence
+	if elem.Check_existence != nil && string(*elem.Check_existence) != "" {
+		validValues := []string{"all_exist", "any_exist", "at_least_one_exists", "none_exist", "only_one_exists"}
+		isValid := false
+		for _, v := range validValues {
+			if string(*elem.Check_existence) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/check_existence",
+				Message: fmt.Sprintf("Field 'check_existence' has invalid value '%s'", string(*elem.Check_existence)),
+			})
+		}
+	}
+	// Validate Check
+	if elem.Check == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/check",
+			Message: "Required field 'check' is missing or empty",
+		})
+	}
+	if string(elem.Check) != "" {
+		validValues := []string{"all", "at least one", "none exist", "none satisfy", "only one"}
+		isValid := false
+		for _, v := range validValues {
+			if string(elem.Check) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/check",
+				Message: fmt.Sprintf("Field 'check' has invalid value '%s'", string(elem.Check)),
+			})
+		}
+	}
+	// Validate State_operator
+	if elem.State_operator != nil && string(*elem.State_operator) != "" {
+		validValues := []string{"AND", "ONE", "OR", "XOR"}
+		isValid := false
+		for _, v := range validValues {
+			if string(*elem.State_operator) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/state_operator",
+				Message: fmt.Sprintf("Field 'state_operator' has invalid value '%s'", string(*elem.State_operator)),
+			})
+		}
+	}
+	// Validate Comment
+	if elem.Comment == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/comment",
+			Message: "Required field 'comment' is missing or empty",
+		})
+	}
+	if string(elem.Comment) != "" && len(string(elem.Comment)) < 1 {
+		errors = append(errors, ValidationError{
+			Path:    path + "/comment",
+			Message: fmt.Sprintf("Field 'comment' must be at least 1 characters"),
+		})
+	}
+	// Validate Deprecated
+
+	return errors
+}
+
+// validateTestResultElement validates a TestResultElement element.
+func (s *XMLDocumentState) validateTestResultElement(elem *xccdf1_2.TestResultElement, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Benchmark
+	// Validate TailoringFile
+	// Validate Title
+	// Validate Remark
+	// Validate Organization
+	// Validate Identity
+	// Validate Profile
+	// Validate Target
+	if len(elem.Target) == 0 {
+		errors = append(errors, ValidationError{
+			Path:    path + "/target",
+			Message: "Required field 'target' must have at least one element",
+		})
+	}
+	if len(elem.Target) < 1 {
+		errors = append(errors, ValidationError{
+			Path:    path + "/target",
+			Message: fmt.Sprintf("Field 'target' requires at least 1 elements, got %d", len(elem.Target)),
+		})
+	}
+	// Validate TargetAddress
+	// Validate TargetFacts
+	// Validate Platform
+	// Validate RuleResult
+	// Validate Score
+	if len(elem.Score) == 0 {
+		errors = append(errors, ValidationError{
+			Path:    path + "/score",
+			Message: "Required field 'score' must have at least one element",
+		})
+	}
+	if len(elem.Score) < 1 {
+		errors = append(errors, ValidationError{
+			Path:    path + "/score",
+			Message: fmt.Sprintf("Field 'score' requires at least 1 elements, got %d", len(elem.Score)),
+		})
+	}
+	// Validate Metadata
+	// Validate Signature
+	// Validate TargetIdRef
+	// Validate SetValue
+	// Validate SetComplexValue
+	// Validate Id
+	if elem.Id == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/id",
+			Message: "Required field 'id' is missing or empty",
+		})
+	}
+	if string(elem.Id) != "" {
+		matched, _ := regexp.MatchString(`xccdf_[^_]+_testresult_.+`, string(elem.Id))
+		if !matched {
+			errors = append(errors, ValidationError{
+				Path:    path + "/id",
+				Message: "Field 'id' does not match required pattern",
+			})
+		}
+	}
+	// Validate StartTime
+	// Validate EndTime
+	// Validate TestSystem
+	// Validate Version
+	// Validate Id2
+
+	return errors
+}
+
+// validateTestResultType validates a TestResultType element.
+func (s *XMLDocumentState) validateTestResultType(elem *xccdf1_2.TestResultType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Benchmark
+	// Validate TailoringFile
+	// Validate Title
+	// Validate Remark
+	// Validate Organization
+	// Validate Identity
+	// Validate Profile
+	// Validate Target
+	if len(elem.Target) == 0 {
+		errors = append(errors, ValidationError{
+			Path:    path + "/target",
+			Message: "Required field 'target' must have at least one element",
+		})
+	}
+	if len(elem.Target) < 1 {
+		errors = append(errors, ValidationError{
+			Path:    path + "/target",
+			Message: fmt.Sprintf("Field 'target' requires at least 1 elements, got %d", len(elem.Target)),
+		})
+	}
+	// Validate TargetAddress
+	// Validate TargetFacts
+	// Validate Platform
+	// Validate RuleResult
+	// Validate Score
+	if len(elem.Score) == 0 {
+		errors = append(errors, ValidationError{
+			Path:    path + "/score",
+			Message: "Required field 'score' must have at least one element",
+		})
+	}
+	if len(elem.Score) < 1 {
+		errors = append(errors, ValidationError{
+			Path:    path + "/score",
+			Message: fmt.Sprintf("Field 'score' requires at least 1 elements, got %d", len(elem.Score)),
+		})
+	}
+	// Validate Metadata
+	// Validate Signature
+	// Validate TargetIdRef
+	// Validate SetValue
+	// Validate SetComplexValue
+	// Validate Id
+	if elem.Id == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/id",
+			Message: "Required field 'id' is missing or empty",
+		})
+	}
+	if string(elem.Id) != "" {
+		matched, _ := regexp.MatchString(`xccdf_[^_]+_testresult_.+`, string(elem.Id))
+		if !matched {
+			errors = append(errors, ValidationError{
+				Path:    path + "/id",
+				Message: "Field 'id' does not match required pattern",
+			})
+		}
+	}
+	// Validate StartTime
+	// Validate EndTime
+	// Validate TestSystem
+	// Validate Version
+	// Validate Id2
+
+	return errors
+}
+
+// validateTestType validates a TestType element.
+func (s *XMLDocumentState) validateTestType(elem *xmlschemaoval_definitions_5.TestType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Id
+	if elem.Id == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/id",
+			Message: "Required field 'id' is missing or empty",
+		})
+	}
+	if string(elem.Id) != "" {
+		matched, _ := regexp.MatchString(`oval:[A-Za-z0-9_\-\.]+:tst:[1-9][0-9]*`, string(elem.Id))
+		if !matched {
+			errors = append(errors, ValidationError{
+				Path:    path + "/id",
+				Message: "Field 'id' does not match required pattern",
+			})
+		}
+	}
+	// Validate Version
+	// Validate Check_existence
+	if elem.Check_existence != nil && string(*elem.Check_existence) != "" {
+		validValues := []string{"all_exist", "any_exist", "at_least_one_exists", "none_exist", "only_one_exists"}
+		isValid := false
+		for _, v := range validValues {
+			if string(*elem.Check_existence) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/check_existence",
+				Message: fmt.Sprintf("Field 'check_existence' has invalid value '%s'", string(*elem.Check_existence)),
+			})
+		}
+	}
+	// Validate Check
+	if elem.Check == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/check",
+			Message: "Required field 'check' is missing or empty",
+		})
+	}
+	if string(elem.Check) != "" {
+		validValues := []string{"all", "at least one", "none exist", "none satisfy", "only one"}
+		isValid := false
+		for _, v := range validValues {
+			if string(elem.Check) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/check",
+				Message: fmt.Sprintf("Field 'check' has invalid value '%s'", string(elem.Check)),
+			})
+		}
+	}
+	// Validate State_operator
+	if elem.State_operator != nil && string(*elem.State_operator) != "" {
+		validValues := []string{"AND", "ONE", "OR", "XOR"}
+		isValid := false
+		for _, v := range validValues {
+			if string(*elem.State_operator) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/state_operator",
+				Message: fmt.Sprintf("Field 'state_operator' has invalid value '%s'", string(*elem.State_operator)),
+			})
+		}
+	}
+	// Validate Comment
+	if elem.Comment == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/comment",
+			Message: "Required field 'comment' is missing or empty",
+		})
+	}
+	if string(elem.Comment) != "" && len(string(elem.Comment)) < 1 {
+		errors = append(errors, ValidationError{
+			Path:    path + "/comment",
+			Message: fmt.Sprintf("Field 'comment' must be at least 1 characters"),
+		})
+	}
+	// Validate Deprecated
+
+	return errors
+}
+
+// validateTestsType validates a TestsType element.
+func (s *XMLDocumentState) validateTestsType(elem *xmlschemaoval_definitions_5.TestsType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+
+	return errors
+}
+
+// validateTextType validates a TextType element.
+func (s *XMLDocumentState) validateTextType(elem *language2_0.TextType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+
+	return errors
+}
+
+// validateTextWithSubType validates a TextWithSubType element.
+func (s *XMLDocumentState) validateTextWithSubType(elem *xccdf1_2.TextWithSubType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Sub
+	// Validate Override
+
+	return errors
+}
+
 // validateThoroughfareElement validates a ThoroughfareElement element.
-func (s *XMLDocumentState) validateThoroughfareElement(elem *pkg_2_0.ThoroughfareElement, path string) []ValidationError {
+func (s *XMLDocumentState) validateThoroughfareElement(elem *pkg_2_01.ThoroughfareElement, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -9411,7 +20548,7 @@ func (s *XMLDocumentState) validateThoroughfareElement(elem *pkg_2_0.Thoroughfar
 }
 
 // validateThoroughfareElementType validates a ThoroughfareElementType element.
-func (s *XMLDocumentState) validateThoroughfareElementType(elem *pkg_2_0.ThoroughfareElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateThoroughfareElementType(elem *pkg_2_01.ThoroughfareElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -9435,7 +20572,7 @@ func (s *XMLDocumentState) validateThoroughfareElementType(elem *pkg_2_0.Thoroug
 }
 
 // validateThoroughfareLeadingTypeType validates a ThoroughfareLeadingTypeType element.
-func (s *XMLDocumentState) validateThoroughfareLeadingTypeType(elem *pkg_2_0.ThoroughfareLeadingTypeType, path string) []ValidationError {
+func (s *XMLDocumentState) validateThoroughfareLeadingTypeType(elem *pkg_2_01.ThoroughfareLeadingTypeType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -9446,7 +20583,7 @@ func (s *XMLDocumentState) validateThoroughfareLeadingTypeType(elem *pkg_2_0.Tho
 }
 
 // validateThoroughfareNameType validates a ThoroughfareNameType element.
-func (s *XMLDocumentState) validateThoroughfareNameType(elem *pkg_2_0.ThoroughfareNameType, path string) []ValidationError {
+func (s *XMLDocumentState) validateThoroughfareNameType(elem *pkg_2_01.ThoroughfareNameType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -9457,7 +20594,7 @@ func (s *XMLDocumentState) validateThoroughfareNameType(elem *pkg_2_0.Thoroughfa
 }
 
 // validateThoroughfareNumberElement validates a ThoroughfareNumberElement element.
-func (s *XMLDocumentState) validateThoroughfareNumberElement(elem *pkg_2_0.ThoroughfareNumberElement, path string) []ValidationError {
+func (s *XMLDocumentState) validateThoroughfareNumberElement(elem *pkg_2_01.ThoroughfareNumberElement, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -9472,7 +20609,7 @@ func (s *XMLDocumentState) validateThoroughfareNumberElement(elem *pkg_2_0.Thoro
 }
 
 // validateThoroughfareNumberElementType validates a ThoroughfareNumberElementType element.
-func (s *XMLDocumentState) validateThoroughfareNumberElementType(elem *pkg_2_0.ThoroughfareNumberElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateThoroughfareNumberElementType(elem *pkg_2_01.ThoroughfareNumberElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -9487,7 +20624,7 @@ func (s *XMLDocumentState) validateThoroughfareNumberElementType(elem *pkg_2_0.T
 }
 
 // validateThoroughfareNumberFromElementType validates a ThoroughfareNumberFromElementType element.
-func (s *XMLDocumentState) validateThoroughfareNumberFromElementType(elem *pkg_2_0.ThoroughfareNumberFromElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateThoroughfareNumberFromElementType(elem *pkg_2_01.ThoroughfareNumberFromElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -9497,7 +20634,7 @@ func (s *XMLDocumentState) validateThoroughfareNumberFromElementType(elem *pkg_2
 }
 
 // validateThoroughfareNumberPrefixElement validates a ThoroughfareNumberPrefixElement element.
-func (s *XMLDocumentState) validateThoroughfareNumberPrefixElement(elem *pkg_2_0.ThoroughfareNumberPrefixElement, path string) []ValidationError {
+func (s *XMLDocumentState) validateThoroughfareNumberPrefixElement(elem *pkg_2_01.ThoroughfareNumberPrefixElement, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -9509,7 +20646,7 @@ func (s *XMLDocumentState) validateThoroughfareNumberPrefixElement(elem *pkg_2_0
 }
 
 // validateThoroughfareNumberPrefixElementType validates a ThoroughfareNumberPrefixElementType element.
-func (s *XMLDocumentState) validateThoroughfareNumberPrefixElementType(elem *pkg_2_0.ThoroughfareNumberPrefixElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateThoroughfareNumberPrefixElementType(elem *pkg_2_01.ThoroughfareNumberPrefixElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -9521,7 +20658,7 @@ func (s *XMLDocumentState) validateThoroughfareNumberPrefixElementType(elem *pkg
 }
 
 // validateThoroughfareNumberRangeElementType validates a ThoroughfareNumberRangeElementType element.
-func (s *XMLDocumentState) validateThoroughfareNumberRangeElementType(elem *pkg_2_0.ThoroughfareNumberRangeElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateThoroughfareNumberRangeElementType(elem *pkg_2_01.ThoroughfareNumberRangeElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -9539,7 +20676,7 @@ func (s *XMLDocumentState) validateThoroughfareNumberRangeElementType(elem *pkg_
 }
 
 // validateThoroughfareNumberSuffixElement validates a ThoroughfareNumberSuffixElement element.
-func (s *XMLDocumentState) validateThoroughfareNumberSuffixElement(elem *pkg_2_0.ThoroughfareNumberSuffixElement, path string) []ValidationError {
+func (s *XMLDocumentState) validateThoroughfareNumberSuffixElement(elem *pkg_2_01.ThoroughfareNumberSuffixElement, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -9551,7 +20688,7 @@ func (s *XMLDocumentState) validateThoroughfareNumberSuffixElement(elem *pkg_2_0
 }
 
 // validateThoroughfareNumberSuffixElementType validates a ThoroughfareNumberSuffixElementType element.
-func (s *XMLDocumentState) validateThoroughfareNumberSuffixElementType(elem *pkg_2_0.ThoroughfareNumberSuffixElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateThoroughfareNumberSuffixElementType(elem *pkg_2_01.ThoroughfareNumberSuffixElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -9563,7 +20700,7 @@ func (s *XMLDocumentState) validateThoroughfareNumberSuffixElementType(elem *pkg
 }
 
 // validateThoroughfareNumberToElementType validates a ThoroughfareNumberToElementType element.
-func (s *XMLDocumentState) validateThoroughfareNumberToElementType(elem *pkg_2_0.ThoroughfareNumberToElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateThoroughfareNumberToElementType(elem *pkg_2_01.ThoroughfareNumberToElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -9573,7 +20710,7 @@ func (s *XMLDocumentState) validateThoroughfareNumberToElementType(elem *pkg_2_0
 }
 
 // validateThoroughfarePostDirectionType validates a ThoroughfarePostDirectionType element.
-func (s *XMLDocumentState) validateThoroughfarePostDirectionType(elem *pkg_2_0.ThoroughfarePostDirectionType, path string) []ValidationError {
+func (s *XMLDocumentState) validateThoroughfarePostDirectionType(elem *pkg_2_01.ThoroughfarePostDirectionType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -9584,7 +20721,7 @@ func (s *XMLDocumentState) validateThoroughfarePostDirectionType(elem *pkg_2_0.T
 }
 
 // validateThoroughfarePreDirectionType validates a ThoroughfarePreDirectionType element.
-func (s *XMLDocumentState) validateThoroughfarePreDirectionType(elem *pkg_2_0.ThoroughfarePreDirectionType, path string) []ValidationError {
+func (s *XMLDocumentState) validateThoroughfarePreDirectionType(elem *pkg_2_01.ThoroughfarePreDirectionType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -9595,7 +20732,7 @@ func (s *XMLDocumentState) validateThoroughfarePreDirectionType(elem *pkg_2_0.Th
 }
 
 // validateThoroughfareTrailingTypeType validates a ThoroughfareTrailingTypeType element.
-func (s *XMLDocumentState) validateThoroughfareTrailingTypeType(elem *pkg_2_0.ThoroughfareTrailingTypeType, path string) []ValidationError {
+func (s *XMLDocumentState) validateThoroughfareTrailingTypeType(elem *pkg_2_01.ThoroughfareTrailingTypeType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -9605,14 +20742,131 @@ func (s *XMLDocumentState) validateThoroughfareTrailingTypeType(elem *pkg_2_0.Th
 	return errors
 }
 
+// validateTimeDifferenceFunctionType validates a TimeDifferenceFunctionType element.
+func (s *XMLDocumentState) validateTimeDifferenceFunctionType(elem *xmlschemaoval_definitions_5.TimeDifferenceFunctionType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Format_1
+	if elem.Format_1 != nil && string(*elem.Format_1) != "" {
+		validValues := []string{"year_month_day", "month_day_year", "day_month_year", "win_filetime", "seconds_since_epoch", "cim_datetime"}
+		isValid := false
+		for _, v := range validValues {
+			if string(*elem.Format_1) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/format_1",
+				Message: fmt.Sprintf("Field 'format_1' has invalid value '%s'", string(*elem.Format_1)),
+			})
+		}
+	}
+	// Validate Format_2
+	if elem.Format_2 != nil && string(*elem.Format_2) != "" {
+		validValues := []string{"year_month_day", "month_day_year", "day_month_year", "win_filetime", "seconds_since_epoch", "cim_datetime"}
+		isValid := false
+		for _, v := range validValues {
+			if string(*elem.Format_2) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/format_2",
+				Message: fmt.Sprintf("Field 'format_2' has invalid value '%s'", string(*elem.Format_2)),
+			})
+		}
+	}
+
+	return errors
+}
+
 // validateTitleElementType validates a TitleElementType element.
-func (s *XMLDocumentState) validateTitleElementType(elem *pkg_2_01.TitleElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateTitleElementType(elem *pkg_2_0.TitleElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
 	}
 	// Validate Type
 	// Validate Code
+
+	return errors
+}
+
+// validateTransformElement validates a TransformElement element.
+func (s *XMLDocumentState) validateTransformElement(elem *pkg_200009xmldsig.TransformElement, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate XPath
+	// Validate Algorithm
+	if elem.Algorithm == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/Algorithm",
+			Message: "Required field 'Algorithm' is missing or empty",
+		})
+	}
+
+	return errors
+}
+
+// validateTransformType validates a TransformType element.
+func (s *XMLDocumentState) validateTransformType(elem *pkg_200009xmldsig.TransformType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate XPath
+	// Validate Algorithm
+	if elem.Algorithm == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/Algorithm",
+			Message: "Required field 'Algorithm' is missing or empty",
+		})
+	}
+
+	return errors
+}
+
+// validateTransformsElement validates a TransformsElement element.
+func (s *XMLDocumentState) validateTransformsElement(elem *pkg_200009xmldsig.TransformsElement, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+
+	return errors
+}
+
+// validateTransformsType validates a TransformsType element.
+func (s *XMLDocumentState) validateTransformsType(elem *pkg_200009xmldsig.TransformsType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+
+	return errors
+}
+
+// validateUriRefType validates a UriRefType element.
+func (s *XMLDocumentState) validateUriRefType(elem *xccdf1_2.UriRefType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Uri
+	if elem.Uri == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/uri",
+			Message: "Required field 'uri' is missing or empty",
+		})
+	}
 
 	return errors
 }
@@ -9627,11 +20881,292 @@ func (s *XMLDocumentState) validateUrlElementType(elem *asset_identification1_1.
 	return errors
 }
 
-// validateVersionElementType validates a VersionElementType element.
-func (s *XMLDocumentState) validateVersionElementType(elem *asset_identification1_1.VersionElementType, path string) []ValidationError {
+// validateValueElement validates a ValueElement element.
+func (s *XMLDocumentState) validateValueElement(elem *xccdf1_2.ValueElement, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
+	}
+	// Validate Match
+	// Validate LowerBound
+	// Validate UpperBound
+	// Validate Choices
+	// Validate Source
+	// Validate Signature
+	// Validate Value
+	// Validate ComplexValue
+	// Validate Default
+	// Validate ComplexDefault
+	// Validate Id
+	if elem.Id == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/id",
+			Message: "Required field 'id' is missing or empty",
+		})
+	}
+	if string(elem.Id) != "" {
+		matched, _ := regexp.MatchString(`xccdf_[^_]+_value_.+`, string(elem.Id))
+		if !matched {
+			errors = append(errors, ValidationError{
+				Path:    path + "/id",
+				Message: "Field 'id' does not match required pattern",
+			})
+		}
+	}
+	// Validate Type
+	if elem.Type != nil && string(*elem.Type) != "" {
+		validValues := []string{"number", "string", "boolean"}
+		isValid := false
+		for _, v := range validValues {
+			if string(*elem.Type) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/type",
+				Message: fmt.Sprintf("Field 'type' has invalid value '%s'", string(*elem.Type)),
+			})
+		}
+	}
+	// Validate Operator
+	if elem.Operator != nil && string(*elem.Operator) != "" {
+		validValues := []string{"equals", "not equal", "greater than", "less than", "greater than or equal", "less than or equal", "pattern match"}
+		isValid := false
+		for _, v := range validValues {
+			if string(*elem.Operator) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/operator",
+				Message: fmt.Sprintf("Field 'operator' has invalid value '%s'", string(*elem.Operator)),
+			})
+		}
+	}
+	// Validate Interactive
+	// Validate InterfaceHint
+	if elem.InterfaceHint != nil && string(*elem.InterfaceHint) != "" {
+		validValues := []string{"choice", "textline", "text", "date", "datetime"}
+		isValid := false
+		for _, v := range validValues {
+			if string(*elem.InterfaceHint) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/interfaceHint",
+				Message: fmt.Sprintf("Field 'interfaceHint' has invalid value '%s'", string(*elem.InterfaceHint)),
+			})
+		}
+	}
+
+	return errors
+}
+
+// validateVariableComponentType validates a VariableComponentType element.
+func (s *XMLDocumentState) validateVariableComponentType(elem *xmlschemaoval_definitions_5.VariableComponentType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Var_ref
+	if elem.Var_ref == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/var_ref",
+			Message: "Required field 'var_ref' is missing or empty",
+		})
+	}
+	if string(elem.Var_ref) != "" {
+		matched, _ := regexp.MatchString(`oval:[A-Za-z0-9_\-\.]+:var:[1-9][0-9]*`, string(elem.Var_ref))
+		if !matched {
+			errors = append(errors, ValidationError{
+				Path:    path + "/var_ref",
+				Message: "Field 'var_ref' does not match required pattern",
+			})
+		}
+	}
+
+	return errors
+}
+
+// validateVariableElement validates a VariableElement element.
+func (s *XMLDocumentState) validateVariableElement(elem *xmlschemaoval_definitions_5.VariableElement, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Id
+	if elem.Id == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/id",
+			Message: "Required field 'id' is missing or empty",
+		})
+	}
+	if string(elem.Id) != "" {
+		matched, _ := regexp.MatchString(`oval:[A-Za-z0-9_\-\.]+:var:[1-9][0-9]*`, string(elem.Id))
+		if !matched {
+			errors = append(errors, ValidationError{
+				Path:    path + "/id",
+				Message: "Field 'id' does not match required pattern",
+			})
+		}
+	}
+	// Validate Version
+	// Validate Datatype
+	if elem.Datatype == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/datatype",
+			Message: "Required field 'datatype' is missing or empty",
+		})
+	}
+	if string(elem.Datatype) != "" {
+		validValues := []string{"binary", "boolean", "evr_string", "debian_evr_string", "fileset_revision", "float", "ios_version", "int", "ipv4_address", "ipv6_address", "string", "version"}
+		isValid := false
+		for _, v := range validValues {
+			if string(elem.Datatype) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/datatype",
+				Message: fmt.Sprintf("Field 'datatype' has invalid value '%s'", string(elem.Datatype)),
+			})
+		}
+	}
+	// Validate Comment
+	if elem.Comment == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/comment",
+			Message: "Required field 'comment' is missing or empty",
+		})
+	}
+	if string(elem.Comment) != "" && len(string(elem.Comment)) < 1 {
+		errors = append(errors, ValidationError{
+			Path:    path + "/comment",
+			Message: fmt.Sprintf("Field 'comment' must be at least 1 characters"),
+		})
+	}
+	// Validate Deprecated
+
+	return errors
+}
+
+// validateVariableType validates a VariableType element.
+func (s *XMLDocumentState) validateVariableType(elem *xmlschemaoval_definitions_5.VariableType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Id
+	if elem.Id == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/id",
+			Message: "Required field 'id' is missing or empty",
+		})
+	}
+	if string(elem.Id) != "" {
+		matched, _ := regexp.MatchString(`oval:[A-Za-z0-9_\-\.]+:var:[1-9][0-9]*`, string(elem.Id))
+		if !matched {
+			errors = append(errors, ValidationError{
+				Path:    path + "/id",
+				Message: "Field 'id' does not match required pattern",
+			})
+		}
+	}
+	// Validate Version
+	// Validate Datatype
+	if elem.Datatype == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/datatype",
+			Message: "Required field 'datatype' is missing or empty",
+		})
+	}
+	if string(elem.Datatype) != "" {
+		validValues := []string{"binary", "boolean", "evr_string", "debian_evr_string", "fileset_revision", "float", "ios_version", "int", "ipv4_address", "ipv6_address", "string", "version"}
+		isValid := false
+		for _, v := range validValues {
+			if string(elem.Datatype) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/datatype",
+				Message: fmt.Sprintf("Field 'datatype' has invalid value '%s'", string(elem.Datatype)),
+			})
+		}
+	}
+	// Validate Comment
+	if elem.Comment == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/comment",
+			Message: "Required field 'comment' is missing or empty",
+		})
+	}
+	if string(elem.Comment) != "" && len(string(elem.Comment)) < 1 {
+		errors = append(errors, ValidationError{
+			Path:    path + "/comment",
+			Message: fmt.Sprintf("Field 'comment' must be at least 1 characters"),
+		})
+	}
+	// Validate Deprecated
+
+	return errors
+}
+
+// validateVariablesType validates a VariablesType element.
+func (s *XMLDocumentState) validateVariablesType(elem *xmlschemaoval_definitions_5.VariablesType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+
+	return errors
+}
+
+// validateVersionType validates a VersionType element.
+func (s *XMLDocumentState) validateVersionType(elem *xccdf1_2.VersionType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Time
+	// Validate Update
+
+	return errors
+}
+
+// validateWarningType validates a WarningType element.
+func (s *XMLDocumentState) validateWarningType(elem *xccdf1_2.WarningType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Category
+	if elem.Category != nil && string(*elem.Category) != "" {
+		validValues := []string{"general", "functionality", "performance", "hardware", "legal", "regulatory", "management", "audit", "dependency"}
+		isValid := false
+		for _, v := range validValues {
+			if string(*elem.Category) == v {
+				isValid = true
+				break
+			}
+		}
+		if !isValid {
+			errors = append(errors, ValidationError{
+				Path:    path + "/category",
+				Message: fmt.Sprintf("Field 'category' has invalid value '%s'", string(*elem.Category)),
+			})
+		}
 	}
 
 	return errors
@@ -9681,8 +21216,50 @@ func (s *XMLDocumentState) validateWebsiteUrlElementType(elem *asset_identificat
 	return errors
 }
 
+// validateX509DataElement validates a X509DataElement element.
+func (s *XMLDocumentState) validateX509DataElement(elem *pkg_200009xmldsig.X509DataElement, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate X509IssuerSerial
+	// Validate X509SKI
+	// Validate X509SubjectName
+	// Validate X509Certificate
+	// Validate X509CRL
+
+	return errors
+}
+
+// validateX509DataType validates a X509DataType element.
+func (s *XMLDocumentState) validateX509DataType(elem *pkg_200009xmldsig.X509DataType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate X509IssuerSerial
+	// Validate X509SKI
+	// Validate X509SubjectName
+	// Validate X509Certificate
+	// Validate X509CRL
+
+	return errors
+}
+
+// validateX509IssuerSerialType validates a X509IssuerSerialType element.
+func (s *XMLDocumentState) validateX509IssuerSerialType(elem *pkg_200009xmldsig.X509IssuerSerialType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate X509IssuerName
+	// Validate X509SerialNumber
+
+	return errors
+}
+
 // validateXALElement validates a XALElement element.
-func (s *XMLDocumentState) validateXALElement(elem *pkg_2_0.XALElement, path string) []ValidationError {
+func (s *XMLDocumentState) validateXALElement(elem *pkg_2_01.XALElement, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -9693,7 +21270,7 @@ func (s *XMLDocumentState) validateXALElement(elem *pkg_2_0.XALElement, path str
 }
 
 // validateXALElementType validates a XALElementType element.
-func (s *XMLDocumentState) validateXALElementType(elem *pkg_2_0.XALElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateXALElementType(elem *pkg_2_01.XALElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -9704,7 +21281,7 @@ func (s *XMLDocumentState) validateXALElementType(elem *pkg_2_0.XALElementType, 
 }
 
 // validateXNLElement validates a XNLElement element.
-func (s *XMLDocumentState) validateXNLElement(elem *pkg_2_01.XNLElement, path string) []ValidationError {
+func (s *XMLDocumentState) validateXNLElement(elem *pkg_2_0.XNLElement, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -9715,7 +21292,7 @@ func (s *XMLDocumentState) validateXNLElement(elem *pkg_2_01.XNLElement, path st
 }
 
 // validateXNLElementType validates a XNLElementType element.
-func (s *XMLDocumentState) validateXNLElementType(elem *pkg_2_01.XNLElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateXNLElementType(elem *pkg_2_0.XNLElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -9744,10 +21321,13 @@ func (s *XMLDocumentState) GetAvailableTypes() []string {
 		"AdministrativeAreaElement",
 		"AdministrativeAreaElementType",
 		"AdministrativeAreaNameElementType",
+		"AffectedType",
 		"AliasElementType",
 		"ArcElement",
 		"ArcType",
 		"ArcroleType",
+		"ArithmeticEnumeration",
+		"ArithmeticFunctionType",
 		"AssetElement",
 		"AssetElementType",
 		"AssetIdentificationType",
@@ -9759,29 +21339,66 @@ func (s *XMLDocumentState) GetAvailableTypes() []string {
 		"AssetsElementType",
 		"AssetsType",
 		"BarcodeElementType",
+		"BeginFunctionType",
+		"BenchmarkElement",
+		"BenchmarkElementType",
+		"BenchmarkIdType",
+		"BenchmarkReferenceType",
 		"BirthdateElementType",
 		"BuildingNameType",
+		"CPE2idrefType",
+		"CanonicalizationMethodElement",
+		"CanonicalizationMethodType",
+		"CcOperatorEnumType",
+		"CheckContentRefType",
+		"CheckContentType",
+		"CheckEnumeration",
+		"CheckExportType",
+		"CheckImportType",
+		"CheckType",
 		"CidrElementType",
 		"CidrType",
 		"CircuitElement",
 		"CircuitNameElementType",
 		"CircuitType",
+		"ClassEnumeration",
+		"ComplexCheckType",
+		"ComplexDatatypeEnumeration",
+		"ComplexValueType",
 		"ComputingDeviceElement",
 		"ComputingDeviceType",
+		"ConcatFunctionType",
 		"ConnectionsElementType",
+		"Constant_variableElement",
+		"Constant_variableElementType",
 		"ContentElementType",
 		"ContentElementType1",
+		"CountFunctionType",
 		"CountryElementType",
 		"CountryNameCodeElementType",
 		"CountryNameElement",
 		"CountryNameElementType",
 		"CpeElement",
 		"CpeElementType",
+		"CpeItemElement",
+		"CpeListElement",
 		"CpeType",
+		"CriteriaType",
+		"CriterionType",
+		"CryptoBinary",
+		"DSAKeyValueElement",
+		"DSAKeyValueType",
 		"DataElement",
 		"DataType",
 		"DatabaseElement",
 		"DatabaseType",
+		"DatatypeEnumeration",
+		"DateTimeFormatEnumeration",
+		"DcStatusType",
+		"DefinitionElement",
+		"DefinitionIDPattern",
+		"DefinitionType",
+		"DefinitionsType",
 		"DepartmentElement",
 		"DepartmentElementType",
 		"DepartmentNameElementType",
@@ -9790,18 +21407,73 @@ func (s *XMLDocumentState) GetAvailableTypes() []string {
 		"DependentLocalityNumberElementType",
 		"DependentLocalityType",
 		"DependentThoroughfareElementType",
+		"DeprecatedInfoType",
+		"Deprecated_infoElement",
+		"DigestMethodElement",
+		"DigestMethodType",
+		"DigestValueElement",
+		"DigestValueType",
 		"DistinguishedNameElementType",
 		"DocumentRootElementType",
+		"ElementMapItemType",
+		"ElementMapType",
+		"Element_mappingElement",
 		"EmailAddressElement",
 		"EmailAddressElementType",
+		"EmptyStringType",
+		"EndFunctionType",
 		"EndorsementLineCodeElementType",
+		"EntityComplexBaseType",
+		"EntityObjectAnySimpleType",
+		"EntityObjectBinaryType",
+		"EntityObjectBoolType",
+		"EntityObjectFieldType",
+		"EntityObjectFloatType",
+		"EntityObjectIPAddressStringType",
+		"EntityObjectIPAddressType",
+		"EntityObjectIntType",
+		"EntityObjectRecordType",
+		"EntityObjectStringType",
+		"EntityObjectVersionType",
+		"EntitySimpleBaseType",
+		"EntityStateAnySimpleType",
+		"EntityStateBinaryType",
+		"EntityStateBoolType",
+		"EntityStateComplexBaseType",
+		"EntityStateDebianEVRStringType",
+		"EntityStateEVRStringType",
+		"EntityStateFieldType",
+		"EntityStateFileSetRevisionType",
+		"EntityStateFloatType",
+		"EntityStateIOSVersionType",
+		"EntityStateIPAddressStringType",
+		"EntityStateIPAddressType",
+		"EntityStateIntType",
+		"EntityStateRecordType",
+		"EntityStateSimpleBaseType",
+		"EntityStateStringType",
+		"EntityStateVersionType",
+		"EscapeRegexFunctionType",
+		"ExistenceEnumeration",
+		"ExtendDefinitionType",
 		"Extended",
 		"ExtendedInfoElementType",
 		"ExtendedInformationElementType",
 		"ExtendedInfosElementType",
+		"External_variableElement",
+		"External_variableElementType",
+		"FactRefType",
+		"FactType",
+		"FamilyEnumeration",
+		"FilterActionEnumeration",
+		"FilterElement",
+		"FilterElementType",
 		"FirmNameElementType",
 		"FirmType",
 		"FirstNameElementType",
+		"FixStrategyEnumType",
+		"FixTextType",
+		"FixType",
 		"FormerNameElementType",
 		"FqdnElement",
 		"FqdnElementType",
@@ -9810,12 +21482,27 @@ func (s *XMLDocumentState) GetAvailableTypes() []string {
 		"FunctionElement",
 		"GeneralSuffixElementType",
 		"GenerationIdentifierElementType",
+		"GeneratorType",
+		"GlobToRegexFunctionType",
+		"GroupElement",
+		"GroupIdType",
+		"GroupType",
+		"HMACOutputLengthType",
 		"HostElementType",
 		"HostnameElementType",
 		"HostnameType",
 		"HrefType",
+		"HtmlTextType",
+		"HtmlTextWithSubType",
+		"IdentType",
+		"IdentityType",
+		"IdrefListType",
+		"IdrefType",
 		"InstallationIdElementType",
+		"InstanceFixType",
 		"InstanceNameElementType",
+		"InstanceResultType",
+		"InterfaceHintType",
 		"IpAddressElement",
 		"IpAddressType",
 		"IpNetRangeElementType",
@@ -9825,9 +21512,17 @@ func (s *XMLDocumentState) GetAvailableTypes() []string {
 		"Ipv6Type",
 		"ItAssetElement",
 		"ItAssetType",
+		"ItemElement",
+		"ItemIDPattern",
+		"ItemType",
 		"JointPersonNameElement",
 		"JointPersonNameElementType",
+		"KeyInfoElement",
+		"KeyInfoType",
 		"KeyLineCodeElementType",
+		"KeyNameElement",
+		"KeyValueElement",
+		"KeyValueType",
 		"KnownAsElementType",
 		"LabelType",
 		"LargeMailUserIdentifierElementType",
@@ -9835,6 +21530,10 @@ func (s *XMLDocumentState) GetAvailableTypes() []string {
 		"LargeMailUserType",
 		"LastNameElementType",
 		"LicenseElementType",
+		"ListType",
+		"LiteralComponentType",
+		"Local_variableElement",
+		"Local_variableElementType",
 		"LocaleElementType",
 		"LocaleType",
 		"LocalityElement",
@@ -9850,24 +21549,48 @@ func (s *XMLDocumentState) GetAvailableTypes() []string {
 		"LocationsElementType",
 		"LocatorElement",
 		"LocatorType",
+		"LogicalTestType",
 		"MacAddressElementType",
 		"MacAddressType",
 		"MailStopNameElementType",
 		"MailStopNumberElementType",
 		"MailStopType",
+		"ManifestElement",
+		"ManifestType",
+		"MessageLevelEnumeration",
+		"MessageType",
+		"MetadataType",
+		"MgmtDataElement",
 		"MiddleNameElementType",
+		"ModelElement",
+		"ModelElementType",
 		"MotherboardGuidElementType",
+		"MsgSevEnumType",
 		"NameDetails",
 		"NameDetailsElement",
 		"NameDetailsElementType",
 		"NameLineType",
+		"NamePattern",
 		"NamePrefixElementType",
 		"NetworkElement",
 		"NetworkInterfaceType",
 		"NetworkNameElementType",
 		"NetworkType",
+		"NonEmptyStringType",
+		"NotesElement",
+		"NotesElementType",
+		"NotesType",
+		"NoticeType",
+		"ObjectComponentType",
+		"ObjectElement",
+		"ObjectIDPattern",
 		"ObjectRefElement",
 		"ObjectRefElementType",
+		"ObjectRefType",
+		"ObjectType",
+		"ObjectsType",
+		"OperationEnumeration",
+		"OperatorEnumeration",
 		"OrganisationFormerNameElementType",
 		"OrganisationKnownAsElementType",
 		"OrganisationNameDetails",
@@ -9878,14 +21601,27 @@ func (s *XMLDocumentState) GetAvailableTypes() []string {
 		"OrganizationElement",
 		"OrganizationType",
 		"OtherNameElementType",
+		"Oval_definitionsElement",
+		"Oval_definitionsElementType",
+		"OverrideType",
+		"OverrideableCPE2idrefType",
+		"PGPDataElement",
+		"PGPDataType",
+		"ParamType",
 		"PersonElement",
 		"PersonName",
 		"PersonNameElement",
 		"PersonNameElementType",
 		"PersonType",
+		"PlainTextType",
+		"PlatformSpecificationElement",
+		"PlatformSpecificationElementType",
+		"PlatformType",
 		"PortElementType",
 		"PortRangeElementType",
 		"PortType",
+		"PossibleRestrictionType",
+		"PossibleValueType",
 		"PostBoxElement",
 		"PostBoxElementType",
 		"PostBoxNumberElementType",
@@ -9921,7 +21657,24 @@ func (s *XMLDocumentState) GetAvailableTypes() []string {
 		"PremiseNumberRangeToElementType",
 		"PremiseNumberSuffixElement",
 		"PremiseNumberSuffixElementType",
+		"ProfileElement",
+		"ProfileIdType",
+		"ProfileNoteType",
+		"ProfileRefineRuleType",
+		"ProfileRefineValueType",
+		"ProfileSelectType",
+		"ProfileSetComplexValueType",
+		"ProfileSetValueType",
+		"ProfileType",
 		"ProtocolElementType",
+		"RSAKeyValueElement",
+		"RSAKeyValueType",
+		"RatingEnumType",
+		"ReferenceElement",
+		"ReferenceElementType",
+		"ReferenceType",
+		"ReferencesType",
+		"RegexCaptureFunctionType",
 		"RelationshipType",
 		"RelationshipsContainerType",
 		"RelationshipsElementType",
@@ -9933,15 +21686,60 @@ func (s *XMLDocumentState) GetAvailableTypes() []string {
 		"ReportsElementType",
 		"ResourceElement",
 		"ResourceType",
+		"RestrictionType",
+		"ResultEnumType",
+		"RetrievalMethodElement",
+		"RetrievalMethodType",
+		"RoleEnumType",
 		"RoleType",
+		"RuleElement",
+		"RuleIdType",
+		"RuleResultType",
+		"RuleType",
+		"SPKIDataElement",
+		"SPKIDataType",
+		"SchemaVersionPattern",
+		"SchemaVersionType",
+		"ScoreType",
+		"SelChoicesType",
+		"SelComplexValueType",
+		"SelNumType",
+		"SelStringType",
+		"SelectableItemType",
 		"ServedByElement",
 		"ServiceElement",
 		"ServiceType",
+		"SetElement",
+		"SetElementType",
+		"SetOperatorEnumeration",
+		"SeverityEnumType",
 		"ShowType",
+		"SignatureElement",
+		"SignatureMethodElement",
+		"SignatureMethodType",
+		"SignaturePropertiesElement",
+		"SignaturePropertiesType",
+		"SignaturePropertyElement",
+		"SignaturePropertyType",
+		"SignatureType",
+		"SignatureValueElement",
+		"SignatureValueType",
+		"SignedInfoElement",
+		"SignedInfoType",
 		"Simple",
+		"SimpleDatatypeEnumeration",
 		"SoftwareElement",
 		"SoftwareType",
 		"SortingCodeElementType",
+		"SplitFunctionType",
+		"StateElement",
+		"StateIDPattern",
+		"StateRefType",
+		"StateType",
+		"StatesType",
+		"StatusElement",
+		"StatusElementType",
+		"StatusType",
 		"SubAdministrativeAreaElementType",
 		"SubAdministrativeAreaNameElementType",
 		"SubPremiseLocationElementType",
@@ -9950,6 +21748,9 @@ func (s *XMLDocumentState) GetAvailableTypes() []string {
 		"SubPremiseNumberPrefixElementType",
 		"SubPremiseNumberSuffixElementType",
 		"SubPremiseType",
+		"SubType",
+		"SubUseEnumType",
+		"SubstringFunctionType",
 		"SuffixElementType",
 		"SupplementaryPostalServiceDataElementType",
 		"SyntheticIdElement",
@@ -9957,9 +21758,26 @@ func (s *XMLDocumentState) GetAvailableTypes() []string {
 		"SystemElement",
 		"SystemNameElementType",
 		"SystemType",
+		"TailoringBenchmarkReferenceType",
+		"TailoringElement",
+		"TailoringIdType",
+		"TailoringReferenceType",
+		"TailoringType",
+		"TailoringVersionType",
+		"TargetFactsType",
+		"TargetIdRefType",
 		"TelephoneNumberElement",
 		"TelephoneNumberElementType",
 		"TelephoneNumberType",
+		"TestElement",
+		"TestIDPattern",
+		"TestResultElement",
+		"TestResultType",
+		"TestType",
+		"TestresultIdType",
+		"TestsType",
+		"TextType",
+		"TextWithSubType",
 		"ThoroughfareElement",
 		"ThoroughfareElementType",
 		"ThoroughfareLeadingTypeType",
@@ -9976,18 +21794,42 @@ func (s *XMLDocumentState) GetAvailableTypes() []string {
 		"ThoroughfarePostDirectionType",
 		"ThoroughfarePreDirectionType",
 		"ThoroughfareTrailingTypeType",
+		"TimeDifferenceFunctionType",
 		"TitleAttrType",
 		"TitleElement",
 		"TitleElementType",
 		"TitleEltType",
 		"ToType",
+		"TransformElement",
+		"TransformType",
+		"TransformsElement",
+		"TransformsType",
 		"TypeType",
+		"UniqueFunctionType",
+		"UriRefType",
 		"UrlElementType",
+		"ValueElement",
+		"ValueIdType",
+		"ValueOperatorType",
+		"ValueType",
+		"ValueTypeType",
+		"VariableComponentType",
+		"VariableElement",
+		"VariableIDPattern",
+		"VariableType",
+		"VariablesType",
 		"VersionElementType",
+		"VersionType",
+		"WarningCategoryEnumType",
+		"WarningType",
 		"WebsiteElement",
 		"WebsiteType",
 		"WebsiteUrlElement",
 		"WebsiteUrlElementType",
+		"WeightType",
+		"X509DataElement",
+		"X509DataType",
+		"X509IssuerSerialType",
 		"XALElement",
 		"XALElementType",
 		"XNLElement",
@@ -9998,7 +21840,7 @@ func (s *XMLDocumentState) GetAvailableTypes() []string {
 // GetRootElementTypes returns types that can be used as document root elements.
 func (s *XMLDocumentState) GetRootElementTypes() []string {
 	return []string{
-		"AssetReportCollectionElement",
+		"Oval_definitionsElement",
 	}
 }
 
@@ -10082,34 +21924,86 @@ func (s *XMLDocumentState) GetValidChildTypes(parentType string) []string {
 		return []string{
 			"AssetElement",
 			"DataElement",
-			"ItAssetElement",
-			"DatabaseElement",
-			"ComputingDeviceElement",
-			"SystemElement",
 			"PersonElement",
+			"ItAssetElement",
+			"SoftwareElement",
+			"ServiceElement",
+			"SystemElement",
+			"DatabaseElement",
+			"CircuitElement",
 			"OrganizationElement",
 		}
 	case "AssetsElementType":
 		return []string{
 			"AssetElement",
 			"DataElement",
-			"ItAssetElement",
-			"DatabaseElement",
-			"ComputingDeviceElement",
-			"SystemElement",
 			"PersonElement",
+			"ItAssetElement",
+			"SoftwareElement",
+			"ServiceElement",
+			"SystemElement",
+			"DatabaseElement",
+			"CircuitElement",
 			"OrganizationElement",
 		}
 	case "AssetsType":
 		return []string{
 			"AssetElement",
 			"DataElement",
-			"ItAssetElement",
-			"DatabaseElement",
-			"ComputingDeviceElement",
-			"SystemElement",
 			"PersonElement",
+			"ItAssetElement",
+			"SoftwareElement",
+			"ServiceElement",
+			"SystemElement",
+			"DatabaseElement",
+			"CircuitElement",
 			"OrganizationElement",
+		}
+	case "BenchmarkElement":
+		return []string{
+			"",
+			"DcStatusType",
+			"TextType",
+			"HtmlTextWithSubType",
+			"NoticeType",
+			"HtmlTextWithSubType",
+			"HtmlTextWithSubType",
+			"ReferenceType",
+			"PlainTextType",
+			"",
+			"CPE2idrefType",
+			"VersionType",
+			"MetadataType",
+			"",
+			"",
+			"",
+			"",
+			"SignatureType",
+			"",
+			"",
+		}
+	case "BenchmarkElementType":
+		return []string{
+			"",
+			"DcStatusType",
+			"TextType",
+			"HtmlTextWithSubType",
+			"NoticeType",
+			"HtmlTextWithSubType",
+			"HtmlTextWithSubType",
+			"ReferenceType",
+			"PlainTextType",
+			"",
+			"CPE2idrefType",
+			"VersionType",
+			"MetadataType",
+			"",
+			"",
+			"",
+			"",
+			"SignatureType",
+			"",
+			"",
 		}
 	case "CircuitElement":
 		return []string{
@@ -10118,6 +22012,11 @@ func (s *XMLDocumentState) GetValidChildTypes(parentType string) []string {
 	case "CircuitType":
 		return []string{
 			"CircuitName",
+		}
+	case "ComplexCheckType":
+		return []string{
+			"CheckType",
+			"ComplexCheckType",
 		}
 	case "ComputingDeviceElement":
 		return []string{
@@ -10141,6 +22040,14 @@ func (s *XMLDocumentState) GetValidChildTypes(parentType string) []string {
 		return []string{
 			"NetworkInterfaceType",
 		}
+	case "Constant_variableElement":
+		return []string{
+			"ValueType",
+		}
+	case "Constant_variableElementType":
+		return []string{
+			"ValueType",
+		}
 	case "CountryElementType":
 		return []string{
 			"",
@@ -10150,6 +22057,44 @@ func (s *XMLDocumentState) GetValidChildTypes(parentType string) []string {
 			"",
 			"",
 		}
+	case "CpeItemElement":
+		return []string{
+			"TextType",
+			"NotesType",
+			"ReferencesType",
+			"CheckType",
+		}
+	case "CpeListElement":
+		return []string{
+			"GeneratorType",
+			"ItemType",
+		}
+	case "CriteriaType":
+		return []string{
+			"CriteriaType",
+			"CriterionType",
+			"ExtendDefinitionType",
+		}
+	case "DSAKeyValueElement":
+		return []string{
+			"CryptoBinary",
+			"CryptoBinary",
+			"CryptoBinary",
+			"CryptoBinary",
+			"CryptoBinary",
+			"CryptoBinary",
+			"CryptoBinary",
+		}
+	case "DSAKeyValueType":
+		return []string{
+			"CryptoBinary",
+			"CryptoBinary",
+			"CryptoBinary",
+			"CryptoBinary",
+			"CryptoBinary",
+			"CryptoBinary",
+			"CryptoBinary",
+		}
 	case "DatabaseElement":
 		return []string{
 			"InstanceName",
@@ -10157,6 +22102,24 @@ func (s *XMLDocumentState) GetValidChildTypes(parentType string) []string {
 	case "DatabaseType":
 		return []string{
 			"InstanceName",
+		}
+	case "DefinitionElement":
+		return []string{
+			"SignatureType",
+			"MetadataType",
+			"NotesType",
+			"CriteriaType",
+		}
+	case "DefinitionType":
+		return []string{
+			"SignatureType",
+			"MetadataType",
+			"NotesType",
+			"CriteriaType",
+		}
+	case "DefinitionsType":
+		return []string{
+			"DefinitionType",
 		}
 	case "DepartmentElement":
 		return []string{
@@ -10195,9 +22158,49 @@ func (s *XMLDocumentState) GetValidChildTypes(parentType string) []string {
 			"ThoroughfareTrailingTypeType",
 			"ThoroughfarePostDirectionType",
 		}
+	case "DeprecatedInfoType":
+		return []string{
+			"Version",
+		}
+	case "Deprecated_infoElement":
+		return []string{
+			"Version",
+		}
+	case "ElementMapType":
+		return []string{
+			"ElementMapItemType",
+			"ElementMapItemType",
+			"ElementMapItemType",
+			"ElementMapItemType",
+		}
+	case "Element_mappingElement":
+		return []string{
+			"ElementMapItemType",
+			"ElementMapItemType",
+			"ElementMapItemType",
+			"ElementMapItemType",
+		}
+	case "EntityObjectRecordType":
+		return []string{
+			"EntityObjectFieldType",
+		}
+	case "EntityStateRecordType":
+		return []string{
+			"EntityStateFieldType",
+		}
 	case "ExtendedInfosElementType":
 		return []string{
 			"ExtendedInfo",
+		}
+	case "External_variableElement":
+		return []string{
+			"PossibleValueType",
+			"PossibleRestrictionType",
+		}
+	case "External_variableElementType":
+		return []string{
+			"PossibleValueType",
+			"PossibleRestrictionType",
 		}
 	case "FirmType":
 		return []string{
@@ -10207,10 +22210,33 @@ func (s *XMLDocumentState) GetValidChildTypes(parentType string) []string {
 			"MailStopType",
 			"",
 		}
+	case "FixType":
+		return []string{
+			"SubType",
+			"InstanceFixType",
+		}
+	case "GroupElement":
+		return []string{
+			"ValueType",
+			"SignatureType",
+			"GroupType",
+			"RuleType",
+		}
+	case "GroupType":
+		return []string{
+			"ValueType",
+			"SignatureType",
+			"GroupType",
+			"RuleType",
+		}
 	case "HostElementType":
 		return []string{
 			"",
 			"",
+		}
+	case "HtmlTextWithSubType":
+		return []string{
+			"SubType",
 		}
 	case "IpAddressElement":
 		return []string{
@@ -10227,6 +22253,25 @@ func (s *XMLDocumentState) GetValidChildTypes(parentType string) []string {
 			"IpAddressType",
 			"IpAddressType",
 		}
+	case "ItemElement":
+		return []string{
+			"",
+			"DcStatusType",
+			"VersionType",
+			"TextWithSubType",
+			"HtmlTextWithSubType",
+			"WarningType",
+			"TextType",
+			"ReferenceType",
+			"MetadataType",
+		}
+	case "ItemType":
+		return []string{
+			"TextType",
+			"NotesType",
+			"ReferencesType",
+			"CheckType",
+		}
 	case "JointPersonNameElement":
 		return []string{
 			"NameLineType",
@@ -10236,6 +22281,32 @@ func (s *XMLDocumentState) GetValidChildTypes(parentType string) []string {
 		return []string{
 			"NameLineType",
 			"",
+		}
+	case "KeyInfoElement":
+		return []string{
+			"KeyValueType",
+			"RetrievalMethodType",
+			"X509DataType",
+			"PGPDataType",
+			"SPKIDataType",
+		}
+	case "KeyInfoType":
+		return []string{
+			"KeyValueType",
+			"RetrievalMethodType",
+			"X509DataType",
+			"PGPDataType",
+			"SPKIDataType",
+		}
+	case "KeyValueElement":
+		return []string{
+			"DSAKeyValueType",
+			"RSAKeyValueType",
+		}
+	case "KeyValueType":
+		return []string{
+			"DSAKeyValueType",
+			"RSAKeyValueType",
 		}
 	case "LargeMailUserType":
 		return []string{
@@ -10247,6 +22318,11 @@ func (s *XMLDocumentState) GetValidChildTypes(parentType string) []string {
 			"",
 			"",
 			"",
+		}
+	case "ListType":
+		return []string{
+			"GeneratorType",
+			"ItemType",
 		}
 	case "LocalityElement":
 		return []string{
@@ -10282,11 +22358,37 @@ func (s *XMLDocumentState) GetValidChildTypes(parentType string) []string {
 		return []string{
 			"",
 		}
+	case "LogicalTestType":
+		return []string{
+			"LogicalTestType",
+			"FactRefType",
+		}
 	case "MailStopType":
 		return []string{
 			"",
 			"MailStopName",
 			"MailStopNumber",
+		}
+	case "ManifestElement":
+		return []string{
+			"ReferenceType",
+		}
+	case "ManifestType":
+		return []string{
+			"ReferenceType",
+		}
+	case "MetadataType":
+		return []string{
+			"AffectedType",
+			"ReferenceType",
+		}
+	case "ModelElement":
+		return []string{
+			"ParamType",
+		}
+	case "ModelElementType":
+		return []string{
+			"ParamType",
 		}
 	case "NameDetails":
 		return []string{
@@ -10327,6 +22429,15 @@ func (s *XMLDocumentState) GetValidChildTypes(parentType string) []string {
 			"IpNetRange",
 			"Cidr",
 		}
+	case "ObjectElement":
+		return []string{
+			"SignatureType",
+			"NotesType",
+		}
+	case "ObjectsType":
+		return []string{
+			"ObjectType",
+		}
 	case "OrganisationNameDetails":
 		return []string{
 			"NameLineType",
@@ -10356,6 +22467,32 @@ func (s *XMLDocumentState) GetValidChildTypes(parentType string) []string {
 			"",
 			"",
 			"",
+		}
+	case "Oval_definitionsElement":
+		return []string{
+			"GeneratorType",
+			"DefinitionsType",
+			"TestsType",
+			"ObjectsType",
+			"StatesType",
+			"VariablesType",
+			"",
+		}
+	case "Oval_definitionsElementType":
+		return []string{
+			"GeneratorType",
+			"DefinitionsType",
+			"TestsType",
+			"ObjectsType",
+			"StatesType",
+			"VariablesType",
+			"",
+		}
+	case "OverrideType":
+		return []string{
+			"ResultEnumType",
+			"ResultEnumType",
+			"TextType",
 		}
 	case "PersonElement":
 		return []string{
@@ -10395,6 +22532,24 @@ func (s *XMLDocumentState) GetValidChildTypes(parentType string) []string {
 			"",
 			"",
 			"Birthdate",
+		}
+	case "PlatformSpecificationElement":
+		return []string{
+			"PlatformType",
+		}
+	case "PlatformSpecificationElementType":
+		return []string{
+			"PlatformType",
+		}
+	case "PlatformType":
+		return []string{
+			"TextType",
+			"TextType",
+			"LogicalTestType",
+		}
+	case "PossibleRestrictionType":
+		return []string{
+			"RestrictionType",
 		}
 	case "PostBoxElement":
 		return []string{
@@ -10525,6 +22680,82 @@ func (s *XMLDocumentState) GetValidChildTypes(parentType string) []string {
 			"",
 			"",
 		}
+	case "ProfileElement":
+		return []string{
+			"",
+			"DcStatusType",
+			"VersionType",
+			"TextWithSubType",
+			"HtmlTextWithSubType",
+			"ReferenceType",
+			"OverrideableCPE2idrefType",
+			"MetadataType",
+			"SignatureType",
+			"ProfileSelectType",
+			"ProfileSetComplexValueType",
+			"ProfileSetValueType",
+			"ProfileRefineValueType",
+			"ProfileRefineRuleType",
+		}
+	case "ProfileNoteType":
+		return []string{
+			"SubType",
+		}
+	case "ProfileRefineRuleType":
+		return []string{
+			"TextType",
+		}
+	case "ProfileRefineValueType":
+		return []string{
+			"TextType",
+		}
+	case "ProfileSelectType":
+		return []string{
+			"TextType",
+		}
+	case "ProfileType":
+		return []string{
+			"",
+			"DcStatusType",
+			"VersionType",
+			"TextWithSubType",
+			"HtmlTextWithSubType",
+			"ReferenceType",
+			"OverrideableCPE2idrefType",
+			"MetadataType",
+			"SignatureType",
+			"ProfileSelectType",
+			"ProfileSetComplexValueType",
+			"ProfileSetValueType",
+			"ProfileRefineValueType",
+			"ProfileRefineRuleType",
+		}
+	case "RSAKeyValueElement":
+		return []string{
+			"CryptoBinary",
+			"CryptoBinary",
+		}
+	case "RSAKeyValueType":
+		return []string{
+			"CryptoBinary",
+			"CryptoBinary",
+		}
+	case "ReferenceElement":
+		return []string{
+			"TransformsType",
+			"DigestMethodType",
+			"DigestValueType",
+		}
+	case "ReferenceType":
+		return []string{
+			"TransformsType",
+			"DigestMethodType",
+			"DigestValueType",
+		}
+	case "ReferencesType":
+		return []string{
+			"ReferenceElement",
+		}
 	case "RelationshipsContainerType":
 		return []string{
 			"Relationships",
@@ -10551,6 +22782,57 @@ func (s *XMLDocumentState) GetValidChildTypes(parentType string) []string {
 		return []string{
 			"ReportType",
 		}
+	case "RetrievalMethodElement":
+		return []string{
+			"TransformsType",
+		}
+	case "RetrievalMethodType":
+		return []string{
+			"TransformsType",
+		}
+	case "RuleElement":
+		return []string{
+			"IdentType",
+			"ProfileNoteType",
+			"FixTextType",
+			"FixType",
+			"SignatureType",
+			"CheckType",
+			"ComplexCheckType",
+		}
+	case "RuleResultType":
+		return []string{
+			"ResultEnumType",
+			"OverrideType",
+			"IdentType",
+			"MetadataType",
+			"MessageType",
+			"InstanceResultType",
+			"FixType",
+			"CheckType",
+			"ComplexCheckType",
+		}
+	case "RuleType":
+		return []string{
+			"IdentType",
+			"ProfileNoteType",
+			"FixTextType",
+			"FixType",
+			"SignatureType",
+			"CheckType",
+			"ComplexCheckType",
+		}
+	case "SelChoicesType":
+		return []string{
+			"ComplexValueType",
+		}
+	case "SelectableItemType":
+		return []string{
+			"HtmlTextWithSubType",
+			"OverrideableCPE2idrefType",
+			"IdrefListType",
+			"IdrefType",
+		}
 	case "ServedByElement":
 		return []string{
 			"Host",
@@ -10572,6 +22854,60 @@ func (s *XMLDocumentState) GetValidChildTypes(parentType string) []string {
 			"PortRange",
 			"Protocol",
 		}
+	case "SetElement":
+		return []string{
+			"",
+			"ObjectIDPattern",
+			"",
+		}
+	case "SetElementType":
+		return []string{
+			"",
+			"ObjectIDPattern",
+			"",
+		}
+	case "SignatureElement":
+		return []string{
+			"SignedInfoType",
+			"SignatureValueType",
+			"KeyInfoType",
+			"ObjectType",
+		}
+	case "SignatureMethodElement":
+		return []string{
+			"HMACOutputLengthType",
+		}
+	case "SignatureMethodType":
+		return []string{
+			"HMACOutputLengthType",
+		}
+	case "SignaturePropertiesElement":
+		return []string{
+			"SignaturePropertyType",
+		}
+	case "SignaturePropertiesType":
+		return []string{
+			"SignaturePropertyType",
+		}
+	case "SignatureType":
+		return []string{
+			"SignedInfoType",
+			"SignatureValueType",
+			"KeyInfoType",
+			"ObjectType",
+		}
+	case "SignedInfoElement":
+		return []string{
+			"CanonicalizationMethodType",
+			"SignatureMethodType",
+			"ReferenceType",
+		}
+	case "SignedInfoType":
+		return []string{
+			"CanonicalizationMethodType",
+			"SignatureMethodType",
+			"ReferenceType",
+		}
 	case "SoftwareElement":
 		return []string{
 			"InstallationId",
@@ -10583,6 +22919,20 @@ func (s *XMLDocumentState) GetValidChildTypes(parentType string) []string {
 			"InstallationId",
 			"",
 			"License",
+		}
+	case "StateElement":
+		return []string{
+			"SignatureType",
+			"NotesType",
+		}
+	case "StateType":
+		return []string{
+			"SignatureType",
+			"NotesType",
+		}
+	case "StatesType":
+		return []string{
+			"StateType",
 		}
 	case "SubAdministrativeAreaElementType":
 		return []string{
@@ -10615,6 +22965,84 @@ func (s *XMLDocumentState) GetValidChildTypes(parentType string) []string {
 		return []string{
 			"SystemName",
 			"Version",
+		}
+	case "TailoringElement":
+		return []string{
+			"TailoringBenchmarkReferenceType",
+			"",
+			"DcStatusType",
+			"TailoringVersionType",
+			"MetadataType",
+			"ProfileType",
+			"SignatureType",
+		}
+	case "TailoringType":
+		return []string{
+			"TailoringBenchmarkReferenceType",
+			"",
+			"DcStatusType",
+			"TailoringVersionType",
+			"MetadataType",
+			"ProfileType",
+			"SignatureType",
+		}
+	case "TargetFactsType":
+		return []string{
+			"FactType",
+		}
+	case "TestElement":
+		return []string{
+			"SignatureType",
+			"NotesType",
+		}
+	case "TestResultElement":
+		return []string{
+			"BenchmarkReferenceType",
+			"TailoringReferenceType",
+			"TextType",
+			"TextType",
+			"IdentityType",
+			"IdrefType",
+			"TargetFactsType",
+			"CPE2idrefType",
+			"RuleResultType",
+			"ScoreType",
+			"MetadataType",
+			"SignatureType",
+			"TargetIdRefType",
+			"ProfileSetValueType",
+			"ProfileSetComplexValueType",
+		}
+	case "TestResultType":
+		return []string{
+			"BenchmarkReferenceType",
+			"TailoringReferenceType",
+			"TextType",
+			"TextType",
+			"IdentityType",
+			"IdrefType",
+			"TargetFactsType",
+			"CPE2idrefType",
+			"RuleResultType",
+			"ScoreType",
+			"MetadataType",
+			"SignatureType",
+			"TargetIdRefType",
+			"ProfileSetValueType",
+			"ProfileSetComplexValueType",
+		}
+	case "TestType":
+		return []string{
+			"SignatureType",
+			"NotesType",
+		}
+	case "TestsType":
+		return []string{
+			"TestType",
+		}
+	case "TextWithSubType":
+		return []string{
+			"SubType",
 		}
 	case "ThoroughfareElement":
 		return []string{
@@ -10672,6 +23100,41 @@ func (s *XMLDocumentState) GetValidChildTypes(parentType string) []string {
 			"",
 			"",
 		}
+	case "TransformsElement":
+		return []string{
+			"TransformType",
+		}
+	case "TransformsType":
+		return []string{
+			"TransformType",
+		}
+	case "ValueElement":
+		return []string{
+			"SelStringType",
+			"SelNumType",
+			"SelNumType",
+			"SelChoicesType",
+			"UriRefType",
+			"SignatureType",
+			"SelStringType",
+			"SelComplexValueType",
+			"SelStringType",
+			"SelComplexValueType",
+		}
+	case "VariableElement":
+		return []string{
+			"SignatureType",
+			"NotesType",
+		}
+	case "VariableType":
+		return []string{
+			"SignatureType",
+			"NotesType",
+		}
+	case "VariablesType":
+		return []string{
+			"VariableType",
+		}
 	case "WebsiteElement":
 		return []string{
 			"DocumentRoot",
@@ -10681,6 +23144,14 @@ func (s *XMLDocumentState) GetValidChildTypes(parentType string) []string {
 		return []string{
 			"DocumentRoot",
 			"Locale",
+		}
+	case "X509DataElement":
+		return []string{
+			"X509IssuerSerialType",
+		}
+	case "X509DataType":
+		return []string{
+			"X509IssuerSerialType",
 		}
 	case "XALElement":
 		return []string{
@@ -11363,6 +23834,41 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 				},
 			},
 		}, nil
+	case "AffectedType":
+		return &TypeMetadata{
+			Name:          "AffectedType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "platform",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "product",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "family",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"android", "asa", "apple_ios", "catos", "ios", "iosxe", "junos", "macos", "pixos", "undefined", "unix", "vmware_infrastructure", "windows"},
+					Documentation: "",
+				},
+			},
+		}, nil
 	case "AliasElementType":
 		return &TypeMetadata{
 			Name:          "AliasElementType",
@@ -11415,6 +23921,30 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 			Documentation: "",
 			IsAbstract:    false,
 			Fields:        []FieldInfo{},
+		}, nil
+	case "ArithmeticEnumeration":
+		return &TypeMetadata{
+			Name:          "ArithmeticEnumeration",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
+	case "ArithmeticFunctionType":
+		return &TypeMetadata{
+			Name:          "ArithmeticFunctionType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "arithmetic_operation",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"add", "multiply"},
+					Documentation: "",
+				},
+			},
 		}, nil
 	case "AssetElement":
 		return &TypeMetadata{
@@ -11750,6 +24280,543 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 				},
 			},
 		}, nil
+	case "BeginFunctionType":
+		return &TypeMetadata{
+			Name:          "BeginFunctionType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "character",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "BenchmarkElement":
+		return &TypeMetadata{
+			Name:          "BenchmarkElement",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "",
+					Type:          "",
+					IsRequired:    true,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "dc-status",
+					Type:          "DcStatusType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "title",
+					Type:          "TextType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "description",
+					Type:          "HtmlTextWithSubType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "notice",
+					Type:          "NoticeType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "front-matter",
+					Type:          "HtmlTextWithSubType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "rear-matter",
+					Type:          "HtmlTextWithSubType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "reference",
+					Type:          "ReferenceType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "plain-text",
+					Type:          "PlainTextType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "platform",
+					Type:          "CPE2idrefType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "version",
+					Type:          "VersionType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "metadata",
+					Type:          "MetadataType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "signature",
+					Type:          "SignatureType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "id",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Pattern:       "xccdf_[^_]+_benchmark_.+",
+					Documentation: "",
+				},
+				{
+					Name:          "Id",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "resolved",
+					Type:          "bool",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "style",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "style-href",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "BenchmarkElementType":
+		return &TypeMetadata{
+			Name:          "BenchmarkElementType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "",
+					Type:          "",
+					IsRequired:    true,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "dc-status",
+					Type:          "DcStatusType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "title",
+					Type:          "TextType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "description",
+					Type:          "HtmlTextWithSubType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "notice",
+					Type:          "NoticeType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "front-matter",
+					Type:          "HtmlTextWithSubType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "rear-matter",
+					Type:          "HtmlTextWithSubType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "reference",
+					Type:          "ReferenceType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "plain-text",
+					Type:          "PlainTextType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "platform",
+					Type:          "CPE2idrefType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "version",
+					Type:          "VersionType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "metadata",
+					Type:          "MetadataType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "signature",
+					Type:          "SignatureType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "id",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Pattern:       "xccdf_[^_]+_benchmark_.+",
+					Documentation: "",
+				},
+				{
+					Name:          "Id",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "resolved",
+					Type:          "bool",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "style",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "style-href",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "BenchmarkIdType":
+		return &TypeMetadata{
+			Name:          "BenchmarkIdType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
+	case "BenchmarkReferenceType":
+		return &TypeMetadata{
+			Name:          "BenchmarkReferenceType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "href",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "id",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
 	case "BirthdateElementType":
 		return &TypeMetadata{
 			Name:          "BirthdateElementType",
@@ -11791,6 +24858,171 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 				{
 					Name:          "TypeOccurrence",
 					Type:          "",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "CPE2idrefType":
+		return &TypeMetadata{
+			Name:          "CPE2idrefType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "idref",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "CanonicalizationMethodElement":
+		return &TypeMetadata{
+			Name:          "CanonicalizationMethodElement",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "Algorithm",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "CanonicalizationMethodType":
+		return &TypeMetadata{
+			Name:          "CanonicalizationMethodType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "Algorithm",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "CcOperatorEnumType":
+		return &TypeMetadata{
+			Name:          "CcOperatorEnumType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
+	case "CheckContentRefType":
+		return &TypeMetadata{
+			Name:          "CheckContentRefType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "href",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "name",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "CheckContentType":
+		return &TypeMetadata{
+			Name:          "CheckContentType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
+	case "CheckEnumeration":
+		return &TypeMetadata{
+			Name:          "CheckEnumeration",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
+	case "CheckExportType":
+		return &TypeMetadata{
+			Name:          "CheckExportType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "value-id",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "export-name",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "CheckImportType":
+		return &TypeMetadata{
+			Name:          "CheckImportType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "import-name",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "import-xpath",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "CheckType":
+		return &TypeMetadata{
+			Name:          "CheckType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "system",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "href",
+					Type:          "string",
 					IsRequired:    false,
 					IsRepeated:    false,
 					IsEnum:        false,
@@ -11883,6 +25115,86 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 					IsRepeated:    false,
 					IsEnum:        false,
 					MaxOccurs:     1,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "ClassEnumeration":
+		return &TypeMetadata{
+			Name:          "ClassEnumeration",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
+	case "ComplexCheckType":
+		return &TypeMetadata{
+			Name:          "ComplexCheckType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "check",
+					Type:          "CheckType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "complex-check",
+					Type:          "ComplexCheckType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "operator",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"OR", "AND"},
+					Documentation: "",
+				},
+				{
+					Name:          "negate",
+					Type:          "bool",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "ComplexDatatypeEnumeration":
+		return &TypeMetadata{
+			Name:          "ComplexDatatypeEnumeration",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
+	case "ComplexValueType":
+		return &TypeMetadata{
+			Name:          "ComplexValueType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "item",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
 					Documentation: "",
 				},
 			},
@@ -12011,6 +25323,13 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 				},
 			},
 		}, nil
+	case "ConcatFunctionType":
+		return &TypeMetadata{
+			Name:          "ConcatFunctionType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
 	case "ConnectionsElementType":
 		return &TypeMetadata{
 			Name:          "ConnectionsElementType",
@@ -12029,16 +25348,45 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 				},
 			},
 		}, nil
+	case "Constant_variableElement":
+		return &TypeMetadata{
+			Name:          "Constant_variableElement",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "value",
+					Type:          "ValueType",
+					IsRequired:    true,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "Constant_variableElementType":
+		return &TypeMetadata{
+			Name:          "Constant_variableElementType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "value",
+					Type:          "ValueType",
+					IsRequired:    true,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+			},
+		}, nil
 	case "ContentElementType":
 		return &TypeMetadata{
 			Name:          "ContentElementType",
-			Documentation: "",
-			IsAbstract:    false,
-			Fields:        []FieldInfo{},
-		}, nil
-	case "ContentElementType1":
-		return &TypeMetadata{
-			Name:          "ContentElementType1",
 			Documentation: "",
 			IsAbstract:    false,
 			Fields: []FieldInfo{
@@ -12059,6 +25407,20 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 					Documentation: "",
 				},
 			},
+		}, nil
+	case "ContentElementType1":
+		return &TypeMetadata{
+			Name:          "ContentElementType1",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
+	case "CountFunctionType":
+		return &TypeMetadata{
+			Name:          "CountFunctionType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
 		}, nil
 	case "CountryElementType":
 		return &TypeMetadata{
@@ -12227,12 +25589,397 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 				},
 			},
 		}, nil
+	case "CpeItemElement":
+		return &TypeMetadata{
+			Name:          "CpeItemElement",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "title",
+					Type:          "TextType",
+					IsRequired:    true,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "notes",
+					Type:          "NotesType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "references",
+					Type:          "ReferencesType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "check",
+					Type:          "CheckType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "name",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Pattern:       "[c][pP][eE]:/[AHOaho]?(:[A-Za-z0-9\\._\\-~%]*){0,6}",
+					Documentation: "",
+				},
+				{
+					Name:          "deprecated",
+					Type:          "bool",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "deprecated_by",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Pattern:       "[c][pP][eE]:/[AHOaho]?(:[A-Za-z0-9\\._\\-~%]*){0,6}",
+					Documentation: "",
+				},
+				{
+					Name:          "deprecation_date",
+					Type:          "time.Time",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "CpeListElement":
+		return &TypeMetadata{
+			Name:          "CpeListElement",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "generator",
+					Type:          "GeneratorType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "ItemType",
+					IsRequired:    true,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+			},
+		}, nil
 	case "CpeType":
 		return &TypeMetadata{
 			Name:          "CpeType",
 			Documentation: "",
 			IsAbstract:    false,
 			Fields:        []FieldInfo{},
+		}, nil
+	case "CriteriaType":
+		return &TypeMetadata{
+			Name:          "CriteriaType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "criteria",
+					Type:          "CriteriaType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "criterion",
+					Type:          "CriterionType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "extend_definition",
+					Type:          "ExtendDefinitionType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "applicability_check",
+					Type:          "bool",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "operator",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"AND", "ONE", "OR", "XOR"},
+					Documentation: "",
+				},
+				{
+					Name:          "negate",
+					Type:          "bool",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "comment",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinLength:     1,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "CriterionType":
+		return &TypeMetadata{
+			Name:          "CriterionType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "applicability_check",
+					Type:          "bool",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "test_ref",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Pattern:       "oval:[A-Za-z0-9_\\-\\.]+:tst:[1-9][0-9]*",
+					Documentation: "",
+				},
+				{
+					Name:          "negate",
+					Type:          "bool",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "comment",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinLength:     1,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "CryptoBinary":
+		return &TypeMetadata{
+			Name:          "CryptoBinary",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
+	case "DSAKeyValueElement":
+		return &TypeMetadata{
+			Name:          "DSAKeyValueElement",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "G",
+					Type:          "CryptoBinary",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "Y",
+					Type:          "CryptoBinary",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "J",
+					Type:          "CryptoBinary",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "P",
+					Type:          "CryptoBinary",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "Q",
+					Type:          "CryptoBinary",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "Seed",
+					Type:          "CryptoBinary",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "PgenCounter",
+					Type:          "CryptoBinary",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "DSAKeyValueType":
+		return &TypeMetadata{
+			Name:          "DSAKeyValueType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "G",
+					Type:          "CryptoBinary",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "Y",
+					Type:          "CryptoBinary",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "J",
+					Type:          "CryptoBinary",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "P",
+					Type:          "CryptoBinary",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "Q",
+					Type:          "CryptoBinary",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "Seed",
+					Type:          "CryptoBinary",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "PgenCounter",
+					Type:          "CryptoBinary",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+			},
 		}, nil
 	case "DataElement":
 		return &TypeMetadata{
@@ -12278,6 +26025,210 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 					IsRepeated:    false,
 					IsEnum:        false,
 					MaxOccurs:     1,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "DatatypeEnumeration":
+		return &TypeMetadata{
+			Name:          "DatatypeEnumeration",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
+	case "DateTimeFormatEnumeration":
+		return &TypeMetadata{
+			Name:          "DateTimeFormatEnumeration",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
+	case "DcStatusType":
+		return &TypeMetadata{
+			Name:          "DcStatusType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
+	case "DefinitionElement":
+		return &TypeMetadata{
+			Name:          "DefinitionElement",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "",
+					Type:          "SignatureType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "metadata",
+					Type:          "MetadataType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "NotesType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "criteria",
+					Type:          "CriteriaType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "id",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Pattern:       "oval:[A-Za-z0-9_\\-\\.]+:def:[1-9][0-9]*",
+					Documentation: "",
+				},
+				{
+					Name:          "version",
+					Type:          "uint64",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "class",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"compliance", "inventory", "miscellaneous", "patch", "vulnerability"},
+					Documentation: "",
+				},
+				{
+					Name:          "deprecated",
+					Type:          "bool",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "DefinitionIDPattern":
+		return &TypeMetadata{
+			Name:          "DefinitionIDPattern",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
+	case "DefinitionType":
+		return &TypeMetadata{
+			Name:          "DefinitionType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "",
+					Type:          "SignatureType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "metadata",
+					Type:          "MetadataType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "NotesType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "criteria",
+					Type:          "CriteriaType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "id",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Pattern:       "oval:[A-Za-z0-9_\\-\\.]+:def:[1-9][0-9]*",
+					Documentation: "",
+				},
+				{
+					Name:          "version",
+					Type:          "uint64",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "class",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"compliance", "inventory", "miscellaneous", "patch", "vulnerability"},
+					Documentation: "",
+				},
+				{
+					Name:          "deprecated",
+					Type:          "bool",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "DefinitionsType":
+		return &TypeMetadata{
+			Name:          "DefinitionsType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "",
+					Type:          "DefinitionType",
+					IsRequired:    true,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     -1,
 					Documentation: "",
 				},
 			},
@@ -12671,6 +26622,126 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 				},
 			},
 		}, nil
+	case "DeprecatedInfoType":
+		return &TypeMetadata{
+			Name:          "DeprecatedInfoType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "version",
+					Type:          "Version",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "reason",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "comment",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "Deprecated_infoElement":
+		return &TypeMetadata{
+			Name:          "Deprecated_infoElement",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "version",
+					Type:          "Version",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "reason",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "comment",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "DigestMethodElement":
+		return &TypeMetadata{
+			Name:          "DigestMethodElement",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "Algorithm",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "DigestMethodType":
+		return &TypeMetadata{
+			Name:          "DigestMethodType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "Algorithm",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "DigestValueElement":
+		return &TypeMetadata{
+			Name:          "DigestValueElement",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
+	case "DigestValueType":
+		return &TypeMetadata{
+			Name:          "DigestValueType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
 	case "DistinguishedNameElementType":
 		return &TypeMetadata{
 			Name:          "DistinguishedNameElementType",
@@ -12715,6 +26786,112 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 					IsRequired:    false,
 					IsRepeated:    false,
 					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "ElementMapItemType":
+		return &TypeMetadata{
+			Name:          "ElementMapItemType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "target_namespace",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "ElementMapType":
+		return &TypeMetadata{
+			Name:          "ElementMapType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "test",
+					Type:          "ElementMapItemType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "object",
+					Type:          "ElementMapItemType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "state",
+					Type:          "ElementMapItemType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "item",
+					Type:          "ElementMapItemType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "Element_mappingElement":
+		return &TypeMetadata{
+			Name:          "Element_mappingElement",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "test",
+					Type:          "ElementMapItemType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "object",
+					Type:          "ElementMapItemType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "state",
+					Type:          "ElementMapItemType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "item",
+					Type:          "ElementMapItemType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
 					Documentation: "",
 				},
 			},
@@ -12767,6 +26944,29 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 				},
 			},
 		}, nil
+	case "EmptyStringType":
+		return &TypeMetadata{
+			Name:          "EmptyStringType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
+	case "EndFunctionType":
+		return &TypeMetadata{
+			Name:          "EndFunctionType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "character",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
 	case "EndorsementLineCodeElementType":
 		return &TypeMetadata{
 			Name:          "EndorsementLineCodeElementType",
@@ -12779,6 +26979,581 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 					IsRequired:    false,
 					IsRepeated:    false,
 					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "EntityComplexBaseType":
+		return &TypeMetadata{
+			Name:          "EntityComplexBaseType",
+			Documentation: "",
+			IsAbstract:    true,
+			Fields:        []FieldInfo{},
+		}, nil
+	case "EntityObjectAnySimpleType":
+		return &TypeMetadata{
+			Name:          "EntityObjectAnySimpleType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "datatype",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"binary", "boolean", "evr_string", "debian_evr_string", "fileset_revision", "float", "ios_version", "int", "ipv4_address", "ipv6_address", "string", "version"},
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "EntityObjectBinaryType":
+		return &TypeMetadata{
+			Name:          "EntityObjectBinaryType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "datatype",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"binary", "boolean", "evr_string", "debian_evr_string", "fileset_revision", "float", "ios_version", "int", "ipv4_address", "ipv6_address", "string", "version"},
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "EntityObjectBoolType":
+		return &TypeMetadata{
+			Name:          "EntityObjectBoolType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "datatype",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"binary", "boolean", "evr_string", "debian_evr_string", "fileset_revision", "float", "ios_version", "int", "ipv4_address", "ipv6_address", "string", "version"},
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "EntityObjectFieldType":
+		return &TypeMetadata{
+			Name:          "EntityObjectFieldType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "name",
+					Type:          "",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "entity_check",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"all", "at least one", "none exist", "none satisfy", "only one"},
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "EntityObjectFloatType":
+		return &TypeMetadata{
+			Name:          "EntityObjectFloatType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "datatype",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"binary", "boolean", "evr_string", "debian_evr_string", "fileset_revision", "float", "ios_version", "int", "ipv4_address", "ipv6_address", "string", "version"},
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "EntityObjectIPAddressStringType":
+		return &TypeMetadata{
+			Name:          "EntityObjectIPAddressStringType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "datatype",
+					Type:          "",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "EntityObjectIPAddressType":
+		return &TypeMetadata{
+			Name:          "EntityObjectIPAddressType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "datatype",
+					Type:          "",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "EntityObjectIntType":
+		return &TypeMetadata{
+			Name:          "EntityObjectIntType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "datatype",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"binary", "boolean", "evr_string", "debian_evr_string", "fileset_revision", "float", "ios_version", "int", "ipv4_address", "ipv6_address", "string", "version"},
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "EntityObjectRecordType":
+		return &TypeMetadata{
+			Name:          "EntityObjectRecordType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "field",
+					Type:          "EntityObjectFieldType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "EntityObjectStringType":
+		return &TypeMetadata{
+			Name:          "EntityObjectStringType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "datatype",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"binary", "boolean", "evr_string", "debian_evr_string", "fileset_revision", "float", "ios_version", "int", "ipv4_address", "ipv6_address", "string", "version"},
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "EntityObjectVersionType":
+		return &TypeMetadata{
+			Name:          "EntityObjectVersionType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "datatype",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"binary", "boolean", "evr_string", "debian_evr_string", "fileset_revision", "float", "ios_version", "int", "ipv4_address", "ipv6_address", "string", "version"},
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "EntitySimpleBaseType":
+		return &TypeMetadata{
+			Name:          "EntitySimpleBaseType",
+			Documentation: "",
+			IsAbstract:    true,
+			Fields:        []FieldInfo{},
+		}, nil
+	case "EntityStateAnySimpleType":
+		return &TypeMetadata{
+			Name:          "EntityStateAnySimpleType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "datatype",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"binary", "boolean", "evr_string", "debian_evr_string", "fileset_revision", "float", "ios_version", "int", "ipv4_address", "ipv6_address", "string", "version"},
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "EntityStateBinaryType":
+		return &TypeMetadata{
+			Name:          "EntityStateBinaryType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "datatype",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"binary", "boolean", "evr_string", "debian_evr_string", "fileset_revision", "float", "ios_version", "int", "ipv4_address", "ipv6_address", "string", "version"},
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "EntityStateBoolType":
+		return &TypeMetadata{
+			Name:          "EntityStateBoolType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "datatype",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"binary", "boolean", "evr_string", "debian_evr_string", "fileset_revision", "float", "ios_version", "int", "ipv4_address", "ipv6_address", "string", "version"},
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "EntityStateComplexBaseType":
+		return &TypeMetadata{
+			Name:          "EntityStateComplexBaseType",
+			Documentation: "",
+			IsAbstract:    true,
+			Fields: []FieldInfo{
+				{
+					Name:          "entity_check",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"all", "at least one", "none exist", "none satisfy", "only one"},
+					Documentation: "",
+				},
+				{
+					Name:          "check_existence",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"all_exist", "any_exist", "at_least_one_exists", "none_exist", "only_one_exists"},
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "EntityStateDebianEVRStringType":
+		return &TypeMetadata{
+			Name:          "EntityStateDebianEVRStringType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "datatype",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"binary", "boolean", "evr_string", "debian_evr_string", "fileset_revision", "float", "ios_version", "int", "ipv4_address", "ipv6_address", "string", "version"},
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "EntityStateEVRStringType":
+		return &TypeMetadata{
+			Name:          "EntityStateEVRStringType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "datatype",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"binary", "boolean", "evr_string", "debian_evr_string", "fileset_revision", "float", "ios_version", "int", "ipv4_address", "ipv6_address", "string", "version"},
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "EntityStateFieldType":
+		return &TypeMetadata{
+			Name:          "EntityStateFieldType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "name",
+					Type:          "",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "entity_check",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"all", "at least one", "none exist", "none satisfy", "only one"},
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "EntityStateFileSetRevisionType":
+		return &TypeMetadata{
+			Name:          "EntityStateFileSetRevisionType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "datatype",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"binary", "boolean", "evr_string", "debian_evr_string", "fileset_revision", "float", "ios_version", "int", "ipv4_address", "ipv6_address", "string", "version"},
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "EntityStateFloatType":
+		return &TypeMetadata{
+			Name:          "EntityStateFloatType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "datatype",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"binary", "boolean", "evr_string", "debian_evr_string", "fileset_revision", "float", "ios_version", "int", "ipv4_address", "ipv6_address", "string", "version"},
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "EntityStateIOSVersionType":
+		return &TypeMetadata{
+			Name:          "EntityStateIOSVersionType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "datatype",
+					Type:          "",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "EntityStateIPAddressStringType":
+		return &TypeMetadata{
+			Name:          "EntityStateIPAddressStringType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "datatype",
+					Type:          "",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "EntityStateIPAddressType":
+		return &TypeMetadata{
+			Name:          "EntityStateIPAddressType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "datatype",
+					Type:          "",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "EntityStateIntType":
+		return &TypeMetadata{
+			Name:          "EntityStateIntType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "datatype",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"binary", "boolean", "evr_string", "debian_evr_string", "fileset_revision", "float", "ios_version", "int", "ipv4_address", "ipv6_address", "string", "version"},
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "EntityStateRecordType":
+		return &TypeMetadata{
+			Name:          "EntityStateRecordType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "field",
+					Type:          "EntityStateFieldType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "EntityStateSimpleBaseType":
+		return &TypeMetadata{
+			Name:          "EntityStateSimpleBaseType",
+			Documentation: "",
+			IsAbstract:    true,
+			Fields: []FieldInfo{
+				{
+					Name:          "entity_check",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"all", "at least one", "none exist", "none satisfy", "only one"},
+					Documentation: "",
+				},
+				{
+					Name:          "check_existence",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"all_exist", "any_exist", "at_least_one_exists", "none_exist", "only_one_exists"},
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "EntityStateStringType":
+		return &TypeMetadata{
+			Name:          "EntityStateStringType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "datatype",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"binary", "boolean", "evr_string", "debian_evr_string", "fileset_revision", "float", "ios_version", "int", "ipv4_address", "ipv6_address", "string", "version"},
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "EntityStateVersionType":
+		return &TypeMetadata{
+			Name:          "EntityStateVersionType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "datatype",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"binary", "boolean", "evr_string", "debian_evr_string", "fileset_revision", "float", "ios_version", "int", "ipv4_address", "ipv6_address", "string", "version"},
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "EscapeRegexFunctionType":
+		return &TypeMetadata{
+			Name:          "EscapeRegexFunctionType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
+	case "ExistenceEnumeration":
+		return &TypeMetadata{
+			Name:          "ExistenceEnumeration",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
+	case "ExtendDefinitionType":
+		return &TypeMetadata{
+			Name:          "ExtendDefinitionType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "applicability_check",
+					Type:          "bool",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "definition_ref",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Pattern:       "oval:[A-Za-z0-9_\\-\\.]+:def:[1-9][0-9]*",
+					Documentation: "",
+				},
+				{
+					Name:          "negate",
+					Type:          "bool",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "comment",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinLength:     1,
 					Documentation: "",
 				},
 			},
@@ -12827,6 +27602,160 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 					IsEnum:        false,
 					MinOccurs:     1,
 					MaxOccurs:     -1,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "External_variableElement":
+		return &TypeMetadata{
+			Name:          "External_variableElement",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "possible_value",
+					Type:          "PossibleValueType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "possible_restriction",
+					Type:          "PossibleRestrictionType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "External_variableElementType":
+		return &TypeMetadata{
+			Name:          "External_variableElementType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "possible_value",
+					Type:          "PossibleValueType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "possible_restriction",
+					Type:          "PossibleRestrictionType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "FactRefType":
+		return &TypeMetadata{
+			Name:          "FactRefType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "name",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Pattern:       "cpe:/([aho](:[A-Za-z0-9\\._\\-~]*(:[A-Za-z0-9\\._\\-~]*(:[A-Za-z0-9\\._\\.\\-~]*(:[A-Za-z0-9\\._\\-~]*)?)?)?)?)?",
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "FactType":
+		return &TypeMetadata{
+			Name:          "FactType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "name",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "type",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"number", "string", "boolean"},
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "FamilyEnumeration":
+		return &TypeMetadata{
+			Name:          "FamilyEnumeration",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
+	case "FilterActionEnumeration":
+		return &TypeMetadata{
+			Name:          "FilterActionEnumeration",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
+	case "FilterElement":
+		return &TypeMetadata{
+			Name:          "FilterElement",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "action",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"exclude", "include"},
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "FilterElementType":
+		return &TypeMetadata{
+			Name:          "FilterElementType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "action",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"exclude", "include"},
 					Documentation: "",
 				},
 			},
@@ -12933,6 +27862,155 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 				{
 					Name:          "Code",
 					Type:          "",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "FixStrategyEnumType":
+		return &TypeMetadata{
+			Name:          "FixStrategyEnumType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
+	case "FixTextType":
+		return &TypeMetadata{
+			Name:          "FixTextType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "fixref",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "reboot",
+					Type:          "bool",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "strategy",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"unknown", "configure", "combination", "disable", "enable", "patch", "policy", "restrict", "update"},
+					Documentation: "",
+				},
+				{
+					Name:          "disruption",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"unknown", "low", "medium", "high"},
+					Documentation: "",
+				},
+				{
+					Name:          "complexity",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"unknown", "low", "medium", "high"},
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "FixType":
+		return &TypeMetadata{
+			Name:          "FixType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "sub",
+					Type:          "SubType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "instance",
+					Type:          "InstanceFixType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "id",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "reboot",
+					Type:          "bool",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "strategy",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"unknown", "configure", "combination", "disable", "enable", "patch", "policy", "restrict", "update"},
+					Documentation: "",
+				},
+				{
+					Name:          "disruption",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"unknown", "low", "medium", "high"},
+					Documentation: "",
+				},
+				{
+					Name:          "complexity",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"unknown", "low", "medium", "high"},
+					Documentation: "",
+				},
+				{
+					Name:          "system",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "platform",
+					Type:          "string",
 					IsRequired:    false,
 					IsRepeated:    false,
 					IsEnum:        false,
@@ -13099,6 +28177,200 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 				},
 			},
 		}, nil
+	case "GeneratorType":
+		return &TypeMetadata{
+			Name:          "GeneratorType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "product_name",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "product_version",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "schema_version",
+					Type:          "float32",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "timestamp",
+					Type:          "time.Time",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "GlobToRegexFunctionType":
+		return &TypeMetadata{
+			Name:          "GlobToRegexFunctionType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "glob_noescape",
+					Type:          "bool",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "GroupElement":
+		return &TypeMetadata{
+			Name:          "GroupElement",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "",
+					Type:          "ValueType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "signature",
+					Type:          "SignatureType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "GroupType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "RuleType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "id",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Pattern:       "xccdf_[^_]+_group_.+",
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "GroupIdType":
+		return &TypeMetadata{
+			Name:          "GroupIdType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
+	case "GroupType":
+		return &TypeMetadata{
+			Name:          "GroupType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "",
+					Type:          "ValueType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "signature",
+					Type:          "SignatureType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "GroupType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "RuleType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "id",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Pattern:       "xccdf_[^_]+_group_.+",
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "HMACOutputLengthType":
+		return &TypeMetadata{
+			Name:          "HMACOutputLengthType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
 	case "HostElementType":
 		return &TypeMetadata{
 			Name:          "HostElementType",
@@ -13169,6 +28441,138 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 			IsAbstract:    false,
 			Fields:        []FieldInfo{},
 		}, nil
+	case "HtmlTextType":
+		return &TypeMetadata{
+			Name:          "HtmlTextType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "",
+					Type:          "",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "override",
+					Type:          "bool",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "HtmlTextWithSubType":
+		return &TypeMetadata{
+			Name:          "HtmlTextWithSubType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "sub",
+					Type:          "SubType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "override",
+					Type:          "bool",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "IdentType":
+		return &TypeMetadata{
+			Name:          "IdentType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "system",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "IdentityType":
+		return &TypeMetadata{
+			Name:          "IdentityType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "authenticated",
+					Type:          "bool",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "privileged",
+					Type:          "bool",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "IdrefListType":
+		return &TypeMetadata{
+			Name:          "IdrefListType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "idref",
+					Type:          "[]string",
+					IsRequired:    true,
+					IsRepeated:    true,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "IdrefType":
+		return &TypeMetadata{
+			Name:          "IdrefType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "idref",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
 	case "InstallationIdElementType":
 		return &TypeMetadata{
 			Name:          "InstallationIdElementType",
@@ -13186,6 +28590,22 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 				{
 					Name:          "",
 					Type:          "",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "InstanceFixType":
+		return &TypeMetadata{
+			Name:          "InstanceFixType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "context",
+					Type:          "string",
 					IsRequired:    false,
 					IsRepeated:    false,
 					IsEnum:        false,
@@ -13216,6 +28636,37 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 					Documentation: "",
 				},
 			},
+		}, nil
+	case "InstanceResultType":
+		return &TypeMetadata{
+			Name:          "InstanceResultType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "context",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "parentContext",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "InterfaceHintType":
+		return &TypeMetadata{
+			Name:          "InterfaceHintType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
 		}, nil
 	case "IpAddressElement":
 		return &TypeMetadata{
@@ -13373,6 +28824,245 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 			IsAbstract:    true,
 			Fields:        []FieldInfo{},
 		}, nil
+	case "ItemElement":
+		return &TypeMetadata{
+			Name:          "ItemElement",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "",
+					Type:          "",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "dc-status",
+					Type:          "DcStatusType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "version",
+					Type:          "VersionType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "title",
+					Type:          "TextWithSubType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "description",
+					Type:          "HtmlTextWithSubType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "warning",
+					Type:          "WarningType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "question",
+					Type:          "TextType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "reference",
+					Type:          "ReferenceType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "metadata",
+					Type:          "MetadataType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "abstract",
+					Type:          "bool",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "cluster-id",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "extends",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "hidden",
+					Type:          "bool",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "prohibitChanges",
+					Type:          "bool",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "Id",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "ItemIDPattern":
+		return &TypeMetadata{
+			Name:          "ItemIDPattern",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
+	case "ItemType":
+		return &TypeMetadata{
+			Name:          "ItemType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "title",
+					Type:          "TextType",
+					IsRequired:    true,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "notes",
+					Type:          "NotesType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "references",
+					Type:          "ReferencesType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "check",
+					Type:          "CheckType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "name",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Pattern:       "[c][pP][eE]:/[AHOaho]?(:[A-Za-z0-9\\._\\-~%]*){0,6}",
+					Documentation: "",
+				},
+				{
+					Name:          "deprecated",
+					Type:          "bool",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "deprecated_by",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Pattern:       "[c][pP][eE]:/[AHOaho]?(:[A-Za-z0-9\\._\\-~%]*){0,6}",
+					Documentation: "",
+				},
+				{
+					Name:          "deprecation_date",
+					Type:          "time.Time",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
 	case "JointPersonNameElement":
 		return &TypeMetadata{
 			Name:          "JointPersonNameElement",
@@ -13469,6 +29159,206 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 				},
 			},
 		}, nil
+	case "KeyInfoElement":
+		return &TypeMetadata{
+			Name:          "KeyInfoElement",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "KeyValueType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "RetrievalMethodType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "X509DataType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "PGPDataType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "SPKIDataType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "Id",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "KeyInfoType":
+		return &TypeMetadata{
+			Name:          "KeyInfoType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "KeyValueType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "RetrievalMethodType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "X509DataType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "PGPDataType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "SPKIDataType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "Id",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
 	case "KeyLineCodeElementType":
 		return &TypeMetadata{
 			Name:          "KeyLineCodeElementType",
@@ -13481,6 +29371,77 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 					IsRequired:    false,
 					IsRepeated:    false,
 					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "KeyNameElement":
+		return &TypeMetadata{
+			Name:          "KeyNameElement",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
+	case "KeyValueElement":
+		return &TypeMetadata{
+			Name:          "KeyValueElement",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "",
+					Type:          "DSAKeyValueType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "RSAKeyValueType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "KeyValueType":
+		return &TypeMetadata{
+			Name:          "KeyValueType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "",
+					Type:          "DSAKeyValueType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "RSAKeyValueType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
 					Documentation: "",
 				},
 			},
@@ -13707,6 +29668,64 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 					Documentation: "",
 				},
 			},
+		}, nil
+	case "ListType":
+		return &TypeMetadata{
+			Name:          "ListType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "generator",
+					Type:          "GeneratorType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "ItemType",
+					IsRequired:    true,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "LiteralComponentType":
+		return &TypeMetadata{
+			Name:          "LiteralComponentType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "datatype",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"binary", "boolean", "evr_string", "debian_evr_string", "fileset_revision", "float", "ios_version", "int", "ipv4_address", "ipv6_address", "string", "version"},
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "Local_variableElement":
+		return &TypeMetadata{
+			Name:          "Local_variableElement",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
+	case "Local_variableElementType":
+		return &TypeMetadata{
+			Name:          "Local_variableElementType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
 		}, nil
 	case "LocaleElementType":
 		return &TypeMetadata{
@@ -14247,6 +30266,49 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 			IsAbstract:    false,
 			Fields:        []FieldInfo{},
 		}, nil
+	case "LogicalTestType":
+		return &TypeMetadata{
+			Name:          "LogicalTestType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "logical-test",
+					Type:          "LogicalTestType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "fact-ref",
+					Type:          "FactRefType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "operator",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"AND", "OR"},
+					Documentation: "",
+				},
+				{
+					Name:          "negate",
+					Type:          "bool",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
 	case "MacAddressElementType":
 		return &TypeMetadata{
 			Name:          "MacAddressElementType",
@@ -14353,6 +30415,135 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 				},
 			},
 		}, nil
+	case "ManifestElement":
+		return &TypeMetadata{
+			Name:          "ManifestElement",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "",
+					Type:          "ReferenceType",
+					IsRequired:    true,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "Id",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "ManifestType":
+		return &TypeMetadata{
+			Name:          "ManifestType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "",
+					Type:          "ReferenceType",
+					IsRequired:    true,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "Id",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "MessageLevelEnumeration":
+		return &TypeMetadata{
+			Name:          "MessageLevelEnumeration",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
+	case "MessageType":
+		return &TypeMetadata{
+			Name:          "MessageType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "level",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"debug", "error", "fatal", "info", "warning"},
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "MetadataType":
+		return &TypeMetadata{
+			Name:          "MetadataType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "title",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "affected",
+					Type:          "AffectedType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "reference",
+					Type:          "ReferenceType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "description",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "MgmtDataElement":
+		return &TypeMetadata{
+			Name:          "MgmtDataElement",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
 	case "MiddleNameElementType":
 		return &TypeMetadata{
 			Name:          "MiddleNameElementType",
@@ -14385,6 +30576,56 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 				},
 			},
 		}, nil
+	case "ModelElement":
+		return &TypeMetadata{
+			Name:          "ModelElement",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "param",
+					Type:          "ParamType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "system",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "ModelElementType":
+		return &TypeMetadata{
+			Name:          "ModelElementType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "param",
+					Type:          "ParamType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "system",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
 	case "MotherboardGuidElementType":
 		return &TypeMetadata{
 			Name:          "MotherboardGuidElementType",
@@ -14408,6 +30649,13 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 					Documentation: "",
 				},
 			},
+		}, nil
+	case "MsgSevEnumType":
+		return &TypeMetadata{
+			Name:          "MsgSevEnumType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
 		}, nil
 	case "NameDetails":
 		return &TypeMetadata{
@@ -14598,6 +30846,13 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 					Documentation: "",
 				},
 			},
+		}, nil
+	case "NamePattern":
+		return &TypeMetadata{
+			Name:          "NamePattern",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
 		}, nil
 	case "NamePrefixElementType":
 		return &TypeMetadata{
@@ -14790,6 +31045,207 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 				},
 			},
 		}, nil
+	case "NonEmptyStringType":
+		return &TypeMetadata{
+			Name:          "NonEmptyStringType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
+	case "NotesElement":
+		return &TypeMetadata{
+			Name:          "NotesElement",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "note",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "NotesElementType":
+		return &TypeMetadata{
+			Name:          "NotesElementType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "note",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "NotesType":
+		return &TypeMetadata{
+			Name:          "NotesType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "note",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "NoticeType":
+		return &TypeMetadata{
+			Name:          "NoticeType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "id",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "ObjectComponentType":
+		return &TypeMetadata{
+			Name:          "ObjectComponentType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "object_ref",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Pattern:       "oval:[A-Za-z0-9_\\-\\.]+:obj:[1-9][0-9]*",
+					Documentation: "",
+				},
+				{
+					Name:          "item_field",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinLength:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "record_field",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinLength:     1,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "ObjectElement":
+		return &TypeMetadata{
+			Name:          "ObjectElement",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "",
+					Type:          "SignatureType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "NotesType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "id",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Pattern:       "oval:[A-Za-z0-9_\\-\\.]+:obj:[1-9][0-9]*",
+					Documentation: "",
+				},
+				{
+					Name:          "version",
+					Type:          "uint64",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "comment",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinLength:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "deprecated",
+					Type:          "bool",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "ObjectIDPattern":
+		return &TypeMetadata{
+			Name:          "ObjectIDPattern",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
 	case "ObjectRefElement":
 		return &TypeMetadata{
 			Name:          "ObjectRefElement",
@@ -14821,6 +31277,87 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 					Documentation: "",
 				},
 			},
+		}, nil
+	case "ObjectRefType":
+		return &TypeMetadata{
+			Name:          "ObjectRefType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "object_ref",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Pattern:       "oval:[A-Za-z0-9_\\-\\.]+:obj:[1-9][0-9]*",
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "ObjectType":
+		return &TypeMetadata{
+			Name:          "ObjectType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "Id",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "MimeType",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "Encoding",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "ObjectsType":
+		return &TypeMetadata{
+			Name:          "ObjectsType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "",
+					Type:          "ObjectType",
+					IsRequired:    true,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "OperationEnumeration":
+		return &TypeMetadata{
+			Name:          "OperationEnumeration",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
+	case "OperatorEnumeration":
+		return &TypeMetadata{
+			Name:          "OperatorEnumeration",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
 		}, nil
 	case "OrganisationFormerNameElementType":
 		return &TypeMetadata{
@@ -15149,6 +31686,324 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 				},
 			},
 		}, nil
+	case "Oval_definitionsElement":
+		return &TypeMetadata{
+			Name:          "Oval_definitionsElement",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "generator",
+					Type:          "GeneratorType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "definitions",
+					Type:          "DefinitionsType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "tests",
+					Type:          "TestsType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "objects",
+					Type:          "ObjectsType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "states",
+					Type:          "StatesType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "variables",
+					Type:          "VariablesType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "Oval_definitionsElementType":
+		return &TypeMetadata{
+			Name:          "Oval_definitionsElementType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "generator",
+					Type:          "GeneratorType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "definitions",
+					Type:          "DefinitionsType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "tests",
+					Type:          "TestsType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "objects",
+					Type:          "ObjectsType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "states",
+					Type:          "StatesType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "variables",
+					Type:          "VariablesType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "OverrideType":
+		return &TypeMetadata{
+			Name:          "OverrideType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "old-result",
+					Type:          "ResultEnumType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"pass", "fail", "error", "unknown", "notapplicable", "notchecked", "notselected", "informational", "fixed"},
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "new-result",
+					Type:          "ResultEnumType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"pass", "fail", "error", "unknown", "notapplicable", "notchecked", "notselected", "informational", "fixed"},
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "remark",
+					Type:          "TextType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "time",
+					Type:          "time.Time",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "authority",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "OverrideableCPE2idrefType":
+		return &TypeMetadata{
+			Name:          "OverrideableCPE2idrefType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "override",
+					Type:          "bool",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "PGPDataElement":
+		return &TypeMetadata{
+			Name:          "PGPDataElement",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "PGPKeyID",
+					Type:          "[]byte",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "PGPKeyPacket",
+					Type:          "[]byte",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "PGPKeyPacket",
+					Type:          "[]byte",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "PGPDataType":
+		return &TypeMetadata{
+			Name:          "PGPDataType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "PGPKeyID",
+					Type:          "[]byte",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "PGPKeyPacket",
+					Type:          "[]byte",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "PGPKeyPacket",
+					Type:          "[]byte",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "ParamType":
+		return &TypeMetadata{
+			Name:          "ParamType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "name",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
 	case "PersonElement":
 		return &TypeMetadata{
 			Name:          "PersonElement",
@@ -15421,6 +32276,102 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 				},
 			},
 		}, nil
+	case "PlainTextType":
+		return &TypeMetadata{
+			Name:          "PlainTextType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "id",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "PlatformSpecificationElement":
+		return &TypeMetadata{
+			Name:          "PlatformSpecificationElement",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "platform",
+					Type:          "PlatformType",
+					IsRequired:    true,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "PlatformSpecificationElementType":
+		return &TypeMetadata{
+			Name:          "PlatformSpecificationElementType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "platform",
+					Type:          "PlatformType",
+					IsRequired:    true,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "PlatformType":
+		return &TypeMetadata{
+			Name:          "PlatformType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "title",
+					Type:          "TextType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "remark",
+					Type:          "TextType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "logical-test",
+					Type:          "LogicalTestType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "id",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
 	case "PortElementType":
 		return &TypeMetadata{
 			Name:          "PortElementType",
@@ -15495,6 +32446,59 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 			Documentation: "",
 			IsAbstract:    false,
 			Fields:        []FieldInfo{},
+		}, nil
+	case "PossibleRestrictionType":
+		return &TypeMetadata{
+			Name:          "PossibleRestrictionType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "restriction",
+					Type:          "RestrictionType",
+					IsRequired:    true,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     -1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "operator",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"AND", "OR"},
+					Documentation: "",
+				},
+				{
+					Name:          "hint",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "PossibleValueType":
+		return &TypeMetadata{
+			Name:          "PossibleValueType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "hint",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
 		}, nil
 	case "PostBoxElement":
 		return &TypeMetadata{
@@ -17081,6 +34085,620 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 				},
 			},
 		}, nil
+	case "ProfileElement":
+		return &TypeMetadata{
+			Name:          "ProfileElement",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "",
+					Type:          "",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "dc-status",
+					Type:          "DcStatusType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "version",
+					Type:          "VersionType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "title",
+					Type:          "TextWithSubType",
+					IsRequired:    true,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "description",
+					Type:          "HtmlTextWithSubType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "reference",
+					Type:          "ReferenceType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "platform",
+					Type:          "OverrideableCPE2idrefType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "metadata",
+					Type:          "MetadataType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "signature",
+					Type:          "SignatureType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "select",
+					Type:          "ProfileSelectType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "set-complex-value",
+					Type:          "ProfileSetComplexValueType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "set-value",
+					Type:          "ProfileSetValueType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "refine-value",
+					Type:          "ProfileRefineValueType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "refine-rule",
+					Type:          "ProfileRefineRuleType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "id",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Pattern:       "xccdf_[^_]+_profile_.+",
+					Documentation: "",
+				},
+				{
+					Name:          "prohibitChanges",
+					Type:          "bool",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "abstract",
+					Type:          "bool",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "note-tag",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "extends",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "Id",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "ProfileIdType":
+		return &TypeMetadata{
+			Name:          "ProfileIdType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
+	case "ProfileNoteType":
+		return &TypeMetadata{
+			Name:          "ProfileNoteType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "sub",
+					Type:          "SubType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "tag",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "ProfileRefineRuleType":
+		return &TypeMetadata{
+			Name:          "ProfileRefineRuleType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "remark",
+					Type:          "TextType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "idref",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "weight",
+					Type:          "float32",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinValue:      "0.0",
+					Documentation: "",
+				},
+				{
+					Name:          "selector",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "severity",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"unknown", "info", "low", "medium", "high"},
+					Documentation: "",
+				},
+				{
+					Name:          "role",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"full", "unscored", "unchecked"},
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "ProfileRefineValueType":
+		return &TypeMetadata{
+			Name:          "ProfileRefineValueType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "remark",
+					Type:          "TextType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "idref",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "selector",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "operator",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"equals", "not equal", "greater than", "less than", "greater than or equal", "less than or equal", "pattern match"},
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "ProfileSelectType":
+		return &TypeMetadata{
+			Name:          "ProfileSelectType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "remark",
+					Type:          "TextType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "idref",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "selected",
+					Type:          "bool",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "ProfileSetComplexValueType":
+		return &TypeMetadata{
+			Name:          "ProfileSetComplexValueType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "idref",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "ProfileSetValueType":
+		return &TypeMetadata{
+			Name:          "ProfileSetValueType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "idref",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "ProfileType":
+		return &TypeMetadata{
+			Name:          "ProfileType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "",
+					Type:          "",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "dc-status",
+					Type:          "DcStatusType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "version",
+					Type:          "VersionType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "title",
+					Type:          "TextWithSubType",
+					IsRequired:    true,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "description",
+					Type:          "HtmlTextWithSubType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "reference",
+					Type:          "ReferenceType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "platform",
+					Type:          "OverrideableCPE2idrefType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "metadata",
+					Type:          "MetadataType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "signature",
+					Type:          "SignatureType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "select",
+					Type:          "ProfileSelectType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "set-complex-value",
+					Type:          "ProfileSetComplexValueType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "set-value",
+					Type:          "ProfileSetValueType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "refine-value",
+					Type:          "ProfileRefineValueType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "refine-rule",
+					Type:          "ProfileRefineRuleType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "id",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Pattern:       "xccdf_[^_]+_profile_.+",
+					Documentation: "",
+				},
+				{
+					Name:          "prohibitChanges",
+					Type:          "bool",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "abstract",
+					Type:          "bool",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "note-tag",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "extends",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "Id",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
 	case "ProtocolElementType":
 		return &TypeMetadata{
 			Name:          "ProtocolElementType",
@@ -17098,6 +34716,241 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 				{
 					Name:          "",
 					Type:          "",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "RSAKeyValueElement":
+		return &TypeMetadata{
+			Name:          "RSAKeyValueElement",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "Modulus",
+					Type:          "CryptoBinary",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "Exponent",
+					Type:          "CryptoBinary",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "RSAKeyValueType":
+		return &TypeMetadata{
+			Name:          "RSAKeyValueType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "Modulus",
+					Type:          "CryptoBinary",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "Exponent",
+					Type:          "CryptoBinary",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "RatingEnumType":
+		return &TypeMetadata{
+			Name:          "RatingEnumType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
+	case "ReferenceElement":
+		return &TypeMetadata{
+			Name:          "ReferenceElement",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "",
+					Type:          "TransformsType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "DigestMethodType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "DigestValueType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "Id",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "URI",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "Type",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "ReferenceElementType":
+		return &TypeMetadata{
+			Name:          "ReferenceElementType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "href",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "ReferenceType":
+		return &TypeMetadata{
+			Name:          "ReferenceType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "",
+					Type:          "TransformsType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "DigestMethodType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "DigestValueType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "Id",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "URI",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "Type",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "ReferencesType":
+		return &TypeMetadata{
+			Name:          "ReferencesType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "reference",
+					Type:          "Reference",
+					IsRequired:    true,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "RegexCaptureFunctionType":
+		return &TypeMetadata{
+			Name:          "RegexCaptureFunctionType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "pattern",
+					Type:          "string",
 					IsRequired:    false,
 					IsRepeated:    false,
 					IsEnum:        false,
@@ -17360,12 +35213,740 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 			IsAbstract:    false,
 			Fields:        []FieldInfo{},
 		}, nil
+	case "RestrictionType":
+		return &TypeMetadata{
+			Name:          "RestrictionType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "operation",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"equals", "not equal", "case insensitive equals", "case insensitive not equal", "greater than", "less than", "greater than or equal", "less than or equal", "bitwise and", "bitwise or", "pattern match", "subset of", "superset of"},
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "ResultEnumType":
+		return &TypeMetadata{
+			Name:          "ResultEnumType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
+	case "RetrievalMethodElement":
+		return &TypeMetadata{
+			Name:          "RetrievalMethodElement",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "",
+					Type:          "TransformsType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "URI",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "Type",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "RetrievalMethodType":
+		return &TypeMetadata{
+			Name:          "RetrievalMethodType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "",
+					Type:          "TransformsType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "URI",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "Type",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "RoleEnumType":
+		return &TypeMetadata{
+			Name:          "RoleEnumType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
 	case "RoleType":
 		return &TypeMetadata{
 			Name:          "RoleType",
 			Documentation: "",
 			IsAbstract:    false,
 			Fields:        []FieldInfo{},
+		}, nil
+	case "RuleElement":
+		return &TypeMetadata{
+			Name:          "RuleElement",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "ident",
+					Type:          "IdentType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "impact-metric",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "profile-note",
+					Type:          "ProfileNoteType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "fixtext",
+					Type:          "FixTextType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "fix",
+					Type:          "FixType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "signature",
+					Type:          "SignatureType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "check",
+					Type:          "CheckType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "complex-check",
+					Type:          "ComplexCheckType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "id",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Pattern:       "xccdf_[^_]+_rule_.+",
+					Documentation: "",
+				},
+				{
+					Name:          "role",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"full", "unscored", "unchecked"},
+					Documentation: "",
+				},
+				{
+					Name:          "severity",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"unknown", "info", "low", "medium", "high"},
+					Documentation: "",
+				},
+				{
+					Name:          "multiple",
+					Type:          "bool",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "RuleIdType":
+		return &TypeMetadata{
+			Name:          "RuleIdType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
+	case "RuleResultType":
+		return &TypeMetadata{
+			Name:          "RuleResultType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "result",
+					Type:          "ResultEnumType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"pass", "fail", "error", "unknown", "notapplicable", "notchecked", "notselected", "informational", "fixed"},
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "override",
+					Type:          "OverrideType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "ident",
+					Type:          "IdentType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "metadata",
+					Type:          "MetadataType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "message",
+					Type:          "MessageType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "instance",
+					Type:          "InstanceResultType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "fix",
+					Type:          "FixType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "check",
+					Type:          "CheckType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "complex-check",
+					Type:          "ComplexCheckType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "idref",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "role",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"full", "unscored", "unchecked"},
+					Documentation: "",
+				},
+				{
+					Name:          "severity",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"unknown", "info", "low", "medium", "high"},
+					Documentation: "",
+				},
+				{
+					Name:          "time",
+					Type:          "time.Time",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "version",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "weight",
+					Type:          "float32",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinValue:      "0.0",
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "RuleType":
+		return &TypeMetadata{
+			Name:          "RuleType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "ident",
+					Type:          "IdentType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "impact-metric",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "profile-note",
+					Type:          "ProfileNoteType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "fixtext",
+					Type:          "FixTextType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "fix",
+					Type:          "FixType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "signature",
+					Type:          "SignatureType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "check",
+					Type:          "CheckType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "complex-check",
+					Type:          "ComplexCheckType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "id",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Pattern:       "xccdf_[^_]+_rule_.+",
+					Documentation: "",
+				},
+				{
+					Name:          "role",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"full", "unscored", "unchecked"},
+					Documentation: "",
+				},
+				{
+					Name:          "severity",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"unknown", "info", "low", "medium", "high"},
+					Documentation: "",
+				},
+				{
+					Name:          "multiple",
+					Type:          "bool",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "SPKIDataElement":
+		return &TypeMetadata{
+			Name:          "SPKIDataElement",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "SPKISexp",
+					Type:          "[]byte",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "SPKIDataType":
+		return &TypeMetadata{
+			Name:          "SPKIDataType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "SPKISexp",
+					Type:          "[]byte",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "SchemaVersionPattern":
+		return &TypeMetadata{
+			Name:          "SchemaVersionPattern",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
+	case "SchemaVersionType":
+		return &TypeMetadata{
+			Name:          "SchemaVersionType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "platform",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "ScoreType":
+		return &TypeMetadata{
+			Name:          "ScoreType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "system",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "maximum",
+					Type:          "float32",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "SelChoicesType":
+		return &TypeMetadata{
+			Name:          "SelChoicesType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "choice",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "complex-choice",
+					Type:          "ComplexValueType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "mustMatch",
+					Type:          "bool",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "selector",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "SelComplexValueType":
+		return &TypeMetadata{
+			Name:          "SelComplexValueType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "selector",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "SelNumType":
+		return &TypeMetadata{
+			Name:          "SelNumType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "selector",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "SelStringType":
+		return &TypeMetadata{
+			Name:          "SelStringType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "selector",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "SelectableItemType":
+		return &TypeMetadata{
+			Name:          "SelectableItemType",
+			Documentation: "",
+			IsAbstract:    true,
+			Fields: []FieldInfo{
+				{
+					Name:          "rationale",
+					Type:          "HtmlTextWithSubType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "platform",
+					Type:          "OverrideableCPE2idrefType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "requires",
+					Type:          "IdrefListType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "conflicts",
+					Type:          "IdrefType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "selected",
+					Type:          "bool",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "weight",
+					Type:          "float32",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinValue:      "0.0",
+					Documentation: "",
+				},
+			},
 		}, nil
 	case "ServedByElement":
 		return &TypeMetadata{
@@ -17499,6 +36080,126 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 				},
 			},
 		}, nil
+	case "SetElement":
+		return &TypeMetadata{
+			Name:          "SetElement",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "",
+					Type:          "",
+					IsRequired:    true,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     2,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "object_reference",
+					Type:          "ObjectIDPattern",
+					IsRequired:    true,
+					IsRepeated:    true,
+					IsEnum:        false,
+					Pattern:       "oval:[A-Za-z0-9_\\-\\.]+:obj:[1-9][0-9]*",
+					MinOccurs:     1,
+					MaxOccurs:     2,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "set_operator",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"COMPLEMENT", "INTERSECTION", "UNION"},
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "SetElementType":
+		return &TypeMetadata{
+			Name:          "SetElementType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "",
+					Type:          "",
+					IsRequired:    true,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     2,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "object_reference",
+					Type:          "ObjectIDPattern",
+					IsRequired:    true,
+					IsRepeated:    true,
+					IsEnum:        false,
+					Pattern:       "oval:[A-Za-z0-9_\\-\\.]+:obj:[1-9][0-9]*",
+					MinOccurs:     1,
+					MaxOccurs:     2,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "set_operator",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"COMPLEMENT", "INTERSECTION", "UNION"},
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "SetOperatorEnumeration":
+		return &TypeMetadata{
+			Name:          "SetOperatorEnumeration",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
+	case "SeverityEnumType":
+		return &TypeMetadata{
+			Name:          "SeverityEnumType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
 	case "ShowType":
 		return &TypeMetadata{
 			Name:          "ShowType",
@@ -17506,9 +36207,398 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 			IsAbstract:    false,
 			Fields:        []FieldInfo{},
 		}, nil
+	case "SignatureElement":
+		return &TypeMetadata{
+			Name:          "SignatureElement",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "",
+					Type:          "SignedInfoType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "SignatureValueType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "KeyInfoType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "ObjectType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "Id",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "SignatureMethodElement":
+		return &TypeMetadata{
+			Name:          "SignatureMethodElement",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "HMACOutputLength",
+					Type:          "HMACOutputLengthType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "Algorithm",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "SignatureMethodType":
+		return &TypeMetadata{
+			Name:          "SignatureMethodType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "HMACOutputLength",
+					Type:          "HMACOutputLengthType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "Algorithm",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "SignaturePropertiesElement":
+		return &TypeMetadata{
+			Name:          "SignaturePropertiesElement",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "",
+					Type:          "SignaturePropertyType",
+					IsRequired:    true,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "Id",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "SignaturePropertiesType":
+		return &TypeMetadata{
+			Name:          "SignaturePropertiesType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "",
+					Type:          "SignaturePropertyType",
+					IsRequired:    true,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "Id",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "SignaturePropertyElement":
+		return &TypeMetadata{
+			Name:          "SignaturePropertyElement",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "Target",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "Id",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "SignaturePropertyType":
+		return &TypeMetadata{
+			Name:          "SignaturePropertyType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "Target",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "Id",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "SignatureType":
+		return &TypeMetadata{
+			Name:          "SignatureType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "",
+					Type:          "SignedInfoType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "SignatureValueType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "KeyInfoType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "ObjectType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "Id",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "SignatureValueElement":
+		return &TypeMetadata{
+			Name:          "SignatureValueElement",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "Id",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "SignatureValueType":
+		return &TypeMetadata{
+			Name:          "SignatureValueType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "Id",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "SignedInfoElement":
+		return &TypeMetadata{
+			Name:          "SignedInfoElement",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "",
+					Type:          "CanonicalizationMethodType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "SignatureMethodType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "ReferenceType",
+					IsRequired:    true,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "Id",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "SignedInfoType":
+		return &TypeMetadata{
+			Name:          "SignedInfoType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "",
+					Type:          "CanonicalizationMethodType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "SignatureMethodType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "ReferenceType",
+					IsRequired:    true,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "Id",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
 	case "Simple":
 		return &TypeMetadata{
 			Name:          "Simple",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
+	case "SimpleDatatypeEnumeration":
+		return &TypeMetadata{
+			Name:          "SimpleDatatypeEnumeration",
 			Documentation: "",
 			IsAbstract:    false,
 			Fields:        []FieldInfo{},
@@ -17598,6 +36688,241 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 					Documentation: "",
 				},
 			},
+		}, nil
+	case "SplitFunctionType":
+		return &TypeMetadata{
+			Name:          "SplitFunctionType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "delimiter",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "StateElement":
+		return &TypeMetadata{
+			Name:          "StateElement",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "",
+					Type:          "SignatureType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "NotesType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "id",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Pattern:       "oval:[A-Za-z0-9_\\-\\.]+:ste:[1-9][0-9]*",
+					Documentation: "",
+				},
+				{
+					Name:          "version",
+					Type:          "uint64",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "operator",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"AND", "ONE", "OR", "XOR"},
+					Documentation: "",
+				},
+				{
+					Name:          "comment",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinLength:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "deprecated",
+					Type:          "bool",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "StateIDPattern":
+		return &TypeMetadata{
+			Name:          "StateIDPattern",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
+	case "StateRefType":
+		return &TypeMetadata{
+			Name:          "StateRefType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "state_ref",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Pattern:       "oval:[A-Za-z0-9_\\-\\.]+:ste:[1-9][0-9]*",
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "StateType":
+		return &TypeMetadata{
+			Name:          "StateType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "",
+					Type:          "SignatureType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "NotesType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "id",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Pattern:       "oval:[A-Za-z0-9_\\-\\.]+:ste:[1-9][0-9]*",
+					Documentation: "",
+				},
+				{
+					Name:          "version",
+					Type:          "uint64",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "operator",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"AND", "ONE", "OR", "XOR"},
+					Documentation: "",
+				},
+				{
+					Name:          "comment",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinLength:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "deprecated",
+					Type:          "bool",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "StatesType":
+		return &TypeMetadata{
+			Name:          "StatesType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "",
+					Type:          "StateType",
+					IsRequired:    true,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "StatusElement":
+		return &TypeMetadata{
+			Name:          "StatusElement",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "date",
+					Type:          "time.Time",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "StatusElementType":
+		return &TypeMetadata{
+			Name:          "StatusElementType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "date",
+					Type:          "time.Time",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "StatusType":
+		return &TypeMetadata{
+			Name:          "StatusType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
 		}, nil
 	case "SubAdministrativeAreaElementType":
 		return &TypeMetadata{
@@ -17948,6 +37273,54 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 				},
 			},
 		}, nil
+	case "SubType":
+		return &TypeMetadata{
+			Name:          "SubType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "use",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"value", "title", "legacy"},
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "SubUseEnumType":
+		return &TypeMetadata{
+			Name:          "SubUseEnumType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
+	case "SubstringFunctionType":
+		return &TypeMetadata{
+			Name:          "SubstringFunctionType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "substring_start",
+					Type:          "int",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "substring_length",
+					Type:          "int",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
 	case "SuffixElementType":
 		return &TypeMetadata{
 			Name:          "SuffixElementType",
@@ -18112,6 +37485,314 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 				},
 			},
 		}, nil
+	case "TailoringBenchmarkReferenceType":
+		return &TypeMetadata{
+			Name:          "TailoringBenchmarkReferenceType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "version",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "TailoringElement":
+		return &TypeMetadata{
+			Name:          "TailoringElement",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "benchmark",
+					Type:          "TailoringBenchmarkReferenceType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "dc-status",
+					Type:          "DcStatusType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "version",
+					Type:          "TailoringVersionType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "metadata",
+					Type:          "MetadataType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "ProfileType",
+					IsRequired:    true,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "signature",
+					Type:          "SignatureType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "id",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Pattern:       "xccdf_[^_]+_tailoring_.+",
+					Documentation: "",
+				},
+				{
+					Name:          "Id",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "TailoringIdType":
+		return &TypeMetadata{
+			Name:          "TailoringIdType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
+	case "TailoringReferenceType":
+		return &TypeMetadata{
+			Name:          "TailoringReferenceType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "href",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "id",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "version",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "time",
+					Type:          "time.Time",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "TailoringType":
+		return &TypeMetadata{
+			Name:          "TailoringType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "benchmark",
+					Type:          "TailoringBenchmarkReferenceType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "dc-status",
+					Type:          "DcStatusType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "version",
+					Type:          "TailoringVersionType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "metadata",
+					Type:          "MetadataType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "ProfileType",
+					IsRequired:    true,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "signature",
+					Type:          "SignatureType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "id",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Pattern:       "xccdf_[^_]+_tailoring_.+",
+					Documentation: "",
+				},
+				{
+					Name:          "Id",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "TailoringVersionType":
+		return &TypeMetadata{
+			Name:          "TailoringVersionType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "time",
+					Type:          "time.Time",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "TargetFactsType":
+		return &TypeMetadata{
+			Name:          "TargetFactsType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "fact",
+					Type:          "FactType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "TargetIdRefType":
+		return &TypeMetadata{
+			Name:          "TargetIdRefType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "system",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "href",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "name",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
 	case "TelephoneNumberElement":
 		return &TypeMetadata{
 			Name:          "TelephoneNumberElement",
@@ -18166,6 +37847,721 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 			Documentation: "",
 			IsAbstract:    false,
 			Fields:        []FieldInfo{},
+		}, nil
+	case "TestElement":
+		return &TypeMetadata{
+			Name:          "TestElement",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "",
+					Type:          "SignatureType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "NotesType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "id",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Pattern:       "oval:[A-Za-z0-9_\\-\\.]+:tst:[1-9][0-9]*",
+					Documentation: "",
+				},
+				{
+					Name:          "version",
+					Type:          "uint64",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "check_existence",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"all_exist", "any_exist", "at_least_one_exists", "none_exist", "only_one_exists"},
+					Documentation: "",
+				},
+				{
+					Name:          "check",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"all", "at least one", "none exist", "none satisfy", "only one"},
+					Documentation: "",
+				},
+				{
+					Name:          "state_operator",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"AND", "ONE", "OR", "XOR"},
+					Documentation: "",
+				},
+				{
+					Name:          "comment",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinLength:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "deprecated",
+					Type:          "bool",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "TestIDPattern":
+		return &TypeMetadata{
+			Name:          "TestIDPattern",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
+	case "TestResultElement":
+		return &TypeMetadata{
+			Name:          "TestResultElement",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "benchmark",
+					Type:          "BenchmarkReferenceType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "tailoring-file",
+					Type:          "TailoringReferenceType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "title",
+					Type:          "TextType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "remark",
+					Type:          "TextType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "organization",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "identity",
+					Type:          "IdentityType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "profile",
+					Type:          "IdrefType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "target",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "target-address",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "target-facts",
+					Type:          "TargetFactsType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "platform",
+					Type:          "CPE2idrefType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "rule-result",
+					Type:          "RuleResultType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "score",
+					Type:          "ScoreType",
+					IsRequired:    true,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "metadata",
+					Type:          "MetadataType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "signature",
+					Type:          "SignatureType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "target-id-ref",
+					Type:          "TargetIdRefType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "set-value",
+					Type:          "ProfileSetValueType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "set-complex-value",
+					Type:          "ProfileSetComplexValueType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "id",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Pattern:       "xccdf_[^_]+_testresult_.+",
+					Documentation: "",
+				},
+				{
+					Name:          "start-time",
+					Type:          "time.Time",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "end-time",
+					Type:          "time.Time",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "test-system",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "version",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "Id",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "TestResultType":
+		return &TypeMetadata{
+			Name:          "TestResultType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "benchmark",
+					Type:          "BenchmarkReferenceType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "tailoring-file",
+					Type:          "TailoringReferenceType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "title",
+					Type:          "TextType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "remark",
+					Type:          "TextType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "organization",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "identity",
+					Type:          "IdentityType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "profile",
+					Type:          "IdrefType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "target",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "target-address",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "target-facts",
+					Type:          "TargetFactsType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "platform",
+					Type:          "CPE2idrefType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "rule-result",
+					Type:          "RuleResultType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "score",
+					Type:          "ScoreType",
+					IsRequired:    true,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "metadata",
+					Type:          "MetadataType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "signature",
+					Type:          "SignatureType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "target-id-ref",
+					Type:          "TargetIdRefType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "set-value",
+					Type:          "ProfileSetValueType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "set-complex-value",
+					Type:          "ProfileSetComplexValueType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "id",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Pattern:       "xccdf_[^_]+_testresult_.+",
+					Documentation: "",
+				},
+				{
+					Name:          "start-time",
+					Type:          "time.Time",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "end-time",
+					Type:          "time.Time",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "test-system",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "version",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "Id",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "TestType":
+		return &TypeMetadata{
+			Name:          "TestType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "",
+					Type:          "SignatureType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "NotesType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "id",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Pattern:       "oval:[A-Za-z0-9_\\-\\.]+:tst:[1-9][0-9]*",
+					Documentation: "",
+				},
+				{
+					Name:          "version",
+					Type:          "uint64",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "check_existence",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"all_exist", "any_exist", "at_least_one_exists", "none_exist", "only_one_exists"},
+					Documentation: "",
+				},
+				{
+					Name:          "check",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"all", "at least one", "none exist", "none satisfy", "only one"},
+					Documentation: "",
+				},
+				{
+					Name:          "state_operator",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"AND", "ONE", "OR", "XOR"},
+					Documentation: "",
+				},
+				{
+					Name:          "comment",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinLength:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "deprecated",
+					Type:          "bool",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "TestresultIdType":
+		return &TypeMetadata{
+			Name:          "TestresultIdType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
+	case "TestsType":
+		return &TypeMetadata{
+			Name:          "TestsType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "",
+					Type:          "TestType",
+					IsRequired:    true,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "TextType":
+		return &TypeMetadata{
+			Name:          "TextType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "",
+					Type:          "",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "TextWithSubType":
+		return &TypeMetadata{
+			Name:          "TextWithSubType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "sub",
+					Type:          "SubType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "override",
+					Type:          "bool",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
 		}, nil
 	case "ThoroughfareElement":
 		return &TypeMetadata{
@@ -19016,6 +39412,32 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 				},
 			},
 		}, nil
+	case "TimeDifferenceFunctionType":
+		return &TypeMetadata{
+			Name:          "TimeDifferenceFunctionType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "format_1",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"year_month_day", "month_day_year", "day_month_year", "win_filetime", "seconds_since_epoch", "cim_datetime"},
+					Documentation: "",
+				},
+				{
+					Name:          "format_2",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"year_month_day", "month_day_year", "day_month_year", "win_filetime", "seconds_since_epoch", "cim_datetime"},
+					Documentation: "",
+				},
+			},
+		}, nil
 	case "TitleAttrType":
 		return &TypeMetadata{
 			Name:          "TitleAttrType",
@@ -19068,12 +39490,127 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 			IsAbstract:    false,
 			Fields:        []FieldInfo{},
 		}, nil
+	case "TransformElement":
+		return &TypeMetadata{
+			Name:          "TransformElement",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "XPath",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "Algorithm",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "TransformType":
+		return &TypeMetadata{
+			Name:          "TransformType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "XPath",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "Algorithm",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "TransformsElement":
+		return &TypeMetadata{
+			Name:          "TransformsElement",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "",
+					Type:          "TransformType",
+					IsRequired:    true,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "TransformsType":
+		return &TypeMetadata{
+			Name:          "TransformsType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "",
+					Type:          "TransformType",
+					IsRequired:    true,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+			},
+		}, nil
 	case "TypeType":
 		return &TypeMetadata{
 			Name:          "TypeType",
 			Documentation: "",
 			IsAbstract:    false,
 			Fields:        []FieldInfo{},
+		}, nil
+	case "UniqueFunctionType":
+		return &TypeMetadata{
+			Name:          "UniqueFunctionType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
+	case "UriRefType":
+		return &TypeMetadata{
+			Name:          "UriRefType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "uri",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
 		}, nil
 	case "UrlElementType":
 		return &TypeMetadata{
@@ -19099,26 +39636,419 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 				},
 			},
 		}, nil
-	case "VersionElementType":
+	case "ValueElement":
 		return &TypeMetadata{
-			Name:          "VersionElementType",
+			Name:          "ValueElement",
 			Documentation: "",
 			IsAbstract:    false,
 			Fields: []FieldInfo{
 				{
-					Name:          "",
-					Type:          "",
+					Name:          "match",
+					Type:          "SelStringType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "lower-bound",
+					Type:          "SelNumType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "upper-bound",
+					Type:          "SelNumType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "choices",
+					Type:          "SelChoicesType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "source",
+					Type:          "UriRefType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "signature",
+					Type:          "SignatureType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "value",
+					Type:          "SelStringType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "complex-value",
+					Type:          "SelComplexValueType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "default",
+					Type:          "SelStringType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "complex-default",
+					Type:          "SelComplexValueType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "id",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Pattern:       "xccdf_[^_]+_value_.+",
+					Documentation: "",
+				},
+				{
+					Name:          "type",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"number", "string", "boolean"},
+					Documentation: "",
+				},
+				{
+					Name:          "operator",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"equals", "not equal", "greater than", "less than", "greater than or equal", "less than or equal", "pattern match"},
+					Documentation: "",
+				},
+				{
+					Name:          "interactive",
+					Type:          "bool",
 					IsRequired:    false,
 					IsRepeated:    false,
 					IsEnum:        false,
 					Documentation: "",
 				},
 				{
+					Name:          "interfaceHint",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"choice", "textline", "text", "date", "datetime"},
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "ValueIdType":
+		return &TypeMetadata{
+			Name:          "ValueIdType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
+	case "ValueOperatorType":
+		return &TypeMetadata{
+			Name:          "ValueOperatorType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
+	case "ValueType":
+		return &TypeMetadata{
+			Name:          "ValueType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
+	case "ValueTypeType":
+		return &TypeMetadata{
+			Name:          "ValueTypeType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
+	case "VariableComponentType":
+		return &TypeMetadata{
+			Name:          "VariableComponentType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "var_ref",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Pattern:       "oval:[A-Za-z0-9_\\-\\.]+:var:[1-9][0-9]*",
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "VariableElement":
+		return &TypeMetadata{
+			Name:          "VariableElement",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
 					Name:          "",
-					Type:          "",
+					Type:          "SignatureType",
 					IsRequired:    false,
 					IsRepeated:    false,
 					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "NotesType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "id",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Pattern:       "oval:[A-Za-z0-9_\\-\\.]+:var:[1-9][0-9]*",
+					Documentation: "",
+				},
+				{
+					Name:          "version",
+					Type:          "uint64",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "datatype",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"binary", "boolean", "evr_string", "debian_evr_string", "fileset_revision", "float", "ios_version", "int", "ipv4_address", "ipv6_address", "string", "version"},
+					Documentation: "",
+				},
+				{
+					Name:          "comment",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinLength:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "deprecated",
+					Type:          "bool",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "VariableIDPattern":
+		return &TypeMetadata{
+			Name:          "VariableIDPattern",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
+	case "VariableType":
+		return &TypeMetadata{
+			Name:          "VariableType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "",
+					Type:          "SignatureType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "NotesType",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "id",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Pattern:       "oval:[A-Za-z0-9_\\-\\.]+:var:[1-9][0-9]*",
+					Documentation: "",
+				},
+				{
+					Name:          "version",
+					Type:          "uint64",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "datatype",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"binary", "boolean", "evr_string", "debian_evr_string", "fileset_revision", "float", "ios_version", "int", "ipv4_address", "ipv6_address", "string", "version"},
+					Documentation: "",
+				},
+				{
+					Name:          "comment",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinLength:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "deprecated",
+					Type:          "bool",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "VariablesType":
+		return &TypeMetadata{
+			Name:          "VariablesType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "",
+					Type:          "VariableType",
+					IsRequired:    true,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "VersionElementType":
+		return &TypeMetadata{
+			Name:          "VersionElementType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
+	case "VersionType":
+		return &TypeMetadata{
+			Name:          "VersionType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "time",
+					Type:          "time.Time",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "update",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "WarningCategoryEnumType":
+		return &TypeMetadata{
+			Name:          "WarningCategoryEnumType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
+	case "WarningType":
+		return &TypeMetadata{
+			Name:          "WarningType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "category",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        true,
+					EnumValues:    []string{"general", "functionality", "performance", "hardware", "legal", "regulatory", "management", "audit", "dependency"},
 					Documentation: "",
 				},
 			},
@@ -19219,6 +40149,177 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 					IsRequired:    false,
 					IsRepeated:    false,
 					IsEnum:        false,
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "WeightType":
+		return &TypeMetadata{
+			Name:          "WeightType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
+	case "X509DataElement":
+		return &TypeMetadata{
+			Name:          "X509DataElement",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "X509IssuerSerial",
+					Type:          "X509IssuerSerialType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "X509SKI",
+					Type:          "[]byte",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "X509SubjectName",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "X509Certificate",
+					Type:          "[]byte",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "X509CRL",
+					Type:          "[]byte",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "X509DataType":
+		return &TypeMetadata{
+			Name:          "X509DataType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "X509IssuerSerial",
+					Type:          "X509IssuerSerialType",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "X509SKI",
+					Type:          "[]byte",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "X509SubjectName",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "X509Certificate",
+					Type:          "[]byte",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+				{
+					Name:          "X509CRL",
+					Type:          "[]byte",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					IsChoice:      true,
+					ChoiceGroup:   "choice_1",
+					Documentation: "",
+				},
+			},
+		}, nil
+	case "X509IssuerSerialType":
+		return &TypeMetadata{
+			Name:          "X509IssuerSerialType",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields: []FieldInfo{
+				{
+					Name:          "X509IssuerName",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "X509SerialNumber",
+					Type:          "int",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
 					Documentation: "",
 				},
 			},
@@ -19337,20 +40438,61 @@ func (s *XMLDocumentState) GetConcreteTypes(abstractType string) ([]string, erro
 	switch abstractType {
 	case "AssetType":
 		return []string{
-			"OrganizationType",
-			"PersonType",
 			"DataType",
+			"PersonType",
+			"OrganizationType",
+		}, nil
+	case "EntityComplexBaseType":
+		return []string{
+			"EntityObjectRecordType",
+		}, nil
+	case "EntitySimpleBaseType":
+		return []string{
+			"EntityObjectStringType",
+			"EntityObjectAnySimpleType",
+			"EntityObjectBoolType",
+			"EntityObjectIPAddressStringType",
+			"EntityObjectFloatType",
+			"EntityObjectBinaryType",
+			"EntityObjectIntType",
+			"EntityObjectIPAddressType",
+			"EntityObjectVersionType",
+		}, nil
+	case "EntityStateComplexBaseType":
+		return []string{
+			"EntityStateRecordType",
+		}, nil
+	case "EntityStateSimpleBaseType":
+		return []string{
+			"EntityStateAnySimpleType",
+			"EntityStateEVRStringType",
+			"EntityStateIPAddressStringType",
+			"EntityStateBoolType",
+			"EntityStateFloatType",
+			"EntityStateFileSetRevisionType",
+			"EntityStateStringType",
+			"EntityStateIntType",
+			"EntityStateDebianEVRStringType",
+			"EntityStateBinaryType",
+			"EntityStateVersionType",
+			"EntityStateIPAddressType",
+			"EntityStateIOSVersionType",
 		}, nil
 	case "ItAssetType":
 		return []string{
-			"NetworkType",
-			"CircuitType",
-			"ComputingDeviceType",
+			"WebsiteType",
 			"SoftwareType",
+			"ComputingDeviceType",
 			"SystemType",
 			"ServiceType",
+			"NetworkType",
+			"CircuitType",
 			"DatabaseType",
-			"WebsiteType",
+		}, nil
+	case "SelectableItemType":
+		return []string{
+			"GroupType",
+			"RuleType",
 		}, nil
 	default:
 		// Not an abstract type or no concrete implementations known

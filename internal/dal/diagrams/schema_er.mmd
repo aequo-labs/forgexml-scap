@@ -1,0 +1,2357 @@
+erDiagram
+    AddressDetails {
+        int id PK
+        string address_type "nullable"
+        string current_status "nullable"
+        string valid_from_date "nullable"
+        string valid_to_date "nullable"
+        string usage "nullable"
+        string address_details_key "nullable"
+        string postal_service_elements "nullable"
+        string address
+        int address_lines_id
+        string country
+    }
+    AddressElementType {
+        int id PK
+        string type "nullable"
+    }
+    AddressIdentifierElementType {
+        int id PK
+        string identifier_type "nullable"
+        string type "nullable"
+    }
+    AddressLatitudeDirectionElementType {
+        int id PK
+        string type "nullable"
+    }
+    AddressLatitudeElementType {
+        int id PK
+        string type "nullable"
+    }
+    AddressLine {
+        int id PK
+        string type "nullable"
+    }
+    AddressLineElementType {
+        int id PK
+        string type "nullable"
+    }
+    AddressLinesType {
+        int id PK
+    }
+    AddressLongitudeDirectionElementType {
+        int id PK
+        string type "nullable"
+    }
+    AddressLongitudeElementType {
+        int id PK
+        string type "nullable"
+    }
+    AddresseeIndicatorElementType {
+        int id PK
+        string code "nullable"
+    }
+    AdministrativeArea {
+        int id PK
+        string type "nullable"
+        string usage_type "nullable"
+        string indicator "nullable"
+        string administrative_area_name "nullable"
+        string sub_administrative_area "nullable"
+    }
+    AdministrativeAreaElementType {
+        int id PK
+        string type "nullable"
+        string usage_type "nullable"
+        string indicator "nullable"
+        string administrative_area_name "nullable"
+        string sub_administrative_area "nullable"
+    }
+    AdministrativeAreaNameElementType {
+        int id PK
+        string type "nullable"
+    }
+    AffectedType {
+        int id PK
+        string family
+        string platform "nullable"
+        string product "nullable"
+    }
+    AliasElementType {
+        int id PK
+        string type "nullable"
+        string name_type "nullable"
+        string code "nullable"
+    }
+    ArcType {
+        int id PK
+    }
+    ArithmeticFunctionType {
+        int id PK
+        string arithmetic_operation
+    }
+    AssetIdentificationAssetElementType {
+        int id PK
+        string xsd_id
+    }
+    RelationshipsContainerType {
+        int id PK
+        string relationships "nullable"
+    }
+    AssetsType {
+        int id PK
+        string asset
+        int parent_id "nullable"
+    }
+    AssetIdentificationType {
+        int id PK
+        string asset_ref
+        int parent_id "nullable"
+    }
+    AssetReportCollection {
+        int id PK
+        string xsd_id "nullable"
+        string report_requests "nullable"
+        string assets "nullable"
+        string reports
+        string extended_infos "nullable"
+        int parent_id "nullable"
+    }
+    AssetReportCollectionElementType {
+        int id PK
+        string xsd_id "nullable"
+        string report_requests "nullable"
+        string assets "nullable"
+        string reports
+        string extended_infos "nullable"
+        int parent_id "nullable"
+    }
+    AssetReportingFormAssetElementType {
+        int id PK
+        string xsd_id
+    }
+    AssetType {
+        int id PK
+        string extended_information "nullable"
+    }
+    AssetsElementType {
+        int id PK
+        string asset
+    }
+    BarcodeElementType {
+        int id PK
+        string type "nullable"
+    }
+    BeginFunctionType {
+        int id PK
+        string character
+    }
+    Benchmark {
+        int id PK
+        string xsd_id
+        bool resolved "nullable"
+        string style "nullable"
+        string style_href "nullable"
+        int version_id
+        int signature_id "nullable"
+    }
+    VersionType {
+        int id PK
+        datetime time "nullable"
+        string update "nullable"
+    }
+    BenchmarkElementType {
+        int id PK
+        string xsd_id
+        bool resolved "nullable"
+        string style "nullable"
+        string style_href "nullable"
+        int version_id
+        int signature_id "nullable"
+    }
+    BenchmarkReferenceType {
+        int id PK
+        string href
+        string xsd_id "nullable"
+    }
+    BirthdateElementType {
+        int id PK
+    }
+    BuildingNameType {
+        int id PK
+        string type "nullable"
+        string type_occurrence "nullable"
+    }
+    CPE2idrefType {
+        int id PK
+        string idref
+    }
+    CanonicalizationMethodType {
+        int id PK
+        string algorithm
+    }
+    CheckContentRefType {
+        int id PK
+        string href
+        string name "nullable"
+    }
+    CheckContentType {
+        int id PK
+    }
+    CheckExportType {
+        int id PK
+        string value_id
+        string export_name
+    }
+    CheckImportType {
+        int id PK
+        string import_name
+        string import_xpath "nullable"
+    }
+    CidrElementType {
+        int id PK
+        int parent_id "nullable"
+    }
+    CircuitNameElementType {
+        int id PK
+    }
+    ItAssetType {
+        int id PK
+        int parent_id "nullable"
+    }
+    CircuitType {
+        int id PK
+        string circuit_name "nullable"
+        int parent_id "nullable"
+    }
+    ComplexCheckType {
+        int id PK
+        string operator
+        bool negate "nullable"
+        int check_id
+        int complex_check_id
+    }
+    ComplexValueType {
+        int id PK
+        string item "nullable"
+    }
+    ComputingDeviceType {
+        int id PK
+        string distinguished_name "nullable"
+        string connections "nullable"
+        string hostname "nullable"
+        string motherboard_guid "nullable"
+        int parent_id "nullable"
+    }
+    ConcatFunctionType {
+        int id PK
+    }
+    ConnectionsElementType {
+        int id PK
+    }
+    VariableType {
+        int id PK
+        string xsd_id
+        int version
+        string datatype
+        string comment
+        bool deprecated "nullable"
+    }
+    ConstantVariable {
+        int id PK
+        int parent_id "nullable"
+    }
+    ConstantVariableElementType {
+        int id PK
+        int parent_id "nullable"
+    }
+    ContentElementType {
+        int id PK
+        datetime data_valid_start_date "nullable"
+        datetime data_valid_end_date "nullable"
+    }
+    ContentElementType1 {
+        int id PK
+    }
+    CountFunctionType {
+        int id PK
+    }
+    CountryElementType {
+        int id PK
+        string country_name_code "nullable"
+    }
+    CountryName {
+        int id PK
+        string type "nullable"
+    }
+    CountryNameCodeElementType {
+        int id PK
+        string scheme "nullable"
+    }
+    CountryNameElementType {
+        int id PK
+        string type "nullable"
+    }
+    Cpe {
+        int id PK
+        int parent_id "nullable"
+    }
+    CpeElementType {
+        int id PK
+        int parent_id "nullable"
+    }
+    CriterionType {
+        int id PK
+        bool applicability_check "nullable"
+        string test_ref
+        bool negate "nullable"
+        string comment "nullable"
+    }
+    ExtendDefinitionType {
+        int id PK
+        bool applicability_check "nullable"
+        string definition_ref
+        bool negate "nullable"
+        string comment "nullable"
+    }
+    CriteriaType {
+        int id PK
+        bool applicability_check "nullable"
+        string operator "nullable"
+        bool negate "nullable"
+        string comment "nullable"
+        int criteria_id
+        int criterion_id
+        int extend_definition_id
+    }
+    DSAKeyValueType {
+        int id PK
+        int g_id "nullable"
+        int y_id
+        int j_id "nullable"
+        int p_id
+        int q_id
+        int seed_id
+        int pgen_counter_id
+    }
+    DataType {
+        int id PK
+        int parent_id "nullable"
+    }
+    DatabaseType {
+        int id PK
+        string instance_name "nullable"
+        int parent_id "nullable"
+    }
+    DcStatusType {
+        int id PK
+    }
+    DefinitionType {
+        int id PK
+        string xsd_id
+        int version
+        string class
+        bool deprecated "nullable"
+        int metadata_id
+        int criteria_id "nullable"
+    }
+    DefinitionsType {
+        int id PK
+    }
+    Department {
+        int id PK
+        string type "nullable"
+        string department_name "nullable"
+        int mail_stop_id "nullable"
+    }
+    MailStopType {
+        int id PK
+        string type "nullable"
+        string mail_stop_name "nullable"
+        string mail_stop_number "nullable"
+    }
+    DepartmentElementType {
+        int id PK
+        string type "nullable"
+        string department_name "nullable"
+        int mail_stop_id "nullable"
+    }
+    DepartmentNameElementType {
+        int id PK
+        string type "nullable"
+    }
+    DependencyNameElementType {
+        int id PK
+        string dependency_type "nullable"
+        int parent_id "nullable"
+    }
+    DependentLocalityNameElementType {
+        int id PK
+        string type "nullable"
+    }
+    DependentLocalityNumberElementType {
+        int id PK
+        string name_number_occurrence "nullable"
+    }
+    DependentLocalityType {
+        int id PK
+        string type "nullable"
+        string usage_type "nullable"
+        string connector "nullable"
+        string indicator "nullable"
+        string dependent_locality_name "nullable"
+        string dependent_locality_number "nullable"
+        int dependent_locality_id "nullable"
+        int large_mail_user_id
+        int postal_route_id
+    }
+    ThoroughfarePreDirectionType {
+        int id PK
+        string type "nullable"
+    }
+    ThoroughfareLeadingTypeType {
+        int id PK
+        string type "nullable"
+    }
+    ThoroughfareTrailingTypeType {
+        int id PK
+        string type "nullable"
+    }
+    ThoroughfarePostDirectionType {
+        int id PK
+        string type "nullable"
+    }
+    DependentThoroughfareElementType {
+        int id PK
+        string type "nullable"
+        int thoroughfare_pre_direction_id "nullable"
+        int thoroughfare_leading_type_id "nullable"
+        int thoroughfare_trailing_type_id "nullable"
+        int thoroughfare_post_direction_id "nullable"
+    }
+    DeprecatedInfoType {
+        int id PK
+        string version
+        string reason
+        string comment "nullable"
+    }
+    Dictionary20CheckType {
+        int id PK
+        string system
+        string href "nullable"
+    }
+    SchemaVersionType {
+        int id PK
+        string platform "nullable"
+        int parent_id "nullable"
+    }
+    Dictionary20GeneratorType {
+        int id PK
+        string product_name "nullable"
+        string product_version "nullable"
+        float schema_version
+        datetime timestamp
+    }
+    ReferencesType {
+        int id PK
+        string reference
+    }
+    Dictionary20ItemType {
+        int id PK
+        string name
+        bool deprecated "nullable"
+        string deprecated_by "nullable"
+        datetime deprecation_date "nullable"
+        int references_id "nullable"
+    }
+    Dictionary20NotesType {
+        int id PK
+        string note
+    }
+    Dictionary20TextType {
+        int id PK
+    }
+    DigestMethodType {
+        int id PK
+        string algorithm
+    }
+    DistinguishedNameElementType {
+        int id PK
+    }
+    DocumentRootElementType {
+        int id PK
+    }
+    ElementMapItemType {
+        int id PK
+        string target_namespace "nullable"
+    }
+    ElementMapType {
+        int id PK
+        int test_id
+        int object_id "nullable"
+        int state_id "nullable"
+        int item_id "nullable"
+    }
+    EmailAddress {
+        int id PK
+    }
+    EmailAddressElementType {
+        int id PK
+    }
+    EndFunctionType {
+        int id PK
+        string character
+    }
+    EndorsementLineCodeElementType {
+        int id PK
+        string type "nullable"
+    }
+    EntityComplexBaseType {
+        int id PK
+    }
+    EntitySimpleBaseType {
+        int id PK
+    }
+    EntityObjectAnySimpleType {
+        int id PK
+        string datatype "nullable"
+        int parent_id "nullable"
+    }
+    EntityObjectBinaryType {
+        int id PK
+        string datatype
+        int parent_id "nullable"
+    }
+    EntityObjectBoolType {
+        int id PK
+        string datatype
+        int parent_id "nullable"
+    }
+    EntityObjectFieldType {
+        int id PK
+        string name
+        string entity_check "nullable"
+    }
+    EntityObjectFloatType {
+        int id PK
+        string datatype
+        int parent_id "nullable"
+    }
+    EntityObjectIPAddressStringType {
+        int id PK
+        string datatype "nullable"
+        int parent_id "nullable"
+    }
+    EntityObjectIPAddressType {
+        int id PK
+        string datatype
+        int parent_id "nullable"
+    }
+    EntityObjectIntType {
+        int id PK
+        string datatype
+        int parent_id "nullable"
+    }
+    EntityObjectRecordType {
+        int id PK
+        int parent_id "nullable"
+    }
+    EntityObjectStringType {
+        int id PK
+        string datatype "nullable"
+        int parent_id "nullable"
+    }
+    EntityObjectVersionType {
+        int id PK
+        string datatype
+        int parent_id "nullable"
+    }
+    EntityStateSimpleBaseType {
+        int id PK
+        string entity_check "nullable"
+        string check_existence "nullable"
+        int parent_id "nullable"
+    }
+    EntityStateAnySimpleType {
+        int id PK
+        string datatype "nullable"
+        int parent_id "nullable"
+    }
+    EntityStateBinaryType {
+        int id PK
+        string datatype
+        int parent_id "nullable"
+    }
+    EntityStateBoolType {
+        int id PK
+        string datatype
+        int parent_id "nullable"
+    }
+    EntityStateComplexBaseType {
+        int id PK
+        string entity_check "nullable"
+        string check_existence "nullable"
+        int parent_id "nullable"
+    }
+    EntityStateDebianEVRStringType {
+        int id PK
+        string datatype
+        int parent_id "nullable"
+    }
+    EntityStateEVRStringType {
+        int id PK
+        string datatype
+        int parent_id "nullable"
+    }
+    EntityStateFieldType {
+        int id PK
+        string name
+        string entity_check "nullable"
+    }
+    EntityStateFileSetRevisionType {
+        int id PK
+        string datatype
+        int parent_id "nullable"
+    }
+    EntityStateFloatType {
+        int id PK
+        string datatype
+        int parent_id "nullable"
+    }
+    EntityStateIOSVersionType {
+        int id PK
+        string datatype "nullable"
+        int parent_id "nullable"
+    }
+    EntityStateIPAddressStringType {
+        int id PK
+        string datatype "nullable"
+        int parent_id "nullable"
+    }
+    EntityStateIPAddressType {
+        int id PK
+        string datatype
+        int parent_id "nullable"
+    }
+    EntityStateIntType {
+        int id PK
+        string datatype
+        int parent_id "nullable"
+    }
+    EntityStateRecordType {
+        int id PK
+        int parent_id "nullable"
+    }
+    EntityStateStringType {
+        int id PK
+        string datatype "nullable"
+        int parent_id "nullable"
+    }
+    EntityStateVersionType {
+        int id PK
+        string datatype
+        int parent_id "nullable"
+    }
+    EscapeRegexFunctionType {
+        int id PK
+    }
+    Extended {
+        int id PK
+    }
+    ExtendedInfoElementType {
+        int id PK
+        string xsd_id
+    }
+    ExtendedInformationElementType {
+        int id PK
+    }
+    ExtendedInfosElementType {
+        int id PK
+        string extended_info
+    }
+    ExternalVariable {
+        int id PK
+        int possible_value_id
+        int possible_restriction_id
+        int parent_id "nullable"
+    }
+    PossibleValueType {
+        int id PK
+        string hint
+    }
+    PossibleRestrictionType {
+        int id PK
+        string operator "nullable"
+        string hint
+    }
+    ExternalVariableElementType {
+        int id PK
+        int possible_value_id
+        int possible_restriction_id
+        int parent_id "nullable"
+    }
+    FactRefType {
+        int id PK
+        string name
+    }
+    FactType {
+        int id PK
+        string name
+        string type "nullable"
+    }
+    Filter {
+        int id PK
+        string action "nullable"
+        int parent_id "nullable"
+    }
+    FilterElementType {
+        int id PK
+        string action "nullable"
+        int parent_id "nullable"
+    }
+    FirmNameElementType {
+        int id PK
+        string type "nullable"
+    }
+    FirmType {
+        int id PK
+        string type "nullable"
+        string firm_name "nullable"
+        int mail_stop_id "nullable"
+    }
+    FirstNameElementType {
+        int id PK
+        string type "nullable"
+        string name_type "nullable"
+        string code "nullable"
+    }
+    IdrefType {
+        int id PK
+        string idref
+    }
+    SubType {
+        int id PK
+        string use "nullable"
+        int parent_id "nullable"
+    }
+    HtmlTextWithSubType {
+        int id PK
+        bool override "nullable"
+        int sub_id
+    }
+    FixTextType {
+        int id PK
+        string fixref "nullable"
+        bool reboot "nullable"
+        string strategy "nullable"
+        string disruption "nullable"
+        string complexity "nullable"
+        int parent_id "nullable"
+    }
+    InstanceFixType {
+        int id PK
+        string context "nullable"
+    }
+    FixType {
+        int id PK
+        string xsd_id "nullable"
+        bool reboot "nullable"
+        string strategy "nullable"
+        string disruption "nullable"
+        string complexity "nullable"
+        string system "nullable"
+        string platform "nullable"
+        int sub_id
+        int instance_id
+    }
+    FormerNameElementType {
+        int id PK
+        string valid_from "nullable"
+        string valid_to "nullable"
+        int parent_id "nullable"
+    }
+    Fqdn {
+        int id PK
+    }
+    FqdnElementType {
+        int id PK
+    }
+    Function {
+        int id PK
+        string code "nullable"
+    }
+    GeneralSuffixElementType {
+        int id PK
+        string type "nullable"
+        string code "nullable"
+    }
+    GenerationIdentifierElementType {
+        int id PK
+        string type "nullable"
+        string code "nullable"
+    }
+    GlobToRegexFunctionType {
+        int id PK
+        bool glob_noescape "nullable"
+    }
+    SelectableItemType {
+        int id PK
+        bool selected "nullable"
+        string weight "nullable"
+        int parent_id "nullable"
+    }
+    GroupType {
+        int id PK
+        string xsd_id
+        int signature_id "nullable"
+        int parent_id "nullable"
+    }
+    HostElementType {
+        int id PK
+    }
+    HostnameElementType {
+        int id PK
+        int parent_id "nullable"
+    }
+    HtmlTextType {
+        int id PK
+        bool override "nullable"
+    }
+    IdentType {
+        int id PK
+        string system
+    }
+    IdentityType {
+        int id PK
+        bool authenticated
+        bool privileged
+    }
+    IdrefListType {
+        int id PK
+        string idref
+    }
+    InstallationIdElementType {
+        int id PK
+    }
+    InstanceNameElementType {
+        int id PK
+    }
+    InstanceResultType {
+        int id PK
+        string context "nullable"
+        string parent_context "nullable"
+    }
+    IpAddressType {
+        int id PK
+        string ip_v4 "nullable"
+        string ip_v6 "nullable"
+    }
+    IpNetRangeElementType {
+        int id PK
+        int ip_net_range_start_id
+        int ip_net_range_end_id
+    }
+    IpV4ElementType {
+        int id PK
+        int parent_id "nullable"
+    }
+    IpV6ElementType {
+        int id PK
+        int parent_id "nullable"
+    }
+    JointPersonName {
+        int id PK
+        string joint_name_connector "nullable"
+        string code "nullable"
+    }
+    JointPersonNameElementType {
+        int id PK
+        string joint_name_connector "nullable"
+        string code "nullable"
+    }
+    KeyInfoType {
+        int id PK
+        string xsd_id "nullable"
+    }
+    KeyLineCodeElementType {
+        int id PK
+        string type "nullable"
+    }
+    KeyValueType {
+        int id PK
+    }
+    KnownAsElementType {
+        int id PK
+        string valid_from "nullable"
+        string valid_to "nullable"
+        int parent_id "nullable"
+    }
+    Language20TextType {
+        int id PK
+    }
+    LargeMailUserIdentifierElementType {
+        int id PK
+        string type "nullable"
+        string indicator "nullable"
+    }
+    LargeMailUserNameElementType {
+        int id PK
+        string type "nullable"
+        string code "nullable"
+    }
+    LargeMailUserType {
+        int id PK
+        string type "nullable"
+        string large_mail_user_name "nullable"
+        string large_mail_user_identifier "nullable"
+    }
+    LastNameElementType {
+        int id PK
+        string type "nullable"
+        string name_type "nullable"
+        string code "nullable"
+    }
+    LicenseElementType {
+        int id PK
+    }
+    ListType {
+        int id PK
+        int generator_id "nullable"
+    }
+    LiteralComponentType {
+        int id PK
+        string datatype "nullable"
+    }
+    LocalVariable {
+        int id PK
+        int parent_id "nullable"
+    }
+    LocalVariableElementType {
+        int id PK
+        int parent_id "nullable"
+    }
+    LocaleElementType {
+        int id PK
+        int parent_id "nullable"
+    }
+    Locality {
+        int id PK
+        string type "nullable"
+        string usage_type "nullable"
+        string indicator "nullable"
+        string locality_name "nullable"
+        int dependent_locality_id "nullable"
+        int large_mail_user_id
+        int postal_route_id
+    }
+    LocalityElementType {
+        int id PK
+        string type "nullable"
+        string usage_type "nullable"
+        string indicator "nullable"
+        string locality_name "nullable"
+        int dependent_locality_id "nullable"
+        int large_mail_user_id
+        int postal_route_id
+    }
+    LocalityNameElementType {
+        int id PK
+        string type "nullable"
+    }
+    LocationPoint {
+        int id PK
+        string latitude
+        string longitude
+        float elevation "nullable"
+        string radius "nullable"
+    }
+    LocationPointElementType {
+        int id PK
+        string latitude
+        string longitude
+        float elevation "nullable"
+        string radius "nullable"
+    }
+    LocationRegion {
+        int id PK
+    }
+    LocationRegionElementType {
+        int id PK
+    }
+    Locations {
+        int id PK
+    }
+    LocationsElementType {
+        int id PK
+    }
+    LocatorType {
+        int id PK
+    }
+    LogicalTestType {
+        int id PK
+        string operator
+        bool negate
+    }
+    MacAddressElementType {
+        int id PK
+        int parent_id "nullable"
+    }
+    MailStopNameElementType {
+        int id PK
+        string type "nullable"
+    }
+    MailStopNumberElementType {
+        int id PK
+        string name_number_separator "nullable"
+    }
+    ManifestType {
+        int id PK
+        string xsd_id "nullable"
+    }
+    MiddleNameElementType {
+        int id PK
+        string type "nullable"
+        string name_type "nullable"
+        string code "nullable"
+    }
+    Model {
+        int id PK
+        string system
+    }
+    ModelElementType {
+        int id PK
+        string system
+    }
+    MotherboardGuidElementType {
+        int id PK
+    }
+    NameDetailsElementType {
+        int id PK
+        string name_details_key "nullable"
+        string addressee_indicator "nullable"
+        string dependency_name "nullable"
+        int parent_id "nullable"
+    }
+    NameLineType {
+        int id PK
+        string type "nullable"
+        string name_type "nullable"
+        string code "nullable"
+    }
+    NamePrefixElementType {
+        int id PK
+        string type "nullable"
+        string name_type "nullable"
+        string code "nullable"
+    }
+    NetworkInterfaceType {
+        int id PK
+        string mac_address "nullable"
+        string url "nullable"
+        int subnet_mask_id "nullable"
+        int default_route_id "nullable"
+    }
+    NetworkNameElementType {
+        int id PK
+    }
+    NetworkType {
+        int id PK
+        string network_name "nullable"
+        string ip_net_range
+        string cidr
+        int parent_id "nullable"
+    }
+    Notes {
+        int id PK
+        string note "nullable"
+        int parent_id "nullable"
+    }
+    NotesElementType {
+        int id PK
+        string note "nullable"
+        int parent_id "nullable"
+    }
+    NoticeType {
+        int id PK
+        string xsd_id "nullable"
+    }
+    Ns09XmldsigObjectType {
+        int id PK
+        string xsd_id "nullable"
+        string mime_type "nullable"
+        string encoding "nullable"
+    }
+    Ns09XmldsigReferenceType {
+        int id PK
+        string xsd_id "nullable"
+        string u_r_i "nullable"
+        string type "nullable"
+    }
+    Ns09XmldsigSignatureType {
+        int id PK
+        string xsd_id "nullable"
+    }
+    OasisNamesTcCiqXNameDetails {
+        int id PK
+        string name_details_key "nullable"
+        string addressee_indicator "nullable"
+        string dependency_name "nullable"
+        int parent_id "nullable"
+    }
+    OasisNamesTcCiqXOrganisationNameDetails {
+        int id PK
+        string organisation_former_name "nullable"
+        string organisation_known_as "nullable"
+        int parent_id "nullable"
+    }
+    OasisNamesTcCiqXPersonName {
+        int id PK
+        string former_name "nullable"
+        string known_as "nullable"
+        int parent_id "nullable"
+    }
+    ObjectComponentType {
+        int id PK
+        string object_ref
+        string item_field
+        string record_field "nullable"
+    }
+    ObjectRef {
+        int id PK
+        string ref_id "nullable"
+    }
+    ObjectRefElementType {
+        int id PK
+        string ref_id "nullable"
+    }
+    ObjectRefType {
+        int id PK
+        string object_ref
+    }
+    ObjectsType {
+        int id PK
+    }
+    OrganisationFormerNameElementType {
+        int id PK
+        string valid_from "nullable"
+        string valid_to "nullable"
+        int parent_id "nullable"
+    }
+    OrganisationKnownAsElementType {
+        int id PK
+        string valid_from "nullable"
+        string valid_to "nullable"
+        int parent_id "nullable"
+    }
+    OrganisationNameDetailsElementType {
+        int id PK
+        string organisation_former_name "nullable"
+        string organisation_known_as "nullable"
+        int parent_id "nullable"
+    }
+    OrganisationNameElementType {
+        int id PK
+        string type "nullable"
+        string name_type "nullable"
+        string code "nullable"
+    }
+    OrganisationTypeElementType {
+        int id PK
+        string type "nullable"
+        string name_type "nullable"
+        string code "nullable"
+    }
+    OrganizationType {
+        int id PK
+        int parent_id "nullable"
+    }
+    OtherNameElementType {
+        int id PK
+        string type "nullable"
+        string name_type "nullable"
+        string code "nullable"
+    }
+    OvalDefinitions {
+        int id PK
+        int generator_id
+        int definitions_id "nullable"
+        int tests_id "nullable"
+        int objects_id "nullable"
+        int states_id "nullable"
+        int variables_id "nullable"
+    }
+    TestsType {
+        int id PK
+    }
+    StatesType {
+        int id PK
+    }
+    VariablesType {
+        int id PK
+    }
+    OvalDefinitionsElementType {
+        int id PK
+        int generator_id
+        int definitions_id "nullable"
+        int tests_id "nullable"
+        int objects_id "nullable"
+        int states_id "nullable"
+        int variables_id "nullable"
+    }
+    OvalMitreOrgOvalGeneratorType {
+        int id PK
+        string product_name "nullable"
+        string product_version "nullable"
+        datetime timestamp
+    }
+    OvalMitreOrgOvalMessageType {
+        int id PK
+        string level "nullable"
+    }
+    OvalMitreOrgOvalMetadataType {
+        int id PK
+        string title
+        string description
+    }
+    OvalMitreOrgOvalNotesType {
+        int id PK
+        string note "nullable"
+    }
+    OvalMitreOrgOvalObjectType {
+        int id PK
+        string xsd_id
+        int version
+        string comment "nullable"
+        bool deprecated "nullable"
+    }
+    OvalMitreOrgOvalReferenceType {
+        int id PK
+        string source
+        string ref_id
+        string ref_url "nullable"
+    }
+    OvalMitreOrgOvalValueType {
+        int id PK
+    }
+    OverrideType {
+        int id PK
+        datetime time
+        string authority
+        int old_result_id
+        int new_result_id
+        int remark_id
+    }
+    OverrideableCPE2idrefType {
+        int id PK
+        bool override "nullable"
+        int parent_id "nullable"
+    }
+    PGPDataType {
+        int id PK
+        binary p_g_p_key_i_d
+        binary p_g_p_key_packet "nullable"
+    }
+    ParamType {
+        int id PK
+        string name
+    }
+    PersonNameElementType {
+        int id PK
+        string former_name "nullable"
+        string known_as "nullable"
+        int parent_id "nullable"
+    }
+    PersonType {
+        int id PK
+        string birthdate "nullable"
+        int parent_id "nullable"
+    }
+    PlainTextType {
+        int id PK
+        string xsd_id
+    }
+    PlatformSpecification {
+        int id PK
+    }
+    PlatformSpecificationElementType {
+        int id PK
+    }
+    PlatformType {
+        int id PK
+        string xsd_id
+        int logical_test_id
+    }
+    PortElementType {
+        int id PK
+        int parent_id "nullable"
+    }
+    PortRangeElementType {
+        int id PK
+        string lower_bound
+        string upper_bound
+    }
+    PostBox {
+        int id PK
+        string type "nullable"
+        string indicator "nullable"
+        string post_box_number
+        string post_box_number_prefix "nullable"
+        string post_box_number_suffix "nullable"
+        string post_box_number_extension "nullable"
+        int firm_id "nullable"
+    }
+    PostBoxElementType {
+        int id PK
+        string type "nullable"
+        string indicator "nullable"
+        string post_box_number
+        string post_box_number_prefix "nullable"
+        string post_box_number_suffix "nullable"
+        string post_box_number_extension "nullable"
+        int firm_id "nullable"
+    }
+    PostBoxNumberElementType {
+        int id PK
+    }
+    PostBoxNumberExtensionElementType {
+        int id PK
+        string number_extension_separator "nullable"
+    }
+    PostBoxNumberPrefixElementType {
+        int id PK
+        string number_prefix_separator "nullable"
+    }
+    PostBoxNumberSuffixElementType {
+        int id PK
+        string number_suffix_separator "nullable"
+    }
+    PostOffice {
+        int id PK
+        string type "nullable"
+        string indicator "nullable"
+        int postal_route_id "nullable"
+        string post_office_name "nullable"
+        string post_office_number "nullable"
+    }
+    PostalRouteType {
+        int id PK
+        string type "nullable"
+        string postal_route_name
+        string postal_route_number
+    }
+    PostOfficeElementType {
+        int id PK
+        string type "nullable"
+        string indicator "nullable"
+        int postal_route_id "nullable"
+        string post_office_name "nullable"
+        string post_office_number "nullable"
+    }
+    PostOfficeNameElementType {
+        int id PK
+        string type "nullable"
+    }
+    PostOfficeNumberElementType {
+        int id PK
+        string indicator "nullable"
+        string indicator_occurrence "nullable"
+    }
+    PostTownElementType {
+        int id PK
+        string type "nullable"
+        string post_town_name "nullable"
+        string post_town_suffix "nullable"
+    }
+    PostTownNameElementType {
+        int id PK
+        string type "nullable"
+    }
+    PostTownSuffixElementType {
+        int id PK
+    }
+    PostalCode {
+        int id PK
+        string type "nullable"
+        string postal_code_number "nullable"
+        string postal_code_number_extension "nullable"
+        string post_town "nullable"
+    }
+    PostalCodeElementType {
+        int id PK
+        string type "nullable"
+        string postal_code_number "nullable"
+        string postal_code_number_extension "nullable"
+        string post_town "nullable"
+    }
+    PostalCodeNumberElementType {
+        int id PK
+        string type "nullable"
+    }
+    PostalCodeNumberExtensionElementType {
+        int id PK
+        string type "nullable"
+        string number_extension_separator "nullable"
+    }
+    PostalRouteNameElementType {
+        int id PK
+        string type "nullable"
+    }
+    PostalRouteNumberElementType {
+        int id PK
+    }
+    PostalServiceElementsElementType {
+        int id PK
+        string type "nullable"
+        string address_identifier "nullable"
+        string endorsement_line_code "nullable"
+        string key_line_code "nullable"
+        string barcode "nullable"
+        string sorting_code "nullable"
+        string address_latitude "nullable"
+        string address_latitude_direction "nullable"
+        string address_longitude "nullable"
+        string address_longitude_direction "nullable"
+        string supplementary_postal_service_data "nullable"
+    }
+    PrecedingTitleElementType {
+        int id PK
+        string type "nullable"
+        string code "nullable"
+    }
+    Premise {
+        int id PK
+        string type "nullable"
+        string premise_dependency "nullable"
+        string premise_dependency_type "nullable"
+        string premise_thoroughfare_connector "nullable"
+        string premise_name "nullable"
+        int mail_stop_id "nullable"
+        string premise_location
+        string premise_number_range
+        int firm_id "nullable"
+    }
+    PremiseElementType {
+        int id PK
+        string type "nullable"
+        string premise_dependency "nullable"
+        string premise_dependency_type "nullable"
+        string premise_thoroughfare_connector "nullable"
+        string premise_name "nullable"
+        int mail_stop_id "nullable"
+        string premise_location
+        string premise_number_range
+        int firm_id "nullable"
+    }
+    PremiseLocationElementType {
+        int id PK
+    }
+    PremiseNameElementType {
+        int id PK
+        string type "nullable"
+        string type_occurrence "nullable"
+    }
+    PremiseNumber {
+        int id PK
+        string number_type "nullable"
+        string type "nullable"
+        string indicator "nullable"
+        string indicator_occurrence "nullable"
+        string number_type_occurrence "nullable"
+    }
+    PremiseNumberElementType {
+        int id PK
+        string number_type "nullable"
+        string type "nullable"
+        string indicator "nullable"
+        string indicator_occurrence "nullable"
+        string number_type_occurrence "nullable"
+    }
+    PremiseNumberPrefix {
+        int id PK
+        string number_prefix_separator "nullable"
+        string type "nullable"
+    }
+    PremiseNumberPrefixElementType {
+        int id PK
+        string number_prefix_separator "nullable"
+        string type "nullable"
+    }
+    PremiseNumberRangeElementType {
+        int id PK
+        string range_type "nullable"
+        string indicator "nullable"
+        string separator "nullable"
+        string type "nullable"
+        string indicator_occurence "nullable"
+        string number_range_occurence "nullable"
+        string premise_number_range_from
+        string premise_number_range_to
+    }
+    PremiseNumberRangeFromElementType {
+        int id PK
+    }
+    PremiseNumberRangeToElementType {
+        int id PK
+    }
+    PremiseNumberSuffix {
+        int id PK
+        string number_suffix_separator "nullable"
+        string type "nullable"
+    }
+    PremiseNumberSuffixElementType {
+        int id PK
+        string number_suffix_separator "nullable"
+        string type "nullable"
+    }
+    ProfileNoteType {
+        int id PK
+        string tag
+        int sub_id
+    }
+    ProfileRefineRuleType {
+        int id PK
+        string idref
+        string weight "nullable"
+        string selector "nullable"
+        string severity "nullable"
+        string role "nullable"
+    }
+    ProfileRefineValueType {
+        int id PK
+        string idref
+        string selector "nullable"
+        string operator "nullable"
+    }
+    ProfileSelectType {
+        int id PK
+        string idref
+        bool selected
+    }
+    ProfileSetComplexValueType {
+        int id PK
+        string idref
+        int parent_id "nullable"
+    }
+    ProfileSetValueType {
+        int id PK
+        string idref
+    }
+    ProfileType {
+        int id PK
+        string xsd_id
+        bool prohibit_changes "nullable"
+        bool abstract "nullable"
+        string note_tag "nullable"
+        string extends "nullable"
+        int version_id "nullable"
+        int signature_id "nullable"
+        int select_id "nullable"
+        int set_complex_value_id "nullable"
+        int set_value_id "nullable"
+        int refine_value_id "nullable"
+        int refine_rule_id "nullable"
+    }
+    ProtocolElementType {
+        int id PK
+    }
+    RSAKeyValueType {
+        int id PK
+        int modulus_id
+        int exponent_id
+    }
+    ReferenceElementType {
+        int id PK
+        string href "nullable"
+    }
+    RegexCaptureFunctionType {
+        int id PK
+        string pattern "nullable"
+    }
+    RelationshipType {
+        int id PK
+        string type
+        string scope "nullable"
+        string subject
+        string ref
+    }
+    RelationshipsElementType {
+        int id PK
+    }
+    RemoteResource {
+        int id PK
+    }
+    RemoteResourceElementType {
+        int id PK
+    }
+    ReportRequestType {
+        int id PK
+        string xsd_id
+        string content
+    }
+    ReportRequestsElementType {
+        int id PK
+    }
+    ReportType {
+        int id PK
+        string xsd_id
+        string content
+    }
+    ReportsElementType {
+        int id PK
+    }
+    ResourceType {
+        int id PK
+    }
+    RestrictionType {
+        int id PK
+        string operation
+    }
+    RetrievalMethodType {
+        int id PK
+        string u_r_i "nullable"
+        string type "nullable"
+    }
+    RuleResultType {
+        int id PK
+        string idref
+        string role "nullable"
+        string severity "nullable"
+        datetime time "nullable"
+        string version "nullable"
+        string weight "nullable"
+        int result_id
+        int complex_check_id "nullable"
+    }
+    RuleType {
+        int id PK
+        string xsd_id
+        string role "nullable"
+        string severity "nullable"
+        bool multiple "nullable"
+        string impact_metric "nullable"
+        int signature_id "nullable"
+        int complex_check_id "nullable"
+        int parent_id "nullable"
+    }
+    SPKIDataType {
+        int id PK
+        binary s_p_k_i_sexp
+    }
+    ScoreType {
+        int id PK
+        string system "nullable"
+        float maximum "nullable"
+    }
+    SelChoicesType {
+        int id PK
+        bool must_match "nullable"
+        string selector "nullable"
+        string choice
+        int complex_choice_id
+    }
+    SelComplexValueType {
+        int id PK
+        string selector "nullable"
+        int parent_id "nullable"
+    }
+    SelNumType {
+        int id PK
+        string selector "nullable"
+    }
+    SelStringType {
+        int id PK
+        string selector "nullable"
+    }
+    ServiceType {
+        int id PK
+        string host "nullable"
+        string port "nullable"
+        string port_range "nullable"
+        string protocol "nullable"
+        int parent_id "nullable"
+    }
+    Set {
+        int id PK
+        string set_operator "nullable"
+    }
+    SetElementType {
+        int id PK
+        string set_operator "nullable"
+    }
+    SignatureMethodType {
+        int id PK
+        string algorithm
+        int h_m_a_c_output_length_id "nullable"
+    }
+    SignaturePropertiesType {
+        int id PK
+        string xsd_id "nullable"
+    }
+    SignaturePropertyType {
+        int id PK
+        string target
+        string xsd_id "nullable"
+    }
+    SignatureValueType {
+        int id PK
+        string xsd_id "nullable"
+    }
+    SignedInfoType {
+        int id PK
+        string xsd_id "nullable"
+    }
+    Simple {
+        int id PK
+    }
+    SoftwareType {
+        int id PK
+        string installation_id "nullable"
+        string license "nullable"
+        int parent_id "nullable"
+    }
+    SortingCodeElementType {
+        int id PK
+        string type "nullable"
+    }
+    SplitFunctionType {
+        int id PK
+        string delimiter
+    }
+    StateRefType {
+        int id PK
+        string state_ref
+    }
+    StateType {
+        int id PK
+        string xsd_id
+        int version
+        string operator "nullable"
+        string comment "nullable"
+        bool deprecated "nullable"
+    }
+    Status {
+        int id PK
+        datetime date "nullable"
+        int parent_id "nullable"
+    }
+    StatusElementType {
+        int id PK
+        datetime date "nullable"
+        int parent_id "nullable"
+    }
+    SubAdministrativeAreaElementType {
+        int id PK
+        string type "nullable"
+        string usage_type "nullable"
+        string indicator "nullable"
+        string sub_administrative_area_name "nullable"
+    }
+    SubAdministrativeAreaNameElementType {
+        int id PK
+        string type "nullable"
+    }
+    SubPremiseLocationElementType {
+        int id PK
+    }
+    SubPremiseNameElementType {
+        int id PK
+        string type "nullable"
+        string type_occurrence "nullable"
+    }
+    SubPremiseNumberElementType {
+        int id PK
+        string indicator "nullable"
+        string indicator_occurrence "nullable"
+        string number_type_occurrence "nullable"
+        string premise_number_separator "nullable"
+        string type "nullable"
+    }
+    SubPremiseNumberPrefixElementType {
+        int id PK
+        string number_prefix_separator "nullable"
+        string type "nullable"
+    }
+    SubPremiseNumberSuffixElementType {
+        int id PK
+        string number_suffix_separator "nullable"
+        string type "nullable"
+    }
+    SubPremiseType {
+        int id PK
+        string type "nullable"
+        string sub_premise_name "nullable"
+        string sub_premise_number_prefix "nullable"
+        string sub_premise_number_suffix "nullable"
+        int firm_id "nullable"
+        int mail_stop_id "nullable"
+        int sub_premise_id "nullable"
+        string sub_premise_location
+        string sub_premise_number "nullable"
+    }
+    SubstringFunctionType {
+        int id PK
+        int substring_start
+        int substring_length
+    }
+    SuffixElementType {
+        int id PK
+        string type "nullable"
+        string code "nullable"
+    }
+    SupplementaryPostalServiceDataElementType {
+        int id PK
+        string type "nullable"
+    }
+    SyntheticId {
+        int id PK
+        string resource
+        string xsd_id
+    }
+    SyntheticIdElementType {
+        int id PK
+        string resource
+        string xsd_id
+    }
+    SystemNameElementType {
+        int id PK
+    }
+    SystemType {
+        int id PK
+        string system_name "nullable"
+        string version "nullable"
+        int parent_id "nullable"
+    }
+    TailoringBenchmarkReferenceType {
+        int id PK
+        string version "nullable"
+        int parent_id "nullable"
+    }
+    TailoringReferenceType {
+        int id PK
+        string href
+        string xsd_id
+        string version
+        datetime time
+    }
+    TailoringVersionType {
+        int id PK
+        datetime time
+    }
+    TailoringType {
+        int id PK
+        string xsd_id
+        int benchmark_id "nullable"
+        int version_id
+        int signature_id "nullable"
+    }
+    TargetFactsType {
+        int id PK
+    }
+    TargetIdRefType {
+        int id PK
+        string system
+        string href
+        string name "nullable"
+    }
+    TelephoneNumber {
+        int id PK
+        int parent_id "nullable"
+    }
+    TelephoneNumberElementType {
+        int id PK
+        int parent_id "nullable"
+    }
+    TestResultType {
+        int id PK
+        string xsd_id
+        datetime start_time "nullable"
+        datetime end_time
+        string test_system "nullable"
+        string version "nullable"
+        int benchmark_id "nullable"
+        int tailoring_file_id "nullable"
+        string organization "nullable"
+        int identity_id "nullable"
+        int profile_id "nullable"
+        string target
+        string target_address "nullable"
+        int target_facts_id "nullable"
+        int signature_id "nullable"
+        int target_id_ref_id
+        int set_value_id
+        int set_complex_value_id
+    }
+    TestType {
+        int id PK
+        string xsd_id
+        int version
+        string check_existence "nullable"
+        string check
+        string state_operator "nullable"
+        string comment
+        bool deprecated "nullable"
+    }
+    TextWithSubType {
+        int id PK
+        bool override "nullable"
+    }
+    Thoroughfare {
+        int id PK
+        string type "nullable"
+        string dependent_thoroughfares "nullable"
+        string dependent_thoroughfares_indicator "nullable"
+        string dependent_thoroughfares_connector "nullable"
+        string dependent_thoroughfares_type "nullable"
+        int thoroughfare_pre_direction_id "nullable"
+        int thoroughfare_leading_type_id "nullable"
+        int thoroughfare_trailing_type_id "nullable"
+        int thoroughfare_post_direction_id "nullable"
+        string dependent_thoroughfare "nullable"
+        string thoroughfare_number_range
+        int dependent_locality_id
+        int firm_id
+    }
+    ThoroughfareElementType {
+        int id PK
+        string type "nullable"
+        string dependent_thoroughfares "nullable"
+        string dependent_thoroughfares_indicator "nullable"
+        string dependent_thoroughfares_connector "nullable"
+        string dependent_thoroughfares_type "nullable"
+        int thoroughfare_pre_direction_id "nullable"
+        int thoroughfare_leading_type_id "nullable"
+        int thoroughfare_trailing_type_id "nullable"
+        int thoroughfare_post_direction_id "nullable"
+        string dependent_thoroughfare "nullable"
+        string thoroughfare_number_range
+        int dependent_locality_id
+        int firm_id
+    }
+    ThoroughfareNameType {
+        int id PK
+        string type "nullable"
+    }
+    ThoroughfareNumber {
+        int id PK
+        string number_type "nullable"
+        string type "nullable"
+        string indicator "nullable"
+        string indicator_occurrence "nullable"
+        string number_occurrence "nullable"
+    }
+    ThoroughfareNumberElementType {
+        int id PK
+        string number_type "nullable"
+        string type "nullable"
+        string indicator "nullable"
+        string indicator_occurrence "nullable"
+        string number_occurrence "nullable"
+    }
+    ThoroughfareNumberFromElementType {
+        int id PK
+    }
+    ThoroughfareNumberPrefix {
+        int id PK
+        string number_prefix_separator "nullable"
+        string type "nullable"
+    }
+    ThoroughfareNumberPrefixElementType {
+        int id PK
+        string number_prefix_separator "nullable"
+        string type "nullable"
+    }
+    ThoroughfareNumberRangeElementType {
+        int id PK
+        string range_type "nullable"
+        string indicator "nullable"
+        string separator "nullable"
+        string indicator_occurrence "nullable"
+        string number_range_occurrence "nullable"
+        string type "nullable"
+        string thoroughfare_number_from
+        string thoroughfare_number_to
+    }
+    ThoroughfareNumberSuffix {
+        int id PK
+        string number_suffix_separator "nullable"
+        string type "nullable"
+    }
+    ThoroughfareNumberSuffixElementType {
+        int id PK
+        string number_suffix_separator "nullable"
+        string type "nullable"
+    }
+    ThoroughfareNumberToElementType {
+        int id PK
+    }
+    TimeDifferenceFunctionType {
+        int id PK
+        string format_1 "nullable"
+        string format_2 "nullable"
+    }
+    TitleElementType {
+        int id PK
+        string type "nullable"
+        string code "nullable"
+    }
+    TitleEltType {
+        int id PK
+    }
+    TransformType {
+        int id PK
+        string algorithm
+        string x_path
+    }
+    TransformsType {
+        int id PK
+    }
+    UniqueFunctionType {
+        int id PK
+    }
+    UriRefType {
+        int id PK
+        string uri
+    }
+    UrlElementType {
+        int id PK
+    }
+    VariableComponentType {
+        int id PK
+        string var_ref
+    }
+    VersionElementType {
+        int id PK
+    }
+    WarningType {
+        int id PK
+        string category "nullable"
+        int parent_id "nullable"
+    }
+    WebsiteType {
+        int id PK
+        string document_root "nullable"
+        string locale "nullable"
+        int parent_id "nullable"
+    }
+    WebsiteUrl {
+        int id PK
+    }
+    WebsiteUrlElementType {
+        int id PK
+    }
+    X509DataType {
+        int id PK
+        int x509_issuer_serial_id
+        binary x509_s_k_i
+        string x509_subject_name
+        binary x509_certificate
+        binary x509_c_r_l
+    }
+    X509IssuerSerialType {
+        int id PK
+        string x509_issuer_name
+        int x509_serial_number
+    }
+    XAL {
+        int id PK
+        string version "nullable"
+    }
+    XALElementType {
+        int id PK
+        string version "nullable"
+    }
+    XNL {
+        int id PK
+        string version "nullable"
+    }
+    XNLElementType {
+        int id PK
+        string version "nullable"
+    }
+    Xccdf12CheckType {
+        int id PK
+        string system
+        bool negate "nullable"
+        string xsd_id "nullable"
+        string selector "nullable"
+        bool multi_check "nullable"
+        int check_content_id "nullable"
+    }
+    Xccdf12ItemType {
+        int id PK
+        bool abstract "nullable"
+        string cluster_id "nullable"
+        string extends "nullable"
+        bool hidden "nullable"
+        bool prohibit_changes "nullable"
+        string xsd_id "nullable"
+        int version_id "nullable"
+    }
+    Xccdf12MessageType {
+        int id PK
+        string severity
+    }
+    Xccdf12MetadataType {
+        int id PK
+    }
+    Xccdf12ReferenceType {
+        int id PK
+        string href "nullable"
+        bool override "nullable"
+    }
+    Xccdf12SignatureType {
+        int id PK
+    }
+    Xccdf12TextType {
+        int id PK
+        bool override "nullable"
+    }
+    Xccdf12ValueType {
+        int id PK
+        string xsd_id
+        string type "nullable"
+        string operator "nullable"
+        bool interactive "nullable"
+        string interface_hint "nullable"
+        int signature_id "nullable"
+        int value_id
+        int complex_value_id
+        int default_id
+        int complex_default_id
+        int parent_id "nullable"
+    }
+
+    RelationshipsContainerType |o--o{ AssetsType : "References parent type relationships-container-type"
+    RelationshipsContainerType ||--|| AssetsType : "extends"
+    AssetsType |o--o{ AssetIdentificationType : "References parent type assets-type"
+    AssetsType ||--|| AssetIdentificationType : "extends"
+    RelationshipsContainerType |o--o{ AssetReportCollection : "References parent type relationships-container-type"
+    RelationshipsContainerType ||--|| AssetReportCollection : "extends"
+    RelationshipsContainerType |o--o{ AssetReportCollectionElementType : "References parent type relationships-container-type"
+    RelationshipsContainerType ||--|| AssetReportCollectionElementType : "extends"
+    VersionType ||--o{ BenchmarkElementType : "References versionType"
+    CidrType |o--o{ CidrElementType : "References parent type cidr-type"
+    CidrType ||--|| CidrElementType : "extends"
+    AssetType |o--o{ ItAssetType : "References parent type asset-type"
+    AssetType ||--|| ItAssetType : "extends"
+    ItAssetType |o--o{ CircuitType : "References parent type it-asset-type"
+    ItAssetType ||--|| CircuitType : "extends"
+    ComplexCheckType ||--o{ ComplexCheckType : "References complexCheckType"
+    ItAssetType |o--o{ ComputingDeviceType : "References parent type it-asset-type"
+    ItAssetType ||--|| ComputingDeviceType : "extends"
+    VariableType |o--o{ ConstantVariable : "References parent type VariableType"
+    VariableType ||--|| ConstantVariable : "extends"
+    VariableType |o--o{ ConstantVariableElementType : "References parent type VariableType"
+    VariableType ||--|| ConstantVariableElementType : "extends"
+    CpeType |o--o{ Cpe : "References parent type cpe-type"
+    CpeType ||--|| Cpe : "extends"
+    CpeType |o--o{ CpeElementType : "References parent type cpe-type"
+    CpeType ||--|| CpeElementType : "extends"
+    CriteriaType ||--o{ CriteriaType : "References CriteriaType"
+    CriterionType ||--o{ CriteriaType : "References CriterionType"
+    ExtendDefinitionType ||--o{ CriteriaType : "References ExtendDefinitionType"
+    AssetType |o--o{ DataType : "References parent type asset-type"
+    AssetType ||--|| DataType : "extends"
+    ItAssetType |o--o{ DatabaseType : "References parent type it-asset-type"
+    ItAssetType ||--|| DatabaseType : "extends"
+    CriteriaType |o--o{ DefinitionType : "References CriteriaType"
+    MailStopType |o--o{ DepartmentElementType : "References MailStopType"
+    NameDetails |o--o{ DependencyNameElementType : "References parent type NameDetails"
+    NameDetails ||--|| DependencyNameElementType : "extends"
+    DependentLocalityType |o--o{ DependentLocalityType : "References DependentLocalityType"
+    ThoroughfarePreDirectionType |o--o{ DependentThoroughfareElementType : "References ThoroughfarePreDirectionType"
+    ThoroughfareLeadingTypeType |o--o{ DependentThoroughfareElementType : "References ThoroughfareLeadingTypeType"
+    ThoroughfareTrailingTypeType |o--o{ DependentThoroughfareElementType : "References ThoroughfareTrailingTypeType"
+    ThoroughfarePostDirectionType |o--o{ DependentThoroughfareElementType : "References ThoroughfarePostDirectionType"
+    SchemaVersionPattern |o--o{ SchemaVersionType : "References parent type SchemaVersionPattern"
+    SchemaVersionPattern ||--|| SchemaVersionType : "extends"
+    SchemaVersionType ||--o{ Dictionary20GeneratorType : "References SchemaVersionType"
+    ReferencesType |o--o{ Dictionary20ItemType : "References ReferencesType"
+    ElementMapItemType ||--o{ ElementMapType : "References ElementMapItemType"
+    ElementMapItemType |o--o{ ElementMapType : "References ElementMapItemType"
+    ElementMapItemType |o--o{ ElementMapType : "References ElementMapItemType"
+    ElementMapItemType |o--o{ ElementMapType : "References ElementMapItemType"
+    EntitySimpleBaseType |o--o{ EntityObjectAnySimpleType : "References parent type EntitySimpleBaseType"
+    EntitySimpleBaseType ||--|| EntityObjectAnySimpleType : "extends"
+    EntitySimpleBaseType |o--o{ EntityObjectBinaryType : "References parent type EntitySimpleBaseType"
+    EntitySimpleBaseType ||--|| EntityObjectBinaryType : "extends"
+    EntitySimpleBaseType |o--o{ EntityObjectBoolType : "References parent type EntitySimpleBaseType"
+    EntitySimpleBaseType ||--|| EntityObjectBoolType : "extends"
+    EntitySimpleBaseType |o--o{ EntityObjectFloatType : "References parent type EntitySimpleBaseType"
+    EntitySimpleBaseType ||--|| EntityObjectFloatType : "extends"
+    EntitySimpleBaseType |o--o{ EntityObjectIPAddressStringType : "References parent type EntitySimpleBaseType"
+    EntitySimpleBaseType ||--|| EntityObjectIPAddressStringType : "extends"
+    EntitySimpleBaseType |o--o{ EntityObjectIPAddressType : "References parent type EntitySimpleBaseType"
+    EntitySimpleBaseType ||--|| EntityObjectIPAddressType : "extends"
+    EntitySimpleBaseType |o--o{ EntityObjectIntType : "References parent type EntitySimpleBaseType"
+    EntitySimpleBaseType ||--|| EntityObjectIntType : "extends"
+    EntityComplexBaseType |o--o{ EntityObjectRecordType : "References parent type EntityComplexBaseType"
+    EntityComplexBaseType ||--|| EntityObjectRecordType : "extends"
+    EntitySimpleBaseType |o--o{ EntityObjectStringType : "References parent type EntitySimpleBaseType"
+    EntitySimpleBaseType ||--|| EntityObjectStringType : "extends"
+    EntitySimpleBaseType |o--o{ EntityObjectVersionType : "References parent type EntitySimpleBaseType"
+    EntitySimpleBaseType ||--|| EntityObjectVersionType : "extends"
+    EntitySimpleBaseType |o--o{ EntityStateSimpleBaseType : "References parent type EntitySimpleBaseType"
+    EntitySimpleBaseType ||--|| EntityStateSimpleBaseType : "extends"
+    EntityStateSimpleBaseType |o--o{ EntityStateAnySimpleType : "References parent type EntityStateSimpleBaseType"
+    EntityStateSimpleBaseType ||--|| EntityStateAnySimpleType : "extends"
+    EntityStateSimpleBaseType |o--o{ EntityStateBinaryType : "References parent type EntityStateSimpleBaseType"
+    EntityStateSimpleBaseType ||--|| EntityStateBinaryType : "extends"
+    EntityStateSimpleBaseType |o--o{ EntityStateBoolType : "References parent type EntityStateSimpleBaseType"
+    EntityStateSimpleBaseType ||--|| EntityStateBoolType : "extends"
+    EntityComplexBaseType |o--o{ EntityStateComplexBaseType : "References parent type EntityComplexBaseType"
+    EntityComplexBaseType ||--|| EntityStateComplexBaseType : "extends"
+    EntityStateSimpleBaseType |o--o{ EntityStateDebianEVRStringType : "References parent type EntityStateSimpleBaseType"
+    EntityStateSimpleBaseType ||--|| EntityStateDebianEVRStringType : "extends"
+    EntityStateSimpleBaseType |o--o{ EntityStateEVRStringType : "References parent type EntityStateSimpleBaseType"
+    EntityStateSimpleBaseType ||--|| EntityStateEVRStringType : "extends"
+    EntityStateSimpleBaseType |o--o{ EntityStateFileSetRevisionType : "References parent type EntityStateSimpleBaseType"
+    EntityStateSimpleBaseType ||--|| EntityStateFileSetRevisionType : "extends"
+    EntityStateSimpleBaseType |o--o{ EntityStateFloatType : "References parent type EntityStateSimpleBaseType"
+    EntityStateSimpleBaseType ||--|| EntityStateFloatType : "extends"
+    EntityStateSimpleBaseType |o--o{ EntityStateIOSVersionType : "References parent type EntityStateSimpleBaseType"
+    EntityStateSimpleBaseType ||--|| EntityStateIOSVersionType : "extends"
+    EntityStateSimpleBaseType |o--o{ EntityStateIPAddressStringType : "References parent type EntityStateSimpleBaseType"
+    EntityStateSimpleBaseType ||--|| EntityStateIPAddressStringType : "extends"
+    EntityStateSimpleBaseType |o--o{ EntityStateIPAddressType : "References parent type EntityStateSimpleBaseType"
+    EntityStateSimpleBaseType ||--|| EntityStateIPAddressType : "extends"
+    EntityStateSimpleBaseType |o--o{ EntityStateIntType : "References parent type EntityStateSimpleBaseType"
+    EntityStateSimpleBaseType ||--|| EntityStateIntType : "extends"
+    EntityStateComplexBaseType |o--o{ EntityStateRecordType : "References parent type EntityStateComplexBaseType"
+    EntityStateComplexBaseType ||--|| EntityStateRecordType : "extends"
+    EntityStateSimpleBaseType |o--o{ EntityStateStringType : "References parent type EntityStateSimpleBaseType"
+    EntityStateSimpleBaseType ||--|| EntityStateStringType : "extends"
+    EntityStateSimpleBaseType |o--o{ EntityStateVersionType : "References parent type EntityStateSimpleBaseType"
+    EntityStateSimpleBaseType ||--|| EntityStateVersionType : "extends"
+    VariableType |o--o{ ExternalVariable : "References parent type VariableType"
+    VariableType ||--|| ExternalVariable : "extends"
+    VariableType |o--o{ ExternalVariableElementType : "References parent type VariableType"
+    PossibleValueType ||--o{ ExternalVariableElementType : "References PossibleValueType"
+    PossibleRestrictionType ||--o{ ExternalVariableElementType : "References PossibleRestrictionType"
+    VariableType ||--|| ExternalVariableElementType : "extends"
+    StateIDPattern |o--o{ Filter : "References parent type StateIDPattern"
+    StateIDPattern ||--|| Filter : "extends"
+    StateIDPattern |o--o{ FilterElementType : "References parent type StateIDPattern"
+    StateIDPattern ||--|| FilterElementType : "extends"
+    MailStopType |o--o{ FirmType : "References MailStopType"
+    IdrefType |o--o{ SubType : "References parent type idrefType"
+    IdrefType ||--|| SubType : "extends"
+    SubType ||--o{ HtmlTextWithSubType : "References subType"
+    HtmlTextWithSubType |o--o{ FixTextType : "References parent type htmlTextWithSubType"
+    HtmlTextWithSubType ||--|| FixTextType : "extends"
+    SubType ||--o{ FixType : "References subType"
+    InstanceFixType ||--o{ FixType : "References instanceFixType"
+    PersonName |o--o{ FormerNameElementType : "References parent type PersonName"
+    PersonName ||--|| FormerNameElementType : "extends"
+    ItemType |o--o{ SelectableItemType : "References parent type itemType"
+    ItemType ||--|| SelectableItemType : "extends"
+    SelectableItemType |o--o{ GroupType : "References parent type selectableItemType"
+    SelectableItemType ||--|| GroupType : "extends"
+    HostnameType |o--o{ HostnameElementType : "References parent type hostname-type"
+    HostnameType ||--|| HostnameElementType : "extends"
+    IpAddressType ||--o{ IpNetRangeElementType : "References ip-address-type"
+    IpAddressType ||--o{ IpNetRangeElementType : "References ip-address-type"
+    Ipv4Type |o--o{ IpV4ElementType : "References parent type ipv4-type"
+    Ipv4Type ||--|| IpV4ElementType : "extends"
+    Ipv6Type |o--o{ IpV6ElementType : "References parent type ipv6-type"
+    Ipv6Type ||--|| IpV6ElementType : "extends"
+    PersonName |o--o{ KnownAsElementType : "References parent type PersonName"
+    PersonName ||--|| KnownAsElementType : "extends"
+    VariableType |o--o{ LocalVariable : "References parent type VariableType"
+    VariableType ||--|| LocalVariable : "extends"
+    VariableType |o--o{ LocalVariableElementType : "References parent type VariableType"
+    VariableType ||--|| LocalVariableElementType : "extends"
+    LocaleType |o--o{ LocaleElementType : "References parent type locale-type"
+    LocaleType ||--|| LocaleElementType : "extends"
+    DependentLocalityType |o--o{ LocalityElementType : "References DependentLocalityType"
+    MacAddressType |o--o{ MacAddressElementType : "References parent type mac-address-type"
+    MacAddressType ||--|| MacAddressElementType : "extends"
+    NameDetails |o--o{ NameDetailsElementType : "References parent type NameDetails"
+    NameDetails ||--|| NameDetailsElementType : "extends"
+    IpAddressType |o--o{ NetworkInterfaceType : "References ip-address-type"
+    IpAddressType |o--o{ NetworkInterfaceType : "References ip-address-type"
+    ItAssetType |o--o{ NetworkType : "References parent type it-asset-type"
+    ItAssetType ||--|| NetworkType : "extends"
+    NotesType |o--o{ Notes : "References parent type NotesType"
+    NotesType ||--|| Notes : "extends"
+    NotesType |o--o{ NotesElementType : "References parent type NotesType"
+    NotesType ||--|| NotesElementType : "extends"
+    NameDetails |o--o{ OasisNamesTcCiqXNameDetails : "References parent type NameDetails"
+    NameDetails ||--|| OasisNamesTcCiqXNameDetails : "extends"
+    OrganisationNameDetails |o--o{ OasisNamesTcCiqXOrganisationNameDetails : "References parent type OrganisationNameDetails"
+    OrganisationNameDetails ||--|| OasisNamesTcCiqXOrganisationNameDetails : "extends"
+    PersonName |o--o{ OasisNamesTcCiqXPersonName : "References parent type PersonName"
+    PersonName ||--|| OasisNamesTcCiqXPersonName : "extends"
+    OrganisationNameDetails |o--o{ OrganisationFormerNameElementType : "References parent type OrganisationNameDetails"
+    OrganisationNameDetails ||--|| OrganisationFormerNameElementType : "extends"
+    OrganisationNameDetails |o--o{ OrganisationKnownAsElementType : "References parent type OrganisationNameDetails"
+    OrganisationNameDetails ||--|| OrganisationKnownAsElementType : "extends"
+    OrganisationNameDetails |o--o{ OrganisationNameDetailsElementType : "References parent type OrganisationNameDetails"
+    OrganisationNameDetails ||--|| OrganisationNameDetailsElementType : "extends"
+    AssetType |o--o{ OrganizationType : "References parent type asset-type"
+    AssetType ||--|| OrganizationType : "extends"
+    DefinitionsType |o--o{ OvalDefinitionsElementType : "References DefinitionsType"
+    TestsType |o--o{ OvalDefinitionsElementType : "References TestsType"
+    ObjectsType |o--o{ OvalDefinitionsElementType : "References ObjectsType"
+    StatesType |o--o{ OvalDefinitionsElementType : "References StatesType"
+    VariablesType |o--o{ OvalDefinitionsElementType : "References VariablesType"
+    CPE2idrefType |o--o{ OverrideableCPE2idrefType : "References parent type CPE2idrefType"
+    CPE2idrefType ||--|| OverrideableCPE2idrefType : "extends"
+    PersonName |o--o{ PersonNameElementType : "References parent type PersonName"
+    PersonName ||--|| PersonNameElementType : "extends"
+    AssetType |o--o{ PersonType : "References parent type asset-type"
+    AssetType ||--|| PersonType : "extends"
+    LogicalTestType ||--o{ PlatformType : "References LogicalTestType"
+    PortType |o--o{ PortElementType : "References parent type port-type"
+    PortType ||--|| PortElementType : "extends"
+    FirmType |o--o{ PostBoxElementType : "References FirmType"
+    PostalRouteType |o--o{ PostOfficeElementType : "References PostalRouteType"
+    MailStopType |o--o{ PremiseElementType : "References MailStopType"
+    SubType ||--o{ ProfileNoteType : "References subType"
+    ComplexValueType |o--o{ ProfileSetComplexValueType : "References parent type complexValueType"
+    ComplexValueType ||--|| ProfileSetComplexValueType : "extends"
+    VersionType |o--o{ ProfileType : "References versionType"
+    SelectableItemType |o--o{ RuleType : "References parent type selectableItemType"
+    SelectableItemType ||--|| RuleType : "extends"
+    ComplexValueType ||--o{ SelChoicesType : "References complexValueType"
+    ComplexValueType |o--o{ SelComplexValueType : "References parent type complexValueType"
+    ComplexValueType ||--|| SelComplexValueType : "extends"
+    ItAssetType |o--o{ ServiceType : "References parent type it-asset-type"
+    ItAssetType ||--|| ServiceType : "extends"
+    ItAssetType |o--o{ SoftwareType : "References parent type it-asset-type"
+    ItAssetType ||--|| SoftwareType : "extends"
+    StatusType |o--o{ Status : "References parent type statusType"
+    StatusType ||--|| Status : "extends"
+    StatusType |o--o{ StatusElementType : "References parent type statusType"
+    StatusType ||--|| StatusElementType : "extends"
+    FirmType |o--o{ SubPremiseType : "References FirmType"
+    MailStopType |o--o{ SubPremiseType : "References MailStopType"
+    SubPremiseType |o--o{ SubPremiseType : "References SubPremiseType"
+    ItAssetType |o--o{ SystemType : "References parent type it-asset-type"
+    ItAssetType ||--|| SystemType : "extends"
+    BenchmarkReferenceType |o--o{ TailoringBenchmarkReferenceType : "References parent type benchmarkReferenceType"
+    BenchmarkReferenceType ||--|| TailoringBenchmarkReferenceType : "extends"
+    TailoringBenchmarkReferenceType |o--o{ TailoringType : "References tailoringBenchmarkReferenceType"
+    TailoringVersionType ||--o{ TailoringType : "References tailoringVersionType"
+    TelephoneNumberType |o--o{ TelephoneNumber : "References parent type telephone-number-type"
+    TelephoneNumberType ||--|| TelephoneNumber : "extends"
+    TelephoneNumberType |o--o{ TelephoneNumberElementType : "References parent type telephone-number-type"
+    TelephoneNumberType ||--|| TelephoneNumberElementType : "extends"
+    BenchmarkReferenceType |o--o{ TestResultType : "References benchmarkReferenceType"
+    TailoringReferenceType |o--o{ TestResultType : "References tailoringReferenceType"
+    IdentityType |o--o{ TestResultType : "References identityType"
+    IdrefType |o--o{ TestResultType : "References idrefType"
+    TargetFactsType |o--o{ TestResultType : "References targetFactsType"
+    ThoroughfarePreDirectionType |o--o{ ThoroughfareElementType : "References ThoroughfarePreDirectionType"
+    ThoroughfareLeadingTypeType |o--o{ ThoroughfareElementType : "References ThoroughfareLeadingTypeType"
+    ThoroughfareTrailingTypeType |o--o{ ThoroughfareElementType : "References ThoroughfareTrailingTypeType"
+    ThoroughfarePostDirectionType |o--o{ ThoroughfareElementType : "References ThoroughfarePostDirectionType"
+    HtmlTextWithSubType |o--o{ WarningType : "References parent type htmlTextWithSubType"
+    HtmlTextWithSubType ||--|| WarningType : "extends"
+    ItAssetType |o--o{ WebsiteType : "References parent type it-asset-type"
+    ItAssetType ||--|| WebsiteType : "extends"
+    CheckContentType |o--o{ Xccdf12CheckType : "References checkContentType"
+    VersionType |o--o{ Xccdf12ItemType : "References versionType"
+    ItemType |o--o{ Xccdf12ValueType : "References parent type itemType"
+    ItemType ||--|| Xccdf12ValueType : "extends"

@@ -1,0 +1,644 @@
+flowchart TD
+    addressdetails[["AddressDetails"]]
+    addresselementtype[["AddressElementType"]]
+    addressidentifierelementtype[["AddressIdentifierElementType"]]
+    addresslatitudedirectionelementtype[["AddressLatitudeDirectionElementType"]]
+    addresslatitudeelementtype[["AddressLatitudeElementType"]]
+    addressline[["AddressLine"]]
+    addresslineelementtype[["AddressLineElementType"]]
+    addresslinestype[["AddressLinesType"]]
+    addresslongitudedirectionelementtype[["AddressLongitudeDirectionElementType"]]
+    addresslongitudeelementtype[["AddressLongitudeElementType"]]
+    addresseeindicatorelementtype[["AddresseeIndicatorElementType"]]
+    administrativearea[["AdministrativeArea"]]
+    administrativeareaelementtype[["AdministrativeAreaElementType"]]
+    administrativeareanameelementtype[["AdministrativeAreaNameElementType"]]
+    affectedtype[["AffectedType"]]
+    aliaselementtype[["AliasElementType"]]
+    arctype[["ArcType"]]
+    arithmeticfunctiontype[["ArithmeticFunctionType"]]
+    assetidentificationassetelementtype[["AssetIdentificationAssetElementType"]]
+    relationshipscontainertype[["RelationshipsContainerType"]]
+    assetstype["AssetsType"]
+    assetidentificationtype["AssetIdentificationType"]
+    assetreportcollection["AssetReportCollection"]
+    assetreportcollectionelementtype["AssetReportCollectionElementType"]
+    assetreportingformassetelementtype[["AssetReportingFormAssetElementType"]]
+    assettype[["AssetType"]]
+    assetselementtype[["AssetsElementType"]]
+    barcodeelementtype[["BarcodeElementType"]]
+    beginfunctiontype[["BeginFunctionType"]]
+    benchmark[["Benchmark"]]
+    versiontype[["VersionType"]]
+    benchmarkelementtype["BenchmarkElementType"]
+    benchmarkreferencetype[["BenchmarkReferenceType"]]
+    birthdateelementtype[["BirthdateElementType"]]
+    buildingnametype[["BuildingNameType"]]
+    cpe2idreftype[["CPE2idrefType"]]
+    canonicalizationmethodtype[["CanonicalizationMethodType"]]
+    checkcontentreftype[["CheckContentRefType"]]
+    checkcontenttype[["CheckContentType"]]
+    checkexporttype[["CheckExportType"]]
+    checkimporttype[["CheckImportType"]]
+    cidrelementtype["CidrElementType"]
+    circuitnameelementtype[["CircuitNameElementType"]]
+    itassettype["ItAssetType"]
+    circuittype["CircuitType"]
+    complexchecktype["ComplexCheckType"]
+    complexvaluetype[["ComplexValueType"]]
+    computingdevicetype["ComputingDeviceType"]
+    concatfunctiontype[["ConcatFunctionType"]]
+    connectionselementtype[["ConnectionsElementType"]]
+    variabletype[["VariableType"]]
+    constantvariable["ConstantVariable"]
+    constantvariableelementtype["ConstantVariableElementType"]
+    contentelementtype[["ContentElementType"]]
+    contentelementtype1[["ContentElementType1"]]
+    countfunctiontype[["CountFunctionType"]]
+    countryelementtype[["CountryElementType"]]
+    countryname[["CountryName"]]
+    countrynamecodeelementtype[["CountryNameCodeElementType"]]
+    countrynameelementtype[["CountryNameElementType"]]
+    cpe["Cpe"]
+    cpeelementtype["CpeElementType"]
+    criteriontype[["CriterionType"]]
+    extenddefinitiontype[["ExtendDefinitionType"]]
+    criteriatype["CriteriaType"]
+    dsakeyvaluetype[["DSAKeyValueType"]]
+    datatype["DataType"]
+    databasetype["DatabaseType"]
+    dcstatustype[["DcStatusType"]]
+    definitiontype["DefinitionType"]
+    definitionstype[["DefinitionsType"]]
+    department[["Department"]]
+    mailstoptype[["MailStopType"]]
+    departmentelementtype["DepartmentElementType"]
+    departmentnameelementtype[["DepartmentNameElementType"]]
+    dependencynameelementtype["DependencyNameElementType"]
+    dependentlocalitynameelementtype[["DependentLocalityNameElementType"]]
+    dependentlocalitynumberelementtype[["DependentLocalityNumberElementType"]]
+    dependentlocalitytype["DependentLocalityType"]
+    thoroughfarepredirectiontype[["ThoroughfarePreDirectionType"]]
+    thoroughfareleadingtypetype[["ThoroughfareLeadingTypeType"]]
+    thoroughfaretrailingtypetype[["ThoroughfareTrailingTypeType"]]
+    thoroughfarepostdirectiontype[["ThoroughfarePostDirectionType"]]
+    dependentthoroughfareelementtype["DependentThoroughfareElementType"]
+    deprecatedinfotype[["DeprecatedInfoType"]]
+    dictionary20checktype[["Dictionary20CheckType"]]
+    schemaversiontype["SchemaVersionType"]
+    dictionary20generatortype["Dictionary20GeneratorType"]
+    referencestype[["ReferencesType"]]
+    dictionary20itemtype["Dictionary20ItemType"]
+    dictionary20notestype[["Dictionary20NotesType"]]
+    dictionary20texttype[["Dictionary20TextType"]]
+    digestmethodtype[["DigestMethodType"]]
+    distinguishednameelementtype[["DistinguishedNameElementType"]]
+    documentrootelementtype[["DocumentRootElementType"]]
+    elementmapitemtype[["ElementMapItemType"]]
+    elementmaptype["ElementMapType"]
+    emailaddress[["EmailAddress"]]
+    emailaddresselementtype[["EmailAddressElementType"]]
+    endfunctiontype[["EndFunctionType"]]
+    endorsementlinecodeelementtype[["EndorsementLineCodeElementType"]]
+    entitycomplexbasetype[["EntityComplexBaseType"]]
+    entitysimplebasetype[["EntitySimpleBaseType"]]
+    entityobjectanysimpletype["EntityObjectAnySimpleType"]
+    entityobjectbinarytype["EntityObjectBinaryType"]
+    entityobjectbooltype["EntityObjectBoolType"]
+    entityobjectfieldtype[["EntityObjectFieldType"]]
+    entityobjectfloattype["EntityObjectFloatType"]
+    entityobjectipaddressstringtype["EntityObjectIPAddressStringType"]
+    entityobjectipaddresstype["EntityObjectIPAddressType"]
+    entityobjectinttype["EntityObjectIntType"]
+    entityobjectrecordtype["EntityObjectRecordType"]
+    entityobjectstringtype["EntityObjectStringType"]
+    entityobjectversiontype["EntityObjectVersionType"]
+    entitystatesimplebasetype["EntityStateSimpleBaseType"]
+    entitystateanysimpletype["EntityStateAnySimpleType"]
+    entitystatebinarytype["EntityStateBinaryType"]
+    entitystatebooltype["EntityStateBoolType"]
+    entitystatecomplexbasetype["EntityStateComplexBaseType"]
+    entitystatedebianevrstringtype["EntityStateDebianEVRStringType"]
+    entitystateevrstringtype["EntityStateEVRStringType"]
+    entitystatefieldtype[["EntityStateFieldType"]]
+    entitystatefilesetrevisiontype["EntityStateFileSetRevisionType"]
+    entitystatefloattype["EntityStateFloatType"]
+    entitystateiosversiontype["EntityStateIOSVersionType"]
+    entitystateipaddressstringtype["EntityStateIPAddressStringType"]
+    entitystateipaddresstype["EntityStateIPAddressType"]
+    entitystateinttype["EntityStateIntType"]
+    entitystaterecordtype["EntityStateRecordType"]
+    entitystatestringtype["EntityStateStringType"]
+    entitystateversiontype["EntityStateVersionType"]
+    escaperegexfunctiontype[["EscapeRegexFunctionType"]]
+    extended[["Extended"]]
+    extendedinfoelementtype[["ExtendedInfoElementType"]]
+    extendedinformationelementtype[["ExtendedInformationElementType"]]
+    extendedinfoselementtype[["ExtendedInfosElementType"]]
+    externalvariable["ExternalVariable"]
+    possiblevaluetype[["PossibleValueType"]]
+    possiblerestrictiontype[["PossibleRestrictionType"]]
+    externalvariableelementtype["ExternalVariableElementType"]
+    factreftype[["FactRefType"]]
+    facttype[["FactType"]]
+    filter["Filter"]
+    filterelementtype["FilterElementType"]
+    firmnameelementtype[["FirmNameElementType"]]
+    firmtype["FirmType"]
+    firstnameelementtype[["FirstNameElementType"]]
+    idreftype[["IdrefType"]]
+    subtype["SubType"]
+    htmltextwithsubtype["HtmlTextWithSubType"]
+    fixtexttype["FixTextType"]
+    instancefixtype[["InstanceFixType"]]
+    fixtype["FixType"]
+    formernameelementtype["FormerNameElementType"]
+    fqdn[["Fqdn"]]
+    fqdnelementtype[["FqdnElementType"]]
+    function[["Function"]]
+    generalsuffixelementtype[["GeneralSuffixElementType"]]
+    generationidentifierelementtype[["GenerationIdentifierElementType"]]
+    globtoregexfunctiontype[["GlobToRegexFunctionType"]]
+    selectableitemtype["SelectableItemType"]
+    grouptype["GroupType"]
+    hostelementtype[["HostElementType"]]
+    hostnameelementtype["HostnameElementType"]
+    htmltexttype[["HtmlTextType"]]
+    identtype[["IdentType"]]
+    identitytype[["IdentityType"]]
+    idreflisttype[["IdrefListType"]]
+    installationidelementtype[["InstallationIdElementType"]]
+    instancenameelementtype[["InstanceNameElementType"]]
+    instanceresulttype[["InstanceResultType"]]
+    ipaddresstype[["IpAddressType"]]
+    ipnetrangeelementtype["IpNetRangeElementType"]
+    ipv4elementtype["IpV4ElementType"]
+    ipv6elementtype["IpV6ElementType"]
+    jointpersonname[["JointPersonName"]]
+    jointpersonnameelementtype[["JointPersonNameElementType"]]
+    keyinfotype[["KeyInfoType"]]
+    keylinecodeelementtype[["KeyLineCodeElementType"]]
+    keyvaluetype[["KeyValueType"]]
+    knownaselementtype["KnownAsElementType"]
+    language20texttype[["Language20TextType"]]
+    largemailuseridentifierelementtype[["LargeMailUserIdentifierElementType"]]
+    largemailusernameelementtype[["LargeMailUserNameElementType"]]
+    largemailusertype[["LargeMailUserType"]]
+    lastnameelementtype[["LastNameElementType"]]
+    licenseelementtype[["LicenseElementType"]]
+    listtype[["ListType"]]
+    literalcomponenttype[["LiteralComponentType"]]
+    localvariable["LocalVariable"]
+    localvariableelementtype["LocalVariableElementType"]
+    localeelementtype["LocaleElementType"]
+    locality[["Locality"]]
+    localityelementtype["LocalityElementType"]
+    localitynameelementtype[["LocalityNameElementType"]]
+    locationpoint[["LocationPoint"]]
+    locationpointelementtype[["LocationPointElementType"]]
+    locationregion[["LocationRegion"]]
+    locationregionelementtype[["LocationRegionElementType"]]
+    locations[["Locations"]]
+    locationselementtype[["LocationsElementType"]]
+    locatortype[["LocatorType"]]
+    logicaltesttype[["LogicalTestType"]]
+    macaddresselementtype["MacAddressElementType"]
+    mailstopnameelementtype[["MailStopNameElementType"]]
+    mailstopnumberelementtype[["MailStopNumberElementType"]]
+    manifesttype[["ManifestType"]]
+    middlenameelementtype[["MiddleNameElementType"]]
+    model[["Model"]]
+    modelelementtype[["ModelElementType"]]
+    motherboardguidelementtype[["MotherboardGuidElementType"]]
+    namedetailselementtype["NameDetailsElementType"]
+    namelinetype[["NameLineType"]]
+    nameprefixelementtype[["NamePrefixElementType"]]
+    networkinterfacetype["NetworkInterfaceType"]
+    networknameelementtype[["NetworkNameElementType"]]
+    networktype["NetworkType"]
+    notes["Notes"]
+    noteselementtype["NotesElementType"]
+    noticetype[["NoticeType"]]
+    ns09xmldsigobjecttype[["Ns09XmldsigObjectType"]]
+    ns09xmldsigreferencetype[["Ns09XmldsigReferenceType"]]
+    ns09xmldsigsignaturetype[["Ns09XmldsigSignatureType"]]
+    oasisnamestcciqxnamedetails["OasisNamesTcCiqXNameDetails"]
+    oasisnamestcciqxorganisationnamedetails["OasisNamesTcCiqXOrganisationNameDetails"]
+    oasisnamestcciqxpersonname["OasisNamesTcCiqXPersonName"]
+    objectcomponenttype[["ObjectComponentType"]]
+    objectref[["ObjectRef"]]
+    objectrefelementtype[["ObjectRefElementType"]]
+    objectreftype[["ObjectRefType"]]
+    objectstype[["ObjectsType"]]
+    organisationformernameelementtype["OrganisationFormerNameElementType"]
+    organisationknownaselementtype["OrganisationKnownAsElementType"]
+    organisationnamedetailselementtype["OrganisationNameDetailsElementType"]
+    organisationnameelementtype[["OrganisationNameElementType"]]
+    organisationtypeelementtype[["OrganisationTypeElementType"]]
+    organizationtype["OrganizationType"]
+    othernameelementtype[["OtherNameElementType"]]
+    ovaldefinitions[["OvalDefinitions"]]
+    teststype[["TestsType"]]
+    statestype[["StatesType"]]
+    variablestype[["VariablesType"]]
+    ovaldefinitionselementtype["OvalDefinitionsElementType"]
+    ovalmitreorgovalgeneratortype[["OvalMitreOrgOvalGeneratorType"]]
+    ovalmitreorgovalmessagetype[["OvalMitreOrgOvalMessageType"]]
+    ovalmitreorgovalmetadatatype[["OvalMitreOrgOvalMetadataType"]]
+    ovalmitreorgovalnotestype[["OvalMitreOrgOvalNotesType"]]
+    ovalmitreorgovalobjecttype[["OvalMitreOrgOvalObjectType"]]
+    ovalmitreorgovalreferencetype[["OvalMitreOrgOvalReferenceType"]]
+    ovalmitreorgovalvaluetype[["OvalMitreOrgOvalValueType"]]
+    overridetype[["OverrideType"]]
+    overrideablecpe2idreftype["OverrideableCPE2idrefType"]
+    pgpdatatype[["PGPDataType"]]
+    paramtype[["ParamType"]]
+    personnameelementtype["PersonNameElementType"]
+    persontype["PersonType"]
+    plaintexttype[["PlainTextType"]]
+    platformspecification[["PlatformSpecification"]]
+    platformspecificationelementtype[["PlatformSpecificationElementType"]]
+    platformtype["PlatformType"]
+    portelementtype["PortElementType"]
+    portrangeelementtype[["PortRangeElementType"]]
+    postbox[["PostBox"]]
+    postboxelementtype["PostBoxElementType"]
+    postboxnumberelementtype[["PostBoxNumberElementType"]]
+    postboxnumberextensionelementtype[["PostBoxNumberExtensionElementType"]]
+    postboxnumberprefixelementtype[["PostBoxNumberPrefixElementType"]]
+    postboxnumbersuffixelementtype[["PostBoxNumberSuffixElementType"]]
+    postoffice[["PostOffice"]]
+    postalroutetype[["PostalRouteType"]]
+    postofficeelementtype["PostOfficeElementType"]
+    postofficenameelementtype[["PostOfficeNameElementType"]]
+    postofficenumberelementtype[["PostOfficeNumberElementType"]]
+    posttownelementtype[["PostTownElementType"]]
+    posttownnameelementtype[["PostTownNameElementType"]]
+    posttownsuffixelementtype[["PostTownSuffixElementType"]]
+    postalcode[["PostalCode"]]
+    postalcodeelementtype[["PostalCodeElementType"]]
+    postalcodenumberelementtype[["PostalCodeNumberElementType"]]
+    postalcodenumberextensionelementtype[["PostalCodeNumberExtensionElementType"]]
+    postalroutenameelementtype[["PostalRouteNameElementType"]]
+    postalroutenumberelementtype[["PostalRouteNumberElementType"]]
+    postalserviceelementselementtype[["PostalServiceElementsElementType"]]
+    precedingtitleelementtype[["PrecedingTitleElementType"]]
+    premise[["Premise"]]
+    premiseelementtype["PremiseElementType"]
+    premiselocationelementtype[["PremiseLocationElementType"]]
+    premisenameelementtype[["PremiseNameElementType"]]
+    premisenumber[["PremiseNumber"]]
+    premisenumberelementtype[["PremiseNumberElementType"]]
+    premisenumberprefix[["PremiseNumberPrefix"]]
+    premisenumberprefixelementtype[["PremiseNumberPrefixElementType"]]
+    premisenumberrangeelementtype[["PremiseNumberRangeElementType"]]
+    premisenumberrangefromelementtype[["PremiseNumberRangeFromElementType"]]
+    premisenumberrangetoelementtype[["PremiseNumberRangeToElementType"]]
+    premisenumbersuffix[["PremiseNumberSuffix"]]
+    premisenumbersuffixelementtype[["PremiseNumberSuffixElementType"]]
+    profilenotetype["ProfileNoteType"]
+    profilerefineruletype[["ProfileRefineRuleType"]]
+    profilerefinevaluetype[["ProfileRefineValueType"]]
+    profileselecttype[["ProfileSelectType"]]
+    profilesetcomplexvaluetype["ProfileSetComplexValueType"]
+    profilesetvaluetype[["ProfileSetValueType"]]
+    profiletype["ProfileType"]
+    protocolelementtype[["ProtocolElementType"]]
+    rsakeyvaluetype[["RSAKeyValueType"]]
+    referenceelementtype[["ReferenceElementType"]]
+    regexcapturefunctiontype[["RegexCaptureFunctionType"]]
+    relationshiptype[["RelationshipType"]]
+    relationshipselementtype[["RelationshipsElementType"]]
+    remoteresource[["RemoteResource"]]
+    remoteresourceelementtype[["RemoteResourceElementType"]]
+    reportrequesttype[["ReportRequestType"]]
+    reportrequestselementtype[["ReportRequestsElementType"]]
+    reporttype[["ReportType"]]
+    reportselementtype[["ReportsElementType"]]
+    resourcetype[["ResourceType"]]
+    restrictiontype[["RestrictionType"]]
+    retrievalmethodtype[["RetrievalMethodType"]]
+    ruleresulttype[["RuleResultType"]]
+    ruletype["RuleType"]
+    spkidatatype[["SPKIDataType"]]
+    scoretype[["ScoreType"]]
+    selchoicestype["SelChoicesType"]
+    selcomplexvaluetype["SelComplexValueType"]
+    selnumtype[["SelNumType"]]
+    selstringtype[["SelStringType"]]
+    servicetype["ServiceType"]
+    set[["Set"]]
+    setelementtype[["SetElementType"]]
+    signaturemethodtype[["SignatureMethodType"]]
+    signaturepropertiestype[["SignaturePropertiesType"]]
+    signaturepropertytype[["SignaturePropertyType"]]
+    signaturevaluetype[["SignatureValueType"]]
+    signedinfotype[["SignedInfoType"]]
+    simple[["Simple"]]
+    softwaretype["SoftwareType"]
+    sortingcodeelementtype[["SortingCodeElementType"]]
+    splitfunctiontype[["SplitFunctionType"]]
+    statereftype[["StateRefType"]]
+    statetype[["StateType"]]
+    status["Status"]
+    statuselementtype["StatusElementType"]
+    subadministrativeareaelementtype[["SubAdministrativeAreaElementType"]]
+    subadministrativeareanameelementtype[["SubAdministrativeAreaNameElementType"]]
+    subpremiselocationelementtype[["SubPremiseLocationElementType"]]
+    subpremisenameelementtype[["SubPremiseNameElementType"]]
+    subpremisenumberelementtype[["SubPremiseNumberElementType"]]
+    subpremisenumberprefixelementtype[["SubPremiseNumberPrefixElementType"]]
+    subpremisenumbersuffixelementtype[["SubPremiseNumberSuffixElementType"]]
+    subpremisetype["SubPremiseType"]
+    substringfunctiontype[["SubstringFunctionType"]]
+    suffixelementtype[["SuffixElementType"]]
+    supplementarypostalservicedataelementtype[["SupplementaryPostalServiceDataElementType"]]
+    syntheticid[["SyntheticId"]]
+    syntheticidelementtype[["SyntheticIdElementType"]]
+    systemnameelementtype[["SystemNameElementType"]]
+    systemtype["SystemType"]
+    tailoringbenchmarkreferencetype["TailoringBenchmarkReferenceType"]
+    tailoringreferencetype[["TailoringReferenceType"]]
+    tailoringversiontype[["TailoringVersionType"]]
+    tailoringtype["TailoringType"]
+    targetfactstype[["TargetFactsType"]]
+    targetidreftype[["TargetIdRefType"]]
+    telephonenumber["TelephoneNumber"]
+    telephonenumberelementtype["TelephoneNumberElementType"]
+    testresulttype["TestResultType"]
+    testtype[["TestType"]]
+    textwithsubtype[["TextWithSubType"]]
+    thoroughfare[["Thoroughfare"]]
+    thoroughfareelementtype["ThoroughfareElementType"]
+    thoroughfarenametype[["ThoroughfareNameType"]]
+    thoroughfarenumber[["ThoroughfareNumber"]]
+    thoroughfarenumberelementtype[["ThoroughfareNumberElementType"]]
+    thoroughfarenumberfromelementtype[["ThoroughfareNumberFromElementType"]]
+    thoroughfarenumberprefix[["ThoroughfareNumberPrefix"]]
+    thoroughfarenumberprefixelementtype[["ThoroughfareNumberPrefixElementType"]]
+    thoroughfarenumberrangeelementtype[["ThoroughfareNumberRangeElementType"]]
+    thoroughfarenumbersuffix[["ThoroughfareNumberSuffix"]]
+    thoroughfarenumbersuffixelementtype[["ThoroughfareNumberSuffixElementType"]]
+    thoroughfarenumbertoelementtype[["ThoroughfareNumberToElementType"]]
+    timedifferencefunctiontype[["TimeDifferenceFunctionType"]]
+    titleelementtype[["TitleElementType"]]
+    titleelttype[["TitleEltType"]]
+    transformtype[["TransformType"]]
+    transformstype[["TransformsType"]]
+    uniquefunctiontype[["UniqueFunctionType"]]
+    urireftype[["UriRefType"]]
+    urlelementtype[["UrlElementType"]]
+    variablecomponenttype[["VariableComponentType"]]
+    versionelementtype[["VersionElementType"]]
+    warningtype["WarningType"]
+    websitetype["WebsiteType"]
+    websiteurl[["WebsiteUrl"]]
+    websiteurlelementtype[["WebsiteUrlElementType"]]
+    x509datatype[["X509DataType"]]
+    x509issuerserialtype[["X509IssuerSerialType"]]
+    xal[["XAL"]]
+    xalelementtype[["XALElementType"]]
+    xnl[["XNL"]]
+    xnlelementtype[["XNLElementType"]]
+    xccdf12checktype["Xccdf12CheckType"]
+    xccdf12itemtype["Xccdf12ItemType"]
+    xccdf12messagetype[["Xccdf12MessageType"]]
+    xccdf12metadatatype[["Xccdf12MetadataType"]]
+    xccdf12referencetype[["Xccdf12ReferenceType"]]
+    xccdf12signaturetype[["Xccdf12SignatureType"]]
+    xccdf12texttype[["Xccdf12TextType"]]
+    xccdf12valuetype["Xccdf12ValueType"]
+
+    relationshipscontainertype --> assetstype
+    relationshipscontainertype -.->|extends| assetstype
+    assetstype --> assetidentificationtype
+    assetstype -.->|extends| assetidentificationtype
+    relationshipscontainertype --> assetreportcollection
+    relationshipscontainertype -.->|extends| assetreportcollection
+    relationshipscontainertype --> assetreportcollectionelementtype
+    relationshipscontainertype -.->|extends| assetreportcollectionelementtype
+    versiontype --> benchmarkelementtype
+    cidrtype --> cidrelementtype
+    cidrtype -.->|extends| cidrelementtype
+    assettype --> itassettype
+    assettype -.->|extends| itassettype
+    itassettype --> circuittype
+    itassettype -.->|extends| circuittype
+    complexchecktype --> complexchecktype
+    itassettype --> computingdevicetype
+    itassettype -.->|extends| computingdevicetype
+    variabletype --> constantvariable
+    variabletype -.->|extends| constantvariable
+    variabletype --> constantvariableelementtype
+    variabletype -.->|extends| constantvariableelementtype
+    cpetype --> cpe
+    cpetype -.->|extends| cpe
+    cpetype --> cpeelementtype
+    cpetype -.->|extends| cpeelementtype
+    criteriatype --> criteriatype
+    criteriontype --> criteriatype
+    extenddefinitiontype --> criteriatype
+    assettype --> datatype
+    assettype -.->|extends| datatype
+    itassettype --> databasetype
+    itassettype -.->|extends| databasetype
+    criteriatype --> definitiontype
+    mailstoptype --> departmentelementtype
+    namedetails --> dependencynameelementtype
+    namedetails -.->|extends| dependencynameelementtype
+    dependentlocalitytype --> dependentlocalitytype
+    thoroughfarepredirectiontype --> dependentthoroughfareelementtype
+    thoroughfareleadingtypetype --> dependentthoroughfareelementtype
+    thoroughfaretrailingtypetype --> dependentthoroughfareelementtype
+    thoroughfarepostdirectiontype --> dependentthoroughfareelementtype
+    schemaversionpattern --> schemaversiontype
+    schemaversionpattern -.->|extends| schemaversiontype
+    schemaversiontype --> dictionary20generatortype
+    referencestype --> dictionary20itemtype
+    elementmapitemtype --> elementmaptype
+    elementmapitemtype --> elementmaptype
+    elementmapitemtype --> elementmaptype
+    elementmapitemtype --> elementmaptype
+    entitysimplebasetype --> entityobjectanysimpletype
+    entitysimplebasetype -.->|extends| entityobjectanysimpletype
+    entitysimplebasetype --> entityobjectbinarytype
+    entitysimplebasetype -.->|extends| entityobjectbinarytype
+    entitysimplebasetype --> entityobjectbooltype
+    entitysimplebasetype -.->|extends| entityobjectbooltype
+    entitysimplebasetype --> entityobjectfloattype
+    entitysimplebasetype -.->|extends| entityobjectfloattype
+    entitysimplebasetype --> entityobjectipaddressstringtype
+    entitysimplebasetype -.->|extends| entityobjectipaddressstringtype
+    entitysimplebasetype --> entityobjectipaddresstype
+    entitysimplebasetype -.->|extends| entityobjectipaddresstype
+    entitysimplebasetype --> entityobjectinttype
+    entitysimplebasetype -.->|extends| entityobjectinttype
+    entitycomplexbasetype --> entityobjectrecordtype
+    entitycomplexbasetype -.->|extends| entityobjectrecordtype
+    entitysimplebasetype --> entityobjectstringtype
+    entitysimplebasetype -.->|extends| entityobjectstringtype
+    entitysimplebasetype --> entityobjectversiontype
+    entitysimplebasetype -.->|extends| entityobjectversiontype
+    entitysimplebasetype --> entitystatesimplebasetype
+    entitysimplebasetype -.->|extends| entitystatesimplebasetype
+    entitystatesimplebasetype --> entitystateanysimpletype
+    entitystatesimplebasetype -.->|extends| entitystateanysimpletype
+    entitystatesimplebasetype --> entitystatebinarytype
+    entitystatesimplebasetype -.->|extends| entitystatebinarytype
+    entitystatesimplebasetype --> entitystatebooltype
+    entitystatesimplebasetype -.->|extends| entitystatebooltype
+    entitycomplexbasetype --> entitystatecomplexbasetype
+    entitycomplexbasetype -.->|extends| entitystatecomplexbasetype
+    entitystatesimplebasetype --> entitystatedebianevrstringtype
+    entitystatesimplebasetype -.->|extends| entitystatedebianevrstringtype
+    entitystatesimplebasetype --> entitystateevrstringtype
+    entitystatesimplebasetype -.->|extends| entitystateevrstringtype
+    entitystatesimplebasetype --> entitystatefilesetrevisiontype
+    entitystatesimplebasetype -.->|extends| entitystatefilesetrevisiontype
+    entitystatesimplebasetype --> entitystatefloattype
+    entitystatesimplebasetype -.->|extends| entitystatefloattype
+    entitystatesimplebasetype --> entitystateiosversiontype
+    entitystatesimplebasetype -.->|extends| entitystateiosversiontype
+    entitystatesimplebasetype --> entitystateipaddressstringtype
+    entitystatesimplebasetype -.->|extends| entitystateipaddressstringtype
+    entitystatesimplebasetype --> entitystateipaddresstype
+    entitystatesimplebasetype -.->|extends| entitystateipaddresstype
+    entitystatesimplebasetype --> entitystateinttype
+    entitystatesimplebasetype -.->|extends| entitystateinttype
+    entitystatecomplexbasetype --> entitystaterecordtype
+    entitystatecomplexbasetype -.->|extends| entitystaterecordtype
+    entitystatesimplebasetype --> entitystatestringtype
+    entitystatesimplebasetype -.->|extends| entitystatestringtype
+    entitystatesimplebasetype --> entitystateversiontype
+    entitystatesimplebasetype -.->|extends| entitystateversiontype
+    variabletype --> externalvariable
+    variabletype -.->|extends| externalvariable
+    variabletype --> externalvariableelementtype
+    possiblevaluetype --> externalvariableelementtype
+    possiblerestrictiontype --> externalvariableelementtype
+    variabletype -.->|extends| externalvariableelementtype
+    stateidpattern --> filter
+    stateidpattern -.->|extends| filter
+    stateidpattern --> filterelementtype
+    stateidpattern -.->|extends| filterelementtype
+    mailstoptype --> firmtype
+    idreftype --> subtype
+    idreftype -.->|extends| subtype
+    subtype --> htmltextwithsubtype
+    htmltextwithsubtype --> fixtexttype
+    htmltextwithsubtype -.->|extends| fixtexttype
+    subtype --> fixtype
+    instancefixtype --> fixtype
+    personname --> formernameelementtype
+    personname -.->|extends| formernameelementtype
+    itemtype --> selectableitemtype
+    itemtype -.->|extends| selectableitemtype
+    selectableitemtype --> grouptype
+    selectableitemtype -.->|extends| grouptype
+    hostnametype --> hostnameelementtype
+    hostnametype -.->|extends| hostnameelementtype
+    ipaddresstype --> ipnetrangeelementtype
+    ipaddresstype --> ipnetrangeelementtype
+    ipv4type --> ipv4elementtype
+    ipv4type -.->|extends| ipv4elementtype
+    ipv6type --> ipv6elementtype
+    ipv6type -.->|extends| ipv6elementtype
+    personname --> knownaselementtype
+    personname -.->|extends| knownaselementtype
+    variabletype --> localvariable
+    variabletype -.->|extends| localvariable
+    variabletype --> localvariableelementtype
+    variabletype -.->|extends| localvariableelementtype
+    localetype --> localeelementtype
+    localetype -.->|extends| localeelementtype
+    dependentlocalitytype --> localityelementtype
+    macaddresstype --> macaddresselementtype
+    macaddresstype -.->|extends| macaddresselementtype
+    namedetails --> namedetailselementtype
+    namedetails -.->|extends| namedetailselementtype
+    ipaddresstype --> networkinterfacetype
+    ipaddresstype --> networkinterfacetype
+    itassettype --> networktype
+    itassettype -.->|extends| networktype
+    notestype --> notes
+    notestype -.->|extends| notes
+    notestype --> noteselementtype
+    notestype -.->|extends| noteselementtype
+    namedetails --> oasisnamestcciqxnamedetails
+    namedetails -.->|extends| oasisnamestcciqxnamedetails
+    organisationnamedetails --> oasisnamestcciqxorganisationnamedetails
+    organisationnamedetails -.->|extends| oasisnamestcciqxorganisationnamedetails
+    personname --> oasisnamestcciqxpersonname
+    personname -.->|extends| oasisnamestcciqxpersonname
+    organisationnamedetails --> organisationformernameelementtype
+    organisationnamedetails -.->|extends| organisationformernameelementtype
+    organisationnamedetails --> organisationknownaselementtype
+    organisationnamedetails -.->|extends| organisationknownaselementtype
+    organisationnamedetails --> organisationnamedetailselementtype
+    organisationnamedetails -.->|extends| organisationnamedetailselementtype
+    assettype --> organizationtype
+    assettype -.->|extends| organizationtype
+    definitionstype --> ovaldefinitionselementtype
+    teststype --> ovaldefinitionselementtype
+    objectstype --> ovaldefinitionselementtype
+    statestype --> ovaldefinitionselementtype
+    variablestype --> ovaldefinitionselementtype
+    cpe2idreftype --> overrideablecpe2idreftype
+    cpe2idreftype -.->|extends| overrideablecpe2idreftype
+    personname --> personnameelementtype
+    personname -.->|extends| personnameelementtype
+    assettype --> persontype
+    assettype -.->|extends| persontype
+    logicaltesttype --> platformtype
+    porttype --> portelementtype
+    porttype -.->|extends| portelementtype
+    firmtype --> postboxelementtype
+    postalroutetype --> postofficeelementtype
+    mailstoptype --> premiseelementtype
+    subtype --> profilenotetype
+    complexvaluetype --> profilesetcomplexvaluetype
+    complexvaluetype -.->|extends| profilesetcomplexvaluetype
+    versiontype --> profiletype
+    selectableitemtype --> ruletype
+    selectableitemtype -.->|extends| ruletype
+    complexvaluetype --> selchoicestype
+    complexvaluetype --> selcomplexvaluetype
+    complexvaluetype -.->|extends| selcomplexvaluetype
+    itassettype --> servicetype
+    itassettype -.->|extends| servicetype
+    itassettype --> softwaretype
+    itassettype -.->|extends| softwaretype
+    statustype --> status
+    statustype -.->|extends| status
+    statustype --> statuselementtype
+    statustype -.->|extends| statuselementtype
+    firmtype --> subpremisetype
+    mailstoptype --> subpremisetype
+    subpremisetype --> subpremisetype
+    itassettype --> systemtype
+    itassettype -.->|extends| systemtype
+    benchmarkreferencetype --> tailoringbenchmarkreferencetype
+    benchmarkreferencetype -.->|extends| tailoringbenchmarkreferencetype
+    tailoringbenchmarkreferencetype --> tailoringtype
+    tailoringversiontype --> tailoringtype
+    telephonenumbertype --> telephonenumber
+    telephonenumbertype -.->|extends| telephonenumber
+    telephonenumbertype --> telephonenumberelementtype
+    telephonenumbertype -.->|extends| telephonenumberelementtype
+    benchmarkreferencetype --> testresulttype
+    tailoringreferencetype --> testresulttype
+    identitytype --> testresulttype
+    idreftype --> testresulttype
+    targetfactstype --> testresulttype
+    thoroughfarepredirectiontype --> thoroughfareelementtype
+    thoroughfareleadingtypetype --> thoroughfareelementtype
+    thoroughfaretrailingtypetype --> thoroughfareelementtype
+    thoroughfarepostdirectiontype --> thoroughfareelementtype
+    htmltextwithsubtype --> warningtype
+    htmltextwithsubtype -.->|extends| warningtype
+    itassettype --> websitetype
+    itassettype -.->|extends| websitetype
+    checkcontenttype --> xccdf12checktype
+    versiontype --> xccdf12itemtype
+    itemtype --> xccdf12valuetype
+    itemtype -.->|extends| xccdf12valuetype

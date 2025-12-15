@@ -3,11 +3,9 @@ module github.com/aequo-labs/forgexml-scap
 go 1.24.0
 
 require (
-	github.com/aequo-labs/webserver-core-ui v1.11.18
+	github.com/aequo-labs/webserver-core-ui v1.11.19
 	github.com/mattn/go-sqlite3 v1.14.32
 )
-
-replace github.com/aequo-labs/webserver-core-ui => ../webserver-core-ui
 
 require (
 	github.com/aequo-labs/webserver-core v1.20.1 // indirect

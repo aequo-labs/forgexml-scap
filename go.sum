@@ -1,5 +1,7 @@
 github.com/aequo-labs/webserver-core v1.20.1 h1:Pqwt4Qj//GNfPBAnK4v6G5/JGTlWzB7FuaM5VwAnU9o=
 github.com/aequo-labs/webserver-core v1.20.1/go.mod h1:WkHOt9fBZR8fT+hqnT0pYnMOuV2czvPBXkDIRFegOgA=
+github.com/aequo-labs/webserver-core-ui v1.11.19 h1:rP0t2iCA1vqToZohHhUamwTjJ/VgKE306zM+snhtNC4=
+github.com/aequo-labs/webserver-core-ui v1.11.19/go.mod h1:Pxmy7FceZHficStCjSYrfB+x3L8H5yKVpNMZH8dCnN0=
 github.com/chromedp/cdproto v0.0.0-20250803210736-d308e07a266d h1:ZtA1sedVbEW7EW80Iz2GR3Ye6PwbJAJXjv7D74xG6HU=
 github.com/chromedp/cdproto v0.0.0-20250803210736-d308e07a266d/go.mod h1:NItd7aLkcfOA/dcMXvl8p1u+lQqioRMq/SqDp71Pb/k=
 github.com/chromedp/chromedp v0.14.0 h1:/xE5m6wEBwivhalHwlCOyYfBcAJNwg4nLw96QiCfYr0=

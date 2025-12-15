@@ -1107,9 +1107,6 @@ func TestSignatureType_MarshalUnmarshal(t *testing.T) {
 
 // TestSignatureValueElement_MarshalUnmarshal tests XML round-trip for SignatureValueElement
 func TestSignatureValueElement_MarshalUnmarshal(t *testing.T) {
-	// Skip: SignatureValueElement embeds SignatureValueTypeWithAttrs which has custom UnmarshalXML
-	// that requires specific XML structure - empty element round-trip is not supported
-	t.Skip("SignatureValueElement embeds WithAttrs type with custom unmarshal behavior")
 	original := &SignatureValueElement{
 		XMLName: xml.Name{Space: "http://www.w3.org/2000/09/xmldsig#", Local: "SignatureValue"},
 	}

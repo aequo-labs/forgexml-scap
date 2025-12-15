@@ -1,18 +1,18 @@
-# Dictionary 2.0 XML Schema
+# Asset Reporting Format 1.1 XML Schema
 
-This document contains the XSD (XML Schema Definition) for Dictionary 2.0.
+This document contains the XSD (XML Schema Definition) for Asset Reporting Format 1.1.
 
 ## Schema Information
 
 | Property | Value |
 |----------|-------|
-| **Name** | Dictionary 2.0 |
-| **Namespace** | http://cpe.mitre.org/dictionary/2.0 |
-| **Source File** | /home/mmcnew/repos/forgexml-scap/schemas/cpe-dictionary/cpe-dictionary_2.1.xsd |
+| **Name** | Asset Reporting Format 1.1 |
+| **Namespace** | http://scap.nist.gov/schema/asset-reporting-format/1.1 |
+| **Source File** | /home/mmcnew/repos/forgexml-scap/schemas/arf/asset-reporting-format_1.1.0.xsd |
 
 ## Overview
 
-This schema defines the structure for Dictionary 2.0 XML documents. The editor supports:
+This schema defines the structure for Asset Reporting Format 1.1 XML documents. The editor supports:
 
 - Creating new documents from scratch
 - Importing existing XML files
@@ -24,161 +24,338 @@ This schema defines the structure for Dictionary 2.0 XML documents. The editor s
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<xsd:schema targetNamespace="http://cpe.mitre.org/dictionary/2.0" xmlns:cpe_dict="http://cpe.mitre.org/dictionary/2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xml="http://www.w3.org/XML/1998/namespace" elementFormDefault="qualified" attributeFormDefault="unqualified">
-      <xsd:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
-      <xsd:annotation>
-            <xsd:documentation xml:lang="en">This is an XML Schema for the CPE Dictionary. It is used to transfer a collection of official CPE Names along with any necessary supporting information (title, references, automated check, etc.).  For more information, consult the CPE Specification document.</xsd:documentation>
-            <xsd:appinfo>
-                  <schema>CPE Dictionary</schema>
-                  <author>Neal Ziring, Andrew Buttner</author>
-                  <version>2.1</version>
-                  <date>01/31/2008 09:00:00 AM</date>
-            </xsd:appinfo>
-      </xsd:annotation>
-      <!-- =============================================================================== -->
-      <!-- =============================================================================== -->
-      <!-- =============================================================================== -->
-      <xsd:element name="cpe-list" type="cpe_dict:ListType">
-            <xsd:annotation>
-                  <xsd:documentation xml:lang="en">The cpe-list element acts as a top-level container for CPE Name items.  Each individual item must be unique.  Please refer to the description of ListType for additional information about the sturcture of this element.</xsd:documentation>
-            </xsd:annotation>
-            <xsd:key name="itemURIKey">
-                  <xsd:selector xpath="./cpe_dict:cpe-item"/>
-                  <xsd:field xpath="@name"/>
-            </xsd:key>
-      </xsd:element>
-      <xsd:element name="cpe-item" type="cpe_dict:ItemType">
-            <xsd:annotation>
-                  <xsd:documentation xml:lang="en">The cpe-item element denotes a single CPE Name.  Please refer to the description of ItemType for additional information about the sturcture of this element.</xsd:documentation>
-            </xsd:annotation>
-            <xsd:unique name="titleLangKey">
-                  <xsd:selector xpath="./cpe_dict:title"/>
-                  <xsd:field xpath="@xml:lang"/>
-            </xsd:unique>
-            <xsd:unique name="notesLangKey">
-                  <xsd:selector xpath="./cpe_dict:notes"/>
-                  <xsd:field xpath="@xml:lang"/>
-            </xsd:unique>
-            <xsd:unique name="checkSystemKey">
-                  <xsd:selector xpath="./cpe_dict:check"/>
-                  <xsd:field xpath="@system"/>
-            </xsd:unique>
-      </xsd:element>
-      <!-- =============================================================================== -->
-      <!-- =============================  SUPPORTING TYPES  ============================== -->
-      <!-- =============================================================================== -->
-      <xsd:complexType name="GeneratorType">
-            <xsd:annotation>
-                  <xsd:documentation xml:lang="en">The GeneratorType complex type defines an element that is used to hold information about when a particular document was compiled, what version of the schema was used, what tool compiled the document, and what version of that tools was used.  Additional generator information is also allowed although it is not part of the official schema. Individual organizations can place generator information that they feel are important and these will be skipped during the validation. All that this schema really cares about is that the stated generator information is there.</xsd:documentation>
-            </xsd:annotation>
-            <xsd:sequence>
-                  <xsd:element name="product_name" type="xsd:string" minOccurs="0" maxOccurs="1">
-                        <xsd:annotation>
-                              <xsd:documentation xml:lang="en">The optional product_name element specifies the name of the application used to generate the file.</xsd:documentation>
-                        </xsd:annotation>
-                  </xsd:element>
-                  <xsd:element name="product_version" type="xsd:string" minOccurs="0" maxOccurs="1">
-                        <xsd:annotation>
-                              <xsd:documentation xml:lang="en">The optional product_version element specifies the version of the application used to generate the file.</xsd:documentation>
-                        </xsd:annotation>
-                  </xsd:element>
-                  <xsd:element name="schema_version" type="xsd:decimal" minOccurs="1" maxOccurs="1">
-                        <xsd:annotation>
-                              <xsd:documentation xml:lang="en">The required schema_version element specifies the version of the schema that the document has been written against and that should be used for validation.</xsd:documentation>
-                        </xsd:annotation>
-                  </xsd:element>
-                  <xsd:element name="timestamp" type="xsd:dateTime" minOccurs="1" maxOccurs="1">
-                        <xsd:annotation>
-                              <xsd:documentation xml:lang="en">The required timestamp element specifies when the particular document was compiled. The format for the timestamp is yyyy-mm-ddThh:mm:ss. Note that the timestamp element does not specify item in the document was created or modified but rather when the actual XML document that contains the items was created. For example, a document might pull a bunch of existing items together, each of which having been created at some point in the past. The timestamp in this case would be when this combined document was created.</xsd:documentation>
-                        </xsd:annotation>
-                  </xsd:element>
-                  <xsd:any minOccurs="0" maxOccurs="unbounded" namespace="##other" processContents="lax"/>
-            </xsd:sequence>
-      </xsd:complexType>
-      <xsd:complexType name="ItemType">
-            <xsd:annotation>
-                  <xsd:documentation xml:lang="en">The ItemType complex type defines an element that represents a single CPE Name. The required name attribute is a URI which must be a unique key and should follow the URI structure outlined in the CPE Specification. The optional title element is used to provide a human-readable title for the platform. To support uses intended for multiple languages, this element supports the ‘xml:lang’ attribute.  At most one title element can appear for each language. The notes element holds optional descriptive material.  Multiple notes elements are allowed, but only one per language should be used.  Note that the language associated with the notes element applies to all child note elements.  The optional references element holds external info references.  The optional check element is used to call out an OVAL Definition that can confirm or reject an IT system as an instance of the named platform.  Additional elements not part of the CPE namespace are allowed and are just skipped by validation.  In essence, a dictionary file can contain additional information the a user can choose to use or not, but this information is not required to be used or understood.</xsd:documentation>
-            </xsd:annotation>
-            <xsd:sequence>
-                  <xsd:element name="title" type="cpe_dict:TextType" minOccurs="1" maxOccurs="unbounded"/>
-                  <xsd:element name="notes" type="cpe_dict:NotesType" minOccurs="0" maxOccurs="unbounded"/>
-                  <xsd:element name="references" type="cpe_dict:ReferencesType" minOccurs="0" maxOccurs="1"/>
-                  <xsd:element name="check" type="cpe_dict:CheckType" minOccurs="0" maxOccurs="unbounded"/>
-                  <xsd:any minOccurs="0" maxOccurs="unbounded" namespace="##other" processContents="lax"/>
-            </xsd:sequence>
-            <xsd:attribute name="name" type="cpe_dict:namePattern" use="required"/>
-            <xsd:attribute name="deprecated" type="xsd:boolean" use="optional" default="false"/>
-            <xsd:attribute name="deprecated_by" type="cpe_dict:namePattern" use="optional"/>
-            <xsd:attribute name="deprecation_date" type="xsd:dateTime" use="optional"/>
-      </xsd:complexType>
-      <xsd:complexType name="ListType">
-            <xsd:annotation>
-                  <xsd:documentation xml:lang="en">The ListType complex type defines an element that is used to hold a collection of individual items.  The required generator section provides information about when the definition file was compiled and under what version.  Additional elements not part of the CPE namespace are allowed and are just skipped by validation.  In essence, a dictionary file can contain additional information the a user can choose to use or not, but this information is not required to be used or understood.</xsd:documentation>
-            </xsd:annotation>
-            <xsd:sequence>
-                  <xsd:element name="generator" type="cpe_dict:GeneratorType" minOccurs="0" maxOccurs="1"/>
-                  <xsd:element ref="cpe_dict:cpe-item" minOccurs="1" maxOccurs="unbounded"/>
-                  <xsd:any minOccurs="0" maxOccurs="unbounded" namespace="##other" processContents="lax"/>
-            </xsd:sequence>
-      </xsd:complexType>
-      <xsd:complexType name="TextType">
-            <xsd:annotation>
-                  <xsd:documentation xml:lang="en">The TextType complex type allows the xml:lang attribute to associate a specific language with an element's string content.</xsd:documentation>
-            </xsd:annotation>
-            <xsd:simpleContent>
-                  <xsd:extension base="xsd:string">
-                        <xsd:attribute ref="xml:lang"/>
-                  </xsd:extension>
-            </xsd:simpleContent>
-      </xsd:complexType>
-      <xsd:complexType name="NotesType">
-            <xsd:annotation>
-                  <xsd:documentation xml:lang="en">The notesType complex type defines an element that consists of one or more child note elements.  It is assumed that each of these note elements are representative of the same language as defined by their parent.</xsd:documentation>
-            </xsd:annotation>
-            <xsd:sequence>
-                  <xsd:element name="note" type="xsd:string" minOccurs="1" maxOccurs="unbounded"/>
-            </xsd:sequence>
-            <xsd:attribute ref="xml:lang"/>
-      </xsd:complexType>
-      <xsd:complexType name="ReferencesType">
-            <xsd:annotation>
-                  <xsd:documentation xml:lang="en">The ReferencesType complex type defines an element used to hold a collection of individual references.  Each reference consists of a piece of text (intended to be human-readable) and a URI (intended to be a URL, and point to a real resource) and is used to point to extra descriptive material, for example a supplier's web site or platform documentation.</xsd:documentation>
-            </xsd:annotation>
-            <xsd:sequence>
-                  <xsd:element name="reference" minOccurs="1" maxOccurs="unbounded">
-                        <xsd:complexType>
-                              <xsd:simpleContent>
-                                    <xsd:extension base="xsd:string">
-                                          <xsd:attribute name="href" type="xsd:anyURI"/>
-                                    </xsd:extension>
-                              </xsd:simpleContent>
-                        </xsd:complexType>
-                  </xsd:element>
-            </xsd:sequence>
-      </xsd:complexType>
-      <xsd:complexType name="CheckType">
-            <xsd:annotation>
-                  <xsd:documentation xml:lang="en">The CheckType complex type is used to define an element for hold information about an individual check.  It includes a checking system specification URI, string content, and an optional external file reference. The checking system specification should be the URI for a particular version of OVAL or a related system testing language, and the content will be an identifier of a test written in that language. The external file reference could be used to point to the file in which the content test identifier is defined.</xsd:documentation>
-            </xsd:annotation>
-            <xsd:simpleContent>
-                  <xsd:extension base="xsd:string">
-                        <xsd:attribute name="system" type="xsd:anyURI" use="required"/>
-                        <xsd:attribute name="href" type="xsd:anyURI" use="optional"/>
-                  </xsd:extension>
-            </xsd:simpleContent>
-      </xsd:complexType>
-      <!-- =============================================================================== -->
-      <!-- ================================  ID PATTERNS  ================================ -->
-      <!-- =============================================================================== -->
-      <xsd:simpleType name="namePattern">
-            <xsd:annotation>
-                  <xsd:documentation xml:lang="en">Define the format for acceptable CPE Names. A URN format is used with the id starting with the word cpe followed by :/ and then some number of individual  components separated by colons.</xsd:documentation>
-            </xsd:annotation>
-            <xsd:restriction base="xsd:anyURI">
-                  <xsd:pattern value="[c][pP][eE]:/[AHOaho]?(:[A-Za-z0-9\._\-~%]*){0,6}"/>
-            </xsd:restriction>
-      </xsd:simpleType>
-</xsd:schema>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:arf="http://scap.nist.gov/schema/asset-reporting-format/1.1"
+    xmlns:ai="http://scap.nist.gov/schema/asset-identification/1.1"
+    xmlns:core="http://scap.nist.gov/schema/reporting-core/1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:dsig="http://www.w3.org/2000/09/xmldsig#"
+    targetNamespace="http://scap.nist.gov/schema/asset-reporting-format/1.1" elementFormDefault="qualified"
+    attributeFormDefault="unqualified" version="1.1.1">
+    <xs:annotation>
+        <xs:appinfo>
+            <schema>Asset Reporting Format</schema>
+            <author>David Waltermire, Adam Halbardier, John Wunder</author>
+            <version>1.1.1</version>
+            <date>2012-02-13</date>
+            <sch:schema queryBinding="xslt2" xmlns:sch="http://purl.oclc.org/dsdl/schematron">
+                <sch:ns prefix="xml" uri="http://www.w3.org/XML/1998/namespace"/>
+                <sch:ns prefix="xsd" uri="http://www.w3.org/2001/XMLSchema"/>
+                <sch:ns prefix="arf" uri="http://scap.nist.gov/schema/asset-reporting-format/1.1"/>
+                <sch:ns prefix="core" uri="http://scap.nist.gov/schema/reporting-core/1.1"/>
+                <sch:ns prefix="ai" uri="http://scap.nist.gov/schema/asset-identification/1.1"/>
+                <sch:ns prefix="fn" uri="http://www.w3.org/2005/xpath-functions"/>
+                <sch:ns prefix="xcf" uri="nist:scap:arf:xslt:function"/>
+                <sch:pattern>
+                    <!-- 2011-11-29 - Correcting defect.  The namespace is updated to match the namespace specified in NIST IR 7694, Section 6.1 -->
+                    <!-- <sch:let name="arf-namespace" value="string('http://scap.nist.gov/vocabulary/arf/relationships/1.0#')"/> -->
+                    <sch:let name="arf-namespace" value="string('http://scap.nist.gov/specifications/arf/vocabulary/relationships/1.0#')"/>
+                    <sch:rule context="core:relationship[fn:resolve-QName(@type, current()) eq fn:QName($arf-namespace,'isAbout' )]">
+                        <sch:assert test="exists(ancestor::arf:asset-report-collection/arf:reports/arf:report[@id eq current()/@subject])">
+                            <sch:value-of select="xcf:controlled-vocab-error-domain(current(),'report')"/>
+                        </sch:assert>
+                        <sch:assert test="every $m in core:ref satisfies current()/ancestor::arf:asset-report-collection/arf:assets/arf:asset[@id eq $m]">
+                            <sch:value-of select="xcf:controlled-vocab-error-range(current(),'asset')"/>
+                        </sch:assert>
+                    </sch:rule>
+                    <sch:rule context="core:relationship[fn:resolve-QName(@type, current()) eq fn:QName($arf-namespace,'retrievedFrom' )]">
+                        <sch:assert test="exists(ancestor::arf:asset-report-collection/arf:reports/arf:report[@id eq current()/@subject])">
+                            <sch:value-of select="xcf:controlled-vocab-error-domain(current(),'report')"/>
+                        </sch:assert>
+                        <sch:assert test="every $m in core:ref satisfies current()/ancestor::arf:asset-report-collection/arf:assets/arf:asset[@id eq $m]">
+                            <sch:value-of select="xcf:controlled-vocab-error-range(current(),'asset')"/>
+                        </sch:assert>
+                    </sch:rule>
+                    <sch:rule context="core:relationship[fn:resolve-QName(@type, current()) eq fn:QName($arf-namespace,'createdBy' )]">
+                        <sch:assert test="exists(ancestor::arf:asset-report-collection/arf:reports/arf:report[@id eq current()/@subject])">
+                            <sch:value-of select="xcf:controlled-vocab-error-domain(current(),'report')"/>
+                        </sch:assert>
+                        <sch:assert test="every $m in core:ref satisfies current()/ancestor::arf:asset-report-collection/arf:assets/arf:asset[@id eq $m]">
+                            <sch:value-of select="xcf:controlled-vocab-error-range(current(),'asset')"/>
+                        </sch:assert>
+                    </sch:rule>
+                    <sch:rule context="core:relationship[fn:resolve-QName(@type, current()) eq fn:QName($arf-namespace,'hasSource' )]">
+                        <sch:assert test="exists(ancestor::arf:asset-report-collection/arf:reports/arf:report[@id eq current()/@subject])">
+                            <sch:value-of select="xcf:controlled-vocab-error-domain(current(),'report')"/>
+                        </sch:assert>
+                        <sch:assert test="every $m in core:ref satisfies current()/ancestor::arf:asset-report-collection/arf:assets/arf:asset[@id eq $m]">
+                            <sch:value-of select="xcf:controlled-vocab-error-range(current(),'asset')"/>
+                        </sch:assert>
+                    </sch:rule>
+                    <sch:rule context="core:relationship[fn:resolve-QName(@type, current()) eq fn:QName($arf-namespace,'recordedBy' )]">
+                        <sch:assert test="exists(ancestor::arf:asset-report-collection/arf:reports/arf:report[@id eq current()/@subject])">
+                            <sch:value-of select="xcf:controlled-vocab-error-domain(current(),'report')"/>
+                        </sch:assert>
+                        <sch:assert test="every $m in core:ref satisfies current()/ancestor::arf:asset-report-collection/arf:assets/arf:asset[@id eq $m]">
+                            <sch:value-of select="xcf:controlled-vocab-error-range(current(),'asset')"/>
+                        </sch:assert>
+                    </sch:rule>
+                    <sch:rule context="core:relationship[fn:resolve-QName(@type, current()) eq fn:QName($arf-namespace,'initiatedBy' )]">
+                        <sch:assert test="exists(ancestor::arf:asset-report-collection/arf:reports/arf:report[@id eq current()/@subject])">
+                            <sch:value-of select="xcf:controlled-vocab-error-domain(current(),'report')"/>
+                        </sch:assert>
+                        <sch:assert test="every $m in core:ref satisfies current()/ancestor::arf:asset-report-collection/arf:assets/arf:asset[@id eq $m]">
+                            <sch:value-of select="xcf:controlled-vocab-error-range(current(),'asset')"/>
+                        </sch:assert>
+                    </sch:rule>
+                    <sch:rule context="core:relationship[fn:resolve-QName(@type, current()) eq fn:QName($arf-namespace,'createdFor' )]">
+                        <sch:assert test="exists(ancestor::arf:asset-report-collection/arf:reports/arf:report[@id eq current()/@subject])">
+                            <sch:value-of select="xcf:controlled-vocab-error-domain(current(),'report')"/>
+                        </sch:assert>
+                        <sch:assert test="every $m in core:ref satisfies current()/ancestor::arf:asset-report-collection/arf:report-requests/arf:report-request[@id eq $m]">
+                            <sch:value-of select="xcf:controlled-vocab-error-range(current(),'report-request')"/>
+                        </sch:assert>
+                    </sch:rule>
+                    <sch:rule context="core:relationship[fn:resolve-QName(@type, current()) eq fn:QName($arf-namespace,'hasMetadata' )]">
+                        <sch:assert test="exists(ancestor::arf:asset-report-collection/arf:reports/arf:report[@id eq current()/@subject])">
+                            <sch:value-of select="xcf:controlled-vocab-error-domain(current(),'report')"/>
+                        </sch:assert>
+                        <sch:assert test="every $m in core:ref satisfies current()/ancestor::arf:asset-report-collection/arf:reports/arf:report[@id eq $m]">
+                            <sch:value-of select="xcf:controlled-vocab-error-range(current(),'report')"/>
+                        </sch:assert>
+                    </sch:rule>
+                </sch:pattern>
+                <xsl:function name="xcf:controlled-vocab-error-domain" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:xcf="nist:scap:arf:xslt:function" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns="http://www.w3.org/1999/XSL/Transform">
+                    <xsl:param name="node"/>
+                    <xsl:param name="refName"/>
+                    <xsl:value-of select="concat(concat(concat(concat(string('All @subject attribute in a relationship of type '),namespace-uri-from-QName(resolve-QName($node/@type, $node))),local-name-from-QName(resolve-QName($node/@type, $node))),string(' must reference a ')),$refName)"/>
+                </xsl:function>
+                <xsl:function name="xcf:controlled-vocab-error-range" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:xcf="nist:scap:arf:xslt:function" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns="http://www.w3.org/1999/XSL/Transform">
+                    <xsl:param name="node"/>
+                    <xsl:param name="refName"/>
+                    <xsl:value-of select="concat(concat(concat(concat(string('All &lt;ref> elements in a relationship of type '),namespace-uri-from-QName(resolve-QName($node/@type, $node))),local-name-from-QName(resolve-QName($node/@type, $node))),string(' must reference a ')),$refName)"/>
+                </xsl:function>
+            </sch:schema>
+        </xs:appinfo>
+    </xs:annotation>
+
+    <xs:import namespace="http://scap.nist.gov/schema/asset-identification/1.1"/>
+    <xs:import namespace="http://www.w3.org/1999/xlink"/>
+    <xs:import namespace="http://scap.nist.gov/schema/reporting-core/1.1"/>
+    <xs:element name="asset-report-collection">
+        <xs:annotation>
+            <xs:documentation>The top-level report element.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="core:relationships-container-type">
+                    <xs:sequence>
+                        <xs:element name="report-requests" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>Contains one or more requests for reports. Each report request must be referenced in a relationship on a report in the same asset-report-collection.</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="report-request" type="arf:ReportRequestType" maxOccurs="unbounded"
+                                        > </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element minOccurs="0" name="assets">
+                            <xs:annotation>
+                                <xs:documentation>Contains the representation of one or more assets represented using the Asset Identification format.</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element maxOccurs="unbounded" name="asset">
+                                        <xs:complexType>
+                                            <xs:choice>
+                                                <xs:element ref="ai:asset"/>
+                                                <xs:element ref="arf:remote-resource"/>
+                                            </xs:choice>
+                                            <xs:attribute name="id" type="xs:NCName" use="required">
+                                                <xs:annotation>
+                                                    <xs:documentation>An internal ID to identify this asset.</xs:documentation>
+                                                </xs:annotation>
+                                            </xs:attribute>
+                                            <xs:anyAttribute namespace="##other">
+                                                <xs:annotation>
+                                                    <xs:documentation>A placeholder so that content creators can add attributes as
+                                        desired.</xs:documentation>
+                                                </xs:annotation>
+                                            </xs:anyAttribute>
+                                        </xs:complexType>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="reports">
+                            <xs:annotation>
+                                <xs:documentation>Contains one or more reports.</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="report" type="arf:ReportType" maxOccurs="unbounded">
+                                        <xs:annotation>
+                                            <xs:documentation>Contains a report, which is composed of zero or more relationships and a content payload.</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element minOccurs="0" name="extended-infos">
+                            <xs:annotation>
+                                <xs:documentation>Contain other information elements.  Used as an extension point.</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element maxOccurs="unbounded" name="extended-info">
+                                        <xs:annotation>
+                                            <xs:documentation>Contains other information.  Use as an extension point for data that does not fall into the categories defined in asset-report-collection.</xs:documentation>
+                                        </xs:annotation>
+                                        <xs:complexType>
+                                            <xs:sequence>
+                                                <xs:any namespace="##other" processContents="lax"/>
+                                            </xs:sequence>
+                                            <xs:attribute name="id" type="xs:NCName" use="required">
+                                                <xs:annotation>
+                                                    <xs:documentation>An internal ID to identify this object.</xs:documentation>
+                                                </xs:annotation>
+                                            </xs:attribute>
+                                            <xs:anyAttribute namespace="##other">
+                                                <xs:annotation>
+                                                    <xs:documentation>A placeholder so that content creators can add attributes as desired.</xs:documentation>
+                                                </xs:annotation>
+                                            </xs:anyAttribute>
+                                        </xs:complexType>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                    <xs:attribute name="id" type="xs:NCName">
+                        <xs:annotation>
+                            <xs:documentation>The id for this collection.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:anyAttribute namespace="##other">
+                        <xs:annotation>
+                            <xs:documentation>A placeholder so that content creators can add attributes as desired.</xs:documentation>
+                        </xs:annotation>
+                    </xs:anyAttribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+        <xs:key name="idKey">
+            <xs:selector xpath=".//arf:report-request|.//arf:asset|.//arf:report|.//arf:extended-info"/>
+            <xs:field xpath="@id"/>
+        </xs:key>
+        <xs:keyref name="relSubjKeyRef" refer="arf:idKey">
+            <xs:selector xpath="core:relationships/core:relationship"/>
+            <xs:field xpath="@subject"/>
+        </xs:keyref>
+        <xs:keyref name="relObjKeyRef" refer="arf:idKey">
+            <xs:selector xpath="core:relationships/core:relationship/core:ref"/>
+            <xs:field xpath="."/>
+        </xs:keyref>
+    </xs:element>
+    <xs:complexType name="ReportRequestType">
+        <xs:choice>
+            <xs:element name="content">
+                <xs:annotation>
+                    <xs:documentation>Contains the content of the report request.</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:any namespace="##other" processContents="lax">
+                            <xs:annotation>
+                                <xs:documentation>Holds the content of a report request.</xs:documentation>
+                            </xs:annotation>
+                        </xs:any>
+                    </xs:sequence>
+                    <xs:anyAttribute namespace="##other">
+                        <xs:annotation>
+                            <xs:documentation>A placeholder so that content creators can add attributes as desired.</xs:documentation>
+                        </xs:annotation>
+                    </xs:anyAttribute>
+                </xs:complexType>
+            </xs:element>
+            <xs:element ref="arf:remote-resource"/>
+        </xs:choice>
+        <xs:attribute name="id" type="xs:NCName" use="required">
+            <xs:annotation>
+                <xs:documentation>An internal ID to identify this report request.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:anyAttribute namespace="##other">
+            <xs:annotation>
+                <xs:documentation>A placeholder so that content creators can add attributes as desired.</xs:documentation>
+            </xs:annotation>
+        </xs:anyAttribute>
+    </xs:complexType>
+    <xs:complexType name="ReportType">
+        <xs:choice>
+            <xs:element name="content">
+                <xs:annotation>
+                    <xs:documentation>Contains the content of the report.</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:any namespace="##other" processContents="lax"/>
+                    </xs:sequence>
+                    <xs:attribute name="data-valid-start-date" type="xs:date"/>
+                    <xs:attribute name="data-valid-end-date" type="xs:date"/>
+                    <xs:anyAttribute namespace="##other">
+                        <xs:annotation>
+                            <xs:documentation>A placeholder so that content creators can add attributes as desired.</xs:documentation>
+                        </xs:annotation>
+                    </xs:anyAttribute>
+                </xs:complexType>
+            </xs:element>
+            <xs:element ref="arf:remote-resource"/>
+        </xs:choice>
+        <xs:attribute name="id" type="xs:NCName" use="required">
+            <xs:annotation>
+                <xs:documentation>An internal ID to identify this report.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:anyAttribute namespace="##other">
+            <xs:annotation>
+                <xs:documentation>A placeholder so that content creators can add attributes as desired.</xs:documentation>
+            </xs:annotation>
+        </xs:anyAttribute>
+    </xs:complexType>
+    <xs:element name="object-ref">
+        <xs:annotation>
+            <xs:documentation>Report creators can embedding this element in a report with the @ref_id referencing the ID of an asset, report, or report request.  This element effectively acts as a pointer, allowing content produces to reference higher level ARF constructs in a report, without duplicating the data in that ARF construct.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="ref-id" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="remote-resource">
+        <xs:annotation>
+            <xs:documentation>Links to content stored external to this report.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute ref="xlink:type" use="required" fixed="simple">
+                <xs:annotation>
+                    <xs:documentation>Fixed as a simple XLink.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute ref="xlink:href" use="required">
+                <xs:annotation>
+                    <xs:documentation>A URI to the remote content. Producers and consumers should both know how to resolve the URI in order to be interoperable.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:anyAttribute namespace="##other">
+                <xs:annotation>
+                    <xs:documentation>A placeholder so that content creators can add attributes as desired.</xs:documentation>
+                </xs:annotation>
+            </xs:anyAttribute>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
+<!-- CHANGELOG
+  
+  date           change                    remarks
+  
+  02/13/12       Update the version number Updated the schema version to 1.1.1 based on the change made on 11/29/11
+                 Update the schema date    Updated the schema date to 2012-02-13
+
+  11/29/11       changed relationship      The namespace for relationships in the Schematron did not match the NIST IR 7694, Section 6.1
+                 namespace in Schematron 
+-->
+
 
 ```
 

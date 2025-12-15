@@ -18,11 +18,10 @@ type PackageMetadata struct {
 
 // Metadata provides schema information for this package
 var Metadata = PackageMetadata{
-	Namespace: "http://www.w3.org/XML/1998/namespace",
-	SourceXSD: "xml.xsd",
+	Namespace:   "http://www.w3.org/XML/1998/namespace",
+	SourceXSD:   "xml.xsd",
 	SchemaFiles: []string{
-		"/home/mmcnew/repos/forgexml-scap/schemas/cpe-dictionary/cpe-dictionary_2.1.xsd",
-		"/home/mmcnew/repos/forgexml-scap/schemas/cpe-dictionary/xml.xsd",
+		"/home/mmcnew/repos/forgexml-scap/schemas/common/xml.xsd",
 	},
 	GeneratedBy: "forgexml v1.0.0",
 }

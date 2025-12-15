@@ -26869,19 +26869,6 @@ func TestMetadataType_GetTypeMetadata(t *testing.T) {
 	}
 }
 
-// TestMetadataType_GetValidChildTypes tests getting valid child types for MetadataType.
-func TestMetadataType_GetValidChildTypes(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	req := httptest.NewRequest("GET", "/api/types/MetadataType/children", nil)
-	req.SetPathValue("name", "MetadataType")
-	rr := httptest.NewRecorder()
-
-	ts.handlers.HandleGetValidChildTypes(rr, req)
-
-	assertStatusCode(t, rr, http.StatusOK)
-}
-
 // TestMgmtDataElement_CRUD tests Create, Read, Update, Delete for MgmtDataElement.
 func TestMgmtDataElement_CRUD(t *testing.T) {
 	ts := setupTestSuite(t)
@@ -29853,19 +29840,6 @@ func TestObjectType_GetTypeMetadata(t *testing.T) {
 	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
 		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
 	}
-}
-
-// TestObjectType_GetValidChildTypes tests getting valid child types for ObjectType.
-func TestObjectType_GetValidChildTypes(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	req := httptest.NewRequest("GET", "/api/types/ObjectType/children", nil)
-	req.SetPathValue("name", "ObjectType")
-	rr := httptest.NewRecorder()
-
-	ts.handlers.HandleGetValidChildTypes(rr, req)
-
-	assertStatusCode(t, rr, http.StatusOK)
 }
 
 // TestObjectsType_CRUD tests Create, Read, Update, Delete for ObjectsType.
@@ -39071,6 +39045,19 @@ func TestReferenceType_GetTypeMetadata(t *testing.T) {
 	}
 }
 
+// TestReferenceType_GetValidChildTypes tests getting valid child types for ReferenceType.
+func TestReferenceType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ReferenceType/children", nil)
+	req.SetPathValue("name", "ReferenceType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
 // TestReferencesType_CRUD tests Create, Read, Update, Delete for ReferencesType.
 func TestReferencesType_CRUD(t *testing.T) {
 	ts := setupTestSuite(t)
@@ -44264,6 +44251,19 @@ func TestSignatureType_GetTypeMetadata(t *testing.T) {
 	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
 		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
 	}
+}
+
+// TestSignatureType_GetValidChildTypes tests getting valid child types for SignatureType.
+func TestSignatureType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/SignatureType/children", nil)
+	req.SetPathValue("name", "SignatureType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
 }
 
 // TestSignatureValueElement_CRUD tests Create, Read, Update, Delete for SignatureValueElement.
@@ -53808,6 +53808,19 @@ func TestValueType_GetTypeMetadata(t *testing.T) {
 	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
 		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
 	}
+}
+
+// TestValueType_GetValidChildTypes tests getting valid child types for ValueType.
+func TestValueType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ValueType/children", nil)
+	req.SetPathValue("name", "ValueType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
 }
 
 // TestValueTypeType_CRUD tests Create, Read, Update, Delete for ValueTypeType.

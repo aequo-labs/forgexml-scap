@@ -166,6 +166,12 @@ func replicateXmlnsPlacement(xmlOutput string, elementsWithXmlns map[string]stri
 	return result
 }
 
+// OperatorEnumeration represents the XSD type 'OperatorEnumeration'
+// XSD simple type (W3C XSD §4.1)
+// enumeration="AND"
+// enumeration="OR"
+type OperatorEnumeration string
+
 // NamePattern represents the XSD type 'namePattern'
 // XSD simple type (W3C XSD §4.1)
 // pattern="cpe:/([aho](:[A-Za-z0-9\._\-~]*(:[A-Za-z0-9\._\-~]*(:[A-Za-z0-9\._\.\-~]*(:[A-Za-z0-9\._\-~]*)?)?)?)?)?"
@@ -248,9 +254,3 @@ type PlatformSpecificationElementType struct {
 	// UnknownAttrs captures any attributes not defined in XSD
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
-
-// OperatorEnumeration represents the XSD type 'OperatorEnumeration'
-// XSD simple type (W3C XSD §4.1)
-// enumeration="AND"
-// enumeration="OR"
-type OperatorEnumeration string

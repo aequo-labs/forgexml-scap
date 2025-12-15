@@ -168,58 +168,19 @@ func replicateXmlnsPlacement(xmlOutput string, elementsWithXmlns map[string]stri
 	return result
 }
 
-// ItemIDPattern represents the XSD type 'ItemIDPattern'
+// ComplexDatatypeEnumeration represents the XSD type 'ComplexDatatypeEnumeration'
 // XSD simple type (W3C XSD §4.1)
-type ItemIDPattern int64
+// enumeration="record"
+type ComplexDatatypeEnumeration string
 
-// GeneratorType represents the XSD type 'GeneratorType'
-// XSD complex type (W3C XSD §3.4)
-type GeneratorType struct {
-	// Product_name represents XSD element 'product_name'
-	// minOccurs=0, maxOccurs=1
-	Product_name *string `xml:"product_name,omitempty"`
-	// Product_version represents XSD element 'product_version'
-	// minOccurs=0, maxOccurs=1
-	Product_version *string `xml:"product_version,omitempty"`
-	// Schema_version represents XSD element 'schema_version'
-	// minOccurs=1, maxOccurs=-1
-	Schema_version []SchemaVersionType `xml:"schema_version"`
-	// Timestamp represents XSD element 'timestamp'
-	Timestamp types.DateTime `xml:"timestamp"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// MessageType represents the XSD type 'MessageType'
-// XSD complex type (W3C XSD §3.4)
-type MessageTypeWithAttrs struct {
-	Value string `xml:",chardata"` // XSD simple content
-	// Level represents XSD attribute 'level'
-	// use="optional"
-	Level *MessageLevelEnumeration `xml:"level,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// MessageType is an alias for MessageTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
-type MessageType = MessageTypeWithAttrs
-
-// VersionElementType represents the XSD type 'VersionElementType'
+// ExistenceEnumeration represents the XSD type 'ExistenceEnumeration'
 // XSD simple type (W3C XSD §4.1)
-type VersionElementType SchemaVersionPattern
-
-// MessageLevelEnumeration represents the XSD type 'MessageLevelEnumeration'
-// XSD simple type (W3C XSD §4.1)
-// enumeration="debug"
-// enumeration="error"
-// enumeration="fatal"
-// enumeration="info"
-// enumeration="warning"
-type MessageLevelEnumeration string
+// enumeration="all_exist"
+// enumeration="any_exist"
+// enumeration="at_least_one_exists"
+// enumeration="none_exist"
+// enumeration="only_one_exists"
+type ExistenceEnumeration string
 
 // OperationEnumeration represents the XSD type 'OperationEnumeration'
 // XSD simple type (W3C XSD §4.1)
@@ -237,6 +198,67 @@ type MessageLevelEnumeration string
 // enumeration="subset of"
 // enumeration="superset of"
 type OperationEnumeration string
+
+// StateIDPattern represents the XSD type 'StateIDPattern'
+// XSD simple type (W3C XSD §4.1)
+// pattern="oval:[A-Za-z0-9_\-\.]+:ste:[1-9][0-9]*"
+type StateIDPattern string
+
+// TestIDPattern represents the XSD type 'TestIDPattern'
+// XSD simple type (W3C XSD §4.1)
+// pattern="oval:[A-Za-z0-9_\-\.]+:tst:[1-9][0-9]*"
+type TestIDPattern string
+
+// EmptyStringType represents the XSD type 'EmptyStringType'
+// XSD simple type (W3C XSD §4.1)
+// maxLength="0"
+type EmptyStringType string
+
+// NonEmptyStringType represents the XSD type 'NonEmptyStringType'
+// XSD simple type (W3C XSD §4.1)
+// minLength="1"
+type NonEmptyStringType string
+
+// NotesType represents the XSD type 'NotesType'
+// XSD complex type (W3C XSD §3.4)
+type NotesType struct {
+	// Note represents XSD element 'note'
+	// minOccurs=0, maxOccurs=-1
+	Note []string `xml:"note,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// DatatypeEnumeration represents the XSD type 'DatatypeEnumeration'
+// XSD union type (W3C XSD §4.2.3.3)
+type DatatypeEnumeration struct {
+	Value interface{} // Union type - can hold any member type
+}
+
+// OperatorEnumeration represents the XSD type 'OperatorEnumeration'
+// XSD simple type (W3C XSD §4.1)
+// enumeration="AND"
+// enumeration="ONE"
+// enumeration="OR"
+// enumeration="XOR"
+type OperatorEnumeration string
+
+// ObjectIDPattern represents the XSD type 'ObjectIDPattern'
+// XSD simple type (W3C XSD §4.1)
+// pattern="oval:[A-Za-z0-9_\-\.]+:obj:[1-9][0-9]*"
+type ObjectIDPattern string
+
+// VariableIDPattern represents the XSD type 'VariableIDPattern'
+// XSD simple type (W3C XSD §4.1)
+// pattern="oval:[A-Za-z0-9_\-\.]+:var:[1-9][0-9]*"
+type VariableIDPattern string
+
+// SchemaVersionPattern represents the XSD type 'SchemaVersionPattern'
+// XSD simple type (W3C XSD §4.1)
+// pattern="[0-9]+\.[0-9]+(\.[0-9]+)?(:[0-9]+\.[0-9]+(\.[0-9]+)?)?"
+type SchemaVersionPattern string
 
 // ElementMapType represents the XSD type 'ElementMapType'
 // XSD complex type (W3C XSD §3.4)
@@ -258,73 +280,6 @@ type ElementMapType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// SchemaVersionType represents the XSD type 'SchemaVersionType'
-// XSD complex type (W3C XSD §3.4)
-type SchemaVersionTypeWithAttrs struct {
-	Value SchemaVersionPattern `xml:",chardata"` // XSD simple content
-	// Platform represents XSD attribute 'platform'
-	// use="optional"
-	Platform *string `xml:"platform,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// SchemaVersionType is an alias for SchemaVersionTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
-type SchemaVersionType = SchemaVersionTypeWithAttrs
-
-// NotesType represents the XSD type 'NotesType'
-// XSD complex type (W3C XSD §3.4)
-type NotesType struct {
-	// Note represents XSD element 'note'
-	// minOccurs=0, maxOccurs=-1
-	Note []string `xml:"note,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// CheckEnumeration represents the XSD type 'CheckEnumeration'
-// XSD simple type (W3C XSD §4.1)
-// enumeration="all"
-// enumeration="at least one"
-// enumeration="none exist"
-// enumeration="none satisfy"
-// enumeration="only one"
-type CheckEnumeration string
-
-// DatatypeEnumeration represents the XSD type 'DatatypeEnumeration'
-// XSD union type (W3C XSD §4.2.3.3)
-type DatatypeEnumeration struct {
-	Value interface{} // Union type - can hold any member type
-}
-
-// ExistenceEnumeration represents the XSD type 'ExistenceEnumeration'
-// XSD simple type (W3C XSD §4.1)
-// enumeration="all_exist"
-// enumeration="any_exist"
-// enumeration="at_least_one_exists"
-// enumeration="none_exist"
-// enumeration="only_one_exists"
-type ExistenceEnumeration string
-
-// DefinitionIDPattern represents the XSD type 'DefinitionIDPattern'
-// XSD simple type (W3C XSD §4.1)
-// pattern="oval:[A-Za-z0-9_\-\.]+:def:[1-9][0-9]*"
-type DefinitionIDPattern string
-
-// EmptyStringType represents the XSD type 'EmptyStringType'
-// XSD simple type (W3C XSD §4.1)
-// maxLength="0"
-type EmptyStringType string
-
-// NonEmptyStringType represents the XSD type 'NonEmptyStringType'
-// XSD simple type (W3C XSD §4.1)
-// minLength="1"
-type NonEmptyStringType string
-
 // ElementMapItemType represents the XSD type 'ElementMapItemType'
 // XSD complex type (W3C XSD §3.4)
 type ElementMapItemTypeWithAttrs struct {
@@ -341,21 +296,30 @@ type ElementMapItemTypeWithAttrs struct {
 // ElementMapItemType is an alias for ElementMapItemTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
 type ElementMapItemType = ElementMapItemTypeWithAttrs
 
-// DeprecatedInfoType represents the XSD type 'DeprecatedInfoType'
+// SchemaVersionType represents the XSD type 'SchemaVersionType'
 // XSD complex type (W3C XSD §3.4)
-type DeprecatedInfoType struct {
-	// Version represents XSD element 'version'
-	Version VersionElementType `xml:"version"`
-	// Reason represents XSD element 'reason'
-	Reason string `xml:"reason"`
-	// Comment represents XSD element 'comment'
-	// minOccurs=0, maxOccurs=1
-	Comment *string `xml:"comment,omitempty"`
+type SchemaVersionTypeWithAttrs struct {
+	Value SchemaVersionPattern `xml:",chardata"` // XSD simple content
+	// Platform represents XSD attribute 'platform'
+	// use="optional"
+	Platform *string `xml:"platform,attr,omitempty"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
+
+// SchemaVersionType is an alias for SchemaVersionTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
+type SchemaVersionType = SchemaVersionTypeWithAttrs
+
+// CheckEnumeration represents the XSD type 'CheckEnumeration'
+// XSD simple type (W3C XSD §4.1)
+// enumeration="all"
+// enumeration="at least one"
+// enumeration="none exist"
+// enumeration="none satisfy"
+// enumeration="only one"
+type CheckEnumeration string
 
 // ClassEnumeration represents the XSD type 'ClassEnumeration'
 // XSD simple type (W3C XSD §4.1)
@@ -382,6 +346,72 @@ type ClassEnumeration string
 // enumeration="version"
 type SimpleDatatypeEnumeration string
 
+// MessageLevelEnumeration represents the XSD type 'MessageLevelEnumeration'
+// XSD simple type (W3C XSD §4.1)
+// enumeration="debug"
+// enumeration="error"
+// enumeration="fatal"
+// enumeration="info"
+// enumeration="warning"
+type MessageLevelEnumeration string
+
+// DefinitionIDPattern represents the XSD type 'DefinitionIDPattern'
+// XSD simple type (W3C XSD §4.1)
+// pattern="oval:[A-Za-z0-9_\-\.]+:def:[1-9][0-9]*"
+type DefinitionIDPattern string
+
+// DeprecatedInfoType represents the XSD type 'DeprecatedInfoType'
+// XSD complex type (W3C XSD §3.4)
+type DeprecatedInfoType struct {
+	// Version represents XSD element 'version'
+	Version VersionElementType `xml:"version"`
+	// Reason represents XSD element 'reason'
+	Reason string `xml:"reason"`
+	// Comment represents XSD element 'comment'
+	// minOccurs=0, maxOccurs=1
+	Comment *string `xml:"comment,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// GeneratorType represents the XSD type 'GeneratorType'
+// XSD complex type (W3C XSD §3.4)
+type GeneratorType struct {
+	// Product_name represents XSD element 'product_name'
+	// minOccurs=0, maxOccurs=1
+	Product_name *string `xml:"product_name,omitempty"`
+	// Product_version represents XSD element 'product_version'
+	// minOccurs=0, maxOccurs=1
+	Product_version *string `xml:"product_version,omitempty"`
+	// Schema_version represents XSD element 'schema_version'
+	// minOccurs=1, maxOccurs=-1
+	Schema_version []SchemaVersionTypeWithAttrs `xml:"schema_version"`
+	// Timestamp represents XSD element 'timestamp'
+	Timestamp types.DateTime `xml:"timestamp"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// MessageType represents the XSD type 'MessageType'
+// XSD complex type (W3C XSD §3.4)
+type MessageTypeWithAttrs struct {
+	Value string `xml:",chardata"` // XSD simple content
+	// Level represents XSD attribute 'level'
+	// use="optional"
+	Level *MessageLevelEnumeration `xml:"level,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// MessageType is an alias for MessageTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
+type MessageType = MessageTypeWithAttrs
+
 // FamilyEnumeration represents the XSD type 'FamilyEnumeration'
 // XSD simple type (W3C XSD §4.1)
 // enumeration="android"
@@ -399,40 +429,10 @@ type SimpleDatatypeEnumeration string
 // enumeration="windows"
 type FamilyEnumeration string
 
-// OperatorEnumeration represents the XSD type 'OperatorEnumeration'
+// ItemIDPattern represents the XSD type 'ItemIDPattern'
 // XSD simple type (W3C XSD §4.1)
-// enumeration="AND"
-// enumeration="ONE"
-// enumeration="OR"
-// enumeration="XOR"
-type OperatorEnumeration string
+type ItemIDPattern int64
 
-// ObjectIDPattern represents the XSD type 'ObjectIDPattern'
+// VersionElementType represents the XSD type 'VersionElementType'
 // XSD simple type (W3C XSD §4.1)
-// pattern="oval:[A-Za-z0-9_\-\.]+:obj:[1-9][0-9]*"
-type ObjectIDPattern string
-
-// StateIDPattern represents the XSD type 'StateIDPattern'
-// XSD simple type (W3C XSD §4.1)
-// pattern="oval:[A-Za-z0-9_\-\.]+:ste:[1-9][0-9]*"
-type StateIDPattern string
-
-// TestIDPattern represents the XSD type 'TestIDPattern'
-// XSD simple type (W3C XSD §4.1)
-// pattern="oval:[A-Za-z0-9_\-\.]+:tst:[1-9][0-9]*"
-type TestIDPattern string
-
-// SchemaVersionPattern represents the XSD type 'SchemaVersionPattern'
-// XSD simple type (W3C XSD §4.1)
-// pattern="[0-9]+\.[0-9]+(\.[0-9]+)?(:[0-9]+\.[0-9]+(\.[0-9]+)?)?"
-type SchemaVersionPattern string
-
-// ComplexDatatypeEnumeration represents the XSD type 'ComplexDatatypeEnumeration'
-// XSD simple type (W3C XSD §4.1)
-// enumeration="record"
-type ComplexDatatypeEnumeration string
-
-// VariableIDPattern represents the XSD type 'VariableIDPattern'
-// XSD simple type (W3C XSD §4.1)
-// pattern="oval:[A-Za-z0-9_\-\.]+:var:[1-9][0-9]*"
-type VariableIDPattern string
+type VersionElementType SchemaVersionPattern

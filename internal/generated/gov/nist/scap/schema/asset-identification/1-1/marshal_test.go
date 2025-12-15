@@ -1239,9 +1239,6 @@ func TestLocaleElementType_MarshalUnmarshal(t *testing.T) {
 
 // TestLocationAddressElement_MarshalUnmarshal tests XML round-trip for LocationAddressElement
 func TestLocationAddressElement_MarshalUnmarshal(t *testing.T) {
-	// Skip: LocationAddressElement embeds xAL AddressDetails which has custom UnmarshalXML
-	// that requires specific XML structure - empty element round-trip is not supported
-	t.Skip("LocationAddressElement embeds cross-namespace type with custom unmarshal behavior")
 	original := &LocationAddressElement{
 		XMLName: xml.Name{Space: "http://scap.nist.gov/schema/asset-identification/1.1", Local: "location-address"},
 	}

@@ -18,8 +18,8 @@ type PackageMetadata struct {
 
 // Metadata provides schema information for this package
 var Metadata = PackageMetadata{
-	Namespace: "http://cpe.mitre.org/dictionary/2.0",
-	SourceXSD: "cpe-dictionary_2.1.xsd",
+	Namespace:   "http://cpe.mitre.org/dictionary/2.0",
+	SourceXSD:   "cpe-dictionary_2.1.xsd",
 	SchemaFiles: []string{
 		"/home/mmcnew/repos/forgexml-scap/schemas/cpe-dictionary/cpe-dictionary_2.1.xsd",
 		"/home/mmcnew/repos/forgexml-scap/schemas/cpe-dictionary/xml.xsd",

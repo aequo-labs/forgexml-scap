@@ -287,10 +287,10 @@ func TestXMLRoundTripWithDB(t *testing.T) {
 
 	// Count loaded children
 	var profileCount, groupCount, ruleCount, valueCount int
-	db.QueryRowContext(ctx, "SELECT COUNT(*) FROM profile WHERE benchmark_id = ?", benchmarkDBID).Scan(&profileCount)
-	db.QueryRowContext(ctx, "SELECT COUNT(*) FROM benchmark_group WHERE benchmark_id = ?", benchmarkDBID).Scan(&groupCount)
-	db.QueryRowContext(ctx, "SELECT COUNT(*) FROM rule WHERE benchmark_id = ?", benchmarkDBID).Scan(&ruleCount)
-	db.QueryRowContext(ctx, "SELECT COUNT(*) FROM value WHERE benchmark_id = ?", benchmarkDBID).Scan(&valueCount)
+	_ = db.QueryRowContext(ctx, "SELECT COUNT(*) FROM profile WHERE benchmark_id = ?", benchmarkDBID).Scan(&profileCount)
+	_ = db.QueryRowContext(ctx, "SELECT COUNT(*) FROM benchmark_group WHERE benchmark_id = ?", benchmarkDBID).Scan(&groupCount)
+	_ = db.QueryRowContext(ctx, "SELECT COUNT(*) FROM rule WHERE benchmark_id = ?", benchmarkDBID).Scan(&ruleCount)
+	_ = db.QueryRowContext(ctx, "SELECT COUNT(*) FROM value WHERE benchmark_id = ?", benchmarkDBID).Scan(&valueCount)
 
 	t.Logf("Loaded from DB: ID=%s, Profiles=%d, Groups=%d, Rules=%d, Values=%d",
 		loadedID, profileCount, groupCount, ruleCount, valueCount)

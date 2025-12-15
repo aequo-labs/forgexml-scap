@@ -166,71 +166,21 @@ func replicateXmlnsPlacement(xmlOutput string, elementsWithXmlns map[string]stri
 	return result
 }
 
-// Function represents the XSD type 'Function'
+// OrganisationNameDetails represents the XSD type 'OrganisationNameDetails'
 // XSD complex type (W3C XSD §3.4)
-// mixed="true"
-type Function struct {
-	// Code represents XSD attribute 'Code'
-	// use="optional"
-	Code     *string `xml:"Code,attr,omitempty"`
-	InnerXML string  `xml:",innerxml"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// OrganisationNameDetailsElementType represents the XSD type 'OrganisationNameDetailsElementType'
-// XSD complex type (W3C XSD §3.4)
-type OrganisationNameDetailsElementType struct {
-	OrganisationNameDetails // XSD extension base
-	// OrganisationFormerName represents XSD element 'OrganisationFormerName'
+type OrganisationNameDetails struct {
+	// NameLine represents XSD element 'NameLine'
 	// minOccurs=0, maxOccurs=-1
-	OrganisationFormerName []OrganisationFormerNameElementType `xml:"OrganisationFormerName,omitempty"`
-	// OrganisationKnownAs represents XSD element 'OrganisationKnownAs'
+	NameLine []NameLineType `xml:"NameLine,omitempty"`
+	// OrganisationName represents XSD element 'OrganisationName'
 	// minOccurs=0, maxOccurs=-1
-	OrganisationKnownAs []OrganisationKnownAsElementType `xml:"OrganisationKnownAs,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// GenerationIdentifierElementType represents the XSD type 'GenerationIdentifierElementType'
-// XSD complex type (W3C XSD §3.4)
-// mixed="true"
-type GenerationIdentifierElementType struct {
+	OrganisationName []OrganisationNameElementType `xml:"OrganisationName,omitempty"`
+	// OrganisationType represents XSD element 'OrganisationType'
+	// minOccurs=0, maxOccurs=-1
+	OrganisationType []OrganisationTypeElementType `xml:"OrganisationType,omitempty"`
 	// Type represents XSD attribute 'Type'
 	// use="optional"
 	Type *string `xml:"Type,attr,omitempty"`
-	// Code represents XSD attribute 'Code'
-	// use="optional"
-	Code     *string `xml:"Code,attr,omitempty"`
-	InnerXML string  `xml:",innerxml"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// NameDetails represents the XSD type 'NameDetails'
-// XSD complex type (W3C XSD §3.4)
-type NameDetails struct {
-	// NameLine represents XSD element 'NameLine'
-	// minOccurs=1, maxOccurs=-1
-	NameLine []NameLineType `xml:"NameLine,omitempty"`
-	// PersonName represents XSD element 'PersonName'
-	PersonName *PersonNameElement `xml:"PersonName,omitempty"`
-	// JointPersonName represents XSD element 'JointPersonName'
-	JointPersonName *JointPersonNameElement `xml:"JointPersonName,omitempty"`
-	// OrganisationNameDetails represents XSD element 'OrganisationNameDetails'
-	OrganisationNameDetails *OrganisationNameDetailsElement `xml:"OrganisationNameDetails,omitempty"`
-	// PartyType represents XSD attribute 'PartyType'
-	// use="optional"
-	PartyType *string `xml:"PartyType,attr,omitempty"`
-	// Code represents XSD attribute 'Code'
-	// use="optional"
-	Code *string `xml:"Code,attr,omitempty"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -259,6 +209,39 @@ type NameDetailsElementType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
+// OrganisationNameDetailsElementType represents the XSD type 'OrganisationNameDetailsElementType'
+// XSD complex type (W3C XSD §3.4)
+type OrganisationNameDetailsElementType struct {
+	OrganisationNameDetails // XSD extension base
+	// OrganisationFormerName represents XSD element 'OrganisationFormerName'
+	// minOccurs=0, maxOccurs=-1
+	OrganisationFormerName []OrganisationFormerNameElementType `xml:"OrganisationFormerName,omitempty"`
+	// OrganisationKnownAs represents XSD element 'OrganisationKnownAs'
+	// minOccurs=0, maxOccurs=-1
+	OrganisationKnownAs []OrganisationKnownAsElementType `xml:"OrganisationKnownAs,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// SuffixElementType represents the XSD type 'SuffixElementType'
+// XSD complex type (W3C XSD §3.4)
+// mixed="true"
+type SuffixElementType struct {
+	// Type represents XSD attribute 'Type'
+	// use="optional"
+	Type *string `xml:"Type,attr,omitempty"`
+	// Code represents XSD attribute 'Code'
+	// use="optional"
+	Code     *string `xml:"Code,attr,omitempty"`
+	InnerXML string  `xml:",innerxml"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
 // DependencyNameElementType represents the XSD type 'DependencyNameElementType'
 // XSD complex type (W3C XSD §3.4)
 type DependencyNameElementType struct {
@@ -272,10 +255,81 @@ type DependencyNameElementType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// OtherNameElementType represents the XSD type 'OtherNameElementType'
+// PrecedingTitleElementType represents the XSD type 'PrecedingTitleElementType'
 // XSD complex type (W3C XSD §3.4)
 // mixed="true"
-type OtherNameElementType struct {
+type PrecedingTitleElementType struct {
+	// Type represents XSD attribute 'Type'
+	// use="optional"
+	Type *string `xml:"Type,attr,omitempty"`
+	// Code represents XSD attribute 'Code'
+	// use="optional"
+	Code     *string `xml:"Code,attr,omitempty"`
+	InnerXML string  `xml:",innerxml"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// JointPersonNameElementType represents the XSD type 'JointPersonNameElementType'
+// XSD complex type (W3C XSD §3.4)
+type JointPersonNameElementType struct {
+	// NameLine represents XSD element 'NameLine'
+	// minOccurs=1, maxOccurs=-1
+	NameLine []NameLineType `xml:"NameLine,omitempty"`
+	// PersonName represents XSD element 'PersonName'
+	// minOccurs=1, maxOccurs=-1
+	PersonName []PersonNameElement `xml:"PersonName,omitempty"`
+	// JointNameConnector represents XSD attribute 'JointNameConnector'
+	// use="optional"
+	JointNameConnector *string `xml:"JointNameConnector,attr,omitempty"`
+	// Code represents XSD attribute 'Code'
+	// use="optional"
+	Code *string `xml:"Code,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// OrganisationFormerNameElementType represents the XSD type 'OrganisationFormerNameElementType'
+// XSD complex type (W3C XSD §3.4)
+type OrganisationFormerNameElementType struct {
+	OrganisationNameDetails // XSD extension base
+	// ValidFrom represents XSD attribute 'ValidFrom'
+	// use="optional"
+	ValidFrom *string `xml:"ValidFrom,attr,omitempty"`
+	// ValidTo represents XSD attribute 'ValidTo'
+	// use="optional"
+	ValidTo *string `xml:"ValidTo,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// TitleElementType represents the XSD type 'TitleElementType'
+// XSD complex type (W3C XSD §3.4)
+// mixed="true"
+type TitleElementType struct {
+	// Type represents XSD attribute 'Type'
+	// use="optional"
+	Type *string `xml:"Type,attr,omitempty"`
+	// Code represents XSD attribute 'Code'
+	// use="optional"
+	Code     *string `xml:"Code,attr,omitempty"`
+	InnerXML string  `xml:",innerxml"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// AliasElementType represents the XSD type 'AliasElementType'
+// XSD complex type (W3C XSD §3.4)
+// mixed="true"
+type AliasElementType struct {
 	// Type represents XSD attribute 'Type'
 	// use="optional"
 	Type *string `xml:"Type,attr,omitempty"`
@@ -292,10 +346,45 @@ type OtherNameElementType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// AliasElementType represents the XSD type 'AliasElementType'
+// OrganisationNameElementType represents the XSD type 'OrganisationNameElementType'
 // XSD complex type (W3C XSD §3.4)
 // mixed="true"
-type AliasElementType struct {
+type OrganisationNameElementType struct {
+	// Type represents XSD attribute 'Type'
+	// use="optional"
+	Type *string `xml:"Type,attr,omitempty"`
+	// NameType represents XSD attribute 'NameType'
+	// use="optional"
+	NameType *string `xml:"NameType,attr,omitempty"`
+	// Code represents XSD attribute 'Code'
+	// use="optional"
+	Code     *string `xml:"Code,attr,omitempty"`
+	InnerXML string  `xml:",innerxml"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// XNLElementType represents the XSD type 'XNLElementType'
+// XSD complex type (W3C XSD §3.4)
+type XNLElementType struct {
+	// NameDetails represents XSD element 'NameDetails'
+	// minOccurs=1, maxOccurs=-1
+	NameDetails []NameDetailsElement `xml:"NameDetails"`
+	// Version represents XSD attribute 'Version'
+	// use="optional"
+	Version *string `xml:"Version,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// MiddleNameElementType represents the XSD type 'MiddleNameElementType'
+// XSD complex type (W3C XSD §3.4)
+// mixed="true"
+type MiddleNameElementType struct {
 	// Type represents XSD attribute 'Type'
 	// use="optional"
 	Type *string `xml:"Type,attr,omitempty"`
@@ -363,69 +452,32 @@ type PersonName struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// JointPersonNameElementType represents the XSD type 'JointPersonNameElementType'
+// PersonNameElementType represents the XSD type 'PersonNameElementType'
 // XSD complex type (W3C XSD §3.4)
-type JointPersonNameElementType struct {
-	// NameLine represents XSD element 'NameLine'
-	// minOccurs=1, maxOccurs=-1
-	NameLine []NameLineType `xml:"NameLine,omitempty"`
-	// PersonName represents XSD element 'PersonName'
-	// minOccurs=1, maxOccurs=-1
-	PersonName []PersonNameElement `xml:"PersonName,omitempty"`
-	// JointNameConnector represents XSD attribute 'JointNameConnector'
-	// use="optional"
-	JointNameConnector *string `xml:"JointNameConnector,attr,omitempty"`
-	// Code represents XSD attribute 'Code'
-	// use="optional"
-	Code *string `xml:"Code,attr,omitempty"`
+type PersonNameElementType struct {
+	PersonName // XSD extension base
+	// FormerName represents XSD element 'FormerName'
+	// minOccurs=0, maxOccurs=-1
+	FormerName []FormerNameElementType `xml:"FormerName,omitempty"`
+	// KnownAs represents XSD element 'KnownAs'
+	// minOccurs=0, maxOccurs=-1
+	KnownAs []KnownAsElementType `xml:"KnownAs,omitempty"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// XNLElementType represents the XSD type 'XNLElementType'
-// XSD complex type (W3C XSD §3.4)
-type XNLElementType struct {
-	// NameDetails represents XSD element 'NameDetails'
-	// minOccurs=1, maxOccurs=-1
-	NameDetails []NameDetailsElement `xml:"NameDetails"`
-	// Version represents XSD attribute 'Version'
-	// use="optional"
-	Version *string `xml:"Version,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// LastNameElementType represents the XSD type 'LastNameElementType'
+// OtherNameElementType represents the XSD type 'OtherNameElementType'
 // XSD complex type (W3C XSD §3.4)
 // mixed="true"
-type LastNameElementType struct {
+type OtherNameElementType struct {
 	// Type represents XSD attribute 'Type'
 	// use="optional"
 	Type *string `xml:"Type,attr,omitempty"`
 	// NameType represents XSD attribute 'NameType'
 	// use="optional"
 	NameType *string `xml:"NameType,attr,omitempty"`
-	// Code represents XSD attribute 'Code'
-	// use="optional"
-	Code     *string `xml:"Code,attr,omitempty"`
-	InnerXML string  `xml:",innerxml"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// SuffixElementType represents the XSD type 'SuffixElementType'
-// XSD complex type (W3C XSD §3.4)
-// mixed="true"
-type SuffixElementType struct {
-	// Type represents XSD attribute 'Type'
-	// use="optional"
-	Type *string `xml:"Type,attr,omitempty"`
 	// Code represents XSD attribute 'Code'
 	// use="optional"
 	Code     *string `xml:"Code,attr,omitempty"`
@@ -456,133 +508,10 @@ type OrganisationTypeElementType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// AddresseeIndicatorElementType represents the XSD type 'AddresseeIndicatorElementType'
+// Function represents the XSD type 'Function'
 // XSD complex type (W3C XSD §3.4)
 // mixed="true"
-type AddresseeIndicatorElementType struct {
-	// Code represents XSD attribute 'Code'
-	// use="optional"
-	Code     *string `xml:"Code,attr,omitempty"`
-	InnerXML string  `xml:",innerxml"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// FormerNameElementType represents the XSD type 'FormerNameElementType'
-// XSD complex type (W3C XSD §3.4)
-type FormerNameElementType struct {
-	PersonName // XSD extension base
-	// ValidFrom represents XSD attribute 'ValidFrom'
-	// use="optional"
-	ValidFrom *string `xml:"ValidFrom,attr,omitempty"`
-	// ValidTo represents XSD attribute 'ValidTo'
-	// use="optional"
-	ValidTo *string `xml:"ValidTo,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// TitleElementType represents the XSD type 'TitleElementType'
-// XSD complex type (W3C XSD §3.4)
-// mixed="true"
-type TitleElementType struct {
-	// Type represents XSD attribute 'Type'
-	// use="optional"
-	Type *string `xml:"Type,attr,omitempty"`
-	// Code represents XSD attribute 'Code'
-	// use="optional"
-	Code     *string `xml:"Code,attr,omitempty"`
-	InnerXML string  `xml:",innerxml"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// OrganisationKnownAsElementType represents the XSD type 'OrganisationKnownAsElementType'
-// XSD complex type (W3C XSD §3.4)
-type OrganisationKnownAsElementType struct {
-	OrganisationNameDetails // XSD extension base
-	// ValidFrom represents XSD attribute 'ValidFrom'
-	// use="optional"
-	ValidFrom *string `xml:"ValidFrom,attr,omitempty"`
-	// ValidTo represents XSD attribute 'ValidTo'
-	// use="optional"
-	ValidTo *string `xml:"ValidTo,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// PrecedingTitleElementType represents the XSD type 'PrecedingTitleElementType'
-// XSD complex type (W3C XSD §3.4)
-// mixed="true"
-type PrecedingTitleElementType struct {
-	// Type represents XSD attribute 'Type'
-	// use="optional"
-	Type *string `xml:"Type,attr,omitempty"`
-	// Code represents XSD attribute 'Code'
-	// use="optional"
-	Code     *string `xml:"Code,attr,omitempty"`
-	InnerXML string  `xml:",innerxml"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// NamePrefixElementType represents the XSD type 'NamePrefixElementType'
-// XSD complex type (W3C XSD §3.4)
-// mixed="true"
-type NamePrefixElementType struct {
-	// Type represents XSD attribute 'Type'
-	// use="optional"
-	Type *string `xml:"Type,attr,omitempty"`
-	// NameType represents XSD attribute 'NameType'
-	// use="optional"
-	NameType *string `xml:"NameType,attr,omitempty"`
-	// Code represents XSD attribute 'Code'
-	// use="optional"
-	Code     *string `xml:"Code,attr,omitempty"`
-	InnerXML string  `xml:",innerxml"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// OrganisationNameElementType represents the XSD type 'OrganisationNameElementType'
-// XSD complex type (W3C XSD §3.4)
-// mixed="true"
-type OrganisationNameElementType struct {
-	// Type represents XSD attribute 'Type'
-	// use="optional"
-	Type *string `xml:"Type,attr,omitempty"`
-	// NameType represents XSD attribute 'NameType'
-	// use="optional"
-	NameType *string `xml:"NameType,attr,omitempty"`
-	// Code represents XSD attribute 'Code'
-	// use="optional"
-	Code     *string `xml:"Code,attr,omitempty"`
-	InnerXML string  `xml:",innerxml"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// GeneralSuffixElementType represents the XSD type 'GeneralSuffixElementType'
-// XSD complex type (W3C XSD §3.4)
-// mixed="true"
-type GeneralSuffixElementType struct {
-	// Type represents XSD attribute 'Type'
-	// use="optional"
-	Type *string `xml:"Type,attr,omitempty"`
+type Function struct {
 	// Code represents XSD attribute 'Code'
 	// use="optional"
 	Code     *string `xml:"Code,attr,omitempty"`
@@ -613,9 +542,46 @@ type NameLineType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// KnownAsElementType represents the XSD type 'KnownAsElementType'
+// LastNameElementType represents the XSD type 'LastNameElementType'
 // XSD complex type (W3C XSD §3.4)
-type KnownAsElementType struct {
+// mixed="true"
+type LastNameElementType struct {
+	// Type represents XSD attribute 'Type'
+	// use="optional"
+	Type *string `xml:"Type,attr,omitempty"`
+	// NameType represents XSD attribute 'NameType'
+	// use="optional"
+	NameType *string `xml:"NameType,attr,omitempty"`
+	// Code represents XSD attribute 'Code'
+	// use="optional"
+	Code     *string `xml:"Code,attr,omitempty"`
+	InnerXML string  `xml:",innerxml"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// GenerationIdentifierElementType represents the XSD type 'GenerationIdentifierElementType'
+// XSD complex type (W3C XSD §3.4)
+// mixed="true"
+type GenerationIdentifierElementType struct {
+	// Type represents XSD attribute 'Type'
+	// use="optional"
+	Type *string `xml:"Type,attr,omitempty"`
+	// Code represents XSD attribute 'Code'
+	// use="optional"
+	Code     *string `xml:"Code,attr,omitempty"`
+	InnerXML string  `xml:",innerxml"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// FormerNameElementType represents the XSD type 'FormerNameElementType'
+// XSD complex type (W3C XSD §3.4)
+type FormerNameElementType struct {
 	PersonName // XSD extension base
 	// ValidFrom represents XSD attribute 'ValidFrom'
 	// use="optional"
@@ -649,46 +615,56 @@ type FirstNameElementType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// OrganisationNameDetails represents the XSD type 'OrganisationNameDetails'
+// GeneralSuffixElementType represents the XSD type 'GeneralSuffixElementType'
 // XSD complex type (W3C XSD §3.4)
-type OrganisationNameDetails struct {
-	// NameLine represents XSD element 'NameLine'
-	// minOccurs=0, maxOccurs=-1
-	NameLine []NameLineType `xml:"NameLine,omitempty"`
-	// OrganisationName represents XSD element 'OrganisationName'
-	// minOccurs=0, maxOccurs=-1
-	OrganisationName []OrganisationNameElementType `xml:"OrganisationName,omitempty"`
-	// OrganisationType represents XSD element 'OrganisationType'
-	// minOccurs=0, maxOccurs=-1
-	OrganisationType []OrganisationTypeElementType `xml:"OrganisationType,omitempty"`
+// mixed="true"
+type GeneralSuffixElementType struct {
 	// Type represents XSD attribute 'Type'
 	// use="optional"
 	Type *string `xml:"Type,attr,omitempty"`
+	// Code represents XSD attribute 'Code'
+	// use="optional"
+	Code     *string `xml:"Code,attr,omitempty"`
+	InnerXML string  `xml:",innerxml"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// PersonNameElementType represents the XSD type 'PersonNameElementType'
+// AddresseeIndicatorElementType represents the XSD type 'AddresseeIndicatorElementType'
 // XSD complex type (W3C XSD §3.4)
-type PersonNameElementType struct {
+// mixed="true"
+type AddresseeIndicatorElementType struct {
+	// Code represents XSD attribute 'Code'
+	// use="optional"
+	Code     *string `xml:"Code,attr,omitempty"`
+	InnerXML string  `xml:",innerxml"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// KnownAsElementType represents the XSD type 'KnownAsElementType'
+// XSD complex type (W3C XSD §3.4)
+type KnownAsElementType struct {
 	PersonName // XSD extension base
-	// FormerName represents XSD element 'FormerName'
-	// minOccurs=0, maxOccurs=-1
-	FormerName []FormerNameElementType `xml:"FormerName,omitempty"`
-	// KnownAs represents XSD element 'KnownAs'
-	// minOccurs=0, maxOccurs=-1
-	KnownAs []KnownAsElementType `xml:"KnownAs,omitempty"`
+	// ValidFrom represents XSD attribute 'ValidFrom'
+	// use="optional"
+	ValidFrom *string `xml:"ValidFrom,attr,omitempty"`
+	// ValidTo represents XSD attribute 'ValidTo'
+	// use="optional"
+	ValidTo *string `xml:"ValidTo,attr,omitempty"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// OrganisationFormerNameElementType represents the XSD type 'OrganisationFormerNameElementType'
+// OrganisationKnownAsElementType represents the XSD type 'OrganisationKnownAsElementType'
 // XSD complex type (W3C XSD §3.4)
-type OrganisationFormerNameElementType struct {
+type OrganisationKnownAsElementType struct {
 	OrganisationNameDetails // XSD extension base
 	// ValidFrom represents XSD attribute 'ValidFrom'
 	// use="optional"
@@ -702,10 +678,10 @@ type OrganisationFormerNameElementType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// MiddleNameElementType represents the XSD type 'MiddleNameElementType'
+// NamePrefixElementType represents the XSD type 'NamePrefixElementType'
 // XSD complex type (W3C XSD §3.4)
 // mixed="true"
-type MiddleNameElementType struct {
+type NamePrefixElementType struct {
 	// Type represents XSD attribute 'Type'
 	// use="optional"
 	Type *string `xml:"Type,attr,omitempty"`
@@ -716,6 +692,30 @@ type MiddleNameElementType struct {
 	// use="optional"
 	Code     *string `xml:"Code,attr,omitempty"`
 	InnerXML string  `xml:",innerxml"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// NameDetails represents the XSD type 'NameDetails'
+// XSD complex type (W3C XSD §3.4)
+type NameDetails struct {
+	// NameLine represents XSD element 'NameLine'
+	// minOccurs=1, maxOccurs=-1
+	NameLine []NameLineType `xml:"NameLine,omitempty"`
+	// PersonName represents XSD element 'PersonName'
+	PersonName *PersonNameElement `xml:"PersonName,omitempty"`
+	// JointPersonName represents XSD element 'JointPersonName'
+	JointPersonName *JointPersonNameElement `xml:"JointPersonName,omitempty"`
+	// OrganisationNameDetails represents XSD element 'OrganisationNameDetails'
+	OrganisationNameDetails *OrganisationNameDetailsElement `xml:"OrganisationNameDetails,omitempty"`
+	// PartyType represents XSD attribute 'PartyType'
+	// use="optional"
+	PartyType *string `xml:"PartyType,attr,omitempty"`
+	// Code represents XSD attribute 'Code'
+	// use="optional"
+	Code *string `xml:"Code,attr,omitempty"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD

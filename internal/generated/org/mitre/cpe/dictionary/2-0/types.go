@@ -168,6 +168,45 @@ func replicateXmlnsPlacement(xmlOutput string, elementsWithXmlns map[string]stri
 	return result
 }
 
+// NamePattern represents the XSD type 'namePattern'
+// XSD simple type (W3C XSD §4.1)
+// pattern="[c][pP][eE]:/[AHOaho]?(:[A-Za-z0-9\._\-~%]*){0,6}"
+type NamePattern string
+
+// GeneratorType represents the XSD type 'GeneratorType'
+// XSD complex type (W3C XSD §3.4)
+type GeneratorType struct {
+	// Product_name represents XSD element 'product_name'
+	// minOccurs=0, maxOccurs=1
+	Product_name *string `xml:"product_name,omitempty"`
+	// Product_version represents XSD element 'product_version'
+	// minOccurs=0, maxOccurs=1
+	Product_version *string `xml:"product_version,omitempty"`
+	// Schema_version represents XSD element 'schema_version'
+	Schema_version string `xml:"schema_version"`
+	// Timestamp represents XSD element 'timestamp'
+	Timestamp types.DateTime `xml:"timestamp"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// ListType represents the XSD type 'ListType'
+// XSD complex type (W3C XSD §3.4)
+type ListType struct {
+	// Generator represents XSD element 'generator'
+	// minOccurs=0, maxOccurs=1
+	Generator *GeneratorType `xml:"generator,omitempty"`
+	// CpeItem represents XSD element 'cpe-item'
+	// minOccurs=1, maxOccurs=-1
+	CpeItem []ItemType `xml:"cpe-item"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
 // NotesType represents the XSD type 'NotesType'
 // XSD complex type (W3C XSD §3.4)
 type NotesType struct {
@@ -195,25 +234,6 @@ type ReferenceElementTypeWithAttrs struct {
 
 // ReferenceElementType is an alias for ReferenceElementTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
 type ReferenceElementType = ReferenceElementTypeWithAttrs
-
-// GeneratorType represents the XSD type 'GeneratorType'
-// XSD complex type (W3C XSD §3.4)
-type GeneratorType struct {
-	// Product_name represents XSD element 'product_name'
-	// minOccurs=0, maxOccurs=1
-	Product_name *string `xml:"product_name,omitempty"`
-	// Product_version represents XSD element 'product_version'
-	// minOccurs=0, maxOccurs=1
-	Product_version *string `xml:"product_version,omitempty"`
-	// Schema_version represents XSD element 'schema_version'
-	Schema_version string `xml:"schema_version"`
-	// Timestamp represents XSD element 'timestamp'
-	Timestamp types.DateTime `xml:"timestamp"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
 
 // ItemType represents the XSD type 'ItemType'
 // XSD complex type (W3C XSD §3.4)
@@ -248,20 +268,18 @@ type ItemType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// ListType represents the XSD type 'ListType'
+// TextType represents the XSD type 'TextType'
 // XSD complex type (W3C XSD §3.4)
-type ListType struct {
-	// Generator represents XSD element 'generator'
-	// minOccurs=0, maxOccurs=1
-	Generator *GeneratorType `xml:"generator,omitempty"`
-	// CpeItem represents XSD element 'cpe-item'
-	// minOccurs=1, maxOccurs=-1
-	CpeItem []ItemType `xml:"cpe-item"`
+type TextTypeWithAttrs struct {
+	Value string `xml:",chardata"` // XSD simple content
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
+
+// TextType is an alias for TextTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
+type TextType = TextTypeWithAttrs
 
 // ReferencesType represents the XSD type 'ReferencesType'
 // XSD complex type (W3C XSD §3.4)
@@ -293,21 +311,3 @@ type CheckTypeWithAttrs struct {
 
 // CheckType is an alias for CheckTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
 type CheckType = CheckTypeWithAttrs
-
-// NamePattern represents the XSD type 'namePattern'
-// XSD simple type (W3C XSD §4.1)
-// pattern="[c][pP][eE]:/[AHOaho]?(:[A-Za-z0-9\._\-~%]*){0,6}"
-type NamePattern string
-
-// TextType represents the XSD type 'TextType'
-// XSD complex type (W3C XSD §3.4)
-type TextTypeWithAttrs struct {
-	Value string `xml:",chardata"` // XSD simple content
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// TextType is an alias for TextTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
-type TextType = TextTypeWithAttrs

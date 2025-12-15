@@ -68,17 +68,17 @@ func TestNewXMLDocumentState(t *testing.T) {
 // LoadFromBytes Tests
 // =============================================================================
 
-func TestLoadFromBytes_AssetReportCollectionElement(t *testing.T) {
+func TestLoadFromBytes_BenchmarkElement(t *testing.T) {
 	ts := setupTestSuite(t)
 
-	// Create a minimal valid XML for AssetReportCollectionElement
+	// Create a minimal valid XML for BenchmarkElement
 	xmlContent := []byte(`<?xml version="1.0" encoding="UTF-8"?>
-<asset-report-collection xmlns="http://scap.nist.gov/schema/asset-reporting-format/1.1">
-</asset-report-collection>`)
+<Benchmark xmlns="http://checklists.nist.gov/xccdf/1.2">
+</Benchmark>`)
 
-	err := ts.state.LoadFromBytes(xmlContent, "test_asset-report-collection.xml")
+	err := ts.state.LoadFromBytes(xmlContent, "test_Benchmark.xml")
 	if err != nil {
-		t.Logf("LoadFromBytes for AssetReportCollectionElement returned error (may be expected for complex schemas): %v", err)
+		t.Logf("LoadFromBytes for BenchmarkElement returned error (may be expected for complex schemas): %v", err)
 		return
 	}
 
@@ -86,8 +86,8 @@ func TestLoadFromBytes_AssetReportCollectionElement(t *testing.T) {
 		t.Error("State should have document after LoadFromBytes")
 	}
 
-	if ts.state.GetSourceFile() != "test_asset-report-collection.xml" {
-		t.Errorf("Expected source file 'test_asset-report-collection.xml', got '%s'", ts.state.GetSourceFile())
+	if ts.state.GetSourceFile() != "test_Benchmark.xml" {
+		t.Errorf("Expected source file 'test_Benchmark.xml', got '%s'", ts.state.GetSourceFile())
 	}
 }
 
@@ -12508,14 +12508,14 @@ func TestConcurrentAccess(t *testing.T) {
 // Type-Specific CRUD Tests
 // =============================================================================
 
-// TestAssetReportCollectionElement_CRUD tests full CRUD lifecycle for AssetReportCollectionElement.
-func TestAssetReportCollectionElement_CRUD(t *testing.T) {
+// TestBenchmarkElement_CRUD tests full CRUD lifecycle for BenchmarkElement.
+func TestBenchmarkElement_CRUD(t *testing.T) {
 	ts := setupTestSuite(t)
 
 	// CREATE
-	path, err := ts.state.CreateElement("AssetReportCollectionElement", "", nil)
+	path, err := ts.state.CreateElement("BenchmarkElement", "", nil)
 	if err != nil {
-		t.Logf("Create AssetReportCollectionElement returned error (may be expected): %v", err)
+		t.Logf("Create BenchmarkElement returned error (may be expected): %v", err)
 		return
 	}
 
@@ -12529,8 +12529,8 @@ func TestAssetReportCollectionElement_CRUD(t *testing.T) {
 		t.Fatalf("GetElement failed: %v", err)
 	}
 
-	if details.Type != "AssetReportCollectionElement" {
-		t.Errorf("Expected type 'AssetReportCollectionElement', got '%s'", details.Type)
+	if details.Type != "BenchmarkElement" {
+		t.Errorf("Expected type 'BenchmarkElement', got '%s'", details.Type)
 	}
 
 	// UPDATE (with empty data, just to test the path)
@@ -12544,14 +12544,14 @@ func TestAssetReportCollectionElement_CRUD(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Validate failed: %v", err)
 	}
-	t.Logf("Validation for AssetReportCollectionElement: %d errors", len(errors))
+	t.Logf("Validation for BenchmarkElement: %d errors", len(errors))
 
 	// EXPORT
 	xmlBytes, filename, err := ts.state.ExportToBytes()
 	if err != nil {
 		t.Fatalf("Export failed: %v", err)
 	}
-	t.Logf("Exported AssetReportCollectionElement: %d bytes, filename: %s", len(xmlBytes), filename)
+	t.Logf("Exported BenchmarkElement: %d bytes, filename: %s", len(xmlBytes), filename)
 
 	// DELETE
 	err = ts.state.DeleteElement("/")
@@ -12564,14 +12564,14 @@ func TestAssetReportCollectionElement_CRUD(t *testing.T) {
 	}
 }
 
-// TestAssetReportCollectionElement_ExportRoundTrip tests export and re-import for AssetReportCollectionElement.
-func TestAssetReportCollectionElement_ExportRoundTrip(t *testing.T) {
+// TestBenchmarkElement_ExportRoundTrip tests export and re-import for BenchmarkElement.
+func TestBenchmarkElement_ExportRoundTrip(t *testing.T) {
 	ts := setupTestSuite(t)
 
 	// Create
-	_, err := ts.state.CreateElement("AssetReportCollectionElement", "", nil)
+	_, err := ts.state.CreateElement("BenchmarkElement", "", nil)
 	if err != nil {
-		t.Skipf("Create AssetReportCollectionElement returned error: %v", err)
+		t.Skipf("Create BenchmarkElement returned error: %v", err)
 	}
 
 	// Export
@@ -12598,7 +12598,7 @@ func TestAssetReportCollectionElement_ExportRoundTrip(t *testing.T) {
 		t.Fatalf("Second export failed: %v", err)
 	}
 
-	t.Logf("Round-trip for AssetReportCollectionElement: %d -> %d bytes", len(xmlBytes), len(xmlBytes2))
+	t.Logf("Round-trip for BenchmarkElement: %d -> %d bytes", len(xmlBytes), len(xmlBytes2))
 }
 
 // =============================================================================
@@ -18782,7 +18782,7 @@ func TestMarshalUnmarshal_MessageType(t *testing.T) {
 
 func TestMarshalUnmarshal_MetadataType(t *testing.T) {
 	// Create a default instance
-	var elem xccdf1_2.MetadataType
+	var elem xmlschemaoval_definitions_5.MetadataType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -18796,7 +18796,7 @@ func TestMarshalUnmarshal_MetadataType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xccdf1_2.MetadataType
+	var elem2 xmlschemaoval_definitions_5.MetadataType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -19232,7 +19232,7 @@ func TestMarshalUnmarshal_NonEmptyStringType(t *testing.T) {
 
 func TestMarshalUnmarshal_NotesElement(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_common_5.NotesElement
+	var elem xmlschemaoval_definitions_5.NotesElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -19246,7 +19246,7 @@ func TestMarshalUnmarshal_NotesElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_common_5.NotesElement
+	var elem2 xmlschemaoval_definitions_5.NotesElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -19357,7 +19357,7 @@ func TestMarshalUnmarshal_ObjectComponentType(t *testing.T) {
 
 func TestMarshalUnmarshal_ObjectElement(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5.ObjectElement
+	var elem pkg_200009xmldsig.ObjectElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -19371,7 +19371,7 @@ func TestMarshalUnmarshal_ObjectElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.ObjectElement
+	var elem2 pkg_200009xmldsig.ObjectElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -25057,7 +25057,7 @@ func TestMarshalUnmarshal_ValueOperatorType(t *testing.T) {
 
 func TestMarshalUnmarshal_ValueType(t *testing.T) {
 	// Create a default instance
-	var elem xccdf1_2.ValueType
+	var elem xmlschemaoval_definitions_5.ValueType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -25071,7 +25071,7 @@ func TestMarshalUnmarshal_ValueType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xccdf1_2.ValueType
+	var elem2 xmlschemaoval_definitions_5.ValueType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -25232,7 +25232,7 @@ func TestMarshalUnmarshal_VariablesType(t *testing.T) {
 
 func TestMarshalUnmarshal_VersionElementType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_common_5.VersionElementType
+	var elem asset_identification1_1.VersionElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -25246,7 +25246,7 @@ func TestMarshalUnmarshal_VersionElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_common_5.VersionElementType
+	var elem2 asset_identification1_1.VersionElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)

@@ -130,7 +130,7 @@ func detectRootElementName(content []byte) (string, string, error) {
 // xmlNameToGoType maps XML element names to Go type names.
 // Only includes root element types (global elements with proper XMLName tags).
 var xmlNameToGoType = map[string]string{
-	"asset-report-collection": "AssetReportCollectionElement",
+	"Benchmark": "BenchmarkElement",
 }
 
 // LoadFromBytes loads an XML document from bytes.
@@ -152,14 +152,14 @@ func (s *XMLDocumentState) LoadFromBytes(content []byte, filename string) error 
 
 	// Unmarshal based on the detected root element type
 	switch goType {
-	case "AssetReportCollectionElement":
-		var root asset_reporting_format1_1.AssetReportCollectionElement
+	case "BenchmarkElement":
+		var root xccdf1_2.BenchmarkElement
 		if err := xml.Unmarshal(content, &root); err != nil {
-			return fmt.Errorf("failed to unmarshal AssetReportCollectionElement: %w", err)
+			return fmt.Errorf("failed to unmarshal BenchmarkElement: %w", err)
 		}
 		s.rootElement = &root
-		s.rootType = "AssetReportCollectionElement"
-		s.namespace = "http://scap.nist.gov/schema/asset-reporting-format/1.1"
+		s.rootType = "BenchmarkElement"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
 		s.sourceFile = filename
 		s.lastModified = time.Now()
 		s.isDirty = false
@@ -239,41 +239,133 @@ func (s *XMLDocumentState) getRootChildNodes() ([]TreeNode, error) {
 	var nodes []TreeNode
 
 	switch root := s.rootElement.(type) {
-	case *asset_reporting_format1_1.AssetReportCollectionElement:
+	case *xccdf1_2.BenchmarkElement:
 		_ = root // Ensure root is used even when only static TreeNodes are generated
-		// ReportRequests is a required element
+		// DcStatus is a repeated element
+		if len(root.DcStatus) > 0 {
+			nodes = append(nodes, TreeNode{
+				ID:          "/dc-status",
+				Label:       fmt.Sprintf("DcStatus (%d)", len(root.DcStatus)),
+				Type:        "DcStatusType",
+				Path:        "/dc-status",
+				HasChildren: true,
+				Icon:        "fa-folder",
+			})
+		}
+		// Title is a repeated element
+		if len(root.Title) > 0 {
+			nodes = append(nodes, TreeNode{
+				ID:          "/title",
+				Label:       fmt.Sprintf("Title (%d)", len(root.Title)),
+				Type:        "TextType",
+				Path:        "/title",
+				HasChildren: true,
+				Icon:        "fa-folder",
+			})
+		}
+		// Description is a repeated element
+		if len(root.Description) > 0 {
+			nodes = append(nodes, TreeNode{
+				ID:          "/description",
+				Label:       fmt.Sprintf("Description (%d)", len(root.Description)),
+				Type:        "HtmlTextWithSubType",
+				Path:        "/description",
+				HasChildren: true,
+				Icon:        "fa-folder",
+			})
+		}
+		// Notice is a repeated element
+		if len(root.Notice) > 0 {
+			nodes = append(nodes, TreeNode{
+				ID:          "/notice",
+				Label:       fmt.Sprintf("Notice (%d)", len(root.Notice)),
+				Type:        "NoticeType",
+				Path:        "/notice",
+				HasChildren: true,
+				Icon:        "fa-folder",
+			})
+		}
+		// FrontMatter is a repeated element
+		if len(root.FrontMatter) > 0 {
+			nodes = append(nodes, TreeNode{
+				ID:          "/front-matter",
+				Label:       fmt.Sprintf("FrontMatter (%d)", len(root.FrontMatter)),
+				Type:        "HtmlTextWithSubType",
+				Path:        "/front-matter",
+				HasChildren: true,
+				Icon:        "fa-folder",
+			})
+		}
+		// RearMatter is a repeated element
+		if len(root.RearMatter) > 0 {
+			nodes = append(nodes, TreeNode{
+				ID:          "/rear-matter",
+				Label:       fmt.Sprintf("RearMatter (%d)", len(root.RearMatter)),
+				Type:        "HtmlTextWithSubType",
+				Path:        "/rear-matter",
+				HasChildren: true,
+				Icon:        "fa-folder",
+			})
+		}
+		// Reference is a repeated element
+		if len(root.Reference) > 0 {
+			nodes = append(nodes, TreeNode{
+				ID:          "/reference",
+				Label:       fmt.Sprintf("Reference (%d)", len(root.Reference)),
+				Type:        "ReferenceType",
+				Path:        "/reference",
+				HasChildren: true,
+				Icon:        "fa-folder",
+			})
+		}
+		// PlainText is a repeated element
+		if len(root.PlainText) > 0 {
+			nodes = append(nodes, TreeNode{
+				ID:          "/plain-text",
+				Label:       fmt.Sprintf("PlainText (%d)", len(root.PlainText)),
+				Type:        "PlainTextType",
+				Path:        "/plain-text",
+				HasChildren: true,
+				Icon:        "fa-folder",
+			})
+		}
+		// Platform is a repeated element
+		if len(root.Platform) > 0 {
+			nodes = append(nodes, TreeNode{
+				ID:          "/platform",
+				Label:       fmt.Sprintf("Platform (%d)", len(root.Platform)),
+				Type:        "CPE2idrefType",
+				Path:        "/platform",
+				HasChildren: true,
+				Icon:        "fa-folder",
+			})
+		}
+		// Version is a required element
 		nodes = append(nodes, TreeNode{
-			ID:          "/report-requests",
-			Label:       "ReportRequests",
-			Type:        "ReportRequests",
-			Path:        "/report-requests",
+			ID:          "/version",
+			Label:       "Version",
+			Type:        "VersionType",
+			Path:        "/version",
 			HasChildren: true,
 			Icon:        "fa-cube",
 		})
-		// Assets is a required element
+		// Metadata is a repeated element
+		if len(root.Metadata) > 0 {
+			nodes = append(nodes, TreeNode{
+				ID:          "/metadata",
+				Label:       fmt.Sprintf("Metadata (%d)", len(root.Metadata)),
+				Type:        "MetadataType",
+				Path:        "/metadata",
+				HasChildren: true,
+				Icon:        "fa-folder",
+			})
+		}
+		// Signature is a required element
 		nodes = append(nodes, TreeNode{
-			ID:          "/assets",
-			Label:       "Assets",
-			Type:        "Assets",
-			Path:        "/assets",
-			HasChildren: true,
-			Icon:        "fa-cube",
-		})
-		// Reports is a required element
-		nodes = append(nodes, TreeNode{
-			ID:          "/reports",
-			Label:       "Reports",
-			Type:        "Reports",
-			Path:        "/reports",
-			HasChildren: true,
-			Icon:        "fa-cube",
-		})
-		// ExtendedInfos is a required element
-		nodes = append(nodes, TreeNode{
-			ID:          "/extended-infos",
-			Label:       "ExtendedInfos",
-			Type:        "ExtendedInfos",
-			Path:        "/extended-infos",
+			ID:          "/signature",
+			Label:       "Signature",
+			Type:        "SignatureType",
+			Path:        "/signature",
 			HasChildren: true,
 			Icon:        "fa-cube",
 		})
@@ -307,90 +399,158 @@ func (s *XMLDocumentState) getFirstLevelChildNodes(name string) ([]TreeNode, err
 	var nodes []TreeNode
 
 	switch root := s.rootElement.(type) {
-	case *asset_reporting_format1_1.AssetReportCollectionElement:
+	case *xccdf1_2.BenchmarkElement:
 		_ = root // Ensure root is used even when element fields don't access it directly
-		if name == "report-requests" {
-			// Required element - traverse into its child fields
-			if len(root.ReportRequests.ReportRequest) > 0 {
-				for i, item := range root.ReportRequests.ReportRequest {
-					label := fmt.Sprintf("ReportRequest[%d]", i)
-					// Use Id field for better label if available
-					if item.Id != "" {
-						label = item.Id
-					}
-					nodes = append(nodes, TreeNode{
-						ID:          fmt.Sprintf("/report-requests/report-request/%d", i),
-						Label:       label,
-						Type:        "ReportRequestType",
-						Path:        fmt.Sprintf("/report-requests/report-request/%d", i),
-						HasChildren: true,
-						Icon:        "fa-cube",
-					})
-				}
+		if name == "dc-status" && len(root.DcStatus) > 0 {
+			for i := range root.DcStatus {
+				label := fmt.Sprintf("DcStatus[%d]", i)
+				nodes = append(nodes, TreeNode{
+					ID:          fmt.Sprintf("/dc-status/%d", i),
+					Label:       label,
+					Type:        "DcStatusType",
+					Path:        fmt.Sprintf("/dc-status/%d", i),
+					HasChildren: true,
+					Icon:        "fa-cube",
+				})
 			}
 			return nodes, nil
 		}
-		if name == "assets" {
-			// Required element - traverse into its child fields
-			if len(root.Assets.Asset) > 0 {
-				for i, item := range root.Assets.Asset {
-					label := fmt.Sprintf("Asset[%d]", i)
-					// Use Id field for better label if available
-					if item.Id != "" {
-						label = item.Id
-					}
-					nodes = append(nodes, TreeNode{
-						ID:          fmt.Sprintf("/assets/asset/%d", i),
-						Label:       label,
-						Type:        "Asset",
-						Path:        fmt.Sprintf("/assets/asset/%d", i),
-						HasChildren: true,
-						Icon:        "fa-cube",
-					})
-				}
+		if name == "title" && len(root.Title) > 0 {
+			for i := range root.Title {
+				label := fmt.Sprintf("Title[%d]", i)
+				nodes = append(nodes, TreeNode{
+					ID:          fmt.Sprintf("/title/%d", i),
+					Label:       label,
+					Type:        "TextType",
+					Path:        fmt.Sprintf("/title/%d", i),
+					HasChildren: true,
+					Icon:        "fa-cube",
+				})
 			}
 			return nodes, nil
 		}
-		if name == "reports" {
-			// Required element - traverse into its child fields
-			if len(root.Reports.Report) > 0 {
-				for i, item := range root.Reports.Report {
-					label := fmt.Sprintf("Report[%d]", i)
-					// Use Id field for better label if available
-					if item.Id != "" {
-						label = item.Id
-					}
-					nodes = append(nodes, TreeNode{
-						ID:          fmt.Sprintf("/reports/report/%d", i),
-						Label:       label,
-						Type:        "ReportType",
-						Path:        fmt.Sprintf("/reports/report/%d", i),
-						HasChildren: true,
-						Icon:        "fa-cube",
-					})
-				}
+		if name == "description" && len(root.Description) > 0 {
+			for i := range root.Description {
+				label := fmt.Sprintf("Description[%d]", i)
+				nodes = append(nodes, TreeNode{
+					ID:          fmt.Sprintf("/description/%d", i),
+					Label:       label,
+					Type:        "HtmlTextWithSubType",
+					Path:        fmt.Sprintf("/description/%d", i),
+					HasChildren: true,
+					Icon:        "fa-cube",
+				})
 			}
 			return nodes, nil
 		}
-		if name == "extended-infos" {
-			// Required element - traverse into its child fields
-			if len(root.ExtendedInfos.ExtendedInfo) > 0 {
-				for i, item := range root.ExtendedInfos.ExtendedInfo {
-					label := fmt.Sprintf("ExtendedInfo[%d]", i)
-					// Use Id field for better label if available
-					if item.Id != "" {
-						label = item.Id
-					}
-					nodes = append(nodes, TreeNode{
-						ID:          fmt.Sprintf("/extended-infos/extended-info/%d", i),
-						Label:       label,
-						Type:        "ExtendedInfo",
-						Path:        fmt.Sprintf("/extended-infos/extended-info/%d", i),
-						HasChildren: true,
-						Icon:        "fa-cube",
-					})
-				}
+		if name == "notice" && len(root.Notice) > 0 {
+			for i := range root.Notice {
+				label := fmt.Sprintf("Notice[%d]", i)
+				nodes = append(nodes, TreeNode{
+					ID:          fmt.Sprintf("/notice/%d", i),
+					Label:       label,
+					Type:        "NoticeType",
+					Path:        fmt.Sprintf("/notice/%d", i),
+					HasChildren: true,
+					Icon:        "fa-cube",
+				})
 			}
+			return nodes, nil
+		}
+		if name == "front-matter" && len(root.FrontMatter) > 0 {
+			for i := range root.FrontMatter {
+				label := fmt.Sprintf("FrontMatter[%d]", i)
+				nodes = append(nodes, TreeNode{
+					ID:          fmt.Sprintf("/front-matter/%d", i),
+					Label:       label,
+					Type:        "HtmlTextWithSubType",
+					Path:        fmt.Sprintf("/front-matter/%d", i),
+					HasChildren: true,
+					Icon:        "fa-cube",
+				})
+			}
+			return nodes, nil
+		}
+		if name == "rear-matter" && len(root.RearMatter) > 0 {
+			for i := range root.RearMatter {
+				label := fmt.Sprintf("RearMatter[%d]", i)
+				nodes = append(nodes, TreeNode{
+					ID:          fmt.Sprintf("/rear-matter/%d", i),
+					Label:       label,
+					Type:        "HtmlTextWithSubType",
+					Path:        fmt.Sprintf("/rear-matter/%d", i),
+					HasChildren: true,
+					Icon:        "fa-cube",
+				})
+			}
+			return nodes, nil
+		}
+		if name == "reference" && len(root.Reference) > 0 {
+			for i := range root.Reference {
+				label := fmt.Sprintf("Reference[%d]", i)
+				nodes = append(nodes, TreeNode{
+					ID:          fmt.Sprintf("/reference/%d", i),
+					Label:       label,
+					Type:        "ReferenceType",
+					Path:        fmt.Sprintf("/reference/%d", i),
+					HasChildren: true,
+					Icon:        "fa-cube",
+				})
+			}
+			return nodes, nil
+		}
+		if name == "plain-text" && len(root.PlainText) > 0 {
+			for i, item := range root.PlainText {
+				label := fmt.Sprintf("PlainText[%d]", i)
+				// Use Id field for better label if available
+				if item.Id != "" {
+					label = item.Id
+				}
+				nodes = append(nodes, TreeNode{
+					ID:          fmt.Sprintf("/plain-text/%d", i),
+					Label:       label,
+					Type:        "PlainTextType",
+					Path:        fmt.Sprintf("/plain-text/%d", i),
+					HasChildren: true,
+					Icon:        "fa-cube",
+				})
+			}
+			return nodes, nil
+		}
+		if name == "platform" && len(root.Platform) > 0 {
+			for i := range root.Platform {
+				label := fmt.Sprintf("Platform[%d]", i)
+				nodes = append(nodes, TreeNode{
+					ID:          fmt.Sprintf("/platform/%d", i),
+					Label:       label,
+					Type:        "CPE2idrefType",
+					Path:        fmt.Sprintf("/platform/%d", i),
+					HasChildren: true,
+					Icon:        "fa-cube",
+				})
+			}
+			return nodes, nil
+		}
+		if name == "version" {
+			// Required element - traverse into its child fields
+			return nodes, nil
+		}
+		if name == "metadata" && len(root.Metadata) > 0 {
+			for i := range root.Metadata {
+				label := fmt.Sprintf("Metadata[%d]", i)
+				nodes = append(nodes, TreeNode{
+					ID:          fmt.Sprintf("/metadata/%d", i),
+					Label:       label,
+					Type:        "MetadataType",
+					Path:        fmt.Sprintf("/metadata/%d", i),
+					HasChildren: true,
+					Icon:        "fa-cube",
+				})
+			}
+			return nodes, nil
+		}
+		if name == "signature" {
+			// Required element - traverse into its child fields
 			return nodes, nil
 		}
 	}
@@ -419,10 +579,20 @@ func (s *XMLDocumentState) getRootElementDetails() (*ElementDetails, error) {
 	data := make(map[string]interface{})
 
 	switch root := s.rootElement.(type) {
-	case *asset_reporting_format1_1.AssetReportCollectionElement:
+	case *xccdf1_2.BenchmarkElement:
 		_ = root // Ensure root is used even when no attribute fields match
-		if root.Id != nil {
-			data["id"] = *root.Id
+		data["id"] = root.Id
+		if root.Id2 != nil {
+			data["Id"] = *root.Id2
+		}
+		if root.Resolved != nil {
+			data["resolved"] = *root.Resolved
+		}
+		if root.Style != nil {
+			data["style"] = *root.Style
+		}
+		if root.StyleHref != nil {
+			data["style-href"] = *root.StyleHref
 		}
 	}
 
@@ -482,24 +652,86 @@ func (s *XMLDocumentState) getFirstLevelElement(name string) (*ElementDetails, e
 	var label, typeName string
 
 	switch root := s.rootElement.(type) {
-	case *asset_reporting_format1_1.AssetReportCollectionElement:
+	case *xccdf1_2.BenchmarkElement:
 		_ = root // Ensure root is used even when only static data is set
 		switch name {
-		case "report-requests":
-			label = "ReportRequests"
-			typeName = "ReportRequests"
+		case "dc-status":
+			label = "DcStatus"
+			typeName = "DcStatusType"
+			data["count"] = len(root.DcStatus)
+			if len(root.DcStatus) > 0 {
+				data["info"] = fmt.Sprintf("Contains %d DcStatus elements", len(root.DcStatus))
+			}
+		case "title":
+			label = "Title"
+			typeName = "TextType"
+			data["count"] = len(root.Title)
+			if len(root.Title) > 0 {
+				data["info"] = fmt.Sprintf("Contains %d Title elements", len(root.Title))
+			}
+		case "description":
+			label = "Description"
+			typeName = "HtmlTextWithSubType"
+			data["count"] = len(root.Description)
+			if len(root.Description) > 0 {
+				data["info"] = fmt.Sprintf("Contains %d Description elements", len(root.Description))
+			}
+		case "notice":
+			label = "Notice"
+			typeName = "NoticeType"
+			data["count"] = len(root.Notice)
+			if len(root.Notice) > 0 {
+				data["info"] = fmt.Sprintf("Contains %d Notice elements", len(root.Notice))
+			}
+		case "front-matter":
+			label = "FrontMatter"
+			typeName = "HtmlTextWithSubType"
+			data["count"] = len(root.FrontMatter)
+			if len(root.FrontMatter) > 0 {
+				data["info"] = fmt.Sprintf("Contains %d FrontMatter elements", len(root.FrontMatter))
+			}
+		case "rear-matter":
+			label = "RearMatter"
+			typeName = "HtmlTextWithSubType"
+			data["count"] = len(root.RearMatter)
+			if len(root.RearMatter) > 0 {
+				data["info"] = fmt.Sprintf("Contains %d RearMatter elements", len(root.RearMatter))
+			}
+		case "reference":
+			label = "Reference"
+			typeName = "ReferenceType"
+			data["count"] = len(root.Reference)
+			if len(root.Reference) > 0 {
+				data["info"] = fmt.Sprintf("Contains %d Reference elements", len(root.Reference))
+			}
+		case "plain-text":
+			label = "PlainText"
+			typeName = "PlainTextType"
+			data["count"] = len(root.PlainText)
+			if len(root.PlainText) > 0 {
+				data["info"] = fmt.Sprintf("Contains %d PlainText elements", len(root.PlainText))
+			}
+		case "platform":
+			label = "Platform"
+			typeName = "CPE2idrefType"
+			data["count"] = len(root.Platform)
+			if len(root.Platform) > 0 {
+				data["info"] = fmt.Sprintf("Contains %d Platform elements", len(root.Platform))
+			}
+		case "version":
+			label = "Version"
+			typeName = "VersionType"
 			data["present"] = true
-		case "assets":
-			label = "Assets"
-			typeName = "Assets"
-			data["present"] = true
-		case "reports":
-			label = "Reports"
-			typeName = "Reports"
-			data["present"] = true
-		case "extended-infos":
-			label = "ExtendedInfos"
-			typeName = "ExtendedInfos"
+		case "metadata":
+			label = "Metadata"
+			typeName = "MetadataType"
+			data["count"] = len(root.Metadata)
+			if len(root.Metadata) > 0 {
+				data["info"] = fmt.Sprintf("Contains %d Metadata elements", len(root.Metadata))
+			}
+		case "signature":
+			label = "Signature"
+			typeName = "SignatureType"
 			data["present"] = true
 		}
 	}
@@ -900,8 +1132,6 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 				return "", fmt.Errorf("failed to unmarshal data for AssetReportCollectionElement: %w", err)
 			}
 		}
-		// Initialize XMLName for proper XML serialization (root elements only)
-		element.XMLName = xml.Name{Space: "http://scap.nist.gov/schema/asset-reporting-format/1.1", Local: "asset-report-collection"}
 		s.rootElement = &element
 		s.rootType = "AssetReportCollectionElement"
 		s.namespace = "http://scap.nist.gov/schema/asset-reporting-format/1.1"
@@ -993,6 +1223,8 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 				return "", fmt.Errorf("failed to unmarshal data for BenchmarkElement: %w", err)
 			}
 		}
+		// Initialize XMLName for proper XML serialization (root elements only)
+		element.XMLName = xml.Name{Space: "http://checklists.nist.gov/xccdf/1.2", Local: "Benchmark"}
 		s.rootElement = &element
 		s.rootType = "BenchmarkElement"
 		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
@@ -3756,7 +3988,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "MetadataType":
-		var element xccdf1_2.MetadataType
+		var element xmlschemaoval_definitions_5.MetadataType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for MetadataType: %w", err)
@@ -3764,7 +3996,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		}
 		s.rootElement = &element
 		s.rootType = "MetadataType"
-		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
@@ -3990,7 +4222,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "NotesElement":
-		var element xmlschemaoval_common_5.NotesElement
+		var element xmlschemaoval_definitions_5.NotesElement
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for NotesElement: %w", err)
@@ -3998,7 +4230,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		}
 		s.rootElement = &element
 		s.rootType = "NotesElement"
-		s.namespace = "http://oval.mitre.org/XMLSchema/oval-common-5"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
@@ -4055,7 +4287,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "ObjectElement":
-		var element xmlschemaoval_definitions_5.ObjectElement
+		var element pkg_200009xmldsig.ObjectElement
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for ObjectElement: %w", err)
@@ -4063,7 +4295,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		}
 		s.rootElement = &element
 		s.rootType = "ObjectElement"
-		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
+		s.namespace = "http://www.w3.org/2000/09/xmldsig#"
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
@@ -7019,7 +7251,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "ValueType":
-		var element xccdf1_2.ValueType
+		var element xmlschemaoval_definitions_5.ValueType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for ValueType: %w", err)
@@ -7027,7 +7259,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		}
 		s.rootElement = &element
 		s.rootType = "ValueType"
-		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
@@ -7110,7 +7342,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "VersionElementType":
-		var element xmlschemaoval_common_5.VersionElementType
+		var element asset_identification1_1.VersionElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for VersionElementType: %w", err)
@@ -7118,7 +7350,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		}
 		s.rootElement = &element
 		s.rootType = "VersionElementType"
-		s.namespace = "http://oval.mitre.org/XMLSchema/oval-common-5"
+		s.namespace = "http://scap.nist.gov/schema/asset-identification/1.1"
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
@@ -10161,7 +10393,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *xccdf1_2.MetadataType:
+	case *xmlschemaoval_definitions_5.MetadataType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -10349,7 +10581,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *xmlschemaoval_common_5.NotesElement:
+	case *xmlschemaoval_definitions_5.NotesElement:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -10411,14 +10643,22 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *xmlschemaoval_definitions_5.ObjectElement:
+	case *pkg_200009xmldsig.ObjectElement:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
 			switch key {
-			case "id":
+			case "Id":
 				if v, ok := value.(string); ok {
-					root.Id = xmlschemaoval_common_5.ObjectIDPattern(v)
+					root.Id = &v
+				}
+			case "MimeType":
+				if v, ok := value.(string); ok {
+					root.MimeType = &v
+				}
+			case "Encoding":
+				if v, ok := value.(string); ok {
+					root.Encoding = &v
 				}
 			}
 		}
@@ -13115,15 +13355,11 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *xccdf1_2.ValueType:
+	case *xmlschemaoval_definitions_5.ValueType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
 			switch key {
-			case "id":
-				if v, ok := value.(string); ok {
-					root.Id = xccdf1_2.ValueIdType(v)
-				}
 			}
 		}
 		s.isDirty = true
@@ -13217,7 +13453,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *xmlschemaoval_common_5.VersionElementType:
+	case *asset_identification1_1.VersionElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -13430,21 +13666,65 @@ func (s *XMLDocumentState) DeleteElement(path string) error {
 // deleteFirstLevelElement deletes a first-level child element.
 func (s *XMLDocumentState) deleteFirstLevelElement(name string) error {
 	switch root := s.rootElement.(type) {
-	case *asset_reporting_format1_1.AssetReportCollectionElement:
+	case *xccdf1_2.BenchmarkElement:
 		_ = root // Ensure root is used even when all fields are required (non-deletable)
 		switch name {
-		case "report-requests":
+		case "dc-status":
+			root.DcStatus = nil
+			s.isDirty = true
+			s.lastModified = time.Now()
+			return nil
+		case "title":
+			root.Title = nil
+			s.isDirty = true
+			s.lastModified = time.Now()
+			return nil
+		case "description":
+			root.Description = nil
+			s.isDirty = true
+			s.lastModified = time.Now()
+			return nil
+		case "notice":
+			root.Notice = nil
+			s.isDirty = true
+			s.lastModified = time.Now()
+			return nil
+		case "front-matter":
+			root.FrontMatter = nil
+			s.isDirty = true
+			s.lastModified = time.Now()
+			return nil
+		case "rear-matter":
+			root.RearMatter = nil
+			s.isDirty = true
+			s.lastModified = time.Now()
+			return nil
+		case "reference":
+			root.Reference = nil
+			s.isDirty = true
+			s.lastModified = time.Now()
+			return nil
+		case "plain-text":
+			root.PlainText = nil
+			s.isDirty = true
+			s.lastModified = time.Now()
+			return nil
+		case "platform":
+			root.Platform = nil
+			s.isDirty = true
+			s.lastModified = time.Now()
+			return nil
+		case "version":
 			// Cannot delete required non-pointer field
-			return fmt.Errorf("cannot delete required field: ReportRequests")
-		case "assets":
+			return fmt.Errorf("cannot delete required field: Version")
+		case "metadata":
+			root.Metadata = nil
+			s.isDirty = true
+			s.lastModified = time.Now()
+			return nil
+		case "signature":
 			// Cannot delete required non-pointer field
-			return fmt.Errorf("cannot delete required field: Assets")
-		case "reports":
-			// Cannot delete required non-pointer field
-			return fmt.Errorf("cannot delete required field: Reports")
-		case "extended-infos":
-			// Cannot delete required non-pointer field
-			return fmt.Errorf("cannot delete required field: ExtendedInfos")
+			return fmt.Errorf("cannot delete required field: Signature")
 		}
 	}
 
@@ -13468,8 +13748,8 @@ func (s *XMLDocumentState) Validate() ([]ValidationError, error) {
 
 	// Validate based on root element type
 	switch root := s.rootElement.(type) {
-	case *asset_reporting_format1_1.AssetReportCollectionElement:
-		errors = append(errors, s.validateAssetReportCollectionElement(root, "/")...)
+	case *xccdf1_2.BenchmarkElement:
+		errors = append(errors, s.validateBenchmarkElement(root, "/")...)
 	}
 
 	return errors, nil
@@ -14382,8 +14662,8 @@ func (s *XMLDocumentState) validateConstant_variableElementType(elem *xmlschemao
 	return errors
 }
 
-// validateContentElementType1 validates a ContentElementType1 element.
-func (s *XMLDocumentState) validateContentElementType1(elem *asset_reporting_format1_1.ContentElementType1, path string) []ValidationError {
+// validateContentElementType validates a ContentElementType element.
+func (s *XMLDocumentState) validateContentElementType(elem *asset_reporting_format1_1.ContentElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -16956,6 +17236,20 @@ func (s *XMLDocumentState) validateMessageType(elem *xmlschemaoval_common_5.Mess
 	return errors
 }
 
+// validateMetadataType validates a MetadataType element.
+func (s *XMLDocumentState) validateMetadataType(elem *xmlschemaoval_definitions_5.MetadataType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Title
+	// Validate Affected
+	// Validate Reference
+	// Validate Description
+
+	return errors
+}
+
 // validateMiddleNameElementType validates a MiddleNameElementType element.
 func (s *XMLDocumentState) validateMiddleNameElementType(elem *pkg_2_01.MiddleNameElementType, path string) []ValidationError {
 	var errors []ValidationError
@@ -17143,7 +17437,7 @@ func (s *XMLDocumentState) validateNetworkType(elem *asset_identification1_1.Net
 }
 
 // validateNotesElement validates a NotesElement element.
-func (s *XMLDocumentState) validateNotesElement(elem *xmlschemaoval_common_5.NotesElement, path string) []ValidationError {
+func (s *XMLDocumentState) validateNotesElement(elem *xmlschemaoval_definitions_5.NotesElement, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -17233,36 +17527,14 @@ func (s *XMLDocumentState) validateObjectComponentType(elem *xmlschemaoval_defin
 }
 
 // validateObjectElement validates a ObjectElement element.
-func (s *XMLDocumentState) validateObjectElement(elem *xmlschemaoval_definitions_5.ObjectElement, path string) []ValidationError {
+func (s *XMLDocumentState) validateObjectElement(elem *pkg_200009xmldsig.ObjectElement, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
 	}
 	// Validate Id
-	if elem.Id == "" {
-		errors = append(errors, ValidationError{
-			Path:    path + "/id",
-			Message: "Required field 'id' is missing or empty",
-		})
-	}
-	if string(elem.Id) != "" {
-		matched, _ := regexp.MatchString(`oval:[A-Za-z0-9_\-\.]+:obj:[1-9][0-9]*`, string(elem.Id))
-		if !matched {
-			errors = append(errors, ValidationError{
-				Path:    path + "/id",
-				Message: "Field 'id' does not match required pattern",
-			})
-		}
-	}
-	// Validate Version
-	// Validate Comment
-	if elem.Comment != nil && string(*elem.Comment) != "" && len(string(*elem.Comment)) < 1 {
-		errors = append(errors, ValidationError{
-			Path:    path + "/comment",
-			Message: fmt.Sprintf("Field 'comment' must be at least 1 characters"),
-		})
-	}
-	// Validate Deprecated
+	// Validate MimeType
+	// Validate Encoding
 
 	return errors
 }
@@ -20883,94 +21155,6 @@ func (s *XMLDocumentState) validateValueElement(elem *xccdf1_2.ValueElement, pat
 	return errors
 }
 
-// validateValueType validates a ValueType element.
-func (s *XMLDocumentState) validateValueType(elem *xccdf1_2.ValueType, path string) []ValidationError {
-	var errors []ValidationError
-	if elem == nil {
-		return errors
-	}
-	// Validate Match
-	// Validate LowerBound
-	// Validate UpperBound
-	// Validate Choices
-	// Validate Source
-	// Validate Signature
-	// Validate Value
-	// Validate ComplexValue
-	// Validate Default
-	// Validate ComplexDefault
-	// Validate Id
-	if elem.Id == "" {
-		errors = append(errors, ValidationError{
-			Path:    path + "/id",
-			Message: "Required field 'id' is missing or empty",
-		})
-	}
-	if string(elem.Id) != "" {
-		matched, _ := regexp.MatchString(`xccdf_[^_]+_value_.+`, string(elem.Id))
-		if !matched {
-			errors = append(errors, ValidationError{
-				Path:    path + "/id",
-				Message: "Field 'id' does not match required pattern",
-			})
-		}
-	}
-	// Validate Type
-	if elem.Type != nil && string(*elem.Type) != "" {
-		validValues := []string{"number", "string", "boolean"}
-		isValid := false
-		for _, v := range validValues {
-			if string(*elem.Type) == v {
-				isValid = true
-				break
-			}
-		}
-		if !isValid {
-			errors = append(errors, ValidationError{
-				Path:    path + "/type",
-				Message: fmt.Sprintf("Field 'type' has invalid value '%s'", string(*elem.Type)),
-			})
-		}
-	}
-	// Validate Operator
-	if elem.Operator != nil && string(*elem.Operator) != "" {
-		validValues := []string{"equals", "not equal", "greater than", "less than", "greater than or equal", "less than or equal", "pattern match"}
-		isValid := false
-		for _, v := range validValues {
-			if string(*elem.Operator) == v {
-				isValid = true
-				break
-			}
-		}
-		if !isValid {
-			errors = append(errors, ValidationError{
-				Path:    path + "/operator",
-				Message: fmt.Sprintf("Field 'operator' has invalid value '%s'", string(*elem.Operator)),
-			})
-		}
-	}
-	// Validate Interactive
-	// Validate InterfaceHint
-	if elem.InterfaceHint != nil && string(*elem.InterfaceHint) != "" {
-		validValues := []string{"choice", "textline", "text", "date", "datetime"}
-		isValid := false
-		for _, v := range validValues {
-			if string(*elem.InterfaceHint) == v {
-				isValid = true
-				break
-			}
-		}
-		if !isValid {
-			errors = append(errors, ValidationError{
-				Path:    path + "/interfaceHint",
-				Message: fmt.Sprintf("Field 'interfaceHint' has invalid value '%s'", string(*elem.InterfaceHint)),
-			})
-		}
-	}
-
-	return errors
-}
-
 // validateVariableComponentType validates a VariableComponentType element.
 func (s *XMLDocumentState) validateVariableComponentType(elem *xmlschemaoval_definitions_5.VariableComponentType, path string) []ValidationError {
 	var errors []ValidationError
@@ -21127,6 +21311,16 @@ func (s *XMLDocumentState) validateVariableType(elem *xmlschemaoval_definitions_
 
 // validateVariablesType validates a VariablesType element.
 func (s *XMLDocumentState) validateVariablesType(elem *xmlschemaoval_definitions_5.VariablesType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+
+	return errors
+}
+
+// validateVersionElementType validates a VersionElementType element.
+func (s *XMLDocumentState) validateVersionElementType(elem *asset_identification1_1.VersionElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -21842,7 +22036,7 @@ func (s *XMLDocumentState) GetAvailableTypes() []string {
 // GetRootElementTypes returns types that can be used as document root elements.
 func (s *XMLDocumentState) GetRootElementTypes() []string {
 	return []string{
-		"AssetReportCollectionElement",
+		"BenchmarkElement",
 	}
 }
 
@@ -21924,38 +22118,26 @@ func (s *XMLDocumentState) GetValidChildTypes(parentType string) []string {
 	case "AssetsElement":
 		return []string{
 			"AssetElement",
+			"ItAssetElement",
+			"DataElement",
 			"PersonElement",
 			"OrganizationElement",
-			"DataElement",
-			"ItAssetElement",
-			"NetworkElement",
-			"DatabaseElement",
-			"CircuitElement",
-			"ServiceElement",
 		}
 	case "AssetsElementType":
 		return []string{
 			"AssetElement",
+			"ItAssetElement",
+			"DataElement",
 			"PersonElement",
 			"OrganizationElement",
-			"DataElement",
-			"ItAssetElement",
-			"NetworkElement",
-			"DatabaseElement",
-			"CircuitElement",
-			"ServiceElement",
 		}
 	case "AssetsType":
 		return []string{
 			"AssetElement",
+			"ItAssetElement",
+			"DataElement",
 			"PersonElement",
 			"OrganizationElement",
-			"DataElement",
-			"ItAssetElement",
-			"NetworkElement",
-			"DatabaseElement",
-			"CircuitElement",
-			"ServiceElement",
 		}
 	case "BenchmarkElement":
 		return []string{
@@ -22391,6 +22573,11 @@ func (s *XMLDocumentState) GetValidChildTypes(parentType string) []string {
 		return []string{
 			"ReferenceType",
 		}
+	case "MetadataType":
+		return []string{
+			"AffectedType",
+			"ReferenceType",
+		}
 	case "ModelElement":
 		return []string{
 			"ParamType",
@@ -22437,11 +22624,6 @@ func (s *XMLDocumentState) GetValidChildTypes(parentType string) []string {
 			"NetworkName",
 			"IpNetRange",
 			"Cidr",
-		}
-	case "ObjectElement":
-		return []string{
-			"SignatureType",
-			"NotesType",
 		}
 	case "ObjectsType":
 		return []string{
@@ -23118,19 +23300,6 @@ func (s *XMLDocumentState) GetValidChildTypes(parentType string) []string {
 			"TransformType",
 		}
 	case "ValueElement":
-		return []string{
-			"SelStringType",
-			"SelNumType",
-			"SelNumType",
-			"SelChoicesType",
-			"UriRefType",
-			"SignatureType",
-			"SelStringType",
-			"SelComplexValueType",
-			"SelStringType",
-			"SelComplexValueType",
-		}
-	case "ValueType":
 		return []string{
 			"SelStringType",
 			"SelNumType",
@@ -25465,13 +25634,6 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 			Name:          "ContentElementType",
 			Documentation: "",
 			IsAbstract:    false,
-			Fields:        []FieldInfo{},
-		}, nil
-	case "ContentElementType1":
-		return &TypeMetadata{
-			Name:          "ContentElementType1",
-			Documentation: "",
-			IsAbstract:    false,
 			Fields: []FieldInfo{
 				{
 					Name:          "data-valid-start-date",
@@ -25490,6 +25652,13 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 					Documentation: "",
 				},
 			},
+		}, nil
+	case "ContentElementType1":
+		return &TypeMetadata{
+			Name:          "ContentElementType1",
+			Documentation: "",
+			IsAbstract:    false,
+			Fields:        []FieldInfo{},
 		}, nil
 	case "CountFunctionType":
 		return &TypeMetadata{
@@ -30646,7 +30815,46 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 			Name:          "MetadataType",
 			Documentation: "",
 			IsAbstract:    false,
-			Fields:        []FieldInfo{},
+			Fields: []FieldInfo{
+				{
+					Name:          "title",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "affected",
+					Type:          "AffectedType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "reference",
+					Type:          "ReferenceType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "description",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+			},
 		}, nil
 	case "MgmtDataElement":
 		return &TypeMetadata{
@@ -31288,52 +31496,24 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 			IsAbstract:    false,
 			Fields: []FieldInfo{
 				{
-					Name:          "",
-					Type:          "SignatureType",
-					IsRequired:    false,
-					IsRepeated:    false,
-					IsEnum:        false,
-					MaxOccurs:     1,
-					Documentation: "",
-				},
-				{
-					Name:          "",
-					Type:          "NotesType",
-					IsRequired:    false,
-					IsRepeated:    false,
-					IsEnum:        false,
-					MaxOccurs:     1,
-					Documentation: "",
-				},
-				{
-					Name:          "id",
-					Type:          "string",
-					IsRequired:    true,
-					IsRepeated:    false,
-					IsEnum:        false,
-					Pattern:       "oval:[A-Za-z0-9_\\-\\.]+:obj:[1-9][0-9]*",
-					Documentation: "",
-				},
-				{
-					Name:          "version",
-					Type:          "uint64",
-					IsRequired:    true,
-					IsRepeated:    false,
-					IsEnum:        false,
-					Documentation: "",
-				},
-				{
-					Name:          "comment",
+					Name:          "Id",
 					Type:          "string",
 					IsRequired:    false,
 					IsRepeated:    false,
 					IsEnum:        false,
-					MinLength:     1,
 					Documentation: "",
 				},
 				{
-					Name:          "deprecated",
-					Type:          "bool",
+					Name:          "MimeType",
+					Type:          "string",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "Encoding",
+					Type:          "string",
 					IsRequired:    false,
 					IsRepeated:    false,
 					IsEnum:        false,
@@ -39911,154 +40091,7 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 			Name:          "ValueType",
 			Documentation: "",
 			IsAbstract:    false,
-			Fields: []FieldInfo{
-				{
-					Name:          "match",
-					Type:          "SelStringType",
-					IsRequired:    false,
-					IsRepeated:    true,
-					IsEnum:        false,
-					MaxOccurs:     -1,
-					Documentation: "",
-				},
-				{
-					Name:          "lower-bound",
-					Type:          "SelNumType",
-					IsRequired:    false,
-					IsRepeated:    true,
-					IsEnum:        false,
-					MaxOccurs:     -1,
-					Documentation: "",
-				},
-				{
-					Name:          "upper-bound",
-					Type:          "SelNumType",
-					IsRequired:    false,
-					IsRepeated:    true,
-					IsEnum:        false,
-					MaxOccurs:     -1,
-					Documentation: "",
-				},
-				{
-					Name:          "choices",
-					Type:          "SelChoicesType",
-					IsRequired:    false,
-					IsRepeated:    true,
-					IsEnum:        false,
-					MaxOccurs:     -1,
-					Documentation: "",
-				},
-				{
-					Name:          "source",
-					Type:          "UriRefType",
-					IsRequired:    false,
-					IsRepeated:    true,
-					IsEnum:        false,
-					MaxOccurs:     -1,
-					Documentation: "",
-				},
-				{
-					Name:          "signature",
-					Type:          "SignatureType",
-					IsRequired:    false,
-					IsRepeated:    false,
-					IsEnum:        false,
-					MaxOccurs:     1,
-					Documentation: "",
-				},
-				{
-					Name:          "value",
-					Type:          "SelStringType",
-					IsRequired:    true,
-					IsRepeated:    false,
-					IsEnum:        false,
-					MinOccurs:     1,
-					MaxOccurs:     1,
-					IsChoice:      true,
-					ChoiceGroup:   "choice_1",
-					Documentation: "",
-				},
-				{
-					Name:          "complex-value",
-					Type:          "SelComplexValueType",
-					IsRequired:    true,
-					IsRepeated:    false,
-					IsEnum:        false,
-					MinOccurs:     1,
-					MaxOccurs:     1,
-					IsChoice:      true,
-					ChoiceGroup:   "choice_1",
-					Documentation: "",
-				},
-				{
-					Name:          "default",
-					Type:          "SelStringType",
-					IsRequired:    true,
-					IsRepeated:    false,
-					IsEnum:        false,
-					MinOccurs:     1,
-					MaxOccurs:     1,
-					IsChoice:      true,
-					ChoiceGroup:   "choice_1",
-					Documentation: "",
-				},
-				{
-					Name:          "complex-default",
-					Type:          "SelComplexValueType",
-					IsRequired:    true,
-					IsRepeated:    false,
-					IsEnum:        false,
-					MinOccurs:     1,
-					MaxOccurs:     1,
-					IsChoice:      true,
-					ChoiceGroup:   "choice_1",
-					Documentation: "",
-				},
-				{
-					Name:          "id",
-					Type:          "string",
-					IsRequired:    true,
-					IsRepeated:    false,
-					IsEnum:        false,
-					Pattern:       "xccdf_[^_]+_value_.+",
-					Documentation: "",
-				},
-				{
-					Name:          "type",
-					Type:          "string",
-					IsRequired:    false,
-					IsRepeated:    false,
-					IsEnum:        true,
-					EnumValues:    []string{"number", "string", "boolean"},
-					Documentation: "",
-				},
-				{
-					Name:          "operator",
-					Type:          "string",
-					IsRequired:    false,
-					IsRepeated:    false,
-					IsEnum:        true,
-					EnumValues:    []string{"equals", "not equal", "greater than", "less than", "greater than or equal", "less than or equal", "pattern match"},
-					Documentation: "",
-				},
-				{
-					Name:          "interactive",
-					Type:          "bool",
-					IsRequired:    false,
-					IsRepeated:    false,
-					IsEnum:        false,
-					Documentation: "",
-				},
-				{
-					Name:          "interfaceHint",
-					Type:          "string",
-					IsRequired:    false,
-					IsRepeated:    false,
-					IsEnum:        true,
-					EnumValues:    []string{"choice", "textline", "text", "date", "datetime"},
-					Documentation: "",
-				},
-			},
+			Fields:        []FieldInfo{},
 		}, nil
 	case "ValueTypeType":
 		return &TypeMetadata{
@@ -40252,7 +40285,24 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 			Name:          "VersionElementType",
 			Documentation: "",
 			IsAbstract:    false,
-			Fields:        []FieldInfo{},
+			Fields: []FieldInfo{
+				{
+					Name:          "",
+					Type:          "",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "",
+					Type:          "",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
 		}, nil
 	case "VersionType":
 		return &TypeMetadata{
@@ -40687,9 +40737,9 @@ func (s *XMLDocumentState) GetConcreteTypes(abstractType string) ([]string, erro
 	switch abstractType {
 	case "AssetType":
 		return []string{
+			"PersonType",
 			"OrganizationType",
 			"DataType",
-			"PersonType",
 		}, nil
 	case "EntityComplexBaseType":
 		return []string{
@@ -40697,15 +40747,15 @@ func (s *XMLDocumentState) GetConcreteTypes(abstractType string) ([]string, erro
 		}, nil
 	case "EntitySimpleBaseType":
 		return []string{
-			"EntityObjectFloatType",
 			"EntityObjectIPAddressStringType",
-			"EntityObjectAnySimpleType",
-			"EntityObjectIntType",
-			"EntityObjectBinaryType",
-			"EntityObjectStringType",
-			"EntityObjectVersionType",
-			"EntityObjectBoolType",
 			"EntityObjectIPAddressType",
+			"EntityObjectFloatType",
+			"EntityObjectIntType",
+			"EntityObjectVersionType",
+			"EntityObjectAnySimpleType",
+			"EntityObjectBinaryType",
+			"EntityObjectBoolType",
+			"EntityObjectStringType",
 		}, nil
 	case "EntityStateComplexBaseType":
 		return []string{
@@ -40713,30 +40763,30 @@ func (s *XMLDocumentState) GetConcreteTypes(abstractType string) ([]string, erro
 		}, nil
 	case "EntityStateSimpleBaseType":
 		return []string{
-			"EntityStateEVRStringType",
-			"EntityStateFileSetRevisionType",
-			"EntityStateIPAddressType",
-			"EntityStateIntType",
-			"EntityStateDebianEVRStringType",
-			"EntityStateIOSVersionType",
-			"EntityStateStringType",
-			"EntityStateBinaryType",
-			"EntityStateIPAddressStringType",
-			"EntityStateAnySimpleType",
-			"EntityStateFloatType",
-			"EntityStateBoolType",
 			"EntityStateVersionType",
+			"EntityStateEVRStringType",
+			"EntityStateBoolType",
+			"EntityStateDebianEVRStringType",
+			"EntityStateBinaryType",
+			"EntityStateFloatType",
+			"EntityStateIntType",
+			"EntityStateIPAddressStringType",
+			"EntityStateIOSVersionType",
+			"EntityStateIPAddressType",
+			"EntityStateAnySimpleType",
+			"EntityStateStringType",
+			"EntityStateFileSetRevisionType",
 		}, nil
 	case "ItAssetType":
 		return []string{
-			"ComputingDeviceType",
-			"DatabaseType",
-			"SoftwareType",
-			"NetworkType",
-			"ServiceType",
-			"CircuitType",
 			"SystemType",
 			"WebsiteType",
+			"DatabaseType",
+			"CircuitType",
+			"SoftwareType",
+			"ComputingDeviceType",
+			"ServiceType",
+			"NetworkType",
 		}, nil
 	case "ItemType":
 		return []string{
@@ -40744,8 +40794,8 @@ func (s *XMLDocumentState) GetConcreteTypes(abstractType string) ([]string, erro
 		}, nil
 	case "SelectableItemType":
 		return []string{
-			"RuleType",
 			"GroupType",
+			"RuleType",
 		}, nil
 	default:
 		// Not an abstract type or no concrete implementations known

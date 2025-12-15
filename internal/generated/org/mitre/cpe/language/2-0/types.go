@@ -166,6 +166,43 @@ func replicateXmlnsPlacement(xmlOutput string, elementsWithXmlns map[string]stri
 	return result
 }
 
+// FactRefType represents the XSD type 'FactRefType'
+// XSD complex type (W3C XSD §3.4)
+type FactRefType struct {
+	// Name represents XSD attribute 'name'
+	// use="required"
+	Name NamePattern `xml:"name,attr"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// TextType represents the XSD type 'textType'
+// XSD complex type (W3C XSD §3.4)
+type TextTypeWithAttrs struct {
+	Value string `xml:",chardata"` // XSD simple content
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// TextType is an alias for TextTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
+type TextType = TextTypeWithAttrs
+
+// PlatformSpecificationElementType represents the XSD type 'PlatformSpecificationElementType'
+// XSD complex type (W3C XSD §3.4)
+type PlatformSpecificationElementType struct {
+	// Platform represents XSD element 'platform'
+	// minOccurs=1, maxOccurs=-1
+	Platform []*PlatformType `xml:"platform"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
 // OperatorEnumeration represents the XSD type 'OperatorEnumeration'
 // XSD simple type (W3C XSD §4.1)
 // enumeration="AND"
@@ -212,43 +249,6 @@ type LogicalTestType struct {
 	// Negate represents XSD attribute 'negate'
 	// use="required"
 	Negate bool `xml:"negate,attr"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// FactRefType represents the XSD type 'FactRefType'
-// XSD complex type (W3C XSD §3.4)
-type FactRefType struct {
-	// Name represents XSD attribute 'name'
-	// use="required"
-	Name NamePattern `xml:"name,attr"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// TextType represents the XSD type 'textType'
-// XSD complex type (W3C XSD §3.4)
-type TextTypeWithAttrs struct {
-	Value string `xml:",chardata"` // XSD simple content
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// TextType is an alias for TextTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
-type TextType = TextTypeWithAttrs
-
-// PlatformSpecificationElementType represents the XSD type 'PlatformSpecificationElementType'
-// XSD complex type (W3C XSD §3.4)
-type PlatformSpecificationElementType struct {
-	// Platform represents XSD element 'platform'
-	// minOccurs=1, maxOccurs=-1
-	Platform []*PlatformType `xml:"platform"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD

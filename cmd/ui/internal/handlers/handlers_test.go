@@ -26869,6 +26869,19 @@ func TestMetadataType_GetTypeMetadata(t *testing.T) {
 	}
 }
 
+// TestMetadataType_GetValidChildTypes tests getting valid child types for MetadataType.
+func TestMetadataType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/MetadataType/children", nil)
+	req.SetPathValue("name", "MetadataType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
 // TestMgmtDataElement_CRUD tests Create, Read, Update, Delete for MgmtDataElement.
 func TestMgmtDataElement_CRUD(t *testing.T) {
 	ts := setupTestSuite(t)
@@ -29317,19 +29330,6 @@ func TestObjectElement_GetTypeMetadata(t *testing.T) {
 	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
 		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
 	}
-}
-
-// TestObjectElement_GetValidChildTypes tests getting valid child types for ObjectElement.
-func TestObjectElement_GetValidChildTypes(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	req := httptest.NewRequest("GET", "/api/types/ObjectElement/children", nil)
-	req.SetPathValue("name", "ObjectElement")
-	rr := httptest.NewRecorder()
-
-	ts.handlers.HandleGetValidChildTypes(rr, req)
-
-	assertStatusCode(t, rr, http.StatusOK)
 }
 
 // TestObjectIDPattern_CRUD tests Create, Read, Update, Delete for ObjectIDPattern.
@@ -53808,19 +53808,6 @@ func TestValueType_GetTypeMetadata(t *testing.T) {
 	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
 		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
 	}
-}
-
-// TestValueType_GetValidChildTypes tests getting valid child types for ValueType.
-func TestValueType_GetValidChildTypes(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	req := httptest.NewRequest("GET", "/api/types/ValueType/children", nil)
-	req.SetPathValue("name", "ValueType")
-	rr := httptest.NewRecorder()
-
-	ts.handlers.HandleGetValidChildTypes(rr, req)
-
-	assertStatusCode(t, rr, http.StatusOK)
 }
 
 // TestValueTypeType_CRUD tests Create, Read, Update, Delete for ValueTypeType.

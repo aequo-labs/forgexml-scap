@@ -13,376 +13,6 @@ import (
 	pkg_2_0 "github.com/aequo-labs/forgexml-scap/internal/generated/oasis/names/tc/ciq/xsdschema/xal/2-0"
 )
 
-// ServiceElement represents the XSD element 'service'
-// XSD element declaration (W3C XSD §3.3)
-type ServiceElement struct {
-	XMLName     xml.Name `xml:"http://scap.nist.gov/schema/asset-identification/1.1 service"`
-	ServiceType          // Embedded complex type
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-	// nsDeclarations stores namespace prefix->URI mappings for perfect round-trip
-	nsDeclarations map[string]string `xml:"-"`
-	// nsDefaultNamespace stores the default namespace for perfect round-trip
-	nsDefaultNamespace string `xml:"-"`
-	// elementPrefixes stores element name->prefix mappings for perfect round-trip
-	elementPrefixes map[string]string `xml:"-"`
-	// elementsWithXmlns tracks which element names had xmlns in original (element_name -> namespace_uri)
-	// Used to replicate xmlns placement exactly during marshal for zero xmlns delta
-	elementsWithXmlns map[string]string `xml:"-"`
-}
-
-// UnmarshalXML implements custom unmarshaling with namespace preservation
-func (e *ServiceElement) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
-	// Create alias type to prevent recursion
-	type alias ServiceElement
-	aux := (*alias)(e)
-
-	// Extract namespace declarations from start element
-	e.nsDeclarations = make(map[string]string)
-	e.elementPrefixes = make(map[string]string)
-	var nonXmlnsAttrs []xml.Attr
-	for _, attr := range start.Attr {
-		if attr.Name.Space == "xmlns" {
-			// xmlns:prefix="uri"
-			e.nsDeclarations[attr.Name.Local] = attr.Value
-			// Build reverse map for element prefix restoration
-			e.elementPrefixes[attr.Value] = attr.Name.Local
-		} else if attr.Name.Local == "xmlns" && attr.Name.Space == "" {
-			// xmlns="uri"
-			e.nsDefaultNamespace = attr.Value
-		} else {
-			// Keep non-xmlns attributes for DecodeElement
-			nonXmlnsAttrs = append(nonXmlnsAttrs, attr)
-		}
-	}
-
-	// Remove xmlns from start.Attr to prevent duplication in UnknownAttrs
-	start.Attr = nonXmlnsAttrs
-
-	// Perform standard unmarshal
-	return d.DecodeElement(aux, &start)
-}
-
-// MarshalXML implements custom marshaling with namespace preservation
-func (e *ServiceElement) MarshalXML(encoder *xml.Encoder, start xml.StartElement) error {
-	// Use the struct's XMLName to ensure correct element name
-	start.Name = e.XMLName
-
-	// Restore namespace declarations
-	if len(e.nsDeclarations) > 0 {
-		// Add namespace declarations to start element
-		for prefix, uri := range e.nsDeclarations {
-			start.Attr = append(start.Attr, xml.Attr{
-				Name:  xml.Name{Space: "xmlns", Local: prefix},
-				Value: uri,
-			})
-		}
-	}
-	// Restore default namespace declaration if it was present in input
-	// This is necessary for perfect fidelity when elements have redundant xmlns
-	if e.nsDefaultNamespace != "" {
-		start.Attr = append(start.Attr, xml.Attr{
-			Name:  xml.Name{Local: "xmlns"},
-			Value: e.nsDefaultNamespace,
-		})
-	}
-
-	// Create alias type to prevent recursion
-	type alias ServiceElement
-	aux := (*alias)(e)
-
-	// Encode using standard marshaler
-	return encoder.EncodeElement(aux, start)
-}
-
-// MarshalIndentClean marshals with perfect namespace fidelity
-// This method: 1) Fixes Go's xmlns corruption, 2) Restores element prefixes
-// Preserves legitimate xmlns on nested elements with different default namespaces
-func (e *ServiceElement) MarshalIndentClean(prefix, indent string) ([]byte, error) {
-	data, err := xml.MarshalIndent(e, prefix, indent)
-	if err != nil {
-		return nil, err
-	}
-
-	// Fix Go's namespace corruption:
-	// Go's xml.Encoder corrupts xmlns declarations by:
-	// 1. Prefixing 'xmlns:' with an underscore: 'xmlns:rc' -> '_xmlns:rc'
-	// 2. Adding a bogus 'xmlns:_xmlns="xmlns"' attribute
-	output := string(data)
-
-	// Step 1: Fix Go's namespace corruption
-	// First, remove the bogus xmlns:_xmlns="xmlns" attribute
-	output = strings.ReplaceAll(output, ` xmlns:_xmlns="xmlns"`, "")
-
-	// Then fix all _xmlns: prefixes to xmlns:
-	output = strings.ReplaceAll(output, "_xmlns:", "xmlns:")
-
-	// Also remove any remaining xmlns:xmlns="xmlns" that may appear
-	output = strings.ReplaceAll(output, ` xmlns:xmlns="xmlns"`, "")
-
-	// Fix corrupted XMLSchema-instance namespace
-	// Go sometimes duplicates this as xmlns:_XMLSchema-instance and _XMLSchema-instance:schemaLocation
-	output = strings.ReplaceAll(output, ` xmlns:_XMLSchema-instance="http://www.w3.org/2001/XMLSchema-instance"`, "")
-	output = strings.ReplaceAll(output, "_XMLSchema-instance:", "xsi:")
-
-	// Step 2: Restore element namespace prefixes using the captured prefix map
-	if len(e.elementPrefixes) > 0 {
-		output = restoreElementPrefixes(output, e.elementPrefixes)
-	}
-
-	// Step 3: Replicate xmlns placement from original XML for zero xmlns delta
-	// This adds xmlns to elements that had it in original, removes xmlns from elements that didn't
-	if len(e.elementsWithXmlns) > 0 {
-		output = replicateXmlnsPlacement(output, e.elementsWithXmlns)
-	}
-
-	return []byte(output), nil
-}
-
-// ToBytes marshals the element to bytes with namespace preservation
-// This is the recommended method for serializing to XML with round-trip fidelity
-func (e *ServiceElement) ToBytes() ([]byte, error) {
-	return e.MarshalIndentClean("", "  ")
-}
-
-// SetElementPrefixes allows injecting element prefix mappings from raw XML
-// This is typically called after unmarshal with ExtractElementPrefixes(rawXML)
-func (e *ServiceElement) SetElementPrefixes(prefixes map[string]string) {
-	e.elementPrefixes = prefixes
-}
-
-// SetElementsWithXmlns allows injecting element->xmlns mappings from raw XML
-// This is typically called after unmarshal with ExtractElementsWithXmlns(rawXML)
-// for perfect xmlns fidelity (zero xmlns delta)
-func (e *ServiceElement) SetElementsWithXmlns(elementsWithXmlns map[string]string) {
-	e.elementsWithXmlns = elementsWithXmlns
-}
-
-// SaveToFile saves the element to a file with namespace preservation
-func (e *ServiceElement) SaveToFile(path string) error {
-	data, err := e.ToBytes()
-	if err != nil {
-		return err
-	}
-	return os.WriteFile(path, data, 0644)
-}
-
-// LoadServiceFromBytes loads an element from bytes with namespace preservation
-func LoadServiceFromBytes(data []byte) (*ServiceElement, error) {
-	// Extract element prefixes from raw XML before unmarshaling
-	elementPrefixes := ExtractElementPrefixes(data)
-	// Extract which elements had xmlns for exact xmlns replication
-	elementsWithXmlns := ExtractElementsWithXmlns(data)
-
-	var element ServiceElement
-	if err := xml.Unmarshal(data, &element); err != nil {
-		return nil, err
-	}
-
-	// Store extracted element name -> prefix mappings for restoration during marshal
-	element.elementPrefixes = elementPrefixes
-	// Store element -> xmlns mappings for zero xmlns delta
-	element.elementsWithXmlns = elementsWithXmlns
-
-	return &element, nil
-}
-
-// LoadServiceFromFile loads an element from a file with namespace preservation
-func LoadServiceFromFile(path string) (*ServiceElement, error) {
-	data, err := os.ReadFile(path)
-	if err != nil {
-		return nil, err
-	}
-	return LoadServiceFromBytes(data)
-}
-
-// CpeElement represents the XSD element 'cpe'
-// XSD element declaration (W3C XSD §3.3)
-type CpeElement struct {
-	XMLName xml.Name `xml:"http://scap.nist.gov/schema/asset-identification/1.1 cpe"`
-	CpeType          // XSD extension base
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-	// nsDeclarations stores namespace prefix->URI mappings for perfect round-trip
-	nsDeclarations map[string]string `xml:"-"`
-	// nsDefaultNamespace stores the default namespace for perfect round-trip
-	nsDefaultNamespace string `xml:"-"`
-	// elementPrefixes stores element name->prefix mappings for perfect round-trip
-	elementPrefixes map[string]string `xml:"-"`
-	// elementsWithXmlns tracks which element names had xmlns in original (element_name -> namespace_uri)
-	// Used to replicate xmlns placement exactly during marshal for zero xmlns delta
-	elementsWithXmlns map[string]string `xml:"-"`
-}
-
-// UnmarshalXML implements custom unmarshaling with namespace preservation
-func (e *CpeElement) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
-	// Create alias type to prevent recursion
-	type alias CpeElement
-	aux := (*alias)(e)
-
-	// Extract namespace declarations from start element
-	e.nsDeclarations = make(map[string]string)
-	e.elementPrefixes = make(map[string]string)
-	var nonXmlnsAttrs []xml.Attr
-	for _, attr := range start.Attr {
-		if attr.Name.Space == "xmlns" {
-			// xmlns:prefix="uri"
-			e.nsDeclarations[attr.Name.Local] = attr.Value
-			// Build reverse map for element prefix restoration
-			e.elementPrefixes[attr.Value] = attr.Name.Local
-		} else if attr.Name.Local == "xmlns" && attr.Name.Space == "" {
-			// xmlns="uri"
-			e.nsDefaultNamespace = attr.Value
-		} else {
-			// Keep non-xmlns attributes for DecodeElement
-			nonXmlnsAttrs = append(nonXmlnsAttrs, attr)
-		}
-	}
-
-	// Remove xmlns from start.Attr to prevent duplication in UnknownAttrs
-	start.Attr = nonXmlnsAttrs
-
-	// Perform standard unmarshal
-	return d.DecodeElement(aux, &start)
-}
-
-// MarshalXML implements custom marshaling with namespace preservation
-func (e *CpeElement) MarshalXML(encoder *xml.Encoder, start xml.StartElement) error {
-	// Use the struct's XMLName to ensure correct element name
-	start.Name = e.XMLName
-
-	// Restore namespace declarations
-	if len(e.nsDeclarations) > 0 {
-		// Add namespace declarations to start element
-		for prefix, uri := range e.nsDeclarations {
-			start.Attr = append(start.Attr, xml.Attr{
-				Name:  xml.Name{Space: "xmlns", Local: prefix},
-				Value: uri,
-			})
-		}
-	}
-	// Restore default namespace declaration if it was present in input
-	// This is necessary for perfect fidelity when elements have redundant xmlns
-	if e.nsDefaultNamespace != "" {
-		start.Attr = append(start.Attr, xml.Attr{
-			Name:  xml.Name{Local: "xmlns"},
-			Value: e.nsDefaultNamespace,
-		})
-	}
-
-	// Create alias type to prevent recursion
-	type alias CpeElement
-	aux := (*alias)(e)
-
-	// Encode using standard marshaler
-	return encoder.EncodeElement(aux, start)
-}
-
-// MarshalIndentClean marshals with perfect namespace fidelity
-// This method: 1) Fixes Go's xmlns corruption, 2) Restores element prefixes
-// Preserves legitimate xmlns on nested elements with different default namespaces
-func (e *CpeElement) MarshalIndentClean(prefix, indent string) ([]byte, error) {
-	data, err := xml.MarshalIndent(e, prefix, indent)
-	if err != nil {
-		return nil, err
-	}
-
-	// Fix Go's namespace corruption:
-	// Go's xml.Encoder corrupts xmlns declarations by:
-	// 1. Prefixing 'xmlns:' with an underscore: 'xmlns:rc' -> '_xmlns:rc'
-	// 2. Adding a bogus 'xmlns:_xmlns="xmlns"' attribute
-	output := string(data)
-
-	// Step 1: Fix Go's namespace corruption
-	// First, remove the bogus xmlns:_xmlns="xmlns" attribute
-	output = strings.ReplaceAll(output, ` xmlns:_xmlns="xmlns"`, "")
-
-	// Then fix all _xmlns: prefixes to xmlns:
-	output = strings.ReplaceAll(output, "_xmlns:", "xmlns:")
-
-	// Also remove any remaining xmlns:xmlns="xmlns" that may appear
-	output = strings.ReplaceAll(output, ` xmlns:xmlns="xmlns"`, "")
-
-	// Fix corrupted XMLSchema-instance namespace
-	// Go sometimes duplicates this as xmlns:_XMLSchema-instance and _XMLSchema-instance:schemaLocation
-	output = strings.ReplaceAll(output, ` xmlns:_XMLSchema-instance="http://www.w3.org/2001/XMLSchema-instance"`, "")
-	output = strings.ReplaceAll(output, "_XMLSchema-instance:", "xsi:")
-
-	// Step 2: Restore element namespace prefixes using the captured prefix map
-	if len(e.elementPrefixes) > 0 {
-		output = restoreElementPrefixes(output, e.elementPrefixes)
-	}
-
-	// Step 3: Replicate xmlns placement from original XML for zero xmlns delta
-	// This adds xmlns to elements that had it in original, removes xmlns from elements that didn't
-	if len(e.elementsWithXmlns) > 0 {
-		output = replicateXmlnsPlacement(output, e.elementsWithXmlns)
-	}
-
-	return []byte(output), nil
-}
-
-// ToBytes marshals the element to bytes with namespace preservation
-// This is the recommended method for serializing to XML with round-trip fidelity
-func (e *CpeElement) ToBytes() ([]byte, error) {
-	return e.MarshalIndentClean("", "  ")
-}
-
-// SetElementPrefixes allows injecting element prefix mappings from raw XML
-// This is typically called after unmarshal with ExtractElementPrefixes(rawXML)
-func (e *CpeElement) SetElementPrefixes(prefixes map[string]string) {
-	e.elementPrefixes = prefixes
-}
-
-// SetElementsWithXmlns allows injecting element->xmlns mappings from raw XML
-// This is typically called after unmarshal with ExtractElementsWithXmlns(rawXML)
-// for perfect xmlns fidelity (zero xmlns delta)
-func (e *CpeElement) SetElementsWithXmlns(elementsWithXmlns map[string]string) {
-	e.elementsWithXmlns = elementsWithXmlns
-}
-
-// SaveToFile saves the element to a file with namespace preservation
-func (e *CpeElement) SaveToFile(path string) error {
-	data, err := e.ToBytes()
-	if err != nil {
-		return err
-	}
-	return os.WriteFile(path, data, 0644)
-}
-
-// LoadCpeFromBytes loads an element from bytes with namespace preservation
-func LoadCpeFromBytes(data []byte) (*CpeElement, error) {
-	// Extract element prefixes from raw XML before unmarshaling
-	elementPrefixes := ExtractElementPrefixes(data)
-	// Extract which elements had xmlns for exact xmlns replication
-	elementsWithXmlns := ExtractElementsWithXmlns(data)
-
-	var element CpeElement
-	if err := xml.Unmarshal(data, &element); err != nil {
-		return nil, err
-	}
-
-	// Store extracted element name -> prefix mappings for restoration during marshal
-	element.elementPrefixes = elementPrefixes
-	// Store element -> xmlns mappings for zero xmlns delta
-	element.elementsWithXmlns = elementsWithXmlns
-
-	return &element, nil
-}
-
-// LoadCpeFromFile loads an element from a file with namespace preservation
-func LoadCpeFromFile(path string) (*CpeElement, error) {
-	data, err := os.ReadFile(path)
-	if err != nil {
-		return nil, err
-	}
-	return LoadCpeFromBytes(data)
-}
-
 // SyntheticIdElement represents the XSD element 'synthetic-id'
 // XSD element declaration (W3C XSD §3.3)
 type SyntheticIdElement struct {
@@ -571,6 +201,562 @@ func LoadSyntheticIdFromFile(path string) (*SyntheticIdElement, error) {
 		return nil, err
 	}
 	return LoadSyntheticIdFromBytes(data)
+}
+
+// AssetElement represents the XSD element 'asset'
+// XSD element declaration (W3C XSD §3.3)
+// abstract="true"
+type AssetElement struct {
+	XMLName   xml.Name `xml:"http://scap.nist.gov/schema/asset-identification/1.1 asset"`
+	AssetType          // Embedded complex type
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+	// nsDeclarations stores namespace prefix->URI mappings for perfect round-trip
+	nsDeclarations map[string]string `xml:"-"`
+	// nsDefaultNamespace stores the default namespace for perfect round-trip
+	nsDefaultNamespace string `xml:"-"`
+	// elementPrefixes stores element name->prefix mappings for perfect round-trip
+	elementPrefixes map[string]string `xml:"-"`
+	// elementsWithXmlns tracks which element names had xmlns in original (element_name -> namespace_uri)
+	// Used to replicate xmlns placement exactly during marshal for zero xmlns delta
+	elementsWithXmlns map[string]string `xml:"-"`
+}
+
+// UnmarshalXML implements custom unmarshaling with namespace preservation
+func (e *AssetElement) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
+	// Create alias type to prevent recursion
+	type alias AssetElement
+	aux := (*alias)(e)
+
+	// Extract namespace declarations from start element
+	e.nsDeclarations = make(map[string]string)
+	e.elementPrefixes = make(map[string]string)
+	var nonXmlnsAttrs []xml.Attr
+	for _, attr := range start.Attr {
+		if attr.Name.Space == "xmlns" {
+			// xmlns:prefix="uri"
+			e.nsDeclarations[attr.Name.Local] = attr.Value
+			// Build reverse map for element prefix restoration
+			e.elementPrefixes[attr.Value] = attr.Name.Local
+		} else if attr.Name.Local == "xmlns" && attr.Name.Space == "" {
+			// xmlns="uri"
+			e.nsDefaultNamespace = attr.Value
+		} else {
+			// Keep non-xmlns attributes for DecodeElement
+			nonXmlnsAttrs = append(nonXmlnsAttrs, attr)
+		}
+	}
+
+	// Remove xmlns from start.Attr to prevent duplication in UnknownAttrs
+	start.Attr = nonXmlnsAttrs
+
+	// Perform standard unmarshal
+	return d.DecodeElement(aux, &start)
+}
+
+// MarshalXML implements custom marshaling with namespace preservation
+func (e *AssetElement) MarshalXML(encoder *xml.Encoder, start xml.StartElement) error {
+	// Use the struct's XMLName to ensure correct element name
+	start.Name = e.XMLName
+
+	// Restore namespace declarations
+	if len(e.nsDeclarations) > 0 {
+		// Add namespace declarations to start element
+		for prefix, uri := range e.nsDeclarations {
+			start.Attr = append(start.Attr, xml.Attr{
+				Name:  xml.Name{Space: "xmlns", Local: prefix},
+				Value: uri,
+			})
+		}
+	}
+	// Restore default namespace declaration if it was present in input
+	// This is necessary for perfect fidelity when elements have redundant xmlns
+	if e.nsDefaultNamespace != "" {
+		start.Attr = append(start.Attr, xml.Attr{
+			Name:  xml.Name{Local: "xmlns"},
+			Value: e.nsDefaultNamespace,
+		})
+	}
+
+	// Create alias type to prevent recursion
+	type alias AssetElement
+	aux := (*alias)(e)
+
+	// Encode using standard marshaler
+	return encoder.EncodeElement(aux, start)
+}
+
+// MarshalIndentClean marshals with perfect namespace fidelity
+// This method: 1) Fixes Go's xmlns corruption, 2) Restores element prefixes
+// Preserves legitimate xmlns on nested elements with different default namespaces
+func (e *AssetElement) MarshalIndentClean(prefix, indent string) ([]byte, error) {
+	data, err := xml.MarshalIndent(e, prefix, indent)
+	if err != nil {
+		return nil, err
+	}
+
+	// Fix Go's namespace corruption:
+	// Go's xml.Encoder corrupts xmlns declarations by:
+	// 1. Prefixing 'xmlns:' with an underscore: 'xmlns:rc' -> '_xmlns:rc'
+	// 2. Adding a bogus 'xmlns:_xmlns="xmlns"' attribute
+	output := string(data)
+
+	// Step 1: Fix Go's namespace corruption
+	// First, remove the bogus xmlns:_xmlns="xmlns" attribute
+	output = strings.ReplaceAll(output, ` xmlns:_xmlns="xmlns"`, "")
+
+	// Then fix all _xmlns: prefixes to xmlns:
+	output = strings.ReplaceAll(output, "_xmlns:", "xmlns:")
+
+	// Also remove any remaining xmlns:xmlns="xmlns" that may appear
+	output = strings.ReplaceAll(output, ` xmlns:xmlns="xmlns"`, "")
+
+	// Fix corrupted XMLSchema-instance namespace
+	// Go sometimes duplicates this as xmlns:_XMLSchema-instance and _XMLSchema-instance:schemaLocation
+	output = strings.ReplaceAll(output, ` xmlns:_XMLSchema-instance="http://www.w3.org/2001/XMLSchema-instance"`, "")
+	output = strings.ReplaceAll(output, "_XMLSchema-instance:", "xsi:")
+
+	// Step 2: Restore element namespace prefixes using the captured prefix map
+	if len(e.elementPrefixes) > 0 {
+		output = restoreElementPrefixes(output, e.elementPrefixes)
+	}
+
+	// Step 3: Replicate xmlns placement from original XML for zero xmlns delta
+	// This adds xmlns to elements that had it in original, removes xmlns from elements that didn't
+	if len(e.elementsWithXmlns) > 0 {
+		output = replicateXmlnsPlacement(output, e.elementsWithXmlns)
+	}
+
+	return []byte(output), nil
+}
+
+// ToBytes marshals the element to bytes with namespace preservation
+// This is the recommended method for serializing to XML with round-trip fidelity
+func (e *AssetElement) ToBytes() ([]byte, error) {
+	return e.MarshalIndentClean("", "  ")
+}
+
+// SetElementPrefixes allows injecting element prefix mappings from raw XML
+// This is typically called after unmarshal with ExtractElementPrefixes(rawXML)
+func (e *AssetElement) SetElementPrefixes(prefixes map[string]string) {
+	e.elementPrefixes = prefixes
+}
+
+// SetElementsWithXmlns allows injecting element->xmlns mappings from raw XML
+// This is typically called after unmarshal with ExtractElementsWithXmlns(rawXML)
+// for perfect xmlns fidelity (zero xmlns delta)
+func (e *AssetElement) SetElementsWithXmlns(elementsWithXmlns map[string]string) {
+	e.elementsWithXmlns = elementsWithXmlns
+}
+
+// SaveToFile saves the element to a file with namespace preservation
+func (e *AssetElement) SaveToFile(path string) error {
+	data, err := e.ToBytes()
+	if err != nil {
+		return err
+	}
+	return os.WriteFile(path, data, 0644)
+}
+
+// LoadAssetFromBytes loads an element from bytes with namespace preservation
+func LoadAssetFromBytes(data []byte) (*AssetElement, error) {
+	// Extract element prefixes from raw XML before unmarshaling
+	elementPrefixes := ExtractElementPrefixes(data)
+	// Extract which elements had xmlns for exact xmlns replication
+	elementsWithXmlns := ExtractElementsWithXmlns(data)
+
+	var element AssetElement
+	if err := xml.Unmarshal(data, &element); err != nil {
+		return nil, err
+	}
+
+	// Store extracted element name -> prefix mappings for restoration during marshal
+	element.elementPrefixes = elementPrefixes
+	// Store element -> xmlns mappings for zero xmlns delta
+	element.elementsWithXmlns = elementsWithXmlns
+
+	return &element, nil
+}
+
+// LoadAssetFromFile loads an element from a file with namespace preservation
+func LoadAssetFromFile(path string) (*AssetElement, error) {
+	data, err := os.ReadFile(path)
+	if err != nil {
+		return nil, err
+	}
+	return LoadAssetFromBytes(data)
+}
+
+// ComputingDeviceElement represents the XSD element 'computing-device'
+// XSD element declaration (W3C XSD §3.3)
+type ComputingDeviceElement struct {
+	XMLName             xml.Name `xml:"http://scap.nist.gov/schema/asset-identification/1.1 computing-device"`
+	ComputingDeviceType          // Embedded complex type
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+	// nsDeclarations stores namespace prefix->URI mappings for perfect round-trip
+	nsDeclarations map[string]string `xml:"-"`
+	// nsDefaultNamespace stores the default namespace for perfect round-trip
+	nsDefaultNamespace string `xml:"-"`
+	// elementPrefixes stores element name->prefix mappings for perfect round-trip
+	elementPrefixes map[string]string `xml:"-"`
+	// elementsWithXmlns tracks which element names had xmlns in original (element_name -> namespace_uri)
+	// Used to replicate xmlns placement exactly during marshal for zero xmlns delta
+	elementsWithXmlns map[string]string `xml:"-"`
+}
+
+// UnmarshalXML implements custom unmarshaling with namespace preservation
+func (e *ComputingDeviceElement) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
+	// Create alias type to prevent recursion
+	type alias ComputingDeviceElement
+	aux := (*alias)(e)
+
+	// Extract namespace declarations from start element
+	e.nsDeclarations = make(map[string]string)
+	e.elementPrefixes = make(map[string]string)
+	var nonXmlnsAttrs []xml.Attr
+	for _, attr := range start.Attr {
+		if attr.Name.Space == "xmlns" {
+			// xmlns:prefix="uri"
+			e.nsDeclarations[attr.Name.Local] = attr.Value
+			// Build reverse map for element prefix restoration
+			e.elementPrefixes[attr.Value] = attr.Name.Local
+		} else if attr.Name.Local == "xmlns" && attr.Name.Space == "" {
+			// xmlns="uri"
+			e.nsDefaultNamespace = attr.Value
+		} else {
+			// Keep non-xmlns attributes for DecodeElement
+			nonXmlnsAttrs = append(nonXmlnsAttrs, attr)
+		}
+	}
+
+	// Remove xmlns from start.Attr to prevent duplication in UnknownAttrs
+	start.Attr = nonXmlnsAttrs
+
+	// Perform standard unmarshal
+	return d.DecodeElement(aux, &start)
+}
+
+// MarshalXML implements custom marshaling with namespace preservation
+func (e *ComputingDeviceElement) MarshalXML(encoder *xml.Encoder, start xml.StartElement) error {
+	// Use the struct's XMLName to ensure correct element name
+	start.Name = e.XMLName
+
+	// Restore namespace declarations
+	if len(e.nsDeclarations) > 0 {
+		// Add namespace declarations to start element
+		for prefix, uri := range e.nsDeclarations {
+			start.Attr = append(start.Attr, xml.Attr{
+				Name:  xml.Name{Space: "xmlns", Local: prefix},
+				Value: uri,
+			})
+		}
+	}
+	// Restore default namespace declaration if it was present in input
+	// This is necessary for perfect fidelity when elements have redundant xmlns
+	if e.nsDefaultNamespace != "" {
+		start.Attr = append(start.Attr, xml.Attr{
+			Name:  xml.Name{Local: "xmlns"},
+			Value: e.nsDefaultNamespace,
+		})
+	}
+
+	// Create alias type to prevent recursion
+	type alias ComputingDeviceElement
+	aux := (*alias)(e)
+
+	// Encode using standard marshaler
+	return encoder.EncodeElement(aux, start)
+}
+
+// MarshalIndentClean marshals with perfect namespace fidelity
+// This method: 1) Fixes Go's xmlns corruption, 2) Restores element prefixes
+// Preserves legitimate xmlns on nested elements with different default namespaces
+func (e *ComputingDeviceElement) MarshalIndentClean(prefix, indent string) ([]byte, error) {
+	data, err := xml.MarshalIndent(e, prefix, indent)
+	if err != nil {
+		return nil, err
+	}
+
+	// Fix Go's namespace corruption:
+	// Go's xml.Encoder corrupts xmlns declarations by:
+	// 1. Prefixing 'xmlns:' with an underscore: 'xmlns:rc' -> '_xmlns:rc'
+	// 2. Adding a bogus 'xmlns:_xmlns="xmlns"' attribute
+	output := string(data)
+
+	// Step 1: Fix Go's namespace corruption
+	// First, remove the bogus xmlns:_xmlns="xmlns" attribute
+	output = strings.ReplaceAll(output, ` xmlns:_xmlns="xmlns"`, "")
+
+	// Then fix all _xmlns: prefixes to xmlns:
+	output = strings.ReplaceAll(output, "_xmlns:", "xmlns:")
+
+	// Also remove any remaining xmlns:xmlns="xmlns" that may appear
+	output = strings.ReplaceAll(output, ` xmlns:xmlns="xmlns"`, "")
+
+	// Fix corrupted XMLSchema-instance namespace
+	// Go sometimes duplicates this as xmlns:_XMLSchema-instance and _XMLSchema-instance:schemaLocation
+	output = strings.ReplaceAll(output, ` xmlns:_XMLSchema-instance="http://www.w3.org/2001/XMLSchema-instance"`, "")
+	output = strings.ReplaceAll(output, "_XMLSchema-instance:", "xsi:")
+
+	// Step 2: Restore element namespace prefixes using the captured prefix map
+	if len(e.elementPrefixes) > 0 {
+		output = restoreElementPrefixes(output, e.elementPrefixes)
+	}
+
+	// Step 3: Replicate xmlns placement from original XML for zero xmlns delta
+	// This adds xmlns to elements that had it in original, removes xmlns from elements that didn't
+	if len(e.elementsWithXmlns) > 0 {
+		output = replicateXmlnsPlacement(output, e.elementsWithXmlns)
+	}
+
+	return []byte(output), nil
+}
+
+// ToBytes marshals the element to bytes with namespace preservation
+// This is the recommended method for serializing to XML with round-trip fidelity
+func (e *ComputingDeviceElement) ToBytes() ([]byte, error) {
+	return e.MarshalIndentClean("", "  ")
+}
+
+// SetElementPrefixes allows injecting element prefix mappings from raw XML
+// This is typically called after unmarshal with ExtractElementPrefixes(rawXML)
+func (e *ComputingDeviceElement) SetElementPrefixes(prefixes map[string]string) {
+	e.elementPrefixes = prefixes
+}
+
+// SetElementsWithXmlns allows injecting element->xmlns mappings from raw XML
+// This is typically called after unmarshal with ExtractElementsWithXmlns(rawXML)
+// for perfect xmlns fidelity (zero xmlns delta)
+func (e *ComputingDeviceElement) SetElementsWithXmlns(elementsWithXmlns map[string]string) {
+	e.elementsWithXmlns = elementsWithXmlns
+}
+
+// SaveToFile saves the element to a file with namespace preservation
+func (e *ComputingDeviceElement) SaveToFile(path string) error {
+	data, err := e.ToBytes()
+	if err != nil {
+		return err
+	}
+	return os.WriteFile(path, data, 0644)
+}
+
+// LoadComputingDeviceFromBytes loads an element from bytes with namespace preservation
+func LoadComputingDeviceFromBytes(data []byte) (*ComputingDeviceElement, error) {
+	// Extract element prefixes from raw XML before unmarshaling
+	elementPrefixes := ExtractElementPrefixes(data)
+	// Extract which elements had xmlns for exact xmlns replication
+	elementsWithXmlns := ExtractElementsWithXmlns(data)
+
+	var element ComputingDeviceElement
+	if err := xml.Unmarshal(data, &element); err != nil {
+		return nil, err
+	}
+
+	// Store extracted element name -> prefix mappings for restoration during marshal
+	element.elementPrefixes = elementPrefixes
+	// Store element -> xmlns mappings for zero xmlns delta
+	element.elementsWithXmlns = elementsWithXmlns
+
+	return &element, nil
+}
+
+// LoadComputingDeviceFromFile loads an element from a file with namespace preservation
+func LoadComputingDeviceFromFile(path string) (*ComputingDeviceElement, error) {
+	data, err := os.ReadFile(path)
+	if err != nil {
+		return nil, err
+	}
+	return LoadComputingDeviceFromBytes(data)
+}
+
+// DatabaseElement represents the XSD element 'database'
+// XSD element declaration (W3C XSD §3.3)
+type DatabaseElement struct {
+	XMLName      xml.Name `xml:"http://scap.nist.gov/schema/asset-identification/1.1 database"`
+	DatabaseType          // Embedded complex type
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+	// nsDeclarations stores namespace prefix->URI mappings for perfect round-trip
+	nsDeclarations map[string]string `xml:"-"`
+	// nsDefaultNamespace stores the default namespace for perfect round-trip
+	nsDefaultNamespace string `xml:"-"`
+	// elementPrefixes stores element name->prefix mappings for perfect round-trip
+	elementPrefixes map[string]string `xml:"-"`
+	// elementsWithXmlns tracks which element names had xmlns in original (element_name -> namespace_uri)
+	// Used to replicate xmlns placement exactly during marshal for zero xmlns delta
+	elementsWithXmlns map[string]string `xml:"-"`
+}
+
+// UnmarshalXML implements custom unmarshaling with namespace preservation
+func (e *DatabaseElement) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
+	// Create alias type to prevent recursion
+	type alias DatabaseElement
+	aux := (*alias)(e)
+
+	// Extract namespace declarations from start element
+	e.nsDeclarations = make(map[string]string)
+	e.elementPrefixes = make(map[string]string)
+	var nonXmlnsAttrs []xml.Attr
+	for _, attr := range start.Attr {
+		if attr.Name.Space == "xmlns" {
+			// xmlns:prefix="uri"
+			e.nsDeclarations[attr.Name.Local] = attr.Value
+			// Build reverse map for element prefix restoration
+			e.elementPrefixes[attr.Value] = attr.Name.Local
+		} else if attr.Name.Local == "xmlns" && attr.Name.Space == "" {
+			// xmlns="uri"
+			e.nsDefaultNamespace = attr.Value
+		} else {
+			// Keep non-xmlns attributes for DecodeElement
+			nonXmlnsAttrs = append(nonXmlnsAttrs, attr)
+		}
+	}
+
+	// Remove xmlns from start.Attr to prevent duplication in UnknownAttrs
+	start.Attr = nonXmlnsAttrs
+
+	// Perform standard unmarshal
+	return d.DecodeElement(aux, &start)
+}
+
+// MarshalXML implements custom marshaling with namespace preservation
+func (e *DatabaseElement) MarshalXML(encoder *xml.Encoder, start xml.StartElement) error {
+	// Use the struct's XMLName to ensure correct element name
+	start.Name = e.XMLName
+
+	// Restore namespace declarations
+	if len(e.nsDeclarations) > 0 {
+		// Add namespace declarations to start element
+		for prefix, uri := range e.nsDeclarations {
+			start.Attr = append(start.Attr, xml.Attr{
+				Name:  xml.Name{Space: "xmlns", Local: prefix},
+				Value: uri,
+			})
+		}
+	}
+	// Restore default namespace declaration if it was present in input
+	// This is necessary for perfect fidelity when elements have redundant xmlns
+	if e.nsDefaultNamespace != "" {
+		start.Attr = append(start.Attr, xml.Attr{
+			Name:  xml.Name{Local: "xmlns"},
+			Value: e.nsDefaultNamespace,
+		})
+	}
+
+	// Create alias type to prevent recursion
+	type alias DatabaseElement
+	aux := (*alias)(e)
+
+	// Encode using standard marshaler
+	return encoder.EncodeElement(aux, start)
+}
+
+// MarshalIndentClean marshals with perfect namespace fidelity
+// This method: 1) Fixes Go's xmlns corruption, 2) Restores element prefixes
+// Preserves legitimate xmlns on nested elements with different default namespaces
+func (e *DatabaseElement) MarshalIndentClean(prefix, indent string) ([]byte, error) {
+	data, err := xml.MarshalIndent(e, prefix, indent)
+	if err != nil {
+		return nil, err
+	}
+
+	// Fix Go's namespace corruption:
+	// Go's xml.Encoder corrupts xmlns declarations by:
+	// 1. Prefixing 'xmlns:' with an underscore: 'xmlns:rc' -> '_xmlns:rc'
+	// 2. Adding a bogus 'xmlns:_xmlns="xmlns"' attribute
+	output := string(data)
+
+	// Step 1: Fix Go's namespace corruption
+	// First, remove the bogus xmlns:_xmlns="xmlns" attribute
+	output = strings.ReplaceAll(output, ` xmlns:_xmlns="xmlns"`, "")
+
+	// Then fix all _xmlns: prefixes to xmlns:
+	output = strings.ReplaceAll(output, "_xmlns:", "xmlns:")
+
+	// Also remove any remaining xmlns:xmlns="xmlns" that may appear
+	output = strings.ReplaceAll(output, ` xmlns:xmlns="xmlns"`, "")
+
+	// Fix corrupted XMLSchema-instance namespace
+	// Go sometimes duplicates this as xmlns:_XMLSchema-instance and _XMLSchema-instance:schemaLocation
+	output = strings.ReplaceAll(output, ` xmlns:_XMLSchema-instance="http://www.w3.org/2001/XMLSchema-instance"`, "")
+	output = strings.ReplaceAll(output, "_XMLSchema-instance:", "xsi:")
+
+	// Step 2: Restore element namespace prefixes using the captured prefix map
+	if len(e.elementPrefixes) > 0 {
+		output = restoreElementPrefixes(output, e.elementPrefixes)
+	}
+
+	// Step 3: Replicate xmlns placement from original XML for zero xmlns delta
+	// This adds xmlns to elements that had it in original, removes xmlns from elements that didn't
+	if len(e.elementsWithXmlns) > 0 {
+		output = replicateXmlnsPlacement(output, e.elementsWithXmlns)
+	}
+
+	return []byte(output), nil
+}
+
+// ToBytes marshals the element to bytes with namespace preservation
+// This is the recommended method for serializing to XML with round-trip fidelity
+func (e *DatabaseElement) ToBytes() ([]byte, error) {
+	return e.MarshalIndentClean("", "  ")
+}
+
+// SetElementPrefixes allows injecting element prefix mappings from raw XML
+// This is typically called after unmarshal with ExtractElementPrefixes(rawXML)
+func (e *DatabaseElement) SetElementPrefixes(prefixes map[string]string) {
+	e.elementPrefixes = prefixes
+}
+
+// SetElementsWithXmlns allows injecting element->xmlns mappings from raw XML
+// This is typically called after unmarshal with ExtractElementsWithXmlns(rawXML)
+// for perfect xmlns fidelity (zero xmlns delta)
+func (e *DatabaseElement) SetElementsWithXmlns(elementsWithXmlns map[string]string) {
+	e.elementsWithXmlns = elementsWithXmlns
+}
+
+// SaveToFile saves the element to a file with namespace preservation
+func (e *DatabaseElement) SaveToFile(path string) error {
+	data, err := e.ToBytes()
+	if err != nil {
+		return err
+	}
+	return os.WriteFile(path, data, 0644)
+}
+
+// LoadDatabaseFromBytes loads an element from bytes with namespace preservation
+func LoadDatabaseFromBytes(data []byte) (*DatabaseElement, error) {
+	// Extract element prefixes from raw XML before unmarshaling
+	elementPrefixes := ExtractElementPrefixes(data)
+	// Extract which elements had xmlns for exact xmlns replication
+	elementsWithXmlns := ExtractElementsWithXmlns(data)
+
+	var element DatabaseElement
+	if err := xml.Unmarshal(data, &element); err != nil {
+		return nil, err
+	}
+
+	// Store extracted element name -> prefix mappings for restoration during marshal
+	element.elementPrefixes = elementPrefixes
+	// Store element -> xmlns mappings for zero xmlns delta
+	element.elementsWithXmlns = elementsWithXmlns
+
+	return &element, nil
+}
+
+// LoadDatabaseFromFile loads an element from a file with namespace preservation
+func LoadDatabaseFromFile(path string) (*DatabaseElement, error) {
+	data, err := os.ReadFile(path)
+	if err != nil {
+		return nil, err
+	}
+	return LoadDatabaseFromBytes(data)
 }
 
 // LocationPointElement represents the XSD element 'location-point'
@@ -954,6 +1140,376 @@ func LoadLocationRegionFromFile(path string) (*LocationRegionElement, error) {
 	return LoadLocationRegionFromBytes(data)
 }
 
+// ServedByElement represents the XSD element 'served-by'
+// XSD element declaration (W3C XSD §3.3)
+type ServedByElement struct {
+	XMLName     xml.Name `xml:"http://scap.nist.gov/schema/asset-identification/1.1 served-by"`
+	ServiceType          // Embedded complex type
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+	// nsDeclarations stores namespace prefix->URI mappings for perfect round-trip
+	nsDeclarations map[string]string `xml:"-"`
+	// nsDefaultNamespace stores the default namespace for perfect round-trip
+	nsDefaultNamespace string `xml:"-"`
+	// elementPrefixes stores element name->prefix mappings for perfect round-trip
+	elementPrefixes map[string]string `xml:"-"`
+	// elementsWithXmlns tracks which element names had xmlns in original (element_name -> namespace_uri)
+	// Used to replicate xmlns placement exactly during marshal for zero xmlns delta
+	elementsWithXmlns map[string]string `xml:"-"`
+}
+
+// UnmarshalXML implements custom unmarshaling with namespace preservation
+func (e *ServedByElement) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
+	// Create alias type to prevent recursion
+	type alias ServedByElement
+	aux := (*alias)(e)
+
+	// Extract namespace declarations from start element
+	e.nsDeclarations = make(map[string]string)
+	e.elementPrefixes = make(map[string]string)
+	var nonXmlnsAttrs []xml.Attr
+	for _, attr := range start.Attr {
+		if attr.Name.Space == "xmlns" {
+			// xmlns:prefix="uri"
+			e.nsDeclarations[attr.Name.Local] = attr.Value
+			// Build reverse map for element prefix restoration
+			e.elementPrefixes[attr.Value] = attr.Name.Local
+		} else if attr.Name.Local == "xmlns" && attr.Name.Space == "" {
+			// xmlns="uri"
+			e.nsDefaultNamespace = attr.Value
+		} else {
+			// Keep non-xmlns attributes for DecodeElement
+			nonXmlnsAttrs = append(nonXmlnsAttrs, attr)
+		}
+	}
+
+	// Remove xmlns from start.Attr to prevent duplication in UnknownAttrs
+	start.Attr = nonXmlnsAttrs
+
+	// Perform standard unmarshal
+	return d.DecodeElement(aux, &start)
+}
+
+// MarshalXML implements custom marshaling with namespace preservation
+func (e *ServedByElement) MarshalXML(encoder *xml.Encoder, start xml.StartElement) error {
+	// Use the struct's XMLName to ensure correct element name
+	start.Name = e.XMLName
+
+	// Restore namespace declarations
+	if len(e.nsDeclarations) > 0 {
+		// Add namespace declarations to start element
+		for prefix, uri := range e.nsDeclarations {
+			start.Attr = append(start.Attr, xml.Attr{
+				Name:  xml.Name{Space: "xmlns", Local: prefix},
+				Value: uri,
+			})
+		}
+	}
+	// Restore default namespace declaration if it was present in input
+	// This is necessary for perfect fidelity when elements have redundant xmlns
+	if e.nsDefaultNamespace != "" {
+		start.Attr = append(start.Attr, xml.Attr{
+			Name:  xml.Name{Local: "xmlns"},
+			Value: e.nsDefaultNamespace,
+		})
+	}
+
+	// Create alias type to prevent recursion
+	type alias ServedByElement
+	aux := (*alias)(e)
+
+	// Encode using standard marshaler
+	return encoder.EncodeElement(aux, start)
+}
+
+// MarshalIndentClean marshals with perfect namespace fidelity
+// This method: 1) Fixes Go's xmlns corruption, 2) Restores element prefixes
+// Preserves legitimate xmlns on nested elements with different default namespaces
+func (e *ServedByElement) MarshalIndentClean(prefix, indent string) ([]byte, error) {
+	data, err := xml.MarshalIndent(e, prefix, indent)
+	if err != nil {
+		return nil, err
+	}
+
+	// Fix Go's namespace corruption:
+	// Go's xml.Encoder corrupts xmlns declarations by:
+	// 1. Prefixing 'xmlns:' with an underscore: 'xmlns:rc' -> '_xmlns:rc'
+	// 2. Adding a bogus 'xmlns:_xmlns="xmlns"' attribute
+	output := string(data)
+
+	// Step 1: Fix Go's namespace corruption
+	// First, remove the bogus xmlns:_xmlns="xmlns" attribute
+	output = strings.ReplaceAll(output, ` xmlns:_xmlns="xmlns"`, "")
+
+	// Then fix all _xmlns: prefixes to xmlns:
+	output = strings.ReplaceAll(output, "_xmlns:", "xmlns:")
+
+	// Also remove any remaining xmlns:xmlns="xmlns" that may appear
+	output = strings.ReplaceAll(output, ` xmlns:xmlns="xmlns"`, "")
+
+	// Fix corrupted XMLSchema-instance namespace
+	// Go sometimes duplicates this as xmlns:_XMLSchema-instance and _XMLSchema-instance:schemaLocation
+	output = strings.ReplaceAll(output, ` xmlns:_XMLSchema-instance="http://www.w3.org/2001/XMLSchema-instance"`, "")
+	output = strings.ReplaceAll(output, "_XMLSchema-instance:", "xsi:")
+
+	// Step 2: Restore element namespace prefixes using the captured prefix map
+	if len(e.elementPrefixes) > 0 {
+		output = restoreElementPrefixes(output, e.elementPrefixes)
+	}
+
+	// Step 3: Replicate xmlns placement from original XML for zero xmlns delta
+	// This adds xmlns to elements that had it in original, removes xmlns from elements that didn't
+	if len(e.elementsWithXmlns) > 0 {
+		output = replicateXmlnsPlacement(output, e.elementsWithXmlns)
+	}
+
+	return []byte(output), nil
+}
+
+// ToBytes marshals the element to bytes with namespace preservation
+// This is the recommended method for serializing to XML with round-trip fidelity
+func (e *ServedByElement) ToBytes() ([]byte, error) {
+	return e.MarshalIndentClean("", "  ")
+}
+
+// SetElementPrefixes allows injecting element prefix mappings from raw XML
+// This is typically called after unmarshal with ExtractElementPrefixes(rawXML)
+func (e *ServedByElement) SetElementPrefixes(prefixes map[string]string) {
+	e.elementPrefixes = prefixes
+}
+
+// SetElementsWithXmlns allows injecting element->xmlns mappings from raw XML
+// This is typically called after unmarshal with ExtractElementsWithXmlns(rawXML)
+// for perfect xmlns fidelity (zero xmlns delta)
+func (e *ServedByElement) SetElementsWithXmlns(elementsWithXmlns map[string]string) {
+	e.elementsWithXmlns = elementsWithXmlns
+}
+
+// SaveToFile saves the element to a file with namespace preservation
+func (e *ServedByElement) SaveToFile(path string) error {
+	data, err := e.ToBytes()
+	if err != nil {
+		return err
+	}
+	return os.WriteFile(path, data, 0644)
+}
+
+// LoadServedByFromBytes loads an element from bytes with namespace preservation
+func LoadServedByFromBytes(data []byte) (*ServedByElement, error) {
+	// Extract element prefixes from raw XML before unmarshaling
+	elementPrefixes := ExtractElementPrefixes(data)
+	// Extract which elements had xmlns for exact xmlns replication
+	elementsWithXmlns := ExtractElementsWithXmlns(data)
+
+	var element ServedByElement
+	if err := xml.Unmarshal(data, &element); err != nil {
+		return nil, err
+	}
+
+	// Store extracted element name -> prefix mappings for restoration during marshal
+	element.elementPrefixes = elementPrefixes
+	// Store element -> xmlns mappings for zero xmlns delta
+	element.elementsWithXmlns = elementsWithXmlns
+
+	return &element, nil
+}
+
+// LoadServedByFromFile loads an element from a file with namespace preservation
+func LoadServedByFromFile(path string) (*ServedByElement, error) {
+	data, err := os.ReadFile(path)
+	if err != nil {
+		return nil, err
+	}
+	return LoadServedByFromBytes(data)
+}
+
+// TelephoneNumberElement represents the XSD element 'telephone-number'
+// XSD element declaration (W3C XSD §3.3)
+type TelephoneNumberElement struct {
+	XMLName xml.Name            `xml:"http://scap.nist.gov/schema/asset-identification/1.1 telephone-number"`
+	Value   TelephoneNumberType `xml:",chardata"` // XSD simpleContent from telephone-number-type
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+	// nsDeclarations stores namespace prefix->URI mappings for perfect round-trip
+	nsDeclarations map[string]string `xml:"-"`
+	// nsDefaultNamespace stores the default namespace for perfect round-trip
+	nsDefaultNamespace string `xml:"-"`
+	// elementPrefixes stores element name->prefix mappings for perfect round-trip
+	elementPrefixes map[string]string `xml:"-"`
+	// elementsWithXmlns tracks which element names had xmlns in original (element_name -> namespace_uri)
+	// Used to replicate xmlns placement exactly during marshal for zero xmlns delta
+	elementsWithXmlns map[string]string `xml:"-"`
+}
+
+// UnmarshalXML implements custom unmarshaling with namespace preservation
+func (e *TelephoneNumberElement) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
+	// Create alias type to prevent recursion
+	type alias TelephoneNumberElement
+	aux := (*alias)(e)
+
+	// Extract namespace declarations from start element
+	e.nsDeclarations = make(map[string]string)
+	e.elementPrefixes = make(map[string]string)
+	var nonXmlnsAttrs []xml.Attr
+	for _, attr := range start.Attr {
+		if attr.Name.Space == "xmlns" {
+			// xmlns:prefix="uri"
+			e.nsDeclarations[attr.Name.Local] = attr.Value
+			// Build reverse map for element prefix restoration
+			e.elementPrefixes[attr.Value] = attr.Name.Local
+		} else if attr.Name.Local == "xmlns" && attr.Name.Space == "" {
+			// xmlns="uri"
+			e.nsDefaultNamespace = attr.Value
+		} else {
+			// Keep non-xmlns attributes for DecodeElement
+			nonXmlnsAttrs = append(nonXmlnsAttrs, attr)
+		}
+	}
+
+	// Remove xmlns from start.Attr to prevent duplication in UnknownAttrs
+	start.Attr = nonXmlnsAttrs
+
+	// Perform standard unmarshal
+	return d.DecodeElement(aux, &start)
+}
+
+// MarshalXML implements custom marshaling with namespace preservation
+func (e *TelephoneNumberElement) MarshalXML(encoder *xml.Encoder, start xml.StartElement) error {
+	// Use the struct's XMLName to ensure correct element name
+	start.Name = e.XMLName
+
+	// Restore namespace declarations
+	if len(e.nsDeclarations) > 0 {
+		// Add namespace declarations to start element
+		for prefix, uri := range e.nsDeclarations {
+			start.Attr = append(start.Attr, xml.Attr{
+				Name:  xml.Name{Space: "xmlns", Local: prefix},
+				Value: uri,
+			})
+		}
+	}
+	// Restore default namespace declaration if it was present in input
+	// This is necessary for perfect fidelity when elements have redundant xmlns
+	if e.nsDefaultNamespace != "" {
+		start.Attr = append(start.Attr, xml.Attr{
+			Name:  xml.Name{Local: "xmlns"},
+			Value: e.nsDefaultNamespace,
+		})
+	}
+
+	// Create alias type to prevent recursion
+	type alias TelephoneNumberElement
+	aux := (*alias)(e)
+
+	// Encode using standard marshaler
+	return encoder.EncodeElement(aux, start)
+}
+
+// MarshalIndentClean marshals with perfect namespace fidelity
+// This method: 1) Fixes Go's xmlns corruption, 2) Restores element prefixes
+// Preserves legitimate xmlns on nested elements with different default namespaces
+func (e *TelephoneNumberElement) MarshalIndentClean(prefix, indent string) ([]byte, error) {
+	data, err := xml.MarshalIndent(e, prefix, indent)
+	if err != nil {
+		return nil, err
+	}
+
+	// Fix Go's namespace corruption:
+	// Go's xml.Encoder corrupts xmlns declarations by:
+	// 1. Prefixing 'xmlns:' with an underscore: 'xmlns:rc' -> '_xmlns:rc'
+	// 2. Adding a bogus 'xmlns:_xmlns="xmlns"' attribute
+	output := string(data)
+
+	// Step 1: Fix Go's namespace corruption
+	// First, remove the bogus xmlns:_xmlns="xmlns" attribute
+	output = strings.ReplaceAll(output, ` xmlns:_xmlns="xmlns"`, "")
+
+	// Then fix all _xmlns: prefixes to xmlns:
+	output = strings.ReplaceAll(output, "_xmlns:", "xmlns:")
+
+	// Also remove any remaining xmlns:xmlns="xmlns" that may appear
+	output = strings.ReplaceAll(output, ` xmlns:xmlns="xmlns"`, "")
+
+	// Fix corrupted XMLSchema-instance namespace
+	// Go sometimes duplicates this as xmlns:_XMLSchema-instance and _XMLSchema-instance:schemaLocation
+	output = strings.ReplaceAll(output, ` xmlns:_XMLSchema-instance="http://www.w3.org/2001/XMLSchema-instance"`, "")
+	output = strings.ReplaceAll(output, "_XMLSchema-instance:", "xsi:")
+
+	// Step 2: Restore element namespace prefixes using the captured prefix map
+	if len(e.elementPrefixes) > 0 {
+		output = restoreElementPrefixes(output, e.elementPrefixes)
+	}
+
+	// Step 3: Replicate xmlns placement from original XML for zero xmlns delta
+	// This adds xmlns to elements that had it in original, removes xmlns from elements that didn't
+	if len(e.elementsWithXmlns) > 0 {
+		output = replicateXmlnsPlacement(output, e.elementsWithXmlns)
+	}
+
+	return []byte(output), nil
+}
+
+// ToBytes marshals the element to bytes with namespace preservation
+// This is the recommended method for serializing to XML with round-trip fidelity
+func (e *TelephoneNumberElement) ToBytes() ([]byte, error) {
+	return e.MarshalIndentClean("", "  ")
+}
+
+// SetElementPrefixes allows injecting element prefix mappings from raw XML
+// This is typically called after unmarshal with ExtractElementPrefixes(rawXML)
+func (e *TelephoneNumberElement) SetElementPrefixes(prefixes map[string]string) {
+	e.elementPrefixes = prefixes
+}
+
+// SetElementsWithXmlns allows injecting element->xmlns mappings from raw XML
+// This is typically called after unmarshal with ExtractElementsWithXmlns(rawXML)
+// for perfect xmlns fidelity (zero xmlns delta)
+func (e *TelephoneNumberElement) SetElementsWithXmlns(elementsWithXmlns map[string]string) {
+	e.elementsWithXmlns = elementsWithXmlns
+}
+
+// SaveToFile saves the element to a file with namespace preservation
+func (e *TelephoneNumberElement) SaveToFile(path string) error {
+	data, err := e.ToBytes()
+	if err != nil {
+		return err
+	}
+	return os.WriteFile(path, data, 0644)
+}
+
+// LoadTelephoneNumberFromBytes loads an element from bytes with namespace preservation
+func LoadTelephoneNumberFromBytes(data []byte) (*TelephoneNumberElement, error) {
+	// Extract element prefixes from raw XML before unmarshaling
+	elementPrefixes := ExtractElementPrefixes(data)
+	// Extract which elements had xmlns for exact xmlns replication
+	elementsWithXmlns := ExtractElementsWithXmlns(data)
+
+	var element TelephoneNumberElement
+	if err := xml.Unmarshal(data, &element); err != nil {
+		return nil, err
+	}
+
+	// Store extracted element name -> prefix mappings for restoration during marshal
+	element.elementPrefixes = elementPrefixes
+	// Store element -> xmlns mappings for zero xmlns delta
+	element.elementsWithXmlns = elementsWithXmlns
+
+	return &element, nil
+}
+
+// LoadTelephoneNumberFromFile loads an element from a file with namespace preservation
+func LoadTelephoneNumberFromFile(path string) (*TelephoneNumberElement, error) {
+	data, err := os.ReadFile(path)
+	if err != nil {
+		return nil, err
+	}
+	return LoadTelephoneNumberFromBytes(data)
+}
+
 // WebsiteUrlElement represents the XSD element 'website-url'
 // XSD element declaration (W3C XSD §3.3)
 type WebsiteUrlElement struct {
@@ -1139,11 +1695,11 @@ func LoadWebsiteUrlFromFile(path string) (*WebsiteUrlElement, error) {
 	return LoadWebsiteUrlFromBytes(data)
 }
 
-// PersonElement represents the XSD element 'person'
+// SystemElement represents the XSD element 'system'
 // XSD element declaration (W3C XSD §3.3)
-type PersonElement struct {
-	XMLName    xml.Name `xml:"http://scap.nist.gov/schema/asset-identification/1.1 person"`
-	PersonType          // Embedded complex type
+type SystemElement struct {
+	XMLName    xml.Name `xml:"http://scap.nist.gov/schema/asset-identification/1.1 system"`
+	SystemType          // Embedded complex type
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -1160,9 +1716,9 @@ type PersonElement struct {
 }
 
 // UnmarshalXML implements custom unmarshaling with namespace preservation
-func (e *PersonElement) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
+func (e *SystemElement) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 	// Create alias type to prevent recursion
-	type alias PersonElement
+	type alias SystemElement
 	aux := (*alias)(e)
 
 	// Extract namespace declarations from start element
@@ -1192,7 +1748,7 @@ func (e *PersonElement) UnmarshalXML(d *xml.Decoder, start xml.StartElement) err
 }
 
 // MarshalXML implements custom marshaling with namespace preservation
-func (e *PersonElement) MarshalXML(encoder *xml.Encoder, start xml.StartElement) error {
+func (e *SystemElement) MarshalXML(encoder *xml.Encoder, start xml.StartElement) error {
 	// Use the struct's XMLName to ensure correct element name
 	start.Name = e.XMLName
 
@@ -1216,7 +1772,7 @@ func (e *PersonElement) MarshalXML(encoder *xml.Encoder, start xml.StartElement)
 	}
 
 	// Create alias type to prevent recursion
-	type alias PersonElement
+	type alias SystemElement
 	aux := (*alias)(e)
 
 	// Encode using standard marshaler
@@ -1226,7 +1782,7 @@ func (e *PersonElement) MarshalXML(encoder *xml.Encoder, start xml.StartElement)
 // MarshalIndentClean marshals with perfect namespace fidelity
 // This method: 1) Fixes Go's xmlns corruption, 2) Restores element prefixes
 // Preserves legitimate xmlns on nested elements with different default namespaces
-func (e *PersonElement) MarshalIndentClean(prefix, indent string) ([]byte, error) {
+func (e *SystemElement) MarshalIndentClean(prefix, indent string) ([]byte, error) {
 	data, err := xml.MarshalIndent(e, prefix, indent)
 	if err != nil {
 		return nil, err
@@ -1269,25 +1825,25 @@ func (e *PersonElement) MarshalIndentClean(prefix, indent string) ([]byte, error
 
 // ToBytes marshals the element to bytes with namespace preservation
 // This is the recommended method for serializing to XML with round-trip fidelity
-func (e *PersonElement) ToBytes() ([]byte, error) {
+func (e *SystemElement) ToBytes() ([]byte, error) {
 	return e.MarshalIndentClean("", "  ")
 }
 
 // SetElementPrefixes allows injecting element prefix mappings from raw XML
 // This is typically called after unmarshal with ExtractElementPrefixes(rawXML)
-func (e *PersonElement) SetElementPrefixes(prefixes map[string]string) {
+func (e *SystemElement) SetElementPrefixes(prefixes map[string]string) {
 	e.elementPrefixes = prefixes
 }
 
 // SetElementsWithXmlns allows injecting element->xmlns mappings from raw XML
 // This is typically called after unmarshal with ExtractElementsWithXmlns(rawXML)
 // for perfect xmlns fidelity (zero xmlns delta)
-func (e *PersonElement) SetElementsWithXmlns(elementsWithXmlns map[string]string) {
+func (e *SystemElement) SetElementsWithXmlns(elementsWithXmlns map[string]string) {
 	e.elementsWithXmlns = elementsWithXmlns
 }
 
 // SaveToFile saves the element to a file with namespace preservation
-func (e *PersonElement) SaveToFile(path string) error {
+func (e *SystemElement) SaveToFile(path string) error {
 	data, err := e.ToBytes()
 	if err != nil {
 		return err
@@ -1295,14 +1851,14 @@ func (e *PersonElement) SaveToFile(path string) error {
 	return os.WriteFile(path, data, 0644)
 }
 
-// LoadPersonFromBytes loads an element from bytes with namespace preservation
-func LoadPersonFromBytes(data []byte) (*PersonElement, error) {
+// LoadSystemFromBytes loads an element from bytes with namespace preservation
+func LoadSystemFromBytes(data []byte) (*SystemElement, error) {
 	// Extract element prefixes from raw XML before unmarshaling
 	elementPrefixes := ExtractElementPrefixes(data)
 	// Extract which elements had xmlns for exact xmlns replication
 	elementsWithXmlns := ExtractElementsWithXmlns(data)
 
-	var element PersonElement
+	var element SystemElement
 	if err := xml.Unmarshal(data, &element); err != nil {
 		return nil, err
 	}
@@ -1315,13 +1871,198 @@ func LoadPersonFromBytes(data []byte) (*PersonElement, error) {
 	return &element, nil
 }
 
-// LoadPersonFromFile loads an element from a file with namespace preservation
-func LoadPersonFromFile(path string) (*PersonElement, error) {
+// LoadSystemFromFile loads an element from a file with namespace preservation
+func LoadSystemFromFile(path string) (*SystemElement, error) {
 	data, err := os.ReadFile(path)
 	if err != nil {
 		return nil, err
 	}
-	return LoadPersonFromBytes(data)
+	return LoadSystemFromBytes(data)
+}
+
+// AssetRelatedElement represents the XSD element 'asset-related'
+// XSD element declaration (W3C XSD §3.3)
+type AssetRelatedElement struct {
+	XMLName                 xml.Name `xml:"http://scap.nist.gov/schema/asset-identification/1.1 asset-related"`
+	AssetIdentificationType          // Embedded complex type
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+	// nsDeclarations stores namespace prefix->URI mappings for perfect round-trip
+	nsDeclarations map[string]string `xml:"-"`
+	// nsDefaultNamespace stores the default namespace for perfect round-trip
+	nsDefaultNamespace string `xml:"-"`
+	// elementPrefixes stores element name->prefix mappings for perfect round-trip
+	elementPrefixes map[string]string `xml:"-"`
+	// elementsWithXmlns tracks which element names had xmlns in original (element_name -> namespace_uri)
+	// Used to replicate xmlns placement exactly during marshal for zero xmlns delta
+	elementsWithXmlns map[string]string `xml:"-"`
+}
+
+// UnmarshalXML implements custom unmarshaling with namespace preservation
+func (e *AssetRelatedElement) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
+	// Create alias type to prevent recursion
+	type alias AssetRelatedElement
+	aux := (*alias)(e)
+
+	// Extract namespace declarations from start element
+	e.nsDeclarations = make(map[string]string)
+	e.elementPrefixes = make(map[string]string)
+	var nonXmlnsAttrs []xml.Attr
+	for _, attr := range start.Attr {
+		if attr.Name.Space == "xmlns" {
+			// xmlns:prefix="uri"
+			e.nsDeclarations[attr.Name.Local] = attr.Value
+			// Build reverse map for element prefix restoration
+			e.elementPrefixes[attr.Value] = attr.Name.Local
+		} else if attr.Name.Local == "xmlns" && attr.Name.Space == "" {
+			// xmlns="uri"
+			e.nsDefaultNamespace = attr.Value
+		} else {
+			// Keep non-xmlns attributes for DecodeElement
+			nonXmlnsAttrs = append(nonXmlnsAttrs, attr)
+		}
+	}
+
+	// Remove xmlns from start.Attr to prevent duplication in UnknownAttrs
+	start.Attr = nonXmlnsAttrs
+
+	// Perform standard unmarshal
+	return d.DecodeElement(aux, &start)
+}
+
+// MarshalXML implements custom marshaling with namespace preservation
+func (e *AssetRelatedElement) MarshalXML(encoder *xml.Encoder, start xml.StartElement) error {
+	// Use the struct's XMLName to ensure correct element name
+	start.Name = e.XMLName
+
+	// Restore namespace declarations
+	if len(e.nsDeclarations) > 0 {
+		// Add namespace declarations to start element
+		for prefix, uri := range e.nsDeclarations {
+			start.Attr = append(start.Attr, xml.Attr{
+				Name:  xml.Name{Space: "xmlns", Local: prefix},
+				Value: uri,
+			})
+		}
+	}
+	// Restore default namespace declaration if it was present in input
+	// This is necessary for perfect fidelity when elements have redundant xmlns
+	if e.nsDefaultNamespace != "" {
+		start.Attr = append(start.Attr, xml.Attr{
+			Name:  xml.Name{Local: "xmlns"},
+			Value: e.nsDefaultNamespace,
+		})
+	}
+
+	// Create alias type to prevent recursion
+	type alias AssetRelatedElement
+	aux := (*alias)(e)
+
+	// Encode using standard marshaler
+	return encoder.EncodeElement(aux, start)
+}
+
+// MarshalIndentClean marshals with perfect namespace fidelity
+// This method: 1) Fixes Go's xmlns corruption, 2) Restores element prefixes
+// Preserves legitimate xmlns on nested elements with different default namespaces
+func (e *AssetRelatedElement) MarshalIndentClean(prefix, indent string) ([]byte, error) {
+	data, err := xml.MarshalIndent(e, prefix, indent)
+	if err != nil {
+		return nil, err
+	}
+
+	// Fix Go's namespace corruption:
+	// Go's xml.Encoder corrupts xmlns declarations by:
+	// 1. Prefixing 'xmlns:' with an underscore: 'xmlns:rc' -> '_xmlns:rc'
+	// 2. Adding a bogus 'xmlns:_xmlns="xmlns"' attribute
+	output := string(data)
+
+	// Step 1: Fix Go's namespace corruption
+	// First, remove the bogus xmlns:_xmlns="xmlns" attribute
+	output = strings.ReplaceAll(output, ` xmlns:_xmlns="xmlns"`, "")
+
+	// Then fix all _xmlns: prefixes to xmlns:
+	output = strings.ReplaceAll(output, "_xmlns:", "xmlns:")
+
+	// Also remove any remaining xmlns:xmlns="xmlns" that may appear
+	output = strings.ReplaceAll(output, ` xmlns:xmlns="xmlns"`, "")
+
+	// Fix corrupted XMLSchema-instance namespace
+	// Go sometimes duplicates this as xmlns:_XMLSchema-instance and _XMLSchema-instance:schemaLocation
+	output = strings.ReplaceAll(output, ` xmlns:_XMLSchema-instance="http://www.w3.org/2001/XMLSchema-instance"`, "")
+	output = strings.ReplaceAll(output, "_XMLSchema-instance:", "xsi:")
+
+	// Step 2: Restore element namespace prefixes using the captured prefix map
+	if len(e.elementPrefixes) > 0 {
+		output = restoreElementPrefixes(output, e.elementPrefixes)
+	}
+
+	// Step 3: Replicate xmlns placement from original XML for zero xmlns delta
+	// This adds xmlns to elements that had it in original, removes xmlns from elements that didn't
+	if len(e.elementsWithXmlns) > 0 {
+		output = replicateXmlnsPlacement(output, e.elementsWithXmlns)
+	}
+
+	return []byte(output), nil
+}
+
+// ToBytes marshals the element to bytes with namespace preservation
+// This is the recommended method for serializing to XML with round-trip fidelity
+func (e *AssetRelatedElement) ToBytes() ([]byte, error) {
+	return e.MarshalIndentClean("", "  ")
+}
+
+// SetElementPrefixes allows injecting element prefix mappings from raw XML
+// This is typically called after unmarshal with ExtractElementPrefixes(rawXML)
+func (e *AssetRelatedElement) SetElementPrefixes(prefixes map[string]string) {
+	e.elementPrefixes = prefixes
+}
+
+// SetElementsWithXmlns allows injecting element->xmlns mappings from raw XML
+// This is typically called after unmarshal with ExtractElementsWithXmlns(rawXML)
+// for perfect xmlns fidelity (zero xmlns delta)
+func (e *AssetRelatedElement) SetElementsWithXmlns(elementsWithXmlns map[string]string) {
+	e.elementsWithXmlns = elementsWithXmlns
+}
+
+// SaveToFile saves the element to a file with namespace preservation
+func (e *AssetRelatedElement) SaveToFile(path string) error {
+	data, err := e.ToBytes()
+	if err != nil {
+		return err
+	}
+	return os.WriteFile(path, data, 0644)
+}
+
+// LoadAssetRelatedFromBytes loads an element from bytes with namespace preservation
+func LoadAssetRelatedFromBytes(data []byte) (*AssetRelatedElement, error) {
+	// Extract element prefixes from raw XML before unmarshaling
+	elementPrefixes := ExtractElementPrefixes(data)
+	// Extract which elements had xmlns for exact xmlns replication
+	elementsWithXmlns := ExtractElementsWithXmlns(data)
+
+	var element AssetRelatedElement
+	if err := xml.Unmarshal(data, &element); err != nil {
+		return nil, err
+	}
+
+	// Store extracted element name -> prefix mappings for restoration during marshal
+	element.elementPrefixes = elementPrefixes
+	// Store element -> xmlns mappings for zero xmlns delta
+	element.elementsWithXmlns = elementsWithXmlns
+
+	return &element, nil
+}
+
+// LoadAssetRelatedFromFile loads an element from a file with namespace preservation
+func LoadAssetRelatedFromFile(path string) (*AssetRelatedElement, error) {
+	data, err := os.ReadFile(path)
+	if err != nil {
+		return nil, err
+	}
+	return LoadAssetRelatedFromBytes(data)
 }
 
 // CircuitElement represents the XSD element 'circuit'
@@ -1509,11 +2250,11 @@ func LoadCircuitFromFile(path string) (*CircuitElement, error) {
 	return LoadCircuitFromBytes(data)
 }
 
-// DatabaseElement represents the XSD element 'database'
+// OrganizationElement represents the XSD element 'organization'
 // XSD element declaration (W3C XSD §3.3)
-type DatabaseElement struct {
-	XMLName      xml.Name `xml:"http://scap.nist.gov/schema/asset-identification/1.1 database"`
-	DatabaseType          // Embedded complex type
+type OrganizationElement struct {
+	XMLName          xml.Name `xml:"http://scap.nist.gov/schema/asset-identification/1.1 organization"`
+	OrganizationType          // Embedded complex type
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -1530,9 +2271,9 @@ type DatabaseElement struct {
 }
 
 // UnmarshalXML implements custom unmarshaling with namespace preservation
-func (e *DatabaseElement) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
+func (e *OrganizationElement) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 	// Create alias type to prevent recursion
-	type alias DatabaseElement
+	type alias OrganizationElement
 	aux := (*alias)(e)
 
 	// Extract namespace declarations from start element
@@ -1562,7 +2303,7 @@ func (e *DatabaseElement) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 }
 
 // MarshalXML implements custom marshaling with namespace preservation
-func (e *DatabaseElement) MarshalXML(encoder *xml.Encoder, start xml.StartElement) error {
+func (e *OrganizationElement) MarshalXML(encoder *xml.Encoder, start xml.StartElement) error {
 	// Use the struct's XMLName to ensure correct element name
 	start.Name = e.XMLName
 
@@ -1586,7 +2327,7 @@ func (e *DatabaseElement) MarshalXML(encoder *xml.Encoder, start xml.StartElemen
 	}
 
 	// Create alias type to prevent recursion
-	type alias DatabaseElement
+	type alias OrganizationElement
 	aux := (*alias)(e)
 
 	// Encode using standard marshaler
@@ -1596,7 +2337,7 @@ func (e *DatabaseElement) MarshalXML(encoder *xml.Encoder, start xml.StartElemen
 // MarshalIndentClean marshals with perfect namespace fidelity
 // This method: 1) Fixes Go's xmlns corruption, 2) Restores element prefixes
 // Preserves legitimate xmlns on nested elements with different default namespaces
-func (e *DatabaseElement) MarshalIndentClean(prefix, indent string) ([]byte, error) {
+func (e *OrganizationElement) MarshalIndentClean(prefix, indent string) ([]byte, error) {
 	data, err := xml.MarshalIndent(e, prefix, indent)
 	if err != nil {
 		return nil, err
@@ -1639,25 +2380,25 @@ func (e *DatabaseElement) MarshalIndentClean(prefix, indent string) ([]byte, err
 
 // ToBytes marshals the element to bytes with namespace preservation
 // This is the recommended method for serializing to XML with round-trip fidelity
-func (e *DatabaseElement) ToBytes() ([]byte, error) {
+func (e *OrganizationElement) ToBytes() ([]byte, error) {
 	return e.MarshalIndentClean("", "  ")
 }
 
 // SetElementPrefixes allows injecting element prefix mappings from raw XML
 // This is typically called after unmarshal with ExtractElementPrefixes(rawXML)
-func (e *DatabaseElement) SetElementPrefixes(prefixes map[string]string) {
+func (e *OrganizationElement) SetElementPrefixes(prefixes map[string]string) {
 	e.elementPrefixes = prefixes
 }
 
 // SetElementsWithXmlns allows injecting element->xmlns mappings from raw XML
 // This is typically called after unmarshal with ExtractElementsWithXmlns(rawXML)
 // for perfect xmlns fidelity (zero xmlns delta)
-func (e *DatabaseElement) SetElementsWithXmlns(elementsWithXmlns map[string]string) {
+func (e *OrganizationElement) SetElementsWithXmlns(elementsWithXmlns map[string]string) {
 	e.elementsWithXmlns = elementsWithXmlns
 }
 
 // SaveToFile saves the element to a file with namespace preservation
-func (e *DatabaseElement) SaveToFile(path string) error {
+func (e *OrganizationElement) SaveToFile(path string) error {
 	data, err := e.ToBytes()
 	if err != nil {
 		return err
@@ -1665,14 +2406,14 @@ func (e *DatabaseElement) SaveToFile(path string) error {
 	return os.WriteFile(path, data, 0644)
 }
 
-// LoadDatabaseFromBytes loads an element from bytes with namespace preservation
-func LoadDatabaseFromBytes(data []byte) (*DatabaseElement, error) {
+// LoadOrganizationFromBytes loads an element from bytes with namespace preservation
+func LoadOrganizationFromBytes(data []byte) (*OrganizationElement, error) {
 	// Extract element prefixes from raw XML before unmarshaling
 	elementPrefixes := ExtractElementPrefixes(data)
 	// Extract which elements had xmlns for exact xmlns replication
 	elementsWithXmlns := ExtractElementsWithXmlns(data)
 
-	var element DatabaseElement
+	var element OrganizationElement
 	if err := xml.Unmarshal(data, &element); err != nil {
 		return nil, err
 	}
@@ -1685,20 +2426,20 @@ func LoadDatabaseFromBytes(data []byte) (*DatabaseElement, error) {
 	return &element, nil
 }
 
-// LoadDatabaseFromFile loads an element from a file with namespace preservation
-func LoadDatabaseFromFile(path string) (*DatabaseElement, error) {
+// LoadOrganizationFromFile loads an element from a file with namespace preservation
+func LoadOrganizationFromFile(path string) (*OrganizationElement, error) {
 	data, err := os.ReadFile(path)
 	if err != nil {
 		return nil, err
 	}
-	return LoadDatabaseFromBytes(data)
+	return LoadOrganizationFromBytes(data)
 }
 
-// NetworkElement represents the XSD element 'network'
+// PersonElement represents the XSD element 'person'
 // XSD element declaration (W3C XSD §3.3)
-type NetworkElement struct {
-	XMLName     xml.Name `xml:"http://scap.nist.gov/schema/asset-identification/1.1 network"`
-	NetworkType          // Embedded complex type
+type PersonElement struct {
+	XMLName    xml.Name `xml:"http://scap.nist.gov/schema/asset-identification/1.1 person"`
+	PersonType          // Embedded complex type
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -1715,9 +2456,9 @@ type NetworkElement struct {
 }
 
 // UnmarshalXML implements custom unmarshaling with namespace preservation
-func (e *NetworkElement) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
+func (e *PersonElement) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 	// Create alias type to prevent recursion
-	type alias NetworkElement
+	type alias PersonElement
 	aux := (*alias)(e)
 
 	// Extract namespace declarations from start element
@@ -1747,7 +2488,7 @@ func (e *NetworkElement) UnmarshalXML(d *xml.Decoder, start xml.StartElement) er
 }
 
 // MarshalXML implements custom marshaling with namespace preservation
-func (e *NetworkElement) MarshalXML(encoder *xml.Encoder, start xml.StartElement) error {
+func (e *PersonElement) MarshalXML(encoder *xml.Encoder, start xml.StartElement) error {
 	// Use the struct's XMLName to ensure correct element name
 	start.Name = e.XMLName
 
@@ -1771,7 +2512,7 @@ func (e *NetworkElement) MarshalXML(encoder *xml.Encoder, start xml.StartElement
 	}
 
 	// Create alias type to prevent recursion
-	type alias NetworkElement
+	type alias PersonElement
 	aux := (*alias)(e)
 
 	// Encode using standard marshaler
@@ -1781,7 +2522,7 @@ func (e *NetworkElement) MarshalXML(encoder *xml.Encoder, start xml.StartElement
 // MarshalIndentClean marshals with perfect namespace fidelity
 // This method: 1) Fixes Go's xmlns corruption, 2) Restores element prefixes
 // Preserves legitimate xmlns on nested elements with different default namespaces
-func (e *NetworkElement) MarshalIndentClean(prefix, indent string) ([]byte, error) {
+func (e *PersonElement) MarshalIndentClean(prefix, indent string) ([]byte, error) {
 	data, err := xml.MarshalIndent(e, prefix, indent)
 	if err != nil {
 		return nil, err
@@ -1824,25 +2565,25 @@ func (e *NetworkElement) MarshalIndentClean(prefix, indent string) ([]byte, erro
 
 // ToBytes marshals the element to bytes with namespace preservation
 // This is the recommended method for serializing to XML with round-trip fidelity
-func (e *NetworkElement) ToBytes() ([]byte, error) {
+func (e *PersonElement) ToBytes() ([]byte, error) {
 	return e.MarshalIndentClean("", "  ")
 }
 
 // SetElementPrefixes allows injecting element prefix mappings from raw XML
 // This is typically called after unmarshal with ExtractElementPrefixes(rawXML)
-func (e *NetworkElement) SetElementPrefixes(prefixes map[string]string) {
+func (e *PersonElement) SetElementPrefixes(prefixes map[string]string) {
 	e.elementPrefixes = prefixes
 }
 
 // SetElementsWithXmlns allows injecting element->xmlns mappings from raw XML
 // This is typically called after unmarshal with ExtractElementsWithXmlns(rawXML)
 // for perfect xmlns fidelity (zero xmlns delta)
-func (e *NetworkElement) SetElementsWithXmlns(elementsWithXmlns map[string]string) {
+func (e *PersonElement) SetElementsWithXmlns(elementsWithXmlns map[string]string) {
 	e.elementsWithXmlns = elementsWithXmlns
 }
 
 // SaveToFile saves the element to a file with namespace preservation
-func (e *NetworkElement) SaveToFile(path string) error {
+func (e *PersonElement) SaveToFile(path string) error {
 	data, err := e.ToBytes()
 	if err != nil {
 		return err
@@ -1850,14 +2591,14 @@ func (e *NetworkElement) SaveToFile(path string) error {
 	return os.WriteFile(path, data, 0644)
 }
 
-// LoadNetworkFromBytes loads an element from bytes with namespace preservation
-func LoadNetworkFromBytes(data []byte) (*NetworkElement, error) {
+// LoadPersonFromBytes loads an element from bytes with namespace preservation
+func LoadPersonFromBytes(data []byte) (*PersonElement, error) {
 	// Extract element prefixes from raw XML before unmarshaling
 	elementPrefixes := ExtractElementPrefixes(data)
 	// Extract which elements had xmlns for exact xmlns replication
 	elementsWithXmlns := ExtractElementsWithXmlns(data)
 
-	var element NetworkElement
+	var element PersonElement
 	if err := xml.Unmarshal(data, &element); err != nil {
 		return nil, err
 	}
@@ -1870,20 +2611,20 @@ func LoadNetworkFromBytes(data []byte) (*NetworkElement, error) {
 	return &element, nil
 }
 
-// LoadNetworkFromFile loads an element from a file with namespace preservation
-func LoadNetworkFromFile(path string) (*NetworkElement, error) {
+// LoadPersonFromFile loads an element from a file with namespace preservation
+func LoadPersonFromFile(path string) (*PersonElement, error) {
 	data, err := os.ReadFile(path)
 	if err != nil {
 		return nil, err
 	}
-	return LoadNetworkFromBytes(data)
+	return LoadPersonFromBytes(data)
 }
 
-// WebsiteElement represents the XSD element 'website'
+// ServiceElement represents the XSD element 'service'
 // XSD element declaration (W3C XSD §3.3)
-type WebsiteElement struct {
-	XMLName     xml.Name `xml:"http://scap.nist.gov/schema/asset-identification/1.1 website"`
-	WebsiteType          // Embedded complex type
+type ServiceElement struct {
+	XMLName     xml.Name `xml:"http://scap.nist.gov/schema/asset-identification/1.1 service"`
+	ServiceType          // Embedded complex type
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -1900,9 +2641,9 @@ type WebsiteElement struct {
 }
 
 // UnmarshalXML implements custom unmarshaling with namespace preservation
-func (e *WebsiteElement) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
+func (e *ServiceElement) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 	// Create alias type to prevent recursion
-	type alias WebsiteElement
+	type alias ServiceElement
 	aux := (*alias)(e)
 
 	// Extract namespace declarations from start element
@@ -1932,7 +2673,7 @@ func (e *WebsiteElement) UnmarshalXML(d *xml.Decoder, start xml.StartElement) er
 }
 
 // MarshalXML implements custom marshaling with namespace preservation
-func (e *WebsiteElement) MarshalXML(encoder *xml.Encoder, start xml.StartElement) error {
+func (e *ServiceElement) MarshalXML(encoder *xml.Encoder, start xml.StartElement) error {
 	// Use the struct's XMLName to ensure correct element name
 	start.Name = e.XMLName
 
@@ -1956,7 +2697,7 @@ func (e *WebsiteElement) MarshalXML(encoder *xml.Encoder, start xml.StartElement
 	}
 
 	// Create alias type to prevent recursion
-	type alias WebsiteElement
+	type alias ServiceElement
 	aux := (*alias)(e)
 
 	// Encode using standard marshaler
@@ -1966,7 +2707,7 @@ func (e *WebsiteElement) MarshalXML(encoder *xml.Encoder, start xml.StartElement
 // MarshalIndentClean marshals with perfect namespace fidelity
 // This method: 1) Fixes Go's xmlns corruption, 2) Restores element prefixes
 // Preserves legitimate xmlns on nested elements with different default namespaces
-func (e *WebsiteElement) MarshalIndentClean(prefix, indent string) ([]byte, error) {
+func (e *ServiceElement) MarshalIndentClean(prefix, indent string) ([]byte, error) {
 	data, err := xml.MarshalIndent(e, prefix, indent)
 	if err != nil {
 		return nil, err
@@ -2009,25 +2750,25 @@ func (e *WebsiteElement) MarshalIndentClean(prefix, indent string) ([]byte, erro
 
 // ToBytes marshals the element to bytes with namespace preservation
 // This is the recommended method for serializing to XML with round-trip fidelity
-func (e *WebsiteElement) ToBytes() ([]byte, error) {
+func (e *ServiceElement) ToBytes() ([]byte, error) {
 	return e.MarshalIndentClean("", "  ")
 }
 
 // SetElementPrefixes allows injecting element prefix mappings from raw XML
 // This is typically called after unmarshal with ExtractElementPrefixes(rawXML)
-func (e *WebsiteElement) SetElementPrefixes(prefixes map[string]string) {
+func (e *ServiceElement) SetElementPrefixes(prefixes map[string]string) {
 	e.elementPrefixes = prefixes
 }
 
 // SetElementsWithXmlns allows injecting element->xmlns mappings from raw XML
 // This is typically called after unmarshal with ExtractElementsWithXmlns(rawXML)
 // for perfect xmlns fidelity (zero xmlns delta)
-func (e *WebsiteElement) SetElementsWithXmlns(elementsWithXmlns map[string]string) {
+func (e *ServiceElement) SetElementsWithXmlns(elementsWithXmlns map[string]string) {
 	e.elementsWithXmlns = elementsWithXmlns
 }
 
 // SaveToFile saves the element to a file with namespace preservation
-func (e *WebsiteElement) SaveToFile(path string) error {
+func (e *ServiceElement) SaveToFile(path string) error {
 	data, err := e.ToBytes()
 	if err != nil {
 		return err
@@ -2035,14 +2776,14 @@ func (e *WebsiteElement) SaveToFile(path string) error {
 	return os.WriteFile(path, data, 0644)
 }
 
-// LoadWebsiteFromBytes loads an element from bytes with namespace preservation
-func LoadWebsiteFromBytes(data []byte) (*WebsiteElement, error) {
+// LoadServiceFromBytes loads an element from bytes with namespace preservation
+func LoadServiceFromBytes(data []byte) (*ServiceElement, error) {
 	// Extract element prefixes from raw XML before unmarshaling
 	elementPrefixes := ExtractElementPrefixes(data)
 	// Extract which elements had xmlns for exact xmlns replication
 	elementsWithXmlns := ExtractElementsWithXmlns(data)
 
-	var element WebsiteElement
+	var element ServiceElement
 	if err := xml.Unmarshal(data, &element); err != nil {
 		return nil, err
 	}
@@ -2055,13 +2796,938 @@ func LoadWebsiteFromBytes(data []byte) (*WebsiteElement, error) {
 	return &element, nil
 }
 
-// LoadWebsiteFromFile loads an element from a file with namespace preservation
-func LoadWebsiteFromFile(path string) (*WebsiteElement, error) {
+// LoadServiceFromFile loads an element from a file with namespace preservation
+func LoadServiceFromFile(path string) (*ServiceElement, error) {
 	data, err := os.ReadFile(path)
 	if err != nil {
 		return nil, err
 	}
-	return LoadWebsiteFromBytes(data)
+	return LoadServiceFromBytes(data)
+}
+
+// IpAddressElement represents the XSD element 'ip-address'
+// XSD element declaration (W3C XSD §3.3)
+type IpAddressElement struct {
+	XMLName       xml.Name `xml:"http://scap.nist.gov/schema/asset-identification/1.1 ip-address"`
+	IpAddressType          // Embedded complex type
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+	// nsDeclarations stores namespace prefix->URI mappings for perfect round-trip
+	nsDeclarations map[string]string `xml:"-"`
+	// nsDefaultNamespace stores the default namespace for perfect round-trip
+	nsDefaultNamespace string `xml:"-"`
+	// elementPrefixes stores element name->prefix mappings for perfect round-trip
+	elementPrefixes map[string]string `xml:"-"`
+	// elementsWithXmlns tracks which element names had xmlns in original (element_name -> namespace_uri)
+	// Used to replicate xmlns placement exactly during marshal for zero xmlns delta
+	elementsWithXmlns map[string]string `xml:"-"`
+}
+
+// UnmarshalXML implements custom unmarshaling with namespace preservation
+func (e *IpAddressElement) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
+	// Create alias type to prevent recursion
+	type alias IpAddressElement
+	aux := (*alias)(e)
+
+	// Extract namespace declarations from start element
+	e.nsDeclarations = make(map[string]string)
+	e.elementPrefixes = make(map[string]string)
+	var nonXmlnsAttrs []xml.Attr
+	for _, attr := range start.Attr {
+		if attr.Name.Space == "xmlns" {
+			// xmlns:prefix="uri"
+			e.nsDeclarations[attr.Name.Local] = attr.Value
+			// Build reverse map for element prefix restoration
+			e.elementPrefixes[attr.Value] = attr.Name.Local
+		} else if attr.Name.Local == "xmlns" && attr.Name.Space == "" {
+			// xmlns="uri"
+			e.nsDefaultNamespace = attr.Value
+		} else {
+			// Keep non-xmlns attributes for DecodeElement
+			nonXmlnsAttrs = append(nonXmlnsAttrs, attr)
+		}
+	}
+
+	// Remove xmlns from start.Attr to prevent duplication in UnknownAttrs
+	start.Attr = nonXmlnsAttrs
+
+	// Perform standard unmarshal
+	return d.DecodeElement(aux, &start)
+}
+
+// MarshalXML implements custom marshaling with namespace preservation
+func (e *IpAddressElement) MarshalXML(encoder *xml.Encoder, start xml.StartElement) error {
+	// Use the struct's XMLName to ensure correct element name
+	start.Name = e.XMLName
+
+	// Restore namespace declarations
+	if len(e.nsDeclarations) > 0 {
+		// Add namespace declarations to start element
+		for prefix, uri := range e.nsDeclarations {
+			start.Attr = append(start.Attr, xml.Attr{
+				Name:  xml.Name{Space: "xmlns", Local: prefix},
+				Value: uri,
+			})
+		}
+	}
+	// Restore default namespace declaration if it was present in input
+	// This is necessary for perfect fidelity when elements have redundant xmlns
+	if e.nsDefaultNamespace != "" {
+		start.Attr = append(start.Attr, xml.Attr{
+			Name:  xml.Name{Local: "xmlns"},
+			Value: e.nsDefaultNamespace,
+		})
+	}
+
+	// Create alias type to prevent recursion
+	type alias IpAddressElement
+	aux := (*alias)(e)
+
+	// Encode using standard marshaler
+	return encoder.EncodeElement(aux, start)
+}
+
+// MarshalIndentClean marshals with perfect namespace fidelity
+// This method: 1) Fixes Go's xmlns corruption, 2) Restores element prefixes
+// Preserves legitimate xmlns on nested elements with different default namespaces
+func (e *IpAddressElement) MarshalIndentClean(prefix, indent string) ([]byte, error) {
+	data, err := xml.MarshalIndent(e, prefix, indent)
+	if err != nil {
+		return nil, err
+	}
+
+	// Fix Go's namespace corruption:
+	// Go's xml.Encoder corrupts xmlns declarations by:
+	// 1. Prefixing 'xmlns:' with an underscore: 'xmlns:rc' -> '_xmlns:rc'
+	// 2. Adding a bogus 'xmlns:_xmlns="xmlns"' attribute
+	output := string(data)
+
+	// Step 1: Fix Go's namespace corruption
+	// First, remove the bogus xmlns:_xmlns="xmlns" attribute
+	output = strings.ReplaceAll(output, ` xmlns:_xmlns="xmlns"`, "")
+
+	// Then fix all _xmlns: prefixes to xmlns:
+	output = strings.ReplaceAll(output, "_xmlns:", "xmlns:")
+
+	// Also remove any remaining xmlns:xmlns="xmlns" that may appear
+	output = strings.ReplaceAll(output, ` xmlns:xmlns="xmlns"`, "")
+
+	// Fix corrupted XMLSchema-instance namespace
+	// Go sometimes duplicates this as xmlns:_XMLSchema-instance and _XMLSchema-instance:schemaLocation
+	output = strings.ReplaceAll(output, ` xmlns:_XMLSchema-instance="http://www.w3.org/2001/XMLSchema-instance"`, "")
+	output = strings.ReplaceAll(output, "_XMLSchema-instance:", "xsi:")
+
+	// Step 2: Restore element namespace prefixes using the captured prefix map
+	if len(e.elementPrefixes) > 0 {
+		output = restoreElementPrefixes(output, e.elementPrefixes)
+	}
+
+	// Step 3: Replicate xmlns placement from original XML for zero xmlns delta
+	// This adds xmlns to elements that had it in original, removes xmlns from elements that didn't
+	if len(e.elementsWithXmlns) > 0 {
+		output = replicateXmlnsPlacement(output, e.elementsWithXmlns)
+	}
+
+	return []byte(output), nil
+}
+
+// ToBytes marshals the element to bytes with namespace preservation
+// This is the recommended method for serializing to XML with round-trip fidelity
+func (e *IpAddressElement) ToBytes() ([]byte, error) {
+	return e.MarshalIndentClean("", "  ")
+}
+
+// SetElementPrefixes allows injecting element prefix mappings from raw XML
+// This is typically called after unmarshal with ExtractElementPrefixes(rawXML)
+func (e *IpAddressElement) SetElementPrefixes(prefixes map[string]string) {
+	e.elementPrefixes = prefixes
+}
+
+// SetElementsWithXmlns allows injecting element->xmlns mappings from raw XML
+// This is typically called after unmarshal with ExtractElementsWithXmlns(rawXML)
+// for perfect xmlns fidelity (zero xmlns delta)
+func (e *IpAddressElement) SetElementsWithXmlns(elementsWithXmlns map[string]string) {
+	e.elementsWithXmlns = elementsWithXmlns
+}
+
+// SaveToFile saves the element to a file with namespace preservation
+func (e *IpAddressElement) SaveToFile(path string) error {
+	data, err := e.ToBytes()
+	if err != nil {
+		return err
+	}
+	return os.WriteFile(path, data, 0644)
+}
+
+// LoadIpAddressFromBytes loads an element from bytes with namespace preservation
+func LoadIpAddressFromBytes(data []byte) (*IpAddressElement, error) {
+	// Extract element prefixes from raw XML before unmarshaling
+	elementPrefixes := ExtractElementPrefixes(data)
+	// Extract which elements had xmlns for exact xmlns replication
+	elementsWithXmlns := ExtractElementsWithXmlns(data)
+
+	var element IpAddressElement
+	if err := xml.Unmarshal(data, &element); err != nil {
+		return nil, err
+	}
+
+	// Store extracted element name -> prefix mappings for restoration during marshal
+	element.elementPrefixes = elementPrefixes
+	// Store element -> xmlns mappings for zero xmlns delta
+	element.elementsWithXmlns = elementsWithXmlns
+
+	return &element, nil
+}
+
+// LoadIpAddressFromFile loads an element from a file with namespace preservation
+func LoadIpAddressFromFile(path string) (*IpAddressElement, error) {
+	data, err := os.ReadFile(path)
+	if err != nil {
+		return nil, err
+	}
+	return LoadIpAddressFromBytes(data)
+}
+
+// LocationElement represents the XSD element 'location'
+// XSD element declaration (W3C XSD §3.3)
+// abstract="true"
+type LocationElement struct {
+	XMLName xml.Name `xml:"http://scap.nist.gov/schema/asset-identification/1.1 location"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+	// nsDeclarations stores namespace prefix->URI mappings for perfect round-trip
+	nsDeclarations map[string]string `xml:"-"`
+	// nsDefaultNamespace stores the default namespace for perfect round-trip
+	nsDefaultNamespace string `xml:"-"`
+	// elementPrefixes stores element name->prefix mappings for perfect round-trip
+	elementPrefixes map[string]string `xml:"-"`
+	// elementsWithXmlns tracks which element names had xmlns in original (element_name -> namespace_uri)
+	// Used to replicate xmlns placement exactly during marshal for zero xmlns delta
+	elementsWithXmlns map[string]string `xml:"-"`
+}
+
+// UnmarshalXML implements custom unmarshaling with namespace preservation
+func (e *LocationElement) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
+	// Create alias type to prevent recursion
+	type alias LocationElement
+	aux := (*alias)(e)
+
+	// Extract namespace declarations from start element
+	e.nsDeclarations = make(map[string]string)
+	e.elementPrefixes = make(map[string]string)
+	var nonXmlnsAttrs []xml.Attr
+	for _, attr := range start.Attr {
+		if attr.Name.Space == "xmlns" {
+			// xmlns:prefix="uri"
+			e.nsDeclarations[attr.Name.Local] = attr.Value
+			// Build reverse map for element prefix restoration
+			e.elementPrefixes[attr.Value] = attr.Name.Local
+		} else if attr.Name.Local == "xmlns" && attr.Name.Space == "" {
+			// xmlns="uri"
+			e.nsDefaultNamespace = attr.Value
+		} else {
+			// Keep non-xmlns attributes for DecodeElement
+			nonXmlnsAttrs = append(nonXmlnsAttrs, attr)
+		}
+	}
+
+	// Remove xmlns from start.Attr to prevent duplication in UnknownAttrs
+	start.Attr = nonXmlnsAttrs
+
+	// Perform standard unmarshal
+	return d.DecodeElement(aux, &start)
+}
+
+// MarshalXML implements custom marshaling with namespace preservation
+func (e *LocationElement) MarshalXML(encoder *xml.Encoder, start xml.StartElement) error {
+	// Use the struct's XMLName to ensure correct element name
+	start.Name = e.XMLName
+
+	// Restore namespace declarations
+	if len(e.nsDeclarations) > 0 {
+		// Add namespace declarations to start element
+		for prefix, uri := range e.nsDeclarations {
+			start.Attr = append(start.Attr, xml.Attr{
+				Name:  xml.Name{Space: "xmlns", Local: prefix},
+				Value: uri,
+			})
+		}
+	}
+	// Restore default namespace declaration if it was present in input
+	// This is necessary for perfect fidelity when elements have redundant xmlns
+	if e.nsDefaultNamespace != "" {
+		start.Attr = append(start.Attr, xml.Attr{
+			Name:  xml.Name{Local: "xmlns"},
+			Value: e.nsDefaultNamespace,
+		})
+	}
+
+	// Create alias type to prevent recursion
+	type alias LocationElement
+	aux := (*alias)(e)
+
+	// Encode using standard marshaler
+	return encoder.EncodeElement(aux, start)
+}
+
+// MarshalIndentClean marshals with perfect namespace fidelity
+// This method: 1) Fixes Go's xmlns corruption, 2) Restores element prefixes
+// Preserves legitimate xmlns on nested elements with different default namespaces
+func (e *LocationElement) MarshalIndentClean(prefix, indent string) ([]byte, error) {
+	data, err := xml.MarshalIndent(e, prefix, indent)
+	if err != nil {
+		return nil, err
+	}
+
+	// Fix Go's namespace corruption:
+	// Go's xml.Encoder corrupts xmlns declarations by:
+	// 1. Prefixing 'xmlns:' with an underscore: 'xmlns:rc' -> '_xmlns:rc'
+	// 2. Adding a bogus 'xmlns:_xmlns="xmlns"' attribute
+	output := string(data)
+
+	// Step 1: Fix Go's namespace corruption
+	// First, remove the bogus xmlns:_xmlns="xmlns" attribute
+	output = strings.ReplaceAll(output, ` xmlns:_xmlns="xmlns"`, "")
+
+	// Then fix all _xmlns: prefixes to xmlns:
+	output = strings.ReplaceAll(output, "_xmlns:", "xmlns:")
+
+	// Also remove any remaining xmlns:xmlns="xmlns" that may appear
+	output = strings.ReplaceAll(output, ` xmlns:xmlns="xmlns"`, "")
+
+	// Fix corrupted XMLSchema-instance namespace
+	// Go sometimes duplicates this as xmlns:_XMLSchema-instance and _XMLSchema-instance:schemaLocation
+	output = strings.ReplaceAll(output, ` xmlns:_XMLSchema-instance="http://www.w3.org/2001/XMLSchema-instance"`, "")
+	output = strings.ReplaceAll(output, "_XMLSchema-instance:", "xsi:")
+
+	// Step 2: Restore element namespace prefixes using the captured prefix map
+	if len(e.elementPrefixes) > 0 {
+		output = restoreElementPrefixes(output, e.elementPrefixes)
+	}
+
+	// Step 3: Replicate xmlns placement from original XML for zero xmlns delta
+	// This adds xmlns to elements that had it in original, removes xmlns from elements that didn't
+	if len(e.elementsWithXmlns) > 0 {
+		output = replicateXmlnsPlacement(output, e.elementsWithXmlns)
+	}
+
+	return []byte(output), nil
+}
+
+// ToBytes marshals the element to bytes with namespace preservation
+// This is the recommended method for serializing to XML with round-trip fidelity
+func (e *LocationElement) ToBytes() ([]byte, error) {
+	return e.MarshalIndentClean("", "  ")
+}
+
+// SetElementPrefixes allows injecting element prefix mappings from raw XML
+// This is typically called after unmarshal with ExtractElementPrefixes(rawXML)
+func (e *LocationElement) SetElementPrefixes(prefixes map[string]string) {
+	e.elementPrefixes = prefixes
+}
+
+// SetElementsWithXmlns allows injecting element->xmlns mappings from raw XML
+// This is typically called after unmarshal with ExtractElementsWithXmlns(rawXML)
+// for perfect xmlns fidelity (zero xmlns delta)
+func (e *LocationElement) SetElementsWithXmlns(elementsWithXmlns map[string]string) {
+	e.elementsWithXmlns = elementsWithXmlns
+}
+
+// SaveToFile saves the element to a file with namespace preservation
+func (e *LocationElement) SaveToFile(path string) error {
+	data, err := e.ToBytes()
+	if err != nil {
+		return err
+	}
+	return os.WriteFile(path, data, 0644)
+}
+
+// LoadLocationFromBytes loads an element from bytes with namespace preservation
+func LoadLocationFromBytes(data []byte) (*LocationElement, error) {
+	// Extract element prefixes from raw XML before unmarshaling
+	elementPrefixes := ExtractElementPrefixes(data)
+	// Extract which elements had xmlns for exact xmlns replication
+	elementsWithXmlns := ExtractElementsWithXmlns(data)
+
+	var element LocationElement
+	if err := xml.Unmarshal(data, &element); err != nil {
+		return nil, err
+	}
+
+	// Store extracted element name -> prefix mappings for restoration during marshal
+	element.elementPrefixes = elementPrefixes
+	// Store element -> xmlns mappings for zero xmlns delta
+	element.elementsWithXmlns = elementsWithXmlns
+
+	return &element, nil
+}
+
+// LoadLocationFromFile loads an element from a file with namespace preservation
+func LoadLocationFromFile(path string) (*LocationElement, error) {
+	data, err := os.ReadFile(path)
+	if err != nil {
+		return nil, err
+	}
+	return LoadLocationFromBytes(data)
+}
+
+// AssetsElement represents the XSD element 'assets'
+// XSD element declaration (W3C XSD §3.3)
+type AssetsElement struct {
+	XMLName    xml.Name `xml:"http://scap.nist.gov/schema/asset-identification/1.1 assets"`
+	AssetsType          // Embedded complex type
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+	// nsDeclarations stores namespace prefix->URI mappings for perfect round-trip
+	nsDeclarations map[string]string `xml:"-"`
+	// nsDefaultNamespace stores the default namespace for perfect round-trip
+	nsDefaultNamespace string `xml:"-"`
+	// elementPrefixes stores element name->prefix mappings for perfect round-trip
+	elementPrefixes map[string]string `xml:"-"`
+	// elementsWithXmlns tracks which element names had xmlns in original (element_name -> namespace_uri)
+	// Used to replicate xmlns placement exactly during marshal for zero xmlns delta
+	elementsWithXmlns map[string]string `xml:"-"`
+}
+
+// UnmarshalXML implements custom unmarshaling with namespace preservation
+func (e *AssetsElement) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
+	// Create alias type to prevent recursion
+	type alias AssetsElement
+	aux := (*alias)(e)
+
+	// Extract namespace declarations from start element
+	e.nsDeclarations = make(map[string]string)
+	e.elementPrefixes = make(map[string]string)
+	var nonXmlnsAttrs []xml.Attr
+	for _, attr := range start.Attr {
+		if attr.Name.Space == "xmlns" {
+			// xmlns:prefix="uri"
+			e.nsDeclarations[attr.Name.Local] = attr.Value
+			// Build reverse map for element prefix restoration
+			e.elementPrefixes[attr.Value] = attr.Name.Local
+		} else if attr.Name.Local == "xmlns" && attr.Name.Space == "" {
+			// xmlns="uri"
+			e.nsDefaultNamespace = attr.Value
+		} else {
+			// Keep non-xmlns attributes for DecodeElement
+			nonXmlnsAttrs = append(nonXmlnsAttrs, attr)
+		}
+	}
+
+	// Remove xmlns from start.Attr to prevent duplication in UnknownAttrs
+	start.Attr = nonXmlnsAttrs
+
+	// Perform standard unmarshal
+	return d.DecodeElement(aux, &start)
+}
+
+// MarshalXML implements custom marshaling with namespace preservation
+func (e *AssetsElement) MarshalXML(encoder *xml.Encoder, start xml.StartElement) error {
+	// Use the struct's XMLName to ensure correct element name
+	start.Name = e.XMLName
+
+	// Restore namespace declarations
+	if len(e.nsDeclarations) > 0 {
+		// Add namespace declarations to start element
+		for prefix, uri := range e.nsDeclarations {
+			start.Attr = append(start.Attr, xml.Attr{
+				Name:  xml.Name{Space: "xmlns", Local: prefix},
+				Value: uri,
+			})
+		}
+	}
+	// Restore default namespace declaration if it was present in input
+	// This is necessary for perfect fidelity when elements have redundant xmlns
+	if e.nsDefaultNamespace != "" {
+		start.Attr = append(start.Attr, xml.Attr{
+			Name:  xml.Name{Local: "xmlns"},
+			Value: e.nsDefaultNamespace,
+		})
+	}
+
+	// Create alias type to prevent recursion
+	type alias AssetsElement
+	aux := (*alias)(e)
+
+	// Encode using standard marshaler
+	return encoder.EncodeElement(aux, start)
+}
+
+// MarshalIndentClean marshals with perfect namespace fidelity
+// This method: 1) Fixes Go's xmlns corruption, 2) Restores element prefixes
+// Preserves legitimate xmlns on nested elements with different default namespaces
+func (e *AssetsElement) MarshalIndentClean(prefix, indent string) ([]byte, error) {
+	data, err := xml.MarshalIndent(e, prefix, indent)
+	if err != nil {
+		return nil, err
+	}
+
+	// Fix Go's namespace corruption:
+	// Go's xml.Encoder corrupts xmlns declarations by:
+	// 1. Prefixing 'xmlns:' with an underscore: 'xmlns:rc' -> '_xmlns:rc'
+	// 2. Adding a bogus 'xmlns:_xmlns="xmlns"' attribute
+	output := string(data)
+
+	// Step 1: Fix Go's namespace corruption
+	// First, remove the bogus xmlns:_xmlns="xmlns" attribute
+	output = strings.ReplaceAll(output, ` xmlns:_xmlns="xmlns"`, "")
+
+	// Then fix all _xmlns: prefixes to xmlns:
+	output = strings.ReplaceAll(output, "_xmlns:", "xmlns:")
+
+	// Also remove any remaining xmlns:xmlns="xmlns" that may appear
+	output = strings.ReplaceAll(output, ` xmlns:xmlns="xmlns"`, "")
+
+	// Fix corrupted XMLSchema-instance namespace
+	// Go sometimes duplicates this as xmlns:_XMLSchema-instance and _XMLSchema-instance:schemaLocation
+	output = strings.ReplaceAll(output, ` xmlns:_XMLSchema-instance="http://www.w3.org/2001/XMLSchema-instance"`, "")
+	output = strings.ReplaceAll(output, "_XMLSchema-instance:", "xsi:")
+
+	// Step 2: Restore element namespace prefixes using the captured prefix map
+	if len(e.elementPrefixes) > 0 {
+		output = restoreElementPrefixes(output, e.elementPrefixes)
+	}
+
+	// Step 3: Replicate xmlns placement from original XML for zero xmlns delta
+	// This adds xmlns to elements that had it in original, removes xmlns from elements that didn't
+	if len(e.elementsWithXmlns) > 0 {
+		output = replicateXmlnsPlacement(output, e.elementsWithXmlns)
+	}
+
+	return []byte(output), nil
+}
+
+// ToBytes marshals the element to bytes with namespace preservation
+// This is the recommended method for serializing to XML with round-trip fidelity
+func (e *AssetsElement) ToBytes() ([]byte, error) {
+	return e.MarshalIndentClean("", "  ")
+}
+
+// SetElementPrefixes allows injecting element prefix mappings from raw XML
+// This is typically called after unmarshal with ExtractElementPrefixes(rawXML)
+func (e *AssetsElement) SetElementPrefixes(prefixes map[string]string) {
+	e.elementPrefixes = prefixes
+}
+
+// SetElementsWithXmlns allows injecting element->xmlns mappings from raw XML
+// This is typically called after unmarshal with ExtractElementsWithXmlns(rawXML)
+// for perfect xmlns fidelity (zero xmlns delta)
+func (e *AssetsElement) SetElementsWithXmlns(elementsWithXmlns map[string]string) {
+	e.elementsWithXmlns = elementsWithXmlns
+}
+
+// SaveToFile saves the element to a file with namespace preservation
+func (e *AssetsElement) SaveToFile(path string) error {
+	data, err := e.ToBytes()
+	if err != nil {
+		return err
+	}
+	return os.WriteFile(path, data, 0644)
+}
+
+// LoadAssetsFromBytes loads an element from bytes with namespace preservation
+func LoadAssetsFromBytes(data []byte) (*AssetsElement, error) {
+	// Extract element prefixes from raw XML before unmarshaling
+	elementPrefixes := ExtractElementPrefixes(data)
+	// Extract which elements had xmlns for exact xmlns replication
+	elementsWithXmlns := ExtractElementsWithXmlns(data)
+
+	var element AssetsElement
+	if err := xml.Unmarshal(data, &element); err != nil {
+		return nil, err
+	}
+
+	// Store extracted element name -> prefix mappings for restoration during marshal
+	element.elementPrefixes = elementPrefixes
+	// Store element -> xmlns mappings for zero xmlns delta
+	element.elementsWithXmlns = elementsWithXmlns
+
+	return &element, nil
+}
+
+// LoadAssetsFromFile loads an element from a file with namespace preservation
+func LoadAssetsFromFile(path string) (*AssetsElement, error) {
+	data, err := os.ReadFile(path)
+	if err != nil {
+		return nil, err
+	}
+	return LoadAssetsFromBytes(data)
+}
+
+// DataElement represents the XSD element 'data'
+// XSD element declaration (W3C XSD §3.3)
+type DataElement struct {
+	XMLName  xml.Name `xml:"http://scap.nist.gov/schema/asset-identification/1.1 data"`
+	DataType          // Embedded complex type
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+	// nsDeclarations stores namespace prefix->URI mappings for perfect round-trip
+	nsDeclarations map[string]string `xml:"-"`
+	// nsDefaultNamespace stores the default namespace for perfect round-trip
+	nsDefaultNamespace string `xml:"-"`
+	// elementPrefixes stores element name->prefix mappings for perfect round-trip
+	elementPrefixes map[string]string `xml:"-"`
+	// elementsWithXmlns tracks which element names had xmlns in original (element_name -> namespace_uri)
+	// Used to replicate xmlns placement exactly during marshal for zero xmlns delta
+	elementsWithXmlns map[string]string `xml:"-"`
+}
+
+// UnmarshalXML implements custom unmarshaling with namespace preservation
+func (e *DataElement) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
+	// Create alias type to prevent recursion
+	type alias DataElement
+	aux := (*alias)(e)
+
+	// Extract namespace declarations from start element
+	e.nsDeclarations = make(map[string]string)
+	e.elementPrefixes = make(map[string]string)
+	var nonXmlnsAttrs []xml.Attr
+	for _, attr := range start.Attr {
+		if attr.Name.Space == "xmlns" {
+			// xmlns:prefix="uri"
+			e.nsDeclarations[attr.Name.Local] = attr.Value
+			// Build reverse map for element prefix restoration
+			e.elementPrefixes[attr.Value] = attr.Name.Local
+		} else if attr.Name.Local == "xmlns" && attr.Name.Space == "" {
+			// xmlns="uri"
+			e.nsDefaultNamespace = attr.Value
+		} else {
+			// Keep non-xmlns attributes for DecodeElement
+			nonXmlnsAttrs = append(nonXmlnsAttrs, attr)
+		}
+	}
+
+	// Remove xmlns from start.Attr to prevent duplication in UnknownAttrs
+	start.Attr = nonXmlnsAttrs
+
+	// Perform standard unmarshal
+	return d.DecodeElement(aux, &start)
+}
+
+// MarshalXML implements custom marshaling with namespace preservation
+func (e *DataElement) MarshalXML(encoder *xml.Encoder, start xml.StartElement) error {
+	// Use the struct's XMLName to ensure correct element name
+	start.Name = e.XMLName
+
+	// Restore namespace declarations
+	if len(e.nsDeclarations) > 0 {
+		// Add namespace declarations to start element
+		for prefix, uri := range e.nsDeclarations {
+			start.Attr = append(start.Attr, xml.Attr{
+				Name:  xml.Name{Space: "xmlns", Local: prefix},
+				Value: uri,
+			})
+		}
+	}
+	// Restore default namespace declaration if it was present in input
+	// This is necessary for perfect fidelity when elements have redundant xmlns
+	if e.nsDefaultNamespace != "" {
+		start.Attr = append(start.Attr, xml.Attr{
+			Name:  xml.Name{Local: "xmlns"},
+			Value: e.nsDefaultNamespace,
+		})
+	}
+
+	// Create alias type to prevent recursion
+	type alias DataElement
+	aux := (*alias)(e)
+
+	// Encode using standard marshaler
+	return encoder.EncodeElement(aux, start)
+}
+
+// MarshalIndentClean marshals with perfect namespace fidelity
+// This method: 1) Fixes Go's xmlns corruption, 2) Restores element prefixes
+// Preserves legitimate xmlns on nested elements with different default namespaces
+func (e *DataElement) MarshalIndentClean(prefix, indent string) ([]byte, error) {
+	data, err := xml.MarshalIndent(e, prefix, indent)
+	if err != nil {
+		return nil, err
+	}
+
+	// Fix Go's namespace corruption:
+	// Go's xml.Encoder corrupts xmlns declarations by:
+	// 1. Prefixing 'xmlns:' with an underscore: 'xmlns:rc' -> '_xmlns:rc'
+	// 2. Adding a bogus 'xmlns:_xmlns="xmlns"' attribute
+	output := string(data)
+
+	// Step 1: Fix Go's namespace corruption
+	// First, remove the bogus xmlns:_xmlns="xmlns" attribute
+	output = strings.ReplaceAll(output, ` xmlns:_xmlns="xmlns"`, "")
+
+	// Then fix all _xmlns: prefixes to xmlns:
+	output = strings.ReplaceAll(output, "_xmlns:", "xmlns:")
+
+	// Also remove any remaining xmlns:xmlns="xmlns" that may appear
+	output = strings.ReplaceAll(output, ` xmlns:xmlns="xmlns"`, "")
+
+	// Fix corrupted XMLSchema-instance namespace
+	// Go sometimes duplicates this as xmlns:_XMLSchema-instance and _XMLSchema-instance:schemaLocation
+	output = strings.ReplaceAll(output, ` xmlns:_XMLSchema-instance="http://www.w3.org/2001/XMLSchema-instance"`, "")
+	output = strings.ReplaceAll(output, "_XMLSchema-instance:", "xsi:")
+
+	// Step 2: Restore element namespace prefixes using the captured prefix map
+	if len(e.elementPrefixes) > 0 {
+		output = restoreElementPrefixes(output, e.elementPrefixes)
+	}
+
+	// Step 3: Replicate xmlns placement from original XML for zero xmlns delta
+	// This adds xmlns to elements that had it in original, removes xmlns from elements that didn't
+	if len(e.elementsWithXmlns) > 0 {
+		output = replicateXmlnsPlacement(output, e.elementsWithXmlns)
+	}
+
+	return []byte(output), nil
+}
+
+// ToBytes marshals the element to bytes with namespace preservation
+// This is the recommended method for serializing to XML with round-trip fidelity
+func (e *DataElement) ToBytes() ([]byte, error) {
+	return e.MarshalIndentClean("", "  ")
+}
+
+// SetElementPrefixes allows injecting element prefix mappings from raw XML
+// This is typically called after unmarshal with ExtractElementPrefixes(rawXML)
+func (e *DataElement) SetElementPrefixes(prefixes map[string]string) {
+	e.elementPrefixes = prefixes
+}
+
+// SetElementsWithXmlns allows injecting element->xmlns mappings from raw XML
+// This is typically called after unmarshal with ExtractElementsWithXmlns(rawXML)
+// for perfect xmlns fidelity (zero xmlns delta)
+func (e *DataElement) SetElementsWithXmlns(elementsWithXmlns map[string]string) {
+	e.elementsWithXmlns = elementsWithXmlns
+}
+
+// SaveToFile saves the element to a file with namespace preservation
+func (e *DataElement) SaveToFile(path string) error {
+	data, err := e.ToBytes()
+	if err != nil {
+		return err
+	}
+	return os.WriteFile(path, data, 0644)
+}
+
+// LoadDataFromBytes loads an element from bytes with namespace preservation
+func LoadDataFromBytes(data []byte) (*DataElement, error) {
+	// Extract element prefixes from raw XML before unmarshaling
+	elementPrefixes := ExtractElementPrefixes(data)
+	// Extract which elements had xmlns for exact xmlns replication
+	elementsWithXmlns := ExtractElementsWithXmlns(data)
+
+	var element DataElement
+	if err := xml.Unmarshal(data, &element); err != nil {
+		return nil, err
+	}
+
+	// Store extracted element name -> prefix mappings for restoration during marshal
+	element.elementPrefixes = elementPrefixes
+	// Store element -> xmlns mappings for zero xmlns delta
+	element.elementsWithXmlns = elementsWithXmlns
+
+	return &element, nil
+}
+
+// LoadDataFromFile loads an element from a file with namespace preservation
+func LoadDataFromFile(path string) (*DataElement, error) {
+	data, err := os.ReadFile(path)
+	if err != nil {
+		return nil, err
+	}
+	return LoadDataFromBytes(data)
+}
+
+// CpeElement represents the XSD element 'cpe'
+// XSD element declaration (W3C XSD §3.3)
+type CpeElement struct {
+	XMLName xml.Name `xml:"http://scap.nist.gov/schema/asset-identification/1.1 cpe"`
+	CpeType          // XSD extension base
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+	// nsDeclarations stores namespace prefix->URI mappings for perfect round-trip
+	nsDeclarations map[string]string `xml:"-"`
+	// nsDefaultNamespace stores the default namespace for perfect round-trip
+	nsDefaultNamespace string `xml:"-"`
+	// elementPrefixes stores element name->prefix mappings for perfect round-trip
+	elementPrefixes map[string]string `xml:"-"`
+	// elementsWithXmlns tracks which element names had xmlns in original (element_name -> namespace_uri)
+	// Used to replicate xmlns placement exactly during marshal for zero xmlns delta
+	elementsWithXmlns map[string]string `xml:"-"`
+}
+
+// UnmarshalXML implements custom unmarshaling with namespace preservation
+func (e *CpeElement) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
+	// Create alias type to prevent recursion
+	type alias CpeElement
+	aux := (*alias)(e)
+
+	// Extract namespace declarations from start element
+	e.nsDeclarations = make(map[string]string)
+	e.elementPrefixes = make(map[string]string)
+	var nonXmlnsAttrs []xml.Attr
+	for _, attr := range start.Attr {
+		if attr.Name.Space == "xmlns" {
+			// xmlns:prefix="uri"
+			e.nsDeclarations[attr.Name.Local] = attr.Value
+			// Build reverse map for element prefix restoration
+			e.elementPrefixes[attr.Value] = attr.Name.Local
+		} else if attr.Name.Local == "xmlns" && attr.Name.Space == "" {
+			// xmlns="uri"
+			e.nsDefaultNamespace = attr.Value
+		} else {
+			// Keep non-xmlns attributes for DecodeElement
+			nonXmlnsAttrs = append(nonXmlnsAttrs, attr)
+		}
+	}
+
+	// Remove xmlns from start.Attr to prevent duplication in UnknownAttrs
+	start.Attr = nonXmlnsAttrs
+
+	// Perform standard unmarshal
+	return d.DecodeElement(aux, &start)
+}
+
+// MarshalXML implements custom marshaling with namespace preservation
+func (e *CpeElement) MarshalXML(encoder *xml.Encoder, start xml.StartElement) error {
+	// Use the struct's XMLName to ensure correct element name
+	start.Name = e.XMLName
+
+	// Restore namespace declarations
+	if len(e.nsDeclarations) > 0 {
+		// Add namespace declarations to start element
+		for prefix, uri := range e.nsDeclarations {
+			start.Attr = append(start.Attr, xml.Attr{
+				Name:  xml.Name{Space: "xmlns", Local: prefix},
+				Value: uri,
+			})
+		}
+	}
+	// Restore default namespace declaration if it was present in input
+	// This is necessary for perfect fidelity when elements have redundant xmlns
+	if e.nsDefaultNamespace != "" {
+		start.Attr = append(start.Attr, xml.Attr{
+			Name:  xml.Name{Local: "xmlns"},
+			Value: e.nsDefaultNamespace,
+		})
+	}
+
+	// Create alias type to prevent recursion
+	type alias CpeElement
+	aux := (*alias)(e)
+
+	// Encode using standard marshaler
+	return encoder.EncodeElement(aux, start)
+}
+
+// MarshalIndentClean marshals with perfect namespace fidelity
+// This method: 1) Fixes Go's xmlns corruption, 2) Restores element prefixes
+// Preserves legitimate xmlns on nested elements with different default namespaces
+func (e *CpeElement) MarshalIndentClean(prefix, indent string) ([]byte, error) {
+	data, err := xml.MarshalIndent(e, prefix, indent)
+	if err != nil {
+		return nil, err
+	}
+
+	// Fix Go's namespace corruption:
+	// Go's xml.Encoder corrupts xmlns declarations by:
+	// 1. Prefixing 'xmlns:' with an underscore: 'xmlns:rc' -> '_xmlns:rc'
+	// 2. Adding a bogus 'xmlns:_xmlns="xmlns"' attribute
+	output := string(data)
+
+	// Step 1: Fix Go's namespace corruption
+	// First, remove the bogus xmlns:_xmlns="xmlns" attribute
+	output = strings.ReplaceAll(output, ` xmlns:_xmlns="xmlns"`, "")
+
+	// Then fix all _xmlns: prefixes to xmlns:
+	output = strings.ReplaceAll(output, "_xmlns:", "xmlns:")
+
+	// Also remove any remaining xmlns:xmlns="xmlns" that may appear
+	output = strings.ReplaceAll(output, ` xmlns:xmlns="xmlns"`, "")
+
+	// Fix corrupted XMLSchema-instance namespace
+	// Go sometimes duplicates this as xmlns:_XMLSchema-instance and _XMLSchema-instance:schemaLocation
+	output = strings.ReplaceAll(output, ` xmlns:_XMLSchema-instance="http://www.w3.org/2001/XMLSchema-instance"`, "")
+	output = strings.ReplaceAll(output, "_XMLSchema-instance:", "xsi:")
+
+	// Step 2: Restore element namespace prefixes using the captured prefix map
+	if len(e.elementPrefixes) > 0 {
+		output = restoreElementPrefixes(output, e.elementPrefixes)
+	}
+
+	// Step 3: Replicate xmlns placement from original XML for zero xmlns delta
+	// This adds xmlns to elements that had it in original, removes xmlns from elements that didn't
+	if len(e.elementsWithXmlns) > 0 {
+		output = replicateXmlnsPlacement(output, e.elementsWithXmlns)
+	}
+
+	return []byte(output), nil
+}
+
+// ToBytes marshals the element to bytes with namespace preservation
+// This is the recommended method for serializing to XML with round-trip fidelity
+func (e *CpeElement) ToBytes() ([]byte, error) {
+	return e.MarshalIndentClean("", "  ")
+}
+
+// SetElementPrefixes allows injecting element prefix mappings from raw XML
+// This is typically called after unmarshal with ExtractElementPrefixes(rawXML)
+func (e *CpeElement) SetElementPrefixes(prefixes map[string]string) {
+	e.elementPrefixes = prefixes
+}
+
+// SetElementsWithXmlns allows injecting element->xmlns mappings from raw XML
+// This is typically called after unmarshal with ExtractElementsWithXmlns(rawXML)
+// for perfect xmlns fidelity (zero xmlns delta)
+func (e *CpeElement) SetElementsWithXmlns(elementsWithXmlns map[string]string) {
+	e.elementsWithXmlns = elementsWithXmlns
+}
+
+// SaveToFile saves the element to a file with namespace preservation
+func (e *CpeElement) SaveToFile(path string) error {
+	data, err := e.ToBytes()
+	if err != nil {
+		return err
+	}
+	return os.WriteFile(path, data, 0644)
+}
+
+// LoadCpeFromBytes loads an element from bytes with namespace preservation
+func LoadCpeFromBytes(data []byte) (*CpeElement, error) {
+	// Extract element prefixes from raw XML before unmarshaling
+	elementPrefixes := ExtractElementPrefixes(data)
+	// Extract which elements had xmlns for exact xmlns replication
+	elementsWithXmlns := ExtractElementsWithXmlns(data)
+
+	var element CpeElement
+	if err := xml.Unmarshal(data, &element); err != nil {
+		return nil, err
+	}
+
+	// Store extracted element name -> prefix mappings for restoration during marshal
+	element.elementPrefixes = elementPrefixes
+	// Store element -> xmlns mappings for zero xmlns delta
+	element.elementsWithXmlns = elementsWithXmlns
+
+	return &element, nil
+}
+
+// LoadCpeFromFile loads an element from a file with namespace preservation
+func LoadCpeFromFile(path string) (*CpeElement, error) {
+	data, err := os.ReadFile(path)
+	if err != nil {
+		return nil, err
+	}
+	return LoadCpeFromBytes(data)
 }
 
 // EmailAddressElement represents the XSD element 'email-address'
@@ -2434,381 +4100,11 @@ func LoadFqdnFromFile(path string) (*FqdnElement, error) {
 	return LoadFqdnFromBytes(data)
 }
 
-// IpAddressElement represents the XSD element 'ip-address'
-// XSD element declaration (W3C XSD §3.3)
-type IpAddressElement struct {
-	XMLName       xml.Name `xml:"http://scap.nist.gov/schema/asset-identification/1.1 ip-address"`
-	IpAddressType          // Embedded complex type
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-	// nsDeclarations stores namespace prefix->URI mappings for perfect round-trip
-	nsDeclarations map[string]string `xml:"-"`
-	// nsDefaultNamespace stores the default namespace for perfect round-trip
-	nsDefaultNamespace string `xml:"-"`
-	// elementPrefixes stores element name->prefix mappings for perfect round-trip
-	elementPrefixes map[string]string `xml:"-"`
-	// elementsWithXmlns tracks which element names had xmlns in original (element_name -> namespace_uri)
-	// Used to replicate xmlns placement exactly during marshal for zero xmlns delta
-	elementsWithXmlns map[string]string `xml:"-"`
-}
-
-// UnmarshalXML implements custom unmarshaling with namespace preservation
-func (e *IpAddressElement) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
-	// Create alias type to prevent recursion
-	type alias IpAddressElement
-	aux := (*alias)(e)
-
-	// Extract namespace declarations from start element
-	e.nsDeclarations = make(map[string]string)
-	e.elementPrefixes = make(map[string]string)
-	var nonXmlnsAttrs []xml.Attr
-	for _, attr := range start.Attr {
-		if attr.Name.Space == "xmlns" {
-			// xmlns:prefix="uri"
-			e.nsDeclarations[attr.Name.Local] = attr.Value
-			// Build reverse map for element prefix restoration
-			e.elementPrefixes[attr.Value] = attr.Name.Local
-		} else if attr.Name.Local == "xmlns" && attr.Name.Space == "" {
-			// xmlns="uri"
-			e.nsDefaultNamespace = attr.Value
-		} else {
-			// Keep non-xmlns attributes for DecodeElement
-			nonXmlnsAttrs = append(nonXmlnsAttrs, attr)
-		}
-	}
-
-	// Remove xmlns from start.Attr to prevent duplication in UnknownAttrs
-	start.Attr = nonXmlnsAttrs
-
-	// Perform standard unmarshal
-	return d.DecodeElement(aux, &start)
-}
-
-// MarshalXML implements custom marshaling with namespace preservation
-func (e *IpAddressElement) MarshalXML(encoder *xml.Encoder, start xml.StartElement) error {
-	// Use the struct's XMLName to ensure correct element name
-	start.Name = e.XMLName
-
-	// Restore namespace declarations
-	if len(e.nsDeclarations) > 0 {
-		// Add namespace declarations to start element
-		for prefix, uri := range e.nsDeclarations {
-			start.Attr = append(start.Attr, xml.Attr{
-				Name:  xml.Name{Space: "xmlns", Local: prefix},
-				Value: uri,
-			})
-		}
-	}
-	// Restore default namespace declaration if it was present in input
-	// This is necessary for perfect fidelity when elements have redundant xmlns
-	if e.nsDefaultNamespace != "" {
-		start.Attr = append(start.Attr, xml.Attr{
-			Name:  xml.Name{Local: "xmlns"},
-			Value: e.nsDefaultNamespace,
-		})
-	}
-
-	// Create alias type to prevent recursion
-	type alias IpAddressElement
-	aux := (*alias)(e)
-
-	// Encode using standard marshaler
-	return encoder.EncodeElement(aux, start)
-}
-
-// MarshalIndentClean marshals with perfect namespace fidelity
-// This method: 1) Fixes Go's xmlns corruption, 2) Restores element prefixes
-// Preserves legitimate xmlns on nested elements with different default namespaces
-func (e *IpAddressElement) MarshalIndentClean(prefix, indent string) ([]byte, error) {
-	data, err := xml.MarshalIndent(e, prefix, indent)
-	if err != nil {
-		return nil, err
-	}
-
-	// Fix Go's namespace corruption:
-	// Go's xml.Encoder corrupts xmlns declarations by:
-	// 1. Prefixing 'xmlns:' with an underscore: 'xmlns:rc' -> '_xmlns:rc'
-	// 2. Adding a bogus 'xmlns:_xmlns="xmlns"' attribute
-	output := string(data)
-
-	// Step 1: Fix Go's namespace corruption
-	// First, remove the bogus xmlns:_xmlns="xmlns" attribute
-	output = strings.ReplaceAll(output, ` xmlns:_xmlns="xmlns"`, "")
-
-	// Then fix all _xmlns: prefixes to xmlns:
-	output = strings.ReplaceAll(output, "_xmlns:", "xmlns:")
-
-	// Also remove any remaining xmlns:xmlns="xmlns" that may appear
-	output = strings.ReplaceAll(output, ` xmlns:xmlns="xmlns"`, "")
-
-	// Fix corrupted XMLSchema-instance namespace
-	// Go sometimes duplicates this as xmlns:_XMLSchema-instance and _XMLSchema-instance:schemaLocation
-	output = strings.ReplaceAll(output, ` xmlns:_XMLSchema-instance="http://www.w3.org/2001/XMLSchema-instance"`, "")
-	output = strings.ReplaceAll(output, "_XMLSchema-instance:", "xsi:")
-
-	// Step 2: Restore element namespace prefixes using the captured prefix map
-	if len(e.elementPrefixes) > 0 {
-		output = restoreElementPrefixes(output, e.elementPrefixes)
-	}
-
-	// Step 3: Replicate xmlns placement from original XML for zero xmlns delta
-	// This adds xmlns to elements that had it in original, removes xmlns from elements that didn't
-	if len(e.elementsWithXmlns) > 0 {
-		output = replicateXmlnsPlacement(output, e.elementsWithXmlns)
-	}
-
-	return []byte(output), nil
-}
-
-// ToBytes marshals the element to bytes with namespace preservation
-// This is the recommended method for serializing to XML with round-trip fidelity
-func (e *IpAddressElement) ToBytes() ([]byte, error) {
-	return e.MarshalIndentClean("", "  ")
-}
-
-// SetElementPrefixes allows injecting element prefix mappings from raw XML
-// This is typically called after unmarshal with ExtractElementPrefixes(rawXML)
-func (e *IpAddressElement) SetElementPrefixes(prefixes map[string]string) {
-	e.elementPrefixes = prefixes
-}
-
-// SetElementsWithXmlns allows injecting element->xmlns mappings from raw XML
-// This is typically called after unmarshal with ExtractElementsWithXmlns(rawXML)
-// for perfect xmlns fidelity (zero xmlns delta)
-func (e *IpAddressElement) SetElementsWithXmlns(elementsWithXmlns map[string]string) {
-	e.elementsWithXmlns = elementsWithXmlns
-}
-
-// SaveToFile saves the element to a file with namespace preservation
-func (e *IpAddressElement) SaveToFile(path string) error {
-	data, err := e.ToBytes()
-	if err != nil {
-		return err
-	}
-	return os.WriteFile(path, data, 0644)
-}
-
-// LoadIpAddressFromBytes loads an element from bytes with namespace preservation
-func LoadIpAddressFromBytes(data []byte) (*IpAddressElement, error) {
-	// Extract element prefixes from raw XML before unmarshaling
-	elementPrefixes := ExtractElementPrefixes(data)
-	// Extract which elements had xmlns for exact xmlns replication
-	elementsWithXmlns := ExtractElementsWithXmlns(data)
-
-	var element IpAddressElement
-	if err := xml.Unmarshal(data, &element); err != nil {
-		return nil, err
-	}
-
-	// Store extracted element name -> prefix mappings for restoration during marshal
-	element.elementPrefixes = elementPrefixes
-	// Store element -> xmlns mappings for zero xmlns delta
-	element.elementsWithXmlns = elementsWithXmlns
-
-	return &element, nil
-}
-
-// LoadIpAddressFromFile loads an element from a file with namespace preservation
-func LoadIpAddressFromFile(path string) (*IpAddressElement, error) {
-	data, err := os.ReadFile(path)
-	if err != nil {
-		return nil, err
-	}
-	return LoadIpAddressFromBytes(data)
-}
-
-// ComputingDeviceElement represents the XSD element 'computing-device'
-// XSD element declaration (W3C XSD §3.3)
-type ComputingDeviceElement struct {
-	XMLName             xml.Name `xml:"http://scap.nist.gov/schema/asset-identification/1.1 computing-device"`
-	ComputingDeviceType          // Embedded complex type
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-	// nsDeclarations stores namespace prefix->URI mappings for perfect round-trip
-	nsDeclarations map[string]string `xml:"-"`
-	// nsDefaultNamespace stores the default namespace for perfect round-trip
-	nsDefaultNamespace string `xml:"-"`
-	// elementPrefixes stores element name->prefix mappings for perfect round-trip
-	elementPrefixes map[string]string `xml:"-"`
-	// elementsWithXmlns tracks which element names had xmlns in original (element_name -> namespace_uri)
-	// Used to replicate xmlns placement exactly during marshal for zero xmlns delta
-	elementsWithXmlns map[string]string `xml:"-"`
-}
-
-// UnmarshalXML implements custom unmarshaling with namespace preservation
-func (e *ComputingDeviceElement) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
-	// Create alias type to prevent recursion
-	type alias ComputingDeviceElement
-	aux := (*alias)(e)
-
-	// Extract namespace declarations from start element
-	e.nsDeclarations = make(map[string]string)
-	e.elementPrefixes = make(map[string]string)
-	var nonXmlnsAttrs []xml.Attr
-	for _, attr := range start.Attr {
-		if attr.Name.Space == "xmlns" {
-			// xmlns:prefix="uri"
-			e.nsDeclarations[attr.Name.Local] = attr.Value
-			// Build reverse map for element prefix restoration
-			e.elementPrefixes[attr.Value] = attr.Name.Local
-		} else if attr.Name.Local == "xmlns" && attr.Name.Space == "" {
-			// xmlns="uri"
-			e.nsDefaultNamespace = attr.Value
-		} else {
-			// Keep non-xmlns attributes for DecodeElement
-			nonXmlnsAttrs = append(nonXmlnsAttrs, attr)
-		}
-	}
-
-	// Remove xmlns from start.Attr to prevent duplication in UnknownAttrs
-	start.Attr = nonXmlnsAttrs
-
-	// Perform standard unmarshal
-	return d.DecodeElement(aux, &start)
-}
-
-// MarshalXML implements custom marshaling with namespace preservation
-func (e *ComputingDeviceElement) MarshalXML(encoder *xml.Encoder, start xml.StartElement) error {
-	// Use the struct's XMLName to ensure correct element name
-	start.Name = e.XMLName
-
-	// Restore namespace declarations
-	if len(e.nsDeclarations) > 0 {
-		// Add namespace declarations to start element
-		for prefix, uri := range e.nsDeclarations {
-			start.Attr = append(start.Attr, xml.Attr{
-				Name:  xml.Name{Space: "xmlns", Local: prefix},
-				Value: uri,
-			})
-		}
-	}
-	// Restore default namespace declaration if it was present in input
-	// This is necessary for perfect fidelity when elements have redundant xmlns
-	if e.nsDefaultNamespace != "" {
-		start.Attr = append(start.Attr, xml.Attr{
-			Name:  xml.Name{Local: "xmlns"},
-			Value: e.nsDefaultNamespace,
-		})
-	}
-
-	// Create alias type to prevent recursion
-	type alias ComputingDeviceElement
-	aux := (*alias)(e)
-
-	// Encode using standard marshaler
-	return encoder.EncodeElement(aux, start)
-}
-
-// MarshalIndentClean marshals with perfect namespace fidelity
-// This method: 1) Fixes Go's xmlns corruption, 2) Restores element prefixes
-// Preserves legitimate xmlns on nested elements with different default namespaces
-func (e *ComputingDeviceElement) MarshalIndentClean(prefix, indent string) ([]byte, error) {
-	data, err := xml.MarshalIndent(e, prefix, indent)
-	if err != nil {
-		return nil, err
-	}
-
-	// Fix Go's namespace corruption:
-	// Go's xml.Encoder corrupts xmlns declarations by:
-	// 1. Prefixing 'xmlns:' with an underscore: 'xmlns:rc' -> '_xmlns:rc'
-	// 2. Adding a bogus 'xmlns:_xmlns="xmlns"' attribute
-	output := string(data)
-
-	// Step 1: Fix Go's namespace corruption
-	// First, remove the bogus xmlns:_xmlns="xmlns" attribute
-	output = strings.ReplaceAll(output, ` xmlns:_xmlns="xmlns"`, "")
-
-	// Then fix all _xmlns: prefixes to xmlns:
-	output = strings.ReplaceAll(output, "_xmlns:", "xmlns:")
-
-	// Also remove any remaining xmlns:xmlns="xmlns" that may appear
-	output = strings.ReplaceAll(output, ` xmlns:xmlns="xmlns"`, "")
-
-	// Fix corrupted XMLSchema-instance namespace
-	// Go sometimes duplicates this as xmlns:_XMLSchema-instance and _XMLSchema-instance:schemaLocation
-	output = strings.ReplaceAll(output, ` xmlns:_XMLSchema-instance="http://www.w3.org/2001/XMLSchema-instance"`, "")
-	output = strings.ReplaceAll(output, "_XMLSchema-instance:", "xsi:")
-
-	// Step 2: Restore element namespace prefixes using the captured prefix map
-	if len(e.elementPrefixes) > 0 {
-		output = restoreElementPrefixes(output, e.elementPrefixes)
-	}
-
-	// Step 3: Replicate xmlns placement from original XML for zero xmlns delta
-	// This adds xmlns to elements that had it in original, removes xmlns from elements that didn't
-	if len(e.elementsWithXmlns) > 0 {
-		output = replicateXmlnsPlacement(output, e.elementsWithXmlns)
-	}
-
-	return []byte(output), nil
-}
-
-// ToBytes marshals the element to bytes with namespace preservation
-// This is the recommended method for serializing to XML with round-trip fidelity
-func (e *ComputingDeviceElement) ToBytes() ([]byte, error) {
-	return e.MarshalIndentClean("", "  ")
-}
-
-// SetElementPrefixes allows injecting element prefix mappings from raw XML
-// This is typically called after unmarshal with ExtractElementPrefixes(rawXML)
-func (e *ComputingDeviceElement) SetElementPrefixes(prefixes map[string]string) {
-	e.elementPrefixes = prefixes
-}
-
-// SetElementsWithXmlns allows injecting element->xmlns mappings from raw XML
-// This is typically called after unmarshal with ExtractElementsWithXmlns(rawXML)
-// for perfect xmlns fidelity (zero xmlns delta)
-func (e *ComputingDeviceElement) SetElementsWithXmlns(elementsWithXmlns map[string]string) {
-	e.elementsWithXmlns = elementsWithXmlns
-}
-
-// SaveToFile saves the element to a file with namespace preservation
-func (e *ComputingDeviceElement) SaveToFile(path string) error {
-	data, err := e.ToBytes()
-	if err != nil {
-		return err
-	}
-	return os.WriteFile(path, data, 0644)
-}
-
-// LoadComputingDeviceFromBytes loads an element from bytes with namespace preservation
-func LoadComputingDeviceFromBytes(data []byte) (*ComputingDeviceElement, error) {
-	// Extract element prefixes from raw XML before unmarshaling
-	elementPrefixes := ExtractElementPrefixes(data)
-	// Extract which elements had xmlns for exact xmlns replication
-	elementsWithXmlns := ExtractElementsWithXmlns(data)
-
-	var element ComputingDeviceElement
-	if err := xml.Unmarshal(data, &element); err != nil {
-		return nil, err
-	}
-
-	// Store extracted element name -> prefix mappings for restoration during marshal
-	element.elementPrefixes = elementPrefixes
-	// Store element -> xmlns mappings for zero xmlns delta
-	element.elementsWithXmlns = elementsWithXmlns
-
-	return &element, nil
-}
-
-// LoadComputingDeviceFromFile loads an element from a file with namespace preservation
-func LoadComputingDeviceFromFile(path string) (*ComputingDeviceElement, error) {
-	data, err := os.ReadFile(path)
-	if err != nil {
-		return nil, err
-	}
-	return LoadComputingDeviceFromBytes(data)
-}
-
 // LocationAddressElement represents the XSD element 'location-address'
 // XSD element declaration (W3C XSD §3.3)
 type LocationAddressElement struct {
-	XMLName xml.Name               `xml:"http://scap.nist.gov/schema/asset-identification/1.1 location-address"`
-	Value   pkg_2_0.AddressDetails `xml:",chardata"`
+	XMLName                xml.Name `xml:"http://scap.nist.gov/schema/asset-identification/1.1 location-address"`
+	pkg_2_0.AddressDetails          // Embedded complex type
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -2993,15 +4289,15 @@ func LoadLocationAddressFromFile(path string) (*LocationAddressElement, error) {
 // XSD element declaration (W3C XSD §3.3)
 type LocationsElement struct {
 	XMLName xml.Name `xml:"http://scap.nist.gov/schema/asset-identification/1.1 locations"`
+	// X1_1LocationAddress represents substitution group member 'location-address' (namespace: http://scap.nist.gov/schema/asset-identification/1.1)
+	// Substitutes for abstract element 'location'
+	X1_1LocationAddress []pkg_2_0.AddressDetails `xml:"http://scap.nist.gov/schema/asset-identification/1.1 location-address,omitempty"`
 	// X1_1LocationPoint represents substitution group member 'location-point' (namespace: http://scap.nist.gov/schema/asset-identification/1.1)
 	// Substitutes for abstract element 'location'
 	X1_1LocationPoint []LocationPointElement `xml:"http://scap.nist.gov/schema/asset-identification/1.1 location-point,omitempty"`
 	// X1_1LocationRegion represents substitution group member 'location-region' (namespace: http://scap.nist.gov/schema/asset-identification/1.1)
 	// Substitutes for abstract element 'location'
 	X1_1LocationRegion []LocationRegionElement `xml:"http://scap.nist.gov/schema/asset-identification/1.1 location-region,omitempty"`
-	// X1_1LocationAddress represents substitution group member 'location-address' (namespace: http://scap.nist.gov/schema/asset-identification/1.1)
-	// Substitutes for abstract element 'location'
-	X1_1LocationAddress []pkg_2_0.AddressDetails `xml:"http://scap.nist.gov/schema/asset-identification/1.1 location-address,omitempty"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -3180,1117 +4476,6 @@ func LoadLocationsFromFile(path string) (*LocationsElement, error) {
 		return nil, err
 	}
 	return LoadLocationsFromBytes(data)
-}
-
-// ServedByElement represents the XSD element 'served-by'
-// XSD element declaration (W3C XSD §3.3)
-type ServedByElement struct {
-	XMLName     xml.Name `xml:"http://scap.nist.gov/schema/asset-identification/1.1 served-by"`
-	ServiceType          // Embedded complex type
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-	// nsDeclarations stores namespace prefix->URI mappings for perfect round-trip
-	nsDeclarations map[string]string `xml:"-"`
-	// nsDefaultNamespace stores the default namespace for perfect round-trip
-	nsDefaultNamespace string `xml:"-"`
-	// elementPrefixes stores element name->prefix mappings for perfect round-trip
-	elementPrefixes map[string]string `xml:"-"`
-	// elementsWithXmlns tracks which element names had xmlns in original (element_name -> namespace_uri)
-	// Used to replicate xmlns placement exactly during marshal for zero xmlns delta
-	elementsWithXmlns map[string]string `xml:"-"`
-}
-
-// UnmarshalXML implements custom unmarshaling with namespace preservation
-func (e *ServedByElement) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
-	// Create alias type to prevent recursion
-	type alias ServedByElement
-	aux := (*alias)(e)
-
-	// Extract namespace declarations from start element
-	e.nsDeclarations = make(map[string]string)
-	e.elementPrefixes = make(map[string]string)
-	var nonXmlnsAttrs []xml.Attr
-	for _, attr := range start.Attr {
-		if attr.Name.Space == "xmlns" {
-			// xmlns:prefix="uri"
-			e.nsDeclarations[attr.Name.Local] = attr.Value
-			// Build reverse map for element prefix restoration
-			e.elementPrefixes[attr.Value] = attr.Name.Local
-		} else if attr.Name.Local == "xmlns" && attr.Name.Space == "" {
-			// xmlns="uri"
-			e.nsDefaultNamespace = attr.Value
-		} else {
-			// Keep non-xmlns attributes for DecodeElement
-			nonXmlnsAttrs = append(nonXmlnsAttrs, attr)
-		}
-	}
-
-	// Remove xmlns from start.Attr to prevent duplication in UnknownAttrs
-	start.Attr = nonXmlnsAttrs
-
-	// Perform standard unmarshal
-	return d.DecodeElement(aux, &start)
-}
-
-// MarshalXML implements custom marshaling with namespace preservation
-func (e *ServedByElement) MarshalXML(encoder *xml.Encoder, start xml.StartElement) error {
-	// Use the struct's XMLName to ensure correct element name
-	start.Name = e.XMLName
-
-	// Restore namespace declarations
-	if len(e.nsDeclarations) > 0 {
-		// Add namespace declarations to start element
-		for prefix, uri := range e.nsDeclarations {
-			start.Attr = append(start.Attr, xml.Attr{
-				Name:  xml.Name{Space: "xmlns", Local: prefix},
-				Value: uri,
-			})
-		}
-	}
-	// Restore default namespace declaration if it was present in input
-	// This is necessary for perfect fidelity when elements have redundant xmlns
-	if e.nsDefaultNamespace != "" {
-		start.Attr = append(start.Attr, xml.Attr{
-			Name:  xml.Name{Local: "xmlns"},
-			Value: e.nsDefaultNamespace,
-		})
-	}
-
-	// Create alias type to prevent recursion
-	type alias ServedByElement
-	aux := (*alias)(e)
-
-	// Encode using standard marshaler
-	return encoder.EncodeElement(aux, start)
-}
-
-// MarshalIndentClean marshals with perfect namespace fidelity
-// This method: 1) Fixes Go's xmlns corruption, 2) Restores element prefixes
-// Preserves legitimate xmlns on nested elements with different default namespaces
-func (e *ServedByElement) MarshalIndentClean(prefix, indent string) ([]byte, error) {
-	data, err := xml.MarshalIndent(e, prefix, indent)
-	if err != nil {
-		return nil, err
-	}
-
-	// Fix Go's namespace corruption:
-	// Go's xml.Encoder corrupts xmlns declarations by:
-	// 1. Prefixing 'xmlns:' with an underscore: 'xmlns:rc' -> '_xmlns:rc'
-	// 2. Adding a bogus 'xmlns:_xmlns="xmlns"' attribute
-	output := string(data)
-
-	// Step 1: Fix Go's namespace corruption
-	// First, remove the bogus xmlns:_xmlns="xmlns" attribute
-	output = strings.ReplaceAll(output, ` xmlns:_xmlns="xmlns"`, "")
-
-	// Then fix all _xmlns: prefixes to xmlns:
-	output = strings.ReplaceAll(output, "_xmlns:", "xmlns:")
-
-	// Also remove any remaining xmlns:xmlns="xmlns" that may appear
-	output = strings.ReplaceAll(output, ` xmlns:xmlns="xmlns"`, "")
-
-	// Fix corrupted XMLSchema-instance namespace
-	// Go sometimes duplicates this as xmlns:_XMLSchema-instance and _XMLSchema-instance:schemaLocation
-	output = strings.ReplaceAll(output, ` xmlns:_XMLSchema-instance="http://www.w3.org/2001/XMLSchema-instance"`, "")
-	output = strings.ReplaceAll(output, "_XMLSchema-instance:", "xsi:")
-
-	// Step 2: Restore element namespace prefixes using the captured prefix map
-	if len(e.elementPrefixes) > 0 {
-		output = restoreElementPrefixes(output, e.elementPrefixes)
-	}
-
-	// Step 3: Replicate xmlns placement from original XML for zero xmlns delta
-	// This adds xmlns to elements that had it in original, removes xmlns from elements that didn't
-	if len(e.elementsWithXmlns) > 0 {
-		output = replicateXmlnsPlacement(output, e.elementsWithXmlns)
-	}
-
-	return []byte(output), nil
-}
-
-// ToBytes marshals the element to bytes with namespace preservation
-// This is the recommended method for serializing to XML with round-trip fidelity
-func (e *ServedByElement) ToBytes() ([]byte, error) {
-	return e.MarshalIndentClean("", "  ")
-}
-
-// SetElementPrefixes allows injecting element prefix mappings from raw XML
-// This is typically called after unmarshal with ExtractElementPrefixes(rawXML)
-func (e *ServedByElement) SetElementPrefixes(prefixes map[string]string) {
-	e.elementPrefixes = prefixes
-}
-
-// SetElementsWithXmlns allows injecting element->xmlns mappings from raw XML
-// This is typically called after unmarshal with ExtractElementsWithXmlns(rawXML)
-// for perfect xmlns fidelity (zero xmlns delta)
-func (e *ServedByElement) SetElementsWithXmlns(elementsWithXmlns map[string]string) {
-	e.elementsWithXmlns = elementsWithXmlns
-}
-
-// SaveToFile saves the element to a file with namespace preservation
-func (e *ServedByElement) SaveToFile(path string) error {
-	data, err := e.ToBytes()
-	if err != nil {
-		return err
-	}
-	return os.WriteFile(path, data, 0644)
-}
-
-// LoadServedByFromBytes loads an element from bytes with namespace preservation
-func LoadServedByFromBytes(data []byte) (*ServedByElement, error) {
-	// Extract element prefixes from raw XML before unmarshaling
-	elementPrefixes := ExtractElementPrefixes(data)
-	// Extract which elements had xmlns for exact xmlns replication
-	elementsWithXmlns := ExtractElementsWithXmlns(data)
-
-	var element ServedByElement
-	if err := xml.Unmarshal(data, &element); err != nil {
-		return nil, err
-	}
-
-	// Store extracted element name -> prefix mappings for restoration during marshal
-	element.elementPrefixes = elementPrefixes
-	// Store element -> xmlns mappings for zero xmlns delta
-	element.elementsWithXmlns = elementsWithXmlns
-
-	return &element, nil
-}
-
-// LoadServedByFromFile loads an element from a file with namespace preservation
-func LoadServedByFromFile(path string) (*ServedByElement, error) {
-	data, err := os.ReadFile(path)
-	if err != nil {
-		return nil, err
-	}
-	return LoadServedByFromBytes(data)
-}
-
-// TelephoneNumberElement represents the XSD element 'telephone-number'
-// XSD element declaration (W3C XSD §3.3)
-type TelephoneNumberElement struct {
-	XMLName xml.Name            `xml:"http://scap.nist.gov/schema/asset-identification/1.1 telephone-number"`
-	Value   TelephoneNumberType `xml:",chardata"` // XSD simpleContent from telephone-number-type
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-	// nsDeclarations stores namespace prefix->URI mappings for perfect round-trip
-	nsDeclarations map[string]string `xml:"-"`
-	// nsDefaultNamespace stores the default namespace for perfect round-trip
-	nsDefaultNamespace string `xml:"-"`
-	// elementPrefixes stores element name->prefix mappings for perfect round-trip
-	elementPrefixes map[string]string `xml:"-"`
-	// elementsWithXmlns tracks which element names had xmlns in original (element_name -> namespace_uri)
-	// Used to replicate xmlns placement exactly during marshal for zero xmlns delta
-	elementsWithXmlns map[string]string `xml:"-"`
-}
-
-// UnmarshalXML implements custom unmarshaling with namespace preservation
-func (e *TelephoneNumberElement) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
-	// Create alias type to prevent recursion
-	type alias TelephoneNumberElement
-	aux := (*alias)(e)
-
-	// Extract namespace declarations from start element
-	e.nsDeclarations = make(map[string]string)
-	e.elementPrefixes = make(map[string]string)
-	var nonXmlnsAttrs []xml.Attr
-	for _, attr := range start.Attr {
-		if attr.Name.Space == "xmlns" {
-			// xmlns:prefix="uri"
-			e.nsDeclarations[attr.Name.Local] = attr.Value
-			// Build reverse map for element prefix restoration
-			e.elementPrefixes[attr.Value] = attr.Name.Local
-		} else if attr.Name.Local == "xmlns" && attr.Name.Space == "" {
-			// xmlns="uri"
-			e.nsDefaultNamespace = attr.Value
-		} else {
-			// Keep non-xmlns attributes for DecodeElement
-			nonXmlnsAttrs = append(nonXmlnsAttrs, attr)
-		}
-	}
-
-	// Remove xmlns from start.Attr to prevent duplication in UnknownAttrs
-	start.Attr = nonXmlnsAttrs
-
-	// Perform standard unmarshal
-	return d.DecodeElement(aux, &start)
-}
-
-// MarshalXML implements custom marshaling with namespace preservation
-func (e *TelephoneNumberElement) MarshalXML(encoder *xml.Encoder, start xml.StartElement) error {
-	// Use the struct's XMLName to ensure correct element name
-	start.Name = e.XMLName
-
-	// Restore namespace declarations
-	if len(e.nsDeclarations) > 0 {
-		// Add namespace declarations to start element
-		for prefix, uri := range e.nsDeclarations {
-			start.Attr = append(start.Attr, xml.Attr{
-				Name:  xml.Name{Space: "xmlns", Local: prefix},
-				Value: uri,
-			})
-		}
-	}
-	// Restore default namespace declaration if it was present in input
-	// This is necessary for perfect fidelity when elements have redundant xmlns
-	if e.nsDefaultNamespace != "" {
-		start.Attr = append(start.Attr, xml.Attr{
-			Name:  xml.Name{Local: "xmlns"},
-			Value: e.nsDefaultNamespace,
-		})
-	}
-
-	// Create alias type to prevent recursion
-	type alias TelephoneNumberElement
-	aux := (*alias)(e)
-
-	// Encode using standard marshaler
-	return encoder.EncodeElement(aux, start)
-}
-
-// MarshalIndentClean marshals with perfect namespace fidelity
-// This method: 1) Fixes Go's xmlns corruption, 2) Restores element prefixes
-// Preserves legitimate xmlns on nested elements with different default namespaces
-func (e *TelephoneNumberElement) MarshalIndentClean(prefix, indent string) ([]byte, error) {
-	data, err := xml.MarshalIndent(e, prefix, indent)
-	if err != nil {
-		return nil, err
-	}
-
-	// Fix Go's namespace corruption:
-	// Go's xml.Encoder corrupts xmlns declarations by:
-	// 1. Prefixing 'xmlns:' with an underscore: 'xmlns:rc' -> '_xmlns:rc'
-	// 2. Adding a bogus 'xmlns:_xmlns="xmlns"' attribute
-	output := string(data)
-
-	// Step 1: Fix Go's namespace corruption
-	// First, remove the bogus xmlns:_xmlns="xmlns" attribute
-	output = strings.ReplaceAll(output, ` xmlns:_xmlns="xmlns"`, "")
-
-	// Then fix all _xmlns: prefixes to xmlns:
-	output = strings.ReplaceAll(output, "_xmlns:", "xmlns:")
-
-	// Also remove any remaining xmlns:xmlns="xmlns" that may appear
-	output = strings.ReplaceAll(output, ` xmlns:xmlns="xmlns"`, "")
-
-	// Fix corrupted XMLSchema-instance namespace
-	// Go sometimes duplicates this as xmlns:_XMLSchema-instance and _XMLSchema-instance:schemaLocation
-	output = strings.ReplaceAll(output, ` xmlns:_XMLSchema-instance="http://www.w3.org/2001/XMLSchema-instance"`, "")
-	output = strings.ReplaceAll(output, "_XMLSchema-instance:", "xsi:")
-
-	// Step 2: Restore element namespace prefixes using the captured prefix map
-	if len(e.elementPrefixes) > 0 {
-		output = restoreElementPrefixes(output, e.elementPrefixes)
-	}
-
-	// Step 3: Replicate xmlns placement from original XML for zero xmlns delta
-	// This adds xmlns to elements that had it in original, removes xmlns from elements that didn't
-	if len(e.elementsWithXmlns) > 0 {
-		output = replicateXmlnsPlacement(output, e.elementsWithXmlns)
-	}
-
-	return []byte(output), nil
-}
-
-// ToBytes marshals the element to bytes with namespace preservation
-// This is the recommended method for serializing to XML with round-trip fidelity
-func (e *TelephoneNumberElement) ToBytes() ([]byte, error) {
-	return e.MarshalIndentClean("", "  ")
-}
-
-// SetElementPrefixes allows injecting element prefix mappings from raw XML
-// This is typically called after unmarshal with ExtractElementPrefixes(rawXML)
-func (e *TelephoneNumberElement) SetElementPrefixes(prefixes map[string]string) {
-	e.elementPrefixes = prefixes
-}
-
-// SetElementsWithXmlns allows injecting element->xmlns mappings from raw XML
-// This is typically called after unmarshal with ExtractElementsWithXmlns(rawXML)
-// for perfect xmlns fidelity (zero xmlns delta)
-func (e *TelephoneNumberElement) SetElementsWithXmlns(elementsWithXmlns map[string]string) {
-	e.elementsWithXmlns = elementsWithXmlns
-}
-
-// SaveToFile saves the element to a file with namespace preservation
-func (e *TelephoneNumberElement) SaveToFile(path string) error {
-	data, err := e.ToBytes()
-	if err != nil {
-		return err
-	}
-	return os.WriteFile(path, data, 0644)
-}
-
-// LoadTelephoneNumberFromBytes loads an element from bytes with namespace preservation
-func LoadTelephoneNumberFromBytes(data []byte) (*TelephoneNumberElement, error) {
-	// Extract element prefixes from raw XML before unmarshaling
-	elementPrefixes := ExtractElementPrefixes(data)
-	// Extract which elements had xmlns for exact xmlns replication
-	elementsWithXmlns := ExtractElementsWithXmlns(data)
-
-	var element TelephoneNumberElement
-	if err := xml.Unmarshal(data, &element); err != nil {
-		return nil, err
-	}
-
-	// Store extracted element name -> prefix mappings for restoration during marshal
-	element.elementPrefixes = elementPrefixes
-	// Store element -> xmlns mappings for zero xmlns delta
-	element.elementsWithXmlns = elementsWithXmlns
-
-	return &element, nil
-}
-
-// LoadTelephoneNumberFromFile loads an element from a file with namespace preservation
-func LoadTelephoneNumberFromFile(path string) (*TelephoneNumberElement, error) {
-	data, err := os.ReadFile(path)
-	if err != nil {
-		return nil, err
-	}
-	return LoadTelephoneNumberFromBytes(data)
-}
-
-// SoftwareElement represents the XSD element 'software'
-// XSD element declaration (W3C XSD §3.3)
-type SoftwareElement struct {
-	XMLName      xml.Name `xml:"http://scap.nist.gov/schema/asset-identification/1.1 software"`
-	SoftwareType          // Embedded complex type
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-	// nsDeclarations stores namespace prefix->URI mappings for perfect round-trip
-	nsDeclarations map[string]string `xml:"-"`
-	// nsDefaultNamespace stores the default namespace for perfect round-trip
-	nsDefaultNamespace string `xml:"-"`
-	// elementPrefixes stores element name->prefix mappings for perfect round-trip
-	elementPrefixes map[string]string `xml:"-"`
-	// elementsWithXmlns tracks which element names had xmlns in original (element_name -> namespace_uri)
-	// Used to replicate xmlns placement exactly during marshal for zero xmlns delta
-	elementsWithXmlns map[string]string `xml:"-"`
-}
-
-// UnmarshalXML implements custom unmarshaling with namespace preservation
-func (e *SoftwareElement) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
-	// Create alias type to prevent recursion
-	type alias SoftwareElement
-	aux := (*alias)(e)
-
-	// Extract namespace declarations from start element
-	e.nsDeclarations = make(map[string]string)
-	e.elementPrefixes = make(map[string]string)
-	var nonXmlnsAttrs []xml.Attr
-	for _, attr := range start.Attr {
-		if attr.Name.Space == "xmlns" {
-			// xmlns:prefix="uri"
-			e.nsDeclarations[attr.Name.Local] = attr.Value
-			// Build reverse map for element prefix restoration
-			e.elementPrefixes[attr.Value] = attr.Name.Local
-		} else if attr.Name.Local == "xmlns" && attr.Name.Space == "" {
-			// xmlns="uri"
-			e.nsDefaultNamespace = attr.Value
-		} else {
-			// Keep non-xmlns attributes for DecodeElement
-			nonXmlnsAttrs = append(nonXmlnsAttrs, attr)
-		}
-	}
-
-	// Remove xmlns from start.Attr to prevent duplication in UnknownAttrs
-	start.Attr = nonXmlnsAttrs
-
-	// Perform standard unmarshal
-	return d.DecodeElement(aux, &start)
-}
-
-// MarshalXML implements custom marshaling with namespace preservation
-func (e *SoftwareElement) MarshalXML(encoder *xml.Encoder, start xml.StartElement) error {
-	// Use the struct's XMLName to ensure correct element name
-	start.Name = e.XMLName
-
-	// Restore namespace declarations
-	if len(e.nsDeclarations) > 0 {
-		// Add namespace declarations to start element
-		for prefix, uri := range e.nsDeclarations {
-			start.Attr = append(start.Attr, xml.Attr{
-				Name:  xml.Name{Space: "xmlns", Local: prefix},
-				Value: uri,
-			})
-		}
-	}
-	// Restore default namespace declaration if it was present in input
-	// This is necessary for perfect fidelity when elements have redundant xmlns
-	if e.nsDefaultNamespace != "" {
-		start.Attr = append(start.Attr, xml.Attr{
-			Name:  xml.Name{Local: "xmlns"},
-			Value: e.nsDefaultNamespace,
-		})
-	}
-
-	// Create alias type to prevent recursion
-	type alias SoftwareElement
-	aux := (*alias)(e)
-
-	// Encode using standard marshaler
-	return encoder.EncodeElement(aux, start)
-}
-
-// MarshalIndentClean marshals with perfect namespace fidelity
-// This method: 1) Fixes Go's xmlns corruption, 2) Restores element prefixes
-// Preserves legitimate xmlns on nested elements with different default namespaces
-func (e *SoftwareElement) MarshalIndentClean(prefix, indent string) ([]byte, error) {
-	data, err := xml.MarshalIndent(e, prefix, indent)
-	if err != nil {
-		return nil, err
-	}
-
-	// Fix Go's namespace corruption:
-	// Go's xml.Encoder corrupts xmlns declarations by:
-	// 1. Prefixing 'xmlns:' with an underscore: 'xmlns:rc' -> '_xmlns:rc'
-	// 2. Adding a bogus 'xmlns:_xmlns="xmlns"' attribute
-	output := string(data)
-
-	// Step 1: Fix Go's namespace corruption
-	// First, remove the bogus xmlns:_xmlns="xmlns" attribute
-	output = strings.ReplaceAll(output, ` xmlns:_xmlns="xmlns"`, "")
-
-	// Then fix all _xmlns: prefixes to xmlns:
-	output = strings.ReplaceAll(output, "_xmlns:", "xmlns:")
-
-	// Also remove any remaining xmlns:xmlns="xmlns" that may appear
-	output = strings.ReplaceAll(output, ` xmlns:xmlns="xmlns"`, "")
-
-	// Fix corrupted XMLSchema-instance namespace
-	// Go sometimes duplicates this as xmlns:_XMLSchema-instance and _XMLSchema-instance:schemaLocation
-	output = strings.ReplaceAll(output, ` xmlns:_XMLSchema-instance="http://www.w3.org/2001/XMLSchema-instance"`, "")
-	output = strings.ReplaceAll(output, "_XMLSchema-instance:", "xsi:")
-
-	// Step 2: Restore element namespace prefixes using the captured prefix map
-	if len(e.elementPrefixes) > 0 {
-		output = restoreElementPrefixes(output, e.elementPrefixes)
-	}
-
-	// Step 3: Replicate xmlns placement from original XML for zero xmlns delta
-	// This adds xmlns to elements that had it in original, removes xmlns from elements that didn't
-	if len(e.elementsWithXmlns) > 0 {
-		output = replicateXmlnsPlacement(output, e.elementsWithXmlns)
-	}
-
-	return []byte(output), nil
-}
-
-// ToBytes marshals the element to bytes with namespace preservation
-// This is the recommended method for serializing to XML with round-trip fidelity
-func (e *SoftwareElement) ToBytes() ([]byte, error) {
-	return e.MarshalIndentClean("", "  ")
-}
-
-// SetElementPrefixes allows injecting element prefix mappings from raw XML
-// This is typically called after unmarshal with ExtractElementPrefixes(rawXML)
-func (e *SoftwareElement) SetElementPrefixes(prefixes map[string]string) {
-	e.elementPrefixes = prefixes
-}
-
-// SetElementsWithXmlns allows injecting element->xmlns mappings from raw XML
-// This is typically called after unmarshal with ExtractElementsWithXmlns(rawXML)
-// for perfect xmlns fidelity (zero xmlns delta)
-func (e *SoftwareElement) SetElementsWithXmlns(elementsWithXmlns map[string]string) {
-	e.elementsWithXmlns = elementsWithXmlns
-}
-
-// SaveToFile saves the element to a file with namespace preservation
-func (e *SoftwareElement) SaveToFile(path string) error {
-	data, err := e.ToBytes()
-	if err != nil {
-		return err
-	}
-	return os.WriteFile(path, data, 0644)
-}
-
-// LoadSoftwareFromBytes loads an element from bytes with namespace preservation
-func LoadSoftwareFromBytes(data []byte) (*SoftwareElement, error) {
-	// Extract element prefixes from raw XML before unmarshaling
-	elementPrefixes := ExtractElementPrefixes(data)
-	// Extract which elements had xmlns for exact xmlns replication
-	elementsWithXmlns := ExtractElementsWithXmlns(data)
-
-	var element SoftwareElement
-	if err := xml.Unmarshal(data, &element); err != nil {
-		return nil, err
-	}
-
-	// Store extracted element name -> prefix mappings for restoration during marshal
-	element.elementPrefixes = elementPrefixes
-	// Store element -> xmlns mappings for zero xmlns delta
-	element.elementsWithXmlns = elementsWithXmlns
-
-	return &element, nil
-}
-
-// LoadSoftwareFromFile loads an element from a file with namespace preservation
-func LoadSoftwareFromFile(path string) (*SoftwareElement, error) {
-	data, err := os.ReadFile(path)
-	if err != nil {
-		return nil, err
-	}
-	return LoadSoftwareFromBytes(data)
-}
-
-// SystemElement represents the XSD element 'system'
-// XSD element declaration (W3C XSD §3.3)
-type SystemElement struct {
-	XMLName    xml.Name `xml:"http://scap.nist.gov/schema/asset-identification/1.1 system"`
-	SystemType          // Embedded complex type
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-	// nsDeclarations stores namespace prefix->URI mappings for perfect round-trip
-	nsDeclarations map[string]string `xml:"-"`
-	// nsDefaultNamespace stores the default namespace for perfect round-trip
-	nsDefaultNamespace string `xml:"-"`
-	// elementPrefixes stores element name->prefix mappings for perfect round-trip
-	elementPrefixes map[string]string `xml:"-"`
-	// elementsWithXmlns tracks which element names had xmlns in original (element_name -> namespace_uri)
-	// Used to replicate xmlns placement exactly during marshal for zero xmlns delta
-	elementsWithXmlns map[string]string `xml:"-"`
-}
-
-// UnmarshalXML implements custom unmarshaling with namespace preservation
-func (e *SystemElement) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
-	// Create alias type to prevent recursion
-	type alias SystemElement
-	aux := (*alias)(e)
-
-	// Extract namespace declarations from start element
-	e.nsDeclarations = make(map[string]string)
-	e.elementPrefixes = make(map[string]string)
-	var nonXmlnsAttrs []xml.Attr
-	for _, attr := range start.Attr {
-		if attr.Name.Space == "xmlns" {
-			// xmlns:prefix="uri"
-			e.nsDeclarations[attr.Name.Local] = attr.Value
-			// Build reverse map for element prefix restoration
-			e.elementPrefixes[attr.Value] = attr.Name.Local
-		} else if attr.Name.Local == "xmlns" && attr.Name.Space == "" {
-			// xmlns="uri"
-			e.nsDefaultNamespace = attr.Value
-		} else {
-			// Keep non-xmlns attributes for DecodeElement
-			nonXmlnsAttrs = append(nonXmlnsAttrs, attr)
-		}
-	}
-
-	// Remove xmlns from start.Attr to prevent duplication in UnknownAttrs
-	start.Attr = nonXmlnsAttrs
-
-	// Perform standard unmarshal
-	return d.DecodeElement(aux, &start)
-}
-
-// MarshalXML implements custom marshaling with namespace preservation
-func (e *SystemElement) MarshalXML(encoder *xml.Encoder, start xml.StartElement) error {
-	// Use the struct's XMLName to ensure correct element name
-	start.Name = e.XMLName
-
-	// Restore namespace declarations
-	if len(e.nsDeclarations) > 0 {
-		// Add namespace declarations to start element
-		for prefix, uri := range e.nsDeclarations {
-			start.Attr = append(start.Attr, xml.Attr{
-				Name:  xml.Name{Space: "xmlns", Local: prefix},
-				Value: uri,
-			})
-		}
-	}
-	// Restore default namespace declaration if it was present in input
-	// This is necessary for perfect fidelity when elements have redundant xmlns
-	if e.nsDefaultNamespace != "" {
-		start.Attr = append(start.Attr, xml.Attr{
-			Name:  xml.Name{Local: "xmlns"},
-			Value: e.nsDefaultNamespace,
-		})
-	}
-
-	// Create alias type to prevent recursion
-	type alias SystemElement
-	aux := (*alias)(e)
-
-	// Encode using standard marshaler
-	return encoder.EncodeElement(aux, start)
-}
-
-// MarshalIndentClean marshals with perfect namespace fidelity
-// This method: 1) Fixes Go's xmlns corruption, 2) Restores element prefixes
-// Preserves legitimate xmlns on nested elements with different default namespaces
-func (e *SystemElement) MarshalIndentClean(prefix, indent string) ([]byte, error) {
-	data, err := xml.MarshalIndent(e, prefix, indent)
-	if err != nil {
-		return nil, err
-	}
-
-	// Fix Go's namespace corruption:
-	// Go's xml.Encoder corrupts xmlns declarations by:
-	// 1. Prefixing 'xmlns:' with an underscore: 'xmlns:rc' -> '_xmlns:rc'
-	// 2. Adding a bogus 'xmlns:_xmlns="xmlns"' attribute
-	output := string(data)
-
-	// Step 1: Fix Go's namespace corruption
-	// First, remove the bogus xmlns:_xmlns="xmlns" attribute
-	output = strings.ReplaceAll(output, ` xmlns:_xmlns="xmlns"`, "")
-
-	// Then fix all _xmlns: prefixes to xmlns:
-	output = strings.ReplaceAll(output, "_xmlns:", "xmlns:")
-
-	// Also remove any remaining xmlns:xmlns="xmlns" that may appear
-	output = strings.ReplaceAll(output, ` xmlns:xmlns="xmlns"`, "")
-
-	// Fix corrupted XMLSchema-instance namespace
-	// Go sometimes duplicates this as xmlns:_XMLSchema-instance and _XMLSchema-instance:schemaLocation
-	output = strings.ReplaceAll(output, ` xmlns:_XMLSchema-instance="http://www.w3.org/2001/XMLSchema-instance"`, "")
-	output = strings.ReplaceAll(output, "_XMLSchema-instance:", "xsi:")
-
-	// Step 2: Restore element namespace prefixes using the captured prefix map
-	if len(e.elementPrefixes) > 0 {
-		output = restoreElementPrefixes(output, e.elementPrefixes)
-	}
-
-	// Step 3: Replicate xmlns placement from original XML for zero xmlns delta
-	// This adds xmlns to elements that had it in original, removes xmlns from elements that didn't
-	if len(e.elementsWithXmlns) > 0 {
-		output = replicateXmlnsPlacement(output, e.elementsWithXmlns)
-	}
-
-	return []byte(output), nil
-}
-
-// ToBytes marshals the element to bytes with namespace preservation
-// This is the recommended method for serializing to XML with round-trip fidelity
-func (e *SystemElement) ToBytes() ([]byte, error) {
-	return e.MarshalIndentClean("", "  ")
-}
-
-// SetElementPrefixes allows injecting element prefix mappings from raw XML
-// This is typically called after unmarshal with ExtractElementPrefixes(rawXML)
-func (e *SystemElement) SetElementPrefixes(prefixes map[string]string) {
-	e.elementPrefixes = prefixes
-}
-
-// SetElementsWithXmlns allows injecting element->xmlns mappings from raw XML
-// This is typically called after unmarshal with ExtractElementsWithXmlns(rawXML)
-// for perfect xmlns fidelity (zero xmlns delta)
-func (e *SystemElement) SetElementsWithXmlns(elementsWithXmlns map[string]string) {
-	e.elementsWithXmlns = elementsWithXmlns
-}
-
-// SaveToFile saves the element to a file with namespace preservation
-func (e *SystemElement) SaveToFile(path string) error {
-	data, err := e.ToBytes()
-	if err != nil {
-		return err
-	}
-	return os.WriteFile(path, data, 0644)
-}
-
-// LoadSystemFromBytes loads an element from bytes with namespace preservation
-func LoadSystemFromBytes(data []byte) (*SystemElement, error) {
-	// Extract element prefixes from raw XML before unmarshaling
-	elementPrefixes := ExtractElementPrefixes(data)
-	// Extract which elements had xmlns for exact xmlns replication
-	elementsWithXmlns := ExtractElementsWithXmlns(data)
-
-	var element SystemElement
-	if err := xml.Unmarshal(data, &element); err != nil {
-		return nil, err
-	}
-
-	// Store extracted element name -> prefix mappings for restoration during marshal
-	element.elementPrefixes = elementPrefixes
-	// Store element -> xmlns mappings for zero xmlns delta
-	element.elementsWithXmlns = elementsWithXmlns
-
-	return &element, nil
-}
-
-// LoadSystemFromFile loads an element from a file with namespace preservation
-func LoadSystemFromFile(path string) (*SystemElement, error) {
-	data, err := os.ReadFile(path)
-	if err != nil {
-		return nil, err
-	}
-	return LoadSystemFromBytes(data)
-}
-
-// AssetsElement represents the XSD element 'assets'
-// XSD element declaration (W3C XSD §3.3)
-type AssetsElement struct {
-	XMLName    xml.Name `xml:"http://scap.nist.gov/schema/asset-identification/1.1 assets"`
-	AssetsType          // Embedded complex type
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-	// nsDeclarations stores namespace prefix->URI mappings for perfect round-trip
-	nsDeclarations map[string]string `xml:"-"`
-	// nsDefaultNamespace stores the default namespace for perfect round-trip
-	nsDefaultNamespace string `xml:"-"`
-	// elementPrefixes stores element name->prefix mappings for perfect round-trip
-	elementPrefixes map[string]string `xml:"-"`
-	// elementsWithXmlns tracks which element names had xmlns in original (element_name -> namespace_uri)
-	// Used to replicate xmlns placement exactly during marshal for zero xmlns delta
-	elementsWithXmlns map[string]string `xml:"-"`
-}
-
-// UnmarshalXML implements custom unmarshaling with namespace preservation
-func (e *AssetsElement) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
-	// Create alias type to prevent recursion
-	type alias AssetsElement
-	aux := (*alias)(e)
-
-	// Extract namespace declarations from start element
-	e.nsDeclarations = make(map[string]string)
-	e.elementPrefixes = make(map[string]string)
-	var nonXmlnsAttrs []xml.Attr
-	for _, attr := range start.Attr {
-		if attr.Name.Space == "xmlns" {
-			// xmlns:prefix="uri"
-			e.nsDeclarations[attr.Name.Local] = attr.Value
-			// Build reverse map for element prefix restoration
-			e.elementPrefixes[attr.Value] = attr.Name.Local
-		} else if attr.Name.Local == "xmlns" && attr.Name.Space == "" {
-			// xmlns="uri"
-			e.nsDefaultNamespace = attr.Value
-		} else {
-			// Keep non-xmlns attributes for DecodeElement
-			nonXmlnsAttrs = append(nonXmlnsAttrs, attr)
-		}
-	}
-
-	// Remove xmlns from start.Attr to prevent duplication in UnknownAttrs
-	start.Attr = nonXmlnsAttrs
-
-	// Perform standard unmarshal
-	return d.DecodeElement(aux, &start)
-}
-
-// MarshalXML implements custom marshaling with namespace preservation
-func (e *AssetsElement) MarshalXML(encoder *xml.Encoder, start xml.StartElement) error {
-	// Use the struct's XMLName to ensure correct element name
-	start.Name = e.XMLName
-
-	// Restore namespace declarations
-	if len(e.nsDeclarations) > 0 {
-		// Add namespace declarations to start element
-		for prefix, uri := range e.nsDeclarations {
-			start.Attr = append(start.Attr, xml.Attr{
-				Name:  xml.Name{Space: "xmlns", Local: prefix},
-				Value: uri,
-			})
-		}
-	}
-	// Restore default namespace declaration if it was present in input
-	// This is necessary for perfect fidelity when elements have redundant xmlns
-	if e.nsDefaultNamespace != "" {
-		start.Attr = append(start.Attr, xml.Attr{
-			Name:  xml.Name{Local: "xmlns"},
-			Value: e.nsDefaultNamespace,
-		})
-	}
-
-	// Create alias type to prevent recursion
-	type alias AssetsElement
-	aux := (*alias)(e)
-
-	// Encode using standard marshaler
-	return encoder.EncodeElement(aux, start)
-}
-
-// MarshalIndentClean marshals with perfect namespace fidelity
-// This method: 1) Fixes Go's xmlns corruption, 2) Restores element prefixes
-// Preserves legitimate xmlns on nested elements with different default namespaces
-func (e *AssetsElement) MarshalIndentClean(prefix, indent string) ([]byte, error) {
-	data, err := xml.MarshalIndent(e, prefix, indent)
-	if err != nil {
-		return nil, err
-	}
-
-	// Fix Go's namespace corruption:
-	// Go's xml.Encoder corrupts xmlns declarations by:
-	// 1. Prefixing 'xmlns:' with an underscore: 'xmlns:rc' -> '_xmlns:rc'
-	// 2. Adding a bogus 'xmlns:_xmlns="xmlns"' attribute
-	output := string(data)
-
-	// Step 1: Fix Go's namespace corruption
-	// First, remove the bogus xmlns:_xmlns="xmlns" attribute
-	output = strings.ReplaceAll(output, ` xmlns:_xmlns="xmlns"`, "")
-
-	// Then fix all _xmlns: prefixes to xmlns:
-	output = strings.ReplaceAll(output, "_xmlns:", "xmlns:")
-
-	// Also remove any remaining xmlns:xmlns="xmlns" that may appear
-	output = strings.ReplaceAll(output, ` xmlns:xmlns="xmlns"`, "")
-
-	// Fix corrupted XMLSchema-instance namespace
-	// Go sometimes duplicates this as xmlns:_XMLSchema-instance and _XMLSchema-instance:schemaLocation
-	output = strings.ReplaceAll(output, ` xmlns:_XMLSchema-instance="http://www.w3.org/2001/XMLSchema-instance"`, "")
-	output = strings.ReplaceAll(output, "_XMLSchema-instance:", "xsi:")
-
-	// Step 2: Restore element namespace prefixes using the captured prefix map
-	if len(e.elementPrefixes) > 0 {
-		output = restoreElementPrefixes(output, e.elementPrefixes)
-	}
-
-	// Step 3: Replicate xmlns placement from original XML for zero xmlns delta
-	// This adds xmlns to elements that had it in original, removes xmlns from elements that didn't
-	if len(e.elementsWithXmlns) > 0 {
-		output = replicateXmlnsPlacement(output, e.elementsWithXmlns)
-	}
-
-	return []byte(output), nil
-}
-
-// ToBytes marshals the element to bytes with namespace preservation
-// This is the recommended method for serializing to XML with round-trip fidelity
-func (e *AssetsElement) ToBytes() ([]byte, error) {
-	return e.MarshalIndentClean("", "  ")
-}
-
-// SetElementPrefixes allows injecting element prefix mappings from raw XML
-// This is typically called after unmarshal with ExtractElementPrefixes(rawXML)
-func (e *AssetsElement) SetElementPrefixes(prefixes map[string]string) {
-	e.elementPrefixes = prefixes
-}
-
-// SetElementsWithXmlns allows injecting element->xmlns mappings from raw XML
-// This is typically called after unmarshal with ExtractElementsWithXmlns(rawXML)
-// for perfect xmlns fidelity (zero xmlns delta)
-func (e *AssetsElement) SetElementsWithXmlns(elementsWithXmlns map[string]string) {
-	e.elementsWithXmlns = elementsWithXmlns
-}
-
-// SaveToFile saves the element to a file with namespace preservation
-func (e *AssetsElement) SaveToFile(path string) error {
-	data, err := e.ToBytes()
-	if err != nil {
-		return err
-	}
-	return os.WriteFile(path, data, 0644)
-}
-
-// LoadAssetsFromBytes loads an element from bytes with namespace preservation
-func LoadAssetsFromBytes(data []byte) (*AssetsElement, error) {
-	// Extract element prefixes from raw XML before unmarshaling
-	elementPrefixes := ExtractElementPrefixes(data)
-	// Extract which elements had xmlns for exact xmlns replication
-	elementsWithXmlns := ExtractElementsWithXmlns(data)
-
-	var element AssetsElement
-	if err := xml.Unmarshal(data, &element); err != nil {
-		return nil, err
-	}
-
-	// Store extracted element name -> prefix mappings for restoration during marshal
-	element.elementPrefixes = elementPrefixes
-	// Store element -> xmlns mappings for zero xmlns delta
-	element.elementsWithXmlns = elementsWithXmlns
-
-	return &element, nil
-}
-
-// LoadAssetsFromFile loads an element from a file with namespace preservation
-func LoadAssetsFromFile(path string) (*AssetsElement, error) {
-	data, err := os.ReadFile(path)
-	if err != nil {
-		return nil, err
-	}
-	return LoadAssetsFromBytes(data)
-}
-
-// AssetElement represents the XSD element 'asset'
-// XSD element declaration (W3C XSD §3.3)
-// abstract="true"
-type AssetElement struct {
-	XMLName   xml.Name `xml:"http://scap.nist.gov/schema/asset-identification/1.1 asset"`
-	AssetType          // Embedded complex type
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-	// nsDeclarations stores namespace prefix->URI mappings for perfect round-trip
-	nsDeclarations map[string]string `xml:"-"`
-	// nsDefaultNamespace stores the default namespace for perfect round-trip
-	nsDefaultNamespace string `xml:"-"`
-	// elementPrefixes stores element name->prefix mappings for perfect round-trip
-	elementPrefixes map[string]string `xml:"-"`
-	// elementsWithXmlns tracks which element names had xmlns in original (element_name -> namespace_uri)
-	// Used to replicate xmlns placement exactly during marshal for zero xmlns delta
-	elementsWithXmlns map[string]string `xml:"-"`
-}
-
-// UnmarshalXML implements custom unmarshaling with namespace preservation
-func (e *AssetElement) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
-	// Create alias type to prevent recursion
-	type alias AssetElement
-	aux := (*alias)(e)
-
-	// Extract namespace declarations from start element
-	e.nsDeclarations = make(map[string]string)
-	e.elementPrefixes = make(map[string]string)
-	var nonXmlnsAttrs []xml.Attr
-	for _, attr := range start.Attr {
-		if attr.Name.Space == "xmlns" {
-			// xmlns:prefix="uri"
-			e.nsDeclarations[attr.Name.Local] = attr.Value
-			// Build reverse map for element prefix restoration
-			e.elementPrefixes[attr.Value] = attr.Name.Local
-		} else if attr.Name.Local == "xmlns" && attr.Name.Space == "" {
-			// xmlns="uri"
-			e.nsDefaultNamespace = attr.Value
-		} else {
-			// Keep non-xmlns attributes for DecodeElement
-			nonXmlnsAttrs = append(nonXmlnsAttrs, attr)
-		}
-	}
-
-	// Remove xmlns from start.Attr to prevent duplication in UnknownAttrs
-	start.Attr = nonXmlnsAttrs
-
-	// Perform standard unmarshal
-	return d.DecodeElement(aux, &start)
-}
-
-// MarshalXML implements custom marshaling with namespace preservation
-func (e *AssetElement) MarshalXML(encoder *xml.Encoder, start xml.StartElement) error {
-	// Use the struct's XMLName to ensure correct element name
-	start.Name = e.XMLName
-
-	// Restore namespace declarations
-	if len(e.nsDeclarations) > 0 {
-		// Add namespace declarations to start element
-		for prefix, uri := range e.nsDeclarations {
-			start.Attr = append(start.Attr, xml.Attr{
-				Name:  xml.Name{Space: "xmlns", Local: prefix},
-				Value: uri,
-			})
-		}
-	}
-	// Restore default namespace declaration if it was present in input
-	// This is necessary for perfect fidelity when elements have redundant xmlns
-	if e.nsDefaultNamespace != "" {
-		start.Attr = append(start.Attr, xml.Attr{
-			Name:  xml.Name{Local: "xmlns"},
-			Value: e.nsDefaultNamespace,
-		})
-	}
-
-	// Create alias type to prevent recursion
-	type alias AssetElement
-	aux := (*alias)(e)
-
-	// Encode using standard marshaler
-	return encoder.EncodeElement(aux, start)
-}
-
-// MarshalIndentClean marshals with perfect namespace fidelity
-// This method: 1) Fixes Go's xmlns corruption, 2) Restores element prefixes
-// Preserves legitimate xmlns on nested elements with different default namespaces
-func (e *AssetElement) MarshalIndentClean(prefix, indent string) ([]byte, error) {
-	data, err := xml.MarshalIndent(e, prefix, indent)
-	if err != nil {
-		return nil, err
-	}
-
-	// Fix Go's namespace corruption:
-	// Go's xml.Encoder corrupts xmlns declarations by:
-	// 1. Prefixing 'xmlns:' with an underscore: 'xmlns:rc' -> '_xmlns:rc'
-	// 2. Adding a bogus 'xmlns:_xmlns="xmlns"' attribute
-	output := string(data)
-
-	// Step 1: Fix Go's namespace corruption
-	// First, remove the bogus xmlns:_xmlns="xmlns" attribute
-	output = strings.ReplaceAll(output, ` xmlns:_xmlns="xmlns"`, "")
-
-	// Then fix all _xmlns: prefixes to xmlns:
-	output = strings.ReplaceAll(output, "_xmlns:", "xmlns:")
-
-	// Also remove any remaining xmlns:xmlns="xmlns" that may appear
-	output = strings.ReplaceAll(output, ` xmlns:xmlns="xmlns"`, "")
-
-	// Fix corrupted XMLSchema-instance namespace
-	// Go sometimes duplicates this as xmlns:_XMLSchema-instance and _XMLSchema-instance:schemaLocation
-	output = strings.ReplaceAll(output, ` xmlns:_XMLSchema-instance="http://www.w3.org/2001/XMLSchema-instance"`, "")
-	output = strings.ReplaceAll(output, "_XMLSchema-instance:", "xsi:")
-
-	// Step 2: Restore element namespace prefixes using the captured prefix map
-	if len(e.elementPrefixes) > 0 {
-		output = restoreElementPrefixes(output, e.elementPrefixes)
-	}
-
-	// Step 3: Replicate xmlns placement from original XML for zero xmlns delta
-	// This adds xmlns to elements that had it in original, removes xmlns from elements that didn't
-	if len(e.elementsWithXmlns) > 0 {
-		output = replicateXmlnsPlacement(output, e.elementsWithXmlns)
-	}
-
-	return []byte(output), nil
-}
-
-// ToBytes marshals the element to bytes with namespace preservation
-// This is the recommended method for serializing to XML with round-trip fidelity
-func (e *AssetElement) ToBytes() ([]byte, error) {
-	return e.MarshalIndentClean("", "  ")
-}
-
-// SetElementPrefixes allows injecting element prefix mappings from raw XML
-// This is typically called after unmarshal with ExtractElementPrefixes(rawXML)
-func (e *AssetElement) SetElementPrefixes(prefixes map[string]string) {
-	e.elementPrefixes = prefixes
-}
-
-// SetElementsWithXmlns allows injecting element->xmlns mappings from raw XML
-// This is typically called after unmarshal with ExtractElementsWithXmlns(rawXML)
-// for perfect xmlns fidelity (zero xmlns delta)
-func (e *AssetElement) SetElementsWithXmlns(elementsWithXmlns map[string]string) {
-	e.elementsWithXmlns = elementsWithXmlns
-}
-
-// SaveToFile saves the element to a file with namespace preservation
-func (e *AssetElement) SaveToFile(path string) error {
-	data, err := e.ToBytes()
-	if err != nil {
-		return err
-	}
-	return os.WriteFile(path, data, 0644)
-}
-
-// LoadAssetFromBytes loads an element from bytes with namespace preservation
-func LoadAssetFromBytes(data []byte) (*AssetElement, error) {
-	// Extract element prefixes from raw XML before unmarshaling
-	elementPrefixes := ExtractElementPrefixes(data)
-	// Extract which elements had xmlns for exact xmlns replication
-	elementsWithXmlns := ExtractElementsWithXmlns(data)
-
-	var element AssetElement
-	if err := xml.Unmarshal(data, &element); err != nil {
-		return nil, err
-	}
-
-	// Store extracted element name -> prefix mappings for restoration during marshal
-	element.elementPrefixes = elementPrefixes
-	// Store element -> xmlns mappings for zero xmlns delta
-	element.elementsWithXmlns = elementsWithXmlns
-
-	return &element, nil
-}
-
-// LoadAssetFromFile loads an element from a file with namespace preservation
-func LoadAssetFromFile(path string) (*AssetElement, error) {
-	data, err := os.ReadFile(path)
-	if err != nil {
-		return nil, err
-	}
-	return LoadAssetFromBytes(data)
 }
 
 // ItAssetElement represents the XSD element 'it-asset'
@@ -4479,11 +4664,11 @@ func LoadItAssetFromFile(path string) (*ItAssetElement, error) {
 	return LoadItAssetFromBytes(data)
 }
 
-// DataElement represents the XSD element 'data'
+// NetworkElement represents the XSD element 'network'
 // XSD element declaration (W3C XSD §3.3)
-type DataElement struct {
-	XMLName  xml.Name `xml:"http://scap.nist.gov/schema/asset-identification/1.1 data"`
-	DataType          // Embedded complex type
+type NetworkElement struct {
+	XMLName     xml.Name `xml:"http://scap.nist.gov/schema/asset-identification/1.1 network"`
+	NetworkType          // Embedded complex type
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -4500,9 +4685,9 @@ type DataElement struct {
 }
 
 // UnmarshalXML implements custom unmarshaling with namespace preservation
-func (e *DataElement) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
+func (e *NetworkElement) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 	// Create alias type to prevent recursion
-	type alias DataElement
+	type alias NetworkElement
 	aux := (*alias)(e)
 
 	// Extract namespace declarations from start element
@@ -4532,7 +4717,7 @@ func (e *DataElement) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error
 }
 
 // MarshalXML implements custom marshaling with namespace preservation
-func (e *DataElement) MarshalXML(encoder *xml.Encoder, start xml.StartElement) error {
+func (e *NetworkElement) MarshalXML(encoder *xml.Encoder, start xml.StartElement) error {
 	// Use the struct's XMLName to ensure correct element name
 	start.Name = e.XMLName
 
@@ -4556,7 +4741,7 @@ func (e *DataElement) MarshalXML(encoder *xml.Encoder, start xml.StartElement) e
 	}
 
 	// Create alias type to prevent recursion
-	type alias DataElement
+	type alias NetworkElement
 	aux := (*alias)(e)
 
 	// Encode using standard marshaler
@@ -4566,7 +4751,7 @@ func (e *DataElement) MarshalXML(encoder *xml.Encoder, start xml.StartElement) e
 // MarshalIndentClean marshals with perfect namespace fidelity
 // This method: 1) Fixes Go's xmlns corruption, 2) Restores element prefixes
 // Preserves legitimate xmlns on nested elements with different default namespaces
-func (e *DataElement) MarshalIndentClean(prefix, indent string) ([]byte, error) {
+func (e *NetworkElement) MarshalIndentClean(prefix, indent string) ([]byte, error) {
 	data, err := xml.MarshalIndent(e, prefix, indent)
 	if err != nil {
 		return nil, err
@@ -4609,25 +4794,25 @@ func (e *DataElement) MarshalIndentClean(prefix, indent string) ([]byte, error) 
 
 // ToBytes marshals the element to bytes with namespace preservation
 // This is the recommended method for serializing to XML with round-trip fidelity
-func (e *DataElement) ToBytes() ([]byte, error) {
+func (e *NetworkElement) ToBytes() ([]byte, error) {
 	return e.MarshalIndentClean("", "  ")
 }
 
 // SetElementPrefixes allows injecting element prefix mappings from raw XML
 // This is typically called after unmarshal with ExtractElementPrefixes(rawXML)
-func (e *DataElement) SetElementPrefixes(prefixes map[string]string) {
+func (e *NetworkElement) SetElementPrefixes(prefixes map[string]string) {
 	e.elementPrefixes = prefixes
 }
 
 // SetElementsWithXmlns allows injecting element->xmlns mappings from raw XML
 // This is typically called after unmarshal with ExtractElementsWithXmlns(rawXML)
 // for perfect xmlns fidelity (zero xmlns delta)
-func (e *DataElement) SetElementsWithXmlns(elementsWithXmlns map[string]string) {
+func (e *NetworkElement) SetElementsWithXmlns(elementsWithXmlns map[string]string) {
 	e.elementsWithXmlns = elementsWithXmlns
 }
 
 // SaveToFile saves the element to a file with namespace preservation
-func (e *DataElement) SaveToFile(path string) error {
+func (e *NetworkElement) SaveToFile(path string) error {
 	data, err := e.ToBytes()
 	if err != nil {
 		return err
@@ -4635,14 +4820,14 @@ func (e *DataElement) SaveToFile(path string) error {
 	return os.WriteFile(path, data, 0644)
 }
 
-// LoadDataFromBytes loads an element from bytes with namespace preservation
-func LoadDataFromBytes(data []byte) (*DataElement, error) {
+// LoadNetworkFromBytes loads an element from bytes with namespace preservation
+func LoadNetworkFromBytes(data []byte) (*NetworkElement, error) {
 	// Extract element prefixes from raw XML before unmarshaling
 	elementPrefixes := ExtractElementPrefixes(data)
 	// Extract which elements had xmlns for exact xmlns replication
 	elementsWithXmlns := ExtractElementsWithXmlns(data)
 
-	var element DataElement
+	var element NetworkElement
 	if err := xml.Unmarshal(data, &element); err != nil {
 		return nil, err
 	}
@@ -4655,20 +4840,20 @@ func LoadDataFromBytes(data []byte) (*DataElement, error) {
 	return &element, nil
 }
 
-// LoadDataFromFile loads an element from a file with namespace preservation
-func LoadDataFromFile(path string) (*DataElement, error) {
+// LoadNetworkFromFile loads an element from a file with namespace preservation
+func LoadNetworkFromFile(path string) (*NetworkElement, error) {
 	data, err := os.ReadFile(path)
 	if err != nil {
 		return nil, err
 	}
-	return LoadDataFromBytes(data)
+	return LoadNetworkFromBytes(data)
 }
 
-// OrganizationElement represents the XSD element 'organization'
+// SoftwareElement represents the XSD element 'software'
 // XSD element declaration (W3C XSD §3.3)
-type OrganizationElement struct {
-	XMLName          xml.Name `xml:"http://scap.nist.gov/schema/asset-identification/1.1 organization"`
-	OrganizationType          // Embedded complex type
+type SoftwareElement struct {
+	XMLName      xml.Name `xml:"http://scap.nist.gov/schema/asset-identification/1.1 software"`
+	SoftwareType          // Embedded complex type
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -4685,9 +4870,9 @@ type OrganizationElement struct {
 }
 
 // UnmarshalXML implements custom unmarshaling with namespace preservation
-func (e *OrganizationElement) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
+func (e *SoftwareElement) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 	// Create alias type to prevent recursion
-	type alias OrganizationElement
+	type alias SoftwareElement
 	aux := (*alias)(e)
 
 	// Extract namespace declarations from start element
@@ -4717,7 +4902,7 @@ func (e *OrganizationElement) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 }
 
 // MarshalXML implements custom marshaling with namespace preservation
-func (e *OrganizationElement) MarshalXML(encoder *xml.Encoder, start xml.StartElement) error {
+func (e *SoftwareElement) MarshalXML(encoder *xml.Encoder, start xml.StartElement) error {
 	// Use the struct's XMLName to ensure correct element name
 	start.Name = e.XMLName
 
@@ -4741,7 +4926,7 @@ func (e *OrganizationElement) MarshalXML(encoder *xml.Encoder, start xml.StartEl
 	}
 
 	// Create alias type to prevent recursion
-	type alias OrganizationElement
+	type alias SoftwareElement
 	aux := (*alias)(e)
 
 	// Encode using standard marshaler
@@ -4751,7 +4936,7 @@ func (e *OrganizationElement) MarshalXML(encoder *xml.Encoder, start xml.StartEl
 // MarshalIndentClean marshals with perfect namespace fidelity
 // This method: 1) Fixes Go's xmlns corruption, 2) Restores element prefixes
 // Preserves legitimate xmlns on nested elements with different default namespaces
-func (e *OrganizationElement) MarshalIndentClean(prefix, indent string) ([]byte, error) {
+func (e *SoftwareElement) MarshalIndentClean(prefix, indent string) ([]byte, error) {
 	data, err := xml.MarshalIndent(e, prefix, indent)
 	if err != nil {
 		return nil, err
@@ -4794,25 +4979,25 @@ func (e *OrganizationElement) MarshalIndentClean(prefix, indent string) ([]byte,
 
 // ToBytes marshals the element to bytes with namespace preservation
 // This is the recommended method for serializing to XML with round-trip fidelity
-func (e *OrganizationElement) ToBytes() ([]byte, error) {
+func (e *SoftwareElement) ToBytes() ([]byte, error) {
 	return e.MarshalIndentClean("", "  ")
 }
 
 // SetElementPrefixes allows injecting element prefix mappings from raw XML
 // This is typically called after unmarshal with ExtractElementPrefixes(rawXML)
-func (e *OrganizationElement) SetElementPrefixes(prefixes map[string]string) {
+func (e *SoftwareElement) SetElementPrefixes(prefixes map[string]string) {
 	e.elementPrefixes = prefixes
 }
 
 // SetElementsWithXmlns allows injecting element->xmlns mappings from raw XML
 // This is typically called after unmarshal with ExtractElementsWithXmlns(rawXML)
 // for perfect xmlns fidelity (zero xmlns delta)
-func (e *OrganizationElement) SetElementsWithXmlns(elementsWithXmlns map[string]string) {
+func (e *SoftwareElement) SetElementsWithXmlns(elementsWithXmlns map[string]string) {
 	e.elementsWithXmlns = elementsWithXmlns
 }
 
 // SaveToFile saves the element to a file with namespace preservation
-func (e *OrganizationElement) SaveToFile(path string) error {
+func (e *SoftwareElement) SaveToFile(path string) error {
 	data, err := e.ToBytes()
 	if err != nil {
 		return err
@@ -4820,14 +5005,14 @@ func (e *OrganizationElement) SaveToFile(path string) error {
 	return os.WriteFile(path, data, 0644)
 }
 
-// LoadOrganizationFromBytes loads an element from bytes with namespace preservation
-func LoadOrganizationFromBytes(data []byte) (*OrganizationElement, error) {
+// LoadSoftwareFromBytes loads an element from bytes with namespace preservation
+func LoadSoftwareFromBytes(data []byte) (*SoftwareElement, error) {
 	// Extract element prefixes from raw XML before unmarshaling
 	elementPrefixes := ExtractElementPrefixes(data)
 	// Extract which elements had xmlns for exact xmlns replication
 	elementsWithXmlns := ExtractElementsWithXmlns(data)
 
-	var element OrganizationElement
+	var element SoftwareElement
 	if err := xml.Unmarshal(data, &element); err != nil {
 		return nil, err
 	}
@@ -4840,20 +5025,20 @@ func LoadOrganizationFromBytes(data []byte) (*OrganizationElement, error) {
 	return &element, nil
 }
 
-// LoadOrganizationFromFile loads an element from a file with namespace preservation
-func LoadOrganizationFromFile(path string) (*OrganizationElement, error) {
+// LoadSoftwareFromFile loads an element from a file with namespace preservation
+func LoadSoftwareFromFile(path string) (*SoftwareElement, error) {
 	data, err := os.ReadFile(path)
 	if err != nil {
 		return nil, err
 	}
-	return LoadOrganizationFromBytes(data)
+	return LoadSoftwareFromBytes(data)
 }
 
-// LocationElement represents the XSD element 'location'
+// WebsiteElement represents the XSD element 'website'
 // XSD element declaration (W3C XSD §3.3)
-// abstract="true"
-type LocationElement struct {
-	XMLName xml.Name `xml:"http://scap.nist.gov/schema/asset-identification/1.1 location"`
+type WebsiteElement struct {
+	XMLName     xml.Name `xml:"http://scap.nist.gov/schema/asset-identification/1.1 website"`
+	WebsiteType          // Embedded complex type
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -4870,9 +5055,9 @@ type LocationElement struct {
 }
 
 // UnmarshalXML implements custom unmarshaling with namespace preservation
-func (e *LocationElement) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
+func (e *WebsiteElement) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 	// Create alias type to prevent recursion
-	type alias LocationElement
+	type alias WebsiteElement
 	aux := (*alias)(e)
 
 	// Extract namespace declarations from start element
@@ -4902,7 +5087,7 @@ func (e *LocationElement) UnmarshalXML(d *xml.Decoder, start xml.StartElement) e
 }
 
 // MarshalXML implements custom marshaling with namespace preservation
-func (e *LocationElement) MarshalXML(encoder *xml.Encoder, start xml.StartElement) error {
+func (e *WebsiteElement) MarshalXML(encoder *xml.Encoder, start xml.StartElement) error {
 	// Use the struct's XMLName to ensure correct element name
 	start.Name = e.XMLName
 
@@ -4926,7 +5111,7 @@ func (e *LocationElement) MarshalXML(encoder *xml.Encoder, start xml.StartElemen
 	}
 
 	// Create alias type to prevent recursion
-	type alias LocationElement
+	type alias WebsiteElement
 	aux := (*alias)(e)
 
 	// Encode using standard marshaler
@@ -4936,7 +5121,7 @@ func (e *LocationElement) MarshalXML(encoder *xml.Encoder, start xml.StartElemen
 // MarshalIndentClean marshals with perfect namespace fidelity
 // This method: 1) Fixes Go's xmlns corruption, 2) Restores element prefixes
 // Preserves legitimate xmlns on nested elements with different default namespaces
-func (e *LocationElement) MarshalIndentClean(prefix, indent string) ([]byte, error) {
+func (e *WebsiteElement) MarshalIndentClean(prefix, indent string) ([]byte, error) {
 	data, err := xml.MarshalIndent(e, prefix, indent)
 	if err != nil {
 		return nil, err
@@ -4979,25 +5164,25 @@ func (e *LocationElement) MarshalIndentClean(prefix, indent string) ([]byte, err
 
 // ToBytes marshals the element to bytes with namespace preservation
 // This is the recommended method for serializing to XML with round-trip fidelity
-func (e *LocationElement) ToBytes() ([]byte, error) {
+func (e *WebsiteElement) ToBytes() ([]byte, error) {
 	return e.MarshalIndentClean("", "  ")
 }
 
 // SetElementPrefixes allows injecting element prefix mappings from raw XML
 // This is typically called after unmarshal with ExtractElementPrefixes(rawXML)
-func (e *LocationElement) SetElementPrefixes(prefixes map[string]string) {
+func (e *WebsiteElement) SetElementPrefixes(prefixes map[string]string) {
 	e.elementPrefixes = prefixes
 }
 
 // SetElementsWithXmlns allows injecting element->xmlns mappings from raw XML
 // This is typically called after unmarshal with ExtractElementsWithXmlns(rawXML)
 // for perfect xmlns fidelity (zero xmlns delta)
-func (e *LocationElement) SetElementsWithXmlns(elementsWithXmlns map[string]string) {
+func (e *WebsiteElement) SetElementsWithXmlns(elementsWithXmlns map[string]string) {
 	e.elementsWithXmlns = elementsWithXmlns
 }
 
 // SaveToFile saves the element to a file with namespace preservation
-func (e *LocationElement) SaveToFile(path string) error {
+func (e *WebsiteElement) SaveToFile(path string) error {
 	data, err := e.ToBytes()
 	if err != nil {
 		return err
@@ -5005,14 +5190,14 @@ func (e *LocationElement) SaveToFile(path string) error {
 	return os.WriteFile(path, data, 0644)
 }
 
-// LoadLocationFromBytes loads an element from bytes with namespace preservation
-func LoadLocationFromBytes(data []byte) (*LocationElement, error) {
+// LoadWebsiteFromBytes loads an element from bytes with namespace preservation
+func LoadWebsiteFromBytes(data []byte) (*WebsiteElement, error) {
 	// Extract element prefixes from raw XML before unmarshaling
 	elementPrefixes := ExtractElementPrefixes(data)
 	// Extract which elements had xmlns for exact xmlns replication
 	elementsWithXmlns := ExtractElementsWithXmlns(data)
 
-	var element LocationElement
+	var element WebsiteElement
 	if err := xml.Unmarshal(data, &element); err != nil {
 		return nil, err
 	}
@@ -5025,196 +5210,11 @@ func LoadLocationFromBytes(data []byte) (*LocationElement, error) {
 	return &element, nil
 }
 
-// LoadLocationFromFile loads an element from a file with namespace preservation
-func LoadLocationFromFile(path string) (*LocationElement, error) {
+// LoadWebsiteFromFile loads an element from a file with namespace preservation
+func LoadWebsiteFromFile(path string) (*WebsiteElement, error) {
 	data, err := os.ReadFile(path)
 	if err != nil {
 		return nil, err
 	}
-	return LoadLocationFromBytes(data)
-}
-
-// AssetRelatedElement represents the XSD element 'asset-related'
-// XSD element declaration (W3C XSD §3.3)
-type AssetRelatedElement struct {
-	XMLName                 xml.Name `xml:"http://scap.nist.gov/schema/asset-identification/1.1 asset-related"`
-	AssetIdentificationType          // Embedded complex type
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-	// nsDeclarations stores namespace prefix->URI mappings for perfect round-trip
-	nsDeclarations map[string]string `xml:"-"`
-	// nsDefaultNamespace stores the default namespace for perfect round-trip
-	nsDefaultNamespace string `xml:"-"`
-	// elementPrefixes stores element name->prefix mappings for perfect round-trip
-	elementPrefixes map[string]string `xml:"-"`
-	// elementsWithXmlns tracks which element names had xmlns in original (element_name -> namespace_uri)
-	// Used to replicate xmlns placement exactly during marshal for zero xmlns delta
-	elementsWithXmlns map[string]string `xml:"-"`
-}
-
-// UnmarshalXML implements custom unmarshaling with namespace preservation
-func (e *AssetRelatedElement) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
-	// Create alias type to prevent recursion
-	type alias AssetRelatedElement
-	aux := (*alias)(e)
-
-	// Extract namespace declarations from start element
-	e.nsDeclarations = make(map[string]string)
-	e.elementPrefixes = make(map[string]string)
-	var nonXmlnsAttrs []xml.Attr
-	for _, attr := range start.Attr {
-		if attr.Name.Space == "xmlns" {
-			// xmlns:prefix="uri"
-			e.nsDeclarations[attr.Name.Local] = attr.Value
-			// Build reverse map for element prefix restoration
-			e.elementPrefixes[attr.Value] = attr.Name.Local
-		} else if attr.Name.Local == "xmlns" && attr.Name.Space == "" {
-			// xmlns="uri"
-			e.nsDefaultNamespace = attr.Value
-		} else {
-			// Keep non-xmlns attributes for DecodeElement
-			nonXmlnsAttrs = append(nonXmlnsAttrs, attr)
-		}
-	}
-
-	// Remove xmlns from start.Attr to prevent duplication in UnknownAttrs
-	start.Attr = nonXmlnsAttrs
-
-	// Perform standard unmarshal
-	return d.DecodeElement(aux, &start)
-}
-
-// MarshalXML implements custom marshaling with namespace preservation
-func (e *AssetRelatedElement) MarshalXML(encoder *xml.Encoder, start xml.StartElement) error {
-	// Use the struct's XMLName to ensure correct element name
-	start.Name = e.XMLName
-
-	// Restore namespace declarations
-	if len(e.nsDeclarations) > 0 {
-		// Add namespace declarations to start element
-		for prefix, uri := range e.nsDeclarations {
-			start.Attr = append(start.Attr, xml.Attr{
-				Name:  xml.Name{Space: "xmlns", Local: prefix},
-				Value: uri,
-			})
-		}
-	}
-	// Restore default namespace declaration if it was present in input
-	// This is necessary for perfect fidelity when elements have redundant xmlns
-	if e.nsDefaultNamespace != "" {
-		start.Attr = append(start.Attr, xml.Attr{
-			Name:  xml.Name{Local: "xmlns"},
-			Value: e.nsDefaultNamespace,
-		})
-	}
-
-	// Create alias type to prevent recursion
-	type alias AssetRelatedElement
-	aux := (*alias)(e)
-
-	// Encode using standard marshaler
-	return encoder.EncodeElement(aux, start)
-}
-
-// MarshalIndentClean marshals with perfect namespace fidelity
-// This method: 1) Fixes Go's xmlns corruption, 2) Restores element prefixes
-// Preserves legitimate xmlns on nested elements with different default namespaces
-func (e *AssetRelatedElement) MarshalIndentClean(prefix, indent string) ([]byte, error) {
-	data, err := xml.MarshalIndent(e, prefix, indent)
-	if err != nil {
-		return nil, err
-	}
-
-	// Fix Go's namespace corruption:
-	// Go's xml.Encoder corrupts xmlns declarations by:
-	// 1. Prefixing 'xmlns:' with an underscore: 'xmlns:rc' -> '_xmlns:rc'
-	// 2. Adding a bogus 'xmlns:_xmlns="xmlns"' attribute
-	output := string(data)
-
-	// Step 1: Fix Go's namespace corruption
-	// First, remove the bogus xmlns:_xmlns="xmlns" attribute
-	output = strings.ReplaceAll(output, ` xmlns:_xmlns="xmlns"`, "")
-
-	// Then fix all _xmlns: prefixes to xmlns:
-	output = strings.ReplaceAll(output, "_xmlns:", "xmlns:")
-
-	// Also remove any remaining xmlns:xmlns="xmlns" that may appear
-	output = strings.ReplaceAll(output, ` xmlns:xmlns="xmlns"`, "")
-
-	// Fix corrupted XMLSchema-instance namespace
-	// Go sometimes duplicates this as xmlns:_XMLSchema-instance and _XMLSchema-instance:schemaLocation
-	output = strings.ReplaceAll(output, ` xmlns:_XMLSchema-instance="http://www.w3.org/2001/XMLSchema-instance"`, "")
-	output = strings.ReplaceAll(output, "_XMLSchema-instance:", "xsi:")
-
-	// Step 2: Restore element namespace prefixes using the captured prefix map
-	if len(e.elementPrefixes) > 0 {
-		output = restoreElementPrefixes(output, e.elementPrefixes)
-	}
-
-	// Step 3: Replicate xmlns placement from original XML for zero xmlns delta
-	// This adds xmlns to elements that had it in original, removes xmlns from elements that didn't
-	if len(e.elementsWithXmlns) > 0 {
-		output = replicateXmlnsPlacement(output, e.elementsWithXmlns)
-	}
-
-	return []byte(output), nil
-}
-
-// ToBytes marshals the element to bytes with namespace preservation
-// This is the recommended method for serializing to XML with round-trip fidelity
-func (e *AssetRelatedElement) ToBytes() ([]byte, error) {
-	return e.MarshalIndentClean("", "  ")
-}
-
-// SetElementPrefixes allows injecting element prefix mappings from raw XML
-// This is typically called after unmarshal with ExtractElementPrefixes(rawXML)
-func (e *AssetRelatedElement) SetElementPrefixes(prefixes map[string]string) {
-	e.elementPrefixes = prefixes
-}
-
-// SetElementsWithXmlns allows injecting element->xmlns mappings from raw XML
-// This is typically called after unmarshal with ExtractElementsWithXmlns(rawXML)
-// for perfect xmlns fidelity (zero xmlns delta)
-func (e *AssetRelatedElement) SetElementsWithXmlns(elementsWithXmlns map[string]string) {
-	e.elementsWithXmlns = elementsWithXmlns
-}
-
-// SaveToFile saves the element to a file with namespace preservation
-func (e *AssetRelatedElement) SaveToFile(path string) error {
-	data, err := e.ToBytes()
-	if err != nil {
-		return err
-	}
-	return os.WriteFile(path, data, 0644)
-}
-
-// LoadAssetRelatedFromBytes loads an element from bytes with namespace preservation
-func LoadAssetRelatedFromBytes(data []byte) (*AssetRelatedElement, error) {
-	// Extract element prefixes from raw XML before unmarshaling
-	elementPrefixes := ExtractElementPrefixes(data)
-	// Extract which elements had xmlns for exact xmlns replication
-	elementsWithXmlns := ExtractElementsWithXmlns(data)
-
-	var element AssetRelatedElement
-	if err := xml.Unmarshal(data, &element); err != nil {
-		return nil, err
-	}
-
-	// Store extracted element name -> prefix mappings for restoration during marshal
-	element.elementPrefixes = elementPrefixes
-	// Store element -> xmlns mappings for zero xmlns delta
-	element.elementsWithXmlns = elementsWithXmlns
-
-	return &element, nil
-}
-
-// LoadAssetRelatedFromFile loads an element from a file with namespace preservation
-func LoadAssetRelatedFromFile(path string) (*AssetRelatedElement, error) {
-	data, err := os.ReadFile(path)
-	if err != nil {
-		return nil, err
-	}
-	return LoadAssetRelatedFromBytes(data)
+	return LoadWebsiteFromBytes(data)
 }

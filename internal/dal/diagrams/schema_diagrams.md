@@ -283,11 +283,11 @@ erDiagram
     }
     ContentElementType {
         int id PK
+        datetime data_valid_start_date "nullable"
+        datetime data_valid_end_date "nullable"
     }
     ContentElementType1 {
         int id PK
-        datetime data_valid_start_date "nullable"
-        datetime data_valid_end_date "nullable"
     }
     CountFunctionType {
         int id PK
@@ -2647,11 +2647,11 @@ classDiagram
     }
     class ContentElementType {
         #int64 ID
+        +time.Time DataValidStartDate
+        +time.Time DataValidEndDate
     }
     class ContentElementType1 {
         #int64 ID
-        +time.Time DataValidStartDate
-        +time.Time DataValidEndDate
     }
     class CountFunctionType {
         #int64 ID
@@ -5356,8 +5356,8 @@ flowchart TD
 | VariableType | 6 | 0 | - |
 | ConstantVariable | 2 | 1 | VariableType |
 | ConstantVariableElementType | 2 | 1 | VariableType |
-| ContentElementType | 1 | 0 | - |
-| ContentElementType1 | 3 | 0 | - |
+| ContentElementType | 3 | 0 | - |
+| ContentElementType1 | 1 | 0 | - |
 | CountFunctionType | 1 | 0 | - |
 | CountryElementType | 2 | 0 | - |
 | CountryName | 2 | 0 | - |

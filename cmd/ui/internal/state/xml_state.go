@@ -10,8 +10,8 @@ import (
 	asset_identification1_1 "github.com/aequo-labs/forgexml-scap/internal/generated/gov/nist/scap/schema/asset-identification/1-1"
 	asset_reporting_format1_1 "github.com/aequo-labs/forgexml-scap/internal/generated/gov/nist/scap/schema/asset-reporting-format/1-1"
 	reporting_core1_1 "github.com/aequo-labs/forgexml-scap/internal/generated/gov/nist/scap/schema/reporting-core/1-1"
-	pkg_2_01 "github.com/aequo-labs/forgexml-scap/internal/generated/oasis/names/tc/ciq/xsdschema/xal/2-0"
-	pkg_2_0 "github.com/aequo-labs/forgexml-scap/internal/generated/oasis/names/tc/ciq/xsdschema/xnl/2-0"
+	pkg_2_0 "github.com/aequo-labs/forgexml-scap/internal/generated/oasis/names/tc/ciq/xsdschema/xal/2-0"
+	pkg_2_01 "github.com/aequo-labs/forgexml-scap/internal/generated/oasis/names/tc/ciq/xsdschema/xnl/2-0"
 	dictionary2_0 "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/cpe/dictionary/2-0"
 	language2_0 "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/cpe/language/2-0"
 	xmlschemaoval_common_5 "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/oval/xmlschema/oval-common-5"
@@ -1404,7 +1404,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "AddressDetails":
-		var element pkg_2_01.AddressDetails
+		var element pkg_2_0.AddressDetails
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for AddressDetails: %w", err)
@@ -1417,7 +1417,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "AddressDetailsElement":
-		var element pkg_2_01.AddressDetailsElement
+		var element pkg_2_0.AddressDetailsElement
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for AddressDetailsElement: %w", err)
@@ -1430,7 +1430,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "AddressElementType":
-		var element pkg_2_01.AddressElementType
+		var element pkg_2_0.AddressElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for AddressElementType: %w", err)
@@ -1443,7 +1443,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "AddressIdentifierElementType":
-		var element pkg_2_01.AddressIdentifierElementType
+		var element pkg_2_0.AddressIdentifierElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for AddressIdentifierElementType: %w", err)
@@ -1456,7 +1456,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "AddressLatitudeDirectionElementType":
-		var element pkg_2_01.AddressLatitudeDirectionElementType
+		var element pkg_2_0.AddressLatitudeDirectionElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for AddressLatitudeDirectionElementType: %w", err)
@@ -1469,7 +1469,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "AddressLatitudeElementType":
-		var element pkg_2_01.AddressLatitudeElementType
+		var element pkg_2_0.AddressLatitudeElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for AddressLatitudeElementType: %w", err)
@@ -1482,7 +1482,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "AddressLineElement":
-		var element pkg_2_01.AddressLineElement
+		var element pkg_2_0.AddressLineElement
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for AddressLineElement: %w", err)
@@ -1495,7 +1495,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "AddressLineElementType":
-		var element pkg_2_01.AddressLineElementType
+		var element pkg_2_0.AddressLineElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for AddressLineElementType: %w", err)
@@ -1508,7 +1508,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "AddressLinesType":
-		var element pkg_2_01.AddressLinesType
+		var element pkg_2_0.AddressLinesType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for AddressLinesType: %w", err)
@@ -1521,7 +1521,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "AddressLongitudeDirectionElementType":
-		var element pkg_2_01.AddressLongitudeDirectionElementType
+		var element pkg_2_0.AddressLongitudeDirectionElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for AddressLongitudeDirectionElementType: %w", err)
@@ -1534,7 +1534,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "AddressLongitudeElementType":
-		var element pkg_2_01.AddressLongitudeElementType
+		var element pkg_2_0.AddressLongitudeElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for AddressLongitudeElementType: %w", err)
@@ -1547,7 +1547,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "AddresseeIndicatorElementType":
-		var element pkg_2_0.AddresseeIndicatorElementType
+		var element pkg_2_01.AddresseeIndicatorElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for AddresseeIndicatorElementType: %w", err)
@@ -1560,7 +1560,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "AdministrativeAreaElement":
-		var element pkg_2_01.AdministrativeAreaElement
+		var element pkg_2_0.AdministrativeAreaElement
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for AdministrativeAreaElement: %w", err)
@@ -1573,7 +1573,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "AdministrativeAreaElementType":
-		var element pkg_2_01.AdministrativeAreaElementType
+		var element pkg_2_0.AdministrativeAreaElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for AdministrativeAreaElementType: %w", err)
@@ -1586,7 +1586,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "AdministrativeAreaNameElementType":
-		var element pkg_2_01.AdministrativeAreaNameElementType
+		var element pkg_2_0.AdministrativeAreaNameElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for AdministrativeAreaNameElementType: %w", err)
@@ -1612,7 +1612,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "AliasElementType":
-		var element pkg_2_0.AliasElementType
+		var element pkg_2_01.AliasElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for AliasElementType: %w", err)
@@ -1809,7 +1809,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "BarcodeElementType":
-		var element pkg_2_01.BarcodeElementType
+		var element pkg_2_0.BarcodeElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for BarcodeElementType: %w", err)
@@ -1902,7 +1902,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "BuildingNameType":
-		var element pkg_2_01.BuildingNameType
+		var element pkg_2_0.BuildingNameType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for BuildingNameType: %w", err)
@@ -2279,7 +2279,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "CountryElementType":
-		var element pkg_2_01.CountryElementType
+		var element pkg_2_0.CountryElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for CountryElementType: %w", err)
@@ -2292,7 +2292,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "CountryNameCodeElementType":
-		var element pkg_2_01.CountryNameCodeElementType
+		var element pkg_2_0.CountryNameCodeElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for CountryNameCodeElementType: %w", err)
@@ -2305,7 +2305,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "CountryNameElement":
-		var element pkg_2_01.CountryNameElement
+		var element pkg_2_0.CountryNameElement
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for CountryNameElement: %w", err)
@@ -2318,7 +2318,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "CountryNameElementType":
-		var element pkg_2_01.CountryNameElementType
+		var element pkg_2_0.CountryNameElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for CountryNameElementType: %w", err)
@@ -2606,7 +2606,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "DepartmentElement":
-		var element pkg_2_01.DepartmentElement
+		var element pkg_2_0.DepartmentElement
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for DepartmentElement: %w", err)
@@ -2619,7 +2619,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "DepartmentElementType":
-		var element pkg_2_01.DepartmentElementType
+		var element pkg_2_0.DepartmentElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for DepartmentElementType: %w", err)
@@ -2632,7 +2632,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "DepartmentNameElementType":
-		var element pkg_2_01.DepartmentNameElementType
+		var element pkg_2_0.DepartmentNameElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for DepartmentNameElementType: %w", err)
@@ -2645,7 +2645,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "DependencyNameElementType":
-		var element pkg_2_0.DependencyNameElementType
+		var element pkg_2_01.DependencyNameElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for DependencyNameElementType: %w", err)
@@ -2658,7 +2658,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "DependentLocalityNameElementType":
-		var element pkg_2_01.DependentLocalityNameElementType
+		var element pkg_2_0.DependentLocalityNameElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for DependentLocalityNameElementType: %w", err)
@@ -2671,7 +2671,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "DependentLocalityNumberElementType":
-		var element pkg_2_01.DependentLocalityNumberElementType
+		var element pkg_2_0.DependentLocalityNumberElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for DependentLocalityNumberElementType: %w", err)
@@ -2684,7 +2684,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "DependentLocalityType":
-		var element pkg_2_01.DependentLocalityType
+		var element pkg_2_0.DependentLocalityType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for DependentLocalityType: %w", err)
@@ -2697,7 +2697,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "DependentThoroughfareElementType":
-		var element pkg_2_01.DependentThoroughfareElementType
+		var element pkg_2_0.DependentThoroughfareElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for DependentThoroughfareElementType: %w", err)
@@ -2905,7 +2905,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "EndorsementLineCodeElementType":
-		var element pkg_2_01.EndorsementLineCodeElementType
+		var element pkg_2_0.EndorsementLineCodeElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for EndorsementLineCodeElementType: %w", err)
@@ -3451,7 +3451,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "FirmNameElementType":
-		var element pkg_2_01.FirmNameElementType
+		var element pkg_2_0.FirmNameElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for FirmNameElementType: %w", err)
@@ -3464,7 +3464,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "FirmType":
-		var element pkg_2_01.FirmType
+		var element pkg_2_0.FirmType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for FirmType: %w", err)
@@ -3477,7 +3477,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "FirstNameElementType":
-		var element pkg_2_0.FirstNameElementType
+		var element pkg_2_01.FirstNameElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for FirstNameElementType: %w", err)
@@ -3529,7 +3529,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "FormerNameElementType":
-		var element pkg_2_0.FormerNameElementType
+		var element pkg_2_01.FormerNameElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for FormerNameElementType: %w", err)
@@ -3581,7 +3581,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "Function":
-		var element pkg_2_0.Function
+		var element pkg_2_01.Function
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for Function: %w", err)
@@ -3594,7 +3594,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "FunctionElement":
-		var element pkg_2_0.FunctionElement
+		var element pkg_2_01.FunctionElement
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for FunctionElement: %w", err)
@@ -3607,7 +3607,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "GeneralSuffixElementType":
-		var element pkg_2_0.GeneralSuffixElementType
+		var element pkg_2_01.GeneralSuffixElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for GeneralSuffixElementType: %w", err)
@@ -3620,7 +3620,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "GenerationIdentifierElementType":
-		var element pkg_2_0.GenerationIdentifierElementType
+		var element pkg_2_01.GenerationIdentifierElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for GenerationIdentifierElementType: %w", err)
@@ -4036,7 +4036,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "JointPersonNameElement":
-		var element pkg_2_0.JointPersonNameElement
+		var element pkg_2_01.JointPersonNameElement
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for JointPersonNameElement: %w", err)
@@ -4049,7 +4049,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "JointPersonNameElementType":
-		var element pkg_2_0.JointPersonNameElementType
+		var element pkg_2_01.JointPersonNameElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for JointPersonNameElementType: %w", err)
@@ -4088,7 +4088,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "KeyLineCodeElementType":
-		var element pkg_2_01.KeyLineCodeElementType
+		var element pkg_2_0.KeyLineCodeElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for KeyLineCodeElementType: %w", err)
@@ -4140,7 +4140,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "KnownAsElementType":
-		var element pkg_2_0.KnownAsElementType
+		var element pkg_2_01.KnownAsElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for KnownAsElementType: %w", err)
@@ -4166,7 +4166,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "LargeMailUserIdentifierElementType":
-		var element pkg_2_01.LargeMailUserIdentifierElementType
+		var element pkg_2_0.LargeMailUserIdentifierElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for LargeMailUserIdentifierElementType: %w", err)
@@ -4179,7 +4179,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "LargeMailUserNameElementType":
-		var element pkg_2_01.LargeMailUserNameElementType
+		var element pkg_2_0.LargeMailUserNameElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for LargeMailUserNameElementType: %w", err)
@@ -4192,7 +4192,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "LargeMailUserType":
-		var element pkg_2_01.LargeMailUserType
+		var element pkg_2_0.LargeMailUserType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for LargeMailUserType: %w", err)
@@ -4205,7 +4205,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "LastNameElementType":
-		var element pkg_2_0.LastNameElementType
+		var element pkg_2_01.LastNameElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for LastNameElementType: %w", err)
@@ -4309,7 +4309,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "LocalityElement":
-		var element pkg_2_01.LocalityElement
+		var element pkg_2_0.LocalityElement
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for LocalityElement: %w", err)
@@ -4322,7 +4322,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "LocalityElementType":
-		var element pkg_2_01.LocalityElementType
+		var element pkg_2_0.LocalityElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for LocalityElementType: %w", err)
@@ -4335,7 +4335,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "LocalityNameElementType":
-		var element pkg_2_01.LocalityNameElementType
+		var element pkg_2_0.LocalityNameElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for LocalityNameElementType: %w", err)
@@ -4517,7 +4517,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "MailStopNameElementType":
-		var element pkg_2_01.MailStopNameElementType
+		var element pkg_2_0.MailStopNameElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for MailStopNameElementType: %w", err)
@@ -4530,7 +4530,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "MailStopNumberElementType":
-		var element pkg_2_01.MailStopNumberElementType
+		var element pkg_2_0.MailStopNumberElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for MailStopNumberElementType: %w", err)
@@ -4543,7 +4543,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "MailStopType":
-		var element pkg_2_01.MailStopType
+		var element pkg_2_0.MailStopType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for MailStopType: %w", err)
@@ -4608,7 +4608,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "MetadataType":
-		var element xccdf1_2.MetadataType
+		var element xmlschemaoval_definitions_5.MetadataType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for MetadataType: %w", err)
@@ -4616,7 +4616,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		}
 		s.rootElement = &element
 		s.rootType = "MetadataType"
-		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
@@ -4634,7 +4634,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "MiddleNameElementType":
-		var element pkg_2_0.MiddleNameElementType
+		var element pkg_2_01.MiddleNameElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for MiddleNameElementType: %w", err)
@@ -4699,7 +4699,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "NameDetails":
-		var element pkg_2_0.NameDetails
+		var element pkg_2_01.NameDetails
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for NameDetails: %w", err)
@@ -4712,7 +4712,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "NameDetailsElement":
-		var element pkg_2_0.NameDetailsElement
+		var element pkg_2_01.NameDetailsElement
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for NameDetailsElement: %w", err)
@@ -4725,7 +4725,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "NameDetailsElementType":
-		var element pkg_2_0.NameDetailsElementType
+		var element pkg_2_01.NameDetailsElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for NameDetailsElementType: %w", err)
@@ -4738,7 +4738,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "NameLineType":
-		var element pkg_2_0.NameLineType
+		var element pkg_2_01.NameLineType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for NameLineType: %w", err)
@@ -4751,7 +4751,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "NamePattern":
-		var element language2_0.NamePattern
+		var element dictionary2_0.NamePattern
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for NamePattern: %w", err)
@@ -4759,12 +4759,12 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		}
 		s.rootElement = &element
 		s.rootType = "NamePattern"
-		s.namespace = "http://cpe.mitre.org/language/2.0"
+		s.namespace = "http://cpe.mitre.org/dictionary/2.0"
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
 	case "NamePrefixElementType":
-		var element pkg_2_0.NamePrefixElementType
+		var element pkg_2_01.NamePrefixElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for NamePrefixElementType: %w", err)
@@ -4907,7 +4907,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "ObjectElement":
-		var element pkg_200009xmldsig.ObjectElement
+		var element xmlschemaoval_definitions_5.ObjectElement
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for ObjectElement: %w", err)
@@ -4915,7 +4915,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		}
 		s.rootElement = &element
 		s.rootType = "ObjectElement"
-		s.namespace = "http://www.w3.org/2000/09/xmldsig#"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
@@ -4972,7 +4972,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "ObjectType":
-		var element pkg_200009xmldsig.ObjectType
+		var element xmlschemaoval_definitions_5.ObjectType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for ObjectType: %w", err)
@@ -4980,7 +4980,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		}
 		s.rootElement = &element
 		s.rootType = "ObjectType"
-		s.namespace = "http://www.w3.org/2000/09/xmldsig#"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
@@ -5011,7 +5011,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "OperatorEnumeration":
-		var element language2_0.OperatorEnumeration
+		var element xmlschemaoval_common_5.OperatorEnumeration
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for OperatorEnumeration: %w", err)
@@ -5019,12 +5019,12 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		}
 		s.rootElement = &element
 		s.rootType = "OperatorEnumeration"
-		s.namespace = "http://cpe.mitre.org/language/2.0"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-common-5"
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
 	case "OrganisationFormerNameElementType":
-		var element pkg_2_0.OrganisationFormerNameElementType
+		var element pkg_2_01.OrganisationFormerNameElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for OrganisationFormerNameElementType: %w", err)
@@ -5037,7 +5037,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "OrganisationKnownAsElementType":
-		var element pkg_2_0.OrganisationKnownAsElementType
+		var element pkg_2_01.OrganisationKnownAsElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for OrganisationKnownAsElementType: %w", err)
@@ -5050,7 +5050,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "OrganisationNameDetails":
-		var element pkg_2_0.OrganisationNameDetails
+		var element pkg_2_01.OrganisationNameDetails
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for OrganisationNameDetails: %w", err)
@@ -5063,7 +5063,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "OrganisationNameDetailsElement":
-		var element pkg_2_0.OrganisationNameDetailsElement
+		var element pkg_2_01.OrganisationNameDetailsElement
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for OrganisationNameDetailsElement: %w", err)
@@ -5076,7 +5076,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "OrganisationNameDetailsElementType":
-		var element pkg_2_0.OrganisationNameDetailsElementType
+		var element pkg_2_01.OrganisationNameDetailsElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for OrganisationNameDetailsElementType: %w", err)
@@ -5089,7 +5089,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "OrganisationNameElementType":
-		var element pkg_2_0.OrganisationNameElementType
+		var element pkg_2_01.OrganisationNameElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for OrganisationNameElementType: %w", err)
@@ -5102,7 +5102,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "OrganisationTypeElementType":
-		var element pkg_2_0.OrganisationTypeElementType
+		var element pkg_2_01.OrganisationTypeElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for OrganisationTypeElementType: %w", err)
@@ -5141,7 +5141,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "OtherNameElementType":
-		var element pkg_2_0.OtherNameElementType
+		var element pkg_2_01.OtherNameElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for OtherNameElementType: %w", err)
@@ -5260,7 +5260,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PersonName":
-		var element pkg_2_0.PersonName
+		var element pkg_2_01.PersonName
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PersonName: %w", err)
@@ -5273,7 +5273,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PersonNameElement":
-		var element pkg_2_0.PersonNameElement
+		var element pkg_2_01.PersonNameElement
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PersonNameElement: %w", err)
@@ -5286,7 +5286,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PersonNameElementType":
-		var element pkg_2_0.PersonNameElementType
+		var element pkg_2_01.PersonNameElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PersonNameElementType: %w", err)
@@ -5429,7 +5429,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PostBoxElement":
-		var element pkg_2_01.PostBoxElement
+		var element pkg_2_0.PostBoxElement
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PostBoxElement: %w", err)
@@ -5442,7 +5442,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PostBoxElementType":
-		var element pkg_2_01.PostBoxElementType
+		var element pkg_2_0.PostBoxElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PostBoxElementType: %w", err)
@@ -5455,7 +5455,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PostBoxNumberElementType":
-		var element pkg_2_01.PostBoxNumberElementType
+		var element pkg_2_0.PostBoxNumberElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PostBoxNumberElementType: %w", err)
@@ -5468,7 +5468,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PostBoxNumberExtensionElementType":
-		var element pkg_2_01.PostBoxNumberExtensionElementType
+		var element pkg_2_0.PostBoxNumberExtensionElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PostBoxNumberExtensionElementType: %w", err)
@@ -5481,7 +5481,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PostBoxNumberPrefixElementType":
-		var element pkg_2_01.PostBoxNumberPrefixElementType
+		var element pkg_2_0.PostBoxNumberPrefixElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PostBoxNumberPrefixElementType: %w", err)
@@ -5494,7 +5494,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PostBoxNumberSuffixElementType":
-		var element pkg_2_01.PostBoxNumberSuffixElementType
+		var element pkg_2_0.PostBoxNumberSuffixElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PostBoxNumberSuffixElementType: %w", err)
@@ -5507,7 +5507,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PostOfficeElement":
-		var element pkg_2_01.PostOfficeElement
+		var element pkg_2_0.PostOfficeElement
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PostOfficeElement: %w", err)
@@ -5520,7 +5520,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PostOfficeElementType":
-		var element pkg_2_01.PostOfficeElementType
+		var element pkg_2_0.PostOfficeElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PostOfficeElementType: %w", err)
@@ -5533,7 +5533,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PostOfficeNameElementType":
-		var element pkg_2_01.PostOfficeNameElementType
+		var element pkg_2_0.PostOfficeNameElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PostOfficeNameElementType: %w", err)
@@ -5546,7 +5546,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PostOfficeNumberElementType":
-		var element pkg_2_01.PostOfficeNumberElementType
+		var element pkg_2_0.PostOfficeNumberElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PostOfficeNumberElementType: %w", err)
@@ -5559,7 +5559,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PostTownElementType":
-		var element pkg_2_01.PostTownElementType
+		var element pkg_2_0.PostTownElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PostTownElementType: %w", err)
@@ -5572,7 +5572,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PostTownNameElementType":
-		var element pkg_2_01.PostTownNameElementType
+		var element pkg_2_0.PostTownNameElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PostTownNameElementType: %w", err)
@@ -5585,7 +5585,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PostTownSuffixElementType":
-		var element pkg_2_01.PostTownSuffixElementType
+		var element pkg_2_0.PostTownSuffixElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PostTownSuffixElementType: %w", err)
@@ -5598,7 +5598,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PostalCodeElement":
-		var element pkg_2_01.PostalCodeElement
+		var element pkg_2_0.PostalCodeElement
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PostalCodeElement: %w", err)
@@ -5611,7 +5611,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PostalCodeElementType":
-		var element pkg_2_01.PostalCodeElementType
+		var element pkg_2_0.PostalCodeElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PostalCodeElementType: %w", err)
@@ -5624,7 +5624,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PostalCodeNumberElementType":
-		var element pkg_2_01.PostalCodeNumberElementType
+		var element pkg_2_0.PostalCodeNumberElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PostalCodeNumberElementType: %w", err)
@@ -5637,7 +5637,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PostalCodeNumberExtensionElementType":
-		var element pkg_2_01.PostalCodeNumberExtensionElementType
+		var element pkg_2_0.PostalCodeNumberExtensionElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PostalCodeNumberExtensionElementType: %w", err)
@@ -5650,7 +5650,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PostalRouteNameElementType":
-		var element pkg_2_01.PostalRouteNameElementType
+		var element pkg_2_0.PostalRouteNameElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PostalRouteNameElementType: %w", err)
@@ -5663,7 +5663,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PostalRouteNumberElementType":
-		var element pkg_2_01.PostalRouteNumberElementType
+		var element pkg_2_0.PostalRouteNumberElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PostalRouteNumberElementType: %w", err)
@@ -5676,7 +5676,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PostalRouteType":
-		var element pkg_2_01.PostalRouteType
+		var element pkg_2_0.PostalRouteType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PostalRouteType: %w", err)
@@ -5689,7 +5689,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PostalServiceElementsElementType":
-		var element pkg_2_01.PostalServiceElementsElementType
+		var element pkg_2_0.PostalServiceElementsElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PostalServiceElementsElementType: %w", err)
@@ -5702,7 +5702,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PrecedingTitleElementType":
-		var element pkg_2_0.PrecedingTitleElementType
+		var element pkg_2_01.PrecedingTitleElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PrecedingTitleElementType: %w", err)
@@ -5715,7 +5715,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PremiseElement":
-		var element pkg_2_01.PremiseElement
+		var element pkg_2_0.PremiseElement
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PremiseElement: %w", err)
@@ -5728,7 +5728,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PremiseElementType":
-		var element pkg_2_01.PremiseElementType
+		var element pkg_2_0.PremiseElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PremiseElementType: %w", err)
@@ -5741,7 +5741,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PremiseLocationElementType":
-		var element pkg_2_01.PremiseLocationElementType
+		var element pkg_2_0.PremiseLocationElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PremiseLocationElementType: %w", err)
@@ -5754,7 +5754,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PremiseNameElementType":
-		var element pkg_2_01.PremiseNameElementType
+		var element pkg_2_0.PremiseNameElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PremiseNameElementType: %w", err)
@@ -5767,7 +5767,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PremiseNumberElement":
-		var element pkg_2_01.PremiseNumberElement
+		var element pkg_2_0.PremiseNumberElement
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PremiseNumberElement: %w", err)
@@ -5780,7 +5780,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PremiseNumberElementType":
-		var element pkg_2_01.PremiseNumberElementType
+		var element pkg_2_0.PremiseNumberElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PremiseNumberElementType: %w", err)
@@ -5793,7 +5793,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PremiseNumberPrefixElement":
-		var element pkg_2_01.PremiseNumberPrefixElement
+		var element pkg_2_0.PremiseNumberPrefixElement
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PremiseNumberPrefixElement: %w", err)
@@ -5806,7 +5806,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PremiseNumberPrefixElementType":
-		var element pkg_2_01.PremiseNumberPrefixElementType
+		var element pkg_2_0.PremiseNumberPrefixElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PremiseNumberPrefixElementType: %w", err)
@@ -5819,7 +5819,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PremiseNumberRangeElementType":
-		var element pkg_2_01.PremiseNumberRangeElementType
+		var element pkg_2_0.PremiseNumberRangeElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PremiseNumberRangeElementType: %w", err)
@@ -5832,7 +5832,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PremiseNumberRangeFromElementType":
-		var element pkg_2_01.PremiseNumberRangeFromElementType
+		var element pkg_2_0.PremiseNumberRangeFromElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PremiseNumberRangeFromElementType: %w", err)
@@ -5845,7 +5845,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PremiseNumberRangeToElementType":
-		var element pkg_2_01.PremiseNumberRangeToElementType
+		var element pkg_2_0.PremiseNumberRangeToElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PremiseNumberRangeToElementType: %w", err)
@@ -5858,7 +5858,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PremiseNumberSuffixElement":
-		var element pkg_2_01.PremiseNumberSuffixElement
+		var element pkg_2_0.PremiseNumberSuffixElement
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PremiseNumberSuffixElement: %w", err)
@@ -5871,7 +5871,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "PremiseNumberSuffixElementType":
-		var element pkg_2_01.PremiseNumberSuffixElementType
+		var element pkg_2_0.PremiseNumberSuffixElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for PremiseNumberSuffixElementType: %w", err)
@@ -6079,7 +6079,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "ReferenceType":
-		var element xccdf1_2.ReferenceType
+		var element xmlschemaoval_definitions_5.ReferenceType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for ReferenceType: %w", err)
@@ -6087,7 +6087,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		}
 		s.rootElement = &element
 		s.rootType = "ReferenceType"
-		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
@@ -6820,7 +6820,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "SortingCodeElementType":
-		var element pkg_2_01.SortingCodeElementType
+		var element pkg_2_0.SortingCodeElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for SortingCodeElementType: %w", err)
@@ -6950,7 +6950,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "SubAdministrativeAreaElementType":
-		var element pkg_2_01.SubAdministrativeAreaElementType
+		var element pkg_2_0.SubAdministrativeAreaElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for SubAdministrativeAreaElementType: %w", err)
@@ -6963,7 +6963,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "SubAdministrativeAreaNameElementType":
-		var element pkg_2_01.SubAdministrativeAreaNameElementType
+		var element pkg_2_0.SubAdministrativeAreaNameElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for SubAdministrativeAreaNameElementType: %w", err)
@@ -6976,7 +6976,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "SubPremiseLocationElementType":
-		var element pkg_2_01.SubPremiseLocationElementType
+		var element pkg_2_0.SubPremiseLocationElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for SubPremiseLocationElementType: %w", err)
@@ -6989,7 +6989,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "SubPremiseNameElementType":
-		var element pkg_2_01.SubPremiseNameElementType
+		var element pkg_2_0.SubPremiseNameElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for SubPremiseNameElementType: %w", err)
@@ -7002,7 +7002,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "SubPremiseNumberElementType":
-		var element pkg_2_01.SubPremiseNumberElementType
+		var element pkg_2_0.SubPremiseNumberElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for SubPremiseNumberElementType: %w", err)
@@ -7015,7 +7015,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "SubPremiseNumberPrefixElementType":
-		var element pkg_2_01.SubPremiseNumberPrefixElementType
+		var element pkg_2_0.SubPremiseNumberPrefixElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for SubPremiseNumberPrefixElementType: %w", err)
@@ -7028,7 +7028,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "SubPremiseNumberSuffixElementType":
-		var element pkg_2_01.SubPremiseNumberSuffixElementType
+		var element pkg_2_0.SubPremiseNumberSuffixElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for SubPremiseNumberSuffixElementType: %w", err)
@@ -7041,7 +7041,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "SubPremiseType":
-		var element pkg_2_01.SubPremiseType
+		var element pkg_2_0.SubPremiseType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for SubPremiseType: %w", err)
@@ -7093,7 +7093,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "SuffixElementType":
-		var element pkg_2_0.SuffixElementType
+		var element pkg_2_01.SuffixElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for SuffixElementType: %w", err)
@@ -7106,7 +7106,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "SupplementaryPostalServiceDataElementType":
-		var element pkg_2_01.SupplementaryPostalServiceDataElementType
+		var element pkg_2_0.SupplementaryPostalServiceDataElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for SupplementaryPostalServiceDataElementType: %w", err)
@@ -7420,7 +7420,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "TextType":
-		var element language2_0.TextType
+		var element xccdf1_2.TextType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for TextType: %w", err)
@@ -7428,7 +7428,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		}
 		s.rootElement = &element
 		s.rootType = "TextType"
-		s.namespace = "http://cpe.mitre.org/language/2.0"
+		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
@@ -7446,7 +7446,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "ThoroughfareElement":
-		var element pkg_2_01.ThoroughfareElement
+		var element pkg_2_0.ThoroughfareElement
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for ThoroughfareElement: %w", err)
@@ -7459,7 +7459,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "ThoroughfareElementType":
-		var element pkg_2_01.ThoroughfareElementType
+		var element pkg_2_0.ThoroughfareElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for ThoroughfareElementType: %w", err)
@@ -7472,7 +7472,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "ThoroughfareLeadingTypeType":
-		var element pkg_2_01.ThoroughfareLeadingTypeType
+		var element pkg_2_0.ThoroughfareLeadingTypeType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for ThoroughfareLeadingTypeType: %w", err)
@@ -7485,7 +7485,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "ThoroughfareNameType":
-		var element pkg_2_01.ThoroughfareNameType
+		var element pkg_2_0.ThoroughfareNameType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for ThoroughfareNameType: %w", err)
@@ -7498,7 +7498,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "ThoroughfareNumberElement":
-		var element pkg_2_01.ThoroughfareNumberElement
+		var element pkg_2_0.ThoroughfareNumberElement
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for ThoroughfareNumberElement: %w", err)
@@ -7511,7 +7511,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "ThoroughfareNumberElementType":
-		var element pkg_2_01.ThoroughfareNumberElementType
+		var element pkg_2_0.ThoroughfareNumberElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for ThoroughfareNumberElementType: %w", err)
@@ -7524,7 +7524,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "ThoroughfareNumberFromElementType":
-		var element pkg_2_01.ThoroughfareNumberFromElementType
+		var element pkg_2_0.ThoroughfareNumberFromElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for ThoroughfareNumberFromElementType: %w", err)
@@ -7537,7 +7537,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "ThoroughfareNumberPrefixElement":
-		var element pkg_2_01.ThoroughfareNumberPrefixElement
+		var element pkg_2_0.ThoroughfareNumberPrefixElement
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for ThoroughfareNumberPrefixElement: %w", err)
@@ -7550,7 +7550,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "ThoroughfareNumberPrefixElementType":
-		var element pkg_2_01.ThoroughfareNumberPrefixElementType
+		var element pkg_2_0.ThoroughfareNumberPrefixElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for ThoroughfareNumberPrefixElementType: %w", err)
@@ -7563,7 +7563,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "ThoroughfareNumberRangeElementType":
-		var element pkg_2_01.ThoroughfareNumberRangeElementType
+		var element pkg_2_0.ThoroughfareNumberRangeElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for ThoroughfareNumberRangeElementType: %w", err)
@@ -7576,7 +7576,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "ThoroughfareNumberSuffixElement":
-		var element pkg_2_01.ThoroughfareNumberSuffixElement
+		var element pkg_2_0.ThoroughfareNumberSuffixElement
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for ThoroughfareNumberSuffixElement: %w", err)
@@ -7589,7 +7589,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "ThoroughfareNumberSuffixElementType":
-		var element pkg_2_01.ThoroughfareNumberSuffixElementType
+		var element pkg_2_0.ThoroughfareNumberSuffixElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for ThoroughfareNumberSuffixElementType: %w", err)
@@ -7602,7 +7602,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "ThoroughfareNumberToElementType":
-		var element pkg_2_01.ThoroughfareNumberToElementType
+		var element pkg_2_0.ThoroughfareNumberToElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for ThoroughfareNumberToElementType: %w", err)
@@ -7615,7 +7615,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "ThoroughfarePostDirectionType":
-		var element pkg_2_01.ThoroughfarePostDirectionType
+		var element pkg_2_0.ThoroughfarePostDirectionType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for ThoroughfarePostDirectionType: %w", err)
@@ -7628,7 +7628,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "ThoroughfarePreDirectionType":
-		var element pkg_2_01.ThoroughfarePreDirectionType
+		var element pkg_2_0.ThoroughfarePreDirectionType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for ThoroughfarePreDirectionType: %w", err)
@@ -7641,7 +7641,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "ThoroughfareTrailingTypeType":
-		var element pkg_2_01.ThoroughfareTrailingTypeType
+		var element pkg_2_0.ThoroughfareTrailingTypeType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for ThoroughfareTrailingTypeType: %w", err)
@@ -7693,7 +7693,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "TitleElementType":
-		var element pkg_2_0.TitleElementType
+		var element pkg_2_01.TitleElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for TitleElementType: %w", err)
@@ -7875,7 +7875,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "ValueType":
-		var element xccdf1_2.ValueType
+		var element xmlschemaoval_definitions_5.ValueType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for ValueType: %w", err)
@@ -7883,7 +7883,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		}
 		s.rootElement = &element
 		s.rootType = "ValueType"
-		s.namespace = "http://checklists.nist.gov/xccdf/1.2"
+		s.namespace = "http://oval.mitre.org/XMLSchema/oval-definitions-5"
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return "/", nil
@@ -8122,7 +8122,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "XALElement":
-		var element pkg_2_01.XALElement
+		var element pkg_2_0.XALElement
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for XALElement: %w", err)
@@ -8135,7 +8135,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "XALElementType":
-		var element pkg_2_01.XALElementType
+		var element pkg_2_0.XALElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for XALElementType: %w", err)
@@ -8148,7 +8148,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "XNLElement":
-		var element pkg_2_0.XNLElement
+		var element pkg_2_01.XNLElement
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for XNLElement: %w", err)
@@ -8161,7 +8161,7 @@ func (s *XMLDocumentState) createRootElement(typeName string, data json.RawMessa
 		s.lastModified = time.Now()
 		return "/", nil
 	case "XNLElementType":
-		var element pkg_2_0.XNLElementType
+		var element pkg_2_01.XNLElementType
 		if len(data) > 0 && string(data) != "{}" {
 			if err := json.Unmarshal(data, &element); err != nil {
 				return "", fmt.Errorf("failed to unmarshal data for XNLElementType: %w", err)
@@ -8233,7 +8233,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.AddressDetails:
+	case *pkg_2_0.AddressDetails:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -8243,7 +8243,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.AddressDetailsElement:
+	case *pkg_2_0.AddressDetailsElement:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -8253,7 +8253,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.AddressElementType:
+	case *pkg_2_0.AddressElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -8263,7 +8263,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.AddressIdentifierElementType:
+	case *pkg_2_0.AddressIdentifierElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -8273,7 +8273,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.AddressLatitudeDirectionElementType:
+	case *pkg_2_0.AddressLatitudeDirectionElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -8283,7 +8283,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.AddressLatitudeElementType:
+	case *pkg_2_0.AddressLatitudeElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -8293,7 +8293,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.AddressLineElement:
+	case *pkg_2_0.AddressLineElement:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -8303,7 +8303,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.AddressLineElementType:
+	case *pkg_2_0.AddressLineElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -8313,7 +8313,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.AddressLinesType:
+	case *pkg_2_0.AddressLinesType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -8323,7 +8323,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.AddressLongitudeDirectionElementType:
+	case *pkg_2_0.AddressLongitudeDirectionElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -8333,7 +8333,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.AddressLongitudeElementType:
+	case *pkg_2_0.AddressLongitudeElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -8343,7 +8343,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.AddresseeIndicatorElementType:
+	case *pkg_2_01.AddresseeIndicatorElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -8353,7 +8353,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.AdministrativeAreaElement:
+	case *pkg_2_0.AdministrativeAreaElement:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -8363,7 +8363,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.AdministrativeAreaElementType:
+	case *pkg_2_0.AdministrativeAreaElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -8373,7 +8373,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.AdministrativeAreaNameElementType:
+	case *pkg_2_0.AdministrativeAreaNameElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -8397,7 +8397,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.AliasElementType:
+	case *pkg_2_01.AliasElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -8571,7 +8571,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.BarcodeElementType:
+	case *pkg_2_0.BarcodeElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -8685,7 +8685,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.BuildingNameType:
+	case *pkg_2_0.BuildingNameType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -9027,7 +9027,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.CountryElementType:
+	case *pkg_2_0.CountryElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -9037,7 +9037,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.CountryNameCodeElementType:
+	case *pkg_2_0.CountryNameCodeElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -9047,7 +9047,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.CountryNameElement:
+	case *pkg_2_0.CountryNameElement:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -9057,7 +9057,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.CountryNameElementType:
+	case *pkg_2_0.CountryNameElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -9301,7 +9301,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.DepartmentElement:
+	case *pkg_2_0.DepartmentElement:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -9311,7 +9311,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.DepartmentElementType:
+	case *pkg_2_0.DepartmentElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -9321,7 +9321,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.DepartmentNameElementType:
+	case *pkg_2_0.DepartmentNameElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -9331,7 +9331,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.DependencyNameElementType:
+	case *pkg_2_01.DependencyNameElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -9341,7 +9341,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.DependentLocalityNameElementType:
+	case *pkg_2_0.DependentLocalityNameElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -9351,7 +9351,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.DependentLocalityNumberElementType:
+	case *pkg_2_0.DependentLocalityNumberElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -9361,7 +9361,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.DependentLocalityType:
+	case *pkg_2_0.DependentLocalityType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -9371,7 +9371,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.DependentThoroughfareElementType:
+	case *pkg_2_0.DependentThoroughfareElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -9547,7 +9547,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.EndorsementLineCodeElementType:
+	case *pkg_2_0.EndorsementLineCodeElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -10035,7 +10035,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.FirmNameElementType:
+	case *pkg_2_0.FirmNameElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -10045,7 +10045,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.FirmType:
+	case *pkg_2_0.FirmType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -10055,7 +10055,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.FirstNameElementType:
+	case *pkg_2_01.FirstNameElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -10111,7 +10111,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.FormerNameElementType:
+	case *pkg_2_01.FormerNameElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -10151,7 +10151,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.Function:
+	case *pkg_2_01.Function:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -10161,7 +10161,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.FunctionElement:
+	case *pkg_2_01.FunctionElement:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -10171,7 +10171,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.GeneralSuffixElementType:
+	case *pkg_2_01.GeneralSuffixElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -10181,7 +10181,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.GenerationIdentifierElementType:
+	case *pkg_2_01.GenerationIdentifierElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -10541,7 +10541,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.JointPersonNameElement:
+	case *pkg_2_01.JointPersonNameElement:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -10551,7 +10551,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.JointPersonNameElementType:
+	case *pkg_2_01.JointPersonNameElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -10589,7 +10589,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.KeyLineCodeElementType:
+	case *pkg_2_0.KeyLineCodeElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -10629,7 +10629,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.KnownAsElementType:
+	case *pkg_2_01.KnownAsElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -10649,7 +10649,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.LargeMailUserIdentifierElementType:
+	case *pkg_2_0.LargeMailUserIdentifierElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -10663,7 +10663,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.LargeMailUserNameElementType:
+	case *pkg_2_0.LargeMailUserNameElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -10681,7 +10681,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.LargeMailUserType:
+	case *pkg_2_0.LargeMailUserType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -10695,7 +10695,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.LastNameElementType:
+	case *pkg_2_01.LastNameElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -10775,7 +10775,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.LocalityElement:
+	case *pkg_2_0.LocalityElement:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -10785,7 +10785,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.LocalityElementType:
+	case *pkg_2_0.LocalityElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -10795,7 +10795,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.LocalityNameElementType:
+	case *pkg_2_0.LocalityNameElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -10939,7 +10939,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.MailStopNameElementType:
+	case *pkg_2_0.MailStopNameElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -10949,7 +10949,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.MailStopNumberElementType:
+	case *pkg_2_0.MailStopNumberElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -10959,7 +10959,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.MailStopType:
+	case *pkg_2_0.MailStopType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -11017,7 +11017,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *xccdf1_2.MetadataType:
+	case *xmlschemaoval_definitions_5.MetadataType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -11037,7 +11037,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.MiddleNameElementType:
+	case *pkg_2_01.MiddleNameElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -11095,7 +11095,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.NameDetails:
+	case *pkg_2_01.NameDetails:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -11105,7 +11105,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.NameDetailsElement:
+	case *pkg_2_01.NameDetailsElement:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -11115,7 +11115,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.NameDetailsElementType:
+	case *pkg_2_01.NameDetailsElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -11125,7 +11125,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.NameLineType:
+	case *pkg_2_01.NameLineType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -11135,7 +11135,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *language2_0.NamePattern:
+	case *dictionary2_0.NamePattern:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -11145,7 +11145,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.NamePrefixElementType:
+	case *pkg_2_01.NamePrefixElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -11267,22 +11267,14 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_200009xmldsig.ObjectElement:
+	case *xmlschemaoval_definitions_5.ObjectElement:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
 			switch key {
-			case "Id":
+			case "id":
 				if v, ok := value.(string); ok {
-					root.Id = &v
-				}
-			case "MimeType":
-				if v, ok := value.(string); ok {
-					root.MimeType = &v
-				}
-			case "Encoding":
-				if v, ok := value.(string); ok {
-					root.Encoding = &v
+					root.Id = xmlschemaoval_common_5.ObjectIDPattern(v)
 				}
 			}
 		}
@@ -11341,22 +11333,14 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_200009xmldsig.ObjectType:
+	case *xmlschemaoval_definitions_5.ObjectType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
 			switch key {
-			case "Id":
+			case "id":
 				if v, ok := value.(string); ok {
-					root.Id = &v
-				}
-			case "MimeType":
-				if v, ok := value.(string); ok {
-					root.MimeType = &v
-				}
-			case "Encoding":
-				if v, ok := value.(string); ok {
-					root.Encoding = &v
+					root.Id = xmlschemaoval_common_5.ObjectIDPattern(v)
 				}
 			}
 		}
@@ -11383,7 +11367,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *language2_0.OperatorEnumeration:
+	case *xmlschemaoval_common_5.OperatorEnumeration:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -11393,7 +11377,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.OrganisationFormerNameElementType:
+	case *pkg_2_01.OrganisationFormerNameElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -11403,7 +11387,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.OrganisationKnownAsElementType:
+	case *pkg_2_01.OrganisationKnownAsElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -11413,7 +11397,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.OrganisationNameDetails:
+	case *pkg_2_01.OrganisationNameDetails:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -11423,7 +11407,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.OrganisationNameDetailsElement:
+	case *pkg_2_01.OrganisationNameDetailsElement:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -11433,7 +11417,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.OrganisationNameDetailsElementType:
+	case *pkg_2_01.OrganisationNameDetailsElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -11443,7 +11427,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.OrganisationNameElementType:
+	case *pkg_2_01.OrganisationNameElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -11453,7 +11437,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.OrganisationTypeElementType:
+	case *pkg_2_01.OrganisationTypeElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -11483,7 +11467,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.OtherNameElementType:
+	case *pkg_2_01.OtherNameElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -11581,7 +11565,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.PersonName:
+	case *pkg_2_01.PersonName:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -11591,7 +11575,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.PersonNameElement:
+	case *pkg_2_01.PersonNameElement:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -11601,7 +11585,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.PersonNameElementType:
+	case *pkg_2_01.PersonNameElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -11727,7 +11711,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.PostBoxElement:
+	case *pkg_2_0.PostBoxElement:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -11737,7 +11721,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.PostBoxElementType:
+	case *pkg_2_0.PostBoxElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -11747,7 +11731,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.PostBoxNumberElementType:
+	case *pkg_2_0.PostBoxNumberElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -11757,7 +11741,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.PostBoxNumberExtensionElementType:
+	case *pkg_2_0.PostBoxNumberExtensionElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -11767,7 +11751,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.PostBoxNumberPrefixElementType:
+	case *pkg_2_0.PostBoxNumberPrefixElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -11777,7 +11761,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.PostBoxNumberSuffixElementType:
+	case *pkg_2_0.PostBoxNumberSuffixElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -11787,7 +11771,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.PostOfficeElement:
+	case *pkg_2_0.PostOfficeElement:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -11797,7 +11781,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.PostOfficeElementType:
+	case *pkg_2_0.PostOfficeElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -11807,7 +11791,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.PostOfficeNameElementType:
+	case *pkg_2_0.PostOfficeNameElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -11817,7 +11801,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.PostOfficeNumberElementType:
+	case *pkg_2_0.PostOfficeNumberElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -11827,7 +11811,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.PostTownElementType:
+	case *pkg_2_0.PostTownElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -11837,7 +11821,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.PostTownNameElementType:
+	case *pkg_2_0.PostTownNameElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -11847,7 +11831,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.PostTownSuffixElementType:
+	case *pkg_2_0.PostTownSuffixElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -11857,7 +11841,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.PostalCodeElement:
+	case *pkg_2_0.PostalCodeElement:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -11867,7 +11851,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.PostalCodeElementType:
+	case *pkg_2_0.PostalCodeElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -11877,7 +11861,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.PostalCodeNumberElementType:
+	case *pkg_2_0.PostalCodeNumberElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -11887,7 +11871,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.PostalCodeNumberExtensionElementType:
+	case *pkg_2_0.PostalCodeNumberExtensionElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -11897,7 +11881,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.PostalRouteNameElementType:
+	case *pkg_2_0.PostalRouteNameElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -11907,7 +11891,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.PostalRouteNumberElementType:
+	case *pkg_2_0.PostalRouteNumberElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -11917,7 +11901,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.PostalRouteType:
+	case *pkg_2_0.PostalRouteType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -11927,7 +11911,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.PostalServiceElementsElementType:
+	case *pkg_2_0.PostalServiceElementsElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -11937,7 +11921,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.PrecedingTitleElementType:
+	case *pkg_2_01.PrecedingTitleElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -11947,7 +11931,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.PremiseElement:
+	case *pkg_2_0.PremiseElement:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -11957,7 +11941,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.PremiseElementType:
+	case *pkg_2_0.PremiseElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -11967,7 +11951,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.PremiseLocationElementType:
+	case *pkg_2_0.PremiseLocationElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -11977,7 +11961,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.PremiseNameElementType:
+	case *pkg_2_0.PremiseNameElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -11987,7 +11971,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.PremiseNumberElement:
+	case *pkg_2_0.PremiseNumberElement:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -11997,7 +11981,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.PremiseNumberElementType:
+	case *pkg_2_0.PremiseNumberElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -12007,7 +11991,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.PremiseNumberPrefixElement:
+	case *pkg_2_0.PremiseNumberPrefixElement:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -12017,7 +12001,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.PremiseNumberPrefixElementType:
+	case *pkg_2_0.PremiseNumberPrefixElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -12027,7 +12011,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.PremiseNumberRangeElementType:
+	case *pkg_2_0.PremiseNumberRangeElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -12037,7 +12021,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.PremiseNumberRangeFromElementType:
+	case *pkg_2_0.PremiseNumberRangeFromElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -12047,7 +12031,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.PremiseNumberRangeToElementType:
+	case *pkg_2_0.PremiseNumberRangeToElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -12057,7 +12041,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.PremiseNumberSuffixElement:
+	case *pkg_2_0.PremiseNumberSuffixElement:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -12067,7 +12051,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.PremiseNumberSuffixElementType:
+	case *pkg_2_0.PremiseNumberSuffixElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -12307,14 +12291,22 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *xccdf1_2.ReferenceType:
+	case *xmlschemaoval_definitions_5.ReferenceType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
 			switch key {
-			case "href":
+			case "source":
 				if v, ok := value.(string); ok {
-					root.Href = &v
+					root.Source = v
+				}
+			case "ref_id":
+				if v, ok := value.(string); ok {
+					root.Ref_id = v
+				}
+			case "ref_url":
+				if v, ok := value.(string); ok {
+					root.Ref_url = &v
 				}
 			}
 		}
@@ -13009,7 +13001,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.SortingCodeElementType:
+	case *pkg_2_0.SortingCodeElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -13125,7 +13117,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.SubAdministrativeAreaElementType:
+	case *pkg_2_0.SubAdministrativeAreaElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -13135,7 +13127,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.SubAdministrativeAreaNameElementType:
+	case *pkg_2_0.SubAdministrativeAreaNameElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -13145,7 +13137,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.SubPremiseLocationElementType:
+	case *pkg_2_0.SubPremiseLocationElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -13155,7 +13147,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.SubPremiseNameElementType:
+	case *pkg_2_0.SubPremiseNameElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -13165,7 +13157,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.SubPremiseNumberElementType:
+	case *pkg_2_0.SubPremiseNumberElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -13175,7 +13167,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.SubPremiseNumberPrefixElementType:
+	case *pkg_2_0.SubPremiseNumberPrefixElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -13185,7 +13177,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.SubPremiseNumberSuffixElementType:
+	case *pkg_2_0.SubPremiseNumberSuffixElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -13195,7 +13187,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.SubPremiseType:
+	case *pkg_2_0.SubPremiseType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -13235,7 +13227,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.SuffixElementType:
+	case *pkg_2_01.SuffixElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -13245,7 +13237,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.SupplementaryPostalServiceDataElementType:
+	case *pkg_2_0.SupplementaryPostalServiceDataElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -13601,7 +13593,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *language2_0.TextType:
+	case *xccdf1_2.TextType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -13621,7 +13613,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.ThoroughfareElement:
+	case *pkg_2_0.ThoroughfareElement:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -13631,7 +13623,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.ThoroughfareElementType:
+	case *pkg_2_0.ThoroughfareElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -13641,7 +13633,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.ThoroughfareLeadingTypeType:
+	case *pkg_2_0.ThoroughfareLeadingTypeType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -13651,7 +13643,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.ThoroughfareNameType:
+	case *pkg_2_0.ThoroughfareNameType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -13661,7 +13653,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.ThoroughfareNumberElement:
+	case *pkg_2_0.ThoroughfareNumberElement:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -13671,7 +13663,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.ThoroughfareNumberElementType:
+	case *pkg_2_0.ThoroughfareNumberElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -13681,7 +13673,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.ThoroughfareNumberFromElementType:
+	case *pkg_2_0.ThoroughfareNumberFromElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -13691,7 +13683,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.ThoroughfareNumberPrefixElement:
+	case *pkg_2_0.ThoroughfareNumberPrefixElement:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -13701,7 +13693,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.ThoroughfareNumberPrefixElementType:
+	case *pkg_2_0.ThoroughfareNumberPrefixElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -13711,7 +13703,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.ThoroughfareNumberRangeElementType:
+	case *pkg_2_0.ThoroughfareNumberRangeElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -13721,7 +13713,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.ThoroughfareNumberSuffixElement:
+	case *pkg_2_0.ThoroughfareNumberSuffixElement:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -13731,7 +13723,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.ThoroughfareNumberSuffixElementType:
+	case *pkg_2_0.ThoroughfareNumberSuffixElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -13741,7 +13733,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.ThoroughfareNumberToElementType:
+	case *pkg_2_0.ThoroughfareNumberToElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -13751,7 +13743,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.ThoroughfarePostDirectionType:
+	case *pkg_2_0.ThoroughfarePostDirectionType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -13761,7 +13753,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.ThoroughfarePreDirectionType:
+	case *pkg_2_0.ThoroughfarePreDirectionType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -13771,7 +13763,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.ThoroughfareTrailingTypeType:
+	case *pkg_2_0.ThoroughfareTrailingTypeType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -13811,7 +13803,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.TitleElementType:
+	case *pkg_2_01.TitleElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -13967,15 +13959,11 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *xccdf1_2.ValueType:
+	case *xmlschemaoval_definitions_5.ValueType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
 			switch key {
-			case "id":
-				if v, ok := value.(string); ok {
-					root.Id = xccdf1_2.ValueIdType(v)
-				}
 			}
 		}
 		s.isDirty = true
@@ -14193,7 +14181,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.XALElement:
+	case *pkg_2_0.XALElement:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -14203,7 +14191,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_01.XALElementType:
+	case *pkg_2_0.XALElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -14213,7 +14201,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.XNLElement:
+	case *pkg_2_01.XNLElement:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -14223,7 +14211,7 @@ func (s *XMLDocumentState) updateRootElement(data json.RawMessage) error {
 		s.isDirty = true
 		s.lastModified = time.Now()
 		return nil
-	case *pkg_2_0.XNLElementType:
+	case *pkg_2_01.XNLElementType:
 		_ = root // Avoid unused variable if no updatable fields
 		for key, value := range updates {
 			_ = value // Avoid unused variable
@@ -14448,7 +14436,7 @@ func (s *XMLDocumentState) Validate() ([]ValidationError, error) {
 }
 
 // validateAddressDetails validates a AddressDetails element.
-func (s *XMLDocumentState) validateAddressDetails(elem *pkg_2_01.AddressDetails, path string) []ValidationError {
+func (s *XMLDocumentState) validateAddressDetails(elem *pkg_2_0.AddressDetails, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -14468,7 +14456,7 @@ func (s *XMLDocumentState) validateAddressDetails(elem *pkg_2_01.AddressDetails,
 }
 
 // validateAddressDetailsElement validates a AddressDetailsElement element.
-func (s *XMLDocumentState) validateAddressDetailsElement(elem *pkg_2_01.AddressDetailsElement, path string) []ValidationError {
+func (s *XMLDocumentState) validateAddressDetailsElement(elem *pkg_2_0.AddressDetailsElement, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -14488,7 +14476,7 @@ func (s *XMLDocumentState) validateAddressDetailsElement(elem *pkg_2_01.AddressD
 }
 
 // validateAddressElementType validates a AddressElementType element.
-func (s *XMLDocumentState) validateAddressElementType(elem *pkg_2_01.AddressElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateAddressElementType(elem *pkg_2_0.AddressElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -14499,7 +14487,7 @@ func (s *XMLDocumentState) validateAddressElementType(elem *pkg_2_01.AddressElem
 }
 
 // validateAddressIdentifierElementType validates a AddressIdentifierElementType element.
-func (s *XMLDocumentState) validateAddressIdentifierElementType(elem *pkg_2_01.AddressIdentifierElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateAddressIdentifierElementType(elem *pkg_2_0.AddressIdentifierElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -14511,7 +14499,7 @@ func (s *XMLDocumentState) validateAddressIdentifierElementType(elem *pkg_2_01.A
 }
 
 // validateAddressLatitudeDirectionElementType validates a AddressLatitudeDirectionElementType element.
-func (s *XMLDocumentState) validateAddressLatitudeDirectionElementType(elem *pkg_2_01.AddressLatitudeDirectionElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateAddressLatitudeDirectionElementType(elem *pkg_2_0.AddressLatitudeDirectionElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -14522,7 +14510,7 @@ func (s *XMLDocumentState) validateAddressLatitudeDirectionElementType(elem *pkg
 }
 
 // validateAddressLatitudeElementType validates a AddressLatitudeElementType element.
-func (s *XMLDocumentState) validateAddressLatitudeElementType(elem *pkg_2_01.AddressLatitudeElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateAddressLatitudeElementType(elem *pkg_2_0.AddressLatitudeElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -14533,7 +14521,7 @@ func (s *XMLDocumentState) validateAddressLatitudeElementType(elem *pkg_2_01.Add
 }
 
 // validateAddressLineElement validates a AddressLineElement element.
-func (s *XMLDocumentState) validateAddressLineElement(elem *pkg_2_01.AddressLineElement, path string) []ValidationError {
+func (s *XMLDocumentState) validateAddressLineElement(elem *pkg_2_0.AddressLineElement, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -14544,7 +14532,7 @@ func (s *XMLDocumentState) validateAddressLineElement(elem *pkg_2_01.AddressLine
 }
 
 // validateAddressLineElementType validates a AddressLineElementType element.
-func (s *XMLDocumentState) validateAddressLineElementType(elem *pkg_2_01.AddressLineElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateAddressLineElementType(elem *pkg_2_0.AddressLineElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -14555,7 +14543,7 @@ func (s *XMLDocumentState) validateAddressLineElementType(elem *pkg_2_01.Address
 }
 
 // validateAddressLinesType validates a AddressLinesType element.
-func (s *XMLDocumentState) validateAddressLinesType(elem *pkg_2_01.AddressLinesType, path string) []ValidationError {
+func (s *XMLDocumentState) validateAddressLinesType(elem *pkg_2_0.AddressLinesType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -14565,7 +14553,7 @@ func (s *XMLDocumentState) validateAddressLinesType(elem *pkg_2_01.AddressLinesT
 }
 
 // validateAddressLongitudeDirectionElementType validates a AddressLongitudeDirectionElementType element.
-func (s *XMLDocumentState) validateAddressLongitudeDirectionElementType(elem *pkg_2_01.AddressLongitudeDirectionElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateAddressLongitudeDirectionElementType(elem *pkg_2_0.AddressLongitudeDirectionElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -14576,7 +14564,7 @@ func (s *XMLDocumentState) validateAddressLongitudeDirectionElementType(elem *pk
 }
 
 // validateAddressLongitudeElementType validates a AddressLongitudeElementType element.
-func (s *XMLDocumentState) validateAddressLongitudeElementType(elem *pkg_2_01.AddressLongitudeElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateAddressLongitudeElementType(elem *pkg_2_0.AddressLongitudeElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -14587,7 +14575,7 @@ func (s *XMLDocumentState) validateAddressLongitudeElementType(elem *pkg_2_01.Ad
 }
 
 // validateAddresseeIndicatorElementType validates a AddresseeIndicatorElementType element.
-func (s *XMLDocumentState) validateAddresseeIndicatorElementType(elem *pkg_2_0.AddresseeIndicatorElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateAddresseeIndicatorElementType(elem *pkg_2_01.AddresseeIndicatorElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -14598,7 +14586,7 @@ func (s *XMLDocumentState) validateAddresseeIndicatorElementType(elem *pkg_2_0.A
 }
 
 // validateAdministrativeAreaElement validates a AdministrativeAreaElement element.
-func (s *XMLDocumentState) validateAdministrativeAreaElement(elem *pkg_2_01.AdministrativeAreaElement, path string) []ValidationError {
+func (s *XMLDocumentState) validateAdministrativeAreaElement(elem *pkg_2_0.AdministrativeAreaElement, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -14613,7 +14601,7 @@ func (s *XMLDocumentState) validateAdministrativeAreaElement(elem *pkg_2_01.Admi
 }
 
 // validateAdministrativeAreaElementType validates a AdministrativeAreaElementType element.
-func (s *XMLDocumentState) validateAdministrativeAreaElementType(elem *pkg_2_01.AdministrativeAreaElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateAdministrativeAreaElementType(elem *pkg_2_0.AdministrativeAreaElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -14628,7 +14616,7 @@ func (s *XMLDocumentState) validateAdministrativeAreaElementType(elem *pkg_2_01.
 }
 
 // validateAdministrativeAreaNameElementType validates a AdministrativeAreaNameElementType element.
-func (s *XMLDocumentState) validateAdministrativeAreaNameElementType(elem *pkg_2_01.AdministrativeAreaNameElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateAdministrativeAreaNameElementType(elem *pkg_2_0.AdministrativeAreaNameElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -14674,7 +14662,7 @@ func (s *XMLDocumentState) validateAffectedType(elem *xmlschemaoval_definitions_
 }
 
 // validateAliasElementType validates a AliasElementType element.
-func (s *XMLDocumentState) validateAliasElementType(elem *pkg_2_0.AliasElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateAliasElementType(elem *pkg_2_01.AliasElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -14881,7 +14869,7 @@ func (s *XMLDocumentState) validateAssetsType(elem *asset_identification1_1.Asse
 }
 
 // validateBarcodeElementType validates a BarcodeElementType element.
-func (s *XMLDocumentState) validateBarcodeElementType(elem *pkg_2_01.BarcodeElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateBarcodeElementType(elem *pkg_2_0.BarcodeElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -15021,7 +15009,7 @@ func (s *XMLDocumentState) validateBirthdateElementType(elem *asset_identificati
 }
 
 // validateBuildingNameType validates a BuildingNameType element.
-func (s *XMLDocumentState) validateBuildingNameType(elem *pkg_2_01.BuildingNameType, path string) []ValidationError {
+func (s *XMLDocumentState) validateBuildingNameType(elem *pkg_2_0.BuildingNameType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -15354,8 +15342,8 @@ func (s *XMLDocumentState) validateConstant_variableElementType(elem *xmlschemao
 	return errors
 }
 
-// validateContentElementType validates a ContentElementType element.
-func (s *XMLDocumentState) validateContentElementType(elem *asset_reporting_format1_1.ContentElementType, path string) []ValidationError {
+// validateContentElementType1 validates a ContentElementType1 element.
+func (s *XMLDocumentState) validateContentElementType1(elem *asset_reporting_format1_1.ContentElementType1, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -15367,7 +15355,7 @@ func (s *XMLDocumentState) validateContentElementType(elem *asset_reporting_form
 }
 
 // validateCountryElementType validates a CountryElementType element.
-func (s *XMLDocumentState) validateCountryElementType(elem *pkg_2_01.CountryElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateCountryElementType(elem *pkg_2_0.CountryElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -15378,7 +15366,7 @@ func (s *XMLDocumentState) validateCountryElementType(elem *pkg_2_01.CountryElem
 }
 
 // validateCountryNameCodeElementType validates a CountryNameCodeElementType element.
-func (s *XMLDocumentState) validateCountryNameCodeElementType(elem *pkg_2_01.CountryNameCodeElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateCountryNameCodeElementType(elem *pkg_2_0.CountryNameCodeElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -15389,7 +15377,7 @@ func (s *XMLDocumentState) validateCountryNameCodeElementType(elem *pkg_2_01.Cou
 }
 
 // validateCountryNameElement validates a CountryNameElement element.
-func (s *XMLDocumentState) validateCountryNameElement(elem *pkg_2_01.CountryNameElement, path string) []ValidationError {
+func (s *XMLDocumentState) validateCountryNameElement(elem *pkg_2_0.CountryNameElement, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -15400,7 +15388,7 @@ func (s *XMLDocumentState) validateCountryNameElement(elem *pkg_2_01.CountryName
 }
 
 // validateCountryNameElementType validates a CountryNameElementType element.
-func (s *XMLDocumentState) validateCountryNameElementType(elem *pkg_2_01.CountryNameElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateCountryNameElementType(elem *pkg_2_0.CountryNameElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -15507,7 +15495,7 @@ func (s *XMLDocumentState) validateCriteriaType(elem *xmlschemaoval_definitions_
 	// Validate Applicability_check
 	// Validate Operator
 	if elem.Operator != nil && string(*elem.Operator) != "" {
-		validValues := []string{"AND", "OR"}
+		validValues := []string{"AND", "ONE", "OR", "XOR"}
 		isValid := false
 		for _, v := range validValues {
 			if string(*elem.Operator) == v {
@@ -15742,7 +15730,7 @@ func (s *XMLDocumentState) validateDefinitionsType(elem *xmlschemaoval_definitio
 }
 
 // validateDepartmentElement validates a DepartmentElement element.
-func (s *XMLDocumentState) validateDepartmentElement(elem *pkg_2_01.DepartmentElement, path string) []ValidationError {
+func (s *XMLDocumentState) validateDepartmentElement(elem *pkg_2_0.DepartmentElement, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -15755,7 +15743,7 @@ func (s *XMLDocumentState) validateDepartmentElement(elem *pkg_2_01.DepartmentEl
 }
 
 // validateDepartmentElementType validates a DepartmentElementType element.
-func (s *XMLDocumentState) validateDepartmentElementType(elem *pkg_2_01.DepartmentElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateDepartmentElementType(elem *pkg_2_0.DepartmentElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -15768,7 +15756,7 @@ func (s *XMLDocumentState) validateDepartmentElementType(elem *pkg_2_01.Departme
 }
 
 // validateDepartmentNameElementType validates a DepartmentNameElementType element.
-func (s *XMLDocumentState) validateDepartmentNameElementType(elem *pkg_2_01.DepartmentNameElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateDepartmentNameElementType(elem *pkg_2_0.DepartmentNameElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -15779,7 +15767,7 @@ func (s *XMLDocumentState) validateDepartmentNameElementType(elem *pkg_2_01.Depa
 }
 
 // validateDependencyNameElementType validates a DependencyNameElementType element.
-func (s *XMLDocumentState) validateDependencyNameElementType(elem *pkg_2_0.DependencyNameElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateDependencyNameElementType(elem *pkg_2_01.DependencyNameElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -15790,7 +15778,7 @@ func (s *XMLDocumentState) validateDependencyNameElementType(elem *pkg_2_0.Depen
 }
 
 // validateDependentLocalityNameElementType validates a DependentLocalityNameElementType element.
-func (s *XMLDocumentState) validateDependentLocalityNameElementType(elem *pkg_2_01.DependentLocalityNameElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateDependentLocalityNameElementType(elem *pkg_2_0.DependentLocalityNameElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -15801,7 +15789,7 @@ func (s *XMLDocumentState) validateDependentLocalityNameElementType(elem *pkg_2_
 }
 
 // validateDependentLocalityNumberElementType validates a DependentLocalityNumberElementType element.
-func (s *XMLDocumentState) validateDependentLocalityNumberElementType(elem *pkg_2_01.DependentLocalityNumberElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateDependentLocalityNumberElementType(elem *pkg_2_0.DependentLocalityNumberElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -15812,7 +15800,7 @@ func (s *XMLDocumentState) validateDependentLocalityNumberElementType(elem *pkg_
 }
 
 // validateDependentLocalityType validates a DependentLocalityType element.
-func (s *XMLDocumentState) validateDependentLocalityType(elem *pkg_2_01.DependentLocalityType, path string) []ValidationError {
+func (s *XMLDocumentState) validateDependentLocalityType(elem *pkg_2_0.DependentLocalityType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -15831,7 +15819,7 @@ func (s *XMLDocumentState) validateDependentLocalityType(elem *pkg_2_01.Dependen
 }
 
 // validateDependentThoroughfareElementType validates a DependentThoroughfareElementType element.
-func (s *XMLDocumentState) validateDependentThoroughfareElementType(elem *pkg_2_01.DependentThoroughfareElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateDependentThoroughfareElementType(elem *pkg_2_0.DependentThoroughfareElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -16003,7 +15991,7 @@ func (s *XMLDocumentState) validateEndFunctionType(elem *xmlschemaoval_definitio
 }
 
 // validateEndorsementLineCodeElementType validates a EndorsementLineCodeElementType element.
-func (s *XMLDocumentState) validateEndorsementLineCodeElementType(elem *pkg_2_01.EndorsementLineCodeElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateEndorsementLineCodeElementType(elem *pkg_2_0.EndorsementLineCodeElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -16897,7 +16885,7 @@ func (s *XMLDocumentState) validateFilterElementType(elem *xmlschemaoval_definit
 }
 
 // validateFirmNameElementType validates a FirmNameElementType element.
-func (s *XMLDocumentState) validateFirmNameElementType(elem *pkg_2_01.FirmNameElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateFirmNameElementType(elem *pkg_2_0.FirmNameElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -16908,7 +16896,7 @@ func (s *XMLDocumentState) validateFirmNameElementType(elem *pkg_2_01.FirmNameEl
 }
 
 // validateFirmType validates a FirmType element.
-func (s *XMLDocumentState) validateFirmType(elem *pkg_2_01.FirmType, path string) []ValidationError {
+func (s *XMLDocumentState) validateFirmType(elem *pkg_2_0.FirmType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -16921,7 +16909,7 @@ func (s *XMLDocumentState) validateFirmType(elem *pkg_2_01.FirmType, path string
 }
 
 // validateFirstNameElementType validates a FirstNameElementType element.
-func (s *XMLDocumentState) validateFirstNameElementType(elem *pkg_2_0.FirstNameElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateFirstNameElementType(elem *pkg_2_01.FirstNameElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -17064,7 +17052,7 @@ func (s *XMLDocumentState) validateFixType(elem *xccdf1_2.FixType, path string) 
 }
 
 // validateFormerNameElementType validates a FormerNameElementType element.
-func (s *XMLDocumentState) validateFormerNameElementType(elem *pkg_2_0.FormerNameElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateFormerNameElementType(elem *pkg_2_01.FormerNameElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -17096,7 +17084,7 @@ func (s *XMLDocumentState) validateFqdnElementType(elem *asset_identification1_1
 }
 
 // validateFunction validates a Function element.
-func (s *XMLDocumentState) validateFunction(elem *pkg_2_0.Function, path string) []ValidationError {
+func (s *XMLDocumentState) validateFunction(elem *pkg_2_01.Function, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -17107,7 +17095,7 @@ func (s *XMLDocumentState) validateFunction(elem *pkg_2_0.Function, path string)
 }
 
 // validateFunctionElement validates a FunctionElement element.
-func (s *XMLDocumentState) validateFunctionElement(elem *pkg_2_0.FunctionElement, path string) []ValidationError {
+func (s *XMLDocumentState) validateFunctionElement(elem *pkg_2_01.FunctionElement, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -17118,7 +17106,7 @@ func (s *XMLDocumentState) validateFunctionElement(elem *pkg_2_0.FunctionElement
 }
 
 // validateGeneralSuffixElementType validates a GeneralSuffixElementType element.
-func (s *XMLDocumentState) validateGeneralSuffixElementType(elem *pkg_2_0.GeneralSuffixElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateGeneralSuffixElementType(elem *pkg_2_01.GeneralSuffixElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -17130,7 +17118,7 @@ func (s *XMLDocumentState) validateGeneralSuffixElementType(elem *pkg_2_0.Genera
 }
 
 // validateGenerationIdentifierElementType validates a GenerationIdentifierElementType element.
-func (s *XMLDocumentState) validateGenerationIdentifierElementType(elem *pkg_2_0.GenerationIdentifierElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateGenerationIdentifierElementType(elem *pkg_2_01.GenerationIdentifierElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -17462,7 +17450,7 @@ func (s *XMLDocumentState) validateItemElement(elem *xccdf1_2.ItemElement, path 
 }
 
 // validateJointPersonNameElement validates a JointPersonNameElement element.
-func (s *XMLDocumentState) validateJointPersonNameElement(elem *pkg_2_0.JointPersonNameElement, path string) []ValidationError {
+func (s *XMLDocumentState) validateJointPersonNameElement(elem *pkg_2_01.JointPersonNameElement, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -17487,7 +17475,7 @@ func (s *XMLDocumentState) validateJointPersonNameElement(elem *pkg_2_0.JointPer
 }
 
 // validateJointPersonNameElementType validates a JointPersonNameElementType element.
-func (s *XMLDocumentState) validateJointPersonNameElementType(elem *pkg_2_0.JointPersonNameElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateJointPersonNameElementType(elem *pkg_2_01.JointPersonNameElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -17534,7 +17522,7 @@ func (s *XMLDocumentState) validateKeyInfoType(elem *pkg_200009xmldsig.KeyInfoTy
 }
 
 // validateKeyLineCodeElementType validates a KeyLineCodeElementType element.
-func (s *XMLDocumentState) validateKeyLineCodeElementType(elem *pkg_2_01.KeyLineCodeElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateKeyLineCodeElementType(elem *pkg_2_0.KeyLineCodeElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -17565,7 +17553,7 @@ func (s *XMLDocumentState) validateKeyValueType(elem *pkg_200009xmldsig.KeyValue
 }
 
 // validateKnownAsElementType validates a KnownAsElementType element.
-func (s *XMLDocumentState) validateKnownAsElementType(elem *pkg_2_0.KnownAsElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateKnownAsElementType(elem *pkg_2_01.KnownAsElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -17577,7 +17565,7 @@ func (s *XMLDocumentState) validateKnownAsElementType(elem *pkg_2_0.KnownAsEleme
 }
 
 // validateLargeMailUserIdentifierElementType validates a LargeMailUserIdentifierElementType element.
-func (s *XMLDocumentState) validateLargeMailUserIdentifierElementType(elem *pkg_2_01.LargeMailUserIdentifierElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateLargeMailUserIdentifierElementType(elem *pkg_2_0.LargeMailUserIdentifierElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -17589,7 +17577,7 @@ func (s *XMLDocumentState) validateLargeMailUserIdentifierElementType(elem *pkg_
 }
 
 // validateLargeMailUserNameElementType validates a LargeMailUserNameElementType element.
-func (s *XMLDocumentState) validateLargeMailUserNameElementType(elem *pkg_2_01.LargeMailUserNameElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateLargeMailUserNameElementType(elem *pkg_2_0.LargeMailUserNameElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -17601,7 +17589,7 @@ func (s *XMLDocumentState) validateLargeMailUserNameElementType(elem *pkg_2_01.L
 }
 
 // validateLargeMailUserType validates a LargeMailUserType element.
-func (s *XMLDocumentState) validateLargeMailUserType(elem *pkg_2_01.LargeMailUserType, path string) []ValidationError {
+func (s *XMLDocumentState) validateLargeMailUserType(elem *pkg_2_0.LargeMailUserType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -17615,7 +17603,7 @@ func (s *XMLDocumentState) validateLargeMailUserType(elem *pkg_2_01.LargeMailUse
 }
 
 // validateLastNameElementType validates a LastNameElementType element.
-func (s *XMLDocumentState) validateLastNameElementType(elem *pkg_2_0.LastNameElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateLastNameElementType(elem *pkg_2_01.LastNameElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -17686,7 +17674,7 @@ func (s *XMLDocumentState) validateLocaleElementType(elem *asset_identification1
 }
 
 // validateLocalityElement validates a LocalityElement element.
-func (s *XMLDocumentState) validateLocalityElement(elem *pkg_2_01.LocalityElement, path string) []ValidationError {
+func (s *XMLDocumentState) validateLocalityElement(elem *pkg_2_0.LocalityElement, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -17703,7 +17691,7 @@ func (s *XMLDocumentState) validateLocalityElement(elem *pkg_2_01.LocalityElemen
 }
 
 // validateLocalityElementType validates a LocalityElementType element.
-func (s *XMLDocumentState) validateLocalityElementType(elem *pkg_2_01.LocalityElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateLocalityElementType(elem *pkg_2_0.LocalityElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -17720,7 +17708,7 @@ func (s *XMLDocumentState) validateLocalityElementType(elem *pkg_2_01.LocalityEl
 }
 
 // validateLocalityNameElementType validates a LocalityNameElementType element.
-func (s *XMLDocumentState) validateLocalityNameElementType(elem *pkg_2_01.LocalityNameElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateLocalityNameElementType(elem *pkg_2_0.LocalityNameElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -17845,7 +17833,7 @@ func (s *XMLDocumentState) validateMacAddressElementType(elem *asset_identificat
 }
 
 // validateMailStopNameElementType validates a MailStopNameElementType element.
-func (s *XMLDocumentState) validateMailStopNameElementType(elem *pkg_2_01.MailStopNameElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateMailStopNameElementType(elem *pkg_2_0.MailStopNameElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -17856,7 +17844,7 @@ func (s *XMLDocumentState) validateMailStopNameElementType(elem *pkg_2_01.MailSt
 }
 
 // validateMailStopNumberElementType validates a MailStopNumberElementType element.
-func (s *XMLDocumentState) validateMailStopNumberElementType(elem *pkg_2_01.MailStopNumberElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateMailStopNumberElementType(elem *pkg_2_0.MailStopNumberElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -17867,7 +17855,7 @@ func (s *XMLDocumentState) validateMailStopNumberElementType(elem *pkg_2_01.Mail
 }
 
 // validateMailStopType validates a MailStopType element.
-func (s *XMLDocumentState) validateMailStopType(elem *pkg_2_01.MailStopType, path string) []ValidationError {
+func (s *XMLDocumentState) validateMailStopType(elem *pkg_2_0.MailStopType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -17928,8 +17916,22 @@ func (s *XMLDocumentState) validateMessageType(elem *xmlschemaoval_common_5.Mess
 	return errors
 }
 
+// validateMetadataType validates a MetadataType element.
+func (s *XMLDocumentState) validateMetadataType(elem *xmlschemaoval_definitions_5.MetadataType, path string) []ValidationError {
+	var errors []ValidationError
+	if elem == nil {
+		return errors
+	}
+	// Validate Title
+	// Validate Affected
+	// Validate Reference
+	// Validate Description
+
+	return errors
+}
+
 // validateMiddleNameElementType validates a MiddleNameElementType element.
-func (s *XMLDocumentState) validateMiddleNameElementType(elem *pkg_2_0.MiddleNameElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateMiddleNameElementType(elem *pkg_2_01.MiddleNameElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -17988,7 +17990,7 @@ func (s *XMLDocumentState) validateMotherboardGuidElementType(elem *asset_identi
 }
 
 // validateNameDetails validates a NameDetails element.
-func (s *XMLDocumentState) validateNameDetails(elem *pkg_2_0.NameDetails, path string) []ValidationError {
+func (s *XMLDocumentState) validateNameDetails(elem *pkg_2_01.NameDetails, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -18013,7 +18015,7 @@ func (s *XMLDocumentState) validateNameDetails(elem *pkg_2_0.NameDetails, path s
 }
 
 // validateNameDetailsElement validates a NameDetailsElement element.
-func (s *XMLDocumentState) validateNameDetailsElement(elem *pkg_2_0.NameDetailsElement, path string) []ValidationError {
+func (s *XMLDocumentState) validateNameDetailsElement(elem *pkg_2_01.NameDetailsElement, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -18026,7 +18028,7 @@ func (s *XMLDocumentState) validateNameDetailsElement(elem *pkg_2_0.NameDetailsE
 }
 
 // validateNameDetailsElementType validates a NameDetailsElementType element.
-func (s *XMLDocumentState) validateNameDetailsElementType(elem *pkg_2_0.NameDetailsElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateNameDetailsElementType(elem *pkg_2_01.NameDetailsElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -18039,7 +18041,7 @@ func (s *XMLDocumentState) validateNameDetailsElementType(elem *pkg_2_0.NameDeta
 }
 
 // validateNameLineType validates a NameLineType element.
-func (s *XMLDocumentState) validateNameLineType(elem *pkg_2_0.NameLineType, path string) []ValidationError {
+func (s *XMLDocumentState) validateNameLineType(elem *pkg_2_01.NameLineType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -18052,7 +18054,7 @@ func (s *XMLDocumentState) validateNameLineType(elem *pkg_2_0.NameLineType, path
 }
 
 // validateNamePrefixElementType validates a NamePrefixElementType element.
-func (s *XMLDocumentState) validateNamePrefixElementType(elem *pkg_2_0.NamePrefixElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateNamePrefixElementType(elem *pkg_2_01.NamePrefixElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -18205,14 +18207,36 @@ func (s *XMLDocumentState) validateObjectComponentType(elem *xmlschemaoval_defin
 }
 
 // validateObjectElement validates a ObjectElement element.
-func (s *XMLDocumentState) validateObjectElement(elem *pkg_200009xmldsig.ObjectElement, path string) []ValidationError {
+func (s *XMLDocumentState) validateObjectElement(elem *xmlschemaoval_definitions_5.ObjectElement, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
 	}
 	// Validate Id
-	// Validate MimeType
-	// Validate Encoding
+	if elem.Id == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/id",
+			Message: "Required field 'id' is missing or empty",
+		})
+	}
+	if string(elem.Id) != "" {
+		matched, _ := regexp.MatchString(`oval:[A-Za-z0-9_\-\.]+:obj:[1-9][0-9]*`, string(elem.Id))
+		if !matched {
+			errors = append(errors, ValidationError{
+				Path:    path + "/id",
+				Message: "Field 'id' does not match required pattern",
+			})
+		}
+	}
+	// Validate Version
+	// Validate Comment
+	if elem.Comment != nil && string(*elem.Comment) != "" && len(string(*elem.Comment)) < 1 {
+		errors = append(errors, ValidationError{
+			Path:    path + "/comment",
+			Message: fmt.Sprintf("Field 'comment' must be at least 1 characters"),
+		})
+	}
+	// Validate Deprecated
 
 	return errors
 }
@@ -18266,14 +18290,36 @@ func (s *XMLDocumentState) validateObjectRefType(elem *xmlschemaoval_definitions
 }
 
 // validateObjectType validates a ObjectType element.
-func (s *XMLDocumentState) validateObjectType(elem *pkg_200009xmldsig.ObjectType, path string) []ValidationError {
+func (s *XMLDocumentState) validateObjectType(elem *xmlschemaoval_definitions_5.ObjectType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
 	}
 	// Validate Id
-	// Validate MimeType
-	// Validate Encoding
+	if elem.Id == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/id",
+			Message: "Required field 'id' is missing or empty",
+		})
+	}
+	if string(elem.Id) != "" {
+		matched, _ := regexp.MatchString(`oval:[A-Za-z0-9_\-\.]+:obj:[1-9][0-9]*`, string(elem.Id))
+		if !matched {
+			errors = append(errors, ValidationError{
+				Path:    path + "/id",
+				Message: "Field 'id' does not match required pattern",
+			})
+		}
+	}
+	// Validate Version
+	// Validate Comment
+	if elem.Comment != nil && string(*elem.Comment) != "" && len(string(*elem.Comment)) < 1 {
+		errors = append(errors, ValidationError{
+			Path:    path + "/comment",
+			Message: fmt.Sprintf("Field 'comment' must be at least 1 characters"),
+		})
+	}
+	// Validate Deprecated
 
 	return errors
 }
@@ -18289,7 +18335,7 @@ func (s *XMLDocumentState) validateObjectsType(elem *xmlschemaoval_definitions_5
 }
 
 // validateOrganisationFormerNameElementType validates a OrganisationFormerNameElementType element.
-func (s *XMLDocumentState) validateOrganisationFormerNameElementType(elem *pkg_2_0.OrganisationFormerNameElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateOrganisationFormerNameElementType(elem *pkg_2_01.OrganisationFormerNameElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -18301,7 +18347,7 @@ func (s *XMLDocumentState) validateOrganisationFormerNameElementType(elem *pkg_2
 }
 
 // validateOrganisationKnownAsElementType validates a OrganisationKnownAsElementType element.
-func (s *XMLDocumentState) validateOrganisationKnownAsElementType(elem *pkg_2_0.OrganisationKnownAsElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateOrganisationKnownAsElementType(elem *pkg_2_01.OrganisationKnownAsElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -18313,7 +18359,7 @@ func (s *XMLDocumentState) validateOrganisationKnownAsElementType(elem *pkg_2_0.
 }
 
 // validateOrganisationNameDetails validates a OrganisationNameDetails element.
-func (s *XMLDocumentState) validateOrganisationNameDetails(elem *pkg_2_0.OrganisationNameDetails, path string) []ValidationError {
+func (s *XMLDocumentState) validateOrganisationNameDetails(elem *pkg_2_01.OrganisationNameDetails, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -18327,7 +18373,7 @@ func (s *XMLDocumentState) validateOrganisationNameDetails(elem *pkg_2_0.Organis
 }
 
 // validateOrganisationNameDetailsElement validates a OrganisationNameDetailsElement element.
-func (s *XMLDocumentState) validateOrganisationNameDetailsElement(elem *pkg_2_0.OrganisationNameDetailsElement, path string) []ValidationError {
+func (s *XMLDocumentState) validateOrganisationNameDetailsElement(elem *pkg_2_01.OrganisationNameDetailsElement, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -18339,7 +18385,7 @@ func (s *XMLDocumentState) validateOrganisationNameDetailsElement(elem *pkg_2_0.
 }
 
 // validateOrganisationNameDetailsElementType validates a OrganisationNameDetailsElementType element.
-func (s *XMLDocumentState) validateOrganisationNameDetailsElementType(elem *pkg_2_0.OrganisationNameDetailsElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateOrganisationNameDetailsElementType(elem *pkg_2_01.OrganisationNameDetailsElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -18351,7 +18397,7 @@ func (s *XMLDocumentState) validateOrganisationNameDetailsElementType(elem *pkg_
 }
 
 // validateOrganisationNameElementType validates a OrganisationNameElementType element.
-func (s *XMLDocumentState) validateOrganisationNameElementType(elem *pkg_2_0.OrganisationNameElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateOrganisationNameElementType(elem *pkg_2_01.OrganisationNameElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -18364,7 +18410,7 @@ func (s *XMLDocumentState) validateOrganisationNameElementType(elem *pkg_2_0.Org
 }
 
 // validateOrganisationTypeElementType validates a OrganisationTypeElementType element.
-func (s *XMLDocumentState) validateOrganisationTypeElementType(elem *pkg_2_0.OrganisationTypeElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateOrganisationTypeElementType(elem *pkg_2_01.OrganisationTypeElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -18397,7 +18443,7 @@ func (s *XMLDocumentState) validateOrganizationType(elem *asset_identification1_
 }
 
 // validateOtherNameElementType validates a OtherNameElementType element.
-func (s *XMLDocumentState) validateOtherNameElementType(elem *pkg_2_0.OtherNameElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateOtherNameElementType(elem *pkg_2_01.OtherNameElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -18528,7 +18574,7 @@ func (s *XMLDocumentState) validatePersonElement(elem *asset_identification1_1.P
 }
 
 // validatePersonName validates a PersonName element.
-func (s *XMLDocumentState) validatePersonName(elem *pkg_2_0.PersonName, path string) []ValidationError {
+func (s *XMLDocumentState) validatePersonName(elem *pkg_2_01.PersonName, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -18552,7 +18598,7 @@ func (s *XMLDocumentState) validatePersonName(elem *pkg_2_0.PersonName, path str
 }
 
 // validatePersonNameElement validates a PersonNameElement element.
-func (s *XMLDocumentState) validatePersonNameElement(elem *pkg_2_0.PersonNameElement, path string) []ValidationError {
+func (s *XMLDocumentState) validatePersonNameElement(elem *pkg_2_01.PersonNameElement, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -18564,7 +18610,7 @@ func (s *XMLDocumentState) validatePersonNameElement(elem *pkg_2_0.PersonNameEle
 }
 
 // validatePersonNameElementType validates a PersonNameElementType element.
-func (s *XMLDocumentState) validatePersonNameElementType(elem *pkg_2_0.PersonNameElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validatePersonNameElementType(elem *pkg_2_01.PersonNameElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -18756,7 +18802,7 @@ func (s *XMLDocumentState) validatePossibleValueType(elem *xmlschemaoval_definit
 }
 
 // validatePostBoxElement validates a PostBoxElement element.
-func (s *XMLDocumentState) validatePostBoxElement(elem *pkg_2_01.PostBoxElement, path string) []ValidationError {
+func (s *XMLDocumentState) validatePostBoxElement(elem *pkg_2_0.PostBoxElement, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -18773,7 +18819,7 @@ func (s *XMLDocumentState) validatePostBoxElement(elem *pkg_2_01.PostBoxElement,
 }
 
 // validatePostBoxElementType validates a PostBoxElementType element.
-func (s *XMLDocumentState) validatePostBoxElementType(elem *pkg_2_01.PostBoxElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validatePostBoxElementType(elem *pkg_2_0.PostBoxElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -18790,7 +18836,7 @@ func (s *XMLDocumentState) validatePostBoxElementType(elem *pkg_2_01.PostBoxElem
 }
 
 // validatePostBoxNumberExtensionElementType validates a PostBoxNumberExtensionElementType element.
-func (s *XMLDocumentState) validatePostBoxNumberExtensionElementType(elem *pkg_2_01.PostBoxNumberExtensionElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validatePostBoxNumberExtensionElementType(elem *pkg_2_0.PostBoxNumberExtensionElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -18801,7 +18847,7 @@ func (s *XMLDocumentState) validatePostBoxNumberExtensionElementType(elem *pkg_2
 }
 
 // validatePostBoxNumberPrefixElementType validates a PostBoxNumberPrefixElementType element.
-func (s *XMLDocumentState) validatePostBoxNumberPrefixElementType(elem *pkg_2_01.PostBoxNumberPrefixElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validatePostBoxNumberPrefixElementType(elem *pkg_2_0.PostBoxNumberPrefixElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -18812,7 +18858,7 @@ func (s *XMLDocumentState) validatePostBoxNumberPrefixElementType(elem *pkg_2_01
 }
 
 // validatePostBoxNumberSuffixElementType validates a PostBoxNumberSuffixElementType element.
-func (s *XMLDocumentState) validatePostBoxNumberSuffixElementType(elem *pkg_2_01.PostBoxNumberSuffixElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validatePostBoxNumberSuffixElementType(elem *pkg_2_0.PostBoxNumberSuffixElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -18823,7 +18869,7 @@ func (s *XMLDocumentState) validatePostBoxNumberSuffixElementType(elem *pkg_2_01
 }
 
 // validatePostOfficeElement validates a PostOfficeElement element.
-func (s *XMLDocumentState) validatePostOfficeElement(elem *pkg_2_01.PostOfficeElement, path string) []ValidationError {
+func (s *XMLDocumentState) validatePostOfficeElement(elem *pkg_2_0.PostOfficeElement, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -18838,7 +18884,7 @@ func (s *XMLDocumentState) validatePostOfficeElement(elem *pkg_2_01.PostOfficeEl
 }
 
 // validatePostOfficeElementType validates a PostOfficeElementType element.
-func (s *XMLDocumentState) validatePostOfficeElementType(elem *pkg_2_01.PostOfficeElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validatePostOfficeElementType(elem *pkg_2_0.PostOfficeElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -18853,7 +18899,7 @@ func (s *XMLDocumentState) validatePostOfficeElementType(elem *pkg_2_01.PostOffi
 }
 
 // validatePostOfficeNameElementType validates a PostOfficeNameElementType element.
-func (s *XMLDocumentState) validatePostOfficeNameElementType(elem *pkg_2_01.PostOfficeNameElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validatePostOfficeNameElementType(elem *pkg_2_0.PostOfficeNameElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -18864,7 +18910,7 @@ func (s *XMLDocumentState) validatePostOfficeNameElementType(elem *pkg_2_01.Post
 }
 
 // validatePostOfficeNumberElementType validates a PostOfficeNumberElementType element.
-func (s *XMLDocumentState) validatePostOfficeNumberElementType(elem *pkg_2_01.PostOfficeNumberElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validatePostOfficeNumberElementType(elem *pkg_2_0.PostOfficeNumberElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -18876,7 +18922,7 @@ func (s *XMLDocumentState) validatePostOfficeNumberElementType(elem *pkg_2_01.Po
 }
 
 // validatePostTownElementType validates a PostTownElementType element.
-func (s *XMLDocumentState) validatePostTownElementType(elem *pkg_2_01.PostTownElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validatePostTownElementType(elem *pkg_2_0.PostTownElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -18889,7 +18935,7 @@ func (s *XMLDocumentState) validatePostTownElementType(elem *pkg_2_01.PostTownEl
 }
 
 // validatePostTownNameElementType validates a PostTownNameElementType element.
-func (s *XMLDocumentState) validatePostTownNameElementType(elem *pkg_2_01.PostTownNameElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validatePostTownNameElementType(elem *pkg_2_0.PostTownNameElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -18900,7 +18946,7 @@ func (s *XMLDocumentState) validatePostTownNameElementType(elem *pkg_2_01.PostTo
 }
 
 // validatePostalCodeElement validates a PostalCodeElement element.
-func (s *XMLDocumentState) validatePostalCodeElement(elem *pkg_2_01.PostalCodeElement, path string) []ValidationError {
+func (s *XMLDocumentState) validatePostalCodeElement(elem *pkg_2_0.PostalCodeElement, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -18914,7 +18960,7 @@ func (s *XMLDocumentState) validatePostalCodeElement(elem *pkg_2_01.PostalCodeEl
 }
 
 // validatePostalCodeElementType validates a PostalCodeElementType element.
-func (s *XMLDocumentState) validatePostalCodeElementType(elem *pkg_2_01.PostalCodeElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validatePostalCodeElementType(elem *pkg_2_0.PostalCodeElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -18928,7 +18974,7 @@ func (s *XMLDocumentState) validatePostalCodeElementType(elem *pkg_2_01.PostalCo
 }
 
 // validatePostalCodeNumberElementType validates a PostalCodeNumberElementType element.
-func (s *XMLDocumentState) validatePostalCodeNumberElementType(elem *pkg_2_01.PostalCodeNumberElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validatePostalCodeNumberElementType(elem *pkg_2_0.PostalCodeNumberElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -18939,7 +18985,7 @@ func (s *XMLDocumentState) validatePostalCodeNumberElementType(elem *pkg_2_01.Po
 }
 
 // validatePostalCodeNumberExtensionElementType validates a PostalCodeNumberExtensionElementType element.
-func (s *XMLDocumentState) validatePostalCodeNumberExtensionElementType(elem *pkg_2_01.PostalCodeNumberExtensionElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validatePostalCodeNumberExtensionElementType(elem *pkg_2_0.PostalCodeNumberExtensionElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -18951,7 +18997,7 @@ func (s *XMLDocumentState) validatePostalCodeNumberExtensionElementType(elem *pk
 }
 
 // validatePostalRouteNameElementType validates a PostalRouteNameElementType element.
-func (s *XMLDocumentState) validatePostalRouteNameElementType(elem *pkg_2_01.PostalRouteNameElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validatePostalRouteNameElementType(elem *pkg_2_0.PostalRouteNameElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -18962,7 +19008,7 @@ func (s *XMLDocumentState) validatePostalRouteNameElementType(elem *pkg_2_01.Pos
 }
 
 // validatePostalRouteType validates a PostalRouteType element.
-func (s *XMLDocumentState) validatePostalRouteType(elem *pkg_2_01.PostalRouteType, path string) []ValidationError {
+func (s *XMLDocumentState) validatePostalRouteType(elem *pkg_2_0.PostalRouteType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -18987,7 +19033,7 @@ func (s *XMLDocumentState) validatePostalRouteType(elem *pkg_2_01.PostalRouteTyp
 }
 
 // validatePostalServiceElementsElementType validates a PostalServiceElementsElementType element.
-func (s *XMLDocumentState) validatePostalServiceElementsElementType(elem *pkg_2_01.PostalServiceElementsElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validatePostalServiceElementsElementType(elem *pkg_2_0.PostalServiceElementsElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -19008,7 +19054,7 @@ func (s *XMLDocumentState) validatePostalServiceElementsElementType(elem *pkg_2_
 }
 
 // validatePrecedingTitleElementType validates a PrecedingTitleElementType element.
-func (s *XMLDocumentState) validatePrecedingTitleElementType(elem *pkg_2_0.PrecedingTitleElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validatePrecedingTitleElementType(elem *pkg_2_01.PrecedingTitleElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -19020,7 +19066,7 @@ func (s *XMLDocumentState) validatePrecedingTitleElementType(elem *pkg_2_0.Prece
 }
 
 // validatePremiseElement validates a PremiseElement element.
-func (s *XMLDocumentState) validatePremiseElement(elem *pkg_2_01.PremiseElement, path string) []ValidationError {
+func (s *XMLDocumentState) validatePremiseElement(elem *pkg_2_0.PremiseElement, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -19041,7 +19087,7 @@ func (s *XMLDocumentState) validatePremiseElement(elem *pkg_2_01.PremiseElement,
 }
 
 // validatePremiseElementType validates a PremiseElementType element.
-func (s *XMLDocumentState) validatePremiseElementType(elem *pkg_2_01.PremiseElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validatePremiseElementType(elem *pkg_2_0.PremiseElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -19062,7 +19108,7 @@ func (s *XMLDocumentState) validatePremiseElementType(elem *pkg_2_01.PremiseElem
 }
 
 // validatePremiseNameElementType validates a PremiseNameElementType element.
-func (s *XMLDocumentState) validatePremiseNameElementType(elem *pkg_2_01.PremiseNameElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validatePremiseNameElementType(elem *pkg_2_0.PremiseNameElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -19074,7 +19120,7 @@ func (s *XMLDocumentState) validatePremiseNameElementType(elem *pkg_2_01.Premise
 }
 
 // validatePremiseNumberElement validates a PremiseNumberElement element.
-func (s *XMLDocumentState) validatePremiseNumberElement(elem *pkg_2_01.PremiseNumberElement, path string) []ValidationError {
+func (s *XMLDocumentState) validatePremiseNumberElement(elem *pkg_2_0.PremiseNumberElement, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -19089,7 +19135,7 @@ func (s *XMLDocumentState) validatePremiseNumberElement(elem *pkg_2_01.PremiseNu
 }
 
 // validatePremiseNumberElementType validates a PremiseNumberElementType element.
-func (s *XMLDocumentState) validatePremiseNumberElementType(elem *pkg_2_01.PremiseNumberElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validatePremiseNumberElementType(elem *pkg_2_0.PremiseNumberElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -19104,7 +19150,7 @@ func (s *XMLDocumentState) validatePremiseNumberElementType(elem *pkg_2_01.Premi
 }
 
 // validatePremiseNumberPrefixElement validates a PremiseNumberPrefixElement element.
-func (s *XMLDocumentState) validatePremiseNumberPrefixElement(elem *pkg_2_01.PremiseNumberPrefixElement, path string) []ValidationError {
+func (s *XMLDocumentState) validatePremiseNumberPrefixElement(elem *pkg_2_0.PremiseNumberPrefixElement, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -19116,7 +19162,7 @@ func (s *XMLDocumentState) validatePremiseNumberPrefixElement(elem *pkg_2_01.Pre
 }
 
 // validatePremiseNumberPrefixElementType validates a PremiseNumberPrefixElementType element.
-func (s *XMLDocumentState) validatePremiseNumberPrefixElementType(elem *pkg_2_01.PremiseNumberPrefixElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validatePremiseNumberPrefixElementType(elem *pkg_2_0.PremiseNumberPrefixElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -19128,7 +19174,7 @@ func (s *XMLDocumentState) validatePremiseNumberPrefixElementType(elem *pkg_2_01
 }
 
 // validatePremiseNumberRangeElementType validates a PremiseNumberRangeElementType element.
-func (s *XMLDocumentState) validatePremiseNumberRangeElementType(elem *pkg_2_01.PremiseNumberRangeElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validatePremiseNumberRangeElementType(elem *pkg_2_0.PremiseNumberRangeElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -19146,7 +19192,7 @@ func (s *XMLDocumentState) validatePremiseNumberRangeElementType(elem *pkg_2_01.
 }
 
 // validatePremiseNumberRangeFromElementType validates a PremiseNumberRangeFromElementType element.
-func (s *XMLDocumentState) validatePremiseNumberRangeFromElementType(elem *pkg_2_01.PremiseNumberRangeFromElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validatePremiseNumberRangeFromElementType(elem *pkg_2_0.PremiseNumberRangeFromElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -19156,7 +19202,7 @@ func (s *XMLDocumentState) validatePremiseNumberRangeFromElementType(elem *pkg_2
 }
 
 // validatePremiseNumberRangeToElementType validates a PremiseNumberRangeToElementType element.
-func (s *XMLDocumentState) validatePremiseNumberRangeToElementType(elem *pkg_2_01.PremiseNumberRangeToElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validatePremiseNumberRangeToElementType(elem *pkg_2_0.PremiseNumberRangeToElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -19166,7 +19212,7 @@ func (s *XMLDocumentState) validatePremiseNumberRangeToElementType(elem *pkg_2_0
 }
 
 // validatePremiseNumberSuffixElement validates a PremiseNumberSuffixElement element.
-func (s *XMLDocumentState) validatePremiseNumberSuffixElement(elem *pkg_2_01.PremiseNumberSuffixElement, path string) []ValidationError {
+func (s *XMLDocumentState) validatePremiseNumberSuffixElement(elem *pkg_2_0.PremiseNumberSuffixElement, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -19178,7 +19224,7 @@ func (s *XMLDocumentState) validatePremiseNumberSuffixElement(elem *pkg_2_01.Pre
 }
 
 // validatePremiseNumberSuffixElementType validates a PremiseNumberSuffixElementType element.
-func (s *XMLDocumentState) validatePremiseNumberSuffixElementType(elem *pkg_2_01.PremiseNumberSuffixElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validatePremiseNumberSuffixElementType(elem *pkg_2_0.PremiseNumberSuffixElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -19521,13 +19567,26 @@ func (s *XMLDocumentState) validateReferenceElementType(elem *dictionary2_0.Refe
 }
 
 // validateReferenceType validates a ReferenceType element.
-func (s *XMLDocumentState) validateReferenceType(elem *xccdf1_2.ReferenceType, path string) []ValidationError {
+func (s *XMLDocumentState) validateReferenceType(elem *xmlschemaoval_definitions_5.ReferenceType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
 	}
-	// Validate Href
-	// Validate Override
+	// Validate Source
+	if elem.Source == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/source",
+			Message: "Required field 'source' is missing or empty",
+		})
+	}
+	// Validate Ref_id
+	if elem.Ref_id == "" {
+		errors = append(errors, ValidationError{
+			Path:    path + "/ref_id",
+			Message: "Required field 'ref_id' is missing or empty",
+		})
+	}
+	// Validate Ref_url
 
 	return errors
 }
@@ -20398,7 +20457,7 @@ func (s *XMLDocumentState) validateSoftwareType(elem *asset_identification1_1.So
 }
 
 // validateSortingCodeElementType validates a SortingCodeElementType element.
-func (s *XMLDocumentState) validateSortingCodeElementType(elem *pkg_2_01.SortingCodeElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateSortingCodeElementType(elem *pkg_2_0.SortingCodeElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -20588,7 +20647,7 @@ func (s *XMLDocumentState) validateStatusElementType(elem *xccdf1_2.StatusElemen
 }
 
 // validateSubAdministrativeAreaElementType validates a SubAdministrativeAreaElementType element.
-func (s *XMLDocumentState) validateSubAdministrativeAreaElementType(elem *pkg_2_01.SubAdministrativeAreaElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateSubAdministrativeAreaElementType(elem *pkg_2_0.SubAdministrativeAreaElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -20602,7 +20661,7 @@ func (s *XMLDocumentState) validateSubAdministrativeAreaElementType(elem *pkg_2_
 }
 
 // validateSubAdministrativeAreaNameElementType validates a SubAdministrativeAreaNameElementType element.
-func (s *XMLDocumentState) validateSubAdministrativeAreaNameElementType(elem *pkg_2_01.SubAdministrativeAreaNameElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateSubAdministrativeAreaNameElementType(elem *pkg_2_0.SubAdministrativeAreaNameElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -20613,7 +20672,7 @@ func (s *XMLDocumentState) validateSubAdministrativeAreaNameElementType(elem *pk
 }
 
 // validateSubPremiseNameElementType validates a SubPremiseNameElementType element.
-func (s *XMLDocumentState) validateSubPremiseNameElementType(elem *pkg_2_01.SubPremiseNameElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateSubPremiseNameElementType(elem *pkg_2_0.SubPremiseNameElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -20625,7 +20684,7 @@ func (s *XMLDocumentState) validateSubPremiseNameElementType(elem *pkg_2_01.SubP
 }
 
 // validateSubPremiseNumberElementType validates a SubPremiseNumberElementType element.
-func (s *XMLDocumentState) validateSubPremiseNumberElementType(elem *pkg_2_01.SubPremiseNumberElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateSubPremiseNumberElementType(elem *pkg_2_0.SubPremiseNumberElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -20640,7 +20699,7 @@ func (s *XMLDocumentState) validateSubPremiseNumberElementType(elem *pkg_2_01.Su
 }
 
 // validateSubPremiseNumberPrefixElementType validates a SubPremiseNumberPrefixElementType element.
-func (s *XMLDocumentState) validateSubPremiseNumberPrefixElementType(elem *pkg_2_01.SubPremiseNumberPrefixElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateSubPremiseNumberPrefixElementType(elem *pkg_2_0.SubPremiseNumberPrefixElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -20652,7 +20711,7 @@ func (s *XMLDocumentState) validateSubPremiseNumberPrefixElementType(elem *pkg_2
 }
 
 // validateSubPremiseNumberSuffixElementType validates a SubPremiseNumberSuffixElementType element.
-func (s *XMLDocumentState) validateSubPremiseNumberSuffixElementType(elem *pkg_2_01.SubPremiseNumberSuffixElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateSubPremiseNumberSuffixElementType(elem *pkg_2_0.SubPremiseNumberSuffixElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -20664,7 +20723,7 @@ func (s *XMLDocumentState) validateSubPremiseNumberSuffixElementType(elem *pkg_2
 }
 
 // validateSubPremiseType validates a SubPremiseType element.
-func (s *XMLDocumentState) validateSubPremiseType(elem *pkg_2_01.SubPremiseType, path string) []ValidationError {
+func (s *XMLDocumentState) validateSubPremiseType(elem *pkg_2_0.SubPremiseType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -20723,7 +20782,7 @@ func (s *XMLDocumentState) validateSubstringFunctionType(elem *xmlschemaoval_def
 }
 
 // validateSuffixElementType validates a SuffixElementType element.
-func (s *XMLDocumentState) validateSuffixElementType(elem *pkg_2_0.SuffixElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateSuffixElementType(elem *pkg_2_01.SuffixElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -20735,7 +20794,7 @@ func (s *XMLDocumentState) validateSuffixElementType(elem *pkg_2_0.SuffixElement
 }
 
 // validateSupplementaryPostalServiceDataElementType validates a SupplementaryPostalServiceDataElementType element.
-func (s *XMLDocumentState) validateSupplementaryPostalServiceDataElementType(elem *pkg_2_01.SupplementaryPostalServiceDataElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateSupplementaryPostalServiceDataElementType(elem *pkg_2_0.SupplementaryPostalServiceDataElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -21066,7 +21125,7 @@ func (s *XMLDocumentState) validateTestElement(elem *xmlschemaoval_definitions_5
 	}
 	// Validate State_operator
 	if elem.State_operator != nil && string(*elem.State_operator) != "" {
-		validValues := []string{"AND", "ONE", "OR", "XOR"}
+		validValues := []string{"AND", "OR"}
 		isValid := false
 		for _, v := range validValues {
 			if string(*elem.State_operator) == v {
@@ -21310,7 +21369,7 @@ func (s *XMLDocumentState) validateTestType(elem *xmlschemaoval_definitions_5.Te
 	}
 	// Validate State_operator
 	if elem.State_operator != nil && string(*elem.State_operator) != "" {
-		validValues := []string{"AND", "OR"}
+		validValues := []string{"AND", "ONE", "OR", "XOR"}
 		isValid := false
 		for _, v := range validValues {
 			if string(*elem.State_operator) == v {
@@ -21354,11 +21413,12 @@ func (s *XMLDocumentState) validateTestsType(elem *xmlschemaoval_definitions_5.T
 }
 
 // validateTextType validates a TextType element.
-func (s *XMLDocumentState) validateTextType(elem *language2_0.TextType, path string) []ValidationError {
+func (s *XMLDocumentState) validateTextType(elem *xccdf1_2.TextType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
 	}
+	// Validate Override
 
 	return errors
 }
@@ -21376,7 +21436,7 @@ func (s *XMLDocumentState) validateTextWithSubType(elem *xccdf1_2.TextWithSubTyp
 }
 
 // validateThoroughfareElement validates a ThoroughfareElement element.
-func (s *XMLDocumentState) validateThoroughfareElement(elem *pkg_2_01.ThoroughfareElement, path string) []ValidationError {
+func (s *XMLDocumentState) validateThoroughfareElement(elem *pkg_2_0.ThoroughfareElement, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -21400,7 +21460,7 @@ func (s *XMLDocumentState) validateThoroughfareElement(elem *pkg_2_01.Thoroughfa
 }
 
 // validateThoroughfareElementType validates a ThoroughfareElementType element.
-func (s *XMLDocumentState) validateThoroughfareElementType(elem *pkg_2_01.ThoroughfareElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateThoroughfareElementType(elem *pkg_2_0.ThoroughfareElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -21424,7 +21484,7 @@ func (s *XMLDocumentState) validateThoroughfareElementType(elem *pkg_2_01.Thorou
 }
 
 // validateThoroughfareLeadingTypeType validates a ThoroughfareLeadingTypeType element.
-func (s *XMLDocumentState) validateThoroughfareLeadingTypeType(elem *pkg_2_01.ThoroughfareLeadingTypeType, path string) []ValidationError {
+func (s *XMLDocumentState) validateThoroughfareLeadingTypeType(elem *pkg_2_0.ThoroughfareLeadingTypeType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -21435,7 +21495,7 @@ func (s *XMLDocumentState) validateThoroughfareLeadingTypeType(elem *pkg_2_01.Th
 }
 
 // validateThoroughfareNameType validates a ThoroughfareNameType element.
-func (s *XMLDocumentState) validateThoroughfareNameType(elem *pkg_2_01.ThoroughfareNameType, path string) []ValidationError {
+func (s *XMLDocumentState) validateThoroughfareNameType(elem *pkg_2_0.ThoroughfareNameType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -21446,7 +21506,7 @@ func (s *XMLDocumentState) validateThoroughfareNameType(elem *pkg_2_01.Thoroughf
 }
 
 // validateThoroughfareNumberElement validates a ThoroughfareNumberElement element.
-func (s *XMLDocumentState) validateThoroughfareNumberElement(elem *pkg_2_01.ThoroughfareNumberElement, path string) []ValidationError {
+func (s *XMLDocumentState) validateThoroughfareNumberElement(elem *pkg_2_0.ThoroughfareNumberElement, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -21461,7 +21521,7 @@ func (s *XMLDocumentState) validateThoroughfareNumberElement(elem *pkg_2_01.Thor
 }
 
 // validateThoroughfareNumberElementType validates a ThoroughfareNumberElementType element.
-func (s *XMLDocumentState) validateThoroughfareNumberElementType(elem *pkg_2_01.ThoroughfareNumberElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateThoroughfareNumberElementType(elem *pkg_2_0.ThoroughfareNumberElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -21476,7 +21536,7 @@ func (s *XMLDocumentState) validateThoroughfareNumberElementType(elem *pkg_2_01.
 }
 
 // validateThoroughfareNumberFromElementType validates a ThoroughfareNumberFromElementType element.
-func (s *XMLDocumentState) validateThoroughfareNumberFromElementType(elem *pkg_2_01.ThoroughfareNumberFromElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateThoroughfareNumberFromElementType(elem *pkg_2_0.ThoroughfareNumberFromElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -21486,7 +21546,7 @@ func (s *XMLDocumentState) validateThoroughfareNumberFromElementType(elem *pkg_2
 }
 
 // validateThoroughfareNumberPrefixElement validates a ThoroughfareNumberPrefixElement element.
-func (s *XMLDocumentState) validateThoroughfareNumberPrefixElement(elem *pkg_2_01.ThoroughfareNumberPrefixElement, path string) []ValidationError {
+func (s *XMLDocumentState) validateThoroughfareNumberPrefixElement(elem *pkg_2_0.ThoroughfareNumberPrefixElement, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -21498,7 +21558,7 @@ func (s *XMLDocumentState) validateThoroughfareNumberPrefixElement(elem *pkg_2_0
 }
 
 // validateThoroughfareNumberPrefixElementType validates a ThoroughfareNumberPrefixElementType element.
-func (s *XMLDocumentState) validateThoroughfareNumberPrefixElementType(elem *pkg_2_01.ThoroughfareNumberPrefixElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateThoroughfareNumberPrefixElementType(elem *pkg_2_0.ThoroughfareNumberPrefixElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -21510,7 +21570,7 @@ func (s *XMLDocumentState) validateThoroughfareNumberPrefixElementType(elem *pkg
 }
 
 // validateThoroughfareNumberRangeElementType validates a ThoroughfareNumberRangeElementType element.
-func (s *XMLDocumentState) validateThoroughfareNumberRangeElementType(elem *pkg_2_01.ThoroughfareNumberRangeElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateThoroughfareNumberRangeElementType(elem *pkg_2_0.ThoroughfareNumberRangeElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -21528,7 +21588,7 @@ func (s *XMLDocumentState) validateThoroughfareNumberRangeElementType(elem *pkg_
 }
 
 // validateThoroughfareNumberSuffixElement validates a ThoroughfareNumberSuffixElement element.
-func (s *XMLDocumentState) validateThoroughfareNumberSuffixElement(elem *pkg_2_01.ThoroughfareNumberSuffixElement, path string) []ValidationError {
+func (s *XMLDocumentState) validateThoroughfareNumberSuffixElement(elem *pkg_2_0.ThoroughfareNumberSuffixElement, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -21540,7 +21600,7 @@ func (s *XMLDocumentState) validateThoroughfareNumberSuffixElement(elem *pkg_2_0
 }
 
 // validateThoroughfareNumberSuffixElementType validates a ThoroughfareNumberSuffixElementType element.
-func (s *XMLDocumentState) validateThoroughfareNumberSuffixElementType(elem *pkg_2_01.ThoroughfareNumberSuffixElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateThoroughfareNumberSuffixElementType(elem *pkg_2_0.ThoroughfareNumberSuffixElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -21552,7 +21612,7 @@ func (s *XMLDocumentState) validateThoroughfareNumberSuffixElementType(elem *pkg
 }
 
 // validateThoroughfareNumberToElementType validates a ThoroughfareNumberToElementType element.
-func (s *XMLDocumentState) validateThoroughfareNumberToElementType(elem *pkg_2_01.ThoroughfareNumberToElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateThoroughfareNumberToElementType(elem *pkg_2_0.ThoroughfareNumberToElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -21562,7 +21622,7 @@ func (s *XMLDocumentState) validateThoroughfareNumberToElementType(elem *pkg_2_0
 }
 
 // validateThoroughfarePostDirectionType validates a ThoroughfarePostDirectionType element.
-func (s *XMLDocumentState) validateThoroughfarePostDirectionType(elem *pkg_2_01.ThoroughfarePostDirectionType, path string) []ValidationError {
+func (s *XMLDocumentState) validateThoroughfarePostDirectionType(elem *pkg_2_0.ThoroughfarePostDirectionType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -21573,7 +21633,7 @@ func (s *XMLDocumentState) validateThoroughfarePostDirectionType(elem *pkg_2_01.
 }
 
 // validateThoroughfarePreDirectionType validates a ThoroughfarePreDirectionType element.
-func (s *XMLDocumentState) validateThoroughfarePreDirectionType(elem *pkg_2_01.ThoroughfarePreDirectionType, path string) []ValidationError {
+func (s *XMLDocumentState) validateThoroughfarePreDirectionType(elem *pkg_2_0.ThoroughfarePreDirectionType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -21584,7 +21644,7 @@ func (s *XMLDocumentState) validateThoroughfarePreDirectionType(elem *pkg_2_01.T
 }
 
 // validateThoroughfareTrailingTypeType validates a ThoroughfareTrailingTypeType element.
-func (s *XMLDocumentState) validateThoroughfareTrailingTypeType(elem *pkg_2_01.ThoroughfareTrailingTypeType, path string) []ValidationError {
+func (s *XMLDocumentState) validateThoroughfareTrailingTypeType(elem *pkg_2_0.ThoroughfareTrailingTypeType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -21639,7 +21699,7 @@ func (s *XMLDocumentState) validateTimeDifferenceFunctionType(elem *xmlschemaova
 }
 
 // validateTitleElementType validates a TitleElementType element.
-func (s *XMLDocumentState) validateTitleElementType(elem *pkg_2_0.TitleElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateTitleElementType(elem *pkg_2_01.TitleElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -21735,94 +21795,6 @@ func (s *XMLDocumentState) validateUrlElementType(elem *asset_identification1_1.
 
 // validateValueElement validates a ValueElement element.
 func (s *XMLDocumentState) validateValueElement(elem *xccdf1_2.ValueElement, path string) []ValidationError {
-	var errors []ValidationError
-	if elem == nil {
-		return errors
-	}
-	// Validate Match
-	// Validate LowerBound
-	// Validate UpperBound
-	// Validate Choices
-	// Validate Source
-	// Validate Signature
-	// Validate Value
-	// Validate ComplexValue
-	// Validate Default
-	// Validate ComplexDefault
-	// Validate Id
-	if elem.Id == "" {
-		errors = append(errors, ValidationError{
-			Path:    path + "/id",
-			Message: "Required field 'id' is missing or empty",
-		})
-	}
-	if string(elem.Id) != "" {
-		matched, _ := regexp.MatchString(`xccdf_[^_]+_value_.+`, string(elem.Id))
-		if !matched {
-			errors = append(errors, ValidationError{
-				Path:    path + "/id",
-				Message: "Field 'id' does not match required pattern",
-			})
-		}
-	}
-	// Validate Type
-	if elem.Type != nil && string(*elem.Type) != "" {
-		validValues := []string{"number", "string", "boolean"}
-		isValid := false
-		for _, v := range validValues {
-			if string(*elem.Type) == v {
-				isValid = true
-				break
-			}
-		}
-		if !isValid {
-			errors = append(errors, ValidationError{
-				Path:    path + "/type",
-				Message: fmt.Sprintf("Field 'type' has invalid value '%s'", string(*elem.Type)),
-			})
-		}
-	}
-	// Validate Operator
-	if elem.Operator != nil && string(*elem.Operator) != "" {
-		validValues := []string{"equals", "not equal", "greater than", "less than", "greater than or equal", "less than or equal", "pattern match"}
-		isValid := false
-		for _, v := range validValues {
-			if string(*elem.Operator) == v {
-				isValid = true
-				break
-			}
-		}
-		if !isValid {
-			errors = append(errors, ValidationError{
-				Path:    path + "/operator",
-				Message: fmt.Sprintf("Field 'operator' has invalid value '%s'", string(*elem.Operator)),
-			})
-		}
-	}
-	// Validate Interactive
-	// Validate InterfaceHint
-	if elem.InterfaceHint != nil && string(*elem.InterfaceHint) != "" {
-		validValues := []string{"choice", "textline", "text", "date", "datetime"}
-		isValid := false
-		for _, v := range validValues {
-			if string(*elem.InterfaceHint) == v {
-				isValid = true
-				break
-			}
-		}
-		if !isValid {
-			errors = append(errors, ValidationError{
-				Path:    path + "/interfaceHint",
-				Message: fmt.Sprintf("Field 'interfaceHint' has invalid value '%s'", string(*elem.InterfaceHint)),
-			})
-		}
-	}
-
-	return errors
-}
-
-// validateValueType validates a ValueType element.
-func (s *XMLDocumentState) validateValueType(elem *xccdf1_2.ValueType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -22199,7 +22171,7 @@ func (s *XMLDocumentState) validateX509IssuerSerialType(elem *pkg_200009xmldsig.
 }
 
 // validateXALElement validates a XALElement element.
-func (s *XMLDocumentState) validateXALElement(elem *pkg_2_01.XALElement, path string) []ValidationError {
+func (s *XMLDocumentState) validateXALElement(elem *pkg_2_0.XALElement, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -22210,7 +22182,7 @@ func (s *XMLDocumentState) validateXALElement(elem *pkg_2_01.XALElement, path st
 }
 
 // validateXALElementType validates a XALElementType element.
-func (s *XMLDocumentState) validateXALElementType(elem *pkg_2_01.XALElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateXALElementType(elem *pkg_2_0.XALElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -22221,7 +22193,7 @@ func (s *XMLDocumentState) validateXALElementType(elem *pkg_2_01.XALElementType,
 }
 
 // validateXNLElement validates a XNLElement element.
-func (s *XMLDocumentState) validateXNLElement(elem *pkg_2_0.XNLElement, path string) []ValidationError {
+func (s *XMLDocumentState) validateXNLElement(elem *pkg_2_01.XNLElement, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -22232,7 +22204,7 @@ func (s *XMLDocumentState) validateXNLElement(elem *pkg_2_0.XNLElement, path str
 }
 
 // validateXNLElementType validates a XNLElementType element.
-func (s *XMLDocumentState) validateXNLElementType(elem *pkg_2_0.XNLElementType, path string) []ValidationError {
+func (s *XMLDocumentState) validateXNLElementType(elem *pkg_2_01.XNLElementType, path string) []ValidationError {
 	var errors []ValidationError
 	if elem == nil {
 		return errors
@@ -22867,25 +22839,49 @@ func (s *XMLDocumentState) GetValidChildTypes(parentType string) []string {
 		return []string{
 			"AssetElement",
 			"OrganizationElement",
-			"ItAssetElement",
-			"PersonElement",
 			"DataElement",
+			"PersonElement",
+			"ItAssetElement",
+			"NetworkElement",
+			"ComputingDeviceElement",
+			"CircuitElement",
+			"ServiceElement",
+			"WebsiteElement",
+			"SoftwareElement",
+			"SystemElement",
+			"DatabaseElement",
 		}
 	case "AssetsElementType":
 		return []string{
 			"AssetElement",
 			"OrganizationElement",
-			"ItAssetElement",
-			"PersonElement",
 			"DataElement",
+			"PersonElement",
+			"ItAssetElement",
+			"NetworkElement",
+			"ComputingDeviceElement",
+			"CircuitElement",
+			"ServiceElement",
+			"WebsiteElement",
+			"SoftwareElement",
+			"SystemElement",
+			"DatabaseElement",
 		}
 	case "AssetsType":
 		return []string{
 			"AssetElement",
 			"OrganizationElement",
-			"ItAssetElement",
-			"PersonElement",
 			"DataElement",
+			"PersonElement",
+			"ItAssetElement",
+			"NetworkElement",
+			"ComputingDeviceElement",
+			"CircuitElement",
+			"ServiceElement",
+			"WebsiteElement",
+			"SoftwareElement",
+			"SystemElement",
+			"DatabaseElement",
 		}
 	case "BenchmarkElement":
 		return []string{
@@ -23321,6 +23317,11 @@ func (s *XMLDocumentState) GetValidChildTypes(parentType string) []string {
 		return []string{
 			"ReferenceType",
 		}
+	case "MetadataType":
+		return []string{
+			"AffectedType",
+			"ReferenceType",
+		}
 	case "ModelElement":
 		return []string{
 			"ParamType",
@@ -23367,6 +23368,16 @@ func (s *XMLDocumentState) GetValidChildTypes(parentType string) []string {
 			"NetworkName",
 			"IpNetRange",
 			"Cidr",
+		}
+	case "ObjectElement":
+		return []string{
+			"SignatureType",
+			"NotesType",
+		}
+	case "ObjectType":
+		return []string{
+			"SignatureType",
+			"NotesType",
 		}
 	case "ObjectsType":
 		return []string{
@@ -24030,19 +24041,6 @@ func (s *XMLDocumentState) GetValidChildTypes(parentType string) []string {
 			"TransformType",
 		}
 	case "ValueElement":
-		return []string{
-			"SelStringType",
-			"SelNumType",
-			"SelNumType",
-			"SelChoicesType",
-			"UriRefType",
-			"SignatureType",
-			"SelStringType",
-			"SelComplexValueType",
-			"SelStringType",
-			"SelComplexValueType",
-		}
-	case "ValueType":
 		return []string{
 			"SelStringType",
 			"SelNumType",
@@ -25873,6 +25871,13 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 			Name:          "ContentElementType",
 			Documentation: "",
 			IsAbstract:    false,
+			Fields:        []FieldInfo{},
+		}, nil
+	case "ContentElementType1":
+		return &TypeMetadata{
+			Name:          "ContentElementType1",
+			Documentation: "",
+			IsAbstract:    false,
 			Fields: []FieldInfo{
 				{
 					Name:          "data-valid-start-date",
@@ -25891,13 +25896,6 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 					Documentation: "",
 				},
 			},
-		}, nil
-	case "ContentElementType1":
-		return &TypeMetadata{
-			Name:          "ContentElementType1",
-			Documentation: "",
-			IsAbstract:    false,
-			Fields:        []FieldInfo{},
 		}, nil
 	case "CountFunctionType":
 		return &TypeMetadata{
@@ -26144,7 +26142,7 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 					IsRequired:    false,
 					IsRepeated:    false,
 					IsEnum:        true,
-					EnumValues:    []string{"AND", "OR"},
+					EnumValues:    []string{"AND", "ONE", "OR", "XOR"},
 					Documentation: "",
 				},
 				{
@@ -29848,7 +29846,46 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 			Name:          "MetadataType",
 			Documentation: "",
 			IsAbstract:    false,
-			Fields:        []FieldInfo{},
+			Fields: []FieldInfo{
+				{
+					Name:          "title",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+				{
+					Name:          "affected",
+					Type:          "AffectedType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "reference",
+					Type:          "ReferenceType",
+					IsRequired:    false,
+					IsRepeated:    true,
+					IsEnum:        false,
+					MaxOccurs:     -1,
+					Documentation: "",
+				},
+				{
+					Name:          "description",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					MinOccurs:     1,
+					MaxOccurs:     1,
+					Documentation: "",
+				},
+			},
 		}, nil
 	case "MgmtDataElement":
 		return &TypeMetadata{
@@ -30377,24 +30414,34 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 			IsAbstract:    false,
 			Fields: []FieldInfo{
 				{
-					Name:          "Id",
+					Name:          "id",
 					Type:          "string",
-					IsRequired:    false,
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Pattern:       "oval:[A-Za-z0-9_\\-\\.]+:obj:[1-9][0-9]*",
+					Documentation: "",
+				},
+				{
+					Name:          "version",
+					Type:          "uint64",
+					IsRequired:    true,
 					IsRepeated:    false,
 					IsEnum:        false,
 					Documentation: "",
 				},
 				{
-					Name:          "MimeType",
+					Name:          "comment",
 					Type:          "string",
 					IsRequired:    false,
 					IsRepeated:    false,
 					IsEnum:        false,
+					MinLength:     1,
 					Documentation: "",
 				},
 				{
-					Name:          "Encoding",
-					Type:          "string",
+					Name:          "deprecated",
+					Type:          "bool",
 					IsRequired:    false,
 					IsRepeated:    false,
 					IsEnum:        false,
@@ -30465,24 +30512,34 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 			IsAbstract:    false,
 			Fields: []FieldInfo{
 				{
-					Name:          "Id",
+					Name:          "id",
 					Type:          "string",
-					IsRequired:    false,
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Pattern:       "oval:[A-Za-z0-9_\\-\\.]+:obj:[1-9][0-9]*",
+					Documentation: "",
+				},
+				{
+					Name:          "version",
+					Type:          "uint64",
+					IsRequired:    true,
 					IsRepeated:    false,
 					IsEnum:        false,
 					Documentation: "",
 				},
 				{
-					Name:          "MimeType",
+					Name:          "comment",
 					Type:          "string",
 					IsRequired:    false,
 					IsRepeated:    false,
 					IsEnum:        false,
+					MinLength:     1,
 					Documentation: "",
 				},
 				{
-					Name:          "Encoding",
-					Type:          "string",
+					Name:          "deprecated",
+					Type:          "bool",
 					IsRequired:    false,
 					IsRepeated:    false,
 					IsEnum:        false,
@@ -33430,16 +33487,24 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 			IsAbstract:    false,
 			Fields: []FieldInfo{
 				{
-					Name:          "href",
+					Name:          "source",
 					Type:          "string",
-					IsRequired:    false,
+					IsRequired:    true,
 					IsRepeated:    false,
 					IsEnum:        false,
 					Documentation: "",
 				},
 				{
-					Name:          "override",
-					Type:          "bool",
+					Name:          "ref_id",
+					Type:          "string",
+					IsRequired:    true,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+				{
+					Name:          "ref_url",
+					Type:          "string",
 					IsRequired:    false,
 					IsRepeated:    false,
 					IsEnum:        false,
@@ -35914,7 +35979,7 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 					IsRequired:    false,
 					IsRepeated:    false,
 					IsEnum:        true,
-					EnumValues:    []string{"AND", "ONE", "OR", "XOR"},
+					EnumValues:    []string{"AND", "OR"},
 					Documentation: "",
 				},
 				{
@@ -36450,7 +36515,7 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 					IsRequired:    false,
 					IsRepeated:    false,
 					IsEnum:        true,
-					EnumValues:    []string{"AND", "OR"},
+					EnumValues:    []string{"AND", "ONE", "OR", "XOR"},
 					Documentation: "",
 				},
 				{
@@ -36491,7 +36556,16 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 			Name:          "TextType",
 			Documentation: "",
 			IsAbstract:    false,
-			Fields:        []FieldInfo{},
+			Fields: []FieldInfo{
+				{
+					Name:          "override",
+					Type:          "bool",
+					IsRequired:    false,
+					IsRepeated:    false,
+					IsEnum:        false,
+					Documentation: "",
+				},
+			},
 		}, nil
 	case "TextWithSubType":
 		return &TypeMetadata{
@@ -37514,154 +37588,7 @@ func (s *XMLDocumentState) GetTypeMetadata(name string) (*TypeMetadata, error) {
 			Name:          "ValueType",
 			Documentation: "",
 			IsAbstract:    false,
-			Fields: []FieldInfo{
-				{
-					Name:          "match",
-					Type:          "SelStringType",
-					IsRequired:    false,
-					IsRepeated:    true,
-					IsEnum:        false,
-					MaxOccurs:     -1,
-					Documentation: "",
-				},
-				{
-					Name:          "lower-bound",
-					Type:          "SelNumType",
-					IsRequired:    false,
-					IsRepeated:    true,
-					IsEnum:        false,
-					MaxOccurs:     -1,
-					Documentation: "",
-				},
-				{
-					Name:          "upper-bound",
-					Type:          "SelNumType",
-					IsRequired:    false,
-					IsRepeated:    true,
-					IsEnum:        false,
-					MaxOccurs:     -1,
-					Documentation: "",
-				},
-				{
-					Name:          "choices",
-					Type:          "SelChoicesType",
-					IsRequired:    false,
-					IsRepeated:    true,
-					IsEnum:        false,
-					MaxOccurs:     -1,
-					Documentation: "",
-				},
-				{
-					Name:          "source",
-					Type:          "UriRefType",
-					IsRequired:    false,
-					IsRepeated:    true,
-					IsEnum:        false,
-					MaxOccurs:     -1,
-					Documentation: "",
-				},
-				{
-					Name:          "signature",
-					Type:          "SignatureType",
-					IsRequired:    false,
-					IsRepeated:    false,
-					IsEnum:        false,
-					MaxOccurs:     1,
-					Documentation: "",
-				},
-				{
-					Name:          "value",
-					Type:          "SelStringType",
-					IsRequired:    true,
-					IsRepeated:    false,
-					IsEnum:        false,
-					MinOccurs:     1,
-					MaxOccurs:     1,
-					IsChoice:      true,
-					ChoiceGroup:   "choice_1",
-					Documentation: "",
-				},
-				{
-					Name:          "complex-value",
-					Type:          "SelComplexValueType",
-					IsRequired:    true,
-					IsRepeated:    false,
-					IsEnum:        false,
-					MinOccurs:     1,
-					MaxOccurs:     1,
-					IsChoice:      true,
-					ChoiceGroup:   "choice_1",
-					Documentation: "",
-				},
-				{
-					Name:          "default",
-					Type:          "SelStringType",
-					IsRequired:    true,
-					IsRepeated:    false,
-					IsEnum:        false,
-					MinOccurs:     1,
-					MaxOccurs:     1,
-					IsChoice:      true,
-					ChoiceGroup:   "choice_1",
-					Documentation: "",
-				},
-				{
-					Name:          "complex-default",
-					Type:          "SelComplexValueType",
-					IsRequired:    true,
-					IsRepeated:    false,
-					IsEnum:        false,
-					MinOccurs:     1,
-					MaxOccurs:     1,
-					IsChoice:      true,
-					ChoiceGroup:   "choice_1",
-					Documentation: "",
-				},
-				{
-					Name:          "id",
-					Type:          "string",
-					IsRequired:    true,
-					IsRepeated:    false,
-					IsEnum:        false,
-					Pattern:       "xccdf_[^_]+_value_.+",
-					Documentation: "",
-				},
-				{
-					Name:          "type",
-					Type:          "string",
-					IsRequired:    false,
-					IsRepeated:    false,
-					IsEnum:        true,
-					EnumValues:    []string{"number", "string", "boolean"},
-					Documentation: "",
-				},
-				{
-					Name:          "operator",
-					Type:          "string",
-					IsRequired:    false,
-					IsRepeated:    false,
-					IsEnum:        true,
-					EnumValues:    []string{"equals", "not equal", "greater than", "less than", "greater than or equal", "less than or equal", "pattern match"},
-					Documentation: "",
-				},
-				{
-					Name:          "interactive",
-					Type:          "bool",
-					IsRequired:    false,
-					IsRepeated:    false,
-					IsEnum:        false,
-					Documentation: "",
-				},
-				{
-					Name:          "interfaceHint",
-					Type:          "string",
-					IsRequired:    false,
-					IsRepeated:    false,
-					IsEnum:        true,
-					EnumValues:    []string{"choice", "textline", "text", "date", "datetime"},
-					Documentation: "",
-				},
-			},
+			Fields:        []FieldInfo{},
 		}, nil
 	case "ValueTypeType":
 		return &TypeMetadata{
@@ -38169,8 +38096,8 @@ func (s *XMLDocumentState) GetConcreteTypes(abstractType string) ([]string, erro
 	switch abstractType {
 	case "AssetType":
 		return []string{
-			"DataType",
 			"OrganizationType",
+			"DataType",
 			"PersonType",
 		}, nil
 	case "EntityComplexBaseType":
@@ -38179,15 +38106,15 @@ func (s *XMLDocumentState) GetConcreteTypes(abstractType string) ([]string, erro
 		}, nil
 	case "EntitySimpleBaseType":
 		return []string{
-			"EntityObjectIPAddressType",
-			"EntityObjectFloatType",
-			"EntityObjectStringType",
-			"EntityObjectAnySimpleType",
-			"EntityObjectVersionType",
-			"EntityObjectIPAddressStringType",
-			"EntityObjectBoolType",
 			"EntityObjectBinaryType",
+			"EntityObjectIPAddressStringType",
+			"EntityObjectStringType",
+			"EntityObjectVersionType",
+			"EntityObjectFloatType",
+			"EntityObjectAnySimpleType",
 			"EntityObjectIntType",
+			"EntityObjectBoolType",
+			"EntityObjectIPAddressType",
 		}, nil
 	case "EntityStateComplexBaseType":
 		return []string{
@@ -38195,30 +38122,30 @@ func (s *XMLDocumentState) GetConcreteTypes(abstractType string) ([]string, erro
 		}, nil
 	case "EntityStateSimpleBaseType":
 		return []string{
-			"EntityStateFileSetRevisionType",
-			"EntityStateIPAddressStringType",
-			"EntityStateDebianEVRStringType",
 			"EntityStateBoolType",
-			"EntityStateAnySimpleType",
-			"EntityStateStringType",
-			"EntityStateFloatType",
-			"EntityStateEVRStringType",
-			"EntityStateIPAddressType",
-			"EntityStateBinaryType",
-			"EntityStateIOSVersionType",
 			"EntityStateIntType",
+			"EntityStateFileSetRevisionType",
+			"EntityStateFloatType",
+			"EntityStateIPAddressType",
+			"EntityStateAnySimpleType",
+			"EntityStateBinaryType",
+			"EntityStateDebianEVRStringType",
+			"EntityStateIOSVersionType",
+			"EntityStateEVRStringType",
 			"EntityStateVersionType",
+			"EntityStateIPAddressStringType",
+			"EntityStateStringType",
 		}, nil
 	case "ItAssetType":
 		return []string{
-			"ComputingDeviceType",
+			"ServiceType",
 			"NetworkType",
+			"WebsiteType",
+			"ComputingDeviceType",
+			"SoftwareType",
+			"CircuitType",
 			"DatabaseType",
 			"SystemType",
-			"WebsiteType",
-			"CircuitType",
-			"SoftwareType",
-			"ServiceType",
 		}, nil
 	case "ItemType":
 		return []string{
@@ -38226,8 +38153,8 @@ func (s *XMLDocumentState) GetConcreteTypes(abstractType string) ([]string, erro
 		}, nil
 	case "SelectableItemType":
 		return []string{
-			"GroupType",
 			"RuleType",
+			"GroupType",
 		}, nil
 	default:
 		// Not an abstract type or no concrete implementations known

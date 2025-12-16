@@ -164,10 +164,15 @@ class VirtualTreeView {
             arrow.classList.add('no-children');
         }
         
-        // Icon
+        // Icon - ensure Font Awesome style prefix is present
         const icon = document.createElement('span');
         icon.className = 'tree-node-icon';
-        icon.innerHTML = `<i class="${node.icon || 'fas fa-file'}"></i>`;
+        let iconClass = node.icon || 'fas fa-file';
+        // Add 'fas' prefix if icon doesn't already have a FA style prefix (fas, far, fab, fal, fad)
+        if (iconClass && !iconClass.match(/^fa[srldb]\s/)) {
+            iconClass = 'fas ' + iconClass;
+        }
+        icon.innerHTML = `<i class="${iconClass}"></i>`;
         
         // Label
         const label = document.createElement('span');
@@ -233,20 +238,28 @@ class VirtualTreeView {
     }
 
     async toggleNode(node) {
+        console.log('toggleNode called:', node.id, 'hasChildren:', node.hasChildren, 'children:', node.children);
         if (this.expandedNodes.has(node.id)) {
             this.expandedNodes.delete(node.id);
             this.options.onCollapse(node);
         } else {
             this.expandedNodes.add(node.id);
+            console.log('Expanding node:', node.id);
             
             // Load children if needed
             if (!node.children && node.hasChildren && this.options.lazyLoad) {
+                console.log('Loading children for:', node.id);
                 this.loadingNodes.add(node.id);
                 this.render();
                 
-                const result = await this.options.fetchData(node.id, 0, 50);
-                node.children = result.nodes || [];
-                node.childrenLoaded = true;
+                try {
+                    const result = await this.options.fetchData(node.id, 0, 50);
+                    console.log('Fetched children:', result);
+                    node.children = result.nodes || [];
+                    node.childrenLoaded = true;
+                } catch (err) {
+                    console.error('Error fetching children:', err);
+                }
                 
                 this.loadingNodes.delete(node.id);
             }
@@ -255,6 +268,7 @@ class VirtualTreeView {
         }
         
         this.updateFlatNodes();
+        console.log('After updateFlatNodes, flatNodes count:', this.flatNodes.length);
         this.render();
     }
 

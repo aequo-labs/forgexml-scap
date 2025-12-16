@@ -9,8 +9,8 @@ import (
 	asset_identification1_1 "github.com/aequo-labs/forgexml-scap/internal/generated/gov/nist/scap/schema/asset-identification/1-1"
 	asset_reporting_format1_1 "github.com/aequo-labs/forgexml-scap/internal/generated/gov/nist/scap/schema/asset-reporting-format/1-1"
 	reporting_core1_1 "github.com/aequo-labs/forgexml-scap/internal/generated/gov/nist/scap/schema/reporting-core/1-1"
-	pkg_2_01 "github.com/aequo-labs/forgexml-scap/internal/generated/oasis/names/tc/ciq/xsdschema/xal/2-0"
-	pkg_2_0 "github.com/aequo-labs/forgexml-scap/internal/generated/oasis/names/tc/ciq/xsdschema/xnl/2-0"
+	pkg_2_0 "github.com/aequo-labs/forgexml-scap/internal/generated/oasis/names/tc/ciq/xsdschema/xal/2-0"
+	pkg_2_01 "github.com/aequo-labs/forgexml-scap/internal/generated/oasis/names/tc/ciq/xsdschema/xnl/2-0"
 	dictionary2_0 "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/cpe/dictionary/2-0"
 	language2_0 "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/cpe/language/2-0"
 	xmlschemaoval_common_5 "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/oval/xmlschema/oval-common-5"
@@ -13096,7 +13096,7 @@ func TestMarshalUnmarshal_ActuateType(t *testing.T) {
 
 func TestMarshalUnmarshal_AddressDetails(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.AddressDetails
+	var elem pkg_2_0.AddressDetails
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -13110,7 +13110,7 @@ func TestMarshalUnmarshal_AddressDetails(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.AddressDetails
+	var elem2 pkg_2_0.AddressDetails
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -13121,7 +13121,7 @@ func TestMarshalUnmarshal_AddressDetails(t *testing.T) {
 
 func TestMarshalUnmarshal_AddressDetailsElement(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.AddressDetailsElement
+	var elem pkg_2_0.AddressDetailsElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -13135,7 +13135,7 @@ func TestMarshalUnmarshal_AddressDetailsElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.AddressDetailsElement
+	var elem2 pkg_2_0.AddressDetailsElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -13146,7 +13146,7 @@ func TestMarshalUnmarshal_AddressDetailsElement(t *testing.T) {
 
 func TestMarshalUnmarshal_AddressElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.AddressElementType
+	var elem pkg_2_0.AddressElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -13160,7 +13160,7 @@ func TestMarshalUnmarshal_AddressElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.AddressElementType
+	var elem2 pkg_2_0.AddressElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -13171,7 +13171,7 @@ func TestMarshalUnmarshal_AddressElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_AddressIdentifierElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.AddressIdentifierElementType
+	var elem pkg_2_0.AddressIdentifierElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -13185,7 +13185,7 @@ func TestMarshalUnmarshal_AddressIdentifierElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.AddressIdentifierElementType
+	var elem2 pkg_2_0.AddressIdentifierElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -13196,7 +13196,7 @@ func TestMarshalUnmarshal_AddressIdentifierElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_AddressLatitudeDirectionElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.AddressLatitudeDirectionElementType
+	var elem pkg_2_0.AddressLatitudeDirectionElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -13210,7 +13210,7 @@ func TestMarshalUnmarshal_AddressLatitudeDirectionElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.AddressLatitudeDirectionElementType
+	var elem2 pkg_2_0.AddressLatitudeDirectionElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -13221,7 +13221,7 @@ func TestMarshalUnmarshal_AddressLatitudeDirectionElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_AddressLatitudeElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.AddressLatitudeElementType
+	var elem pkg_2_0.AddressLatitudeElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -13235,7 +13235,7 @@ func TestMarshalUnmarshal_AddressLatitudeElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.AddressLatitudeElementType
+	var elem2 pkg_2_0.AddressLatitudeElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -13246,7 +13246,7 @@ func TestMarshalUnmarshal_AddressLatitudeElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_AddressLineElement(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.AddressLineElement
+	var elem pkg_2_0.AddressLineElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -13260,7 +13260,7 @@ func TestMarshalUnmarshal_AddressLineElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.AddressLineElement
+	var elem2 pkg_2_0.AddressLineElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -13271,7 +13271,7 @@ func TestMarshalUnmarshal_AddressLineElement(t *testing.T) {
 
 func TestMarshalUnmarshal_AddressLineElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.AddressLineElementType
+	var elem pkg_2_0.AddressLineElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -13285,7 +13285,7 @@ func TestMarshalUnmarshal_AddressLineElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.AddressLineElementType
+	var elem2 pkg_2_0.AddressLineElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -13296,7 +13296,7 @@ func TestMarshalUnmarshal_AddressLineElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_AddressLinesType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.AddressLinesType
+	var elem pkg_2_0.AddressLinesType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -13310,7 +13310,7 @@ func TestMarshalUnmarshal_AddressLinesType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.AddressLinesType
+	var elem2 pkg_2_0.AddressLinesType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -13321,7 +13321,7 @@ func TestMarshalUnmarshal_AddressLinesType(t *testing.T) {
 
 func TestMarshalUnmarshal_AddressLongitudeDirectionElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.AddressLongitudeDirectionElementType
+	var elem pkg_2_0.AddressLongitudeDirectionElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -13335,7 +13335,7 @@ func TestMarshalUnmarshal_AddressLongitudeDirectionElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.AddressLongitudeDirectionElementType
+	var elem2 pkg_2_0.AddressLongitudeDirectionElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -13346,7 +13346,7 @@ func TestMarshalUnmarshal_AddressLongitudeDirectionElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_AddressLongitudeElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.AddressLongitudeElementType
+	var elem pkg_2_0.AddressLongitudeElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -13360,7 +13360,7 @@ func TestMarshalUnmarshal_AddressLongitudeElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.AddressLongitudeElementType
+	var elem2 pkg_2_0.AddressLongitudeElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -13371,7 +13371,7 @@ func TestMarshalUnmarshal_AddressLongitudeElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_AddresseeIndicatorElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.AddresseeIndicatorElementType
+	var elem pkg_2_01.AddresseeIndicatorElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -13385,7 +13385,7 @@ func TestMarshalUnmarshal_AddresseeIndicatorElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.AddresseeIndicatorElementType
+	var elem2 pkg_2_01.AddresseeIndicatorElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -13396,7 +13396,7 @@ func TestMarshalUnmarshal_AddresseeIndicatorElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_AdministrativeAreaElement(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.AdministrativeAreaElement
+	var elem pkg_2_0.AdministrativeAreaElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -13410,7 +13410,7 @@ func TestMarshalUnmarshal_AdministrativeAreaElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.AdministrativeAreaElement
+	var elem2 pkg_2_0.AdministrativeAreaElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -13421,7 +13421,7 @@ func TestMarshalUnmarshal_AdministrativeAreaElement(t *testing.T) {
 
 func TestMarshalUnmarshal_AdministrativeAreaElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.AdministrativeAreaElementType
+	var elem pkg_2_0.AdministrativeAreaElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -13435,7 +13435,7 @@ func TestMarshalUnmarshal_AdministrativeAreaElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.AdministrativeAreaElementType
+	var elem2 pkg_2_0.AdministrativeAreaElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -13446,7 +13446,7 @@ func TestMarshalUnmarshal_AdministrativeAreaElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_AdministrativeAreaNameElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.AdministrativeAreaNameElementType
+	var elem pkg_2_0.AdministrativeAreaNameElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -13460,7 +13460,7 @@ func TestMarshalUnmarshal_AdministrativeAreaNameElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.AdministrativeAreaNameElementType
+	var elem2 pkg_2_0.AdministrativeAreaNameElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -13496,7 +13496,7 @@ func TestMarshalUnmarshal_AffectedType(t *testing.T) {
 
 func TestMarshalUnmarshal_AliasElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.AliasElementType
+	var elem pkg_2_01.AliasElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -13510,7 +13510,7 @@ func TestMarshalUnmarshal_AliasElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.AliasElementType
+	var elem2 pkg_2_01.AliasElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -13871,7 +13871,7 @@ func TestMarshalUnmarshal_AssetsType(t *testing.T) {
 
 func TestMarshalUnmarshal_BarcodeElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.BarcodeElementType
+	var elem pkg_2_0.BarcodeElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -13885,7 +13885,7 @@ func TestMarshalUnmarshal_BarcodeElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.BarcodeElementType
+	var elem2 pkg_2_0.BarcodeElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -14046,7 +14046,7 @@ func TestMarshalUnmarshal_BirthdateElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_BuildingNameType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.BuildingNameType
+	var elem pkg_2_0.BuildingNameType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -14060,7 +14060,7 @@ func TestMarshalUnmarshal_BuildingNameType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.BuildingNameType
+	var elem2 pkg_2_0.BuildingNameType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -14771,7 +14771,7 @@ func TestMarshalUnmarshal_CountFunctionType(t *testing.T) {
 
 func TestMarshalUnmarshal_CountryElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.CountryElementType
+	var elem pkg_2_0.CountryElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -14785,7 +14785,7 @@ func TestMarshalUnmarshal_CountryElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.CountryElementType
+	var elem2 pkg_2_0.CountryElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -14796,7 +14796,7 @@ func TestMarshalUnmarshal_CountryElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_CountryNameCodeElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.CountryNameCodeElementType
+	var elem pkg_2_0.CountryNameCodeElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -14810,7 +14810,7 @@ func TestMarshalUnmarshal_CountryNameCodeElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.CountryNameCodeElementType
+	var elem2 pkg_2_0.CountryNameCodeElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -14821,7 +14821,7 @@ func TestMarshalUnmarshal_CountryNameCodeElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_CountryNameElement(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.CountryNameElement
+	var elem pkg_2_0.CountryNameElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -14835,7 +14835,7 @@ func TestMarshalUnmarshal_CountryNameElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.CountryNameElement
+	var elem2 pkg_2_0.CountryNameElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -14846,7 +14846,7 @@ func TestMarshalUnmarshal_CountryNameElement(t *testing.T) {
 
 func TestMarshalUnmarshal_CountryNameElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.CountryNameElementType
+	var elem pkg_2_0.CountryNameElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -14860,7 +14860,7 @@ func TestMarshalUnmarshal_CountryNameElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.CountryNameElementType
+	var elem2 pkg_2_0.CountryNameElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -15396,7 +15396,7 @@ func TestMarshalUnmarshal_DefinitionsType(t *testing.T) {
 
 func TestMarshalUnmarshal_DepartmentElement(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.DepartmentElement
+	var elem pkg_2_0.DepartmentElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -15410,7 +15410,7 @@ func TestMarshalUnmarshal_DepartmentElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.DepartmentElement
+	var elem2 pkg_2_0.DepartmentElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -15421,7 +15421,7 @@ func TestMarshalUnmarshal_DepartmentElement(t *testing.T) {
 
 func TestMarshalUnmarshal_DepartmentElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.DepartmentElementType
+	var elem pkg_2_0.DepartmentElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -15435,7 +15435,7 @@ func TestMarshalUnmarshal_DepartmentElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.DepartmentElementType
+	var elem2 pkg_2_0.DepartmentElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -15446,7 +15446,7 @@ func TestMarshalUnmarshal_DepartmentElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_DepartmentNameElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.DepartmentNameElementType
+	var elem pkg_2_0.DepartmentNameElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -15460,7 +15460,7 @@ func TestMarshalUnmarshal_DepartmentNameElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.DepartmentNameElementType
+	var elem2 pkg_2_0.DepartmentNameElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -15471,7 +15471,7 @@ func TestMarshalUnmarshal_DepartmentNameElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_DependencyNameElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.DependencyNameElementType
+	var elem pkg_2_01.DependencyNameElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -15485,7 +15485,7 @@ func TestMarshalUnmarshal_DependencyNameElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.DependencyNameElementType
+	var elem2 pkg_2_01.DependencyNameElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -15496,7 +15496,7 @@ func TestMarshalUnmarshal_DependencyNameElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_DependentLocalityNameElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.DependentLocalityNameElementType
+	var elem pkg_2_0.DependentLocalityNameElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -15510,7 +15510,7 @@ func TestMarshalUnmarshal_DependentLocalityNameElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.DependentLocalityNameElementType
+	var elem2 pkg_2_0.DependentLocalityNameElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -15521,7 +15521,7 @@ func TestMarshalUnmarshal_DependentLocalityNameElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_DependentLocalityNumberElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.DependentLocalityNumberElementType
+	var elem pkg_2_0.DependentLocalityNumberElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -15535,7 +15535,7 @@ func TestMarshalUnmarshal_DependentLocalityNumberElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.DependentLocalityNumberElementType
+	var elem2 pkg_2_0.DependentLocalityNumberElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -15546,7 +15546,7 @@ func TestMarshalUnmarshal_DependentLocalityNumberElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_DependentLocalityType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.DependentLocalityType
+	var elem pkg_2_0.DependentLocalityType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -15560,7 +15560,7 @@ func TestMarshalUnmarshal_DependentLocalityType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.DependentLocalityType
+	var elem2 pkg_2_0.DependentLocalityType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -15571,7 +15571,7 @@ func TestMarshalUnmarshal_DependentLocalityType(t *testing.T) {
 
 func TestMarshalUnmarshal_DependentThoroughfareElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.DependentThoroughfareElementType
+	var elem pkg_2_0.DependentThoroughfareElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -15585,7 +15585,7 @@ func TestMarshalUnmarshal_DependentThoroughfareElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.DependentThoroughfareElementType
+	var elem2 pkg_2_0.DependentThoroughfareElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -15971,7 +15971,7 @@ func TestMarshalUnmarshal_EndFunctionType(t *testing.T) {
 
 func TestMarshalUnmarshal_EndorsementLineCodeElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.EndorsementLineCodeElementType
+	var elem pkg_2_0.EndorsementLineCodeElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -15985,7 +15985,7 @@ func TestMarshalUnmarshal_EndorsementLineCodeElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.EndorsementLineCodeElementType
+	var elem2 pkg_2_0.EndorsementLineCodeElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -17021,7 +17021,7 @@ func TestMarshalUnmarshal_FilterElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_FirmNameElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.FirmNameElementType
+	var elem pkg_2_0.FirmNameElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -17035,7 +17035,7 @@ func TestMarshalUnmarshal_FirmNameElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.FirmNameElementType
+	var elem2 pkg_2_0.FirmNameElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -17046,7 +17046,7 @@ func TestMarshalUnmarshal_FirmNameElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_FirmType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.FirmType
+	var elem pkg_2_0.FirmType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -17060,7 +17060,7 @@ func TestMarshalUnmarshal_FirmType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.FirmType
+	var elem2 pkg_2_0.FirmType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -17071,7 +17071,7 @@ func TestMarshalUnmarshal_FirmType(t *testing.T) {
 
 func TestMarshalUnmarshal_FirstNameElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.FirstNameElementType
+	var elem pkg_2_01.FirstNameElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -17085,7 +17085,7 @@ func TestMarshalUnmarshal_FirstNameElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.FirstNameElementType
+	var elem2 pkg_2_01.FirstNameElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -17171,7 +17171,7 @@ func TestMarshalUnmarshal_FixType(t *testing.T) {
 
 func TestMarshalUnmarshal_FormerNameElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.FormerNameElementType
+	var elem pkg_2_01.FormerNameElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -17185,7 +17185,7 @@ func TestMarshalUnmarshal_FormerNameElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.FormerNameElementType
+	var elem2 pkg_2_01.FormerNameElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -17271,7 +17271,7 @@ func TestMarshalUnmarshal_FromType(t *testing.T) {
 
 func TestMarshalUnmarshal_Function(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.Function
+	var elem pkg_2_01.Function
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -17285,7 +17285,7 @@ func TestMarshalUnmarshal_Function(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.Function
+	var elem2 pkg_2_01.Function
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -17296,7 +17296,7 @@ func TestMarshalUnmarshal_Function(t *testing.T) {
 
 func TestMarshalUnmarshal_FunctionElement(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.FunctionElement
+	var elem pkg_2_01.FunctionElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -17310,7 +17310,7 @@ func TestMarshalUnmarshal_FunctionElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.FunctionElement
+	var elem2 pkg_2_01.FunctionElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -17321,7 +17321,7 @@ func TestMarshalUnmarshal_FunctionElement(t *testing.T) {
 
 func TestMarshalUnmarshal_GeneralSuffixElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.GeneralSuffixElementType
+	var elem pkg_2_01.GeneralSuffixElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -17335,7 +17335,7 @@ func TestMarshalUnmarshal_GeneralSuffixElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.GeneralSuffixElementType
+	var elem2 pkg_2_01.GeneralSuffixElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -17346,7 +17346,7 @@ func TestMarshalUnmarshal_GeneralSuffixElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_GenerationIdentifierElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.GenerationIdentifierElementType
+	var elem pkg_2_01.GenerationIdentifierElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -17360,7 +17360,7 @@ func TestMarshalUnmarshal_GenerationIdentifierElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.GenerationIdentifierElementType
+	var elem2 pkg_2_01.GenerationIdentifierElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -18146,7 +18146,7 @@ func TestMarshalUnmarshal_ItemIDPattern(t *testing.T) {
 
 func TestMarshalUnmarshal_JointPersonNameElement(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.JointPersonNameElement
+	var elem pkg_2_01.JointPersonNameElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -18160,7 +18160,7 @@ func TestMarshalUnmarshal_JointPersonNameElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.JointPersonNameElement
+	var elem2 pkg_2_01.JointPersonNameElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -18171,7 +18171,7 @@ func TestMarshalUnmarshal_JointPersonNameElement(t *testing.T) {
 
 func TestMarshalUnmarshal_JointPersonNameElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.JointPersonNameElementType
+	var elem pkg_2_01.JointPersonNameElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -18185,7 +18185,7 @@ func TestMarshalUnmarshal_JointPersonNameElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.JointPersonNameElementType
+	var elem2 pkg_2_01.JointPersonNameElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -18246,7 +18246,7 @@ func TestMarshalUnmarshal_KeyInfoType(t *testing.T) {
 
 func TestMarshalUnmarshal_KeyLineCodeElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.KeyLineCodeElementType
+	var elem pkg_2_0.KeyLineCodeElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -18260,7 +18260,7 @@ func TestMarshalUnmarshal_KeyLineCodeElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.KeyLineCodeElementType
+	var elem2 pkg_2_0.KeyLineCodeElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -18346,7 +18346,7 @@ func TestMarshalUnmarshal_KeyValueType(t *testing.T) {
 
 func TestMarshalUnmarshal_KnownAsElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.KnownAsElementType
+	var elem pkg_2_01.KnownAsElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -18360,7 +18360,7 @@ func TestMarshalUnmarshal_KnownAsElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.KnownAsElementType
+	var elem2 pkg_2_01.KnownAsElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -18396,7 +18396,7 @@ func TestMarshalUnmarshal_LabelType(t *testing.T) {
 
 func TestMarshalUnmarshal_LargeMailUserIdentifierElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.LargeMailUserIdentifierElementType
+	var elem pkg_2_0.LargeMailUserIdentifierElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -18410,7 +18410,7 @@ func TestMarshalUnmarshal_LargeMailUserIdentifierElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.LargeMailUserIdentifierElementType
+	var elem2 pkg_2_0.LargeMailUserIdentifierElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -18421,7 +18421,7 @@ func TestMarshalUnmarshal_LargeMailUserIdentifierElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_LargeMailUserNameElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.LargeMailUserNameElementType
+	var elem pkg_2_0.LargeMailUserNameElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -18435,7 +18435,7 @@ func TestMarshalUnmarshal_LargeMailUserNameElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.LargeMailUserNameElementType
+	var elem2 pkg_2_0.LargeMailUserNameElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -18446,7 +18446,7 @@ func TestMarshalUnmarshal_LargeMailUserNameElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_LargeMailUserType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.LargeMailUserType
+	var elem pkg_2_0.LargeMailUserType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -18460,7 +18460,7 @@ func TestMarshalUnmarshal_LargeMailUserType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.LargeMailUserType
+	var elem2 pkg_2_0.LargeMailUserType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -18471,7 +18471,7 @@ func TestMarshalUnmarshal_LargeMailUserType(t *testing.T) {
 
 func TestMarshalUnmarshal_LastNameElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.LastNameElementType
+	var elem pkg_2_01.LastNameElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -18485,7 +18485,7 @@ func TestMarshalUnmarshal_LastNameElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.LastNameElementType
+	var elem2 pkg_2_01.LastNameElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -18671,7 +18671,7 @@ func TestMarshalUnmarshal_LocaleType(t *testing.T) {
 
 func TestMarshalUnmarshal_LocalityElement(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.LocalityElement
+	var elem pkg_2_0.LocalityElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -18685,7 +18685,7 @@ func TestMarshalUnmarshal_LocalityElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.LocalityElement
+	var elem2 pkg_2_0.LocalityElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -18696,7 +18696,7 @@ func TestMarshalUnmarshal_LocalityElement(t *testing.T) {
 
 func TestMarshalUnmarshal_LocalityElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.LocalityElementType
+	var elem pkg_2_0.LocalityElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -18710,7 +18710,7 @@ func TestMarshalUnmarshal_LocalityElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.LocalityElementType
+	var elem2 pkg_2_0.LocalityElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -18721,7 +18721,7 @@ func TestMarshalUnmarshal_LocalityElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_LocalityNameElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.LocalityNameElementType
+	var elem pkg_2_0.LocalityNameElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -18735,7 +18735,7 @@ func TestMarshalUnmarshal_LocalityNameElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.LocalityNameElementType
+	var elem2 pkg_2_0.LocalityNameElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -19071,7 +19071,7 @@ func TestMarshalUnmarshal_MacAddressType(t *testing.T) {
 
 func TestMarshalUnmarshal_MailStopNameElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.MailStopNameElementType
+	var elem pkg_2_0.MailStopNameElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -19085,7 +19085,7 @@ func TestMarshalUnmarshal_MailStopNameElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.MailStopNameElementType
+	var elem2 pkg_2_0.MailStopNameElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -19096,7 +19096,7 @@ func TestMarshalUnmarshal_MailStopNameElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_MailStopNumberElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.MailStopNumberElementType
+	var elem pkg_2_0.MailStopNumberElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -19110,7 +19110,7 @@ func TestMarshalUnmarshal_MailStopNumberElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.MailStopNumberElementType
+	var elem2 pkg_2_0.MailStopNumberElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -19121,7 +19121,7 @@ func TestMarshalUnmarshal_MailStopNumberElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_MailStopType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.MailStopType
+	var elem pkg_2_0.MailStopType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -19135,7 +19135,7 @@ func TestMarshalUnmarshal_MailStopType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.MailStopType
+	var elem2 pkg_2_0.MailStopType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -19246,7 +19246,7 @@ func TestMarshalUnmarshal_MessageType(t *testing.T) {
 
 func TestMarshalUnmarshal_MetadataType(t *testing.T) {
 	// Create a default instance
-	var elem xccdf1_2.MetadataType
+	var elem xmlschemaoval_definitions_5.MetadataType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -19260,7 +19260,7 @@ func TestMarshalUnmarshal_MetadataType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xccdf1_2.MetadataType
+	var elem2 xmlschemaoval_definitions_5.MetadataType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -19296,7 +19296,7 @@ func TestMarshalUnmarshal_MgmtDataElement(t *testing.T) {
 
 func TestMarshalUnmarshal_MiddleNameElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.MiddleNameElementType
+	var elem pkg_2_01.MiddleNameElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -19310,7 +19310,7 @@ func TestMarshalUnmarshal_MiddleNameElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.MiddleNameElementType
+	var elem2 pkg_2_01.MiddleNameElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -19421,7 +19421,7 @@ func TestMarshalUnmarshal_MsgSevEnumType(t *testing.T) {
 
 func TestMarshalUnmarshal_NameDetails(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.NameDetails
+	var elem pkg_2_01.NameDetails
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -19435,7 +19435,7 @@ func TestMarshalUnmarshal_NameDetails(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.NameDetails
+	var elem2 pkg_2_01.NameDetails
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -19446,7 +19446,7 @@ func TestMarshalUnmarshal_NameDetails(t *testing.T) {
 
 func TestMarshalUnmarshal_NameDetailsElement(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.NameDetailsElement
+	var elem pkg_2_01.NameDetailsElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -19460,7 +19460,7 @@ func TestMarshalUnmarshal_NameDetailsElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.NameDetailsElement
+	var elem2 pkg_2_01.NameDetailsElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -19471,7 +19471,7 @@ func TestMarshalUnmarshal_NameDetailsElement(t *testing.T) {
 
 func TestMarshalUnmarshal_NameDetailsElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.NameDetailsElementType
+	var elem pkg_2_01.NameDetailsElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -19485,7 +19485,7 @@ func TestMarshalUnmarshal_NameDetailsElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.NameDetailsElementType
+	var elem2 pkg_2_01.NameDetailsElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -19496,7 +19496,7 @@ func TestMarshalUnmarshal_NameDetailsElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_NameLineType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.NameLineType
+	var elem pkg_2_01.NameLineType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -19510,7 +19510,7 @@ func TestMarshalUnmarshal_NameLineType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.NameLineType
+	var elem2 pkg_2_01.NameLineType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -19521,7 +19521,7 @@ func TestMarshalUnmarshal_NameLineType(t *testing.T) {
 
 func TestMarshalUnmarshal_NamePattern(t *testing.T) {
 	// Create a default instance
-	var elem language2_0.NamePattern
+	var elem dictionary2_0.NamePattern
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -19535,7 +19535,7 @@ func TestMarshalUnmarshal_NamePattern(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 language2_0.NamePattern
+	var elem2 dictionary2_0.NamePattern
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -19546,7 +19546,7 @@ func TestMarshalUnmarshal_NamePattern(t *testing.T) {
 
 func TestMarshalUnmarshal_NamePrefixElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.NamePrefixElementType
+	var elem pkg_2_01.NamePrefixElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -19560,7 +19560,7 @@ func TestMarshalUnmarshal_NamePrefixElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.NamePrefixElementType
+	var elem2 pkg_2_01.NamePrefixElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -19821,7 +19821,7 @@ func TestMarshalUnmarshal_ObjectComponentType(t *testing.T) {
 
 func TestMarshalUnmarshal_ObjectElement(t *testing.T) {
 	// Create a default instance
-	var elem pkg_200009xmldsig.ObjectElement
+	var elem xmlschemaoval_definitions_5.ObjectElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -19835,7 +19835,7 @@ func TestMarshalUnmarshal_ObjectElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_200009xmldsig.ObjectElement
+	var elem2 xmlschemaoval_definitions_5.ObjectElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -19946,7 +19946,7 @@ func TestMarshalUnmarshal_ObjectRefType(t *testing.T) {
 
 func TestMarshalUnmarshal_ObjectType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_200009xmldsig.ObjectType
+	var elem xmlschemaoval_definitions_5.ObjectType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -19960,7 +19960,7 @@ func TestMarshalUnmarshal_ObjectType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_200009xmldsig.ObjectType
+	var elem2 xmlschemaoval_definitions_5.ObjectType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -20021,7 +20021,7 @@ func TestMarshalUnmarshal_OperationEnumeration(t *testing.T) {
 
 func TestMarshalUnmarshal_OperatorEnumeration(t *testing.T) {
 	// Create a default instance
-	var elem language2_0.OperatorEnumeration
+	var elem xmlschemaoval_common_5.OperatorEnumeration
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -20035,7 +20035,7 @@ func TestMarshalUnmarshal_OperatorEnumeration(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 language2_0.OperatorEnumeration
+	var elem2 xmlschemaoval_common_5.OperatorEnumeration
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -20046,7 +20046,7 @@ func TestMarshalUnmarshal_OperatorEnumeration(t *testing.T) {
 
 func TestMarshalUnmarshal_OrganisationFormerNameElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.OrganisationFormerNameElementType
+	var elem pkg_2_01.OrganisationFormerNameElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -20060,7 +20060,7 @@ func TestMarshalUnmarshal_OrganisationFormerNameElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.OrganisationFormerNameElementType
+	var elem2 pkg_2_01.OrganisationFormerNameElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -20071,7 +20071,7 @@ func TestMarshalUnmarshal_OrganisationFormerNameElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_OrganisationKnownAsElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.OrganisationKnownAsElementType
+	var elem pkg_2_01.OrganisationKnownAsElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -20085,7 +20085,7 @@ func TestMarshalUnmarshal_OrganisationKnownAsElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.OrganisationKnownAsElementType
+	var elem2 pkg_2_01.OrganisationKnownAsElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -20096,7 +20096,7 @@ func TestMarshalUnmarshal_OrganisationKnownAsElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_OrganisationNameDetails(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.OrganisationNameDetails
+	var elem pkg_2_01.OrganisationNameDetails
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -20110,7 +20110,7 @@ func TestMarshalUnmarshal_OrganisationNameDetails(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.OrganisationNameDetails
+	var elem2 pkg_2_01.OrganisationNameDetails
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -20121,7 +20121,7 @@ func TestMarshalUnmarshal_OrganisationNameDetails(t *testing.T) {
 
 func TestMarshalUnmarshal_OrganisationNameDetailsElement(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.OrganisationNameDetailsElement
+	var elem pkg_2_01.OrganisationNameDetailsElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -20135,7 +20135,7 @@ func TestMarshalUnmarshal_OrganisationNameDetailsElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.OrganisationNameDetailsElement
+	var elem2 pkg_2_01.OrganisationNameDetailsElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -20146,7 +20146,7 @@ func TestMarshalUnmarshal_OrganisationNameDetailsElement(t *testing.T) {
 
 func TestMarshalUnmarshal_OrganisationNameDetailsElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.OrganisationNameDetailsElementType
+	var elem pkg_2_01.OrganisationNameDetailsElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -20160,7 +20160,7 @@ func TestMarshalUnmarshal_OrganisationNameDetailsElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.OrganisationNameDetailsElementType
+	var elem2 pkg_2_01.OrganisationNameDetailsElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -20171,7 +20171,7 @@ func TestMarshalUnmarshal_OrganisationNameDetailsElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_OrganisationNameElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.OrganisationNameElementType
+	var elem pkg_2_01.OrganisationNameElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -20185,7 +20185,7 @@ func TestMarshalUnmarshal_OrganisationNameElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.OrganisationNameElementType
+	var elem2 pkg_2_01.OrganisationNameElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -20196,7 +20196,7 @@ func TestMarshalUnmarshal_OrganisationNameElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_OrganisationTypeElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.OrganisationTypeElementType
+	var elem pkg_2_01.OrganisationTypeElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -20210,7 +20210,7 @@ func TestMarshalUnmarshal_OrganisationTypeElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.OrganisationTypeElementType
+	var elem2 pkg_2_01.OrganisationTypeElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -20271,7 +20271,7 @@ func TestMarshalUnmarshal_OrganizationType(t *testing.T) {
 
 func TestMarshalUnmarshal_OtherNameElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.OtherNameElementType
+	var elem pkg_2_01.OtherNameElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -20285,7 +20285,7 @@ func TestMarshalUnmarshal_OtherNameElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.OtherNameElementType
+	var elem2 pkg_2_01.OtherNameElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -20496,7 +20496,7 @@ func TestMarshalUnmarshal_PersonElement(t *testing.T) {
 
 func TestMarshalUnmarshal_PersonName(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.PersonName
+	var elem pkg_2_01.PersonName
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -20510,7 +20510,7 @@ func TestMarshalUnmarshal_PersonName(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.PersonName
+	var elem2 pkg_2_01.PersonName
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -20521,7 +20521,7 @@ func TestMarshalUnmarshal_PersonName(t *testing.T) {
 
 func TestMarshalUnmarshal_PersonNameElement(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.PersonNameElement
+	var elem pkg_2_01.PersonNameElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -20535,7 +20535,7 @@ func TestMarshalUnmarshal_PersonNameElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.PersonNameElement
+	var elem2 pkg_2_01.PersonNameElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -20546,7 +20546,7 @@ func TestMarshalUnmarshal_PersonNameElement(t *testing.T) {
 
 func TestMarshalUnmarshal_PersonNameElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.PersonNameElementType
+	var elem pkg_2_01.PersonNameElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -20560,7 +20560,7 @@ func TestMarshalUnmarshal_PersonNameElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.PersonNameElementType
+	var elem2 pkg_2_01.PersonNameElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -20821,7 +20821,7 @@ func TestMarshalUnmarshal_PossibleValueType(t *testing.T) {
 
 func TestMarshalUnmarshal_PostBoxElement(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PostBoxElement
+	var elem pkg_2_0.PostBoxElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -20835,7 +20835,7 @@ func TestMarshalUnmarshal_PostBoxElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PostBoxElement
+	var elem2 pkg_2_0.PostBoxElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -20846,7 +20846,7 @@ func TestMarshalUnmarshal_PostBoxElement(t *testing.T) {
 
 func TestMarshalUnmarshal_PostBoxElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PostBoxElementType
+	var elem pkg_2_0.PostBoxElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -20860,7 +20860,7 @@ func TestMarshalUnmarshal_PostBoxElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PostBoxElementType
+	var elem2 pkg_2_0.PostBoxElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -20871,7 +20871,7 @@ func TestMarshalUnmarshal_PostBoxElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_PostBoxNumberElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PostBoxNumberElementType
+	var elem pkg_2_0.PostBoxNumberElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -20885,7 +20885,7 @@ func TestMarshalUnmarshal_PostBoxNumberElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PostBoxNumberElementType
+	var elem2 pkg_2_0.PostBoxNumberElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -20896,7 +20896,7 @@ func TestMarshalUnmarshal_PostBoxNumberElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_PostBoxNumberExtensionElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PostBoxNumberExtensionElementType
+	var elem pkg_2_0.PostBoxNumberExtensionElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -20910,7 +20910,7 @@ func TestMarshalUnmarshal_PostBoxNumberExtensionElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PostBoxNumberExtensionElementType
+	var elem2 pkg_2_0.PostBoxNumberExtensionElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -20921,7 +20921,7 @@ func TestMarshalUnmarshal_PostBoxNumberExtensionElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_PostBoxNumberPrefixElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PostBoxNumberPrefixElementType
+	var elem pkg_2_0.PostBoxNumberPrefixElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -20935,7 +20935,7 @@ func TestMarshalUnmarshal_PostBoxNumberPrefixElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PostBoxNumberPrefixElementType
+	var elem2 pkg_2_0.PostBoxNumberPrefixElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -20946,7 +20946,7 @@ func TestMarshalUnmarshal_PostBoxNumberPrefixElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_PostBoxNumberSuffixElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PostBoxNumberSuffixElementType
+	var elem pkg_2_0.PostBoxNumberSuffixElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -20960,7 +20960,7 @@ func TestMarshalUnmarshal_PostBoxNumberSuffixElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PostBoxNumberSuffixElementType
+	var elem2 pkg_2_0.PostBoxNumberSuffixElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -20971,7 +20971,7 @@ func TestMarshalUnmarshal_PostBoxNumberSuffixElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_PostOfficeElement(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PostOfficeElement
+	var elem pkg_2_0.PostOfficeElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -20985,7 +20985,7 @@ func TestMarshalUnmarshal_PostOfficeElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PostOfficeElement
+	var elem2 pkg_2_0.PostOfficeElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -20996,7 +20996,7 @@ func TestMarshalUnmarshal_PostOfficeElement(t *testing.T) {
 
 func TestMarshalUnmarshal_PostOfficeElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PostOfficeElementType
+	var elem pkg_2_0.PostOfficeElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -21010,7 +21010,7 @@ func TestMarshalUnmarshal_PostOfficeElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PostOfficeElementType
+	var elem2 pkg_2_0.PostOfficeElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -21021,7 +21021,7 @@ func TestMarshalUnmarshal_PostOfficeElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_PostOfficeNameElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PostOfficeNameElementType
+	var elem pkg_2_0.PostOfficeNameElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -21035,7 +21035,7 @@ func TestMarshalUnmarshal_PostOfficeNameElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PostOfficeNameElementType
+	var elem2 pkg_2_0.PostOfficeNameElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -21046,7 +21046,7 @@ func TestMarshalUnmarshal_PostOfficeNameElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_PostOfficeNumberElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PostOfficeNumberElementType
+	var elem pkg_2_0.PostOfficeNumberElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -21060,7 +21060,7 @@ func TestMarshalUnmarshal_PostOfficeNumberElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PostOfficeNumberElementType
+	var elem2 pkg_2_0.PostOfficeNumberElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -21071,7 +21071,7 @@ func TestMarshalUnmarshal_PostOfficeNumberElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_PostTownElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PostTownElementType
+	var elem pkg_2_0.PostTownElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -21085,7 +21085,7 @@ func TestMarshalUnmarshal_PostTownElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PostTownElementType
+	var elem2 pkg_2_0.PostTownElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -21096,7 +21096,7 @@ func TestMarshalUnmarshal_PostTownElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_PostTownNameElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PostTownNameElementType
+	var elem pkg_2_0.PostTownNameElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -21110,7 +21110,7 @@ func TestMarshalUnmarshal_PostTownNameElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PostTownNameElementType
+	var elem2 pkg_2_0.PostTownNameElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -21121,7 +21121,7 @@ func TestMarshalUnmarshal_PostTownNameElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_PostTownSuffixElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PostTownSuffixElementType
+	var elem pkg_2_0.PostTownSuffixElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -21135,7 +21135,7 @@ func TestMarshalUnmarshal_PostTownSuffixElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PostTownSuffixElementType
+	var elem2 pkg_2_0.PostTownSuffixElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -21146,7 +21146,7 @@ func TestMarshalUnmarshal_PostTownSuffixElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_PostalCodeElement(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PostalCodeElement
+	var elem pkg_2_0.PostalCodeElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -21160,7 +21160,7 @@ func TestMarshalUnmarshal_PostalCodeElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PostalCodeElement
+	var elem2 pkg_2_0.PostalCodeElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -21171,7 +21171,7 @@ func TestMarshalUnmarshal_PostalCodeElement(t *testing.T) {
 
 func TestMarshalUnmarshal_PostalCodeElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PostalCodeElementType
+	var elem pkg_2_0.PostalCodeElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -21185,7 +21185,7 @@ func TestMarshalUnmarshal_PostalCodeElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PostalCodeElementType
+	var elem2 pkg_2_0.PostalCodeElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -21196,7 +21196,7 @@ func TestMarshalUnmarshal_PostalCodeElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_PostalCodeNumberElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PostalCodeNumberElementType
+	var elem pkg_2_0.PostalCodeNumberElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -21210,7 +21210,7 @@ func TestMarshalUnmarshal_PostalCodeNumberElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PostalCodeNumberElementType
+	var elem2 pkg_2_0.PostalCodeNumberElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -21221,7 +21221,7 @@ func TestMarshalUnmarshal_PostalCodeNumberElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_PostalCodeNumberExtensionElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PostalCodeNumberExtensionElementType
+	var elem pkg_2_0.PostalCodeNumberExtensionElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -21235,7 +21235,7 @@ func TestMarshalUnmarshal_PostalCodeNumberExtensionElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PostalCodeNumberExtensionElementType
+	var elem2 pkg_2_0.PostalCodeNumberExtensionElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -21246,7 +21246,7 @@ func TestMarshalUnmarshal_PostalCodeNumberExtensionElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_PostalRouteNameElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PostalRouteNameElementType
+	var elem pkg_2_0.PostalRouteNameElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -21260,7 +21260,7 @@ func TestMarshalUnmarshal_PostalRouteNameElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PostalRouteNameElementType
+	var elem2 pkg_2_0.PostalRouteNameElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -21271,7 +21271,7 @@ func TestMarshalUnmarshal_PostalRouteNameElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_PostalRouteNumberElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PostalRouteNumberElementType
+	var elem pkg_2_0.PostalRouteNumberElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -21285,7 +21285,7 @@ func TestMarshalUnmarshal_PostalRouteNumberElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PostalRouteNumberElementType
+	var elem2 pkg_2_0.PostalRouteNumberElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -21296,7 +21296,7 @@ func TestMarshalUnmarshal_PostalRouteNumberElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_PostalRouteType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PostalRouteType
+	var elem pkg_2_0.PostalRouteType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -21310,7 +21310,7 @@ func TestMarshalUnmarshal_PostalRouteType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PostalRouteType
+	var elem2 pkg_2_0.PostalRouteType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -21321,7 +21321,7 @@ func TestMarshalUnmarshal_PostalRouteType(t *testing.T) {
 
 func TestMarshalUnmarshal_PostalServiceElementsElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PostalServiceElementsElementType
+	var elem pkg_2_0.PostalServiceElementsElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -21335,7 +21335,7 @@ func TestMarshalUnmarshal_PostalServiceElementsElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PostalServiceElementsElementType
+	var elem2 pkg_2_0.PostalServiceElementsElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -21346,7 +21346,7 @@ func TestMarshalUnmarshal_PostalServiceElementsElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_PrecedingTitleElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.PrecedingTitleElementType
+	var elem pkg_2_01.PrecedingTitleElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -21360,7 +21360,7 @@ func TestMarshalUnmarshal_PrecedingTitleElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.PrecedingTitleElementType
+	var elem2 pkg_2_01.PrecedingTitleElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -21371,7 +21371,7 @@ func TestMarshalUnmarshal_PrecedingTitleElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_PremiseElement(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PremiseElement
+	var elem pkg_2_0.PremiseElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -21385,7 +21385,7 @@ func TestMarshalUnmarshal_PremiseElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PremiseElement
+	var elem2 pkg_2_0.PremiseElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -21396,7 +21396,7 @@ func TestMarshalUnmarshal_PremiseElement(t *testing.T) {
 
 func TestMarshalUnmarshal_PremiseElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PremiseElementType
+	var elem pkg_2_0.PremiseElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -21410,7 +21410,7 @@ func TestMarshalUnmarshal_PremiseElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PremiseElementType
+	var elem2 pkg_2_0.PremiseElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -21421,7 +21421,7 @@ func TestMarshalUnmarshal_PremiseElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_PremiseLocationElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PremiseLocationElementType
+	var elem pkg_2_0.PremiseLocationElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -21435,7 +21435,7 @@ func TestMarshalUnmarshal_PremiseLocationElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PremiseLocationElementType
+	var elem2 pkg_2_0.PremiseLocationElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -21446,7 +21446,7 @@ func TestMarshalUnmarshal_PremiseLocationElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_PremiseNameElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PremiseNameElementType
+	var elem pkg_2_0.PremiseNameElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -21460,7 +21460,7 @@ func TestMarshalUnmarshal_PremiseNameElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PremiseNameElementType
+	var elem2 pkg_2_0.PremiseNameElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -21471,7 +21471,7 @@ func TestMarshalUnmarshal_PremiseNameElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_PremiseNumberElement(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PremiseNumberElement
+	var elem pkg_2_0.PremiseNumberElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -21485,7 +21485,7 @@ func TestMarshalUnmarshal_PremiseNumberElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PremiseNumberElement
+	var elem2 pkg_2_0.PremiseNumberElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -21496,7 +21496,7 @@ func TestMarshalUnmarshal_PremiseNumberElement(t *testing.T) {
 
 func TestMarshalUnmarshal_PremiseNumberElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PremiseNumberElementType
+	var elem pkg_2_0.PremiseNumberElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -21510,7 +21510,7 @@ func TestMarshalUnmarshal_PremiseNumberElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PremiseNumberElementType
+	var elem2 pkg_2_0.PremiseNumberElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -21521,7 +21521,7 @@ func TestMarshalUnmarshal_PremiseNumberElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_PremiseNumberPrefixElement(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PremiseNumberPrefixElement
+	var elem pkg_2_0.PremiseNumberPrefixElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -21535,7 +21535,7 @@ func TestMarshalUnmarshal_PremiseNumberPrefixElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PremiseNumberPrefixElement
+	var elem2 pkg_2_0.PremiseNumberPrefixElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -21546,7 +21546,7 @@ func TestMarshalUnmarshal_PremiseNumberPrefixElement(t *testing.T) {
 
 func TestMarshalUnmarshal_PremiseNumberPrefixElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PremiseNumberPrefixElementType
+	var elem pkg_2_0.PremiseNumberPrefixElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -21560,7 +21560,7 @@ func TestMarshalUnmarshal_PremiseNumberPrefixElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PremiseNumberPrefixElementType
+	var elem2 pkg_2_0.PremiseNumberPrefixElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -21571,7 +21571,7 @@ func TestMarshalUnmarshal_PremiseNumberPrefixElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_PremiseNumberRangeElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PremiseNumberRangeElementType
+	var elem pkg_2_0.PremiseNumberRangeElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -21585,7 +21585,7 @@ func TestMarshalUnmarshal_PremiseNumberRangeElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PremiseNumberRangeElementType
+	var elem2 pkg_2_0.PremiseNumberRangeElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -21596,7 +21596,7 @@ func TestMarshalUnmarshal_PremiseNumberRangeElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_PremiseNumberRangeFromElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PremiseNumberRangeFromElementType
+	var elem pkg_2_0.PremiseNumberRangeFromElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -21610,7 +21610,7 @@ func TestMarshalUnmarshal_PremiseNumberRangeFromElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PremiseNumberRangeFromElementType
+	var elem2 pkg_2_0.PremiseNumberRangeFromElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -21621,7 +21621,7 @@ func TestMarshalUnmarshal_PremiseNumberRangeFromElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_PremiseNumberRangeToElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PremiseNumberRangeToElementType
+	var elem pkg_2_0.PremiseNumberRangeToElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -21635,7 +21635,7 @@ func TestMarshalUnmarshal_PremiseNumberRangeToElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PremiseNumberRangeToElementType
+	var elem2 pkg_2_0.PremiseNumberRangeToElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -21646,7 +21646,7 @@ func TestMarshalUnmarshal_PremiseNumberRangeToElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_PremiseNumberSuffixElement(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PremiseNumberSuffixElement
+	var elem pkg_2_0.PremiseNumberSuffixElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -21660,7 +21660,7 @@ func TestMarshalUnmarshal_PremiseNumberSuffixElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PremiseNumberSuffixElement
+	var elem2 pkg_2_0.PremiseNumberSuffixElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -21671,7 +21671,7 @@ func TestMarshalUnmarshal_PremiseNumberSuffixElement(t *testing.T) {
 
 func TestMarshalUnmarshal_PremiseNumberSuffixElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PremiseNumberSuffixElementType
+	var elem pkg_2_0.PremiseNumberSuffixElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -21685,7 +21685,7 @@ func TestMarshalUnmarshal_PremiseNumberSuffixElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PremiseNumberSuffixElementType
+	var elem2 pkg_2_0.PremiseNumberSuffixElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -22071,7 +22071,7 @@ func TestMarshalUnmarshal_ReferenceElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_ReferenceType(t *testing.T) {
 	// Create a default instance
-	var elem xccdf1_2.ReferenceType
+	var elem xmlschemaoval_definitions_5.ReferenceType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -22085,7 +22085,7 @@ func TestMarshalUnmarshal_ReferenceType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xccdf1_2.ReferenceType
+	var elem2 xmlschemaoval_definitions_5.ReferenceType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -23496,7 +23496,7 @@ func TestMarshalUnmarshal_SoftwareType(t *testing.T) {
 
 func TestMarshalUnmarshal_SortingCodeElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.SortingCodeElementType
+	var elem pkg_2_0.SortingCodeElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -23510,7 +23510,7 @@ func TestMarshalUnmarshal_SortingCodeElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.SortingCodeElementType
+	var elem2 pkg_2_0.SortingCodeElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -23746,7 +23746,7 @@ func TestMarshalUnmarshal_StatusType(t *testing.T) {
 
 func TestMarshalUnmarshal_SubAdministrativeAreaElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.SubAdministrativeAreaElementType
+	var elem pkg_2_0.SubAdministrativeAreaElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -23760,7 +23760,7 @@ func TestMarshalUnmarshal_SubAdministrativeAreaElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.SubAdministrativeAreaElementType
+	var elem2 pkg_2_0.SubAdministrativeAreaElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -23771,7 +23771,7 @@ func TestMarshalUnmarshal_SubAdministrativeAreaElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_SubAdministrativeAreaNameElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.SubAdministrativeAreaNameElementType
+	var elem pkg_2_0.SubAdministrativeAreaNameElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -23785,7 +23785,7 @@ func TestMarshalUnmarshal_SubAdministrativeAreaNameElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.SubAdministrativeAreaNameElementType
+	var elem2 pkg_2_0.SubAdministrativeAreaNameElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -23796,7 +23796,7 @@ func TestMarshalUnmarshal_SubAdministrativeAreaNameElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_SubPremiseLocationElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.SubPremiseLocationElementType
+	var elem pkg_2_0.SubPremiseLocationElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -23810,7 +23810,7 @@ func TestMarshalUnmarshal_SubPremiseLocationElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.SubPremiseLocationElementType
+	var elem2 pkg_2_0.SubPremiseLocationElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -23821,7 +23821,7 @@ func TestMarshalUnmarshal_SubPremiseLocationElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_SubPremiseNameElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.SubPremiseNameElementType
+	var elem pkg_2_0.SubPremiseNameElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -23835,7 +23835,7 @@ func TestMarshalUnmarshal_SubPremiseNameElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.SubPremiseNameElementType
+	var elem2 pkg_2_0.SubPremiseNameElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -23846,7 +23846,7 @@ func TestMarshalUnmarshal_SubPremiseNameElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_SubPremiseNumberElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.SubPremiseNumberElementType
+	var elem pkg_2_0.SubPremiseNumberElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -23860,7 +23860,7 @@ func TestMarshalUnmarshal_SubPremiseNumberElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.SubPremiseNumberElementType
+	var elem2 pkg_2_0.SubPremiseNumberElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -23871,7 +23871,7 @@ func TestMarshalUnmarshal_SubPremiseNumberElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_SubPremiseNumberPrefixElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.SubPremiseNumberPrefixElementType
+	var elem pkg_2_0.SubPremiseNumberPrefixElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -23885,7 +23885,7 @@ func TestMarshalUnmarshal_SubPremiseNumberPrefixElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.SubPremiseNumberPrefixElementType
+	var elem2 pkg_2_0.SubPremiseNumberPrefixElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -23896,7 +23896,7 @@ func TestMarshalUnmarshal_SubPremiseNumberPrefixElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_SubPremiseNumberSuffixElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.SubPremiseNumberSuffixElementType
+	var elem pkg_2_0.SubPremiseNumberSuffixElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -23910,7 +23910,7 @@ func TestMarshalUnmarshal_SubPremiseNumberSuffixElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.SubPremiseNumberSuffixElementType
+	var elem2 pkg_2_0.SubPremiseNumberSuffixElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -23921,7 +23921,7 @@ func TestMarshalUnmarshal_SubPremiseNumberSuffixElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_SubPremiseType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.SubPremiseType
+	var elem pkg_2_0.SubPremiseType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -23935,7 +23935,7 @@ func TestMarshalUnmarshal_SubPremiseType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.SubPremiseType
+	var elem2 pkg_2_0.SubPremiseType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -24021,7 +24021,7 @@ func TestMarshalUnmarshal_SubstringFunctionType(t *testing.T) {
 
 func TestMarshalUnmarshal_SuffixElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.SuffixElementType
+	var elem pkg_2_01.SuffixElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -24035,7 +24035,7 @@ func TestMarshalUnmarshal_SuffixElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.SuffixElementType
+	var elem2 pkg_2_01.SuffixElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -24046,7 +24046,7 @@ func TestMarshalUnmarshal_SuffixElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_SupplementaryPostalServiceDataElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.SupplementaryPostalServiceDataElementType
+	var elem pkg_2_0.SupplementaryPostalServiceDataElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -24060,7 +24060,7 @@ func TestMarshalUnmarshal_SupplementaryPostalServiceDataElementType(t *testing.T
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.SupplementaryPostalServiceDataElementType
+	var elem2 pkg_2_0.SupplementaryPostalServiceDataElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -24646,7 +24646,7 @@ func TestMarshalUnmarshal_TestsType(t *testing.T) {
 
 func TestMarshalUnmarshal_TextType(t *testing.T) {
 	// Create a default instance
-	var elem language2_0.TextType
+	var elem xccdf1_2.TextType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -24660,7 +24660,7 @@ func TestMarshalUnmarshal_TextType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 language2_0.TextType
+	var elem2 xccdf1_2.TextType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -24696,7 +24696,7 @@ func TestMarshalUnmarshal_TextWithSubType(t *testing.T) {
 
 func TestMarshalUnmarshal_ThoroughfareElement(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.ThoroughfareElement
+	var elem pkg_2_0.ThoroughfareElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -24710,7 +24710,7 @@ func TestMarshalUnmarshal_ThoroughfareElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.ThoroughfareElement
+	var elem2 pkg_2_0.ThoroughfareElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -24721,7 +24721,7 @@ func TestMarshalUnmarshal_ThoroughfareElement(t *testing.T) {
 
 func TestMarshalUnmarshal_ThoroughfareElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.ThoroughfareElementType
+	var elem pkg_2_0.ThoroughfareElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -24735,7 +24735,7 @@ func TestMarshalUnmarshal_ThoroughfareElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.ThoroughfareElementType
+	var elem2 pkg_2_0.ThoroughfareElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -24746,7 +24746,7 @@ func TestMarshalUnmarshal_ThoroughfareElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_ThoroughfareLeadingTypeType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.ThoroughfareLeadingTypeType
+	var elem pkg_2_0.ThoroughfareLeadingTypeType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -24760,7 +24760,7 @@ func TestMarshalUnmarshal_ThoroughfareLeadingTypeType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.ThoroughfareLeadingTypeType
+	var elem2 pkg_2_0.ThoroughfareLeadingTypeType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -24771,7 +24771,7 @@ func TestMarshalUnmarshal_ThoroughfareLeadingTypeType(t *testing.T) {
 
 func TestMarshalUnmarshal_ThoroughfareNameType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.ThoroughfareNameType
+	var elem pkg_2_0.ThoroughfareNameType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -24785,7 +24785,7 @@ func TestMarshalUnmarshal_ThoroughfareNameType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.ThoroughfareNameType
+	var elem2 pkg_2_0.ThoroughfareNameType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -24796,7 +24796,7 @@ func TestMarshalUnmarshal_ThoroughfareNameType(t *testing.T) {
 
 func TestMarshalUnmarshal_ThoroughfareNumberElement(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.ThoroughfareNumberElement
+	var elem pkg_2_0.ThoroughfareNumberElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -24810,7 +24810,7 @@ func TestMarshalUnmarshal_ThoroughfareNumberElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.ThoroughfareNumberElement
+	var elem2 pkg_2_0.ThoroughfareNumberElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -24821,7 +24821,7 @@ func TestMarshalUnmarshal_ThoroughfareNumberElement(t *testing.T) {
 
 func TestMarshalUnmarshal_ThoroughfareNumberElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.ThoroughfareNumberElementType
+	var elem pkg_2_0.ThoroughfareNumberElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -24835,7 +24835,7 @@ func TestMarshalUnmarshal_ThoroughfareNumberElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.ThoroughfareNumberElementType
+	var elem2 pkg_2_0.ThoroughfareNumberElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -24846,7 +24846,7 @@ func TestMarshalUnmarshal_ThoroughfareNumberElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_ThoroughfareNumberFromElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.ThoroughfareNumberFromElementType
+	var elem pkg_2_0.ThoroughfareNumberFromElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -24860,7 +24860,7 @@ func TestMarshalUnmarshal_ThoroughfareNumberFromElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.ThoroughfareNumberFromElementType
+	var elem2 pkg_2_0.ThoroughfareNumberFromElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -24871,7 +24871,7 @@ func TestMarshalUnmarshal_ThoroughfareNumberFromElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_ThoroughfareNumberPrefixElement(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.ThoroughfareNumberPrefixElement
+	var elem pkg_2_0.ThoroughfareNumberPrefixElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -24885,7 +24885,7 @@ func TestMarshalUnmarshal_ThoroughfareNumberPrefixElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.ThoroughfareNumberPrefixElement
+	var elem2 pkg_2_0.ThoroughfareNumberPrefixElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -24896,7 +24896,7 @@ func TestMarshalUnmarshal_ThoroughfareNumberPrefixElement(t *testing.T) {
 
 func TestMarshalUnmarshal_ThoroughfareNumberPrefixElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.ThoroughfareNumberPrefixElementType
+	var elem pkg_2_0.ThoroughfareNumberPrefixElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -24910,7 +24910,7 @@ func TestMarshalUnmarshal_ThoroughfareNumberPrefixElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.ThoroughfareNumberPrefixElementType
+	var elem2 pkg_2_0.ThoroughfareNumberPrefixElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -24921,7 +24921,7 @@ func TestMarshalUnmarshal_ThoroughfareNumberPrefixElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_ThoroughfareNumberRangeElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.ThoroughfareNumberRangeElementType
+	var elem pkg_2_0.ThoroughfareNumberRangeElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -24935,7 +24935,7 @@ func TestMarshalUnmarshal_ThoroughfareNumberRangeElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.ThoroughfareNumberRangeElementType
+	var elem2 pkg_2_0.ThoroughfareNumberRangeElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -24946,7 +24946,7 @@ func TestMarshalUnmarshal_ThoroughfareNumberRangeElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_ThoroughfareNumberSuffixElement(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.ThoroughfareNumberSuffixElement
+	var elem pkg_2_0.ThoroughfareNumberSuffixElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -24960,7 +24960,7 @@ func TestMarshalUnmarshal_ThoroughfareNumberSuffixElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.ThoroughfareNumberSuffixElement
+	var elem2 pkg_2_0.ThoroughfareNumberSuffixElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -24971,7 +24971,7 @@ func TestMarshalUnmarshal_ThoroughfareNumberSuffixElement(t *testing.T) {
 
 func TestMarshalUnmarshal_ThoroughfareNumberSuffixElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.ThoroughfareNumberSuffixElementType
+	var elem pkg_2_0.ThoroughfareNumberSuffixElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -24985,7 +24985,7 @@ func TestMarshalUnmarshal_ThoroughfareNumberSuffixElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.ThoroughfareNumberSuffixElementType
+	var elem2 pkg_2_0.ThoroughfareNumberSuffixElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -24996,7 +24996,7 @@ func TestMarshalUnmarshal_ThoroughfareNumberSuffixElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_ThoroughfareNumberToElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.ThoroughfareNumberToElementType
+	var elem pkg_2_0.ThoroughfareNumberToElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -25010,7 +25010,7 @@ func TestMarshalUnmarshal_ThoroughfareNumberToElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.ThoroughfareNumberToElementType
+	var elem2 pkg_2_0.ThoroughfareNumberToElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -25021,7 +25021,7 @@ func TestMarshalUnmarshal_ThoroughfareNumberToElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_ThoroughfarePostDirectionType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.ThoroughfarePostDirectionType
+	var elem pkg_2_0.ThoroughfarePostDirectionType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -25035,7 +25035,7 @@ func TestMarshalUnmarshal_ThoroughfarePostDirectionType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.ThoroughfarePostDirectionType
+	var elem2 pkg_2_0.ThoroughfarePostDirectionType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -25046,7 +25046,7 @@ func TestMarshalUnmarshal_ThoroughfarePostDirectionType(t *testing.T) {
 
 func TestMarshalUnmarshal_ThoroughfarePreDirectionType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.ThoroughfarePreDirectionType
+	var elem pkg_2_0.ThoroughfarePreDirectionType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -25060,7 +25060,7 @@ func TestMarshalUnmarshal_ThoroughfarePreDirectionType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.ThoroughfarePreDirectionType
+	var elem2 pkg_2_0.ThoroughfarePreDirectionType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -25071,7 +25071,7 @@ func TestMarshalUnmarshal_ThoroughfarePreDirectionType(t *testing.T) {
 
 func TestMarshalUnmarshal_ThoroughfareTrailingTypeType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.ThoroughfareTrailingTypeType
+	var elem pkg_2_0.ThoroughfareTrailingTypeType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -25085,7 +25085,7 @@ func TestMarshalUnmarshal_ThoroughfareTrailingTypeType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.ThoroughfareTrailingTypeType
+	var elem2 pkg_2_0.ThoroughfareTrailingTypeType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -25171,7 +25171,7 @@ func TestMarshalUnmarshal_TitleElement(t *testing.T) {
 
 func TestMarshalUnmarshal_TitleElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.TitleElementType
+	var elem pkg_2_01.TitleElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -25185,7 +25185,7 @@ func TestMarshalUnmarshal_TitleElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.TitleElementType
+	var elem2 pkg_2_01.TitleElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -25521,7 +25521,7 @@ func TestMarshalUnmarshal_ValueOperatorType(t *testing.T) {
 
 func TestMarshalUnmarshal_ValueType(t *testing.T) {
 	// Create a default instance
-	var elem xccdf1_2.ValueType
+	var elem xmlschemaoval_definitions_5.ValueType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -25535,7 +25535,7 @@ func TestMarshalUnmarshal_ValueType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xccdf1_2.ValueType
+	var elem2 xmlschemaoval_definitions_5.ValueType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -25996,7 +25996,7 @@ func TestMarshalUnmarshal_X509IssuerSerialType(t *testing.T) {
 
 func TestMarshalUnmarshal_XALElement(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.XALElement
+	var elem pkg_2_0.XALElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -26010,7 +26010,7 @@ func TestMarshalUnmarshal_XALElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.XALElement
+	var elem2 pkg_2_0.XALElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -26021,7 +26021,7 @@ func TestMarshalUnmarshal_XALElement(t *testing.T) {
 
 func TestMarshalUnmarshal_XALElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.XALElementType
+	var elem pkg_2_0.XALElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -26035,7 +26035,7 @@ func TestMarshalUnmarshal_XALElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.XALElementType
+	var elem2 pkg_2_0.XALElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -26046,7 +26046,7 @@ func TestMarshalUnmarshal_XALElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_XNLElement(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.XNLElement
+	var elem pkg_2_01.XNLElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -26060,7 +26060,7 @@ func TestMarshalUnmarshal_XNLElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.XNLElement
+	var elem2 pkg_2_01.XNLElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -26071,7 +26071,7 @@ func TestMarshalUnmarshal_XNLElement(t *testing.T) {
 
 func TestMarshalUnmarshal_XNLElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.XNLElementType
+	var elem pkg_2_01.XNLElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -26085,7 +26085,7 @@ func TestMarshalUnmarshal_XNLElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.XNLElementType
+	var elem2 pkg_2_01.XNLElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)

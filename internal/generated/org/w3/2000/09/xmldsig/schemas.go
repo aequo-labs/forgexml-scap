@@ -18,8 +18,8 @@ type PackageMetadata struct {
 
 // Metadata provides schema information for this package
 var Metadata = PackageMetadata{
-	Namespace:   "http://www.w3.org/2000/09/xmldsig#",
-	SourceXSD:   "xmldsig-core-schema.xsd",
+	Namespace: "http://www.w3.org/2000/09/xmldsig#",
+	SourceXSD: "xmldsig-core-schema.xsd",
 	SchemaFiles: []string{
 		"/home/mmcnew/repos/forgexml-scap/schemas/oval/5.11.2/aix-definitions-schema.xsd",
 		"/home/mmcnew/repos/forgexml-scap/schemas/oval/5.11.2/aix-system-characteristics-schema.xsd",

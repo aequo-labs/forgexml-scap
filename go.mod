@@ -3,7 +3,7 @@ module github.com/aequo-labs/forgexml-scap
 go 1.24.0
 
 require (
-	github.com/aequo-labs/webserver-core-ui v1.11.19
+	github.com/aequo-labs/webserver-core-ui v1.11.21
 	github.com/mattn/go-sqlite3 v1.14.32
 )
 
@@ -17,3 +17,5 @@ require (
 	golang.org/x/text v0.31.0 // indirect
 	gopkg.in/natefinch/lumberjack.v2 v2.2.1 // indirect
 )
+
+replace github.com/aequo-labs/webserver-core-ui => /home/mmcnew/repos/webserver-core-ui

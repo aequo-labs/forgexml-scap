@@ -5,7 +5,7 @@ github.com/aequo-labs/webserver-core/pkg/logging
 github.com/aequo-labs/webserver-core/pkg/middleware
 github.com/aequo-labs/webserver-core/pkg/server
 github.com/aequo-labs/webserver-core/pkg/template
-# github.com/aequo-labs/webserver-core-ui v1.11.19
+# github.com/aequo-labs/webserver-core-ui v1.11.21 => /home/mmcnew/repos/webserver-core-ui
 ## explicit; go 1.24.0
 github.com/aequo-labs/webserver-core-ui/pkg/assets
 github.com/aequo-labs/webserver-core-ui/pkg/docs
@@ -55,3 +55,4 @@ golang.org/x/text/unicode/norm
 # gopkg.in/natefinch/lumberjack.v2 v2.2.1
 ## explicit; go 1.13
 gopkg.in/natefinch/lumberjack.v2
+# github.com/aequo-labs/webserver-core-ui => /home/mmcnew/repos/webserver-core-ui

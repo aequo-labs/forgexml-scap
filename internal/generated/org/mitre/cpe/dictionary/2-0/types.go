@@ -168,11 +168,6 @@ func replicateXmlnsPlacement(xmlOutput string, elementsWithXmlns map[string]stri
 	return result
 }
 
-// NamePattern represents the XSD type 'namePattern'
-// XSD simple type (W3C XSD §4.1)
-// pattern="[c][pP][eE]:/[AHOaho]?(:[A-Za-z0-9\._\-~%]*){0,6}"
-type NamePattern string
-
 // ListType represents the XSD type 'ListType'
 // XSD complex type (W3C XSD §3.4)
 type ListType struct {
@@ -182,95 +177,6 @@ type ListType struct {
 	// CpeItem represents XSD element 'cpe-item'
 	// minOccurs=1, maxOccurs=-1
 	CpeItem []ItemType `xml:"cpe-item"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// TextType represents the XSD type 'TextType'
-// XSD complex type (W3C XSD §3.4)
-type TextTypeWithAttrs struct {
-	Value string `xml:",chardata"` // XSD simple content
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// TextType is an alias for TextTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
-type TextType = TextTypeWithAttrs
-
-// GeneratorType represents the XSD type 'GeneratorType'
-// XSD complex type (W3C XSD §3.4)
-type GeneratorType struct {
-	// Product_name represents XSD element 'product_name'
-	// minOccurs=0, maxOccurs=1
-	Product_name *string `xml:"product_name,omitempty"`
-	// Product_version represents XSD element 'product_version'
-	// minOccurs=0, maxOccurs=1
-	Product_version *string `xml:"product_version,omitempty"`
-	// Schema_version represents XSD element 'schema_version'
-	Schema_version string `xml:"schema_version"`
-	// Timestamp represents XSD element 'timestamp'
-	Timestamp types.DateTime `xml:"timestamp"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// ItemType represents the XSD type 'ItemType'
-// XSD complex type (W3C XSD §3.4)
-type ItemType struct {
-	// Title represents XSD element 'title'
-	// minOccurs=1, maxOccurs=-1
-	Title []TextTypeWithAttrs `xml:"title"`
-	// Notes represents XSD element 'notes'
-	// minOccurs=0, maxOccurs=-1
-	Notes []NotesType `xml:"notes,omitempty"`
-	// References represents XSD element 'references'
-	// minOccurs=0, maxOccurs=1
-	References *ReferencesType `xml:"references,omitempty"`
-	// Check represents XSD element 'check'
-	// minOccurs=0, maxOccurs=-1
-	Check []CheckTypeWithAttrs `xml:"check,omitempty"`
-	// Name represents XSD attribute 'name'
-	// use="required"
-	Name NamePattern `xml:"name,attr"`
-	// Deprecated represents XSD attribute 'deprecated'
-	// use="optional"
-	Deprecated *bool `xml:"deprecated,attr,omitempty"`
-	// Deprecated_by represents XSD attribute 'deprecated_by'
-	// use="optional"
-	Deprecated_by *NamePattern `xml:"deprecated_by,attr,omitempty"`
-	// Deprecation_date represents XSD attribute 'deprecation_date'
-	// use="optional"
-	Deprecation_date *types.DateTime `xml:"deprecation_date,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// NotesType represents the XSD type 'NotesType'
-// XSD complex type (W3C XSD §3.4)
-type NotesType struct {
-	// Note represents XSD element 'note'
-	// minOccurs=1, maxOccurs=-1
-	Note []string `xml:"note"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// ReferencesType represents the XSD type 'ReferencesType'
-// XSD complex type (W3C XSD §3.4)
-type ReferencesType struct {
-	// Reference represents XSD element 'reference'
-	// minOccurs=1, maxOccurs=-1
-	Reference []ReferenceElementType `xml:"reference"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -311,3 +217,97 @@ type ReferenceElementTypeWithAttrs struct {
 
 // ReferenceElementType is an alias for ReferenceElementTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
 type ReferenceElementType = ReferenceElementTypeWithAttrs
+
+// ItemType represents the XSD type 'ItemType'
+// XSD complex type (W3C XSD §3.4)
+type ItemType struct {
+	// Title represents XSD element 'title'
+	// minOccurs=1, maxOccurs=-1
+	Title []TextTypeWithAttrs `xml:"title"`
+	// Notes represents XSD element 'notes'
+	// minOccurs=0, maxOccurs=-1
+	Notes []NotesType `xml:"notes,omitempty"`
+	// References represents XSD element 'references'
+	// minOccurs=0, maxOccurs=1
+	References *ReferencesType `xml:"references,omitempty"`
+	// Check represents XSD element 'check'
+	// minOccurs=0, maxOccurs=-1
+	Check []CheckTypeWithAttrs `xml:"check,omitempty"`
+	// Name represents XSD attribute 'name'
+	// use="required"
+	Name NamePattern `xml:"name,attr"`
+	// Deprecated represents XSD attribute 'deprecated'
+	// use="optional"
+	Deprecated *bool `xml:"deprecated,attr,omitempty"`
+	// Deprecated_by represents XSD attribute 'deprecated_by'
+	// use="optional"
+	Deprecated_by *NamePattern `xml:"deprecated_by,attr,omitempty"`
+	// Deprecation_date represents XSD attribute 'deprecation_date'
+	// use="optional"
+	Deprecation_date *types.DateTime `xml:"deprecation_date,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// TextType represents the XSD type 'TextType'
+// XSD complex type (W3C XSD §3.4)
+type TextTypeWithAttrs struct {
+	Value string `xml:",chardata"` // XSD simple content
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// TextType is an alias for TextTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
+type TextType = TextTypeWithAttrs
+
+// NotesType represents the XSD type 'NotesType'
+// XSD complex type (W3C XSD §3.4)
+type NotesType struct {
+	// Note represents XSD element 'note'
+	// minOccurs=1, maxOccurs=-1
+	Note []string `xml:"note"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// ReferencesType represents the XSD type 'ReferencesType'
+// XSD complex type (W3C XSD §3.4)
+type ReferencesType struct {
+	// Reference represents XSD element 'reference'
+	// minOccurs=1, maxOccurs=-1
+	Reference []ReferenceElementType `xml:"reference"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// NamePattern represents the XSD type 'namePattern'
+// XSD simple type (W3C XSD §4.1)
+// pattern="[c][pP][eE]:/[AHOaho]?(:[A-Za-z0-9\._\-~%]*){0,6}"
+type NamePattern string
+
+// GeneratorType represents the XSD type 'GeneratorType'
+// XSD complex type (W3C XSD §3.4)
+type GeneratorType struct {
+	// Product_name represents XSD element 'product_name'
+	// minOccurs=0, maxOccurs=1
+	Product_name *string `xml:"product_name,omitempty"`
+	// Product_version represents XSD element 'product_version'
+	// minOccurs=0, maxOccurs=1
+	Product_version *string `xml:"product_version,omitempty"`
+	// Schema_version represents XSD element 'schema_version'
+	Schema_version string `xml:"schema_version"`
+	// Timestamp represents XSD element 'timestamp'
+	Timestamp types.DateTime `xml:"timestamp"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}

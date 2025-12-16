@@ -10,7 +10,7 @@ import (
 	"os"
 	"strings"
 
-	reporting_core1_1 "forgexml-scap/internal/generated/gov/nist/scap/schema/reporting-core/1-1"
+	reporting_core1_1 "github.com/aequo-labs/forgexml-scap/internal/generated/gov/nist/scap/schema/reporting-core/1-1"
 )
 
 // AssetReportCollectionElement represents the XSD element 'asset-report-collection'

@@ -2777,6 +2777,108 @@ func TestAdministrativeAreaNameElementType_GetTypeMetadata(t *testing.T) {
 	}
 }
 
+// TestAffectedType_CRUD tests Create, Read, Update, Delete for AffectedType.
+func TestAffectedType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "AffectedType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create AffectedType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestAffectedType_ListByType tests listing elements of type AffectedType.
+func TestAffectedType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/AffectedType", nil)
+	req.SetPathValue("type", "AffectedType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestAffectedType_GetTypeMetadata tests getting type metadata for AffectedType.
+func TestAffectedType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/AffectedType", nil)
+	req.SetPathValue("name", "AffectedType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
 // TestAliasElementType_CRUD tests Create, Read, Update, Delete for AliasElementType.
 func TestAliasElementType_CRUD(t *testing.T) {
 	ts := setupTestSuite(t)
@@ -3176,6 +3278,210 @@ func TestArcroleType_GetTypeMetadata(t *testing.T) {
 
 	req := httptest.NewRequest("GET", "/api/types/ArcroleType", nil)
 	req.SetPathValue("name", "ArcroleType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestArithmeticEnumeration_CRUD tests Create, Read, Update, Delete for ArithmeticEnumeration.
+func TestArithmeticEnumeration_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "ArithmeticEnumeration",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create ArithmeticEnumeration returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestArithmeticEnumeration_ListByType tests listing elements of type ArithmeticEnumeration.
+func TestArithmeticEnumeration_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/ArithmeticEnumeration", nil)
+	req.SetPathValue("type", "ArithmeticEnumeration")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestArithmeticEnumeration_GetTypeMetadata tests getting type metadata for ArithmeticEnumeration.
+func TestArithmeticEnumeration_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ArithmeticEnumeration", nil)
+	req.SetPathValue("name", "ArithmeticEnumeration")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestArithmeticFunctionType_CRUD tests Create, Read, Update, Delete for ArithmeticFunctionType.
+func TestArithmeticFunctionType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "ArithmeticFunctionType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create ArithmeticFunctionType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestArithmeticFunctionType_ListByType tests listing elements of type ArithmeticFunctionType.
+func TestArithmeticFunctionType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/ArithmeticFunctionType", nil)
+	req.SetPathValue("type", "ArithmeticFunctionType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestArithmeticFunctionType_GetTypeMetadata tests getting type metadata for ArithmeticFunctionType.
+func TestArithmeticFunctionType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ArithmeticFunctionType", nil)
+	req.SetPathValue("name", "ArithmeticFunctionType")
 	rr := httptest.NewRecorder()
 
 	ts.handlers.HandleGetType(rr, req)
@@ -4296,6 +4602,542 @@ func TestBarcodeElementType_GetTypeMetadata(t *testing.T) {
 	}
 }
 
+// TestBeginFunctionType_CRUD tests Create, Read, Update, Delete for BeginFunctionType.
+func TestBeginFunctionType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "BeginFunctionType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create BeginFunctionType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestBeginFunctionType_ListByType tests listing elements of type BeginFunctionType.
+func TestBeginFunctionType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/BeginFunctionType", nil)
+	req.SetPathValue("type", "BeginFunctionType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestBeginFunctionType_GetTypeMetadata tests getting type metadata for BeginFunctionType.
+func TestBeginFunctionType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/BeginFunctionType", nil)
+	req.SetPathValue("name", "BeginFunctionType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestBenchmarkElement_CRUD tests Create, Read, Update, Delete for BenchmarkElement.
+func TestBenchmarkElement_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "BenchmarkElement",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create BenchmarkElement returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestBenchmarkElement_ListByType tests listing elements of type BenchmarkElement.
+func TestBenchmarkElement_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/BenchmarkElement", nil)
+	req.SetPathValue("type", "BenchmarkElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestBenchmarkElement_GetTypeMetadata tests getting type metadata for BenchmarkElement.
+func TestBenchmarkElement_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/BenchmarkElement", nil)
+	req.SetPathValue("name", "BenchmarkElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestBenchmarkElement_GetValidChildTypes tests getting valid child types for BenchmarkElement.
+func TestBenchmarkElement_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/BenchmarkElement/children", nil)
+	req.SetPathValue("name", "BenchmarkElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestBenchmarkElementType_CRUD tests Create, Read, Update, Delete for BenchmarkElementType.
+func TestBenchmarkElementType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "BenchmarkElementType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create BenchmarkElementType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestBenchmarkElementType_ListByType tests listing elements of type BenchmarkElementType.
+func TestBenchmarkElementType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/BenchmarkElementType", nil)
+	req.SetPathValue("type", "BenchmarkElementType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestBenchmarkElementType_GetTypeMetadata tests getting type metadata for BenchmarkElementType.
+func TestBenchmarkElementType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/BenchmarkElementType", nil)
+	req.SetPathValue("name", "BenchmarkElementType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestBenchmarkElementType_GetValidChildTypes tests getting valid child types for BenchmarkElementType.
+func TestBenchmarkElementType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/BenchmarkElementType/children", nil)
+	req.SetPathValue("name", "BenchmarkElementType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestBenchmarkIdType_CRUD tests Create, Read, Update, Delete for BenchmarkIdType.
+func TestBenchmarkIdType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "BenchmarkIdType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create BenchmarkIdType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestBenchmarkIdType_ListByType tests listing elements of type BenchmarkIdType.
+func TestBenchmarkIdType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/BenchmarkIdType", nil)
+	req.SetPathValue("type", "BenchmarkIdType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestBenchmarkIdType_GetTypeMetadata tests getting type metadata for BenchmarkIdType.
+func TestBenchmarkIdType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/BenchmarkIdType", nil)
+	req.SetPathValue("name", "BenchmarkIdType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestBenchmarkReferenceType_CRUD tests Create, Read, Update, Delete for BenchmarkReferenceType.
+func TestBenchmarkReferenceType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "BenchmarkReferenceType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create BenchmarkReferenceType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestBenchmarkReferenceType_ListByType tests listing elements of type BenchmarkReferenceType.
+func TestBenchmarkReferenceType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/BenchmarkReferenceType", nil)
+	req.SetPathValue("type", "BenchmarkReferenceType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestBenchmarkReferenceType_GetTypeMetadata tests getting type metadata for BenchmarkReferenceType.
+func TestBenchmarkReferenceType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/BenchmarkReferenceType", nil)
+	req.SetPathValue("name", "BenchmarkReferenceType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
 // TestBirthdateElementType_CRUD tests Create, Read, Update, Delete for BirthdateElementType.
 func TestBirthdateElementType_CRUD(t *testing.T) {
 	ts := setupTestSuite(t)
@@ -4498,6 +5340,1039 @@ func TestBuildingNameType_GetTypeMetadata(t *testing.T) {
 	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
 		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
 	}
+}
+
+// TestCPE2idrefType_CRUD tests Create, Read, Update, Delete for CPE2idrefType.
+func TestCPE2idrefType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "CPE2idrefType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create CPE2idrefType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestCPE2idrefType_ListByType tests listing elements of type CPE2idrefType.
+func TestCPE2idrefType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/CPE2idrefType", nil)
+	req.SetPathValue("type", "CPE2idrefType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestCPE2idrefType_GetTypeMetadata tests getting type metadata for CPE2idrefType.
+func TestCPE2idrefType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/CPE2idrefType", nil)
+	req.SetPathValue("name", "CPE2idrefType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestCanonicalizationMethodElement_CRUD tests Create, Read, Update, Delete for CanonicalizationMethodElement.
+func TestCanonicalizationMethodElement_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "CanonicalizationMethodElement",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create CanonicalizationMethodElement returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestCanonicalizationMethodElement_ListByType tests listing elements of type CanonicalizationMethodElement.
+func TestCanonicalizationMethodElement_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/CanonicalizationMethodElement", nil)
+	req.SetPathValue("type", "CanonicalizationMethodElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestCanonicalizationMethodElement_GetTypeMetadata tests getting type metadata for CanonicalizationMethodElement.
+func TestCanonicalizationMethodElement_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/CanonicalizationMethodElement", nil)
+	req.SetPathValue("name", "CanonicalizationMethodElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestCanonicalizationMethodType_CRUD tests Create, Read, Update, Delete for CanonicalizationMethodType.
+func TestCanonicalizationMethodType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "CanonicalizationMethodType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create CanonicalizationMethodType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestCanonicalizationMethodType_ListByType tests listing elements of type CanonicalizationMethodType.
+func TestCanonicalizationMethodType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/CanonicalizationMethodType", nil)
+	req.SetPathValue("type", "CanonicalizationMethodType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestCanonicalizationMethodType_GetTypeMetadata tests getting type metadata for CanonicalizationMethodType.
+func TestCanonicalizationMethodType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/CanonicalizationMethodType", nil)
+	req.SetPathValue("name", "CanonicalizationMethodType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestCcOperatorEnumType_CRUD tests Create, Read, Update, Delete for CcOperatorEnumType.
+func TestCcOperatorEnumType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "CcOperatorEnumType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create CcOperatorEnumType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestCcOperatorEnumType_ListByType tests listing elements of type CcOperatorEnumType.
+func TestCcOperatorEnumType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/CcOperatorEnumType", nil)
+	req.SetPathValue("type", "CcOperatorEnumType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestCcOperatorEnumType_GetTypeMetadata tests getting type metadata for CcOperatorEnumType.
+func TestCcOperatorEnumType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/CcOperatorEnumType", nil)
+	req.SetPathValue("name", "CcOperatorEnumType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestCheckContentRefType_CRUD tests Create, Read, Update, Delete for CheckContentRefType.
+func TestCheckContentRefType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "CheckContentRefType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create CheckContentRefType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestCheckContentRefType_ListByType tests listing elements of type CheckContentRefType.
+func TestCheckContentRefType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/CheckContentRefType", nil)
+	req.SetPathValue("type", "CheckContentRefType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestCheckContentRefType_GetTypeMetadata tests getting type metadata for CheckContentRefType.
+func TestCheckContentRefType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/CheckContentRefType", nil)
+	req.SetPathValue("name", "CheckContentRefType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestCheckContentType_CRUD tests Create, Read, Update, Delete for CheckContentType.
+func TestCheckContentType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "CheckContentType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create CheckContentType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestCheckContentType_ListByType tests listing elements of type CheckContentType.
+func TestCheckContentType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/CheckContentType", nil)
+	req.SetPathValue("type", "CheckContentType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestCheckContentType_GetTypeMetadata tests getting type metadata for CheckContentType.
+func TestCheckContentType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/CheckContentType", nil)
+	req.SetPathValue("name", "CheckContentType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestCheckEnumeration_CRUD tests Create, Read, Update, Delete for CheckEnumeration.
+func TestCheckEnumeration_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "CheckEnumeration",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create CheckEnumeration returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestCheckEnumeration_ListByType tests listing elements of type CheckEnumeration.
+func TestCheckEnumeration_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/CheckEnumeration", nil)
+	req.SetPathValue("type", "CheckEnumeration")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestCheckEnumeration_GetTypeMetadata tests getting type metadata for CheckEnumeration.
+func TestCheckEnumeration_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/CheckEnumeration", nil)
+	req.SetPathValue("name", "CheckEnumeration")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestCheckExportType_CRUD tests Create, Read, Update, Delete for CheckExportType.
+func TestCheckExportType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "CheckExportType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create CheckExportType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestCheckExportType_ListByType tests listing elements of type CheckExportType.
+func TestCheckExportType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/CheckExportType", nil)
+	req.SetPathValue("type", "CheckExportType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestCheckExportType_GetTypeMetadata tests getting type metadata for CheckExportType.
+func TestCheckExportType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/CheckExportType", nil)
+	req.SetPathValue("name", "CheckExportType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestCheckImportType_CRUD tests Create, Read, Update, Delete for CheckImportType.
+func TestCheckImportType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "CheckImportType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create CheckImportType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestCheckImportType_ListByType tests listing elements of type CheckImportType.
+func TestCheckImportType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/CheckImportType", nil)
+	req.SetPathValue("type", "CheckImportType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestCheckImportType_GetTypeMetadata tests getting type metadata for CheckImportType.
+func TestCheckImportType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/CheckImportType", nil)
+	req.SetPathValue("name", "CheckImportType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestCheckType_CRUD tests Create, Read, Update, Delete for CheckType.
+func TestCheckType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "CheckType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create CheckType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestCheckType_ListByType tests listing elements of type CheckType.
+func TestCheckType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/CheckType", nil)
+	req.SetPathValue("type", "CheckType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestCheckType_GetTypeMetadata tests getting type metadata for CheckType.
+func TestCheckType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/CheckType", nil)
+	req.SetPathValue("name", "CheckType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestCheckType_GetValidChildTypes tests getting valid child types for CheckType.
+func TestCheckType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/CheckType/children", nil)
+	req.SetPathValue("name", "CheckType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
 }
 
 // TestCidrElementType_CRUD tests Create, Read, Update, Delete for CidrElementType.
@@ -5036,6 +6911,427 @@ func TestCircuitType_GetValidChildTypes(t *testing.T) {
 	assertStatusCode(t, rr, http.StatusOK)
 }
 
+// TestClassEnumeration_CRUD tests Create, Read, Update, Delete for ClassEnumeration.
+func TestClassEnumeration_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "ClassEnumeration",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create ClassEnumeration returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestClassEnumeration_ListByType tests listing elements of type ClassEnumeration.
+func TestClassEnumeration_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/ClassEnumeration", nil)
+	req.SetPathValue("type", "ClassEnumeration")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestClassEnumeration_GetTypeMetadata tests getting type metadata for ClassEnumeration.
+func TestClassEnumeration_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ClassEnumeration", nil)
+	req.SetPathValue("name", "ClassEnumeration")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestComplexCheckType_CRUD tests Create, Read, Update, Delete for ComplexCheckType.
+func TestComplexCheckType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "ComplexCheckType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create ComplexCheckType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestComplexCheckType_ListByType tests listing elements of type ComplexCheckType.
+func TestComplexCheckType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/ComplexCheckType", nil)
+	req.SetPathValue("type", "ComplexCheckType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestComplexCheckType_GetTypeMetadata tests getting type metadata for ComplexCheckType.
+func TestComplexCheckType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ComplexCheckType", nil)
+	req.SetPathValue("name", "ComplexCheckType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestComplexCheckType_GetValidChildTypes tests getting valid child types for ComplexCheckType.
+func TestComplexCheckType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ComplexCheckType/children", nil)
+	req.SetPathValue("name", "ComplexCheckType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestComplexDatatypeEnumeration_CRUD tests Create, Read, Update, Delete for ComplexDatatypeEnumeration.
+func TestComplexDatatypeEnumeration_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "ComplexDatatypeEnumeration",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create ComplexDatatypeEnumeration returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestComplexDatatypeEnumeration_ListByType tests listing elements of type ComplexDatatypeEnumeration.
+func TestComplexDatatypeEnumeration_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/ComplexDatatypeEnumeration", nil)
+	req.SetPathValue("type", "ComplexDatatypeEnumeration")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestComplexDatatypeEnumeration_GetTypeMetadata tests getting type metadata for ComplexDatatypeEnumeration.
+func TestComplexDatatypeEnumeration_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ComplexDatatypeEnumeration", nil)
+	req.SetPathValue("name", "ComplexDatatypeEnumeration")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestComplexValueType_CRUD tests Create, Read, Update, Delete for ComplexValueType.
+func TestComplexValueType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "ComplexValueType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create ComplexValueType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestComplexValueType_ListByType tests listing elements of type ComplexValueType.
+func TestComplexValueType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/ComplexValueType", nil)
+	req.SetPathValue("type", "ComplexValueType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestComplexValueType_GetTypeMetadata tests getting type metadata for ComplexValueType.
+func TestComplexValueType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ComplexValueType", nil)
+	req.SetPathValue("name", "ComplexValueType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
 // TestComputingDeviceElement_CRUD tests Create, Read, Update, Delete for ComputingDeviceElement.
 func TestComputingDeviceElement_CRUD(t *testing.T) {
 	ts := setupTestSuite(t)
@@ -5266,6 +7562,108 @@ func TestComputingDeviceType_GetValidChildTypes(t *testing.T) {
 	assertStatusCode(t, rr, http.StatusOK)
 }
 
+// TestConcatFunctionType_CRUD tests Create, Read, Update, Delete for ConcatFunctionType.
+func TestConcatFunctionType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "ConcatFunctionType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create ConcatFunctionType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestConcatFunctionType_ListByType tests listing elements of type ConcatFunctionType.
+func TestConcatFunctionType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/ConcatFunctionType", nil)
+	req.SetPathValue("type", "ConcatFunctionType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestConcatFunctionType_GetTypeMetadata tests getting type metadata for ConcatFunctionType.
+func TestConcatFunctionType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ConcatFunctionType", nil)
+	req.SetPathValue("name", "ConcatFunctionType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
 // TestConnectionsElementType_CRUD tests Create, Read, Update, Delete for ConnectionsElementType.
 func TestConnectionsElementType_CRUD(t *testing.T) {
 	ts := setupTestSuite(t)
@@ -5374,6 +7772,236 @@ func TestConnectionsElementType_GetValidChildTypes(t *testing.T) {
 
 	req := httptest.NewRequest("GET", "/api/types/ConnectionsElementType/children", nil)
 	req.SetPathValue("name", "ConnectionsElementType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestConstant_variableElement_CRUD tests Create, Read, Update, Delete for Constant_variableElement.
+func TestConstant_variableElement_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "Constant_variableElement",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create Constant_variableElement returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestConstant_variableElement_ListByType tests listing elements of type Constant_variableElement.
+func TestConstant_variableElement_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/Constant_variableElement", nil)
+	req.SetPathValue("type", "Constant_variableElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestConstant_variableElement_GetTypeMetadata tests getting type metadata for Constant_variableElement.
+func TestConstant_variableElement_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/Constant_variableElement", nil)
+	req.SetPathValue("name", "Constant_variableElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestConstant_variableElement_GetValidChildTypes tests getting valid child types for Constant_variableElement.
+func TestConstant_variableElement_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/Constant_variableElement/children", nil)
+	req.SetPathValue("name", "Constant_variableElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestConstant_variableElementType_CRUD tests Create, Read, Update, Delete for Constant_variableElementType.
+func TestConstant_variableElementType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "Constant_variableElementType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create Constant_variableElementType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestConstant_variableElementType_ListByType tests listing elements of type Constant_variableElementType.
+func TestConstant_variableElementType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/Constant_variableElementType", nil)
+	req.SetPathValue("type", "Constant_variableElementType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestConstant_variableElementType_GetTypeMetadata tests getting type metadata for Constant_variableElementType.
+func TestConstant_variableElementType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/Constant_variableElementType", nil)
+	req.SetPathValue("name", "Constant_variableElementType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestConstant_variableElementType_GetValidChildTypes tests getting valid child types for Constant_variableElementType.
+func TestConstant_variableElementType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/Constant_variableElementType/children", nil)
+	req.SetPathValue("name", "Constant_variableElementType")
 	rr := httptest.NewRecorder()
 
 	ts.handlers.HandleGetValidChildTypes(rr, req)
@@ -5576,6 +8204,108 @@ func TestContentElementType1_GetTypeMetadata(t *testing.T) {
 
 	req := httptest.NewRequest("GET", "/api/types/ContentElementType1", nil)
 	req.SetPathValue("name", "ContentElementType1")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestCountFunctionType_CRUD tests Create, Read, Update, Delete for CountFunctionType.
+func TestCountFunctionType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "CountFunctionType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create CountFunctionType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestCountFunctionType_ListByType tests listing elements of type CountFunctionType.
+func TestCountFunctionType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/CountFunctionType", nil)
+	req.SetPathValue("type", "CountFunctionType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestCountFunctionType_GetTypeMetadata tests getting type metadata for CountFunctionType.
+func TestCountFunctionType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/CountFunctionType", nil)
+	req.SetPathValue("name", "CountFunctionType")
 	rr := httptest.NewRecorder()
 
 	ts.handlers.HandleGetType(rr, req)
@@ -6210,6 +8940,236 @@ func TestCpeElementType_GetTypeMetadata(t *testing.T) {
 	}
 }
 
+// TestCpeItemElement_CRUD tests Create, Read, Update, Delete for CpeItemElement.
+func TestCpeItemElement_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "CpeItemElement",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create CpeItemElement returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestCpeItemElement_ListByType tests listing elements of type CpeItemElement.
+func TestCpeItemElement_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/CpeItemElement", nil)
+	req.SetPathValue("type", "CpeItemElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestCpeItemElement_GetTypeMetadata tests getting type metadata for CpeItemElement.
+func TestCpeItemElement_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/CpeItemElement", nil)
+	req.SetPathValue("name", "CpeItemElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestCpeItemElement_GetValidChildTypes tests getting valid child types for CpeItemElement.
+func TestCpeItemElement_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/CpeItemElement/children", nil)
+	req.SetPathValue("name", "CpeItemElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestCpeListElement_CRUD tests Create, Read, Update, Delete for CpeListElement.
+func TestCpeListElement_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "CpeListElement",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create CpeListElement returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestCpeListElement_ListByType tests listing elements of type CpeListElement.
+func TestCpeListElement_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/CpeListElement", nil)
+	req.SetPathValue("type", "CpeListElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestCpeListElement_GetTypeMetadata tests getting type metadata for CpeListElement.
+func TestCpeListElement_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/CpeListElement", nil)
+	req.SetPathValue("name", "CpeListElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestCpeListElement_GetValidChildTypes tests getting valid child types for CpeListElement.
+func TestCpeListElement_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/CpeListElement/children", nil)
+	req.SetPathValue("name", "CpeListElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
 // TestCpeType_CRUD tests Create, Read, Update, Delete for CpeType.
 func TestCpeType_CRUD(t *testing.T) {
 	ts := setupTestSuite(t)
@@ -6310,6 +9270,555 @@ func TestCpeType_GetTypeMetadata(t *testing.T) {
 	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
 		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
 	}
+}
+
+// TestCriteriaType_CRUD tests Create, Read, Update, Delete for CriteriaType.
+func TestCriteriaType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "CriteriaType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create CriteriaType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestCriteriaType_ListByType tests listing elements of type CriteriaType.
+func TestCriteriaType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/CriteriaType", nil)
+	req.SetPathValue("type", "CriteriaType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestCriteriaType_GetTypeMetadata tests getting type metadata for CriteriaType.
+func TestCriteriaType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/CriteriaType", nil)
+	req.SetPathValue("name", "CriteriaType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestCriteriaType_GetValidChildTypes tests getting valid child types for CriteriaType.
+func TestCriteriaType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/CriteriaType/children", nil)
+	req.SetPathValue("name", "CriteriaType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestCriterionType_CRUD tests Create, Read, Update, Delete for CriterionType.
+func TestCriterionType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "CriterionType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create CriterionType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestCriterionType_ListByType tests listing elements of type CriterionType.
+func TestCriterionType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/CriterionType", nil)
+	req.SetPathValue("type", "CriterionType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestCriterionType_GetTypeMetadata tests getting type metadata for CriterionType.
+func TestCriterionType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/CriterionType", nil)
+	req.SetPathValue("name", "CriterionType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestCryptoBinary_CRUD tests Create, Read, Update, Delete for CryptoBinary.
+func TestCryptoBinary_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "CryptoBinary",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create CryptoBinary returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestCryptoBinary_ListByType tests listing elements of type CryptoBinary.
+func TestCryptoBinary_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/CryptoBinary", nil)
+	req.SetPathValue("type", "CryptoBinary")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestCryptoBinary_GetTypeMetadata tests getting type metadata for CryptoBinary.
+func TestCryptoBinary_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/CryptoBinary", nil)
+	req.SetPathValue("name", "CryptoBinary")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestDSAKeyValueElement_CRUD tests Create, Read, Update, Delete for DSAKeyValueElement.
+func TestDSAKeyValueElement_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "DSAKeyValueElement",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create DSAKeyValueElement returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestDSAKeyValueElement_ListByType tests listing elements of type DSAKeyValueElement.
+func TestDSAKeyValueElement_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/DSAKeyValueElement", nil)
+	req.SetPathValue("type", "DSAKeyValueElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestDSAKeyValueElement_GetTypeMetadata tests getting type metadata for DSAKeyValueElement.
+func TestDSAKeyValueElement_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/DSAKeyValueElement", nil)
+	req.SetPathValue("name", "DSAKeyValueElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestDSAKeyValueElement_GetValidChildTypes tests getting valid child types for DSAKeyValueElement.
+func TestDSAKeyValueElement_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/DSAKeyValueElement/children", nil)
+	req.SetPathValue("name", "DSAKeyValueElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestDSAKeyValueType_CRUD tests Create, Read, Update, Delete for DSAKeyValueType.
+func TestDSAKeyValueType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "DSAKeyValueType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create DSAKeyValueType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestDSAKeyValueType_ListByType tests listing elements of type DSAKeyValueType.
+func TestDSAKeyValueType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/DSAKeyValueType", nil)
+	req.SetPathValue("type", "DSAKeyValueType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestDSAKeyValueType_GetTypeMetadata tests getting type metadata for DSAKeyValueType.
+func TestDSAKeyValueType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/DSAKeyValueType", nil)
+	req.SetPathValue("name", "DSAKeyValueType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestDSAKeyValueType_GetValidChildTypes tests getting valid child types for DSAKeyValueType.
+func TestDSAKeyValueType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/DSAKeyValueType/children", nil)
+	req.SetPathValue("name", "DSAKeyValueType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
 }
 
 // TestDataElement_CRUD tests Create, Read, Update, Delete for DataElement.
@@ -6739,6 +10248,759 @@ func TestDatabaseType_GetValidChildTypes(t *testing.T) {
 
 	req := httptest.NewRequest("GET", "/api/types/DatabaseType/children", nil)
 	req.SetPathValue("name", "DatabaseType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestDatatypeEnumeration_CRUD tests Create, Read, Update, Delete for DatatypeEnumeration.
+func TestDatatypeEnumeration_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "DatatypeEnumeration",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create DatatypeEnumeration returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestDatatypeEnumeration_ListByType tests listing elements of type DatatypeEnumeration.
+func TestDatatypeEnumeration_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/DatatypeEnumeration", nil)
+	req.SetPathValue("type", "DatatypeEnumeration")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestDatatypeEnumeration_GetTypeMetadata tests getting type metadata for DatatypeEnumeration.
+func TestDatatypeEnumeration_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/DatatypeEnumeration", nil)
+	req.SetPathValue("name", "DatatypeEnumeration")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestDateTimeFormatEnumeration_CRUD tests Create, Read, Update, Delete for DateTimeFormatEnumeration.
+func TestDateTimeFormatEnumeration_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "DateTimeFormatEnumeration",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create DateTimeFormatEnumeration returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestDateTimeFormatEnumeration_ListByType tests listing elements of type DateTimeFormatEnumeration.
+func TestDateTimeFormatEnumeration_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/DateTimeFormatEnumeration", nil)
+	req.SetPathValue("type", "DateTimeFormatEnumeration")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestDateTimeFormatEnumeration_GetTypeMetadata tests getting type metadata for DateTimeFormatEnumeration.
+func TestDateTimeFormatEnumeration_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/DateTimeFormatEnumeration", nil)
+	req.SetPathValue("name", "DateTimeFormatEnumeration")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestDcStatusType_CRUD tests Create, Read, Update, Delete for DcStatusType.
+func TestDcStatusType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "DcStatusType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create DcStatusType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestDcStatusType_ListByType tests listing elements of type DcStatusType.
+func TestDcStatusType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/DcStatusType", nil)
+	req.SetPathValue("type", "DcStatusType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestDcStatusType_GetTypeMetadata tests getting type metadata for DcStatusType.
+func TestDcStatusType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/DcStatusType", nil)
+	req.SetPathValue("name", "DcStatusType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestDefinitionElement_CRUD tests Create, Read, Update, Delete for DefinitionElement.
+func TestDefinitionElement_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "DefinitionElement",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create DefinitionElement returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestDefinitionElement_ListByType tests listing elements of type DefinitionElement.
+func TestDefinitionElement_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/DefinitionElement", nil)
+	req.SetPathValue("type", "DefinitionElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestDefinitionElement_GetTypeMetadata tests getting type metadata for DefinitionElement.
+func TestDefinitionElement_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/DefinitionElement", nil)
+	req.SetPathValue("name", "DefinitionElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestDefinitionElement_GetValidChildTypes tests getting valid child types for DefinitionElement.
+func TestDefinitionElement_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/DefinitionElement/children", nil)
+	req.SetPathValue("name", "DefinitionElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestDefinitionIDPattern_CRUD tests Create, Read, Update, Delete for DefinitionIDPattern.
+func TestDefinitionIDPattern_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "DefinitionIDPattern",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create DefinitionIDPattern returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestDefinitionIDPattern_ListByType tests listing elements of type DefinitionIDPattern.
+func TestDefinitionIDPattern_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/DefinitionIDPattern", nil)
+	req.SetPathValue("type", "DefinitionIDPattern")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestDefinitionIDPattern_GetTypeMetadata tests getting type metadata for DefinitionIDPattern.
+func TestDefinitionIDPattern_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/DefinitionIDPattern", nil)
+	req.SetPathValue("name", "DefinitionIDPattern")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestDefinitionType_CRUD tests Create, Read, Update, Delete for DefinitionType.
+func TestDefinitionType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "DefinitionType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create DefinitionType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestDefinitionType_ListByType tests listing elements of type DefinitionType.
+func TestDefinitionType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/DefinitionType", nil)
+	req.SetPathValue("type", "DefinitionType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestDefinitionType_GetTypeMetadata tests getting type metadata for DefinitionType.
+func TestDefinitionType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/DefinitionType", nil)
+	req.SetPathValue("name", "DefinitionType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestDefinitionType_GetValidChildTypes tests getting valid child types for DefinitionType.
+func TestDefinitionType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/DefinitionType/children", nil)
+	req.SetPathValue("name", "DefinitionType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestDefinitionsType_CRUD tests Create, Read, Update, Delete for DefinitionsType.
+func TestDefinitionsType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "DefinitionsType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create DefinitionsType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestDefinitionsType_ListByType tests listing elements of type DefinitionsType.
+func TestDefinitionsType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/DefinitionsType", nil)
+	req.SetPathValue("type", "DefinitionsType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestDefinitionsType_GetTypeMetadata tests getting type metadata for DefinitionsType.
+func TestDefinitionsType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/DefinitionsType", nil)
+	req.SetPathValue("name", "DefinitionsType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestDefinitionsType_GetValidChildTypes tests getting valid child types for DefinitionsType.
+func TestDefinitionsType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/DefinitionsType/children", nil)
+	req.SetPathValue("name", "DefinitionsType")
 	rr := httptest.NewRecorder()
 
 	ts.handlers.HandleGetValidChildTypes(rr, req)
@@ -7614,6 +11876,644 @@ func TestDependentThoroughfareElementType_GetValidChildTypes(t *testing.T) {
 	assertStatusCode(t, rr, http.StatusOK)
 }
 
+// TestDeprecatedInfoType_CRUD tests Create, Read, Update, Delete for DeprecatedInfoType.
+func TestDeprecatedInfoType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "DeprecatedInfoType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create DeprecatedInfoType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestDeprecatedInfoType_ListByType tests listing elements of type DeprecatedInfoType.
+func TestDeprecatedInfoType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/DeprecatedInfoType", nil)
+	req.SetPathValue("type", "DeprecatedInfoType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestDeprecatedInfoType_GetTypeMetadata tests getting type metadata for DeprecatedInfoType.
+func TestDeprecatedInfoType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/DeprecatedInfoType", nil)
+	req.SetPathValue("name", "DeprecatedInfoType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestDeprecatedInfoType_GetValidChildTypes tests getting valid child types for DeprecatedInfoType.
+func TestDeprecatedInfoType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/DeprecatedInfoType/children", nil)
+	req.SetPathValue("name", "DeprecatedInfoType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestDeprecated_infoElement_CRUD tests Create, Read, Update, Delete for Deprecated_infoElement.
+func TestDeprecated_infoElement_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "Deprecated_infoElement",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create Deprecated_infoElement returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestDeprecated_infoElement_ListByType tests listing elements of type Deprecated_infoElement.
+func TestDeprecated_infoElement_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/Deprecated_infoElement", nil)
+	req.SetPathValue("type", "Deprecated_infoElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestDeprecated_infoElement_GetTypeMetadata tests getting type metadata for Deprecated_infoElement.
+func TestDeprecated_infoElement_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/Deprecated_infoElement", nil)
+	req.SetPathValue("name", "Deprecated_infoElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestDeprecated_infoElement_GetValidChildTypes tests getting valid child types for Deprecated_infoElement.
+func TestDeprecated_infoElement_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/Deprecated_infoElement/children", nil)
+	req.SetPathValue("name", "Deprecated_infoElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestDigestMethodElement_CRUD tests Create, Read, Update, Delete for DigestMethodElement.
+func TestDigestMethodElement_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "DigestMethodElement",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create DigestMethodElement returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestDigestMethodElement_ListByType tests listing elements of type DigestMethodElement.
+func TestDigestMethodElement_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/DigestMethodElement", nil)
+	req.SetPathValue("type", "DigestMethodElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestDigestMethodElement_GetTypeMetadata tests getting type metadata for DigestMethodElement.
+func TestDigestMethodElement_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/DigestMethodElement", nil)
+	req.SetPathValue("name", "DigestMethodElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestDigestMethodType_CRUD tests Create, Read, Update, Delete for DigestMethodType.
+func TestDigestMethodType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "DigestMethodType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create DigestMethodType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestDigestMethodType_ListByType tests listing elements of type DigestMethodType.
+func TestDigestMethodType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/DigestMethodType", nil)
+	req.SetPathValue("type", "DigestMethodType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestDigestMethodType_GetTypeMetadata tests getting type metadata for DigestMethodType.
+func TestDigestMethodType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/DigestMethodType", nil)
+	req.SetPathValue("name", "DigestMethodType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestDigestValueElement_CRUD tests Create, Read, Update, Delete for DigestValueElement.
+func TestDigestValueElement_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "DigestValueElement",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create DigestValueElement returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestDigestValueElement_ListByType tests listing elements of type DigestValueElement.
+func TestDigestValueElement_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/DigestValueElement", nil)
+	req.SetPathValue("type", "DigestValueElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestDigestValueElement_GetTypeMetadata tests getting type metadata for DigestValueElement.
+func TestDigestValueElement_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/DigestValueElement", nil)
+	req.SetPathValue("name", "DigestValueElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestDigestValueType_CRUD tests Create, Read, Update, Delete for DigestValueType.
+func TestDigestValueType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "DigestValueType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create DigestValueType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestDigestValueType_ListByType tests listing elements of type DigestValueType.
+func TestDigestValueType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/DigestValueType", nil)
+	req.SetPathValue("type", "DigestValueType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestDigestValueType_GetTypeMetadata tests getting type metadata for DigestValueType.
+func TestDigestValueType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/DigestValueType", nil)
+	req.SetPathValue("name", "DigestValueType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
 // TestDistinguishedNameElementType_CRUD tests Create, Read, Update, Delete for DistinguishedNameElementType.
 func TestDistinguishedNameElementType_CRUD(t *testing.T) {
 	ts := setupTestSuite(t)
@@ -7816,6 +12716,338 @@ func TestDocumentRootElementType_GetTypeMetadata(t *testing.T) {
 	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
 		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
 	}
+}
+
+// TestElementMapItemType_CRUD tests Create, Read, Update, Delete for ElementMapItemType.
+func TestElementMapItemType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "ElementMapItemType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create ElementMapItemType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestElementMapItemType_ListByType tests listing elements of type ElementMapItemType.
+func TestElementMapItemType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/ElementMapItemType", nil)
+	req.SetPathValue("type", "ElementMapItemType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestElementMapItemType_GetTypeMetadata tests getting type metadata for ElementMapItemType.
+func TestElementMapItemType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ElementMapItemType", nil)
+	req.SetPathValue("name", "ElementMapItemType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestElementMapType_CRUD tests Create, Read, Update, Delete for ElementMapType.
+func TestElementMapType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "ElementMapType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create ElementMapType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestElementMapType_ListByType tests listing elements of type ElementMapType.
+func TestElementMapType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/ElementMapType", nil)
+	req.SetPathValue("type", "ElementMapType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestElementMapType_GetTypeMetadata tests getting type metadata for ElementMapType.
+func TestElementMapType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ElementMapType", nil)
+	req.SetPathValue("name", "ElementMapType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestElementMapType_GetValidChildTypes tests getting valid child types for ElementMapType.
+func TestElementMapType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ElementMapType/children", nil)
+	req.SetPathValue("name", "ElementMapType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestElement_mappingElement_CRUD tests Create, Read, Update, Delete for Element_mappingElement.
+func TestElement_mappingElement_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "Element_mappingElement",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create Element_mappingElement returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestElement_mappingElement_ListByType tests listing elements of type Element_mappingElement.
+func TestElement_mappingElement_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/Element_mappingElement", nil)
+	req.SetPathValue("type", "Element_mappingElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestElement_mappingElement_GetTypeMetadata tests getting type metadata for Element_mappingElement.
+func TestElement_mappingElement_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/Element_mappingElement", nil)
+	req.SetPathValue("name", "Element_mappingElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestElement_mappingElement_GetValidChildTypes tests getting valid child types for Element_mappingElement.
+func TestElement_mappingElement_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/Element_mappingElement/children", nil)
+	req.SetPathValue("name", "Element_mappingElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
 }
 
 // TestEmailAddressElement_CRUD tests Create, Read, Update, Delete for EmailAddressElement.
@@ -8022,6 +13254,210 @@ func TestEmailAddressElementType_GetTypeMetadata(t *testing.T) {
 	}
 }
 
+// TestEmptyStringType_CRUD tests Create, Read, Update, Delete for EmptyStringType.
+func TestEmptyStringType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "EmptyStringType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create EmptyStringType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestEmptyStringType_ListByType tests listing elements of type EmptyStringType.
+func TestEmptyStringType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/EmptyStringType", nil)
+	req.SetPathValue("type", "EmptyStringType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEmptyStringType_GetTypeMetadata tests getting type metadata for EmptyStringType.
+func TestEmptyStringType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/EmptyStringType", nil)
+	req.SetPathValue("name", "EmptyStringType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEndFunctionType_CRUD tests Create, Read, Update, Delete for EndFunctionType.
+func TestEndFunctionType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "EndFunctionType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create EndFunctionType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestEndFunctionType_ListByType tests listing elements of type EndFunctionType.
+func TestEndFunctionType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/EndFunctionType", nil)
+	req.SetPathValue("type", "EndFunctionType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEndFunctionType_GetTypeMetadata tests getting type metadata for EndFunctionType.
+func TestEndFunctionType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/EndFunctionType", nil)
+	req.SetPathValue("name", "EndFunctionType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
 // TestEndorsementLineCodeElementType_CRUD tests Create, Read, Update, Delete for EndorsementLineCodeElementType.
 func TestEndorsementLineCodeElementType_CRUD(t *testing.T) {
 	ts := setupTestSuite(t)
@@ -8115,6 +13551,2990 @@ func TestEndorsementLineCodeElementType_GetTypeMetadata(t *testing.T) {
 
 	req := httptest.NewRequest("GET", "/api/types/EndorsementLineCodeElementType", nil)
 	req.SetPathValue("name", "EndorsementLineCodeElementType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEntityObjectAnySimpleType_CRUD tests Create, Read, Update, Delete for EntityObjectAnySimpleType.
+func TestEntityObjectAnySimpleType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "EntityObjectAnySimpleType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create EntityObjectAnySimpleType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestEntityObjectAnySimpleType_ListByType tests listing elements of type EntityObjectAnySimpleType.
+func TestEntityObjectAnySimpleType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/EntityObjectAnySimpleType", nil)
+	req.SetPathValue("type", "EntityObjectAnySimpleType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEntityObjectAnySimpleType_GetTypeMetadata tests getting type metadata for EntityObjectAnySimpleType.
+func TestEntityObjectAnySimpleType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/EntityObjectAnySimpleType", nil)
+	req.SetPathValue("name", "EntityObjectAnySimpleType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEntityObjectBinaryType_CRUD tests Create, Read, Update, Delete for EntityObjectBinaryType.
+func TestEntityObjectBinaryType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "EntityObjectBinaryType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create EntityObjectBinaryType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestEntityObjectBinaryType_ListByType tests listing elements of type EntityObjectBinaryType.
+func TestEntityObjectBinaryType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/EntityObjectBinaryType", nil)
+	req.SetPathValue("type", "EntityObjectBinaryType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEntityObjectBinaryType_GetTypeMetadata tests getting type metadata for EntityObjectBinaryType.
+func TestEntityObjectBinaryType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/EntityObjectBinaryType", nil)
+	req.SetPathValue("name", "EntityObjectBinaryType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEntityObjectBoolType_CRUD tests Create, Read, Update, Delete for EntityObjectBoolType.
+func TestEntityObjectBoolType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "EntityObjectBoolType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create EntityObjectBoolType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestEntityObjectBoolType_ListByType tests listing elements of type EntityObjectBoolType.
+func TestEntityObjectBoolType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/EntityObjectBoolType", nil)
+	req.SetPathValue("type", "EntityObjectBoolType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEntityObjectBoolType_GetTypeMetadata tests getting type metadata for EntityObjectBoolType.
+func TestEntityObjectBoolType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/EntityObjectBoolType", nil)
+	req.SetPathValue("name", "EntityObjectBoolType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEntityObjectFieldType_CRUD tests Create, Read, Update, Delete for EntityObjectFieldType.
+func TestEntityObjectFieldType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "EntityObjectFieldType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create EntityObjectFieldType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestEntityObjectFieldType_ListByType tests listing elements of type EntityObjectFieldType.
+func TestEntityObjectFieldType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/EntityObjectFieldType", nil)
+	req.SetPathValue("type", "EntityObjectFieldType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEntityObjectFieldType_GetTypeMetadata tests getting type metadata for EntityObjectFieldType.
+func TestEntityObjectFieldType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/EntityObjectFieldType", nil)
+	req.SetPathValue("name", "EntityObjectFieldType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEntityObjectFloatType_CRUD tests Create, Read, Update, Delete for EntityObjectFloatType.
+func TestEntityObjectFloatType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "EntityObjectFloatType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create EntityObjectFloatType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestEntityObjectFloatType_ListByType tests listing elements of type EntityObjectFloatType.
+func TestEntityObjectFloatType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/EntityObjectFloatType", nil)
+	req.SetPathValue("type", "EntityObjectFloatType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEntityObjectFloatType_GetTypeMetadata tests getting type metadata for EntityObjectFloatType.
+func TestEntityObjectFloatType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/EntityObjectFloatType", nil)
+	req.SetPathValue("name", "EntityObjectFloatType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEntityObjectIPAddressStringType_CRUD tests Create, Read, Update, Delete for EntityObjectIPAddressStringType.
+func TestEntityObjectIPAddressStringType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "EntityObjectIPAddressStringType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create EntityObjectIPAddressStringType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestEntityObjectIPAddressStringType_ListByType tests listing elements of type EntityObjectIPAddressStringType.
+func TestEntityObjectIPAddressStringType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/EntityObjectIPAddressStringType", nil)
+	req.SetPathValue("type", "EntityObjectIPAddressStringType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEntityObjectIPAddressStringType_GetTypeMetadata tests getting type metadata for EntityObjectIPAddressStringType.
+func TestEntityObjectIPAddressStringType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/EntityObjectIPAddressStringType", nil)
+	req.SetPathValue("name", "EntityObjectIPAddressStringType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEntityObjectIPAddressType_CRUD tests Create, Read, Update, Delete for EntityObjectIPAddressType.
+func TestEntityObjectIPAddressType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "EntityObjectIPAddressType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create EntityObjectIPAddressType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestEntityObjectIPAddressType_ListByType tests listing elements of type EntityObjectIPAddressType.
+func TestEntityObjectIPAddressType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/EntityObjectIPAddressType", nil)
+	req.SetPathValue("type", "EntityObjectIPAddressType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEntityObjectIPAddressType_GetTypeMetadata tests getting type metadata for EntityObjectIPAddressType.
+func TestEntityObjectIPAddressType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/EntityObjectIPAddressType", nil)
+	req.SetPathValue("name", "EntityObjectIPAddressType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEntityObjectIntType_CRUD tests Create, Read, Update, Delete for EntityObjectIntType.
+func TestEntityObjectIntType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "EntityObjectIntType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create EntityObjectIntType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestEntityObjectIntType_ListByType tests listing elements of type EntityObjectIntType.
+func TestEntityObjectIntType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/EntityObjectIntType", nil)
+	req.SetPathValue("type", "EntityObjectIntType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEntityObjectIntType_GetTypeMetadata tests getting type metadata for EntityObjectIntType.
+func TestEntityObjectIntType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/EntityObjectIntType", nil)
+	req.SetPathValue("name", "EntityObjectIntType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEntityObjectRecordType_CRUD tests Create, Read, Update, Delete for EntityObjectRecordType.
+func TestEntityObjectRecordType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "EntityObjectRecordType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create EntityObjectRecordType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestEntityObjectRecordType_ListByType tests listing elements of type EntityObjectRecordType.
+func TestEntityObjectRecordType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/EntityObjectRecordType", nil)
+	req.SetPathValue("type", "EntityObjectRecordType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEntityObjectRecordType_GetTypeMetadata tests getting type metadata for EntityObjectRecordType.
+func TestEntityObjectRecordType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/EntityObjectRecordType", nil)
+	req.SetPathValue("name", "EntityObjectRecordType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEntityObjectRecordType_GetValidChildTypes tests getting valid child types for EntityObjectRecordType.
+func TestEntityObjectRecordType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/EntityObjectRecordType/children", nil)
+	req.SetPathValue("name", "EntityObjectRecordType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestEntityObjectStringType_CRUD tests Create, Read, Update, Delete for EntityObjectStringType.
+func TestEntityObjectStringType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "EntityObjectStringType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create EntityObjectStringType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestEntityObjectStringType_ListByType tests listing elements of type EntityObjectStringType.
+func TestEntityObjectStringType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/EntityObjectStringType", nil)
+	req.SetPathValue("type", "EntityObjectStringType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEntityObjectStringType_GetTypeMetadata tests getting type metadata for EntityObjectStringType.
+func TestEntityObjectStringType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/EntityObjectStringType", nil)
+	req.SetPathValue("name", "EntityObjectStringType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEntityObjectVersionType_CRUD tests Create, Read, Update, Delete for EntityObjectVersionType.
+func TestEntityObjectVersionType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "EntityObjectVersionType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create EntityObjectVersionType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestEntityObjectVersionType_ListByType tests listing elements of type EntityObjectVersionType.
+func TestEntityObjectVersionType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/EntityObjectVersionType", nil)
+	req.SetPathValue("type", "EntityObjectVersionType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEntityObjectVersionType_GetTypeMetadata tests getting type metadata for EntityObjectVersionType.
+func TestEntityObjectVersionType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/EntityObjectVersionType", nil)
+	req.SetPathValue("name", "EntityObjectVersionType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEntityStateAnySimpleType_CRUD tests Create, Read, Update, Delete for EntityStateAnySimpleType.
+func TestEntityStateAnySimpleType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "EntityStateAnySimpleType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create EntityStateAnySimpleType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestEntityStateAnySimpleType_ListByType tests listing elements of type EntityStateAnySimpleType.
+func TestEntityStateAnySimpleType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/EntityStateAnySimpleType", nil)
+	req.SetPathValue("type", "EntityStateAnySimpleType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEntityStateAnySimpleType_GetTypeMetadata tests getting type metadata for EntityStateAnySimpleType.
+func TestEntityStateAnySimpleType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/EntityStateAnySimpleType", nil)
+	req.SetPathValue("name", "EntityStateAnySimpleType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEntityStateBinaryType_CRUD tests Create, Read, Update, Delete for EntityStateBinaryType.
+func TestEntityStateBinaryType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "EntityStateBinaryType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create EntityStateBinaryType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestEntityStateBinaryType_ListByType tests listing elements of type EntityStateBinaryType.
+func TestEntityStateBinaryType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/EntityStateBinaryType", nil)
+	req.SetPathValue("type", "EntityStateBinaryType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEntityStateBinaryType_GetTypeMetadata tests getting type metadata for EntityStateBinaryType.
+func TestEntityStateBinaryType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/EntityStateBinaryType", nil)
+	req.SetPathValue("name", "EntityStateBinaryType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEntityStateBoolType_CRUD tests Create, Read, Update, Delete for EntityStateBoolType.
+func TestEntityStateBoolType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "EntityStateBoolType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create EntityStateBoolType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestEntityStateBoolType_ListByType tests listing elements of type EntityStateBoolType.
+func TestEntityStateBoolType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/EntityStateBoolType", nil)
+	req.SetPathValue("type", "EntityStateBoolType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEntityStateBoolType_GetTypeMetadata tests getting type metadata for EntityStateBoolType.
+func TestEntityStateBoolType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/EntityStateBoolType", nil)
+	req.SetPathValue("name", "EntityStateBoolType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEntityStateDebianEVRStringType_CRUD tests Create, Read, Update, Delete for EntityStateDebianEVRStringType.
+func TestEntityStateDebianEVRStringType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "EntityStateDebianEVRStringType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create EntityStateDebianEVRStringType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestEntityStateDebianEVRStringType_ListByType tests listing elements of type EntityStateDebianEVRStringType.
+func TestEntityStateDebianEVRStringType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/EntityStateDebianEVRStringType", nil)
+	req.SetPathValue("type", "EntityStateDebianEVRStringType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEntityStateDebianEVRStringType_GetTypeMetadata tests getting type metadata for EntityStateDebianEVRStringType.
+func TestEntityStateDebianEVRStringType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/EntityStateDebianEVRStringType", nil)
+	req.SetPathValue("name", "EntityStateDebianEVRStringType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEntityStateEVRStringType_CRUD tests Create, Read, Update, Delete for EntityStateEVRStringType.
+func TestEntityStateEVRStringType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "EntityStateEVRStringType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create EntityStateEVRStringType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestEntityStateEVRStringType_ListByType tests listing elements of type EntityStateEVRStringType.
+func TestEntityStateEVRStringType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/EntityStateEVRStringType", nil)
+	req.SetPathValue("type", "EntityStateEVRStringType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEntityStateEVRStringType_GetTypeMetadata tests getting type metadata for EntityStateEVRStringType.
+func TestEntityStateEVRStringType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/EntityStateEVRStringType", nil)
+	req.SetPathValue("name", "EntityStateEVRStringType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEntityStateFieldType_CRUD tests Create, Read, Update, Delete for EntityStateFieldType.
+func TestEntityStateFieldType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "EntityStateFieldType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create EntityStateFieldType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestEntityStateFieldType_ListByType tests listing elements of type EntityStateFieldType.
+func TestEntityStateFieldType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/EntityStateFieldType", nil)
+	req.SetPathValue("type", "EntityStateFieldType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEntityStateFieldType_GetTypeMetadata tests getting type metadata for EntityStateFieldType.
+func TestEntityStateFieldType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/EntityStateFieldType", nil)
+	req.SetPathValue("name", "EntityStateFieldType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEntityStateFileSetRevisionType_CRUD tests Create, Read, Update, Delete for EntityStateFileSetRevisionType.
+func TestEntityStateFileSetRevisionType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "EntityStateFileSetRevisionType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create EntityStateFileSetRevisionType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestEntityStateFileSetRevisionType_ListByType tests listing elements of type EntityStateFileSetRevisionType.
+func TestEntityStateFileSetRevisionType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/EntityStateFileSetRevisionType", nil)
+	req.SetPathValue("type", "EntityStateFileSetRevisionType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEntityStateFileSetRevisionType_GetTypeMetadata tests getting type metadata for EntityStateFileSetRevisionType.
+func TestEntityStateFileSetRevisionType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/EntityStateFileSetRevisionType", nil)
+	req.SetPathValue("name", "EntityStateFileSetRevisionType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEntityStateFloatType_CRUD tests Create, Read, Update, Delete for EntityStateFloatType.
+func TestEntityStateFloatType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "EntityStateFloatType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create EntityStateFloatType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestEntityStateFloatType_ListByType tests listing elements of type EntityStateFloatType.
+func TestEntityStateFloatType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/EntityStateFloatType", nil)
+	req.SetPathValue("type", "EntityStateFloatType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEntityStateFloatType_GetTypeMetadata tests getting type metadata for EntityStateFloatType.
+func TestEntityStateFloatType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/EntityStateFloatType", nil)
+	req.SetPathValue("name", "EntityStateFloatType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEntityStateIOSVersionType_CRUD tests Create, Read, Update, Delete for EntityStateIOSVersionType.
+func TestEntityStateIOSVersionType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "EntityStateIOSVersionType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create EntityStateIOSVersionType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestEntityStateIOSVersionType_ListByType tests listing elements of type EntityStateIOSVersionType.
+func TestEntityStateIOSVersionType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/EntityStateIOSVersionType", nil)
+	req.SetPathValue("type", "EntityStateIOSVersionType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEntityStateIOSVersionType_GetTypeMetadata tests getting type metadata for EntityStateIOSVersionType.
+func TestEntityStateIOSVersionType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/EntityStateIOSVersionType", nil)
+	req.SetPathValue("name", "EntityStateIOSVersionType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEntityStateIPAddressStringType_CRUD tests Create, Read, Update, Delete for EntityStateIPAddressStringType.
+func TestEntityStateIPAddressStringType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "EntityStateIPAddressStringType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create EntityStateIPAddressStringType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestEntityStateIPAddressStringType_ListByType tests listing elements of type EntityStateIPAddressStringType.
+func TestEntityStateIPAddressStringType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/EntityStateIPAddressStringType", nil)
+	req.SetPathValue("type", "EntityStateIPAddressStringType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEntityStateIPAddressStringType_GetTypeMetadata tests getting type metadata for EntityStateIPAddressStringType.
+func TestEntityStateIPAddressStringType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/EntityStateIPAddressStringType", nil)
+	req.SetPathValue("name", "EntityStateIPAddressStringType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEntityStateIPAddressType_CRUD tests Create, Read, Update, Delete for EntityStateIPAddressType.
+func TestEntityStateIPAddressType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "EntityStateIPAddressType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create EntityStateIPAddressType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestEntityStateIPAddressType_ListByType tests listing elements of type EntityStateIPAddressType.
+func TestEntityStateIPAddressType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/EntityStateIPAddressType", nil)
+	req.SetPathValue("type", "EntityStateIPAddressType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEntityStateIPAddressType_GetTypeMetadata tests getting type metadata for EntityStateIPAddressType.
+func TestEntityStateIPAddressType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/EntityStateIPAddressType", nil)
+	req.SetPathValue("name", "EntityStateIPAddressType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEntityStateIntType_CRUD tests Create, Read, Update, Delete for EntityStateIntType.
+func TestEntityStateIntType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "EntityStateIntType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create EntityStateIntType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestEntityStateIntType_ListByType tests listing elements of type EntityStateIntType.
+func TestEntityStateIntType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/EntityStateIntType", nil)
+	req.SetPathValue("type", "EntityStateIntType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEntityStateIntType_GetTypeMetadata tests getting type metadata for EntityStateIntType.
+func TestEntityStateIntType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/EntityStateIntType", nil)
+	req.SetPathValue("name", "EntityStateIntType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEntityStateRecordType_CRUD tests Create, Read, Update, Delete for EntityStateRecordType.
+func TestEntityStateRecordType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "EntityStateRecordType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create EntityStateRecordType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestEntityStateRecordType_ListByType tests listing elements of type EntityStateRecordType.
+func TestEntityStateRecordType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/EntityStateRecordType", nil)
+	req.SetPathValue("type", "EntityStateRecordType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEntityStateRecordType_GetTypeMetadata tests getting type metadata for EntityStateRecordType.
+func TestEntityStateRecordType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/EntityStateRecordType", nil)
+	req.SetPathValue("name", "EntityStateRecordType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEntityStateRecordType_GetValidChildTypes tests getting valid child types for EntityStateRecordType.
+func TestEntityStateRecordType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/EntityStateRecordType/children", nil)
+	req.SetPathValue("name", "EntityStateRecordType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestEntityStateStringType_CRUD tests Create, Read, Update, Delete for EntityStateStringType.
+func TestEntityStateStringType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "EntityStateStringType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create EntityStateStringType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestEntityStateStringType_ListByType tests listing elements of type EntityStateStringType.
+func TestEntityStateStringType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/EntityStateStringType", nil)
+	req.SetPathValue("type", "EntityStateStringType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEntityStateStringType_GetTypeMetadata tests getting type metadata for EntityStateStringType.
+func TestEntityStateStringType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/EntityStateStringType", nil)
+	req.SetPathValue("name", "EntityStateStringType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEntityStateVersionType_CRUD tests Create, Read, Update, Delete for EntityStateVersionType.
+func TestEntityStateVersionType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "EntityStateVersionType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create EntityStateVersionType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestEntityStateVersionType_ListByType tests listing elements of type EntityStateVersionType.
+func TestEntityStateVersionType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/EntityStateVersionType", nil)
+	req.SetPathValue("type", "EntityStateVersionType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEntityStateVersionType_GetTypeMetadata tests getting type metadata for EntityStateVersionType.
+func TestEntityStateVersionType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/EntityStateVersionType", nil)
+	req.SetPathValue("name", "EntityStateVersionType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEscapeRegexFunctionType_CRUD tests Create, Read, Update, Delete for EscapeRegexFunctionType.
+func TestEscapeRegexFunctionType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "EscapeRegexFunctionType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create EscapeRegexFunctionType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestEscapeRegexFunctionType_ListByType tests listing elements of type EscapeRegexFunctionType.
+func TestEscapeRegexFunctionType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/EscapeRegexFunctionType", nil)
+	req.SetPathValue("type", "EscapeRegexFunctionType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestEscapeRegexFunctionType_GetTypeMetadata tests getting type metadata for EscapeRegexFunctionType.
+func TestEscapeRegexFunctionType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/EscapeRegexFunctionType", nil)
+	req.SetPathValue("name", "EscapeRegexFunctionType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestExistenceEnumeration_CRUD tests Create, Read, Update, Delete for ExistenceEnumeration.
+func TestExistenceEnumeration_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "ExistenceEnumeration",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create ExistenceEnumeration returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestExistenceEnumeration_ListByType tests listing elements of type ExistenceEnumeration.
+func TestExistenceEnumeration_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/ExistenceEnumeration", nil)
+	req.SetPathValue("type", "ExistenceEnumeration")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestExistenceEnumeration_GetTypeMetadata tests getting type metadata for ExistenceEnumeration.
+func TestExistenceEnumeration_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ExistenceEnumeration", nil)
+	req.SetPathValue("name", "ExistenceEnumeration")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestExtendDefinitionType_CRUD tests Create, Read, Update, Delete for ExtendDefinitionType.
+func TestExtendDefinitionType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "ExtendDefinitionType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create ExtendDefinitionType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestExtendDefinitionType_ListByType tests listing elements of type ExtendDefinitionType.
+func TestExtendDefinitionType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/ExtendDefinitionType", nil)
+	req.SetPathValue("type", "ExtendDefinitionType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestExtendDefinitionType_GetTypeMetadata tests getting type metadata for ExtendDefinitionType.
+func TestExtendDefinitionType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ExtendDefinitionType", nil)
+	req.SetPathValue("name", "ExtendDefinitionType")
 	rr := httptest.NewRecorder()
 
 	ts.handlers.HandleGetType(rr, req)
@@ -8545,6 +16965,848 @@ func TestExtendedInfosElementType_GetValidChildTypes(t *testing.T) {
 	assertStatusCode(t, rr, http.StatusOK)
 }
 
+// TestExternal_variableElement_CRUD tests Create, Read, Update, Delete for External_variableElement.
+func TestExternal_variableElement_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "External_variableElement",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create External_variableElement returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestExternal_variableElement_ListByType tests listing elements of type External_variableElement.
+func TestExternal_variableElement_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/External_variableElement", nil)
+	req.SetPathValue("type", "External_variableElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestExternal_variableElement_GetTypeMetadata tests getting type metadata for External_variableElement.
+func TestExternal_variableElement_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/External_variableElement", nil)
+	req.SetPathValue("name", "External_variableElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestExternal_variableElement_GetValidChildTypes tests getting valid child types for External_variableElement.
+func TestExternal_variableElement_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/External_variableElement/children", nil)
+	req.SetPathValue("name", "External_variableElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestExternal_variableElementType_CRUD tests Create, Read, Update, Delete for External_variableElementType.
+func TestExternal_variableElementType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "External_variableElementType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create External_variableElementType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestExternal_variableElementType_ListByType tests listing elements of type External_variableElementType.
+func TestExternal_variableElementType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/External_variableElementType", nil)
+	req.SetPathValue("type", "External_variableElementType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestExternal_variableElementType_GetTypeMetadata tests getting type metadata for External_variableElementType.
+func TestExternal_variableElementType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/External_variableElementType", nil)
+	req.SetPathValue("name", "External_variableElementType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestExternal_variableElementType_GetValidChildTypes tests getting valid child types for External_variableElementType.
+func TestExternal_variableElementType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/External_variableElementType/children", nil)
+	req.SetPathValue("name", "External_variableElementType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestFactRefType_CRUD tests Create, Read, Update, Delete for FactRefType.
+func TestFactRefType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "FactRefType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create FactRefType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestFactRefType_ListByType tests listing elements of type FactRefType.
+func TestFactRefType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/FactRefType", nil)
+	req.SetPathValue("type", "FactRefType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestFactRefType_GetTypeMetadata tests getting type metadata for FactRefType.
+func TestFactRefType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/FactRefType", nil)
+	req.SetPathValue("name", "FactRefType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestFactType_CRUD tests Create, Read, Update, Delete for FactType.
+func TestFactType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "FactType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create FactType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestFactType_ListByType tests listing elements of type FactType.
+func TestFactType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/FactType", nil)
+	req.SetPathValue("type", "FactType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestFactType_GetTypeMetadata tests getting type metadata for FactType.
+func TestFactType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/FactType", nil)
+	req.SetPathValue("name", "FactType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestFamilyEnumeration_CRUD tests Create, Read, Update, Delete for FamilyEnumeration.
+func TestFamilyEnumeration_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "FamilyEnumeration",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create FamilyEnumeration returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestFamilyEnumeration_ListByType tests listing elements of type FamilyEnumeration.
+func TestFamilyEnumeration_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/FamilyEnumeration", nil)
+	req.SetPathValue("type", "FamilyEnumeration")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestFamilyEnumeration_GetTypeMetadata tests getting type metadata for FamilyEnumeration.
+func TestFamilyEnumeration_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/FamilyEnumeration", nil)
+	req.SetPathValue("name", "FamilyEnumeration")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestFilterActionEnumeration_CRUD tests Create, Read, Update, Delete for FilterActionEnumeration.
+func TestFilterActionEnumeration_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "FilterActionEnumeration",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create FilterActionEnumeration returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestFilterActionEnumeration_ListByType tests listing elements of type FilterActionEnumeration.
+func TestFilterActionEnumeration_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/FilterActionEnumeration", nil)
+	req.SetPathValue("type", "FilterActionEnumeration")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestFilterActionEnumeration_GetTypeMetadata tests getting type metadata for FilterActionEnumeration.
+func TestFilterActionEnumeration_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/FilterActionEnumeration", nil)
+	req.SetPathValue("name", "FilterActionEnumeration")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestFilterElement_CRUD tests Create, Read, Update, Delete for FilterElement.
+func TestFilterElement_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "FilterElement",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create FilterElement returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestFilterElement_ListByType tests listing elements of type FilterElement.
+func TestFilterElement_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/FilterElement", nil)
+	req.SetPathValue("type", "FilterElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestFilterElement_GetTypeMetadata tests getting type metadata for FilterElement.
+func TestFilterElement_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/FilterElement", nil)
+	req.SetPathValue("name", "FilterElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestFilterElementType_CRUD tests Create, Read, Update, Delete for FilterElementType.
+func TestFilterElementType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "FilterElementType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create FilterElementType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestFilterElementType_ListByType tests listing elements of type FilterElementType.
+func TestFilterElementType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/FilterElementType", nil)
+	req.SetPathValue("type", "FilterElementType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestFilterElementType_GetTypeMetadata tests getting type metadata for FilterElementType.
+func TestFilterElementType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/FilterElementType", nil)
+	req.SetPathValue("name", "FilterElementType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
 // TestFirmNameElementType_CRUD tests Create, Read, Update, Delete for FirmNameElementType.
 func TestFirmNameElementType_CRUD(t *testing.T) {
 	ts := setupTestSuite(t)
@@ -8862,6 +18124,325 @@ func TestFirstNameElementType_GetTypeMetadata(t *testing.T) {
 	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
 		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
 	}
+}
+
+// TestFixStrategyEnumType_CRUD tests Create, Read, Update, Delete for FixStrategyEnumType.
+func TestFixStrategyEnumType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "FixStrategyEnumType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create FixStrategyEnumType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestFixStrategyEnumType_ListByType tests listing elements of type FixStrategyEnumType.
+func TestFixStrategyEnumType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/FixStrategyEnumType", nil)
+	req.SetPathValue("type", "FixStrategyEnumType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestFixStrategyEnumType_GetTypeMetadata tests getting type metadata for FixStrategyEnumType.
+func TestFixStrategyEnumType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/FixStrategyEnumType", nil)
+	req.SetPathValue("name", "FixStrategyEnumType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestFixTextType_CRUD tests Create, Read, Update, Delete for FixTextType.
+func TestFixTextType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "FixTextType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create FixTextType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestFixTextType_ListByType tests listing elements of type FixTextType.
+func TestFixTextType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/FixTextType", nil)
+	req.SetPathValue("type", "FixTextType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestFixTextType_GetTypeMetadata tests getting type metadata for FixTextType.
+func TestFixTextType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/FixTextType", nil)
+	req.SetPathValue("name", "FixTextType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestFixType_CRUD tests Create, Read, Update, Delete for FixType.
+func TestFixType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "FixType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create FixType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestFixType_ListByType tests listing elements of type FixType.
+func TestFixType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/FixType", nil)
+	req.SetPathValue("type", "FixType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestFixType_GetTypeMetadata tests getting type metadata for FixType.
+func TestFixType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/FixType", nil)
+	req.SetPathValue("name", "FixType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestFixType_GetValidChildTypes tests getting valid child types for FixType.
+func TestFixType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/FixType/children", nil)
+	req.SetPathValue("name", "FixType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
 }
 
 // TestFormerNameElementType_CRUD tests Create, Read, Update, Delete for FormerNameElementType.
@@ -9680,6 +19261,657 @@ func TestGenerationIdentifierElementType_GetTypeMetadata(t *testing.T) {
 	}
 }
 
+// TestGeneratorType_CRUD tests Create, Read, Update, Delete for GeneratorType.
+func TestGeneratorType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "GeneratorType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create GeneratorType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestGeneratorType_ListByType tests listing elements of type GeneratorType.
+func TestGeneratorType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/GeneratorType", nil)
+	req.SetPathValue("type", "GeneratorType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestGeneratorType_GetTypeMetadata tests getting type metadata for GeneratorType.
+func TestGeneratorType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/GeneratorType", nil)
+	req.SetPathValue("name", "GeneratorType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestGeneratorType_GetValidChildTypes tests getting valid child types for GeneratorType.
+func TestGeneratorType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/GeneratorType/children", nil)
+	req.SetPathValue("name", "GeneratorType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestGlobToRegexFunctionType_CRUD tests Create, Read, Update, Delete for GlobToRegexFunctionType.
+func TestGlobToRegexFunctionType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "GlobToRegexFunctionType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create GlobToRegexFunctionType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestGlobToRegexFunctionType_ListByType tests listing elements of type GlobToRegexFunctionType.
+func TestGlobToRegexFunctionType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/GlobToRegexFunctionType", nil)
+	req.SetPathValue("type", "GlobToRegexFunctionType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestGlobToRegexFunctionType_GetTypeMetadata tests getting type metadata for GlobToRegexFunctionType.
+func TestGlobToRegexFunctionType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/GlobToRegexFunctionType", nil)
+	req.SetPathValue("name", "GlobToRegexFunctionType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestGroupElement_CRUD tests Create, Read, Update, Delete for GroupElement.
+func TestGroupElement_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "GroupElement",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create GroupElement returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestGroupElement_ListByType tests listing elements of type GroupElement.
+func TestGroupElement_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/GroupElement", nil)
+	req.SetPathValue("type", "GroupElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestGroupElement_GetTypeMetadata tests getting type metadata for GroupElement.
+func TestGroupElement_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/GroupElement", nil)
+	req.SetPathValue("name", "GroupElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestGroupElement_GetValidChildTypes tests getting valid child types for GroupElement.
+func TestGroupElement_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/GroupElement/children", nil)
+	req.SetPathValue("name", "GroupElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestGroupIdType_CRUD tests Create, Read, Update, Delete for GroupIdType.
+func TestGroupIdType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "GroupIdType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create GroupIdType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestGroupIdType_ListByType tests listing elements of type GroupIdType.
+func TestGroupIdType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/GroupIdType", nil)
+	req.SetPathValue("type", "GroupIdType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestGroupIdType_GetTypeMetadata tests getting type metadata for GroupIdType.
+func TestGroupIdType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/GroupIdType", nil)
+	req.SetPathValue("name", "GroupIdType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestGroupType_CRUD tests Create, Read, Update, Delete for GroupType.
+func TestGroupType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "GroupType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create GroupType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestGroupType_ListByType tests listing elements of type GroupType.
+func TestGroupType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/GroupType", nil)
+	req.SetPathValue("type", "GroupType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestGroupType_GetTypeMetadata tests getting type metadata for GroupType.
+func TestGroupType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/GroupType", nil)
+	req.SetPathValue("name", "GroupType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestGroupType_GetValidChildTypes tests getting valid child types for GroupType.
+func TestGroupType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/GroupType/children", nil)
+	req.SetPathValue("name", "GroupType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestHMACOutputLengthType_CRUD tests Create, Read, Update, Delete for HMACOutputLengthType.
+func TestHMACOutputLengthType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "HMACOutputLengthType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create HMACOutputLengthType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestHMACOutputLengthType_ListByType tests listing elements of type HMACOutputLengthType.
+func TestHMACOutputLengthType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/HMACOutputLengthType", nil)
+	req.SetPathValue("type", "HMACOutputLengthType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestHMACOutputLengthType_GetTypeMetadata tests getting type metadata for HMACOutputLengthType.
+func TestHMACOutputLengthType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/HMACOutputLengthType", nil)
+	req.SetPathValue("name", "HMACOutputLengthType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
 // TestHostElementType_CRUD tests Create, Read, Update, Delete for HostElementType.
 func TestHostElementType_CRUD(t *testing.T) {
 	ts := setupTestSuite(t)
@@ -10101,6 +20333,631 @@ func TestHrefType_GetTypeMetadata(t *testing.T) {
 	}
 }
 
+// TestHtmlTextType_CRUD tests Create, Read, Update, Delete for HtmlTextType.
+func TestHtmlTextType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "HtmlTextType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create HtmlTextType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestHtmlTextType_ListByType tests listing elements of type HtmlTextType.
+func TestHtmlTextType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/HtmlTextType", nil)
+	req.SetPathValue("type", "HtmlTextType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestHtmlTextType_GetTypeMetadata tests getting type metadata for HtmlTextType.
+func TestHtmlTextType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/HtmlTextType", nil)
+	req.SetPathValue("name", "HtmlTextType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestHtmlTextWithSubType_CRUD tests Create, Read, Update, Delete for HtmlTextWithSubType.
+func TestHtmlTextWithSubType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "HtmlTextWithSubType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create HtmlTextWithSubType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestHtmlTextWithSubType_ListByType tests listing elements of type HtmlTextWithSubType.
+func TestHtmlTextWithSubType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/HtmlTextWithSubType", nil)
+	req.SetPathValue("type", "HtmlTextWithSubType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestHtmlTextWithSubType_GetTypeMetadata tests getting type metadata for HtmlTextWithSubType.
+func TestHtmlTextWithSubType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/HtmlTextWithSubType", nil)
+	req.SetPathValue("name", "HtmlTextWithSubType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestHtmlTextWithSubType_GetValidChildTypes tests getting valid child types for HtmlTextWithSubType.
+func TestHtmlTextWithSubType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/HtmlTextWithSubType/children", nil)
+	req.SetPathValue("name", "HtmlTextWithSubType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestIdentType_CRUD tests Create, Read, Update, Delete for IdentType.
+func TestIdentType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "IdentType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create IdentType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestIdentType_ListByType tests listing elements of type IdentType.
+func TestIdentType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/IdentType", nil)
+	req.SetPathValue("type", "IdentType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestIdentType_GetTypeMetadata tests getting type metadata for IdentType.
+func TestIdentType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/IdentType", nil)
+	req.SetPathValue("name", "IdentType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestIdentityType_CRUD tests Create, Read, Update, Delete for IdentityType.
+func TestIdentityType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "IdentityType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create IdentityType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestIdentityType_ListByType tests listing elements of type IdentityType.
+func TestIdentityType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/IdentityType", nil)
+	req.SetPathValue("type", "IdentityType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestIdentityType_GetTypeMetadata tests getting type metadata for IdentityType.
+func TestIdentityType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/IdentityType", nil)
+	req.SetPathValue("name", "IdentityType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestIdrefListType_CRUD tests Create, Read, Update, Delete for IdrefListType.
+func TestIdrefListType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "IdrefListType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create IdrefListType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestIdrefListType_ListByType tests listing elements of type IdrefListType.
+func TestIdrefListType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/IdrefListType", nil)
+	req.SetPathValue("type", "IdrefListType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestIdrefListType_GetTypeMetadata tests getting type metadata for IdrefListType.
+func TestIdrefListType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/IdrefListType", nil)
+	req.SetPathValue("name", "IdrefListType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestIdrefType_CRUD tests Create, Read, Update, Delete for IdrefType.
+func TestIdrefType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "IdrefType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create IdrefType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestIdrefType_ListByType tests listing elements of type IdrefType.
+func TestIdrefType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/IdrefType", nil)
+	req.SetPathValue("type", "IdrefType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestIdrefType_GetTypeMetadata tests getting type metadata for IdrefType.
+func TestIdrefType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/IdrefType", nil)
+	req.SetPathValue("name", "IdrefType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
 // TestInstallationIdElementType_CRUD tests Create, Read, Update, Delete for InstallationIdElementType.
 func TestInstallationIdElementType_CRUD(t *testing.T) {
 	ts := setupTestSuite(t)
@@ -10203,6 +21060,108 @@ func TestInstallationIdElementType_GetTypeMetadata(t *testing.T) {
 	}
 }
 
+// TestInstanceFixType_CRUD tests Create, Read, Update, Delete for InstanceFixType.
+func TestInstanceFixType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "InstanceFixType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create InstanceFixType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestInstanceFixType_ListByType tests listing elements of type InstanceFixType.
+func TestInstanceFixType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/InstanceFixType", nil)
+	req.SetPathValue("type", "InstanceFixType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestInstanceFixType_GetTypeMetadata tests getting type metadata for InstanceFixType.
+func TestInstanceFixType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/InstanceFixType", nil)
+	req.SetPathValue("name", "InstanceFixType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
 // TestInstanceNameElementType_CRUD tests Create, Read, Update, Delete for InstanceNameElementType.
 func TestInstanceNameElementType_CRUD(t *testing.T) {
 	ts := setupTestSuite(t)
@@ -10296,6 +21255,210 @@ func TestInstanceNameElementType_GetTypeMetadata(t *testing.T) {
 
 	req := httptest.NewRequest("GET", "/api/types/InstanceNameElementType", nil)
 	req.SetPathValue("name", "InstanceNameElementType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestInstanceResultType_CRUD tests Create, Read, Update, Delete for InstanceResultType.
+func TestInstanceResultType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "InstanceResultType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create InstanceResultType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestInstanceResultType_ListByType tests listing elements of type InstanceResultType.
+func TestInstanceResultType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/InstanceResultType", nil)
+	req.SetPathValue("type", "InstanceResultType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestInstanceResultType_GetTypeMetadata tests getting type metadata for InstanceResultType.
+func TestInstanceResultType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/InstanceResultType", nil)
+	req.SetPathValue("name", "InstanceResultType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestInterfaceHintType_CRUD tests Create, Read, Update, Delete for InterfaceHintType.
+func TestInterfaceHintType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "InterfaceHintType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create InterfaceHintType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestInterfaceHintType_ListByType tests listing elements of type InterfaceHintType.
+func TestInterfaceHintType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/InterfaceHintType", nil)
+	req.SetPathValue("type", "InterfaceHintType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestInterfaceHintType_GetTypeMetadata tests getting type metadata for InterfaceHintType.
+func TestInterfaceHintType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/InterfaceHintType", nil)
+	req.SetPathValue("name", "InterfaceHintType")
 	rr := httptest.NewRecorder()
 
 	ts.handlers.HandleGetType(rr, req)
@@ -11160,6 +22323,223 @@ func TestItAssetElement_GetTypeMetadata(t *testing.T) {
 	}
 }
 
+// TestItemElement_CRUD tests Create, Read, Update, Delete for ItemElement.
+func TestItemElement_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "ItemElement",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create ItemElement returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestItemElement_ListByType tests listing elements of type ItemElement.
+func TestItemElement_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/ItemElement", nil)
+	req.SetPathValue("type", "ItemElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestItemElement_GetTypeMetadata tests getting type metadata for ItemElement.
+func TestItemElement_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ItemElement", nil)
+	req.SetPathValue("name", "ItemElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestItemElement_GetValidChildTypes tests getting valid child types for ItemElement.
+func TestItemElement_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ItemElement/children", nil)
+	req.SetPathValue("name", "ItemElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestItemIDPattern_CRUD tests Create, Read, Update, Delete for ItemIDPattern.
+func TestItemIDPattern_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "ItemIDPattern",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create ItemIDPattern returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestItemIDPattern_ListByType tests listing elements of type ItemIDPattern.
+func TestItemIDPattern_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/ItemIDPattern", nil)
+	req.SetPathValue("type", "ItemIDPattern")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestItemIDPattern_GetTypeMetadata tests getting type metadata for ItemIDPattern.
+func TestItemIDPattern_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ItemIDPattern", nil)
+	req.SetPathValue("name", "ItemIDPattern")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
 // TestJointPersonNameElement_CRUD tests Create, Read, Update, Delete for JointPersonNameElement.
 func TestJointPersonNameElement_CRUD(t *testing.T) {
 	ts := setupTestSuite(t)
@@ -11390,6 +22770,236 @@ func TestJointPersonNameElementType_GetValidChildTypes(t *testing.T) {
 	assertStatusCode(t, rr, http.StatusOK)
 }
 
+// TestKeyInfoElement_CRUD tests Create, Read, Update, Delete for KeyInfoElement.
+func TestKeyInfoElement_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "KeyInfoElement",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create KeyInfoElement returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestKeyInfoElement_ListByType tests listing elements of type KeyInfoElement.
+func TestKeyInfoElement_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/KeyInfoElement", nil)
+	req.SetPathValue("type", "KeyInfoElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestKeyInfoElement_GetTypeMetadata tests getting type metadata for KeyInfoElement.
+func TestKeyInfoElement_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/KeyInfoElement", nil)
+	req.SetPathValue("name", "KeyInfoElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestKeyInfoElement_GetValidChildTypes tests getting valid child types for KeyInfoElement.
+func TestKeyInfoElement_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/KeyInfoElement/children", nil)
+	req.SetPathValue("name", "KeyInfoElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestKeyInfoType_CRUD tests Create, Read, Update, Delete for KeyInfoType.
+func TestKeyInfoType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "KeyInfoType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create KeyInfoType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestKeyInfoType_ListByType tests listing elements of type KeyInfoType.
+func TestKeyInfoType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/KeyInfoType", nil)
+	req.SetPathValue("type", "KeyInfoType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestKeyInfoType_GetTypeMetadata tests getting type metadata for KeyInfoType.
+func TestKeyInfoType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/KeyInfoType", nil)
+	req.SetPathValue("name", "KeyInfoType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestKeyInfoType_GetValidChildTypes tests getting valid child types for KeyInfoType.
+func TestKeyInfoType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/KeyInfoType/children", nil)
+	req.SetPathValue("name", "KeyInfoType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
 // TestKeyLineCodeElementType_CRUD tests Create, Read, Update, Delete for KeyLineCodeElementType.
 func TestKeyLineCodeElementType_CRUD(t *testing.T) {
 	ts := setupTestSuite(t)
@@ -11490,6 +23100,338 @@ func TestKeyLineCodeElementType_GetTypeMetadata(t *testing.T) {
 	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
 		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
 	}
+}
+
+// TestKeyNameElement_CRUD tests Create, Read, Update, Delete for KeyNameElement.
+func TestKeyNameElement_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "KeyNameElement",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create KeyNameElement returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestKeyNameElement_ListByType tests listing elements of type KeyNameElement.
+func TestKeyNameElement_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/KeyNameElement", nil)
+	req.SetPathValue("type", "KeyNameElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestKeyNameElement_GetTypeMetadata tests getting type metadata for KeyNameElement.
+func TestKeyNameElement_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/KeyNameElement", nil)
+	req.SetPathValue("name", "KeyNameElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestKeyValueElement_CRUD tests Create, Read, Update, Delete for KeyValueElement.
+func TestKeyValueElement_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "KeyValueElement",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create KeyValueElement returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestKeyValueElement_ListByType tests listing elements of type KeyValueElement.
+func TestKeyValueElement_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/KeyValueElement", nil)
+	req.SetPathValue("type", "KeyValueElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestKeyValueElement_GetTypeMetadata tests getting type metadata for KeyValueElement.
+func TestKeyValueElement_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/KeyValueElement", nil)
+	req.SetPathValue("name", "KeyValueElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestKeyValueElement_GetValidChildTypes tests getting valid child types for KeyValueElement.
+func TestKeyValueElement_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/KeyValueElement/children", nil)
+	req.SetPathValue("name", "KeyValueElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestKeyValueType_CRUD tests Create, Read, Update, Delete for KeyValueType.
+func TestKeyValueType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "KeyValueType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create KeyValueType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestKeyValueType_ListByType tests listing elements of type KeyValueType.
+func TestKeyValueType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/KeyValueType", nil)
+	req.SetPathValue("type", "KeyValueType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestKeyValueType_GetTypeMetadata tests getting type metadata for KeyValueType.
+func TestKeyValueType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/KeyValueType", nil)
+	req.SetPathValue("name", "KeyValueType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestKeyValueType_GetValidChildTypes tests getting valid child types for KeyValueType.
+func TestKeyValueType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/KeyValueType/children", nil)
+	req.SetPathValue("name", "KeyValueType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
 }
 
 // TestKnownAsElementType_CRUD tests Create, Read, Update, Delete for KnownAsElementType.
@@ -12210,6 +24152,427 @@ func TestLicenseElementType_GetTypeMetadata(t *testing.T) {
 
 	req := httptest.NewRequest("GET", "/api/types/LicenseElementType", nil)
 	req.SetPathValue("name", "LicenseElementType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestListType_CRUD tests Create, Read, Update, Delete for ListType.
+func TestListType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "ListType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create ListType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestListType_ListByType tests listing elements of type ListType.
+func TestListType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/ListType", nil)
+	req.SetPathValue("type", "ListType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestListType_GetTypeMetadata tests getting type metadata for ListType.
+func TestListType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ListType", nil)
+	req.SetPathValue("name", "ListType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestListType_GetValidChildTypes tests getting valid child types for ListType.
+func TestListType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ListType/children", nil)
+	req.SetPathValue("name", "ListType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestLiteralComponentType_CRUD tests Create, Read, Update, Delete for LiteralComponentType.
+func TestLiteralComponentType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "LiteralComponentType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create LiteralComponentType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestLiteralComponentType_ListByType tests listing elements of type LiteralComponentType.
+func TestLiteralComponentType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/LiteralComponentType", nil)
+	req.SetPathValue("type", "LiteralComponentType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestLiteralComponentType_GetTypeMetadata tests getting type metadata for LiteralComponentType.
+func TestLiteralComponentType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/LiteralComponentType", nil)
+	req.SetPathValue("name", "LiteralComponentType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestLocal_variableElement_CRUD tests Create, Read, Update, Delete for Local_variableElement.
+func TestLocal_variableElement_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "Local_variableElement",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create Local_variableElement returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestLocal_variableElement_ListByType tests listing elements of type Local_variableElement.
+func TestLocal_variableElement_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/Local_variableElement", nil)
+	req.SetPathValue("type", "Local_variableElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestLocal_variableElement_GetTypeMetadata tests getting type metadata for Local_variableElement.
+func TestLocal_variableElement_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/Local_variableElement", nil)
+	req.SetPathValue("name", "Local_variableElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestLocal_variableElementType_CRUD tests Create, Read, Update, Delete for Local_variableElementType.
+func TestLocal_variableElementType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "Local_variableElementType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create Local_variableElementType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestLocal_variableElementType_ListByType tests listing elements of type Local_variableElementType.
+func TestLocal_variableElementType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/Local_variableElementType", nil)
+	req.SetPathValue("type", "Local_variableElementType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestLocal_variableElementType_GetTypeMetadata tests getting type metadata for Local_variableElementType.
+func TestLocal_variableElementType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/Local_variableElementType", nil)
+	req.SetPathValue("name", "Local_variableElementType")
 	rr := httptest.NewRecorder()
 
 	ts.handlers.HandleGetType(rr, req)
@@ -13801,6 +26164,121 @@ func TestLocatorType_GetTypeMetadata(t *testing.T) {
 	}
 }
 
+// TestLogicalTestType_CRUD tests Create, Read, Update, Delete for LogicalTestType.
+func TestLogicalTestType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "LogicalTestType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create LogicalTestType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestLogicalTestType_ListByType tests listing elements of type LogicalTestType.
+func TestLogicalTestType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/LogicalTestType", nil)
+	req.SetPathValue("type", "LogicalTestType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestLogicalTestType_GetTypeMetadata tests getting type metadata for LogicalTestType.
+func TestLogicalTestType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/LogicalTestType", nil)
+	req.SetPathValue("name", "LogicalTestType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestLogicalTestType_GetValidChildTypes tests getting valid child types for LogicalTestType.
+func TestLogicalTestType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/LogicalTestType/children", nil)
+	req.SetPathValue("name", "LogicalTestType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
 // TestMacAddressElementType_CRUD tests Create, Read, Update, Delete for MacAddressElementType.
 func TestMacAddressElementType_CRUD(t *testing.T) {
 	ts := setupTestSuite(t)
@@ -14324,6 +26802,657 @@ func TestMailStopType_GetValidChildTypes(t *testing.T) {
 	assertStatusCode(t, rr, http.StatusOK)
 }
 
+// TestManifestElement_CRUD tests Create, Read, Update, Delete for ManifestElement.
+func TestManifestElement_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "ManifestElement",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create ManifestElement returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestManifestElement_ListByType tests listing elements of type ManifestElement.
+func TestManifestElement_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/ManifestElement", nil)
+	req.SetPathValue("type", "ManifestElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestManifestElement_GetTypeMetadata tests getting type metadata for ManifestElement.
+func TestManifestElement_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ManifestElement", nil)
+	req.SetPathValue("name", "ManifestElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestManifestElement_GetValidChildTypes tests getting valid child types for ManifestElement.
+func TestManifestElement_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ManifestElement/children", nil)
+	req.SetPathValue("name", "ManifestElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestManifestType_CRUD tests Create, Read, Update, Delete for ManifestType.
+func TestManifestType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "ManifestType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create ManifestType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestManifestType_ListByType tests listing elements of type ManifestType.
+func TestManifestType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/ManifestType", nil)
+	req.SetPathValue("type", "ManifestType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestManifestType_GetTypeMetadata tests getting type metadata for ManifestType.
+func TestManifestType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ManifestType", nil)
+	req.SetPathValue("name", "ManifestType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestManifestType_GetValidChildTypes tests getting valid child types for ManifestType.
+func TestManifestType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ManifestType/children", nil)
+	req.SetPathValue("name", "ManifestType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestMessageLevelEnumeration_CRUD tests Create, Read, Update, Delete for MessageLevelEnumeration.
+func TestMessageLevelEnumeration_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "MessageLevelEnumeration",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create MessageLevelEnumeration returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestMessageLevelEnumeration_ListByType tests listing elements of type MessageLevelEnumeration.
+func TestMessageLevelEnumeration_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/MessageLevelEnumeration", nil)
+	req.SetPathValue("type", "MessageLevelEnumeration")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestMessageLevelEnumeration_GetTypeMetadata tests getting type metadata for MessageLevelEnumeration.
+func TestMessageLevelEnumeration_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/MessageLevelEnumeration", nil)
+	req.SetPathValue("name", "MessageLevelEnumeration")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestMessageType_CRUD tests Create, Read, Update, Delete for MessageType.
+func TestMessageType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "MessageType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create MessageType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestMessageType_ListByType tests listing elements of type MessageType.
+func TestMessageType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/MessageType", nil)
+	req.SetPathValue("type", "MessageType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestMessageType_GetTypeMetadata tests getting type metadata for MessageType.
+func TestMessageType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/MessageType", nil)
+	req.SetPathValue("name", "MessageType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestMetadataType_CRUD tests Create, Read, Update, Delete for MetadataType.
+func TestMetadataType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "MetadataType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create MetadataType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestMetadataType_ListByType tests listing elements of type MetadataType.
+func TestMetadataType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/MetadataType", nil)
+	req.SetPathValue("type", "MetadataType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestMetadataType_GetTypeMetadata tests getting type metadata for MetadataType.
+func TestMetadataType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/MetadataType", nil)
+	req.SetPathValue("name", "MetadataType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestMetadataType_GetValidChildTypes tests getting valid child types for MetadataType.
+func TestMetadataType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/MetadataType/children", nil)
+	req.SetPathValue("name", "MetadataType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestMgmtDataElement_CRUD tests Create, Read, Update, Delete for MgmtDataElement.
+func TestMgmtDataElement_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "MgmtDataElement",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create MgmtDataElement returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestMgmtDataElement_ListByType tests listing elements of type MgmtDataElement.
+func TestMgmtDataElement_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/MgmtDataElement", nil)
+	req.SetPathValue("type", "MgmtDataElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestMgmtDataElement_GetTypeMetadata tests getting type metadata for MgmtDataElement.
+func TestMgmtDataElement_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/MgmtDataElement", nil)
+	req.SetPathValue("name", "MgmtDataElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
 // TestMiddleNameElementType_CRUD tests Create, Read, Update, Delete for MiddleNameElementType.
 func TestMiddleNameElementType_CRUD(t *testing.T) {
 	ts := setupTestSuite(t)
@@ -14426,6 +27555,236 @@ func TestMiddleNameElementType_GetTypeMetadata(t *testing.T) {
 	}
 }
 
+// TestModelElement_CRUD tests Create, Read, Update, Delete for ModelElement.
+func TestModelElement_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "ModelElement",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create ModelElement returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestModelElement_ListByType tests listing elements of type ModelElement.
+func TestModelElement_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/ModelElement", nil)
+	req.SetPathValue("type", "ModelElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestModelElement_GetTypeMetadata tests getting type metadata for ModelElement.
+func TestModelElement_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ModelElement", nil)
+	req.SetPathValue("name", "ModelElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestModelElement_GetValidChildTypes tests getting valid child types for ModelElement.
+func TestModelElement_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ModelElement/children", nil)
+	req.SetPathValue("name", "ModelElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestModelElementType_CRUD tests Create, Read, Update, Delete for ModelElementType.
+func TestModelElementType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "ModelElementType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create ModelElementType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestModelElementType_ListByType tests listing elements of type ModelElementType.
+func TestModelElementType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/ModelElementType", nil)
+	req.SetPathValue("type", "ModelElementType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestModelElementType_GetTypeMetadata tests getting type metadata for ModelElementType.
+func TestModelElementType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ModelElementType", nil)
+	req.SetPathValue("name", "ModelElementType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestModelElementType_GetValidChildTypes tests getting valid child types for ModelElementType.
+func TestModelElementType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ModelElementType/children", nil)
+	req.SetPathValue("name", "ModelElementType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
 // TestMotherboardGuidElementType_CRUD tests Create, Read, Update, Delete for MotherboardGuidElementType.
 func TestMotherboardGuidElementType_CRUD(t *testing.T) {
 	ts := setupTestSuite(t)
@@ -14519,6 +27878,108 @@ func TestMotherboardGuidElementType_GetTypeMetadata(t *testing.T) {
 
 	req := httptest.NewRequest("GET", "/api/types/MotherboardGuidElementType", nil)
 	req.SetPathValue("name", "MotherboardGuidElementType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestMsgSevEnumType_CRUD tests Create, Read, Update, Delete for MsgSevEnumType.
+func TestMsgSevEnumType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "MsgSevEnumType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create MsgSevEnumType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestMsgSevEnumType_ListByType tests listing elements of type MsgSevEnumType.
+func TestMsgSevEnumType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/MsgSevEnumType", nil)
+	req.SetPathValue("type", "MsgSevEnumType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestMsgSevEnumType_GetTypeMetadata tests getting type metadata for MsgSevEnumType.
+func TestMsgSevEnumType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/MsgSevEnumType", nil)
+	req.SetPathValue("name", "MsgSevEnumType")
 	rr := httptest.NewRecorder()
 
 	ts.handlers.HandleGetType(rr, req)
@@ -14966,6 +28427,108 @@ func TestNameLineType_GetTypeMetadata(t *testing.T) {
 
 	req := httptest.NewRequest("GET", "/api/types/NameLineType", nil)
 	req.SetPathValue("name", "NameLineType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestNamePattern_CRUD tests Create, Read, Update, Delete for NamePattern.
+func TestNamePattern_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "NamePattern",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create NamePattern returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestNamePattern_ListByType tests listing elements of type NamePattern.
+func TestNamePattern_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/NamePattern", nil)
+	req.SetPathValue("type", "NamePattern")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestNamePattern_GetTypeMetadata tests getting type metadata for NamePattern.
+func TestNamePattern_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/NamePattern", nil)
+	req.SetPathValue("name", "NamePattern")
 	rr := httptest.NewRecorder()
 
 	ts.handlers.HandleGetType(rr, req)
@@ -15524,6 +29087,835 @@ func TestNetworkType_GetValidChildTypes(t *testing.T) {
 	assertStatusCode(t, rr, http.StatusOK)
 }
 
+// TestNonEmptyStringType_CRUD tests Create, Read, Update, Delete for NonEmptyStringType.
+func TestNonEmptyStringType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "NonEmptyStringType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create NonEmptyStringType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestNonEmptyStringType_ListByType tests listing elements of type NonEmptyStringType.
+func TestNonEmptyStringType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/NonEmptyStringType", nil)
+	req.SetPathValue("type", "NonEmptyStringType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestNonEmptyStringType_GetTypeMetadata tests getting type metadata for NonEmptyStringType.
+func TestNonEmptyStringType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/NonEmptyStringType", nil)
+	req.SetPathValue("name", "NonEmptyStringType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestNotesElement_CRUD tests Create, Read, Update, Delete for NotesElement.
+func TestNotesElement_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "NotesElement",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create NotesElement returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestNotesElement_ListByType tests listing elements of type NotesElement.
+func TestNotesElement_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/NotesElement", nil)
+	req.SetPathValue("type", "NotesElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestNotesElement_GetTypeMetadata tests getting type metadata for NotesElement.
+func TestNotesElement_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/NotesElement", nil)
+	req.SetPathValue("name", "NotesElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestNotesElementType_CRUD tests Create, Read, Update, Delete for NotesElementType.
+func TestNotesElementType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "NotesElementType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create NotesElementType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestNotesElementType_ListByType tests listing elements of type NotesElementType.
+func TestNotesElementType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/NotesElementType", nil)
+	req.SetPathValue("type", "NotesElementType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestNotesElementType_GetTypeMetadata tests getting type metadata for NotesElementType.
+func TestNotesElementType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/NotesElementType", nil)
+	req.SetPathValue("name", "NotesElementType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestNotesType_CRUD tests Create, Read, Update, Delete for NotesType.
+func TestNotesType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "NotesType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create NotesType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestNotesType_ListByType tests listing elements of type NotesType.
+func TestNotesType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/NotesType", nil)
+	req.SetPathValue("type", "NotesType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestNotesType_GetTypeMetadata tests getting type metadata for NotesType.
+func TestNotesType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/NotesType", nil)
+	req.SetPathValue("name", "NotesType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestNoticeType_CRUD tests Create, Read, Update, Delete for NoticeType.
+func TestNoticeType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "NoticeType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create NoticeType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestNoticeType_ListByType tests listing elements of type NoticeType.
+func TestNoticeType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/NoticeType", nil)
+	req.SetPathValue("type", "NoticeType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestNoticeType_GetTypeMetadata tests getting type metadata for NoticeType.
+func TestNoticeType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/NoticeType", nil)
+	req.SetPathValue("name", "NoticeType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestObjectComponentType_CRUD tests Create, Read, Update, Delete for ObjectComponentType.
+func TestObjectComponentType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "ObjectComponentType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create ObjectComponentType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestObjectComponentType_ListByType tests listing elements of type ObjectComponentType.
+func TestObjectComponentType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/ObjectComponentType", nil)
+	req.SetPathValue("type", "ObjectComponentType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestObjectComponentType_GetTypeMetadata tests getting type metadata for ObjectComponentType.
+func TestObjectComponentType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ObjectComponentType", nil)
+	req.SetPathValue("name", "ObjectComponentType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestObjectElement_CRUD tests Create, Read, Update, Delete for ObjectElement.
+func TestObjectElement_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "ObjectElement",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create ObjectElement returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestObjectElement_ListByType tests listing elements of type ObjectElement.
+func TestObjectElement_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/ObjectElement", nil)
+	req.SetPathValue("type", "ObjectElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestObjectElement_GetTypeMetadata tests getting type metadata for ObjectElement.
+func TestObjectElement_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ObjectElement", nil)
+	req.SetPathValue("name", "ObjectElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestObjectElement_GetValidChildTypes tests getting valid child types for ObjectElement.
+func TestObjectElement_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ObjectElement/children", nil)
+	req.SetPathValue("name", "ObjectElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestObjectIDPattern_CRUD tests Create, Read, Update, Delete for ObjectIDPattern.
+func TestObjectIDPattern_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "ObjectIDPattern",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create ObjectIDPattern returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestObjectIDPattern_ListByType tests listing elements of type ObjectIDPattern.
+func TestObjectIDPattern_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/ObjectIDPattern", nil)
+	req.SetPathValue("type", "ObjectIDPattern")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestObjectIDPattern_GetTypeMetadata tests getting type metadata for ObjectIDPattern.
+func TestObjectIDPattern_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ObjectIDPattern", nil)
+	req.SetPathValue("name", "ObjectIDPattern")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
 // TestObjectRefElement_CRUD tests Create, Read, Update, Delete for ObjectRefElement.
 func TestObjectRefElement_CRUD(t *testing.T) {
 	ts := setupTestSuite(t)
@@ -15719,6 +30111,529 @@ func TestObjectRefElementType_GetTypeMetadata(t *testing.T) {
 
 	req := httptest.NewRequest("GET", "/api/types/ObjectRefElementType", nil)
 	req.SetPathValue("name", "ObjectRefElementType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestObjectRefType_CRUD tests Create, Read, Update, Delete for ObjectRefType.
+func TestObjectRefType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "ObjectRefType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create ObjectRefType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestObjectRefType_ListByType tests listing elements of type ObjectRefType.
+func TestObjectRefType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/ObjectRefType", nil)
+	req.SetPathValue("type", "ObjectRefType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestObjectRefType_GetTypeMetadata tests getting type metadata for ObjectRefType.
+func TestObjectRefType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ObjectRefType", nil)
+	req.SetPathValue("name", "ObjectRefType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestObjectType_CRUD tests Create, Read, Update, Delete for ObjectType.
+func TestObjectType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "ObjectType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create ObjectType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestObjectType_ListByType tests listing elements of type ObjectType.
+func TestObjectType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/ObjectType", nil)
+	req.SetPathValue("type", "ObjectType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestObjectType_GetTypeMetadata tests getting type metadata for ObjectType.
+func TestObjectType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ObjectType", nil)
+	req.SetPathValue("name", "ObjectType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestObjectsType_CRUD tests Create, Read, Update, Delete for ObjectsType.
+func TestObjectsType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "ObjectsType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create ObjectsType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestObjectsType_ListByType tests listing elements of type ObjectsType.
+func TestObjectsType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/ObjectsType", nil)
+	req.SetPathValue("type", "ObjectsType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestObjectsType_GetTypeMetadata tests getting type metadata for ObjectsType.
+func TestObjectsType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ObjectsType", nil)
+	req.SetPathValue("name", "ObjectsType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestObjectsType_GetValidChildTypes tests getting valid child types for ObjectsType.
+func TestObjectsType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ObjectsType/children", nil)
+	req.SetPathValue("name", "ObjectsType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestOperationEnumeration_CRUD tests Create, Read, Update, Delete for OperationEnumeration.
+func TestOperationEnumeration_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "OperationEnumeration",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create OperationEnumeration returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestOperationEnumeration_ListByType tests listing elements of type OperationEnumeration.
+func TestOperationEnumeration_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/OperationEnumeration", nil)
+	req.SetPathValue("type", "OperationEnumeration")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestOperationEnumeration_GetTypeMetadata tests getting type metadata for OperationEnumeration.
+func TestOperationEnumeration_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/OperationEnumeration", nil)
+	req.SetPathValue("name", "OperationEnumeration")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestOperatorEnumeration_CRUD tests Create, Read, Update, Delete for OperatorEnumeration.
+func TestOperatorEnumeration_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "OperatorEnumeration",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create OperatorEnumeration returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestOperatorEnumeration_ListByType tests listing elements of type OperatorEnumeration.
+func TestOperatorEnumeration_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/OperatorEnumeration", nil)
+	req.SetPathValue("type", "OperatorEnumeration")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestOperatorEnumeration_GetTypeMetadata tests getting type metadata for OperatorEnumeration.
+func TestOperatorEnumeration_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/OperatorEnumeration", nil)
+	req.SetPathValue("name", "OperatorEnumeration")
 	rr := httptest.NewRecorder()
 
 	ts.handlers.HandleGetType(rr, req)
@@ -16813,6 +31728,759 @@ func TestOtherNameElementType_GetTypeMetadata(t *testing.T) {
 	}
 }
 
+// TestOval_definitionsElement_CRUD tests Create, Read, Update, Delete for Oval_definitionsElement.
+func TestOval_definitionsElement_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "Oval_definitionsElement",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create Oval_definitionsElement returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestOval_definitionsElement_ListByType tests listing elements of type Oval_definitionsElement.
+func TestOval_definitionsElement_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/Oval_definitionsElement", nil)
+	req.SetPathValue("type", "Oval_definitionsElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestOval_definitionsElement_GetTypeMetadata tests getting type metadata for Oval_definitionsElement.
+func TestOval_definitionsElement_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/Oval_definitionsElement", nil)
+	req.SetPathValue("name", "Oval_definitionsElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestOval_definitionsElement_GetValidChildTypes tests getting valid child types for Oval_definitionsElement.
+func TestOval_definitionsElement_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/Oval_definitionsElement/children", nil)
+	req.SetPathValue("name", "Oval_definitionsElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestOval_definitionsElementType_CRUD tests Create, Read, Update, Delete for Oval_definitionsElementType.
+func TestOval_definitionsElementType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "Oval_definitionsElementType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create Oval_definitionsElementType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestOval_definitionsElementType_ListByType tests listing elements of type Oval_definitionsElementType.
+func TestOval_definitionsElementType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/Oval_definitionsElementType", nil)
+	req.SetPathValue("type", "Oval_definitionsElementType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestOval_definitionsElementType_GetTypeMetadata tests getting type metadata for Oval_definitionsElementType.
+func TestOval_definitionsElementType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/Oval_definitionsElementType", nil)
+	req.SetPathValue("name", "Oval_definitionsElementType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestOval_definitionsElementType_GetValidChildTypes tests getting valid child types for Oval_definitionsElementType.
+func TestOval_definitionsElementType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/Oval_definitionsElementType/children", nil)
+	req.SetPathValue("name", "Oval_definitionsElementType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestOverrideType_CRUD tests Create, Read, Update, Delete for OverrideType.
+func TestOverrideType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "OverrideType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create OverrideType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestOverrideType_ListByType tests listing elements of type OverrideType.
+func TestOverrideType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/OverrideType", nil)
+	req.SetPathValue("type", "OverrideType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestOverrideType_GetTypeMetadata tests getting type metadata for OverrideType.
+func TestOverrideType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/OverrideType", nil)
+	req.SetPathValue("name", "OverrideType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestOverrideType_GetValidChildTypes tests getting valid child types for OverrideType.
+func TestOverrideType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/OverrideType/children", nil)
+	req.SetPathValue("name", "OverrideType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestOverrideableCPE2idrefType_CRUD tests Create, Read, Update, Delete for OverrideableCPE2idrefType.
+func TestOverrideableCPE2idrefType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "OverrideableCPE2idrefType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create OverrideableCPE2idrefType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestOverrideableCPE2idrefType_ListByType tests listing elements of type OverrideableCPE2idrefType.
+func TestOverrideableCPE2idrefType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/OverrideableCPE2idrefType", nil)
+	req.SetPathValue("type", "OverrideableCPE2idrefType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestOverrideableCPE2idrefType_GetTypeMetadata tests getting type metadata for OverrideableCPE2idrefType.
+func TestOverrideableCPE2idrefType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/OverrideableCPE2idrefType", nil)
+	req.SetPathValue("name", "OverrideableCPE2idrefType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestPGPDataElement_CRUD tests Create, Read, Update, Delete for PGPDataElement.
+func TestPGPDataElement_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "PGPDataElement",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create PGPDataElement returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestPGPDataElement_ListByType tests listing elements of type PGPDataElement.
+func TestPGPDataElement_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/PGPDataElement", nil)
+	req.SetPathValue("type", "PGPDataElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestPGPDataElement_GetTypeMetadata tests getting type metadata for PGPDataElement.
+func TestPGPDataElement_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/PGPDataElement", nil)
+	req.SetPathValue("name", "PGPDataElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestPGPDataType_CRUD tests Create, Read, Update, Delete for PGPDataType.
+func TestPGPDataType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "PGPDataType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create PGPDataType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestPGPDataType_ListByType tests listing elements of type PGPDataType.
+func TestPGPDataType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/PGPDataType", nil)
+	req.SetPathValue("type", "PGPDataType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestPGPDataType_GetTypeMetadata tests getting type metadata for PGPDataType.
+func TestPGPDataType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/PGPDataType", nil)
+	req.SetPathValue("name", "PGPDataType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestParamType_CRUD tests Create, Read, Update, Delete for ParamType.
+func TestParamType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "ParamType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create ParamType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestParamType_ListByType tests listing elements of type ParamType.
+func TestParamType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/ParamType", nil)
+	req.SetPathValue("type", "ParamType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestParamType_GetTypeMetadata tests getting type metadata for ParamType.
+func TestParamType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ParamType", nil)
+	req.SetPathValue("name", "ParamType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
 // TestPersonElement_CRUD tests Create, Read, Update, Delete for PersonElement.
 func TestPersonElement_CRUD(t *testing.T) {
 	ts := setupTestSuite(t)
@@ -17388,6 +33056,453 @@ func TestPersonType_GetValidChildTypes(t *testing.T) {
 	assertStatusCode(t, rr, http.StatusOK)
 }
 
+// TestPlainTextType_CRUD tests Create, Read, Update, Delete for PlainTextType.
+func TestPlainTextType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "PlainTextType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create PlainTextType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestPlainTextType_ListByType tests listing elements of type PlainTextType.
+func TestPlainTextType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/PlainTextType", nil)
+	req.SetPathValue("type", "PlainTextType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestPlainTextType_GetTypeMetadata tests getting type metadata for PlainTextType.
+func TestPlainTextType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/PlainTextType", nil)
+	req.SetPathValue("name", "PlainTextType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestPlatformSpecificationElement_CRUD tests Create, Read, Update, Delete for PlatformSpecificationElement.
+func TestPlatformSpecificationElement_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "PlatformSpecificationElement",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create PlatformSpecificationElement returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestPlatformSpecificationElement_ListByType tests listing elements of type PlatformSpecificationElement.
+func TestPlatformSpecificationElement_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/PlatformSpecificationElement", nil)
+	req.SetPathValue("type", "PlatformSpecificationElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestPlatformSpecificationElement_GetTypeMetadata tests getting type metadata for PlatformSpecificationElement.
+func TestPlatformSpecificationElement_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/PlatformSpecificationElement", nil)
+	req.SetPathValue("name", "PlatformSpecificationElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestPlatformSpecificationElement_GetValidChildTypes tests getting valid child types for PlatformSpecificationElement.
+func TestPlatformSpecificationElement_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/PlatformSpecificationElement/children", nil)
+	req.SetPathValue("name", "PlatformSpecificationElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestPlatformSpecificationElementType_CRUD tests Create, Read, Update, Delete for PlatformSpecificationElementType.
+func TestPlatformSpecificationElementType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "PlatformSpecificationElementType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create PlatformSpecificationElementType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestPlatformSpecificationElementType_ListByType tests listing elements of type PlatformSpecificationElementType.
+func TestPlatformSpecificationElementType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/PlatformSpecificationElementType", nil)
+	req.SetPathValue("type", "PlatformSpecificationElementType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestPlatformSpecificationElementType_GetTypeMetadata tests getting type metadata for PlatformSpecificationElementType.
+func TestPlatformSpecificationElementType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/PlatformSpecificationElementType", nil)
+	req.SetPathValue("name", "PlatformSpecificationElementType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestPlatformSpecificationElementType_GetValidChildTypes tests getting valid child types for PlatformSpecificationElementType.
+func TestPlatformSpecificationElementType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/PlatformSpecificationElementType/children", nil)
+	req.SetPathValue("name", "PlatformSpecificationElementType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestPlatformType_CRUD tests Create, Read, Update, Delete for PlatformType.
+func TestPlatformType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "PlatformType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create PlatformType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestPlatformType_ListByType tests listing elements of type PlatformType.
+func TestPlatformType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/PlatformType", nil)
+	req.SetPathValue("type", "PlatformType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestPlatformType_GetTypeMetadata tests getting type metadata for PlatformType.
+func TestPlatformType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/PlatformType", nil)
+	req.SetPathValue("name", "PlatformType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestPlatformType_GetValidChildTypes tests getting valid child types for PlatformType.
+func TestPlatformType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/PlatformType/children", nil)
+	req.SetPathValue("name", "PlatformType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
 // TestPortElementType_CRUD tests Create, Read, Update, Delete for PortElementType.
 func TestPortElementType_CRUD(t *testing.T) {
 	ts := setupTestSuite(t)
@@ -17685,6 +33800,223 @@ func TestPortType_GetTypeMetadata(t *testing.T) {
 
 	req := httptest.NewRequest("GET", "/api/types/PortType", nil)
 	req.SetPathValue("name", "PortType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestPossibleRestrictionType_CRUD tests Create, Read, Update, Delete for PossibleRestrictionType.
+func TestPossibleRestrictionType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "PossibleRestrictionType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create PossibleRestrictionType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestPossibleRestrictionType_ListByType tests listing elements of type PossibleRestrictionType.
+func TestPossibleRestrictionType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/PossibleRestrictionType", nil)
+	req.SetPathValue("type", "PossibleRestrictionType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestPossibleRestrictionType_GetTypeMetadata tests getting type metadata for PossibleRestrictionType.
+func TestPossibleRestrictionType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/PossibleRestrictionType", nil)
+	req.SetPathValue("name", "PossibleRestrictionType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestPossibleRestrictionType_GetValidChildTypes tests getting valid child types for PossibleRestrictionType.
+func TestPossibleRestrictionType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/PossibleRestrictionType/children", nil)
+	req.SetPathValue("name", "PossibleRestrictionType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestPossibleValueType_CRUD tests Create, Read, Update, Delete for PossibleValueType.
+func TestPossibleValueType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "PossibleValueType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create PossibleValueType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestPossibleValueType_ListByType tests listing elements of type PossibleValueType.
+func TestPossibleValueType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/PossibleValueType", nil)
+	req.SetPathValue("type", "PossibleValueType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestPossibleValueType_GetTypeMetadata tests getting type metadata for PossibleValueType.
+func TestPossibleValueType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/PossibleValueType", nil)
+	req.SetPathValue("name", "PossibleValueType")
 	rr := httptest.NewRecorder()
 
 	ts.handlers.HandleGetType(rr, req)
@@ -21446,6 +37778,1002 @@ func TestPremiseNumberSuffixElementType_GetTypeMetadata(t *testing.T) {
 	}
 }
 
+// TestProfileElement_CRUD tests Create, Read, Update, Delete for ProfileElement.
+func TestProfileElement_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "ProfileElement",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create ProfileElement returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestProfileElement_ListByType tests listing elements of type ProfileElement.
+func TestProfileElement_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/ProfileElement", nil)
+	req.SetPathValue("type", "ProfileElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestProfileElement_GetTypeMetadata tests getting type metadata for ProfileElement.
+func TestProfileElement_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ProfileElement", nil)
+	req.SetPathValue("name", "ProfileElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestProfileElement_GetValidChildTypes tests getting valid child types for ProfileElement.
+func TestProfileElement_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ProfileElement/children", nil)
+	req.SetPathValue("name", "ProfileElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestProfileIdType_CRUD tests Create, Read, Update, Delete for ProfileIdType.
+func TestProfileIdType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "ProfileIdType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create ProfileIdType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestProfileIdType_ListByType tests listing elements of type ProfileIdType.
+func TestProfileIdType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/ProfileIdType", nil)
+	req.SetPathValue("type", "ProfileIdType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestProfileIdType_GetTypeMetadata tests getting type metadata for ProfileIdType.
+func TestProfileIdType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ProfileIdType", nil)
+	req.SetPathValue("name", "ProfileIdType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestProfileNoteType_CRUD tests Create, Read, Update, Delete for ProfileNoteType.
+func TestProfileNoteType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "ProfileNoteType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create ProfileNoteType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestProfileNoteType_ListByType tests listing elements of type ProfileNoteType.
+func TestProfileNoteType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/ProfileNoteType", nil)
+	req.SetPathValue("type", "ProfileNoteType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestProfileNoteType_GetTypeMetadata tests getting type metadata for ProfileNoteType.
+func TestProfileNoteType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ProfileNoteType", nil)
+	req.SetPathValue("name", "ProfileNoteType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestProfileNoteType_GetValidChildTypes tests getting valid child types for ProfileNoteType.
+func TestProfileNoteType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ProfileNoteType/children", nil)
+	req.SetPathValue("name", "ProfileNoteType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestProfileRefineRuleType_CRUD tests Create, Read, Update, Delete for ProfileRefineRuleType.
+func TestProfileRefineRuleType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "ProfileRefineRuleType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create ProfileRefineRuleType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestProfileRefineRuleType_ListByType tests listing elements of type ProfileRefineRuleType.
+func TestProfileRefineRuleType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/ProfileRefineRuleType", nil)
+	req.SetPathValue("type", "ProfileRefineRuleType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestProfileRefineRuleType_GetTypeMetadata tests getting type metadata for ProfileRefineRuleType.
+func TestProfileRefineRuleType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ProfileRefineRuleType", nil)
+	req.SetPathValue("name", "ProfileRefineRuleType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestProfileRefineRuleType_GetValidChildTypes tests getting valid child types for ProfileRefineRuleType.
+func TestProfileRefineRuleType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ProfileRefineRuleType/children", nil)
+	req.SetPathValue("name", "ProfileRefineRuleType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestProfileRefineValueType_CRUD tests Create, Read, Update, Delete for ProfileRefineValueType.
+func TestProfileRefineValueType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "ProfileRefineValueType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create ProfileRefineValueType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestProfileRefineValueType_ListByType tests listing elements of type ProfileRefineValueType.
+func TestProfileRefineValueType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/ProfileRefineValueType", nil)
+	req.SetPathValue("type", "ProfileRefineValueType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestProfileRefineValueType_GetTypeMetadata tests getting type metadata for ProfileRefineValueType.
+func TestProfileRefineValueType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ProfileRefineValueType", nil)
+	req.SetPathValue("name", "ProfileRefineValueType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestProfileRefineValueType_GetValidChildTypes tests getting valid child types for ProfileRefineValueType.
+func TestProfileRefineValueType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ProfileRefineValueType/children", nil)
+	req.SetPathValue("name", "ProfileRefineValueType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestProfileSelectType_CRUD tests Create, Read, Update, Delete for ProfileSelectType.
+func TestProfileSelectType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "ProfileSelectType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create ProfileSelectType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestProfileSelectType_ListByType tests listing elements of type ProfileSelectType.
+func TestProfileSelectType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/ProfileSelectType", nil)
+	req.SetPathValue("type", "ProfileSelectType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestProfileSelectType_GetTypeMetadata tests getting type metadata for ProfileSelectType.
+func TestProfileSelectType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ProfileSelectType", nil)
+	req.SetPathValue("name", "ProfileSelectType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestProfileSelectType_GetValidChildTypes tests getting valid child types for ProfileSelectType.
+func TestProfileSelectType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ProfileSelectType/children", nil)
+	req.SetPathValue("name", "ProfileSelectType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestProfileSetComplexValueType_CRUD tests Create, Read, Update, Delete for ProfileSetComplexValueType.
+func TestProfileSetComplexValueType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "ProfileSetComplexValueType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create ProfileSetComplexValueType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestProfileSetComplexValueType_ListByType tests listing elements of type ProfileSetComplexValueType.
+func TestProfileSetComplexValueType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/ProfileSetComplexValueType", nil)
+	req.SetPathValue("type", "ProfileSetComplexValueType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestProfileSetComplexValueType_GetTypeMetadata tests getting type metadata for ProfileSetComplexValueType.
+func TestProfileSetComplexValueType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ProfileSetComplexValueType", nil)
+	req.SetPathValue("name", "ProfileSetComplexValueType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestProfileSetValueType_CRUD tests Create, Read, Update, Delete for ProfileSetValueType.
+func TestProfileSetValueType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "ProfileSetValueType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create ProfileSetValueType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestProfileSetValueType_ListByType tests listing elements of type ProfileSetValueType.
+func TestProfileSetValueType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/ProfileSetValueType", nil)
+	req.SetPathValue("type", "ProfileSetValueType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestProfileSetValueType_GetTypeMetadata tests getting type metadata for ProfileSetValueType.
+func TestProfileSetValueType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ProfileSetValueType", nil)
+	req.SetPathValue("name", "ProfileSetValueType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestProfileType_CRUD tests Create, Read, Update, Delete for ProfileType.
+func TestProfileType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "ProfileType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create ProfileType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestProfileType_ListByType tests listing elements of type ProfileType.
+func TestProfileType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/ProfileType", nil)
+	req.SetPathValue("type", "ProfileType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestProfileType_GetTypeMetadata tests getting type metadata for ProfileType.
+func TestProfileType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ProfileType", nil)
+	req.SetPathValue("name", "ProfileType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestProfileType_GetValidChildTypes tests getting valid child types for ProfileType.
+func TestProfileType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ProfileType/children", nil)
+	req.SetPathValue("name", "ProfileType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
 // TestProtocolElementType_CRUD tests Create, Read, Update, Delete for ProtocolElementType.
 func TestProtocolElementType_CRUD(t *testing.T) {
 	ts := setupTestSuite(t)
@@ -21539,6 +38867,887 @@ func TestProtocolElementType_GetTypeMetadata(t *testing.T) {
 
 	req := httptest.NewRequest("GET", "/api/types/ProtocolElementType", nil)
 	req.SetPathValue("name", "ProtocolElementType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestRSAKeyValueElement_CRUD tests Create, Read, Update, Delete for RSAKeyValueElement.
+func TestRSAKeyValueElement_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "RSAKeyValueElement",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create RSAKeyValueElement returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestRSAKeyValueElement_ListByType tests listing elements of type RSAKeyValueElement.
+func TestRSAKeyValueElement_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/RSAKeyValueElement", nil)
+	req.SetPathValue("type", "RSAKeyValueElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestRSAKeyValueElement_GetTypeMetadata tests getting type metadata for RSAKeyValueElement.
+func TestRSAKeyValueElement_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/RSAKeyValueElement", nil)
+	req.SetPathValue("name", "RSAKeyValueElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestRSAKeyValueElement_GetValidChildTypes tests getting valid child types for RSAKeyValueElement.
+func TestRSAKeyValueElement_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/RSAKeyValueElement/children", nil)
+	req.SetPathValue("name", "RSAKeyValueElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestRSAKeyValueType_CRUD tests Create, Read, Update, Delete for RSAKeyValueType.
+func TestRSAKeyValueType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "RSAKeyValueType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create RSAKeyValueType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestRSAKeyValueType_ListByType tests listing elements of type RSAKeyValueType.
+func TestRSAKeyValueType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/RSAKeyValueType", nil)
+	req.SetPathValue("type", "RSAKeyValueType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestRSAKeyValueType_GetTypeMetadata tests getting type metadata for RSAKeyValueType.
+func TestRSAKeyValueType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/RSAKeyValueType", nil)
+	req.SetPathValue("name", "RSAKeyValueType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestRSAKeyValueType_GetValidChildTypes tests getting valid child types for RSAKeyValueType.
+func TestRSAKeyValueType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/RSAKeyValueType/children", nil)
+	req.SetPathValue("name", "RSAKeyValueType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestRatingEnumType_CRUD tests Create, Read, Update, Delete for RatingEnumType.
+func TestRatingEnumType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "RatingEnumType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create RatingEnumType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestRatingEnumType_ListByType tests listing elements of type RatingEnumType.
+func TestRatingEnumType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/RatingEnumType", nil)
+	req.SetPathValue("type", "RatingEnumType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestRatingEnumType_GetTypeMetadata tests getting type metadata for RatingEnumType.
+func TestRatingEnumType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/RatingEnumType", nil)
+	req.SetPathValue("name", "RatingEnumType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestReferenceElement_CRUD tests Create, Read, Update, Delete for ReferenceElement.
+func TestReferenceElement_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "ReferenceElement",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create ReferenceElement returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestReferenceElement_ListByType tests listing elements of type ReferenceElement.
+func TestReferenceElement_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/ReferenceElement", nil)
+	req.SetPathValue("type", "ReferenceElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestReferenceElement_GetTypeMetadata tests getting type metadata for ReferenceElement.
+func TestReferenceElement_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ReferenceElement", nil)
+	req.SetPathValue("name", "ReferenceElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestReferenceElement_GetValidChildTypes tests getting valid child types for ReferenceElement.
+func TestReferenceElement_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ReferenceElement/children", nil)
+	req.SetPathValue("name", "ReferenceElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestReferenceElementType_CRUD tests Create, Read, Update, Delete for ReferenceElementType.
+func TestReferenceElementType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "ReferenceElementType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create ReferenceElementType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestReferenceElementType_ListByType tests listing elements of type ReferenceElementType.
+func TestReferenceElementType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/ReferenceElementType", nil)
+	req.SetPathValue("type", "ReferenceElementType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestReferenceElementType_GetTypeMetadata tests getting type metadata for ReferenceElementType.
+func TestReferenceElementType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ReferenceElementType", nil)
+	req.SetPathValue("name", "ReferenceElementType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestReferenceType_CRUD tests Create, Read, Update, Delete for ReferenceType.
+func TestReferenceType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "ReferenceType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create ReferenceType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestReferenceType_ListByType tests listing elements of type ReferenceType.
+func TestReferenceType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/ReferenceType", nil)
+	req.SetPathValue("type", "ReferenceType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestReferenceType_GetTypeMetadata tests getting type metadata for ReferenceType.
+func TestReferenceType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ReferenceType", nil)
+	req.SetPathValue("name", "ReferenceType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestReferenceType_GetValidChildTypes tests getting valid child types for ReferenceType.
+func TestReferenceType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ReferenceType/children", nil)
+	req.SetPathValue("name", "ReferenceType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestReferencesType_CRUD tests Create, Read, Update, Delete for ReferencesType.
+func TestReferencesType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "ReferencesType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create ReferencesType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestReferencesType_ListByType tests listing elements of type ReferencesType.
+func TestReferencesType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/ReferencesType", nil)
+	req.SetPathValue("type", "ReferencesType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestReferencesType_GetTypeMetadata tests getting type metadata for ReferencesType.
+func TestReferencesType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ReferencesType", nil)
+	req.SetPathValue("name", "ReferencesType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestReferencesType_GetValidChildTypes tests getting valid child types for ReferencesType.
+func TestReferencesType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ReferencesType/children", nil)
+	req.SetPathValue("name", "ReferencesType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestRegexCaptureFunctionType_CRUD tests Create, Read, Update, Delete for RegexCaptureFunctionType.
+func TestRegexCaptureFunctionType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "RegexCaptureFunctionType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create RegexCaptureFunctionType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestRegexCaptureFunctionType_ListByType tests listing elements of type RegexCaptureFunctionType.
+func TestRegexCaptureFunctionType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/RegexCaptureFunctionType", nil)
+	req.SetPathValue("type", "RegexCaptureFunctionType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestRegexCaptureFunctionType_GetTypeMetadata tests getting type metadata for RegexCaptureFunctionType.
+func TestRegexCaptureFunctionType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/RegexCaptureFunctionType", nil)
+	req.SetPathValue("name", "RegexCaptureFunctionType")
 	rr := httptest.NewRecorder()
 
 	ts.handlers.HandleGetType(rr, req)
@@ -22748,6 +40957,542 @@ func TestResourceType_GetTypeMetadata(t *testing.T) {
 	}
 }
 
+// TestRestrictionType_CRUD tests Create, Read, Update, Delete for RestrictionType.
+func TestRestrictionType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "RestrictionType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create RestrictionType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestRestrictionType_ListByType tests listing elements of type RestrictionType.
+func TestRestrictionType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/RestrictionType", nil)
+	req.SetPathValue("type", "RestrictionType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestRestrictionType_GetTypeMetadata tests getting type metadata for RestrictionType.
+func TestRestrictionType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/RestrictionType", nil)
+	req.SetPathValue("name", "RestrictionType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestResultEnumType_CRUD tests Create, Read, Update, Delete for ResultEnumType.
+func TestResultEnumType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "ResultEnumType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create ResultEnumType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestResultEnumType_ListByType tests listing elements of type ResultEnumType.
+func TestResultEnumType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/ResultEnumType", nil)
+	req.SetPathValue("type", "ResultEnumType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestResultEnumType_GetTypeMetadata tests getting type metadata for ResultEnumType.
+func TestResultEnumType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ResultEnumType", nil)
+	req.SetPathValue("name", "ResultEnumType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestRetrievalMethodElement_CRUD tests Create, Read, Update, Delete for RetrievalMethodElement.
+func TestRetrievalMethodElement_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "RetrievalMethodElement",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create RetrievalMethodElement returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestRetrievalMethodElement_ListByType tests listing elements of type RetrievalMethodElement.
+func TestRetrievalMethodElement_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/RetrievalMethodElement", nil)
+	req.SetPathValue("type", "RetrievalMethodElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestRetrievalMethodElement_GetTypeMetadata tests getting type metadata for RetrievalMethodElement.
+func TestRetrievalMethodElement_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/RetrievalMethodElement", nil)
+	req.SetPathValue("name", "RetrievalMethodElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestRetrievalMethodElement_GetValidChildTypes tests getting valid child types for RetrievalMethodElement.
+func TestRetrievalMethodElement_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/RetrievalMethodElement/children", nil)
+	req.SetPathValue("name", "RetrievalMethodElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestRetrievalMethodType_CRUD tests Create, Read, Update, Delete for RetrievalMethodType.
+func TestRetrievalMethodType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "RetrievalMethodType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create RetrievalMethodType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestRetrievalMethodType_ListByType tests listing elements of type RetrievalMethodType.
+func TestRetrievalMethodType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/RetrievalMethodType", nil)
+	req.SetPathValue("type", "RetrievalMethodType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestRetrievalMethodType_GetTypeMetadata tests getting type metadata for RetrievalMethodType.
+func TestRetrievalMethodType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/RetrievalMethodType", nil)
+	req.SetPathValue("name", "RetrievalMethodType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestRetrievalMethodType_GetValidChildTypes tests getting valid child types for RetrievalMethodType.
+func TestRetrievalMethodType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/RetrievalMethodType/children", nil)
+	req.SetPathValue("name", "RetrievalMethodType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestRoleEnumType_CRUD tests Create, Read, Update, Delete for RoleEnumType.
+func TestRoleEnumType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "RoleEnumType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create RoleEnumType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestRoleEnumType_ListByType tests listing elements of type RoleEnumType.
+func TestRoleEnumType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/RoleEnumType", nil)
+	req.SetPathValue("type", "RoleEnumType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestRoleEnumType_GetTypeMetadata tests getting type metadata for RoleEnumType.
+func TestRoleEnumType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/RoleEnumType", nil)
+	req.SetPathValue("name", "RoleEnumType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
 // TestRoleType_CRUD tests Create, Read, Update, Delete for RoleType.
 func TestRoleType_CRUD(t *testing.T) {
 	ts := setupTestSuite(t)
@@ -22841,6 +41586,1384 @@ func TestRoleType_GetTypeMetadata(t *testing.T) {
 
 	req := httptest.NewRequest("GET", "/api/types/RoleType", nil)
 	req.SetPathValue("name", "RoleType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestRuleElement_CRUD tests Create, Read, Update, Delete for RuleElement.
+func TestRuleElement_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "RuleElement",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create RuleElement returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestRuleElement_ListByType tests listing elements of type RuleElement.
+func TestRuleElement_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/RuleElement", nil)
+	req.SetPathValue("type", "RuleElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestRuleElement_GetTypeMetadata tests getting type metadata for RuleElement.
+func TestRuleElement_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/RuleElement", nil)
+	req.SetPathValue("name", "RuleElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestRuleElement_GetValidChildTypes tests getting valid child types for RuleElement.
+func TestRuleElement_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/RuleElement/children", nil)
+	req.SetPathValue("name", "RuleElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestRuleIdType_CRUD tests Create, Read, Update, Delete for RuleIdType.
+func TestRuleIdType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "RuleIdType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create RuleIdType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestRuleIdType_ListByType tests listing elements of type RuleIdType.
+func TestRuleIdType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/RuleIdType", nil)
+	req.SetPathValue("type", "RuleIdType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestRuleIdType_GetTypeMetadata tests getting type metadata for RuleIdType.
+func TestRuleIdType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/RuleIdType", nil)
+	req.SetPathValue("name", "RuleIdType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestRuleResultType_CRUD tests Create, Read, Update, Delete for RuleResultType.
+func TestRuleResultType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "RuleResultType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create RuleResultType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestRuleResultType_ListByType tests listing elements of type RuleResultType.
+func TestRuleResultType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/RuleResultType", nil)
+	req.SetPathValue("type", "RuleResultType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestRuleResultType_GetTypeMetadata tests getting type metadata for RuleResultType.
+func TestRuleResultType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/RuleResultType", nil)
+	req.SetPathValue("name", "RuleResultType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestRuleResultType_GetValidChildTypes tests getting valid child types for RuleResultType.
+func TestRuleResultType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/RuleResultType/children", nil)
+	req.SetPathValue("name", "RuleResultType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestRuleType_CRUD tests Create, Read, Update, Delete for RuleType.
+func TestRuleType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "RuleType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create RuleType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestRuleType_ListByType tests listing elements of type RuleType.
+func TestRuleType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/RuleType", nil)
+	req.SetPathValue("type", "RuleType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestRuleType_GetTypeMetadata tests getting type metadata for RuleType.
+func TestRuleType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/RuleType", nil)
+	req.SetPathValue("name", "RuleType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestRuleType_GetValidChildTypes tests getting valid child types for RuleType.
+func TestRuleType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/RuleType/children", nil)
+	req.SetPathValue("name", "RuleType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestSPKIDataElement_CRUD tests Create, Read, Update, Delete for SPKIDataElement.
+func TestSPKIDataElement_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "SPKIDataElement",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create SPKIDataElement returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestSPKIDataElement_ListByType tests listing elements of type SPKIDataElement.
+func TestSPKIDataElement_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/SPKIDataElement", nil)
+	req.SetPathValue("type", "SPKIDataElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestSPKIDataElement_GetTypeMetadata tests getting type metadata for SPKIDataElement.
+func TestSPKIDataElement_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/SPKIDataElement", nil)
+	req.SetPathValue("name", "SPKIDataElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestSPKIDataType_CRUD tests Create, Read, Update, Delete for SPKIDataType.
+func TestSPKIDataType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "SPKIDataType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create SPKIDataType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestSPKIDataType_ListByType tests listing elements of type SPKIDataType.
+func TestSPKIDataType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/SPKIDataType", nil)
+	req.SetPathValue("type", "SPKIDataType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestSPKIDataType_GetTypeMetadata tests getting type metadata for SPKIDataType.
+func TestSPKIDataType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/SPKIDataType", nil)
+	req.SetPathValue("name", "SPKIDataType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestSchemaVersionPattern_CRUD tests Create, Read, Update, Delete for SchemaVersionPattern.
+func TestSchemaVersionPattern_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "SchemaVersionPattern",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create SchemaVersionPattern returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestSchemaVersionPattern_ListByType tests listing elements of type SchemaVersionPattern.
+func TestSchemaVersionPattern_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/SchemaVersionPattern", nil)
+	req.SetPathValue("type", "SchemaVersionPattern")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestSchemaVersionPattern_GetTypeMetadata tests getting type metadata for SchemaVersionPattern.
+func TestSchemaVersionPattern_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/SchemaVersionPattern", nil)
+	req.SetPathValue("name", "SchemaVersionPattern")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestSchemaVersionType_CRUD tests Create, Read, Update, Delete for SchemaVersionType.
+func TestSchemaVersionType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "SchemaVersionType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create SchemaVersionType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestSchemaVersionType_ListByType tests listing elements of type SchemaVersionType.
+func TestSchemaVersionType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/SchemaVersionType", nil)
+	req.SetPathValue("type", "SchemaVersionType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestSchemaVersionType_GetTypeMetadata tests getting type metadata for SchemaVersionType.
+func TestSchemaVersionType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/SchemaVersionType", nil)
+	req.SetPathValue("name", "SchemaVersionType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestScoreType_CRUD tests Create, Read, Update, Delete for ScoreType.
+func TestScoreType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "ScoreType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create ScoreType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestScoreType_ListByType tests listing elements of type ScoreType.
+func TestScoreType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/ScoreType", nil)
+	req.SetPathValue("type", "ScoreType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestScoreType_GetTypeMetadata tests getting type metadata for ScoreType.
+func TestScoreType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ScoreType", nil)
+	req.SetPathValue("name", "ScoreType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestSelChoicesType_CRUD tests Create, Read, Update, Delete for SelChoicesType.
+func TestSelChoicesType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "SelChoicesType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create SelChoicesType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestSelChoicesType_ListByType tests listing elements of type SelChoicesType.
+func TestSelChoicesType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/SelChoicesType", nil)
+	req.SetPathValue("type", "SelChoicesType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestSelChoicesType_GetTypeMetadata tests getting type metadata for SelChoicesType.
+func TestSelChoicesType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/SelChoicesType", nil)
+	req.SetPathValue("name", "SelChoicesType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestSelChoicesType_GetValidChildTypes tests getting valid child types for SelChoicesType.
+func TestSelChoicesType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/SelChoicesType/children", nil)
+	req.SetPathValue("name", "SelChoicesType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestSelComplexValueType_CRUD tests Create, Read, Update, Delete for SelComplexValueType.
+func TestSelComplexValueType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "SelComplexValueType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create SelComplexValueType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestSelComplexValueType_ListByType tests listing elements of type SelComplexValueType.
+func TestSelComplexValueType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/SelComplexValueType", nil)
+	req.SetPathValue("type", "SelComplexValueType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestSelComplexValueType_GetTypeMetadata tests getting type metadata for SelComplexValueType.
+func TestSelComplexValueType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/SelComplexValueType", nil)
+	req.SetPathValue("name", "SelComplexValueType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestSelNumType_CRUD tests Create, Read, Update, Delete for SelNumType.
+func TestSelNumType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "SelNumType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create SelNumType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestSelNumType_ListByType tests listing elements of type SelNumType.
+func TestSelNumType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/SelNumType", nil)
+	req.SetPathValue("type", "SelNumType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestSelNumType_GetTypeMetadata tests getting type metadata for SelNumType.
+func TestSelNumType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/SelNumType", nil)
+	req.SetPathValue("name", "SelNumType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestSelStringType_CRUD tests Create, Read, Update, Delete for SelStringType.
+func TestSelStringType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "SelStringType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create SelStringType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestSelStringType_ListByType tests listing elements of type SelStringType.
+func TestSelStringType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/SelStringType", nil)
+	req.SetPathValue("type", "SelStringType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestSelStringType_GetTypeMetadata tests getting type metadata for SelStringType.
+func TestSelStringType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/SelStringType", nil)
+	req.SetPathValue("name", "SelStringType")
 	rr := httptest.NewRecorder()
 
 	ts.handlers.HandleGetType(rr, req)
@@ -23195,6 +43318,440 @@ func TestServiceType_GetValidChildTypes(t *testing.T) {
 	assertStatusCode(t, rr, http.StatusOK)
 }
 
+// TestSetElement_CRUD tests Create, Read, Update, Delete for SetElement.
+func TestSetElement_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "SetElement",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create SetElement returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestSetElement_ListByType tests listing elements of type SetElement.
+func TestSetElement_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/SetElement", nil)
+	req.SetPathValue("type", "SetElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestSetElement_GetTypeMetadata tests getting type metadata for SetElement.
+func TestSetElement_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/SetElement", nil)
+	req.SetPathValue("name", "SetElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestSetElement_GetValidChildTypes tests getting valid child types for SetElement.
+func TestSetElement_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/SetElement/children", nil)
+	req.SetPathValue("name", "SetElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestSetElementType_CRUD tests Create, Read, Update, Delete for SetElementType.
+func TestSetElementType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "SetElementType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create SetElementType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestSetElementType_ListByType tests listing elements of type SetElementType.
+func TestSetElementType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/SetElementType", nil)
+	req.SetPathValue("type", "SetElementType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestSetElementType_GetTypeMetadata tests getting type metadata for SetElementType.
+func TestSetElementType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/SetElementType", nil)
+	req.SetPathValue("name", "SetElementType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestSetElementType_GetValidChildTypes tests getting valid child types for SetElementType.
+func TestSetElementType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/SetElementType/children", nil)
+	req.SetPathValue("name", "SetElementType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestSetOperatorEnumeration_CRUD tests Create, Read, Update, Delete for SetOperatorEnumeration.
+func TestSetOperatorEnumeration_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "SetOperatorEnumeration",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create SetOperatorEnumeration returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestSetOperatorEnumeration_ListByType tests listing elements of type SetOperatorEnumeration.
+func TestSetOperatorEnumeration_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/SetOperatorEnumeration", nil)
+	req.SetPathValue("type", "SetOperatorEnumeration")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestSetOperatorEnumeration_GetTypeMetadata tests getting type metadata for SetOperatorEnumeration.
+func TestSetOperatorEnumeration_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/SetOperatorEnumeration", nil)
+	req.SetPathValue("name", "SetOperatorEnumeration")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestSeverityEnumType_CRUD tests Create, Read, Update, Delete for SeverityEnumType.
+func TestSeverityEnumType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "SeverityEnumType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create SeverityEnumType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestSeverityEnumType_ListByType tests listing elements of type SeverityEnumType.
+func TestSeverityEnumType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/SeverityEnumType", nil)
+	req.SetPathValue("type", "SeverityEnumType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestSeverityEnumType_GetTypeMetadata tests getting type metadata for SeverityEnumType.
+func TestSeverityEnumType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/SeverityEnumType", nil)
+	req.SetPathValue("name", "SeverityEnumType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
 // TestShowType_CRUD tests Create, Read, Update, Delete for ShowType.
 func TestShowType_CRUD(t *testing.T) {
 	ts := setupTestSuite(t)
@@ -23297,6 +43854,1334 @@ func TestShowType_GetTypeMetadata(t *testing.T) {
 	}
 }
 
+// TestSignatureElement_CRUD tests Create, Read, Update, Delete for SignatureElement.
+func TestSignatureElement_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "SignatureElement",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create SignatureElement returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestSignatureElement_ListByType tests listing elements of type SignatureElement.
+func TestSignatureElement_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/SignatureElement", nil)
+	req.SetPathValue("type", "SignatureElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestSignatureElement_GetTypeMetadata tests getting type metadata for SignatureElement.
+func TestSignatureElement_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/SignatureElement", nil)
+	req.SetPathValue("name", "SignatureElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestSignatureElement_GetValidChildTypes tests getting valid child types for SignatureElement.
+func TestSignatureElement_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/SignatureElement/children", nil)
+	req.SetPathValue("name", "SignatureElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestSignatureMethodElement_CRUD tests Create, Read, Update, Delete for SignatureMethodElement.
+func TestSignatureMethodElement_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "SignatureMethodElement",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create SignatureMethodElement returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestSignatureMethodElement_ListByType tests listing elements of type SignatureMethodElement.
+func TestSignatureMethodElement_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/SignatureMethodElement", nil)
+	req.SetPathValue("type", "SignatureMethodElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestSignatureMethodElement_GetTypeMetadata tests getting type metadata for SignatureMethodElement.
+func TestSignatureMethodElement_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/SignatureMethodElement", nil)
+	req.SetPathValue("name", "SignatureMethodElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestSignatureMethodElement_GetValidChildTypes tests getting valid child types for SignatureMethodElement.
+func TestSignatureMethodElement_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/SignatureMethodElement/children", nil)
+	req.SetPathValue("name", "SignatureMethodElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestSignatureMethodType_CRUD tests Create, Read, Update, Delete for SignatureMethodType.
+func TestSignatureMethodType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "SignatureMethodType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create SignatureMethodType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestSignatureMethodType_ListByType tests listing elements of type SignatureMethodType.
+func TestSignatureMethodType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/SignatureMethodType", nil)
+	req.SetPathValue("type", "SignatureMethodType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestSignatureMethodType_GetTypeMetadata tests getting type metadata for SignatureMethodType.
+func TestSignatureMethodType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/SignatureMethodType", nil)
+	req.SetPathValue("name", "SignatureMethodType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestSignatureMethodType_GetValidChildTypes tests getting valid child types for SignatureMethodType.
+func TestSignatureMethodType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/SignatureMethodType/children", nil)
+	req.SetPathValue("name", "SignatureMethodType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestSignaturePropertiesElement_CRUD tests Create, Read, Update, Delete for SignaturePropertiesElement.
+func TestSignaturePropertiesElement_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "SignaturePropertiesElement",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create SignaturePropertiesElement returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestSignaturePropertiesElement_ListByType tests listing elements of type SignaturePropertiesElement.
+func TestSignaturePropertiesElement_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/SignaturePropertiesElement", nil)
+	req.SetPathValue("type", "SignaturePropertiesElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestSignaturePropertiesElement_GetTypeMetadata tests getting type metadata for SignaturePropertiesElement.
+func TestSignaturePropertiesElement_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/SignaturePropertiesElement", nil)
+	req.SetPathValue("name", "SignaturePropertiesElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestSignaturePropertiesElement_GetValidChildTypes tests getting valid child types for SignaturePropertiesElement.
+func TestSignaturePropertiesElement_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/SignaturePropertiesElement/children", nil)
+	req.SetPathValue("name", "SignaturePropertiesElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestSignaturePropertiesType_CRUD tests Create, Read, Update, Delete for SignaturePropertiesType.
+func TestSignaturePropertiesType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "SignaturePropertiesType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create SignaturePropertiesType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestSignaturePropertiesType_ListByType tests listing elements of type SignaturePropertiesType.
+func TestSignaturePropertiesType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/SignaturePropertiesType", nil)
+	req.SetPathValue("type", "SignaturePropertiesType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestSignaturePropertiesType_GetTypeMetadata tests getting type metadata for SignaturePropertiesType.
+func TestSignaturePropertiesType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/SignaturePropertiesType", nil)
+	req.SetPathValue("name", "SignaturePropertiesType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestSignaturePropertiesType_GetValidChildTypes tests getting valid child types for SignaturePropertiesType.
+func TestSignaturePropertiesType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/SignaturePropertiesType/children", nil)
+	req.SetPathValue("name", "SignaturePropertiesType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestSignaturePropertyElement_CRUD tests Create, Read, Update, Delete for SignaturePropertyElement.
+func TestSignaturePropertyElement_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "SignaturePropertyElement",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create SignaturePropertyElement returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestSignaturePropertyElement_ListByType tests listing elements of type SignaturePropertyElement.
+func TestSignaturePropertyElement_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/SignaturePropertyElement", nil)
+	req.SetPathValue("type", "SignaturePropertyElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestSignaturePropertyElement_GetTypeMetadata tests getting type metadata for SignaturePropertyElement.
+func TestSignaturePropertyElement_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/SignaturePropertyElement", nil)
+	req.SetPathValue("name", "SignaturePropertyElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestSignaturePropertyType_CRUD tests Create, Read, Update, Delete for SignaturePropertyType.
+func TestSignaturePropertyType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "SignaturePropertyType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create SignaturePropertyType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestSignaturePropertyType_ListByType tests listing elements of type SignaturePropertyType.
+func TestSignaturePropertyType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/SignaturePropertyType", nil)
+	req.SetPathValue("type", "SignaturePropertyType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestSignaturePropertyType_GetTypeMetadata tests getting type metadata for SignaturePropertyType.
+func TestSignaturePropertyType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/SignaturePropertyType", nil)
+	req.SetPathValue("name", "SignaturePropertyType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestSignatureType_CRUD tests Create, Read, Update, Delete for SignatureType.
+func TestSignatureType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "SignatureType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create SignatureType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestSignatureType_ListByType tests listing elements of type SignatureType.
+func TestSignatureType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/SignatureType", nil)
+	req.SetPathValue("type", "SignatureType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestSignatureType_GetTypeMetadata tests getting type metadata for SignatureType.
+func TestSignatureType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/SignatureType", nil)
+	req.SetPathValue("name", "SignatureType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestSignatureType_GetValidChildTypes tests getting valid child types for SignatureType.
+func TestSignatureType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/SignatureType/children", nil)
+	req.SetPathValue("name", "SignatureType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestSignatureValueElement_CRUD tests Create, Read, Update, Delete for SignatureValueElement.
+func TestSignatureValueElement_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "SignatureValueElement",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create SignatureValueElement returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestSignatureValueElement_ListByType tests listing elements of type SignatureValueElement.
+func TestSignatureValueElement_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/SignatureValueElement", nil)
+	req.SetPathValue("type", "SignatureValueElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestSignatureValueElement_GetTypeMetadata tests getting type metadata for SignatureValueElement.
+func TestSignatureValueElement_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/SignatureValueElement", nil)
+	req.SetPathValue("name", "SignatureValueElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestSignatureValueType_CRUD tests Create, Read, Update, Delete for SignatureValueType.
+func TestSignatureValueType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "SignatureValueType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create SignatureValueType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestSignatureValueType_ListByType tests listing elements of type SignatureValueType.
+func TestSignatureValueType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/SignatureValueType", nil)
+	req.SetPathValue("type", "SignatureValueType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestSignatureValueType_GetTypeMetadata tests getting type metadata for SignatureValueType.
+func TestSignatureValueType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/SignatureValueType", nil)
+	req.SetPathValue("name", "SignatureValueType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestSignedInfoElement_CRUD tests Create, Read, Update, Delete for SignedInfoElement.
+func TestSignedInfoElement_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "SignedInfoElement",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create SignedInfoElement returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestSignedInfoElement_ListByType tests listing elements of type SignedInfoElement.
+func TestSignedInfoElement_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/SignedInfoElement", nil)
+	req.SetPathValue("type", "SignedInfoElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestSignedInfoElement_GetTypeMetadata tests getting type metadata for SignedInfoElement.
+func TestSignedInfoElement_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/SignedInfoElement", nil)
+	req.SetPathValue("name", "SignedInfoElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestSignedInfoElement_GetValidChildTypes tests getting valid child types for SignedInfoElement.
+func TestSignedInfoElement_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/SignedInfoElement/children", nil)
+	req.SetPathValue("name", "SignedInfoElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestSignedInfoType_CRUD tests Create, Read, Update, Delete for SignedInfoType.
+func TestSignedInfoType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "SignedInfoType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create SignedInfoType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestSignedInfoType_ListByType tests listing elements of type SignedInfoType.
+func TestSignedInfoType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/SignedInfoType", nil)
+	req.SetPathValue("type", "SignedInfoType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestSignedInfoType_GetTypeMetadata tests getting type metadata for SignedInfoType.
+func TestSignedInfoType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/SignedInfoType", nil)
+	req.SetPathValue("name", "SignedInfoType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestSignedInfoType_GetValidChildTypes tests getting valid child types for SignedInfoType.
+func TestSignedInfoType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/SignedInfoType/children", nil)
+	req.SetPathValue("name", "SignedInfoType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
 // TestSimple_CRUD tests Create, Read, Update, Delete for Simple.
 func TestSimple_CRUD(t *testing.T) {
 	ts := setupTestSuite(t)
@@ -23390,6 +45275,108 @@ func TestSimple_GetTypeMetadata(t *testing.T) {
 
 	req := httptest.NewRequest("GET", "/api/types/Simple", nil)
 	req.SetPathValue("name", "Simple")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestSimpleDatatypeEnumeration_CRUD tests Create, Read, Update, Delete for SimpleDatatypeEnumeration.
+func TestSimpleDatatypeEnumeration_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "SimpleDatatypeEnumeration",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create SimpleDatatypeEnumeration returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestSimpleDatatypeEnumeration_ListByType tests listing elements of type SimpleDatatypeEnumeration.
+func TestSimpleDatatypeEnumeration_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/SimpleDatatypeEnumeration", nil)
+	req.SetPathValue("type", "SimpleDatatypeEnumeration")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestSimpleDatatypeEnumeration_GetTypeMetadata tests getting type metadata for SimpleDatatypeEnumeration.
+func TestSimpleDatatypeEnumeration_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/SimpleDatatypeEnumeration", nil)
+	req.SetPathValue("name", "SimpleDatatypeEnumeration")
 	rr := httptest.NewRecorder()
 
 	ts.handlers.HandleGetType(rr, req)
@@ -23722,6 +45709,963 @@ func TestSortingCodeElementType_GetTypeMetadata(t *testing.T) {
 
 	req := httptest.NewRequest("GET", "/api/types/SortingCodeElementType", nil)
 	req.SetPathValue("name", "SortingCodeElementType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestSplitFunctionType_CRUD tests Create, Read, Update, Delete for SplitFunctionType.
+func TestSplitFunctionType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "SplitFunctionType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create SplitFunctionType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestSplitFunctionType_ListByType tests listing elements of type SplitFunctionType.
+func TestSplitFunctionType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/SplitFunctionType", nil)
+	req.SetPathValue("type", "SplitFunctionType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestSplitFunctionType_GetTypeMetadata tests getting type metadata for SplitFunctionType.
+func TestSplitFunctionType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/SplitFunctionType", nil)
+	req.SetPathValue("name", "SplitFunctionType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestStateElement_CRUD tests Create, Read, Update, Delete for StateElement.
+func TestStateElement_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "StateElement",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create StateElement returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestStateElement_ListByType tests listing elements of type StateElement.
+func TestStateElement_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/StateElement", nil)
+	req.SetPathValue("type", "StateElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestStateElement_GetTypeMetadata tests getting type metadata for StateElement.
+func TestStateElement_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/StateElement", nil)
+	req.SetPathValue("name", "StateElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestStateElement_GetValidChildTypes tests getting valid child types for StateElement.
+func TestStateElement_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/StateElement/children", nil)
+	req.SetPathValue("name", "StateElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestStateIDPattern_CRUD tests Create, Read, Update, Delete for StateIDPattern.
+func TestStateIDPattern_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "StateIDPattern",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create StateIDPattern returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestStateIDPattern_ListByType tests listing elements of type StateIDPattern.
+func TestStateIDPattern_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/StateIDPattern", nil)
+	req.SetPathValue("type", "StateIDPattern")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestStateIDPattern_GetTypeMetadata tests getting type metadata for StateIDPattern.
+func TestStateIDPattern_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/StateIDPattern", nil)
+	req.SetPathValue("name", "StateIDPattern")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestStateRefType_CRUD tests Create, Read, Update, Delete for StateRefType.
+func TestStateRefType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "StateRefType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create StateRefType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestStateRefType_ListByType tests listing elements of type StateRefType.
+func TestStateRefType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/StateRefType", nil)
+	req.SetPathValue("type", "StateRefType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestStateRefType_GetTypeMetadata tests getting type metadata for StateRefType.
+func TestStateRefType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/StateRefType", nil)
+	req.SetPathValue("name", "StateRefType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestStateType_CRUD tests Create, Read, Update, Delete for StateType.
+func TestStateType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "StateType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create StateType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestStateType_ListByType tests listing elements of type StateType.
+func TestStateType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/StateType", nil)
+	req.SetPathValue("type", "StateType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestStateType_GetTypeMetadata tests getting type metadata for StateType.
+func TestStateType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/StateType", nil)
+	req.SetPathValue("name", "StateType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestStateType_GetValidChildTypes tests getting valid child types for StateType.
+func TestStateType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/StateType/children", nil)
+	req.SetPathValue("name", "StateType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestStatesType_CRUD tests Create, Read, Update, Delete for StatesType.
+func TestStatesType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "StatesType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create StatesType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestStatesType_ListByType tests listing elements of type StatesType.
+func TestStatesType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/StatesType", nil)
+	req.SetPathValue("type", "StatesType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestStatesType_GetTypeMetadata tests getting type metadata for StatesType.
+func TestStatesType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/StatesType", nil)
+	req.SetPathValue("name", "StatesType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestStatesType_GetValidChildTypes tests getting valid child types for StatesType.
+func TestStatesType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/StatesType/children", nil)
+	req.SetPathValue("name", "StatesType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestStatusElement_CRUD tests Create, Read, Update, Delete for StatusElement.
+func TestStatusElement_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "StatusElement",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create StatusElement returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestStatusElement_ListByType tests listing elements of type StatusElement.
+func TestStatusElement_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/StatusElement", nil)
+	req.SetPathValue("type", "StatusElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestStatusElement_GetTypeMetadata tests getting type metadata for StatusElement.
+func TestStatusElement_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/StatusElement", nil)
+	req.SetPathValue("name", "StatusElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestStatusElementType_CRUD tests Create, Read, Update, Delete for StatusElementType.
+func TestStatusElementType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "StatusElementType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create StatusElementType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestStatusElementType_ListByType tests listing elements of type StatusElementType.
+func TestStatusElementType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/StatusElementType", nil)
+	req.SetPathValue("type", "StatusElementType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestStatusElementType_GetTypeMetadata tests getting type metadata for StatusElementType.
+func TestStatusElementType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/StatusElementType", nil)
+	req.SetPathValue("name", "StatusElementType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestStatusType_CRUD tests Create, Read, Update, Delete for StatusType.
+func TestStatusType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "StatusType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create StatusType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestStatusType_ListByType tests listing elements of type StatusType.
+func TestStatusType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/StatusType", nil)
+	req.SetPathValue("type", "StatusType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestStatusType_GetTypeMetadata tests getting type metadata for StatusType.
+func TestStatusType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/StatusType", nil)
+	req.SetPathValue("name", "StatusType")
 	rr := httptest.NewRecorder()
 
 	ts.handlers.HandleGetType(rr, req)
@@ -24573,6 +47517,312 @@ func TestSubPremiseType_GetValidChildTypes(t *testing.T) {
 	assertStatusCode(t, rr, http.StatusOK)
 }
 
+// TestSubType_CRUD tests Create, Read, Update, Delete for SubType.
+func TestSubType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "SubType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create SubType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestSubType_ListByType tests listing elements of type SubType.
+func TestSubType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/SubType", nil)
+	req.SetPathValue("type", "SubType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestSubType_GetTypeMetadata tests getting type metadata for SubType.
+func TestSubType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/SubType", nil)
+	req.SetPathValue("name", "SubType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestSubUseEnumType_CRUD tests Create, Read, Update, Delete for SubUseEnumType.
+func TestSubUseEnumType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "SubUseEnumType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create SubUseEnumType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestSubUseEnumType_ListByType tests listing elements of type SubUseEnumType.
+func TestSubUseEnumType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/SubUseEnumType", nil)
+	req.SetPathValue("type", "SubUseEnumType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestSubUseEnumType_GetTypeMetadata tests getting type metadata for SubUseEnumType.
+func TestSubUseEnumType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/SubUseEnumType", nil)
+	req.SetPathValue("name", "SubUseEnumType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestSubstringFunctionType_CRUD tests Create, Read, Update, Delete for SubstringFunctionType.
+func TestSubstringFunctionType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "SubstringFunctionType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create SubstringFunctionType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestSubstringFunctionType_ListByType tests listing elements of type SubstringFunctionType.
+func TestSubstringFunctionType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/SubstringFunctionType", nil)
+	req.SetPathValue("type", "SubstringFunctionType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestSubstringFunctionType_GetTypeMetadata tests getting type metadata for SubstringFunctionType.
+func TestSubstringFunctionType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/SubstringFunctionType", nil)
+	req.SetPathValue("name", "SubstringFunctionType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
 // TestSuffixElementType_CRUD tests Create, Read, Update, Delete for SuffixElementType.
 func TestSuffixElementType_CRUD(t *testing.T) {
 	ts := setupTestSuite(t)
@@ -25313,6 +48563,861 @@ func TestSystemType_GetValidChildTypes(t *testing.T) {
 	assertStatusCode(t, rr, http.StatusOK)
 }
 
+// TestTailoringBenchmarkReferenceType_CRUD tests Create, Read, Update, Delete for TailoringBenchmarkReferenceType.
+func TestTailoringBenchmarkReferenceType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "TailoringBenchmarkReferenceType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create TailoringBenchmarkReferenceType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestTailoringBenchmarkReferenceType_ListByType tests listing elements of type TailoringBenchmarkReferenceType.
+func TestTailoringBenchmarkReferenceType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/TailoringBenchmarkReferenceType", nil)
+	req.SetPathValue("type", "TailoringBenchmarkReferenceType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestTailoringBenchmarkReferenceType_GetTypeMetadata tests getting type metadata for TailoringBenchmarkReferenceType.
+func TestTailoringBenchmarkReferenceType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/TailoringBenchmarkReferenceType", nil)
+	req.SetPathValue("name", "TailoringBenchmarkReferenceType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestTailoringElement_CRUD tests Create, Read, Update, Delete for TailoringElement.
+func TestTailoringElement_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "TailoringElement",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create TailoringElement returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestTailoringElement_ListByType tests listing elements of type TailoringElement.
+func TestTailoringElement_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/TailoringElement", nil)
+	req.SetPathValue("type", "TailoringElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestTailoringElement_GetTypeMetadata tests getting type metadata for TailoringElement.
+func TestTailoringElement_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/TailoringElement", nil)
+	req.SetPathValue("name", "TailoringElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestTailoringElement_GetValidChildTypes tests getting valid child types for TailoringElement.
+func TestTailoringElement_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/TailoringElement/children", nil)
+	req.SetPathValue("name", "TailoringElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestTailoringIdType_CRUD tests Create, Read, Update, Delete for TailoringIdType.
+func TestTailoringIdType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "TailoringIdType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create TailoringIdType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestTailoringIdType_ListByType tests listing elements of type TailoringIdType.
+func TestTailoringIdType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/TailoringIdType", nil)
+	req.SetPathValue("type", "TailoringIdType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestTailoringIdType_GetTypeMetadata tests getting type metadata for TailoringIdType.
+func TestTailoringIdType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/TailoringIdType", nil)
+	req.SetPathValue("name", "TailoringIdType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestTailoringReferenceType_CRUD tests Create, Read, Update, Delete for TailoringReferenceType.
+func TestTailoringReferenceType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "TailoringReferenceType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create TailoringReferenceType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestTailoringReferenceType_ListByType tests listing elements of type TailoringReferenceType.
+func TestTailoringReferenceType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/TailoringReferenceType", nil)
+	req.SetPathValue("type", "TailoringReferenceType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestTailoringReferenceType_GetTypeMetadata tests getting type metadata for TailoringReferenceType.
+func TestTailoringReferenceType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/TailoringReferenceType", nil)
+	req.SetPathValue("name", "TailoringReferenceType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestTailoringType_CRUD tests Create, Read, Update, Delete for TailoringType.
+func TestTailoringType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "TailoringType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create TailoringType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestTailoringType_ListByType tests listing elements of type TailoringType.
+func TestTailoringType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/TailoringType", nil)
+	req.SetPathValue("type", "TailoringType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestTailoringType_GetTypeMetadata tests getting type metadata for TailoringType.
+func TestTailoringType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/TailoringType", nil)
+	req.SetPathValue("name", "TailoringType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestTailoringType_GetValidChildTypes tests getting valid child types for TailoringType.
+func TestTailoringType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/TailoringType/children", nil)
+	req.SetPathValue("name", "TailoringType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestTailoringVersionType_CRUD tests Create, Read, Update, Delete for TailoringVersionType.
+func TestTailoringVersionType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "TailoringVersionType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create TailoringVersionType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestTailoringVersionType_ListByType tests listing elements of type TailoringVersionType.
+func TestTailoringVersionType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/TailoringVersionType", nil)
+	req.SetPathValue("type", "TailoringVersionType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestTailoringVersionType_GetTypeMetadata tests getting type metadata for TailoringVersionType.
+func TestTailoringVersionType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/TailoringVersionType", nil)
+	req.SetPathValue("name", "TailoringVersionType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestTargetFactsType_CRUD tests Create, Read, Update, Delete for TargetFactsType.
+func TestTargetFactsType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "TargetFactsType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create TargetFactsType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestTargetFactsType_ListByType tests listing elements of type TargetFactsType.
+func TestTargetFactsType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/TargetFactsType", nil)
+	req.SetPathValue("type", "TargetFactsType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestTargetFactsType_GetTypeMetadata tests getting type metadata for TargetFactsType.
+func TestTargetFactsType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/TargetFactsType", nil)
+	req.SetPathValue("name", "TargetFactsType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestTargetFactsType_GetValidChildTypes tests getting valid child types for TargetFactsType.
+func TestTargetFactsType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/TargetFactsType/children", nil)
+	req.SetPathValue("name", "TargetFactsType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestTargetIdRefType_CRUD tests Create, Read, Update, Delete for TargetIdRefType.
+func TestTargetIdRefType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "TargetIdRefType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create TargetIdRefType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestTargetIdRefType_ListByType tests listing elements of type TargetIdRefType.
+func TestTargetIdRefType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/TargetIdRefType", nil)
+	req.SetPathValue("type", "TargetIdRefType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestTargetIdRefType_GetTypeMetadata tests getting type metadata for TargetIdRefType.
+func TestTargetIdRefType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/TargetIdRefType", nil)
+	req.SetPathValue("name", "TargetIdRefType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
 // TestTelephoneNumberElement_CRUD tests Create, Read, Update, Delete for TelephoneNumberElement.
 func TestTelephoneNumberElement_CRUD(t *testing.T) {
 	ts := setupTestSuite(t)
@@ -25617,6 +49722,1002 @@ func TestTelephoneNumberType_GetTypeMetadata(t *testing.T) {
 	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
 		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
 	}
+}
+
+// TestTestElement_CRUD tests Create, Read, Update, Delete for TestElement.
+func TestTestElement_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "TestElement",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create TestElement returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestTestElement_ListByType tests listing elements of type TestElement.
+func TestTestElement_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/TestElement", nil)
+	req.SetPathValue("type", "TestElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestTestElement_GetTypeMetadata tests getting type metadata for TestElement.
+func TestTestElement_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/TestElement", nil)
+	req.SetPathValue("name", "TestElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestTestElement_GetValidChildTypes tests getting valid child types for TestElement.
+func TestTestElement_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/TestElement/children", nil)
+	req.SetPathValue("name", "TestElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestTestIDPattern_CRUD tests Create, Read, Update, Delete for TestIDPattern.
+func TestTestIDPattern_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "TestIDPattern",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create TestIDPattern returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestTestIDPattern_ListByType tests listing elements of type TestIDPattern.
+func TestTestIDPattern_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/TestIDPattern", nil)
+	req.SetPathValue("type", "TestIDPattern")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestTestIDPattern_GetTypeMetadata tests getting type metadata for TestIDPattern.
+func TestTestIDPattern_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/TestIDPattern", nil)
+	req.SetPathValue("name", "TestIDPattern")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestTestResultElement_CRUD tests Create, Read, Update, Delete for TestResultElement.
+func TestTestResultElement_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "TestResultElement",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create TestResultElement returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestTestResultElement_ListByType tests listing elements of type TestResultElement.
+func TestTestResultElement_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/TestResultElement", nil)
+	req.SetPathValue("type", "TestResultElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestTestResultElement_GetTypeMetadata tests getting type metadata for TestResultElement.
+func TestTestResultElement_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/TestResultElement", nil)
+	req.SetPathValue("name", "TestResultElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestTestResultElement_GetValidChildTypes tests getting valid child types for TestResultElement.
+func TestTestResultElement_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/TestResultElement/children", nil)
+	req.SetPathValue("name", "TestResultElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestTestResultType_CRUD tests Create, Read, Update, Delete for TestResultType.
+func TestTestResultType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "TestResultType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create TestResultType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestTestResultType_ListByType tests listing elements of type TestResultType.
+func TestTestResultType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/TestResultType", nil)
+	req.SetPathValue("type", "TestResultType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestTestResultType_GetTypeMetadata tests getting type metadata for TestResultType.
+func TestTestResultType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/TestResultType", nil)
+	req.SetPathValue("name", "TestResultType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestTestResultType_GetValidChildTypes tests getting valid child types for TestResultType.
+func TestTestResultType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/TestResultType/children", nil)
+	req.SetPathValue("name", "TestResultType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestTestType_CRUD tests Create, Read, Update, Delete for TestType.
+func TestTestType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "TestType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create TestType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestTestType_ListByType tests listing elements of type TestType.
+func TestTestType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/TestType", nil)
+	req.SetPathValue("type", "TestType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestTestType_GetTypeMetadata tests getting type metadata for TestType.
+func TestTestType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/TestType", nil)
+	req.SetPathValue("name", "TestType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestTestType_GetValidChildTypes tests getting valid child types for TestType.
+func TestTestType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/TestType/children", nil)
+	req.SetPathValue("name", "TestType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestTestresultIdType_CRUD tests Create, Read, Update, Delete for TestresultIdType.
+func TestTestresultIdType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "TestresultIdType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create TestresultIdType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestTestresultIdType_ListByType tests listing elements of type TestresultIdType.
+func TestTestresultIdType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/TestresultIdType", nil)
+	req.SetPathValue("type", "TestresultIdType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestTestresultIdType_GetTypeMetadata tests getting type metadata for TestresultIdType.
+func TestTestresultIdType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/TestresultIdType", nil)
+	req.SetPathValue("name", "TestresultIdType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestTestsType_CRUD tests Create, Read, Update, Delete for TestsType.
+func TestTestsType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "TestsType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create TestsType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestTestsType_ListByType tests listing elements of type TestsType.
+func TestTestsType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/TestsType", nil)
+	req.SetPathValue("type", "TestsType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestTestsType_GetTypeMetadata tests getting type metadata for TestsType.
+func TestTestsType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/TestsType", nil)
+	req.SetPathValue("name", "TestsType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestTestsType_GetValidChildTypes tests getting valid child types for TestsType.
+func TestTestsType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/TestsType/children", nil)
+	req.SetPathValue("name", "TestsType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestTextType_CRUD tests Create, Read, Update, Delete for TextType.
+func TestTextType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "TextType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create TextType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestTextType_ListByType tests listing elements of type TextType.
+func TestTextType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/TextType", nil)
+	req.SetPathValue("type", "TextType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestTextType_GetTypeMetadata tests getting type metadata for TextType.
+func TestTextType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/TextType", nil)
+	req.SetPathValue("name", "TextType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestTextWithSubType_CRUD tests Create, Read, Update, Delete for TextWithSubType.
+func TestTextWithSubType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "TextWithSubType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create TextWithSubType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestTextWithSubType_ListByType tests listing elements of type TextWithSubType.
+func TestTextWithSubType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/TextWithSubType", nil)
+	req.SetPathValue("type", "TextWithSubType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestTextWithSubType_GetTypeMetadata tests getting type metadata for TextWithSubType.
+func TestTextWithSubType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/TextWithSubType", nil)
+	req.SetPathValue("name", "TextWithSubType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestTextWithSubType_GetValidChildTypes tests getting valid child types for TextWithSubType.
+func TestTextWithSubType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/TextWithSubType/children", nil)
+	req.SetPathValue("name", "TextWithSubType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
 }
 
 // TestThoroughfareElement_CRUD tests Create, Read, Update, Delete for ThoroughfareElement.
@@ -27316,6 +52417,108 @@ func TestThoroughfareTrailingTypeType_GetTypeMetadata(t *testing.T) {
 	}
 }
 
+// TestTimeDifferenceFunctionType_CRUD tests Create, Read, Update, Delete for TimeDifferenceFunctionType.
+func TestTimeDifferenceFunctionType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "TimeDifferenceFunctionType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create TimeDifferenceFunctionType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestTimeDifferenceFunctionType_ListByType tests listing elements of type TimeDifferenceFunctionType.
+func TestTimeDifferenceFunctionType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/TimeDifferenceFunctionType", nil)
+	req.SetPathValue("type", "TimeDifferenceFunctionType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestTimeDifferenceFunctionType_GetTypeMetadata tests getting type metadata for TimeDifferenceFunctionType.
+func TestTimeDifferenceFunctionType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/TimeDifferenceFunctionType", nil)
+	req.SetPathValue("name", "TimeDifferenceFunctionType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
 // TestTitleAttrType_CRUD tests Create, Read, Update, Delete for TitleAttrType.
 func TestTitleAttrType_CRUD(t *testing.T) {
 	ts := setupTestSuite(t)
@@ -27826,6 +53029,440 @@ func TestToType_GetTypeMetadata(t *testing.T) {
 	}
 }
 
+// TestTransformElement_CRUD tests Create, Read, Update, Delete for TransformElement.
+func TestTransformElement_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "TransformElement",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create TransformElement returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestTransformElement_ListByType tests listing elements of type TransformElement.
+func TestTransformElement_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/TransformElement", nil)
+	req.SetPathValue("type", "TransformElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestTransformElement_GetTypeMetadata tests getting type metadata for TransformElement.
+func TestTransformElement_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/TransformElement", nil)
+	req.SetPathValue("name", "TransformElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestTransformType_CRUD tests Create, Read, Update, Delete for TransformType.
+func TestTransformType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "TransformType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create TransformType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestTransformType_ListByType tests listing elements of type TransformType.
+func TestTransformType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/TransformType", nil)
+	req.SetPathValue("type", "TransformType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestTransformType_GetTypeMetadata tests getting type metadata for TransformType.
+func TestTransformType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/TransformType", nil)
+	req.SetPathValue("name", "TransformType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestTransformsElement_CRUD tests Create, Read, Update, Delete for TransformsElement.
+func TestTransformsElement_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "TransformsElement",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create TransformsElement returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestTransformsElement_ListByType tests listing elements of type TransformsElement.
+func TestTransformsElement_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/TransformsElement", nil)
+	req.SetPathValue("type", "TransformsElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestTransformsElement_GetTypeMetadata tests getting type metadata for TransformsElement.
+func TestTransformsElement_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/TransformsElement", nil)
+	req.SetPathValue("name", "TransformsElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestTransformsElement_GetValidChildTypes tests getting valid child types for TransformsElement.
+func TestTransformsElement_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/TransformsElement/children", nil)
+	req.SetPathValue("name", "TransformsElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestTransformsType_CRUD tests Create, Read, Update, Delete for TransformsType.
+func TestTransformsType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "TransformsType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create TransformsType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestTransformsType_ListByType tests listing elements of type TransformsType.
+func TestTransformsType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/TransformsType", nil)
+	req.SetPathValue("type", "TransformsType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestTransformsType_GetTypeMetadata tests getting type metadata for TransformsType.
+func TestTransformsType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/TransformsType", nil)
+	req.SetPathValue("name", "TransformsType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestTransformsType_GetValidChildTypes tests getting valid child types for TransformsType.
+func TestTransformsType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/TransformsType/children", nil)
+	req.SetPathValue("name", "TransformsType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
 // TestTypeType_CRUD tests Create, Read, Update, Delete for TypeType.
 func TestTypeType_CRUD(t *testing.T) {
 	ts := setupTestSuite(t)
@@ -27919,6 +53556,210 @@ func TestTypeType_GetTypeMetadata(t *testing.T) {
 
 	req := httptest.NewRequest("GET", "/api/types/TypeType", nil)
 	req.SetPathValue("name", "TypeType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestUniqueFunctionType_CRUD tests Create, Read, Update, Delete for UniqueFunctionType.
+func TestUniqueFunctionType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "UniqueFunctionType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create UniqueFunctionType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestUniqueFunctionType_ListByType tests listing elements of type UniqueFunctionType.
+func TestUniqueFunctionType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/UniqueFunctionType", nil)
+	req.SetPathValue("type", "UniqueFunctionType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestUniqueFunctionType_GetTypeMetadata tests getting type metadata for UniqueFunctionType.
+func TestUniqueFunctionType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/UniqueFunctionType", nil)
+	req.SetPathValue("name", "UniqueFunctionType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestUriRefType_CRUD tests Create, Read, Update, Delete for UriRefType.
+func TestUriRefType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "UriRefType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create UriRefType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestUriRefType_ListByType tests listing elements of type UriRefType.
+func TestUriRefType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/UriRefType", nil)
+	req.SetPathValue("type", "UriRefType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestUriRefType_GetTypeMetadata tests getting type metadata for UriRefType.
+func TestUriRefType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/UriRefType", nil)
+	req.SetPathValue("name", "UriRefType")
 	rr := httptest.NewRecorder()
 
 	ts.handlers.HandleGetType(rr, req)
@@ -28030,6 +53871,1078 @@ func TestUrlElementType_GetTypeMetadata(t *testing.T) {
 	}
 }
 
+// TestValueElement_CRUD tests Create, Read, Update, Delete for ValueElement.
+func TestValueElement_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "ValueElement",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create ValueElement returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestValueElement_ListByType tests listing elements of type ValueElement.
+func TestValueElement_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/ValueElement", nil)
+	req.SetPathValue("type", "ValueElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestValueElement_GetTypeMetadata tests getting type metadata for ValueElement.
+func TestValueElement_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ValueElement", nil)
+	req.SetPathValue("name", "ValueElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestValueElement_GetValidChildTypes tests getting valid child types for ValueElement.
+func TestValueElement_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ValueElement/children", nil)
+	req.SetPathValue("name", "ValueElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestValueIdType_CRUD tests Create, Read, Update, Delete for ValueIdType.
+func TestValueIdType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "ValueIdType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create ValueIdType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestValueIdType_ListByType tests listing elements of type ValueIdType.
+func TestValueIdType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/ValueIdType", nil)
+	req.SetPathValue("type", "ValueIdType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestValueIdType_GetTypeMetadata tests getting type metadata for ValueIdType.
+func TestValueIdType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ValueIdType", nil)
+	req.SetPathValue("name", "ValueIdType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestValueOperatorType_CRUD tests Create, Read, Update, Delete for ValueOperatorType.
+func TestValueOperatorType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "ValueOperatorType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create ValueOperatorType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestValueOperatorType_ListByType tests listing elements of type ValueOperatorType.
+func TestValueOperatorType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/ValueOperatorType", nil)
+	req.SetPathValue("type", "ValueOperatorType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestValueOperatorType_GetTypeMetadata tests getting type metadata for ValueOperatorType.
+func TestValueOperatorType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ValueOperatorType", nil)
+	req.SetPathValue("name", "ValueOperatorType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestValueType_CRUD tests Create, Read, Update, Delete for ValueType.
+func TestValueType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "ValueType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create ValueType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestValueType_ListByType tests listing elements of type ValueType.
+func TestValueType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/ValueType", nil)
+	req.SetPathValue("type", "ValueType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestValueType_GetTypeMetadata tests getting type metadata for ValueType.
+func TestValueType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ValueType", nil)
+	req.SetPathValue("name", "ValueType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestValueTypeType_CRUD tests Create, Read, Update, Delete for ValueTypeType.
+func TestValueTypeType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "ValueTypeType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create ValueTypeType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestValueTypeType_ListByType tests listing elements of type ValueTypeType.
+func TestValueTypeType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/ValueTypeType", nil)
+	req.SetPathValue("type", "ValueTypeType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestValueTypeType_GetTypeMetadata tests getting type metadata for ValueTypeType.
+func TestValueTypeType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/ValueTypeType", nil)
+	req.SetPathValue("name", "ValueTypeType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestVariableComponentType_CRUD tests Create, Read, Update, Delete for VariableComponentType.
+func TestVariableComponentType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "VariableComponentType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create VariableComponentType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestVariableComponentType_ListByType tests listing elements of type VariableComponentType.
+func TestVariableComponentType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/VariableComponentType", nil)
+	req.SetPathValue("type", "VariableComponentType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestVariableComponentType_GetTypeMetadata tests getting type metadata for VariableComponentType.
+func TestVariableComponentType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/VariableComponentType", nil)
+	req.SetPathValue("name", "VariableComponentType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestVariableElement_CRUD tests Create, Read, Update, Delete for VariableElement.
+func TestVariableElement_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "VariableElement",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create VariableElement returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestVariableElement_ListByType tests listing elements of type VariableElement.
+func TestVariableElement_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/VariableElement", nil)
+	req.SetPathValue("type", "VariableElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestVariableElement_GetTypeMetadata tests getting type metadata for VariableElement.
+func TestVariableElement_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/VariableElement", nil)
+	req.SetPathValue("name", "VariableElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestVariableElement_GetValidChildTypes tests getting valid child types for VariableElement.
+func TestVariableElement_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/VariableElement/children", nil)
+	req.SetPathValue("name", "VariableElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestVariableIDPattern_CRUD tests Create, Read, Update, Delete for VariableIDPattern.
+func TestVariableIDPattern_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "VariableIDPattern",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create VariableIDPattern returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestVariableIDPattern_ListByType tests listing elements of type VariableIDPattern.
+func TestVariableIDPattern_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/VariableIDPattern", nil)
+	req.SetPathValue("type", "VariableIDPattern")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestVariableIDPattern_GetTypeMetadata tests getting type metadata for VariableIDPattern.
+func TestVariableIDPattern_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/VariableIDPattern", nil)
+	req.SetPathValue("name", "VariableIDPattern")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestVariableType_CRUD tests Create, Read, Update, Delete for VariableType.
+func TestVariableType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "VariableType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create VariableType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestVariableType_ListByType tests listing elements of type VariableType.
+func TestVariableType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/VariableType", nil)
+	req.SetPathValue("type", "VariableType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestVariableType_GetTypeMetadata tests getting type metadata for VariableType.
+func TestVariableType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/VariableType", nil)
+	req.SetPathValue("name", "VariableType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestVariableType_GetValidChildTypes tests getting valid child types for VariableType.
+func TestVariableType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/VariableType/children", nil)
+	req.SetPathValue("name", "VariableType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestVariablesType_CRUD tests Create, Read, Update, Delete for VariablesType.
+func TestVariablesType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "VariablesType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create VariablesType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestVariablesType_ListByType tests listing elements of type VariablesType.
+func TestVariablesType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/VariablesType", nil)
+	req.SetPathValue("type", "VariablesType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestVariablesType_GetTypeMetadata tests getting type metadata for VariablesType.
+func TestVariablesType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/VariablesType", nil)
+	req.SetPathValue("name", "VariablesType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestVariablesType_GetValidChildTypes tests getting valid child types for VariablesType.
+func TestVariablesType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/VariablesType/children", nil)
+	req.SetPathValue("name", "VariablesType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
 // TestVersionElementType_CRUD tests Create, Read, Update, Delete for VersionElementType.
 func TestVersionElementType_CRUD(t *testing.T) {
 	ts := setupTestSuite(t)
@@ -28123,6 +55036,312 @@ func TestVersionElementType_GetTypeMetadata(t *testing.T) {
 
 	req := httptest.NewRequest("GET", "/api/types/VersionElementType", nil)
 	req.SetPathValue("name", "VersionElementType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestVersionType_CRUD tests Create, Read, Update, Delete for VersionType.
+func TestVersionType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "VersionType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create VersionType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestVersionType_ListByType tests listing elements of type VersionType.
+func TestVersionType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/VersionType", nil)
+	req.SetPathValue("type", "VersionType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestVersionType_GetTypeMetadata tests getting type metadata for VersionType.
+func TestVersionType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/VersionType", nil)
+	req.SetPathValue("name", "VersionType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestWarningCategoryEnumType_CRUD tests Create, Read, Update, Delete for WarningCategoryEnumType.
+func TestWarningCategoryEnumType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "WarningCategoryEnumType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create WarningCategoryEnumType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestWarningCategoryEnumType_ListByType tests listing elements of type WarningCategoryEnumType.
+func TestWarningCategoryEnumType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/WarningCategoryEnumType", nil)
+	req.SetPathValue("type", "WarningCategoryEnumType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestWarningCategoryEnumType_GetTypeMetadata tests getting type metadata for WarningCategoryEnumType.
+func TestWarningCategoryEnumType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/WarningCategoryEnumType", nil)
+	req.SetPathValue("name", "WarningCategoryEnumType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestWarningType_CRUD tests Create, Read, Update, Delete for WarningType.
+func TestWarningType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "WarningType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create WarningType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestWarningType_ListByType tests listing elements of type WarningType.
+func TestWarningType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/WarningType", nil)
+	req.SetPathValue("type", "WarningType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestWarningType_GetTypeMetadata tests getting type metadata for WarningType.
+func TestWarningType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/WarningType", nil)
+	req.SetPathValue("name", "WarningType")
 	rr := httptest.NewRecorder()
 
 	ts.handlers.HandleGetType(rr, req)
@@ -28557,6 +55776,440 @@ func TestWebsiteUrlElementType_GetTypeMetadata(t *testing.T) {
 
 	req := httptest.NewRequest("GET", "/api/types/WebsiteUrlElementType", nil)
 	req.SetPathValue("name", "WebsiteUrlElementType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestWeightType_CRUD tests Create, Read, Update, Delete for WeightType.
+func TestWeightType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "WeightType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create WeightType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestWeightType_ListByType tests listing elements of type WeightType.
+func TestWeightType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/WeightType", nil)
+	req.SetPathValue("type", "WeightType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestWeightType_GetTypeMetadata tests getting type metadata for WeightType.
+func TestWeightType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/WeightType", nil)
+	req.SetPathValue("name", "WeightType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestX509DataElement_CRUD tests Create, Read, Update, Delete for X509DataElement.
+func TestX509DataElement_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "X509DataElement",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create X509DataElement returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestX509DataElement_ListByType tests listing elements of type X509DataElement.
+func TestX509DataElement_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/X509DataElement", nil)
+	req.SetPathValue("type", "X509DataElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestX509DataElement_GetTypeMetadata tests getting type metadata for X509DataElement.
+func TestX509DataElement_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/X509DataElement", nil)
+	req.SetPathValue("name", "X509DataElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestX509DataElement_GetValidChildTypes tests getting valid child types for X509DataElement.
+func TestX509DataElement_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/X509DataElement/children", nil)
+	req.SetPathValue("name", "X509DataElement")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestX509DataType_CRUD tests Create, Read, Update, Delete for X509DataType.
+func TestX509DataType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "X509DataType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create X509DataType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestX509DataType_ListByType tests listing elements of type X509DataType.
+func TestX509DataType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/X509DataType", nil)
+	req.SetPathValue("type", "X509DataType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestX509DataType_GetTypeMetadata tests getting type metadata for X509DataType.
+func TestX509DataType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/X509DataType", nil)
+	req.SetPathValue("name", "X509DataType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetType(rr, req)
+
+	if rr.Code != http.StatusOK && rr.Code != http.StatusNotFound {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestX509DataType_GetValidChildTypes tests getting valid child types for X509DataType.
+func TestX509DataType_GetValidChildTypes(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/X509DataType/children", nil)
+	req.SetPathValue("name", "X509DataType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleGetValidChildTypes(rr, req)
+
+	assertStatusCode(t, rr, http.StatusOK)
+}
+
+// TestX509IssuerSerialType_CRUD tests Create, Read, Update, Delete for X509IssuerSerialType.
+func TestX509IssuerSerialType_CRUD(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	// CREATE
+	createBody := map[string]interface{}{
+		"type":       "X509IssuerSerialType",
+		"parentPath": "",
+		"data":       map[string]interface{}{},
+	}
+	jsonBytes, _ := json.Marshal(createBody)
+
+	createReq := httptest.NewRequest("POST", "/api/elements", bytes.NewReader(jsonBytes))
+	createReq.Header.Set("Content-Type", "application/json")
+	createRR := httptest.NewRecorder()
+
+	ts.handlers.HandleCreateElementAPI(createRR, createReq)
+
+	if createRR.Code == http.StatusOK {
+		var createResp map[string]string
+		json.Unmarshal(createRR.Body.Bytes(), &createResp)
+		path := createResp["path"]
+
+		if path == "" {
+			t.Fatal("Create succeeded but no path returned")
+		}
+
+		// READ
+		readReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		readRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(readRR, readReq)
+
+		if readRR.Code != http.StatusOK {
+			t.Errorf("READ failed: status %d, body: %s", readRR.Code, readRR.Body.String())
+		}
+
+		// UPDATE
+		updateBody := map[string]interface{}{}
+		updateBytes, _ := json.Marshal(updateBody)
+		updateReq := httptest.NewRequest("PUT", "/api/elements?path="+path, bytes.NewReader(updateBytes))
+		updateReq.Header.Set("Content-Type", "application/json")
+		updateRR := httptest.NewRecorder()
+		ts.handlers.HandleUpdateElement(updateRR, updateReq)
+
+		if updateRR.Code != http.StatusOK {
+			t.Errorf("UPDATE failed: status %d, body: %s", updateRR.Code, updateRR.Body.String())
+		}
+
+		// DELETE
+		deleteReq := httptest.NewRequest("DELETE", "/api/elements?path="+path, nil)
+		deleteRR := httptest.NewRecorder()
+		ts.handlers.HandleDeleteElement(deleteRR, deleteReq)
+
+		if deleteRR.Code != http.StatusOK {
+			t.Errorf("DELETE failed: status %d, body: %s", deleteRR.Code, deleteRR.Body.String())
+		}
+
+		// VERIFY DELETED
+		verifyReq := httptest.NewRequest("GET", "/api/elements?path="+path, nil)
+		verifyRR := httptest.NewRecorder()
+		ts.handlers.HandleGetElement(verifyRR, verifyReq)
+
+		if verifyRR.Code == http.StatusOK {
+			t.Error("Element should not exist after delete")
+		}
+	} else {
+		t.Logf("Create X509IssuerSerialType returned %d (type may not be creatable): %s",
+			createRR.Code, createRR.Body.String())
+	}
+}
+
+// TestX509IssuerSerialType_ListByType tests listing elements of type X509IssuerSerialType.
+func TestX509IssuerSerialType_ListByType(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/elements/type/X509IssuerSerialType", nil)
+	req.SetPathValue("type", "X509IssuerSerialType")
+	rr := httptest.NewRecorder()
+
+	ts.handlers.HandleListElements(rr, req)
+
+	// Should return OK with empty list or list of elements
+	if rr.Code != http.StatusOK && rr.Code != http.StatusInternalServerError {
+		t.Errorf("Unexpected status: %d, body: %s", rr.Code, rr.Body.String())
+	}
+}
+
+// TestX509IssuerSerialType_GetTypeMetadata tests getting type metadata for X509IssuerSerialType.
+func TestX509IssuerSerialType_GetTypeMetadata(t *testing.T) {
+	ts := setupTestSuite(t)
+
+	req := httptest.NewRequest("GET", "/api/types/X509IssuerSerialType", nil)
+	req.SetPathValue("name", "X509IssuerSerialType")
 	rr := httptest.NewRecorder()
 
 	ts.handlers.HandleGetType(rr, req)

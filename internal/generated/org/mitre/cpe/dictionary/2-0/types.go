@@ -168,6 +168,30 @@ func replicateXmlnsPlacement(xmlOutput string, elementsWithXmlns map[string]stri
 	return result
 }
 
+// NamePattern represents the XSD type 'namePattern'
+// XSD simple type (W3C XSD §4.1)
+// pattern="[c][pP][eE]:/[AHOaho]?(:[A-Za-z0-9\._\-~%]*){0,6}"
+type NamePattern string
+
+// GeneratorType represents the XSD type 'GeneratorType'
+// XSD complex type (W3C XSD §3.4)
+type GeneratorType struct {
+	// Product_name represents XSD element 'product_name'
+	// minOccurs=0, maxOccurs=1
+	Product_name *string `xml:"product_name,omitempty"`
+	// Product_version represents XSD element 'product_version'
+	// minOccurs=0, maxOccurs=1
+	Product_version *string `xml:"product_version,omitempty"`
+	// Schema_version represents XSD element 'schema_version'
+	Schema_version string `xml:"schema_version"`
+	// Timestamp represents XSD element 'timestamp'
+	Timestamp types.DateTime `xml:"timestamp"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
 // ListType represents the XSD type 'ListType'
 // XSD complex type (W3C XSD §3.4)
 type ListType struct {
@@ -182,25 +206,6 @@ type ListType struct {
 	// UnknownAttrs captures any attributes not defined in XSD
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
-
-// CheckType represents the XSD type 'CheckType'
-// XSD complex type (W3C XSD §3.4)
-type CheckTypeWithAttrs struct {
-	Value string `xml:",chardata"` // XSD simple content
-	// System represents XSD attribute 'system'
-	// use="required"
-	System string `xml:"system,attr"`
-	// Href represents XSD attribute 'href'
-	// use="optional"
-	Href *string `xml:"href,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// CheckType is an alias for CheckTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
-type CheckType = CheckTypeWithAttrs
 
 // ReferenceElementType represents the XSD type 'ReferenceElementType'
 // XSD complex type (W3C XSD §3.4)
@@ -288,26 +293,21 @@ type ReferencesType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// NamePattern represents the XSD type 'namePattern'
-// XSD simple type (W3C XSD §4.1)
-// pattern="[c][pP][eE]:/[AHOaho]?(:[A-Za-z0-9\._\-~%]*){0,6}"
-type NamePattern string
-
-// GeneratorType represents the XSD type 'GeneratorType'
+// CheckType represents the XSD type 'CheckType'
 // XSD complex type (W3C XSD §3.4)
-type GeneratorType struct {
-	// Product_name represents XSD element 'product_name'
-	// minOccurs=0, maxOccurs=1
-	Product_name *string `xml:"product_name,omitempty"`
-	// Product_version represents XSD element 'product_version'
-	// minOccurs=0, maxOccurs=1
-	Product_version *string `xml:"product_version,omitempty"`
-	// Schema_version represents XSD element 'schema_version'
-	Schema_version string `xml:"schema_version"`
-	// Timestamp represents XSD element 'timestamp'
-	Timestamp types.DateTime `xml:"timestamp"`
+type CheckTypeWithAttrs struct {
+	Value string `xml:",chardata"` // XSD simple content
+	// System represents XSD attribute 'system'
+	// use="required"
+	System string `xml:"system,attr"`
+	// Href represents XSD attribute 'href'
+	// use="optional"
+	Href *string `xml:"href,attr,omitempty"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
+
+// CheckType is an alias for CheckTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
+type CheckType = CheckTypeWithAttrs

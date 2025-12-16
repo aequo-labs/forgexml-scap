@@ -170,6 +170,58 @@ func replicateXmlnsPlacement(xmlOutput string, elementsWithXmlns map[string]stri
 	return result
 }
 
+// ReportRequestType represents the XSD type 'ReportRequestType'
+// XSD complex type (W3C XSD §3.4)
+type ReportRequestType struct {
+	// Content represents XSD element 'content'
+	Content *ContentElementType1 `xml:"content,omitempty"`
+	// RemoteResource represents XSD element 'remote-resource'
+	RemoteResource *RemoteResourceElement `xml:"remote-resource,omitempty"`
+	// Id represents XSD attribute 'id'
+	// use="required"
+	Id string `xml:"id,attr"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// AssetReportCollectionElementType represents the XSD type 'AssetReportCollectionElementType'
+// XSD complex type (W3C XSD §3.4)
+type AssetReportCollectionElementType struct {
+	reporting_core1_1.RelationshipsContainerType // XSD extension base
+	// ReportRequests represents XSD element 'report-requests'
+	// minOccurs=0, maxOccurs=1
+	ReportRequests *ReportRequestsElementType `xml:"report-requests,omitempty"`
+	// Assets represents XSD element 'assets'
+	// minOccurs=0, maxOccurs=1
+	Assets *AssetsElementType `xml:"assets,omitempty"`
+	// Reports represents XSD element 'reports'
+	Reports ReportsElementType `xml:"reports"`
+	// ExtendedInfos represents XSD element 'extended-infos'
+	// minOccurs=0, maxOccurs=1
+	ExtendedInfos *ExtendedInfosElementType `xml:"extended-infos,omitempty"`
+	// Id represents XSD attribute 'id'
+	// use="optional"
+	Id *string `xml:"id,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// ReportRequestsElementType represents the XSD type 'ReportRequestsElementType'
+// XSD complex type (W3C XSD §3.4)
+type ReportRequestsElementType struct {
+	// ReportRequest represents XSD element 'report-request'
+	// minOccurs=1, maxOccurs=-1
+	ReportRequest []ReportRequestType `xml:"report-request"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
 // AssetsElementType represents the XSD type 'AssetsElementType'
 // XSD complex type (W3C XSD §3.4)
 type AssetsElementType struct {
@@ -185,18 +237,18 @@ type AssetsElementType struct {
 // AssetElementType represents the XSD type 'AssetElementType'
 // XSD complex type (W3C XSD §3.4)
 type AssetElementType struct {
-	// X1_1Data represents substitution group member 'data' (namespace: http://scap.nist.gov/schema/asset-identification/1.1)
-	// Substitutes for abstract element 'asset'
-	X1_1Data []asset_identification1_1.DataType `xml:"http://scap.nist.gov/schema/asset-identification/1.1 data,omitempty"`
-	// X1_1Organization represents substitution group member 'organization' (namespace: http://scap.nist.gov/schema/asset-identification/1.1)
-	// Substitutes for abstract element 'asset'
-	X1_1Organization []asset_identification1_1.OrganizationType `xml:"http://scap.nist.gov/schema/asset-identification/1.1 organization,omitempty"`
 	// X1_1Person represents substitution group member 'person' (namespace: http://scap.nist.gov/schema/asset-identification/1.1)
 	// Substitutes for abstract element 'asset'
 	X1_1Person []asset_identification1_1.PersonType `xml:"http://scap.nist.gov/schema/asset-identification/1.1 person,omitempty"`
 	// X1_1ItAsset represents substitution group member 'it-asset' (namespace: http://scap.nist.gov/schema/asset-identification/1.1)
 	// Substitutes for abstract element 'asset'
 	X1_1ItAsset []asset_identification1_1.ItAssetType `xml:"http://scap.nist.gov/schema/asset-identification/1.1 it-asset,omitempty"`
+	// X1_1Organization represents substitution group member 'organization' (namespace: http://scap.nist.gov/schema/asset-identification/1.1)
+	// Substitutes for abstract element 'asset'
+	X1_1Organization []asset_identification1_1.OrganizationType `xml:"http://scap.nist.gov/schema/asset-identification/1.1 organization,omitempty"`
+	// X1_1Data represents substitution group member 'data' (namespace: http://scap.nist.gov/schema/asset-identification/1.1)
+	// Substitutes for abstract element 'asset'
+	X1_1Data []asset_identification1_1.DataType `xml:"http://scap.nist.gov/schema/asset-identification/1.1 data,omitempty"`
 	// RemoteResource represents XSD element 'remote-resource'
 	RemoteResource *RemoteResourceElement `xml:"remote-resource,omitempty"`
 	// Id represents XSD attribute 'id'
@@ -208,12 +260,12 @@ type AssetElementType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// ReportsElementType represents the XSD type 'ReportsElementType'
+// ExtendedInfosElementType represents the XSD type 'ExtendedInfosElementType'
 // XSD complex type (W3C XSD §3.4)
-type ReportsElementType struct {
-	// Report represents XSD element 'report'
+type ExtendedInfosElementType struct {
+	// ExtendedInfo represents XSD element 'extended-info'
 	// minOccurs=1, maxOccurs=-1
-	Report []ReportType `xml:"report"`
+	ExtendedInfo []ExtendedInfoElementType `xml:"extended-info"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -247,16 +299,28 @@ type ContentElementType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// ReportRequestType represents the XSD type 'ReportRequestType'
+// ReportType represents the XSD type 'ReportType'
 // XSD complex type (W3C XSD §3.4)
-type ReportRequestType struct {
+type ReportType struct {
 	// Content represents XSD element 'content'
-	Content *ContentElementType1 `xml:"content,omitempty"`
+	Content *ContentElementType `xml:"content,omitempty"`
 	// RemoteResource represents XSD element 'remote-resource'
 	RemoteResource *RemoteResourceElement `xml:"remote-resource,omitempty"`
 	// Id represents XSD attribute 'id'
 	// use="required"
 	Id string `xml:"id,attr"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// ReportsElementType represents the XSD type 'ReportsElementType'
+// XSD complex type (W3C XSD §3.4)
+type ReportsElementType struct {
+	// Report represents XSD element 'report'
+	// minOccurs=1, maxOccurs=-1
+	Report []ReportType `xml:"report"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -284,73 +348,9 @@ type RemoteResourceElementType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// AssetReportCollectionElementType represents the XSD type 'AssetReportCollectionElementType'
-// XSD complex type (W3C XSD §3.4)
-type AssetReportCollectionElementType struct {
-	reporting_core1_1.RelationshipsContainerType // XSD extension base
-	// ReportRequests represents XSD element 'report-requests'
-	// minOccurs=0, maxOccurs=1
-	ReportRequests *ReportRequestsElementType `xml:"report-requests,omitempty"`
-	// Assets represents XSD element 'assets'
-	// minOccurs=0, maxOccurs=1
-	Assets *AssetsElementType `xml:"assets,omitempty"`
-	// Reports represents XSD element 'reports'
-	Reports ReportsElementType `xml:"reports"`
-	// ExtendedInfos represents XSD element 'extended-infos'
-	// minOccurs=0, maxOccurs=1
-	ExtendedInfos *ExtendedInfosElementType `xml:"extended-infos,omitempty"`
-	// Id represents XSD attribute 'id'
-	// use="optional"
-	Id *string `xml:"id,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// ExtendedInfosElementType represents the XSD type 'ExtendedInfosElementType'
-// XSD complex type (W3C XSD §3.4)
-type ExtendedInfosElementType struct {
-	// ExtendedInfo represents XSD element 'extended-info'
-	// minOccurs=1, maxOccurs=-1
-	ExtendedInfo []ExtendedInfoElementType `xml:"extended-info"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
 // ContentElementType1 represents the XSD type 'ContentElementType1'
 // XSD complex type (W3C XSD §3.4)
 type ContentElementType1 struct {
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// ReportType represents the XSD type 'ReportType'
-// XSD complex type (W3C XSD §3.4)
-type ReportType struct {
-	// Content represents XSD element 'content'
-	Content *ContentElementType `xml:"content,omitempty"`
-	// RemoteResource represents XSD element 'remote-resource'
-	RemoteResource *RemoteResourceElement `xml:"remote-resource,omitempty"`
-	// Id represents XSD attribute 'id'
-	// use="required"
-	Id string `xml:"id,attr"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// ReportRequestsElementType represents the XSD type 'ReportRequestsElementType'
-// XSD complex type (W3C XSD §3.4)
-type ReportRequestsElementType struct {
-	// ReportRequest represents XSD element 'report-request'
-	// minOccurs=1, maxOccurs=-1
-	ReportRequest []ReportRequestType `xml:"report-request"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD

@@ -330,7 +330,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Table view (default)
             html += '<table class="table is-fullwidth is-striped is-hoverable is-narrow children-table">';
-            html += '<thead><tr><th style="width:40px">#</th><th>Type</th><th>Label</th><th style="width:80px">Actions</th></tr></thead><tbody>';
+            html += '<thead><tr><th style="width:40px">#</th><th>Type</th><th>Label</th><th style="width:100px; text-align:center">Actions</th></tr></thead><tbody>';
             
             children.forEach((child, index) => {
                 const childPath = child.path || child.id;
@@ -339,8 +339,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         <td class="has-text-grey">${index + 1}</td>
                         <td><span class="tag is-info is-light">${child.type || 'Unknown'}</span></td>
                         <td>${child.label || child.id || '(unnamed)'}</td>
-                        <td>
-                            <div class="buttons are-small">
+                        <td class="has-text-centered">
+                            <div class="buttons are-small is-justify-content-center" style="flex-wrap: nowrap; margin-bottom: 0;">
                                 <button class="button is-small is-primary is-light child-edit-btn" data-path="${childPath}" title="Edit">
                                     <span class="icon"><i class="fas fa-edit"></i></span>
                                 </button>
@@ -520,23 +520,20 @@ document.addEventListener('DOMContentLoaded', function() {
     function findFirstMatchingNode(searchText) {
         const searchLower = searchText.toLowerCase();
         
-        // Try to access tree's internal flatNodes first
+        // Try to access tree's internal flatNodes first (faster for large trees)
         const flatNodes = tree.treeView?.flatNodes || [];
-        console.log('findFirstMatchingNode: searching for', searchText, 'in', flatNodes.length, 'flatNodes');
         
         for (const node of flatNodes) {
             const label = (node.label || '').toLowerCase();
             const id = (node.id || '').toLowerCase();
             const path = (node.path || '').toLowerCase();
             if (label.includes(searchLower) || id.includes(searchLower) || path.includes(searchLower)) {
-                console.log('findFirstMatchingNode: found in flatNodes', node);
                 return node;
             }
         }
         
         // Fallback: recursively search nodes array
         const nodes = tree.treeView?.nodes || [];
-        console.log('findFirstMatchingNode: fallback to nodes array with', nodes.length, 'nodes');
         
         function searchNodes(nodeList) {
             for (const node of nodeList || []) {
@@ -544,7 +541,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 const id = (node.id || '').toLowerCase();
                 const path = (node.path || '').toLowerCase();
                 if (label.includes(searchLower) || id.includes(searchLower) || path.includes(searchLower)) {
-                    console.log('findFirstMatchingNode: found in nodes', node);
                     return node;
                 }
                 if (node.children) {
@@ -737,6 +733,12 @@ html.dark-mode .tree-panel .input::placeholder {
 }
 .children-table .child-row td {
     vertical-align: middle;
+}
+.children-table .buttons {
+    gap: 0.25rem;
+}
+.children-table .buttons .button {
+    margin-bottom: 0 !important;
 }
 html.dark-mode .children-table .child-row:hover {
     background-color: #3a4a5a !important;

@@ -25,233 +25,18 @@ func boolPtr(b bool) *bool          { return &b }
 func timePtr(t time.Time) *time.Time { return &t }
 
 // Entity factory functions for creating test data
-// newPersonType creates a test PersonType entity with sample data
-func newPersonType(suffix string) *parent.PersonType {
-	return &parent.PersonType{
-		Birthdate: stringPtr("test_" + suffix),
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newSubPremiseNameElementType creates a test SubPremiseNameElementType entity with sample data
-func newSubPremiseNameElementType(suffix string) *parent.SubPremiseNameElementType {
-	return &parent.SubPremiseNameElementType{
-		Type: stringPtr("test_" + suffix),
-		TypeOccurrence: stringPtr("test_" + suffix),
-	}
-}
-
-// newThoroughfareNumberPrefix creates a test ThoroughfareNumberPrefix entity with sample data
-func newThoroughfareNumberPrefix(suffix string) *parent.ThoroughfareNumberPrefix {
-	return &parent.ThoroughfareNumberPrefix{
-		NumberPrefixSeparator: stringPtr("test_" + suffix),
-		Type: stringPtr("test_" + suffix),
-	}
-}
-
-// newCheckContentRefType creates a test CheckContentRefType entity with sample data
-func newCheckContentRefType(suffix string) *parent.CheckContentRefType {
-	return &parent.CheckContentRefType{
-		Href: "test_href_" + suffix,
-		Name: stringPtr("test_" + suffix),
-	}
-}
-
-// newProfileRefineValueType creates a test ProfileRefineValueType entity with sample data
-func newProfileRefineValueType(suffix string) *parent.ProfileRefineValueType {
-	return &parent.ProfileRefineValueType{
-		Idref: "test_idref_" + suffix,
-		Selector: stringPtr("test_" + suffix),
-		Operator: stringPtr("test_" + suffix),
-	}
-}
-
-// newTailoringBenchmarkReferenceType creates a test TailoringBenchmarkReferenceType entity with sample data
-func newTailoringBenchmarkReferenceType(suffix string) *parent.TailoringBenchmarkReferenceType {
-	return &parent.TailoringBenchmarkReferenceType{
-		Version: stringPtr("test_" + suffix),
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newLogicalTestType creates a test LogicalTestType entity with sample data
-func newLogicalTestType(suffix string) *parent.LogicalTestType {
-	return &parent.LogicalTestType{
-		Operator: "test_operator_" + suffix,
-		Negate: true,
-	}
-}
-
-// newWebsiteUrl creates a test WebsiteUrl entity with sample data
-func newWebsiteUrl(suffix string) *parent.WebsiteUrl {
-	return &parent.WebsiteUrl{
-	}
-}
-
-// newArcType creates a test ArcType entity with sample data
-func newArcType(suffix string) *parent.ArcType {
-	return &parent.ArcType{
-	}
-}
-
-// newNameDetailsElementType creates a test NameDetailsElementType entity with sample data
-func newNameDetailsElementType(suffix string) *parent.NameDetailsElementType {
-	return &parent.NameDetailsElementType{
-		NameDetailsKey: stringPtr("test_" + suffix),
-		AddresseeIndicator: stringPtr("test_" + suffix),
-		DependencyName: stringPtr("test_" + suffix),
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newElementMapItemType creates a test ElementMapItemType entity with sample data
-func newElementMapItemType(suffix string) *parent.ElementMapItemType {
-	return &parent.ElementMapItemType{
-		Target_namespace: stringPtr("test_" + suffix),
-	}
-}
-
-// newThoroughfareNumberPrefixElementType creates a test ThoroughfareNumberPrefixElementType entity with sample data
-func newThoroughfareNumberPrefixElementType(suffix string) *parent.ThoroughfareNumberPrefixElementType {
-	return &parent.ThoroughfareNumberPrefixElementType{
-		NumberPrefixSeparator: stringPtr("test_" + suffix),
-		Type: stringPtr("test_" + suffix),
-	}
-}
-
-// newPostalServiceElementsElementType creates a test PostalServiceElementsElementType entity with sample data
-func newPostalServiceElementsElementType(suffix string) *parent.PostalServiceElementsElementType {
-	return &parent.PostalServiceElementsElementType{
-		Type: stringPtr("test_" + suffix),
-		AddressIdentifier: stringPtr("test_" + suffix),
-		EndorsementLineCode: stringPtr("test_" + suffix),
-		KeyLineCode: stringPtr("test_" + suffix),
-		Barcode: stringPtr("test_" + suffix),
-		SortingCode: stringPtr("test_" + suffix),
-		AddressLatitude: stringPtr("test_" + suffix),
-		AddressLatitudeDirection: stringPtr("test_" + suffix),
-		AddressLongitude: stringPtr("test_" + suffix),
-		AddressLongitudeDirection: stringPtr("test_" + suffix),
-		SupplementaryPostalServiceData: stringPtr("test_" + suffix),
-	}
-}
-
-// newEntityStateDebianEVRStringType creates a test EntityStateDebianEVRStringType entity with sample data
-func newEntityStateDebianEVRStringType(suffix string) *parent.EntityStateDebianEVRStringType {
-	return &parent.EntityStateDebianEVRStringType{
+// newEntityObjectVersionType creates a test EntityObjectVersionType entity with sample data
+func newEntityObjectVersionType(suffix string) *parent.EntityObjectVersionType {
+	return &parent.EntityObjectVersionType{
 		Datatype: "test_datatype_" + suffix,
 		ParentID: int64Ptr(42),
 	}
 }
 
-// newDictionary20TextType creates a test Dictionary20TextType entity with sample data
-func newDictionary20TextType(suffix string) *parent.Dictionary20TextType {
-	return &parent.Dictionary20TextType{
-	}
-}
-
-// newPortElementType creates a test PortElementType entity with sample data
-func newPortElementType(suffix string) *parent.PortElementType {
-	return &parent.PortElementType{
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newLocationRegion creates a test LocationRegion entity with sample data
-func newLocationRegion(suffix string) *parent.LocationRegion {
-	return &parent.LocationRegion{
-	}
-}
-
-// newNamePrefixElementType creates a test NamePrefixElementType entity with sample data
-func newNamePrefixElementType(suffix string) *parent.NamePrefixElementType {
-	return &parent.NamePrefixElementType{
-		Type: stringPtr("test_" + suffix),
-		NameType: stringPtr("test_" + suffix),
-		Code: stringPtr("test_" + suffix),
-	}
-}
-
-// newLargeMailUserIdentifierElementType creates a test LargeMailUserIdentifierElementType entity with sample data
-func newLargeMailUserIdentifierElementType(suffix string) *parent.LargeMailUserIdentifierElementType {
-	return &parent.LargeMailUserIdentifierElementType{
-		Type: stringPtr("test_" + suffix),
-		Indicator: stringPtr("test_" + suffix),
-	}
-}
-
-// newProfileSetComplexValueType creates a test ProfileSetComplexValueType entity with sample data
-func newProfileSetComplexValueType(suffix string) *parent.ProfileSetComplexValueType {
-	return &parent.ProfileSetComplexValueType{
-		Idref: "test_idref_" + suffix,
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newExtended creates a test Extended entity with sample data
-func newExtended(suffix string) *parent.Extended {
-	return &parent.Extended{
-	}
-}
-
-// newAssetsElementType creates a test AssetsElementType entity with sample data
-func newAssetsElementType(suffix string) *parent.AssetsElementType {
-	return &parent.AssetsElementType{
-		Asset: "test_asset_" + suffix,
-	}
-}
-
-// newOrganisationNameDetailsElementType creates a test OrganisationNameDetailsElementType entity with sample data
-func newOrganisationNameDetailsElementType(suffix string) *parent.OrganisationNameDetailsElementType {
-	return &parent.OrganisationNameDetailsElementType{
-		OrganisationFormerName: stringPtr("test_" + suffix),
-		OrganisationKnownAs: stringPtr("test_" + suffix),
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newX509DataType creates a test X509DataType entity with sample data
-func newX509DataType(suffix string) *parent.X509DataType {
-	return &parent.X509DataType{
-		X509IssuerSerialID: int64Ptr(42),
-		X509SKI: []byte("test_data_" + suffix),
-		X509SubjectName: "test_x509subjectname_" + suffix,
-		X509Certificate: []byte("test_data_" + suffix),
-		X509CRL: []byte("test_data_" + suffix),
-	}
-}
-
-// newLocalityNameElementType creates a test LocalityNameElementType entity with sample data
-func newLocalityNameElementType(suffix string) *parent.LocalityNameElementType {
-	return &parent.LocalityNameElementType{
-		Type: stringPtr("test_" + suffix),
-	}
-}
-
-// newThoroughfareNumberSuffix creates a test ThoroughfareNumberSuffix entity with sample data
-func newThoroughfareNumberSuffix(suffix string) *parent.ThoroughfareNumberSuffix {
-	return &parent.ThoroughfareNumberSuffix{
-		NumberSuffixSeparator: stringPtr("test_" + suffix),
-		Type: stringPtr("test_" + suffix),
-	}
-}
-
-// newPlatformSpecificationElementType creates a test PlatformSpecificationElementType entity with sample data
-func newPlatformSpecificationElementType(suffix string) *parent.PlatformSpecificationElementType {
-	return &parent.PlatformSpecificationElementType{
-	}
-}
-
-// newHostnameElementType creates a test HostnameElementType entity with sample data
-func newHostnameElementType(suffix string) *parent.HostnameElementType {
-	return &parent.HostnameElementType{
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newSystemNameElementType creates a test SystemNameElementType entity with sample data
-func newSystemNameElementType(suffix string) *parent.SystemNameElementType {
-	return &parent.SystemNameElementType{
+// newXNLElementType creates a test XNLElementType entity with sample data
+func newXNLElementType(suffix string) *parent.XNLElementType {
+	return &parent.XNLElementType{
+		Version: stringPtr("test_" + suffix),
 	}
 }
 
@@ -264,146 +49,104 @@ func newOrganisationTypeElementType(suffix string) *parent.OrganisationTypeEleme
 	}
 }
 
-// newXNL creates a test XNL entity with sample data
-func newXNL(suffix string) *parent.XNL {
-	return &parent.XNL{
-		Version: stringPtr("test_" + suffix),
+// newInstanceFixType creates a test InstanceFixType entity with sample data
+func newInstanceFixType(suffix string) *parent.InstanceFixType {
+	return &parent.InstanceFixType{
+		Context: stringPtr("test_" + suffix),
 	}
 }
 
-// newSuffixElementType creates a test SuffixElementType entity with sample data
-func newSuffixElementType(suffix string) *parent.SuffixElementType {
-	return &parent.SuffixElementType{
+// newIdrefType creates a test IdrefType entity with sample data
+func newIdrefType(suffix string) *parent.IdrefType {
+	return &parent.IdrefType{
+		Idref: "test_idref_" + suffix,
+	}
+}
+
+// newEntityObjectIPAddressStringType creates a test EntityObjectIPAddressStringType entity with sample data
+func newEntityObjectIPAddressStringType(suffix string) *parent.EntityObjectIPAddressStringType {
+	return &parent.EntityObjectIPAddressStringType{
+		Datatype: stringPtr("test_" + suffix),
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newSplitFunctionType creates a test SplitFunctionType entity with sample data
+func newSplitFunctionType(suffix string) *parent.SplitFunctionType {
+	return &parent.SplitFunctionType{
+		Delimiter: "test_delimiter_" + suffix,
+	}
+}
+
+// newBuildingNameType creates a test BuildingNameType entity with sample data
+func newBuildingNameType(suffix string) *parent.BuildingNameType {
+	return &parent.BuildingNameType{
 		Type: stringPtr("test_" + suffix),
-		Code: stringPtr("test_" + suffix),
+		TypeOccurrence: stringPtr("test_" + suffix),
 	}
 }
 
-// newMailStopNameElementType creates a test MailStopNameElementType entity with sample data
-func newMailStopNameElementType(suffix string) *parent.MailStopNameElementType {
-	return &parent.MailStopNameElementType{
+// newSupplementaryPostalServiceDataElementType creates a test SupplementaryPostalServiceDataElementType entity with sample data
+func newSupplementaryPostalServiceDataElementType(suffix string) *parent.SupplementaryPostalServiceDataElementType {
+	return &parent.SupplementaryPostalServiceDataElementType{
 		Type: stringPtr("test_" + suffix),
 	}
 }
 
-// newPostBoxNumberElementType creates a test PostBoxNumberElementType entity with sample data
-func newPostBoxNumberElementType(suffix string) *parent.PostBoxNumberElementType {
-	return &parent.PostBoxNumberElementType{
-	}
-}
-
-// newEntityStateFloatType creates a test EntityStateFloatType entity with sample data
-func newEntityStateFloatType(suffix string) *parent.EntityStateFloatType {
-	return &parent.EntityStateFloatType{
+// newVariableType creates a test VariableType entity with sample data
+func newVariableType(suffix string) *parent.VariableType {
+	return &parent.VariableType{
+		XsdId: "test_xsdid_" + suffix,
+		Version: 42,
 		Datatype: "test_datatype_" + suffix,
-		ParentID: int64Ptr(42),
+		Comment: "test_comment_" + suffix,
+		Deprecated: boolPtr(true),
 	}
 }
 
-// newComplexCheckType creates a test ComplexCheckType entity with sample data
-func newComplexCheckType(suffix string) *parent.ComplexCheckType {
-	return &parent.ComplexCheckType{
-		Operator: "test_operator_" + suffix,
-		Negate: boolPtr(true),
-		CheckID: int64Ptr(42),
-		ComplexCheckID: int64Ptr(42),
+// newThoroughfareNumberFromElementType creates a test ThoroughfareNumberFromElementType entity with sample data
+func newThoroughfareNumberFromElementType(suffix string) *parent.ThoroughfareNumberFromElementType {
+	return &parent.ThoroughfareNumberFromElementType{
 	}
 }
 
-// newWebsiteUrlElementType creates a test WebsiteUrlElementType entity with sample data
-func newWebsiteUrlElementType(suffix string) *parent.WebsiteUrlElementType {
-	return &parent.WebsiteUrlElementType{
-	}
-}
-
-// newInstallationIdElementType creates a test InstallationIdElementType entity with sample data
-func newInstallationIdElementType(suffix string) *parent.InstallationIdElementType {
-	return &parent.InstallationIdElementType{
-	}
-}
-
-// newAddresseeIndicatorElementType creates a test AddresseeIndicatorElementType entity with sample data
-func newAddresseeIndicatorElementType(suffix string) *parent.AddresseeIndicatorElementType {
-	return &parent.AddresseeIndicatorElementType{
-		Code: stringPtr("test_" + suffix),
-	}
-}
-
-// newSignaturePropertiesType creates a test SignaturePropertiesType entity with sample data
-func newSignaturePropertiesType(suffix string) *parent.SignaturePropertiesType {
-	return &parent.SignaturePropertiesType{
-		XsdId: stringPtr("test_" + suffix),
-	}
-}
-
-// newDepartmentNameElementType creates a test DepartmentNameElementType entity with sample data
-func newDepartmentNameElementType(suffix string) *parent.DepartmentNameElementType {
-	return &parent.DepartmentNameElementType{
+// newBarcodeElementType creates a test BarcodeElementType entity with sample data
+func newBarcodeElementType(suffix string) *parent.BarcodeElementType {
+	return &parent.BarcodeElementType{
 		Type: stringPtr("test_" + suffix),
 	}
 }
 
-// newObjectsType creates a test ObjectsType entity with sample data
-func newObjectsType(suffix string) *parent.ObjectsType {
-	return &parent.ObjectsType{
-	}
-}
-
-// newFixTextType creates a test FixTextType entity with sample data
-func newFixTextType(suffix string) *parent.FixTextType {
-	return &parent.FixTextType{
-		Fixref: stringPtr("test_" + suffix),
-		Reboot: boolPtr(true),
-		Strategy: stringPtr("test_" + suffix),
-		Disruption: stringPtr("test_" + suffix),
-		Complexity: stringPtr("test_" + suffix),
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newListType creates a test ListType entity with sample data
-func newListType(suffix string) *parent.ListType {
-	return &parent.ListType{
-		GeneratorID: int64Ptr(42),
-	}
-}
-
-// newTelephoneNumber creates a test TelephoneNumber entity with sample data
-func newTelephoneNumber(suffix string) *parent.TelephoneNumber {
-	return &parent.TelephoneNumber{
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newRelationshipsContainerType creates a test RelationshipsContainerType entity with sample data
-func newRelationshipsContainerType(suffix string) *parent.RelationshipsContainerType {
-	return &parent.RelationshipsContainerType{
-		Relationships: stringPtr("test_" + suffix),
-	}
-}
-
-// newElementMapType creates a test ElementMapType entity with sample data
-func newElementMapType(suffix string) *parent.ElementMapType {
-	return &parent.ElementMapType{
-		TestID: int64Ptr(42),
-		ObjectID: int64Ptr(42),
-		StateID: int64Ptr(42),
-		ItemID: int64Ptr(42),
-	}
-}
-
-// newPremiseElementType creates a test PremiseElementType entity with sample data
-func newPremiseElementType(suffix string) *parent.PremiseElementType {
-	return &parent.PremiseElementType{
+// newLocality creates a test Locality entity with sample data
+func newLocality(suffix string) *parent.Locality {
+	return &parent.Locality{
 		Type: stringPtr("test_" + suffix),
-		PremiseDependency: stringPtr("test_" + suffix),
-		PremiseDependencyType: stringPtr("test_" + suffix),
-		PremiseThoroughfareConnector: stringPtr("test_" + suffix),
-		PremiseName: stringPtr("test_" + suffix),
-		MailStopID: int64Ptr(42),
-		PremiseLocation: "test_premiselocation_" + suffix,
-		PremiseNumberRange: "test_premisenumberrange_" + suffix,
-		FirmID: int64Ptr(42),
+		UsageType: stringPtr("test_" + suffix),
+		Indicator: stringPtr("test_" + suffix),
+		LocalityName: stringPtr("test_" + suffix),
+		DependentLocalityID: int64Ptr(42),
+		LargeMailUserID: int64Ptr(42),
+		PostalRouteID: int64Ptr(42),
+	}
+}
+
+// newBenchmarkElementType creates a test BenchmarkElementType entity with sample data
+func newBenchmarkElementType(suffix string) *parent.BenchmarkElementType {
+	return &parent.BenchmarkElementType{
+		XsdId: "test_xsdid_" + suffix,
+		Resolved: boolPtr(true),
+		Style: stringPtr("test_" + suffix),
+		StyleHref: stringPtr("test_" + suffix),
+		VersionID: int64Ptr(42),
+		SignatureID: int64Ptr(42),
+	}
+}
+
+// newIdentityType creates a test IdentityType entity with sample data
+func newIdentityType(suffix string) *parent.IdentityType {
+	return &parent.IdentityType{
+		Authenticated: true,
+		Privileged: true,
 	}
 }
 
@@ -415,17 +158,218 @@ func newAddressIdentifierElementType(suffix string) *parent.AddressIdentifierEle
 	}
 }
 
-// newThoroughfarePostDirectionType creates a test ThoroughfarePostDirectionType entity with sample data
-func newThoroughfarePostDirectionType(suffix string) *parent.ThoroughfarePostDirectionType {
-	return &parent.ThoroughfarePostDirectionType{
+// newLargeMailUserNameElementType creates a test LargeMailUserNameElementType entity with sample data
+func newLargeMailUserNameElementType(suffix string) *parent.LargeMailUserNameElementType {
+	return &parent.LargeMailUserNameElementType{
+		Type: stringPtr("test_" + suffix),
+		Code: stringPtr("test_" + suffix),
+	}
+}
+
+// newDepartmentElementType creates a test DepartmentElementType entity with sample data
+func newDepartmentElementType(suffix string) *parent.DepartmentElementType {
+	return &parent.DepartmentElementType{
+		Type: stringPtr("test_" + suffix),
+		DepartmentName: stringPtr("test_" + suffix),
+		MailStopID: int64Ptr(42),
+	}
+}
+
+// newSignaturePropertyType creates a test SignaturePropertyType entity with sample data
+func newSignaturePropertyType(suffix string) *parent.SignaturePropertyType {
+	return &parent.SignaturePropertyType{
+		Target: "test_target_" + suffix,
+		XsdId: stringPtr("test_" + suffix),
+	}
+}
+
+// newTitleElementType creates a test TitleElementType entity with sample data
+func newTitleElementType(suffix string) *parent.TitleElementType {
+	return &parent.TitleElementType{
+		Type: stringPtr("test_" + suffix),
+		Code: stringPtr("test_" + suffix),
+	}
+}
+
+// newJointPersonNameElementType creates a test JointPersonNameElementType entity with sample data
+func newJointPersonNameElementType(suffix string) *parent.JointPersonNameElementType {
+	return &parent.JointPersonNameElementType{
+		JointNameConnector: stringPtr("test_" + suffix),
+		Code: stringPtr("test_" + suffix),
+	}
+}
+
+// newGroupType creates a test GroupType entity with sample data
+func newGroupType(suffix string) *parent.GroupType {
+	return &parent.GroupType{
+		XsdId: "test_xsdid_" + suffix,
+		SignatureID: int64Ptr(42),
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newModelElementType creates a test ModelElementType entity with sample data
+func newModelElementType(suffix string) *parent.ModelElementType {
+	return &parent.ModelElementType{
+		System: "test_system_" + suffix,
+	}
+}
+
+// newNoticeType creates a test NoticeType entity with sample data
+func newNoticeType(suffix string) *parent.NoticeType {
+	return &parent.NoticeType{
+		XsdId: stringPtr("test_" + suffix),
+	}
+}
+
+// newStateRefType creates a test StateRefType entity with sample data
+func newStateRefType(suffix string) *parent.StateRefType {
+	return &parent.StateRefType{
+		State_ref: "test_state_ref_" + suffix,
+	}
+}
+
+// newProfileSetComplexValueType creates a test ProfileSetComplexValueType entity with sample data
+func newProfileSetComplexValueType(suffix string) *parent.ProfileSetComplexValueType {
+	return &parent.ProfileSetComplexValueType{
+		Idref: "test_idref_" + suffix,
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newLocationRegionElementType creates a test LocationRegionElementType entity with sample data
+func newLocationRegionElementType(suffix string) *parent.LocationRegionElementType {
+	return &parent.LocationRegionElementType{
+	}
+}
+
+// newTelephoneNumber creates a test TelephoneNumber entity with sample data
+func newTelephoneNumber(suffix string) *parent.TelephoneNumber {
+	return &parent.TelephoneNumber{
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newGlobToRegexFunctionType creates a test GlobToRegexFunctionType entity with sample data
+func newGlobToRegexFunctionType(suffix string) *parent.GlobToRegexFunctionType {
+	return &parent.GlobToRegexFunctionType{
+		Glob_noescape: boolPtr(true),
+	}
+}
+
+// newVariablesType creates a test VariablesType entity with sample data
+func newVariablesType(suffix string) *parent.VariablesType {
+	return &parent.VariablesType{
+	}
+}
+
+// newPostalCodeElementType creates a test PostalCodeElementType entity with sample data
+func newPostalCodeElementType(suffix string) *parent.PostalCodeElementType {
+	return &parent.PostalCodeElementType{
+		Type: stringPtr("test_" + suffix),
+		PostalCodeNumber: stringPtr("test_" + suffix),
+		PostalCodeNumberExtension: stringPtr("test_" + suffix),
+		PostTown: stringPtr("test_" + suffix),
+	}
+}
+
+// newKeyLineCodeElementType creates a test KeyLineCodeElementType entity with sample data
+func newKeyLineCodeElementType(suffix string) *parent.KeyLineCodeElementType {
+	return &parent.KeyLineCodeElementType{
 		Type: stringPtr("test_" + suffix),
 	}
 }
 
-// newConstantVariableElementType creates a test ConstantVariableElementType entity with sample data
-func newConstantVariableElementType(suffix string) *parent.ConstantVariableElementType {
-	return &parent.ConstantVariableElementType{
+// newAddressLongitudeDirectionElementType creates a test AddressLongitudeDirectionElementType entity with sample data
+func newAddressLongitudeDirectionElementType(suffix string) *parent.AddressLongitudeDirectionElementType {
+	return &parent.AddressLongitudeDirectionElementType{
+		Type: stringPtr("test_" + suffix),
+	}
+}
+
+// newXccdf12MessageType creates a test Xccdf12MessageType entity with sample data
+func newXccdf12MessageType(suffix string) *parent.Xccdf12MessageType {
+	return &parent.Xccdf12MessageType{
+		Severity: "test_severity_" + suffix,
+	}
+}
+
+// newXNL creates a test XNL entity with sample data
+func newXNL(suffix string) *parent.XNL {
+	return &parent.XNL{
+		Version: stringPtr("test_" + suffix),
+	}
+}
+
+// newSignatureValueType creates a test SignatureValueType entity with sample data
+func newSignatureValueType(suffix string) *parent.SignatureValueType {
+	return &parent.SignatureValueType{
+		XsdId: stringPtr("test_" + suffix),
+	}
+}
+
+// newFixType creates a test FixType entity with sample data
+func newFixType(suffix string) *parent.FixType {
+	return &parent.FixType{
+		XsdId: stringPtr("test_" + suffix),
+		Reboot: boolPtr(true),
+		Strategy: stringPtr("test_" + suffix),
+		Disruption: stringPtr("test_" + suffix),
+		Complexity: stringPtr("test_" + suffix),
+		System: stringPtr("test_" + suffix),
+		Platform: stringPtr("test_" + suffix),
+		SubID: int64Ptr(42),
+		InstanceID: int64Ptr(42),
+	}
+}
+
+// newSelStringType creates a test SelStringType entity with sample data
+func newSelStringType(suffix string) *parent.SelStringType {
+	return &parent.SelStringType{
+		Selector: stringPtr("test_" + suffix),
+	}
+}
+
+// newCircuitType creates a test CircuitType entity with sample data
+func newCircuitType(suffix string) *parent.CircuitType {
+	return &parent.CircuitType{
+		CircuitName: stringPtr("test_" + suffix),
 		ParentID: int64Ptr(42),
+	}
+}
+
+// newAssetsElementType creates a test AssetsElementType entity with sample data
+func newAssetsElementType(suffix string) *parent.AssetsElementType {
+	return &parent.AssetsElementType{
+		Asset: "test_asset_" + suffix,
+	}
+}
+
+// newStatesType creates a test StatesType entity with sample data
+func newStatesType(suffix string) *parent.StatesType {
+	return &parent.StatesType{
+	}
+}
+
+// newCidrElementType creates a test CidrElementType entity with sample data
+func newCidrElementType(suffix string) *parent.CidrElementType {
+	return &parent.CidrElementType{
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newCpe creates a test Cpe entity with sample data
+func newCpe(suffix string) *parent.Cpe {
+	return &parent.Cpe{
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newPossibleRestrictionType creates a test PossibleRestrictionType entity with sample data
+func newPossibleRestrictionType(suffix string) *parent.PossibleRestrictionType {
+	return &parent.PossibleRestrictionType{
+		Operator: stringPtr("test_" + suffix),
+		Hint: "test_hint_" + suffix,
 	}
 }
 
@@ -437,25 +381,71 @@ func newEntityObjectBinaryType(suffix string) *parent.EntityObjectBinaryType {
 	}
 }
 
-// newUniqueFunctionType creates a test UniqueFunctionType entity with sample data
-func newUniqueFunctionType(suffix string) *parent.UniqueFunctionType {
-	return &parent.UniqueFunctionType{
+// newOvalMitreOrgOvalMetadataType creates a test OvalMitreOrgOvalMetadataType entity with sample data
+func newOvalMitreOrgOvalMetadataType(suffix string) *parent.OvalMitreOrgOvalMetadataType {
+	return &parent.OvalMitreOrgOvalMetadataType{
+		Title: "test_title_" + suffix,
+		Description: "test_description_" + suffix,
 	}
 }
 
-// newBenchmarkReferenceType creates a test BenchmarkReferenceType entity with sample data
-func newBenchmarkReferenceType(suffix string) *parent.BenchmarkReferenceType {
-	return &parent.BenchmarkReferenceType{
-		Href: "test_href_" + suffix,
-		XsdId: stringPtr("test_" + suffix),
+// newAddressLongitudeElementType creates a test AddressLongitudeElementType entity with sample data
+func newAddressLongitudeElementType(suffix string) *parent.AddressLongitudeElementType {
+	return &parent.AddressLongitudeElementType{
+		Type: stringPtr("test_" + suffix),
 	}
 }
 
-// newSignatureMethodType creates a test SignatureMethodType entity with sample data
-func newSignatureMethodType(suffix string) *parent.SignatureMethodType {
-	return &parent.SignatureMethodType{
-		Algorithm: "test_algorithm_" + suffix,
-		HMACOutputLengthID: int64Ptr(42),
+// newPostOfficeNumberElementType creates a test PostOfficeNumberElementType entity with sample data
+func newPostOfficeNumberElementType(suffix string) *parent.PostOfficeNumberElementType {
+	return &parent.PostOfficeNumberElementType{
+		Indicator: stringPtr("test_" + suffix),
+		IndicatorOccurrence: stringPtr("test_" + suffix),
+	}
+}
+
+// newPostOfficeNameElementType creates a test PostOfficeNameElementType entity with sample data
+func newPostOfficeNameElementType(suffix string) *parent.PostOfficeNameElementType {
+	return &parent.PostOfficeNameElementType{
+		Type: stringPtr("test_" + suffix),
+	}
+}
+
+// newNameLineType creates a test NameLineType entity with sample data
+func newNameLineType(suffix string) *parent.NameLineType {
+	return &parent.NameLineType{
+		Type: stringPtr("test_" + suffix),
+		NameType: stringPtr("test_" + suffix),
+		Code: stringPtr("test_" + suffix),
+	}
+}
+
+// newHostnameElementType creates a test HostnameElementType entity with sample data
+func newHostnameElementType(suffix string) *parent.HostnameElementType {
+	return &parent.HostnameElementType{
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newCountFunctionType creates a test CountFunctionType entity with sample data
+func newCountFunctionType(suffix string) *parent.CountFunctionType {
+	return &parent.CountFunctionType{
+	}
+}
+
+// newFilter creates a test Filter entity with sample data
+func newFilter(suffix string) *parent.Filter {
+	return &parent.Filter{
+		Action: stringPtr("test_" + suffix),
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newThoroughfareNumberPrefixElementType creates a test ThoroughfareNumberPrefixElementType entity with sample data
+func newThoroughfareNumberPrefixElementType(suffix string) *parent.ThoroughfareNumberPrefixElementType {
+	return &parent.ThoroughfareNumberPrefixElementType{
+		NumberPrefixSeparator: stringPtr("test_" + suffix),
+		Type: stringPtr("test_" + suffix),
 	}
 }
 
@@ -478,158 +468,23 @@ func newThoroughfareElementType(suffix string) *parent.ThoroughfareElementType {
 	}
 }
 
-// newPostalCodeElementType creates a test PostalCodeElementType entity with sample data
-func newPostalCodeElementType(suffix string) *parent.PostalCodeElementType {
-	return &parent.PostalCodeElementType{
-		Type: stringPtr("test_" + suffix),
-		PostalCodeNumber: stringPtr("test_" + suffix),
-		PostalCodeNumberExtension: stringPtr("test_" + suffix),
-		PostTown: stringPtr("test_" + suffix),
-	}
-}
-
-// newBeginFunctionType creates a test BeginFunctionType entity with sample data
-func newBeginFunctionType(suffix string) *parent.BeginFunctionType {
-	return &parent.BeginFunctionType{
-		Character: "test_character_" + suffix,
-	}
-}
-
-// newCheckExportType creates a test CheckExportType entity with sample data
-func newCheckExportType(suffix string) *parent.CheckExportType {
-	return &parent.CheckExportType{
-		ValueId: "test_valueid_" + suffix,
-		ExportName: "test_exportname_" + suffix,
-	}
-}
-
-// newTargetFactsType creates a test TargetFactsType entity with sample data
-func newTargetFactsType(suffix string) *parent.TargetFactsType {
-	return &parent.TargetFactsType{
-	}
-}
-
-// newUrlElementType creates a test UrlElementType entity with sample data
-func newUrlElementType(suffix string) *parent.UrlElementType {
-	return &parent.UrlElementType{
-	}
-}
-
-// newExtendedInfoElementType creates a test ExtendedInfoElementType entity with sample data
-func newExtendedInfoElementType(suffix string) *parent.ExtendedInfoElementType {
-	return &parent.ExtendedInfoElementType{
+// newPlainTextType creates a test PlainTextType entity with sample data
+func newPlainTextType(suffix string) *parent.PlainTextType {
+	return &parent.PlainTextType{
 		XsdId: "test_xsdid_" + suffix,
 	}
 }
 
-// newOrganisationNameElementType creates a test OrganisationNameElementType entity with sample data
-func newOrganisationNameElementType(suffix string) *parent.OrganisationNameElementType {
-	return &parent.OrganisationNameElementType{
-		Type: stringPtr("test_" + suffix),
-		NameType: stringPtr("test_" + suffix),
-		Code: stringPtr("test_" + suffix),
+// newLocations creates a test Locations entity with sample data
+func newLocations(suffix string) *parent.Locations {
+	return &parent.Locations{
 	}
 }
 
-// newCountryNameElementType creates a test CountryNameElementType entity with sample data
-func newCountryNameElementType(suffix string) *parent.CountryNameElementType {
-	return &parent.CountryNameElementType{
-		Type: stringPtr("test_" + suffix),
-	}
-}
-
-// newAddressLine creates a test AddressLine entity with sample data
-func newAddressLine(suffix string) *parent.AddressLine {
-	return &parent.AddressLine{
-		Type: stringPtr("test_" + suffix),
-	}
-}
-
-// newPremiseNumberPrefix creates a test PremiseNumberPrefix entity with sample data
-func newPremiseNumberPrefix(suffix string) *parent.PremiseNumberPrefix {
-	return &parent.PremiseNumberPrefix{
-		NumberPrefixSeparator: stringPtr("test_" + suffix),
-		Type: stringPtr("test_" + suffix),
-	}
-}
-
-// newFilterElementType creates a test FilterElementType entity with sample data
-func newFilterElementType(suffix string) *parent.FilterElementType {
-	return &parent.FilterElementType{
-		Action: stringPtr("test_" + suffix),
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newStatusElementType creates a test StatusElementType entity with sample data
-func newStatusElementType(suffix string) *parent.StatusElementType {
-	return &parent.StatusElementType{
-		Date: timePtr(time.Now()),
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newOverrideableCPE2idrefType creates a test OverrideableCPE2idrefType entity with sample data
-func newOverrideableCPE2idrefType(suffix string) *parent.OverrideableCPE2idrefType {
-	return &parent.OverrideableCPE2idrefType{
-		Override: boolPtr(true),
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newSignatureValueType creates a test SignatureValueType entity with sample data
-func newSignatureValueType(suffix string) *parent.SignatureValueType {
-	return &parent.SignatureValueType{
-		XsdId: stringPtr("test_" + suffix),
-	}
-}
-
-// newDcStatusType creates a test DcStatusType entity with sample data
-func newDcStatusType(suffix string) *parent.DcStatusType {
-	return &parent.DcStatusType{
-	}
-}
-
-// newReferenceElementType creates a test ReferenceElementType entity with sample data
-func newReferenceElementType(suffix string) *parent.ReferenceElementType {
-	return &parent.ReferenceElementType{
-		Href: stringPtr("test_" + suffix),
-	}
-}
-
-// newEmailAddressElementType creates a test EmailAddressElementType entity with sample data
-func newEmailAddressElementType(suffix string) *parent.EmailAddressElementType {
-	return &parent.EmailAddressElementType{
-	}
-}
-
-// newComputingDeviceType creates a test ComputingDeviceType entity with sample data
-func newComputingDeviceType(suffix string) *parent.ComputingDeviceType {
-	return &parent.ComputingDeviceType{
-		DistinguishedName: stringPtr("test_" + suffix),
-		Connections: stringPtr("test_" + suffix),
-		Hostname: stringPtr("test_" + suffix),
-		MotherboardGuid: stringPtr("test_" + suffix),
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newBirthdateElementType creates a test BirthdateElementType entity with sample data
-func newBirthdateElementType(suffix string) *parent.BirthdateElementType {
-	return &parent.BirthdateElementType{
-	}
-}
-
-// newContentElementType creates a test ContentElementType entity with sample data
-func newContentElementType(suffix string) *parent.ContentElementType {
-	return &parent.ContentElementType{
-	}
-}
-
-// newObjectRefElementType creates a test ObjectRefElementType entity with sample data
-func newObjectRefElementType(suffix string) *parent.ObjectRefElementType {
-	return &parent.ObjectRefElementType{
-		RefId: stringPtr("test_" + suffix),
+// newObjectRefType creates a test ObjectRefType entity with sample data
+func newObjectRefType(suffix string) *parent.ObjectRefType {
+	return &parent.ObjectRefType{
+		Object_ref: "test_object_ref_" + suffix,
 	}
 }
 
@@ -644,10 +499,1333 @@ func newPremiseNumberElementType(suffix string) *parent.PremiseNumberElementType
 	}
 }
 
-// newPostalRouteNameElementType creates a test PostalRouteNameElementType entity with sample data
-func newPostalRouteNameElementType(suffix string) *parent.PostalRouteNameElementType {
-	return &parent.PostalRouteNameElementType{
+// newSubPremiseNameElementType creates a test SubPremiseNameElementType entity with sample data
+func newSubPremiseNameElementType(suffix string) *parent.SubPremiseNameElementType {
+	return &parent.SubPremiseNameElementType{
 		Type: stringPtr("test_" + suffix),
+		TypeOccurrence: stringPtr("test_" + suffix),
+	}
+}
+
+// newPostTownElementType creates a test PostTownElementType entity with sample data
+func newPostTownElementType(suffix string) *parent.PostTownElementType {
+	return &parent.PostTownElementType{
+		Type: stringPtr("test_" + suffix),
+		PostTownName: stringPtr("test_" + suffix),
+		PostTownSuffix: stringPtr("test_" + suffix),
+	}
+}
+
+// newSoftwareType creates a test SoftwareType entity with sample data
+func newSoftwareType(suffix string) *parent.SoftwareType {
+	return &parent.SoftwareType{
+		InstallationId: stringPtr("test_" + suffix),
+		License: stringPtr("test_" + suffix),
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newMacAddressElementType creates a test MacAddressElementType entity with sample data
+func newMacAddressElementType(suffix string) *parent.MacAddressElementType {
+	return &parent.MacAddressElementType{
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newFirmType creates a test FirmType entity with sample data
+func newFirmType(suffix string) *parent.FirmType {
+	return &parent.FirmType{
+		Type: stringPtr("test_" + suffix),
+		FirmName: stringPtr("test_" + suffix),
+		MailStopID: int64Ptr(42),
+	}
+}
+
+// newPostalCodeNumberExtensionElementType creates a test PostalCodeNumberExtensionElementType entity with sample data
+func newPostalCodeNumberExtensionElementType(suffix string) *parent.PostalCodeNumberExtensionElementType {
+	return &parent.PostalCodeNumberExtensionElementType{
+		Type: stringPtr("test_" + suffix),
+		NumberExtensionSeparator: stringPtr("test_" + suffix),
+	}
+}
+
+// newDeprecatedInfoType creates a test DeprecatedInfoType entity with sample data
+func newDeprecatedInfoType(suffix string) *parent.DeprecatedInfoType {
+	return &parent.DeprecatedInfoType{
+		Version: "test_version_" + suffix,
+		Reason: "test_reason_" + suffix,
+		Comment: stringPtr("test_" + suffix),
+	}
+}
+
+// newComplexCheckType creates a test ComplexCheckType entity with sample data
+func newComplexCheckType(suffix string) *parent.ComplexCheckType {
+	return &parent.ComplexCheckType{
+		Operator: "test_operator_" + suffix,
+		Negate: boolPtr(true),
+		CheckID: int64Ptr(42),
+		ComplexCheckID: int64Ptr(42),
+	}
+}
+
+// newSystemNameElementType creates a test SystemNameElementType entity with sample data
+func newSystemNameElementType(suffix string) *parent.SystemNameElementType {
+	return &parent.SystemNameElementType{
+	}
+}
+
+// newReportsElementType creates a test ReportsElementType entity with sample data
+func newReportsElementType(suffix string) *parent.ReportsElementType {
+	return &parent.ReportsElementType{
+	}
+}
+
+// newCriterionType creates a test CriterionType entity with sample data
+func newCriterionType(suffix string) *parent.CriterionType {
+	return &parent.CriterionType{
+		Applicability_check: boolPtr(true),
+		Test_ref: "test_test_ref_" + suffix,
+		Negate: boolPtr(true),
+		Comment: stringPtr("test_" + suffix),
+	}
+}
+
+// newEntityObjectIntType creates a test EntityObjectIntType entity with sample data
+func newEntityObjectIntType(suffix string) *parent.EntityObjectIntType {
+	return &parent.EntityObjectIntType{
+		Datatype: "test_datatype_" + suffix,
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newPostBox creates a test PostBox entity with sample data
+func newPostBox(suffix string) *parent.PostBox {
+	return &parent.PostBox{
+		Type: stringPtr("test_" + suffix),
+		Indicator: stringPtr("test_" + suffix),
+		PostBoxNumber: "test_postboxnumber_" + suffix,
+		PostBoxNumberPrefix: stringPtr("test_" + suffix),
+		PostBoxNumberSuffix: stringPtr("test_" + suffix),
+		PostBoxNumberExtension: stringPtr("test_" + suffix),
+		FirmID: int64Ptr(42),
+	}
+}
+
+// newLiteralComponentType creates a test LiteralComponentType entity with sample data
+func newLiteralComponentType(suffix string) *parent.LiteralComponentType {
+	return &parent.LiteralComponentType{
+		Datatype: stringPtr("test_" + suffix),
+	}
+}
+
+// newThoroughfareNumberElementType creates a test ThoroughfareNumberElementType entity with sample data
+func newThoroughfareNumberElementType(suffix string) *parent.ThoroughfareNumberElementType {
+	return &parent.ThoroughfareNumberElementType{
+		NumberType: stringPtr("test_" + suffix),
+		Type: stringPtr("test_" + suffix),
+		Indicator: stringPtr("test_" + suffix),
+		IndicatorOccurrence: stringPtr("test_" + suffix),
+		NumberOccurrence: stringPtr("test_" + suffix),
+	}
+}
+
+// newMailStopType creates a test MailStopType entity with sample data
+func newMailStopType(suffix string) *parent.MailStopType {
+	return &parent.MailStopType{
+		Type: stringPtr("test_" + suffix),
+		MailStopName: stringPtr("test_" + suffix),
+		MailStopNumber: stringPtr("test_" + suffix),
+	}
+}
+
+// newThoroughfarePreDirectionType creates a test ThoroughfarePreDirectionType entity with sample data
+func newThoroughfarePreDirectionType(suffix string) *parent.ThoroughfarePreDirectionType {
+	return &parent.ThoroughfarePreDirectionType{
+		Type: stringPtr("test_" + suffix),
+	}
+}
+
+// newBenchmark creates a test Benchmark entity with sample data
+func newBenchmark(suffix string) *parent.Benchmark {
+	return &parent.Benchmark{
+		XsdId: "test_xsdid_" + suffix,
+		Resolved: boolPtr(true),
+		Style: stringPtr("test_" + suffix),
+		StyleHref: stringPtr("test_" + suffix),
+		VersionID: int64Ptr(42),
+		SignatureID: int64Ptr(42),
+	}
+}
+
+// newPortRangeElementType creates a test PortRangeElementType entity with sample data
+func newPortRangeElementType(suffix string) *parent.PortRangeElementType {
+	return &parent.PortRangeElementType{
+		LowerBound: "test_lowerbound_" + suffix,
+		UpperBound: "test_upperbound_" + suffix,
+	}
+}
+
+// newPersonType creates a test PersonType entity with sample data
+func newPersonType(suffix string) *parent.PersonType {
+	return &parent.PersonType{
+		Birthdate: stringPtr("test_" + suffix),
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newAssetReportingFormAssetElementType creates a test AssetReportingFormAssetElementType entity with sample data
+func newAssetReportingFormAssetElementType(suffix string) *parent.AssetReportingFormAssetElementType {
+	return &parent.AssetReportingFormAssetElementType{
+		XsdId: "test_xsdid_" + suffix,
+	}
+}
+
+// newObjectRef creates a test ObjectRef entity with sample data
+func newObjectRef(suffix string) *parent.ObjectRef {
+	return &parent.ObjectRef{
+		RefId: stringPtr("test_" + suffix),
+	}
+}
+
+// newMiddleNameElementType creates a test MiddleNameElementType entity with sample data
+func newMiddleNameElementType(suffix string) *parent.MiddleNameElementType {
+	return &parent.MiddleNameElementType{
+		Type: stringPtr("test_" + suffix),
+		NameType: stringPtr("test_" + suffix),
+		Code: stringPtr("test_" + suffix),
+	}
+}
+
+// newGeneralSuffixElementType creates a test GeneralSuffixElementType entity with sample data
+func newGeneralSuffixElementType(suffix string) *parent.GeneralSuffixElementType {
+	return &parent.GeneralSuffixElementType{
+		Type: stringPtr("test_" + suffix),
+		Code: stringPtr("test_" + suffix),
+	}
+}
+
+// newIdentType creates a test IdentType entity with sample data
+func newIdentType(suffix string) *parent.IdentType {
+	return &parent.IdentType{
+		System: "test_system_" + suffix,
+	}
+}
+
+// newDefinitionType creates a test DefinitionType entity with sample data
+func newDefinitionType(suffix string) *parent.DefinitionType {
+	return &parent.DefinitionType{
+		XsdId: "test_xsdid_" + suffix,
+		Version: 42,
+		Class: "test_class_" + suffix,
+		Deprecated: boolPtr(true),
+		MetadataID: int64Ptr(42),
+		CriteriaID: int64Ptr(42),
+	}
+}
+
+// newNotesElementType creates a test NotesElementType entity with sample data
+func newNotesElementType(suffix string) *parent.NotesElementType {
+	return &parent.NotesElementType{
+		Note: stringPtr("test_" + suffix),
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newEntityObjectFloatType creates a test EntityObjectFloatType entity with sample data
+func newEntityObjectFloatType(suffix string) *parent.EntityObjectFloatType {
+	return &parent.EntityObjectFloatType{
+		Datatype: "test_datatype_" + suffix,
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newAdministrativeArea creates a test AdministrativeArea entity with sample data
+func newAdministrativeArea(suffix string) *parent.AdministrativeArea {
+	return &parent.AdministrativeArea{
+		Type: stringPtr("test_" + suffix),
+		UsageType: stringPtr("test_" + suffix),
+		Indicator: stringPtr("test_" + suffix),
+		AdministrativeAreaName: stringPtr("test_" + suffix),
+		SubAdministrativeArea: stringPtr("test_" + suffix),
+	}
+}
+
+// newCountryName creates a test CountryName entity with sample data
+func newCountryName(suffix string) *parent.CountryName {
+	return &parent.CountryName{
+		Type: stringPtr("test_" + suffix),
+	}
+}
+
+// newNs09XmldsigObjectType creates a test Ns09XmldsigObjectType entity with sample data
+func newNs09XmldsigObjectType(suffix string) *parent.Ns09XmldsigObjectType {
+	return &parent.Ns09XmldsigObjectType{
+		XsdId: stringPtr("test_" + suffix),
+		MimeType: stringPtr("test_" + suffix),
+		Encoding: stringPtr("test_" + suffix),
+	}
+}
+
+// newProfileSelectType creates a test ProfileSelectType entity with sample data
+func newProfileSelectType(suffix string) *parent.ProfileSelectType {
+	return &parent.ProfileSelectType{
+		Idref: "test_idref_" + suffix,
+		Selected: true,
+	}
+}
+
+// newStatus creates a test Status entity with sample data
+func newStatus(suffix string) *parent.Status {
+	return &parent.Status{
+		Date: timePtr(time.Now()),
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newEntityStateEVRStringType creates a test EntityStateEVRStringType entity with sample data
+func newEntityStateEVRStringType(suffix string) *parent.EntityStateEVRStringType {
+	return &parent.EntityStateEVRStringType{
+		Datatype: "test_datatype_" + suffix,
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newEntityObjectIPAddressType creates a test EntityObjectIPAddressType entity with sample data
+func newEntityObjectIPAddressType(suffix string) *parent.EntityObjectIPAddressType {
+	return &parent.EntityObjectIPAddressType{
+		Datatype: "test_datatype_" + suffix,
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newEntityStateIntType creates a test EntityStateIntType entity with sample data
+func newEntityStateIntType(suffix string) *parent.EntityStateIntType {
+	return &parent.EntityStateIntType{
+		Datatype: "test_datatype_" + suffix,
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newEntityStateStringType creates a test EntityStateStringType entity with sample data
+func newEntityStateStringType(suffix string) *parent.EntityStateStringType {
+	return &parent.EntityStateStringType{
+		Datatype: stringPtr("test_" + suffix),
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newCountryNameElementType creates a test CountryNameElementType entity with sample data
+func newCountryNameElementType(suffix string) *parent.CountryNameElementType {
+	return &parent.CountryNameElementType{
+		Type: stringPtr("test_" + suffix),
+	}
+}
+
+// newDependencyNameElementType creates a test DependencyNameElementType entity with sample data
+func newDependencyNameElementType(suffix string) *parent.DependencyNameElementType {
+	return &parent.DependencyNameElementType{
+		DependencyType: stringPtr("test_" + suffix),
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newScoreType creates a test ScoreType entity with sample data
+func newScoreType(suffix string) *parent.ScoreType {
+	return &parent.ScoreType{
+		System: stringPtr("test_" + suffix),
+		Maximum: stringPtr("test_" + suffix),
+	}
+}
+
+// newDataType creates a test DataType entity with sample data
+func newDataType(suffix string) *parent.DataType {
+	return &parent.DataType{
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newReportType creates a test ReportType entity with sample data
+func newReportType(suffix string) *parent.ReportType {
+	return &parent.ReportType{
+		XsdId: "test_xsdid_" + suffix,
+		Content: "test_content_" + suffix,
+	}
+}
+
+// newObjectComponentType creates a test ObjectComponentType entity with sample data
+func newObjectComponentType(suffix string) *parent.ObjectComponentType {
+	return &parent.ObjectComponentType{
+		Object_ref: "test_object_ref_" + suffix,
+		Item_field: "test_item_field_" + suffix,
+		Record_field: stringPtr("test_" + suffix),
+	}
+}
+
+// newArithmeticFunctionType creates a test ArithmeticFunctionType entity with sample data
+func newArithmeticFunctionType(suffix string) *parent.ArithmeticFunctionType {
+	return &parent.ArithmeticFunctionType{
+		Arithmetic_operation: "test_arithmetic_operation_" + suffix,
+	}
+}
+
+// newCountryNameCodeElementType creates a test CountryNameCodeElementType entity with sample data
+func newCountryNameCodeElementType(suffix string) *parent.CountryNameCodeElementType {
+	return &parent.CountryNameCodeElementType{
+		Scheme: stringPtr("test_" + suffix),
+	}
+}
+
+// newFirmNameElementType creates a test FirmNameElementType entity with sample data
+func newFirmNameElementType(suffix string) *parent.FirmNameElementType {
+	return &parent.FirmNameElementType{
+		Type: stringPtr("test_" + suffix),
+	}
+}
+
+// newProfileRefineRuleType creates a test ProfileRefineRuleType entity with sample data
+func newProfileRefineRuleType(suffix string) *parent.ProfileRefineRuleType {
+	return &parent.ProfileRefineRuleType{
+		Idref: "test_idref_" + suffix,
+		Weight: stringPtr("test_" + suffix),
+		Selector: stringPtr("test_" + suffix),
+		Severity: stringPtr("test_" + suffix),
+		Role: stringPtr("test_" + suffix),
+	}
+}
+
+// newTargetIdRefType creates a test TargetIdRefType entity with sample data
+func newTargetIdRefType(suffix string) *parent.TargetIdRefType {
+	return &parent.TargetIdRefType{
+		System: "test_system_" + suffix,
+		Href: "test_href_" + suffix,
+		Name: stringPtr("test_" + suffix),
+	}
+}
+
+// newLocationPoint creates a test LocationPoint entity with sample data
+func newLocationPoint(suffix string) *parent.LocationPoint {
+	return &parent.LocationPoint{
+		Latitude: "test_latitude_" + suffix,
+		Longitude: "test_longitude_" + suffix,
+		Elevation: float64Ptr(3.14),
+		Radius: stringPtr("test_" + suffix),
+	}
+}
+
+// newFilterElementType creates a test FilterElementType entity with sample data
+func newFilterElementType(suffix string) *parent.FilterElementType {
+	return &parent.FilterElementType{
+		Action: stringPtr("test_" + suffix),
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newLocalityNameElementType creates a test LocalityNameElementType entity with sample data
+func newLocalityNameElementType(suffix string) *parent.LocalityNameElementType {
+	return &parent.LocalityNameElementType{
+		Type: stringPtr("test_" + suffix),
+	}
+}
+
+// newCountryElementType creates a test CountryElementType entity with sample data
+func newCountryElementType(suffix string) *parent.CountryElementType {
+	return &parent.CountryElementType{
+		CountryNameCode: stringPtr("test_" + suffix),
+	}
+}
+
+// newPostBoxNumberPrefixElementType creates a test PostBoxNumberPrefixElementType entity with sample data
+func newPostBoxNumberPrefixElementType(suffix string) *parent.PostBoxNumberPrefixElementType {
+	return &parent.PostBoxNumberPrefixElementType{
+		NumberPrefixSeparator: stringPtr("test_" + suffix),
+	}
+}
+
+// newAddressLine creates a test AddressLine entity with sample data
+func newAddressLine(suffix string) *parent.AddressLine {
+	return &parent.AddressLine{
+		Type: stringPtr("test_" + suffix),
+	}
+}
+
+// newDictionary20CheckType creates a test Dictionary20CheckType entity with sample data
+func newDictionary20CheckType(suffix string) *parent.Dictionary20CheckType {
+	return &parent.Dictionary20CheckType{
+		System: "test_system_" + suffix,
+		Href: stringPtr("test_" + suffix),
+	}
+}
+
+// newBirthdateElementType creates a test BirthdateElementType entity with sample data
+func newBirthdateElementType(suffix string) *parent.BirthdateElementType {
+	return &parent.BirthdateElementType{
+	}
+}
+
+// newRelationshipsElementType creates a test RelationshipsElementType entity with sample data
+func newRelationshipsElementType(suffix string) *parent.RelationshipsElementType {
+	return &parent.RelationshipsElementType{
+	}
+}
+
+// newEntityObjectAnySimpleType creates a test EntityObjectAnySimpleType entity with sample data
+func newEntityObjectAnySimpleType(suffix string) *parent.EntityObjectAnySimpleType {
+	return &parent.EntityObjectAnySimpleType{
+		Datatype: stringPtr("test_" + suffix),
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newPostalRouteType creates a test PostalRouteType entity with sample data
+func newPostalRouteType(suffix string) *parent.PostalRouteType {
+	return &parent.PostalRouteType{
+		Type: stringPtr("test_" + suffix),
+		PostalRouteName: "test_postalroutename_" + suffix,
+		PostalRouteNumber: "test_postalroutenumber_" + suffix,
+	}
+}
+
+// newPremiseNumberPrefixElementType creates a test PremiseNumberPrefixElementType entity with sample data
+func newPremiseNumberPrefixElementType(suffix string) *parent.PremiseNumberPrefixElementType {
+	return &parent.PremiseNumberPrefixElementType{
+		NumberPrefixSeparator: stringPtr("test_" + suffix),
+		Type: stringPtr("test_" + suffix),
+	}
+}
+
+// newCanonicalizationMethodType creates a test CanonicalizationMethodType entity with sample data
+func newCanonicalizationMethodType(suffix string) *parent.CanonicalizationMethodType {
+	return &parent.CanonicalizationMethodType{
+		Algorithm: "test_algorithm_" + suffix,
+	}
+}
+
+// newDictionary20GeneratorType creates a test Dictionary20GeneratorType entity with sample data
+func newDictionary20GeneratorType(suffix string) *parent.Dictionary20GeneratorType {
+	return &parent.Dictionary20GeneratorType{
+		Product_name: stringPtr("test_" + suffix),
+		Product_version: stringPtr("test_" + suffix),
+		Schema_version: "test_schema_version_" + suffix,
+		Timestamp: time.Now(),
+	}
+}
+
+// newPremiseElementType creates a test PremiseElementType entity with sample data
+func newPremiseElementType(suffix string) *parent.PremiseElementType {
+	return &parent.PremiseElementType{
+		Type: stringPtr("test_" + suffix),
+		PremiseDependency: stringPtr("test_" + suffix),
+		PremiseDependencyType: stringPtr("test_" + suffix),
+		PremiseThoroughfareConnector: stringPtr("test_" + suffix),
+		PremiseName: stringPtr("test_" + suffix),
+		MailStopID: int64Ptr(42),
+		PremiseLocation: "test_premiselocation_" + suffix,
+		PremiseNumberRange: "test_premisenumberrange_" + suffix,
+		FirmID: int64Ptr(42),
+	}
+}
+
+// newWebsiteUrlElementType creates a test WebsiteUrlElementType entity with sample data
+func newWebsiteUrlElementType(suffix string) *parent.WebsiteUrlElementType {
+	return &parent.WebsiteUrlElementType{
+	}
+}
+
+// newAssetIdentificationAssetElementType creates a test AssetIdentificationAssetElementType entity with sample data
+func newAssetIdentificationAssetElementType(suffix string) *parent.AssetIdentificationAssetElementType {
+	return &parent.AssetIdentificationAssetElementType{
+		XsdId: "test_xsdid_" + suffix,
+	}
+}
+
+// newArcType creates a test ArcType entity with sample data
+func newArcType(suffix string) *parent.ArcType {
+	return &parent.ArcType{
+	}
+}
+
+// newElementMapType creates a test ElementMapType entity with sample data
+func newElementMapType(suffix string) *parent.ElementMapType {
+	return &parent.ElementMapType{
+		TestID: int64Ptr(42),
+		ObjectID: int64Ptr(42),
+		StateID: int64Ptr(42),
+		ItemID: int64Ptr(42),
+	}
+}
+
+// newReportRequestsElementType creates a test ReportRequestsElementType entity with sample data
+func newReportRequestsElementType(suffix string) *parent.ReportRequestsElementType {
+	return &parent.ReportRequestsElementType{
+	}
+}
+
+// newAssetReportCollection creates a test AssetReportCollection entity with sample data
+func newAssetReportCollection(suffix string) *parent.AssetReportCollection {
+	return &parent.AssetReportCollection{
+		XsdId: stringPtr("test_" + suffix),
+		ReportRequests: stringPtr("test_" + suffix),
+		Assets: stringPtr("test_" + suffix),
+		Reports: "test_reports_" + suffix,
+		ExtendedInfos: stringPtr("test_" + suffix),
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newDSAKeyValueType creates a test DSAKeyValueType entity with sample data
+func newDSAKeyValueType(suffix string) *parent.DSAKeyValueType {
+	return &parent.DSAKeyValueType{
+		GID: int64Ptr(42),
+		YID: int64Ptr(42),
+		JID: int64Ptr(42),
+		PID: int64Ptr(42),
+		QID: int64Ptr(42),
+		SeedID: int64Ptr(42),
+		PgenCounterID: int64Ptr(42),
+	}
+}
+
+// newAliasElementType creates a test AliasElementType entity with sample data
+func newAliasElementType(suffix string) *parent.AliasElementType {
+	return &parent.AliasElementType{
+		Type: stringPtr("test_" + suffix),
+		NameType: stringPtr("test_" + suffix),
+		Code: stringPtr("test_" + suffix),
+	}
+}
+
+// newFunction creates a test Function entity with sample data
+func newFunction(suffix string) *parent.Function {
+	return &parent.Function{
+		Code: stringPtr("test_" + suffix),
+	}
+}
+
+// newSuffixElementType creates a test SuffixElementType entity with sample data
+func newSuffixElementType(suffix string) *parent.SuffixElementType {
+	return &parent.SuffixElementType{
+		Type: stringPtr("test_" + suffix),
+		Code: stringPtr("test_" + suffix),
+	}
+}
+
+// newAssetIdentificationType creates a test AssetIdentificationType entity with sample data
+func newAssetIdentificationType(suffix string) *parent.AssetIdentificationType {
+	return &parent.AssetIdentificationType{
+		AssetRef: "test_assetref_" + suffix,
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newConnectionsElementType creates a test ConnectionsElementType entity with sample data
+func newConnectionsElementType(suffix string) *parent.ConnectionsElementType {
+	return &parent.ConnectionsElementType{
+	}
+}
+
+// newOrganisationKnownAsElementType creates a test OrganisationKnownAsElementType entity with sample data
+func newOrganisationKnownAsElementType(suffix string) *parent.OrganisationKnownAsElementType {
+	return &parent.OrganisationKnownAsElementType{
+		ValidFrom: stringPtr("test_" + suffix),
+		ValidTo: stringPtr("test_" + suffix),
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newAddresseeIndicatorElementType creates a test AddresseeIndicatorElementType entity with sample data
+func newAddresseeIndicatorElementType(suffix string) *parent.AddresseeIndicatorElementType {
+	return &parent.AddresseeIndicatorElementType{
+		Code: stringPtr("test_" + suffix),
+	}
+}
+
+// newFirstNameElementType creates a test FirstNameElementType entity with sample data
+func newFirstNameElementType(suffix string) *parent.FirstNameElementType {
+	return &parent.FirstNameElementType{
+		Type: stringPtr("test_" + suffix),
+		NameType: stringPtr("test_" + suffix),
+		Code: stringPtr("test_" + suffix),
+	}
+}
+
+// newCpeElementType creates a test CpeElementType entity with sample data
+func newCpeElementType(suffix string) *parent.CpeElementType {
+	return &parent.CpeElementType{
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newProtocolElementType creates a test ProtocolElementType entity with sample data
+func newProtocolElementType(suffix string) *parent.ProtocolElementType {
+	return &parent.ProtocolElementType{
+	}
+}
+
+// newEmailAddress creates a test EmailAddress entity with sample data
+func newEmailAddress(suffix string) *parent.EmailAddress {
+	return &parent.EmailAddress{
+	}
+}
+
+// newExternalVariable creates a test ExternalVariable entity with sample data
+func newExternalVariable(suffix string) *parent.ExternalVariable {
+	return &parent.ExternalVariable{
+		Possible_valueID: int64Ptr(42),
+		Possible_restrictionID: int64Ptr(42),
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newThoroughfareNumberToElementType creates a test ThoroughfareNumberToElementType entity with sample data
+func newThoroughfareNumberToElementType(suffix string) *parent.ThoroughfareNumberToElementType {
+	return &parent.ThoroughfareNumberToElementType{
+	}
+}
+
+// newNs09XmldsigReferenceType creates a test Ns09XmldsigReferenceType entity with sample data
+func newNs09XmldsigReferenceType(suffix string) *parent.Ns09XmldsigReferenceType {
+	return &parent.Ns09XmldsigReferenceType{
+		XsdId: stringPtr("test_" + suffix),
+		URI: stringPtr("test_" + suffix),
+		Type: stringPtr("test_" + suffix),
+	}
+}
+
+// newPGPDataType creates a test PGPDataType entity with sample data
+func newPGPDataType(suffix string) *parent.PGPDataType {
+	return &parent.PGPDataType{
+		PGPKeyID: []byte("test_data_" + suffix),
+	}
+}
+
+// newDcStatusType creates a test DcStatusType entity with sample data
+func newDcStatusType(suffix string) *parent.DcStatusType {
+	return &parent.DcStatusType{
+	}
+}
+
+// newUrlElementType creates a test UrlElementType entity with sample data
+func newUrlElementType(suffix string) *parent.UrlElementType {
+	return &parent.UrlElementType{
+	}
+}
+
+// newExternalVariableElementType creates a test ExternalVariableElementType entity with sample data
+func newExternalVariableElementType(suffix string) *parent.ExternalVariableElementType {
+	return &parent.ExternalVariableElementType{
+		Possible_valueID: int64Ptr(42),
+		Possible_restrictionID: int64Ptr(42),
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newMailStopNumberElementType creates a test MailStopNumberElementType entity with sample data
+func newMailStopNumberElementType(suffix string) *parent.MailStopNumberElementType {
+	return &parent.MailStopNumberElementType{
+		NameNumberSeparator: stringPtr("test_" + suffix),
+	}
+}
+
+// newPostalServiceElementsElementType creates a test PostalServiceElementsElementType entity with sample data
+func newPostalServiceElementsElementType(suffix string) *parent.PostalServiceElementsElementType {
+	return &parent.PostalServiceElementsElementType{
+		Type: stringPtr("test_" + suffix),
+		AddressIdentifier: stringPtr("test_" + suffix),
+		EndorsementLineCode: stringPtr("test_" + suffix),
+		KeyLineCode: stringPtr("test_" + suffix),
+		Barcode: stringPtr("test_" + suffix),
+		SortingCode: stringPtr("test_" + suffix),
+		AddressLatitude: stringPtr("test_" + suffix),
+		AddressLatitudeDirection: stringPtr("test_" + suffix),
+		AddressLongitude: stringPtr("test_" + suffix),
+		AddressLongitudeDirection: stringPtr("test_" + suffix),
+		SupplementaryPostalServiceData: stringPtr("test_" + suffix),
+	}
+}
+
+// newContentElementType1 creates a test ContentElementType1 entity with sample data
+func newContentElementType1(suffix string) *parent.ContentElementType1 {
+	return &parent.ContentElementType1{
+		DataValidStartDate: timePtr(time.Now()),
+		DataValidEndDate: timePtr(time.Now()),
+	}
+}
+
+// newTextWithSubType creates a test TextWithSubType entity with sample data
+func newTextWithSubType(suffix string) *parent.TextWithSubType {
+	return &parent.TextWithSubType{
+		Override: boolPtr(true),
+	}
+}
+
+// newInstallationIdElementType creates a test InstallationIdElementType entity with sample data
+func newInstallationIdElementType(suffix string) *parent.InstallationIdElementType {
+	return &parent.InstallationIdElementType{
+	}
+}
+
+// newPostalCodeNumberElementType creates a test PostalCodeNumberElementType entity with sample data
+func newPostalCodeNumberElementType(suffix string) *parent.PostalCodeNumberElementType {
+	return &parent.PostalCodeNumberElementType{
+		Type: stringPtr("test_" + suffix),
+	}
+}
+
+// newDependentThoroughfareElementType creates a test DependentThoroughfareElementType entity with sample data
+func newDependentThoroughfareElementType(suffix string) *parent.DependentThoroughfareElementType {
+	return &parent.DependentThoroughfareElementType{
+		Type: stringPtr("test_" + suffix),
+		ThoroughfarePreDirectionID: int64Ptr(42),
+		ThoroughfareLeadingTypeID: int64Ptr(42),
+		ThoroughfareTrailingTypeID: int64Ptr(42),
+		ThoroughfarePostDirectionID: int64Ptr(42),
+	}
+}
+
+// newSignaturePropertiesType creates a test SignaturePropertiesType entity with sample data
+func newSignaturePropertiesType(suffix string) *parent.SignaturePropertiesType {
+	return &parent.SignaturePropertiesType{
+		XsdId: stringPtr("test_" + suffix),
+	}
+}
+
+// newPrecedingTitleElementType creates a test PrecedingTitleElementType entity with sample data
+func newPrecedingTitleElementType(suffix string) *parent.PrecedingTitleElementType {
+	return &parent.PrecedingTitleElementType{
+		Type: stringPtr("test_" + suffix),
+		Code: stringPtr("test_" + suffix),
+	}
+}
+
+// newHostElementType creates a test HostElementType entity with sample data
+func newHostElementType(suffix string) *parent.HostElementType {
+	return &parent.HostElementType{
+	}
+}
+
+// newReportRequestType creates a test ReportRequestType entity with sample data
+func newReportRequestType(suffix string) *parent.ReportRequestType {
+	return &parent.ReportRequestType{
+		XsdId: "test_xsdid_" + suffix,
+		Content: "test_content_" + suffix,
+	}
+}
+
+// newAddressDetails creates a test AddressDetails entity with sample data
+func newAddressDetails(suffix string) *parent.AddressDetails {
+	return &parent.AddressDetails{
+		AddressType: stringPtr("test_" + suffix),
+		CurrentStatus: stringPtr("test_" + suffix),
+		ValidFromDate: stringPtr("test_" + suffix),
+		ValidToDate: stringPtr("test_" + suffix),
+		Usage: stringPtr("test_" + suffix),
+		AddressDetailsKey: stringPtr("test_" + suffix),
+		PostalServiceElements: stringPtr("test_" + suffix),
+		Address: "test_address_" + suffix,
+		AddressLinesID: int64Ptr(42),
+		Country: "test_country_" + suffix,
+	}
+}
+
+// newTailoringVersionType creates a test TailoringVersionType entity with sample data
+func newTailoringVersionType(suffix string) *parent.TailoringVersionType {
+	return &parent.TailoringVersionType{
+		Time: time.Now(),
+	}
+}
+
+// newXccdf12ReferenceType creates a test Xccdf12ReferenceType entity with sample data
+func newXccdf12ReferenceType(suffix string) *parent.Xccdf12ReferenceType {
+	return &parent.Xccdf12ReferenceType{
+		Href: stringPtr("test_" + suffix),
+		Override: boolPtr(true),
+	}
+}
+
+// newSubPremiseType creates a test SubPremiseType entity with sample data
+func newSubPremiseType(suffix string) *parent.SubPremiseType {
+	return &parent.SubPremiseType{
+		Type: stringPtr("test_" + suffix),
+		SubPremiseName: stringPtr("test_" + suffix),
+		SubPremiseNumberPrefix: stringPtr("test_" + suffix),
+		SubPremiseNumberSuffix: stringPtr("test_" + suffix),
+		FirmID: int64Ptr(42),
+		MailStopID: int64Ptr(42),
+		SubPremiseID: int64Ptr(42),
+		SubPremiseLocation: "test_subpremiselocation_" + suffix,
+		SubPremiseNumber: stringPtr("test_" + suffix),
+	}
+}
+
+// newPremise creates a test Premise entity with sample data
+func newPremise(suffix string) *parent.Premise {
+	return &parent.Premise{
+		Type: stringPtr("test_" + suffix),
+		PremiseDependency: stringPtr("test_" + suffix),
+		PremiseDependencyType: stringPtr("test_" + suffix),
+		PremiseThoroughfareConnector: stringPtr("test_" + suffix),
+		PremiseName: stringPtr("test_" + suffix),
+		MailStopID: int64Ptr(42),
+		PremiseLocation: "test_premiselocation_" + suffix,
+		PremiseNumberRange: "test_premisenumberrange_" + suffix,
+		FirmID: int64Ptr(42),
+	}
+}
+
+// newRuleResultType creates a test RuleResultType entity with sample data
+func newRuleResultType(suffix string) *parent.RuleResultType {
+	return &parent.RuleResultType{
+		Idref: "test_idref_" + suffix,
+		Role: stringPtr("test_" + suffix),
+		Severity: stringPtr("test_" + suffix),
+		Time: timePtr(time.Now()),
+		Version: stringPtr("test_" + suffix),
+		Weight: stringPtr("test_" + suffix),
+		ResultID: int64Ptr(42),
+		ComplexCheckID: int64Ptr(42),
+	}
+}
+
+// newPlatformSpecificationElementType creates a test PlatformSpecificationElementType entity with sample data
+func newPlatformSpecificationElementType(suffix string) *parent.PlatformSpecificationElementType {
+	return &parent.PlatformSpecificationElementType{
+	}
+}
+
+// newDatabaseType creates a test DatabaseType entity with sample data
+func newDatabaseType(suffix string) *parent.DatabaseType {
+	return &parent.DatabaseType{
+		InstanceName: stringPtr("test_" + suffix),
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newOvalDefinitionsElementType creates a test OvalDefinitionsElementType entity with sample data
+func newOvalDefinitionsElementType(suffix string) *parent.OvalDefinitionsElementType {
+	return &parent.OvalDefinitionsElementType{
+		GeneratorID: int64Ptr(42),
+		DefinitionsID: int64Ptr(42),
+		TestsID: int64Ptr(42),
+		ObjectsID: int64Ptr(42),
+		StatesID: int64Ptr(42),
+		VariablesID: int64Ptr(42),
+	}
+}
+
+// newPremiseNumberRangeFromElementType creates a test PremiseNumberRangeFromElementType entity with sample data
+func newPremiseNumberRangeFromElementType(suffix string) *parent.PremiseNumberRangeFromElementType {
+	return &parent.PremiseNumberRangeFromElementType{
+	}
+}
+
+// newThoroughfareLeadingTypeType creates a test ThoroughfareLeadingTypeType entity with sample data
+func newThoroughfareLeadingTypeType(suffix string) *parent.ThoroughfareLeadingTypeType {
+	return &parent.ThoroughfareLeadingTypeType{
+		Type: stringPtr("test_" + suffix),
+	}
+}
+
+// newSubAdministrativeAreaElementType creates a test SubAdministrativeAreaElementType entity with sample data
+func newSubAdministrativeAreaElementType(suffix string) *parent.SubAdministrativeAreaElementType {
+	return &parent.SubAdministrativeAreaElementType{
+		Type: stringPtr("test_" + suffix),
+		UsageType: stringPtr("test_" + suffix),
+		Indicator: stringPtr("test_" + suffix),
+		SubAdministrativeAreaName: stringPtr("test_" + suffix),
+	}
+}
+
+// newProfileNoteType creates a test ProfileNoteType entity with sample data
+func newProfileNoteType(suffix string) *parent.ProfileNoteType {
+	return &parent.ProfileNoteType{
+		Tag: "test_tag_" + suffix,
+		SubID: int64Ptr(42),
+	}
+}
+
+// newLocaleElementType creates a test LocaleElementType entity with sample data
+func newLocaleElementType(suffix string) *parent.LocaleElementType {
+	return &parent.LocaleElementType{
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newIpAddressType creates a test IpAddressType entity with sample data
+func newIpAddressType(suffix string) *parent.IpAddressType {
+	return &parent.IpAddressType{
+		IpV4: stringPtr("test_" + suffix),
+		IpV6: stringPtr("test_" + suffix),
+	}
+}
+
+// newRelationshipsContainerType creates a test RelationshipsContainerType entity with sample data
+func newRelationshipsContainerType(suffix string) *parent.RelationshipsContainerType {
+	return &parent.RelationshipsContainerType{
+		Relationships: stringPtr("test_" + suffix),
+	}
+}
+
+// newContentElementType creates a test ContentElementType entity with sample data
+func newContentElementType(suffix string) *parent.ContentElementType {
+	return &parent.ContentElementType{
+	}
+}
+
+// newAddressLatitudeDirectionElementType creates a test AddressLatitudeDirectionElementType entity with sample data
+func newAddressLatitudeDirectionElementType(suffix string) *parent.AddressLatitudeDirectionElementType {
+	return &parent.AddressLatitudeDirectionElementType{
+		Type: stringPtr("test_" + suffix),
+	}
+}
+
+// newSubPremiseNumberSuffixElementType creates a test SubPremiseNumberSuffixElementType entity with sample data
+func newSubPremiseNumberSuffixElementType(suffix string) *parent.SubPremiseNumberSuffixElementType {
+	return &parent.SubPremiseNumberSuffixElementType{
+		NumberSuffixSeparator: stringPtr("test_" + suffix),
+		Type: stringPtr("test_" + suffix),
+	}
+}
+
+// newEndorsementLineCodeElementType creates a test EndorsementLineCodeElementType entity with sample data
+func newEndorsementLineCodeElementType(suffix string) *parent.EndorsementLineCodeElementType {
+	return &parent.EndorsementLineCodeElementType{
+		Type: stringPtr("test_" + suffix),
+	}
+}
+
+// newTailoringReferenceType creates a test TailoringReferenceType entity with sample data
+func newTailoringReferenceType(suffix string) *parent.TailoringReferenceType {
+	return &parent.TailoringReferenceType{
+		Href: "test_href_" + suffix,
+		XsdId: "test_xsdid_" + suffix,
+		Version: "test_version_" + suffix,
+		Time: time.Now(),
+	}
+}
+
+// newXccdf12MetadataType creates a test Xccdf12MetadataType entity with sample data
+func newXccdf12MetadataType(suffix string) *parent.Xccdf12MetadataType {
+	return &parent.Xccdf12MetadataType{
+	}
+}
+
+// newNetworkNameElementType creates a test NetworkNameElementType entity with sample data
+func newNetworkNameElementType(suffix string) *parent.NetworkNameElementType {
+	return &parent.NetworkNameElementType{
+	}
+}
+
+// newTimeDifferenceFunctionType creates a test TimeDifferenceFunctionType entity with sample data
+func newTimeDifferenceFunctionType(suffix string) *parent.TimeDifferenceFunctionType {
+	return &parent.TimeDifferenceFunctionType{
+		Format_1: stringPtr("test_" + suffix),
+		Format_2: stringPtr("test_" + suffix),
+	}
+}
+
+// newOvalMitreOrgOvalValueType creates a test OvalMitreOrgOvalValueType entity with sample data
+func newOvalMitreOrgOvalValueType(suffix string) *parent.OvalMitreOrgOvalValueType {
+	return &parent.OvalMitreOrgOvalValueType{
+	}
+}
+
+// newConstantVariableElementType creates a test ConstantVariableElementType entity with sample data
+func newConstantVariableElementType(suffix string) *parent.ConstantVariableElementType {
+	return &parent.ConstantVariableElementType{
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newSubPremiseLocationElementType creates a test SubPremiseLocationElementType entity with sample data
+func newSubPremiseLocationElementType(suffix string) *parent.SubPremiseLocationElementType {
+	return &parent.SubPremiseLocationElementType{
+	}
+}
+
+// newThoroughfare creates a test Thoroughfare entity with sample data
+func newThoroughfare(suffix string) *parent.Thoroughfare {
+	return &parent.Thoroughfare{
+		Type: stringPtr("test_" + suffix),
+		DependentThoroughfares: stringPtr("test_" + suffix),
+		DependentThoroughfaresIndicator: stringPtr("test_" + suffix),
+		DependentThoroughfaresConnector: stringPtr("test_" + suffix),
+		DependentThoroughfaresType: stringPtr("test_" + suffix),
+		ThoroughfarePreDirectionID: int64Ptr(42),
+		ThoroughfareLeadingTypeID: int64Ptr(42),
+		ThoroughfareTrailingTypeID: int64Ptr(42),
+		ThoroughfarePostDirectionID: int64Ptr(42),
+		DependentThoroughfare: stringPtr("test_" + suffix),
+		ThoroughfareNumberRange: "test_thoroughfarenumberrange_" + suffix,
+		DependentLocalityID: int64Ptr(42),
+		FirmID: int64Ptr(42),
+	}
+}
+
+// newGenerationIdentifierElementType creates a test GenerationIdentifierElementType entity with sample data
+func newGenerationIdentifierElementType(suffix string) *parent.GenerationIdentifierElementType {
+	return &parent.GenerationIdentifierElementType{
+		Type: stringPtr("test_" + suffix),
+		Code: stringPtr("test_" + suffix),
+	}
+}
+
+// newOasisNamesTcCiqXPersonName creates a test OasisNamesTcCiqXPersonName entity with sample data
+func newOasisNamesTcCiqXPersonName(suffix string) *parent.OasisNamesTcCiqXPersonName {
+	return &parent.OasisNamesTcCiqXPersonName{
+		FormerName: stringPtr("test_" + suffix),
+		KnownAs: stringPtr("test_" + suffix),
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newNetworkInterfaceType creates a test NetworkInterfaceType entity with sample data
+func newNetworkInterfaceType(suffix string) *parent.NetworkInterfaceType {
+	return &parent.NetworkInterfaceType{
+		MacAddress: stringPtr("test_" + suffix),
+		Url: stringPtr("test_" + suffix),
+		SubnetMaskID: int64Ptr(42),
+		DefaultRouteID: int64Ptr(42),
+	}
+}
+
+// newTestsType creates a test TestsType entity with sample data
+func newTestsType(suffix string) *parent.TestsType {
+	return &parent.TestsType{
+	}
+}
+
+// newPostTownNameElementType creates a test PostTownNameElementType entity with sample data
+func newPostTownNameElementType(suffix string) *parent.PostTownNameElementType {
+	return &parent.PostTownNameElementType{
+		Type: stringPtr("test_" + suffix),
+	}
+}
+
+// newPremiseNameElementType creates a test PremiseNameElementType entity with sample data
+func newPremiseNameElementType(suffix string) *parent.PremiseNameElementType {
+	return &parent.PremiseNameElementType{
+		Type: stringPtr("test_" + suffix),
+		TypeOccurrence: stringPtr("test_" + suffix),
+	}
+}
+
+// newThoroughfarePostDirectionType creates a test ThoroughfarePostDirectionType entity with sample data
+func newThoroughfarePostDirectionType(suffix string) *parent.ThoroughfarePostDirectionType {
+	return &parent.ThoroughfarePostDirectionType{
+		Type: stringPtr("test_" + suffix),
+	}
+}
+
+// newDepartment creates a test Department entity with sample data
+func newDepartment(suffix string) *parent.Department {
+	return &parent.Department{
+		Type: stringPtr("test_" + suffix),
+		DepartmentName: stringPtr("test_" + suffix),
+		MailStopID: int64Ptr(42),
+	}
+}
+
+// newCPE2idrefType creates a test CPE2idrefType entity with sample data
+func newCPE2idrefType(suffix string) *parent.CPE2idrefType {
+	return &parent.CPE2idrefType{
+		Idref: "test_idref_" + suffix,
+	}
+}
+
+// newModel creates a test Model entity with sample data
+func newModel(suffix string) *parent.Model {
+	return &parent.Model{
+		System: "test_system_" + suffix,
+	}
+}
+
+// newFactRefType creates a test FactRefType entity with sample data
+func newFactRefType(suffix string) *parent.FactRefType {
+	return &parent.FactRefType{
+		Name: "test_name_" + suffix,
+	}
+}
+
+// newCircuitNameElementType creates a test CircuitNameElementType entity with sample data
+func newCircuitNameElementType(suffix string) *parent.CircuitNameElementType {
+	return &parent.CircuitNameElementType{
+	}
+}
+
+// newComputingDeviceType creates a test ComputingDeviceType entity with sample data
+func newComputingDeviceType(suffix string) *parent.ComputingDeviceType {
+	return &parent.ComputingDeviceType{
+		DistinguishedName: stringPtr("test_" + suffix),
+		Connections: stringPtr("test_" + suffix),
+		Hostname: stringPtr("test_" + suffix),
+		MotherboardGuid: stringPtr("test_" + suffix),
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newConcatFunctionType creates a test ConcatFunctionType entity with sample data
+func newConcatFunctionType(suffix string) *parent.ConcatFunctionType {
+	return &parent.ConcatFunctionType{
+	}
+}
+
+// newNotes creates a test Notes entity with sample data
+func newNotes(suffix string) *parent.Notes {
+	return &parent.Notes{
+		Note: stringPtr("test_" + suffix),
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newSubPremiseNumberElementType creates a test SubPremiseNumberElementType entity with sample data
+func newSubPremiseNumberElementType(suffix string) *parent.SubPremiseNumberElementType {
+	return &parent.SubPremiseNumberElementType{
+		Indicator: stringPtr("test_" + suffix),
+		IndicatorOccurrence: stringPtr("test_" + suffix),
+		NumberTypeOccurrence: stringPtr("test_" + suffix),
+		PremiseNumberSeparator: stringPtr("test_" + suffix),
+		Type: stringPtr("test_" + suffix),
+	}
+}
+
+// newFormerNameElementType creates a test FormerNameElementType entity with sample data
+func newFormerNameElementType(suffix string) *parent.FormerNameElementType {
+	return &parent.FormerNameElementType{
+		ValidFrom: stringPtr("test_" + suffix),
+		ValidTo: stringPtr("test_" + suffix),
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newBenchmarkReferenceType creates a test BenchmarkReferenceType entity with sample data
+func newBenchmarkReferenceType(suffix string) *parent.BenchmarkReferenceType {
+	return &parent.BenchmarkReferenceType{
+		Href: "test_href_" + suffix,
+		XsdId: stringPtr("test_" + suffix),
+	}
+}
+
+// newProfileRefineValueType creates a test ProfileRefineValueType entity with sample data
+func newProfileRefineValueType(suffix string) *parent.ProfileRefineValueType {
+	return &parent.ProfileRefineValueType{
+		Idref: "test_idref_" + suffix,
+		Selector: stringPtr("test_" + suffix),
+		Operator: stringPtr("test_" + suffix),
+	}
+}
+
+// newIpV4ElementType creates a test IpV4ElementType entity with sample data
+func newIpV4ElementType(suffix string) *parent.IpV4ElementType {
+	return &parent.IpV4ElementType{
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newWebsiteType creates a test WebsiteType entity with sample data
+func newWebsiteType(suffix string) *parent.WebsiteType {
+	return &parent.WebsiteType{
+		DocumentRoot: stringPtr("test_" + suffix),
+		Locale: stringPtr("test_" + suffix),
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newEscapeRegexFunctionType creates a test EscapeRegexFunctionType entity with sample data
+func newEscapeRegexFunctionType(suffix string) *parent.EscapeRegexFunctionType {
+	return &parent.EscapeRegexFunctionType{
+	}
+}
+
+// newEntityStateBinaryType creates a test EntityStateBinaryType entity with sample data
+func newEntityStateBinaryType(suffix string) *parent.EntityStateBinaryType {
+	return &parent.EntityStateBinaryType{
+		Datatype: "test_datatype_" + suffix,
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newX509DataType creates a test X509DataType entity with sample data
+func newX509DataType(suffix string) *parent.X509DataType {
+	return &parent.X509DataType{
+		X509IssuerSerialID: int64Ptr(42),
+		X509SKI: []byte("test_data_" + suffix),
+		X509SubjectName: "test_x509subjectname_" + suffix,
+		X509Certificate: []byte("test_data_" + suffix),
+		X509CRL: []byte("test_data_" + suffix),
+	}
+}
+
+// newOasisNamesTcCiqXOrganisationNameDetails creates a test OasisNamesTcCiqXOrganisationNameDetails entity with sample data
+func newOasisNamesTcCiqXOrganisationNameDetails(suffix string) *parent.OasisNamesTcCiqXOrganisationNameDetails {
+	return &parent.OasisNamesTcCiqXOrganisationNameDetails{
+		OrganisationFormerName: stringPtr("test_" + suffix),
+		OrganisationKnownAs: stringPtr("test_" + suffix),
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newIpV6ElementType creates a test IpV6ElementType entity with sample data
+func newIpV6ElementType(suffix string) *parent.IpV6ElementType {
+	return &parent.IpV6ElementType{
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newEntityStateFieldType creates a test EntityStateFieldType entity with sample data
+func newEntityStateFieldType(suffix string) *parent.EntityStateFieldType {
+	return &parent.EntityStateFieldType{
+		Name: "test_name_" + suffix,
+		Entity_check: stringPtr("test_" + suffix),
+	}
+}
+
+// newPremiseNumberRangeElementType creates a test PremiseNumberRangeElementType entity with sample data
+func newPremiseNumberRangeElementType(suffix string) *parent.PremiseNumberRangeElementType {
+	return &parent.PremiseNumberRangeElementType{
+		RangeType: stringPtr("test_" + suffix),
+		Indicator: stringPtr("test_" + suffix),
+		Separator: stringPtr("test_" + suffix),
+		Type: stringPtr("test_" + suffix),
+		IndicatorOccurence: stringPtr("test_" + suffix),
+		NumberRangeOccurence: stringPtr("test_" + suffix),
+		PremiseNumberRangeFrom: "test_premisenumberrangefrom_" + suffix,
+		PremiseNumberRangeTo: "test_premisenumberrangeto_" + suffix,
+	}
+}
+
+// newAdministrativeAreaElementType creates a test AdministrativeAreaElementType entity with sample data
+func newAdministrativeAreaElementType(suffix string) *parent.AdministrativeAreaElementType {
+	return &parent.AdministrativeAreaElementType{
+		Type: stringPtr("test_" + suffix),
+		UsageType: stringPtr("test_" + suffix),
+		Indicator: stringPtr("test_" + suffix),
+		AdministrativeAreaName: stringPtr("test_" + suffix),
+		SubAdministrativeArea: stringPtr("test_" + suffix),
+	}
+}
+
+// newXccdf12CheckType creates a test Xccdf12CheckType entity with sample data
+func newXccdf12CheckType(suffix string) *parent.Xccdf12CheckType {
+	return &parent.Xccdf12CheckType{
+		System: "test_system_" + suffix,
+		Negate: boolPtr(true),
+		XsdId: stringPtr("test_" + suffix),
+		Selector: stringPtr("test_" + suffix),
+		MultiCheck: boolPtr(true),
+		CheckContentID: int64Ptr(42),
+	}
+}
+
+// newCriteriaType creates a test CriteriaType entity with sample data
+func newCriteriaType(suffix string) *parent.CriteriaType {
+	return &parent.CriteriaType{
+		Applicability_check: boolPtr(true),
+		Operator: stringPtr("test_" + suffix),
+		Negate: boolPtr(true),
+		Comment: stringPtr("test_" + suffix),
+		CriteriaID: int64Ptr(42),
+		CriterionID: int64Ptr(42),
+		Extend_definitionID: int64Ptr(42),
 	}
 }
 
@@ -658,21 +1836,37 @@ func newConstantVariable(suffix string) *parent.ConstantVariable {
 	}
 }
 
-// newSelChoicesType creates a test SelChoicesType entity with sample data
-func newSelChoicesType(suffix string) *parent.SelChoicesType {
-	return &parent.SelChoicesType{
-		MustMatch: boolPtr(true),
-		Selector: stringPtr("test_" + suffix),
-		Choice: "test_choice_" + suffix,
-		ComplexChoiceID: int64Ptr(42),
+// newLargeMailUserType creates a test LargeMailUserType entity with sample data
+func newLargeMailUserType(suffix string) *parent.LargeMailUserType {
+	return &parent.LargeMailUserType{
+		Type: stringPtr("test_" + suffix),
+		LargeMailUserName: stringPtr("test_" + suffix),
+		LargeMailUserIdentifier: stringPtr("test_" + suffix),
 	}
 }
 
-// newIpAddressType creates a test IpAddressType entity with sample data
-func newIpAddressType(suffix string) *parent.IpAddressType {
-	return &parent.IpAddressType{
-		IpV4: stringPtr("test_" + suffix),
-		IpV6: stringPtr("test_" + suffix),
+// newXAL creates a test XAL entity with sample data
+func newXAL(suffix string) *parent.XAL {
+	return &parent.XAL{
+		Version: stringPtr("test_" + suffix),
+	}
+}
+
+// newThoroughfareNumber creates a test ThoroughfareNumber entity with sample data
+func newThoroughfareNumber(suffix string) *parent.ThoroughfareNumber {
+	return &parent.ThoroughfareNumber{
+		NumberType: stringPtr("test_" + suffix),
+		Type: stringPtr("test_" + suffix),
+		Indicator: stringPtr("test_" + suffix),
+		IndicatorOccurrence: stringPtr("test_" + suffix),
+		NumberOccurrence: stringPtr("test_" + suffix),
+	}
+}
+
+// newNs09XmldsigSignatureType creates a test Ns09XmldsigSignatureType entity with sample data
+func newNs09XmldsigSignatureType(suffix string) *parent.Ns09XmldsigSignatureType {
+	return &parent.Ns09XmldsigSignatureType{
+		XsdId: stringPtr("test_" + suffix),
 	}
 }
 
@@ -686,34 +1880,521 @@ func newOasisNamesTcCiqXNameDetails(suffix string) *parent.OasisNamesTcCiqXNameD
 	}
 }
 
-// newFirstNameElementType creates a test FirstNameElementType entity with sample data
-func newFirstNameElementType(suffix string) *parent.FirstNameElementType {
-	return &parent.FirstNameElementType{
+// newPersonNameElementType creates a test PersonNameElementType entity with sample data
+func newPersonNameElementType(suffix string) *parent.PersonNameElementType {
+	return &parent.PersonNameElementType{
+		FormerName: stringPtr("test_" + suffix),
+		KnownAs: stringPtr("test_" + suffix),
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newVersionElementType creates a test VersionElementType entity with sample data
+func newVersionElementType(suffix string) *parent.VersionElementType {
+	return &parent.VersionElementType{
+	}
+}
+
+// newSimple creates a test Simple entity with sample data
+func newSimple(suffix string) *parent.Simple {
+	return &parent.Simple{
+	}
+}
+
+// newTitleEltType creates a test TitleEltType entity with sample data
+func newTitleEltType(suffix string) *parent.TitleEltType {
+	return &parent.TitleEltType{
+	}
+}
+
+// newPostBoxNumberElementType creates a test PostBoxNumberElementType entity with sample data
+func newPostBoxNumberElementType(suffix string) *parent.PostBoxNumberElementType {
+	return &parent.PostBoxNumberElementType{
+	}
+}
+
+// newPostBoxNumberSuffixElementType creates a test PostBoxNumberSuffixElementType entity with sample data
+func newPostBoxNumberSuffixElementType(suffix string) *parent.PostBoxNumberSuffixElementType {
+	return &parent.PostBoxNumberSuffixElementType{
+		NumberSuffixSeparator: stringPtr("test_" + suffix),
+	}
+}
+
+// newMailStopNameElementType creates a test MailStopNameElementType entity with sample data
+func newMailStopNameElementType(suffix string) *parent.MailStopNameElementType {
+	return &parent.MailStopNameElementType{
+		Type: stringPtr("test_" + suffix),
+	}
+}
+
+// newSubPremiseNumberPrefixElementType creates a test SubPremiseNumberPrefixElementType entity with sample data
+func newSubPremiseNumberPrefixElementType(suffix string) *parent.SubPremiseNumberPrefixElementType {
+	return &parent.SubPremiseNumberPrefixElementType{
+		NumberPrefixSeparator: stringPtr("test_" + suffix),
+		Type: stringPtr("test_" + suffix),
+	}
+}
+
+// newOvalMitreOrgOvalMessageType creates a test OvalMitreOrgOvalMessageType entity with sample data
+func newOvalMitreOrgOvalMessageType(suffix string) *parent.OvalMitreOrgOvalMessageType {
+	return &parent.OvalMitreOrgOvalMessageType{
+		Level: stringPtr("test_" + suffix),
+	}
+}
+
+// newRetrievalMethodType creates a test RetrievalMethodType entity with sample data
+func newRetrievalMethodType(suffix string) *parent.RetrievalMethodType {
+	return &parent.RetrievalMethodType{
+		URI: stringPtr("test_" + suffix),
+		Type: stringPtr("test_" + suffix),
+	}
+}
+
+// newSignatureMethodType creates a test SignatureMethodType entity with sample data
+func newSignatureMethodType(suffix string) *parent.SignatureMethodType {
+	return &parent.SignatureMethodType{
+		Algorithm: "test_algorithm_" + suffix,
+		HMACOutputLengthID: int64Ptr(42),
+	}
+}
+
+// newOtherNameElementType creates a test OtherNameElementType entity with sample data
+func newOtherNameElementType(suffix string) *parent.OtherNameElementType {
+	return &parent.OtherNameElementType{
 		Type: stringPtr("test_" + suffix),
 		NameType: stringPtr("test_" + suffix),
 		Code: stringPtr("test_" + suffix),
 	}
 }
 
-// newDependentLocalityNumberElementType creates a test DependentLocalityNumberElementType entity with sample data
-func newDependentLocalityNumberElementType(suffix string) *parent.DependentLocalityNumberElementType {
-	return &parent.DependentLocalityNumberElementType{
-		NameNumberOccurrence: stringPtr("test_" + suffix),
-	}
-}
-
-// newLiteralComponentType creates a test LiteralComponentType entity with sample data
-func newLiteralComponentType(suffix string) *parent.LiteralComponentType {
-	return &parent.LiteralComponentType{
-		Datatype: stringPtr("test_" + suffix),
-	}
-}
-
-// newSubType creates a test SubType entity with sample data
-func newSubType(suffix string) *parent.SubType {
-	return &parent.SubType{
-		Use: stringPtr("test_" + suffix),
+// newOverrideableCPE2idrefType creates a test OverrideableCPE2idrefType entity with sample data
+func newOverrideableCPE2idrefType(suffix string) *parent.OverrideableCPE2idrefType {
+	return &parent.OverrideableCPE2idrefType{
+		Override: boolPtr(true),
 		ParentID: int64Ptr(42),
+	}
+}
+
+// newPlatformType creates a test PlatformType entity with sample data
+func newPlatformType(suffix string) *parent.PlatformType {
+	return &parent.PlatformType{
+		XsdId: "test_xsdid_" + suffix,
+		LogicalTestID: int64Ptr(42),
+	}
+}
+
+// newServiceType creates a test ServiceType entity with sample data
+func newServiceType(suffix string) *parent.ServiceType {
+	return &parent.ServiceType{
+		Host: stringPtr("test_" + suffix),
+		Port: stringPtr("test_" + suffix),
+		PortRange: stringPtr("test_" + suffix),
+		Protocol: stringPtr("test_" + suffix),
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newTestType creates a test TestType entity with sample data
+func newTestType(suffix string) *parent.TestType {
+	return &parent.TestType{
+		XsdId: "test_xsdid_" + suffix,
+		Version: 42,
+		Check_existence: stringPtr("test_" + suffix),
+		Check: "test_check_" + suffix,
+		State_operator: stringPtr("test_" + suffix),
+		Comment: "test_comment_" + suffix,
+		Deprecated: boolPtr(true),
+	}
+}
+
+// newRegexCaptureFunctionType creates a test RegexCaptureFunctionType entity with sample data
+func newRegexCaptureFunctionType(suffix string) *parent.RegexCaptureFunctionType {
+	return &parent.RegexCaptureFunctionType{
+		Pattern: stringPtr("test_" + suffix),
+	}
+}
+
+// newDigestMethodType creates a test DigestMethodType entity with sample data
+func newDigestMethodType(suffix string) *parent.DigestMethodType {
+	return &parent.DigestMethodType{
+		Algorithm: "test_algorithm_" + suffix,
+	}
+}
+
+// newTelephoneNumberElementType creates a test TelephoneNumberElementType entity with sample data
+func newTelephoneNumberElementType(suffix string) *parent.TelephoneNumberElementType {
+	return &parent.TelephoneNumberElementType{
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newLicenseElementType creates a test LicenseElementType entity with sample data
+func newLicenseElementType(suffix string) *parent.LicenseElementType {
+	return &parent.LicenseElementType{
+	}
+}
+
+// newSubstringFunctionType creates a test SubstringFunctionType entity with sample data
+func newSubstringFunctionType(suffix string) *parent.SubstringFunctionType {
+	return &parent.SubstringFunctionType{
+		Substring_start: 42,
+		Substring_length: 42,
+	}
+}
+
+// newEntityStateAnySimpleType creates a test EntityStateAnySimpleType entity with sample data
+func newEntityStateAnySimpleType(suffix string) *parent.EntityStateAnySimpleType {
+	return &parent.EntityStateAnySimpleType{
+		Datatype: stringPtr("test_" + suffix),
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newXALElementType creates a test XALElementType entity with sample data
+func newXALElementType(suffix string) *parent.XALElementType {
+	return &parent.XALElementType{
+		Version: stringPtr("test_" + suffix),
+	}
+}
+
+// newThoroughfareNameType creates a test ThoroughfareNameType entity with sample data
+func newThoroughfareNameType(suffix string) *parent.ThoroughfareNameType {
+	return &parent.ThoroughfareNameType{
+		Type: stringPtr("test_" + suffix),
+	}
+}
+
+// newTransformsType creates a test TransformsType entity with sample data
+func newTransformsType(suffix string) *parent.TransformsType {
+	return &parent.TransformsType{
+	}
+}
+
+// newVersionType creates a test VersionType entity with sample data
+func newVersionType(suffix string) *parent.VersionType {
+	return &parent.VersionType{
+		Time: timePtr(time.Now()),
+		Update: stringPtr("test_" + suffix),
+	}
+}
+
+// newEntityStateRecordType creates a test EntityStateRecordType entity with sample data
+func newEntityStateRecordType(suffix string) *parent.EntityStateRecordType {
+	return &parent.EntityStateRecordType{
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newThoroughfareNumberSuffix creates a test ThoroughfareNumberSuffix entity with sample data
+func newThoroughfareNumberSuffix(suffix string) *parent.ThoroughfareNumberSuffix {
+	return &parent.ThoroughfareNumberSuffix{
+		NumberSuffixSeparator: stringPtr("test_" + suffix),
+		Type: stringPtr("test_" + suffix),
+	}
+}
+
+// newPremiseNumberSuffix creates a test PremiseNumberSuffix entity with sample data
+func newPremiseNumberSuffix(suffix string) *parent.PremiseNumberSuffix {
+	return &parent.PremiseNumberSuffix{
+		NumberSuffixSeparator: stringPtr("test_" + suffix),
+		Type: stringPtr("test_" + suffix),
+	}
+}
+
+// newOvalMitreOrgOvalNotesType creates a test OvalMitreOrgOvalNotesType entity with sample data
+func newOvalMitreOrgOvalNotesType(suffix string) *parent.OvalMitreOrgOvalNotesType {
+	return &parent.OvalMitreOrgOvalNotesType{
+		Note: stringPtr("test_" + suffix),
+	}
+}
+
+// newKeyInfoType creates a test KeyInfoType entity with sample data
+func newKeyInfoType(suffix string) *parent.KeyInfoType {
+	return &parent.KeyInfoType{
+		XsdId: stringPtr("test_" + suffix),
+	}
+}
+
+// newNameDetailsElementType creates a test NameDetailsElementType entity with sample data
+func newNameDetailsElementType(suffix string) *parent.NameDetailsElementType {
+	return &parent.NameDetailsElementType{
+		NameDetailsKey: stringPtr("test_" + suffix),
+		AddresseeIndicator: stringPtr("test_" + suffix),
+		DependencyName: stringPtr("test_" + suffix),
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newHtmlTextType creates a test HtmlTextType entity with sample data
+func newHtmlTextType(suffix string) *parent.HtmlTextType {
+	return &parent.HtmlTextType{
+		Override: boolPtr(true),
+	}
+}
+
+// newDepartmentNameElementType creates a test DepartmentNameElementType entity with sample data
+func newDepartmentNameElementType(suffix string) *parent.DepartmentNameElementType {
+	return &parent.DepartmentNameElementType{
+		Type: stringPtr("test_" + suffix),
+	}
+}
+
+// newLastNameElementType creates a test LastNameElementType entity with sample data
+func newLastNameElementType(suffix string) *parent.LastNameElementType {
+	return &parent.LastNameElementType{
+		Type: stringPtr("test_" + suffix),
+		NameType: stringPtr("test_" + suffix),
+		Code: stringPtr("test_" + suffix),
+	}
+}
+
+// newNamePrefixElementType creates a test NamePrefixElementType entity with sample data
+func newNamePrefixElementType(suffix string) *parent.NamePrefixElementType {
+	return &parent.NamePrefixElementType{
+		Type: stringPtr("test_" + suffix),
+		NameType: stringPtr("test_" + suffix),
+		Code: stringPtr("test_" + suffix),
+	}
+}
+
+// newWarningType creates a test WarningType entity with sample data
+func newWarningType(suffix string) *parent.WarningType {
+	return &parent.WarningType{
+		Category: stringPtr("test_" + suffix),
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newSelNumType creates a test SelNumType entity with sample data
+func newSelNumType(suffix string) *parent.SelNumType {
+	return &parent.SelNumType{
+		Selector: stringPtr("test_" + suffix),
+	}
+}
+
+// newLocatorType creates a test LocatorType entity with sample data
+func newLocatorType(suffix string) *parent.LocatorType {
+	return &parent.LocatorType{
+	}
+}
+
+// newVariableComponentType creates a test VariableComponentType entity with sample data
+func newVariableComponentType(suffix string) *parent.VariableComponentType {
+	return &parent.VariableComponentType{
+		Var_ref: "test_var_ref_" + suffix,
+	}
+}
+
+// newEntityStateDebianEVRStringType creates a test EntityStateDebianEVRStringType entity with sample data
+func newEntityStateDebianEVRStringType(suffix string) *parent.EntityStateDebianEVRStringType {
+	return &parent.EntityStateDebianEVRStringType{
+		Datatype: "test_datatype_" + suffix,
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newOvalMitreOrgOvalReferenceType creates a test OvalMitreOrgOvalReferenceType entity with sample data
+func newOvalMitreOrgOvalReferenceType(suffix string) *parent.OvalMitreOrgOvalReferenceType {
+	return &parent.OvalMitreOrgOvalReferenceType{
+		Source: "test_source_" + suffix,
+		Ref_id: "test_ref_id_" + suffix,
+		Ref_url: stringPtr("test_" + suffix),
+	}
+}
+
+// newSPKIDataType creates a test SPKIDataType entity with sample data
+func newSPKIDataType(suffix string) *parent.SPKIDataType {
+	return &parent.SPKIDataType{
+		SPKISexp: []byte("test_data_" + suffix),
+	}
+}
+
+// newSelChoicesType creates a test SelChoicesType entity with sample data
+func newSelChoicesType(suffix string) *parent.SelChoicesType {
+	return &parent.SelChoicesType{
+		MustMatch: boolPtr(true),
+		Selector: stringPtr("test_" + suffix),
+		Choice: "test_choice_" + suffix,
+		ComplexChoiceID: int64Ptr(42),
+	}
+}
+
+// newCheckContentType creates a test CheckContentType entity with sample data
+func newCheckContentType(suffix string) *parent.CheckContentType {
+	return &parent.CheckContentType{
+	}
+}
+
+// newUriRefType creates a test UriRefType entity with sample data
+func newUriRefType(suffix string) *parent.UriRefType {
+	return &parent.UriRefType{
+		Uri: "test_uri_" + suffix,
+	}
+}
+
+// newReferenceElementType creates a test ReferenceElementType entity with sample data
+func newReferenceElementType(suffix string) *parent.ReferenceElementType {
+	return &parent.ReferenceElementType{
+		Href: stringPtr("test_" + suffix),
+	}
+}
+
+// newInstanceNameElementType creates a test InstanceNameElementType entity with sample data
+func newInstanceNameElementType(suffix string) *parent.InstanceNameElementType {
+	return &parent.InstanceNameElementType{
+	}
+}
+
+// newSetElementType creates a test SetElementType entity with sample data
+func newSetElementType(suffix string) *parent.SetElementType {
+	return &parent.SetElementType{
+		Set_operator: stringPtr("test_" + suffix),
+	}
+}
+
+// newEntityStateIOSVersionType creates a test EntityStateIOSVersionType entity with sample data
+func newEntityStateIOSVersionType(suffix string) *parent.EntityStateIOSVersionType {
+	return &parent.EntityStateIOSVersionType{
+		Datatype: stringPtr("test_" + suffix),
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newTransformType creates a test TransformType entity with sample data
+func newTransformType(suffix string) *parent.TransformType {
+	return &parent.TransformType{
+		Algorithm: "test_algorithm_" + suffix,
+		XPath: "test_xpath_" + suffix,
+	}
+}
+
+// newDistinguishedNameElementType creates a test DistinguishedNameElementType entity with sample data
+func newDistinguishedNameElementType(suffix string) *parent.DistinguishedNameElementType {
+	return &parent.DistinguishedNameElementType{
+	}
+}
+
+// newNetworkType creates a test NetworkType entity with sample data
+func newNetworkType(suffix string) *parent.NetworkType {
+	return &parent.NetworkType{
+		NetworkName: stringPtr("test_" + suffix),
+		IpNetRange: "test_ipnetrange_" + suffix,
+		Cidr: "test_cidr_" + suffix,
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newExtendDefinitionType creates a test ExtendDefinitionType entity with sample data
+func newExtendDefinitionType(suffix string) *parent.ExtendDefinitionType {
+	return &parent.ExtendDefinitionType{
+		Applicability_check: boolPtr(true),
+		Definition_ref: "test_definition_ref_" + suffix,
+		Negate: boolPtr(true),
+		Comment: stringPtr("test_" + suffix),
+	}
+}
+
+// newEntityStateIPAddressType creates a test EntityStateIPAddressType entity with sample data
+func newEntityStateIPAddressType(suffix string) *parent.EntityStateIPAddressType {
+	return &parent.EntityStateIPAddressType{
+		Datatype: "test_datatype_" + suffix,
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newPremiseNumberSuffixElementType creates a test PremiseNumberSuffixElementType entity with sample data
+func newPremiseNumberSuffixElementType(suffix string) *parent.PremiseNumberSuffixElementType {
+	return &parent.PremiseNumberSuffixElementType{
+		NumberSuffixSeparator: stringPtr("test_" + suffix),
+		Type: stringPtr("test_" + suffix),
+	}
+}
+
+// newPostOfficeElementType creates a test PostOfficeElementType entity with sample data
+func newPostOfficeElementType(suffix string) *parent.PostOfficeElementType {
+	return &parent.PostOfficeElementType{
+		Type: stringPtr("test_" + suffix),
+		Indicator: stringPtr("test_" + suffix),
+		PostalRouteID: int64Ptr(42),
+		PostOfficeName: stringPtr("test_" + suffix),
+		PostOfficeNumber: stringPtr("test_" + suffix),
+	}
+}
+
+// newDependentLocalityType creates a test DependentLocalityType entity with sample data
+func newDependentLocalityType(suffix string) *parent.DependentLocalityType {
+	return &parent.DependentLocalityType{
+		Type: stringPtr("test_" + suffix),
+		UsageType: stringPtr("test_" + suffix),
+		Connector: stringPtr("test_" + suffix),
+		Indicator: stringPtr("test_" + suffix),
+		DependentLocalityName: stringPtr("test_" + suffix),
+		DependentLocalityNumber: stringPtr("test_" + suffix),
+		DependentLocalityID: int64Ptr(42),
+		LargeMailUserID: int64Ptr(42),
+		PostalRouteID: int64Ptr(42),
+	}
+}
+
+// newManifestType creates a test ManifestType entity with sample data
+func newManifestType(suffix string) *parent.ManifestType {
+	return &parent.ManifestType{
+		XsdId: stringPtr("test_" + suffix),
+	}
+}
+
+// newRSAKeyValueType creates a test RSAKeyValueType entity with sample data
+func newRSAKeyValueType(suffix string) *parent.RSAKeyValueType {
+	return &parent.RSAKeyValueType{
+		ModulusID: int64Ptr(42),
+		ExponentID: int64Ptr(42),
+	}
+}
+
+// newPlatformSpecification creates a test PlatformSpecification entity with sample data
+func newPlatformSpecification(suffix string) *parent.PlatformSpecification {
+	return &parent.PlatformSpecification{
+	}
+}
+
+// newEmailAddressElementType creates a test EmailAddressElementType entity with sample data
+func newEmailAddressElementType(suffix string) *parent.EmailAddressElementType {
+	return &parent.EmailAddressElementType{
+	}
+}
+
+// newLargeMailUserIdentifierElementType creates a test LargeMailUserIdentifierElementType entity with sample data
+func newLargeMailUserIdentifierElementType(suffix string) *parent.LargeMailUserIdentifierElementType {
+	return &parent.LargeMailUserIdentifierElementType{
+		Type: stringPtr("test_" + suffix),
+		Indicator: stringPtr("test_" + suffix),
+	}
+}
+
+// newPremiseNumberRangeToElementType creates a test PremiseNumberRangeToElementType entity with sample data
+func newPremiseNumberRangeToElementType(suffix string) *parent.PremiseNumberRangeToElementType {
+	return &parent.PremiseNumberRangeToElementType{
+	}
+}
+
+// newPostOffice creates a test PostOffice entity with sample data
+func newPostOffice(suffix string) *parent.PostOffice {
+	return &parent.PostOffice{
+		Type: stringPtr("test_" + suffix),
+		Indicator: stringPtr("test_" + suffix),
+		PostalRouteID: int64Ptr(42),
+		PostOfficeName: stringPtr("test_" + suffix),
+		PostOfficeNumber: stringPtr("test_" + suffix),
+	}
+}
+
+// newPostalCode creates a test PostalCode entity with sample data
+func newPostalCode(suffix string) *parent.PostalCode {
+	return &parent.PostalCode{
+		Type: stringPtr("test_" + suffix),
+		PostalCodeNumber: stringPtr("test_" + suffix),
+		PostalCodeNumberExtension: stringPtr("test_" + suffix),
+		PostTown: stringPtr("test_" + suffix),
 	}
 }
 
@@ -723,9 +2404,76 @@ func newLocationsElementType(suffix string) *parent.LocationsElementType {
 	}
 }
 
-// newFqdnElementType creates a test FqdnElementType entity with sample data
-func newFqdnElementType(suffix string) *parent.FqdnElementType {
-	return &parent.FqdnElementType{
+// newExtendedInformationElementType creates a test ExtendedInformationElementType entity with sample data
+func newExtendedInformationElementType(suffix string) *parent.ExtendedInformationElementType {
+	return &parent.ExtendedInformationElementType{
+	}
+}
+
+// newLocationRegion creates a test LocationRegion entity with sample data
+func newLocationRegion(suffix string) *parent.LocationRegion {
+	return &parent.LocationRegion{
+	}
+}
+
+// newResourceType creates a test ResourceType entity with sample data
+func newResourceType(suffix string) *parent.ResourceType {
+	return &parent.ResourceType{
+	}
+}
+
+// newDefinitionsType creates a test DefinitionsType entity with sample data
+func newDefinitionsType(suffix string) *parent.DefinitionsType {
+	return &parent.DefinitionsType{
+	}
+}
+
+// newEntityObjectStringType creates a test EntityObjectStringType entity with sample data
+func newEntityObjectStringType(suffix string) *parent.EntityObjectStringType {
+	return &parent.EntityObjectStringType{
+		Datatype: stringPtr("test_" + suffix),
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newPremiseLocationElementType creates a test PremiseLocationElementType entity with sample data
+func newPremiseLocationElementType(suffix string) *parent.PremiseLocationElementType {
+	return &parent.PremiseLocationElementType{
+	}
+}
+
+// newPremiseNumber creates a test PremiseNumber entity with sample data
+func newPremiseNumber(suffix string) *parent.PremiseNumber {
+	return &parent.PremiseNumber{
+		NumberType: stringPtr("test_" + suffix),
+		Type: stringPtr("test_" + suffix),
+		Indicator: stringPtr("test_" + suffix),
+		IndicatorOccurrence: stringPtr("test_" + suffix),
+		NumberTypeOccurrence: stringPtr("test_" + suffix),
+	}
+}
+
+// newKnownAsElementType creates a test KnownAsElementType entity with sample data
+func newKnownAsElementType(suffix string) *parent.KnownAsElementType {
+	return &parent.KnownAsElementType{
+		ValidFrom: stringPtr("test_" + suffix),
+		ValidTo: stringPtr("test_" + suffix),
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newEntityStateBoolType creates a test EntityStateBoolType entity with sample data
+func newEntityStateBoolType(suffix string) *parent.EntityStateBoolType {
+	return &parent.EntityStateBoolType{
+		Datatype: "test_datatype_" + suffix,
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newSet creates a test Set entity with sample data
+func newSet(suffix string) *parent.Set {
+	return &parent.Set{
+		Set_operator: stringPtr("test_" + suffix),
 	}
 }
 
@@ -736,32 +2484,176 @@ func newPostBoxNumberExtensionElementType(suffix string) *parent.PostBoxNumberEx
 	}
 }
 
-// newCPE2idrefType creates a test CPE2idrefType entity with sample data
-func newCPE2idrefType(suffix string) *parent.CPE2idrefType {
-	return &parent.CPE2idrefType{
-		Idref: "test_idref_" + suffix,
-	}
-}
-
-// newDepartmentElementType creates a test DepartmentElementType entity with sample data
-func newDepartmentElementType(suffix string) *parent.DepartmentElementType {
-	return &parent.DepartmentElementType{
+// newAddressLineElementType creates a test AddressLineElementType entity with sample data
+func newAddressLineElementType(suffix string) *parent.AddressLineElementType {
+	return &parent.AddressLineElementType{
 		Type: stringPtr("test_" + suffix),
-		DepartmentName: stringPtr("test_" + suffix),
-		MailStopID: int64Ptr(42),
 	}
 }
 
-// newThoroughfareNumberFromElementType creates a test ThoroughfareNumberFromElementType entity with sample data
-func newThoroughfareNumberFromElementType(suffix string) *parent.ThoroughfareNumberFromElementType {
-	return &parent.ThoroughfareNumberFromElementType{
+// newElementMapItemType creates a test ElementMapItemType entity with sample data
+func newElementMapItemType(suffix string) *parent.ElementMapItemType {
+	return &parent.ElementMapItemType{
+		Target_namespace: stringPtr("test_" + suffix),
 	}
 }
 
-// newThoroughfareLeadingTypeType creates a test ThoroughfareLeadingTypeType entity with sample data
-func newThoroughfareLeadingTypeType(suffix string) *parent.ThoroughfareLeadingTypeType {
-	return &parent.ThoroughfareLeadingTypeType{
+// newX509IssuerSerialType creates a test X509IssuerSerialType entity with sample data
+func newX509IssuerSerialType(suffix string) *parent.X509IssuerSerialType {
+	return &parent.X509IssuerSerialType{
+		X509IssuerName: "test_x509issuername_" + suffix,
+		X509SerialNumber: 42,
+	}
+}
+
+// newSyntheticIdElementType creates a test SyntheticIdElementType entity with sample data
+func newSyntheticIdElementType(suffix string) *parent.SyntheticIdElementType {
+	return &parent.SyntheticIdElementType{
+		Resource: "test_resource_" + suffix,
+		XsdId: "test_xsdid_" + suffix,
+	}
+}
+
+// newAddressLatitudeElementType creates a test AddressLatitudeElementType entity with sample data
+func newAddressLatitudeElementType(suffix string) *parent.AddressLatitudeElementType {
+	return &parent.AddressLatitudeElementType{
 		Type: stringPtr("test_" + suffix),
+	}
+}
+
+// newDictionary20NotesType creates a test Dictionary20NotesType entity with sample data
+func newDictionary20NotesType(suffix string) *parent.Dictionary20NotesType {
+	return &parent.Dictionary20NotesType{
+		Note: "test_note_" + suffix,
+	}
+}
+
+// newEndFunctionType creates a test EndFunctionType entity with sample data
+func newEndFunctionType(suffix string) *parent.EndFunctionType {
+	return &parent.EndFunctionType{
+		Character: "test_character_" + suffix,
+	}
+}
+
+// newThoroughfareNumberRangeElementType creates a test ThoroughfareNumberRangeElementType entity with sample data
+func newThoroughfareNumberRangeElementType(suffix string) *parent.ThoroughfareNumberRangeElementType {
+	return &parent.ThoroughfareNumberRangeElementType{
+		RangeType: stringPtr("test_" + suffix),
+		Indicator: stringPtr("test_" + suffix),
+		Separator: stringPtr("test_" + suffix),
+		IndicatorOccurrence: stringPtr("test_" + suffix),
+		NumberRangeOccurrence: stringPtr("test_" + suffix),
+		Type: stringPtr("test_" + suffix),
+		ThoroughfareNumberFrom: "test_thoroughfarenumberfrom_" + suffix,
+		ThoroughfareNumberTo: "test_thoroughfarenumberto_" + suffix,
+	}
+}
+
+// newComplexValueType creates a test ComplexValueType entity with sample data
+func newComplexValueType(suffix string) *parent.ComplexValueType {
+	return &parent.ComplexValueType{
+		Item: stringPtr("test_" + suffix),
+	}
+}
+
+// newSyntheticId creates a test SyntheticId entity with sample data
+func newSyntheticId(suffix string) *parent.SyntheticId {
+	return &parent.SyntheticId{
+		Resource: "test_resource_" + suffix,
+		XsdId: "test_xsdid_" + suffix,
+	}
+}
+
+// newLocalVariableElementType creates a test LocalVariableElementType entity with sample data
+func newLocalVariableElementType(suffix string) *parent.LocalVariableElementType {
+	return &parent.LocalVariableElementType{
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newEntityObjectFieldType creates a test EntityObjectFieldType entity with sample data
+func newEntityObjectFieldType(suffix string) *parent.EntityObjectFieldType {
+	return &parent.EntityObjectFieldType{
+		Name: "test_name_" + suffix,
+		Entity_check: stringPtr("test_" + suffix),
+	}
+}
+
+// newDependentLocalityNumberElementType creates a test DependentLocalityNumberElementType entity with sample data
+func newDependentLocalityNumberElementType(suffix string) *parent.DependentLocalityNumberElementType {
+	return &parent.DependentLocalityNumberElementType{
+		NameNumberOccurrence: stringPtr("test_" + suffix),
+	}
+}
+
+// newOrganisationNameElementType creates a test OrganisationNameElementType entity with sample data
+func newOrganisationNameElementType(suffix string) *parent.OrganisationNameElementType {
+	return &parent.OrganisationNameElementType{
+		Type: stringPtr("test_" + suffix),
+		NameType: stringPtr("test_" + suffix),
+		Code: stringPtr("test_" + suffix),
+	}
+}
+
+// newIdrefListType creates a test IdrefListType entity with sample data
+func newIdrefListType(suffix string) *parent.IdrefListType {
+	return &parent.IdrefListType{
+	}
+}
+
+// newParamType creates a test ParamType entity with sample data
+func newParamType(suffix string) *parent.ParamType {
+	return &parent.ParamType{
+		Name: "test_name_" + suffix,
+	}
+}
+
+// newRemoteResourceElementType creates a test RemoteResourceElementType entity with sample data
+func newRemoteResourceElementType(suffix string) *parent.RemoteResourceElementType {
+	return &parent.RemoteResourceElementType{
+	}
+}
+
+// newEntityStateFileSetRevisionType creates a test EntityStateFileSetRevisionType entity with sample data
+func newEntityStateFileSetRevisionType(suffix string) *parent.EntityStateFileSetRevisionType {
+	return &parent.EntityStateFileSetRevisionType{
+		Datatype: "test_datatype_" + suffix,
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newRestrictionType creates a test RestrictionType entity with sample data
+func newRestrictionType(suffix string) *parent.RestrictionType {
+	return &parent.RestrictionType{
+		Operation: "test_operation_" + suffix,
+	}
+}
+
+// newAddressElementType creates a test AddressElementType entity with sample data
+func newAddressElementType(suffix string) *parent.AddressElementType {
+	return &parent.AddressElementType{
+		Type: stringPtr("test_" + suffix),
+	}
+}
+
+// newSortingCodeElementType creates a test SortingCodeElementType entity with sample data
+func newSortingCodeElementType(suffix string) *parent.SortingCodeElementType {
+	return &parent.SortingCodeElementType{
+		Type: stringPtr("test_" + suffix),
+	}
+}
+
+// newRuleType creates a test RuleType entity with sample data
+func newRuleType(suffix string) *parent.RuleType {
+	return &parent.RuleType{
+		XsdId: "test_xsdid_" + suffix,
+		Role: stringPtr("test_" + suffix),
+		Severity: stringPtr("test_" + suffix),
+		Multiple: boolPtr(true),
+		ImpactMetric: stringPtr("test_" + suffix),
+		SignatureID: int64Ptr(42),
+		ComplexCheckID: int64Ptr(42),
+		ParentID: int64Ptr(42),
 	}
 }
 
@@ -782,10 +2674,234 @@ func newXccdf12ValueType(suffix string) *parent.Xccdf12ValueType {
 	}
 }
 
-// newHtmlTextType creates a test HtmlTextType entity with sample data
-func newHtmlTextType(suffix string) *parent.HtmlTextType {
-	return &parent.HtmlTextType{
+// newXccdf12TextType creates a test Xccdf12TextType entity with sample data
+func newXccdf12TextType(suffix string) *parent.Xccdf12TextType {
+	return &parent.Xccdf12TextType{
 		Override: boolPtr(true),
+	}
+}
+
+// newMotherboardGuidElementType creates a test MotherboardGuidElementType entity with sample data
+func newMotherboardGuidElementType(suffix string) *parent.MotherboardGuidElementType {
+	return &parent.MotherboardGuidElementType{
+	}
+}
+
+// newOrganizationType creates a test OrganizationType entity with sample data
+func newOrganizationType(suffix string) *parent.OrganizationType {
+	return &parent.OrganizationType{
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newAdministrativeAreaNameElementType creates a test AdministrativeAreaNameElementType entity with sample data
+func newAdministrativeAreaNameElementType(suffix string) *parent.AdministrativeAreaNameElementType {
+	return &parent.AdministrativeAreaNameElementType{
+		Type: stringPtr("test_" + suffix),
+	}
+}
+
+// newThoroughfareNumberPrefix creates a test ThoroughfareNumberPrefix entity with sample data
+func newThoroughfareNumberPrefix(suffix string) *parent.ThoroughfareNumberPrefix {
+	return &parent.ThoroughfareNumberPrefix{
+		NumberPrefixSeparator: stringPtr("test_" + suffix),
+		Type: stringPtr("test_" + suffix),
+	}
+}
+
+// newFactType creates a test FactType entity with sample data
+func newFactType(suffix string) *parent.FactType {
+	return &parent.FactType{
+		Name: "test_name_" + suffix,
+		Type: stringPtr("test_" + suffix),
+	}
+}
+
+// newFqdn creates a test Fqdn entity with sample data
+func newFqdn(suffix string) *parent.Fqdn {
+	return &parent.Fqdn{
+	}
+}
+
+// newObjectRefElementType creates a test ObjectRefElementType entity with sample data
+func newObjectRefElementType(suffix string) *parent.ObjectRefElementType {
+	return &parent.ObjectRefElementType{
+		RefId: stringPtr("test_" + suffix),
+	}
+}
+
+// newAffectedType creates a test AffectedType entity with sample data
+func newAffectedType(suffix string) *parent.AffectedType {
+	return &parent.AffectedType{
+		Family: "test_family_" + suffix,
+		Platform: stringPtr("test_" + suffix),
+		Product: stringPtr("test_" + suffix),
+	}
+}
+
+// newSubAdministrativeAreaNameElementType creates a test SubAdministrativeAreaNameElementType entity with sample data
+func newSubAdministrativeAreaNameElementType(suffix string) *parent.SubAdministrativeAreaNameElementType {
+	return &parent.SubAdministrativeAreaNameElementType{
+		Type: stringPtr("test_" + suffix),
+	}
+}
+
+// newSchemaVersionType creates a test SchemaVersionType entity with sample data
+func newSchemaVersionType(suffix string) *parent.SchemaVersionType {
+	return &parent.SchemaVersionType{
+		Platform: stringPtr("test_" + suffix),
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newXccdf12SignatureType creates a test Xccdf12SignatureType entity with sample data
+func newXccdf12SignatureType(suffix string) *parent.Xccdf12SignatureType {
+	return &parent.Xccdf12SignatureType{
+	}
+}
+
+// newLogicalTestType creates a test LogicalTestType entity with sample data
+func newLogicalTestType(suffix string) *parent.LogicalTestType {
+	return &parent.LogicalTestType{
+		Operator: "test_operator_" + suffix,
+		Negate: true,
+	}
+}
+
+// newWebsiteUrl creates a test WebsiteUrl entity with sample data
+func newWebsiteUrl(suffix string) *parent.WebsiteUrl {
+	return &parent.WebsiteUrl{
+	}
+}
+
+// newKeyValueType creates a test KeyValueType entity with sample data
+func newKeyValueType(suffix string) *parent.KeyValueType {
+	return &parent.KeyValueType{
+	}
+}
+
+// newRelationshipType creates a test RelationshipType entity with sample data
+func newRelationshipType(suffix string) *parent.RelationshipType {
+	return &parent.RelationshipType{
+		Type: "test_type_" + suffix,
+		Scope: stringPtr("test_" + suffix),
+		Subject: "test_subject_" + suffix,
+		Ref: "test_ref_" + suffix,
+	}
+}
+
+// newTargetFactsType creates a test TargetFactsType entity with sample data
+func newTargetFactsType(suffix string) *parent.TargetFactsType {
+	return &parent.TargetFactsType{
+	}
+}
+
+// newOrganisationFormerNameElementType creates a test OrganisationFormerNameElementType entity with sample data
+func newOrganisationFormerNameElementType(suffix string) *parent.OrganisationFormerNameElementType {
+	return &parent.OrganisationFormerNameElementType{
+		ValidFrom: stringPtr("test_" + suffix),
+		ValidTo: stringPtr("test_" + suffix),
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newProfileType creates a test ProfileType entity with sample data
+func newProfileType(suffix string) *parent.ProfileType {
+	return &parent.ProfileType{
+		XsdId: "test_xsdid_" + suffix,
+		ProhibitChanges: boolPtr(true),
+		Abstract: boolPtr(true),
+		NoteTag: stringPtr("test_" + suffix),
+		Extends: stringPtr("test_" + suffix),
+		VersionID: int64Ptr(42),
+		SignatureID: int64Ptr(42),
+		SelectID: int64Ptr(42),
+		SetComplexValueID: int64Ptr(42),
+		SetValueID: int64Ptr(42),
+		RefineValueID: int64Ptr(42),
+		RefineRuleID: int64Ptr(42),
+	}
+}
+
+// newHtmlTextWithSubType creates a test HtmlTextWithSubType entity with sample data
+func newHtmlTextWithSubType(suffix string) *parent.HtmlTextWithSubType {
+	return &parent.HtmlTextWithSubType{
+		Override: boolPtr(true),
+		SubID: int64Ptr(42),
+	}
+}
+
+// newReferencesType creates a test ReferencesType entity with sample data
+func newReferencesType(suffix string) *parent.ReferencesType {
+	return &parent.ReferencesType{
+		Reference: "test_reference_" + suffix,
+	}
+}
+
+// newOvalMitreOrgOvalObjectType creates a test OvalMitreOrgOvalObjectType entity with sample data
+func newOvalMitreOrgOvalObjectType(suffix string) *parent.OvalMitreOrgOvalObjectType {
+	return &parent.OvalMitreOrgOvalObjectType{
+		XsdId: "test_xsdid_" + suffix,
+		Version: 42,
+		Comment: stringPtr("test_" + suffix),
+		Deprecated: boolPtr(true),
+	}
+}
+
+// newOvalDefinitions creates a test OvalDefinitions entity with sample data
+func newOvalDefinitions(suffix string) *parent.OvalDefinitions {
+	return &parent.OvalDefinitions{
+		GeneratorID: int64Ptr(42),
+		DefinitionsID: int64Ptr(42),
+		TestsID: int64Ptr(42),
+		ObjectsID: int64Ptr(42),
+		StatesID: int64Ptr(42),
+		VariablesID: int64Ptr(42),
+	}
+}
+
+// newIpNetRangeElementType creates a test IpNetRangeElementType entity with sample data
+func newIpNetRangeElementType(suffix string) *parent.IpNetRangeElementType {
+	return &parent.IpNetRangeElementType{
+		IpNetRangeStartID: int64Ptr(42),
+		IpNetRangeEndID: int64Ptr(42),
+	}
+}
+
+// newExtendedInfosElementType creates a test ExtendedInfosElementType entity with sample data
+func newExtendedInfosElementType(suffix string) *parent.ExtendedInfosElementType {
+	return &parent.ExtendedInfosElementType{
+		ExtendedInfo: "test_extendedinfo_" + suffix,
+	}
+}
+
+// newInstanceResultType creates a test InstanceResultType entity with sample data
+func newInstanceResultType(suffix string) *parent.InstanceResultType {
+	return &parent.InstanceResultType{
+		Context: stringPtr("test_" + suffix),
+		ParentContext: stringPtr("test_" + suffix),
+	}
+}
+
+// newCheckExportType creates a test CheckExportType entity with sample data
+func newCheckExportType(suffix string) *parent.CheckExportType {
+	return &parent.CheckExportType{
+		ValueId: "test_valueid_" + suffix,
+		ExportName: "test_exportname_" + suffix,
+	}
+}
+
+// newSubType creates a test SubType entity with sample data
+func newSubType(suffix string) *parent.SubType {
+	return &parent.SubType{
+		Use: stringPtr("test_" + suffix),
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newFqdnElementType creates a test FqdnElementType entity with sample data
+func newFqdnElementType(suffix string) *parent.FqdnElementType {
+	return &parent.FqdnElementType{
 	}
 }
 
@@ -799,218 +2915,171 @@ func newLocationPointElementType(suffix string) *parent.LocationPointElementType
 	}
 }
 
-// newSignaturePropertyType creates a test SignaturePropertyType entity with sample data
-func newSignaturePropertyType(suffix string) *parent.SignaturePropertyType {
-	return &parent.SignaturePropertyType{
-		Target: "test_target_" + suffix,
-		XsdId: stringPtr("test_" + suffix),
-	}
-}
-
-// newOvalMitreOrgOvalNotesType creates a test OvalMitreOrgOvalNotesType entity with sample data
-func newOvalMitreOrgOvalNotesType(suffix string) *parent.OvalMitreOrgOvalNotesType {
-	return &parent.OvalMitreOrgOvalNotesType{
-		Note: stringPtr("test_" + suffix),
-	}
-}
-
-// newThoroughfareNumberElementType creates a test ThoroughfareNumberElementType entity with sample data
-func newThoroughfareNumberElementType(suffix string) *parent.ThoroughfareNumberElementType {
-	return &parent.ThoroughfareNumberElementType{
-		NumberType: stringPtr("test_" + suffix),
+// newPostBoxElementType creates a test PostBoxElementType entity with sample data
+func newPostBoxElementType(suffix string) *parent.PostBoxElementType {
+	return &parent.PostBoxElementType{
 		Type: stringPtr("test_" + suffix),
 		Indicator: stringPtr("test_" + suffix),
-		IndicatorOccurrence: stringPtr("test_" + suffix),
-		NumberOccurrence: stringPtr("test_" + suffix),
+		PostBoxNumber: "test_postboxnumber_" + suffix,
+		PostBoxNumberPrefix: stringPtr("test_" + suffix),
+		PostBoxNumberSuffix: stringPtr("test_" + suffix),
+		PostBoxNumberExtension: stringPtr("test_" + suffix),
+		FirmID: int64Ptr(42),
 	}
 }
 
-// newDefinitionType creates a test DefinitionType entity with sample data
-func newDefinitionType(suffix string) *parent.DefinitionType {
-	return &parent.DefinitionType{
-		XsdId: "test_xsdid_" + suffix,
-		Version: 42,
-		Class: "test_class_" + suffix,
-		Deprecated: boolPtr(true),
-		MetadataID: int64Ptr(42),
-		CriteriaID: int64Ptr(42),
+// newLanguage20TextType creates a test Language20TextType entity with sample data
+func newLanguage20TextType(suffix string) *parent.Language20TextType {
+	return &parent.Language20TextType{
 	}
 }
 
-// newXccdf12SignatureType creates a test Xccdf12SignatureType entity with sample data
-func newXccdf12SignatureType(suffix string) *parent.Xccdf12SignatureType {
-	return &parent.Xccdf12SignatureType{
+// newPossibleValueType creates a test PossibleValueType entity with sample data
+func newPossibleValueType(suffix string) *parent.PossibleValueType {
+	return &parent.PossibleValueType{
+		Hint: "test_hint_" + suffix,
 	}
 }
 
-// newGeneralSuffixElementType creates a test GeneralSuffixElementType entity with sample data
-func newGeneralSuffixElementType(suffix string) *parent.GeneralSuffixElementType {
-	return &parent.GeneralSuffixElementType{
-		Type: stringPtr("test_" + suffix),
-		Code: stringPtr("test_" + suffix),
-	}
-}
-
-// newAddressLatitudeElementType creates a test AddressLatitudeElementType entity with sample data
-func newAddressLatitudeElementType(suffix string) *parent.AddressLatitudeElementType {
-	return &parent.AddressLatitudeElementType{
-		Type: stringPtr("test_" + suffix),
-	}
-}
-
-// newEntityStateBoolType creates a test EntityStateBoolType entity with sample data
-func newEntityStateBoolType(suffix string) *parent.EntityStateBoolType {
-	return &parent.EntityStateBoolType{
+// newEntityStateVersionType creates a test EntityStateVersionType entity with sample data
+func newEntityStateVersionType(suffix string) *parent.EntityStateVersionType {
+	return &parent.EntityStateVersionType{
 		Datatype: "test_datatype_" + suffix,
 		ParentID: int64Ptr(42),
 	}
 }
 
-// newOvalMitreOrgOvalMetadataType creates a test OvalMitreOrgOvalMetadataType entity with sample data
-func newOvalMitreOrgOvalMetadataType(suffix string) *parent.OvalMitreOrgOvalMetadataType {
-	return &parent.OvalMitreOrgOvalMetadataType{
-		Title: "test_title_" + suffix,
-		Description: "test_description_" + suffix,
-	}
-}
-
-// newDictionary20ItemType creates a test Dictionary20ItemType entity with sample data
-func newDictionary20ItemType(suffix string) *parent.Dictionary20ItemType {
-	return &parent.Dictionary20ItemType{
-		Name: "test_name_" + suffix,
-		Deprecated: boolPtr(true),
-		Deprecated_by: stringPtr("test_" + suffix),
-		Deprecation_date: timePtr(time.Now()),
-		ReferencesID: int64Ptr(42),
-	}
-}
-
-// newCpe creates a test Cpe entity with sample data
-func newCpe(suffix string) *parent.Cpe {
-	return &parent.Cpe{
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newPrecedingTitleElementType creates a test PrecedingTitleElementType entity with sample data
-func newPrecedingTitleElementType(suffix string) *parent.PrecedingTitleElementType {
-	return &parent.PrecedingTitleElementType{
+// newPostalRouteNameElementType creates a test PostalRouteNameElementType entity with sample data
+func newPostalRouteNameElementType(suffix string) *parent.PostalRouteNameElementType {
+	return &parent.PostalRouteNameElementType{
 		Type: stringPtr("test_" + suffix),
+	}
+}
+
+// newJointPersonName creates a test JointPersonName entity with sample data
+func newJointPersonName(suffix string) *parent.JointPersonName {
+	return &parent.JointPersonName{
+		JointNameConnector: stringPtr("test_" + suffix),
 		Code: stringPtr("test_" + suffix),
 	}
 }
 
-// newPremiseNumberRangeToElementType creates a test PremiseNumberRangeToElementType entity with sample data
-func newPremiseNumberRangeToElementType(suffix string) *parent.PremiseNumberRangeToElementType {
-	return &parent.PremiseNumberRangeToElementType{
+// newCheckContentRefType creates a test CheckContentRefType entity with sample data
+func newCheckContentRefType(suffix string) *parent.CheckContentRefType {
+	return &parent.CheckContentRefType{
+		Href: "test_href_" + suffix,
+		Name: stringPtr("test_" + suffix),
 	}
 }
 
-// newBarcodeElementType creates a test BarcodeElementType entity with sample data
-func newBarcodeElementType(suffix string) *parent.BarcodeElementType {
-	return &parent.BarcodeElementType{
-		Type: stringPtr("test_" + suffix),
+// newTailoringType creates a test TailoringType entity with sample data
+func newTailoringType(suffix string) *parent.TailoringType {
+	return &parent.TailoringType{
+		XsdId: "test_xsdid_" + suffix,
+		BenchmarkID: int64Ptr(42),
+		VersionID: int64Ptr(42),
+		SignatureID: int64Ptr(42),
 	}
 }
 
-// newAddressLineElementType creates a test AddressLineElementType entity with sample data
-func newAddressLineElementType(suffix string) *parent.AddressLineElementType {
-	return &parent.AddressLineElementType{
-		Type: stringPtr("test_" + suffix),
+// newDocumentRootElementType creates a test DocumentRootElementType entity with sample data
+func newDocumentRootElementType(suffix string) *parent.DocumentRootElementType {
+	return &parent.DocumentRootElementType{
 	}
 }
 
-// newExtendDefinitionType creates a test ExtendDefinitionType entity with sample data
-func newExtendDefinitionType(suffix string) *parent.ExtendDefinitionType {
-	return &parent.ExtendDefinitionType{
-		Applicability_check: boolPtr(true),
-		Definition_ref: "test_definition_ref_" + suffix,
-		Negate: boolPtr(true),
+// newAssetReportCollectionElementType creates a test AssetReportCollectionElementType entity with sample data
+func newAssetReportCollectionElementType(suffix string) *parent.AssetReportCollectionElementType {
+	return &parent.AssetReportCollectionElementType{
+		XsdId: stringPtr("test_" + suffix),
+		ReportRequests: stringPtr("test_" + suffix),
+		Assets: stringPtr("test_" + suffix),
+		Reports: "test_reports_" + suffix,
+		ExtendedInfos: stringPtr("test_" + suffix),
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newExtendedInfoElementType creates a test ExtendedInfoElementType entity with sample data
+func newExtendedInfoElementType(suffix string) *parent.ExtendedInfoElementType {
+	return &parent.ExtendedInfoElementType{
+		XsdId: "test_xsdid_" + suffix,
+	}
+}
+
+// newEntityObjectRecordType creates a test EntityObjectRecordType entity with sample data
+func newEntityObjectRecordType(suffix string) *parent.EntityObjectRecordType {
+	return &parent.EntityObjectRecordType{
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newLocalVariable creates a test LocalVariable entity with sample data
+func newLocalVariable(suffix string) *parent.LocalVariable {
+	return &parent.LocalVariable{
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newStatusElementType creates a test StatusElementType entity with sample data
+func newStatusElementType(suffix string) *parent.StatusElementType {
+	return &parent.StatusElementType{
+		Date: timePtr(time.Now()),
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newAssetsType creates a test AssetsType entity with sample data
+func newAssetsType(suffix string) *parent.AssetsType {
+	return &parent.AssetsType{
+		Asset: "test_asset_" + suffix,
+		ParentID: int64Ptr(42),
+	}
+}
+
+// newStateType creates a test StateType entity with sample data
+func newStateType(suffix string) *parent.StateType {
+	return &parent.StateType{
+		XsdId: "test_xsdid_" + suffix,
+		Version: 42,
+		Operator: stringPtr("test_" + suffix),
 		Comment: stringPtr("test_" + suffix),
+		Deprecated: boolPtr(true),
 	}
 }
 
-// newExtendedInfosElementType creates a test ExtendedInfosElementType entity with sample data
-func newExtendedInfosElementType(suffix string) *parent.ExtendedInfosElementType {
-	return &parent.ExtendedInfosElementType{
-		ExtendedInfo: "test_extendedinfo_" + suffix,
+// newEntityStateFloatType creates a test EntityStateFloatType entity with sample data
+func newEntityStateFloatType(suffix string) *parent.EntityStateFloatType {
+	return &parent.EntityStateFloatType{
+		Datatype: "test_datatype_" + suffix,
+		ParentID: int64Ptr(42),
 	}
 }
 
-// newKeyValueType creates a test KeyValueType entity with sample data
-func newKeyValueType(suffix string) *parent.KeyValueType {
-	return &parent.KeyValueType{
+// newUniqueFunctionType creates a test UniqueFunctionType entity with sample data
+func newUniqueFunctionType(suffix string) *parent.UniqueFunctionType {
+	return &parent.UniqueFunctionType{
 	}
 }
 
-// newPostBoxNumberPrefixElementType creates a test PostBoxNumberPrefixElementType entity with sample data
-func newPostBoxNumberPrefixElementType(suffix string) *parent.PostBoxNumberPrefixElementType {
-	return &parent.PostBoxNumberPrefixElementType{
-		NumberPrefixSeparator: stringPtr("test_" + suffix),
-	}
-}
-
-// newEntityObjectAnySimpleType creates a test EntityObjectAnySimpleType entity with sample data
-func newEntityObjectAnySimpleType(suffix string) *parent.EntityObjectAnySimpleType {
-	return &parent.EntityObjectAnySimpleType{
+// newEntityStateIPAddressStringType creates a test EntityStateIPAddressStringType entity with sample data
+func newEntityStateIPAddressStringType(suffix string) *parent.EntityStateIPAddressStringType {
+	return &parent.EntityStateIPAddressStringType{
 		Datatype: stringPtr("test_" + suffix),
 		ParentID: int64Ptr(42),
 	}
 }
 
-// newLocaleElementType creates a test LocaleElementType entity with sample data
-func newLocaleElementType(suffix string) *parent.LocaleElementType {
-	return &parent.LocaleElementType{
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newRelationshipsElementType creates a test RelationshipsElementType entity with sample data
-func newRelationshipsElementType(suffix string) *parent.RelationshipsElementType {
-	return &parent.RelationshipsElementType{
-	}
-}
-
-// newDigestMethodType creates a test DigestMethodType entity with sample data
-func newDigestMethodType(suffix string) *parent.DigestMethodType {
-	return &parent.DigestMethodType{
-		Algorithm: "test_algorithm_" + suffix,
-	}
-}
-
-// newSetElementType creates a test SetElementType entity with sample data
-func newSetElementType(suffix string) *parent.SetElementType {
-	return &parent.SetElementType{
-		Set_operator: stringPtr("test_" + suffix),
-	}
-}
-
-// newTelephoneNumberElementType creates a test TelephoneNumberElementType entity with sample data
-func newTelephoneNumberElementType(suffix string) *parent.TelephoneNumberElementType {
-	return &parent.TelephoneNumberElementType{
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newThoroughfareNumberSuffixElementType creates a test ThoroughfareNumberSuffixElementType entity with sample data
-func newThoroughfareNumberSuffixElementType(suffix string) *parent.ThoroughfareNumberSuffixElementType {
-	return &parent.ThoroughfareNumberSuffixElementType{
-		NumberSuffixSeparator: stringPtr("test_" + suffix),
+// newLocalityElementType creates a test LocalityElementType entity with sample data
+func newLocalityElementType(suffix string) *parent.LocalityElementType {
+	return &parent.LocalityElementType{
 		Type: stringPtr("test_" + suffix),
-	}
-}
-
-// newEntityStateIntType creates a test EntityStateIntType entity with sample data
-func newEntityStateIntType(suffix string) *parent.EntityStateIntType {
-	return &parent.EntityStateIntType{
-		Datatype: "test_datatype_" + suffix,
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newIdrefListType creates a test IdrefListType entity with sample data
-func newIdrefListType(suffix string) *parent.IdrefListType {
-	return &parent.IdrefListType{
+		UsageType: stringPtr("test_" + suffix),
+		Indicator: stringPtr("test_" + suffix),
+		LocalityName: stringPtr("test_" + suffix),
+		DependentLocalityID: int64Ptr(42),
+		LargeMailUserID: int64Ptr(42),
+		PostalRouteID: int64Ptr(42),
 	}
 }
 
@@ -1037,728 +3106,89 @@ func newTestResultType(suffix string) *parent.TestResultType {
 	}
 }
 
-// newMailStopNumberElementType creates a test MailStopNumberElementType entity with sample data
-func newMailStopNumberElementType(suffix string) *parent.MailStopNumberElementType {
-	return &parent.MailStopNumberElementType{
-		NameNumberSeparator: stringPtr("test_" + suffix),
+// newDictionary20TextType creates a test Dictionary20TextType entity with sample data
+func newDictionary20TextType(suffix string) *parent.Dictionary20TextType {
+	return &parent.Dictionary20TextType{
 	}
 }
 
-// newSubAdministrativeAreaNameElementType creates a test SubAdministrativeAreaNameElementType entity with sample data
-func newSubAdministrativeAreaNameElementType(suffix string) *parent.SubAdministrativeAreaNameElementType {
-	return &parent.SubAdministrativeAreaNameElementType{
-		Type: stringPtr("test_" + suffix),
+// newRemoteResource creates a test RemoteResource entity with sample data
+func newRemoteResource(suffix string) *parent.RemoteResource {
+	return &parent.RemoteResource{
 	}
 }
 
-// newEntityStateIOSVersionType creates a test EntityStateIOSVersionType entity with sample data
-func newEntityStateIOSVersionType(suffix string) *parent.EntityStateIOSVersionType {
-	return &parent.EntityStateIOSVersionType{
-		Datatype: stringPtr("test_" + suffix),
-		ParentID: int64Ptr(42),
+// newPostalRouteNumberElementType creates a test PostalRouteNumberElementType entity with sample data
+func newPostalRouteNumberElementType(suffix string) *parent.PostalRouteNumberElementType {
+	return &parent.PostalRouteNumberElementType{
 	}
 }
 
-// newTailoringVersionType creates a test TailoringVersionType entity with sample data
-func newTailoringVersionType(suffix string) *parent.TailoringVersionType {
-	return &parent.TailoringVersionType{
-		Time: time.Now(),
-	}
-}
-
-// newDictionary20GeneratorType creates a test Dictionary20GeneratorType entity with sample data
-func newDictionary20GeneratorType(suffix string) *parent.Dictionary20GeneratorType {
-	return &parent.Dictionary20GeneratorType{
-		Product_name: stringPtr("test_" + suffix),
-		Product_version: stringPtr("test_" + suffix),
-		Schema_version: "test_schema_version_" + suffix,
-		Timestamp: time.Now(),
-	}
-}
-
-// newLocatorType creates a test LocatorType entity with sample data
-func newLocatorType(suffix string) *parent.LocatorType {
-	return &parent.LocatorType{
-	}
-}
-
-// newLargeMailUserType creates a test LargeMailUserType entity with sample data
-func newLargeMailUserType(suffix string) *parent.LargeMailUserType {
-	return &parent.LargeMailUserType{
-		Type: stringPtr("test_" + suffix),
-		LargeMailUserName: stringPtr("test_" + suffix),
-		LargeMailUserIdentifier: stringPtr("test_" + suffix),
-	}
-}
-
-// newIdrefType creates a test IdrefType entity with sample data
-func newIdrefType(suffix string) *parent.IdrefType {
-	return &parent.IdrefType{
-		Idref: "test_idref_" + suffix,
-	}
-}
-
-// newReportRequestsElementType creates a test ReportRequestsElementType entity with sample data
-func newReportRequestsElementType(suffix string) *parent.ReportRequestsElementType {
-	return &parent.ReportRequestsElementType{
-	}
-}
-
-// newKeyInfoType creates a test KeyInfoType entity with sample data
-func newKeyInfoType(suffix string) *parent.KeyInfoType {
-	return &parent.KeyInfoType{
+// newSignedInfoType creates a test SignedInfoType entity with sample data
+func newSignedInfoType(suffix string) *parent.SignedInfoType {
+	return &parent.SignedInfoType{
 		XsdId: stringPtr("test_" + suffix),
 	}
 }
 
-// newEndorsementLineCodeElementType creates a test EndorsementLineCodeElementType entity with sample data
-func newEndorsementLineCodeElementType(suffix string) *parent.EndorsementLineCodeElementType {
-	return &parent.EndorsementLineCodeElementType{
-		Type: stringPtr("test_" + suffix),
-	}
-}
-
-// newCountryNameCodeElementType creates a test CountryNameCodeElementType entity with sample data
-func newCountryNameCodeElementType(suffix string) *parent.CountryNameCodeElementType {
-	return &parent.CountryNameCodeElementType{
-		Scheme: stringPtr("test_" + suffix),
-	}
-}
-
-// newLocalVariableElementType creates a test LocalVariableElementType entity with sample data
-func newLocalVariableElementType(suffix string) *parent.LocalVariableElementType {
-	return &parent.LocalVariableElementType{
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newGroupType creates a test GroupType entity with sample data
-func newGroupType(suffix string) *parent.GroupType {
-	return &parent.GroupType{
-		XsdId: "test_xsdid_" + suffix,
-		SignatureID: int64Ptr(42),
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newSyntheticIdElementType creates a test SyntheticIdElementType entity with sample data
-func newSyntheticIdElementType(suffix string) *parent.SyntheticIdElementType {
-	return &parent.SyntheticIdElementType{
-		Resource: "test_resource_" + suffix,
-		XsdId: "test_xsdid_" + suffix,
-	}
-}
-
-// newReportType creates a test ReportType entity with sample data
-func newReportType(suffix string) *parent.ReportType {
-	return &parent.ReportType{
-		XsdId: "test_xsdid_" + suffix,
-		Content: "test_content_" + suffix,
-	}
-}
-
-// newAssetReportCollectionElementType creates a test AssetReportCollectionElementType entity with sample data
-func newAssetReportCollectionElementType(suffix string) *parent.AssetReportCollectionElementType {
-	return &parent.AssetReportCollectionElementType{
-		XsdId: stringPtr("test_" + suffix),
-		ReportRequests: stringPtr("test_" + suffix),
-		Assets: stringPtr("test_" + suffix),
-		Reports: "test_reports_" + suffix,
-		ExtendedInfos: stringPtr("test_" + suffix),
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newTestsType creates a test TestsType entity with sample data
-func newTestsType(suffix string) *parent.TestsType {
-	return &parent.TestsType{
-	}
-}
-
-// newInstanceResultType creates a test InstanceResultType entity with sample data
-func newInstanceResultType(suffix string) *parent.InstanceResultType {
-	return &parent.InstanceResultType{
-		Context: stringPtr("test_" + suffix),
-		ParentContext: stringPtr("test_" + suffix),
-	}
-}
-
-// newRuleType creates a test RuleType entity with sample data
-func newRuleType(suffix string) *parent.RuleType {
-	return &parent.RuleType{
-		XsdId: "test_xsdid_" + suffix,
-		Role: stringPtr("test_" + suffix),
-		Severity: stringPtr("test_" + suffix),
-		Multiple: boolPtr(true),
-		ImpactMetric: stringPtr("test_" + suffix),
-		SignatureID: int64Ptr(42),
-		ComplexCheckID: int64Ptr(42),
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newEmailAddress creates a test EmailAddress entity with sample data
-func newEmailAddress(suffix string) *parent.EmailAddress {
-	return &parent.EmailAddress{
-	}
-}
-
-// newNameLineType creates a test NameLineType entity with sample data
-func newNameLineType(suffix string) *parent.NameLineType {
-	return &parent.NameLineType{
-		Type: stringPtr("test_" + suffix),
-		NameType: stringPtr("test_" + suffix),
-		Code: stringPtr("test_" + suffix),
-	}
-}
-
-// newTitleElementType creates a test TitleElementType entity with sample data
-func newTitleElementType(suffix string) *parent.TitleElementType {
-	return &parent.TitleElementType{
-		Type: stringPtr("test_" + suffix),
-		Code: stringPtr("test_" + suffix),
-	}
-}
-
-// newPremiseNumberSuffixElementType creates a test PremiseNumberSuffixElementType entity with sample data
-func newPremiseNumberSuffixElementType(suffix string) *parent.PremiseNumberSuffixElementType {
-	return &parent.PremiseNumberSuffixElementType{
-		NumberSuffixSeparator: stringPtr("test_" + suffix),
-		Type: stringPtr("test_" + suffix),
-	}
-}
-
-// newEntityObjectIPAddressStringType creates a test EntityObjectIPAddressStringType entity with sample data
-func newEntityObjectIPAddressStringType(suffix string) *parent.EntityObjectIPAddressStringType {
-	return &parent.EntityObjectIPAddressStringType{
-		Datatype: stringPtr("test_" + suffix),
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newOvalDefinitions creates a test OvalDefinitions entity with sample data
-func newOvalDefinitions(suffix string) *parent.OvalDefinitions {
-	return &parent.OvalDefinitions{
+// newListType creates a test ListType entity with sample data
+func newListType(suffix string) *parent.ListType {
+	return &parent.ListType{
 		GeneratorID: int64Ptr(42),
-		DefinitionsID: int64Ptr(42),
-		TestsID: int64Ptr(42),
-		ObjectsID: int64Ptr(42),
-		StatesID: int64Ptr(42),
-		VariablesID: int64Ptr(42),
 	}
 }
 
-// newProfileSetValueType creates a test ProfileSetValueType entity with sample data
-func newProfileSetValueType(suffix string) *parent.ProfileSetValueType {
-	return &parent.ProfileSetValueType{
-		Idref: "test_idref_" + suffix,
-	}
-}
-
-// newNoticeType creates a test NoticeType entity with sample data
-func newNoticeType(suffix string) *parent.NoticeType {
-	return &parent.NoticeType{
-		XsdId: stringPtr("test_" + suffix),
-	}
-}
-
-// newThoroughfare creates a test Thoroughfare entity with sample data
-func newThoroughfare(suffix string) *parent.Thoroughfare {
-	return &parent.Thoroughfare{
-		Type: stringPtr("test_" + suffix),
-		DependentThoroughfares: stringPtr("test_" + suffix),
-		DependentThoroughfaresIndicator: stringPtr("test_" + suffix),
-		DependentThoroughfaresConnector: stringPtr("test_" + suffix),
-		DependentThoroughfaresType: stringPtr("test_" + suffix),
-		ThoroughfarePreDirectionID: int64Ptr(42),
-		ThoroughfareLeadingTypeID: int64Ptr(42),
-		ThoroughfareTrailingTypeID: int64Ptr(42),
-		ThoroughfarePostDirectionID: int64Ptr(42),
-		DependentThoroughfare: stringPtr("test_" + suffix),
-		ThoroughfareNumberRange: "test_thoroughfarenumberrange_" + suffix,
-		DependentLocalityID: int64Ptr(42),
-		FirmID: int64Ptr(42),
-	}
-}
-
-// newEntityStateRecordType creates a test EntityStateRecordType entity with sample data
-func newEntityStateRecordType(suffix string) *parent.EntityStateRecordType {
-	return &parent.EntityStateRecordType{
+// newSystemType creates a test SystemType entity with sample data
+func newSystemType(suffix string) *parent.SystemType {
+	return &parent.SystemType{
+		SystemName: stringPtr("test_" + suffix),
+		Version: stringPtr("test_" + suffix),
 		ParentID: int64Ptr(42),
 	}
 }
 
-// newInstanceFixType creates a test InstanceFixType entity with sample data
-func newInstanceFixType(suffix string) *parent.InstanceFixType {
-	return &parent.InstanceFixType{
-		Context: stringPtr("test_" + suffix),
+// newBeginFunctionType creates a test BeginFunctionType entity with sample data
+func newBeginFunctionType(suffix string) *parent.BeginFunctionType {
+	return &parent.BeginFunctionType{
+		Character: "test_character_" + suffix,
 	}
 }
 
-// newDictionary20NotesType creates a test Dictionary20NotesType entity with sample data
-func newDictionary20NotesType(suffix string) *parent.Dictionary20NotesType {
-	return &parent.Dictionary20NotesType{
-		Note: "test_note_" + suffix,
-	}
-}
-
-// newIpV4ElementType creates a test IpV4ElementType entity with sample data
-func newIpV4ElementType(suffix string) *parent.IpV4ElementType {
-	return &parent.IpV4ElementType{
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newOrganizationType creates a test OrganizationType entity with sample data
-func newOrganizationType(suffix string) *parent.OrganizationType {
-	return &parent.OrganizationType{
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newSubPremiseType creates a test SubPremiseType entity with sample data
-func newSubPremiseType(suffix string) *parent.SubPremiseType {
-	return &parent.SubPremiseType{
-		Type: stringPtr("test_" + suffix),
-		SubPremiseName: stringPtr("test_" + suffix),
-		SubPremiseNumberPrefix: stringPtr("test_" + suffix),
-		SubPremiseNumberSuffix: stringPtr("test_" + suffix),
-		FirmID: int64Ptr(42),
-		MailStopID: int64Ptr(42),
-		SubPremiseID: int64Ptr(42),
-		SubPremiseLocation: "test_subpremiselocation_" + suffix,
-		SubPremiseNumber: stringPtr("test_" + suffix),
-	}
-}
-
-// newAddressDetails creates a test AddressDetails entity with sample data
-func newAddressDetails(suffix string) *parent.AddressDetails {
-	return &parent.AddressDetails{
-		AddressType: stringPtr("test_" + suffix),
-		CurrentStatus: stringPtr("test_" + suffix),
-		ValidFromDate: stringPtr("test_" + suffix),
-		ValidToDate: stringPtr("test_" + suffix),
-		Usage: stringPtr("test_" + suffix),
-		AddressDetailsKey: stringPtr("test_" + suffix),
-		PostalServiceElements: stringPtr("test_" + suffix),
-		Address: "test_address_" + suffix,
-		AddressLinesID: int64Ptr(42),
-		Country: "test_country_" + suffix,
-	}
-}
-
-// newPostOfficeNumberElementType creates a test PostOfficeNumberElementType entity with sample data
-func newPostOfficeNumberElementType(suffix string) *parent.PostOfficeNumberElementType {
-	return &parent.PostOfficeNumberElementType{
-		Indicator: stringPtr("test_" + suffix),
-		IndicatorOccurrence: stringPtr("test_" + suffix),
-	}
-}
-
-// newXccdf12ReferenceType creates a test Xccdf12ReferenceType entity with sample data
-func newXccdf12ReferenceType(suffix string) *parent.Xccdf12ReferenceType {
-	return &parent.Xccdf12ReferenceType{
-		Href: stringPtr("test_" + suffix),
-		Override: boolPtr(true),
-	}
-}
-
-// newXccdf12TextType creates a test Xccdf12TextType entity with sample data
-func newXccdf12TextType(suffix string) *parent.Xccdf12TextType {
-	return &parent.Xccdf12TextType{
-		Override: boolPtr(true),
-	}
-}
-
-// newDistinguishedNameElementType creates a test DistinguishedNameElementType entity with sample data
-func newDistinguishedNameElementType(suffix string) *parent.DistinguishedNameElementType {
-	return &parent.DistinguishedNameElementType{
-	}
-}
-
-// newCriteriaType creates a test CriteriaType entity with sample data
-func newCriteriaType(suffix string) *parent.CriteriaType {
-	return &parent.CriteriaType{
-		Applicability_check: boolPtr(true),
-		Operator: stringPtr("test_" + suffix),
-		Negate: boolPtr(true),
-		Comment: stringPtr("test_" + suffix),
-		CriteriaID: int64Ptr(42),
-		CriterionID: int64Ptr(42),
-		Extend_definitionID: int64Ptr(42),
-	}
-}
-
-// newTargetIdRefType creates a test TargetIdRefType entity with sample data
-func newTargetIdRefType(suffix string) *parent.TargetIdRefType {
-	return &parent.TargetIdRefType{
-		System: "test_system_" + suffix,
-		Href: "test_href_" + suffix,
-		Name: stringPtr("test_" + suffix),
-	}
-}
-
-// newTextWithSubType creates a test TextWithSubType entity with sample data
-func newTextWithSubType(suffix string) *parent.TextWithSubType {
-	return &parent.TextWithSubType{
-		Override: boolPtr(true),
-	}
-}
-
-// newReferencesType creates a test ReferencesType entity with sample data
-func newReferencesType(suffix string) *parent.ReferencesType {
-	return &parent.ReferencesType{
-		Reference: "test_reference_" + suffix,
-	}
-}
-
-// newServiceType creates a test ServiceType entity with sample data
-func newServiceType(suffix string) *parent.ServiceType {
-	return &parent.ServiceType{
-		Host: stringPtr("test_" + suffix),
-		Port: stringPtr("test_" + suffix),
-		PortRange: stringPtr("test_" + suffix),
-		Protocol: stringPtr("test_" + suffix),
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newOasisNamesTcCiqXOrganisationNameDetails creates a test OasisNamesTcCiqXOrganisationNameDetails entity with sample data
-func newOasisNamesTcCiqXOrganisationNameDetails(suffix string) *parent.OasisNamesTcCiqXOrganisationNameDetails {
-	return &parent.OasisNamesTcCiqXOrganisationNameDetails{
-		OrganisationFormerName: stringPtr("test_" + suffix),
-		OrganisationKnownAs: stringPtr("test_" + suffix),
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newPostTownElementType creates a test PostTownElementType entity with sample data
-func newPostTownElementType(suffix string) *parent.PostTownElementType {
-	return &parent.PostTownElementType{
-		Type: stringPtr("test_" + suffix),
-		PostTownName: stringPtr("test_" + suffix),
-		PostTownSuffix: stringPtr("test_" + suffix),
-	}
-}
-
-// newPremiseNumberRangeElementType creates a test PremiseNumberRangeElementType entity with sample data
-func newPremiseNumberRangeElementType(suffix string) *parent.PremiseNumberRangeElementType {
-	return &parent.PremiseNumberRangeElementType{
-		RangeType: stringPtr("test_" + suffix),
-		Indicator: stringPtr("test_" + suffix),
-		Separator: stringPtr("test_" + suffix),
-		Type: stringPtr("test_" + suffix),
-		IndicatorOccurence: stringPtr("test_" + suffix),
-		NumberRangeOccurence: stringPtr("test_" + suffix),
-		PremiseNumberRangeFrom: "test_premisenumberrangefrom_" + suffix,
-		PremiseNumberRangeTo: "test_premisenumberrangeto_" + suffix,
-	}
-}
-
-// newSelNumType creates a test SelNumType entity with sample data
-func newSelNumType(suffix string) *parent.SelNumType {
-	return &parent.SelNumType{
-		Selector: stringPtr("test_" + suffix),
-	}
-}
-
-// newNetworkNameElementType creates a test NetworkNameElementType entity with sample data
-func newNetworkNameElementType(suffix string) *parent.NetworkNameElementType {
-	return &parent.NetworkNameElementType{
-	}
-}
-
-// newExternalVariableElementType creates a test ExternalVariableElementType entity with sample data
-func newExternalVariableElementType(suffix string) *parent.ExternalVariableElementType {
-	return &parent.ExternalVariableElementType{
-		Possible_valueID: int64Ptr(42),
-		Possible_restrictionID: int64Ptr(42),
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newScoreType creates a test ScoreType entity with sample data
-func newScoreType(suffix string) *parent.ScoreType {
-	return &parent.ScoreType{
-		System: stringPtr("test_" + suffix),
-		Maximum: stringPtr("test_" + suffix),
-	}
-}
-
-// newNs09XmldsigSignatureType creates a test Ns09XmldsigSignatureType entity with sample data
-func newNs09XmldsigSignatureType(suffix string) *parent.Ns09XmldsigSignatureType {
-	return &parent.Ns09XmldsigSignatureType{
-		XsdId: stringPtr("test_" + suffix),
-	}
-}
-
-// newPremiseNameElementType creates a test PremiseNameElementType entity with sample data
-func newPremiseNameElementType(suffix string) *parent.PremiseNameElementType {
-	return &parent.PremiseNameElementType{
-		Type: stringPtr("test_" + suffix),
-		TypeOccurrence: stringPtr("test_" + suffix),
-	}
-}
-
-// newOvalMitreOrgOvalObjectType creates a test OvalMitreOrgOvalObjectType entity with sample data
-func newOvalMitreOrgOvalObjectType(suffix string) *parent.OvalMitreOrgOvalObjectType {
-	return &parent.OvalMitreOrgOvalObjectType{
-		XsdId: "test_xsdid_" + suffix,
-		Version: 42,
-		Comment: stringPtr("test_" + suffix),
-		Deprecated: boolPtr(true),
-	}
-}
-
-// newStateRefType creates a test StateRefType entity with sample data
-func newStateRefType(suffix string) *parent.StateRefType {
-	return &parent.StateRefType{
-		State_ref: "test_state_ref_" + suffix,
-	}
-}
-
-// newUriRefType creates a test UriRefType entity with sample data
-func newUriRefType(suffix string) *parent.UriRefType {
-	return &parent.UriRefType{
-		Uri: "test_uri_" + suffix,
-	}
-}
-
-// newDocumentRootElementType creates a test DocumentRootElementType entity with sample data
-func newDocumentRootElementType(suffix string) *parent.DocumentRootElementType {
-	return &parent.DocumentRootElementType{
-	}
-}
-
-// newSimple creates a test Simple entity with sample data
-func newSimple(suffix string) *parent.Simple {
-	return &parent.Simple{
-	}
-}
-
-// newRemoteResourceElementType creates a test RemoteResourceElementType entity with sample data
-func newRemoteResourceElementType(suffix string) *parent.RemoteResourceElementType {
-	return &parent.RemoteResourceElementType{
-	}
-}
-
-// newX509IssuerSerialType creates a test X509IssuerSerialType entity with sample data
-func newX509IssuerSerialType(suffix string) *parent.X509IssuerSerialType {
-	return &parent.X509IssuerSerialType{
-		X509IssuerName: "test_x509issuername_" + suffix,
-		X509SerialNumber: 42,
-	}
-}
-
-// newMailStopType creates a test MailStopType entity with sample data
-func newMailStopType(suffix string) *parent.MailStopType {
-	return &parent.MailStopType{
-		Type: stringPtr("test_" + suffix),
-		MailStopName: stringPtr("test_" + suffix),
-		MailStopNumber: stringPtr("test_" + suffix),
-	}
-}
-
-// newCountFunctionType creates a test CountFunctionType entity with sample data
-func newCountFunctionType(suffix string) *parent.CountFunctionType {
-	return &parent.CountFunctionType{
-	}
-}
-
-// newLocations creates a test Locations entity with sample data
-func newLocations(suffix string) *parent.Locations {
-	return &parent.Locations{
-	}
-}
-
-// newKnownAsElementType creates a test KnownAsElementType entity with sample data
-func newKnownAsElementType(suffix string) *parent.KnownAsElementType {
-	return &parent.KnownAsElementType{
-		ValidFrom: stringPtr("test_" + suffix),
-		ValidTo: stringPtr("test_" + suffix),
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newDSAKeyValueType creates a test DSAKeyValueType entity with sample data
-func newDSAKeyValueType(suffix string) *parent.DSAKeyValueType {
-	return &parent.DSAKeyValueType{
-		GID: int64Ptr(42),
-		YID: int64Ptr(42),
-		JID: int64Ptr(42),
-		PID: int64Ptr(42),
-		QID: int64Ptr(42),
-		SeedID: int64Ptr(42),
-		PgenCounterID: int64Ptr(42),
-	}
-}
-
-// newSubAdministrativeAreaElementType creates a test SubAdministrativeAreaElementType entity with sample data
-func newSubAdministrativeAreaElementType(suffix string) *parent.SubAdministrativeAreaElementType {
-	return &parent.SubAdministrativeAreaElementType{
-		Type: stringPtr("test_" + suffix),
-		UsageType: stringPtr("test_" + suffix),
-		Indicator: stringPtr("test_" + suffix),
-		SubAdministrativeAreaName: stringPtr("test_" + suffix),
-	}
-}
-
-// newPostBoxNumberSuffixElementType creates a test PostBoxNumberSuffixElementType entity with sample data
-func newPostBoxNumberSuffixElementType(suffix string) *parent.PostBoxNumberSuffixElementType {
-	return &parent.PostBoxNumberSuffixElementType{
+// newThoroughfareNumberSuffixElementType creates a test ThoroughfareNumberSuffixElementType entity with sample data
+func newThoroughfareNumberSuffixElementType(suffix string) *parent.ThoroughfareNumberSuffixElementType {
+	return &parent.ThoroughfareNumberSuffixElementType{
 		NumberSuffixSeparator: stringPtr("test_" + suffix),
-	}
-}
-
-// newSubPremiseNumberPrefixElementType creates a test SubPremiseNumberPrefixElementType entity with sample data
-func newSubPremiseNumberPrefixElementType(suffix string) *parent.SubPremiseNumberPrefixElementType {
-	return &parent.SubPremiseNumberPrefixElementType{
-		NumberPrefixSeparator: stringPtr("test_" + suffix),
 		Type: stringPtr("test_" + suffix),
 	}
 }
 
-// newPremiseNumberPrefixElementType creates a test PremiseNumberPrefixElementType entity with sample data
-func newPremiseNumberPrefixElementType(suffix string) *parent.PremiseNumberPrefixElementType {
-	return &parent.PremiseNumberPrefixElementType{
-		NumberPrefixSeparator: stringPtr("test_" + suffix),
+// newPostTownSuffixElementType creates a test PostTownSuffixElementType entity with sample data
+func newPostTownSuffixElementType(suffix string) *parent.PostTownSuffixElementType {
+	return &parent.PostTownSuffixElementType{
+	}
+}
+
+// newDependentLocalityNameElementType creates a test DependentLocalityNameElementType entity with sample data
+func newDependentLocalityNameElementType(suffix string) *parent.DependentLocalityNameElementType {
+	return &parent.DependentLocalityNameElementType{
 		Type: stringPtr("test_" + suffix),
 	}
 }
 
-// newPremise creates a test Premise entity with sample data
-func newPremise(suffix string) *parent.Premise {
-	return &parent.Premise{
-		Type: stringPtr("test_" + suffix),
-		PremiseDependency: stringPtr("test_" + suffix),
-		PremiseDependencyType: stringPtr("test_" + suffix),
-		PremiseThoroughfareConnector: stringPtr("test_" + suffix),
-		PremiseName: stringPtr("test_" + suffix),
-		MailStopID: int64Ptr(42),
-		PremiseLocation: "test_premiselocation_" + suffix,
-		PremiseNumberRange: "test_premisenumberrange_" + suffix,
-		FirmID: int64Ptr(42),
+// newAddressLinesType creates a test AddressLinesType entity with sample data
+func newAddressLinesType(suffix string) *parent.AddressLinesType {
+	return &parent.AddressLinesType{
 	}
 }
 
-// newThoroughfareNumber creates a test ThoroughfareNumber entity with sample data
-func newThoroughfareNumber(suffix string) *parent.ThoroughfareNumber {
-	return &parent.ThoroughfareNumber{
-		NumberType: stringPtr("test_" + suffix),
-		Type: stringPtr("test_" + suffix),
-		Indicator: stringPtr("test_" + suffix),
-		IndicatorOccurrence: stringPtr("test_" + suffix),
-		NumberOccurrence: stringPtr("test_" + suffix),
-	}
-}
-
-// newOvalMitreOrgOvalMessageType creates a test OvalMitreOrgOvalMessageType entity with sample data
-func newOvalMitreOrgOvalMessageType(suffix string) *parent.OvalMitreOrgOvalMessageType {
-	return &parent.OvalMitreOrgOvalMessageType{
-		Level: stringPtr("test_" + suffix),
-	}
-}
-
-// newPostOfficeElementType creates a test PostOfficeElementType entity with sample data
-func newPostOfficeElementType(suffix string) *parent.PostOfficeElementType {
-	return &parent.PostOfficeElementType{
-		Type: stringPtr("test_" + suffix),
-		Indicator: stringPtr("test_" + suffix),
-		PostalRouteID: int64Ptr(42),
-		PostOfficeName: stringPtr("test_" + suffix),
-		PostOfficeNumber: stringPtr("test_" + suffix),
-	}
-}
-
-// newEntityObjectIPAddressType creates a test EntityObjectIPAddressType entity with sample data
-func newEntityObjectIPAddressType(suffix string) *parent.EntityObjectIPAddressType {
-	return &parent.EntityObjectIPAddressType{
-		Datatype: "test_datatype_" + suffix,
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newEntityStateEVRStringType creates a test EntityStateEVRStringType entity with sample data
-func newEntityStateEVRStringType(suffix string) *parent.EntityStateEVRStringType {
-	return &parent.EntityStateEVRStringType{
-		Datatype: "test_datatype_" + suffix,
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newProfileRefineRuleType creates a test ProfileRefineRuleType entity with sample data
-func newProfileRefineRuleType(suffix string) *parent.ProfileRefineRuleType {
-	return &parent.ProfileRefineRuleType{
-		Idref: "test_idref_" + suffix,
-		Weight: stringPtr("test_" + suffix),
-		Selector: stringPtr("test_" + suffix),
-		Severity: stringPtr("test_" + suffix),
-		Role: stringPtr("test_" + suffix),
-	}
-}
-
-// newProfileSelectType creates a test ProfileSelectType entity with sample data
-func newProfileSelectType(suffix string) *parent.ProfileSelectType {
-	return &parent.ProfileSelectType{
-		Idref: "test_idref_" + suffix,
-		Selected: true,
-	}
-}
-
-// newProfileNoteType creates a test ProfileNoteType entity with sample data
-func newProfileNoteType(suffix string) *parent.ProfileNoteType {
-	return &parent.ProfileNoteType{
-		Tag: "test_tag_" + suffix,
-		SubID: int64Ptr(42),
-	}
-}
-
-// newIpNetRangeElementType creates a test IpNetRangeElementType entity with sample data
-func newIpNetRangeElementType(suffix string) *parent.IpNetRangeElementType {
-	return &parent.IpNetRangeElementType{
-		IpNetRangeStartID: int64Ptr(42),
-		IpNetRangeEndID: int64Ptr(42),
-	}
-}
-
-// newReportsElementType creates a test ReportsElementType entity with sample data
-func newReportsElementType(suffix string) *parent.ReportsElementType {
-	return &parent.ReportsElementType{
-	}
-}
-
-// newSchemaVersionType creates a test SchemaVersionType entity with sample data
-func newSchemaVersionType(suffix string) *parent.SchemaVersionType {
-	return &parent.SchemaVersionType{
-		Platform: stringPtr("test_" + suffix),
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newLocalityElementType creates a test LocalityElementType entity with sample data
-func newLocalityElementType(suffix string) *parent.LocalityElementType {
-	return &parent.LocalityElementType{
-		Type: stringPtr("test_" + suffix),
-		UsageType: stringPtr("test_" + suffix),
-		Indicator: stringPtr("test_" + suffix),
-		LocalityName: stringPtr("test_" + suffix),
-		DependentLocalityID: int64Ptr(42),
-		LargeMailUserID: int64Ptr(42),
-		PostalRouteID: int64Ptr(42),
-	}
-}
-
-// newRegexCaptureFunctionType creates a test RegexCaptureFunctionType entity with sample data
-func newRegexCaptureFunctionType(suffix string) *parent.RegexCaptureFunctionType {
-	return &parent.RegexCaptureFunctionType{
-		Pattern: stringPtr("test_" + suffix),
-	}
-}
-
-// newEntityStateStringType creates a test EntityStateStringType entity with sample data
-func newEntityStateStringType(suffix string) *parent.EntityStateStringType {
-	return &parent.EntityStateStringType{
-		Datatype: stringPtr("test_" + suffix),
+// newFixTextType creates a test FixTextType entity with sample data
+func newFixTextType(suffix string) *parent.FixTextType {
+	return &parent.FixTextType{
+		Fixref: stringPtr("test_" + suffix),
+		Reboot: boolPtr(true),
+		Strategy: stringPtr("test_" + suffix),
+		Disruption: stringPtr("test_" + suffix),
+		Complexity: stringPtr("test_" + suffix),
 		ParentID: int64Ptr(42),
 	}
 }
@@ -1774,1033 +3204,10 @@ func newOverrideType(suffix string) *parent.OverrideType {
 	}
 }
 
-// newParamType creates a test ParamType entity with sample data
-func newParamType(suffix string) *parent.ParamType {
-	return &parent.ParamType{
-		Name: "test_name_" + suffix,
-	}
-}
-
-// newSelComplexValueType creates a test SelComplexValueType entity with sample data
-func newSelComplexValueType(suffix string) *parent.SelComplexValueType {
-	return &parent.SelComplexValueType{
-		Selector: stringPtr("test_" + suffix),
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newSignedInfoType creates a test SignedInfoType entity with sample data
-func newSignedInfoType(suffix string) *parent.SignedInfoType {
-	return &parent.SignedInfoType{
-		XsdId: stringPtr("test_" + suffix),
-	}
-}
-
-// newPostalCodeNumberElementType creates a test PostalCodeNumberElementType entity with sample data
-func newPostalCodeNumberElementType(suffix string) *parent.PostalCodeNumberElementType {
-	return &parent.PostalCodeNumberElementType{
-		Type: stringPtr("test_" + suffix),
-	}
-}
-
-// newLocality creates a test Locality entity with sample data
-func newLocality(suffix string) *parent.Locality {
-	return &parent.Locality{
-		Type: stringPtr("test_" + suffix),
-		UsageType: stringPtr("test_" + suffix),
-		Indicator: stringPtr("test_" + suffix),
-		LocalityName: stringPtr("test_" + suffix),
-		DependentLocalityID: int64Ptr(42),
-		LargeMailUserID: int64Ptr(42),
-		PostalRouteID: int64Ptr(42),
-	}
-}
-
-// newEntityStateIPAddressType creates a test EntityStateIPAddressType entity with sample data
-func newEntityStateIPAddressType(suffix string) *parent.EntityStateIPAddressType {
-	return &parent.EntityStateIPAddressType{
-		Datatype: "test_datatype_" + suffix,
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newAffectedType creates a test AffectedType entity with sample data
-func newAffectedType(suffix string) *parent.AffectedType {
-	return &parent.AffectedType{
-		Family: "test_family_" + suffix,
-		Platform: stringPtr("test_" + suffix),
-		Product: stringPtr("test_" + suffix),
-	}
-}
-
-// newEntityObjectFloatType creates a test EntityObjectFloatType entity with sample data
-func newEntityObjectFloatType(suffix string) *parent.EntityObjectFloatType {
-	return &parent.EntityObjectFloatType{
-		Datatype: "test_datatype_" + suffix,
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newNotes creates a test Notes entity with sample data
-func newNotes(suffix string) *parent.Notes {
-	return &parent.Notes{
-		Note: stringPtr("test_" + suffix),
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newConnectionsElementType creates a test ConnectionsElementType entity with sample data
-func newConnectionsElementType(suffix string) *parent.ConnectionsElementType {
-	return &parent.ConnectionsElementType{
-	}
-}
-
-// newMiddleNameElementType creates a test MiddleNameElementType entity with sample data
-func newMiddleNameElementType(suffix string) *parent.MiddleNameElementType {
-	return &parent.MiddleNameElementType{
-		Type: stringPtr("test_" + suffix),
-		NameType: stringPtr("test_" + suffix),
-		Code: stringPtr("test_" + suffix),
-	}
-}
-
-// newDependentLocalityType creates a test DependentLocalityType entity with sample data
-func newDependentLocalityType(suffix string) *parent.DependentLocalityType {
-	return &parent.DependentLocalityType{
-		Type: stringPtr("test_" + suffix),
-		UsageType: stringPtr("test_" + suffix),
-		Connector: stringPtr("test_" + suffix),
-		Indicator: stringPtr("test_" + suffix),
-		DependentLocalityName: stringPtr("test_" + suffix),
-		DependentLocalityNumber: stringPtr("test_" + suffix),
-		DependentLocalityID: int64Ptr(42),
-		LargeMailUserID: int64Ptr(42),
-		PostalRouteID: int64Ptr(42),
-	}
-}
-
-// newDependentLocalityNameElementType creates a test DependentLocalityNameElementType entity with sample data
-func newDependentLocalityNameElementType(suffix string) *parent.DependentLocalityNameElementType {
-	return &parent.DependentLocalityNameElementType{
-		Type: stringPtr("test_" + suffix),
-	}
-}
-
-// newPostTownNameElementType creates a test PostTownNameElementType entity with sample data
-func newPostTownNameElementType(suffix string) *parent.PostTownNameElementType {
-	return &parent.PostTownNameElementType{
-		Type: stringPtr("test_" + suffix),
-	}
-}
-
-// newPostalRouteNumberElementType creates a test PostalRouteNumberElementType entity with sample data
-func newPostalRouteNumberElementType(suffix string) *parent.PostalRouteNumberElementType {
-	return &parent.PostalRouteNumberElementType{
-	}
-}
-
-// newOvalMitreOrgOvalValueType creates a test OvalMitreOrgOvalValueType entity with sample data
-func newOvalMitreOrgOvalValueType(suffix string) *parent.OvalMitreOrgOvalValueType {
-	return &parent.OvalMitreOrgOvalValueType{
-	}
-}
-
-// newStatesType creates a test StatesType entity with sample data
-func newStatesType(suffix string) *parent.StatesType {
-	return &parent.StatesType{
-	}
-}
-
-// newLocalVariable creates a test LocalVariable entity with sample data
-func newLocalVariable(suffix string) *parent.LocalVariable {
-	return &parent.LocalVariable{
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newOtherNameElementType creates a test OtherNameElementType entity with sample data
-func newOtherNameElementType(suffix string) *parent.OtherNameElementType {
-	return &parent.OtherNameElementType{
-		Type: stringPtr("test_" + suffix),
-		NameType: stringPtr("test_" + suffix),
-		Code: stringPtr("test_" + suffix),
-	}
-}
-
-// newRSAKeyValueType creates a test RSAKeyValueType entity with sample data
-func newRSAKeyValueType(suffix string) *parent.RSAKeyValueType {
-	return &parent.RSAKeyValueType{
-		ModulusID: int64Ptr(42),
-		ExponentID: int64Ptr(42),
-	}
-}
-
-// newPostOfficeNameElementType creates a test PostOfficeNameElementType entity with sample data
-func newPostOfficeNameElementType(suffix string) *parent.PostOfficeNameElementType {
-	return &parent.PostOfficeNameElementType{
-		Type: stringPtr("test_" + suffix),
-	}
-}
-
-// newPostOffice creates a test PostOffice entity with sample data
-func newPostOffice(suffix string) *parent.PostOffice {
-	return &parent.PostOffice{
-		Type: stringPtr("test_" + suffix),
-		Indicator: stringPtr("test_" + suffix),
-		PostalRouteID: int64Ptr(42),
-		PostOfficeName: stringPtr("test_" + suffix),
-		PostOfficeNumber: stringPtr("test_" + suffix),
-	}
-}
-
-// newIdentityType creates a test IdentityType entity with sample data
-func newIdentityType(suffix string) *parent.IdentityType {
-	return &parent.IdentityType{
-		Authenticated: true,
-		Privileged: true,
-	}
-}
-
-// newIdentType creates a test IdentType entity with sample data
-func newIdentType(suffix string) *parent.IdentType {
-	return &parent.IdentType{
-		System: "test_system_" + suffix,
-	}
-}
-
-// newFactRefType creates a test FactRefType entity with sample data
-func newFactRefType(suffix string) *parent.FactRefType {
-	return &parent.FactRefType{
-		Name: "test_name_" + suffix,
-	}
-}
-
-// newAssetReportingFormAssetElementType creates a test AssetReportingFormAssetElementType entity with sample data
-func newAssetReportingFormAssetElementType(suffix string) *parent.AssetReportingFormAssetElementType {
-	return &parent.AssetReportingFormAssetElementType{
-		XsdId: "test_xsdid_" + suffix,
-	}
-}
-
-// newPostalRouteType creates a test PostalRouteType entity with sample data
-func newPostalRouteType(suffix string) *parent.PostalRouteType {
-	return &parent.PostalRouteType{
-		Type: stringPtr("test_" + suffix),
-		PostalRouteName: "test_postalroutename_" + suffix,
-		PostalRouteNumber: "test_postalroutenumber_" + suffix,
-	}
-}
-
-// newSplitFunctionType creates a test SplitFunctionType entity with sample data
-func newSplitFunctionType(suffix string) *parent.SplitFunctionType {
-	return &parent.SplitFunctionType{
-		Delimiter: "test_delimiter_" + suffix,
-	}
-}
-
-// newOvalMitreOrgOvalReferenceType creates a test OvalMitreOrgOvalReferenceType entity with sample data
-func newOvalMitreOrgOvalReferenceType(suffix string) *parent.OvalMitreOrgOvalReferenceType {
-	return &parent.OvalMitreOrgOvalReferenceType{
-		Source: "test_source_" + suffix,
-		Ref_id: "test_ref_id_" + suffix,
-		Ref_url: stringPtr("test_" + suffix),
-	}
-}
-
-// newObjectComponentType creates a test ObjectComponentType entity with sample data
-func newObjectComponentType(suffix string) *parent.ObjectComponentType {
-	return &parent.ObjectComponentType{
-		Object_ref: "test_object_ref_" + suffix,
-		Item_field: "test_item_field_" + suffix,
-		Record_field: stringPtr("test_" + suffix),
-	}
-}
-
-// newSystemType creates a test SystemType entity with sample data
-func newSystemType(suffix string) *parent.SystemType {
-	return &parent.SystemType{
-		SystemName: stringPtr("test_" + suffix),
-		Version: stringPtr("test_" + suffix),
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newWebsiteType creates a test WebsiteType entity with sample data
-func newWebsiteType(suffix string) *parent.WebsiteType {
-	return &parent.WebsiteType{
-		DocumentRoot: stringPtr("test_" + suffix),
-		Locale: stringPtr("test_" + suffix),
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newResourceType creates a test ResourceType entity with sample data
-func newResourceType(suffix string) *parent.ResourceType {
-	return &parent.ResourceType{
-	}
-}
-
-// newAliasElementType creates a test AliasElementType entity with sample data
-func newAliasElementType(suffix string) *parent.AliasElementType {
-	return &parent.AliasElementType{
-		Type: stringPtr("test_" + suffix),
-		NameType: stringPtr("test_" + suffix),
-		Code: stringPtr("test_" + suffix),
-	}
-}
-
-// newDeprecatedInfoType creates a test DeprecatedInfoType entity with sample data
-func newDeprecatedInfoType(suffix string) *parent.DeprecatedInfoType {
-	return &parent.DeprecatedInfoType{
-		Version: "test_version_" + suffix,
-		Reason: "test_reason_" + suffix,
-		Comment: stringPtr("test_" + suffix),
-	}
-}
-
-// newPremiseLocationElementType creates a test PremiseLocationElementType entity with sample data
-func newPremiseLocationElementType(suffix string) *parent.PremiseLocationElementType {
-	return &parent.PremiseLocationElementType{
-	}
-}
-
-// newSupplementaryPostalServiceDataElementType creates a test SupplementaryPostalServiceDataElementType entity with sample data
-func newSupplementaryPostalServiceDataElementType(suffix string) *parent.SupplementaryPostalServiceDataElementType {
-	return &parent.SupplementaryPostalServiceDataElementType{
-		Type: stringPtr("test_" + suffix),
-	}
-}
-
-// newGlobToRegexFunctionType creates a test GlobToRegexFunctionType entity with sample data
-func newGlobToRegexFunctionType(suffix string) *parent.GlobToRegexFunctionType {
-	return &parent.GlobToRegexFunctionType{
-		Glob_noescape: boolPtr(true),
-	}
-}
-
-// newNetworkInterfaceType creates a test NetworkInterfaceType entity with sample data
-func newNetworkInterfaceType(suffix string) *parent.NetworkInterfaceType {
-	return &parent.NetworkInterfaceType{
-		MacAddress: stringPtr("test_" + suffix),
-		Url: stringPtr("test_" + suffix),
-		SubnetMaskID: int64Ptr(42),
-		DefaultRouteID: int64Ptr(42),
-	}
-}
-
-// newCpeElementType creates a test CpeElementType entity with sample data
-func newCpeElementType(suffix string) *parent.CpeElementType {
-	return &parent.CpeElementType{
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newSyntheticId creates a test SyntheticId entity with sample data
-func newSyntheticId(suffix string) *parent.SyntheticId {
-	return &parent.SyntheticId{
-		Resource: "test_resource_" + suffix,
-		XsdId: "test_xsdid_" + suffix,
-	}
-}
-
-// newPostBox creates a test PostBox entity with sample data
-func newPostBox(suffix string) *parent.PostBox {
-	return &parent.PostBox{
-		Type: stringPtr("test_" + suffix),
-		Indicator: stringPtr("test_" + suffix),
-		PostBoxNumber: "test_postboxnumber_" + suffix,
-		PostBoxNumberPrefix: stringPtr("test_" + suffix),
-		PostBoxNumberSuffix: stringPtr("test_" + suffix),
-		PostBoxNumberExtension: stringPtr("test_" + suffix),
-		FirmID: int64Ptr(42),
-	}
-}
-
-// newStateType creates a test StateType entity with sample data
-func newStateType(suffix string) *parent.StateType {
-	return &parent.StateType{
-		XsdId: "test_xsdid_" + suffix,
-		Version: 42,
-		Operator: stringPtr("test_" + suffix),
-		Comment: stringPtr("test_" + suffix),
-		Deprecated: boolPtr(true),
-	}
-}
-
-// newVersionType creates a test VersionType entity with sample data
-func newVersionType(suffix string) *parent.VersionType {
-	return &parent.VersionType{
-		Time: timePtr(time.Now()),
-		Update: stringPtr("test_" + suffix),
-	}
-}
-
-// newNetworkType creates a test NetworkType entity with sample data
-func newNetworkType(suffix string) *parent.NetworkType {
-	return &parent.NetworkType{
-		NetworkName: stringPtr("test_" + suffix),
-		IpNetRange: "test_ipnetrange_" + suffix,
-		Cidr: "test_cidr_" + suffix,
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newHostElementType creates a test HostElementType entity with sample data
-func newHostElementType(suffix string) *parent.HostElementType {
-	return &parent.HostElementType{
-	}
-}
-
-// newPortRangeElementType creates a test PortRangeElementType entity with sample data
-func newPortRangeElementType(suffix string) *parent.PortRangeElementType {
-	return &parent.PortRangeElementType{
-		LowerBound: "test_lowerbound_" + suffix,
-		UpperBound: "test_upperbound_" + suffix,
-	}
-}
-
-// newDatabaseType creates a test DatabaseType entity with sample data
-func newDatabaseType(suffix string) *parent.DatabaseType {
-	return &parent.DatabaseType{
-		InstanceName: stringPtr("test_" + suffix),
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newRelationshipType creates a test RelationshipType entity with sample data
-func newRelationshipType(suffix string) *parent.RelationshipType {
-	return &parent.RelationshipType{
-		Type: "test_type_" + suffix,
-		Scope: stringPtr("test_" + suffix),
-		Subject: "test_subject_" + suffix,
-		Ref: "test_ref_" + suffix,
-	}
-}
-
-// newContentElementType1 creates a test ContentElementType1 entity with sample data
-func newContentElementType1(suffix string) *parent.ContentElementType1 {
-	return &parent.ContentElementType1{
-		DataValidStartDate: timePtr(time.Now()),
-		DataValidEndDate: timePtr(time.Now()),
-	}
-}
-
-// newOrganisationKnownAsElementType creates a test OrganisationKnownAsElementType entity with sample data
-func newOrganisationKnownAsElementType(suffix string) *parent.OrganisationKnownAsElementType {
-	return &parent.OrganisationKnownAsElementType{
-		ValidFrom: stringPtr("test_" + suffix),
-		ValidTo: stringPtr("test_" + suffix),
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newNs09XmldsigObjectType creates a test Ns09XmldsigObjectType entity with sample data
-func newNs09XmldsigObjectType(suffix string) *parent.Ns09XmldsigObjectType {
-	return &parent.Ns09XmldsigObjectType{
-		XsdId: stringPtr("test_" + suffix),
-		MimeType: stringPtr("test_" + suffix),
-		Encoding: stringPtr("test_" + suffix),
-	}
-}
-
-// newBuildingNameType creates a test BuildingNameType entity with sample data
-func newBuildingNameType(suffix string) *parent.BuildingNameType {
-	return &parent.BuildingNameType{
-		Type: stringPtr("test_" + suffix),
-		TypeOccurrence: stringPtr("test_" + suffix),
-	}
-}
-
-// newAddressElementType creates a test AddressElementType entity with sample data
-func newAddressElementType(suffix string) *parent.AddressElementType {
-	return &parent.AddressElementType{
-		Type: stringPtr("test_" + suffix),
-	}
-}
-
-// newFirmNameElementType creates a test FirmNameElementType entity with sample data
-func newFirmNameElementType(suffix string) *parent.FirmNameElementType {
-	return &parent.FirmNameElementType{
-		Type: stringPtr("test_" + suffix),
-	}
-}
-
 // newThoroughfareTrailingTypeType creates a test ThoroughfareTrailingTypeType entity with sample data
 func newThoroughfareTrailingTypeType(suffix string) *parent.ThoroughfareTrailingTypeType {
 	return &parent.ThoroughfareTrailingTypeType{
 		Type: stringPtr("test_" + suffix),
-	}
-}
-
-// newConcatFunctionType creates a test ConcatFunctionType entity with sample data
-func newConcatFunctionType(suffix string) *parent.ConcatFunctionType {
-	return &parent.ConcatFunctionType{
-	}
-}
-
-// newJointPersonName creates a test JointPersonName entity with sample data
-func newJointPersonName(suffix string) *parent.JointPersonName {
-	return &parent.JointPersonName{
-		JointNameConnector: stringPtr("test_" + suffix),
-		Code: stringPtr("test_" + suffix),
-	}
-}
-
-// newSPKIDataType creates a test SPKIDataType entity with sample data
-func newSPKIDataType(suffix string) *parent.SPKIDataType {
-	return &parent.SPKIDataType{
-		SPKISexp: []byte("test_data_" + suffix),
-	}
-}
-
-// newPostBoxElementType creates a test PostBoxElementType entity with sample data
-func newPostBoxElementType(suffix string) *parent.PostBoxElementType {
-	return &parent.PostBoxElementType{
-		Type: stringPtr("test_" + suffix),
-		Indicator: stringPtr("test_" + suffix),
-		PostBoxNumber: "test_postboxnumber_" + suffix,
-		PostBoxNumberPrefix: stringPtr("test_" + suffix),
-		PostBoxNumberSuffix: stringPtr("test_" + suffix),
-		PostBoxNumberExtension: stringPtr("test_" + suffix),
-		FirmID: int64Ptr(42),
-	}
-}
-
-// newThoroughfareNameType creates a test ThoroughfareNameType entity with sample data
-func newThoroughfareNameType(suffix string) *parent.ThoroughfareNameType {
-	return &parent.ThoroughfareNameType{
-		Type: stringPtr("test_" + suffix),
-	}
-}
-
-// newAddressLinesType creates a test AddressLinesType entity with sample data
-func newAddressLinesType(suffix string) *parent.AddressLinesType {
-	return &parent.AddressLinesType{
-	}
-}
-
-// newArithmeticFunctionType creates a test ArithmeticFunctionType entity with sample data
-func newArithmeticFunctionType(suffix string) *parent.ArithmeticFunctionType {
-	return &parent.ArithmeticFunctionType{
-		Arithmetic_operation: "test_arithmetic_operation_" + suffix,
-	}
-}
-
-// newCriterionType creates a test CriterionType entity with sample data
-func newCriterionType(suffix string) *parent.CriterionType {
-	return &parent.CriterionType{
-		Applicability_check: boolPtr(true),
-		Test_ref: "test_test_ref_" + suffix,
-		Negate: boolPtr(true),
-		Comment: stringPtr("test_" + suffix),
-	}
-}
-
-// newRuleResultType creates a test RuleResultType entity with sample data
-func newRuleResultType(suffix string) *parent.RuleResultType {
-	return &parent.RuleResultType{
-		Idref: "test_idref_" + suffix,
-		Role: stringPtr("test_" + suffix),
-		Severity: stringPtr("test_" + suffix),
-		Time: timePtr(time.Now()),
-		Version: stringPtr("test_" + suffix),
-		Weight: stringPtr("test_" + suffix),
-		ResultID: int64Ptr(42),
-		ComplexCheckID: int64Ptr(42),
-	}
-}
-
-// newNs09XmldsigReferenceType creates a test Ns09XmldsigReferenceType entity with sample data
-func newNs09XmldsigReferenceType(suffix string) *parent.Ns09XmldsigReferenceType {
-	return &parent.Ns09XmldsigReferenceType{
-		XsdId: stringPtr("test_" + suffix),
-		URI: stringPtr("test_" + suffix),
-		Type: stringPtr("test_" + suffix),
-	}
-}
-
-// newCountryElementType creates a test CountryElementType entity with sample data
-func newCountryElementType(suffix string) *parent.CountryElementType {
-	return &parent.CountryElementType{
-		CountryNameCode: stringPtr("test_" + suffix),
-	}
-}
-
-// newAddressLongitudeElementType creates a test AddressLongitudeElementType entity with sample data
-func newAddressLongitudeElementType(suffix string) *parent.AddressLongitudeElementType {
-	return &parent.AddressLongitudeElementType{
-		Type: stringPtr("test_" + suffix),
-	}
-}
-
-// newVariableComponentType creates a test VariableComponentType entity with sample data
-func newVariableComponentType(suffix string) *parent.VariableComponentType {
-	return &parent.VariableComponentType{
-		Var_ref: "test_var_ref_" + suffix,
-	}
-}
-
-// newCheckImportType creates a test CheckImportType entity with sample data
-func newCheckImportType(suffix string) *parent.CheckImportType {
-	return &parent.CheckImportType{
-		ImportName: "test_importname_" + suffix,
-		ImportXpath: stringPtr("test_" + suffix),
-	}
-}
-
-// newHtmlTextWithSubType creates a test HtmlTextWithSubType entity with sample data
-func newHtmlTextWithSubType(suffix string) *parent.HtmlTextWithSubType {
-	return &parent.HtmlTextWithSubType{
-		Override: boolPtr(true),
-		SubID: int64Ptr(42),
-	}
-}
-
-// newPlatformSpecification creates a test PlatformSpecification entity with sample data
-func newPlatformSpecification(suffix string) *parent.PlatformSpecification {
-	return &parent.PlatformSpecification{
-	}
-}
-
-// newAssetIdentificationAssetElementType creates a test AssetIdentificationAssetElementType entity with sample data
-func newAssetIdentificationAssetElementType(suffix string) *parent.AssetIdentificationAssetElementType {
-	return &parent.AssetIdentificationAssetElementType{
-		XsdId: "test_xsdid_" + suffix,
-	}
-}
-
-// newRemoteResource creates a test RemoteResource entity with sample data
-func newRemoteResource(suffix string) *parent.RemoteResource {
-	return &parent.RemoteResource{
-	}
-}
-
-// newManifestType creates a test ManifestType entity with sample data
-func newManifestType(suffix string) *parent.ManifestType {
-	return &parent.ManifestType{
-		XsdId: stringPtr("test_" + suffix),
-	}
-}
-
-// newPGPDataType creates a test PGPDataType entity with sample data
-func newPGPDataType(suffix string) *parent.PGPDataType {
-	return &parent.PGPDataType{
-		PGPKeyID: []byte("test_data_" + suffix),
-	}
-}
-
-// newTransformsType creates a test TransformsType entity with sample data
-func newTransformsType(suffix string) *parent.TransformsType {
-	return &parent.TransformsType{
-	}
-}
-
-// newEscapeRegexFunctionType creates a test EscapeRegexFunctionType entity with sample data
-func newEscapeRegexFunctionType(suffix string) *parent.EscapeRegexFunctionType {
-	return &parent.EscapeRegexFunctionType{
-	}
-}
-
-// newSelStringType creates a test SelStringType entity with sample data
-func newSelStringType(suffix string) *parent.SelStringType {
-	return &parent.SelStringType{
-		Selector: stringPtr("test_" + suffix),
-	}
-}
-
-// newModel creates a test Model entity with sample data
-func newModel(suffix string) *parent.Model {
-	return &parent.Model{
-		System: "test_system_" + suffix,
-	}
-}
-
-// newCircuitType creates a test CircuitType entity with sample data
-func newCircuitType(suffix string) *parent.CircuitType {
-	return &parent.CircuitType{
-		CircuitName: stringPtr("test_" + suffix),
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newThoroughfareNumberRangeElementType creates a test ThoroughfareNumberRangeElementType entity with sample data
-func newThoroughfareNumberRangeElementType(suffix string) *parent.ThoroughfareNumberRangeElementType {
-	return &parent.ThoroughfareNumberRangeElementType{
-		RangeType: stringPtr("test_" + suffix),
-		Indicator: stringPtr("test_" + suffix),
-		Separator: stringPtr("test_" + suffix),
-		IndicatorOccurrence: stringPtr("test_" + suffix),
-		NumberRangeOccurrence: stringPtr("test_" + suffix),
-		Type: stringPtr("test_" + suffix),
-		ThoroughfareNumberFrom: "test_thoroughfarenumberfrom_" + suffix,
-		ThoroughfareNumberTo: "test_thoroughfarenumberto_" + suffix,
-	}
-}
-
-// newCountryName creates a test CountryName entity with sample data
-func newCountryName(suffix string) *parent.CountryName {
-	return &parent.CountryName{
-		Type: stringPtr("test_" + suffix),
-	}
-}
-
-// newEntityStateFileSetRevisionType creates a test EntityStateFileSetRevisionType entity with sample data
-func newEntityStateFileSetRevisionType(suffix string) *parent.EntityStateFileSetRevisionType {
-	return &parent.EntityStateFileSetRevisionType{
-		Datatype: "test_datatype_" + suffix,
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newVariablesType creates a test VariablesType entity with sample data
-func newVariablesType(suffix string) *parent.VariablesType {
-	return &parent.VariablesType{
-	}
-}
-
-// newCheckContentType creates a test CheckContentType entity with sample data
-func newCheckContentType(suffix string) *parent.CheckContentType {
-	return &parent.CheckContentType{
-	}
-}
-
-// newVersionElementType creates a test VersionElementType entity with sample data
-func newVersionElementType(suffix string) *parent.VersionElementType {
-	return &parent.VersionElementType{
-	}
-}
-
-// newAssetsType creates a test AssetsType entity with sample data
-func newAssetsType(suffix string) *parent.AssetsType {
-	return &parent.AssetsType{
-		Asset: "test_asset_" + suffix,
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newOvalDefinitionsElementType creates a test OvalDefinitionsElementType entity with sample data
-func newOvalDefinitionsElementType(suffix string) *parent.OvalDefinitionsElementType {
-	return &parent.OvalDefinitionsElementType{
-		GeneratorID: int64Ptr(42),
-		DefinitionsID: int64Ptr(42),
-		TestsID: int64Ptr(42),
-		ObjectsID: int64Ptr(42),
-		StatesID: int64Ptr(42),
-		VariablesID: int64Ptr(42),
-	}
-}
-
-// newSoftwareType creates a test SoftwareType entity with sample data
-func newSoftwareType(suffix string) *parent.SoftwareType {
-	return &parent.SoftwareType{
-		InstallationId: stringPtr("test_" + suffix),
-		License: stringPtr("test_" + suffix),
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newXALElementType creates a test XALElementType entity with sample data
-func newXALElementType(suffix string) *parent.XALElementType {
-	return &parent.XALElementType{
-		Version: stringPtr("test_" + suffix),
-	}
-}
-
-// newWarningType creates a test WarningType entity with sample data
-func newWarningType(suffix string) *parent.WarningType {
-	return &parent.WarningType{
-		Category: stringPtr("test_" + suffix),
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newComplexValueType creates a test ComplexValueType entity with sample data
-func newComplexValueType(suffix string) *parent.ComplexValueType {
-	return &parent.ComplexValueType{
-		Item: stringPtr("test_" + suffix),
-	}
-}
-
-// newLocationRegionElementType creates a test LocationRegionElementType entity with sample data
-func newLocationRegionElementType(suffix string) *parent.LocationRegionElementType {
-	return &parent.LocationRegionElementType{
-	}
-}
-
-// newEntityStateAnySimpleType creates a test EntityStateAnySimpleType entity with sample data
-func newEntityStateAnySimpleType(suffix string) *parent.EntityStateAnySimpleType {
-	return &parent.EntityStateAnySimpleType{
-		Datatype: stringPtr("test_" + suffix),
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newEntityObjectVersionType creates a test EntityObjectVersionType entity with sample data
-func newEntityObjectVersionType(suffix string) *parent.EntityObjectVersionType {
-	return &parent.EntityObjectVersionType{
-		Datatype: "test_datatype_" + suffix,
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newXccdf12MessageType creates a test Xccdf12MessageType entity with sample data
-func newXccdf12MessageType(suffix string) *parent.Xccdf12MessageType {
-	return &parent.Xccdf12MessageType{
-		Severity: "test_severity_" + suffix,
-	}
-}
-
-// newExtendedInformationElementType creates a test ExtendedInformationElementType entity with sample data
-func newExtendedInformationElementType(suffix string) *parent.ExtendedInformationElementType {
-	return &parent.ExtendedInformationElementType{
-	}
-}
-
-// newCidrElementType creates a test CidrElementType entity with sample data
-func newCidrElementType(suffix string) *parent.CidrElementType {
-	return &parent.CidrElementType{
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newAssetIdentificationType creates a test AssetIdentificationType entity with sample data
-func newAssetIdentificationType(suffix string) *parent.AssetIdentificationType {
-	return &parent.AssetIdentificationType{
-		AssetRef: "test_assetref_" + suffix,
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newXNLElementType creates a test XNLElementType entity with sample data
-func newXNLElementType(suffix string) *parent.XNLElementType {
-	return &parent.XNLElementType{
-		Version: stringPtr("test_" + suffix),
-	}
-}
-
-// newFirmType creates a test FirmType entity with sample data
-func newFirmType(suffix string) *parent.FirmType {
-	return &parent.FirmType{
-		Type: stringPtr("test_" + suffix),
-		FirmName: stringPtr("test_" + suffix),
-		MailStopID: int64Ptr(42),
-	}
-}
-
-// newEntityObjectBoolType creates a test EntityObjectBoolType entity with sample data
-func newEntityObjectBoolType(suffix string) *parent.EntityObjectBoolType {
-	return &parent.EntityObjectBoolType{
-		Datatype: "test_datatype_" + suffix,
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newRestrictionType creates a test RestrictionType entity with sample data
-func newRestrictionType(suffix string) *parent.RestrictionType {
-	return &parent.RestrictionType{
-		Operation: "test_operation_" + suffix,
-	}
-}
-
-// newEntityStateVersionType creates a test EntityStateVersionType entity with sample data
-func newEntityStateVersionType(suffix string) *parent.EntityStateVersionType {
-	return &parent.EntityStateVersionType{
-		Datatype: "test_datatype_" + suffix,
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newEntityStateIPAddressStringType creates a test EntityStateIPAddressStringType entity with sample data
-func newEntityStateIPAddressStringType(suffix string) *parent.EntityStateIPAddressStringType {
-	return &parent.EntityStateIPAddressStringType{
-		Datatype: stringPtr("test_" + suffix),
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newMacAddressElementType creates a test MacAddressElementType entity with sample data
-func newMacAddressElementType(suffix string) *parent.MacAddressElementType {
-	return &parent.MacAddressElementType{
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newPersonNameElementType creates a test PersonNameElementType entity with sample data
-func newPersonNameElementType(suffix string) *parent.PersonNameElementType {
-	return &parent.PersonNameElementType{
-		FormerName: stringPtr("test_" + suffix),
-		KnownAs: stringPtr("test_" + suffix),
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newOasisNamesTcCiqXPersonName creates a test OasisNamesTcCiqXPersonName entity with sample data
-func newOasisNamesTcCiqXPersonName(suffix string) *parent.OasisNamesTcCiqXPersonName {
-	return &parent.OasisNamesTcCiqXPersonName{
-		FormerName: stringPtr("test_" + suffix),
-		KnownAs: stringPtr("test_" + suffix),
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newPremiseNumber creates a test PremiseNumber entity with sample data
-func newPremiseNumber(suffix string) *parent.PremiseNumber {
-	return &parent.PremiseNumber{
-		NumberType: stringPtr("test_" + suffix),
-		Type: stringPtr("test_" + suffix),
-		Indicator: stringPtr("test_" + suffix),
-		IndicatorOccurrence: stringPtr("test_" + suffix),
-		NumberTypeOccurrence: stringPtr("test_" + suffix),
-	}
-}
-
-// newEntityStateFieldType creates a test EntityStateFieldType entity with sample data
-func newEntityStateFieldType(suffix string) *parent.EntityStateFieldType {
-	return &parent.EntityStateFieldType{
-		Name: "test_name_" + suffix,
-		Entity_check: stringPtr("test_" + suffix),
-	}
-}
-
-// newFilter creates a test Filter entity with sample data
-func newFilter(suffix string) *parent.Filter {
-	return &parent.Filter{
-		Action: stringPtr("test_" + suffix),
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newModelElementType creates a test ModelElementType entity with sample data
-func newModelElementType(suffix string) *parent.ModelElementType {
-	return &parent.ModelElementType{
-		System: "test_system_" + suffix,
-	}
-}
-
-// newTitleEltType creates a test TitleEltType entity with sample data
-func newTitleEltType(suffix string) *parent.TitleEltType {
-	return &parent.TitleEltType{
-	}
-}
-
-// newFunction creates a test Function entity with sample data
-func newFunction(suffix string) *parent.Function {
-	return &parent.Function{
-		Code: stringPtr("test_" + suffix),
-	}
-}
-
-// newRetrievalMethodType creates a test RetrievalMethodType entity with sample data
-func newRetrievalMethodType(suffix string) *parent.RetrievalMethodType {
-	return &parent.RetrievalMethodType{
-		URI: stringPtr("test_" + suffix),
-		Type: stringPtr("test_" + suffix),
-	}
-}
-
-// newDataType creates a test DataType entity with sample data
-func newDataType(suffix string) *parent.DataType {
-	return &parent.DataType{
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newObjectRef creates a test ObjectRef entity with sample data
-func newObjectRef(suffix string) *parent.ObjectRef {
-	return &parent.ObjectRef{
-		RefId: stringPtr("test_" + suffix),
-	}
-}
-
-// newTailoringType creates a test TailoringType entity with sample data
-func newTailoringType(suffix string) *parent.TailoringType {
-	return &parent.TailoringType{
-		XsdId: "test_xsdid_" + suffix,
-		BenchmarkID: int64Ptr(42),
-		VersionID: int64Ptr(42),
-		SignatureID: int64Ptr(42),
-	}
-}
-
-// newProtocolElementType creates a test ProtocolElementType entity with sample data
-func newProtocolElementType(suffix string) *parent.ProtocolElementType {
-	return &parent.ProtocolElementType{
-	}
-}
-
-// newSortingCodeElementType creates a test SortingCodeElementType entity with sample data
-func newSortingCodeElementType(suffix string) *parent.SortingCodeElementType {
-	return &parent.SortingCodeElementType{
-		Type: stringPtr("test_" + suffix),
-	}
-}
-
-// newAdministrativeAreaElementType creates a test AdministrativeAreaElementType entity with sample data
-func newAdministrativeAreaElementType(suffix string) *parent.AdministrativeAreaElementType {
-	return &parent.AdministrativeAreaElementType{
-		Type: stringPtr("test_" + suffix),
-		UsageType: stringPtr("test_" + suffix),
-		Indicator: stringPtr("test_" + suffix),
-		AdministrativeAreaName: stringPtr("test_" + suffix),
-		SubAdministrativeArea: stringPtr("test_" + suffix),
-	}
-}
-
-// newTestType creates a test TestType entity with sample data
-func newTestType(suffix string) *parent.TestType {
-	return &parent.TestType{
-		XsdId: "test_xsdid_" + suffix,
-		Version: 42,
-		Check_existence: stringPtr("test_" + suffix),
-		Check: "test_check_" + suffix,
-		State_operator: stringPtr("test_" + suffix),
-		Comment: "test_comment_" + suffix,
-		Deprecated: boolPtr(true),
-	}
-}
-
-// newEntityStateBinaryType creates a test EntityStateBinaryType entity with sample data
-func newEntityStateBinaryType(suffix string) *parent.EntityStateBinaryType {
-	return &parent.EntityStateBinaryType{
-		Datatype: "test_datatype_" + suffix,
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newCircuitNameElementType creates a test CircuitNameElementType entity with sample data
-func newCircuitNameElementType(suffix string) *parent.CircuitNameElementType {
-	return &parent.CircuitNameElementType{
-	}
-}
-
-// newIpV6ElementType creates a test IpV6ElementType entity with sample data
-func newIpV6ElementType(suffix string) *parent.IpV6ElementType {
-	return &parent.IpV6ElementType{
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newMotherboardGuidElementType creates a test MotherboardGuidElementType entity with sample data
-func newMotherboardGuidElementType(suffix string) *parent.MotherboardGuidElementType {
-	return &parent.MotherboardGuidElementType{
-	}
-}
-
-// newLocationPoint creates a test LocationPoint entity with sample data
-func newLocationPoint(suffix string) *parent.LocationPoint {
-	return &parent.LocationPoint{
-		Latitude: "test_latitude_" + suffix,
-		Longitude: "test_longitude_" + suffix,
-		Elevation: float64Ptr(3.14),
-		Radius: stringPtr("test_" + suffix),
-	}
-}
-
-// newGenerationIdentifierElementType creates a test GenerationIdentifierElementType entity with sample data
-func newGenerationIdentifierElementType(suffix string) *parent.GenerationIdentifierElementType {
-	return &parent.GenerationIdentifierElementType{
-		Type: stringPtr("test_" + suffix),
-		Code: stringPtr("test_" + suffix),
 	}
 }
 
@@ -2813,496 +3220,89 @@ func newOvalMitreOrgOvalGeneratorType(suffix string) *parent.OvalMitreOrgOvalGen
 	}
 }
 
-// newXAL creates a test XAL entity with sample data
-func newXAL(suffix string) *parent.XAL {
-	return &parent.XAL{
-		Version: stringPtr("test_" + suffix),
-	}
-}
-
-// newPossibleValueType creates a test PossibleValueType entity with sample data
-func newPossibleValueType(suffix string) *parent.PossibleValueType {
-	return &parent.PossibleValueType{
-		Hint: "test_hint_" + suffix,
-	}
-}
-
-// newXccdf12MetadataType creates a test Xccdf12MetadataType entity with sample data
-func newXccdf12MetadataType(suffix string) *parent.Xccdf12MetadataType {
-	return &parent.Xccdf12MetadataType{
-	}
-}
-
-// newInstanceNameElementType creates a test InstanceNameElementType entity with sample data
-func newInstanceNameElementType(suffix string) *parent.InstanceNameElementType {
-	return &parent.InstanceNameElementType{
-	}
-}
-
-// newReportRequestType creates a test ReportRequestType entity with sample data
-func newReportRequestType(suffix string) *parent.ReportRequestType {
-	return &parent.ReportRequestType{
-		XsdId: "test_xsdid_" + suffix,
-		Content: "test_content_" + suffix,
-	}
-}
-
-// newLargeMailUserNameElementType creates a test LargeMailUserNameElementType entity with sample data
-func newLargeMailUserNameElementType(suffix string) *parent.LargeMailUserNameElementType {
-	return &parent.LargeMailUserNameElementType{
-		Type: stringPtr("test_" + suffix),
-		Code: stringPtr("test_" + suffix),
-	}
-}
-
-// newEntityObjectFieldType creates a test EntityObjectFieldType entity with sample data
-func newEntityObjectFieldType(suffix string) *parent.EntityObjectFieldType {
-	return &parent.EntityObjectFieldType{
-		Name: "test_name_" + suffix,
-		Entity_check: stringPtr("test_" + suffix),
-	}
-}
-
-// newEntityObjectRecordType creates a test EntityObjectRecordType entity with sample data
-func newEntityObjectRecordType(suffix string) *parent.EntityObjectRecordType {
-	return &parent.EntityObjectRecordType{
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newDefinitionsType creates a test DefinitionsType entity with sample data
-func newDefinitionsType(suffix string) *parent.DefinitionsType {
-	return &parent.DefinitionsType{
-	}
-}
-
-// newTimeDifferenceFunctionType creates a test TimeDifferenceFunctionType entity with sample data
-func newTimeDifferenceFunctionType(suffix string) *parent.TimeDifferenceFunctionType {
-	return &parent.TimeDifferenceFunctionType{
-		Format_1: stringPtr("test_" + suffix),
-		Format_2: stringPtr("test_" + suffix),
-	}
-}
-
-// newEntityObjectIntType creates a test EntityObjectIntType entity with sample data
-func newEntityObjectIntType(suffix string) *parent.EntityObjectIntType {
-	return &parent.EntityObjectIntType{
-		Datatype: "test_datatype_" + suffix,
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newPossibleRestrictionType creates a test PossibleRestrictionType entity with sample data
-func newPossibleRestrictionType(suffix string) *parent.PossibleRestrictionType {
-	return &parent.PossibleRestrictionType{
-		Operator: stringPtr("test_" + suffix),
-		Hint: "test_hint_" + suffix,
-	}
-}
-
-// newAssetReportCollection creates a test AssetReportCollection entity with sample data
-func newAssetReportCollection(suffix string) *parent.AssetReportCollection {
-	return &parent.AssetReportCollection{
-		XsdId: stringPtr("test_" + suffix),
-		ReportRequests: stringPtr("test_" + suffix),
-		Assets: stringPtr("test_" + suffix),
-		Reports: "test_reports_" + suffix,
-		ExtendedInfos: stringPtr("test_" + suffix),
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newFormerNameElementType creates a test FormerNameElementType entity with sample data
-func newFormerNameElementType(suffix string) *parent.FormerNameElementType {
-	return &parent.FormerNameElementType{
-		ValidFrom: stringPtr("test_" + suffix),
-		ValidTo: stringPtr("test_" + suffix),
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newDepartment creates a test Department entity with sample data
-func newDepartment(suffix string) *parent.Department {
-	return &parent.Department{
-		Type: stringPtr("test_" + suffix),
-		DepartmentName: stringPtr("test_" + suffix),
-		MailStopID: int64Ptr(42),
-	}
-}
-
-// newVariableType creates a test VariableType entity with sample data
-func newVariableType(suffix string) *parent.VariableType {
-	return &parent.VariableType{
-		XsdId: "test_xsdid_" + suffix,
-		Version: 42,
-		Datatype: "test_datatype_" + suffix,
-		Comment: "test_comment_" + suffix,
-		Deprecated: boolPtr(true),
-	}
-}
-
-// newSet creates a test Set entity with sample data
-func newSet(suffix string) *parent.Set {
-	return &parent.Set{
-		Set_operator: stringPtr("test_" + suffix),
-	}
-}
-
-// newFixType creates a test FixType entity with sample data
-func newFixType(suffix string) *parent.FixType {
-	return &parent.FixType{
-		XsdId: stringPtr("test_" + suffix),
-		Reboot: boolPtr(true),
-		Strategy: stringPtr("test_" + suffix),
-		Disruption: stringPtr("test_" + suffix),
-		Complexity: stringPtr("test_" + suffix),
-		System: stringPtr("test_" + suffix),
-		Platform: stringPtr("test_" + suffix),
-		SubID: int64Ptr(42),
-		InstanceID: int64Ptr(42),
-	}
-}
-
-// newLicenseElementType creates a test LicenseElementType entity with sample data
-func newLicenseElementType(suffix string) *parent.LicenseElementType {
-	return &parent.LicenseElementType{
-	}
-}
-
-// newFqdn creates a test Fqdn entity with sample data
-func newFqdn(suffix string) *parent.Fqdn {
-	return &parent.Fqdn{
-	}
-}
-
-// newSubPremiseLocationElementType creates a test SubPremiseLocationElementType entity with sample data
-func newSubPremiseLocationElementType(suffix string) *parent.SubPremiseLocationElementType {
-	return &parent.SubPremiseLocationElementType{
-	}
-}
-
-// newPostTownSuffixElementType creates a test PostTownSuffixElementType entity with sample data
-func newPostTownSuffixElementType(suffix string) *parent.PostTownSuffixElementType {
-	return &parent.PostTownSuffixElementType{
-	}
-}
-
-// newKeyLineCodeElementType creates a test KeyLineCodeElementType entity with sample data
-func newKeyLineCodeElementType(suffix string) *parent.KeyLineCodeElementType {
-	return &parent.KeyLineCodeElementType{
-		Type: stringPtr("test_" + suffix),
-	}
-}
-
-// newPostalCodeNumberExtensionElementType creates a test PostalCodeNumberExtensionElementType entity with sample data
-func newPostalCodeNumberExtensionElementType(suffix string) *parent.PostalCodeNumberExtensionElementType {
-	return &parent.PostalCodeNumberExtensionElementType{
-		Type: stringPtr("test_" + suffix),
-		NumberExtensionSeparator: stringPtr("test_" + suffix),
-	}
-}
-
-// newXccdf12CheckType creates a test Xccdf12CheckType entity with sample data
-func newXccdf12CheckType(suffix string) *parent.Xccdf12CheckType {
-	return &parent.Xccdf12CheckType{
-		System: "test_system_" + suffix,
-		Negate: boolPtr(true),
-		XsdId: stringPtr("test_" + suffix),
+// newSelComplexValueType creates a test SelComplexValueType entity with sample data
+func newSelComplexValueType(suffix string) *parent.SelComplexValueType {
+	return &parent.SelComplexValueType{
 		Selector: stringPtr("test_" + suffix),
-		MultiCheck: boolPtr(true),
-		CheckContentID: int64Ptr(42),
-	}
-}
-
-// newTransformType creates a test TransformType entity with sample data
-func newTransformType(suffix string) *parent.TransformType {
-	return &parent.TransformType{
-		Algorithm: "test_algorithm_" + suffix,
-		XPath: "test_xpath_" + suffix,
-	}
-}
-
-// newAddressLatitudeDirectionElementType creates a test AddressLatitudeDirectionElementType entity with sample data
-func newAddressLatitudeDirectionElementType(suffix string) *parent.AddressLatitudeDirectionElementType {
-	return &parent.AddressLatitudeDirectionElementType{
-		Type: stringPtr("test_" + suffix),
-	}
-}
-
-// newPostalCode creates a test PostalCode entity with sample data
-func newPostalCode(suffix string) *parent.PostalCode {
-	return &parent.PostalCode{
-		Type: stringPtr("test_" + suffix),
-		PostalCodeNumber: stringPtr("test_" + suffix),
-		PostalCodeNumberExtension: stringPtr("test_" + suffix),
-		PostTown: stringPtr("test_" + suffix),
-	}
-}
-
-// newPremiseNumberSuffix creates a test PremiseNumberSuffix entity with sample data
-func newPremiseNumberSuffix(suffix string) *parent.PremiseNumberSuffix {
-	return &parent.PremiseNumberSuffix{
-		NumberSuffixSeparator: stringPtr("test_" + suffix),
-		Type: stringPtr("test_" + suffix),
-	}
-}
-
-// newPlatformType creates a test PlatformType entity with sample data
-func newPlatformType(suffix string) *parent.PlatformType {
-	return &parent.PlatformType{
-		XsdId: "test_xsdid_" + suffix,
-		LogicalTestID: int64Ptr(42),
-	}
-}
-
-// newLanguage20TextType creates a test Language20TextType entity with sample data
-func newLanguage20TextType(suffix string) *parent.Language20TextType {
-	return &parent.Language20TextType{
-	}
-}
-
-// newOrganisationFormerNameElementType creates a test OrganisationFormerNameElementType entity with sample data
-func newOrganisationFormerNameElementType(suffix string) *parent.OrganisationFormerNameElementType {
-	return &parent.OrganisationFormerNameElementType{
-		ValidFrom: stringPtr("test_" + suffix),
-		ValidTo: stringPtr("test_" + suffix),
 		ParentID: int64Ptr(42),
 	}
 }
 
-// newThoroughfareNumberToElementType creates a test ThoroughfareNumberToElementType entity with sample data
-func newThoroughfareNumberToElementType(suffix string) *parent.ThoroughfareNumberToElementType {
-	return &parent.ThoroughfareNumberToElementType{
-	}
-}
-
-// newSubPremiseNumberElementType creates a test SubPremiseNumberElementType entity with sample data
-func newSubPremiseNumberElementType(suffix string) *parent.SubPremiseNumberElementType {
-	return &parent.SubPremiseNumberElementType{
-		Indicator: stringPtr("test_" + suffix),
-		IndicatorOccurrence: stringPtr("test_" + suffix),
-		NumberTypeOccurrence: stringPtr("test_" + suffix),
-		PremiseNumberSeparator: stringPtr("test_" + suffix),
-		Type: stringPtr("test_" + suffix),
-	}
-}
-
-// newEndFunctionType creates a test EndFunctionType entity with sample data
-func newEndFunctionType(suffix string) *parent.EndFunctionType {
-	return &parent.EndFunctionType{
-		Character: "test_character_" + suffix,
-	}
-}
-
-// newPlainTextType creates a test PlainTextType entity with sample data
-func newPlainTextType(suffix string) *parent.PlainTextType {
-	return &parent.PlainTextType{
-		XsdId: "test_xsdid_" + suffix,
-	}
-}
-
-// newBenchmarkElementType creates a test BenchmarkElementType entity with sample data
-func newBenchmarkElementType(suffix string) *parent.BenchmarkElementType {
-	return &parent.BenchmarkElementType{
-		XsdId: "test_xsdid_" + suffix,
-		Resolved: boolPtr(true),
-		Style: stringPtr("test_" + suffix),
-		StyleHref: stringPtr("test_" + suffix),
-		VersionID: int64Ptr(42),
-		SignatureID: int64Ptr(42),
-	}
-}
-
-// newDependencyNameElementType creates a test DependencyNameElementType entity with sample data
-func newDependencyNameElementType(suffix string) *parent.DependencyNameElementType {
-	return &parent.DependencyNameElementType{
-		DependencyType: stringPtr("test_" + suffix),
+// newEntityObjectBoolType creates a test EntityObjectBoolType entity with sample data
+func newEntityObjectBoolType(suffix string) *parent.EntityObjectBoolType {
+	return &parent.EntityObjectBoolType{
+		Datatype: "test_datatype_" + suffix,
 		ParentID: int64Ptr(42),
 	}
 }
 
-// newCanonicalizationMethodType creates a test CanonicalizationMethodType entity with sample data
-func newCanonicalizationMethodType(suffix string) *parent.CanonicalizationMethodType {
-	return &parent.CanonicalizationMethodType{
-		Algorithm: "test_algorithm_" + suffix,
+// newObjectsType creates a test ObjectsType entity with sample data
+func newObjectsType(suffix string) *parent.ObjectsType {
+	return &parent.ObjectsType{
 	}
 }
 
-// newSubPremiseNumberSuffixElementType creates a test SubPremiseNumberSuffixElementType entity with sample data
-func newSubPremiseNumberSuffixElementType(suffix string) *parent.SubPremiseNumberSuffixElementType {
-	return &parent.SubPremiseNumberSuffixElementType{
-		NumberSuffixSeparator: stringPtr("test_" + suffix),
+// newPremiseNumberPrefix creates a test PremiseNumberPrefix entity with sample data
+func newPremiseNumberPrefix(suffix string) *parent.PremiseNumberPrefix {
+	return &parent.PremiseNumberPrefix{
+		NumberPrefixSeparator: stringPtr("test_" + suffix),
 		Type: stringPtr("test_" + suffix),
 	}
 }
 
-// newPremiseNumberRangeFromElementType creates a test PremiseNumberRangeFromElementType entity with sample data
-func newPremiseNumberRangeFromElementType(suffix string) *parent.PremiseNumberRangeFromElementType {
-	return &parent.PremiseNumberRangeFromElementType{
+// newOrganisationNameDetailsElementType creates a test OrganisationNameDetailsElementType entity with sample data
+func newOrganisationNameDetailsElementType(suffix string) *parent.OrganisationNameDetailsElementType {
+	return &parent.OrganisationNameDetailsElementType{
+		OrganisationFormerName: stringPtr("test_" + suffix),
+		OrganisationKnownAs: stringPtr("test_" + suffix),
+		ParentID: int64Ptr(42),
 	}
 }
 
-// newAdministrativeAreaNameElementType creates a test AdministrativeAreaNameElementType entity with sample data
-func newAdministrativeAreaNameElementType(suffix string) *parent.AdministrativeAreaNameElementType {
-	return &parent.AdministrativeAreaNameElementType{
-		Type: stringPtr("test_" + suffix),
+// newProfileSetValueType creates a test ProfileSetValueType entity with sample data
+func newProfileSetValueType(suffix string) *parent.ProfileSetValueType {
+	return &parent.ProfileSetValueType{
+		Idref: "test_idref_" + suffix,
 	}
 }
 
-// newSubstringFunctionType creates a test SubstringFunctionType entity with sample data
-func newSubstringFunctionType(suffix string) *parent.SubstringFunctionType {
-	return &parent.SubstringFunctionType{
-		Substring_start: 42,
-		Substring_length: 42,
+// newTailoringBenchmarkReferenceType creates a test TailoringBenchmarkReferenceType entity with sample data
+func newTailoringBenchmarkReferenceType(suffix string) *parent.TailoringBenchmarkReferenceType {
+	return &parent.TailoringBenchmarkReferenceType{
+		Version: stringPtr("test_" + suffix),
+		ParentID: int64Ptr(42),
 	}
 }
 
-// newDictionary20CheckType creates a test Dictionary20CheckType entity with sample data
-func newDictionary20CheckType(suffix string) *parent.Dictionary20CheckType {
-	return &parent.Dictionary20CheckType{
-		System: "test_system_" + suffix,
-		Href: stringPtr("test_" + suffix),
+// newCheckImportType creates a test CheckImportType entity with sample data
+func newCheckImportType(suffix string) *parent.CheckImportType {
+	return &parent.CheckImportType{
+		ImportName: "test_importname_" + suffix,
+		ImportXpath: stringPtr("test_" + suffix),
 	}
 }
 
-// newJointPersonNameElementType creates a test JointPersonNameElementType entity with sample data
-func newJointPersonNameElementType(suffix string) *parent.JointPersonNameElementType {
-	return &parent.JointPersonNameElementType{
-		JointNameConnector: stringPtr("test_" + suffix),
-		Code: stringPtr("test_" + suffix),
-	}
-}
-
-// newLastNameElementType creates a test LastNameElementType entity with sample data
-func newLastNameElementType(suffix string) *parent.LastNameElementType {
-	return &parent.LastNameElementType{
-		Type: stringPtr("test_" + suffix),
-		NameType: stringPtr("test_" + suffix),
-		Code: stringPtr("test_" + suffix),
-	}
-}
-
-// newDependentThoroughfareElementType creates a test DependentThoroughfareElementType entity with sample data
-func newDependentThoroughfareElementType(suffix string) *parent.DependentThoroughfareElementType {
-	return &parent.DependentThoroughfareElementType{
-		Type: stringPtr("test_" + suffix),
-		ThoroughfarePreDirectionID: int64Ptr(42),
-		ThoroughfareLeadingTypeID: int64Ptr(42),
-		ThoroughfareTrailingTypeID: int64Ptr(42),
-		ThoroughfarePostDirectionID: int64Ptr(42),
-	}
-}
-
-// newAddressLongitudeDirectionElementType creates a test AddressLongitudeDirectionElementType entity with sample data
-func newAddressLongitudeDirectionElementType(suffix string) *parent.AddressLongitudeDirectionElementType {
-	return &parent.AddressLongitudeDirectionElementType{
-		Type: stringPtr("test_" + suffix),
-	}
-}
-
-// newAdministrativeArea creates a test AdministrativeArea entity with sample data
-func newAdministrativeArea(suffix string) *parent.AdministrativeArea {
-	return &parent.AdministrativeArea{
-		Type: stringPtr("test_" + suffix),
-		UsageType: stringPtr("test_" + suffix),
-		Indicator: stringPtr("test_" + suffix),
-		AdministrativeAreaName: stringPtr("test_" + suffix),
-		SubAdministrativeArea: stringPtr("test_" + suffix),
-	}
-}
-
-// newObjectRefType creates a test ObjectRefType entity with sample data
-func newObjectRefType(suffix string) *parent.ObjectRefType {
-	return &parent.ObjectRefType{
-		Object_ref: "test_object_ref_" + suffix,
-	}
-}
-
-// newProfileType creates a test ProfileType entity with sample data
-func newProfileType(suffix string) *parent.ProfileType {
-	return &parent.ProfileType{
-		XsdId: "test_xsdid_" + suffix,
-		ProhibitChanges: boolPtr(true),
-		Abstract: boolPtr(true),
-		NoteTag: stringPtr("test_" + suffix),
-		Extends: stringPtr("test_" + suffix),
-		VersionID: int64Ptr(42),
-		SignatureID: int64Ptr(42),
-		SelectID: int64Ptr(42),
-		SetComplexValueID: int64Ptr(42),
-		SetValueID: int64Ptr(42),
-		RefineValueID: int64Ptr(42),
-		RefineRuleID: int64Ptr(42),
-	}
-}
-
-// newFactType creates a test FactType entity with sample data
-func newFactType(suffix string) *parent.FactType {
-	return &parent.FactType{
+// newDictionary20ItemType creates a test Dictionary20ItemType entity with sample data
+func newDictionary20ItemType(suffix string) *parent.Dictionary20ItemType {
+	return &parent.Dictionary20ItemType{
 		Name: "test_name_" + suffix,
-		Type: stringPtr("test_" + suffix),
+		Deprecated: boolPtr(true),
+		Deprecated_by: stringPtr("test_" + suffix),
+		Deprecation_date: timePtr(time.Now()),
+		ReferencesID: int64Ptr(42),
 	}
 }
 
-// newThoroughfarePreDirectionType creates a test ThoroughfarePreDirectionType entity with sample data
-func newThoroughfarePreDirectionType(suffix string) *parent.ThoroughfarePreDirectionType {
-	return &parent.ThoroughfarePreDirectionType{
-		Type: stringPtr("test_" + suffix),
-	}
-}
-
-// newNotesElementType creates a test NotesElementType entity with sample data
-func newNotesElementType(suffix string) *parent.NotesElementType {
-	return &parent.NotesElementType{
-		Note: stringPtr("test_" + suffix),
+// newPortElementType creates a test PortElementType entity with sample data
+func newPortElementType(suffix string) *parent.PortElementType {
+	return &parent.PortElementType{
 		ParentID: int64Ptr(42),
 	}
 }
 
-// newEntityObjectStringType creates a test EntityObjectStringType entity with sample data
-func newEntityObjectStringType(suffix string) *parent.EntityObjectStringType {
-	return &parent.EntityObjectStringType{
-		Datatype: stringPtr("test_" + suffix),
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newExternalVariable creates a test ExternalVariable entity with sample data
-func newExternalVariable(suffix string) *parent.ExternalVariable {
-	return &parent.ExternalVariable{
-		Possible_valueID: int64Ptr(42),
-		Possible_restrictionID: int64Ptr(42),
-		ParentID: int64Ptr(42),
-	}
-}
-
-// newTailoringReferenceType creates a test TailoringReferenceType entity with sample data
-func newTailoringReferenceType(suffix string) *parent.TailoringReferenceType {
-	return &parent.TailoringReferenceType{
-		Href: "test_href_" + suffix,
-		XsdId: "test_xsdid_" + suffix,
-		Version: "test_version_" + suffix,
-		Time: time.Now(),
-	}
-}
-
-// newBenchmark creates a test Benchmark entity with sample data
-func newBenchmark(suffix string) *parent.Benchmark {
-	return &parent.Benchmark{
-		XsdId: "test_xsdid_" + suffix,
-		Resolved: boolPtr(true),
-		Style: stringPtr("test_" + suffix),
-		StyleHref: stringPtr("test_" + suffix),
-		VersionID: int64Ptr(42),
-		SignatureID: int64Ptr(42),
-	}
-}
-
-// newStatus creates a test Status entity with sample data
-func newStatus(suffix string) *parent.Status {
-	return &parent.Status{
-		Date: timePtr(time.Now()),
-		ParentID: int64Ptr(42),
+// newExtended creates a test Extended entity with sample data
+func newExtended(suffix string) *parent.Extended {
+	return &parent.Extended{
 	}
 }
 
@@ -72395,7 +72395,7 @@ func TestSqliteGraphSaver_LoadGraph_NonExistentID(t *testing.T) {
 	gs := dal.NewGraphSaver()
 
 	// Try to load non-existent ID
-	result, err := gs.LoadGraph(ctx, "IdrefType", 999999)
+	result, err := gs.LoadGraph(ctx, "RelationshipsContainerType", 999999)
 	if err != nil {
 		t.Logf("LoadGraph non-existent ID error: %v", err)
 	}

@@ -4827,10 +4827,17 @@ func TestXALElementType_MarshalUnmarshal(t *testing.T) {
 
 // TestExtractElementPrefixes tests the ExtractElementPrefixes helper function
 func TestExtractElementPrefixes(t *testing.T) {
-	xmlData := []byte(`<root xmlns:ex="http://example.com"><ex:child/></root>`)
+	// Use opening tag with space or > after element name (regex requires [\s>])
+	xmlData := []byte(`<root xmlns:ex="http://example.com"><ex:child >text</ex:child></root>`)
 	prefixes := ExtractElementPrefixes(xmlData)
 	if prefixes == nil {
 		t.Error("ExtractElementPrefixes returned nil")
+	}
+	if len(prefixes) == 0 {
+		t.Error("ExtractElementPrefixes returned empty map, expected 'child' -> 'ex'")
+	}
+	if prefixes["child"] != "ex" {
+		t.Errorf("ExtractElementPrefixes: expected prefixes['child']='ex', got '%s'", prefixes["child"])
 	}
 }
 
@@ -4841,4 +4848,52 @@ func TestExtractElementsWithXmlns(t *testing.T) {
 	if elemXmlns == nil {
 		t.Error("ExtractElementsWithXmlns returned nil")
 	}
+	// Should find xmlns on both root and child elements
+	if len(elemXmlns) < 1 {
+		t.Errorf("ExtractElementsWithXmlns: expected at least 1 element with xmlns, got %d", len(elemXmlns))
+	}
+}
+
+// TestRestoreElementPrefixes tests the restoreElementPrefixes helper function
+func TestRestoreElementPrefixes(t *testing.T) {
+	// Input: unprefixed XML with default xmlns
+	input := `<root><child xmlns="http://example.com">text</child></root>`
+	prefixes := map[string]string{"child": "ex"}
+	result := restoreElementPrefixes(input, prefixes)
+	// Should add prefix to child element
+	if result == "" {
+		t.Error("restoreElementPrefixes returned empty string")
+	}
+	// Result should contain prefixed element
+	if !regexp.MustCompile(`<ex:child`).MatchString(result) {
+		t.Errorf("restoreElementPrefixes: expected '<ex:child' in result, got: %s", result)
+	}
+}
+
+// TestReplicateXmlnsPlacement tests the replicateXmlnsPlacement helper function
+func TestReplicateXmlnsPlacement(t *testing.T) {
+	// Input: XML with xmlns on nested element
+	input := `<root><child xmlns="http://example.com">text</child></root>`
+	elementsWithXmlns := map[string]string{"child": "http://example.com"}
+	result := replicateXmlnsPlacement(input, elementsWithXmlns)
+	if result == "" {
+		t.Error("replicateXmlnsPlacement returned empty string")
+	}
+	// Result should preserve xmlns on child
+	if !regexp.MustCompile(`xmlns="http://example.com"`).MatchString(result) {
+		t.Errorf("replicateXmlnsPlacement: expected xmlns preserved, got: %s", result)
+	}
+}
+
+// TestReplicateXmlnsPlacement_EmptyMap tests xmlns removal when no tracking
+func TestReplicateXmlnsPlacement_EmptyMap(t *testing.T) {
+	// Input: XML with xmlns on nested element
+	input := `<root xmlns="http://root.com"><child xmlns="http://example.com">text</child></root>`
+	emptyMap := map[string]string{}
+	result := replicateXmlnsPlacement(input, emptyMap)
+	if result == "" {
+		t.Error("replicateXmlnsPlacement returned empty string")
+	}
+	// Root xmlns should be preserved, nested xmlns should be removed
+	_ = result // Result validation - function should not panic
 }

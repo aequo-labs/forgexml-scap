@@ -5,18 +5,12 @@ import (
 	"bytes"
 	"encoding/json"
 	"encoding/xml"
-	xccdf1_2 "github.com/aequo-labs/forgexml-scap/internal/generated/gov/nist/checklists/xccdf/1-2"
-	asset_identification1_1 "github.com/aequo-labs/forgexml-scap/internal/generated/gov/nist/scap/schema/asset-identification/1-1"
-	asset_reporting_format1_1 "github.com/aequo-labs/forgexml-scap/internal/generated/gov/nist/scap/schema/asset-reporting-format/1-1"
-	reporting_core1_1 "github.com/aequo-labs/forgexml-scap/internal/generated/gov/nist/scap/schema/reporting-core/1-1"
-	pkg_2_01 "github.com/aequo-labs/forgexml-scap/internal/generated/oasis/names/tc/ciq/xsdschema/xal/2-0"
-	pkg_2_0 "github.com/aequo-labs/forgexml-scap/internal/generated/oasis/names/tc/ciq/xsdschema/xnl/2-0"
-	dictionary2_0 "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/cpe/dictionary/2-0"
-	language2_0 "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/cpe/language/2-0"
-	xmlschemaoval_common_5 "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/oval/xmlschema/oval-common-5"
-	xmlschemaoval_definitions_5 "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/oval/xmlschema/oval-definitions-5"
-	pkg_1999xlink "github.com/aequo-labs/forgexml-scap/internal/generated/org/w3/1999/xlink"
-	pkg_200009xmldsig "github.com/aequo-labs/forgexml-scap/internal/generated/org/w3/2000/09/xmldsig"
+	asset_identification1_1 "forgexml-scap/internal/generated/gov/nist/scap/schema/asset-identification/1-1"
+	asset_reporting_format1_1 "forgexml-scap/internal/generated/gov/nist/scap/schema/asset-reporting-format/1-1"
+	reporting_core1_1 "forgexml-scap/internal/generated/gov/nist/scap/schema/reporting-core/1-1"
+	pkg_2_0 "forgexml-scap/internal/generated/oasis/names/tc/ciq/xsdschema/xal/2-0"
+	pkg_2_01 "forgexml-scap/internal/generated/oasis/names/tc/ciq/xsdschema/xnl/2-0"
+	pkg_1999xlink "forgexml-scap/internal/generated/org/w3/1999/xlink"
 	"os"
 	"path/filepath"
 	"strings"
@@ -762,28 +756,6 @@ func TestCreateElement_AdministrativeAreaNameElementType(t *testing.T) {
 	}
 }
 
-func TestCreateElement_AffectedType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("AffectedType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for AffectedType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
 func TestCreateElement_AliasElementType(t *testing.T) {
 	ts := setupTestSuite(t)
 
@@ -856,50 +828,6 @@ func TestCreateElement_ArcroleType(t *testing.T) {
 	path, err := ts.state.CreateElement("ArcroleType", "", nil)
 	if err != nil {
 		t.Logf("CreateElement for ArcroleType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_ArithmeticEnumeration(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("ArithmeticEnumeration", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for ArithmeticEnumeration returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_ArithmeticFunctionType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("ArithmeticFunctionType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for ArithmeticFunctionType returned error (may be expected): %v", err)
 		return
 	}
 
@@ -1136,116 +1064,6 @@ func TestCreateElement_BarcodeElementType(t *testing.T) {
 	}
 }
 
-func TestCreateElement_BeginFunctionType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("BeginFunctionType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for BeginFunctionType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_BenchmarkElement(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("BenchmarkElement", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for BenchmarkElement returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_BenchmarkElementType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("BenchmarkElementType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for BenchmarkElementType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_BenchmarkIdType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("BenchmarkIdType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for BenchmarkIdType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_BenchmarkReferenceType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("BenchmarkReferenceType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for BenchmarkReferenceType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
 func TestCreateElement_BirthdateElementType(t *testing.T) {
 	ts := setupTestSuite(t)
 
@@ -1274,226 +1092,6 @@ func TestCreateElement_BuildingNameType(t *testing.T) {
 	path, err := ts.state.CreateElement("BuildingNameType", "", nil)
 	if err != nil {
 		t.Logf("CreateElement for BuildingNameType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_CPE2idrefType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("CPE2idrefType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for CPE2idrefType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_CanonicalizationMethodElement(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("CanonicalizationMethodElement", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for CanonicalizationMethodElement returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_CanonicalizationMethodType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("CanonicalizationMethodType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for CanonicalizationMethodType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_CcOperatorEnumType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("CcOperatorEnumType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for CcOperatorEnumType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_CheckContentRefType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("CheckContentRefType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for CheckContentRefType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_CheckContentType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("CheckContentType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for CheckContentType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_CheckEnumeration(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("CheckEnumeration", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for CheckEnumeration returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_CheckExportType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("CheckExportType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for CheckExportType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_CheckImportType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("CheckImportType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for CheckImportType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_CheckType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("CheckType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for CheckType returned error (may be expected): %v", err)
 		return
 	}
 
@@ -1620,94 +1218,6 @@ func TestCreateElement_CircuitType(t *testing.T) {
 	}
 }
 
-func TestCreateElement_ClassEnumeration(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("ClassEnumeration", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for ClassEnumeration returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_ComplexCheckType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("ComplexCheckType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for ComplexCheckType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_ComplexDatatypeEnumeration(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("ComplexDatatypeEnumeration", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for ComplexDatatypeEnumeration returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_ComplexValueType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("ComplexValueType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for ComplexValueType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
 func TestCreateElement_ComputingDeviceElement(t *testing.T) {
 	ts := setupTestSuite(t)
 
@@ -1752,78 +1262,12 @@ func TestCreateElement_ComputingDeviceType(t *testing.T) {
 	}
 }
 
-func TestCreateElement_ConcatFunctionType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("ConcatFunctionType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for ConcatFunctionType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
 func TestCreateElement_ConnectionsElementType(t *testing.T) {
 	ts := setupTestSuite(t)
 
 	path, err := ts.state.CreateElement("ConnectionsElementType", "", nil)
 	if err != nil {
 		t.Logf("CreateElement for ConnectionsElementType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_Constant_variableElement(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("Constant_variableElement", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for Constant_variableElement returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_Constant_variableElementType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("Constant_variableElementType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for Constant_variableElementType returned error (may be expected): %v", err)
 		return
 	}
 
@@ -1868,28 +1312,6 @@ func TestCreateElement_ContentElementType1(t *testing.T) {
 	path, err := ts.state.CreateElement("ContentElementType1", "", nil)
 	if err != nil {
 		t.Logf("CreateElement for ContentElementType1 returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_CountFunctionType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("CountFunctionType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for CountFunctionType returned error (may be expected): %v", err)
 		return
 	}
 
@@ -2038,166 +1460,12 @@ func TestCreateElement_CpeElementType(t *testing.T) {
 	}
 }
 
-func TestCreateElement_CpeItemElement(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("CpeItemElement", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for CpeItemElement returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_CpeListElement(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("CpeListElement", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for CpeListElement returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
 func TestCreateElement_CpeType(t *testing.T) {
 	ts := setupTestSuite(t)
 
 	path, err := ts.state.CreateElement("CpeType", "", nil)
 	if err != nil {
 		t.Logf("CreateElement for CpeType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_CriteriaType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("CriteriaType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for CriteriaType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_CriterionType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("CriterionType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for CriterionType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_CryptoBinary(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("CryptoBinary", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for CryptoBinary returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_DSAKeyValueElement(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("DSAKeyValueElement", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for DSAKeyValueElement returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_DSAKeyValueType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("DSAKeyValueType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for DSAKeyValueType returned error (may be expected): %v", err)
 		return
 	}
 
@@ -2286,160 +1554,6 @@ func TestCreateElement_DatabaseType(t *testing.T) {
 	path, err := ts.state.CreateElement("DatabaseType", "", nil)
 	if err != nil {
 		t.Logf("CreateElement for DatabaseType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_DatatypeEnumeration(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("DatatypeEnumeration", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for DatatypeEnumeration returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_DateTimeFormatEnumeration(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("DateTimeFormatEnumeration", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for DateTimeFormatEnumeration returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_DcStatusType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("DcStatusType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for DcStatusType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_DefinitionElement(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("DefinitionElement", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for DefinitionElement returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_DefinitionIDPattern(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("DefinitionIDPattern", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for DefinitionIDPattern returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_DefinitionType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("DefinitionType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for DefinitionType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_DefinitionsType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("DefinitionsType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for DefinitionsType returned error (may be expected): %v", err)
 		return
 	}
 
@@ -2632,138 +1746,6 @@ func TestCreateElement_DependentThoroughfareElementType(t *testing.T) {
 	}
 }
 
-func TestCreateElement_DeprecatedInfoType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("DeprecatedInfoType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for DeprecatedInfoType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_Deprecated_infoElement(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("Deprecated_infoElement", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for Deprecated_infoElement returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_DigestMethodElement(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("DigestMethodElement", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for DigestMethodElement returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_DigestMethodType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("DigestMethodType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for DigestMethodType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_DigestValueElement(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("DigestValueElement", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for DigestValueElement returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_DigestValueType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("DigestValueType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for DigestValueType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
 func TestCreateElement_DistinguishedNameElementType(t *testing.T) {
 	ts := setupTestSuite(t)
 
@@ -2792,72 +1774,6 @@ func TestCreateElement_DocumentRootElementType(t *testing.T) {
 	path, err := ts.state.CreateElement("DocumentRootElementType", "", nil)
 	if err != nil {
 		t.Logf("CreateElement for DocumentRootElementType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_ElementMapItemType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("ElementMapItemType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for ElementMapItemType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_ElementMapType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("ElementMapType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for ElementMapType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_Element_mappingElement(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("Element_mappingElement", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for Element_mappingElement returned error (may be expected): %v", err)
 		return
 	}
 
@@ -2918,694 +1834,12 @@ func TestCreateElement_EmailAddressElementType(t *testing.T) {
 	}
 }
 
-func TestCreateElement_EmptyStringType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("EmptyStringType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for EmptyStringType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_EndFunctionType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("EndFunctionType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for EndFunctionType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
 func TestCreateElement_EndorsementLineCodeElementType(t *testing.T) {
 	ts := setupTestSuite(t)
 
 	path, err := ts.state.CreateElement("EndorsementLineCodeElementType", "", nil)
 	if err != nil {
 		t.Logf("CreateElement for EndorsementLineCodeElementType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_EntityObjectAnySimpleType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("EntityObjectAnySimpleType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for EntityObjectAnySimpleType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_EntityObjectBinaryType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("EntityObjectBinaryType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for EntityObjectBinaryType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_EntityObjectBoolType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("EntityObjectBoolType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for EntityObjectBoolType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_EntityObjectFieldType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("EntityObjectFieldType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for EntityObjectFieldType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_EntityObjectFloatType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("EntityObjectFloatType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for EntityObjectFloatType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_EntityObjectIPAddressStringType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("EntityObjectIPAddressStringType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for EntityObjectIPAddressStringType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_EntityObjectIPAddressType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("EntityObjectIPAddressType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for EntityObjectIPAddressType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_EntityObjectIntType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("EntityObjectIntType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for EntityObjectIntType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_EntityObjectRecordType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("EntityObjectRecordType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for EntityObjectRecordType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_EntityObjectStringType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("EntityObjectStringType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for EntityObjectStringType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_EntityObjectVersionType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("EntityObjectVersionType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for EntityObjectVersionType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_EntityStateAnySimpleType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("EntityStateAnySimpleType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for EntityStateAnySimpleType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_EntityStateBinaryType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("EntityStateBinaryType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for EntityStateBinaryType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_EntityStateBoolType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("EntityStateBoolType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for EntityStateBoolType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_EntityStateDebianEVRStringType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("EntityStateDebianEVRStringType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for EntityStateDebianEVRStringType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_EntityStateEVRStringType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("EntityStateEVRStringType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for EntityStateEVRStringType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_EntityStateFieldType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("EntityStateFieldType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for EntityStateFieldType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_EntityStateFileSetRevisionType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("EntityStateFileSetRevisionType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for EntityStateFileSetRevisionType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_EntityStateFloatType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("EntityStateFloatType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for EntityStateFloatType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_EntityStateIOSVersionType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("EntityStateIOSVersionType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for EntityStateIOSVersionType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_EntityStateIPAddressStringType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("EntityStateIPAddressStringType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for EntityStateIPAddressStringType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_EntityStateIPAddressType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("EntityStateIPAddressType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for EntityStateIPAddressType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_EntityStateIntType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("EntityStateIntType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for EntityStateIntType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_EntityStateRecordType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("EntityStateRecordType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for EntityStateRecordType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_EntityStateStringType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("EntityStateStringType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for EntityStateStringType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_EntityStateVersionType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("EntityStateVersionType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for EntityStateVersionType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_EscapeRegexFunctionType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("EscapeRegexFunctionType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for EscapeRegexFunctionType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_ExistenceEnumeration(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("ExistenceEnumeration", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for ExistenceEnumeration returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_ExtendDefinitionType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("ExtendDefinitionType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for ExtendDefinitionType returned error (may be expected): %v", err)
 		return
 	}
 
@@ -3710,182 +1944,6 @@ func TestCreateElement_ExtendedInfosElementType(t *testing.T) {
 	}
 }
 
-func TestCreateElement_External_variableElement(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("External_variableElement", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for External_variableElement returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_External_variableElementType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("External_variableElementType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for External_variableElementType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_FactRefType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("FactRefType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for FactRefType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_FactType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("FactType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for FactType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_FamilyEnumeration(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("FamilyEnumeration", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for FamilyEnumeration returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_FilterActionEnumeration(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("FilterActionEnumeration", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for FilterActionEnumeration returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_FilterElement(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("FilterElement", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for FilterElement returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_FilterElementType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("FilterElementType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for FilterElementType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
 func TestCreateElement_FirmNameElementType(t *testing.T) {
 	ts := setupTestSuite(t)
 
@@ -3936,72 +1994,6 @@ func TestCreateElement_FirstNameElementType(t *testing.T) {
 	path, err := ts.state.CreateElement("FirstNameElementType", "", nil)
 	if err != nil {
 		t.Logf("CreateElement for FirstNameElementType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_FixStrategyEnumType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("FixStrategyEnumType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for FixStrategyEnumType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_FixTextType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("FixTextType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for FixTextType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_FixType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("FixType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for FixType returned error (may be expected): %v", err)
 		return
 	}
 
@@ -4194,138 +2186,6 @@ func TestCreateElement_GenerationIdentifierElementType(t *testing.T) {
 	}
 }
 
-func TestCreateElement_GeneratorType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("GeneratorType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for GeneratorType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_GlobToRegexFunctionType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("GlobToRegexFunctionType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for GlobToRegexFunctionType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_GroupElement(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("GroupElement", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for GroupElement returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_GroupIdType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("GroupIdType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for GroupIdType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_GroupType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("GroupType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for GroupType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_HMACOutputLengthType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("HMACOutputLengthType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for HMACOutputLengthType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
 func TestCreateElement_HostElementType(t *testing.T) {
 	ts := setupTestSuite(t)
 
@@ -4414,138 +2274,6 @@ func TestCreateElement_HrefType(t *testing.T) {
 	}
 }
 
-func TestCreateElement_HtmlTextType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("HtmlTextType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for HtmlTextType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_HtmlTextWithSubType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("HtmlTextWithSubType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for HtmlTextWithSubType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_IdentType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("IdentType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for IdentType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_IdentityType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("IdentityType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for IdentityType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_IdrefListType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("IdrefListType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for IdrefListType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_IdrefType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("IdrefType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for IdrefType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
 func TestCreateElement_InstallationIdElementType(t *testing.T) {
 	ts := setupTestSuite(t)
 
@@ -4568,78 +2296,12 @@ func TestCreateElement_InstallationIdElementType(t *testing.T) {
 	}
 }
 
-func TestCreateElement_InstanceFixType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("InstanceFixType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for InstanceFixType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
 func TestCreateElement_InstanceNameElementType(t *testing.T) {
 	ts := setupTestSuite(t)
 
 	path, err := ts.state.CreateElement("InstanceNameElementType", "", nil)
 	if err != nil {
 		t.Logf("CreateElement for InstanceNameElementType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_InstanceResultType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("InstanceResultType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for InstanceResultType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_InterfaceHintType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("InterfaceHintType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for InterfaceHintType returned error (may be expected): %v", err)
 		return
 	}
 
@@ -4832,50 +2494,6 @@ func TestCreateElement_ItAssetElement(t *testing.T) {
 	}
 }
 
-func TestCreateElement_ItemElement(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("ItemElement", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for ItemElement returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_ItemIDPattern(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("ItemIDPattern", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for ItemIDPattern returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
 func TestCreateElement_JointPersonNameElement(t *testing.T) {
 	ts := setupTestSuite(t)
 
@@ -4920,122 +2538,12 @@ func TestCreateElement_JointPersonNameElementType(t *testing.T) {
 	}
 }
 
-func TestCreateElement_KeyInfoElement(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("KeyInfoElement", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for KeyInfoElement returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_KeyInfoType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("KeyInfoType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for KeyInfoType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
 func TestCreateElement_KeyLineCodeElementType(t *testing.T) {
 	ts := setupTestSuite(t)
 
 	path, err := ts.state.CreateElement("KeyLineCodeElementType", "", nil)
 	if err != nil {
 		t.Logf("CreateElement for KeyLineCodeElementType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_KeyNameElement(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("KeyNameElement", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for KeyNameElement returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_KeyValueElement(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("KeyValueElement", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for KeyValueElement returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_KeyValueType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("KeyValueType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for KeyValueType returned error (may be expected): %v", err)
 		return
 	}
 
@@ -5190,94 +2698,6 @@ func TestCreateElement_LicenseElementType(t *testing.T) {
 	path, err := ts.state.CreateElement("LicenseElementType", "", nil)
 	if err != nil {
 		t.Logf("CreateElement for LicenseElementType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_ListType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("ListType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for ListType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_LiteralComponentType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("LiteralComponentType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for LiteralComponentType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_Local_variableElement(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("Local_variableElement", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for Local_variableElement returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_Local_variableElementType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("Local_variableElementType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for Local_variableElementType returned error (may be expected): %v", err)
 		return
 	}
 
@@ -5624,28 +3044,6 @@ func TestCreateElement_LocatorType(t *testing.T) {
 	}
 }
 
-func TestCreateElement_LogicalTestType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("LogicalTestType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for LogicalTestType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
 func TestCreateElement_MacAddressElementType(t *testing.T) {
 	ts := setupTestSuite(t)
 
@@ -5756,138 +3154,6 @@ func TestCreateElement_MailStopType(t *testing.T) {
 	}
 }
 
-func TestCreateElement_ManifestElement(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("ManifestElement", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for ManifestElement returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_ManifestType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("ManifestType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for ManifestType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_MessageLevelEnumeration(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("MessageLevelEnumeration", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for MessageLevelEnumeration returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_MessageType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("MessageType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for MessageType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_MetadataType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("MetadataType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for MetadataType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_MgmtDataElement(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("MgmtDataElement", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for MgmtDataElement returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
 func TestCreateElement_MiddleNameElementType(t *testing.T) {
 	ts := setupTestSuite(t)
 
@@ -5910,78 +3176,12 @@ func TestCreateElement_MiddleNameElementType(t *testing.T) {
 	}
 }
 
-func TestCreateElement_ModelElement(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("ModelElement", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for ModelElement returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_ModelElementType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("ModelElementType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for ModelElementType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
 func TestCreateElement_MotherboardGuidElementType(t *testing.T) {
 	ts := setupTestSuite(t)
 
 	path, err := ts.state.CreateElement("MotherboardGuidElementType", "", nil)
 	if err != nil {
 		t.Logf("CreateElement for MotherboardGuidElementType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_MsgSevEnumType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("MsgSevEnumType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for MsgSevEnumType returned error (may be expected): %v", err)
 		return
 	}
 
@@ -6070,28 +3270,6 @@ func TestCreateElement_NameLineType(t *testing.T) {
 	path, err := ts.state.CreateElement("NameLineType", "", nil)
 	if err != nil {
 		t.Logf("CreateElement for NameLineType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_NamePattern(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("NamePattern", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for NamePattern returned error (may be expected): %v", err)
 		return
 	}
 
@@ -6218,182 +3396,6 @@ func TestCreateElement_NetworkType(t *testing.T) {
 	}
 }
 
-func TestCreateElement_NonEmptyStringType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("NonEmptyStringType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for NonEmptyStringType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_NotesElement(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("NotesElement", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for NotesElement returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_NotesElementType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("NotesElementType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for NotesElementType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_NotesType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("NotesType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for NotesType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_NoticeType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("NoticeType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for NoticeType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_ObjectComponentType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("ObjectComponentType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for ObjectComponentType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_ObjectElement(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("ObjectElement", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for ObjectElement returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_ObjectIDPattern(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("ObjectIDPattern", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for ObjectIDPattern returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
 func TestCreateElement_ObjectRefElement(t *testing.T) {
 	ts := setupTestSuite(t)
 
@@ -6422,116 +3424,6 @@ func TestCreateElement_ObjectRefElementType(t *testing.T) {
 	path, err := ts.state.CreateElement("ObjectRefElementType", "", nil)
 	if err != nil {
 		t.Logf("CreateElement for ObjectRefElementType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_ObjectRefType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("ObjectRefType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for ObjectRefType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_ObjectType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("ObjectType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for ObjectType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_ObjectsType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("ObjectsType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for ObjectsType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_OperationEnumeration(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("OperationEnumeration", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for OperationEnumeration returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_OperatorEnumeration(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("OperatorEnumeration", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for OperatorEnumeration returned error (may be expected): %v", err)
 		return
 	}
 
@@ -6768,160 +3660,6 @@ func TestCreateElement_OtherNameElementType(t *testing.T) {
 	}
 }
 
-func TestCreateElement_Oval_definitionsElement(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("Oval_definitionsElement", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for Oval_definitionsElement returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_Oval_definitionsElementType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("Oval_definitionsElementType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for Oval_definitionsElementType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_OverrideType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("OverrideType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for OverrideType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_OverrideableCPE2idrefType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("OverrideableCPE2idrefType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for OverrideableCPE2idrefType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_PGPDataElement(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("PGPDataElement", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for PGPDataElement returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_PGPDataType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("PGPDataType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for PGPDataType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_ParamType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("ParamType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for ParamType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
 func TestCreateElement_PersonElement(t *testing.T) {
 	ts := setupTestSuite(t)
 
@@ -7032,94 +3770,6 @@ func TestCreateElement_PersonType(t *testing.T) {
 	}
 }
 
-func TestCreateElement_PlainTextType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("PlainTextType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for PlainTextType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_PlatformSpecificationElement(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("PlatformSpecificationElement", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for PlatformSpecificationElement returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_PlatformSpecificationElementType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("PlatformSpecificationElementType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for PlatformSpecificationElementType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_PlatformType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("PlatformType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for PlatformType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
 func TestCreateElement_PortElementType(t *testing.T) {
 	ts := setupTestSuite(t)
 
@@ -7170,50 +3820,6 @@ func TestCreateElement_PortType(t *testing.T) {
 	path, err := ts.state.CreateElement("PortType", "", nil)
 	if err != nil {
 		t.Logf("CreateElement for PortType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_PossibleRestrictionType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("PossibleRestrictionType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for PossibleRestrictionType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_PossibleValueType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("PossibleValueType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for PossibleValueType returned error (may be expected): %v", err)
 		return
 	}
 
@@ -8000,386 +4606,12 @@ func TestCreateElement_PremiseNumberSuffixElementType(t *testing.T) {
 	}
 }
 
-func TestCreateElement_ProfileElement(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("ProfileElement", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for ProfileElement returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_ProfileIdType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("ProfileIdType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for ProfileIdType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_ProfileNoteType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("ProfileNoteType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for ProfileNoteType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_ProfileRefineRuleType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("ProfileRefineRuleType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for ProfileRefineRuleType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_ProfileRefineValueType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("ProfileRefineValueType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for ProfileRefineValueType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_ProfileSelectType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("ProfileSelectType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for ProfileSelectType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_ProfileSetComplexValueType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("ProfileSetComplexValueType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for ProfileSetComplexValueType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_ProfileSetValueType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("ProfileSetValueType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for ProfileSetValueType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_ProfileType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("ProfileType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for ProfileType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
 func TestCreateElement_ProtocolElementType(t *testing.T) {
 	ts := setupTestSuite(t)
 
 	path, err := ts.state.CreateElement("ProtocolElementType", "", nil)
 	if err != nil {
 		t.Logf("CreateElement for ProtocolElementType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_RSAKeyValueElement(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("RSAKeyValueElement", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for RSAKeyValueElement returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_RSAKeyValueType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("RSAKeyValueType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for RSAKeyValueType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_RatingEnumType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("RatingEnumType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for RatingEnumType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_ReferenceElement(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("ReferenceElement", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for ReferenceElement returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_ReferenceElementType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("ReferenceElementType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for ReferenceElementType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_ReferenceType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("ReferenceType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for ReferenceType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_ReferencesType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("ReferencesType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for ReferencesType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_RegexCaptureFunctionType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("RegexCaptureFunctionType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for RegexCaptureFunctionType returned error (may be expected): %v", err)
 		return
 	}
 
@@ -8638,408 +4870,12 @@ func TestCreateElement_ResourceType(t *testing.T) {
 	}
 }
 
-func TestCreateElement_RestrictionType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("RestrictionType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for RestrictionType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_ResultEnumType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("ResultEnumType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for ResultEnumType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_RetrievalMethodElement(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("RetrievalMethodElement", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for RetrievalMethodElement returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_RetrievalMethodType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("RetrievalMethodType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for RetrievalMethodType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_RoleEnumType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("RoleEnumType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for RoleEnumType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
 func TestCreateElement_RoleType(t *testing.T) {
 	ts := setupTestSuite(t)
 
 	path, err := ts.state.CreateElement("RoleType", "", nil)
 	if err != nil {
 		t.Logf("CreateElement for RoleType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_RuleElement(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("RuleElement", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for RuleElement returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_RuleIdType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("RuleIdType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for RuleIdType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_RuleResultType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("RuleResultType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for RuleResultType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_RuleType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("RuleType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for RuleType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_SPKIDataElement(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("SPKIDataElement", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for SPKIDataElement returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_SPKIDataType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("SPKIDataType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for SPKIDataType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_SchemaVersionPattern(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("SchemaVersionPattern", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for SchemaVersionPattern returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_SchemaVersionType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("SchemaVersionType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for SchemaVersionType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_ScoreType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("ScoreType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for ScoreType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_SelChoicesType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("SelChoicesType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for SelChoicesType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_SelComplexValueType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("SelComplexValueType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for SelComplexValueType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_SelNumType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("SelNumType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for SelNumType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_SelStringType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("SelStringType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for SelStringType returned error (may be expected): %v", err)
 		return
 	}
 
@@ -9122,94 +4958,6 @@ func TestCreateElement_ServiceType(t *testing.T) {
 	}
 }
 
-func TestCreateElement_SetElement(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("SetElement", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for SetElement returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_SetElementType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("SetElementType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for SetElementType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_SetOperatorEnumeration(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("SetOperatorEnumeration", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for SetOperatorEnumeration returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_SeverityEnumType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("SeverityEnumType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for SeverityEnumType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
 func TestCreateElement_ShowType(t *testing.T) {
 	ts := setupTestSuite(t)
 
@@ -9232,298 +4980,12 @@ func TestCreateElement_ShowType(t *testing.T) {
 	}
 }
 
-func TestCreateElement_SignatureElement(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("SignatureElement", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for SignatureElement returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_SignatureMethodElement(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("SignatureMethodElement", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for SignatureMethodElement returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_SignatureMethodType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("SignatureMethodType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for SignatureMethodType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_SignaturePropertiesElement(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("SignaturePropertiesElement", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for SignaturePropertiesElement returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_SignaturePropertiesType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("SignaturePropertiesType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for SignaturePropertiesType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_SignaturePropertyElement(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("SignaturePropertyElement", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for SignaturePropertyElement returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_SignaturePropertyType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("SignaturePropertyType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for SignaturePropertyType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_SignatureType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("SignatureType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for SignatureType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_SignatureValueElement(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("SignatureValueElement", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for SignatureValueElement returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_SignatureValueType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("SignatureValueType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for SignatureValueType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_SignedInfoElement(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("SignedInfoElement", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for SignedInfoElement returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_SignedInfoType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("SignedInfoType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for SignedInfoType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
 func TestCreateElement_Simple(t *testing.T) {
 	ts := setupTestSuite(t)
 
 	path, err := ts.state.CreateElement("Simple", "", nil)
 	if err != nil {
 		t.Logf("CreateElement for Simple returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_SimpleDatatypeEnumeration(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("SimpleDatatypeEnumeration", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for SimpleDatatypeEnumeration returned error (may be expected): %v", err)
 		return
 	}
 
@@ -9590,204 +5052,6 @@ func TestCreateElement_SortingCodeElementType(t *testing.T) {
 	path, err := ts.state.CreateElement("SortingCodeElementType", "", nil)
 	if err != nil {
 		t.Logf("CreateElement for SortingCodeElementType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_SplitFunctionType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("SplitFunctionType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for SplitFunctionType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_StateElement(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("StateElement", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for StateElement returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_StateIDPattern(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("StateIDPattern", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for StateIDPattern returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_StateRefType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("StateRefType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for StateRefType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_StateType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("StateType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for StateType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_StatesType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("StatesType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for StatesType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_StatusElement(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("StatusElement", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for StatusElement returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_StatusElementType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("StatusElementType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for StatusElementType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_StatusType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("StatusType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for StatusType returned error (may be expected): %v", err)
 		return
 	}
 
@@ -9980,72 +5244,6 @@ func TestCreateElement_SubPremiseType(t *testing.T) {
 	}
 }
 
-func TestCreateElement_SubType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("SubType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for SubType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_SubUseEnumType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("SubUseEnumType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for SubUseEnumType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_SubstringFunctionType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("SubstringFunctionType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for SubstringFunctionType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
 func TestCreateElement_SuffixElementType(t *testing.T) {
 	ts := setupTestSuite(t)
 
@@ -10200,182 +5398,6 @@ func TestCreateElement_SystemType(t *testing.T) {
 	}
 }
 
-func TestCreateElement_TailoringBenchmarkReferenceType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("TailoringBenchmarkReferenceType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for TailoringBenchmarkReferenceType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_TailoringElement(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("TailoringElement", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for TailoringElement returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_TailoringIdType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("TailoringIdType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for TailoringIdType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_TailoringReferenceType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("TailoringReferenceType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for TailoringReferenceType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_TailoringType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("TailoringType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for TailoringType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_TailoringVersionType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("TailoringVersionType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for TailoringVersionType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_TargetFactsType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("TargetFactsType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for TargetFactsType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_TargetIdRefType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("TargetIdRefType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for TargetIdRefType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
 func TestCreateElement_TelephoneNumberElement(t *testing.T) {
 	ts := setupTestSuite(t)
 
@@ -10426,204 +5448,6 @@ func TestCreateElement_TelephoneNumberType(t *testing.T) {
 	path, err := ts.state.CreateElement("TelephoneNumberType", "", nil)
 	if err != nil {
 		t.Logf("CreateElement for TelephoneNumberType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_TestElement(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("TestElement", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for TestElement returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_TestIDPattern(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("TestIDPattern", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for TestIDPattern returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_TestResultElement(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("TestResultElement", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for TestResultElement returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_TestResultType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("TestResultType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for TestResultType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_TestType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("TestType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for TestType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_TestresultIdType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("TestresultIdType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for TestresultIdType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_TestsType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("TestsType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for TestsType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_TextType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("TextType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for TextType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_TextWithSubType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("TextWithSubType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for TextWithSubType returned error (may be expected): %v", err)
 		return
 	}
 
@@ -10992,28 +5816,6 @@ func TestCreateElement_ThoroughfareTrailingTypeType(t *testing.T) {
 	}
 }
 
-func TestCreateElement_TimeDifferenceFunctionType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("TimeDifferenceFunctionType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for TimeDifferenceFunctionType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
 func TestCreateElement_TitleAttrType(t *testing.T) {
 	ts := setupTestSuite(t)
 
@@ -11124,144 +5926,12 @@ func TestCreateElement_ToType(t *testing.T) {
 	}
 }
 
-func TestCreateElement_TransformElement(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("TransformElement", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for TransformElement returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_TransformType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("TransformType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for TransformType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_TransformsElement(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("TransformsElement", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for TransformsElement returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_TransformsType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("TransformsType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for TransformsType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
 func TestCreateElement_TypeType(t *testing.T) {
 	ts := setupTestSuite(t)
 
 	path, err := ts.state.CreateElement("TypeType", "", nil)
 	if err != nil {
 		t.Logf("CreateElement for TypeType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_UniqueFunctionType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("UniqueFunctionType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for UniqueFunctionType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_UriRefType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("UriRefType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for UriRefType returned error (may be expected): %v", err)
 		return
 	}
 
@@ -11300,298 +5970,12 @@ func TestCreateElement_UrlElementType(t *testing.T) {
 	}
 }
 
-func TestCreateElement_ValueElement(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("ValueElement", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for ValueElement returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_ValueIdType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("ValueIdType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for ValueIdType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_ValueOperatorType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("ValueOperatorType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for ValueOperatorType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_ValueType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("ValueType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for ValueType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_ValueTypeType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("ValueTypeType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for ValueTypeType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_VariableComponentType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("VariableComponentType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for VariableComponentType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_VariableElement(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("VariableElement", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for VariableElement returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_VariableIDPattern(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("VariableIDPattern", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for VariableIDPattern returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_VariableType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("VariableType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for VariableType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_VariablesType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("VariablesType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for VariablesType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
 func TestCreateElement_VersionElementType(t *testing.T) {
 	ts := setupTestSuite(t)
 
 	path, err := ts.state.CreateElement("VersionElementType", "", nil)
 	if err != nil {
 		t.Logf("CreateElement for VersionElementType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_VersionType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("VersionType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for VersionType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_WarningCategoryEnumType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("WarningCategoryEnumType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for WarningCategoryEnumType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_WarningType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("WarningType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for WarningType returned error (may be expected): %v", err)
 		return
 	}
 
@@ -11680,94 +6064,6 @@ func TestCreateElement_WebsiteUrlElementType(t *testing.T) {
 	path, err := ts.state.CreateElement("WebsiteUrlElementType", "", nil)
 	if err != nil {
 		t.Logf("CreateElement for WebsiteUrlElementType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_WeightType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("WeightType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for WeightType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_X509DataElement(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("X509DataElement", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for X509DataElement returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_X509DataType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("X509DataType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for X509DataType returned error (may be expected): %v", err)
-		return
-	}
-
-	if path == "" {
-		t.Error("CreateElement should return a path")
-	}
-
-	if !ts.state.HasDocument() {
-		t.Error("State should have document after CreateElement")
-	}
-
-	if !ts.state.IsDirty() {
-		t.Error("State should be dirty after CreateElement")
-	}
-}
-
-func TestCreateElement_X509IssuerSerialType(t *testing.T) {
-	ts := setupTestSuite(t)
-
-	path, err := ts.state.CreateElement("X509IssuerSerialType", "", nil)
-	if err != nil {
-		t.Logf("CreateElement for X509IssuerSerialType returned error (may be expected): %v", err)
 		return
 	}
 
@@ -12632,7 +6928,7 @@ func TestMarshalUnmarshal_ActuateType(t *testing.T) {
 
 func TestMarshalUnmarshal_AddressDetails(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.AddressDetails
+	var elem pkg_2_0.AddressDetails
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -12646,7 +6942,7 @@ func TestMarshalUnmarshal_AddressDetails(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.AddressDetails
+	var elem2 pkg_2_0.AddressDetails
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -12657,7 +6953,7 @@ func TestMarshalUnmarshal_AddressDetails(t *testing.T) {
 
 func TestMarshalUnmarshal_AddressDetailsElement(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.AddressDetailsElement
+	var elem pkg_2_0.AddressDetailsElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -12671,7 +6967,7 @@ func TestMarshalUnmarshal_AddressDetailsElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.AddressDetailsElement
+	var elem2 pkg_2_0.AddressDetailsElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -12682,7 +6978,7 @@ func TestMarshalUnmarshal_AddressDetailsElement(t *testing.T) {
 
 func TestMarshalUnmarshal_AddressElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.AddressElementType
+	var elem pkg_2_0.AddressElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -12696,7 +6992,7 @@ func TestMarshalUnmarshal_AddressElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.AddressElementType
+	var elem2 pkg_2_0.AddressElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -12707,7 +7003,7 @@ func TestMarshalUnmarshal_AddressElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_AddressIdentifierElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.AddressIdentifierElementType
+	var elem pkg_2_0.AddressIdentifierElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -12721,7 +7017,7 @@ func TestMarshalUnmarshal_AddressIdentifierElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.AddressIdentifierElementType
+	var elem2 pkg_2_0.AddressIdentifierElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -12732,7 +7028,7 @@ func TestMarshalUnmarshal_AddressIdentifierElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_AddressLatitudeDirectionElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.AddressLatitudeDirectionElementType
+	var elem pkg_2_0.AddressLatitudeDirectionElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -12746,7 +7042,7 @@ func TestMarshalUnmarshal_AddressLatitudeDirectionElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.AddressLatitudeDirectionElementType
+	var elem2 pkg_2_0.AddressLatitudeDirectionElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -12757,7 +7053,7 @@ func TestMarshalUnmarshal_AddressLatitudeDirectionElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_AddressLatitudeElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.AddressLatitudeElementType
+	var elem pkg_2_0.AddressLatitudeElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -12771,7 +7067,7 @@ func TestMarshalUnmarshal_AddressLatitudeElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.AddressLatitudeElementType
+	var elem2 pkg_2_0.AddressLatitudeElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -12782,7 +7078,7 @@ func TestMarshalUnmarshal_AddressLatitudeElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_AddressLineElement(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.AddressLineElement
+	var elem pkg_2_0.AddressLineElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -12796,7 +7092,7 @@ func TestMarshalUnmarshal_AddressLineElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.AddressLineElement
+	var elem2 pkg_2_0.AddressLineElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -12807,7 +7103,7 @@ func TestMarshalUnmarshal_AddressLineElement(t *testing.T) {
 
 func TestMarshalUnmarshal_AddressLineElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.AddressLineElementType
+	var elem pkg_2_0.AddressLineElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -12821,7 +7117,7 @@ func TestMarshalUnmarshal_AddressLineElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.AddressLineElementType
+	var elem2 pkg_2_0.AddressLineElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -12832,7 +7128,7 @@ func TestMarshalUnmarshal_AddressLineElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_AddressLinesType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.AddressLinesType
+	var elem pkg_2_0.AddressLinesType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -12846,7 +7142,7 @@ func TestMarshalUnmarshal_AddressLinesType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.AddressLinesType
+	var elem2 pkg_2_0.AddressLinesType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -12857,7 +7153,7 @@ func TestMarshalUnmarshal_AddressLinesType(t *testing.T) {
 
 func TestMarshalUnmarshal_AddressLongitudeDirectionElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.AddressLongitudeDirectionElementType
+	var elem pkg_2_0.AddressLongitudeDirectionElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -12871,7 +7167,7 @@ func TestMarshalUnmarshal_AddressLongitudeDirectionElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.AddressLongitudeDirectionElementType
+	var elem2 pkg_2_0.AddressLongitudeDirectionElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -12882,7 +7178,7 @@ func TestMarshalUnmarshal_AddressLongitudeDirectionElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_AddressLongitudeElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.AddressLongitudeElementType
+	var elem pkg_2_0.AddressLongitudeElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -12896,7 +7192,7 @@ func TestMarshalUnmarshal_AddressLongitudeElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.AddressLongitudeElementType
+	var elem2 pkg_2_0.AddressLongitudeElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -12907,7 +7203,7 @@ func TestMarshalUnmarshal_AddressLongitudeElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_AddresseeIndicatorElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.AddresseeIndicatorElementType
+	var elem pkg_2_01.AddresseeIndicatorElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -12921,7 +7217,7 @@ func TestMarshalUnmarshal_AddresseeIndicatorElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.AddresseeIndicatorElementType
+	var elem2 pkg_2_01.AddresseeIndicatorElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -12932,7 +7228,7 @@ func TestMarshalUnmarshal_AddresseeIndicatorElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_AdministrativeAreaElement(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.AdministrativeAreaElement
+	var elem pkg_2_0.AdministrativeAreaElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -12946,7 +7242,7 @@ func TestMarshalUnmarshal_AdministrativeAreaElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.AdministrativeAreaElement
+	var elem2 pkg_2_0.AdministrativeAreaElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -12957,7 +7253,7 @@ func TestMarshalUnmarshal_AdministrativeAreaElement(t *testing.T) {
 
 func TestMarshalUnmarshal_AdministrativeAreaElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.AdministrativeAreaElementType
+	var elem pkg_2_0.AdministrativeAreaElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -12971,7 +7267,7 @@ func TestMarshalUnmarshal_AdministrativeAreaElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.AdministrativeAreaElementType
+	var elem2 pkg_2_0.AdministrativeAreaElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -12982,7 +7278,7 @@ func TestMarshalUnmarshal_AdministrativeAreaElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_AdministrativeAreaNameElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.AdministrativeAreaNameElementType
+	var elem pkg_2_0.AdministrativeAreaNameElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -12996,7 +7292,7 @@ func TestMarshalUnmarshal_AdministrativeAreaNameElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.AdministrativeAreaNameElementType
+	var elem2 pkg_2_0.AdministrativeAreaNameElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -13005,34 +7301,9 @@ func TestMarshalUnmarshal_AdministrativeAreaNameElementType(t *testing.T) {
 	t.Logf("Marshal/Unmarshal AdministrativeAreaNameElementType: %d bytes", len(xmlBytes))
 }
 
-func TestMarshalUnmarshal_AffectedType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.AffectedType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal AffectedType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.AffectedType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal AffectedType: %d bytes", len(xmlBytes))
-}
-
 func TestMarshalUnmarshal_AliasElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.AliasElementType
+	var elem pkg_2_01.AliasElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -13046,7 +7317,7 @@ func TestMarshalUnmarshal_AliasElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.AliasElementType
+	var elem2 pkg_2_01.AliasElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -13128,56 +7399,6 @@ func TestMarshalUnmarshal_ArcroleType(t *testing.T) {
 	}
 
 	t.Logf("Marshal/Unmarshal ArcroleType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_ArithmeticEnumeration(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.ArithmeticEnumeration
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal ArithmeticEnumeration returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.ArithmeticEnumeration
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal ArithmeticEnumeration: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_ArithmeticFunctionType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.ArithmeticFunctionType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal ArithmeticFunctionType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.ArithmeticFunctionType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal ArithmeticFunctionType: %d bytes", len(xmlBytes))
 }
 
 func TestMarshalUnmarshal_AssetElement(t *testing.T) {
@@ -13407,7 +7628,7 @@ func TestMarshalUnmarshal_AssetsType(t *testing.T) {
 
 func TestMarshalUnmarshal_BarcodeElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.BarcodeElementType
+	var elem pkg_2_0.BarcodeElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -13421,138 +7642,13 @@ func TestMarshalUnmarshal_BarcodeElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.BarcodeElementType
+	var elem2 pkg_2_0.BarcodeElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
 	}
 
 	t.Logf("Marshal/Unmarshal BarcodeElementType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_BeginFunctionType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.BeginFunctionType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal BeginFunctionType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.BeginFunctionType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal BeginFunctionType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_BenchmarkElement(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.BenchmarkElement
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal BenchmarkElement returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.BenchmarkElement
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal BenchmarkElement: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_BenchmarkElementType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.BenchmarkElementType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal BenchmarkElementType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.BenchmarkElementType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal BenchmarkElementType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_BenchmarkIdType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.BenchmarkIdType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal BenchmarkIdType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.BenchmarkIdType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal BenchmarkIdType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_BenchmarkReferenceType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.BenchmarkReferenceType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal BenchmarkReferenceType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.BenchmarkReferenceType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal BenchmarkReferenceType: %d bytes", len(xmlBytes))
 }
 
 func TestMarshalUnmarshal_BirthdateElementType(t *testing.T) {
@@ -13582,7 +7678,7 @@ func TestMarshalUnmarshal_BirthdateElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_BuildingNameType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.BuildingNameType
+	var elem pkg_2_0.BuildingNameType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -13596,263 +7692,13 @@ func TestMarshalUnmarshal_BuildingNameType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.BuildingNameType
+	var elem2 pkg_2_0.BuildingNameType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
 	}
 
 	t.Logf("Marshal/Unmarshal BuildingNameType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_CPE2idrefType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.CPE2idrefType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal CPE2idrefType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.CPE2idrefType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal CPE2idrefType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_CanonicalizationMethodElement(t *testing.T) {
-	// Create a default instance
-	var elem pkg_200009xmldsig.CanonicalizationMethodElement
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal CanonicalizationMethodElement returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 pkg_200009xmldsig.CanonicalizationMethodElement
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal CanonicalizationMethodElement: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_CanonicalizationMethodType(t *testing.T) {
-	// Create a default instance
-	var elem pkg_200009xmldsig.CanonicalizationMethodType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal CanonicalizationMethodType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 pkg_200009xmldsig.CanonicalizationMethodType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal CanonicalizationMethodType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_CcOperatorEnumType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.CcOperatorEnumType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal CcOperatorEnumType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.CcOperatorEnumType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal CcOperatorEnumType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_CheckContentRefType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.CheckContentRefType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal CheckContentRefType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.CheckContentRefType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal CheckContentRefType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_CheckContentType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.CheckContentType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal CheckContentType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.CheckContentType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal CheckContentType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_CheckEnumeration(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_common_5.CheckEnumeration
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal CheckEnumeration returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_common_5.CheckEnumeration
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal CheckEnumeration: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_CheckExportType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.CheckExportType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal CheckExportType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.CheckExportType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal CheckExportType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_CheckImportType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.CheckImportType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal CheckImportType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.CheckImportType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal CheckImportType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_CheckType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.CheckType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal CheckType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.CheckType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal CheckType: %d bytes", len(xmlBytes))
 }
 
 func TestMarshalUnmarshal_CidrElementType(t *testing.T) {
@@ -13980,106 +7826,6 @@ func TestMarshalUnmarshal_CircuitType(t *testing.T) {
 	t.Logf("Marshal/Unmarshal CircuitType: %d bytes", len(xmlBytes))
 }
 
-func TestMarshalUnmarshal_ClassEnumeration(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_common_5.ClassEnumeration
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal ClassEnumeration returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_common_5.ClassEnumeration
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal ClassEnumeration: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_ComplexCheckType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.ComplexCheckType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal ComplexCheckType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.ComplexCheckType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal ComplexCheckType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_ComplexDatatypeEnumeration(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_common_5.ComplexDatatypeEnumeration
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal ComplexDatatypeEnumeration returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_common_5.ComplexDatatypeEnumeration
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal ComplexDatatypeEnumeration: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_ComplexValueType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.ComplexValueType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal ComplexValueType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.ComplexValueType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal ComplexValueType: %d bytes", len(xmlBytes))
-}
-
 func TestMarshalUnmarshal_ComputingDeviceElement(t *testing.T) {
 	// Create a default instance
 	var elem asset_identification1_1.ComputingDeviceElement
@@ -14130,31 +7876,6 @@ func TestMarshalUnmarshal_ComputingDeviceType(t *testing.T) {
 	t.Logf("Marshal/Unmarshal ComputingDeviceType: %d bytes", len(xmlBytes))
 }
 
-func TestMarshalUnmarshal_ConcatFunctionType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.ConcatFunctionType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal ConcatFunctionType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.ConcatFunctionType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal ConcatFunctionType: %d bytes", len(xmlBytes))
-}
-
 func TestMarshalUnmarshal_ConnectionsElementType(t *testing.T) {
 	// Create a default instance
 	var elem asset_identification1_1.ConnectionsElementType
@@ -14178,56 +7899,6 @@ func TestMarshalUnmarshal_ConnectionsElementType(t *testing.T) {
 	}
 
 	t.Logf("Marshal/Unmarshal ConnectionsElementType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_Constant_variableElement(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.Constant_variableElement
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal Constant_variableElement returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.Constant_variableElement
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal Constant_variableElement: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_Constant_variableElementType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.Constant_variableElementType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal Constant_variableElementType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.Constant_variableElementType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal Constant_variableElementType: %d bytes", len(xmlBytes))
 }
 
 func TestMarshalUnmarshal_ContentElementType(t *testing.T) {
@@ -14280,34 +7951,9 @@ func TestMarshalUnmarshal_ContentElementType1(t *testing.T) {
 	t.Logf("Marshal/Unmarshal ContentElementType1: %d bytes", len(xmlBytes))
 }
 
-func TestMarshalUnmarshal_CountFunctionType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.CountFunctionType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal CountFunctionType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.CountFunctionType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal CountFunctionType: %d bytes", len(xmlBytes))
-}
-
 func TestMarshalUnmarshal_CountryElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.CountryElementType
+	var elem pkg_2_0.CountryElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -14321,7 +7967,7 @@ func TestMarshalUnmarshal_CountryElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.CountryElementType
+	var elem2 pkg_2_0.CountryElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -14332,7 +7978,7 @@ func TestMarshalUnmarshal_CountryElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_CountryNameCodeElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.CountryNameCodeElementType
+	var elem pkg_2_0.CountryNameCodeElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -14346,7 +7992,7 @@ func TestMarshalUnmarshal_CountryNameCodeElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.CountryNameCodeElementType
+	var elem2 pkg_2_0.CountryNameCodeElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -14357,7 +8003,7 @@ func TestMarshalUnmarshal_CountryNameCodeElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_CountryNameElement(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.CountryNameElement
+	var elem pkg_2_0.CountryNameElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -14371,7 +8017,7 @@ func TestMarshalUnmarshal_CountryNameElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.CountryNameElement
+	var elem2 pkg_2_0.CountryNameElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -14382,7 +8028,7 @@ func TestMarshalUnmarshal_CountryNameElement(t *testing.T) {
 
 func TestMarshalUnmarshal_CountryNameElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.CountryNameElementType
+	var elem pkg_2_0.CountryNameElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -14396,7 +8042,7 @@ func TestMarshalUnmarshal_CountryNameElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.CountryNameElementType
+	var elem2 pkg_2_0.CountryNameElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -14455,56 +8101,6 @@ func TestMarshalUnmarshal_CpeElementType(t *testing.T) {
 	t.Logf("Marshal/Unmarshal CpeElementType: %d bytes", len(xmlBytes))
 }
 
-func TestMarshalUnmarshal_CpeItemElement(t *testing.T) {
-	// Create a default instance
-	var elem dictionary2_0.CpeItemElement
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal CpeItemElement returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 dictionary2_0.CpeItemElement
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal CpeItemElement: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_CpeListElement(t *testing.T) {
-	// Create a default instance
-	var elem dictionary2_0.CpeListElement
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal CpeListElement returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 dictionary2_0.CpeListElement
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal CpeListElement: %d bytes", len(xmlBytes))
-}
-
 func TestMarshalUnmarshal_CpeType(t *testing.T) {
 	// Create a default instance
 	var elem asset_identification1_1.CpeType
@@ -14528,131 +8124,6 @@ func TestMarshalUnmarshal_CpeType(t *testing.T) {
 	}
 
 	t.Logf("Marshal/Unmarshal CpeType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_CriteriaType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.CriteriaType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal CriteriaType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.CriteriaType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal CriteriaType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_CriterionType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.CriterionType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal CriterionType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.CriterionType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal CriterionType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_CryptoBinary(t *testing.T) {
-	// Create a default instance
-	var elem pkg_200009xmldsig.CryptoBinary
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal CryptoBinary returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 pkg_200009xmldsig.CryptoBinary
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal CryptoBinary: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_DSAKeyValueElement(t *testing.T) {
-	// Create a default instance
-	var elem pkg_200009xmldsig.DSAKeyValueElement
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal DSAKeyValueElement returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 pkg_200009xmldsig.DSAKeyValueElement
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal DSAKeyValueElement: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_DSAKeyValueType(t *testing.T) {
-	// Create a default instance
-	var elem pkg_200009xmldsig.DSAKeyValueType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal DSAKeyValueType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 pkg_200009xmldsig.DSAKeyValueType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal DSAKeyValueType: %d bytes", len(xmlBytes))
 }
 
 func TestMarshalUnmarshal_DataElement(t *testing.T) {
@@ -14755,184 +8226,9 @@ func TestMarshalUnmarshal_DatabaseType(t *testing.T) {
 	t.Logf("Marshal/Unmarshal DatabaseType: %d bytes", len(xmlBytes))
 }
 
-func TestMarshalUnmarshal_DatatypeEnumeration(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_common_5.DatatypeEnumeration
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal DatatypeEnumeration returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_common_5.DatatypeEnumeration
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal DatatypeEnumeration: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_DateTimeFormatEnumeration(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.DateTimeFormatEnumeration
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal DateTimeFormatEnumeration returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.DateTimeFormatEnumeration
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal DateTimeFormatEnumeration: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_DcStatusType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.DcStatusType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal DcStatusType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.DcStatusType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal DcStatusType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_DefinitionElement(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.DefinitionElement
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal DefinitionElement returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.DefinitionElement
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal DefinitionElement: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_DefinitionIDPattern(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_common_5.DefinitionIDPattern
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal DefinitionIDPattern returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_common_5.DefinitionIDPattern
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal DefinitionIDPattern: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_DefinitionType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.DefinitionType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal DefinitionType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.DefinitionType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal DefinitionType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_DefinitionsType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.DefinitionsType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal DefinitionsType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.DefinitionsType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal DefinitionsType: %d bytes", len(xmlBytes))
-}
-
 func TestMarshalUnmarshal_DepartmentElement(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.DepartmentElement
+	var elem pkg_2_0.DepartmentElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -14946,7 +8242,7 @@ func TestMarshalUnmarshal_DepartmentElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.DepartmentElement
+	var elem2 pkg_2_0.DepartmentElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -14957,7 +8253,7 @@ func TestMarshalUnmarshal_DepartmentElement(t *testing.T) {
 
 func TestMarshalUnmarshal_DepartmentElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.DepartmentElementType
+	var elem pkg_2_0.DepartmentElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -14971,7 +8267,7 @@ func TestMarshalUnmarshal_DepartmentElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.DepartmentElementType
+	var elem2 pkg_2_0.DepartmentElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -14982,7 +8278,7 @@ func TestMarshalUnmarshal_DepartmentElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_DepartmentNameElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.DepartmentNameElementType
+	var elem pkg_2_0.DepartmentNameElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -14996,7 +8292,7 @@ func TestMarshalUnmarshal_DepartmentNameElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.DepartmentNameElementType
+	var elem2 pkg_2_0.DepartmentNameElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -15007,7 +8303,7 @@ func TestMarshalUnmarshal_DepartmentNameElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_DependencyNameElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.DependencyNameElementType
+	var elem pkg_2_01.DependencyNameElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -15021,7 +8317,7 @@ func TestMarshalUnmarshal_DependencyNameElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.DependencyNameElementType
+	var elem2 pkg_2_01.DependencyNameElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -15032,7 +8328,7 @@ func TestMarshalUnmarshal_DependencyNameElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_DependentLocalityNameElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.DependentLocalityNameElementType
+	var elem pkg_2_0.DependentLocalityNameElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -15046,7 +8342,7 @@ func TestMarshalUnmarshal_DependentLocalityNameElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.DependentLocalityNameElementType
+	var elem2 pkg_2_0.DependentLocalityNameElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -15057,7 +8353,7 @@ func TestMarshalUnmarshal_DependentLocalityNameElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_DependentLocalityNumberElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.DependentLocalityNumberElementType
+	var elem pkg_2_0.DependentLocalityNumberElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -15071,7 +8367,7 @@ func TestMarshalUnmarshal_DependentLocalityNumberElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.DependentLocalityNumberElementType
+	var elem2 pkg_2_0.DependentLocalityNumberElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -15082,7 +8378,7 @@ func TestMarshalUnmarshal_DependentLocalityNumberElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_DependentLocalityType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.DependentLocalityType
+	var elem pkg_2_0.DependentLocalityType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -15096,7 +8392,7 @@ func TestMarshalUnmarshal_DependentLocalityType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.DependentLocalityType
+	var elem2 pkg_2_0.DependentLocalityType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -15107,7 +8403,7 @@ func TestMarshalUnmarshal_DependentLocalityType(t *testing.T) {
 
 func TestMarshalUnmarshal_DependentThoroughfareElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.DependentThoroughfareElementType
+	var elem pkg_2_0.DependentThoroughfareElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -15121,163 +8417,13 @@ func TestMarshalUnmarshal_DependentThoroughfareElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.DependentThoroughfareElementType
+	var elem2 pkg_2_0.DependentThoroughfareElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
 	}
 
 	t.Logf("Marshal/Unmarshal DependentThoroughfareElementType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_DeprecatedInfoType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_common_5.DeprecatedInfoType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal DeprecatedInfoType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_common_5.DeprecatedInfoType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal DeprecatedInfoType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_Deprecated_infoElement(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_common_5.Deprecated_infoElement
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal Deprecated_infoElement returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_common_5.Deprecated_infoElement
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal Deprecated_infoElement: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_DigestMethodElement(t *testing.T) {
-	// Create a default instance
-	var elem pkg_200009xmldsig.DigestMethodElement
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal DigestMethodElement returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 pkg_200009xmldsig.DigestMethodElement
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal DigestMethodElement: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_DigestMethodType(t *testing.T) {
-	// Create a default instance
-	var elem pkg_200009xmldsig.DigestMethodType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal DigestMethodType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 pkg_200009xmldsig.DigestMethodType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal DigestMethodType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_DigestValueElement(t *testing.T) {
-	// Create a default instance
-	var elem pkg_200009xmldsig.DigestValueElement
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal DigestValueElement returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 pkg_200009xmldsig.DigestValueElement
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal DigestValueElement: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_DigestValueType(t *testing.T) {
-	// Create a default instance
-	var elem pkg_200009xmldsig.DigestValueType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal DigestValueType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 pkg_200009xmldsig.DigestValueType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal DigestValueType: %d bytes", len(xmlBytes))
 }
 
 func TestMarshalUnmarshal_DistinguishedNameElementType(t *testing.T) {
@@ -15330,81 +8476,6 @@ func TestMarshalUnmarshal_DocumentRootElementType(t *testing.T) {
 	t.Logf("Marshal/Unmarshal DocumentRootElementType: %d bytes", len(xmlBytes))
 }
 
-func TestMarshalUnmarshal_ElementMapItemType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_common_5.ElementMapItemType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal ElementMapItemType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_common_5.ElementMapItemType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal ElementMapItemType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_ElementMapType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_common_5.ElementMapType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal ElementMapType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_common_5.ElementMapType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal ElementMapType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_Element_mappingElement(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_common_5.Element_mappingElement
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal Element_mappingElement returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_common_5.Element_mappingElement
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal Element_mappingElement: %d bytes", len(xmlBytes))
-}
-
 func TestMarshalUnmarshal_EmailAddressElement(t *testing.T) {
 	// Create a default instance
 	var elem asset_identification1_1.EmailAddressElement
@@ -15455,59 +8526,9 @@ func TestMarshalUnmarshal_EmailAddressElementType(t *testing.T) {
 	t.Logf("Marshal/Unmarshal EmailAddressElementType: %d bytes", len(xmlBytes))
 }
 
-func TestMarshalUnmarshal_EmptyStringType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_common_5.EmptyStringType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal EmptyStringType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_common_5.EmptyStringType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal EmptyStringType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_EndFunctionType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.EndFunctionType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal EndFunctionType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.EndFunctionType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal EndFunctionType: %d bytes", len(xmlBytes))
-}
-
 func TestMarshalUnmarshal_EndorsementLineCodeElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.EndorsementLineCodeElementType
+	var elem pkg_2_0.EndorsementLineCodeElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -15521,738 +8542,13 @@ func TestMarshalUnmarshal_EndorsementLineCodeElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.EndorsementLineCodeElementType
+	var elem2 pkg_2_0.EndorsementLineCodeElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
 	}
 
 	t.Logf("Marshal/Unmarshal EndorsementLineCodeElementType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_EntityObjectAnySimpleType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.EntityObjectAnySimpleType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal EntityObjectAnySimpleType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.EntityObjectAnySimpleType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal EntityObjectAnySimpleType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_EntityObjectBinaryType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.EntityObjectBinaryType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal EntityObjectBinaryType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.EntityObjectBinaryType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal EntityObjectBinaryType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_EntityObjectBoolType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.EntityObjectBoolType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal EntityObjectBoolType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.EntityObjectBoolType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal EntityObjectBoolType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_EntityObjectFieldType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.EntityObjectFieldType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal EntityObjectFieldType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.EntityObjectFieldType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal EntityObjectFieldType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_EntityObjectFloatType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.EntityObjectFloatType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal EntityObjectFloatType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.EntityObjectFloatType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal EntityObjectFloatType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_EntityObjectIPAddressStringType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.EntityObjectIPAddressStringType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal EntityObjectIPAddressStringType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.EntityObjectIPAddressStringType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal EntityObjectIPAddressStringType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_EntityObjectIPAddressType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.EntityObjectIPAddressType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal EntityObjectIPAddressType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.EntityObjectIPAddressType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal EntityObjectIPAddressType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_EntityObjectIntType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.EntityObjectIntType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal EntityObjectIntType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.EntityObjectIntType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal EntityObjectIntType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_EntityObjectRecordType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.EntityObjectRecordType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal EntityObjectRecordType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.EntityObjectRecordType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal EntityObjectRecordType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_EntityObjectStringType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.EntityObjectStringType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal EntityObjectStringType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.EntityObjectStringType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal EntityObjectStringType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_EntityObjectVersionType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.EntityObjectVersionType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal EntityObjectVersionType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.EntityObjectVersionType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal EntityObjectVersionType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_EntityStateAnySimpleType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.EntityStateAnySimpleType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal EntityStateAnySimpleType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.EntityStateAnySimpleType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal EntityStateAnySimpleType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_EntityStateBinaryType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.EntityStateBinaryType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal EntityStateBinaryType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.EntityStateBinaryType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal EntityStateBinaryType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_EntityStateBoolType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.EntityStateBoolType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal EntityStateBoolType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.EntityStateBoolType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal EntityStateBoolType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_EntityStateDebianEVRStringType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.EntityStateDebianEVRStringType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal EntityStateDebianEVRStringType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.EntityStateDebianEVRStringType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal EntityStateDebianEVRStringType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_EntityStateEVRStringType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.EntityStateEVRStringType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal EntityStateEVRStringType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.EntityStateEVRStringType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal EntityStateEVRStringType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_EntityStateFieldType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.EntityStateFieldType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal EntityStateFieldType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.EntityStateFieldType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal EntityStateFieldType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_EntityStateFileSetRevisionType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.EntityStateFileSetRevisionType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal EntityStateFileSetRevisionType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.EntityStateFileSetRevisionType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal EntityStateFileSetRevisionType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_EntityStateFloatType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.EntityStateFloatType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal EntityStateFloatType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.EntityStateFloatType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal EntityStateFloatType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_EntityStateIOSVersionType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.EntityStateIOSVersionType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal EntityStateIOSVersionType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.EntityStateIOSVersionType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal EntityStateIOSVersionType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_EntityStateIPAddressStringType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.EntityStateIPAddressStringType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal EntityStateIPAddressStringType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.EntityStateIPAddressStringType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal EntityStateIPAddressStringType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_EntityStateIPAddressType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.EntityStateIPAddressType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal EntityStateIPAddressType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.EntityStateIPAddressType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal EntityStateIPAddressType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_EntityStateIntType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.EntityStateIntType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal EntityStateIntType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.EntityStateIntType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal EntityStateIntType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_EntityStateRecordType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.EntityStateRecordType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal EntityStateRecordType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.EntityStateRecordType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal EntityStateRecordType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_EntityStateStringType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.EntityStateStringType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal EntityStateStringType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.EntityStateStringType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal EntityStateStringType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_EntityStateVersionType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.EntityStateVersionType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal EntityStateVersionType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.EntityStateVersionType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal EntityStateVersionType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_EscapeRegexFunctionType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.EscapeRegexFunctionType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal EscapeRegexFunctionType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.EscapeRegexFunctionType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal EscapeRegexFunctionType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_ExistenceEnumeration(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_common_5.ExistenceEnumeration
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal ExistenceEnumeration returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_common_5.ExistenceEnumeration
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal ExistenceEnumeration: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_ExtendDefinitionType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.ExtendDefinitionType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal ExtendDefinitionType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.ExtendDefinitionType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal ExtendDefinitionType: %d bytes", len(xmlBytes))
 }
 
 func TestMarshalUnmarshal_Extended(t *testing.T) {
@@ -16355,209 +8651,9 @@ func TestMarshalUnmarshal_ExtendedInfosElementType(t *testing.T) {
 	t.Logf("Marshal/Unmarshal ExtendedInfosElementType: %d bytes", len(xmlBytes))
 }
 
-func TestMarshalUnmarshal_External_variableElement(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.External_variableElement
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal External_variableElement returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.External_variableElement
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal External_variableElement: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_External_variableElementType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.External_variableElementType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal External_variableElementType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.External_variableElementType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal External_variableElementType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_FactRefType(t *testing.T) {
-	// Create a default instance
-	var elem language2_0.FactRefType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal FactRefType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 language2_0.FactRefType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal FactRefType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_FactType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.FactType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal FactType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.FactType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal FactType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_FamilyEnumeration(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_common_5.FamilyEnumeration
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal FamilyEnumeration returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_common_5.FamilyEnumeration
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal FamilyEnumeration: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_FilterActionEnumeration(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.FilterActionEnumeration
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal FilterActionEnumeration returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.FilterActionEnumeration
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal FilterActionEnumeration: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_FilterElement(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.FilterElement
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal FilterElement returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.FilterElement
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal FilterElement: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_FilterElementType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.FilterElementType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal FilterElementType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.FilterElementType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal FilterElementType: %d bytes", len(xmlBytes))
-}
-
 func TestMarshalUnmarshal_FirmNameElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.FirmNameElementType
+	var elem pkg_2_0.FirmNameElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -16571,7 +8667,7 @@ func TestMarshalUnmarshal_FirmNameElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.FirmNameElementType
+	var elem2 pkg_2_0.FirmNameElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -16582,7 +8678,7 @@ func TestMarshalUnmarshal_FirmNameElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_FirmType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.FirmType
+	var elem pkg_2_0.FirmType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -16596,7 +8692,7 @@ func TestMarshalUnmarshal_FirmType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.FirmType
+	var elem2 pkg_2_0.FirmType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -16607,7 +8703,7 @@ func TestMarshalUnmarshal_FirmType(t *testing.T) {
 
 func TestMarshalUnmarshal_FirstNameElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.FirstNameElementType
+	var elem pkg_2_01.FirstNameElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -16621,7 +8717,7 @@ func TestMarshalUnmarshal_FirstNameElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.FirstNameElementType
+	var elem2 pkg_2_01.FirstNameElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -16630,84 +8726,9 @@ func TestMarshalUnmarshal_FirstNameElementType(t *testing.T) {
 	t.Logf("Marshal/Unmarshal FirstNameElementType: %d bytes", len(xmlBytes))
 }
 
-func TestMarshalUnmarshal_FixStrategyEnumType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.FixStrategyEnumType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal FixStrategyEnumType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.FixStrategyEnumType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal FixStrategyEnumType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_FixTextType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.FixTextType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal FixTextType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.FixTextType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal FixTextType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_FixType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.FixType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal FixType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.FixType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal FixType: %d bytes", len(xmlBytes))
-}
-
 func TestMarshalUnmarshal_FormerNameElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.FormerNameElementType
+	var elem pkg_2_01.FormerNameElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -16721,7 +8742,7 @@ func TestMarshalUnmarshal_FormerNameElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.FormerNameElementType
+	var elem2 pkg_2_01.FormerNameElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -16807,7 +8828,7 @@ func TestMarshalUnmarshal_FromType(t *testing.T) {
 
 func TestMarshalUnmarshal_Function(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.Function
+	var elem pkg_2_01.Function
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -16821,7 +8842,7 @@ func TestMarshalUnmarshal_Function(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.Function
+	var elem2 pkg_2_01.Function
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -16832,7 +8853,7 @@ func TestMarshalUnmarshal_Function(t *testing.T) {
 
 func TestMarshalUnmarshal_FunctionElement(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.FunctionElement
+	var elem pkg_2_01.FunctionElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -16846,7 +8867,7 @@ func TestMarshalUnmarshal_FunctionElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.FunctionElement
+	var elem2 pkg_2_01.FunctionElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -16857,7 +8878,7 @@ func TestMarshalUnmarshal_FunctionElement(t *testing.T) {
 
 func TestMarshalUnmarshal_GeneralSuffixElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.GeneralSuffixElementType
+	var elem pkg_2_01.GeneralSuffixElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -16871,7 +8892,7 @@ func TestMarshalUnmarshal_GeneralSuffixElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.GeneralSuffixElementType
+	var elem2 pkg_2_01.GeneralSuffixElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -16882,7 +8903,7 @@ func TestMarshalUnmarshal_GeneralSuffixElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_GenerationIdentifierElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.GenerationIdentifierElementType
+	var elem pkg_2_01.GenerationIdentifierElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -16896,163 +8917,13 @@ func TestMarshalUnmarshal_GenerationIdentifierElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.GenerationIdentifierElementType
+	var elem2 pkg_2_01.GenerationIdentifierElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
 	}
 
 	t.Logf("Marshal/Unmarshal GenerationIdentifierElementType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_GeneratorType(t *testing.T) {
-	// Create a default instance
-	var elem dictionary2_0.GeneratorType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal GeneratorType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 dictionary2_0.GeneratorType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal GeneratorType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_GlobToRegexFunctionType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.GlobToRegexFunctionType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal GlobToRegexFunctionType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.GlobToRegexFunctionType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal GlobToRegexFunctionType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_GroupElement(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.GroupElement
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal GroupElement returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.GroupElement
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal GroupElement: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_GroupIdType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.GroupIdType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal GroupIdType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.GroupIdType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal GroupIdType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_GroupType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.GroupType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal GroupType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.GroupType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal GroupType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_HMACOutputLengthType(t *testing.T) {
-	// Create a default instance
-	var elem pkg_200009xmldsig.HMACOutputLengthType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal HMACOutputLengthType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 pkg_200009xmldsig.HMACOutputLengthType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal HMACOutputLengthType: %d bytes", len(xmlBytes))
 }
 
 func TestMarshalUnmarshal_HostElementType(t *testing.T) {
@@ -17155,156 +9026,6 @@ func TestMarshalUnmarshal_HrefType(t *testing.T) {
 	t.Logf("Marshal/Unmarshal HrefType: %d bytes", len(xmlBytes))
 }
 
-func TestMarshalUnmarshal_HtmlTextType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.HtmlTextType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal HtmlTextType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.HtmlTextType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal HtmlTextType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_HtmlTextWithSubType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.HtmlTextWithSubType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal HtmlTextWithSubType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.HtmlTextWithSubType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal HtmlTextWithSubType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_IdentType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.IdentType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal IdentType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.IdentType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal IdentType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_IdentityType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.IdentityType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal IdentityType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.IdentityType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal IdentityType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_IdrefListType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.IdrefListType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal IdrefListType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.IdrefListType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal IdrefListType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_IdrefType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.IdrefType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal IdrefType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.IdrefType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal IdrefType: %d bytes", len(xmlBytes))
-}
-
 func TestMarshalUnmarshal_InstallationIdElementType(t *testing.T) {
 	// Create a default instance
 	var elem asset_identification1_1.InstallationIdElementType
@@ -17330,31 +9051,6 @@ func TestMarshalUnmarshal_InstallationIdElementType(t *testing.T) {
 	t.Logf("Marshal/Unmarshal InstallationIdElementType: %d bytes", len(xmlBytes))
 }
 
-func TestMarshalUnmarshal_InstanceFixType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.InstanceFixType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal InstanceFixType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.InstanceFixType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal InstanceFixType: %d bytes", len(xmlBytes))
-}
-
 func TestMarshalUnmarshal_InstanceNameElementType(t *testing.T) {
 	// Create a default instance
 	var elem asset_identification1_1.InstanceNameElementType
@@ -17378,56 +9074,6 @@ func TestMarshalUnmarshal_InstanceNameElementType(t *testing.T) {
 	}
 
 	t.Logf("Marshal/Unmarshal InstanceNameElementType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_InstanceResultType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.InstanceResultType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal InstanceResultType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.InstanceResultType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal InstanceResultType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_InterfaceHintType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.InterfaceHintType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal InterfaceHintType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.InterfaceHintType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal InterfaceHintType: %d bytes", len(xmlBytes))
 }
 
 func TestMarshalUnmarshal_IpAddressElement(t *testing.T) {
@@ -17630,59 +9276,9 @@ func TestMarshalUnmarshal_ItAssetElement(t *testing.T) {
 	t.Logf("Marshal/Unmarshal ItAssetElement: %d bytes", len(xmlBytes))
 }
 
-func TestMarshalUnmarshal_ItemElement(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.ItemElement
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal ItemElement returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.ItemElement
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal ItemElement: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_ItemIDPattern(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_common_5.ItemIDPattern
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal ItemIDPattern returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_common_5.ItemIDPattern
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal ItemIDPattern: %d bytes", len(xmlBytes))
-}
-
 func TestMarshalUnmarshal_JointPersonNameElement(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.JointPersonNameElement
+	var elem pkg_2_01.JointPersonNameElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -17696,7 +9292,7 @@ func TestMarshalUnmarshal_JointPersonNameElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.JointPersonNameElement
+	var elem2 pkg_2_01.JointPersonNameElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -17707,7 +9303,7 @@ func TestMarshalUnmarshal_JointPersonNameElement(t *testing.T) {
 
 func TestMarshalUnmarshal_JointPersonNameElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.JointPersonNameElementType
+	var elem pkg_2_01.JointPersonNameElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -17721,7 +9317,7 @@ func TestMarshalUnmarshal_JointPersonNameElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.JointPersonNameElementType
+	var elem2 pkg_2_01.JointPersonNameElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -17730,59 +9326,9 @@ func TestMarshalUnmarshal_JointPersonNameElementType(t *testing.T) {
 	t.Logf("Marshal/Unmarshal JointPersonNameElementType: %d bytes", len(xmlBytes))
 }
 
-func TestMarshalUnmarshal_KeyInfoElement(t *testing.T) {
-	// Create a default instance
-	var elem pkg_200009xmldsig.KeyInfoElement
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal KeyInfoElement returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 pkg_200009xmldsig.KeyInfoElement
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal KeyInfoElement: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_KeyInfoType(t *testing.T) {
-	// Create a default instance
-	var elem pkg_200009xmldsig.KeyInfoType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal KeyInfoType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 pkg_200009xmldsig.KeyInfoType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal KeyInfoType: %d bytes", len(xmlBytes))
-}
-
 func TestMarshalUnmarshal_KeyLineCodeElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.KeyLineCodeElementType
+	var elem pkg_2_0.KeyLineCodeElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -17796,7 +9342,7 @@ func TestMarshalUnmarshal_KeyLineCodeElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.KeyLineCodeElementType
+	var elem2 pkg_2_0.KeyLineCodeElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -17805,84 +9351,9 @@ func TestMarshalUnmarshal_KeyLineCodeElementType(t *testing.T) {
 	t.Logf("Marshal/Unmarshal KeyLineCodeElementType: %d bytes", len(xmlBytes))
 }
 
-func TestMarshalUnmarshal_KeyNameElement(t *testing.T) {
-	// Create a default instance
-	var elem pkg_200009xmldsig.KeyNameElement
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal KeyNameElement returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 pkg_200009xmldsig.KeyNameElement
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal KeyNameElement: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_KeyValueElement(t *testing.T) {
-	// Create a default instance
-	var elem pkg_200009xmldsig.KeyValueElement
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal KeyValueElement returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 pkg_200009xmldsig.KeyValueElement
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal KeyValueElement: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_KeyValueType(t *testing.T) {
-	// Create a default instance
-	var elem pkg_200009xmldsig.KeyValueType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal KeyValueType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 pkg_200009xmldsig.KeyValueType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal KeyValueType: %d bytes", len(xmlBytes))
-}
-
 func TestMarshalUnmarshal_KnownAsElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.KnownAsElementType
+	var elem pkg_2_01.KnownAsElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -17896,7 +9367,7 @@ func TestMarshalUnmarshal_KnownAsElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.KnownAsElementType
+	var elem2 pkg_2_01.KnownAsElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -17932,7 +9403,7 @@ func TestMarshalUnmarshal_LabelType(t *testing.T) {
 
 func TestMarshalUnmarshal_LargeMailUserIdentifierElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.LargeMailUserIdentifierElementType
+	var elem pkg_2_0.LargeMailUserIdentifierElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -17946,7 +9417,7 @@ func TestMarshalUnmarshal_LargeMailUserIdentifierElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.LargeMailUserIdentifierElementType
+	var elem2 pkg_2_0.LargeMailUserIdentifierElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -17957,7 +9428,7 @@ func TestMarshalUnmarshal_LargeMailUserIdentifierElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_LargeMailUserNameElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.LargeMailUserNameElementType
+	var elem pkg_2_0.LargeMailUserNameElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -17971,7 +9442,7 @@ func TestMarshalUnmarshal_LargeMailUserNameElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.LargeMailUserNameElementType
+	var elem2 pkg_2_0.LargeMailUserNameElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -17982,7 +9453,7 @@ func TestMarshalUnmarshal_LargeMailUserNameElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_LargeMailUserType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.LargeMailUserType
+	var elem pkg_2_0.LargeMailUserType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -17996,7 +9467,7 @@ func TestMarshalUnmarshal_LargeMailUserType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.LargeMailUserType
+	var elem2 pkg_2_0.LargeMailUserType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -18007,7 +9478,7 @@ func TestMarshalUnmarshal_LargeMailUserType(t *testing.T) {
 
 func TestMarshalUnmarshal_LastNameElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.LastNameElementType
+	var elem pkg_2_01.LastNameElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -18021,7 +9492,7 @@ func TestMarshalUnmarshal_LastNameElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.LastNameElementType
+	var elem2 pkg_2_01.LastNameElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -18053,106 +9524,6 @@ func TestMarshalUnmarshal_LicenseElementType(t *testing.T) {
 	}
 
 	t.Logf("Marshal/Unmarshal LicenseElementType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_ListType(t *testing.T) {
-	// Create a default instance
-	var elem dictionary2_0.ListType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal ListType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 dictionary2_0.ListType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal ListType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_LiteralComponentType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.LiteralComponentType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal LiteralComponentType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.LiteralComponentType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal LiteralComponentType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_Local_variableElement(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.Local_variableElement
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal Local_variableElement returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.Local_variableElement
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal Local_variableElement: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_Local_variableElementType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.Local_variableElementType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal Local_variableElementType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.Local_variableElementType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal Local_variableElementType: %d bytes", len(xmlBytes))
 }
 
 func TestMarshalUnmarshal_LocaleElementType(t *testing.T) {
@@ -18207,7 +9578,7 @@ func TestMarshalUnmarshal_LocaleType(t *testing.T) {
 
 func TestMarshalUnmarshal_LocalityElement(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.LocalityElement
+	var elem pkg_2_0.LocalityElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -18221,7 +9592,7 @@ func TestMarshalUnmarshal_LocalityElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.LocalityElement
+	var elem2 pkg_2_0.LocalityElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -18232,7 +9603,7 @@ func TestMarshalUnmarshal_LocalityElement(t *testing.T) {
 
 func TestMarshalUnmarshal_LocalityElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.LocalityElementType
+	var elem pkg_2_0.LocalityElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -18246,7 +9617,7 @@ func TestMarshalUnmarshal_LocalityElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.LocalityElementType
+	var elem2 pkg_2_0.LocalityElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -18257,7 +9628,7 @@ func TestMarshalUnmarshal_LocalityElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_LocalityNameElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.LocalityNameElementType
+	var elem pkg_2_0.LocalityNameElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -18271,7 +9642,7 @@ func TestMarshalUnmarshal_LocalityNameElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.LocalityNameElementType
+	var elem2 pkg_2_0.LocalityNameElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -18530,31 +9901,6 @@ func TestMarshalUnmarshal_LocatorType(t *testing.T) {
 	t.Logf("Marshal/Unmarshal LocatorType: %d bytes", len(xmlBytes))
 }
 
-func TestMarshalUnmarshal_LogicalTestType(t *testing.T) {
-	// Create a default instance
-	var elem language2_0.LogicalTestType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal LogicalTestType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 language2_0.LogicalTestType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal LogicalTestType: %d bytes", len(xmlBytes))
-}
-
 func TestMarshalUnmarshal_MacAddressElementType(t *testing.T) {
 	// Create a default instance
 	var elem asset_identification1_1.MacAddressElementType
@@ -18607,7 +9953,7 @@ func TestMarshalUnmarshal_MacAddressType(t *testing.T) {
 
 func TestMarshalUnmarshal_MailStopNameElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.MailStopNameElementType
+	var elem pkg_2_0.MailStopNameElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -18621,7 +9967,7 @@ func TestMarshalUnmarshal_MailStopNameElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.MailStopNameElementType
+	var elem2 pkg_2_0.MailStopNameElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -18632,7 +9978,7 @@ func TestMarshalUnmarshal_MailStopNameElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_MailStopNumberElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.MailStopNumberElementType
+	var elem pkg_2_0.MailStopNumberElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -18646,7 +9992,7 @@ func TestMarshalUnmarshal_MailStopNumberElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.MailStopNumberElementType
+	var elem2 pkg_2_0.MailStopNumberElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -18657,7 +10003,7 @@ func TestMarshalUnmarshal_MailStopNumberElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_MailStopType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.MailStopType
+	var elem pkg_2_0.MailStopType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -18671,7 +10017,7 @@ func TestMarshalUnmarshal_MailStopType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.MailStopType
+	var elem2 pkg_2_0.MailStopType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -18680,159 +10026,9 @@ func TestMarshalUnmarshal_MailStopType(t *testing.T) {
 	t.Logf("Marshal/Unmarshal MailStopType: %d bytes", len(xmlBytes))
 }
 
-func TestMarshalUnmarshal_ManifestElement(t *testing.T) {
-	// Create a default instance
-	var elem pkg_200009xmldsig.ManifestElement
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal ManifestElement returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 pkg_200009xmldsig.ManifestElement
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal ManifestElement: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_ManifestType(t *testing.T) {
-	// Create a default instance
-	var elem pkg_200009xmldsig.ManifestType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal ManifestType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 pkg_200009xmldsig.ManifestType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal ManifestType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_MessageLevelEnumeration(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_common_5.MessageLevelEnumeration
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal MessageLevelEnumeration returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_common_5.MessageLevelEnumeration
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal MessageLevelEnumeration: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_MessageType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.MessageType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal MessageType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.MessageType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal MessageType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_MetadataType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.MetadataType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal MetadataType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.MetadataType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal MetadataType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_MgmtDataElement(t *testing.T) {
-	// Create a default instance
-	var elem pkg_200009xmldsig.MgmtDataElement
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal MgmtDataElement returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 pkg_200009xmldsig.MgmtDataElement
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal MgmtDataElement: %d bytes", len(xmlBytes))
-}
-
 func TestMarshalUnmarshal_MiddleNameElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.MiddleNameElementType
+	var elem pkg_2_01.MiddleNameElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -18846,63 +10042,13 @@ func TestMarshalUnmarshal_MiddleNameElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.MiddleNameElementType
+	var elem2 pkg_2_01.MiddleNameElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
 	}
 
 	t.Logf("Marshal/Unmarshal MiddleNameElementType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_ModelElement(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.ModelElement
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal ModelElement returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.ModelElement
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal ModelElement: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_ModelElementType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.ModelElementType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal ModelElementType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.ModelElementType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal ModelElementType: %d bytes", len(xmlBytes))
 }
 
 func TestMarshalUnmarshal_MotherboardGuidElementType(t *testing.T) {
@@ -18930,34 +10076,9 @@ func TestMarshalUnmarshal_MotherboardGuidElementType(t *testing.T) {
 	t.Logf("Marshal/Unmarshal MotherboardGuidElementType: %d bytes", len(xmlBytes))
 }
 
-func TestMarshalUnmarshal_MsgSevEnumType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.MsgSevEnumType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal MsgSevEnumType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.MsgSevEnumType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal MsgSevEnumType: %d bytes", len(xmlBytes))
-}
-
 func TestMarshalUnmarshal_NameDetails(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.NameDetails
+	var elem pkg_2_01.NameDetails
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -18971,7 +10092,7 @@ func TestMarshalUnmarshal_NameDetails(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.NameDetails
+	var elem2 pkg_2_01.NameDetails
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -18982,7 +10103,7 @@ func TestMarshalUnmarshal_NameDetails(t *testing.T) {
 
 func TestMarshalUnmarshal_NameDetailsElement(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.NameDetailsElement
+	var elem pkg_2_01.NameDetailsElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -18996,7 +10117,7 @@ func TestMarshalUnmarshal_NameDetailsElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.NameDetailsElement
+	var elem2 pkg_2_01.NameDetailsElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -19007,7 +10128,7 @@ func TestMarshalUnmarshal_NameDetailsElement(t *testing.T) {
 
 func TestMarshalUnmarshal_NameDetailsElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.NameDetailsElementType
+	var elem pkg_2_01.NameDetailsElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -19021,7 +10142,7 @@ func TestMarshalUnmarshal_NameDetailsElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.NameDetailsElementType
+	var elem2 pkg_2_01.NameDetailsElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -19032,7 +10153,7 @@ func TestMarshalUnmarshal_NameDetailsElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_NameLineType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.NameLineType
+	var elem pkg_2_01.NameLineType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -19046,7 +10167,7 @@ func TestMarshalUnmarshal_NameLineType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.NameLineType
+	var elem2 pkg_2_01.NameLineType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -19055,34 +10176,9 @@ func TestMarshalUnmarshal_NameLineType(t *testing.T) {
 	t.Logf("Marshal/Unmarshal NameLineType: %d bytes", len(xmlBytes))
 }
 
-func TestMarshalUnmarshal_NamePattern(t *testing.T) {
-	// Create a default instance
-	var elem dictionary2_0.NamePattern
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal NamePattern returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 dictionary2_0.NamePattern
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal NamePattern: %d bytes", len(xmlBytes))
-}
-
 func TestMarshalUnmarshal_NamePrefixElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.NamePrefixElementType
+	var elem pkg_2_01.NamePrefixElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -19096,7 +10192,7 @@ func TestMarshalUnmarshal_NamePrefixElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.NamePrefixElementType
+	var elem2 pkg_2_01.NamePrefixElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -19205,206 +10301,6 @@ func TestMarshalUnmarshal_NetworkType(t *testing.T) {
 	t.Logf("Marshal/Unmarshal NetworkType: %d bytes", len(xmlBytes))
 }
 
-func TestMarshalUnmarshal_NonEmptyStringType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_common_5.NonEmptyStringType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal NonEmptyStringType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_common_5.NonEmptyStringType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal NonEmptyStringType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_NotesElement(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.NotesElement
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal NotesElement returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.NotesElement
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal NotesElement: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_NotesElementType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.NotesElementType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal NotesElementType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.NotesElementType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal NotesElementType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_NotesType(t *testing.T) {
-	// Create a default instance
-	var elem dictionary2_0.NotesType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal NotesType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 dictionary2_0.NotesType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal NotesType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_NoticeType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.NoticeType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal NoticeType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.NoticeType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal NoticeType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_ObjectComponentType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.ObjectComponentType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal ObjectComponentType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.ObjectComponentType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal ObjectComponentType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_ObjectElement(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.ObjectElement
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal ObjectElement returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.ObjectElement
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal ObjectElement: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_ObjectIDPattern(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_common_5.ObjectIDPattern
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal ObjectIDPattern returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_common_5.ObjectIDPattern
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal ObjectIDPattern: %d bytes", len(xmlBytes))
-}
-
 func TestMarshalUnmarshal_ObjectRefElement(t *testing.T) {
 	// Create a default instance
 	var elem asset_reporting_format1_1.ObjectRefElement
@@ -19455,134 +10351,9 @@ func TestMarshalUnmarshal_ObjectRefElementType(t *testing.T) {
 	t.Logf("Marshal/Unmarshal ObjectRefElementType: %d bytes", len(xmlBytes))
 }
 
-func TestMarshalUnmarshal_ObjectRefType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.ObjectRefType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal ObjectRefType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.ObjectRefType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal ObjectRefType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_ObjectType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.ObjectType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal ObjectType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.ObjectType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal ObjectType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_ObjectsType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.ObjectsType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal ObjectsType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.ObjectsType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal ObjectsType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_OperationEnumeration(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_common_5.OperationEnumeration
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal OperationEnumeration returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_common_5.OperationEnumeration
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal OperationEnumeration: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_OperatorEnumeration(t *testing.T) {
-	// Create a default instance
-	var elem language2_0.OperatorEnumeration
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal OperatorEnumeration returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 language2_0.OperatorEnumeration
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal OperatorEnumeration: %d bytes", len(xmlBytes))
-}
-
 func TestMarshalUnmarshal_OrganisationFormerNameElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.OrganisationFormerNameElementType
+	var elem pkg_2_01.OrganisationFormerNameElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -19596,7 +10367,7 @@ func TestMarshalUnmarshal_OrganisationFormerNameElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.OrganisationFormerNameElementType
+	var elem2 pkg_2_01.OrganisationFormerNameElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -19607,7 +10378,7 @@ func TestMarshalUnmarshal_OrganisationFormerNameElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_OrganisationKnownAsElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.OrganisationKnownAsElementType
+	var elem pkg_2_01.OrganisationKnownAsElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -19621,7 +10392,7 @@ func TestMarshalUnmarshal_OrganisationKnownAsElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.OrganisationKnownAsElementType
+	var elem2 pkg_2_01.OrganisationKnownAsElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -19632,7 +10403,7 @@ func TestMarshalUnmarshal_OrganisationKnownAsElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_OrganisationNameDetails(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.OrganisationNameDetails
+	var elem pkg_2_01.OrganisationNameDetails
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -19646,7 +10417,7 @@ func TestMarshalUnmarshal_OrganisationNameDetails(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.OrganisationNameDetails
+	var elem2 pkg_2_01.OrganisationNameDetails
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -19657,7 +10428,7 @@ func TestMarshalUnmarshal_OrganisationNameDetails(t *testing.T) {
 
 func TestMarshalUnmarshal_OrganisationNameDetailsElement(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.OrganisationNameDetailsElement
+	var elem pkg_2_01.OrganisationNameDetailsElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -19671,7 +10442,7 @@ func TestMarshalUnmarshal_OrganisationNameDetailsElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.OrganisationNameDetailsElement
+	var elem2 pkg_2_01.OrganisationNameDetailsElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -19682,7 +10453,7 @@ func TestMarshalUnmarshal_OrganisationNameDetailsElement(t *testing.T) {
 
 func TestMarshalUnmarshal_OrganisationNameDetailsElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.OrganisationNameDetailsElementType
+	var elem pkg_2_01.OrganisationNameDetailsElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -19696,7 +10467,7 @@ func TestMarshalUnmarshal_OrganisationNameDetailsElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.OrganisationNameDetailsElementType
+	var elem2 pkg_2_01.OrganisationNameDetailsElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -19707,7 +10478,7 @@ func TestMarshalUnmarshal_OrganisationNameDetailsElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_OrganisationNameElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.OrganisationNameElementType
+	var elem pkg_2_01.OrganisationNameElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -19721,7 +10492,7 @@ func TestMarshalUnmarshal_OrganisationNameElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.OrganisationNameElementType
+	var elem2 pkg_2_01.OrganisationNameElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -19732,7 +10503,7 @@ func TestMarshalUnmarshal_OrganisationNameElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_OrganisationTypeElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.OrganisationTypeElementType
+	var elem pkg_2_01.OrganisationTypeElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -19746,7 +10517,7 @@ func TestMarshalUnmarshal_OrganisationTypeElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.OrganisationTypeElementType
+	var elem2 pkg_2_01.OrganisationTypeElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -19807,7 +10578,7 @@ func TestMarshalUnmarshal_OrganizationType(t *testing.T) {
 
 func TestMarshalUnmarshal_OtherNameElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.OtherNameElementType
+	var elem pkg_2_01.OtherNameElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -19821,188 +10592,13 @@ func TestMarshalUnmarshal_OtherNameElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.OtherNameElementType
+	var elem2 pkg_2_01.OtherNameElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
 	}
 
 	t.Logf("Marshal/Unmarshal OtherNameElementType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_Oval_definitionsElement(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.Oval_definitionsElement
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal Oval_definitionsElement returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.Oval_definitionsElement
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal Oval_definitionsElement: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_Oval_definitionsElementType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.Oval_definitionsElementType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal Oval_definitionsElementType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.Oval_definitionsElementType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal Oval_definitionsElementType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_OverrideType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.OverrideType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal OverrideType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.OverrideType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal OverrideType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_OverrideableCPE2idrefType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.OverrideableCPE2idrefType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal OverrideableCPE2idrefType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.OverrideableCPE2idrefType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal OverrideableCPE2idrefType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_PGPDataElement(t *testing.T) {
-	// Create a default instance
-	var elem pkg_200009xmldsig.PGPDataElement
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal PGPDataElement returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 pkg_200009xmldsig.PGPDataElement
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal PGPDataElement: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_PGPDataType(t *testing.T) {
-	// Create a default instance
-	var elem pkg_200009xmldsig.PGPDataType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal PGPDataType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 pkg_200009xmldsig.PGPDataType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal PGPDataType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_ParamType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.ParamType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal ParamType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.ParamType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal ParamType: %d bytes", len(xmlBytes))
 }
 
 func TestMarshalUnmarshal_PersonElement(t *testing.T) {
@@ -20032,7 +10628,7 @@ func TestMarshalUnmarshal_PersonElement(t *testing.T) {
 
 func TestMarshalUnmarshal_PersonName(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.PersonName
+	var elem pkg_2_01.PersonName
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -20046,7 +10642,7 @@ func TestMarshalUnmarshal_PersonName(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.PersonName
+	var elem2 pkg_2_01.PersonName
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -20057,7 +10653,7 @@ func TestMarshalUnmarshal_PersonName(t *testing.T) {
 
 func TestMarshalUnmarshal_PersonNameElement(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.PersonNameElement
+	var elem pkg_2_01.PersonNameElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -20071,7 +10667,7 @@ func TestMarshalUnmarshal_PersonNameElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.PersonNameElement
+	var elem2 pkg_2_01.PersonNameElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -20082,7 +10678,7 @@ func TestMarshalUnmarshal_PersonNameElement(t *testing.T) {
 
 func TestMarshalUnmarshal_PersonNameElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.PersonNameElementType
+	var elem pkg_2_01.PersonNameElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -20096,7 +10692,7 @@ func TestMarshalUnmarshal_PersonNameElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.PersonNameElementType
+	var elem2 pkg_2_01.PersonNameElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -20128,106 +10724,6 @@ func TestMarshalUnmarshal_PersonType(t *testing.T) {
 	}
 
 	t.Logf("Marshal/Unmarshal PersonType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_PlainTextType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.PlainTextType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal PlainTextType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.PlainTextType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal PlainTextType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_PlatformSpecificationElement(t *testing.T) {
-	// Create a default instance
-	var elem language2_0.PlatformSpecificationElement
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal PlatformSpecificationElement returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 language2_0.PlatformSpecificationElement
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal PlatformSpecificationElement: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_PlatformSpecificationElementType(t *testing.T) {
-	// Create a default instance
-	var elem language2_0.PlatformSpecificationElementType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal PlatformSpecificationElementType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 language2_0.PlatformSpecificationElementType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal PlatformSpecificationElementType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_PlatformType(t *testing.T) {
-	// Create a default instance
-	var elem language2_0.PlatformType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal PlatformType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 language2_0.PlatformType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal PlatformType: %d bytes", len(xmlBytes))
 }
 
 func TestMarshalUnmarshal_PortElementType(t *testing.T) {
@@ -20305,59 +10801,9 @@ func TestMarshalUnmarshal_PortType(t *testing.T) {
 	t.Logf("Marshal/Unmarshal PortType: %d bytes", len(xmlBytes))
 }
 
-func TestMarshalUnmarshal_PossibleRestrictionType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.PossibleRestrictionType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal PossibleRestrictionType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.PossibleRestrictionType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal PossibleRestrictionType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_PossibleValueType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.PossibleValueType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal PossibleValueType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.PossibleValueType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal PossibleValueType: %d bytes", len(xmlBytes))
-}
-
 func TestMarshalUnmarshal_PostBoxElement(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PostBoxElement
+	var elem pkg_2_0.PostBoxElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -20371,7 +10817,7 @@ func TestMarshalUnmarshal_PostBoxElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PostBoxElement
+	var elem2 pkg_2_0.PostBoxElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -20382,7 +10828,7 @@ func TestMarshalUnmarshal_PostBoxElement(t *testing.T) {
 
 func TestMarshalUnmarshal_PostBoxElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PostBoxElementType
+	var elem pkg_2_0.PostBoxElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -20396,7 +10842,7 @@ func TestMarshalUnmarshal_PostBoxElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PostBoxElementType
+	var elem2 pkg_2_0.PostBoxElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -20407,7 +10853,7 @@ func TestMarshalUnmarshal_PostBoxElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_PostBoxNumberElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PostBoxNumberElementType
+	var elem pkg_2_0.PostBoxNumberElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -20421,7 +10867,7 @@ func TestMarshalUnmarshal_PostBoxNumberElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PostBoxNumberElementType
+	var elem2 pkg_2_0.PostBoxNumberElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -20432,7 +10878,7 @@ func TestMarshalUnmarshal_PostBoxNumberElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_PostBoxNumberExtensionElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PostBoxNumberExtensionElementType
+	var elem pkg_2_0.PostBoxNumberExtensionElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -20446,7 +10892,7 @@ func TestMarshalUnmarshal_PostBoxNumberExtensionElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PostBoxNumberExtensionElementType
+	var elem2 pkg_2_0.PostBoxNumberExtensionElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -20457,7 +10903,7 @@ func TestMarshalUnmarshal_PostBoxNumberExtensionElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_PostBoxNumberPrefixElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PostBoxNumberPrefixElementType
+	var elem pkg_2_0.PostBoxNumberPrefixElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -20471,7 +10917,7 @@ func TestMarshalUnmarshal_PostBoxNumberPrefixElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PostBoxNumberPrefixElementType
+	var elem2 pkg_2_0.PostBoxNumberPrefixElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -20482,7 +10928,7 @@ func TestMarshalUnmarshal_PostBoxNumberPrefixElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_PostBoxNumberSuffixElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PostBoxNumberSuffixElementType
+	var elem pkg_2_0.PostBoxNumberSuffixElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -20496,7 +10942,7 @@ func TestMarshalUnmarshal_PostBoxNumberSuffixElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PostBoxNumberSuffixElementType
+	var elem2 pkg_2_0.PostBoxNumberSuffixElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -20507,7 +10953,7 @@ func TestMarshalUnmarshal_PostBoxNumberSuffixElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_PostOfficeElement(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PostOfficeElement
+	var elem pkg_2_0.PostOfficeElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -20521,7 +10967,7 @@ func TestMarshalUnmarshal_PostOfficeElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PostOfficeElement
+	var elem2 pkg_2_0.PostOfficeElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -20532,7 +10978,7 @@ func TestMarshalUnmarshal_PostOfficeElement(t *testing.T) {
 
 func TestMarshalUnmarshal_PostOfficeElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PostOfficeElementType
+	var elem pkg_2_0.PostOfficeElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -20546,7 +10992,7 @@ func TestMarshalUnmarshal_PostOfficeElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PostOfficeElementType
+	var elem2 pkg_2_0.PostOfficeElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -20557,7 +11003,7 @@ func TestMarshalUnmarshal_PostOfficeElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_PostOfficeNameElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PostOfficeNameElementType
+	var elem pkg_2_0.PostOfficeNameElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -20571,7 +11017,7 @@ func TestMarshalUnmarshal_PostOfficeNameElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PostOfficeNameElementType
+	var elem2 pkg_2_0.PostOfficeNameElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -20582,7 +11028,7 @@ func TestMarshalUnmarshal_PostOfficeNameElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_PostOfficeNumberElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PostOfficeNumberElementType
+	var elem pkg_2_0.PostOfficeNumberElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -20596,7 +11042,7 @@ func TestMarshalUnmarshal_PostOfficeNumberElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PostOfficeNumberElementType
+	var elem2 pkg_2_0.PostOfficeNumberElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -20607,7 +11053,7 @@ func TestMarshalUnmarshal_PostOfficeNumberElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_PostTownElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PostTownElementType
+	var elem pkg_2_0.PostTownElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -20621,7 +11067,7 @@ func TestMarshalUnmarshal_PostTownElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PostTownElementType
+	var elem2 pkg_2_0.PostTownElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -20632,7 +11078,7 @@ func TestMarshalUnmarshal_PostTownElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_PostTownNameElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PostTownNameElementType
+	var elem pkg_2_0.PostTownNameElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -20646,7 +11092,7 @@ func TestMarshalUnmarshal_PostTownNameElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PostTownNameElementType
+	var elem2 pkg_2_0.PostTownNameElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -20657,7 +11103,7 @@ func TestMarshalUnmarshal_PostTownNameElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_PostTownSuffixElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PostTownSuffixElementType
+	var elem pkg_2_0.PostTownSuffixElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -20671,7 +11117,7 @@ func TestMarshalUnmarshal_PostTownSuffixElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PostTownSuffixElementType
+	var elem2 pkg_2_0.PostTownSuffixElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -20682,7 +11128,7 @@ func TestMarshalUnmarshal_PostTownSuffixElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_PostalCodeElement(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PostalCodeElement
+	var elem pkg_2_0.PostalCodeElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -20696,7 +11142,7 @@ func TestMarshalUnmarshal_PostalCodeElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PostalCodeElement
+	var elem2 pkg_2_0.PostalCodeElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -20707,7 +11153,7 @@ func TestMarshalUnmarshal_PostalCodeElement(t *testing.T) {
 
 func TestMarshalUnmarshal_PostalCodeElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PostalCodeElementType
+	var elem pkg_2_0.PostalCodeElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -20721,7 +11167,7 @@ func TestMarshalUnmarshal_PostalCodeElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PostalCodeElementType
+	var elem2 pkg_2_0.PostalCodeElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -20732,7 +11178,7 @@ func TestMarshalUnmarshal_PostalCodeElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_PostalCodeNumberElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PostalCodeNumberElementType
+	var elem pkg_2_0.PostalCodeNumberElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -20746,7 +11192,7 @@ func TestMarshalUnmarshal_PostalCodeNumberElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PostalCodeNumberElementType
+	var elem2 pkg_2_0.PostalCodeNumberElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -20757,7 +11203,7 @@ func TestMarshalUnmarshal_PostalCodeNumberElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_PostalCodeNumberExtensionElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PostalCodeNumberExtensionElementType
+	var elem pkg_2_0.PostalCodeNumberExtensionElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -20771,7 +11217,7 @@ func TestMarshalUnmarshal_PostalCodeNumberExtensionElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PostalCodeNumberExtensionElementType
+	var elem2 pkg_2_0.PostalCodeNumberExtensionElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -20782,7 +11228,7 @@ func TestMarshalUnmarshal_PostalCodeNumberExtensionElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_PostalRouteNameElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PostalRouteNameElementType
+	var elem pkg_2_0.PostalRouteNameElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -20796,7 +11242,7 @@ func TestMarshalUnmarshal_PostalRouteNameElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PostalRouteNameElementType
+	var elem2 pkg_2_0.PostalRouteNameElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -20807,7 +11253,7 @@ func TestMarshalUnmarshal_PostalRouteNameElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_PostalRouteNumberElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PostalRouteNumberElementType
+	var elem pkg_2_0.PostalRouteNumberElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -20821,7 +11267,7 @@ func TestMarshalUnmarshal_PostalRouteNumberElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PostalRouteNumberElementType
+	var elem2 pkg_2_0.PostalRouteNumberElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -20832,7 +11278,7 @@ func TestMarshalUnmarshal_PostalRouteNumberElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_PostalRouteType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PostalRouteType
+	var elem pkg_2_0.PostalRouteType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -20846,7 +11292,7 @@ func TestMarshalUnmarshal_PostalRouteType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PostalRouteType
+	var elem2 pkg_2_0.PostalRouteType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -20857,7 +11303,7 @@ func TestMarshalUnmarshal_PostalRouteType(t *testing.T) {
 
 func TestMarshalUnmarshal_PostalServiceElementsElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PostalServiceElementsElementType
+	var elem pkg_2_0.PostalServiceElementsElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -20871,7 +11317,7 @@ func TestMarshalUnmarshal_PostalServiceElementsElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PostalServiceElementsElementType
+	var elem2 pkg_2_0.PostalServiceElementsElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -20882,7 +11328,7 @@ func TestMarshalUnmarshal_PostalServiceElementsElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_PrecedingTitleElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.PrecedingTitleElementType
+	var elem pkg_2_01.PrecedingTitleElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -20896,7 +11342,7 @@ func TestMarshalUnmarshal_PrecedingTitleElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.PrecedingTitleElementType
+	var elem2 pkg_2_01.PrecedingTitleElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -20907,7 +11353,7 @@ func TestMarshalUnmarshal_PrecedingTitleElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_PremiseElement(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PremiseElement
+	var elem pkg_2_0.PremiseElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -20921,7 +11367,7 @@ func TestMarshalUnmarshal_PremiseElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PremiseElement
+	var elem2 pkg_2_0.PremiseElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -20932,7 +11378,7 @@ func TestMarshalUnmarshal_PremiseElement(t *testing.T) {
 
 func TestMarshalUnmarshal_PremiseElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PremiseElementType
+	var elem pkg_2_0.PremiseElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -20946,7 +11392,7 @@ func TestMarshalUnmarshal_PremiseElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PremiseElementType
+	var elem2 pkg_2_0.PremiseElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -20957,7 +11403,7 @@ func TestMarshalUnmarshal_PremiseElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_PremiseLocationElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PremiseLocationElementType
+	var elem pkg_2_0.PremiseLocationElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -20971,7 +11417,7 @@ func TestMarshalUnmarshal_PremiseLocationElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PremiseLocationElementType
+	var elem2 pkg_2_0.PremiseLocationElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -20982,7 +11428,7 @@ func TestMarshalUnmarshal_PremiseLocationElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_PremiseNameElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PremiseNameElementType
+	var elem pkg_2_0.PremiseNameElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -20996,7 +11442,7 @@ func TestMarshalUnmarshal_PremiseNameElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PremiseNameElementType
+	var elem2 pkg_2_0.PremiseNameElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -21007,7 +11453,7 @@ func TestMarshalUnmarshal_PremiseNameElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_PremiseNumberElement(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PremiseNumberElement
+	var elem pkg_2_0.PremiseNumberElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -21021,7 +11467,7 @@ func TestMarshalUnmarshal_PremiseNumberElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PremiseNumberElement
+	var elem2 pkg_2_0.PremiseNumberElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -21032,7 +11478,7 @@ func TestMarshalUnmarshal_PremiseNumberElement(t *testing.T) {
 
 func TestMarshalUnmarshal_PremiseNumberElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PremiseNumberElementType
+	var elem pkg_2_0.PremiseNumberElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -21046,7 +11492,7 @@ func TestMarshalUnmarshal_PremiseNumberElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PremiseNumberElementType
+	var elem2 pkg_2_0.PremiseNumberElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -21057,7 +11503,7 @@ func TestMarshalUnmarshal_PremiseNumberElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_PremiseNumberPrefixElement(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PremiseNumberPrefixElement
+	var elem pkg_2_0.PremiseNumberPrefixElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -21071,7 +11517,7 @@ func TestMarshalUnmarshal_PremiseNumberPrefixElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PremiseNumberPrefixElement
+	var elem2 pkg_2_0.PremiseNumberPrefixElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -21082,7 +11528,7 @@ func TestMarshalUnmarshal_PremiseNumberPrefixElement(t *testing.T) {
 
 func TestMarshalUnmarshal_PremiseNumberPrefixElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PremiseNumberPrefixElementType
+	var elem pkg_2_0.PremiseNumberPrefixElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -21096,7 +11542,7 @@ func TestMarshalUnmarshal_PremiseNumberPrefixElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PremiseNumberPrefixElementType
+	var elem2 pkg_2_0.PremiseNumberPrefixElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -21107,7 +11553,7 @@ func TestMarshalUnmarshal_PremiseNumberPrefixElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_PremiseNumberRangeElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PremiseNumberRangeElementType
+	var elem pkg_2_0.PremiseNumberRangeElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -21121,7 +11567,7 @@ func TestMarshalUnmarshal_PremiseNumberRangeElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PremiseNumberRangeElementType
+	var elem2 pkg_2_0.PremiseNumberRangeElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -21132,7 +11578,7 @@ func TestMarshalUnmarshal_PremiseNumberRangeElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_PremiseNumberRangeFromElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PremiseNumberRangeFromElementType
+	var elem pkg_2_0.PremiseNumberRangeFromElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -21146,7 +11592,7 @@ func TestMarshalUnmarshal_PremiseNumberRangeFromElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PremiseNumberRangeFromElementType
+	var elem2 pkg_2_0.PremiseNumberRangeFromElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -21157,7 +11603,7 @@ func TestMarshalUnmarshal_PremiseNumberRangeFromElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_PremiseNumberRangeToElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PremiseNumberRangeToElementType
+	var elem pkg_2_0.PremiseNumberRangeToElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -21171,7 +11617,7 @@ func TestMarshalUnmarshal_PremiseNumberRangeToElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PremiseNumberRangeToElementType
+	var elem2 pkg_2_0.PremiseNumberRangeToElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -21182,7 +11628,7 @@ func TestMarshalUnmarshal_PremiseNumberRangeToElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_PremiseNumberSuffixElement(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PremiseNumberSuffixElement
+	var elem pkg_2_0.PremiseNumberSuffixElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -21196,7 +11642,7 @@ func TestMarshalUnmarshal_PremiseNumberSuffixElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PremiseNumberSuffixElement
+	var elem2 pkg_2_0.PremiseNumberSuffixElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -21207,7 +11653,7 @@ func TestMarshalUnmarshal_PremiseNumberSuffixElement(t *testing.T) {
 
 func TestMarshalUnmarshal_PremiseNumberSuffixElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.PremiseNumberSuffixElementType
+	var elem pkg_2_0.PremiseNumberSuffixElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -21221,238 +11667,13 @@ func TestMarshalUnmarshal_PremiseNumberSuffixElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.PremiseNumberSuffixElementType
+	var elem2 pkg_2_0.PremiseNumberSuffixElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
 	}
 
 	t.Logf("Marshal/Unmarshal PremiseNumberSuffixElementType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_ProfileElement(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.ProfileElement
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal ProfileElement returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.ProfileElement
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal ProfileElement: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_ProfileIdType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.ProfileIdType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal ProfileIdType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.ProfileIdType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal ProfileIdType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_ProfileNoteType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.ProfileNoteType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal ProfileNoteType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.ProfileNoteType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal ProfileNoteType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_ProfileRefineRuleType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.ProfileRefineRuleType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal ProfileRefineRuleType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.ProfileRefineRuleType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal ProfileRefineRuleType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_ProfileRefineValueType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.ProfileRefineValueType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal ProfileRefineValueType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.ProfileRefineValueType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal ProfileRefineValueType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_ProfileSelectType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.ProfileSelectType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal ProfileSelectType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.ProfileSelectType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal ProfileSelectType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_ProfileSetComplexValueType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.ProfileSetComplexValueType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal ProfileSetComplexValueType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.ProfileSetComplexValueType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal ProfileSetComplexValueType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_ProfileSetValueType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.ProfileSetValueType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal ProfileSetValueType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.ProfileSetValueType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal ProfileSetValueType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_ProfileType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.ProfileType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal ProfileType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.ProfileType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal ProfileType: %d bytes", len(xmlBytes))
 }
 
 func TestMarshalUnmarshal_ProtocolElementType(t *testing.T) {
@@ -21478,206 +11699,6 @@ func TestMarshalUnmarshal_ProtocolElementType(t *testing.T) {
 	}
 
 	t.Logf("Marshal/Unmarshal ProtocolElementType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_RSAKeyValueElement(t *testing.T) {
-	// Create a default instance
-	var elem pkg_200009xmldsig.RSAKeyValueElement
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal RSAKeyValueElement returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 pkg_200009xmldsig.RSAKeyValueElement
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal RSAKeyValueElement: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_RSAKeyValueType(t *testing.T) {
-	// Create a default instance
-	var elem pkg_200009xmldsig.RSAKeyValueType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal RSAKeyValueType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 pkg_200009xmldsig.RSAKeyValueType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal RSAKeyValueType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_RatingEnumType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.RatingEnumType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal RatingEnumType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.RatingEnumType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal RatingEnumType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_ReferenceElement(t *testing.T) {
-	// Create a default instance
-	var elem pkg_200009xmldsig.ReferenceElement
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal ReferenceElement returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 pkg_200009xmldsig.ReferenceElement
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal ReferenceElement: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_ReferenceElementType(t *testing.T) {
-	// Create a default instance
-	var elem dictionary2_0.ReferenceElementType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal ReferenceElementType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 dictionary2_0.ReferenceElementType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal ReferenceElementType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_ReferenceType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.ReferenceType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal ReferenceType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.ReferenceType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal ReferenceType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_ReferencesType(t *testing.T) {
-	// Create a default instance
-	var elem dictionary2_0.ReferencesType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal ReferencesType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 dictionary2_0.ReferencesType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal ReferencesType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_RegexCaptureFunctionType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.RegexCaptureFunctionType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal RegexCaptureFunctionType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.RegexCaptureFunctionType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal RegexCaptureFunctionType: %d bytes", len(xmlBytes))
 }
 
 func TestMarshalUnmarshal_RelationshipType(t *testing.T) {
@@ -21955,131 +11976,6 @@ func TestMarshalUnmarshal_ResourceType(t *testing.T) {
 	t.Logf("Marshal/Unmarshal ResourceType: %d bytes", len(xmlBytes))
 }
 
-func TestMarshalUnmarshal_RestrictionType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.RestrictionType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal RestrictionType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.RestrictionType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal RestrictionType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_ResultEnumType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.ResultEnumType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal ResultEnumType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.ResultEnumType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal ResultEnumType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_RetrievalMethodElement(t *testing.T) {
-	// Create a default instance
-	var elem pkg_200009xmldsig.RetrievalMethodElement
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal RetrievalMethodElement returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 pkg_200009xmldsig.RetrievalMethodElement
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal RetrievalMethodElement: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_RetrievalMethodType(t *testing.T) {
-	// Create a default instance
-	var elem pkg_200009xmldsig.RetrievalMethodType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal RetrievalMethodType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 pkg_200009xmldsig.RetrievalMethodType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal RetrievalMethodType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_RoleEnumType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.RoleEnumType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal RoleEnumType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.RoleEnumType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal RoleEnumType: %d bytes", len(xmlBytes))
-}
-
 func TestMarshalUnmarshal_RoleType(t *testing.T) {
 	// Create a default instance
 	var elem pkg_1999xlink.RoleType
@@ -22103,331 +11999,6 @@ func TestMarshalUnmarshal_RoleType(t *testing.T) {
 	}
 
 	t.Logf("Marshal/Unmarshal RoleType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_RuleElement(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.RuleElement
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal RuleElement returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.RuleElement
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal RuleElement: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_RuleIdType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.RuleIdType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal RuleIdType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.RuleIdType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal RuleIdType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_RuleResultType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.RuleResultType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal RuleResultType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.RuleResultType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal RuleResultType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_RuleType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.RuleType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal RuleType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.RuleType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal RuleType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_SPKIDataElement(t *testing.T) {
-	// Create a default instance
-	var elem pkg_200009xmldsig.SPKIDataElement
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal SPKIDataElement returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 pkg_200009xmldsig.SPKIDataElement
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal SPKIDataElement: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_SPKIDataType(t *testing.T) {
-	// Create a default instance
-	var elem pkg_200009xmldsig.SPKIDataType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal SPKIDataType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 pkg_200009xmldsig.SPKIDataType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal SPKIDataType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_SchemaVersionPattern(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_common_5.SchemaVersionPattern
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal SchemaVersionPattern returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_common_5.SchemaVersionPattern
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal SchemaVersionPattern: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_SchemaVersionType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_common_5.SchemaVersionType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal SchemaVersionType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_common_5.SchemaVersionType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal SchemaVersionType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_ScoreType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.ScoreType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal ScoreType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.ScoreType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal ScoreType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_SelChoicesType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.SelChoicesType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal SelChoicesType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.SelChoicesType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal SelChoicesType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_SelComplexValueType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.SelComplexValueType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal SelComplexValueType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.SelComplexValueType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal SelComplexValueType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_SelNumType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.SelNumType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal SelNumType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.SelNumType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal SelNumType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_SelStringType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.SelStringType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal SelStringType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.SelStringType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal SelStringType: %d bytes", len(xmlBytes))
 }
 
 func TestMarshalUnmarshal_ServedByElement(t *testing.T) {
@@ -22505,106 +12076,6 @@ func TestMarshalUnmarshal_ServiceType(t *testing.T) {
 	t.Logf("Marshal/Unmarshal ServiceType: %d bytes", len(xmlBytes))
 }
 
-func TestMarshalUnmarshal_SetElement(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.SetElement
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal SetElement returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.SetElement
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal SetElement: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_SetElementType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.SetElementType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal SetElementType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.SetElementType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal SetElementType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_SetOperatorEnumeration(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.SetOperatorEnumeration
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal SetOperatorEnumeration returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.SetOperatorEnumeration
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal SetOperatorEnumeration: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_SeverityEnumType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.SeverityEnumType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal SeverityEnumType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.SeverityEnumType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal SeverityEnumType: %d bytes", len(xmlBytes))
-}
-
 func TestMarshalUnmarshal_ShowType(t *testing.T) {
 	// Create a default instance
 	var elem pkg_1999xlink.ShowType
@@ -22630,306 +12101,6 @@ func TestMarshalUnmarshal_ShowType(t *testing.T) {
 	t.Logf("Marshal/Unmarshal ShowType: %d bytes", len(xmlBytes))
 }
 
-func TestMarshalUnmarshal_SignatureElement(t *testing.T) {
-	// Create a default instance
-	var elem pkg_200009xmldsig.SignatureElement
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal SignatureElement returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 pkg_200009xmldsig.SignatureElement
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal SignatureElement: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_SignatureMethodElement(t *testing.T) {
-	// Create a default instance
-	var elem pkg_200009xmldsig.SignatureMethodElement
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal SignatureMethodElement returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 pkg_200009xmldsig.SignatureMethodElement
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal SignatureMethodElement: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_SignatureMethodType(t *testing.T) {
-	// Create a default instance
-	var elem pkg_200009xmldsig.SignatureMethodType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal SignatureMethodType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 pkg_200009xmldsig.SignatureMethodType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal SignatureMethodType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_SignaturePropertiesElement(t *testing.T) {
-	// Create a default instance
-	var elem pkg_200009xmldsig.SignaturePropertiesElement
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal SignaturePropertiesElement returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 pkg_200009xmldsig.SignaturePropertiesElement
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal SignaturePropertiesElement: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_SignaturePropertiesType(t *testing.T) {
-	// Create a default instance
-	var elem pkg_200009xmldsig.SignaturePropertiesType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal SignaturePropertiesType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 pkg_200009xmldsig.SignaturePropertiesType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal SignaturePropertiesType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_SignaturePropertyElement(t *testing.T) {
-	// Create a default instance
-	var elem pkg_200009xmldsig.SignaturePropertyElement
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal SignaturePropertyElement returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 pkg_200009xmldsig.SignaturePropertyElement
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal SignaturePropertyElement: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_SignaturePropertyType(t *testing.T) {
-	// Create a default instance
-	var elem pkg_200009xmldsig.SignaturePropertyType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal SignaturePropertyType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 pkg_200009xmldsig.SignaturePropertyType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal SignaturePropertyType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_SignatureType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.SignatureType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal SignatureType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.SignatureType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal SignatureType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_SignatureValueElement(t *testing.T) {
-	// Create a default instance
-	var elem pkg_200009xmldsig.SignatureValueElement
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal SignatureValueElement returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 pkg_200009xmldsig.SignatureValueElement
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal SignatureValueElement: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_SignatureValueType(t *testing.T) {
-	// Create a default instance
-	var elem pkg_200009xmldsig.SignatureValueType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal SignatureValueType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 pkg_200009xmldsig.SignatureValueType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal SignatureValueType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_SignedInfoElement(t *testing.T) {
-	// Create a default instance
-	var elem pkg_200009xmldsig.SignedInfoElement
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal SignedInfoElement returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 pkg_200009xmldsig.SignedInfoElement
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal SignedInfoElement: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_SignedInfoType(t *testing.T) {
-	// Create a default instance
-	var elem pkg_200009xmldsig.SignedInfoType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal SignedInfoType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 pkg_200009xmldsig.SignedInfoType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal SignedInfoType: %d bytes", len(xmlBytes))
-}
-
 func TestMarshalUnmarshal_Simple(t *testing.T) {
 	// Create a default instance
 	var elem pkg_1999xlink.Simple
@@ -22953,31 +12124,6 @@ func TestMarshalUnmarshal_Simple(t *testing.T) {
 	}
 
 	t.Logf("Marshal/Unmarshal Simple: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_SimpleDatatypeEnumeration(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_common_5.SimpleDatatypeEnumeration
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal SimpleDatatypeEnumeration returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_common_5.SimpleDatatypeEnumeration
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal SimpleDatatypeEnumeration: %d bytes", len(xmlBytes))
 }
 
 func TestMarshalUnmarshal_SoftwareElement(t *testing.T) {
@@ -23032,7 +12178,7 @@ func TestMarshalUnmarshal_SoftwareType(t *testing.T) {
 
 func TestMarshalUnmarshal_SortingCodeElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.SortingCodeElementType
+	var elem pkg_2_0.SortingCodeElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -23046,7 +12192,7 @@ func TestMarshalUnmarshal_SortingCodeElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.SortingCodeElementType
+	var elem2 pkg_2_0.SortingCodeElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -23055,234 +12201,9 @@ func TestMarshalUnmarshal_SortingCodeElementType(t *testing.T) {
 	t.Logf("Marshal/Unmarshal SortingCodeElementType: %d bytes", len(xmlBytes))
 }
 
-func TestMarshalUnmarshal_SplitFunctionType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.SplitFunctionType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal SplitFunctionType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.SplitFunctionType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal SplitFunctionType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_StateElement(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.StateElement
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal StateElement returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.StateElement
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal StateElement: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_StateIDPattern(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_common_5.StateIDPattern
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal StateIDPattern returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_common_5.StateIDPattern
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal StateIDPattern: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_StateRefType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.StateRefType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal StateRefType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.StateRefType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal StateRefType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_StateType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.StateType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal StateType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.StateType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal StateType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_StatesType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.StatesType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal StatesType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.StatesType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal StatesType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_StatusElement(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.StatusElement
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal StatusElement returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.StatusElement
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal StatusElement: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_StatusElementType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.StatusElementType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal StatusElementType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.StatusElementType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal StatusElementType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_StatusType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.StatusType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal StatusType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.StatusType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal StatusType: %d bytes", len(xmlBytes))
-}
-
 func TestMarshalUnmarshal_SubAdministrativeAreaElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.SubAdministrativeAreaElementType
+	var elem pkg_2_0.SubAdministrativeAreaElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -23296,7 +12217,7 @@ func TestMarshalUnmarshal_SubAdministrativeAreaElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.SubAdministrativeAreaElementType
+	var elem2 pkg_2_0.SubAdministrativeAreaElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -23307,7 +12228,7 @@ func TestMarshalUnmarshal_SubAdministrativeAreaElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_SubAdministrativeAreaNameElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.SubAdministrativeAreaNameElementType
+	var elem pkg_2_0.SubAdministrativeAreaNameElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -23321,7 +12242,7 @@ func TestMarshalUnmarshal_SubAdministrativeAreaNameElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.SubAdministrativeAreaNameElementType
+	var elem2 pkg_2_0.SubAdministrativeAreaNameElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -23332,7 +12253,7 @@ func TestMarshalUnmarshal_SubAdministrativeAreaNameElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_SubPremiseLocationElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.SubPremiseLocationElementType
+	var elem pkg_2_0.SubPremiseLocationElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -23346,7 +12267,7 @@ func TestMarshalUnmarshal_SubPremiseLocationElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.SubPremiseLocationElementType
+	var elem2 pkg_2_0.SubPremiseLocationElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -23357,7 +12278,7 @@ func TestMarshalUnmarshal_SubPremiseLocationElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_SubPremiseNameElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.SubPremiseNameElementType
+	var elem pkg_2_0.SubPremiseNameElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -23371,7 +12292,7 @@ func TestMarshalUnmarshal_SubPremiseNameElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.SubPremiseNameElementType
+	var elem2 pkg_2_0.SubPremiseNameElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -23382,7 +12303,7 @@ func TestMarshalUnmarshal_SubPremiseNameElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_SubPremiseNumberElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.SubPremiseNumberElementType
+	var elem pkg_2_0.SubPremiseNumberElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -23396,7 +12317,7 @@ func TestMarshalUnmarshal_SubPremiseNumberElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.SubPremiseNumberElementType
+	var elem2 pkg_2_0.SubPremiseNumberElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -23407,7 +12328,7 @@ func TestMarshalUnmarshal_SubPremiseNumberElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_SubPremiseNumberPrefixElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.SubPremiseNumberPrefixElementType
+	var elem pkg_2_0.SubPremiseNumberPrefixElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -23421,7 +12342,7 @@ func TestMarshalUnmarshal_SubPremiseNumberPrefixElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.SubPremiseNumberPrefixElementType
+	var elem2 pkg_2_0.SubPremiseNumberPrefixElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -23432,7 +12353,7 @@ func TestMarshalUnmarshal_SubPremiseNumberPrefixElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_SubPremiseNumberSuffixElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.SubPremiseNumberSuffixElementType
+	var elem pkg_2_0.SubPremiseNumberSuffixElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -23446,7 +12367,7 @@ func TestMarshalUnmarshal_SubPremiseNumberSuffixElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.SubPremiseNumberSuffixElementType
+	var elem2 pkg_2_0.SubPremiseNumberSuffixElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -23457,7 +12378,7 @@ func TestMarshalUnmarshal_SubPremiseNumberSuffixElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_SubPremiseType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.SubPremiseType
+	var elem pkg_2_0.SubPremiseType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -23471,7 +12392,7 @@ func TestMarshalUnmarshal_SubPremiseType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.SubPremiseType
+	var elem2 pkg_2_0.SubPremiseType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -23480,84 +12401,9 @@ func TestMarshalUnmarshal_SubPremiseType(t *testing.T) {
 	t.Logf("Marshal/Unmarshal SubPremiseType: %d bytes", len(xmlBytes))
 }
 
-func TestMarshalUnmarshal_SubType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.SubType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal SubType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.SubType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal SubType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_SubUseEnumType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.SubUseEnumType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal SubUseEnumType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.SubUseEnumType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal SubUseEnumType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_SubstringFunctionType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.SubstringFunctionType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal SubstringFunctionType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.SubstringFunctionType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal SubstringFunctionType: %d bytes", len(xmlBytes))
-}
-
 func TestMarshalUnmarshal_SuffixElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.SuffixElementType
+	var elem pkg_2_01.SuffixElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -23571,7 +12417,7 @@ func TestMarshalUnmarshal_SuffixElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.SuffixElementType
+	var elem2 pkg_2_01.SuffixElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -23582,7 +12428,7 @@ func TestMarshalUnmarshal_SuffixElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_SupplementaryPostalServiceDataElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.SupplementaryPostalServiceDataElementType
+	var elem pkg_2_0.SupplementaryPostalServiceDataElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -23596,7 +12442,7 @@ func TestMarshalUnmarshal_SupplementaryPostalServiceDataElementType(t *testing.T
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.SupplementaryPostalServiceDataElementType
+	var elem2 pkg_2_0.SupplementaryPostalServiceDataElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -23730,206 +12576,6 @@ func TestMarshalUnmarshal_SystemType(t *testing.T) {
 	t.Logf("Marshal/Unmarshal SystemType: %d bytes", len(xmlBytes))
 }
 
-func TestMarshalUnmarshal_TailoringBenchmarkReferenceType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.TailoringBenchmarkReferenceType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal TailoringBenchmarkReferenceType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.TailoringBenchmarkReferenceType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal TailoringBenchmarkReferenceType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_TailoringElement(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.TailoringElement
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal TailoringElement returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.TailoringElement
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal TailoringElement: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_TailoringIdType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.TailoringIdType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal TailoringIdType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.TailoringIdType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal TailoringIdType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_TailoringReferenceType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.TailoringReferenceType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal TailoringReferenceType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.TailoringReferenceType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal TailoringReferenceType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_TailoringType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.TailoringType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal TailoringType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.TailoringType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal TailoringType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_TailoringVersionType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.TailoringVersionType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal TailoringVersionType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.TailoringVersionType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal TailoringVersionType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_TargetFactsType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.TargetFactsType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal TargetFactsType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.TargetFactsType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal TargetFactsType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_TargetIdRefType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.TargetIdRefType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal TargetIdRefType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.TargetIdRefType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal TargetIdRefType: %d bytes", len(xmlBytes))
-}
-
 func TestMarshalUnmarshal_TelephoneNumberElement(t *testing.T) {
 	// Create a default instance
 	var elem asset_identification1_1.TelephoneNumberElement
@@ -24005,234 +12651,9 @@ func TestMarshalUnmarshal_TelephoneNumberType(t *testing.T) {
 	t.Logf("Marshal/Unmarshal TelephoneNumberType: %d bytes", len(xmlBytes))
 }
 
-func TestMarshalUnmarshal_TestElement(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.TestElement
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal TestElement returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.TestElement
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal TestElement: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_TestIDPattern(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_common_5.TestIDPattern
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal TestIDPattern returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_common_5.TestIDPattern
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal TestIDPattern: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_TestResultElement(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.TestResultElement
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal TestResultElement returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.TestResultElement
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal TestResultElement: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_TestResultType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.TestResultType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal TestResultType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.TestResultType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal TestResultType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_TestType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.TestType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal TestType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.TestType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal TestType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_TestresultIdType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.TestresultIdType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal TestresultIdType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.TestresultIdType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal TestresultIdType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_TestsType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.TestsType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal TestsType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.TestsType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal TestsType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_TextType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.TextType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal TextType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.TextType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal TextType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_TextWithSubType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.TextWithSubType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal TextWithSubType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.TextWithSubType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal TextWithSubType: %d bytes", len(xmlBytes))
-}
-
 func TestMarshalUnmarshal_ThoroughfareElement(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.ThoroughfareElement
+	var elem pkg_2_0.ThoroughfareElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -24246,7 +12667,7 @@ func TestMarshalUnmarshal_ThoroughfareElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.ThoroughfareElement
+	var elem2 pkg_2_0.ThoroughfareElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -24257,7 +12678,7 @@ func TestMarshalUnmarshal_ThoroughfareElement(t *testing.T) {
 
 func TestMarshalUnmarshal_ThoroughfareElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.ThoroughfareElementType
+	var elem pkg_2_0.ThoroughfareElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -24271,7 +12692,7 @@ func TestMarshalUnmarshal_ThoroughfareElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.ThoroughfareElementType
+	var elem2 pkg_2_0.ThoroughfareElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -24282,7 +12703,7 @@ func TestMarshalUnmarshal_ThoroughfareElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_ThoroughfareLeadingTypeType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.ThoroughfareLeadingTypeType
+	var elem pkg_2_0.ThoroughfareLeadingTypeType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -24296,7 +12717,7 @@ func TestMarshalUnmarshal_ThoroughfareLeadingTypeType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.ThoroughfareLeadingTypeType
+	var elem2 pkg_2_0.ThoroughfareLeadingTypeType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -24307,7 +12728,7 @@ func TestMarshalUnmarshal_ThoroughfareLeadingTypeType(t *testing.T) {
 
 func TestMarshalUnmarshal_ThoroughfareNameType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.ThoroughfareNameType
+	var elem pkg_2_0.ThoroughfareNameType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -24321,7 +12742,7 @@ func TestMarshalUnmarshal_ThoroughfareNameType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.ThoroughfareNameType
+	var elem2 pkg_2_0.ThoroughfareNameType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -24332,7 +12753,7 @@ func TestMarshalUnmarshal_ThoroughfareNameType(t *testing.T) {
 
 func TestMarshalUnmarshal_ThoroughfareNumberElement(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.ThoroughfareNumberElement
+	var elem pkg_2_0.ThoroughfareNumberElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -24346,7 +12767,7 @@ func TestMarshalUnmarshal_ThoroughfareNumberElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.ThoroughfareNumberElement
+	var elem2 pkg_2_0.ThoroughfareNumberElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -24357,7 +12778,7 @@ func TestMarshalUnmarshal_ThoroughfareNumberElement(t *testing.T) {
 
 func TestMarshalUnmarshal_ThoroughfareNumberElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.ThoroughfareNumberElementType
+	var elem pkg_2_0.ThoroughfareNumberElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -24371,7 +12792,7 @@ func TestMarshalUnmarshal_ThoroughfareNumberElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.ThoroughfareNumberElementType
+	var elem2 pkg_2_0.ThoroughfareNumberElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -24382,7 +12803,7 @@ func TestMarshalUnmarshal_ThoroughfareNumberElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_ThoroughfareNumberFromElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.ThoroughfareNumberFromElementType
+	var elem pkg_2_0.ThoroughfareNumberFromElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -24396,7 +12817,7 @@ func TestMarshalUnmarshal_ThoroughfareNumberFromElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.ThoroughfareNumberFromElementType
+	var elem2 pkg_2_0.ThoroughfareNumberFromElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -24407,7 +12828,7 @@ func TestMarshalUnmarshal_ThoroughfareNumberFromElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_ThoroughfareNumberPrefixElement(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.ThoroughfareNumberPrefixElement
+	var elem pkg_2_0.ThoroughfareNumberPrefixElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -24421,7 +12842,7 @@ func TestMarshalUnmarshal_ThoroughfareNumberPrefixElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.ThoroughfareNumberPrefixElement
+	var elem2 pkg_2_0.ThoroughfareNumberPrefixElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -24432,7 +12853,7 @@ func TestMarshalUnmarshal_ThoroughfareNumberPrefixElement(t *testing.T) {
 
 func TestMarshalUnmarshal_ThoroughfareNumberPrefixElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.ThoroughfareNumberPrefixElementType
+	var elem pkg_2_0.ThoroughfareNumberPrefixElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -24446,7 +12867,7 @@ func TestMarshalUnmarshal_ThoroughfareNumberPrefixElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.ThoroughfareNumberPrefixElementType
+	var elem2 pkg_2_0.ThoroughfareNumberPrefixElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -24457,7 +12878,7 @@ func TestMarshalUnmarshal_ThoroughfareNumberPrefixElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_ThoroughfareNumberRangeElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.ThoroughfareNumberRangeElementType
+	var elem pkg_2_0.ThoroughfareNumberRangeElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -24471,7 +12892,7 @@ func TestMarshalUnmarshal_ThoroughfareNumberRangeElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.ThoroughfareNumberRangeElementType
+	var elem2 pkg_2_0.ThoroughfareNumberRangeElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -24482,7 +12903,7 @@ func TestMarshalUnmarshal_ThoroughfareNumberRangeElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_ThoroughfareNumberSuffixElement(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.ThoroughfareNumberSuffixElement
+	var elem pkg_2_0.ThoroughfareNumberSuffixElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -24496,7 +12917,7 @@ func TestMarshalUnmarshal_ThoroughfareNumberSuffixElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.ThoroughfareNumberSuffixElement
+	var elem2 pkg_2_0.ThoroughfareNumberSuffixElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -24507,7 +12928,7 @@ func TestMarshalUnmarshal_ThoroughfareNumberSuffixElement(t *testing.T) {
 
 func TestMarshalUnmarshal_ThoroughfareNumberSuffixElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.ThoroughfareNumberSuffixElementType
+	var elem pkg_2_0.ThoroughfareNumberSuffixElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -24521,7 +12942,7 @@ func TestMarshalUnmarshal_ThoroughfareNumberSuffixElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.ThoroughfareNumberSuffixElementType
+	var elem2 pkg_2_0.ThoroughfareNumberSuffixElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -24532,7 +12953,7 @@ func TestMarshalUnmarshal_ThoroughfareNumberSuffixElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_ThoroughfareNumberToElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.ThoroughfareNumberToElementType
+	var elem pkg_2_0.ThoroughfareNumberToElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -24546,7 +12967,7 @@ func TestMarshalUnmarshal_ThoroughfareNumberToElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.ThoroughfareNumberToElementType
+	var elem2 pkg_2_0.ThoroughfareNumberToElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -24557,7 +12978,7 @@ func TestMarshalUnmarshal_ThoroughfareNumberToElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_ThoroughfarePostDirectionType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.ThoroughfarePostDirectionType
+	var elem pkg_2_0.ThoroughfarePostDirectionType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -24571,7 +12992,7 @@ func TestMarshalUnmarshal_ThoroughfarePostDirectionType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.ThoroughfarePostDirectionType
+	var elem2 pkg_2_0.ThoroughfarePostDirectionType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -24582,7 +13003,7 @@ func TestMarshalUnmarshal_ThoroughfarePostDirectionType(t *testing.T) {
 
 func TestMarshalUnmarshal_ThoroughfarePreDirectionType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.ThoroughfarePreDirectionType
+	var elem pkg_2_0.ThoroughfarePreDirectionType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -24596,7 +13017,7 @@ func TestMarshalUnmarshal_ThoroughfarePreDirectionType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.ThoroughfarePreDirectionType
+	var elem2 pkg_2_0.ThoroughfarePreDirectionType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -24607,7 +13028,7 @@ func TestMarshalUnmarshal_ThoroughfarePreDirectionType(t *testing.T) {
 
 func TestMarshalUnmarshal_ThoroughfareTrailingTypeType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.ThoroughfareTrailingTypeType
+	var elem pkg_2_0.ThoroughfareTrailingTypeType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -24621,38 +13042,13 @@ func TestMarshalUnmarshal_ThoroughfareTrailingTypeType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.ThoroughfareTrailingTypeType
+	var elem2 pkg_2_0.ThoroughfareTrailingTypeType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
 	}
 
 	t.Logf("Marshal/Unmarshal ThoroughfareTrailingTypeType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_TimeDifferenceFunctionType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.TimeDifferenceFunctionType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal TimeDifferenceFunctionType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.TimeDifferenceFunctionType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal TimeDifferenceFunctionType: %d bytes", len(xmlBytes))
 }
 
 func TestMarshalUnmarshal_TitleAttrType(t *testing.T) {
@@ -24707,7 +13103,7 @@ func TestMarshalUnmarshal_TitleElement(t *testing.T) {
 
 func TestMarshalUnmarshal_TitleElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.TitleElementType
+	var elem pkg_2_01.TitleElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -24721,7 +13117,7 @@ func TestMarshalUnmarshal_TitleElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.TitleElementType
+	var elem2 pkg_2_01.TitleElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -24780,106 +13176,6 @@ func TestMarshalUnmarshal_ToType(t *testing.T) {
 	t.Logf("Marshal/Unmarshal ToType: %d bytes", len(xmlBytes))
 }
 
-func TestMarshalUnmarshal_TransformElement(t *testing.T) {
-	// Create a default instance
-	var elem pkg_200009xmldsig.TransformElement
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal TransformElement returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 pkg_200009xmldsig.TransformElement
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal TransformElement: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_TransformType(t *testing.T) {
-	// Create a default instance
-	var elem pkg_200009xmldsig.TransformType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal TransformType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 pkg_200009xmldsig.TransformType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal TransformType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_TransformsElement(t *testing.T) {
-	// Create a default instance
-	var elem pkg_200009xmldsig.TransformsElement
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal TransformsElement returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 pkg_200009xmldsig.TransformsElement
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal TransformsElement: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_TransformsType(t *testing.T) {
-	// Create a default instance
-	var elem pkg_200009xmldsig.TransformsType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal TransformsType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 pkg_200009xmldsig.TransformsType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal TransformsType: %d bytes", len(xmlBytes))
-}
-
 func TestMarshalUnmarshal_TypeType(t *testing.T) {
 	// Create a default instance
 	var elem pkg_1999xlink.TypeType
@@ -24903,56 +13199,6 @@ func TestMarshalUnmarshal_TypeType(t *testing.T) {
 	}
 
 	t.Logf("Marshal/Unmarshal TypeType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_UniqueFunctionType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.UniqueFunctionType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal UniqueFunctionType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.UniqueFunctionType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal UniqueFunctionType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_UriRefType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.UriRefType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal UriRefType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.UriRefType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal UriRefType: %d bytes", len(xmlBytes))
 }
 
 func TestMarshalUnmarshal_UrlElementType(t *testing.T) {
@@ -24980,256 +13226,6 @@ func TestMarshalUnmarshal_UrlElementType(t *testing.T) {
 	t.Logf("Marshal/Unmarshal UrlElementType: %d bytes", len(xmlBytes))
 }
 
-func TestMarshalUnmarshal_ValueElement(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.ValueElement
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal ValueElement returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.ValueElement
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal ValueElement: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_ValueIdType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.ValueIdType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal ValueIdType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.ValueIdType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal ValueIdType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_ValueOperatorType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.ValueOperatorType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal ValueOperatorType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.ValueOperatorType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal ValueOperatorType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_ValueType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.ValueType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal ValueType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.ValueType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal ValueType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_ValueTypeType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.ValueTypeType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal ValueTypeType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.ValueTypeType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal ValueTypeType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_VariableComponentType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.VariableComponentType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal VariableComponentType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.VariableComponentType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal VariableComponentType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_VariableElement(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.VariableElement
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal VariableElement returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.VariableElement
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal VariableElement: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_VariableIDPattern(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_common_5.VariableIDPattern
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal VariableIDPattern returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_common_5.VariableIDPattern
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal VariableIDPattern: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_VariableType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.VariableType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal VariableType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.VariableType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal VariableType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_VariablesType(t *testing.T) {
-	// Create a default instance
-	var elem xmlschemaoval_definitions_5.VariablesType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal VariablesType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.VariablesType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal VariablesType: %d bytes", len(xmlBytes))
-}
-
 func TestMarshalUnmarshal_VersionElementType(t *testing.T) {
 	// Create a default instance
 	var elem asset_identification1_1.VersionElementType
@@ -25253,81 +13249,6 @@ func TestMarshalUnmarshal_VersionElementType(t *testing.T) {
 	}
 
 	t.Logf("Marshal/Unmarshal VersionElementType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_VersionType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.VersionType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal VersionType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.VersionType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal VersionType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_WarningCategoryEnumType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.WarningCategoryEnumType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal WarningCategoryEnumType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.WarningCategoryEnumType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal WarningCategoryEnumType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_WarningType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.WarningType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal WarningType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.WarningType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal WarningType: %d bytes", len(xmlBytes))
 }
 
 func TestMarshalUnmarshal_WebsiteElement(t *testing.T) {
@@ -25430,109 +13351,9 @@ func TestMarshalUnmarshal_WebsiteUrlElementType(t *testing.T) {
 	t.Logf("Marshal/Unmarshal WebsiteUrlElementType: %d bytes", len(xmlBytes))
 }
 
-func TestMarshalUnmarshal_WeightType(t *testing.T) {
-	// Create a default instance
-	var elem xccdf1_2.WeightType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal WeightType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 xccdf1_2.WeightType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal WeightType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_X509DataElement(t *testing.T) {
-	// Create a default instance
-	var elem pkg_200009xmldsig.X509DataElement
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal X509DataElement returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 pkg_200009xmldsig.X509DataElement
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal X509DataElement: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_X509DataType(t *testing.T) {
-	// Create a default instance
-	var elem pkg_200009xmldsig.X509DataType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal X509DataType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 pkg_200009xmldsig.X509DataType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal X509DataType: %d bytes", len(xmlBytes))
-}
-
-func TestMarshalUnmarshal_X509IssuerSerialType(t *testing.T) {
-	// Create a default instance
-	var elem pkg_200009xmldsig.X509IssuerSerialType
-
-	// Marshal to XML
-	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
-	if err != nil {
-		t.Logf("Marshal X509IssuerSerialType returned error (may be expected for empty struct): %v", err)
-		return
-	}
-
-	if len(xmlBytes) == 0 {
-		t.Error("Marshal should produce non-empty output")
-	}
-
-	// Unmarshal back
-	var elem2 pkg_200009xmldsig.X509IssuerSerialType
-	err = xml.Unmarshal(xmlBytes, &elem2)
-	if err != nil {
-		t.Errorf("Unmarshal failed: %v", err)
-	}
-
-	t.Logf("Marshal/Unmarshal X509IssuerSerialType: %d bytes", len(xmlBytes))
-}
-
 func TestMarshalUnmarshal_XALElement(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.XALElement
+	var elem pkg_2_0.XALElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -25546,7 +13367,7 @@ func TestMarshalUnmarshal_XALElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.XALElement
+	var elem2 pkg_2_0.XALElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -25557,7 +13378,7 @@ func TestMarshalUnmarshal_XALElement(t *testing.T) {
 
 func TestMarshalUnmarshal_XALElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_01.XALElementType
+	var elem pkg_2_0.XALElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -25571,7 +13392,7 @@ func TestMarshalUnmarshal_XALElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_01.XALElementType
+	var elem2 pkg_2_0.XALElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -25582,7 +13403,7 @@ func TestMarshalUnmarshal_XALElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_XNLElement(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.XNLElement
+	var elem pkg_2_01.XNLElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -25596,7 +13417,7 @@ func TestMarshalUnmarshal_XNLElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.XNLElement
+	var elem2 pkg_2_01.XNLElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -25607,7 +13428,7 @@ func TestMarshalUnmarshal_XNLElement(t *testing.T) {
 
 func TestMarshalUnmarshal_XNLElementType(t *testing.T) {
 	// Create a default instance
-	var elem pkg_2_0.XNLElementType
+	var elem pkg_2_01.XNLElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -25621,7 +13442,7 @@ func TestMarshalUnmarshal_XNLElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_2_0.XNLElementType
+	var elem2 pkg_2_01.XNLElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)

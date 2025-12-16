@@ -18,8 +18,8 @@ type PackageMetadata struct {
 
 // Metadata provides schema information for this package
 var Metadata = PackageMetadata{
-	Namespace: "http://checklists.nist.gov/xccdf/1.2",
-	SourceXSD: "xccdf_1.2.xsd",
+	Namespace:   "http://checklists.nist.gov/xccdf/1.2",
+	SourceXSD:   "xccdf_1.2.xsd",
 	SchemaFiles: []string{
 		"/home/mmcnew/repos/forgexml-scap/schemas/xccdf/common/cpe-1.0.xsd",
 		"/home/mmcnew/repos/forgexml-scap/schemas/xccdf/common/cpe-language_2.0.xsd",

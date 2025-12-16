@@ -11,7 +11,7 @@ import (
 	"log"
 	"os"
 
-	_ "github.com/aequo-labs/forgexml-scap/internal/generated/gov/nist/scap/schema/asset-reporting-format/1-1"
+	_ "forgexml-scap/internal/generated/gov/nist/scap/schema/asset-reporting-format/1-1"
 	"github.com/aequo-labs/webserver-core-ui/pkg/webserver"
 
 	"github.com/aequo-labs/forgexml-scap/cmd/ui/internal/handlers"
@@ -57,13 +57,9 @@ func main() {
 		log.Fatalf("Failed to create UI server: %v", err)
 	}
 
-	// Add application templates from subdirectories
-	templateDirs := []string{"templates/pages", "templates/forms", "templates/includes"}
-	for _, dir := range templateDirs {
-		if err := srv.AddTemplatesFromFS(templateFiles, dir); err != nil {
-			// Directory might not exist, that's okay
-			log.Printf("Note: Could not load templates from %s: %v", dir, err)
-		}
+	// Add application templates from pages directory
+	if err := srv.AddTemplatesFromFS(templateFiles, "templates/pages"); err != nil {
+		log.Fatalf("Failed to load templates: %v", err)
 	}
 
 	// Add application static assets
@@ -126,7 +122,7 @@ func main() {
 
 	// Set about information
 	srv.SetAboutInfo(webserver.AboutInfo{
-		AppName:     "SCAP Editor",
+		AppName:     "Asset Reporting Format 1.1 Editor",
 		Version:     version,
 		Description: "XML Editor for Asset Reporting Format 1.1 documents",
 		Features: []string{
@@ -158,14 +154,14 @@ func main() {
 			{Title: "Export", URL: "/export"},
 			{Title: "Diagrams", URL: "/docs/diagrams.md"},
 		}
-		data.AppName = "SCAP Editor"
+		data.AppName = "Asset Reporting Format 1.1 Editor"
 		data.Version = version
 		data.ShowAbout = true
 	})
 
 	// Start server
 	addr := fmt.Sprintf(":%d", *port)
-	log.Printf("Starting SCAP Editor on port %d", *port)
+	log.Printf("Starting Asset Reporting Format 1.1 Editor on port %d", *port)
 	log.Printf("Open http://localhost:%d in your browser", *port)
 	if err := srv.ListenAndServe(addr); err != nil {
 		log.Fatalf("Server error: %v", err)

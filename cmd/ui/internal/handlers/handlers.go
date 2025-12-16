@@ -9,7 +9,7 @@ import (
 	"net/http"
 	"time"
 
-	_ "github.com/aequo-labs/forgexml-scap/internal/generated/gov/nist/scap/schema/asset-reporting-format/1-1"
+	_ "forgexml-scap/internal/generated/gov/nist/scap/schema/asset-reporting-format/1-1"
 	"github.com/aequo-labs/webserver-core-ui/pkg/webserver"
 
 	"github.com/aequo-labs/forgexml-scap/cmd/ui/internal/state"

@@ -171,19 +171,41 @@ func replicateXmlnsPlacement(xmlOutput string, elementsWithXmlns map[string]stri
 	return result
 }
 
-// Ndd_objectElementType represents the XSD type 'Ndd_objectElementType'
+// Patch53Behaviors represents the XSD type 'Patch53Behaviors'
 // XSD complex type (W3C XSD §3.4)
-type Ndd_objectElementType struct {
-	xmlschemaoval_system_characteristics_5.ObjectType // XSD extension base
+type Patch53Behaviors struct {
+	// Supersedence represents XSD attribute 'supersedence'
+	// use="optional"
+	Supersedence *string `xml:"supersedence,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// Patch_testElementType represents the XSD type 'Patch_testElementType'
+// XSD complex type (W3C XSD §3.4)
+type Patch_testElementType struct {
+	xmlschemaoval_definitions_5.TestType // XSD extension base
+	// Object represents XSD element 'object'
+	Object xmlschemaoval_definitions_5.ObjectRefType `xml:"object"`
+	// State represents XSD element 'state'
+	// minOccurs=0, maxOccurs=-1
+	State []xmlschemaoval_definitions_5.StateRefType `xml:"state,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// Patch_objectElementType represents the XSD type 'Patch_objectElementType'
+// XSD complex type (W3C XSD §3.4)
+type Patch_objectElementType struct {
+	pkg_200009xmldsig.ObjectType // XSD extension base
 	// Set represents XSD element 'set'
 	Set *xmlschemaoval_definitions_5.SetElement `xml:"set,omitempty"`
-	// Device represents XSD element 'device'
-	Device xmlschemaoval_definitions_5.EntityObjectStringType `xml:"device"`
-	// Parameter represents XSD element 'parameter'
-	Parameter xmlschemaoval_definitions_5.EntityObjectStringType `xml:"parameter"`
-	// Filter represents XSD element 'filter'
-	// minOccurs=0, maxOccurs=-1
-	Filter []xmlschemaoval_definitions_5.FilterElement `xml:"filter,omitempty"`
+	// Patch_name represents XSD element 'patch_name'
+	Patch_name *xmlschemaoval_definitions_5.EntityObjectStringType `xml:"patch_name,omitempty"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -212,33 +234,43 @@ type Patch_stateElementType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// Patch53_stateElementType represents the XSD type 'Patch53_stateElementType'
+// Swlist_stateElementType represents the XSD type 'Swlist_stateElementType'
 // XSD complex type (W3C XSD §3.4)
-type Patch53_stateElementType struct {
+type Swlist_stateElementType struct {
 	xmlschemaoval_definitions_5.StateType // XSD extension base
-	// Swtype represents XSD element 'swtype'
+	// Swlist represents XSD element 'swlist'
 	// minOccurs=0, maxOccurs=1
-	Swtype *xmlschemaoval_definitions_5.EntityStateStringType `xml:"swtype,omitempty"`
-	// Area_patched represents XSD element 'area_patched'
+	Swlist *xmlschemaoval_definitions_5.EntityStateStringType `xml:"swlist,omitempty"`
+	// Bundle represents XSD element 'bundle'
 	// minOccurs=0, maxOccurs=1
-	Area_patched *xmlschemaoval_definitions_5.EntityStateStringType `xml:"area_patched,omitempty"`
-	// Patch_base represents XSD element 'patch_base'
+	Bundle *xmlschemaoval_definitions_5.EntityStateStringType `xml:"bundle,omitempty"`
+	// Fileset represents XSD element 'fileset'
 	// minOccurs=0, maxOccurs=1
-	Patch_base *xmlschemaoval_definitions_5.EntityStateStringType `xml:"patch_base,omitempty"`
+	Fileset *xmlschemaoval_definitions_5.EntityStateStringType `xml:"fileset,omitempty"`
+	// Version represents XSD element 'version'
+	// minOccurs=0, maxOccurs=1
+	Version *VersionElementType `xml:"version,omitempty"`
+	// Title represents XSD element 'title'
+	// minOccurs=0, maxOccurs=1
+	Title *xmlschemaoval_definitions_5.EntityStateStringType `xml:"title,omitempty"`
+	// Vendor represents XSD element 'vendor'
+	// minOccurs=0, maxOccurs=1
+	Vendor *xmlschemaoval_definitions_5.EntityStateStringType `xml:"vendor,omitempty"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// Patch_objectElementType represents the XSD type 'Patch_objectElementType'
+// Swlist_testElementType represents the XSD type 'Swlist_testElementType'
 // XSD complex type (W3C XSD §3.4)
-type Patch_objectElementType struct {
-	pkg_200009xmldsig.ObjectType // XSD extension base
-	// Set represents XSD element 'set'
-	Set *xmlschemaoval_definitions_5.SetElement `xml:"set,omitempty"`
-	// Patch_name represents XSD element 'patch_name'
-	Patch_name *xmlschemaoval_definitions_5.EntityObjectStringType `xml:"patch_name,omitempty"`
+type Swlist_testElementType struct {
+	xmlschemaoval_results_5.TestType // XSD extension base
+	// Object represents XSD element 'object'
+	Object xmlschemaoval_definitions_5.ObjectRefType `xml:"object"`
+	// State represents XSD element 'state'
+	// minOccurs=0, maxOccurs=-1
+	State []xmlschemaoval_definitions_5.StateRefType `xml:"state,omitempty"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -264,10 +296,49 @@ type Getconf_stateElementType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
+// Ndd_testElementType represents the XSD type 'Ndd_testElementType'
+// XSD complex type (W3C XSD §3.4)
+type Ndd_testElementType struct {
+	xmlschemaoval_results_5.TestType // XSD extension base
+	// Object represents XSD element 'object'
+	Object xmlschemaoval_definitions_5.ObjectRefType `xml:"object"`
+	// State represents XSD element 'state'
+	// minOccurs=0, maxOccurs=-1
+	State []xmlschemaoval_definitions_5.StateRefType `xml:"state,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// Patch53_objectElementType represents the XSD type 'Patch53_objectElementType'
+// XSD complex type (W3C XSD §3.4)
+type Patch53_objectElementType struct {
+	xmlschemaoval_definitions_5.ObjectType // XSD extension base
+	// Set represents XSD element 'set'
+	Set *xmlschemaoval_definitions_5.SetElement `xml:"set,omitempty"`
+	// Behaviors represents XSD element 'behaviors'
+	// minOccurs=0, maxOccurs=1
+	Behaviors *Patch53Behaviors `xml:"behaviors,omitempty"`
+	// Swtype represents XSD element 'swtype'
+	Swtype xmlschemaoval_definitions_5.EntityObjectStringType `xml:"swtype"`
+	// Area_patched represents XSD element 'area_patched'
+	Area_patched xmlschemaoval_definitions_5.EntityObjectStringType `xml:"area_patched"`
+	// Patch_base represents XSD element 'patch_base'
+	Patch_base xmlschemaoval_definitions_5.EntityObjectStringType `xml:"patch_base"`
+	// Filter represents XSD element 'filter'
+	// minOccurs=0, maxOccurs=-1
+	Filter []xmlschemaoval_definitions_5.FilterElement `xml:"filter,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
 // Swlist_objectElementType represents the XSD type 'Swlist_objectElementType'
 // XSD complex type (W3C XSD §3.4)
 type Swlist_objectElementType struct {
-	pkg_200009xmldsig.ObjectType // XSD extension base
+	xmlschemaoval_system_characteristics_5.ObjectType // XSD extension base
 	// Set represents XSD element 'set'
 	Set *xmlschemaoval_definitions_5.SetElement `xml:"set,omitempty"`
 	// Swlist represents XSD element 'swlist'
@@ -281,15 +352,104 @@ type Swlist_objectElementType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// Ndd_testElementType represents the XSD type 'Ndd_testElementType'
+// Getconf_objectElementType represents the XSD type 'Getconf_objectElementType'
 // XSD complex type (W3C XSD §3.4)
-type Ndd_testElementType struct {
+type Getconf_objectElementType struct {
+	pkg_200009xmldsig.ObjectType // XSD extension base
+	// Set represents XSD element 'set'
+	Set *xmlschemaoval_definitions_5.SetElement `xml:"set,omitempty"`
+	// Parameter_name represents XSD element 'parameter_name'
+	Parameter_name xmlschemaoval_definitions_5.EntityObjectStringType `xml:"parameter_name"`
+	// Pathname represents XSD element 'pathname'
+	Pathname xmlschemaoval_definitions_5.EntityObjectStringType `xml:"pathname"`
+	// Filter represents XSD element 'filter'
+	// minOccurs=0, maxOccurs=-1
+	Filter []xmlschemaoval_definitions_5.FilterElement `xml:"filter,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// Ndd_objectElementType represents the XSD type 'Ndd_objectElementType'
+// XSD complex type (W3C XSD §3.4)
+type Ndd_objectElementType struct {
+	pkg_200009xmldsig.ObjectType // XSD extension base
+	// Set represents XSD element 'set'
+	Set *xmlschemaoval_definitions_5.SetElement `xml:"set,omitempty"`
+	// Device represents XSD element 'device'
+	Device xmlschemaoval_definitions_5.EntityObjectStringType `xml:"device"`
+	// Parameter represents XSD element 'parameter'
+	Parameter xmlschemaoval_definitions_5.EntityObjectStringType `xml:"parameter"`
+	// Filter represents XSD element 'filter'
+	// minOccurs=0, maxOccurs=-1
+	Filter []xmlschemaoval_definitions_5.FilterElement `xml:"filter,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// Getconf_testElementType represents the XSD type 'Getconf_testElementType'
+// XSD complex type (W3C XSD §3.4)
+type Getconf_testElementType struct {
+	xmlschemaoval_definitions_5.TestType // XSD extension base
+	// Object represents XSD element 'object'
+	Object xmlschemaoval_definitions_5.ObjectRefType `xml:"object"`
+	// State represents XSD element 'state'
+	// minOccurs=0, maxOccurs=-1
+	State []xmlschemaoval_definitions_5.StateRefType `xml:"state,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// Ndd_stateElementType represents the XSD type 'Ndd_stateElementType'
+// XSD complex type (W3C XSD §3.4)
+type Ndd_stateElementType struct {
+	xmlschemaoval_definitions_5.StateType // XSD extension base
+	// Device represents XSD element 'device'
+	// minOccurs=0, maxOccurs=1
+	Device *xmlschemaoval_definitions_5.EntityStateStringType `xml:"device,omitempty"`
+	// Parameter represents XSD element 'parameter'
+	// minOccurs=0, maxOccurs=1
+	Parameter *xmlschemaoval_definitions_5.EntityStateStringType `xml:"parameter,omitempty"`
+	// Value represents XSD element 'value'
+	// minOccurs=0, maxOccurs=1
+	Value *xmlschemaoval_definitions_5.EntityStateAnySimpleType `xml:"value,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// Patch53_testElementType represents the XSD type 'Patch53_testElementType'
+// XSD complex type (W3C XSD §3.4)
+type Patch53_testElementType struct {
 	xmlschemaoval_results_5.TestType // XSD extension base
 	// Object represents XSD element 'object'
 	Object xmlschemaoval_definitions_5.ObjectRefType `xml:"object"`
 	// State represents XSD element 'state'
 	// minOccurs=0, maxOccurs=-1
 	State []xmlschemaoval_definitions_5.StateRefType `xml:"state,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// Trusted_objectElementType represents the XSD type 'Trusted_objectElementType'
+// XSD complex type (W3C XSD §3.4)
+type Trusted_objectElementType struct {
+	xmlschemaoval_system_characteristics_5.ObjectType // XSD extension base
+	// Set represents XSD element 'set'
+	Set *xmlschemaoval_definitions_5.SetElement `xml:"set,omitempty"`
+	// Username represents XSD element 'username'
+	Username xmlschemaoval_definitions_5.EntityObjectStringType `xml:"username"`
+	// Filter represents XSD element 'filter'
+	// minOccurs=0, maxOccurs=-1
+	Filter []xmlschemaoval_definitions_5.FilterElement `xml:"filter,omitempty"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -399,44 +559,10 @@ type Trusted_stateElementType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// Ndd_stateElementType represents the XSD type 'Ndd_stateElementType'
-// XSD complex type (W3C XSD §3.4)
-type Ndd_stateElementType struct {
-	xmlschemaoval_definitions_5.StateType // XSD extension base
-	// Device represents XSD element 'device'
-	// minOccurs=0, maxOccurs=1
-	Device *xmlschemaoval_definitions_5.EntityStateStringType `xml:"device,omitempty"`
-	// Parameter represents XSD element 'parameter'
-	// minOccurs=0, maxOccurs=1
-	Parameter *xmlschemaoval_definitions_5.EntityStateStringType `xml:"parameter,omitempty"`
-	// Value represents XSD element 'value'
-	// minOccurs=0, maxOccurs=1
-	Value *xmlschemaoval_definitions_5.EntityStateAnySimpleType `xml:"value,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Patch_testElementType represents the XSD type 'Patch_testElementType'
-// XSD complex type (W3C XSD §3.4)
-type Patch_testElementType struct {
-	xmlschemaoval_definitions_5.TestType // XSD extension base
-	// Object represents XSD element 'object'
-	Object xmlschemaoval_definitions_5.ObjectRefType `xml:"object"`
-	// State represents XSD element 'state'
-	// minOccurs=0, maxOccurs=-1
-	State []xmlschemaoval_definitions_5.StateRefType `xml:"state,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
 // Trusted_testElementType represents the XSD type 'Trusted_testElementType'
 // XSD complex type (W3C XSD §3.4)
 type Trusted_testElementType struct {
-	xmlschemaoval_results_5.TestType // XSD extension base
+	xmlschemaoval_definitions_5.TestType // XSD extension base
 	// Object represents XSD element 'object'
 	Object xmlschemaoval_definitions_5.ObjectRefType `xml:"object"`
 	// State represents XSD element 'state'
@@ -448,71 +574,19 @@ type Trusted_testElementType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// Patch53_objectElementType represents the XSD type 'Patch53_objectElementType'
+// Patch53_stateElementType represents the XSD type 'Patch53_stateElementType'
 // XSD complex type (W3C XSD §3.4)
-type Patch53_objectElementType struct {
-	xmlschemaoval_definitions_5.ObjectType // XSD extension base
-	// Set represents XSD element 'set'
-	Set *xmlschemaoval_definitions_5.SetElement `xml:"set,omitempty"`
-	// Behaviors represents XSD element 'behaviors'
-	// minOccurs=0, maxOccurs=1
-	Behaviors *Patch53Behaviors `xml:"behaviors,omitempty"`
+type Patch53_stateElementType struct {
+	xmlschemaoval_definitions_5.StateType // XSD extension base
 	// Swtype represents XSD element 'swtype'
-	Swtype xmlschemaoval_definitions_5.EntityObjectStringType `xml:"swtype"`
+	// minOccurs=0, maxOccurs=1
+	Swtype *xmlschemaoval_definitions_5.EntityStateStringType `xml:"swtype,omitempty"`
 	// Area_patched represents XSD element 'area_patched'
-	Area_patched xmlschemaoval_definitions_5.EntityObjectStringType `xml:"area_patched"`
+	// minOccurs=0, maxOccurs=1
+	Area_patched *xmlschemaoval_definitions_5.EntityStateStringType `xml:"area_patched,omitempty"`
 	// Patch_base represents XSD element 'patch_base'
-	Patch_base xmlschemaoval_definitions_5.EntityObjectStringType `xml:"patch_base"`
-	// Filter represents XSD element 'filter'
-	// minOccurs=0, maxOccurs=-1
-	Filter []xmlschemaoval_definitions_5.FilterElement `xml:"filter,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Trusted_objectElementType represents the XSD type 'Trusted_objectElementType'
-// XSD complex type (W3C XSD §3.4)
-type Trusted_objectElementType struct {
-	pkg_200009xmldsig.ObjectType // XSD extension base
-	// Set represents XSD element 'set'
-	Set *xmlschemaoval_definitions_5.SetElement `xml:"set,omitempty"`
-	// Username represents XSD element 'username'
-	Username xmlschemaoval_definitions_5.EntityObjectStringType `xml:"username"`
-	// Filter represents XSD element 'filter'
-	// minOccurs=0, maxOccurs=-1
-	Filter []xmlschemaoval_definitions_5.FilterElement `xml:"filter,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Swlist_testElementType represents the XSD type 'Swlist_testElementType'
-// XSD complex type (W3C XSD §3.4)
-type Swlist_testElementType struct {
-	xmlschemaoval_definitions_5.TestType // XSD extension base
-	// Object represents XSD element 'object'
-	Object xmlschemaoval_definitions_5.ObjectRefType `xml:"object"`
-	// State represents XSD element 'state'
-	// minOccurs=0, maxOccurs=-1
-	State []xmlschemaoval_definitions_5.StateRefType `xml:"state,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Patch53_testElementType represents the XSD type 'Patch53_testElementType'
-// XSD complex type (W3C XSD §3.4)
-type Patch53_testElementType struct {
-	xmlschemaoval_definitions_5.TestType // XSD extension base
-	// Object represents XSD element 'object'
-	Object xmlschemaoval_definitions_5.ObjectRefType `xml:"object"`
-	// State represents XSD element 'state'
-	// minOccurs=0, maxOccurs=-1
-	State []xmlschemaoval_definitions_5.StateRefType `xml:"state,omitempty"`
+	// minOccurs=0, maxOccurs=1
+	Patch_base *xmlschemaoval_definitions_5.EntityStateStringType `xml:"patch_base,omitempty"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -526,80 +600,6 @@ type VersionElementType struct {
 	// Datatype represents XSD attribute 'datatype'
 	// use="optional"
 	Datatype *string `xml:"datatype,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Getconf_objectElementType represents the XSD type 'Getconf_objectElementType'
-// XSD complex type (W3C XSD §3.4)
-type Getconf_objectElementType struct {
-	xmlschemaoval_system_characteristics_5.ObjectType // XSD extension base
-	// Set represents XSD element 'set'
-	Set *xmlschemaoval_definitions_5.SetElement `xml:"set,omitempty"`
-	// Parameter_name represents XSD element 'parameter_name'
-	Parameter_name xmlschemaoval_definitions_5.EntityObjectStringType `xml:"parameter_name"`
-	// Pathname represents XSD element 'pathname'
-	Pathname xmlschemaoval_definitions_5.EntityObjectStringType `xml:"pathname"`
-	// Filter represents XSD element 'filter'
-	// minOccurs=0, maxOccurs=-1
-	Filter []xmlschemaoval_definitions_5.FilterElement `xml:"filter,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Patch53Behaviors represents the XSD type 'Patch53Behaviors'
-// XSD complex type (W3C XSD §3.4)
-type Patch53Behaviors struct {
-	// Supersedence represents XSD attribute 'supersedence'
-	// use="optional"
-	Supersedence *string `xml:"supersedence,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Getconf_testElementType represents the XSD type 'Getconf_testElementType'
-// XSD complex type (W3C XSD §3.4)
-type Getconf_testElementType struct {
-	xmlschemaoval_definitions_5.TestType // XSD extension base
-	// Object represents XSD element 'object'
-	Object xmlschemaoval_definitions_5.ObjectRefType `xml:"object"`
-	// State represents XSD element 'state'
-	// minOccurs=0, maxOccurs=-1
-	State []xmlschemaoval_definitions_5.StateRefType `xml:"state,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Swlist_stateElementType represents the XSD type 'Swlist_stateElementType'
-// XSD complex type (W3C XSD §3.4)
-type Swlist_stateElementType struct {
-	xmlschemaoval_definitions_5.StateType // XSD extension base
-	// Swlist represents XSD element 'swlist'
-	// minOccurs=0, maxOccurs=1
-	Swlist *xmlschemaoval_definitions_5.EntityStateStringType `xml:"swlist,omitempty"`
-	// Bundle represents XSD element 'bundle'
-	// minOccurs=0, maxOccurs=1
-	Bundle *xmlschemaoval_definitions_5.EntityStateStringType `xml:"bundle,omitempty"`
-	// Fileset represents XSD element 'fileset'
-	// minOccurs=0, maxOccurs=1
-	Fileset *xmlschemaoval_definitions_5.EntityStateStringType `xml:"fileset,omitempty"`
-	// Version represents XSD element 'version'
-	// minOccurs=0, maxOccurs=1
-	Version *VersionElementType `xml:"version,omitempty"`
-	// Title represents XSD element 'title'
-	// minOccurs=0, maxOccurs=1
-	Title *xmlschemaoval_definitions_5.EntityStateStringType `xml:"title,omitempty"`
-	// Vendor represents XSD element 'vendor'
-	// minOccurs=0, maxOccurs=1
-	Vendor *xmlschemaoval_definitions_5.EntityStateStringType `xml:"vendor,omitempty"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD

@@ -12,7 +12,7 @@ import (
 
 	xmlschemaoval_definitions_5 "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/oval/xmlschema/oval-definitions-5"
 	xmlschemaoval_results_5 "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/oval/xmlschema/oval-results-5"
-	pkg_200009xmldsig "github.com/aequo-labs/forgexml-scap/internal/generated/org/w3/2000/09/xmldsig"
+	xmlschemaoval_system_characteristics_5 "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/oval/xmlschema/oval-system-characteristics-5"
 )
 
 // Httpd_testElement represents the XSD element 'httpd_test'
@@ -208,8 +208,8 @@ func LoadHttpd_testFromFile(path string) (*Httpd_testElement, error) {
 // Httpd_objectElement represents the XSD element 'httpd_object'
 // XSD element declaration (W3C XSD §3.3)
 type Httpd_objectElement struct {
-	XMLName                      xml.Name `xml:"http://oval.mitre.org/XMLSchema/oval-definitions-5#apache httpd_object"`
-	pkg_200009xmldsig.ObjectType          // XSD extension base
+	XMLName                                           xml.Name `xml:"http://oval.mitre.org/XMLSchema/oval-definitions-5#apache httpd_object"`
+	xmlschemaoval_system_characteristics_5.ObjectType          // XSD extension base
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD

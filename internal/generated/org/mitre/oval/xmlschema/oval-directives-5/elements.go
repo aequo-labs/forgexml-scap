@@ -10,7 +10,7 @@ import (
 	"os"
 	"strings"
 
-	dictionary2_0 "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/cpe/dictionary/2-0"
+	xmlschemaoval_common_5 "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/oval/xmlschema/oval-common-5"
 	xmlschemaoval_results_5 "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/oval/xmlschema/oval-results-5"
 	pkg_200009xmldsig "github.com/aequo-labs/forgexml-scap/internal/generated/org/w3/2000/09/xmldsig"
 )
@@ -20,7 +20,7 @@ import (
 type Oval_directivesElement struct {
 	XMLName xml.Name `xml:"http://oval.mitre.org/XMLSchema/oval-directives-5 oval_directives"`
 	// Generator represents XSD element 'generator'
-	Generator dictionary2_0.GeneratorType `xml:"generator"`
+	Generator xmlschemaoval_common_5.GeneratorType `xml:"generator"`
 	// Directives represents XSD element 'directives'
 	Directives xmlschemaoval_results_5.DefaultDirectivesType `xml:"directives"`
 	// Class_directives represents XSD element 'class_directives'

@@ -5,7 +5,7 @@ Auto-generated diagrams from XSD schema analysis.
 ## Schema Statistics
 
 - **Tables**: 1789
-- **Relationships**: 3329
+- **Relationships**: 3333
 - **Root Entities**: 341
 
 ## Entity-Relationship Diagram
@@ -4910,7 +4910,6 @@ erDiagram
         string recurse "nullable"
         string recurse_direction "nullable"
         string recurse_file_system "nullable"
-        string windows_view "nullable"
     }
     OvalMitreOrgOvalFileObject {
         int id PK
@@ -4933,23 +4932,26 @@ erDiagram
         int filepath_id "nullable"
         int path_id "nullable"
         int filename_id "nullable"
-        int owner_id "nullable"
-        int size_id "nullable"
-        int a_time_id "nullable"
-        int c_time_id "nullable"
-        int m_time_id "nullable"
-        int ms_checksum_id "nullable"
-        int version_id "nullable"
         int type_id "nullable"
-        int attribute_id "nullable"
-        int development_class_id "nullable"
-        int company_id "nullable"
-        int internal_name_id "nullable"
-        int language_id "nullable"
-        int original_filename_id "nullable"
-        int product_name_id "nullable"
-        string product_version "nullable"
-        int windows_view_id "nullable"
+        string group_id "nullable"
+        string user_id "nullable"
+        string a_time "nullable"
+        string c_time "nullable"
+        string m_time "nullable"
+        int size_id "nullable"
+        int suid_id "nullable"
+        int sgid_id "nullable"
+        int sticky_id "nullable"
+        int uread_id "nullable"
+        int uwrite_id "nullable"
+        int uexec_id "nullable"
+        int gread_id "nullable"
+        int gwrite_id "nullable"
+        int gexec_id "nullable"
+        int oread_id "nullable"
+        int owrite_id "nullable"
+        int oexec_id "nullable"
+        int has_extended_acl_id "nullable"
         int parent_id "nullable"
     }
     OvalMitreOrgOvalFileStateElementType {
@@ -4957,23 +4959,26 @@ erDiagram
         int filepath_id "nullable"
         int path_id "nullable"
         int filename_id "nullable"
-        int owner_id "nullable"
-        int size_id "nullable"
-        int a_time_id "nullable"
-        int c_time_id "nullable"
-        int m_time_id "nullable"
-        int ms_checksum_id "nullable"
-        int version_id "nullable"
         int type_id "nullable"
-        int attribute_id "nullable"
-        int development_class_id "nullable"
-        int company_id "nullable"
-        int internal_name_id "nullable"
-        int language_id "nullable"
-        int original_filename_id "nullable"
-        int product_name_id "nullable"
-        string product_version "nullable"
-        int windows_view_id "nullable"
+        string group_id "nullable"
+        string user_id "nullable"
+        string a_time "nullable"
+        string c_time "nullable"
+        string m_time "nullable"
+        int size_id "nullable"
+        int suid_id "nullable"
+        int sgid_id "nullable"
+        int sticky_id "nullable"
+        int uread_id "nullable"
+        int uwrite_id "nullable"
+        int uexec_id "nullable"
+        int gread_id "nullable"
+        int gwrite_id "nullable"
+        int gexec_id "nullable"
+        int oread_id "nullable"
+        int owrite_id "nullable"
+        int oexec_id "nullable"
+        int has_extended_acl_id "nullable"
         int parent_id "nullable"
     }
     OvalMitreOrgOvalFileTest {
@@ -5083,9 +5088,10 @@ erDiagram
     OvalMitreOrgOvalInterfaceState {
         int id PK
         int name_id "nullable"
-        int ip_directed_broadcast_id "nullable"
-        int proxy_arp_id "nullable"
-        int shutdown_id "nullable"
+        string ip_directed_broadcast_command "nullable"
+        int no_ip_directed_broadcast_command_id "nullable"
+        string proxy_arp_command "nullable"
+        string shutdown_command "nullable"
         int hardware_addr_id "nullable"
         int ipv4_address_id "nullable"
         int ipv6_address_id "nullable"
@@ -5107,9 +5113,10 @@ erDiagram
     OvalMitreOrgOvalInterfaceStateElementType {
         int id PK
         int name_id "nullable"
-        int ip_directed_broadcast_id "nullable"
-        int proxy_arp_id "nullable"
-        int shutdown_id "nullable"
+        string ip_directed_broadcast_command "nullable"
+        int no_ip_directed_broadcast_command_id "nullable"
+        string proxy_arp_command "nullable"
+        string shutdown_command "nullable"
         int hardware_addr_id "nullable"
         int ipv4_address_id "nullable"
         int ipv6_address_id "nullable"
@@ -5353,29 +5360,39 @@ erDiagram
     OvalMitreOrgOvalProcess58State {
         int id PK
         int command_line_id "nullable"
+        int exec_time_id "nullable"
         int pid_id "nullable"
         int ppid_id "nullable"
-        string priority "nullable"
-        int image_path_id "nullable"
-        int current_dir_id "nullable"
-        int creation_time_id "nullable"
-        int dep_enabled_id "nullable"
-        int primary_window_text_id "nullable"
-        int name_id "nullable"
+        int priority_id "nullable"
+        int ruid_id "nullable"
+        int scheduling_class_id "nullable"
+        int start_time_id "nullable"
+        int tty_id "nullable"
+        int user_id_id "nullable"
+        int exec_shield_id "nullable"
+        int loginuid_id "nullable"
+        int posix_capability_id "nullable"
+        int selinux_domain_label_id "nullable"
+        int session_id_id "nullable"
         int parent_id "nullable"
     }
     OvalMitreOrgOvalProcess58StateElementType {
         int id PK
         int command_line_id "nullable"
+        int exec_time_id "nullable"
         int pid_id "nullable"
         int ppid_id "nullable"
-        string priority "nullable"
-        int image_path_id "nullable"
-        int current_dir_id "nullable"
-        int creation_time_id "nullable"
-        int dep_enabled_id "nullable"
-        int primary_window_text_id "nullable"
-        int name_id "nullable"
+        int priority_id "nullable"
+        int ruid_id "nullable"
+        int scheduling_class_id "nullable"
+        int start_time_id "nullable"
+        int tty_id "nullable"
+        int user_id_id "nullable"
+        int exec_shield_id "nullable"
+        int loginuid_id "nullable"
+        int posix_capability_id "nullable"
+        int selinux_domain_label_id "nullable"
+        int session_id_id "nullable"
         int parent_id "nullable"
     }
     OvalMitreOrgOvalProcess58Test {
@@ -5390,32 +5407,40 @@ erDiagram
     }
     OvalMitreOrgOvalProcessObject {
         int id PK
-        int command_line_id
+        int command_id
         int parent_id "nullable"
     }
     OvalMitreOrgOvalProcessObjectElementType {
         int id PK
-        int command_line_id
+        int command_id
         int parent_id "nullable"
     }
     OvalMitreOrgOvalProcessState {
         int id PK
-        int command_line_id "nullable"
+        int command_id "nullable"
+        int exec_time_id "nullable"
         int pid_id "nullable"
         int ppid_id "nullable"
-        string priority "nullable"
-        int image_path_id "nullable"
-        int current_dir_id "nullable"
+        int priority_id "nullable"
+        int ruid_id "nullable"
+        int scheduling_class_id "nullable"
+        int start_time_id "nullable"
+        int tty_id "nullable"
+        int user_id_id "nullable"
         int parent_id "nullable"
     }
     OvalMitreOrgOvalProcessStateElementType {
         int id PK
-        int command_line_id "nullable"
+        int command_id "nullable"
+        int exec_time_id "nullable"
         int pid_id "nullable"
         int ppid_id "nullable"
-        string priority "nullable"
-        int image_path_id "nullable"
-        int current_dir_id "nullable"
+        int priority_id "nullable"
+        int ruid_id "nullable"
+        int scheduling_class_id "nullable"
+        int start_time_id "nullable"
+        int tty_id "nullable"
+        int user_id_id "nullable"
         int parent_id "nullable"
     }
     OvalMitreOrgOvalProcessTest {
@@ -5799,26 +5824,16 @@ erDiagram
     }
     OvalMitreOrgOvalVersion55State {
         int id PK
-        int major_version_id "nullable"
-        int minor_version_id "nullable"
-        int release_id "nullable"
-        int train_identifier_id "nullable"
-        int rebuild_id "nullable"
-        int subrebuild_id "nullable"
-        int mainline_rebuild_id "nullable"
-        int version_string_id "nullable"
+        int switch_series_id "nullable"
+        int image_name_id "nullable"
+        int catos_release_id "nullable"
         int parent_id "nullable"
     }
     OvalMitreOrgOvalVersion55StateElementType {
         int id PK
-        int major_version_id "nullable"
-        int minor_version_id "nullable"
-        int release_id "nullable"
-        int train_identifier_id "nullable"
-        int rebuild_id "nullable"
-        int subrebuild_id "nullable"
-        int mainline_rebuild_id "nullable"
-        int version_string_id "nullable"
+        int switch_series_id "nullable"
+        int image_name_id "nullable"
+        int catos_release_id "nullable"
         int parent_id "nullable"
     }
     OvalMitreOrgOvalVersion55Test {
@@ -5846,18 +5861,20 @@ erDiagram
     }
     OvalMitreOrgOvalVersionState {
         int id PK
-        int pix_release_id "nullable"
-        int pix_major_release_id "nullable"
-        int pix_minor_release_id "nullable"
-        int pix_build_id "nullable"
+        int switch_series_id "nullable"
+        int image_name_id "nullable"
+        int catos_major_release_id "nullable"
+        int catos_individual_release_id "nullable"
+        int catos_version_id_id "nullable"
         int parent_id "nullable"
     }
     OvalMitreOrgOvalVersionStateElementType {
         int id PK
-        int pix_release_id "nullable"
-        int pix_major_release_id "nullable"
-        int pix_minor_release_id "nullable"
-        int pix_build_id "nullable"
+        int switch_series_id "nullable"
+        int image_name_id "nullable"
+        int catos_major_release_id "nullable"
+        int catos_individual_release_id "nullable"
+        int catos_version_id_id "nullable"
         int parent_id "nullable"
     }
     OvalMitreOrgOvalVersionTest {
@@ -12899,16 +12916,16 @@ erDiagram
     TestType ||--|| EnvironmentvariableTestElementType : "extends"
     EntityStateAnySimpleType |o--o{ EpochElementType : "References parent type EntityStateAnySimpleType"
     EntityStateAnySimpleType ||--|| EpochElementType : "extends"
-    EntityObjectAnySimpleType |o--o{ EpochElementType1 : "References parent type EntityObjectAnySimpleType"
-    EntityObjectAnySimpleType ||--|| EpochElementType1 : "extends"
-    EntityStateAnySimpleType |o--o{ EpochElementType2 : "References parent type EntityStateAnySimpleType"
-    EntityStateAnySimpleType ||--|| EpochElementType2 : "extends"
+    EntityStateAnySimpleType |o--o{ EpochElementType1 : "References parent type EntityStateAnySimpleType"
+    EntityStateAnySimpleType ||--|| EpochElementType1 : "extends"
+    EntityObjectAnySimpleType |o--o{ EpochElementType2 : "References parent type EntityObjectAnySimpleType"
+    EntityObjectAnySimpleType ||--|| EpochElementType2 : "extends"
     EntityStateAnySimpleType |o--o{ EpochElementType3 : "References parent type EntityStateAnySimpleType"
     EntityStateAnySimpleType ||--|| EpochElementType3 : "extends"
-    EntityStateAnySimpleType |o--o{ EpochElementType4 : "References parent type EntityStateAnySimpleType"
-    EntityStateAnySimpleType ||--|| EpochElementType4 : "extends"
-    EntityObjectAnySimpleType |o--o{ EpochElementType5 : "References parent type EntityObjectAnySimpleType"
-    EntityObjectAnySimpleType ||--|| EpochElementType5 : "extends"
+    EntityObjectAnySimpleType |o--o{ EpochElementType4 : "References parent type EntityObjectAnySimpleType"
+    EntityObjectAnySimpleType ||--|| EpochElementType4 : "extends"
+    EntityStateAnySimpleType |o--o{ EpochElementType5 : "References parent type EntityStateAnySimpleType"
+    EntityStateAnySimpleType ||--|| EpochElementType5 : "extends"
     EntityStateAnySimpleType |o--o{ EvrElementType : "References parent type EntityStateAnySimpleType"
     EntityStateAnySimpleType ||--|| EvrElementType : "extends"
     EntityStateAnySimpleType |o--o{ ExpDateElementType : "References parent type EntityStateAnySimpleType"
@@ -13919,23 +13936,26 @@ erDiagram
     EntityStateStringType |o--o{ OvalMitreOrgOvalFileStateElementType : "References EntityStateStringType"
     EntityStateStringType |o--o{ OvalMitreOrgOvalFileStateElementType : "References EntityStateStringType"
     EntityStateStringType |o--o{ OvalMitreOrgOvalFileStateElementType : "References EntityStateStringType"
-    EntityStateStringType |o--o{ OvalMitreOrgOvalFileStateElementType : "References EntityStateStringType"
-    EntityStateIntType |o--o{ OvalMitreOrgOvalFileStateElementType : "References EntityStateIntType"
-    EntityStateIntType |o--o{ OvalMitreOrgOvalFileStateElementType : "References EntityStateIntType"
-    EntityStateIntType |o--o{ OvalMitreOrgOvalFileStateElementType : "References EntityStateIntType"
-    EntityStateIntType |o--o{ OvalMitreOrgOvalFileStateElementType : "References EntityStateIntType"
-    EntityStateIntType |o--o{ OvalMitreOrgOvalFileStateElementType : "References EntityStateIntType"
-    EntityStateStringType |o--o{ OvalMitreOrgOvalFileStateElementType : "References EntityStateStringType"
-    EntityStateVersionType |o--o{ OvalMitreOrgOvalFileStateElementType : "References EntityStateVersionType"
     EntityStateFileTypeType |o--o{ OvalMitreOrgOvalFileStateElementType : "References EntityStateFileTypeType"
     EntityStateStringType |o--o{ OvalMitreOrgOvalFileStateElementType : "References EntityStateStringType"
-    EntityStateFileAttributeType |o--o{ OvalMitreOrgOvalFileStateElementType : "References EntityStateFileAttributeType"
-    EntityStateStringType |o--o{ OvalMitreOrgOvalFileStateElementType : "References EntityStateStringType"
-    EntityStateStringType |o--o{ OvalMitreOrgOvalFileStateElementType : "References EntityStateStringType"
-    EntityStateStringType |o--o{ OvalMitreOrgOvalFileStateElementType : "References EntityStateStringType"
-    EntityStateStringType |o--o{ OvalMitreOrgOvalFileStateElementType : "References EntityStateStringType"
-    EntityStateStringType |o--o{ OvalMitreOrgOvalFileStateElementType : "References EntityStateStringType"
-    EntityStateStringType |o--o{ OvalMitreOrgOvalFileStateElementType : "References EntityStateStringType"
+    EntityStateIntType |o--o{ OvalMitreOrgOvalFileStateElementType : "References EntityStateIntType"
+    EntityStateIntType |o--o{ OvalMitreOrgOvalFileStateElementType : "References EntityStateIntType"
+    EntityStateIntType |o--o{ OvalMitreOrgOvalFileStateElementType : "References EntityStateIntType"
+    EntityStateIntType |o--o{ OvalMitreOrgOvalFileStateElementType : "References EntityStateIntType"
+    EntityStateIntType |o--o{ OvalMitreOrgOvalFileStateElementType : "References EntityStateIntType"
+    EntityStateBoolType |o--o{ OvalMitreOrgOvalFileStateElementType : "References EntityStateBoolType"
+    EntityStateBoolType |o--o{ OvalMitreOrgOvalFileStateElementType : "References EntityStateBoolType"
+    EntityStateBoolType |o--o{ OvalMitreOrgOvalFileStateElementType : "References EntityStateBoolType"
+    EntityStateBoolType |o--o{ OvalMitreOrgOvalFileStateElementType : "References EntityStateBoolType"
+    EntityStateBoolType |o--o{ OvalMitreOrgOvalFileStateElementType : "References EntityStateBoolType"
+    EntityStateBoolType |o--o{ OvalMitreOrgOvalFileStateElementType : "References EntityStateBoolType"
+    EntityStateBoolType |o--o{ OvalMitreOrgOvalFileStateElementType : "References EntityStateBoolType"
+    EntityStateBoolType |o--o{ OvalMitreOrgOvalFileStateElementType : "References EntityStateBoolType"
+    EntityStateBoolType |o--o{ OvalMitreOrgOvalFileStateElementType : "References EntityStateBoolType"
+    EntityStateBoolType |o--o{ OvalMitreOrgOvalFileStateElementType : "References EntityStateBoolType"
+    EntityStateBoolType |o--o{ OvalMitreOrgOvalFileStateElementType : "References EntityStateBoolType"
+    EntityStateBoolType |o--o{ OvalMitreOrgOvalFileStateElementType : "References EntityStateBoolType"
+    EntityStateBoolType |o--o{ OvalMitreOrgOvalFileStateElementType : "References EntityStateBoolType"
     StateType ||--|| OvalMitreOrgOvalFileStateElementType : "extends"
     TestType |o--o{ OvalMitreOrgOvalFileTest : "References parent type TestType"
     TestType ||--|| OvalMitreOrgOvalFileTest : "extends"
@@ -13978,8 +13998,8 @@ erDiagram
     EntityStateIPAddressStringType |o--o{ OvalMitreOrgOvalInetlisteningserversStateElementType : "References EntityStateIPAddressStringType"
     EntityStateStringType |o--o{ OvalMitreOrgOvalInetlisteningserversStateElementType : "References EntityStateStringType"
     EntityStateStringType |o--o{ OvalMitreOrgOvalInetlisteningserversStateElementType : "References EntityStateStringType"
-    EntityStateStringType |o--o{ OvalMitreOrgOvalInetlisteningserversStateElementType : "References EntityStateStringType"
     EntityStateIntType |o--o{ OvalMitreOrgOvalInetlisteningserversStateElementType : "References EntityStateIntType"
+    EntityStateStringType |o--o{ OvalMitreOrgOvalInetlisteningserversStateElementType : "References EntityStateStringType"
     EntityStateIntType |o--o{ OvalMitreOrgOvalInetlisteningserversStateElementType : "References EntityStateIntType"
     EntityStateIntType |o--o{ OvalMitreOrgOvalInetlisteningserversStateElementType : "References EntityStateIntType"
     EntityStateStringType |o--o{ OvalMitreOrgOvalInetlisteningserversStateElementType : "References EntityStateStringType"
@@ -14005,11 +14025,7 @@ erDiagram
     EntityStateStringType |o--o{ OvalMitreOrgOvalInterfaceStateElementType : "References EntityStateStringType"
     EntityStateStringType |o--o{ OvalMitreOrgOvalInterfaceStateElementType : "References EntityStateStringType"
     EntityStateStringType |o--o{ OvalMitreOrgOvalInterfaceStateElementType : "References EntityStateStringType"
-    EntityStateBoolType |o--o{ OvalMitreOrgOvalInterfaceStateElementType : "References EntityStateBoolType"
-    EntityStateBoolType |o--o{ OvalMitreOrgOvalInterfaceStateElementType : "References EntityStateBoolType"
-    EntityStateBoolType |o--o{ OvalMitreOrgOvalInterfaceStateElementType : "References EntityStateBoolType"
-    EntityStateBoolType |o--o{ OvalMitreOrgOvalInterfaceStateElementType : "References EntityStateBoolType"
-    EntityStateBoolType |o--o{ OvalMitreOrgOvalInterfaceStateElementType : "References EntityStateBoolType"
+    EntityStateStringType |o--o{ OvalMitreOrgOvalInterfaceStateElementType : "References EntityStateStringType"
     EntityStateStringType |o--o{ OvalMitreOrgOvalInterfaceStateElementType : "References EntityStateStringType"
     EntityStateStringType |o--o{ OvalMitreOrgOvalInterfaceStateElementType : "References EntityStateStringType"
     EntityStateStringType |o--o{ OvalMitreOrgOvalInterfaceStateElementType : "References EntityStateStringType"
@@ -14162,17 +14178,22 @@ erDiagram
     StateType |o--o{ OvalMitreOrgOvalProcess58StateElementType : "References parent type StateType"
     EntityStateStringType |o--o{ OvalMitreOrgOvalProcess58StateElementType : "References EntityStateStringType"
     EntityStateStringType |o--o{ OvalMitreOrgOvalProcess58StateElementType : "References EntityStateStringType"
+    EntityStateStringType |o--o{ OvalMitreOrgOvalProcess58StateElementType : "References EntityStateStringType"
     EntityStateIntType |o--o{ OvalMitreOrgOvalProcess58StateElementType : "References EntityStateIntType"
     EntityStateIntType |o--o{ OvalMitreOrgOvalProcess58StateElementType : "References EntityStateIntType"
     EntityStateIntType |o--o{ OvalMitreOrgOvalProcess58StateElementType : "References EntityStateIntType"
     EntityStateIntType |o--o{ OvalMitreOrgOvalProcess58StateElementType : "References EntityStateIntType"
     EntityStateIntType |o--o{ OvalMitreOrgOvalProcess58StateElementType : "References EntityStateIntType"
+    EntityStateIntType |o--o{ OvalMitreOrgOvalProcess58StateElementType : "References EntityStateIntType"
+    EntityStateStringType |o--o{ OvalMitreOrgOvalProcess58StateElementType : "References EntityStateStringType"
     EntityStateStringType |o--o{ OvalMitreOrgOvalProcess58StateElementType : "References EntityStateStringType"
     EntityStateStringType |o--o{ OvalMitreOrgOvalProcess58StateElementType : "References EntityStateStringType"
     EntityStateIntType |o--o{ OvalMitreOrgOvalProcess58StateElementType : "References EntityStateIntType"
     EntityStateBoolType |o--o{ OvalMitreOrgOvalProcess58StateElementType : "References EntityStateBoolType"
+    EntityStateIntType |o--o{ OvalMitreOrgOvalProcess58StateElementType : "References EntityStateIntType"
+    EntityStateCapabilityType |o--o{ OvalMitreOrgOvalProcess58StateElementType : "References EntityStateCapabilityType"
     EntityStateStringType |o--o{ OvalMitreOrgOvalProcess58StateElementType : "References EntityStateStringType"
-    EntityStateStringType |o--o{ OvalMitreOrgOvalProcess58StateElementType : "References EntityStateStringType"
+    EntityStateIntType |o--o{ OvalMitreOrgOvalProcess58StateElementType : "References EntityStateIntType"
     StateType ||--|| OvalMitreOrgOvalProcess58StateElementType : "extends"
     TestType |o--o{ OvalMitreOrgOvalProcess58Test : "References parent type TestType"
     TestType ||--|| OvalMitreOrgOvalProcess58Test : "extends"
@@ -14188,6 +14209,8 @@ erDiagram
     StateType ||--|| OvalMitreOrgOvalProcessState : "extends"
     StateType |o--o{ OvalMitreOrgOvalProcessStateElementType : "References parent type StateType"
     EntityStateStringType |o--o{ OvalMitreOrgOvalProcessStateElementType : "References EntityStateStringType"
+    EntityStateStringType |o--o{ OvalMitreOrgOvalProcessStateElementType : "References EntityStateStringType"
+    EntityStateIntType |o--o{ OvalMitreOrgOvalProcessStateElementType : "References EntityStateIntType"
     EntityStateIntType |o--o{ OvalMitreOrgOvalProcessStateElementType : "References EntityStateIntType"
     EntityStateIntType |o--o{ OvalMitreOrgOvalProcessStateElementType : "References EntityStateIntType"
     EntityStateIntType |o--o{ OvalMitreOrgOvalProcessStateElementType : "References EntityStateIntType"
@@ -14195,6 +14218,8 @@ erDiagram
     EntityStateIntType |o--o{ OvalMitreOrgOvalProcessStateElementType : "References EntityStateIntType"
     EntityStateStringType |o--o{ OvalMitreOrgOvalProcessStateElementType : "References EntityStateStringType"
     EntityStateStringType |o--o{ OvalMitreOrgOvalProcessStateElementType : "References EntityStateStringType"
+    EntityStateStringType |o--o{ OvalMitreOrgOvalProcessStateElementType : "References EntityStateStringType"
+    EntityStateIntType |o--o{ OvalMitreOrgOvalProcessStateElementType : "References EntityStateIntType"
     StateType ||--|| OvalMitreOrgOvalProcessStateElementType : "extends"
     TestType |o--o{ OvalMitreOrgOvalProcessTest : "References parent type TestType"
     TestType ||--|| OvalMitreOrgOvalProcessTest : "extends"
@@ -14385,14 +14410,9 @@ erDiagram
     StateType |o--o{ OvalMitreOrgOvalVersion55State : "References parent type StateType"
     StateType ||--|| OvalMitreOrgOvalVersion55State : "extends"
     StateType |o--o{ OvalMitreOrgOvalVersion55StateElementType : "References parent type StateType"
-    EntityStateIntType |o--o{ OvalMitreOrgOvalVersion55StateElementType : "References EntityStateIntType"
-    EntityStateIntType |o--o{ OvalMitreOrgOvalVersion55StateElementType : "References EntityStateIntType"
-    EntityStateIntType |o--o{ OvalMitreOrgOvalVersion55StateElementType : "References EntityStateIntType"
-    EntityStateStringType |o--o{ OvalMitreOrgOvalVersion55StateElementType : "References EntityStateStringType"
-    EntityStateIntType |o--o{ OvalMitreOrgOvalVersion55StateElementType : "References EntityStateIntType"
     EntityStateStringType |o--o{ OvalMitreOrgOvalVersion55StateElementType : "References EntityStateStringType"
     EntityStateStringType |o--o{ OvalMitreOrgOvalVersion55StateElementType : "References EntityStateStringType"
-    EntityStateIOSVersionType |o--o{ OvalMitreOrgOvalVersion55StateElementType : "References EntityStateIOSVersionType"
+    EntityStateVersionType |o--o{ OvalMitreOrgOvalVersion55StateElementType : "References EntityStateVersionType"
     StateType ||--|| OvalMitreOrgOvalVersion55StateElementType : "extends"
     TestType |o--o{ OvalMitreOrgOvalVersion55Test : "References parent type TestType"
     TestType ||--|| OvalMitreOrgOvalVersion55Test : "extends"
@@ -14410,9 +14430,10 @@ erDiagram
     StateType ||--|| OvalMitreOrgOvalVersionState : "extends"
     StateType |o--o{ OvalMitreOrgOvalVersionStateElementType : "References parent type StateType"
     EntityStateStringType |o--o{ OvalMitreOrgOvalVersionStateElementType : "References EntityStateStringType"
-    EntityStateVersionType |o--o{ OvalMitreOrgOvalVersionStateElementType : "References EntityStateVersionType"
+    EntityStateStringType |o--o{ OvalMitreOrgOvalVersionStateElementType : "References EntityStateStringType"
     EntityStateVersionType |o--o{ OvalMitreOrgOvalVersionStateElementType : "References EntityStateVersionType"
     EntityStateIntType |o--o{ OvalMitreOrgOvalVersionStateElementType : "References EntityStateIntType"
+    EntityStateStringType |o--o{ OvalMitreOrgOvalVersionStateElementType : "References EntityStateStringType"
     StateType ||--|| OvalMitreOrgOvalVersionStateElementType : "extends"
     TestType |o--o{ OvalMitreOrgOvalVersionTest : "References parent type TestType"
     TestType ||--|| OvalMitreOrgOvalVersionTest : "extends"
@@ -15135,16 +15156,16 @@ erDiagram
     TestType ||--|| RegkeyeffectiverightsTestElementType : "extends"
     EntityStateAnySimpleType |o--o{ ReleaseElementType : "References parent type EntityStateAnySimpleType"
     EntityStateAnySimpleType ||--|| ReleaseElementType : "extends"
-    EntityObjectAnySimpleType |o--o{ ReleaseElementType1 : "References parent type EntityObjectAnySimpleType"
-    EntityObjectAnySimpleType ||--|| ReleaseElementType1 : "extends"
-    EntityStateAnySimpleType |o--o{ ReleaseElementType2 : "References parent type EntityStateAnySimpleType"
-    EntityStateAnySimpleType ||--|| ReleaseElementType2 : "extends"
+    EntityStateAnySimpleType |o--o{ ReleaseElementType1 : "References parent type EntityStateAnySimpleType"
+    EntityStateAnySimpleType ||--|| ReleaseElementType1 : "extends"
+    EntityObjectAnySimpleType |o--o{ ReleaseElementType2 : "References parent type EntityObjectAnySimpleType"
+    EntityObjectAnySimpleType ||--|| ReleaseElementType2 : "extends"
     EntityStateAnySimpleType |o--o{ ReleaseElementType3 : "References parent type EntityStateAnySimpleType"
     EntityStateAnySimpleType ||--|| ReleaseElementType3 : "extends"
-    EntityStateAnySimpleType |o--o{ ReleaseElementType4 : "References parent type EntityStateAnySimpleType"
-    EntityStateAnySimpleType ||--|| ReleaseElementType4 : "extends"
-    EntityObjectAnySimpleType |o--o{ ReleaseElementType5 : "References parent type EntityObjectAnySimpleType"
-    EntityObjectAnySimpleType ||--|| ReleaseElementType5 : "extends"
+    EntityObjectAnySimpleType |o--o{ ReleaseElementType4 : "References parent type EntityObjectAnySimpleType"
+    EntityObjectAnySimpleType ||--|| ReleaseElementType4 : "extends"
+    EntityStateAnySimpleType |o--o{ ReleaseElementType5 : "References parent type EntityStateAnySimpleType"
+    EntityStateAnySimpleType ||--|| ReleaseElementType5 : "extends"
     ObjectType |o--o{ RlimitObject : "References parent type ObjectType"
     ObjectType ||--|| RlimitObject : "extends"
     ObjectType |o--o{ RlimitObjectElementType : "References parent type ObjectType"
@@ -16571,18 +16592,18 @@ erDiagram
     TestType |o--o{ VariantTestElementType : "References parent type TestType"
     ObjectRefType ||--o{ VariantTestElementType : "References ObjectRefType"
     TestType ||--|| VariantTestElementType : "extends"
-    EntityObjectAnySimpleType |o--o{ VersionElementType1 : "References parent type EntityObjectAnySimpleType"
-    EntityObjectAnySimpleType ||--|| VersionElementType1 : "extends"
-    EntityStateAnySimpleType |o--o{ VersionElementType2 : "References parent type EntityStateAnySimpleType"
-    EntityStateAnySimpleType ||--|| VersionElementType2 : "extends"
+    EntityStateAnySimpleType |o--o{ VersionElementType1 : "References parent type EntityStateAnySimpleType"
+    EntityStateAnySimpleType ||--|| VersionElementType1 : "extends"
+    EntityObjectAnySimpleType |o--o{ VersionElementType2 : "References parent type EntityObjectAnySimpleType"
+    EntityObjectAnySimpleType ||--|| VersionElementType2 : "extends"
     EntityStateAnySimpleType |o--o{ VersionElementType3 : "References parent type EntityStateAnySimpleType"
     EntityStateAnySimpleType ||--|| VersionElementType3 : "extends"
     EntityStateAnySimpleType |o--o{ VersionElementType4 : "References parent type EntityStateAnySimpleType"
     EntityStateAnySimpleType ||--|| VersionElementType4 : "extends"
-    EntityStateAnySimpleType |o--o{ VersionElementType5 : "References parent type EntityStateAnySimpleType"
-    EntityStateAnySimpleType ||--|| VersionElementType5 : "extends"
-    EntityObjectAnySimpleType |o--o{ VersionElementType6 : "References parent type EntityObjectAnySimpleType"
-    EntityObjectAnySimpleType ||--|| VersionElementType6 : "extends"
+    EntityObjectAnySimpleType |o--o{ VersionElementType5 : "References parent type EntityObjectAnySimpleType"
+    EntityObjectAnySimpleType ||--|| VersionElementType5 : "extends"
+    EntityStateAnySimpleType |o--o{ VersionElementType6 : "References parent type EntityStateAnySimpleType"
+    EntityStateAnySimpleType ||--|| VersionElementType6 : "extends"
     ObjectType |o--o{ VirtualizationinfoObject : "References parent type ObjectType"
     ObjectType ||--|| VirtualizationinfoObject : "extends"
     ObjectType |o--o{ VirtualizationinfoObjectElementType : "References parent type ObjectType"
@@ -21723,7 +21744,6 @@ classDiagram
         +string Recurse
         +string Recurse_direction
         +string Recurse_file_system
-        +string Windows_view
     }
     class OvalMitreOrgOvalFileObject {
         #int64 ID
@@ -21746,23 +21766,26 @@ classDiagram
         +*int64 FilepathID
         +*int64 PathID
         +*int64 FilenameID
-        +*int64 OwnerID
-        +*int64 SizeID
-        +*int64 A_timeID
-        +*int64 C_timeID
-        +*int64 M_timeID
-        +*int64 Ms_checksumID
-        +*int64 VersionID
         +*int64 TypeID
-        +*int64 AttributeID
-        +*int64 Development_classID
-        +*int64 CompanyID
-        +*int64 Internal_nameID
-        +*int64 LanguageID
-        +*int64 Original_filenameID
-        +*int64 Product_nameID
-        +string Product_version
-        +*int64 Windows_viewID
+        +string Group_id
+        +string User_id
+        +string A_time
+        +string C_time
+        +string M_time
+        +*int64 SizeID
+        +*int64 SuidID
+        +*int64 SgidID
+        +*int64 StickyID
+        +*int64 UreadID
+        +*int64 UwriteID
+        +*int64 UexecID
+        +*int64 GreadID
+        +*int64 GwriteID
+        +*int64 GexecID
+        +*int64 OreadID
+        +*int64 OwriteID
+        +*int64 OexecID
+        +*int64 Has_extended_aclID
         +*int64 ParentID
     }
     class OvalMitreOrgOvalFileStateElementType {
@@ -21770,23 +21793,26 @@ classDiagram
         +*int64 FilepathID
         +*int64 PathID
         +*int64 FilenameID
-        +*int64 OwnerID
-        +*int64 SizeID
-        +*int64 A_timeID
-        +*int64 C_timeID
-        +*int64 M_timeID
-        +*int64 Ms_checksumID
-        +*int64 VersionID
         +*int64 TypeID
-        +*int64 AttributeID
-        +*int64 Development_classID
-        +*int64 CompanyID
-        +*int64 Internal_nameID
-        +*int64 LanguageID
-        +*int64 Original_filenameID
-        +*int64 Product_nameID
-        +string Product_version
-        +*int64 Windows_viewID
+        +string Group_id
+        +string User_id
+        +string A_time
+        +string C_time
+        +string M_time
+        +*int64 SizeID
+        +*int64 SuidID
+        +*int64 SgidID
+        +*int64 StickyID
+        +*int64 UreadID
+        +*int64 UwriteID
+        +*int64 UexecID
+        +*int64 GreadID
+        +*int64 GwriteID
+        +*int64 GexecID
+        +*int64 OreadID
+        +*int64 OwriteID
+        +*int64 OexecID
+        +*int64 Has_extended_aclID
         +*int64 ParentID
     }
     class OvalMitreOrgOvalFileTest {
@@ -21896,9 +21922,10 @@ classDiagram
     class OvalMitreOrgOvalInterfaceState {
         #int64 ID
         +*int64 NameID
-        +*int64 Ip_directed_broadcastID
-        +*int64 Proxy_arpID
-        +*int64 ShutdownID
+        +string Ip_directed_broadcast_command
+        +*int64 No_ip_directed_broadcast_commandID
+        +string Proxy_arp_command
+        +string Shutdown_command
         +*int64 Hardware_addrID
         +*int64 Ipv4_addressID
         +*int64 Ipv6_addressID
@@ -21920,9 +21947,10 @@ classDiagram
     class OvalMitreOrgOvalInterfaceStateElementType {
         #int64 ID
         +*int64 NameID
-        +*int64 Ip_directed_broadcastID
-        +*int64 Proxy_arpID
-        +*int64 ShutdownID
+        +string Ip_directed_broadcast_command
+        +*int64 No_ip_directed_broadcast_commandID
+        +string Proxy_arp_command
+        +string Shutdown_command
         +*int64 Hardware_addrID
         +*int64 Ipv4_addressID
         +*int64 Ipv6_addressID
@@ -22166,29 +22194,39 @@ classDiagram
     class OvalMitreOrgOvalProcess58State {
         #int64 ID
         +*int64 Command_lineID
+        +*int64 Exec_timeID
         +*int64 PidID
         +*int64 PpidID
-        +string Priority
-        +*int64 Image_pathID
-        +*int64 Current_dirID
-        +*int64 Creation_timeID
-        +*int64 Dep_enabledID
-        +*int64 Primary_window_textID
-        +*int64 NameID
+        +*int64 PriorityID
+        +*int64 RuidID
+        +*int64 Scheduling_classID
+        +*int64 Start_timeID
+        +*int64 TtyID
+        +*int64 User_idID
+        +*int64 Exec_shieldID
+        +*int64 LoginuidID
+        +*int64 Posix_capabilityID
+        +*int64 Selinux_domain_labelID
+        +*int64 Session_idID
         +*int64 ParentID
     }
     class OvalMitreOrgOvalProcess58StateElementType {
         #int64 ID
         +*int64 Command_lineID
+        +*int64 Exec_timeID
         +*int64 PidID
         +*int64 PpidID
-        +string Priority
-        +*int64 Image_pathID
-        +*int64 Current_dirID
-        +*int64 Creation_timeID
-        +*int64 Dep_enabledID
-        +*int64 Primary_window_textID
-        +*int64 NameID
+        +*int64 PriorityID
+        +*int64 RuidID
+        +*int64 Scheduling_classID
+        +*int64 Start_timeID
+        +*int64 TtyID
+        +*int64 User_idID
+        +*int64 Exec_shieldID
+        +*int64 LoginuidID
+        +*int64 Posix_capabilityID
+        +*int64 Selinux_domain_labelID
+        +*int64 Session_idID
         +*int64 ParentID
     }
     class OvalMitreOrgOvalProcess58Test {
@@ -22203,32 +22241,40 @@ classDiagram
     }
     class OvalMitreOrgOvalProcessObject {
         #int64 ID
-        +*int64 Command_lineID
+        +*int64 CommandID
         +*int64 ParentID
     }
     class OvalMitreOrgOvalProcessObjectElementType {
         #int64 ID
-        +*int64 Command_lineID
+        +*int64 CommandID
         +*int64 ParentID
     }
     class OvalMitreOrgOvalProcessState {
         #int64 ID
-        +*int64 Command_lineID
+        +*int64 CommandID
+        +*int64 Exec_timeID
         +*int64 PidID
         +*int64 PpidID
-        +string Priority
-        +*int64 Image_pathID
-        +*int64 Current_dirID
+        +*int64 PriorityID
+        +*int64 RuidID
+        +*int64 Scheduling_classID
+        +*int64 Start_timeID
+        +*int64 TtyID
+        +*int64 User_idID
         +*int64 ParentID
     }
     class OvalMitreOrgOvalProcessStateElementType {
         #int64 ID
-        +*int64 Command_lineID
+        +*int64 CommandID
+        +*int64 Exec_timeID
         +*int64 PidID
         +*int64 PpidID
-        +string Priority
-        +*int64 Image_pathID
-        +*int64 Current_dirID
+        +*int64 PriorityID
+        +*int64 RuidID
+        +*int64 Scheduling_classID
+        +*int64 Start_timeID
+        +*int64 TtyID
+        +*int64 User_idID
         +*int64 ParentID
     }
     class OvalMitreOrgOvalProcessTest {
@@ -22612,26 +22658,16 @@ classDiagram
     }
     class OvalMitreOrgOvalVersion55State {
         #int64 ID
-        +*int64 Major_versionID
-        +*int64 Minor_versionID
-        +*int64 ReleaseID
-        +*int64 Train_identifierID
-        +*int64 RebuildID
-        +*int64 SubrebuildID
-        +*int64 Mainline_rebuildID
-        +*int64 Version_stringID
+        +*int64 Switch_seriesID
+        +*int64 Image_nameID
+        +*int64 Catos_releaseID
         +*int64 ParentID
     }
     class OvalMitreOrgOvalVersion55StateElementType {
         #int64 ID
-        +*int64 Major_versionID
-        +*int64 Minor_versionID
-        +*int64 ReleaseID
-        +*int64 Train_identifierID
-        +*int64 RebuildID
-        +*int64 SubrebuildID
-        +*int64 Mainline_rebuildID
-        +*int64 Version_stringID
+        +*int64 Switch_seriesID
+        +*int64 Image_nameID
+        +*int64 Catos_releaseID
         +*int64 ParentID
     }
     class OvalMitreOrgOvalVersion55Test {
@@ -22659,18 +22695,20 @@ classDiagram
     }
     class OvalMitreOrgOvalVersionState {
         #int64 ID
-        +*int64 Pix_releaseID
-        +*int64 Pix_major_releaseID
-        +*int64 Pix_minor_releaseID
-        +*int64 Pix_buildID
+        +*int64 Switch_seriesID
+        +*int64 Image_nameID
+        +*int64 Catos_major_releaseID
+        +*int64 Catos_individual_releaseID
+        +*int64 Catos_version_idID
         +*int64 ParentID
     }
     class OvalMitreOrgOvalVersionStateElementType {
         #int64 ID
-        +*int64 Pix_releaseID
-        +*int64 Pix_major_releaseID
-        +*int64 Pix_minor_releaseID
-        +*int64 Pix_buildID
+        +*int64 Switch_seriesID
+        +*int64 Image_nameID
+        +*int64 Catos_major_releaseID
+        +*int64 Catos_individual_releaseID
+        +*int64 Catos_version_idID
         +*int64 ParentID
     }
     class OvalMitreOrgOvalVersionTest {
@@ -29427,11 +29465,11 @@ classDiagram
     TestType <|-- EnvironmentvariableTestElementType
     ObjectRefType "1" o-- "*" EnvironmentvariableTestElementType
     EntityStateAnySimpleType <|-- EpochElementType
-    EntityObjectAnySimpleType <|-- EpochElementType1
-    EntityStateAnySimpleType <|-- EpochElementType2
+    EntityStateAnySimpleType <|-- EpochElementType1
+    EntityObjectAnySimpleType <|-- EpochElementType2
     EntityStateAnySimpleType <|-- EpochElementType3
-    EntityStateAnySimpleType <|-- EpochElementType4
-    EntityObjectAnySimpleType <|-- EpochElementType5
+    EntityObjectAnySimpleType <|-- EpochElementType4
+    EntityStateAnySimpleType <|-- EpochElementType5
     EntityStateAnySimpleType <|-- EvrElementType
     EntityStateAnySimpleType <|-- ExpDateElementType
     EntityStateAnySimpleType <|-- ExpInactElementType
@@ -30123,23 +30161,26 @@ classDiagram
     EntityStateStringType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
     EntityStateStringType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
     EntityStateStringType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
-    EntityStateStringType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
-    EntityStateIntType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
-    EntityStateIntType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
-    EntityStateIntType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
-    EntityStateIntType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
-    EntityStateIntType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
-    EntityStateStringType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
-    EntityStateVersionType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
     EntityStateFileTypeType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
     EntityStateStringType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
-    EntityStateFileAttributeType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
-    EntityStateStringType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
-    EntityStateStringType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
-    EntityStateStringType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
-    EntityStateStringType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
-    EntityStateStringType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
-    EntityStateStringType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
+    EntityStateIntType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
+    EntityStateIntType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
+    EntityStateIntType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
+    EntityStateIntType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
+    EntityStateIntType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
+    EntityStateBoolType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
+    EntityStateBoolType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
+    EntityStateBoolType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
+    EntityStateBoolType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
+    EntityStateBoolType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
+    EntityStateBoolType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
+    EntityStateBoolType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
+    EntityStateBoolType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
+    EntityStateBoolType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
+    EntityStateBoolType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
+    EntityStateBoolType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
+    EntityStateBoolType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
+    EntityStateBoolType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
     TestType <|-- OvalMitreOrgOvalFileTest
     TestType <|-- OvalMitreOrgOvalFileTestElementType
     ObjectRefType "1" o-- "*" OvalMitreOrgOvalFileTestElementType
@@ -30170,8 +30211,8 @@ classDiagram
     EntityStateIPAddressStringType "1" o-- "*" OvalMitreOrgOvalInetlisteningserversStateElementType
     EntityStateStringType "1" o-- "*" OvalMitreOrgOvalInetlisteningserversStateElementType
     EntityStateStringType "1" o-- "*" OvalMitreOrgOvalInetlisteningserversStateElementType
-    EntityStateStringType "1" o-- "*" OvalMitreOrgOvalInetlisteningserversStateElementType
     EntityStateIntType "1" o-- "*" OvalMitreOrgOvalInetlisteningserversStateElementType
+    EntityStateStringType "1" o-- "*" OvalMitreOrgOvalInetlisteningserversStateElementType
     EntityStateIntType "1" o-- "*" OvalMitreOrgOvalInetlisteningserversStateElementType
     EntityStateIntType "1" o-- "*" OvalMitreOrgOvalInetlisteningserversStateElementType
     EntityStateStringType "1" o-- "*" OvalMitreOrgOvalInetlisteningserversStateElementType
@@ -30191,11 +30232,7 @@ classDiagram
     EntityStateStringType "1" o-- "*" OvalMitreOrgOvalInterfaceStateElementType
     EntityStateStringType "1" o-- "*" OvalMitreOrgOvalInterfaceStateElementType
     EntityStateStringType "1" o-- "*" OvalMitreOrgOvalInterfaceStateElementType
-    EntityStateBoolType "1" o-- "*" OvalMitreOrgOvalInterfaceStateElementType
-    EntityStateBoolType "1" o-- "*" OvalMitreOrgOvalInterfaceStateElementType
-    EntityStateBoolType "1" o-- "*" OvalMitreOrgOvalInterfaceStateElementType
-    EntityStateBoolType "1" o-- "*" OvalMitreOrgOvalInterfaceStateElementType
-    EntityStateBoolType "1" o-- "*" OvalMitreOrgOvalInterfaceStateElementType
+    EntityStateStringType "1" o-- "*" OvalMitreOrgOvalInterfaceStateElementType
     EntityStateStringType "1" o-- "*" OvalMitreOrgOvalInterfaceStateElementType
     EntityStateStringType "1" o-- "*" OvalMitreOrgOvalInterfaceStateElementType
     EntityStateStringType "1" o-- "*" OvalMitreOrgOvalInterfaceStateElementType
@@ -30316,17 +30353,22 @@ classDiagram
     StateType <|-- OvalMitreOrgOvalProcess58StateElementType
     EntityStateStringType "1" o-- "*" OvalMitreOrgOvalProcess58StateElementType
     EntityStateStringType "1" o-- "*" OvalMitreOrgOvalProcess58StateElementType
+    EntityStateStringType "1" o-- "*" OvalMitreOrgOvalProcess58StateElementType
     EntityStateIntType "1" o-- "*" OvalMitreOrgOvalProcess58StateElementType
     EntityStateIntType "1" o-- "*" OvalMitreOrgOvalProcess58StateElementType
     EntityStateIntType "1" o-- "*" OvalMitreOrgOvalProcess58StateElementType
     EntityStateIntType "1" o-- "*" OvalMitreOrgOvalProcess58StateElementType
     EntityStateIntType "1" o-- "*" OvalMitreOrgOvalProcess58StateElementType
+    EntityStateIntType "1" o-- "*" OvalMitreOrgOvalProcess58StateElementType
+    EntityStateStringType "1" o-- "*" OvalMitreOrgOvalProcess58StateElementType
     EntityStateStringType "1" o-- "*" OvalMitreOrgOvalProcess58StateElementType
     EntityStateStringType "1" o-- "*" OvalMitreOrgOvalProcess58StateElementType
     EntityStateIntType "1" o-- "*" OvalMitreOrgOvalProcess58StateElementType
     EntityStateBoolType "1" o-- "*" OvalMitreOrgOvalProcess58StateElementType
+    EntityStateIntType "1" o-- "*" OvalMitreOrgOvalProcess58StateElementType
+    EntityStateCapabilityType "1" o-- "*" OvalMitreOrgOvalProcess58StateElementType
     EntityStateStringType "1" o-- "*" OvalMitreOrgOvalProcess58StateElementType
-    EntityStateStringType "1" o-- "*" OvalMitreOrgOvalProcess58StateElementType
+    EntityStateIntType "1" o-- "*" OvalMitreOrgOvalProcess58StateElementType
     TestType <|-- OvalMitreOrgOvalProcess58Test
     TestType <|-- OvalMitreOrgOvalProcess58TestElementType
     ObjectRefType "1" o-- "*" OvalMitreOrgOvalProcess58TestElementType
@@ -30336,6 +30378,8 @@ classDiagram
     StateType <|-- OvalMitreOrgOvalProcessState
     StateType <|-- OvalMitreOrgOvalProcessStateElementType
     EntityStateStringType "1" o-- "*" OvalMitreOrgOvalProcessStateElementType
+    EntityStateStringType "1" o-- "*" OvalMitreOrgOvalProcessStateElementType
+    EntityStateIntType "1" o-- "*" OvalMitreOrgOvalProcessStateElementType
     EntityStateIntType "1" o-- "*" OvalMitreOrgOvalProcessStateElementType
     EntityStateIntType "1" o-- "*" OvalMitreOrgOvalProcessStateElementType
     EntityStateIntType "1" o-- "*" OvalMitreOrgOvalProcessStateElementType
@@ -30343,6 +30387,8 @@ classDiagram
     EntityStateIntType "1" o-- "*" OvalMitreOrgOvalProcessStateElementType
     EntityStateStringType "1" o-- "*" OvalMitreOrgOvalProcessStateElementType
     EntityStateStringType "1" o-- "*" OvalMitreOrgOvalProcessStateElementType
+    EntityStateStringType "1" o-- "*" OvalMitreOrgOvalProcessStateElementType
+    EntityStateIntType "1" o-- "*" OvalMitreOrgOvalProcessStateElementType
     TestType <|-- OvalMitreOrgOvalProcessTest
     TestType <|-- OvalMitreOrgOvalProcessTestElementType
     ObjectRefType "1" o-- "*" OvalMitreOrgOvalProcessTestElementType
@@ -30477,14 +30523,9 @@ classDiagram
     ObjectType <|-- OvalMitreOrgOvalVersion55ObjectElementType
     StateType <|-- OvalMitreOrgOvalVersion55State
     StateType <|-- OvalMitreOrgOvalVersion55StateElementType
-    EntityStateIntType "1" o-- "*" OvalMitreOrgOvalVersion55StateElementType
-    EntityStateIntType "1" o-- "*" OvalMitreOrgOvalVersion55StateElementType
-    EntityStateIntType "1" o-- "*" OvalMitreOrgOvalVersion55StateElementType
-    EntityStateStringType "1" o-- "*" OvalMitreOrgOvalVersion55StateElementType
-    EntityStateIntType "1" o-- "*" OvalMitreOrgOvalVersion55StateElementType
     EntityStateStringType "1" o-- "*" OvalMitreOrgOvalVersion55StateElementType
     EntityStateStringType "1" o-- "*" OvalMitreOrgOvalVersion55StateElementType
-    EntityStateIOSVersionType "1" o-- "*" OvalMitreOrgOvalVersion55StateElementType
+    EntityStateVersionType "1" o-- "*" OvalMitreOrgOvalVersion55StateElementType
     TestType <|-- OvalMitreOrgOvalVersion55Test
     TestType <|-- OvalMitreOrgOvalVersion55TestElementType
     ObjectRefType "1" o-- "*" OvalMitreOrgOvalVersion55TestElementType
@@ -30495,9 +30536,10 @@ classDiagram
     StateType <|-- OvalMitreOrgOvalVersionState
     StateType <|-- OvalMitreOrgOvalVersionStateElementType
     EntityStateStringType "1" o-- "*" OvalMitreOrgOvalVersionStateElementType
-    EntityStateVersionType "1" o-- "*" OvalMitreOrgOvalVersionStateElementType
+    EntityStateStringType "1" o-- "*" OvalMitreOrgOvalVersionStateElementType
     EntityStateVersionType "1" o-- "*" OvalMitreOrgOvalVersionStateElementType
     EntityStateIntType "1" o-- "*" OvalMitreOrgOvalVersionStateElementType
+    EntityStateStringType "1" o-- "*" OvalMitreOrgOvalVersionStateElementType
     TestType <|-- OvalMitreOrgOvalVersionTest
     TestType <|-- OvalMitreOrgOvalVersionTestElementType
     ObjectRefType "1" o-- "*" OvalMitreOrgOvalVersionTestElementType
@@ -31037,11 +31079,11 @@ classDiagram
     TestType <|-- RegkeyeffectiverightsTestElementType
     ObjectRefType "1" o-- "*" RegkeyeffectiverightsTestElementType
     EntityStateAnySimpleType <|-- ReleaseElementType
-    EntityObjectAnySimpleType <|-- ReleaseElementType1
-    EntityStateAnySimpleType <|-- ReleaseElementType2
+    EntityStateAnySimpleType <|-- ReleaseElementType1
+    EntityObjectAnySimpleType <|-- ReleaseElementType2
     EntityStateAnySimpleType <|-- ReleaseElementType3
-    EntityStateAnySimpleType <|-- ReleaseElementType4
-    EntityObjectAnySimpleType <|-- ReleaseElementType5
+    EntityObjectAnySimpleType <|-- ReleaseElementType4
+    EntityStateAnySimpleType <|-- ReleaseElementType5
     ObjectType <|-- RlimitObject
     ObjectType <|-- RlimitObjectElementType
     StateType <|-- RlimitState
@@ -32050,12 +32092,12 @@ classDiagram
     TestType <|-- VariantTest
     TestType <|-- VariantTestElementType
     ObjectRefType "1" o-- "*" VariantTestElementType
-    EntityObjectAnySimpleType <|-- VersionElementType1
-    EntityStateAnySimpleType <|-- VersionElementType2
+    EntityStateAnySimpleType <|-- VersionElementType1
+    EntityObjectAnySimpleType <|-- VersionElementType2
     EntityStateAnySimpleType <|-- VersionElementType3
     EntityStateAnySimpleType <|-- VersionElementType4
-    EntityStateAnySimpleType <|-- VersionElementType5
-    EntityObjectAnySimpleType <|-- VersionElementType6
+    EntityObjectAnySimpleType <|-- VersionElementType5
+    EntityStateAnySimpleType <|-- VersionElementType6
     ObjectType <|-- VirtualizationinfoObject
     ObjectType <|-- VirtualizationinfoObjectElementType
     StateType <|-- VirtualizationinfoState
@@ -34839,16 +34881,16 @@ flowchart TD
     testtype -.->|extends| environmentvariabletestelementtype
     entitystateanysimpletype --> epochelementtype
     entitystateanysimpletype -.->|extends| epochelementtype
-    entityobjectanysimpletype --> epochelementtype1
-    entityobjectanysimpletype -.->|extends| epochelementtype1
-    entitystateanysimpletype --> epochelementtype2
-    entitystateanysimpletype -.->|extends| epochelementtype2
+    entitystateanysimpletype --> epochelementtype1
+    entitystateanysimpletype -.->|extends| epochelementtype1
+    entityobjectanysimpletype --> epochelementtype2
+    entityobjectanysimpletype -.->|extends| epochelementtype2
     entitystateanysimpletype --> epochelementtype3
     entitystateanysimpletype -.->|extends| epochelementtype3
-    entitystateanysimpletype --> epochelementtype4
-    entitystateanysimpletype -.->|extends| epochelementtype4
-    entityobjectanysimpletype --> epochelementtype5
-    entityobjectanysimpletype -.->|extends| epochelementtype5
+    entityobjectanysimpletype --> epochelementtype4
+    entityobjectanysimpletype -.->|extends| epochelementtype4
+    entitystateanysimpletype --> epochelementtype5
+    entitystateanysimpletype -.->|extends| epochelementtype5
     entitystateanysimpletype --> evrelementtype
     entitystateanysimpletype -.->|extends| evrelementtype
     entitystateanysimpletype --> expdateelementtype
@@ -35859,23 +35901,26 @@ flowchart TD
     entitystatestringtype --> ovalmitreorgovalfilestateelementtype
     entitystatestringtype --> ovalmitreorgovalfilestateelementtype
     entitystatestringtype --> ovalmitreorgovalfilestateelementtype
-    entitystatestringtype --> ovalmitreorgovalfilestateelementtype
-    entitystateinttype --> ovalmitreorgovalfilestateelementtype
-    entitystateinttype --> ovalmitreorgovalfilestateelementtype
-    entitystateinttype --> ovalmitreorgovalfilestateelementtype
-    entitystateinttype --> ovalmitreorgovalfilestateelementtype
-    entitystateinttype --> ovalmitreorgovalfilestateelementtype
-    entitystatestringtype --> ovalmitreorgovalfilestateelementtype
-    entitystateversiontype --> ovalmitreorgovalfilestateelementtype
     entitystatefiletypetype --> ovalmitreorgovalfilestateelementtype
     entitystatestringtype --> ovalmitreorgovalfilestateelementtype
-    entitystatefileattributetype --> ovalmitreorgovalfilestateelementtype
-    entitystatestringtype --> ovalmitreorgovalfilestateelementtype
-    entitystatestringtype --> ovalmitreorgovalfilestateelementtype
-    entitystatestringtype --> ovalmitreorgovalfilestateelementtype
-    entitystatestringtype --> ovalmitreorgovalfilestateelementtype
-    entitystatestringtype --> ovalmitreorgovalfilestateelementtype
-    entitystatestringtype --> ovalmitreorgovalfilestateelementtype
+    entitystateinttype --> ovalmitreorgovalfilestateelementtype
+    entitystateinttype --> ovalmitreorgovalfilestateelementtype
+    entitystateinttype --> ovalmitreorgovalfilestateelementtype
+    entitystateinttype --> ovalmitreorgovalfilestateelementtype
+    entitystateinttype --> ovalmitreorgovalfilestateelementtype
+    entitystatebooltype --> ovalmitreorgovalfilestateelementtype
+    entitystatebooltype --> ovalmitreorgovalfilestateelementtype
+    entitystatebooltype --> ovalmitreorgovalfilestateelementtype
+    entitystatebooltype --> ovalmitreorgovalfilestateelementtype
+    entitystatebooltype --> ovalmitreorgovalfilestateelementtype
+    entitystatebooltype --> ovalmitreorgovalfilestateelementtype
+    entitystatebooltype --> ovalmitreorgovalfilestateelementtype
+    entitystatebooltype --> ovalmitreorgovalfilestateelementtype
+    entitystatebooltype --> ovalmitreorgovalfilestateelementtype
+    entitystatebooltype --> ovalmitreorgovalfilestateelementtype
+    entitystatebooltype --> ovalmitreorgovalfilestateelementtype
+    entitystatebooltype --> ovalmitreorgovalfilestateelementtype
+    entitystatebooltype --> ovalmitreorgovalfilestateelementtype
     statetype -.->|extends| ovalmitreorgovalfilestateelementtype
     testtype --> ovalmitreorgovalfiletest
     testtype -.->|extends| ovalmitreorgovalfiletest
@@ -35918,8 +35963,8 @@ flowchart TD
     entitystateipaddressstringtype --> ovalmitreorgovalinetlisteningserversstateelementtype
     entitystatestringtype --> ovalmitreorgovalinetlisteningserversstateelementtype
     entitystatestringtype --> ovalmitreorgovalinetlisteningserversstateelementtype
-    entitystatestringtype --> ovalmitreorgovalinetlisteningserversstateelementtype
     entitystateinttype --> ovalmitreorgovalinetlisteningserversstateelementtype
+    entitystatestringtype --> ovalmitreorgovalinetlisteningserversstateelementtype
     entitystateinttype --> ovalmitreorgovalinetlisteningserversstateelementtype
     entitystateinttype --> ovalmitreorgovalinetlisteningserversstateelementtype
     entitystatestringtype --> ovalmitreorgovalinetlisteningserversstateelementtype
@@ -35945,11 +35990,7 @@ flowchart TD
     entitystatestringtype --> ovalmitreorgovalinterfacestateelementtype
     entitystatestringtype --> ovalmitreorgovalinterfacestateelementtype
     entitystatestringtype --> ovalmitreorgovalinterfacestateelementtype
-    entitystatebooltype --> ovalmitreorgovalinterfacestateelementtype
-    entitystatebooltype --> ovalmitreorgovalinterfacestateelementtype
-    entitystatebooltype --> ovalmitreorgovalinterfacestateelementtype
-    entitystatebooltype --> ovalmitreorgovalinterfacestateelementtype
-    entitystatebooltype --> ovalmitreorgovalinterfacestateelementtype
+    entitystatestringtype --> ovalmitreorgovalinterfacestateelementtype
     entitystatestringtype --> ovalmitreorgovalinterfacestateelementtype
     entitystatestringtype --> ovalmitreorgovalinterfacestateelementtype
     entitystatestringtype --> ovalmitreorgovalinterfacestateelementtype
@@ -36102,17 +36143,22 @@ flowchart TD
     statetype --> ovalmitreorgovalprocess58stateelementtype
     entitystatestringtype --> ovalmitreorgovalprocess58stateelementtype
     entitystatestringtype --> ovalmitreorgovalprocess58stateelementtype
+    entitystatestringtype --> ovalmitreorgovalprocess58stateelementtype
     entitystateinttype --> ovalmitreorgovalprocess58stateelementtype
     entitystateinttype --> ovalmitreorgovalprocess58stateelementtype
     entitystateinttype --> ovalmitreorgovalprocess58stateelementtype
     entitystateinttype --> ovalmitreorgovalprocess58stateelementtype
     entitystateinttype --> ovalmitreorgovalprocess58stateelementtype
+    entitystateinttype --> ovalmitreorgovalprocess58stateelementtype
+    entitystatestringtype --> ovalmitreorgovalprocess58stateelementtype
     entitystatestringtype --> ovalmitreorgovalprocess58stateelementtype
     entitystatestringtype --> ovalmitreorgovalprocess58stateelementtype
     entitystateinttype --> ovalmitreorgovalprocess58stateelementtype
     entitystatebooltype --> ovalmitreorgovalprocess58stateelementtype
+    entitystateinttype --> ovalmitreorgovalprocess58stateelementtype
+    entitystatecapabilitytype --> ovalmitreorgovalprocess58stateelementtype
     entitystatestringtype --> ovalmitreorgovalprocess58stateelementtype
-    entitystatestringtype --> ovalmitreorgovalprocess58stateelementtype
+    entitystateinttype --> ovalmitreorgovalprocess58stateelementtype
     statetype -.->|extends| ovalmitreorgovalprocess58stateelementtype
     testtype --> ovalmitreorgovalprocess58test
     testtype -.->|extends| ovalmitreorgovalprocess58test
@@ -36128,6 +36174,8 @@ flowchart TD
     statetype -.->|extends| ovalmitreorgovalprocessstate
     statetype --> ovalmitreorgovalprocessstateelementtype
     entitystatestringtype --> ovalmitreorgovalprocessstateelementtype
+    entitystatestringtype --> ovalmitreorgovalprocessstateelementtype
+    entitystateinttype --> ovalmitreorgovalprocessstateelementtype
     entitystateinttype --> ovalmitreorgovalprocessstateelementtype
     entitystateinttype --> ovalmitreorgovalprocessstateelementtype
     entitystateinttype --> ovalmitreorgovalprocessstateelementtype
@@ -36135,6 +36183,8 @@ flowchart TD
     entitystateinttype --> ovalmitreorgovalprocessstateelementtype
     entitystatestringtype --> ovalmitreorgovalprocessstateelementtype
     entitystatestringtype --> ovalmitreorgovalprocessstateelementtype
+    entitystatestringtype --> ovalmitreorgovalprocessstateelementtype
+    entitystateinttype --> ovalmitreorgovalprocessstateelementtype
     statetype -.->|extends| ovalmitreorgovalprocessstateelementtype
     testtype --> ovalmitreorgovalprocesstest
     testtype -.->|extends| ovalmitreorgovalprocesstest
@@ -36325,14 +36375,9 @@ flowchart TD
     statetype --> ovalmitreorgovalversion55state
     statetype -.->|extends| ovalmitreorgovalversion55state
     statetype --> ovalmitreorgovalversion55stateelementtype
-    entitystateinttype --> ovalmitreorgovalversion55stateelementtype
-    entitystateinttype --> ovalmitreorgovalversion55stateelementtype
-    entitystateinttype --> ovalmitreorgovalversion55stateelementtype
-    entitystatestringtype --> ovalmitreorgovalversion55stateelementtype
-    entitystateinttype --> ovalmitreorgovalversion55stateelementtype
     entitystatestringtype --> ovalmitreorgovalversion55stateelementtype
     entitystatestringtype --> ovalmitreorgovalversion55stateelementtype
-    entitystateiosversiontype --> ovalmitreorgovalversion55stateelementtype
+    entitystateversiontype --> ovalmitreorgovalversion55stateelementtype
     statetype -.->|extends| ovalmitreorgovalversion55stateelementtype
     testtype --> ovalmitreorgovalversion55test
     testtype -.->|extends| ovalmitreorgovalversion55test
@@ -36350,9 +36395,10 @@ flowchart TD
     statetype -.->|extends| ovalmitreorgovalversionstate
     statetype --> ovalmitreorgovalversionstateelementtype
     entitystatestringtype --> ovalmitreorgovalversionstateelementtype
-    entitystateversiontype --> ovalmitreorgovalversionstateelementtype
+    entitystatestringtype --> ovalmitreorgovalversionstateelementtype
     entitystateversiontype --> ovalmitreorgovalversionstateelementtype
     entitystateinttype --> ovalmitreorgovalversionstateelementtype
+    entitystatestringtype --> ovalmitreorgovalversionstateelementtype
     statetype -.->|extends| ovalmitreorgovalversionstateelementtype
     testtype --> ovalmitreorgovalversiontest
     testtype -.->|extends| ovalmitreorgovalversiontest
@@ -37075,16 +37121,16 @@ flowchart TD
     testtype -.->|extends| regkeyeffectiverightstestelementtype
     entitystateanysimpletype --> releaseelementtype
     entitystateanysimpletype -.->|extends| releaseelementtype
-    entityobjectanysimpletype --> releaseelementtype1
-    entityobjectanysimpletype -.->|extends| releaseelementtype1
-    entitystateanysimpletype --> releaseelementtype2
-    entitystateanysimpletype -.->|extends| releaseelementtype2
+    entitystateanysimpletype --> releaseelementtype1
+    entitystateanysimpletype -.->|extends| releaseelementtype1
+    entityobjectanysimpletype --> releaseelementtype2
+    entityobjectanysimpletype -.->|extends| releaseelementtype2
     entitystateanysimpletype --> releaseelementtype3
     entitystateanysimpletype -.->|extends| releaseelementtype3
-    entitystateanysimpletype --> releaseelementtype4
-    entitystateanysimpletype -.->|extends| releaseelementtype4
-    entityobjectanysimpletype --> releaseelementtype5
-    entityobjectanysimpletype -.->|extends| releaseelementtype5
+    entityobjectanysimpletype --> releaseelementtype4
+    entityobjectanysimpletype -.->|extends| releaseelementtype4
+    entitystateanysimpletype --> releaseelementtype5
+    entitystateanysimpletype -.->|extends| releaseelementtype5
     objecttype --> rlimitobject
     objecttype -.->|extends| rlimitobject
     objecttype --> rlimitobjectelementtype
@@ -38511,18 +38557,18 @@ flowchart TD
     testtype --> varianttestelementtype
     objectreftype --> varianttestelementtype
     testtype -.->|extends| varianttestelementtype
-    entityobjectanysimpletype --> versionelementtype1
-    entityobjectanysimpletype -.->|extends| versionelementtype1
-    entitystateanysimpletype --> versionelementtype2
-    entitystateanysimpletype -.->|extends| versionelementtype2
+    entitystateanysimpletype --> versionelementtype1
+    entitystateanysimpletype -.->|extends| versionelementtype1
+    entityobjectanysimpletype --> versionelementtype2
+    entityobjectanysimpletype -.->|extends| versionelementtype2
     entitystateanysimpletype --> versionelementtype3
     entitystateanysimpletype -.->|extends| versionelementtype3
     entitystateanysimpletype --> versionelementtype4
     entitystateanysimpletype -.->|extends| versionelementtype4
-    entitystateanysimpletype --> versionelementtype5
-    entitystateanysimpletype -.->|extends| versionelementtype5
-    entityobjectanysimpletype --> versionelementtype6
-    entityobjectanysimpletype -.->|extends| versionelementtype6
+    entityobjectanysimpletype --> versionelementtype5
+    entityobjectanysimpletype -.->|extends| versionelementtype5
+    entitystateanysimpletype --> versionelementtype6
+    entitystateanysimpletype -.->|extends| versionelementtype6
     objecttype --> virtualizationinfoobject
     objecttype -.->|extends| virtualizationinfoobject
     objecttype --> virtualizationinfoobjectelementtype
@@ -39146,11 +39192,11 @@ flowchart TD
 | EnvironmentvariableTest | 3 | 1 | TestType |
 | EnvironmentvariableTestElementType | 3 | 2 | TestType |
 | EpochElementType | 3 | 1 | EntityStateAnySimpleType |
-| EpochElementType1 | 3 | 1 | EntityObjectAnySimpleType |
-| EpochElementType2 | 3 | 1 | EntityStateAnySimpleType |
+| EpochElementType1 | 3 | 1 | EntityStateAnySimpleType |
+| EpochElementType2 | 3 | 1 | EntityObjectAnySimpleType |
 | EpochElementType3 | 3 | 1 | EntityStateAnySimpleType |
-| EpochElementType4 | 3 | 1 | EntityStateAnySimpleType |
-| EpochElementType5 | 3 | 1 | EntityObjectAnySimpleType |
+| EpochElementType4 | 3 | 1 | EntityObjectAnySimpleType |
+| EpochElementType5 | 3 | 1 | EntityStateAnySimpleType |
 | EscapeRegexFunctionType | 1 | 0 | - |
 | EvalutationDefinitionIds | 1 | 0 | - |
 | EvalutationDefinitionIdsElementType | 1 | 0 | - |
@@ -39564,11 +39610,11 @@ flowchart TD
 | OvalMitreOrgOvalEntityStateTrunkEncapType | 2 | 1 | EntityStateStringType |
 | OvalMitreOrgOvalEntityStateWindowsViewType | 2 | 1 | EntityStateStringType |
 | OvalMitreOrgOvalExtendDefinitionType | 7 | 0 | - |
-| OvalMitreOrgOvalFileBehaviors | 6 | 0 | - |
+| OvalMitreOrgOvalFileBehaviors | 5 | 0 | - |
 | OvalMitreOrgOvalFileObject | 6 | 1 | ObjectType |
 | OvalMitreOrgOvalFileObjectElementType | 6 | 1 | ObjectType |
-| OvalMitreOrgOvalFileState | 22 | 1 | StateType |
-| OvalMitreOrgOvalFileStateElementType | 22 | 24 | StateType |
+| OvalMitreOrgOvalFileState | 25 | 1 | StateType |
+| OvalMitreOrgOvalFileStateElementType | 25 | 27 | StateType |
 | OvalMitreOrgOvalFileTest | 3 | 1 | TestType |
 | OvalMitreOrgOvalFileTestElementType | 3 | 3 | TestType |
 | OvalMitreOrgOvalGeneratorType | 4 | 0 | - |
@@ -39586,8 +39632,8 @@ flowchart TD
 | OvalMitreOrgOvalInetlisteningserversTestElementType | 3 | 3 | TestType |
 | OvalMitreOrgOvalInterfaceObject | 3 | 1 | ObjectType |
 | OvalMitreOrgOvalInterfaceObjectElementType | 3 | 1 | ObjectType |
-| OvalMitreOrgOvalInterfaceState | 22 | 1 | StateType |
-| OvalMitreOrgOvalInterfaceStateElementType | 22 | 46 | StateType |
+| OvalMitreOrgOvalInterfaceState | 23 | 1 | StateType |
+| OvalMitreOrgOvalInterfaceStateElementType | 23 | 42 | StateType |
 | OvalMitreOrgOvalInterfaceTest | 3 | 1 | TestType |
 | OvalMitreOrgOvalInterfaceTestElementType | 3 | 6 | TestType |
 | OvalMitreOrgOvalItemType | 3 | 0 | - |
@@ -39624,14 +39670,14 @@ flowchart TD
 | OvalMitreOrgOvalPatchTestElementType | 3 | 4 | TestType |
 | OvalMitreOrgOvalProcess58Object | 4 | 1 | ObjectType |
 | OvalMitreOrgOvalProcess58ObjectElementType | 4 | 1 | ObjectType |
-| OvalMitreOrgOvalProcess58State | 12 | 1 | StateType |
-| OvalMitreOrgOvalProcess58StateElementType | 12 | 14 | StateType |
+| OvalMitreOrgOvalProcess58State | 17 | 1 | StateType |
+| OvalMitreOrgOvalProcess58StateElementType | 17 | 19 | StateType |
 | OvalMitreOrgOvalProcess58Test | 3 | 1 | TestType |
 | OvalMitreOrgOvalProcess58TestElementType | 3 | 3 | TestType |
 | OvalMitreOrgOvalProcessObject | 3 | 1 | ObjectType |
 | OvalMitreOrgOvalProcessObjectElementType | 3 | 1 | ObjectType |
-| OvalMitreOrgOvalProcessState | 8 | 1 | StateType |
-| OvalMitreOrgOvalProcessStateElementType | 8 | 9 | StateType |
+| OvalMitreOrgOvalProcessState | 12 | 1 | StateType |
+| OvalMitreOrgOvalProcessStateElementType | 12 | 13 | StateType |
 | OvalMitreOrgOvalProcessTest | 3 | 1 | TestType |
 | OvalMitreOrgOvalProcessTestElementType | 3 | 3 | TestType |
 | OvalMitreOrgOvalReferenceType | 2 | 0 | - |
@@ -39693,15 +39739,15 @@ flowchart TD
 | OvalMitreOrgOvalVariablesType | 1 | 0 | - |
 | OvalMitreOrgOvalVersion55Object | 2 | 1 | ObjectType |
 | OvalMitreOrgOvalVersion55ObjectElementType | 2 | 1 | ObjectType |
-| OvalMitreOrgOvalVersion55State | 10 | 1 | StateType |
-| OvalMitreOrgOvalVersion55StateElementType | 10 | 9 | StateType |
+| OvalMitreOrgOvalVersion55State | 5 | 1 | StateType |
+| OvalMitreOrgOvalVersion55StateElementType | 5 | 4 | StateType |
 | OvalMitreOrgOvalVersion55Test | 3 | 1 | TestType |
 | OvalMitreOrgOvalVersion55TestElementType | 3 | 3 | TestType |
 | OvalMitreOrgOvalVersionElementType | 3 | 1 | EntityStateAnySimpleType |
 | OvalMitreOrgOvalVersionObject | 2 | 1 | ObjectType |
 | OvalMitreOrgOvalVersionObjectElementType | 2 | 1 | ObjectType |
-| OvalMitreOrgOvalVersionState | 6 | 1 | StateType |
-| OvalMitreOrgOvalVersionStateElementType | 6 | 5 | StateType |
+| OvalMitreOrgOvalVersionState | 7 | 1 | StateType |
+| OvalMitreOrgOvalVersionStateElementType | 7 | 6 | StateType |
 | OvalMitreOrgOvalVersionTest | 3 | 1 | TestType |
 | OvalMitreOrgOvalVersionTestElementType | 3 | 8 | TestType |
 | OvalResults | 4 | 0 | - |
@@ -39953,11 +39999,11 @@ flowchart TD
 | RelationshipType | 5 | 0 | - |
 | RelationshipsElementType | 1 | 0 | - |
 | ReleaseElementType | 3 | 1 | EntityStateAnySimpleType |
-| ReleaseElementType1 | 3 | 1 | EntityObjectAnySimpleType |
-| ReleaseElementType2 | 3 | 1 | EntityStateAnySimpleType |
+| ReleaseElementType1 | 3 | 1 | EntityStateAnySimpleType |
+| ReleaseElementType2 | 3 | 1 | EntityObjectAnySimpleType |
 | ReleaseElementType3 | 3 | 1 | EntityStateAnySimpleType |
-| ReleaseElementType4 | 3 | 1 | EntityStateAnySimpleType |
-| ReleaseElementType5 | 3 | 1 | EntityObjectAnySimpleType |
+| ReleaseElementType4 | 3 | 1 | EntityObjectAnySimpleType |
+| ReleaseElementType5 | 3 | 1 | EntityStateAnySimpleType |
 | RemoteResource | 1 | 0 | - |
 | RemoteResourceElementType | 1 | 0 | - |
 | ReportRequestType | 3 | 0 | - |
@@ -40456,12 +40502,12 @@ flowchart TD
 | VariantStateElementType | 5 | 4 | StateType |
 | VariantTest | 3 | 1 | TestType |
 | VariantTestElementType | 3 | 2 | TestType |
-| VersionElementType1 | 3 | 1 | EntityObjectAnySimpleType |
-| VersionElementType2 | 3 | 1 | EntityStateAnySimpleType |
+| VersionElementType1 | 3 | 1 | EntityStateAnySimpleType |
+| VersionElementType2 | 3 | 1 | EntityObjectAnySimpleType |
 | VersionElementType3 | 3 | 1 | EntityStateAnySimpleType |
 | VersionElementType4 | 3 | 1 | EntityStateAnySimpleType |
-| VersionElementType5 | 3 | 1 | EntityStateAnySimpleType |
-| VersionElementType6 | 3 | 1 | EntityObjectAnySimpleType |
+| VersionElementType5 | 3 | 1 | EntityObjectAnySimpleType |
+| VersionElementType6 | 3 | 1 | EntityStateAnySimpleType |
 | ViSdkManagedEntityBehaviors | 2 | 0 | - |
 | VirtualizationinfoObject | 2 | 1 | ObjectType |
 | VirtualizationinfoObjectElementType | 2 | 1 | ObjectType |

@@ -11,7 +11,8 @@ import (
 	"strings"
 
 	xmlschemaoval_definitions_5 "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/oval/xmlschema/oval-definitions-5"
-	pkg_200009xmldsig "github.com/aequo-labs/forgexml-scap/internal/generated/org/w3/2000/09/xmldsig"
+	xmlschemaoval_results_5 "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/oval/xmlschema/oval-results-5"
+	xmlschemaoval_system_characteristics_5 "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/oval/xmlschema/oval-system-characteristics-5"
 )
 
 // GenericElement represents unknown/extension elements not defined in XSD
@@ -172,7 +173,7 @@ func replicateXmlnsPlacement(xmlOutput string, elementsWithXmlns map[string]stri
 // Config_testElementType represents the XSD type 'Config_testElementType'
 // XSD complex type (W3C XSD §3.4)
 type Config_testElementType struct {
-	xmlschemaoval_definitions_5.TestType // XSD extension base
+	xmlschemaoval_results_5.TestType // XSD extension base
 	// Object represents XSD element 'object'
 	Object xmlschemaoval_definitions_5.ObjectRefType `xml:"object"`
 	// State represents XSD element 'state'
@@ -187,7 +188,7 @@ type Config_testElementType struct {
 // Config_objectElementType represents the XSD type 'Config_objectElementType'
 // XSD complex type (W3C XSD §3.4)
 type Config_objectElementType struct {
-	pkg_200009xmldsig.ObjectType // XSD extension base
+	xmlschemaoval_system_characteristics_5.ObjectType // XSD extension base
 	// Set represents XSD element 'set'
 	Set *xmlschemaoval_definitions_5.SetElement `xml:"set,omitempty"`
 	// Xpath represents XSD element 'xpath'

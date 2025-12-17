@@ -21,8 +21,15 @@ var Metadata = PackageMetadata{
 	Namespace:   "http://www.w3.org/XML/1998/namespace",
 	SourceXSD:   "xml.xsd",
 	SchemaFiles: []string{
-		"/home/mmcnew/repos/forgexml-scap/schemas/cpe-dictionary/cpe-dictionary_2.1.xsd",
-		"/home/mmcnew/repos/forgexml-scap/schemas/cpe-dictionary/xml.xsd",
+		"/home/mmcnew/repos/forgexml-scap/schemas/arf/asset-identification_1.1.0.xsd",
+		"/home/mmcnew/repos/forgexml-scap/schemas/arf/asset-reporting-format_1.0.0-ea1.xsd",
+		"/home/mmcnew/repos/forgexml-scap/schemas/arf/asset-reporting-format_1.1.0.xsd",
+		"/home/mmcnew/repos/forgexml-scap/schemas/arf/cpe-naming_2.3.xsd",
+		"/home/mmcnew/repos/forgexml-scap/schemas/arf/reporting-core_1.1.0.xsd",
+		"/home/mmcnew/repos/forgexml-scap/schemas/arf/xAL.xsd",
+		"/home/mmcnew/repos/forgexml-scap/schemas/arf/xNL.xsd",
+		"/home/mmcnew/repos/forgexml-scap/schemas/arf/xlink.xsd",
+		"/home/mmcnew/repos/forgexml-scap/schemas/arf/xml.xsd",
 	},
 	GeneratedBy: "forgexml v1.0.0",
 }

@@ -187,64 +187,6 @@ type GeneratorType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// TextType represents the XSD type 'TextType'
-// XSD complex type (W3C XSD §3.4)
-type TextTypeWithAttrs struct {
-	Value string `xml:",chardata"` // XSD simple content
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// TextType is an alias for TextTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
-type TextType = TextTypeWithAttrs
-
-// NotesType represents the XSD type 'NotesType'
-// XSD complex type (W3C XSD §3.4)
-type NotesType struct {
-	// Note represents XSD element 'note'
-	// minOccurs=1, maxOccurs=-1
-	Note []string `xml:"note"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// ReferencesType represents the XSD type 'ReferencesType'
-// XSD complex type (W3C XSD §3.4)
-type ReferencesType struct {
-	// Reference represents XSD element 'reference'
-	// minOccurs=1, maxOccurs=-1
-	Reference []ReferenceElementType `xml:"reference"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// ReferenceElementType represents the XSD type 'ReferenceElementType'
-// XSD complex type (W3C XSD §3.4)
-type ReferenceElementTypeWithAttrs struct {
-	Value string `xml:",chardata"` // XSD simple content
-	// Href represents XSD attribute 'href'
-	// use="optional"
-	Href *string `xml:"href,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// ReferenceElementType is an alias for ReferenceElementTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
-type ReferenceElementType = ReferenceElementTypeWithAttrs
-
-// NamePattern represents the XSD type 'namePattern'
-// XSD simple type (W3C XSD §4.1)
-// pattern="[c][pP][eE]:/[AHOaho]?(:[A-Za-z0-9\._\-~%]*){0,6}"
-type NamePattern string
-
 // ItemType represents the XSD type 'ItemType'
 // XSD complex type (W3C XSD §3.4)
 type ItemType struct {
@@ -311,3 +253,61 @@ type CheckTypeWithAttrs struct {
 
 // CheckType is an alias for CheckTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
 type CheckType = CheckTypeWithAttrs
+
+// ReferenceElementType represents the XSD type 'ReferenceElementType'
+// XSD complex type (W3C XSD §3.4)
+type ReferenceElementTypeWithAttrs struct {
+	Value string `xml:",chardata"` // XSD simple content
+	// Href represents XSD attribute 'href'
+	// use="optional"
+	Href *string `xml:"href,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// ReferenceElementType is an alias for ReferenceElementTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
+type ReferenceElementType = ReferenceElementTypeWithAttrs
+
+// NamePattern represents the XSD type 'namePattern'
+// XSD simple type (W3C XSD §4.1)
+// pattern="[c][pP][eE]:/[AHOaho]?(:[A-Za-z0-9\._\-~%]*){0,6}"
+type NamePattern string
+
+// TextType represents the XSD type 'TextType'
+// XSD complex type (W3C XSD §3.4)
+type TextTypeWithAttrs struct {
+	Value string `xml:",chardata"` // XSD simple content
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// TextType is an alias for TextTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
+type TextType = TextTypeWithAttrs
+
+// NotesType represents the XSD type 'NotesType'
+// XSD complex type (W3C XSD §3.4)
+type NotesType struct {
+	// Note represents XSD element 'note'
+	// minOccurs=1, maxOccurs=-1
+	Note []string `xml:"note"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// ReferencesType represents the XSD type 'ReferencesType'
+// XSD complex type (W3C XSD §3.4)
+type ReferencesType struct {
+	// Reference represents XSD element 'reference'
+	// minOccurs=1, maxOccurs=-1
+	Reference []ReferenceElementType `xml:"reference"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}

@@ -166,73 +166,20 @@ func replicateXmlnsPlacement(xmlOutput string, elementsWithXmlns map[string]stri
 	return result
 }
 
-// TypeType represents the XSD type 'typeType'
-// XSD simple type (W3C XSD §4.1)
-// enumeration="simple"
-// enumeration="extended"
-// enumeration="title"
-// enumeration="resource"
-// enumeration="locator"
-// enumeration="arc"
-type TypeType string
-
 // ArcroleType represents the XSD type 'arcroleType'
 // XSD simple type (W3C XSD §4.1)
 // minLength="1"
 type ArcroleType string
 
-// LabelType represents the XSD type 'labelType'
+// TitleAttrType represents the XSD type 'titleAttrType'
 // XSD simple type (W3C XSD §4.1)
-type LabelType string
-
-// HrefType represents the XSD type 'hrefType'
-// XSD simple type (W3C XSD §4.1)
-type HrefType string
-
-// RoleType represents the XSD type 'roleType'
-// XSD simple type (W3C XSD §4.1)
-// minLength="1"
-type RoleType string
-
-// ShowType represents the XSD type 'showType'
-// XSD simple type (W3C XSD §4.1)
-// enumeration="new"
-// enumeration="replace"
-// enumeration="embed"
-// enumeration="other"
-// enumeration="none"
-type ShowType string
+type TitleAttrType string
 
 // Simple represents the XSD type 'simple'
 // XSD complex type (W3C XSD §3.4)
 // mixed="true"
 type Simple struct {
 	InnerXML string `xml:",innerxml"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// TitleAttrType represents the XSD type 'titleAttrType'
-// XSD simple type (W3C XSD §4.1)
-type TitleAttrType string
-
-// ActuateType represents the XSD type 'actuateType'
-// XSD simple type (W3C XSD §4.1)
-// enumeration="onLoad"
-// enumeration="onRequest"
-// enumeration="other"
-// enumeration="none"
-type ActuateType string
-
-// ToType represents the XSD type 'toType'
-// XSD simple type (W3C XSD §4.1)
-type ToType string
-
-// Extended represents the XSD type 'extended'
-// XSD complex type (W3C XSD §3.4)
-type Extended struct {
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -270,10 +217,6 @@ type LocatorType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// FromType represents the XSD type 'fromType'
-// XSD simple type (W3C XSD §4.1)
-type FromType string
-
 // ArcType represents the XSD type 'arcType'
 // XSD complex type (W3C XSD §3.4)
 type ArcType struct {
@@ -282,3 +225,60 @@ type ArcType struct {
 	// UnknownAttrs captures any attributes not defined in XSD
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
+
+// HrefType represents the XSD type 'hrefType'
+// XSD simple type (W3C XSD §4.1)
+type HrefType string
+
+// FromType represents the XSD type 'fromType'
+// XSD simple type (W3C XSD §4.1)
+type FromType string
+
+// Extended represents the XSD type 'extended'
+// XSD complex type (W3C XSD §3.4)
+type Extended struct {
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// TypeType represents the XSD type 'typeType'
+// XSD simple type (W3C XSD §4.1)
+// enumeration="simple"
+// enumeration="extended"
+// enumeration="title"
+// enumeration="resource"
+// enumeration="locator"
+// enumeration="arc"
+type TypeType string
+
+// RoleType represents the XSD type 'roleType'
+// XSD simple type (W3C XSD §4.1)
+// minLength="1"
+type RoleType string
+
+// ShowType represents the XSD type 'showType'
+// XSD simple type (W3C XSD §4.1)
+// enumeration="new"
+// enumeration="replace"
+// enumeration="embed"
+// enumeration="other"
+// enumeration="none"
+type ShowType string
+
+// ActuateType represents the XSD type 'actuateType'
+// XSD simple type (W3C XSD §4.1)
+// enumeration="onLoad"
+// enumeration="onRequest"
+// enumeration="other"
+// enumeration="none"
+type ActuateType string
+
+// LabelType represents the XSD type 'labelType'
+// XSD simple type (W3C XSD §4.1)
+type LabelType string
+
+// ToType represents the XSD type 'toType'
+// XSD simple type (W3C XSD §4.1)
+type ToType string

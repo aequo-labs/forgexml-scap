@@ -171,65 +171,6 @@ func replicateXmlnsPlacement(xmlOutput string, elementsWithXmlns map[string]stri
 	return result
 }
 
-// EntityStateSupportLevelType represents the XSD type 'EntityStateSupportLevelType'
-// XSD complex type (W3C XSD §3.4)
-type EntityStateSupportLevelType struct {
-	xmlschemaoval_definitions_5.EntityStateStringType // XSD extension base
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Patch_objectElementType represents the XSD type 'Patch_objectElementType'
-// XSD complex type (W3C XSD §3.4)
-type Patch_objectElementType struct {
-	pkg_200009xmldsig.ObjectType // XSD extension base
-	// Set represents XSD element 'set'
-	Set *xmlschemaoval_definitions_5.SetElement `xml:"set,omitempty"`
-	// Behaviors represents XSD element 'behaviors'
-	// minOccurs=0, maxOccurs=1
-	Behaviors *PatchBehaviors `xml:"behaviors,omitempty"`
-	// Patch_number represents XSD element 'patch_number'
-	Patch_number xmlschemaoval_definitions_5.EntityObjectStringType `xml:"patch_number"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Patch_stateElementType represents the XSD type 'Patch_stateElementType'
-// XSD complex type (W3C XSD §3.4)
-type Patch_stateElementType struct {
-	xmlschemaoval_definitions_5.StateType // XSD extension base
-	// Patch_number represents XSD element 'patch_number'
-	// minOccurs=0, maxOccurs=1
-	Patch_number *xmlschemaoval_definitions_5.EntityStateStringType `xml:"patch_number,omitempty"`
-	// Status represents XSD element 'status'
-	// minOccurs=0, maxOccurs=1
-	Status *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"status,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Version_stateElementType represents the XSD type 'Version_stateElementType'
-// XSD complex type (W3C XSD §3.4)
-type Version_stateElementType struct {
-	xmlschemaoval_definitions_5.StateType // XSD extension base
-	// Release represents XSD element 'release'
-	// minOccurs=0, maxOccurs=1
-	Release *xmlschemaoval_definitions_5.EntityStateVersionType `xml:"release,omitempty"`
-	// Build represents XSD element 'build'
-	// minOccurs=0, maxOccurs=1
-	Build *xmlschemaoval_definitions_5.EntityStateIntType `xml:"build,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
 // Patch56_stateElementType represents the XSD type 'Patch56_stateElementType'
 // XSD complex type (W3C XSD §3.4)
 type Patch56_stateElementType struct {
@@ -258,6 +199,48 @@ type Patch56_stateElementType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
+// Patch_testElementType represents the XSD type 'Patch_testElementType'
+// XSD complex type (W3C XSD §3.4)
+type Patch_testElementType struct {
+	xmlschemaoval_results_5.TestType // XSD extension base
+	// Object represents XSD element 'object'
+	Object xmlschemaoval_definitions_5.ObjectRefType `xml:"object"`
+	// State represents XSD element 'state'
+	// minOccurs=0, maxOccurs=-1
+	State []xmlschemaoval_definitions_5.StateRefType `xml:"state,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// PatchBehaviors represents the XSD type 'PatchBehaviors'
+// XSD complex type (W3C XSD §3.4)
+type PatchBehaviors struct {
+	// Supersedence represents XSD attribute 'supersedence'
+	// use="optional"
+	Supersedence *string `xml:"supersedence,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// Visdkmanagedobject_testElementType represents the XSD type 'Visdkmanagedobject_testElementType'
+// XSD complex type (W3C XSD §3.4)
+type Visdkmanagedobject_testElementType struct {
+	xmlschemaoval_results_5.TestType // XSD extension base
+	// Object represents XSD element 'object'
+	Object xmlschemaoval_definitions_5.ObjectRefType `xml:"object"`
+	// State represents XSD element 'state'
+	// minOccurs=0, maxOccurs=-1
+	State []xmlschemaoval_definitions_5.StateRefType `xml:"state,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
 // Patch56Behaviors represents the XSD type 'Patch56Behaviors'
 // XSD complex type (W3C XSD §3.4)
 type Patch56Behaviors struct {
@@ -270,9 +253,9 @@ type Patch56Behaviors struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// EntityStateClassificationType represents the XSD type 'EntityStateClassificationType'
+// EntityStateSupportLevelType represents the XSD type 'EntityStateSupportLevelType'
 // XSD complex type (W3C XSD §3.4)
-type EntityStateClassificationType struct {
+type EntityStateSupportLevelType struct {
 	xmlschemaoval_definitions_5.EntityStateStringType // XSD extension base
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
@@ -280,46 +263,26 @@ type EntityStateClassificationType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// Version_testElementType represents the XSD type 'Version_testElementType'
+// Version_objectElementType represents the XSD type 'Version_objectElementType'
 // XSD complex type (W3C XSD §3.4)
-type Version_testElementType struct {
-	xmlschemaoval_definitions_5.TestType // XSD extension base
-	// Object represents XSD element 'object'
-	Object xmlschemaoval_definitions_5.ObjectRefType `xml:"object"`
-	// State represents XSD element 'state'
-	// minOccurs=0, maxOccurs=-1
-	State []xmlschemaoval_definitions_5.StateRefType `xml:"state,omitempty"`
+type Version_objectElementType struct {
+	pkg_200009xmldsig.ObjectType // XSD extension base
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// Visdkmanagedobject_stateElementType represents the XSD type 'Visdkmanagedobject_stateElementType'
+// Version_stateElementType represents the XSD type 'Version_stateElementType'
 // XSD complex type (W3C XSD §3.4)
-type Visdkmanagedobject_stateElementType struct {
+type Version_stateElementType struct {
 	xmlschemaoval_definitions_5.StateType // XSD extension base
-	// Property represents XSD element 'property'
+	// Release represents XSD element 'release'
 	// minOccurs=0, maxOccurs=1
-	Property *xmlschemaoval_definitions_5.EntityStateStringType `xml:"property,omitempty"`
-	// Value represents XSD element 'value'
+	Release *xmlschemaoval_definitions_5.EntityStateVersionType `xml:"release,omitempty"`
+	// Build represents XSD element 'build'
 	// minOccurs=0, maxOccurs=1
-	Value *xmlschemaoval_definitions_5.EntityStateAnySimpleType `xml:"value,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Patch_testElementType represents the XSD type 'Patch_testElementType'
-// XSD complex type (W3C XSD §3.4)
-type Patch_testElementType struct {
-	xmlschemaoval_results_5.TestType // XSD extension base
-	// Object represents XSD element 'object'
-	Object xmlschemaoval_definitions_5.ObjectRefType `xml:"object"`
-	// State represents XSD element 'state'
-	// minOccurs=0, maxOccurs=-1
-	State []xmlschemaoval_definitions_5.StateRefType `xml:"state,omitempty"`
+	Build *xmlschemaoval_definitions_5.EntityStateIntType `xml:"build,omitempty"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -338,35 +301,10 @@ type ViSdkManagedEntityBehaviors struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// Patch56_objectElementType represents the XSD type 'Patch56_objectElementType'
+// EntityStateClassificationType represents the XSD type 'EntityStateClassificationType'
 // XSD complex type (W3C XSD §3.4)
-type Patch56_objectElementType struct {
-	pkg_200009xmldsig.ObjectType // XSD extension base
-	// Set represents XSD element 'set'
-	Set *xmlschemaoval_definitions_5.SetElement `xml:"set,omitempty"`
-	// Behaviors represents XSD element 'behaviors'
-	// minOccurs=0, maxOccurs=1
-	Behaviors *Patch56Behaviors `xml:"behaviors,omitempty"`
-	// Patch_name represents XSD element 'patch_name'
-	Patch_name xmlschemaoval_definitions_5.EntityObjectStringType `xml:"patch_name"`
-	// Filter represents XSD element 'filter'
-	// minOccurs=0, maxOccurs=-1
-	Filter []xmlschemaoval_definitions_5.FilterElement `xml:"filter,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Visdkmanagedobject_testElementType represents the XSD type 'Visdkmanagedobject_testElementType'
-// XSD complex type (W3C XSD §3.4)
-type Visdkmanagedobject_testElementType struct {
-	xmlschemaoval_results_5.TestType // XSD extension base
-	// Object represents XSD element 'object'
-	Object xmlschemaoval_definitions_5.ObjectRefType `xml:"object"`
-	// State represents XSD element 'state'
-	// minOccurs=0, maxOccurs=-1
-	State []xmlschemaoval_definitions_5.StateRefType `xml:"state,omitempty"`
+type EntityStateClassificationType struct {
+	xmlschemaoval_definitions_5.EntityStateStringType // XSD extension base
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -396,6 +334,41 @@ type Visdkmanagedobject_objectElementType struct {
 // Patch56_testElementType represents the XSD type 'Patch56_testElementType'
 // XSD complex type (W3C XSD §3.4)
 type Patch56_testElementType struct {
+	xmlschemaoval_results_5.TestType // XSD extension base
+	// Object represents XSD element 'object'
+	Object xmlschemaoval_definitions_5.ObjectRefType `xml:"object"`
+	// State represents XSD element 'state'
+	// minOccurs=0, maxOccurs=-1
+	State []xmlschemaoval_definitions_5.StateRefType `xml:"state,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// Patch56_objectElementType represents the XSD type 'Patch56_objectElementType'
+// XSD complex type (W3C XSD §3.4)
+type Patch56_objectElementType struct {
+	pkg_200009xmldsig.ObjectType // XSD extension base
+	// Set represents XSD element 'set'
+	Set *xmlschemaoval_definitions_5.SetElement `xml:"set,omitempty"`
+	// Behaviors represents XSD element 'behaviors'
+	// minOccurs=0, maxOccurs=1
+	Behaviors *Patch56Behaviors `xml:"behaviors,omitempty"`
+	// Patch_name represents XSD element 'patch_name'
+	Patch_name xmlschemaoval_definitions_5.EntityObjectStringType `xml:"patch_name"`
+	// Filter represents XSD element 'filter'
+	// minOccurs=0, maxOccurs=-1
+	Filter []xmlschemaoval_definitions_5.FilterElement `xml:"filter,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// Version_testElementType represents the XSD type 'Version_testElementType'
+// XSD complex type (W3C XSD §3.4)
+type Version_testElementType struct {
 	xmlschemaoval_definitions_5.TestType // XSD extension base
 	// Object represents XSD element 'object'
 	Object xmlschemaoval_definitions_5.ObjectRefType `xml:"object"`
@@ -408,22 +381,49 @@ type Patch56_testElementType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// PatchBehaviors represents the XSD type 'PatchBehaviors'
+// Patch_stateElementType represents the XSD type 'Patch_stateElementType'
 // XSD complex type (W3C XSD §3.4)
-type PatchBehaviors struct {
-	// Supersedence represents XSD attribute 'supersedence'
-	// use="optional"
-	Supersedence *string `xml:"supersedence,attr,omitempty"`
+type Patch_stateElementType struct {
+	xmlschemaoval_definitions_5.StateType // XSD extension base
+	// Patch_number represents XSD element 'patch_number'
+	// minOccurs=0, maxOccurs=1
+	Patch_number *xmlschemaoval_definitions_5.EntityStateStringType `xml:"patch_number,omitempty"`
+	// Status represents XSD element 'status'
+	// minOccurs=0, maxOccurs=1
+	Status *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"status,omitempty"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// Version_objectElementType represents the XSD type 'Version_objectElementType'
+// Patch_objectElementType represents the XSD type 'Patch_objectElementType'
 // XSD complex type (W3C XSD §3.4)
-type Version_objectElementType struct {
-	xmlschemaoval_definitions_5.ObjectType // XSD extension base
+type Patch_objectElementType struct {
+	xmlschemaoval_system_characteristics_5.ObjectType // XSD extension base
+	// Set represents XSD element 'set'
+	Set *xmlschemaoval_definitions_5.SetElement `xml:"set,omitempty"`
+	// Behaviors represents XSD element 'behaviors'
+	// minOccurs=0, maxOccurs=1
+	Behaviors *PatchBehaviors `xml:"behaviors,omitempty"`
+	// Patch_number represents XSD element 'patch_number'
+	Patch_number xmlschemaoval_definitions_5.EntityObjectStringType `xml:"patch_number"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// Visdkmanagedobject_stateElementType represents the XSD type 'Visdkmanagedobject_stateElementType'
+// XSD complex type (W3C XSD §3.4)
+type Visdkmanagedobject_stateElementType struct {
+	xmlschemaoval_definitions_5.StateType // XSD extension base
+	// Property represents XSD element 'property'
+	// minOccurs=0, maxOccurs=1
+	Property *xmlschemaoval_definitions_5.EntityStateStringType `xml:"property,omitempty"`
+	// Value represents XSD element 'value'
+	// minOccurs=0, maxOccurs=1
+	Value *xmlschemaoval_definitions_5.EntityStateAnySimpleType `xml:"value,omitempty"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD

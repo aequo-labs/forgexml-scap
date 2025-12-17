@@ -12,7 +12,6 @@ import (
 
 	xmlschemaoval_definitions_5 "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/oval/xmlschema/oval-definitions-5"
 	xmlschemaoval_results_5 "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/oval/xmlschema/oval-results-5"
-	xmlschemaoval_system_characteristics_5 "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/oval/xmlschema/oval-system-characteristics-5"
 	pkg_200009xmldsig "github.com/aequo-labs/forgexml-scap/internal/generated/org/w3/2000/09/xmldsig"
 )
 
@@ -171,10 +170,30 @@ func replicateXmlnsPlacement(xmlOutput string, elementsWithXmlns map[string]stri
 	return result
 }
 
-// Passcodepolicy_objectElementType represents the XSD type 'Passcodepolicy_objectElementType'
+// Globalrestrictions_testElementType represents the XSD type 'Globalrestrictions_testElementType'
 // XSD complex type (W3C XSD §3.4)
-type Passcodepolicy_objectElementType struct {
-	pkg_200009xmldsig.ObjectType // XSD extension base
+type Globalrestrictions_testElementType struct {
+	xmlschemaoval_definitions_5.TestType // XSD extension base
+	// Object represents XSD element 'object'
+	Object xmlschemaoval_definitions_5.ObjectRefType `xml:"object"`
+	// State represents XSD element 'state'
+	// minOccurs=0, maxOccurs=-1
+	State []xmlschemaoval_definitions_5.StateRefType `xml:"state,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// Passcodepolicy_testElementType represents the XSD type 'Passcodepolicy_testElementType'
+// XSD complex type (W3C XSD §3.4)
+type Passcodepolicy_testElementType struct {
+	xmlschemaoval_definitions_5.TestType // XSD extension base
+	// Object represents XSD element 'object'
+	Object xmlschemaoval_definitions_5.ObjectRefType `xml:"object"`
+	// State represents XSD element 'state'
+	// minOccurs=0, maxOccurs=-1
+	State []xmlschemaoval_definitions_5.StateRefType `xml:"state,omitempty"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -184,12 +203,31 @@ type Passcodepolicy_objectElementType struct {
 // Profile_testElementType represents the XSD type 'Profile_testElementType'
 // XSD complex type (W3C XSD §3.4)
 type Profile_testElementType struct {
-	xmlschemaoval_definitions_5.TestType // XSD extension base
+	xmlschemaoval_results_5.TestType // XSD extension base
 	// Object represents XSD element 'object'
 	Object xmlschemaoval_definitions_5.ObjectRefType `xml:"object"`
 	// State represents XSD element 'state'
 	// minOccurs=0, maxOccurs=-1
 	State []xmlschemaoval_definitions_5.StateRefType `xml:"state,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// Profile_objectElementType represents the XSD type 'Profile_objectElementType'
+// XSD complex type (W3C XSD §3.4)
+type Profile_objectElementType struct {
+	pkg_200009xmldsig.ObjectType // XSD extension base
+	// Set represents XSD element 'set'
+	Set *xmlschemaoval_definitions_5.SetElement `xml:"set,omitempty"`
+	// Identifier represents XSD element 'identifier'
+	Identifier xmlschemaoval_definitions_5.EntityObjectStringType `xml:"identifier"`
+	// Uuid represents XSD element 'uuid'
+	Uuid xmlschemaoval_definitions_5.EntityObjectStringType `xml:"uuid"`
+	// Filter represents XSD element 'filter'
+	// minOccurs=0, maxOccurs=-1
+	Filter []xmlschemaoval_definitions_5.FilterElement `xml:"filter,omitempty"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -326,6 +364,26 @@ type Globalrestrictions_stateElementType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
+// Globalrestrictions_objectElementType represents the XSD type 'Globalrestrictions_objectElementType'
+// XSD complex type (W3C XSD §3.4)
+type Globalrestrictions_objectElementType struct {
+	xmlschemaoval_definitions_5.ObjectType // XSD extension base
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// Passcodepolicy_objectElementType represents the XSD type 'Passcodepolicy_objectElementType'
+// XSD complex type (W3C XSD §3.4)
+type Passcodepolicy_objectElementType struct {
+	xmlschemaoval_definitions_5.ObjectType // XSD extension base
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
 // Passcodepolicy_stateElementType represents the XSD type 'Passcodepolicy_stateElementType'
 // XSD complex type (W3C XSD §3.4)
 type Passcodepolicy_stateElementType struct {
@@ -400,65 +458,6 @@ type Profile_stateElementType struct {
 	// Version represents XSD element 'version'
 	// minOccurs=0, maxOccurs=1
 	Version *xmlschemaoval_definitions_5.EntityStateIntType `xml:"version,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Globalrestrictions_testElementType represents the XSD type 'Globalrestrictions_testElementType'
-// XSD complex type (W3C XSD §3.4)
-type Globalrestrictions_testElementType struct {
-	xmlschemaoval_definitions_5.TestType // XSD extension base
-	// Object represents XSD element 'object'
-	Object xmlschemaoval_definitions_5.ObjectRefType `xml:"object"`
-	// State represents XSD element 'state'
-	// minOccurs=0, maxOccurs=-1
-	State []xmlschemaoval_definitions_5.StateRefType `xml:"state,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Profile_objectElementType represents the XSD type 'Profile_objectElementType'
-// XSD complex type (W3C XSD §3.4)
-type Profile_objectElementType struct {
-	xmlschemaoval_system_characteristics_5.ObjectType // XSD extension base
-	// Set represents XSD element 'set'
-	Set *xmlschemaoval_definitions_5.SetElement `xml:"set,omitempty"`
-	// Identifier represents XSD element 'identifier'
-	Identifier xmlschemaoval_definitions_5.EntityObjectStringType `xml:"identifier"`
-	// Uuid represents XSD element 'uuid'
-	Uuid xmlschemaoval_definitions_5.EntityObjectStringType `xml:"uuid"`
-	// Filter represents XSD element 'filter'
-	// minOccurs=0, maxOccurs=-1
-	Filter []xmlschemaoval_definitions_5.FilterElement `xml:"filter,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Globalrestrictions_objectElementType represents the XSD type 'Globalrestrictions_objectElementType'
-// XSD complex type (W3C XSD §3.4)
-type Globalrestrictions_objectElementType struct {
-	xmlschemaoval_definitions_5.ObjectType // XSD extension base
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Passcodepolicy_testElementType represents the XSD type 'Passcodepolicy_testElementType'
-// XSD complex type (W3C XSD §3.4)
-type Passcodepolicy_testElementType struct {
-	xmlschemaoval_results_5.TestType // XSD extension base
-	// Object represents XSD element 'object'
-	Object xmlschemaoval_definitions_5.ObjectRefType `xml:"object"`
-	// State represents XSD element 'state'
-	// minOccurs=0, maxOccurs=-1
-	State []xmlschemaoval_definitions_5.StateRefType `xml:"state,omitempty"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD

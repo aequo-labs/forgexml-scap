@@ -12,7 +12,7 @@ import (
 
 	xmlschemaoval_definitions_5 "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/oval/xmlschema/oval-definitions-5"
 	xmlschemaoval_results_5 "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/oval/xmlschema/oval-results-5"
-	pkg_200009xmldsig "github.com/aequo-labs/forgexml-scap/internal/generated/org/w3/2000/09/xmldsig"
+	xmlschemaoval_system_characteristics_5 "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/oval/xmlschema/oval-system-characteristics-5"
 )
 
 // GenericElement represents unknown/extension elements not defined in XSD
@@ -170,6 +170,25 @@ func replicateXmlnsPlacement(xmlOutput string, elementsWithXmlns map[string]stri
 	return result
 }
 
+// Httpd_stateElementType represents the XSD type 'Httpd_stateElementType'
+// XSD complex type (W3C XSD §3.4)
+type Httpd_stateElementType struct {
+	xmlschemaoval_definitions_5.StateType // XSD extension base
+	// Path represents XSD element 'path'
+	// minOccurs=0, maxOccurs=1
+	Path *xmlschemaoval_definitions_5.EntityStateStringType `xml:"path,omitempty"`
+	// Binary_name represents XSD element 'binary_name'
+	// minOccurs=0, maxOccurs=1
+	Binary_name *xmlschemaoval_definitions_5.EntityStateStringType `xml:"binary_name,omitempty"`
+	// Version represents XSD element 'version'
+	// minOccurs=0, maxOccurs=1
+	Version *xmlschemaoval_definitions_5.EntityStateVersionType `xml:"version,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
 // Httpd_testElementType represents the XSD type 'Httpd_testElementType'
 // XSD complex type (W3C XSD §3.4)
 type Httpd_testElementType struct {
@@ -188,26 +207,7 @@ type Httpd_testElementType struct {
 // Httpd_objectElementType represents the XSD type 'Httpd_objectElementType'
 // XSD complex type (W3C XSD §3.4)
 type Httpd_objectElementType struct {
-	pkg_200009xmldsig.ObjectType // XSD extension base
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Httpd_stateElementType represents the XSD type 'Httpd_stateElementType'
-// XSD complex type (W3C XSD §3.4)
-type Httpd_stateElementType struct {
-	xmlschemaoval_definitions_5.StateType // XSD extension base
-	// Path represents XSD element 'path'
-	// minOccurs=0, maxOccurs=1
-	Path *xmlschemaoval_definitions_5.EntityStateStringType `xml:"path,omitempty"`
-	// Binary_name represents XSD element 'binary_name'
-	// minOccurs=0, maxOccurs=1
-	Binary_name *xmlschemaoval_definitions_5.EntityStateStringType `xml:"binary_name,omitempty"`
-	// Version represents XSD element 'version'
-	// minOccurs=0, maxOccurs=1
-	Version *xmlschemaoval_definitions_5.EntityStateVersionType `xml:"version,omitempty"`
+	xmlschemaoval_system_characteristics_5.ObjectType // XSD extension base
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD

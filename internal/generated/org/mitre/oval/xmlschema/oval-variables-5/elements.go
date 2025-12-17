@@ -10,7 +10,7 @@ import (
 	"os"
 	"strings"
 
-	dictionary2_0 "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/cpe/dictionary/2-0"
+	xmlschemaoval_common_5 "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/oval/xmlschema/oval-common-5"
 	pkg_200009xmldsig "github.com/aequo-labs/forgexml-scap/internal/generated/org/w3/2000/09/xmldsig"
 )
 
@@ -19,7 +19,7 @@ import (
 type Oval_variablesElement struct {
 	XMLName xml.Name `xml:"http://oval.mitre.org/XMLSchema/oval-variables-5 oval_variables"`
 	// Generator represents XSD element 'generator'
-	Generator dictionary2_0.GeneratorType `xml:"generator"`
+	Generator xmlschemaoval_common_5.GeneratorType `xml:"generator"`
 	// Variables represents XSD element 'variables'
 	// minOccurs=0, maxOccurs=1
 	Variables *VariablesType `xml:"variables,omitempty"`

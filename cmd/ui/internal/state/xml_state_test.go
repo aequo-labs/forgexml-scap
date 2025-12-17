@@ -26,10 +26,12 @@ import (
 	xmlschemaoval_definitions_5_hpux "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/oval/xmlschema/oval-definitions-5-hpux"
 	xmlschemaoval_definitions_5_independent "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/oval/xmlschema/oval-definitions-5-independent"
 	xmlschemaoval_definitions_5_ios "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/oval/xmlschema/oval-definitions-5-ios"
+	xmlschemaoval_definitions_5_iosxe "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/oval/xmlschema/oval-definitions-5-iosxe"
 	xmlschemaoval_definitions_5_junos "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/oval/xmlschema/oval-definitions-5-junos"
 	xmlschemaoval_definitions_5_linux "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/oval/xmlschema/oval-definitions-5-linux"
 	xmlschemaoval_definitions_5_macos "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/oval/xmlschema/oval-definitions-5-macos"
 	xmlschemaoval_definitions_5_netconf "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/oval/xmlschema/oval-definitions-5-netconf"
+	xmlschemaoval_definitions_5_pixos "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/oval/xmlschema/oval-definitions-5-pixos"
 	xmlschemaoval_definitions_5_sharepoint "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/oval/xmlschema/oval-definitions-5-sharepoint"
 	xmlschemaoval_definitions_5_solaris "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/oval/xmlschema/oval-definitions-5-solaris"
 	xmlschemaoval_definitions_5_unix "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/oval/xmlschema/oval-definitions-5-unix"
@@ -43827,7 +43829,7 @@ func TestMarshalUnmarshal_Accountinfo_testElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_Acl_objectElement(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_asa.Acl_objectElement
+	var elem xmlschemaoval_definitions_5_ios.Acl_objectElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -43841,7 +43843,7 @@ func TestMarshalUnmarshal_Acl_objectElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_asa.Acl_objectElement
+	var elem2 xmlschemaoval_definitions_5_ios.Acl_objectElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -43852,7 +43854,7 @@ func TestMarshalUnmarshal_Acl_objectElement(t *testing.T) {
 
 func TestMarshalUnmarshal_Acl_objectElementType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_ios.Acl_objectElementType
+	var elem xmlschemaoval_definitions_5_asa.Acl_objectElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -43866,7 +43868,7 @@ func TestMarshalUnmarshal_Acl_objectElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_ios.Acl_objectElementType
+	var elem2 xmlschemaoval_definitions_5_asa.Acl_objectElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -43877,7 +43879,7 @@ func TestMarshalUnmarshal_Acl_objectElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_Acl_stateElement(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_asa.Acl_stateElement
+	var elem xmlschemaoval_definitions_5_ios.Acl_stateElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -43891,7 +43893,7 @@ func TestMarshalUnmarshal_Acl_stateElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_asa.Acl_stateElement
+	var elem2 xmlschemaoval_definitions_5_ios.Acl_stateElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -43902,7 +43904,7 @@ func TestMarshalUnmarshal_Acl_stateElement(t *testing.T) {
 
 func TestMarshalUnmarshal_Acl_stateElementType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_ios.Acl_stateElementType
+	var elem xmlschemaoval_definitions_5_asa.Acl_stateElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -43916,7 +43918,7 @@ func TestMarshalUnmarshal_Acl_stateElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_ios.Acl_stateElementType
+	var elem2 xmlschemaoval_definitions_5_asa.Acl_stateElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -43927,7 +43929,7 @@ func TestMarshalUnmarshal_Acl_stateElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_Acl_testElement(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_asa.Acl_testElement
+	var elem xmlschemaoval_definitions_5_ios.Acl_testElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -43941,7 +43943,7 @@ func TestMarshalUnmarshal_Acl_testElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_asa.Acl_testElement
+	var elem2 xmlschemaoval_definitions_5_ios.Acl_testElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -43952,7 +43954,7 @@ func TestMarshalUnmarshal_Acl_testElement(t *testing.T) {
 
 func TestMarshalUnmarshal_Acl_testElementType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_ios.Acl_testElementType
+	var elem xmlschemaoval_definitions_5_asa.Acl_testElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -43966,7 +43968,7 @@ func TestMarshalUnmarshal_Acl_testElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_ios.Acl_testElementType
+	var elem2 xmlschemaoval_definitions_5_asa.Acl_testElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -46177,7 +46179,7 @@ func TestMarshalUnmarshal_Bgpneighbor_objectElement(t *testing.T) {
 
 func TestMarshalUnmarshal_Bgpneighbor_objectElementType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_ios.Bgpneighbor_objectElementType
+	var elem xmlschemaoval_definitions_5_iosxe.Bgpneighbor_objectElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -46191,7 +46193,7 @@ func TestMarshalUnmarshal_Bgpneighbor_objectElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_ios.Bgpneighbor_objectElementType
+	var elem2 xmlschemaoval_definitions_5_iosxe.Bgpneighbor_objectElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -46227,7 +46229,7 @@ func TestMarshalUnmarshal_Bgpneighbor_stateElement(t *testing.T) {
 
 func TestMarshalUnmarshal_Bgpneighbor_stateElementType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_ios.Bgpneighbor_stateElementType
+	var elem xmlschemaoval_definitions_5_iosxe.Bgpneighbor_stateElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -46241,7 +46243,7 @@ func TestMarshalUnmarshal_Bgpneighbor_stateElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_ios.Bgpneighbor_stateElementType
+	var elem2 xmlschemaoval_definitions_5_iosxe.Bgpneighbor_stateElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -46277,7 +46279,7 @@ func TestMarshalUnmarshal_Bgpneighbor_testElement(t *testing.T) {
 
 func TestMarshalUnmarshal_Bgpneighbor_testElementType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_ios.Bgpneighbor_testElementType
+	var elem xmlschemaoval_definitions_5_iosxe.Bgpneighbor_testElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -46291,7 +46293,7 @@ func TestMarshalUnmarshal_Bgpneighbor_testElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_ios.Bgpneighbor_testElementType
+	var elem2 xmlschemaoval_definitions_5_iosxe.Bgpneighbor_testElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -48527,7 +48529,7 @@ func TestMarshalUnmarshal_CreatedElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_CriteriaType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5.CriteriaType
+	var elem xmlschemaoval_results_5.CriteriaType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -48541,7 +48543,7 @@ func TestMarshalUnmarshal_CriteriaType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.CriteriaType
+	var elem2 xmlschemaoval_results_5.CriteriaType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -48552,7 +48554,7 @@ func TestMarshalUnmarshal_CriteriaType(t *testing.T) {
 
 func TestMarshalUnmarshal_CriterionType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5.CriterionType
+	var elem xmlschemaoval_results_5.CriterionType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -48566,7 +48568,7 @@ func TestMarshalUnmarshal_CriterionType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.CriterionType
+	var elem2 xmlschemaoval_results_5.CriterionType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -48902,7 +48904,7 @@ func TestMarshalUnmarshal_DefinitionIDPattern(t *testing.T) {
 
 func TestMarshalUnmarshal_DefinitionType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5.DefinitionType
+	var elem xmlschemaoval_results_5.DefinitionType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -48916,7 +48918,7 @@ func TestMarshalUnmarshal_DefinitionType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.DefinitionType
+	var elem2 xmlschemaoval_results_5.DefinitionType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -48927,7 +48929,7 @@ func TestMarshalUnmarshal_DefinitionType(t *testing.T) {
 
 func TestMarshalUnmarshal_DefinitionsType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5.DefinitionsType
+	var elem xmlschemaoval_results_5.DefinitionsType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -48941,7 +48943,7 @@ func TestMarshalUnmarshal_DefinitionsType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.DefinitionsType
+	var elem2 xmlschemaoval_results_5.DefinitionsType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -50727,7 +50729,7 @@ func TestMarshalUnmarshal_EntityItemVersionType(t *testing.T) {
 
 func TestMarshalUnmarshal_EntityObjectAccessListIPVersionType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_ios.EntityObjectAccessListIPVersionType
+	var elem xmlschemaoval_definitions_5_asa.EntityObjectAccessListIPVersionType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -50741,7 +50743,7 @@ func TestMarshalUnmarshal_EntityObjectAccessListIPVersionType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_ios.EntityObjectAccessListIPVersionType
+	var elem2 xmlschemaoval_definitions_5_asa.EntityObjectAccessListIPVersionType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -51202,7 +51204,7 @@ func TestMarshalUnmarshal_EntityObjectRegistryHiveType(t *testing.T) {
 
 func TestMarshalUnmarshal_EntityObjectRoutingProtocolType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_ios.EntityObjectRoutingProtocolType
+	var elem xmlschemaoval_definitions_5_iosxe.EntityObjectRoutingProtocolType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -51216,7 +51218,7 @@ func TestMarshalUnmarshal_EntityObjectRoutingProtocolType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_ios.EntityObjectRoutingProtocolType
+	var elem2 xmlschemaoval_definitions_5_iosxe.EntityObjectRoutingProtocolType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -51377,7 +51379,7 @@ func TestMarshalUnmarshal_EntityObjectVersionType(t *testing.T) {
 
 func TestMarshalUnmarshal_EntityStateAccessListIPVersionType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_ios.EntityStateAccessListIPVersionType
+	var elem xmlschemaoval_definitions_5_asa.EntityStateAccessListIPVersionType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -51391,7 +51393,7 @@ func TestMarshalUnmarshal_EntityStateAccessListIPVersionType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_ios.EntityStateAccessListIPVersionType
+	var elem2 xmlschemaoval_definitions_5_asa.EntityStateAccessListIPVersionType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -51402,7 +51404,7 @@ func TestMarshalUnmarshal_EntityStateAccessListIPVersionType(t *testing.T) {
 
 func TestMarshalUnmarshal_EntityStateAccessListInterfaceDirectionType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_ios.EntityStateAccessListInterfaceDirectionType
+	var elem xmlschemaoval_definitions_5_asa.EntityStateAccessListInterfaceDirectionType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -51416,7 +51418,7 @@ func TestMarshalUnmarshal_EntityStateAccessListInterfaceDirectionType(t *testing
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_ios.EntityStateAccessListInterfaceDirectionType
+	var elem2 xmlschemaoval_definitions_5_asa.EntityStateAccessListInterfaceDirectionType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -51427,7 +51429,7 @@ func TestMarshalUnmarshal_EntityStateAccessListInterfaceDirectionType(t *testing
 
 func TestMarshalUnmarshal_EntityStateAccessListUseType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_ios.EntityStateAccessListUseType
+	var elem xmlschemaoval_definitions_5_asa.EntityStateAccessListUseType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -51441,7 +51443,7 @@ func TestMarshalUnmarshal_EntityStateAccessListUseType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_ios.EntityStateAccessListUseType
+	var elem2 xmlschemaoval_definitions_5_asa.EntityStateAccessListUseType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -52727,7 +52729,7 @@ func TestMarshalUnmarshal_EntityStatePeTargetMachineType(t *testing.T) {
 
 func TestMarshalUnmarshal_EntityStatePermissionCompareType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_solaris.EntityStatePermissionCompareType
+	var elem xmlschemaoval_definitions_5_macos.EntityStatePermissionCompareType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -52741,7 +52743,7 @@ func TestMarshalUnmarshal_EntityStatePermissionCompareType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_solaris.EntityStatePermissionCompareType
+	var elem2 xmlschemaoval_definitions_5_macos.EntityStatePermissionCompareType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -52952,7 +52954,7 @@ func TestMarshalUnmarshal_EntityStateRegistryTypeType(t *testing.T) {
 
 func TestMarshalUnmarshal_EntityStateRoutingAuthTypeStringType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_ios.EntityStateRoutingAuthTypeStringType
+	var elem xmlschemaoval_definitions_5_iosxe.EntityStateRoutingAuthTypeStringType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -52966,7 +52968,7 @@ func TestMarshalUnmarshal_EntityStateRoutingAuthTypeStringType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_ios.EntityStateRoutingAuthTypeStringType
+	var elem2 xmlschemaoval_definitions_5_iosxe.EntityStateRoutingAuthTypeStringType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -52977,7 +52979,7 @@ func TestMarshalUnmarshal_EntityStateRoutingAuthTypeStringType(t *testing.T) {
 
 func TestMarshalUnmarshal_EntityStateRoutingProtocolType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_ios.EntityStateRoutingProtocolType
+	var elem xmlschemaoval_definitions_5_iosxe.EntityStateRoutingProtocolType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -52991,7 +52993,7 @@ func TestMarshalUnmarshal_EntityStateRoutingProtocolType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_ios.EntityStateRoutingProtocolType
+	var elem2 xmlschemaoval_definitions_5_iosxe.EntityStateRoutingProtocolType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -53052,7 +53054,7 @@ func TestMarshalUnmarshal_EntityStateRpmVerifyResultType(t *testing.T) {
 
 func TestMarshalUnmarshal_EntityStateSNMPAuthStringType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_ios.EntityStateSNMPAuthStringType
+	var elem xmlschemaoval_definitions_5_asa.EntityStateSNMPAuthStringType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -53066,7 +53068,7 @@ func TestMarshalUnmarshal_EntityStateSNMPAuthStringType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_ios.EntityStateSNMPAuthStringType
+	var elem2 xmlschemaoval_definitions_5_asa.EntityStateSNMPAuthStringType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -53077,7 +53079,7 @@ func TestMarshalUnmarshal_EntityStateSNMPAuthStringType(t *testing.T) {
 
 func TestMarshalUnmarshal_EntityStateSNMPModeStringType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_ios.EntityStateSNMPModeStringType
+	var elem xmlschemaoval_definitions_5_iosxe.EntityStateSNMPModeStringType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -53091,7 +53093,7 @@ func TestMarshalUnmarshal_EntityStateSNMPModeStringType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_ios.EntityStateSNMPModeStringType
+	var elem2 xmlschemaoval_definitions_5_iosxe.EntityStateSNMPModeStringType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -53102,7 +53104,7 @@ func TestMarshalUnmarshal_EntityStateSNMPModeStringType(t *testing.T) {
 
 func TestMarshalUnmarshal_EntityStateSNMPPrivStringType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_ios.EntityStateSNMPPrivStringType
+	var elem xmlschemaoval_definitions_5_asa.EntityStateSNMPPrivStringType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -53116,7 +53118,7 @@ func TestMarshalUnmarshal_EntityStateSNMPPrivStringType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_ios.EntityStateSNMPPrivStringType
+	var elem2 xmlschemaoval_definitions_5_asa.EntityStateSNMPPrivStringType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -53127,7 +53129,7 @@ func TestMarshalUnmarshal_EntityStateSNMPPrivStringType(t *testing.T) {
 
 func TestMarshalUnmarshal_EntityStateSNMPSecLevelStringType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_ios.EntityStateSNMPSecLevelStringType
+	var elem xmlschemaoval_definitions_5_asa.EntityStateSNMPSecLevelStringType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -53141,7 +53143,7 @@ func TestMarshalUnmarshal_EntityStateSNMPSecLevelStringType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_ios.EntityStateSNMPSecLevelStringType
+	var elem2 xmlschemaoval_definitions_5_asa.EntityStateSNMPSecLevelStringType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -53152,7 +53154,7 @@ func TestMarshalUnmarshal_EntityStateSNMPSecLevelStringType(t *testing.T) {
 
 func TestMarshalUnmarshal_EntityStateSNMPVersionStringType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_ios.EntityStateSNMPVersionStringType
+	var elem xmlschemaoval_definitions_5_asa.EntityStateSNMPVersionStringType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -53166,7 +53168,7 @@ func TestMarshalUnmarshal_EntityStateSNMPVersionStringType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_ios.EntityStateSNMPVersionStringType
+	var elem2 xmlschemaoval_definitions_5_asa.EntityStateSNMPVersionStringType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -53377,7 +53379,7 @@ func TestMarshalUnmarshal_EntityStateSupportLevelType(t *testing.T) {
 
 func TestMarshalUnmarshal_EntityStateSwitchportModeType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_ios.EntityStateSwitchportModeType
+	var elem xmlschemaoval_definitions_5_iosxe.EntityStateSwitchportModeType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -53391,7 +53393,7 @@ func TestMarshalUnmarshal_EntityStateSwitchportModeType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_ios.EntityStateSwitchportModeType
+	var elem2 xmlschemaoval_definitions_5_iosxe.EntityStateSwitchportModeType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -53477,7 +53479,7 @@ func TestMarshalUnmarshal_EntityStateTrainIdentifierType(t *testing.T) {
 
 func TestMarshalUnmarshal_EntityStateTrunkEncapType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_ios.EntityStateTrunkEncapType
+	var elem xmlschemaoval_definitions_5_iosxe.EntityStateTrunkEncapType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -53491,7 +53493,7 @@ func TestMarshalUnmarshal_EntityStateTrunkEncapType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_ios.EntityStateTrunkEncapType
+	var elem2 xmlschemaoval_definitions_5_iosxe.EntityStateTrunkEncapType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -54502,7 +54504,7 @@ func TestMarshalUnmarshal_Exp_warnElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_ExtendDefinitionType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5.ExtendDefinitionType
+	var elem xmlschemaoval_results_5.ExtendDefinitionType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -54516,7 +54518,7 @@ func TestMarshalUnmarshal_ExtendDefinitionType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.ExtendDefinitionType
+	var elem2 xmlschemaoval_results_5.ExtendDefinitionType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -55102,7 +55104,7 @@ func TestMarshalUnmarshal_FileAuditPermissionsBehaviors(t *testing.T) {
 
 func TestMarshalUnmarshal_FileBehaviors(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_unix.FileBehaviors
+	var elem xmlschemaoval_definitions_5_linux.FileBehaviors
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -55116,7 +55118,7 @@ func TestMarshalUnmarshal_FileBehaviors(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_unix.FileBehaviors
+	var elem2 xmlschemaoval_definitions_5_linux.FileBehaviors
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -57677,7 +57679,7 @@ func TestMarshalUnmarshal_Global_objectElement(t *testing.T) {
 
 func TestMarshalUnmarshal_Global_objectElementType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_ios.Global_objectElementType
+	var elem xmlschemaoval_definitions_5_iosxe.Global_objectElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -57691,7 +57693,7 @@ func TestMarshalUnmarshal_Global_objectElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_ios.Global_objectElementType
+	var elem2 xmlschemaoval_definitions_5_iosxe.Global_objectElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -57727,7 +57729,7 @@ func TestMarshalUnmarshal_Global_stateElement(t *testing.T) {
 
 func TestMarshalUnmarshal_Global_stateElementType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_ios.Global_stateElementType
+	var elem xmlschemaoval_definitions_5_iosxe.Global_stateElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -57741,7 +57743,7 @@ func TestMarshalUnmarshal_Global_stateElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_ios.Global_stateElementType
+	var elem2 xmlschemaoval_definitions_5_iosxe.Global_stateElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -57777,7 +57779,7 @@ func TestMarshalUnmarshal_Global_testElement(t *testing.T) {
 
 func TestMarshalUnmarshal_Global_testElementType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_ios.Global_testElementType
+	var elem xmlschemaoval_definitions_5_iosxe.Global_testElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -57791,7 +57793,7 @@ func TestMarshalUnmarshal_Global_testElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_ios.Global_testElementType
+	var elem2 xmlschemaoval_definitions_5_iosxe.Global_testElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -59402,7 +59404,7 @@ func TestMarshalUnmarshal_Inetlisteningserver510_testElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_Inetlisteningservers_objectElement(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_linux.Inetlisteningservers_objectElement
+	var elem xmlschemaoval_definitions_5_macos.Inetlisteningservers_objectElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -59416,7 +59418,7 @@ func TestMarshalUnmarshal_Inetlisteningservers_objectElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_linux.Inetlisteningservers_objectElement
+	var elem2 xmlschemaoval_definitions_5_macos.Inetlisteningservers_objectElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -59452,7 +59454,7 @@ func TestMarshalUnmarshal_Inetlisteningservers_objectElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_Inetlisteningservers_stateElement(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_linux.Inetlisteningservers_stateElement
+	var elem xmlschemaoval_definitions_5_macos.Inetlisteningservers_stateElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -59466,7 +59468,7 @@ func TestMarshalUnmarshal_Inetlisteningservers_stateElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_linux.Inetlisteningservers_stateElement
+	var elem2 xmlschemaoval_definitions_5_macos.Inetlisteningservers_stateElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -59502,7 +59504,7 @@ func TestMarshalUnmarshal_Inetlisteningservers_stateElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_Inetlisteningservers_testElement(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_linux.Inetlisteningservers_testElement
+	var elem xmlschemaoval_definitions_5_macos.Inetlisteningservers_testElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -59516,7 +59518,7 @@ func TestMarshalUnmarshal_Inetlisteningservers_testElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_linux.Inetlisteningservers_testElement
+	var elem2 xmlschemaoval_definitions_5_macos.Inetlisteningservers_testElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -59852,7 +59854,7 @@ func TestMarshalUnmarshal_InterfaceType(t *testing.T) {
 
 func TestMarshalUnmarshal_Interface_objectElement(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_asa.Interface_objectElement
+	var elem xmlschemaoval_definitions_5_windows.Interface_objectElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -59866,7 +59868,7 @@ func TestMarshalUnmarshal_Interface_objectElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_asa.Interface_objectElement
+	var elem2 xmlschemaoval_definitions_5_windows.Interface_objectElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -59877,7 +59879,7 @@ func TestMarshalUnmarshal_Interface_objectElement(t *testing.T) {
 
 func TestMarshalUnmarshal_Interface_objectElementType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_unix.Interface_objectElementType
+	var elem xmlschemaoval_definitions_5_asa.Interface_objectElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -59891,7 +59893,7 @@ func TestMarshalUnmarshal_Interface_objectElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_unix.Interface_objectElementType
+	var elem2 xmlschemaoval_definitions_5_asa.Interface_objectElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -59902,7 +59904,7 @@ func TestMarshalUnmarshal_Interface_objectElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_Interface_stateElement(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_asa.Interface_stateElement
+	var elem xmlschemaoval_definitions_5_windows.Interface_stateElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -59916,7 +59918,7 @@ func TestMarshalUnmarshal_Interface_stateElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_asa.Interface_stateElement
+	var elem2 xmlschemaoval_definitions_5_windows.Interface_stateElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -59927,7 +59929,7 @@ func TestMarshalUnmarshal_Interface_stateElement(t *testing.T) {
 
 func TestMarshalUnmarshal_Interface_stateElementType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_unix.Interface_stateElementType
+	var elem xmlschemaoval_definitions_5_asa.Interface_stateElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -59941,7 +59943,7 @@ func TestMarshalUnmarshal_Interface_stateElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_unix.Interface_stateElementType
+	var elem2 xmlschemaoval_definitions_5_asa.Interface_stateElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -59952,7 +59954,7 @@ func TestMarshalUnmarshal_Interface_stateElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_Interface_testElement(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_asa.Interface_testElement
+	var elem xmlschemaoval_definitions_5_windows.Interface_testElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -59966,7 +59968,7 @@ func TestMarshalUnmarshal_Interface_testElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_asa.Interface_testElement
+	var elem2 xmlschemaoval_definitions_5_windows.Interface_testElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -59977,7 +59979,7 @@ func TestMarshalUnmarshal_Interface_testElement(t *testing.T) {
 
 func TestMarshalUnmarshal_Interface_testElementType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_unix.Interface_testElementType
+	var elem xmlschemaoval_definitions_5_asa.Interface_testElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -59991,7 +59993,7 @@ func TestMarshalUnmarshal_Interface_testElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_unix.Interface_testElementType
+	var elem2 xmlschemaoval_definitions_5_asa.Interface_testElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -60552,7 +60554,7 @@ func TestMarshalUnmarshal_ItAssetElement(t *testing.T) {
 
 func TestMarshalUnmarshal_ItemElement(t *testing.T) {
 	// Create a default instance
-	var elem xccdf1_2.ItemElement
+	var elem xmlschemaoval_system_characteristics_5.ItemElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -60566,7 +60568,7 @@ func TestMarshalUnmarshal_ItemElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xccdf1_2.ItemElement
+	var elem2 xmlschemaoval_system_characteristics_5.ItemElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -61902,7 +61904,7 @@ func TestMarshalUnmarshal_License_testElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_Line_objectElement(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_asa.Line_objectElement
+	var elem xmlschemaoval_definitions_5_pixos.Line_objectElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -61916,7 +61918,7 @@ func TestMarshalUnmarshal_Line_objectElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_asa.Line_objectElement
+	var elem2 xmlschemaoval_definitions_5_pixos.Line_objectElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -61927,7 +61929,7 @@ func TestMarshalUnmarshal_Line_objectElement(t *testing.T) {
 
 func TestMarshalUnmarshal_Line_objectElementType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_catos.Line_objectElementType
+	var elem xmlschemaoval_definitions_5_asa.Line_objectElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -61941,7 +61943,7 @@ func TestMarshalUnmarshal_Line_objectElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_catos.Line_objectElementType
+	var elem2 xmlschemaoval_definitions_5_asa.Line_objectElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -61952,7 +61954,7 @@ func TestMarshalUnmarshal_Line_objectElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_Line_stateElement(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_asa.Line_stateElement
+	var elem xmlschemaoval_definitions_5_pixos.Line_stateElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -61966,7 +61968,7 @@ func TestMarshalUnmarshal_Line_stateElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_asa.Line_stateElement
+	var elem2 xmlschemaoval_definitions_5_pixos.Line_stateElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -61977,7 +61979,7 @@ func TestMarshalUnmarshal_Line_stateElement(t *testing.T) {
 
 func TestMarshalUnmarshal_Line_stateElementType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_catos.Line_stateElementType
+	var elem xmlschemaoval_definitions_5_asa.Line_stateElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -61991,7 +61993,7 @@ func TestMarshalUnmarshal_Line_stateElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_catos.Line_stateElementType
+	var elem2 xmlschemaoval_definitions_5_asa.Line_stateElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -62002,7 +62004,7 @@ func TestMarshalUnmarshal_Line_stateElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_Line_testElement(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_asa.Line_testElement
+	var elem xmlschemaoval_definitions_5_pixos.Line_testElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -62016,7 +62018,7 @@ func TestMarshalUnmarshal_Line_testElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_asa.Line_testElement
+	var elem2 xmlschemaoval_definitions_5_pixos.Line_testElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -62027,7 +62029,7 @@ func TestMarshalUnmarshal_Line_testElement(t *testing.T) {
 
 func TestMarshalUnmarshal_Line_testElementType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_catos.Line_testElementType
+	var elem xmlschemaoval_definitions_5_asa.Line_testElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -62041,7 +62043,7 @@ func TestMarshalUnmarshal_Line_testElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_catos.Line_testElementType
+	var elem2 xmlschemaoval_definitions_5_asa.Line_testElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -63077,7 +63079,7 @@ func TestMarshalUnmarshal_MessageLevelEnumeration(t *testing.T) {
 
 func TestMarshalUnmarshal_MessageType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_common_5.MessageType
+	var elem xccdf1_2.MessageType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -63091,7 +63093,7 @@ func TestMarshalUnmarshal_MessageType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_common_5.MessageType
+	var elem2 xccdf1_2.MessageType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -63827,7 +63829,7 @@ func TestMarshalUnmarshal_NameLineType(t *testing.T) {
 
 func TestMarshalUnmarshal_NamePattern(t *testing.T) {
 	// Create a default instance
-	var elem language2_0.NamePattern
+	var elem dictionary2_0.NamePattern
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -63841,7 +63843,7 @@ func TestMarshalUnmarshal_NamePattern(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 language2_0.NamePattern
+	var elem2 dictionary2_0.NamePattern
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -64452,7 +64454,7 @@ func TestMarshalUnmarshal_NonEmptyStringType(t *testing.T) {
 
 func TestMarshalUnmarshal_NotesElement(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5.NotesElement
+	var elem xmlschemaoval_common_5.NotesElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -64466,7 +64468,7 @@ func TestMarshalUnmarshal_NotesElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.NotesElement
+	var elem2 xmlschemaoval_common_5.NotesElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -64877,7 +64879,7 @@ func TestMarshalUnmarshal_ObjectComponentType(t *testing.T) {
 
 func TestMarshalUnmarshal_ObjectElement(t *testing.T) {
 	// Create a default instance
-	var elem pkg_200009xmldsig.ObjectElement
+	var elem xmlschemaoval_definitions_5.ObjectElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -64891,7 +64893,7 @@ func TestMarshalUnmarshal_ObjectElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 pkg_200009xmldsig.ObjectElement
+	var elem2 xmlschemaoval_definitions_5.ObjectElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -65002,7 +65004,7 @@ func TestMarshalUnmarshal_ObjectRefType(t *testing.T) {
 
 func TestMarshalUnmarshal_ObjectType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5.ObjectType
+	var elem pkg_200009xmldsig.ObjectType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -65016,7 +65018,7 @@ func TestMarshalUnmarshal_ObjectType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.ObjectType
+	var elem2 pkg_200009xmldsig.ObjectType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -65077,7 +65079,7 @@ func TestMarshalUnmarshal_OperationEnumeration(t *testing.T) {
 
 func TestMarshalUnmarshal_OperatorEnumeration(t *testing.T) {
 	// Create a default instance
-	var elem language2_0.OperatorEnumeration
+	var elem xmlschemaoval_common_5.OperatorEnumeration
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -65091,7 +65093,7 @@ func TestMarshalUnmarshal_OperatorEnumeration(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 language2_0.OperatorEnumeration
+	var elem2 xmlschemaoval_common_5.OperatorEnumeration
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -65477,7 +65479,7 @@ func TestMarshalUnmarshal_Oslevel_testElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_Ospf_areaElementType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_ios.Ospf_areaElementType
+	var elem xmlschemaoval_definitions_5_iosxe.Ospf_areaElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -65491,7 +65493,7 @@ func TestMarshalUnmarshal_Ospf_areaElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_ios.Ospf_areaElementType
+	var elem2 xmlschemaoval_definitions_5_iosxe.Ospf_areaElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -65502,7 +65504,7 @@ func TestMarshalUnmarshal_Ospf_areaElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_Ospf_authentication_areaElementType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_ios.Ospf_authentication_areaElementType
+	var elem xmlschemaoval_definitions_5_iosxe.Ospf_authentication_areaElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -65516,7 +65518,7 @@ func TestMarshalUnmarshal_Ospf_authentication_areaElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_ios.Ospf_authentication_areaElementType
+	var elem2 xmlschemaoval_definitions_5_iosxe.Ospf_authentication_areaElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -67902,7 +67904,7 @@ func TestMarshalUnmarshal_Patch56_testElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_PatchBehaviors(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_solaris.PatchBehaviors
+	var elem xmlschemaoval_definitions_5_esx.PatchBehaviors
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -67916,7 +67918,7 @@ func TestMarshalUnmarshal_PatchBehaviors(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_solaris.PatchBehaviors
+	var elem2 xmlschemaoval_definitions_5_esx.PatchBehaviors
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -67927,7 +67929,7 @@ func TestMarshalUnmarshal_PatchBehaviors(t *testing.T) {
 
 func TestMarshalUnmarshal_Patch_objectElement(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_esx.Patch_objectElement
+	var elem xmlschemaoval_definitions_5_hpux.Patch_objectElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -67941,7 +67943,7 @@ func TestMarshalUnmarshal_Patch_objectElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_esx.Patch_objectElement
+	var elem2 xmlschemaoval_definitions_5_hpux.Patch_objectElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -67952,7 +67954,7 @@ func TestMarshalUnmarshal_Patch_objectElement(t *testing.T) {
 
 func TestMarshalUnmarshal_Patch_objectElementType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_solaris.Patch_objectElementType
+	var elem xmlschemaoval_definitions_5_esx.Patch_objectElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -67966,7 +67968,7 @@ func TestMarshalUnmarshal_Patch_objectElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_solaris.Patch_objectElementType
+	var elem2 xmlschemaoval_definitions_5_esx.Patch_objectElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -67977,7 +67979,7 @@ func TestMarshalUnmarshal_Patch_objectElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_Patch_stateElement(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_esx.Patch_stateElement
+	var elem xmlschemaoval_definitions_5_hpux.Patch_stateElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -67991,7 +67993,7 @@ func TestMarshalUnmarshal_Patch_stateElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_esx.Patch_stateElement
+	var elem2 xmlschemaoval_definitions_5_hpux.Patch_stateElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -68002,7 +68004,7 @@ func TestMarshalUnmarshal_Patch_stateElement(t *testing.T) {
 
 func TestMarshalUnmarshal_Patch_stateElementType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_solaris.Patch_stateElementType
+	var elem xmlschemaoval_definitions_5_esx.Patch_stateElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -68016,7 +68018,7 @@ func TestMarshalUnmarshal_Patch_stateElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_solaris.Patch_stateElementType
+	var elem2 xmlschemaoval_definitions_5_esx.Patch_stateElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -68027,7 +68029,7 @@ func TestMarshalUnmarshal_Patch_stateElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_Patch_testElement(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_esx.Patch_testElement
+	var elem xmlschemaoval_definitions_5_hpux.Patch_testElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -68041,7 +68043,7 @@ func TestMarshalUnmarshal_Patch_testElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_esx.Patch_testElement
+	var elem2 xmlschemaoval_definitions_5_hpux.Patch_testElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -68052,7 +68054,7 @@ func TestMarshalUnmarshal_Patch_testElement(t *testing.T) {
 
 func TestMarshalUnmarshal_Patch_testElementType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_solaris.Patch_testElementType
+	var elem xmlschemaoval_definitions_5_esx.Patch_testElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -68066,7 +68068,7 @@ func TestMarshalUnmarshal_Patch_testElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_solaris.Patch_testElementType
+	var elem2 xmlschemaoval_definitions_5_esx.Patch_testElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -71752,7 +71754,7 @@ func TestMarshalUnmarshal_ReferenceElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_ReferenceType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5.ReferenceType
+	var elem pkg_200009xmldsig.ReferenceType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -71766,7 +71768,7 @@ func TestMarshalUnmarshal_ReferenceType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.ReferenceType
+	var elem2 pkg_200009xmldsig.ReferenceType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -73502,7 +73504,7 @@ func TestMarshalUnmarshal_Router_objectElement(t *testing.T) {
 
 func TestMarshalUnmarshal_Router_objectElementType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_ios.Router_objectElementType
+	var elem xmlschemaoval_definitions_5_iosxe.Router_objectElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -73516,7 +73518,7 @@ func TestMarshalUnmarshal_Router_objectElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_ios.Router_objectElementType
+	var elem2 xmlschemaoval_definitions_5_iosxe.Router_objectElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -73552,7 +73554,7 @@ func TestMarshalUnmarshal_Router_stateElement(t *testing.T) {
 
 func TestMarshalUnmarshal_Router_stateElementType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_ios.Router_stateElementType
+	var elem xmlschemaoval_definitions_5_iosxe.Router_stateElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -73566,7 +73568,7 @@ func TestMarshalUnmarshal_Router_stateElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_ios.Router_stateElementType
+	var elem2 xmlschemaoval_definitions_5_iosxe.Router_stateElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -73602,7 +73604,7 @@ func TestMarshalUnmarshal_Router_testElement(t *testing.T) {
 
 func TestMarshalUnmarshal_Router_testElementType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_ios.Router_testElementType
+	var elem xmlschemaoval_definitions_5_iosxe.Router_testElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -73616,7 +73618,7 @@ func TestMarshalUnmarshal_Router_testElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_ios.Router_testElementType
+	var elem2 xmlschemaoval_definitions_5_iosxe.Router_testElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -73652,7 +73654,7 @@ func TestMarshalUnmarshal_Routingprotocolauthintf_objectElement(t *testing.T) {
 
 func TestMarshalUnmarshal_Routingprotocolauthintf_objectElementType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_ios.Routingprotocolauthintf_objectElementType
+	var elem xmlschemaoval_definitions_5_iosxe.Routingprotocolauthintf_objectElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -73666,7 +73668,7 @@ func TestMarshalUnmarshal_Routingprotocolauthintf_objectElementType(t *testing.T
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_ios.Routingprotocolauthintf_objectElementType
+	var elem2 xmlschemaoval_definitions_5_iosxe.Routingprotocolauthintf_objectElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -73702,7 +73704,7 @@ func TestMarshalUnmarshal_Routingprotocolauthintf_stateElement(t *testing.T) {
 
 func TestMarshalUnmarshal_Routingprotocolauthintf_stateElementType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_ios.Routingprotocolauthintf_stateElementType
+	var elem xmlschemaoval_definitions_5_iosxe.Routingprotocolauthintf_stateElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -73716,7 +73718,7 @@ func TestMarshalUnmarshal_Routingprotocolauthintf_stateElementType(t *testing.T)
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_ios.Routingprotocolauthintf_stateElementType
+	var elem2 xmlschemaoval_definitions_5_iosxe.Routingprotocolauthintf_stateElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -73752,7 +73754,7 @@ func TestMarshalUnmarshal_Routingprotocolauthintf_testElement(t *testing.T) {
 
 func TestMarshalUnmarshal_Routingprotocolauthintf_testElementType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_ios.Routingprotocolauthintf_testElementType
+	var elem xmlschemaoval_definitions_5_iosxe.Routingprotocolauthintf_testElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -73766,7 +73768,7 @@ func TestMarshalUnmarshal_Routingprotocolauthintf_testElementType(t *testing.T) 
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_ios.Routingprotocolauthintf_testElementType
+	var elem2 xmlschemaoval_definitions_5_iosxe.Routingprotocolauthintf_testElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -75177,7 +75179,7 @@ func TestMarshalUnmarshal_Section_objectElement(t *testing.T) {
 
 func TestMarshalUnmarshal_Section_objectElementType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_ios.Section_objectElementType
+	var elem xmlschemaoval_definitions_5_iosxe.Section_objectElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -75191,7 +75193,7 @@ func TestMarshalUnmarshal_Section_objectElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_ios.Section_objectElementType
+	var elem2 xmlschemaoval_definitions_5_iosxe.Section_objectElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -75227,7 +75229,7 @@ func TestMarshalUnmarshal_Section_stateElement(t *testing.T) {
 
 func TestMarshalUnmarshal_Section_stateElementType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_ios.Section_stateElementType
+	var elem xmlschemaoval_definitions_5_iosxe.Section_stateElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -75241,7 +75243,7 @@ func TestMarshalUnmarshal_Section_stateElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_ios.Section_stateElementType
+	var elem2 xmlschemaoval_definitions_5_iosxe.Section_stateElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -75277,7 +75279,7 @@ func TestMarshalUnmarshal_Section_testElement(t *testing.T) {
 
 func TestMarshalUnmarshal_Section_testElementType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_ios.Section_testElementType
+	var elem xmlschemaoval_definitions_5_iosxe.Section_testElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -75291,7 +75293,7 @@ func TestMarshalUnmarshal_Section_testElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_ios.Section_testElementType
+	var elem2 xmlschemaoval_definitions_5_iosxe.Section_testElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -77727,7 +77729,7 @@ func TestMarshalUnmarshal_SignaturePropertyType(t *testing.T) {
 
 func TestMarshalUnmarshal_SignatureType(t *testing.T) {
 	// Create a default instance
-	var elem xccdf1_2.SignatureType
+	var elem pkg_200009xmldsig.SignatureType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -77741,7 +77743,7 @@ func TestMarshalUnmarshal_SignatureType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xccdf1_2.SignatureType
+	var elem2 pkg_200009xmldsig.SignatureType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -78977,7 +78979,7 @@ func TestMarshalUnmarshal_Snmpcommunity_objectElement(t *testing.T) {
 
 func TestMarshalUnmarshal_Snmpcommunity_objectElementType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_ios.Snmpcommunity_objectElementType
+	var elem xmlschemaoval_definitions_5_iosxe.Snmpcommunity_objectElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -78991,7 +78993,7 @@ func TestMarshalUnmarshal_Snmpcommunity_objectElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_ios.Snmpcommunity_objectElementType
+	var elem2 xmlschemaoval_definitions_5_iosxe.Snmpcommunity_objectElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -79027,7 +79029,7 @@ func TestMarshalUnmarshal_Snmpcommunity_stateElement(t *testing.T) {
 
 func TestMarshalUnmarshal_Snmpcommunity_stateElementType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_ios.Snmpcommunity_stateElementType
+	var elem xmlschemaoval_definitions_5_iosxe.Snmpcommunity_stateElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -79041,7 +79043,7 @@ func TestMarshalUnmarshal_Snmpcommunity_stateElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_ios.Snmpcommunity_stateElementType
+	var elem2 xmlschemaoval_definitions_5_iosxe.Snmpcommunity_stateElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -79077,7 +79079,7 @@ func TestMarshalUnmarshal_Snmpcommunity_testElement(t *testing.T) {
 
 func TestMarshalUnmarshal_Snmpcommunity_testElementType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_ios.Snmpcommunity_testElementType
+	var elem xmlschemaoval_definitions_5_iosxe.Snmpcommunity_testElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -79091,7 +79093,7 @@ func TestMarshalUnmarshal_Snmpcommunity_testElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_ios.Snmpcommunity_testElementType
+	var elem2 xmlschemaoval_definitions_5_iosxe.Snmpcommunity_testElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -79127,7 +79129,7 @@ func TestMarshalUnmarshal_Snmpgroup_objectElement(t *testing.T) {
 
 func TestMarshalUnmarshal_Snmpgroup_objectElementType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_ios.Snmpgroup_objectElementType
+	var elem xmlschemaoval_definitions_5_iosxe.Snmpgroup_objectElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -79141,7 +79143,7 @@ func TestMarshalUnmarshal_Snmpgroup_objectElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_ios.Snmpgroup_objectElementType
+	var elem2 xmlschemaoval_definitions_5_iosxe.Snmpgroup_objectElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -79177,7 +79179,7 @@ func TestMarshalUnmarshal_Snmpgroup_stateElement(t *testing.T) {
 
 func TestMarshalUnmarshal_Snmpgroup_stateElementType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_ios.Snmpgroup_stateElementType
+	var elem xmlschemaoval_definitions_5_iosxe.Snmpgroup_stateElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -79191,7 +79193,7 @@ func TestMarshalUnmarshal_Snmpgroup_stateElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_ios.Snmpgroup_stateElementType
+	var elem2 xmlschemaoval_definitions_5_iosxe.Snmpgroup_stateElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -79227,7 +79229,7 @@ func TestMarshalUnmarshal_Snmpgroup_testElement(t *testing.T) {
 
 func TestMarshalUnmarshal_Snmpgroup_testElementType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_ios.Snmpgroup_testElementType
+	var elem xmlschemaoval_definitions_5_iosxe.Snmpgroup_testElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -79241,7 +79243,7 @@ func TestMarshalUnmarshal_Snmpgroup_testElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_ios.Snmpgroup_testElementType
+	var elem2 xmlschemaoval_definitions_5_iosxe.Snmpgroup_testElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -79277,7 +79279,7 @@ func TestMarshalUnmarshal_Snmphost_objectElement(t *testing.T) {
 
 func TestMarshalUnmarshal_Snmphost_objectElementType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_ios.Snmphost_objectElementType
+	var elem xmlschemaoval_definitions_5_iosxe.Snmphost_objectElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -79291,7 +79293,7 @@ func TestMarshalUnmarshal_Snmphost_objectElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_ios.Snmphost_objectElementType
+	var elem2 xmlschemaoval_definitions_5_iosxe.Snmphost_objectElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -79327,7 +79329,7 @@ func TestMarshalUnmarshal_Snmphost_stateElement(t *testing.T) {
 
 func TestMarshalUnmarshal_Snmphost_stateElementType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_ios.Snmphost_stateElementType
+	var elem xmlschemaoval_definitions_5_iosxe.Snmphost_stateElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -79341,7 +79343,7 @@ func TestMarshalUnmarshal_Snmphost_stateElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_ios.Snmphost_stateElementType
+	var elem2 xmlschemaoval_definitions_5_iosxe.Snmphost_stateElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -79377,7 +79379,7 @@ func TestMarshalUnmarshal_Snmphost_testElement(t *testing.T) {
 
 func TestMarshalUnmarshal_Snmphost_testElementType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_ios.Snmphost_testElementType
+	var elem xmlschemaoval_definitions_5_iosxe.Snmphost_testElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -79391,7 +79393,7 @@ func TestMarshalUnmarshal_Snmphost_testElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_ios.Snmphost_testElementType
+	var elem2 xmlschemaoval_definitions_5_iosxe.Snmphost_testElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -79427,7 +79429,7 @@ func TestMarshalUnmarshal_Snmpuser_objectElement(t *testing.T) {
 
 func TestMarshalUnmarshal_Snmpuser_objectElementType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_ios.Snmpuser_objectElementType
+	var elem xmlschemaoval_definitions_5_iosxe.Snmpuser_objectElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -79441,7 +79443,7 @@ func TestMarshalUnmarshal_Snmpuser_objectElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_ios.Snmpuser_objectElementType
+	var elem2 xmlschemaoval_definitions_5_iosxe.Snmpuser_objectElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -79477,7 +79479,7 @@ func TestMarshalUnmarshal_Snmpuser_stateElement(t *testing.T) {
 
 func TestMarshalUnmarshal_Snmpuser_stateElementType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_ios.Snmpuser_stateElementType
+	var elem xmlschemaoval_definitions_5_iosxe.Snmpuser_stateElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -79491,7 +79493,7 @@ func TestMarshalUnmarshal_Snmpuser_stateElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_ios.Snmpuser_stateElementType
+	var elem2 xmlschemaoval_definitions_5_iosxe.Snmpuser_stateElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -79527,7 +79529,7 @@ func TestMarshalUnmarshal_Snmpuser_testElement(t *testing.T) {
 
 func TestMarshalUnmarshal_Snmpuser_testElementType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_ios.Snmpuser_testElementType
+	var elem xmlschemaoval_definitions_5_iosxe.Snmpuser_testElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -79541,7 +79543,7 @@ func TestMarshalUnmarshal_Snmpuser_testElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_ios.Snmpuser_testElementType
+	var elem2 xmlschemaoval_definitions_5_iosxe.Snmpuser_testElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -79577,7 +79579,7 @@ func TestMarshalUnmarshal_Snmpview_objectElement(t *testing.T) {
 
 func TestMarshalUnmarshal_Snmpview_objectElementType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_ios.Snmpview_objectElementType
+	var elem xmlschemaoval_definitions_5_iosxe.Snmpview_objectElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -79591,7 +79593,7 @@ func TestMarshalUnmarshal_Snmpview_objectElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_ios.Snmpview_objectElementType
+	var elem2 xmlschemaoval_definitions_5_iosxe.Snmpview_objectElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -79627,7 +79629,7 @@ func TestMarshalUnmarshal_Snmpview_stateElement(t *testing.T) {
 
 func TestMarshalUnmarshal_Snmpview_stateElementType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_ios.Snmpview_stateElementType
+	var elem xmlschemaoval_definitions_5_iosxe.Snmpview_stateElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -79641,7 +79643,7 @@ func TestMarshalUnmarshal_Snmpview_stateElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_ios.Snmpview_stateElementType
+	var elem2 xmlschemaoval_definitions_5_iosxe.Snmpview_stateElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -79677,7 +79679,7 @@ func TestMarshalUnmarshal_Snmpview_testElement(t *testing.T) {
 
 func TestMarshalUnmarshal_Snmpview_testElementType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_ios.Snmpview_testElementType
+	var elem xmlschemaoval_definitions_5_iosxe.Snmpview_testElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -79691,7 +79693,7 @@ func TestMarshalUnmarshal_Snmpview_testElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_ios.Snmpview_testElementType
+	var elem2 xmlschemaoval_definitions_5_iosxe.Snmpview_testElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -82952,7 +82954,7 @@ func TestMarshalUnmarshal_SupplementaryPostalServiceDataElementType(t *testing.T
 
 func TestMarshalUnmarshal_Switchport_access_vlanElementType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_ios.Switchport_access_vlanElementType
+	var elem xmlschemaoval_definitions_5_iosxe.Switchport_access_vlanElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -82966,7 +82968,7 @@ func TestMarshalUnmarshal_Switchport_access_vlanElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_ios.Switchport_access_vlanElementType
+	var elem2 xmlschemaoval_definitions_5_iosxe.Switchport_access_vlanElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -82977,7 +82979,7 @@ func TestMarshalUnmarshal_Switchport_access_vlanElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_Switchport_native_vlanElementType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_ios.Switchport_native_vlanElementType
+	var elem xmlschemaoval_definitions_5_iosxe.Switchport_native_vlanElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -82991,7 +82993,7 @@ func TestMarshalUnmarshal_Switchport_native_vlanElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_ios.Switchport_native_vlanElementType
+	var elem2 xmlschemaoval_definitions_5_iosxe.Switchport_native_vlanElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -83602,7 +83604,7 @@ func TestMarshalUnmarshal_SystemNameElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_SystemType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_results_5.SystemType
+	var elem asset_identification1_1.SystemType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -83616,7 +83618,7 @@ func TestMarshalUnmarshal_SystemType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_results_5.SystemType
+	var elem2 asset_identification1_1.SystemType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -85352,7 +85354,7 @@ func TestMarshalUnmarshal_TestResultType(t *testing.T) {
 
 func TestMarshalUnmarshal_TestType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5.TestType
+	var elem xmlschemaoval_results_5.TestType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -85366,7 +85368,7 @@ func TestMarshalUnmarshal_TestType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.TestType
+	var elem2 xmlschemaoval_results_5.TestType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -85452,7 +85454,7 @@ func TestMarshalUnmarshal_TestresultIdType(t *testing.T) {
 
 func TestMarshalUnmarshal_TestsType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5.TestsType
+	var elem xmlschemaoval_results_5.TestsType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -85466,7 +85468,7 @@ func TestMarshalUnmarshal_TestsType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5.TestsType
+	var elem2 xmlschemaoval_results_5.TestsType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -85477,7 +85479,7 @@ func TestMarshalUnmarshal_TestsType(t *testing.T) {
 
 func TestMarshalUnmarshal_TextType(t *testing.T) {
 	// Create a default instance
-	var elem language2_0.TextType
+	var elem xccdf1_2.TextType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -85491,7 +85493,7 @@ func TestMarshalUnmarshal_TextType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 language2_0.TextType
+	var elem2 xccdf1_2.TextType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -88327,7 +88329,7 @@ func TestMarshalUnmarshal_Variant_testElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_Version55_objectElement(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_ios.Version55_objectElement
+	var elem xmlschemaoval_definitions_5_catos.Version55_objectElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -88341,7 +88343,7 @@ func TestMarshalUnmarshal_Version55_objectElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_ios.Version55_objectElement
+	var elem2 xmlschemaoval_definitions_5_catos.Version55_objectElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -88352,7 +88354,7 @@ func TestMarshalUnmarshal_Version55_objectElement(t *testing.T) {
 
 func TestMarshalUnmarshal_Version55_objectElementType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_catos.Version55_objectElementType
+	var elem xmlschemaoval_definitions_5_ios.Version55_objectElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -88366,7 +88368,7 @@ func TestMarshalUnmarshal_Version55_objectElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_catos.Version55_objectElementType
+	var elem2 xmlschemaoval_definitions_5_ios.Version55_objectElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -88377,7 +88379,7 @@ func TestMarshalUnmarshal_Version55_objectElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_Version55_stateElement(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_ios.Version55_stateElement
+	var elem xmlschemaoval_definitions_5_catos.Version55_stateElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -88391,7 +88393,7 @@ func TestMarshalUnmarshal_Version55_stateElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_ios.Version55_stateElement
+	var elem2 xmlschemaoval_definitions_5_catos.Version55_stateElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -88402,7 +88404,7 @@ func TestMarshalUnmarshal_Version55_stateElement(t *testing.T) {
 
 func TestMarshalUnmarshal_Version55_stateElementType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_catos.Version55_stateElementType
+	var elem xmlschemaoval_definitions_5_ios.Version55_stateElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -88416,7 +88418,7 @@ func TestMarshalUnmarshal_Version55_stateElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_catos.Version55_stateElementType
+	var elem2 xmlschemaoval_definitions_5_ios.Version55_stateElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -88427,7 +88429,7 @@ func TestMarshalUnmarshal_Version55_stateElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_Version55_testElement(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_ios.Version55_testElement
+	var elem xmlschemaoval_definitions_5_catos.Version55_testElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -88441,7 +88443,7 @@ func TestMarshalUnmarshal_Version55_testElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_ios.Version55_testElement
+	var elem2 xmlschemaoval_definitions_5_catos.Version55_testElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -88452,7 +88454,7 @@ func TestMarshalUnmarshal_Version55_testElement(t *testing.T) {
 
 func TestMarshalUnmarshal_Version55_testElementType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_catos.Version55_testElementType
+	var elem xmlschemaoval_definitions_5_ios.Version55_testElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -88466,7 +88468,7 @@ func TestMarshalUnmarshal_Version55_testElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_catos.Version55_testElementType
+	var elem2 xmlschemaoval_definitions_5_ios.Version55_testElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -88477,7 +88479,7 @@ func TestMarshalUnmarshal_Version55_testElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_VersionElementType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_common_5.VersionElementType
+	var elem asset_identification1_1.VersionElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -88491,7 +88493,7 @@ func TestMarshalUnmarshal_VersionElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_common_5.VersionElementType
+	var elem2 asset_identification1_1.VersionElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -88677,7 +88679,7 @@ func TestMarshalUnmarshal_VersionType(t *testing.T) {
 
 func TestMarshalUnmarshal_Version_objectElement(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_esx.Version_objectElement
+	var elem xmlschemaoval_definitions_5_pixos.Version_objectElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -88691,7 +88693,7 @@ func TestMarshalUnmarshal_Version_objectElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_esx.Version_objectElement
+	var elem2 xmlschemaoval_definitions_5_pixos.Version_objectElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -88702,7 +88704,7 @@ func TestMarshalUnmarshal_Version_objectElement(t *testing.T) {
 
 func TestMarshalUnmarshal_Version_objectElementType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_catos.Version_objectElementType
+	var elem xmlschemaoval_definitions_5_asa.Version_objectElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -88716,7 +88718,7 @@ func TestMarshalUnmarshal_Version_objectElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_catos.Version_objectElementType
+	var elem2 xmlschemaoval_definitions_5_asa.Version_objectElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -88727,7 +88729,7 @@ func TestMarshalUnmarshal_Version_objectElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_Version_stateElement(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_esx.Version_stateElement
+	var elem xmlschemaoval_definitions_5_pixos.Version_stateElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -88741,7 +88743,7 @@ func TestMarshalUnmarshal_Version_stateElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_esx.Version_stateElement
+	var elem2 xmlschemaoval_definitions_5_pixos.Version_stateElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -88752,7 +88754,7 @@ func TestMarshalUnmarshal_Version_stateElement(t *testing.T) {
 
 func TestMarshalUnmarshal_Version_stateElementType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_catos.Version_stateElementType
+	var elem xmlschemaoval_definitions_5_asa.Version_stateElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -88766,7 +88768,7 @@ func TestMarshalUnmarshal_Version_stateElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_catos.Version_stateElementType
+	var elem2 xmlschemaoval_definitions_5_asa.Version_stateElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -88777,7 +88779,7 @@ func TestMarshalUnmarshal_Version_stateElementType(t *testing.T) {
 
 func TestMarshalUnmarshal_Version_testElement(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_esx.Version_testElement
+	var elem xmlschemaoval_definitions_5_pixos.Version_testElement
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -88791,7 +88793,7 @@ func TestMarshalUnmarshal_Version_testElement(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_esx.Version_testElement
+	var elem2 xmlschemaoval_definitions_5_pixos.Version_testElement
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)
@@ -88802,7 +88804,7 @@ func TestMarshalUnmarshal_Version_testElement(t *testing.T) {
 
 func TestMarshalUnmarshal_Version_testElementType(t *testing.T) {
 	// Create a default instance
-	var elem xmlschemaoval_definitions_5_catos.Version_testElementType
+	var elem xmlschemaoval_definitions_5_asa.Version_testElementType
 
 	// Marshal to XML
 	xmlBytes, err := xml.MarshalIndent(&elem, "", "  ")
@@ -88816,7 +88818,7 @@ func TestMarshalUnmarshal_Version_testElementType(t *testing.T) {
 	}
 
 	// Unmarshal back
-	var elem2 xmlschemaoval_definitions_5_catos.Version_testElementType
+	var elem2 xmlschemaoval_definitions_5_asa.Version_testElementType
 	err = xml.Unmarshal(xmlBytes, &elem2)
 	if err != nil {
 		t.Errorf("Unmarshal failed: %v", err)

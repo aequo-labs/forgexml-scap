@@ -13,693 +13,14 @@ import (
 	xmlschemaoval_definitions_5 "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/oval/xmlschema/oval-definitions-5"
 	xmlschemaoval_results_5 "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/oval/xmlschema/oval-results-5"
 	xmlschemaoval_system_characteristics_5 "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/oval/xmlschema/oval-system-characteristics-5"
+	pkg_200009xmldsig "github.com/aequo-labs/forgexml-scap/internal/generated/org/w3/2000/09/xmldsig"
 )
-
-// Globalrestrictions_objectElement represents the XSD element 'globalrestrictions_object'
-// XSD element declaration (W3C XSD §3.3)
-type Globalrestrictions_objectElement struct {
-	XMLName                                xml.Name `xml:"http://oval.mitre.org/XMLSchema/oval-definitions-5#apple_ios globalrestrictions_object"`
-	xmlschemaoval_definitions_5.ObjectType          // XSD extension base
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-	// nsDeclarations stores namespace prefix->URI mappings for perfect round-trip
-	nsDeclarations map[string]string `xml:"-"`
-	// nsDefaultNamespace stores the default namespace for perfect round-trip
-	nsDefaultNamespace string `xml:"-"`
-	// elementPrefixes stores element name->prefix mappings for perfect round-trip
-	elementPrefixes map[string]string `xml:"-"`
-	// elementsWithXmlns tracks which element names had xmlns in original (element_name -> namespace_uri)
-	// Used to replicate xmlns placement exactly during marshal for zero xmlns delta
-	elementsWithXmlns map[string]string `xml:"-"`
-}
-
-// UnmarshalXML implements custom unmarshaling with namespace preservation
-func (e *Globalrestrictions_objectElement) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
-	// Create alias type to prevent recursion
-	type alias Globalrestrictions_objectElement
-	aux := (*alias)(e)
-
-	// Extract namespace declarations from start element
-	e.nsDeclarations = make(map[string]string)
-	e.elementPrefixes = make(map[string]string)
-	var nonXmlnsAttrs []xml.Attr
-	for _, attr := range start.Attr {
-		if attr.Name.Space == "xmlns" {
-			// xmlns:prefix="uri"
-			e.nsDeclarations[attr.Name.Local] = attr.Value
-			// Build reverse map for element prefix restoration
-			e.elementPrefixes[attr.Value] = attr.Name.Local
-		} else if attr.Name.Local == "xmlns" && attr.Name.Space == "" {
-			// xmlns="uri"
-			e.nsDefaultNamespace = attr.Value
-		} else {
-			// Keep non-xmlns attributes for DecodeElement
-			nonXmlnsAttrs = append(nonXmlnsAttrs, attr)
-		}
-	}
-
-	// Remove xmlns from start.Attr to prevent duplication in UnknownAttrs
-	start.Attr = nonXmlnsAttrs
-
-	// Perform standard unmarshal
-	return d.DecodeElement(aux, &start)
-}
-
-// MarshalXML implements custom marshaling with namespace preservation
-func (e *Globalrestrictions_objectElement) MarshalXML(encoder *xml.Encoder, start xml.StartElement) error {
-	// Use the struct's XMLName to ensure correct element name
-	start.Name = e.XMLName
-
-	// Restore namespace declarations
-	if len(e.nsDeclarations) > 0 {
-		// Add namespace declarations to start element
-		for prefix, uri := range e.nsDeclarations {
-			start.Attr = append(start.Attr, xml.Attr{
-				Name:  xml.Name{Space: "xmlns", Local: prefix},
-				Value: uri,
-			})
-		}
-	}
-	// Restore default namespace declaration if it was present in input
-	// This is necessary for perfect fidelity when elements have redundant xmlns
-	if e.nsDefaultNamespace != "" {
-		start.Attr = append(start.Attr, xml.Attr{
-			Name:  xml.Name{Local: "xmlns"},
-			Value: e.nsDefaultNamespace,
-		})
-	}
-
-	// Create alias type to prevent recursion
-	type alias Globalrestrictions_objectElement
-	aux := (*alias)(e)
-
-	// Encode using standard marshaler
-	return encoder.EncodeElement(aux, start)
-}
-
-// MarshalIndentClean marshals with perfect namespace fidelity
-// This method: 1) Fixes Go's xmlns corruption, 2) Restores element prefixes
-// Preserves legitimate xmlns on nested elements with different default namespaces
-func (e *Globalrestrictions_objectElement) MarshalIndentClean(prefix, indent string) ([]byte, error) {
-	data, err := xml.MarshalIndent(e, prefix, indent)
-	if err != nil {
-		return nil, err
-	}
-
-	// Fix Go's namespace corruption:
-	// Go's xml.Encoder corrupts xmlns declarations by:
-	// 1. Prefixing 'xmlns:' with an underscore: 'xmlns:rc' -> '_xmlns:rc'
-	// 2. Adding a bogus 'xmlns:_xmlns="xmlns"' attribute
-	output := string(data)
-
-	// Step 1: Fix Go's namespace corruption
-	// First, remove the bogus xmlns:_xmlns="xmlns" attribute
-	output = strings.ReplaceAll(output, ` xmlns:_xmlns="xmlns"`, "")
-
-	// Then fix all _xmlns: prefixes to xmlns:
-	output = strings.ReplaceAll(output, "_xmlns:", "xmlns:")
-
-	// Also remove any remaining xmlns:xmlns="xmlns" that may appear
-	output = strings.ReplaceAll(output, ` xmlns:xmlns="xmlns"`, "")
-
-	// Fix corrupted XMLSchema-instance namespace
-	// Go sometimes duplicates this as xmlns:_XMLSchema-instance and _XMLSchema-instance:schemaLocation
-	output = strings.ReplaceAll(output, ` xmlns:_XMLSchema-instance="http://www.w3.org/2001/XMLSchema-instance"`, "")
-	output = strings.ReplaceAll(output, "_XMLSchema-instance:", "xsi:")
-
-	// Step 2: Restore element namespace prefixes using the captured prefix map
-	if len(e.elementPrefixes) > 0 {
-		output = restoreElementPrefixes(output, e.elementPrefixes)
-	}
-
-	// Step 3: Replicate xmlns placement from original XML for zero xmlns delta
-	// This adds xmlns to elements that had it in original, removes xmlns from elements that didn't
-	if len(e.elementsWithXmlns) > 0 {
-		output = replicateXmlnsPlacement(output, e.elementsWithXmlns)
-	}
-
-	return []byte(output), nil
-}
-
-// ToBytes marshals the element to bytes with namespace preservation
-// This is the recommended method for serializing to XML with round-trip fidelity
-func (e *Globalrestrictions_objectElement) ToBytes() ([]byte, error) {
-	return e.MarshalIndentClean("", "  ")
-}
-
-// SetElementPrefixes allows injecting element prefix mappings from raw XML
-// This is typically called after unmarshal with ExtractElementPrefixes(rawXML)
-func (e *Globalrestrictions_objectElement) SetElementPrefixes(prefixes map[string]string) {
-	e.elementPrefixes = prefixes
-}
-
-// SetElementsWithXmlns allows injecting element->xmlns mappings from raw XML
-// This is typically called after unmarshal with ExtractElementsWithXmlns(rawXML)
-// for perfect xmlns fidelity (zero xmlns delta)
-func (e *Globalrestrictions_objectElement) SetElementsWithXmlns(elementsWithXmlns map[string]string) {
-	e.elementsWithXmlns = elementsWithXmlns
-}
-
-// SaveToFile saves the element to a file with namespace preservation
-func (e *Globalrestrictions_objectElement) SaveToFile(path string) error {
-	data, err := e.ToBytes()
-	if err != nil {
-		return err
-	}
-	return os.WriteFile(path, data, 0644)
-}
-
-// LoadGlobalrestrictions_objectFromBytes loads an element from bytes with namespace preservation
-func LoadGlobalrestrictions_objectFromBytes(data []byte) (*Globalrestrictions_objectElement, error) {
-	// Extract element prefixes from raw XML before unmarshaling
-	elementPrefixes := ExtractElementPrefixes(data)
-	// Extract which elements had xmlns for exact xmlns replication
-	elementsWithXmlns := ExtractElementsWithXmlns(data)
-
-	var element Globalrestrictions_objectElement
-	if err := xml.Unmarshal(data, &element); err != nil {
-		return nil, err
-	}
-
-	// Store extracted element name -> prefix mappings for restoration during marshal
-	element.elementPrefixes = elementPrefixes
-	// Store element -> xmlns mappings for zero xmlns delta
-	element.elementsWithXmlns = elementsWithXmlns
-
-	return &element, nil
-}
-
-// LoadGlobalrestrictions_objectFromFile loads an element from a file with namespace preservation
-func LoadGlobalrestrictions_objectFromFile(path string) (*Globalrestrictions_objectElement, error) {
-	data, err := os.ReadFile(path)
-	if err != nil {
-		return nil, err
-	}
-	return LoadGlobalrestrictions_objectFromBytes(data)
-}
-
-// Globalrestrictions_stateElement represents the XSD element 'globalrestrictions_state'
-// XSD element declaration (W3C XSD §3.3)
-type Globalrestrictions_stateElement struct {
-	XMLName                               xml.Name `xml:"http://oval.mitre.org/XMLSchema/oval-definitions-5#apple_ios globalrestrictions_state"`
-	xmlschemaoval_definitions_5.StateType          // XSD extension base
-	// Allow_account_modification represents XSD element 'allow_account_modification'
-	// minOccurs=0, maxOccurs=1
-	Allow_account_modification *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_account_modification,omitempty"`
-	// Allow_airdrop represents XSD element 'allow_airdrop'
-	// minOccurs=0, maxOccurs=1
-	Allow_airdrop *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_airdrop,omitempty"`
-	// Allow_app_cellular_data_modification represents XSD element 'allow_app_cellular_data_modification'
-	// minOccurs=0, maxOccurs=1
-	Allow_app_cellular_data_modification *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_app_cellular_data_modification,omitempty"`
-	// Allow_app_installation represents XSD element 'allow_app_installation'
-	// minOccurs=0, maxOccurs=1
-	Allow_app_installation *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_app_installation,omitempty"`
-	// Allow_assistant represents XSD element 'allow_assistant'
-	// minOccurs=0, maxOccurs=1
-	Allow_assistant *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_assistant,omitempty"`
-	// Allow_assistant_user_generated_content represents XSD element 'allow_assistant_user_generated_content'
-	// minOccurs=0, maxOccurs=1
-	Allow_assistant_user_generated_content *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_assistant_user_generated_content,omitempty"`
-	// Allow_assistant_while_locked represents XSD element 'allow_assistant_while_locked'
-	// minOccurs=0, maxOccurs=1
-	Allow_assistant_while_locked *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_assistant_while_locked,omitempty"`
-	// Allow_bookstore represents XSD element 'allow_bookstore'
-	// minOccurs=0, maxOccurs=1
-	Allow_bookstore *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_bookstore,omitempty"`
-	// Allow_bookstore_erotica represents XSD element 'allow_bookstore_erotica'
-	// minOccurs=0, maxOccurs=1
-	Allow_bookstore_erotica *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_bookstore_erotica,omitempty"`
-	// Allow_camera represents XSD element 'allow_camera'
-	// minOccurs=0, maxOccurs=1
-	Allow_camera *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_camera,omitempty"`
-	// Allow_cloud_backup represents XSD element 'allow_cloud_backup'
-	// minOccurs=0, maxOccurs=1
-	Allow_cloud_backup *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_cloud_backup,omitempty"`
-	// Allow_cloud_document_sync represents XSD element 'allow_cloud_document_sync'
-	// minOccurs=0, maxOccurs=1
-	Allow_cloud_document_sync *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_cloud_document_sync,omitempty"`
-	// Allow_cloud_keychain_sync represents XSD element 'allow_cloud_keychain_sync'
-	// minOccurs=0, maxOccurs=1
-	Allow_cloud_keychain_sync *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_cloud_keychain_sync,omitempty"`
-	// Allow_diagnostic_submission represents XSD element 'allow_diagnostic_submission'
-	// minOccurs=0, maxOccurs=1
-	Allow_diagnostic_submission *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_diagnostic_submission,omitempty"`
-	// Allow_explicit_content represents XSD element 'allow_explicit_content'
-	// minOccurs=0, maxOccurs=1
-	Allow_explicit_content *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_explicit_content,omitempty"`
-	// Allow_find_my_friends_modification represents XSD element 'allow_find_my_friends_modification'
-	// minOccurs=0, maxOccurs=1
-	Allow_find_my_friends_modification *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_find_my_friends_modification,omitempty"`
-	// Allow_fingerprint_for_unlock represents XSD element 'allow_fingerprint_for_unlock'
-	// minOccurs=0, maxOccurs=1
-	Allow_fingerprint_for_unlock *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_fingerprint_for_unlock,omitempty"`
-	// Allow_game_center represents XSD element 'allow_game_center'
-	// minOccurs=0, maxOccurs=1
-	Allow_game_center *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_game_center,omitempty"`
-	// Allow_host_pairing represents XSD element 'allow_host_pairing'
-	// minOccurs=0, maxOccurs=1
-	Allow_host_pairing *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_host_pairing,omitempty"`
-	// Allow_lock_screen_control_center represents XSD element 'allow_lock_screen_control_center'
-	// minOccurs=0, maxOccurs=1
-	Allow_lock_screen_control_center *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_lock_screen_control_center,omitempty"`
-	// Allow_lock_screen_notifications_view represents XSD element 'allow_lock_screen_notifications_view'
-	// minOccurs=0, maxOccurs=1
-	Allow_lock_screen_notifications_view *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_lock_screen_notifications_view,omitempty"`
-	// Allow_lock_screen_today_view represents XSD element 'allow_lock_screen_today_view'
-	// minOccurs=0, maxOccurs=1
-	Allow_lock_screen_today_view *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_lock_screen_today_view,omitempty"`
-	// Allow_open_from_managed_to_unmanaged represents XSD element 'allow_open_from_managed_to_unmanaged'
-	// minOccurs=0, maxOccurs=1
-	Allow_open_from_managed_to_unmanaged *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_open_from_managed_to_unmanaged,omitempty"`
-	// Allow_open_from_unmanaged_to_managed represents XSD element 'allow_open_from_unmanaged_to_managed'
-	// minOccurs=0, maxOccurs=1
-	Allow_open_from_unmanaged_to_managed *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_open_from_unmanaged_to_managed,omitempty"`
-	// Allow_ota_pki_updates represents XSD element 'allow_ota_pki_updates'
-	// minOccurs=0, maxOccurs=1
-	Allow_ota_pki_updates *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_ota_pki_updates,omitempty"`
-	// Allow_passbook_while_locked represents XSD element 'allow_passbook_while_locked'
-	// minOccurs=0, maxOccurs=1
-	Allow_passbook_while_locked *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_passbook_while_locked,omitempty"`
-	// Allow_photo_stream represents XSD element 'allow_photo_stream'
-	// minOccurs=0, maxOccurs=1
-	Allow_photo_stream *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_photo_stream,omitempty"`
-	// Allow_safari represents XSD element 'allow_safari'
-	// minOccurs=0, maxOccurs=1
-	Allow_safari *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_safari,omitempty"`
-	// Allow_screen_shot represents XSD element 'allow_screen_shot'
-	// minOccurs=0, maxOccurs=1
-	Allow_screen_shot *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_screen_shot,omitempty"`
-	// Allow_shared_stream represents XSD element 'allow_shared_stream'
-	// minOccurs=0, maxOccurs=1
-	Allow_shared_stream *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_shared_stream,omitempty"`
-	// Allow_ui_configuration_profile_installation represents XSD element 'allow_ui_configuration_profile_installation'
-	// minOccurs=0, maxOccurs=1
-	Allow_ui_configuration_profile_installation *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_ui_configuration_profile_installation,omitempty"`
-	// Allow_untrusted_tls_prompt represents XSD element 'allow_untrusted_tls_prompt'
-	// minOccurs=0, maxOccurs=1
-	Allow_untrusted_tls_prompt *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_untrusted_tls_prompt,omitempty"`
-	// Allow_voice_dialing represents XSD element 'allow_voice_dialing'
-	// minOccurs=0, maxOccurs=1
-	Allow_voice_dialing *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_voice_dialing,omitempty"`
-	// Allow_youtube represents XSD element 'allow_youtube'
-	// minOccurs=0, maxOccurs=1
-	Allow_youtube *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_youtube,omitempty"`
-	// Allow_itunes represents XSD element 'allow_itunes'
-	// minOccurs=0, maxOccurs=1
-	Allow_itunes *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_itunes,omitempty"`
-	// Autonomous_single_app_mode_permitted_appids represents XSD element 'autonomous_single_app_mode_permitted_appids'
-	// minOccurs=0, maxOccurs=1
-	Autonomous_single_app_mode_permitted_appids *xmlschemaoval_definitions_5.EntityStateStringType `xml:"autonomous_single_app_mode_permitted_appids,omitempty"`
-	// Force_encrypted_backup represents XSD element 'force_encrypted_backup'
-	// minOccurs=0, maxOccurs=1
-	Force_encrypted_backup *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"force_encrypted_backup,omitempty"`
-	// Force_itunes_store_password_entry represents XSD element 'force_itunes_store_password_entry'
-	// minOccurs=0, maxOccurs=1
-	Force_itunes_store_password_entry *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"force_itunes_store_password_entry,omitempty"`
-	// Force_limit_ad_tracking represents XSD element 'force_limit_ad_tracking'
-	// minOccurs=0, maxOccurs=1
-	Force_limit_ad_tracking *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"force_limit_ad_tracking,omitempty"`
-	// Safari_allow_auto_fill represents XSD element 'safari_allow_auto_fill'
-	// minOccurs=0, maxOccurs=1
-	Safari_allow_auto_fill *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"safari_allow_auto_fill,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-	// nsDeclarations stores namespace prefix->URI mappings for perfect round-trip
-	nsDeclarations map[string]string `xml:"-"`
-	// nsDefaultNamespace stores the default namespace for perfect round-trip
-	nsDefaultNamespace string `xml:"-"`
-	// elementPrefixes stores element name->prefix mappings for perfect round-trip
-	elementPrefixes map[string]string `xml:"-"`
-	// elementsWithXmlns tracks which element names had xmlns in original (element_name -> namespace_uri)
-	// Used to replicate xmlns placement exactly during marshal for zero xmlns delta
-	elementsWithXmlns map[string]string `xml:"-"`
-}
-
-// UnmarshalXML implements custom unmarshaling with namespace preservation
-func (e *Globalrestrictions_stateElement) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
-	// Create alias type to prevent recursion
-	type alias Globalrestrictions_stateElement
-	aux := (*alias)(e)
-
-	// Extract namespace declarations from start element
-	e.nsDeclarations = make(map[string]string)
-	e.elementPrefixes = make(map[string]string)
-	var nonXmlnsAttrs []xml.Attr
-	for _, attr := range start.Attr {
-		if attr.Name.Space == "xmlns" {
-			// xmlns:prefix="uri"
-			e.nsDeclarations[attr.Name.Local] = attr.Value
-			// Build reverse map for element prefix restoration
-			e.elementPrefixes[attr.Value] = attr.Name.Local
-		} else if attr.Name.Local == "xmlns" && attr.Name.Space == "" {
-			// xmlns="uri"
-			e.nsDefaultNamespace = attr.Value
-		} else {
-			// Keep non-xmlns attributes for DecodeElement
-			nonXmlnsAttrs = append(nonXmlnsAttrs, attr)
-		}
-	}
-
-	// Remove xmlns from start.Attr to prevent duplication in UnknownAttrs
-	start.Attr = nonXmlnsAttrs
-
-	// Perform standard unmarshal
-	return d.DecodeElement(aux, &start)
-}
-
-// MarshalXML implements custom marshaling with namespace preservation
-func (e *Globalrestrictions_stateElement) MarshalXML(encoder *xml.Encoder, start xml.StartElement) error {
-	// Use the struct's XMLName to ensure correct element name
-	start.Name = e.XMLName
-
-	// Restore namespace declarations
-	if len(e.nsDeclarations) > 0 {
-		// Add namespace declarations to start element
-		for prefix, uri := range e.nsDeclarations {
-			start.Attr = append(start.Attr, xml.Attr{
-				Name:  xml.Name{Space: "xmlns", Local: prefix},
-				Value: uri,
-			})
-		}
-	}
-	// Restore default namespace declaration if it was present in input
-	// This is necessary for perfect fidelity when elements have redundant xmlns
-	if e.nsDefaultNamespace != "" {
-		start.Attr = append(start.Attr, xml.Attr{
-			Name:  xml.Name{Local: "xmlns"},
-			Value: e.nsDefaultNamespace,
-		})
-	}
-
-	// Create alias type to prevent recursion
-	type alias Globalrestrictions_stateElement
-	aux := (*alias)(e)
-
-	// Encode using standard marshaler
-	return encoder.EncodeElement(aux, start)
-}
-
-// MarshalIndentClean marshals with perfect namespace fidelity
-// This method: 1) Fixes Go's xmlns corruption, 2) Restores element prefixes
-// Preserves legitimate xmlns on nested elements with different default namespaces
-func (e *Globalrestrictions_stateElement) MarshalIndentClean(prefix, indent string) ([]byte, error) {
-	data, err := xml.MarshalIndent(e, prefix, indent)
-	if err != nil {
-		return nil, err
-	}
-
-	// Fix Go's namespace corruption:
-	// Go's xml.Encoder corrupts xmlns declarations by:
-	// 1. Prefixing 'xmlns:' with an underscore: 'xmlns:rc' -> '_xmlns:rc'
-	// 2. Adding a bogus 'xmlns:_xmlns="xmlns"' attribute
-	output := string(data)
-
-	// Step 1: Fix Go's namespace corruption
-	// First, remove the bogus xmlns:_xmlns="xmlns" attribute
-	output = strings.ReplaceAll(output, ` xmlns:_xmlns="xmlns"`, "")
-
-	// Then fix all _xmlns: prefixes to xmlns:
-	output = strings.ReplaceAll(output, "_xmlns:", "xmlns:")
-
-	// Also remove any remaining xmlns:xmlns="xmlns" that may appear
-	output = strings.ReplaceAll(output, ` xmlns:xmlns="xmlns"`, "")
-
-	// Fix corrupted XMLSchema-instance namespace
-	// Go sometimes duplicates this as xmlns:_XMLSchema-instance and _XMLSchema-instance:schemaLocation
-	output = strings.ReplaceAll(output, ` xmlns:_XMLSchema-instance="http://www.w3.org/2001/XMLSchema-instance"`, "")
-	output = strings.ReplaceAll(output, "_XMLSchema-instance:", "xsi:")
-
-	// Step 2: Restore element namespace prefixes using the captured prefix map
-	if len(e.elementPrefixes) > 0 {
-		output = restoreElementPrefixes(output, e.elementPrefixes)
-	}
-
-	// Step 3: Replicate xmlns placement from original XML for zero xmlns delta
-	// This adds xmlns to elements that had it in original, removes xmlns from elements that didn't
-	if len(e.elementsWithXmlns) > 0 {
-		output = replicateXmlnsPlacement(output, e.elementsWithXmlns)
-	}
-
-	return []byte(output), nil
-}
-
-// ToBytes marshals the element to bytes with namespace preservation
-// This is the recommended method for serializing to XML with round-trip fidelity
-func (e *Globalrestrictions_stateElement) ToBytes() ([]byte, error) {
-	return e.MarshalIndentClean("", "  ")
-}
-
-// SetElementPrefixes allows injecting element prefix mappings from raw XML
-// This is typically called after unmarshal with ExtractElementPrefixes(rawXML)
-func (e *Globalrestrictions_stateElement) SetElementPrefixes(prefixes map[string]string) {
-	e.elementPrefixes = prefixes
-}
-
-// SetElementsWithXmlns allows injecting element->xmlns mappings from raw XML
-// This is typically called after unmarshal with ExtractElementsWithXmlns(rawXML)
-// for perfect xmlns fidelity (zero xmlns delta)
-func (e *Globalrestrictions_stateElement) SetElementsWithXmlns(elementsWithXmlns map[string]string) {
-	e.elementsWithXmlns = elementsWithXmlns
-}
-
-// SaveToFile saves the element to a file with namespace preservation
-func (e *Globalrestrictions_stateElement) SaveToFile(path string) error {
-	data, err := e.ToBytes()
-	if err != nil {
-		return err
-	}
-	return os.WriteFile(path, data, 0644)
-}
-
-// LoadGlobalrestrictions_stateFromBytes loads an element from bytes with namespace preservation
-func LoadGlobalrestrictions_stateFromBytes(data []byte) (*Globalrestrictions_stateElement, error) {
-	// Extract element prefixes from raw XML before unmarshaling
-	elementPrefixes := ExtractElementPrefixes(data)
-	// Extract which elements had xmlns for exact xmlns replication
-	elementsWithXmlns := ExtractElementsWithXmlns(data)
-
-	var element Globalrestrictions_stateElement
-	if err := xml.Unmarshal(data, &element); err != nil {
-		return nil, err
-	}
-
-	// Store extracted element name -> prefix mappings for restoration during marshal
-	element.elementPrefixes = elementPrefixes
-	// Store element -> xmlns mappings for zero xmlns delta
-	element.elementsWithXmlns = elementsWithXmlns
-
-	return &element, nil
-}
-
-// LoadGlobalrestrictions_stateFromFile loads an element from a file with namespace preservation
-func LoadGlobalrestrictions_stateFromFile(path string) (*Globalrestrictions_stateElement, error) {
-	data, err := os.ReadFile(path)
-	if err != nil {
-		return nil, err
-	}
-	return LoadGlobalrestrictions_stateFromBytes(data)
-}
-
-// Passcodepolicy_testElement represents the XSD element 'passcodepolicy_test'
-// XSD element declaration (W3C XSD §3.3)
-type Passcodepolicy_testElement struct {
-	XMLName                              xml.Name `xml:"http://oval.mitre.org/XMLSchema/oval-definitions-5#apple_ios passcodepolicy_test"`
-	xmlschemaoval_definitions_5.TestType          // XSD extension base
-	// Object represents XSD element 'object'
-	Object xmlschemaoval_definitions_5.ObjectRefType `xml:"object"`
-	// State represents XSD element 'state'
-	// minOccurs=0, maxOccurs=-1
-	State []xmlschemaoval_definitions_5.StateRefType `xml:"state,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-	// nsDeclarations stores namespace prefix->URI mappings for perfect round-trip
-	nsDeclarations map[string]string `xml:"-"`
-	// nsDefaultNamespace stores the default namespace for perfect round-trip
-	nsDefaultNamespace string `xml:"-"`
-	// elementPrefixes stores element name->prefix mappings for perfect round-trip
-	elementPrefixes map[string]string `xml:"-"`
-	// elementsWithXmlns tracks which element names had xmlns in original (element_name -> namespace_uri)
-	// Used to replicate xmlns placement exactly during marshal for zero xmlns delta
-	elementsWithXmlns map[string]string `xml:"-"`
-}
-
-// UnmarshalXML implements custom unmarshaling with namespace preservation
-func (e *Passcodepolicy_testElement) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
-	// Create alias type to prevent recursion
-	type alias Passcodepolicy_testElement
-	aux := (*alias)(e)
-
-	// Extract namespace declarations from start element
-	e.nsDeclarations = make(map[string]string)
-	e.elementPrefixes = make(map[string]string)
-	var nonXmlnsAttrs []xml.Attr
-	for _, attr := range start.Attr {
-		if attr.Name.Space == "xmlns" {
-			// xmlns:prefix="uri"
-			e.nsDeclarations[attr.Name.Local] = attr.Value
-			// Build reverse map for element prefix restoration
-			e.elementPrefixes[attr.Value] = attr.Name.Local
-		} else if attr.Name.Local == "xmlns" && attr.Name.Space == "" {
-			// xmlns="uri"
-			e.nsDefaultNamespace = attr.Value
-		} else {
-			// Keep non-xmlns attributes for DecodeElement
-			nonXmlnsAttrs = append(nonXmlnsAttrs, attr)
-		}
-	}
-
-	// Remove xmlns from start.Attr to prevent duplication in UnknownAttrs
-	start.Attr = nonXmlnsAttrs
-
-	// Perform standard unmarshal
-	return d.DecodeElement(aux, &start)
-}
-
-// MarshalXML implements custom marshaling with namespace preservation
-func (e *Passcodepolicy_testElement) MarshalXML(encoder *xml.Encoder, start xml.StartElement) error {
-	// Use the struct's XMLName to ensure correct element name
-	start.Name = e.XMLName
-
-	// Restore namespace declarations
-	if len(e.nsDeclarations) > 0 {
-		// Add namespace declarations to start element
-		for prefix, uri := range e.nsDeclarations {
-			start.Attr = append(start.Attr, xml.Attr{
-				Name:  xml.Name{Space: "xmlns", Local: prefix},
-				Value: uri,
-			})
-		}
-	}
-	// Restore default namespace declaration if it was present in input
-	// This is necessary for perfect fidelity when elements have redundant xmlns
-	if e.nsDefaultNamespace != "" {
-		start.Attr = append(start.Attr, xml.Attr{
-			Name:  xml.Name{Local: "xmlns"},
-			Value: e.nsDefaultNamespace,
-		})
-	}
-
-	// Create alias type to prevent recursion
-	type alias Passcodepolicy_testElement
-	aux := (*alias)(e)
-
-	// Encode using standard marshaler
-	return encoder.EncodeElement(aux, start)
-}
-
-// MarshalIndentClean marshals with perfect namespace fidelity
-// This method: 1) Fixes Go's xmlns corruption, 2) Restores element prefixes
-// Preserves legitimate xmlns on nested elements with different default namespaces
-func (e *Passcodepolicy_testElement) MarshalIndentClean(prefix, indent string) ([]byte, error) {
-	data, err := xml.MarshalIndent(e, prefix, indent)
-	if err != nil {
-		return nil, err
-	}
-
-	// Fix Go's namespace corruption:
-	// Go's xml.Encoder corrupts xmlns declarations by:
-	// 1. Prefixing 'xmlns:' with an underscore: 'xmlns:rc' -> '_xmlns:rc'
-	// 2. Adding a bogus 'xmlns:_xmlns="xmlns"' attribute
-	output := string(data)
-
-	// Step 1: Fix Go's namespace corruption
-	// First, remove the bogus xmlns:_xmlns="xmlns" attribute
-	output = strings.ReplaceAll(output, ` xmlns:_xmlns="xmlns"`, "")
-
-	// Then fix all _xmlns: prefixes to xmlns:
-	output = strings.ReplaceAll(output, "_xmlns:", "xmlns:")
-
-	// Also remove any remaining xmlns:xmlns="xmlns" that may appear
-	output = strings.ReplaceAll(output, ` xmlns:xmlns="xmlns"`, "")
-
-	// Fix corrupted XMLSchema-instance namespace
-	// Go sometimes duplicates this as xmlns:_XMLSchema-instance and _XMLSchema-instance:schemaLocation
-	output = strings.ReplaceAll(output, ` xmlns:_XMLSchema-instance="http://www.w3.org/2001/XMLSchema-instance"`, "")
-	output = strings.ReplaceAll(output, "_XMLSchema-instance:", "xsi:")
-
-	// Step 2: Restore element namespace prefixes using the captured prefix map
-	if len(e.elementPrefixes) > 0 {
-		output = restoreElementPrefixes(output, e.elementPrefixes)
-	}
-
-	// Step 3: Replicate xmlns placement from original XML for zero xmlns delta
-	// This adds xmlns to elements that had it in original, removes xmlns from elements that didn't
-	if len(e.elementsWithXmlns) > 0 {
-		output = replicateXmlnsPlacement(output, e.elementsWithXmlns)
-	}
-
-	return []byte(output), nil
-}
-
-// ToBytes marshals the element to bytes with namespace preservation
-// This is the recommended method for serializing to XML with round-trip fidelity
-func (e *Passcodepolicy_testElement) ToBytes() ([]byte, error) {
-	return e.MarshalIndentClean("", "  ")
-}
-
-// SetElementPrefixes allows injecting element prefix mappings from raw XML
-// This is typically called after unmarshal with ExtractElementPrefixes(rawXML)
-func (e *Passcodepolicy_testElement) SetElementPrefixes(prefixes map[string]string) {
-	e.elementPrefixes = prefixes
-}
-
-// SetElementsWithXmlns allows injecting element->xmlns mappings from raw XML
-// This is typically called after unmarshal with ExtractElementsWithXmlns(rawXML)
-// for perfect xmlns fidelity (zero xmlns delta)
-func (e *Passcodepolicy_testElement) SetElementsWithXmlns(elementsWithXmlns map[string]string) {
-	e.elementsWithXmlns = elementsWithXmlns
-}
-
-// SaveToFile saves the element to a file with namespace preservation
-func (e *Passcodepolicy_testElement) SaveToFile(path string) error {
-	data, err := e.ToBytes()
-	if err != nil {
-		return err
-	}
-	return os.WriteFile(path, data, 0644)
-}
-
-// LoadPasscodepolicy_testFromBytes loads an element from bytes with namespace preservation
-func LoadPasscodepolicy_testFromBytes(data []byte) (*Passcodepolicy_testElement, error) {
-	// Extract element prefixes from raw XML before unmarshaling
-	elementPrefixes := ExtractElementPrefixes(data)
-	// Extract which elements had xmlns for exact xmlns replication
-	elementsWithXmlns := ExtractElementsWithXmlns(data)
-
-	var element Passcodepolicy_testElement
-	if err := xml.Unmarshal(data, &element); err != nil {
-		return nil, err
-	}
-
-	// Store extracted element name -> prefix mappings for restoration during marshal
-	element.elementPrefixes = elementPrefixes
-	// Store element -> xmlns mappings for zero xmlns delta
-	element.elementsWithXmlns = elementsWithXmlns
-
-	return &element, nil
-}
-
-// LoadPasscodepolicy_testFromFile loads an element from a file with namespace preservation
-func LoadPasscodepolicy_testFromFile(path string) (*Passcodepolicy_testElement, error) {
-	data, err := os.ReadFile(path)
-	if err != nil {
-		return nil, err
-	}
-	return LoadPasscodepolicy_testFromBytes(data)
-}
 
 // Passcodepolicy_objectElement represents the XSD element 'passcodepolicy_object'
 // XSD element declaration (W3C XSD §3.3)
 type Passcodepolicy_objectElement struct {
-	XMLName                                xml.Name `xml:"http://oval.mitre.org/XMLSchema/oval-definitions-5#apple_ios passcodepolicy_object"`
-	xmlschemaoval_definitions_5.ObjectType          // XSD extension base
+	XMLName                      xml.Name `xml:"http://oval.mitre.org/XMLSchema/oval-definitions-5#apple_ios passcodepolicy_object"`
+	pkg_200009xmldsig.ObjectType          // XSD extension base
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -1095,6 +416,390 @@ func LoadPasscodepolicy_stateFromFile(path string) (*Passcodepolicy_stateElement
 	return LoadPasscodepolicy_stateFromBytes(data)
 }
 
+// Profile_testElement represents the XSD element 'profile_test'
+// XSD element declaration (W3C XSD §3.3)
+type Profile_testElement struct {
+	XMLName                              xml.Name `xml:"http://oval.mitre.org/XMLSchema/oval-definitions-5#apple_ios profile_test"`
+	xmlschemaoval_definitions_5.TestType          // XSD extension base
+	// Object represents XSD element 'object'
+	Object xmlschemaoval_definitions_5.ObjectRefType `xml:"object"`
+	// State represents XSD element 'state'
+	// minOccurs=0, maxOccurs=-1
+	State []xmlschemaoval_definitions_5.StateRefType `xml:"state,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+	// nsDeclarations stores namespace prefix->URI mappings for perfect round-trip
+	nsDeclarations map[string]string `xml:"-"`
+	// nsDefaultNamespace stores the default namespace for perfect round-trip
+	nsDefaultNamespace string `xml:"-"`
+	// elementPrefixes stores element name->prefix mappings for perfect round-trip
+	elementPrefixes map[string]string `xml:"-"`
+	// elementsWithXmlns tracks which element names had xmlns in original (element_name -> namespace_uri)
+	// Used to replicate xmlns placement exactly during marshal for zero xmlns delta
+	elementsWithXmlns map[string]string `xml:"-"`
+}
+
+// UnmarshalXML implements custom unmarshaling with namespace preservation
+func (e *Profile_testElement) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
+	// Create alias type to prevent recursion
+	type alias Profile_testElement
+	aux := (*alias)(e)
+
+	// Extract namespace declarations from start element
+	e.nsDeclarations = make(map[string]string)
+	e.elementPrefixes = make(map[string]string)
+	var nonXmlnsAttrs []xml.Attr
+	for _, attr := range start.Attr {
+		if attr.Name.Space == "xmlns" {
+			// xmlns:prefix="uri"
+			e.nsDeclarations[attr.Name.Local] = attr.Value
+			// Build reverse map for element prefix restoration
+			e.elementPrefixes[attr.Value] = attr.Name.Local
+		} else if attr.Name.Local == "xmlns" && attr.Name.Space == "" {
+			// xmlns="uri"
+			e.nsDefaultNamespace = attr.Value
+		} else {
+			// Keep non-xmlns attributes for DecodeElement
+			nonXmlnsAttrs = append(nonXmlnsAttrs, attr)
+		}
+	}
+
+	// Remove xmlns from start.Attr to prevent duplication in UnknownAttrs
+	start.Attr = nonXmlnsAttrs
+
+	// Perform standard unmarshal
+	return d.DecodeElement(aux, &start)
+}
+
+// MarshalXML implements custom marshaling with namespace preservation
+func (e *Profile_testElement) MarshalXML(encoder *xml.Encoder, start xml.StartElement) error {
+	// Use the struct's XMLName to ensure correct element name
+	start.Name = e.XMLName
+
+	// Restore namespace declarations
+	if len(e.nsDeclarations) > 0 {
+		// Add namespace declarations to start element
+		for prefix, uri := range e.nsDeclarations {
+			start.Attr = append(start.Attr, xml.Attr{
+				Name:  xml.Name{Space: "xmlns", Local: prefix},
+				Value: uri,
+			})
+		}
+	}
+	// Restore default namespace declaration if it was present in input
+	// This is necessary for perfect fidelity when elements have redundant xmlns
+	if e.nsDefaultNamespace != "" {
+		start.Attr = append(start.Attr, xml.Attr{
+			Name:  xml.Name{Local: "xmlns"},
+			Value: e.nsDefaultNamespace,
+		})
+	}
+
+	// Create alias type to prevent recursion
+	type alias Profile_testElement
+	aux := (*alias)(e)
+
+	// Encode using standard marshaler
+	return encoder.EncodeElement(aux, start)
+}
+
+// MarshalIndentClean marshals with perfect namespace fidelity
+// This method: 1) Fixes Go's xmlns corruption, 2) Restores element prefixes
+// Preserves legitimate xmlns on nested elements with different default namespaces
+func (e *Profile_testElement) MarshalIndentClean(prefix, indent string) ([]byte, error) {
+	data, err := xml.MarshalIndent(e, prefix, indent)
+	if err != nil {
+		return nil, err
+	}
+
+	// Fix Go's namespace corruption:
+	// Go's xml.Encoder corrupts xmlns declarations by:
+	// 1. Prefixing 'xmlns:' with an underscore: 'xmlns:rc' -> '_xmlns:rc'
+	// 2. Adding a bogus 'xmlns:_xmlns="xmlns"' attribute
+	output := string(data)
+
+	// Step 1: Fix Go's namespace corruption
+	// First, remove the bogus xmlns:_xmlns="xmlns" attribute
+	output = strings.ReplaceAll(output, ` xmlns:_xmlns="xmlns"`, "")
+
+	// Then fix all _xmlns: prefixes to xmlns:
+	output = strings.ReplaceAll(output, "_xmlns:", "xmlns:")
+
+	// Also remove any remaining xmlns:xmlns="xmlns" that may appear
+	output = strings.ReplaceAll(output, ` xmlns:xmlns="xmlns"`, "")
+
+	// Fix corrupted XMLSchema-instance namespace
+	// Go sometimes duplicates this as xmlns:_XMLSchema-instance and _XMLSchema-instance:schemaLocation
+	output = strings.ReplaceAll(output, ` xmlns:_XMLSchema-instance="http://www.w3.org/2001/XMLSchema-instance"`, "")
+	output = strings.ReplaceAll(output, "_XMLSchema-instance:", "xsi:")
+
+	// Step 2: Restore element namespace prefixes using the captured prefix map
+	if len(e.elementPrefixes) > 0 {
+		output = restoreElementPrefixes(output, e.elementPrefixes)
+	}
+
+	// Step 3: Replicate xmlns placement from original XML for zero xmlns delta
+	// This adds xmlns to elements that had it in original, removes xmlns from elements that didn't
+	if len(e.elementsWithXmlns) > 0 {
+		output = replicateXmlnsPlacement(output, e.elementsWithXmlns)
+	}
+
+	return []byte(output), nil
+}
+
+// ToBytes marshals the element to bytes with namespace preservation
+// This is the recommended method for serializing to XML with round-trip fidelity
+func (e *Profile_testElement) ToBytes() ([]byte, error) {
+	return e.MarshalIndentClean("", "  ")
+}
+
+// SetElementPrefixes allows injecting element prefix mappings from raw XML
+// This is typically called after unmarshal with ExtractElementPrefixes(rawXML)
+func (e *Profile_testElement) SetElementPrefixes(prefixes map[string]string) {
+	e.elementPrefixes = prefixes
+}
+
+// SetElementsWithXmlns allows injecting element->xmlns mappings from raw XML
+// This is typically called after unmarshal with ExtractElementsWithXmlns(rawXML)
+// for perfect xmlns fidelity (zero xmlns delta)
+func (e *Profile_testElement) SetElementsWithXmlns(elementsWithXmlns map[string]string) {
+	e.elementsWithXmlns = elementsWithXmlns
+}
+
+// SaveToFile saves the element to a file with namespace preservation
+func (e *Profile_testElement) SaveToFile(path string) error {
+	data, err := e.ToBytes()
+	if err != nil {
+		return err
+	}
+	return os.WriteFile(path, data, 0644)
+}
+
+// LoadProfile_testFromBytes loads an element from bytes with namespace preservation
+func LoadProfile_testFromBytes(data []byte) (*Profile_testElement, error) {
+	// Extract element prefixes from raw XML before unmarshaling
+	elementPrefixes := ExtractElementPrefixes(data)
+	// Extract which elements had xmlns for exact xmlns replication
+	elementsWithXmlns := ExtractElementsWithXmlns(data)
+
+	var element Profile_testElement
+	if err := xml.Unmarshal(data, &element); err != nil {
+		return nil, err
+	}
+
+	// Store extracted element name -> prefix mappings for restoration during marshal
+	element.elementPrefixes = elementPrefixes
+	// Store element -> xmlns mappings for zero xmlns delta
+	element.elementsWithXmlns = elementsWithXmlns
+
+	return &element, nil
+}
+
+// LoadProfile_testFromFile loads an element from a file with namespace preservation
+func LoadProfile_testFromFile(path string) (*Profile_testElement, error) {
+	data, err := os.ReadFile(path)
+	if err != nil {
+		return nil, err
+	}
+	return LoadProfile_testFromBytes(data)
+}
+
+// Profile_objectElement represents the XSD element 'profile_object'
+// XSD element declaration (W3C XSD §3.3)
+type Profile_objectElement struct {
+	XMLName                                xml.Name `xml:"http://oval.mitre.org/XMLSchema/oval-definitions-5#apple_ios profile_object"`
+	xmlschemaoval_definitions_5.ObjectType          // XSD extension base
+	// Set represents XSD element 'set'
+	Set *xmlschemaoval_definitions_5.SetElement `xml:"set,omitempty"`
+	// Identifier represents XSD element 'identifier'
+	Identifier xmlschemaoval_definitions_5.EntityObjectStringType `xml:"identifier"`
+	// Uuid represents XSD element 'uuid'
+	Uuid xmlschemaoval_definitions_5.EntityObjectStringType `xml:"uuid"`
+	// Filter represents XSD element 'filter'
+	// minOccurs=0, maxOccurs=-1
+	Filter []xmlschemaoval_definitions_5.FilterElement `xml:"filter,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+	// nsDeclarations stores namespace prefix->URI mappings for perfect round-trip
+	nsDeclarations map[string]string `xml:"-"`
+	// nsDefaultNamespace stores the default namespace for perfect round-trip
+	nsDefaultNamespace string `xml:"-"`
+	// elementPrefixes stores element name->prefix mappings for perfect round-trip
+	elementPrefixes map[string]string `xml:"-"`
+	// elementsWithXmlns tracks which element names had xmlns in original (element_name -> namespace_uri)
+	// Used to replicate xmlns placement exactly during marshal for zero xmlns delta
+	elementsWithXmlns map[string]string `xml:"-"`
+}
+
+// UnmarshalXML implements custom unmarshaling with namespace preservation
+func (e *Profile_objectElement) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
+	// Create alias type to prevent recursion
+	type alias Profile_objectElement
+	aux := (*alias)(e)
+
+	// Extract namespace declarations from start element
+	e.nsDeclarations = make(map[string]string)
+	e.elementPrefixes = make(map[string]string)
+	var nonXmlnsAttrs []xml.Attr
+	for _, attr := range start.Attr {
+		if attr.Name.Space == "xmlns" {
+			// xmlns:prefix="uri"
+			e.nsDeclarations[attr.Name.Local] = attr.Value
+			// Build reverse map for element prefix restoration
+			e.elementPrefixes[attr.Value] = attr.Name.Local
+		} else if attr.Name.Local == "xmlns" && attr.Name.Space == "" {
+			// xmlns="uri"
+			e.nsDefaultNamespace = attr.Value
+		} else {
+			// Keep non-xmlns attributes for DecodeElement
+			nonXmlnsAttrs = append(nonXmlnsAttrs, attr)
+		}
+	}
+
+	// Remove xmlns from start.Attr to prevent duplication in UnknownAttrs
+	start.Attr = nonXmlnsAttrs
+
+	// Perform standard unmarshal
+	return d.DecodeElement(aux, &start)
+}
+
+// MarshalXML implements custom marshaling with namespace preservation
+func (e *Profile_objectElement) MarshalXML(encoder *xml.Encoder, start xml.StartElement) error {
+	// Use the struct's XMLName to ensure correct element name
+	start.Name = e.XMLName
+
+	// Restore namespace declarations
+	if len(e.nsDeclarations) > 0 {
+		// Add namespace declarations to start element
+		for prefix, uri := range e.nsDeclarations {
+			start.Attr = append(start.Attr, xml.Attr{
+				Name:  xml.Name{Space: "xmlns", Local: prefix},
+				Value: uri,
+			})
+		}
+	}
+	// Restore default namespace declaration if it was present in input
+	// This is necessary for perfect fidelity when elements have redundant xmlns
+	if e.nsDefaultNamespace != "" {
+		start.Attr = append(start.Attr, xml.Attr{
+			Name:  xml.Name{Local: "xmlns"},
+			Value: e.nsDefaultNamespace,
+		})
+	}
+
+	// Create alias type to prevent recursion
+	type alias Profile_objectElement
+	aux := (*alias)(e)
+
+	// Encode using standard marshaler
+	return encoder.EncodeElement(aux, start)
+}
+
+// MarshalIndentClean marshals with perfect namespace fidelity
+// This method: 1) Fixes Go's xmlns corruption, 2) Restores element prefixes
+// Preserves legitimate xmlns on nested elements with different default namespaces
+func (e *Profile_objectElement) MarshalIndentClean(prefix, indent string) ([]byte, error) {
+	data, err := xml.MarshalIndent(e, prefix, indent)
+	if err != nil {
+		return nil, err
+	}
+
+	// Fix Go's namespace corruption:
+	// Go's xml.Encoder corrupts xmlns declarations by:
+	// 1. Prefixing 'xmlns:' with an underscore: 'xmlns:rc' -> '_xmlns:rc'
+	// 2. Adding a bogus 'xmlns:_xmlns="xmlns"' attribute
+	output := string(data)
+
+	// Step 1: Fix Go's namespace corruption
+	// First, remove the bogus xmlns:_xmlns="xmlns" attribute
+	output = strings.ReplaceAll(output, ` xmlns:_xmlns="xmlns"`, "")
+
+	// Then fix all _xmlns: prefixes to xmlns:
+	output = strings.ReplaceAll(output, "_xmlns:", "xmlns:")
+
+	// Also remove any remaining xmlns:xmlns="xmlns" that may appear
+	output = strings.ReplaceAll(output, ` xmlns:xmlns="xmlns"`, "")
+
+	// Fix corrupted XMLSchema-instance namespace
+	// Go sometimes duplicates this as xmlns:_XMLSchema-instance and _XMLSchema-instance:schemaLocation
+	output = strings.ReplaceAll(output, ` xmlns:_XMLSchema-instance="http://www.w3.org/2001/XMLSchema-instance"`, "")
+	output = strings.ReplaceAll(output, "_XMLSchema-instance:", "xsi:")
+
+	// Step 2: Restore element namespace prefixes using the captured prefix map
+	if len(e.elementPrefixes) > 0 {
+		output = restoreElementPrefixes(output, e.elementPrefixes)
+	}
+
+	// Step 3: Replicate xmlns placement from original XML for zero xmlns delta
+	// This adds xmlns to elements that had it in original, removes xmlns from elements that didn't
+	if len(e.elementsWithXmlns) > 0 {
+		output = replicateXmlnsPlacement(output, e.elementsWithXmlns)
+	}
+
+	return []byte(output), nil
+}
+
+// ToBytes marshals the element to bytes with namespace preservation
+// This is the recommended method for serializing to XML with round-trip fidelity
+func (e *Profile_objectElement) ToBytes() ([]byte, error) {
+	return e.MarshalIndentClean("", "  ")
+}
+
+// SetElementPrefixes allows injecting element prefix mappings from raw XML
+// This is typically called after unmarshal with ExtractElementPrefixes(rawXML)
+func (e *Profile_objectElement) SetElementPrefixes(prefixes map[string]string) {
+	e.elementPrefixes = prefixes
+}
+
+// SetElementsWithXmlns allows injecting element->xmlns mappings from raw XML
+// This is typically called after unmarshal with ExtractElementsWithXmlns(rawXML)
+// for perfect xmlns fidelity (zero xmlns delta)
+func (e *Profile_objectElement) SetElementsWithXmlns(elementsWithXmlns map[string]string) {
+	e.elementsWithXmlns = elementsWithXmlns
+}
+
+// SaveToFile saves the element to a file with namespace preservation
+func (e *Profile_objectElement) SaveToFile(path string) error {
+	data, err := e.ToBytes()
+	if err != nil {
+		return err
+	}
+	return os.WriteFile(path, data, 0644)
+}
+
+// LoadProfile_objectFromBytes loads an element from bytes with namespace preservation
+func LoadProfile_objectFromBytes(data []byte) (*Profile_objectElement, error) {
+	// Extract element prefixes from raw XML before unmarshaling
+	elementPrefixes := ExtractElementPrefixes(data)
+	// Extract which elements had xmlns for exact xmlns replication
+	elementsWithXmlns := ExtractElementsWithXmlns(data)
+
+	var element Profile_objectElement
+	if err := xml.Unmarshal(data, &element); err != nil {
+		return nil, err
+	}
+
+	// Store extracted element name -> prefix mappings for restoration during marshal
+	element.elementPrefixes = elementPrefixes
+	// Store element -> xmlns mappings for zero xmlns delta
+	element.elementsWithXmlns = elementsWithXmlns
+
+	return &element, nil
+}
+
+// LoadProfile_objectFromFile loads an element from a file with namespace preservation
+func LoadProfile_objectFromFile(path string) (*Profile_objectElement, error) {
+	data, err := os.ReadFile(path)
+	if err != nil {
+		return nil, err
+	}
+	return LoadProfile_objectFromBytes(data)
+}
+
 // Profile_stateElement represents the XSD element 'profile_state'
 // XSD element declaration (W3C XSD §3.3)
 type Profile_stateElement struct {
@@ -1310,6 +1015,311 @@ func LoadProfile_stateFromFile(path string) (*Profile_stateElement, error) {
 	return LoadProfile_stateFromBytes(data)
 }
 
+// Globalrestrictions_stateElement represents the XSD element 'globalrestrictions_state'
+// XSD element declaration (W3C XSD §3.3)
+type Globalrestrictions_stateElement struct {
+	XMLName                               xml.Name `xml:"http://oval.mitre.org/XMLSchema/oval-definitions-5#apple_ios globalrestrictions_state"`
+	xmlschemaoval_definitions_5.StateType          // XSD extension base
+	// Allow_account_modification represents XSD element 'allow_account_modification'
+	// minOccurs=0, maxOccurs=1
+	Allow_account_modification *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_account_modification,omitempty"`
+	// Allow_airdrop represents XSD element 'allow_airdrop'
+	// minOccurs=0, maxOccurs=1
+	Allow_airdrop *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_airdrop,omitempty"`
+	// Allow_app_cellular_data_modification represents XSD element 'allow_app_cellular_data_modification'
+	// minOccurs=0, maxOccurs=1
+	Allow_app_cellular_data_modification *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_app_cellular_data_modification,omitempty"`
+	// Allow_app_installation represents XSD element 'allow_app_installation'
+	// minOccurs=0, maxOccurs=1
+	Allow_app_installation *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_app_installation,omitempty"`
+	// Allow_assistant represents XSD element 'allow_assistant'
+	// minOccurs=0, maxOccurs=1
+	Allow_assistant *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_assistant,omitempty"`
+	// Allow_assistant_user_generated_content represents XSD element 'allow_assistant_user_generated_content'
+	// minOccurs=0, maxOccurs=1
+	Allow_assistant_user_generated_content *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_assistant_user_generated_content,omitempty"`
+	// Allow_assistant_while_locked represents XSD element 'allow_assistant_while_locked'
+	// minOccurs=0, maxOccurs=1
+	Allow_assistant_while_locked *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_assistant_while_locked,omitempty"`
+	// Allow_bookstore represents XSD element 'allow_bookstore'
+	// minOccurs=0, maxOccurs=1
+	Allow_bookstore *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_bookstore,omitempty"`
+	// Allow_bookstore_erotica represents XSD element 'allow_bookstore_erotica'
+	// minOccurs=0, maxOccurs=1
+	Allow_bookstore_erotica *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_bookstore_erotica,omitempty"`
+	// Allow_camera represents XSD element 'allow_camera'
+	// minOccurs=0, maxOccurs=1
+	Allow_camera *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_camera,omitempty"`
+	// Allow_cloud_backup represents XSD element 'allow_cloud_backup'
+	// minOccurs=0, maxOccurs=1
+	Allow_cloud_backup *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_cloud_backup,omitempty"`
+	// Allow_cloud_document_sync represents XSD element 'allow_cloud_document_sync'
+	// minOccurs=0, maxOccurs=1
+	Allow_cloud_document_sync *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_cloud_document_sync,omitempty"`
+	// Allow_cloud_keychain_sync represents XSD element 'allow_cloud_keychain_sync'
+	// minOccurs=0, maxOccurs=1
+	Allow_cloud_keychain_sync *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_cloud_keychain_sync,omitempty"`
+	// Allow_diagnostic_submission represents XSD element 'allow_diagnostic_submission'
+	// minOccurs=0, maxOccurs=1
+	Allow_diagnostic_submission *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_diagnostic_submission,omitempty"`
+	// Allow_explicit_content represents XSD element 'allow_explicit_content'
+	// minOccurs=0, maxOccurs=1
+	Allow_explicit_content *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_explicit_content,omitempty"`
+	// Allow_find_my_friends_modification represents XSD element 'allow_find_my_friends_modification'
+	// minOccurs=0, maxOccurs=1
+	Allow_find_my_friends_modification *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_find_my_friends_modification,omitempty"`
+	// Allow_fingerprint_for_unlock represents XSD element 'allow_fingerprint_for_unlock'
+	// minOccurs=0, maxOccurs=1
+	Allow_fingerprint_for_unlock *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_fingerprint_for_unlock,omitempty"`
+	// Allow_game_center represents XSD element 'allow_game_center'
+	// minOccurs=0, maxOccurs=1
+	Allow_game_center *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_game_center,omitempty"`
+	// Allow_host_pairing represents XSD element 'allow_host_pairing'
+	// minOccurs=0, maxOccurs=1
+	Allow_host_pairing *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_host_pairing,omitempty"`
+	// Allow_lock_screen_control_center represents XSD element 'allow_lock_screen_control_center'
+	// minOccurs=0, maxOccurs=1
+	Allow_lock_screen_control_center *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_lock_screen_control_center,omitempty"`
+	// Allow_lock_screen_notifications_view represents XSD element 'allow_lock_screen_notifications_view'
+	// minOccurs=0, maxOccurs=1
+	Allow_lock_screen_notifications_view *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_lock_screen_notifications_view,omitempty"`
+	// Allow_lock_screen_today_view represents XSD element 'allow_lock_screen_today_view'
+	// minOccurs=0, maxOccurs=1
+	Allow_lock_screen_today_view *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_lock_screen_today_view,omitempty"`
+	// Allow_open_from_managed_to_unmanaged represents XSD element 'allow_open_from_managed_to_unmanaged'
+	// minOccurs=0, maxOccurs=1
+	Allow_open_from_managed_to_unmanaged *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_open_from_managed_to_unmanaged,omitempty"`
+	// Allow_open_from_unmanaged_to_managed represents XSD element 'allow_open_from_unmanaged_to_managed'
+	// minOccurs=0, maxOccurs=1
+	Allow_open_from_unmanaged_to_managed *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_open_from_unmanaged_to_managed,omitempty"`
+	// Allow_ota_pki_updates represents XSD element 'allow_ota_pki_updates'
+	// minOccurs=0, maxOccurs=1
+	Allow_ota_pki_updates *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_ota_pki_updates,omitempty"`
+	// Allow_passbook_while_locked represents XSD element 'allow_passbook_while_locked'
+	// minOccurs=0, maxOccurs=1
+	Allow_passbook_while_locked *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_passbook_while_locked,omitempty"`
+	// Allow_photo_stream represents XSD element 'allow_photo_stream'
+	// minOccurs=0, maxOccurs=1
+	Allow_photo_stream *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_photo_stream,omitempty"`
+	// Allow_safari represents XSD element 'allow_safari'
+	// minOccurs=0, maxOccurs=1
+	Allow_safari *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_safari,omitempty"`
+	// Allow_screen_shot represents XSD element 'allow_screen_shot'
+	// minOccurs=0, maxOccurs=1
+	Allow_screen_shot *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_screen_shot,omitempty"`
+	// Allow_shared_stream represents XSD element 'allow_shared_stream'
+	// minOccurs=0, maxOccurs=1
+	Allow_shared_stream *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_shared_stream,omitempty"`
+	// Allow_ui_configuration_profile_installation represents XSD element 'allow_ui_configuration_profile_installation'
+	// minOccurs=0, maxOccurs=1
+	Allow_ui_configuration_profile_installation *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_ui_configuration_profile_installation,omitempty"`
+	// Allow_untrusted_tls_prompt represents XSD element 'allow_untrusted_tls_prompt'
+	// minOccurs=0, maxOccurs=1
+	Allow_untrusted_tls_prompt *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_untrusted_tls_prompt,omitempty"`
+	// Allow_voice_dialing represents XSD element 'allow_voice_dialing'
+	// minOccurs=0, maxOccurs=1
+	Allow_voice_dialing *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_voice_dialing,omitempty"`
+	// Allow_youtube represents XSD element 'allow_youtube'
+	// minOccurs=0, maxOccurs=1
+	Allow_youtube *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_youtube,omitempty"`
+	// Allow_itunes represents XSD element 'allow_itunes'
+	// minOccurs=0, maxOccurs=1
+	Allow_itunes *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_itunes,omitempty"`
+	// Autonomous_single_app_mode_permitted_appids represents XSD element 'autonomous_single_app_mode_permitted_appids'
+	// minOccurs=0, maxOccurs=1
+	Autonomous_single_app_mode_permitted_appids *xmlschemaoval_definitions_5.EntityStateStringType `xml:"autonomous_single_app_mode_permitted_appids,omitempty"`
+	// Force_encrypted_backup represents XSD element 'force_encrypted_backup'
+	// minOccurs=0, maxOccurs=1
+	Force_encrypted_backup *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"force_encrypted_backup,omitempty"`
+	// Force_itunes_store_password_entry represents XSD element 'force_itunes_store_password_entry'
+	// minOccurs=0, maxOccurs=1
+	Force_itunes_store_password_entry *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"force_itunes_store_password_entry,omitempty"`
+	// Force_limit_ad_tracking represents XSD element 'force_limit_ad_tracking'
+	// minOccurs=0, maxOccurs=1
+	Force_limit_ad_tracking *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"force_limit_ad_tracking,omitempty"`
+	// Safari_allow_auto_fill represents XSD element 'safari_allow_auto_fill'
+	// minOccurs=0, maxOccurs=1
+	Safari_allow_auto_fill *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"safari_allow_auto_fill,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+	// nsDeclarations stores namespace prefix->URI mappings for perfect round-trip
+	nsDeclarations map[string]string `xml:"-"`
+	// nsDefaultNamespace stores the default namespace for perfect round-trip
+	nsDefaultNamespace string `xml:"-"`
+	// elementPrefixes stores element name->prefix mappings for perfect round-trip
+	elementPrefixes map[string]string `xml:"-"`
+	// elementsWithXmlns tracks which element names had xmlns in original (element_name -> namespace_uri)
+	// Used to replicate xmlns placement exactly during marshal for zero xmlns delta
+	elementsWithXmlns map[string]string `xml:"-"`
+}
+
+// UnmarshalXML implements custom unmarshaling with namespace preservation
+func (e *Globalrestrictions_stateElement) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
+	// Create alias type to prevent recursion
+	type alias Globalrestrictions_stateElement
+	aux := (*alias)(e)
+
+	// Extract namespace declarations from start element
+	e.nsDeclarations = make(map[string]string)
+	e.elementPrefixes = make(map[string]string)
+	var nonXmlnsAttrs []xml.Attr
+	for _, attr := range start.Attr {
+		if attr.Name.Space == "xmlns" {
+			// xmlns:prefix="uri"
+			e.nsDeclarations[attr.Name.Local] = attr.Value
+			// Build reverse map for element prefix restoration
+			e.elementPrefixes[attr.Value] = attr.Name.Local
+		} else if attr.Name.Local == "xmlns" && attr.Name.Space == "" {
+			// xmlns="uri"
+			e.nsDefaultNamespace = attr.Value
+		} else {
+			// Keep non-xmlns attributes for DecodeElement
+			nonXmlnsAttrs = append(nonXmlnsAttrs, attr)
+		}
+	}
+
+	// Remove xmlns from start.Attr to prevent duplication in UnknownAttrs
+	start.Attr = nonXmlnsAttrs
+
+	// Perform standard unmarshal
+	return d.DecodeElement(aux, &start)
+}
+
+// MarshalXML implements custom marshaling with namespace preservation
+func (e *Globalrestrictions_stateElement) MarshalXML(encoder *xml.Encoder, start xml.StartElement) error {
+	// Use the struct's XMLName to ensure correct element name
+	start.Name = e.XMLName
+
+	// Restore namespace declarations
+	if len(e.nsDeclarations) > 0 {
+		// Add namespace declarations to start element
+		for prefix, uri := range e.nsDeclarations {
+			start.Attr = append(start.Attr, xml.Attr{
+				Name:  xml.Name{Space: "xmlns", Local: prefix},
+				Value: uri,
+			})
+		}
+	}
+	// Restore default namespace declaration if it was present in input
+	// This is necessary for perfect fidelity when elements have redundant xmlns
+	if e.nsDefaultNamespace != "" {
+		start.Attr = append(start.Attr, xml.Attr{
+			Name:  xml.Name{Local: "xmlns"},
+			Value: e.nsDefaultNamespace,
+		})
+	}
+
+	// Create alias type to prevent recursion
+	type alias Globalrestrictions_stateElement
+	aux := (*alias)(e)
+
+	// Encode using standard marshaler
+	return encoder.EncodeElement(aux, start)
+}
+
+// MarshalIndentClean marshals with perfect namespace fidelity
+// This method: 1) Fixes Go's xmlns corruption, 2) Restores element prefixes
+// Preserves legitimate xmlns on nested elements with different default namespaces
+func (e *Globalrestrictions_stateElement) MarshalIndentClean(prefix, indent string) ([]byte, error) {
+	data, err := xml.MarshalIndent(e, prefix, indent)
+	if err != nil {
+		return nil, err
+	}
+
+	// Fix Go's namespace corruption:
+	// Go's xml.Encoder corrupts xmlns declarations by:
+	// 1. Prefixing 'xmlns:' with an underscore: 'xmlns:rc' -> '_xmlns:rc'
+	// 2. Adding a bogus 'xmlns:_xmlns="xmlns"' attribute
+	output := string(data)
+
+	// Step 1: Fix Go's namespace corruption
+	// First, remove the bogus xmlns:_xmlns="xmlns" attribute
+	output = strings.ReplaceAll(output, ` xmlns:_xmlns="xmlns"`, "")
+
+	// Then fix all _xmlns: prefixes to xmlns:
+	output = strings.ReplaceAll(output, "_xmlns:", "xmlns:")
+
+	// Also remove any remaining xmlns:xmlns="xmlns" that may appear
+	output = strings.ReplaceAll(output, ` xmlns:xmlns="xmlns"`, "")
+
+	// Fix corrupted XMLSchema-instance namespace
+	// Go sometimes duplicates this as xmlns:_XMLSchema-instance and _XMLSchema-instance:schemaLocation
+	output = strings.ReplaceAll(output, ` xmlns:_XMLSchema-instance="http://www.w3.org/2001/XMLSchema-instance"`, "")
+	output = strings.ReplaceAll(output, "_XMLSchema-instance:", "xsi:")
+
+	// Step 2: Restore element namespace prefixes using the captured prefix map
+	if len(e.elementPrefixes) > 0 {
+		output = restoreElementPrefixes(output, e.elementPrefixes)
+	}
+
+	// Step 3: Replicate xmlns placement from original XML for zero xmlns delta
+	// This adds xmlns to elements that had it in original, removes xmlns from elements that didn't
+	if len(e.elementsWithXmlns) > 0 {
+		output = replicateXmlnsPlacement(output, e.elementsWithXmlns)
+	}
+
+	return []byte(output), nil
+}
+
+// ToBytes marshals the element to bytes with namespace preservation
+// This is the recommended method for serializing to XML with round-trip fidelity
+func (e *Globalrestrictions_stateElement) ToBytes() ([]byte, error) {
+	return e.MarshalIndentClean("", "  ")
+}
+
+// SetElementPrefixes allows injecting element prefix mappings from raw XML
+// This is typically called after unmarshal with ExtractElementPrefixes(rawXML)
+func (e *Globalrestrictions_stateElement) SetElementPrefixes(prefixes map[string]string) {
+	e.elementPrefixes = prefixes
+}
+
+// SetElementsWithXmlns allows injecting element->xmlns mappings from raw XML
+// This is typically called after unmarshal with ExtractElementsWithXmlns(rawXML)
+// for perfect xmlns fidelity (zero xmlns delta)
+func (e *Globalrestrictions_stateElement) SetElementsWithXmlns(elementsWithXmlns map[string]string) {
+	e.elementsWithXmlns = elementsWithXmlns
+}
+
+// SaveToFile saves the element to a file with namespace preservation
+func (e *Globalrestrictions_stateElement) SaveToFile(path string) error {
+	data, err := e.ToBytes()
+	if err != nil {
+		return err
+	}
+	return os.WriteFile(path, data, 0644)
+}
+
+// LoadGlobalrestrictions_stateFromBytes loads an element from bytes with namespace preservation
+func LoadGlobalrestrictions_stateFromBytes(data []byte) (*Globalrestrictions_stateElement, error) {
+	// Extract element prefixes from raw XML before unmarshaling
+	elementPrefixes := ExtractElementPrefixes(data)
+	// Extract which elements had xmlns for exact xmlns replication
+	elementsWithXmlns := ExtractElementsWithXmlns(data)
+
+	var element Globalrestrictions_stateElement
+	if err := xml.Unmarshal(data, &element); err != nil {
+		return nil, err
+	}
+
+	// Store extracted element name -> prefix mappings for restoration during marshal
+	element.elementPrefixes = elementPrefixes
+	// Store element -> xmlns mappings for zero xmlns delta
+	element.elementsWithXmlns = elementsWithXmlns
+
+	return &element, nil
+}
+
+// LoadGlobalrestrictions_stateFromFile loads an element from a file with namespace preservation
+func LoadGlobalrestrictions_stateFromFile(path string) (*Globalrestrictions_stateElement, error) {
+	data, err := os.ReadFile(path)
+	if err != nil {
+		return nil, err
+	}
+	return LoadGlobalrestrictions_stateFromBytes(data)
+}
+
 // Globalrestrictions_testElement represents the XSD element 'globalrestrictions_test'
 // XSD element declaration (W3C XSD §3.3)
 type Globalrestrictions_testElement struct {
@@ -1500,10 +1510,195 @@ func LoadGlobalrestrictions_testFromFile(path string) (*Globalrestrictions_testE
 	return LoadGlobalrestrictions_testFromBytes(data)
 }
 
-// Profile_testElement represents the XSD element 'profile_test'
+// Globalrestrictions_objectElement represents the XSD element 'globalrestrictions_object'
 // XSD element declaration (W3C XSD §3.3)
-type Profile_testElement struct {
-	XMLName                              xml.Name `xml:"http://oval.mitre.org/XMLSchema/oval-definitions-5#apple_ios profile_test"`
+type Globalrestrictions_objectElement struct {
+	XMLName                                           xml.Name `xml:"http://oval.mitre.org/XMLSchema/oval-definitions-5#apple_ios globalrestrictions_object"`
+	xmlschemaoval_system_characteristics_5.ObjectType          // XSD extension base
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+	// nsDeclarations stores namespace prefix->URI mappings for perfect round-trip
+	nsDeclarations map[string]string `xml:"-"`
+	// nsDefaultNamespace stores the default namespace for perfect round-trip
+	nsDefaultNamespace string `xml:"-"`
+	// elementPrefixes stores element name->prefix mappings for perfect round-trip
+	elementPrefixes map[string]string `xml:"-"`
+	// elementsWithXmlns tracks which element names had xmlns in original (element_name -> namespace_uri)
+	// Used to replicate xmlns placement exactly during marshal for zero xmlns delta
+	elementsWithXmlns map[string]string `xml:"-"`
+}
+
+// UnmarshalXML implements custom unmarshaling with namespace preservation
+func (e *Globalrestrictions_objectElement) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
+	// Create alias type to prevent recursion
+	type alias Globalrestrictions_objectElement
+	aux := (*alias)(e)
+
+	// Extract namespace declarations from start element
+	e.nsDeclarations = make(map[string]string)
+	e.elementPrefixes = make(map[string]string)
+	var nonXmlnsAttrs []xml.Attr
+	for _, attr := range start.Attr {
+		if attr.Name.Space == "xmlns" {
+			// xmlns:prefix="uri"
+			e.nsDeclarations[attr.Name.Local] = attr.Value
+			// Build reverse map for element prefix restoration
+			e.elementPrefixes[attr.Value] = attr.Name.Local
+		} else if attr.Name.Local == "xmlns" && attr.Name.Space == "" {
+			// xmlns="uri"
+			e.nsDefaultNamespace = attr.Value
+		} else {
+			// Keep non-xmlns attributes for DecodeElement
+			nonXmlnsAttrs = append(nonXmlnsAttrs, attr)
+		}
+	}
+
+	// Remove xmlns from start.Attr to prevent duplication in UnknownAttrs
+	start.Attr = nonXmlnsAttrs
+
+	// Perform standard unmarshal
+	return d.DecodeElement(aux, &start)
+}
+
+// MarshalXML implements custom marshaling with namespace preservation
+func (e *Globalrestrictions_objectElement) MarshalXML(encoder *xml.Encoder, start xml.StartElement) error {
+	// Use the struct's XMLName to ensure correct element name
+	start.Name = e.XMLName
+
+	// Restore namespace declarations
+	if len(e.nsDeclarations) > 0 {
+		// Add namespace declarations to start element
+		for prefix, uri := range e.nsDeclarations {
+			start.Attr = append(start.Attr, xml.Attr{
+				Name:  xml.Name{Space: "xmlns", Local: prefix},
+				Value: uri,
+			})
+		}
+	}
+	// Restore default namespace declaration if it was present in input
+	// This is necessary for perfect fidelity when elements have redundant xmlns
+	if e.nsDefaultNamespace != "" {
+		start.Attr = append(start.Attr, xml.Attr{
+			Name:  xml.Name{Local: "xmlns"},
+			Value: e.nsDefaultNamespace,
+		})
+	}
+
+	// Create alias type to prevent recursion
+	type alias Globalrestrictions_objectElement
+	aux := (*alias)(e)
+
+	// Encode using standard marshaler
+	return encoder.EncodeElement(aux, start)
+}
+
+// MarshalIndentClean marshals with perfect namespace fidelity
+// This method: 1) Fixes Go's xmlns corruption, 2) Restores element prefixes
+// Preserves legitimate xmlns on nested elements with different default namespaces
+func (e *Globalrestrictions_objectElement) MarshalIndentClean(prefix, indent string) ([]byte, error) {
+	data, err := xml.MarshalIndent(e, prefix, indent)
+	if err != nil {
+		return nil, err
+	}
+
+	// Fix Go's namespace corruption:
+	// Go's xml.Encoder corrupts xmlns declarations by:
+	// 1. Prefixing 'xmlns:' with an underscore: 'xmlns:rc' -> '_xmlns:rc'
+	// 2. Adding a bogus 'xmlns:_xmlns="xmlns"' attribute
+	output := string(data)
+
+	// Step 1: Fix Go's namespace corruption
+	// First, remove the bogus xmlns:_xmlns="xmlns" attribute
+	output = strings.ReplaceAll(output, ` xmlns:_xmlns="xmlns"`, "")
+
+	// Then fix all _xmlns: prefixes to xmlns:
+	output = strings.ReplaceAll(output, "_xmlns:", "xmlns:")
+
+	// Also remove any remaining xmlns:xmlns="xmlns" that may appear
+	output = strings.ReplaceAll(output, ` xmlns:xmlns="xmlns"`, "")
+
+	// Fix corrupted XMLSchema-instance namespace
+	// Go sometimes duplicates this as xmlns:_XMLSchema-instance and _XMLSchema-instance:schemaLocation
+	output = strings.ReplaceAll(output, ` xmlns:_XMLSchema-instance="http://www.w3.org/2001/XMLSchema-instance"`, "")
+	output = strings.ReplaceAll(output, "_XMLSchema-instance:", "xsi:")
+
+	// Step 2: Restore element namespace prefixes using the captured prefix map
+	if len(e.elementPrefixes) > 0 {
+		output = restoreElementPrefixes(output, e.elementPrefixes)
+	}
+
+	// Step 3: Replicate xmlns placement from original XML for zero xmlns delta
+	// This adds xmlns to elements that had it in original, removes xmlns from elements that didn't
+	if len(e.elementsWithXmlns) > 0 {
+		output = replicateXmlnsPlacement(output, e.elementsWithXmlns)
+	}
+
+	return []byte(output), nil
+}
+
+// ToBytes marshals the element to bytes with namespace preservation
+// This is the recommended method for serializing to XML with round-trip fidelity
+func (e *Globalrestrictions_objectElement) ToBytes() ([]byte, error) {
+	return e.MarshalIndentClean("", "  ")
+}
+
+// SetElementPrefixes allows injecting element prefix mappings from raw XML
+// This is typically called after unmarshal with ExtractElementPrefixes(rawXML)
+func (e *Globalrestrictions_objectElement) SetElementPrefixes(prefixes map[string]string) {
+	e.elementPrefixes = prefixes
+}
+
+// SetElementsWithXmlns allows injecting element->xmlns mappings from raw XML
+// This is typically called after unmarshal with ExtractElementsWithXmlns(rawXML)
+// for perfect xmlns fidelity (zero xmlns delta)
+func (e *Globalrestrictions_objectElement) SetElementsWithXmlns(elementsWithXmlns map[string]string) {
+	e.elementsWithXmlns = elementsWithXmlns
+}
+
+// SaveToFile saves the element to a file with namespace preservation
+func (e *Globalrestrictions_objectElement) SaveToFile(path string) error {
+	data, err := e.ToBytes()
+	if err != nil {
+		return err
+	}
+	return os.WriteFile(path, data, 0644)
+}
+
+// LoadGlobalrestrictions_objectFromBytes loads an element from bytes with namespace preservation
+func LoadGlobalrestrictions_objectFromBytes(data []byte) (*Globalrestrictions_objectElement, error) {
+	// Extract element prefixes from raw XML before unmarshaling
+	elementPrefixes := ExtractElementPrefixes(data)
+	// Extract which elements had xmlns for exact xmlns replication
+	elementsWithXmlns := ExtractElementsWithXmlns(data)
+
+	var element Globalrestrictions_objectElement
+	if err := xml.Unmarshal(data, &element); err != nil {
+		return nil, err
+	}
+
+	// Store extracted element name -> prefix mappings for restoration during marshal
+	element.elementPrefixes = elementPrefixes
+	// Store element -> xmlns mappings for zero xmlns delta
+	element.elementsWithXmlns = elementsWithXmlns
+
+	return &element, nil
+}
+
+// LoadGlobalrestrictions_objectFromFile loads an element from a file with namespace preservation
+func LoadGlobalrestrictions_objectFromFile(path string) (*Globalrestrictions_objectElement, error) {
+	data, err := os.ReadFile(path)
+	if err != nil {
+		return nil, err
+	}
+	return LoadGlobalrestrictions_objectFromBytes(data)
+}
+
+// Passcodepolicy_testElement represents the XSD element 'passcodepolicy_test'
+// XSD element declaration (W3C XSD §3.3)
+type Passcodepolicy_testElement struct {
+	XMLName                              xml.Name `xml:"http://oval.mitre.org/XMLSchema/oval-definitions-5#apple_ios passcodepolicy_test"`
 	xmlschemaoval_definitions_5.TestType          // XSD extension base
 	// Object represents XSD element 'object'
 	Object xmlschemaoval_definitions_5.ObjectRefType `xml:"object"`
@@ -1526,9 +1721,9 @@ type Profile_testElement struct {
 }
 
 // UnmarshalXML implements custom unmarshaling with namespace preservation
-func (e *Profile_testElement) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
+func (e *Passcodepolicy_testElement) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
 	// Create alias type to prevent recursion
-	type alias Profile_testElement
+	type alias Passcodepolicy_testElement
 	aux := (*alias)(e)
 
 	// Extract namespace declarations from start element
@@ -1558,7 +1753,7 @@ func (e *Profile_testElement) UnmarshalXML(d *xml.Decoder, start xml.StartElemen
 }
 
 // MarshalXML implements custom marshaling with namespace preservation
-func (e *Profile_testElement) MarshalXML(encoder *xml.Encoder, start xml.StartElement) error {
+func (e *Passcodepolicy_testElement) MarshalXML(encoder *xml.Encoder, start xml.StartElement) error {
 	// Use the struct's XMLName to ensure correct element name
 	start.Name = e.XMLName
 
@@ -1582,7 +1777,7 @@ func (e *Profile_testElement) MarshalXML(encoder *xml.Encoder, start xml.StartEl
 	}
 
 	// Create alias type to prevent recursion
-	type alias Profile_testElement
+	type alias Passcodepolicy_testElement
 	aux := (*alias)(e)
 
 	// Encode using standard marshaler
@@ -1592,7 +1787,7 @@ func (e *Profile_testElement) MarshalXML(encoder *xml.Encoder, start xml.StartEl
 // MarshalIndentClean marshals with perfect namespace fidelity
 // This method: 1) Fixes Go's xmlns corruption, 2) Restores element prefixes
 // Preserves legitimate xmlns on nested elements with different default namespaces
-func (e *Profile_testElement) MarshalIndentClean(prefix, indent string) ([]byte, error) {
+func (e *Passcodepolicy_testElement) MarshalIndentClean(prefix, indent string) ([]byte, error) {
 	data, err := xml.MarshalIndent(e, prefix, indent)
 	if err != nil {
 		return nil, err
@@ -1635,25 +1830,25 @@ func (e *Profile_testElement) MarshalIndentClean(prefix, indent string) ([]byte,
 
 // ToBytes marshals the element to bytes with namespace preservation
 // This is the recommended method for serializing to XML with round-trip fidelity
-func (e *Profile_testElement) ToBytes() ([]byte, error) {
+func (e *Passcodepolicy_testElement) ToBytes() ([]byte, error) {
 	return e.MarshalIndentClean("", "  ")
 }
 
 // SetElementPrefixes allows injecting element prefix mappings from raw XML
 // This is typically called after unmarshal with ExtractElementPrefixes(rawXML)
-func (e *Profile_testElement) SetElementPrefixes(prefixes map[string]string) {
+func (e *Passcodepolicy_testElement) SetElementPrefixes(prefixes map[string]string) {
 	e.elementPrefixes = prefixes
 }
 
 // SetElementsWithXmlns allows injecting element->xmlns mappings from raw XML
 // This is typically called after unmarshal with ExtractElementsWithXmlns(rawXML)
 // for perfect xmlns fidelity (zero xmlns delta)
-func (e *Profile_testElement) SetElementsWithXmlns(elementsWithXmlns map[string]string) {
+func (e *Passcodepolicy_testElement) SetElementsWithXmlns(elementsWithXmlns map[string]string) {
 	e.elementsWithXmlns = elementsWithXmlns
 }
 
 // SaveToFile saves the element to a file with namespace preservation
-func (e *Profile_testElement) SaveToFile(path string) error {
+func (e *Passcodepolicy_testElement) SaveToFile(path string) error {
 	data, err := e.ToBytes()
 	if err != nil {
 		return err
@@ -1661,14 +1856,14 @@ func (e *Profile_testElement) SaveToFile(path string) error {
 	return os.WriteFile(path, data, 0644)
 }
 
-// LoadProfile_testFromBytes loads an element from bytes with namespace preservation
-func LoadProfile_testFromBytes(data []byte) (*Profile_testElement, error) {
+// LoadPasscodepolicy_testFromBytes loads an element from bytes with namespace preservation
+func LoadPasscodepolicy_testFromBytes(data []byte) (*Passcodepolicy_testElement, error) {
 	// Extract element prefixes from raw XML before unmarshaling
 	elementPrefixes := ExtractElementPrefixes(data)
 	// Extract which elements had xmlns for exact xmlns replication
 	elementsWithXmlns := ExtractElementsWithXmlns(data)
 
-	var element Profile_testElement
+	var element Passcodepolicy_testElement
 	if err := xml.Unmarshal(data, &element); err != nil {
 		return nil, err
 	}
@@ -1681,205 +1876,11 @@ func LoadProfile_testFromBytes(data []byte) (*Profile_testElement, error) {
 	return &element, nil
 }
 
-// LoadProfile_testFromFile loads an element from a file with namespace preservation
-func LoadProfile_testFromFile(path string) (*Profile_testElement, error) {
+// LoadPasscodepolicy_testFromFile loads an element from a file with namespace preservation
+func LoadPasscodepolicy_testFromFile(path string) (*Passcodepolicy_testElement, error) {
 	data, err := os.ReadFile(path)
 	if err != nil {
 		return nil, err
 	}
-	return LoadProfile_testFromBytes(data)
-}
-
-// Profile_objectElement represents the XSD element 'profile_object'
-// XSD element declaration (W3C XSD §3.3)
-type Profile_objectElement struct {
-	XMLName                                           xml.Name `xml:"http://oval.mitre.org/XMLSchema/oval-definitions-5#apple_ios profile_object"`
-	xmlschemaoval_system_characteristics_5.ObjectType          // XSD extension base
-	// Set represents XSD element 'set'
-	Set *xmlschemaoval_definitions_5.SetElement `xml:"set,omitempty"`
-	// Identifier represents XSD element 'identifier'
-	Identifier xmlschemaoval_definitions_5.EntityObjectStringType `xml:"identifier"`
-	// Uuid represents XSD element 'uuid'
-	Uuid xmlschemaoval_definitions_5.EntityObjectStringType `xml:"uuid"`
-	// Filter represents XSD element 'filter'
-	// minOccurs=0, maxOccurs=-1
-	Filter []xmlschemaoval_definitions_5.FilterElement `xml:"filter,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-	// nsDeclarations stores namespace prefix->URI mappings for perfect round-trip
-	nsDeclarations map[string]string `xml:"-"`
-	// nsDefaultNamespace stores the default namespace for perfect round-trip
-	nsDefaultNamespace string `xml:"-"`
-	// elementPrefixes stores element name->prefix mappings for perfect round-trip
-	elementPrefixes map[string]string `xml:"-"`
-	// elementsWithXmlns tracks which element names had xmlns in original (element_name -> namespace_uri)
-	// Used to replicate xmlns placement exactly during marshal for zero xmlns delta
-	elementsWithXmlns map[string]string `xml:"-"`
-}
-
-// UnmarshalXML implements custom unmarshaling with namespace preservation
-func (e *Profile_objectElement) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
-	// Create alias type to prevent recursion
-	type alias Profile_objectElement
-	aux := (*alias)(e)
-
-	// Extract namespace declarations from start element
-	e.nsDeclarations = make(map[string]string)
-	e.elementPrefixes = make(map[string]string)
-	var nonXmlnsAttrs []xml.Attr
-	for _, attr := range start.Attr {
-		if attr.Name.Space == "xmlns" {
-			// xmlns:prefix="uri"
-			e.nsDeclarations[attr.Name.Local] = attr.Value
-			// Build reverse map for element prefix restoration
-			e.elementPrefixes[attr.Value] = attr.Name.Local
-		} else if attr.Name.Local == "xmlns" && attr.Name.Space == "" {
-			// xmlns="uri"
-			e.nsDefaultNamespace = attr.Value
-		} else {
-			// Keep non-xmlns attributes for DecodeElement
-			nonXmlnsAttrs = append(nonXmlnsAttrs, attr)
-		}
-	}
-
-	// Remove xmlns from start.Attr to prevent duplication in UnknownAttrs
-	start.Attr = nonXmlnsAttrs
-
-	// Perform standard unmarshal
-	return d.DecodeElement(aux, &start)
-}
-
-// MarshalXML implements custom marshaling with namespace preservation
-func (e *Profile_objectElement) MarshalXML(encoder *xml.Encoder, start xml.StartElement) error {
-	// Use the struct's XMLName to ensure correct element name
-	start.Name = e.XMLName
-
-	// Restore namespace declarations
-	if len(e.nsDeclarations) > 0 {
-		// Add namespace declarations to start element
-		for prefix, uri := range e.nsDeclarations {
-			start.Attr = append(start.Attr, xml.Attr{
-				Name:  xml.Name{Space: "xmlns", Local: prefix},
-				Value: uri,
-			})
-		}
-	}
-	// Restore default namespace declaration if it was present in input
-	// This is necessary for perfect fidelity when elements have redundant xmlns
-	if e.nsDefaultNamespace != "" {
-		start.Attr = append(start.Attr, xml.Attr{
-			Name:  xml.Name{Local: "xmlns"},
-			Value: e.nsDefaultNamespace,
-		})
-	}
-
-	// Create alias type to prevent recursion
-	type alias Profile_objectElement
-	aux := (*alias)(e)
-
-	// Encode using standard marshaler
-	return encoder.EncodeElement(aux, start)
-}
-
-// MarshalIndentClean marshals with perfect namespace fidelity
-// This method: 1) Fixes Go's xmlns corruption, 2) Restores element prefixes
-// Preserves legitimate xmlns on nested elements with different default namespaces
-func (e *Profile_objectElement) MarshalIndentClean(prefix, indent string) ([]byte, error) {
-	data, err := xml.MarshalIndent(e, prefix, indent)
-	if err != nil {
-		return nil, err
-	}
-
-	// Fix Go's namespace corruption:
-	// Go's xml.Encoder corrupts xmlns declarations by:
-	// 1. Prefixing 'xmlns:' with an underscore: 'xmlns:rc' -> '_xmlns:rc'
-	// 2. Adding a bogus 'xmlns:_xmlns="xmlns"' attribute
-	output := string(data)
-
-	// Step 1: Fix Go's namespace corruption
-	// First, remove the bogus xmlns:_xmlns="xmlns" attribute
-	output = strings.ReplaceAll(output, ` xmlns:_xmlns="xmlns"`, "")
-
-	// Then fix all _xmlns: prefixes to xmlns:
-	output = strings.ReplaceAll(output, "_xmlns:", "xmlns:")
-
-	// Also remove any remaining xmlns:xmlns="xmlns" that may appear
-	output = strings.ReplaceAll(output, ` xmlns:xmlns="xmlns"`, "")
-
-	// Fix corrupted XMLSchema-instance namespace
-	// Go sometimes duplicates this as xmlns:_XMLSchema-instance and _XMLSchema-instance:schemaLocation
-	output = strings.ReplaceAll(output, ` xmlns:_XMLSchema-instance="http://www.w3.org/2001/XMLSchema-instance"`, "")
-	output = strings.ReplaceAll(output, "_XMLSchema-instance:", "xsi:")
-
-	// Step 2: Restore element namespace prefixes using the captured prefix map
-	if len(e.elementPrefixes) > 0 {
-		output = restoreElementPrefixes(output, e.elementPrefixes)
-	}
-
-	// Step 3: Replicate xmlns placement from original XML for zero xmlns delta
-	// This adds xmlns to elements that had it in original, removes xmlns from elements that didn't
-	if len(e.elementsWithXmlns) > 0 {
-		output = replicateXmlnsPlacement(output, e.elementsWithXmlns)
-	}
-
-	return []byte(output), nil
-}
-
-// ToBytes marshals the element to bytes with namespace preservation
-// This is the recommended method for serializing to XML with round-trip fidelity
-func (e *Profile_objectElement) ToBytes() ([]byte, error) {
-	return e.MarshalIndentClean("", "  ")
-}
-
-// SetElementPrefixes allows injecting element prefix mappings from raw XML
-// This is typically called after unmarshal with ExtractElementPrefixes(rawXML)
-func (e *Profile_objectElement) SetElementPrefixes(prefixes map[string]string) {
-	e.elementPrefixes = prefixes
-}
-
-// SetElementsWithXmlns allows injecting element->xmlns mappings from raw XML
-// This is typically called after unmarshal with ExtractElementsWithXmlns(rawXML)
-// for perfect xmlns fidelity (zero xmlns delta)
-func (e *Profile_objectElement) SetElementsWithXmlns(elementsWithXmlns map[string]string) {
-	e.elementsWithXmlns = elementsWithXmlns
-}
-
-// SaveToFile saves the element to a file with namespace preservation
-func (e *Profile_objectElement) SaveToFile(path string) error {
-	data, err := e.ToBytes()
-	if err != nil {
-		return err
-	}
-	return os.WriteFile(path, data, 0644)
-}
-
-// LoadProfile_objectFromBytes loads an element from bytes with namespace preservation
-func LoadProfile_objectFromBytes(data []byte) (*Profile_objectElement, error) {
-	// Extract element prefixes from raw XML before unmarshaling
-	elementPrefixes := ExtractElementPrefixes(data)
-	// Extract which elements had xmlns for exact xmlns replication
-	elementsWithXmlns := ExtractElementsWithXmlns(data)
-
-	var element Profile_objectElement
-	if err := xml.Unmarshal(data, &element); err != nil {
-		return nil, err
-	}
-
-	// Store extracted element name -> prefix mappings for restoration during marshal
-	element.elementPrefixes = elementPrefixes
-	// Store element -> xmlns mappings for zero xmlns delta
-	element.elementsWithXmlns = elementsWithXmlns
-
-	return &element, nil
-}
-
-// LoadProfile_objectFromFile loads an element from a file with namespace preservation
-func LoadProfile_objectFromFile(path string) (*Profile_objectElement, error) {
-	data, err := os.ReadFile(path)
-	if err != nil {
-		return nil, err
-	}
-	return LoadProfile_objectFromBytes(data)
+	return LoadPasscodepolicy_testFromBytes(data)
 }

@@ -92,17 +92,18 @@ func validateOVAL(data []byte, filename string) {
 		}
 	}
 
+	// Tests, Objects, States, and Variables use UnknownElements for substitution groups
 	if ovalDef.Tests != nil {
-		fmt.Printf("\nTests: %d\n", len(ovalDef.Tests.Test))
+		fmt.Printf("\nTests: %d\n", len(ovalDef.Tests.UnknownElements))
 	}
 	if ovalDef.Objects != nil {
-		fmt.Printf("Objects: %d\n", len(ovalDef.Objects.Object))
+		fmt.Printf("Objects: %d\n", len(ovalDef.Objects.UnknownElements))
 	}
 	if ovalDef.States != nil {
-		fmt.Printf("States: %d\n", len(ovalDef.States.State))
+		fmt.Printf("States: %d\n", len(ovalDef.States.UnknownElements))
 	}
 	if ovalDef.Variables != nil {
-		fmt.Printf("Variables: present\n")
+		fmt.Printf("Variables: %d\n", len(ovalDef.Variables.UnknownElements))
 	}
 
 	fmt.Println("\n✅ OVAL validation successful!")

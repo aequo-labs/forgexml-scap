@@ -311,7 +311,12 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         postProcess: function(event, data) {
             // Convert API response to Fancytree format
+            // Handle null response (leaf nodes with no children return null)
             const nodes = data.response;
+            if (!nodes || !Array.isArray(nodes)) {
+                data.result = [];
+                return;
+            }
             data.result = nodes.map(convertToFancytreeNode);
         },
         lazyLoad: function(event, data) {
@@ -319,36 +324,13 @@ document.addEventListener('DOMContentLoaded', function() {
             const node = data.node;
             const path = node.data.path || node.key;
             
-            // Use a deferred that Fancytree can properly handle
-            const dfd = $.Deferred();
-            $.ajax({
+            // Set data.result to a jQuery ajax promise
+            // Fancytree will use postProcess to convert the response
+            data.result = {
                 url: `/api/tree/children?path=${encodeURIComponent(path)}`,
-                dataType: "json"
-            }).done(function(response) {
-                console.log('LazyLoad response:', response);
-                console.log('First item:', response[0]);
-                const nodes = response.map(function(apiNode) {
-                    const converted = {
-                        title: apiNode.label || apiNode.id || apiNode.type || 'Unknown',
-                        key: apiNode.path || apiNode.id,
-                        lazy: apiNode.hasChildren !== false,
-                        folder: apiNode.hasChildren !== false,
-                        data: {
-                            path: apiNode.path || apiNode.id,
-                            type: apiNode.type,
-                            label: apiNode.label
-                        }
-                    };
-                    console.log('Converted node:', converted);
-                    return converted;
-                });
-                console.log('Resolved nodes:', nodes);
-                dfd.resolve(nodes);
-            }).fail(function(xhr, status, error) {
-                console.error('Failed to load children:', error);
-                dfd.reject();
-            });
-            data.result = dfd.promise();
+                dataType: "json",
+                cache: false
+            };
         },
         activate: function(event, data) {
             // Node selected/clicked

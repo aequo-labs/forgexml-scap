@@ -19,6 +19,36 @@ func normalizeXML(xmlData []byte) string {
 	return pattern.ReplaceAllString(xmlStr, "$1")
 }
 
+// TestAffectedCPEListType_MarshalUnmarshal tests XML round-trip for AffectedCPEListType
+func TestAffectedCPEListType_MarshalUnmarshal(t *testing.T) {
+	original := &AffectedCPEListType{}
+
+	// Marshal to XML
+	xmlData, err := xml.MarshalIndent(original, "", "  ")
+	if err != nil {
+		t.Fatalf("Marshal failed: %v", err)
+	}
+
+	// Unmarshal back
+	var decoded AffectedCPEListType
+	if err := xml.Unmarshal(xmlData, &decoded); err != nil {
+		t.Fatalf("Unmarshal failed: %v", err)
+	}
+
+	// Re-marshal to compare
+	xmlData2, err := xml.MarshalIndent(&decoded, "", "  ")
+	if err != nil {
+		t.Fatalf("Re-marshal failed: %v", err)
+	}
+
+	// Compare XML outputs (normalize to handle Go encoder quirks)
+	normalized1 := normalizeXML(xmlData)
+	normalized2 := normalizeXML(xmlData2)
+	if normalized1 != normalized2 {
+		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
 // TestAffectedType_MarshalUnmarshal tests XML round-trip for AffectedType
 func TestAffectedType_MarshalUnmarshal(t *testing.T) {
 	original := &AffectedType{}
@@ -308,6 +338,36 @@ func TestCountFunctionType_MarshalUnmarshal(t *testing.T) {
 
 	// Unmarshal back
 	var decoded CountFunctionType
+	if err := xml.Unmarshal(xmlData, &decoded); err != nil {
+		t.Fatalf("Unmarshal failed: %v", err)
+	}
+
+	// Re-marshal to compare
+	xmlData2, err := xml.MarshalIndent(&decoded, "", "  ")
+	if err != nil {
+		t.Fatalf("Re-marshal failed: %v", err)
+	}
+
+	// Compare XML outputs (normalize to handle Go encoder quirks)
+	normalized1 := normalizeXML(xmlData)
+	normalized2 := normalizeXML(xmlData2)
+	if normalized1 != normalized2 {
+		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestCreatedElementType_MarshalUnmarshal tests XML round-trip for CreatedElementType
+func TestCreatedElementType_MarshalUnmarshal(t *testing.T) {
+	original := &CreatedElementType{}
+
+	// Marshal to XML
+	xmlData, err := xml.MarshalIndent(original, "", "  ")
+	if err != nil {
+		t.Fatalf("Marshal failed: %v", err)
+	}
+
+	// Unmarshal back
+	var decoded CreatedElementType
 	if err := xml.Unmarshal(xmlData, &decoded); err != nil {
 		t.Fatalf("Unmarshal failed: %v", err)
 	}
@@ -2094,6 +2154,66 @@ func TestLocal_variableElementType_MarshalUnmarshal(t *testing.T) {
 	}
 }
 
+// TestMetadataContributorType_MarshalUnmarshal tests XML round-trip for MetadataContributorType
+func TestMetadataContributorType_MarshalUnmarshal(t *testing.T) {
+	original := &MetadataContributorType{}
+
+	// Marshal to XML
+	xmlData, err := xml.MarshalIndent(original, "", "  ")
+	if err != nil {
+		t.Fatalf("Marshal failed: %v", err)
+	}
+
+	// Unmarshal back
+	var decoded MetadataContributorType
+	if err := xml.Unmarshal(xmlData, &decoded); err != nil {
+		t.Fatalf("Unmarshal failed: %v", err)
+	}
+
+	// Re-marshal to compare
+	xmlData2, err := xml.MarshalIndent(&decoded, "", "  ")
+	if err != nil {
+		t.Fatalf("Re-marshal failed: %v", err)
+	}
+
+	// Compare XML outputs (normalize to handle Go encoder quirks)
+	normalized1 := normalizeXML(xmlData)
+	normalized2 := normalizeXML(xmlData2)
+	if normalized1 != normalized2 {
+		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestMetadataDatesType_MarshalUnmarshal tests XML round-trip for MetadataDatesType
+func TestMetadataDatesType_MarshalUnmarshal(t *testing.T) {
+	original := &MetadataDatesType{}
+
+	// Marshal to XML
+	xmlData, err := xml.MarshalIndent(original, "", "  ")
+	if err != nil {
+		t.Fatalf("Marshal failed: %v", err)
+	}
+
+	// Unmarshal back
+	var decoded MetadataDatesType
+	if err := xml.Unmarshal(xmlData, &decoded); err != nil {
+		t.Fatalf("Unmarshal failed: %v", err)
+	}
+
+	// Re-marshal to compare
+	xmlData2, err := xml.MarshalIndent(&decoded, "", "  ")
+	if err != nil {
+		t.Fatalf("Re-marshal failed: %v", err)
+	}
+
+	// Compare XML outputs (normalize to handle Go encoder quirks)
+	normalized1 := normalizeXML(xmlData)
+	normalized2 := normalizeXML(xmlData2)
+	if normalized1 != normalized2 {
+		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
 // TestMetadataType_MarshalUnmarshal tests XML round-trip for MetadataType
 func TestMetadataType_MarshalUnmarshal(t *testing.T) {
 	original := &MetadataType{}
@@ -2106,6 +2226,36 @@ func TestMetadataType_MarshalUnmarshal(t *testing.T) {
 
 	// Unmarshal back
 	var decoded MetadataType
+	if err := xml.Unmarshal(xmlData, &decoded); err != nil {
+		t.Fatalf("Unmarshal failed: %v", err)
+	}
+
+	// Re-marshal to compare
+	xmlData2, err := xml.MarshalIndent(&decoded, "", "  ")
+	if err != nil {
+		t.Fatalf("Re-marshal failed: %v", err)
+	}
+
+	// Compare XML outputs (normalize to handle Go encoder quirks)
+	normalized1 := normalizeXML(xmlData)
+	normalized2 := normalizeXML(xmlData2)
+	if normalized1 != normalized2 {
+		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestModifiedElementType_MarshalUnmarshal tests XML round-trip for ModifiedElementType
+func TestModifiedElementType_MarshalUnmarshal(t *testing.T) {
+	original := &ModifiedElementType{}
+
+	// Marshal to XML
+	xmlData, err := xml.MarshalIndent(original, "", "  ")
+	if err != nil {
+		t.Fatalf("Marshal failed: %v", err)
+	}
+
+	// Unmarshal back
+	var decoded ModifiedElementType
 	if err := xml.Unmarshal(xmlData, &decoded); err != nil {
 		t.Fatalf("Unmarshal failed: %v", err)
 	}
@@ -3221,6 +3371,66 @@ func TestStatesType_MarshalUnmarshal(t *testing.T) {
 
 	// Unmarshal back
 	var decoded StatesType
+	if err := xml.Unmarshal(xmlData, &decoded); err != nil {
+		t.Fatalf("Unmarshal failed: %v", err)
+	}
+
+	// Re-marshal to compare
+	xmlData2, err := xml.MarshalIndent(&decoded, "", "  ")
+	if err != nil {
+		t.Fatalf("Re-marshal failed: %v", err)
+	}
+
+	// Compare XML outputs (normalize to handle Go encoder quirks)
+	normalized1 := normalizeXML(xmlData)
+	normalized2 := normalizeXML(xmlData2)
+	if normalized1 != normalized2 {
+		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestStatus_changeElementType_MarshalUnmarshal tests XML round-trip for Status_changeElementType
+func TestStatus_changeElementType_MarshalUnmarshal(t *testing.T) {
+	original := &Status_changeElementType{}
+
+	// Marshal to XML
+	xmlData, err := xml.MarshalIndent(original, "", "  ")
+	if err != nil {
+		t.Fatalf("Marshal failed: %v", err)
+	}
+
+	// Unmarshal back
+	var decoded Status_changeElementType
+	if err := xml.Unmarshal(xmlData, &decoded); err != nil {
+		t.Fatalf("Unmarshal failed: %v", err)
+	}
+
+	// Re-marshal to compare
+	xmlData2, err := xml.MarshalIndent(&decoded, "", "  ")
+	if err != nil {
+		t.Fatalf("Re-marshal failed: %v", err)
+	}
+
+	// Compare XML outputs (normalize to handle Go encoder quirks)
+	normalized1 := normalizeXML(xmlData)
+	normalized2 := normalizeXML(xmlData2)
+	if normalized1 != normalized2 {
+		t.Errorf("Round-trip XML mismatch:\nOriginal:\n%s\n\nRe-marshaled:\n%s", normalized1, normalized2)
+	}
+}
+
+// TestSubmittedElementType_MarshalUnmarshal tests XML round-trip for SubmittedElementType
+func TestSubmittedElementType_MarshalUnmarshal(t *testing.T) {
+	original := &SubmittedElementType{}
+
+	// Marshal to XML
+	xmlData, err := xml.MarshalIndent(original, "", "  ")
+	if err != nil {
+		t.Fatalf("Marshal failed: %v", err)
+	}
+
+	// Unmarshal back
+	var decoded SubmittedElementType
 	if err := xml.Unmarshal(xmlData, &decoded); err != nil {
 		t.Fatalf("Unmarshal failed: %v", err)
 	}

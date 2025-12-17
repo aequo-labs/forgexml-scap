@@ -166,18 +166,6 @@ func replicateXmlnsPlacement(xmlOutput string, elementsWithXmlns map[string]stri
 	return result
 }
 
-// RelationshipsElementType represents the XSD type 'RelationshipsElementType'
-// XSD complex type (W3C XSD §3.4)
-type RelationshipsElementType struct {
-	// Relationship represents XSD element 'relationship'
-	// minOccurs=1, maxOccurs=-1
-	Relationship []RelationshipType `xml:"relationship"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
 // RelationshipsContainerType represents the XSD type 'relationships-container-type'
 // XSD complex type (W3C XSD §3.4)
 type RelationshipsContainerType struct {
@@ -205,6 +193,18 @@ type RelationshipType struct {
 	// Subject represents XSD attribute 'subject'
 	// use="required"
 	Subject string `xml:"subject,attr"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// RelationshipsElementType represents the XSD type 'RelationshipsElementType'
+// XSD complex type (W3C XSD §3.4)
+type RelationshipsElementType struct {
+	// Relationship represents XSD element 'relationship'
+	// minOccurs=1, maxOccurs=-1
+	Relationship []RelationshipType `xml:"relationship"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD

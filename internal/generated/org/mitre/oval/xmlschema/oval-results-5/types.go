@@ -10,7 +10,6 @@ import (
 	"regexp"
 	"strings"
 
-	dictionary2_0 "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/cpe/dictionary/2-0"
 	xmlschemaoval_common_5 "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/oval/xmlschema/oval-common-5"
 	xmlschemaoval_definitions_5 "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/oval/xmlschema/oval-definitions-5"
 	xmlschemaoval_system_characteristics_5 "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/oval/xmlschema/oval-system-characteristics-5"
@@ -172,252 +171,12 @@ func replicateXmlnsPlacement(xmlOutput string, elementsWithXmlns map[string]stri
 	return result
 }
 
-// DirectivesType represents the XSD type 'DirectivesType'
-// XSD complex type (W3C XSD §3.4)
-type DirectivesType struct {
-	// Definition_true represents XSD element 'definition_true'
-	Definition_true DirectiveType `xml:"definition_true"`
-	// Definition_false represents XSD element 'definition_false'
-	Definition_false DirectiveType `xml:"definition_false"`
-	// Definition_unknown represents XSD element 'definition_unknown'
-	Definition_unknown DirectiveType `xml:"definition_unknown"`
-	// Definition_error represents XSD element 'definition_error'
-	Definition_error DirectiveType `xml:"definition_error"`
-	// Definition_not_evaluated represents XSD element 'definition_not_evaluated'
-	Definition_not_evaluated DirectiveType `xml:"definition_not_evaluated"`
-	// Definition_not_applicable represents XSD element 'definition_not_applicable'
-	Definition_not_applicable DirectiveType `xml:"definition_not_applicable"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// DirectiveType represents the XSD type 'DirectiveType'
-// XSD complex type (W3C XSD §3.4)
-type DirectiveType struct {
-	// Reported represents XSD attribute 'reported'
-	// use="required"
-	Reported bool `xml:"reported,attr"`
-	// Content represents XSD attribute 'content'
-	// use="optional"
-	Content *ContentEnumeration `xml:"content,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// ResultsType represents the XSD type 'ResultsType'
-// XSD complex type (W3C XSD §3.4)
-type ResultsType struct {
-	// System represents XSD element 'system'
-	// minOccurs=1, maxOccurs=-1
-	System []*SystemType `xml:"system"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
 // DefinitionsType represents the XSD type 'DefinitionsType'
 // XSD complex type (W3C XSD §3.4)
 type DefinitionsType struct {
 	// Definition represents XSD element 'definition'
 	// minOccurs=1, maxOccurs=-1
 	Definition []*DefinitionType `xml:"definition"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// CriteriaType represents the XSD type 'CriteriaType'
-// XSD complex type (W3C XSD §3.4)
-type CriteriaType struct {
-	// Criteria represents XSD element 'criteria'
-	Criteria []*CriteriaType `xml:"criteria,omitempty"`
-	// Criterion represents XSD element 'criterion'
-	Criterion []CriterionType `xml:"criterion,omitempty"`
-	// Extend_definition represents XSD element 'extend_definition'
-	Extend_definition []ExtendDefinitionType `xml:"extend_definition,omitempty"`
-	// Applicability_check represents XSD attribute 'applicability_check'
-	// use="optional"
-	Applicability_check *bool `xml:"applicability_check,attr,omitempty"`
-	// Operator represents XSD attribute 'operator'
-	// use="required"
-	Operator xmlschemaoval_common_5.OperatorEnumeration `xml:"operator,attr"`
-	// Negate represents XSD attribute 'negate'
-	// use="optional"
-	Negate *bool `xml:"negate,attr,omitempty"`
-	// Result represents XSD attribute 'result'
-	// use="required"
-	Result ResultEnumeration `xml:"result,attr"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// CriterionType represents the XSD type 'CriterionType'
-// XSD complex type (W3C XSD §3.4)
-type CriterionType struct {
-	// Applicability_check represents XSD attribute 'applicability_check'
-	// use="optional"
-	Applicability_check *bool `xml:"applicability_check,attr,omitempty"`
-	// Test_ref represents XSD attribute 'test_ref'
-	// use="required"
-	Test_ref xmlschemaoval_common_5.TestIDPattern `xml:"test_ref,attr"`
-	// Version represents XSD attribute 'version'
-	// use="required"
-	Version uint64 `xml:"version,attr"`
-	// Variable_instance represents XSD attribute 'variable_instance'
-	// use="optional"
-	Variable_instance *uint64 `xml:"variable_instance,attr,omitempty"`
-	// Negate represents XSD attribute 'negate'
-	// use="optional"
-	Negate *bool `xml:"negate,attr,omitempty"`
-	// Result represents XSD attribute 'result'
-	// use="required"
-	Result ResultEnumeration `xml:"result,attr"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// TestsType represents the XSD type 'TestsType'
-// XSD complex type (W3C XSD §3.4)
-type TestsType struct {
-	// Test represents XSD element 'test'
-	// minOccurs=1, maxOccurs=-1
-	Test []TestType `xml:"test"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// TestedVariableType represents the XSD type 'TestedVariableType'
-// XSD complex type (W3C XSD §3.4)
-type TestedVariableTypeWithAttrs struct {
-	Value string `xml:",chardata"` // XSD simple content
-	// Variable_id represents XSD attribute 'variable_id'
-	// use="required"
-	Variable_id xmlschemaoval_common_5.VariableIDPattern `xml:"variable_id,attr"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// TestedVariableType is an alias for TestedVariableTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
-type TestedVariableType = TestedVariableTypeWithAttrs
-
-// ContentEnumeration represents the XSD type 'ContentEnumeration'
-// XSD simple type (W3C XSD §4.1)
-// enumeration="thin"
-// enumeration="full"
-type ContentEnumeration string
-
-// ResultEnumeration represents the XSD type 'ResultEnumeration'
-// XSD simple type (W3C XSD §4.1)
-// enumeration="true"
-// enumeration="false"
-// enumeration="unknown"
-// enumeration="error"
-// enumeration="not evaluated"
-// enumeration="not applicable"
-type ResultEnumeration string
-
-// DefaultDirectivesType represents the XSD type 'DefaultDirectivesType'
-// XSD complex type (W3C XSD §3.4)
-type DefaultDirectivesType struct {
-	DirectivesType // XSD extension base
-	// Include_source_definitions represents XSD attribute 'include_source_definitions'
-	// use="optional"
-	Include_source_definitions *bool `xml:"include_source_definitions,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// ClassDirectivesType represents the XSD type 'ClassDirectivesType'
-// XSD complex type (W3C XSD §3.4)
-type ClassDirectivesType struct {
-	DirectivesType // XSD extension base
-	// Class represents XSD attribute 'class'
-	// use="required"
-	Class xmlschemaoval_common_5.ClassEnumeration `xml:"class,attr"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// SystemType represents the XSD type 'SystemType'
-// XSD complex type (W3C XSD §3.4)
-type SystemType struct {
-	// Definitions represents XSD element 'definitions'
-	// minOccurs=0, maxOccurs=1
-	Definitions *DefinitionsType `xml:"definitions,omitempty"`
-	// Tests represents XSD element 'tests'
-	// minOccurs=0, maxOccurs=1
-	Tests *TestsType `xml:"tests,omitempty"`
-	// Oval_system_characteristics represents XSD element 'oval_system_characteristics'
-	Oval_system_characteristics xmlschemaoval_system_characteristics_5.Oval_system_characteristicsElement `xml:"oval_system_characteristics"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// ExtendDefinitionType represents the XSD type 'ExtendDefinitionType'
-// XSD complex type (W3C XSD §3.4)
-type ExtendDefinitionType struct {
-	// Applicability_check represents XSD attribute 'applicability_check'
-	// use="optional"
-	Applicability_check *bool `xml:"applicability_check,attr,omitempty"`
-	// Definition_ref represents XSD attribute 'definition_ref'
-	// use="required"
-	Definition_ref xmlschemaoval_common_5.DefinitionIDPattern `xml:"definition_ref,attr"`
-	// Version represents XSD attribute 'version'
-	// use="required"
-	Version uint64 `xml:"version,attr"`
-	// Variable_instance represents XSD attribute 'variable_instance'
-	// use="optional"
-	Variable_instance *uint64 `xml:"variable_instance,attr,omitempty"`
-	// Negate represents XSD attribute 'negate'
-	// use="optional"
-	Negate *bool `xml:"negate,attr,omitempty"`
-	// Result represents XSD attribute 'result'
-	// use="required"
-	Result ResultEnumeration `xml:"result,attr"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Oval_resultsElementType represents the XSD type 'Oval_resultsElementType'
-// XSD complex type (W3C XSD §3.4)
-type Oval_resultsElementType struct {
-	// Generator represents XSD element 'generator'
-	Generator dictionary2_0.GeneratorType `xml:"generator"`
-	// Directives represents XSD element 'directives'
-	Directives DefaultDirectivesType `xml:"directives"`
-	// Class_directives represents XSD element 'class_directives'
-	// minOccurs=0, maxOccurs=5
-	Class_directives []ClassDirectivesType `xml:"class_directives,omitempty"`
-	// Oval_definitions represents XSD element 'oval_definitions'
-	// minOccurs=0, maxOccurs=1
-	Oval_definitions *xmlschemaoval_definitions_5.Oval_definitionsElement `xml:"oval_definitions,omitempty"`
-	// Results represents XSD element 'results'
-	Results *ResultsType `xml:"results"`
-	// Signature represents XSD element 'Signature'
-	// minOccurs=0, maxOccurs=1
-	Signature *pkg_200009xmldsig.SignatureType `xml:"Signature,omitempty"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -445,6 +204,33 @@ type DefinitionType struct {
 	// Class represents XSD attribute 'class'
 	// use="optional"
 	Class *xmlschemaoval_common_5.ClassEnumeration `xml:"class,attr,omitempty"`
+	// Result represents XSD attribute 'result'
+	// use="required"
+	Result ResultEnumeration `xml:"result,attr"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// CriterionType represents the XSD type 'CriterionType'
+// XSD complex type (W3C XSD §3.4)
+type CriterionType struct {
+	// Applicability_check represents XSD attribute 'applicability_check'
+	// use="optional"
+	Applicability_check *bool `xml:"applicability_check,attr,omitempty"`
+	// Test_ref represents XSD attribute 'test_ref'
+	// use="required"
+	Test_ref xmlschemaoval_common_5.TestIDPattern `xml:"test_ref,attr"`
+	// Version represents XSD attribute 'version'
+	// use="required"
+	Version uint64 `xml:"version,attr"`
+	// Variable_instance represents XSD attribute 'variable_instance'
+	// use="optional"
+	Variable_instance *uint64 `xml:"variable_instance,attr,omitempty"`
+	// Negate represents XSD attribute 'negate'
+	// use="optional"
+	Negate *bool `xml:"negate,attr,omitempty"`
 	// Result represents XSD attribute 'result'
 	// use="required"
 	Result ResultEnumeration `xml:"result,attr"`
@@ -493,6 +279,182 @@ type TestType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
+// ContentEnumeration represents the XSD type 'ContentEnumeration'
+// XSD simple type (W3C XSD §4.1)
+// enumeration="thin"
+// enumeration="full"
+type ContentEnumeration string
+
+// DirectivesType represents the XSD type 'DirectivesType'
+// XSD complex type (W3C XSD §3.4)
+type DirectivesType struct {
+	// Definition_true represents XSD element 'definition_true'
+	Definition_true DirectiveType `xml:"definition_true"`
+	// Definition_false represents XSD element 'definition_false'
+	Definition_false DirectiveType `xml:"definition_false"`
+	// Definition_unknown represents XSD element 'definition_unknown'
+	Definition_unknown DirectiveType `xml:"definition_unknown"`
+	// Definition_error represents XSD element 'definition_error'
+	Definition_error DirectiveType `xml:"definition_error"`
+	// Definition_not_evaluated represents XSD element 'definition_not_evaluated'
+	Definition_not_evaluated DirectiveType `xml:"definition_not_evaluated"`
+	// Definition_not_applicable represents XSD element 'definition_not_applicable'
+	Definition_not_applicable DirectiveType `xml:"definition_not_applicable"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// DirectiveType represents the XSD type 'DirectiveType'
+// XSD complex type (W3C XSD §3.4)
+type DirectiveType struct {
+	// Reported represents XSD attribute 'reported'
+	// use="required"
+	Reported bool `xml:"reported,attr"`
+	// Content represents XSD attribute 'content'
+	// use="optional"
+	Content *ContentEnumeration `xml:"content,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// ResultsType represents the XSD type 'ResultsType'
+// XSD complex type (W3C XSD §3.4)
+type ResultsType struct {
+	// System represents XSD element 'system'
+	// minOccurs=1, maxOccurs=-1
+	System []*SystemType `xml:"system"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// ExtendDefinitionType represents the XSD type 'ExtendDefinitionType'
+// XSD complex type (W3C XSD §3.4)
+type ExtendDefinitionType struct {
+	// Applicability_check represents XSD attribute 'applicability_check'
+	// use="optional"
+	Applicability_check *bool `xml:"applicability_check,attr,omitempty"`
+	// Definition_ref represents XSD attribute 'definition_ref'
+	// use="required"
+	Definition_ref xmlschemaoval_common_5.DefinitionIDPattern `xml:"definition_ref,attr"`
+	// Version represents XSD attribute 'version'
+	// use="required"
+	Version uint64 `xml:"version,attr"`
+	// Variable_instance represents XSD attribute 'variable_instance'
+	// use="optional"
+	Variable_instance *uint64 `xml:"variable_instance,attr,omitempty"`
+	// Negate represents XSD attribute 'negate'
+	// use="optional"
+	Negate *bool `xml:"negate,attr,omitempty"`
+	// Result represents XSD attribute 'result'
+	// use="required"
+	Result ResultEnumeration `xml:"result,attr"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// TestsType represents the XSD type 'TestsType'
+// XSD complex type (W3C XSD §3.4)
+type TestsType struct {
+	// Test represents XSD element 'test'
+	// minOccurs=1, maxOccurs=-1
+	Test []TestType `xml:"test"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// ResultEnumeration represents the XSD type 'ResultEnumeration'
+// XSD simple type (W3C XSD §4.1)
+// enumeration="true"
+// enumeration="false"
+// enumeration="unknown"
+// enumeration="error"
+// enumeration="not evaluated"
+// enumeration="not applicable"
+type ResultEnumeration string
+
+// ClassDirectivesType represents the XSD type 'ClassDirectivesType'
+// XSD complex type (W3C XSD §3.4)
+type ClassDirectivesType struct {
+	DirectivesType // XSD extension base
+	// Class represents XSD attribute 'class'
+	// use="required"
+	Class xmlschemaoval_common_5.ClassEnumeration `xml:"class,attr"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// SystemType represents the XSD type 'SystemType'
+// XSD complex type (W3C XSD §3.4)
+type SystemType struct {
+	// Definitions represents XSD element 'definitions'
+	// minOccurs=0, maxOccurs=1
+	Definitions *DefinitionsType `xml:"definitions,omitempty"`
+	// Tests represents XSD element 'tests'
+	// minOccurs=0, maxOccurs=1
+	Tests *TestsType `xml:"tests,omitempty"`
+	// Oval_system_characteristics represents XSD element 'oval_system_characteristics'
+	Oval_system_characteristics xmlschemaoval_system_characteristics_5.Oval_system_characteristicsElement `xml:"oval_system_characteristics"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// TestedVariableType represents the XSD type 'TestedVariableType'
+// XSD complex type (W3C XSD §3.4)
+type TestedVariableTypeWithAttrs struct {
+	Value string `xml:",chardata"` // XSD simple content
+	// Variable_id represents XSD attribute 'variable_id'
+	// use="required"
+	Variable_id xmlschemaoval_common_5.VariableIDPattern `xml:"variable_id,attr"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// TestedVariableType is an alias for TestedVariableTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
+type TestedVariableType = TestedVariableTypeWithAttrs
+
+// CriteriaType represents the XSD type 'CriteriaType'
+// XSD complex type (W3C XSD §3.4)
+type CriteriaType struct {
+	// Criteria represents XSD element 'criteria'
+	Criteria []*CriteriaType `xml:"criteria,omitempty"`
+	// Criterion represents XSD element 'criterion'
+	Criterion []CriterionType `xml:"criterion,omitempty"`
+	// Extend_definition represents XSD element 'extend_definition'
+	Extend_definition []ExtendDefinitionType `xml:"extend_definition,omitempty"`
+	// Applicability_check represents XSD attribute 'applicability_check'
+	// use="optional"
+	Applicability_check *bool `xml:"applicability_check,attr,omitempty"`
+	// Operator represents XSD attribute 'operator'
+	// use="required"
+	Operator xmlschemaoval_common_5.OperatorEnumeration `xml:"operator,attr"`
+	// Negate represents XSD attribute 'negate'
+	// use="optional"
+	Negate *bool `xml:"negate,attr,omitempty"`
+	// Result represents XSD attribute 'result'
+	// use="required"
+	Result ResultEnumeration `xml:"result,attr"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
 // TestedItemType represents the XSD type 'TestedItemType'
 // XSD complex type (W3C XSD §3.4)
 type TestedItemType struct {
@@ -505,6 +467,43 @@ type TestedItemType struct {
 	// Result represents XSD attribute 'result'
 	// use="required"
 	Result ResultEnumeration `xml:"result,attr"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// Oval_resultsElementType represents the XSD type 'Oval_resultsElementType'
+// XSD complex type (W3C XSD §3.4)
+type Oval_resultsElementType struct {
+	// Generator represents XSD element 'generator'
+	Generator xmlschemaoval_common_5.GeneratorType `xml:"generator"`
+	// Directives represents XSD element 'directives'
+	Directives DefaultDirectivesType `xml:"directives"`
+	// Class_directives represents XSD element 'class_directives'
+	// minOccurs=0, maxOccurs=5
+	Class_directives []ClassDirectivesType `xml:"class_directives,omitempty"`
+	// Oval_definitions represents XSD element 'oval_definitions'
+	// minOccurs=0, maxOccurs=1
+	Oval_definitions *xmlschemaoval_definitions_5.Oval_definitionsElement `xml:"oval_definitions,omitempty"`
+	// Results represents XSD element 'results'
+	Results *ResultsType `xml:"results"`
+	// Signature represents XSD element 'Signature'
+	// minOccurs=0, maxOccurs=1
+	Signature *pkg_200009xmldsig.SignatureType `xml:"Signature,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// DefaultDirectivesType represents the XSD type 'DefaultDirectivesType'
+// XSD complex type (W3C XSD §3.4)
+type DefaultDirectivesType struct {
+	DirectivesType // XSD extension base
+	// Include_source_definitions represents XSD attribute 'include_source_definitions'
+	// use="optional"
+	Include_source_definitions *bool `xml:"include_source_definitions,attr,omitempty"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD

@@ -202,15 +202,6 @@ type ReportType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// RemoteResourceElementType represents the XSD type 'RemoteResourceElementType'
-// XSD complex type (W3C XSD §3.4)
-type RemoteResourceElementType struct {
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
 // AssetReportCollectionElementType represents the XSD type 'AssetReportCollectionElementType'
 // XSD complex type (W3C XSD §3.4)
 type AssetReportCollectionElementType struct {
@@ -262,18 +253,18 @@ type AssetsElementType struct {
 // AssetElementType represents the XSD type 'AssetElementType'
 // XSD complex type (W3C XSD §3.4)
 type AssetElementType struct {
-	// X1_1Organization represents substitution group member 'organization' (namespace: http://scap.nist.gov/schema/asset-identification/1.1)
-	// Substitutes for abstract element 'asset'
-	X1_1Organization []asset_identification1_1.OrganizationType `xml:"http://scap.nist.gov/schema/asset-identification/1.1 organization,omitempty"`
-	// X1_1ItAsset represents substitution group member 'it-asset' (namespace: http://scap.nist.gov/schema/asset-identification/1.1)
-	// Substitutes for abstract element 'asset'
-	X1_1ItAsset []asset_identification1_1.ItAssetType `xml:"http://scap.nist.gov/schema/asset-identification/1.1 it-asset,omitempty"`
 	// X1_1Data represents substitution group member 'data' (namespace: http://scap.nist.gov/schema/asset-identification/1.1)
 	// Substitutes for abstract element 'asset'
 	X1_1Data []asset_identification1_1.DataType `xml:"http://scap.nist.gov/schema/asset-identification/1.1 data,omitempty"`
 	// X1_1Person represents substitution group member 'person' (namespace: http://scap.nist.gov/schema/asset-identification/1.1)
 	// Substitutes for abstract element 'asset'
 	X1_1Person []asset_identification1_1.PersonType `xml:"http://scap.nist.gov/schema/asset-identification/1.1 person,omitempty"`
+	// X1_1ItAsset represents substitution group member 'it-asset' (namespace: http://scap.nist.gov/schema/asset-identification/1.1)
+	// Substitutes for abstract element 'asset'
+	X1_1ItAsset []asset_identification1_1.ItAssetType `xml:"http://scap.nist.gov/schema/asset-identification/1.1 it-asset,omitempty"`
+	// X1_1Organization represents substitution group member 'organization' (namespace: http://scap.nist.gov/schema/asset-identification/1.1)
+	// Substitutes for abstract element 'asset'
+	X1_1Organization []asset_identification1_1.OrganizationType `xml:"http://scap.nist.gov/schema/asset-identification/1.1 organization,omitempty"`
 	// RemoteResource represents XSD element 'remote-resource'
 	RemoteResource *RemoteResourceElement `xml:"remote-resource,omitempty"`
 	// Id represents XSD attribute 'id'
@@ -303,6 +294,15 @@ type ExtendedInfosElementType struct {
 	// ExtendedInfo represents XSD element 'extended-info'
 	// minOccurs=1, maxOccurs=-1
 	ExtendedInfo []ExtendedInfoElementType `xml:"extended-info"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// RemoteResourceElementType represents the XSD type 'RemoteResourceElementType'
+// XSD complex type (W3C XSD §3.4)
+type RemoteResourceElementType struct {
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD

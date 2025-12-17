@@ -2613,10 +2613,10 @@ flowchart TD
     testtype -.->|extends| environmentvariabletestelementtype
     entitystateanysimpletype --> epochelementtype
     entitystateanysimpletype -.->|extends| epochelementtype
-    entitystateanysimpletype --> epochelementtype1
-    entitystateanysimpletype -.->|extends| epochelementtype1
-    entityobjectanysimpletype --> epochelementtype2
-    entityobjectanysimpletype -.->|extends| epochelementtype2
+    entityobjectanysimpletype --> epochelementtype1
+    entityobjectanysimpletype -.->|extends| epochelementtype1
+    entitystateanysimpletype --> epochelementtype2
+    entitystateanysimpletype -.->|extends| epochelementtype2
     entitystateanysimpletype --> epochelementtype3
     entitystateanysimpletype -.->|extends| epochelementtype3
     entityobjectanysimpletype --> epochelementtype4
@@ -3633,26 +3633,23 @@ flowchart TD
     entitystatestringtype --> ovalmitreorgovalfilestateelementtype
     entitystatestringtype --> ovalmitreorgovalfilestateelementtype
     entitystatestringtype --> ovalmitreorgovalfilestateelementtype
-    entitystatefiletypetype --> ovalmitreorgovalfilestateelementtype
     entitystatestringtype --> ovalmitreorgovalfilestateelementtype
     entitystateinttype --> ovalmitreorgovalfilestateelementtype
     entitystateinttype --> ovalmitreorgovalfilestateelementtype
     entitystateinttype --> ovalmitreorgovalfilestateelementtype
     entitystateinttype --> ovalmitreorgovalfilestateelementtype
     entitystateinttype --> ovalmitreorgovalfilestateelementtype
-    entitystatebooltype --> ovalmitreorgovalfilestateelementtype
-    entitystatebooltype --> ovalmitreorgovalfilestateelementtype
-    entitystatebooltype --> ovalmitreorgovalfilestateelementtype
-    entitystatebooltype --> ovalmitreorgovalfilestateelementtype
-    entitystatebooltype --> ovalmitreorgovalfilestateelementtype
-    entitystatebooltype --> ovalmitreorgovalfilestateelementtype
-    entitystatebooltype --> ovalmitreorgovalfilestateelementtype
-    entitystatebooltype --> ovalmitreorgovalfilestateelementtype
-    entitystatebooltype --> ovalmitreorgovalfilestateelementtype
-    entitystatebooltype --> ovalmitreorgovalfilestateelementtype
-    entitystatebooltype --> ovalmitreorgovalfilestateelementtype
-    entitystatebooltype --> ovalmitreorgovalfilestateelementtype
-    entitystatebooltype --> ovalmitreorgovalfilestateelementtype
+    entitystatestringtype --> ovalmitreorgovalfilestateelementtype
+    entitystateversiontype --> ovalmitreorgovalfilestateelementtype
+    entitystatestringtype --> ovalmitreorgovalfilestateelementtype
+    entitystatefiletypetype --> ovalmitreorgovalfilestateelementtype
+    entitystatefileattributetype --> ovalmitreorgovalfilestateelementtype
+    entitystatestringtype --> ovalmitreorgovalfilestateelementtype
+    entitystatestringtype --> ovalmitreorgovalfilestateelementtype
+    entitystatestringtype --> ovalmitreorgovalfilestateelementtype
+    entitystatestringtype --> ovalmitreorgovalfilestateelementtype
+    entitystatestringtype --> ovalmitreorgovalfilestateelementtype
+    entitystatestringtype --> ovalmitreorgovalfilestateelementtype
     statetype -.->|extends| ovalmitreorgovalfilestateelementtype
     testtype --> ovalmitreorgovalfiletest
     testtype -.->|extends| ovalmitreorgovalfiletest
@@ -3804,6 +3801,7 @@ flowchart TD
     statetype --> ovalmitreorgovalnddstateelementtype
     entitystatestringtype --> ovalmitreorgovalnddstateelementtype
     entitystatestringtype --> ovalmitreorgovalnddstateelementtype
+    entitystateinttype --> ovalmitreorgovalnddstateelementtype
     entitystatestringtype --> ovalmitreorgovalnddstateelementtype
     entitystatestringtype --> ovalmitreorgovalnddstateelementtype
     entitystateanysimpletype --> ovalmitreorgovalnddstateelementtype
@@ -3856,8 +3854,8 @@ flowchart TD
     statetype --> ovalmitreorgovalpatchstate
     statetype -.->|extends| ovalmitreorgovalpatchstate
     statetype --> ovalmitreorgovalpatchstateelementtype
-    entitystatestringtype --> ovalmitreorgovalpatchstateelementtype
-    entitystatebooltype --> ovalmitreorgovalpatchstateelementtype
+    entitystateinttype --> ovalmitreorgovalpatchstateelementtype
+    entitystateinttype --> ovalmitreorgovalpatchstateelementtype
     statetype -.->|extends| ovalmitreorgovalpatchstateelementtype
     testtype --> ovalmitreorgovalpatchtest
     testtype -.->|extends| ovalmitreorgovalpatchtest
@@ -3875,22 +3873,17 @@ flowchart TD
     statetype --> ovalmitreorgovalprocess58stateelementtype
     entitystatestringtype --> ovalmitreorgovalprocess58stateelementtype
     entitystatestringtype --> ovalmitreorgovalprocess58stateelementtype
-    entitystatestringtype --> ovalmitreorgovalprocess58stateelementtype
     entitystateinttype --> ovalmitreorgovalprocess58stateelementtype
     entitystateinttype --> ovalmitreorgovalprocess58stateelementtype
     entitystateinttype --> ovalmitreorgovalprocess58stateelementtype
     entitystateinttype --> ovalmitreorgovalprocess58stateelementtype
     entitystateinttype --> ovalmitreorgovalprocess58stateelementtype
-    entitystateinttype --> ovalmitreorgovalprocess58stateelementtype
-    entitystatestringtype --> ovalmitreorgovalprocess58stateelementtype
     entitystatestringtype --> ovalmitreorgovalprocess58stateelementtype
     entitystatestringtype --> ovalmitreorgovalprocess58stateelementtype
     entitystateinttype --> ovalmitreorgovalprocess58stateelementtype
     entitystatebooltype --> ovalmitreorgovalprocess58stateelementtype
-    entitystateinttype --> ovalmitreorgovalprocess58stateelementtype
-    entitystatecapabilitytype --> ovalmitreorgovalprocess58stateelementtype
     entitystatestringtype --> ovalmitreorgovalprocess58stateelementtype
-    entitystateinttype --> ovalmitreorgovalprocess58stateelementtype
+    entitystatestringtype --> ovalmitreorgovalprocess58stateelementtype
     statetype -.->|extends| ovalmitreorgovalprocess58stateelementtype
     testtype --> ovalmitreorgovalprocess58test
     testtype -.->|extends| ovalmitreorgovalprocess58test
@@ -3906,8 +3899,6 @@ flowchart TD
     statetype -.->|extends| ovalmitreorgovalprocessstate
     statetype --> ovalmitreorgovalprocessstateelementtype
     entitystatestringtype --> ovalmitreorgovalprocessstateelementtype
-    entitystatestringtype --> ovalmitreorgovalprocessstateelementtype
-    entitystateinttype --> ovalmitreorgovalprocessstateelementtype
     entitystateinttype --> ovalmitreorgovalprocessstateelementtype
     entitystateinttype --> ovalmitreorgovalprocessstateelementtype
     entitystateinttype --> ovalmitreorgovalprocessstateelementtype
@@ -3915,8 +3906,6 @@ flowchart TD
     entitystateinttype --> ovalmitreorgovalprocessstateelementtype
     entitystatestringtype --> ovalmitreorgovalprocessstateelementtype
     entitystatestringtype --> ovalmitreorgovalprocessstateelementtype
-    entitystatestringtype --> ovalmitreorgovalprocessstateelementtype
-    entitystateinttype --> ovalmitreorgovalprocessstateelementtype
     statetype -.->|extends| ovalmitreorgovalprocessstateelementtype
     testtype --> ovalmitreorgovalprocesstest
     testtype -.->|extends| ovalmitreorgovalprocesstest
@@ -4128,9 +4117,14 @@ flowchart TD
     statetype --> ovalmitreorgovalversionstateelementtype
     entitystatestringtype --> ovalmitreorgovalversionstateelementtype
     entitystatestringtype --> ovalmitreorgovalversionstateelementtype
-    entitystateversiontype --> ovalmitreorgovalversionstateelementtype
     entitystateinttype --> ovalmitreorgovalversionstateelementtype
-    entitystatestringtype --> ovalmitreorgovalversionstateelementtype
+    entitystateinttype --> ovalmitreorgovalversionstateelementtype
+    entitystatejunosreleasetypetype --> ovalmitreorgovalversionstateelementtype
+    entitystateinttype --> ovalmitreorgovalversionstateelementtype
+    entitystateinttype --> ovalmitreorgovalversionstateelementtype
+    entitystateinttype --> ovalmitreorgovalversionstateelementtype
+    entitystateinttype --> ovalmitreorgovalversionstateelementtype
+    entitystateinttype --> ovalmitreorgovalversionstateelementtype
     statetype -.->|extends| ovalmitreorgovalversionstateelementtype
     testtype --> ovalmitreorgovalversiontest
     testtype -.->|extends| ovalmitreorgovalversiontest
@@ -4853,10 +4847,10 @@ flowchart TD
     testtype -.->|extends| regkeyeffectiverightstestelementtype
     entitystateanysimpletype --> releaseelementtype
     entitystateanysimpletype -.->|extends| releaseelementtype
-    entitystateanysimpletype --> releaseelementtype1
-    entitystateanysimpletype -.->|extends| releaseelementtype1
-    entityobjectanysimpletype --> releaseelementtype2
-    entityobjectanysimpletype -.->|extends| releaseelementtype2
+    entityobjectanysimpletype --> releaseelementtype1
+    entityobjectanysimpletype -.->|extends| releaseelementtype1
+    entitystateanysimpletype --> releaseelementtype2
+    entitystateanysimpletype -.->|extends| releaseelementtype2
     entitystateanysimpletype --> releaseelementtype3
     entitystateanysimpletype -.->|extends| releaseelementtype3
     entityobjectanysimpletype --> releaseelementtype4
@@ -6289,10 +6283,10 @@ flowchart TD
     testtype --> varianttestelementtype
     objectreftype --> varianttestelementtype
     testtype -.->|extends| varianttestelementtype
-    entitystateanysimpletype --> versionelementtype1
-    entitystateanysimpletype -.->|extends| versionelementtype1
-    entityobjectanysimpletype --> versionelementtype2
-    entityobjectanysimpletype -.->|extends| versionelementtype2
+    entityobjectanysimpletype --> versionelementtype1
+    entityobjectanysimpletype -.->|extends| versionelementtype1
+    entitystateanysimpletype --> versionelementtype2
+    entitystateanysimpletype -.->|extends| versionelementtype2
     entitystateanysimpletype --> versionelementtype3
     entitystateanysimpletype -.->|extends| versionelementtype3
     entitystateanysimpletype --> versionelementtype4

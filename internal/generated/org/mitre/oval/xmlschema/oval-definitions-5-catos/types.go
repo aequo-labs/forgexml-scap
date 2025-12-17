@@ -11,9 +11,6 @@ import (
 	"strings"
 
 	xmlschemaoval_definitions_5 "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/oval/xmlschema/oval-definitions-5"
-	xmlschemaoval_results_5 "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/oval/xmlschema/oval-results-5"
-	xmlschemaoval_system_characteristics_5 "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/oval/xmlschema/oval-system-characteristics-5"
-	pkg_200009xmldsig "github.com/aequo-labs/forgexml-scap/internal/generated/org/w3/2000/09/xmldsig"
 )
 
 // GenericElement represents unknown/extension elements not defined in XSD
@@ -171,17 +168,25 @@ func replicateXmlnsPlacement(xmlOutput string, elementsWithXmlns map[string]stri
 	return result
 }
 
-// Line_objectElementType represents the XSD type 'Line_objectElementType'
+// Version55_objectElementType represents the XSD type 'Version55_objectElementType'
 // XSD complex type (W3C XSD §3.4)
-type Line_objectElementType struct {
-	xmlschemaoval_system_characteristics_5.ObjectType // XSD extension base
-	// Set represents XSD element 'set'
-	Set *xmlschemaoval_definitions_5.SetElement `xml:"set,omitempty"`
-	// Show_subcommand represents XSD element 'show_subcommand'
-	Show_subcommand xmlschemaoval_definitions_5.EntityObjectStringType `xml:"show_subcommand"`
-	// Filter represents XSD element 'filter'
+type Version55_objectElementType struct {
+	xmlschemaoval_definitions_5.ObjectType // XSD extension base
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// Version_testElementType represents the XSD type 'Version_testElementType'
+// XSD complex type (W3C XSD §3.4)
+type Version_testElementType struct {
+	xmlschemaoval_definitions_5.TestType // XSD extension base
+	// Object represents XSD element 'object'
+	Object xmlschemaoval_definitions_5.ObjectRefType `xml:"object"`
+	// State represents XSD element 'state'
 	// minOccurs=0, maxOccurs=-1
-	Filter []xmlschemaoval_definitions_5.FilterElement `xml:"filter,omitempty"`
+	State []xmlschemaoval_definitions_5.StateRefType `xml:"state,omitempty"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -205,10 +210,69 @@ type Module_objectElementType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// Version55_objectElementType represents the XSD type 'Version55_objectElementType'
+// Version55_testElementType represents the XSD type 'Version55_testElementType'
 // XSD complex type (W3C XSD §3.4)
-type Version55_objectElementType struct {
-	pkg_200009xmldsig.ObjectType // XSD extension base
+type Version55_testElementType struct {
+	xmlschemaoval_definitions_5.TestType // XSD extension base
+	// Object represents XSD element 'object'
+	Object xmlschemaoval_definitions_5.ObjectRefType `xml:"object"`
+	// State represents XSD element 'state'
+	// minOccurs=0, maxOccurs=-1
+	State []xmlschemaoval_definitions_5.StateRefType `xml:"state,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// Version55_stateElementType represents the XSD type 'Version55_stateElementType'
+// XSD complex type (W3C XSD §3.4)
+type Version55_stateElementType struct {
+	xmlschemaoval_definitions_5.StateType // XSD extension base
+	// Switch_series represents XSD element 'switch_series'
+	// minOccurs=0, maxOccurs=1
+	Switch_series *xmlschemaoval_definitions_5.EntityStateStringType `xml:"switch_series,omitempty"`
+	// Image_name represents XSD element 'image_name'
+	// minOccurs=0, maxOccurs=1
+	Image_name *xmlschemaoval_definitions_5.EntityStateStringType `xml:"image_name,omitempty"`
+	// Catos_release represents XSD element 'catos_release'
+	// minOccurs=0, maxOccurs=1
+	Catos_release *xmlschemaoval_definitions_5.EntityStateVersionType `xml:"catos_release,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// Version_objectElementType represents the XSD type 'Version_objectElementType'
+// XSD complex type (W3C XSD §3.4)
+type Version_objectElementType struct {
+	xmlschemaoval_definitions_5.ObjectType // XSD extension base
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// Version_stateElementType represents the XSD type 'Version_stateElementType'
+// XSD complex type (W3C XSD §3.4)
+type Version_stateElementType struct {
+	xmlschemaoval_definitions_5.StateType // XSD extension base
+	// Switch_series represents XSD element 'switch_series'
+	// minOccurs=0, maxOccurs=1
+	Switch_series *xmlschemaoval_definitions_5.EntityStateStringType `xml:"switch_series,omitempty"`
+	// Image_name represents XSD element 'image_name'
+	// minOccurs=0, maxOccurs=1
+	Image_name *xmlschemaoval_definitions_5.EntityStateStringType `xml:"image_name,omitempty"`
+	// Catos_major_release represents XSD element 'catos_major_release'
+	// minOccurs=0, maxOccurs=1
+	Catos_major_release *xmlschemaoval_definitions_5.EntityStateVersionType `xml:"catos_major_release,omitempty"`
+	// Catos_individual_release represents XSD element 'catos_individual_release'
+	// minOccurs=0, maxOccurs=1
+	Catos_individual_release *xmlschemaoval_definitions_5.EntityStateIntType `xml:"catos_individual_release,omitempty"`
+	// Catos_version_id represents XSD element 'catos_version_id'
+	// minOccurs=0, maxOccurs=1
+	Catos_version_id *xmlschemaoval_definitions_5.EntityStateStringType `xml:"catos_version_id,omitempty"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -230,40 +294,32 @@ type Module_testElementType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// Version55_testElementType represents the XSD type 'Version55_testElementType'
-// XSD complex type (W3C XSD §3.4)
-type Version55_testElementType struct {
-	xmlschemaoval_results_5.TestType // XSD extension base
-	// Object represents XSD element 'object'
-	Object xmlschemaoval_definitions_5.ObjectRefType `xml:"object"`
-	// State represents XSD element 'state'
-	// minOccurs=0, maxOccurs=-1
-	State []xmlschemaoval_definitions_5.StateRefType `xml:"state,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Version_objectElementType represents the XSD type 'Version_objectElementType'
-// XSD complex type (W3C XSD §3.4)
-type Version_objectElementType struct {
-	xmlschemaoval_system_characteristics_5.ObjectType // XSD extension base
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
 // Line_testElementType represents the XSD type 'Line_testElementType'
 // XSD complex type (W3C XSD §3.4)
 type Line_testElementType struct {
-	xmlschemaoval_results_5.TestType // XSD extension base
+	xmlschemaoval_definitions_5.TestType // XSD extension base
 	// Object represents XSD element 'object'
 	Object xmlschemaoval_definitions_5.ObjectRefType `xml:"object"`
 	// State represents XSD element 'state'
 	// minOccurs=0, maxOccurs=-1
 	State []xmlschemaoval_definitions_5.StateRefType `xml:"state,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// Line_objectElementType represents the XSD type 'Line_objectElementType'
+// XSD complex type (W3C XSD §3.4)
+type Line_objectElementType struct {
+	xmlschemaoval_definitions_5.ObjectType // XSD extension base
+	// Set represents XSD element 'set'
+	Set *xmlschemaoval_definitions_5.SetElement `xml:"set,omitempty"`
+	// Show_subcommand represents XSD element 'show_subcommand'
+	Show_subcommand xmlschemaoval_definitions_5.EntityObjectStringType `xml:"show_subcommand"`
+	// Filter represents XSD element 'filter'
+	// minOccurs=0, maxOccurs=-1
+	Filter []xmlschemaoval_definitions_5.FilterElement `xml:"filter,omitempty"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -320,65 +376,6 @@ type Module_stateElementType struct {
 	// Firmware_individual_release represents XSD element 'firmware_individual_release'
 	// minOccurs=0, maxOccurs=1
 	Firmware_individual_release *xmlschemaoval_definitions_5.EntityStateIntType `xml:"firmware_individual_release,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Version55_stateElementType represents the XSD type 'Version55_stateElementType'
-// XSD complex type (W3C XSD §3.4)
-type Version55_stateElementType struct {
-	xmlschemaoval_definitions_5.StateType // XSD extension base
-	// Switch_series represents XSD element 'switch_series'
-	// minOccurs=0, maxOccurs=1
-	Switch_series *xmlschemaoval_definitions_5.EntityStateStringType `xml:"switch_series,omitempty"`
-	// Image_name represents XSD element 'image_name'
-	// minOccurs=0, maxOccurs=1
-	Image_name *xmlschemaoval_definitions_5.EntityStateStringType `xml:"image_name,omitempty"`
-	// Catos_release represents XSD element 'catos_release'
-	// minOccurs=0, maxOccurs=1
-	Catos_release *xmlschemaoval_definitions_5.EntityStateVersionType `xml:"catos_release,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Version_testElementType represents the XSD type 'Version_testElementType'
-// XSD complex type (W3C XSD §3.4)
-type Version_testElementType struct {
-	xmlschemaoval_results_5.TestType // XSD extension base
-	// Object represents XSD element 'object'
-	Object xmlschemaoval_definitions_5.ObjectRefType `xml:"object"`
-	// State represents XSD element 'state'
-	// minOccurs=0, maxOccurs=-1
-	State []xmlschemaoval_definitions_5.StateRefType `xml:"state,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Version_stateElementType represents the XSD type 'Version_stateElementType'
-// XSD complex type (W3C XSD §3.4)
-type Version_stateElementType struct {
-	xmlschemaoval_definitions_5.StateType // XSD extension base
-	// Switch_series represents XSD element 'switch_series'
-	// minOccurs=0, maxOccurs=1
-	Switch_series *xmlschemaoval_definitions_5.EntityStateStringType `xml:"switch_series,omitempty"`
-	// Image_name represents XSD element 'image_name'
-	// minOccurs=0, maxOccurs=1
-	Image_name *xmlschemaoval_definitions_5.EntityStateStringType `xml:"image_name,omitempty"`
-	// Catos_major_release represents XSD element 'catos_major_release'
-	// minOccurs=0, maxOccurs=1
-	Catos_major_release *xmlschemaoval_definitions_5.EntityStateVersionType `xml:"catos_major_release,omitempty"`
-	// Catos_individual_release represents XSD element 'catos_individual_release'
-	// minOccurs=0, maxOccurs=1
-	Catos_individual_release *xmlschemaoval_definitions_5.EntityStateIntType `xml:"catos_individual_release,omitempty"`
-	// Catos_version_id represents XSD element 'catos_version_id'
-	// minOccurs=0, maxOccurs=1
-	Catos_version_id *xmlschemaoval_definitions_5.EntityStateStringType `xml:"catos_version_id,omitempty"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD

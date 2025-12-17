@@ -4895,6 +4895,7 @@ classDiagram
         +string Recurse
         +string Recurse_direction
         +string Recurse_file_system
+        +string Windows_view
     }
     class OvalMitreOrgOvalFileObject {
         #int64 ID
@@ -4917,26 +4918,23 @@ classDiagram
         +*int64 FilepathID
         +*int64 PathID
         +*int64 FilenameID
-        +*int64 TypeID
-        +string Group_id
-        +string User_id
-        +string A_time
-        +string C_time
-        +string M_time
+        +*int64 OwnerID
         +*int64 SizeID
-        +*int64 SuidID
-        +*int64 SgidID
-        +*int64 StickyID
-        +*int64 UreadID
-        +*int64 UwriteID
-        +*int64 UexecID
-        +*int64 GreadID
-        +*int64 GwriteID
-        +*int64 GexecID
-        +*int64 OreadID
-        +*int64 OwriteID
-        +*int64 OexecID
-        +*int64 Has_extended_aclID
+        +*int64 A_timeID
+        +*int64 C_timeID
+        +*int64 M_timeID
+        +*int64 Ms_checksumID
+        +*int64 VersionID
+        +*int64 TypeID
+        +*int64 AttributeID
+        +*int64 Development_classID
+        +*int64 CompanyID
+        +*int64 Internal_nameID
+        +*int64 LanguageID
+        +*int64 Original_filenameID
+        +*int64 Product_nameID
+        +string Product_version
+        +*int64 Windows_viewID
         +*int64 ParentID
     }
     class OvalMitreOrgOvalFileStateElementType {
@@ -4944,26 +4942,23 @@ classDiagram
         +*int64 FilepathID
         +*int64 PathID
         +*int64 FilenameID
-        +*int64 TypeID
-        +string Group_id
-        +string User_id
-        +string A_time
-        +string C_time
-        +string M_time
+        +*int64 OwnerID
         +*int64 SizeID
-        +*int64 SuidID
-        +*int64 SgidID
-        +*int64 StickyID
-        +*int64 UreadID
-        +*int64 UwriteID
-        +*int64 UexecID
-        +*int64 GreadID
-        +*int64 GwriteID
-        +*int64 GexecID
-        +*int64 OreadID
-        +*int64 OwriteID
-        +*int64 OexecID
-        +*int64 Has_extended_aclID
+        +*int64 A_timeID
+        +*int64 C_timeID
+        +*int64 M_timeID
+        +*int64 Ms_checksumID
+        +*int64 VersionID
+        +*int64 TypeID
+        +*int64 AttributeID
+        +*int64 Development_classID
+        +*int64 CompanyID
+        +*int64 Internal_nameID
+        +*int64 LanguageID
+        +*int64 Original_filenameID
+        +*int64 Product_nameID
+        +string Product_version
+        +*int64 Windows_viewID
         +*int64 ParentID
     }
     class OvalMitreOrgOvalFileTest {
@@ -5191,6 +5186,7 @@ classDiagram
     class OvalMitreOrgOvalNddState {
         #int64 ID
         +*int64 DeviceID
+        +*int64 InstanceID
         +*int64 ParameterID
         +*int64 ValueID
         +*int64 ParentID
@@ -5198,6 +5194,7 @@ classDiagram
     class OvalMitreOrgOvalNddStateElementType {
         #int64 ID
         +*int64 DeviceID
+        +*int64 InstanceID
         +*int64 ParameterID
         +*int64 ValueID
         +*int64 ParentID
@@ -5298,26 +5295,24 @@ classDiagram
     }
     class OvalMitreOrgOvalPatchObject {
         #int64 ID
-        +*int64 BehaviorsID
-        +*int64 Patch_numberID
+        +*int64 BaseID
         +*int64 ParentID
     }
     class OvalMitreOrgOvalPatchObjectElementType {
         #int64 ID
-        +*int64 BehaviorsID
-        +*int64 Patch_numberID
+        +*int64 BaseID
         +*int64 ParentID
     }
     class OvalMitreOrgOvalPatchState {
         #int64 ID
-        +*int64 Patch_numberID
-        +*int64 StatusID
+        +*int64 BaseID
+        +*int64 VersionID
         +*int64 ParentID
     }
     class OvalMitreOrgOvalPatchStateElementType {
         #int64 ID
-        +*int64 Patch_numberID
-        +*int64 StatusID
+        +*int64 BaseID
+        +*int64 VersionID
         +*int64 ParentID
     }
     class OvalMitreOrgOvalPatchTest {
@@ -5345,39 +5340,29 @@ classDiagram
     class OvalMitreOrgOvalProcess58State {
         #int64 ID
         +*int64 Command_lineID
-        +*int64 Exec_timeID
         +*int64 PidID
         +*int64 PpidID
-        +*int64 PriorityID
-        +*int64 RuidID
-        +*int64 Scheduling_classID
-        +*int64 Start_timeID
-        +*int64 TtyID
-        +*int64 User_idID
-        +*int64 Exec_shieldID
-        +*int64 LoginuidID
-        +*int64 Posix_capabilityID
-        +*int64 Selinux_domain_labelID
-        +*int64 Session_idID
+        +string Priority
+        +*int64 Image_pathID
+        +*int64 Current_dirID
+        +*int64 Creation_timeID
+        +*int64 Dep_enabledID
+        +*int64 Primary_window_textID
+        +*int64 NameID
         +*int64 ParentID
     }
     class OvalMitreOrgOvalProcess58StateElementType {
         #int64 ID
         +*int64 Command_lineID
-        +*int64 Exec_timeID
         +*int64 PidID
         +*int64 PpidID
-        +*int64 PriorityID
-        +*int64 RuidID
-        +*int64 Scheduling_classID
-        +*int64 Start_timeID
-        +*int64 TtyID
-        +*int64 User_idID
-        +*int64 Exec_shieldID
-        +*int64 LoginuidID
-        +*int64 Posix_capabilityID
-        +*int64 Selinux_domain_labelID
-        +*int64 Session_idID
+        +string Priority
+        +*int64 Image_pathID
+        +*int64 Current_dirID
+        +*int64 Creation_timeID
+        +*int64 Dep_enabledID
+        +*int64 Primary_window_textID
+        +*int64 NameID
         +*int64 ParentID
     }
     class OvalMitreOrgOvalProcess58Test {
@@ -5392,40 +5377,32 @@ classDiagram
     }
     class OvalMitreOrgOvalProcessObject {
         #int64 ID
-        +*int64 CommandID
+        +*int64 Command_lineID
         +*int64 ParentID
     }
     class OvalMitreOrgOvalProcessObjectElementType {
         #int64 ID
-        +*int64 CommandID
+        +*int64 Command_lineID
         +*int64 ParentID
     }
     class OvalMitreOrgOvalProcessState {
         #int64 ID
-        +*int64 CommandID
-        +*int64 Exec_timeID
+        +*int64 Command_lineID
         +*int64 PidID
         +*int64 PpidID
-        +*int64 PriorityID
-        +*int64 RuidID
-        +*int64 Scheduling_classID
-        +*int64 Start_timeID
-        +*int64 TtyID
-        +*int64 User_idID
+        +string Priority
+        +*int64 Image_pathID
+        +*int64 Current_dirID
         +*int64 ParentID
     }
     class OvalMitreOrgOvalProcessStateElementType {
         #int64 ID
-        +*int64 CommandID
-        +*int64 Exec_timeID
+        +*int64 Command_lineID
         +*int64 PidID
         +*int64 PpidID
-        +*int64 PriorityID
-        +*int64 RuidID
-        +*int64 Scheduling_classID
-        +*int64 Start_timeID
-        +*int64 TtyID
-        +*int64 User_idID
+        +string Priority
+        +*int64 Image_pathID
+        +*int64 Current_dirID
         +*int64 ParentID
     }
     class OvalMitreOrgOvalProcessTest {
@@ -5838,28 +5815,38 @@ classDiagram
     }
     class OvalMitreOrgOvalVersionObject {
         #int64 ID
+        +*int64 ComponentID
         +*int64 ParentID
     }
     class OvalMitreOrgOvalVersionObjectElementType {
         #int64 ID
+        +*int64 ComponentID
         +*int64 ParentID
     }
     class OvalMitreOrgOvalVersionState {
         #int64 ID
-        +*int64 Switch_seriesID
-        +*int64 Image_nameID
-        +*int64 Catos_major_releaseID
-        +*int64 Catos_individual_releaseID
-        +*int64 Catos_version_idID
+        +*int64 ComponentID
+        +*int64 Raw_valueID
+        +*int64 MajorID
+        +*int64 MinorID
+        +*int64 TypeID
+        +*int64 BuildID
+        +*int64 Maintenance_releaseID
+        +*int64 SpinID
+        +*int64 Build_dateID
         +*int64 ParentID
     }
     class OvalMitreOrgOvalVersionStateElementType {
         #int64 ID
-        +*int64 Switch_seriesID
-        +*int64 Image_nameID
-        +*int64 Catos_major_releaseID
-        +*int64 Catos_individual_releaseID
-        +*int64 Catos_version_idID
+        +*int64 ComponentID
+        +*int64 Raw_valueID
+        +*int64 MajorID
+        +*int64 MinorID
+        +*int64 TypeID
+        +*int64 BuildID
+        +*int64 Maintenance_releaseID
+        +*int64 SpinID
+        +*int64 Build_dateID
         +*int64 ParentID
     }
     class OvalMitreOrgOvalVersionTest {
@@ -12616,8 +12603,8 @@ classDiagram
     TestType <|-- EnvironmentvariableTestElementType
     ObjectRefType "1" o-- "*" EnvironmentvariableTestElementType
     EntityStateAnySimpleType <|-- EpochElementType
-    EntityStateAnySimpleType <|-- EpochElementType1
-    EntityObjectAnySimpleType <|-- EpochElementType2
+    EntityObjectAnySimpleType <|-- EpochElementType1
+    EntityStateAnySimpleType <|-- EpochElementType2
     EntityStateAnySimpleType <|-- EpochElementType3
     EntityObjectAnySimpleType <|-- EpochElementType4
     EntityStateAnySimpleType <|-- EpochElementType5
@@ -13312,26 +13299,23 @@ classDiagram
     EntityStateStringType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
     EntityStateStringType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
     EntityStateStringType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
-    EntityStateFileTypeType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
     EntityStateStringType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
     EntityStateIntType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
     EntityStateIntType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
     EntityStateIntType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
     EntityStateIntType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
     EntityStateIntType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
-    EntityStateBoolType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
-    EntityStateBoolType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
-    EntityStateBoolType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
-    EntityStateBoolType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
-    EntityStateBoolType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
-    EntityStateBoolType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
-    EntityStateBoolType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
-    EntityStateBoolType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
-    EntityStateBoolType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
-    EntityStateBoolType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
-    EntityStateBoolType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
-    EntityStateBoolType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
-    EntityStateBoolType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
+    EntityStateStringType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
+    EntityStateVersionType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
+    EntityStateStringType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
+    EntityStateFileTypeType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
+    EntityStateFileAttributeType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
+    EntityStateStringType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
+    EntityStateStringType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
+    EntityStateStringType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
+    EntityStateStringType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
+    EntityStateStringType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
+    EntityStateStringType "1" o-- "*" OvalMitreOrgOvalFileStateElementType
     TestType <|-- OvalMitreOrgOvalFileTest
     TestType <|-- OvalMitreOrgOvalFileTestElementType
     ObjectRefType "1" o-- "*" OvalMitreOrgOvalFileTestElementType
@@ -13453,6 +13437,7 @@ classDiagram
     StateType <|-- OvalMitreOrgOvalNddStateElementType
     EntityStateStringType "1" o-- "*" OvalMitreOrgOvalNddStateElementType
     EntityStateStringType "1" o-- "*" OvalMitreOrgOvalNddStateElementType
+    EntityStateIntType "1" o-- "*" OvalMitreOrgOvalNddStateElementType
     EntityStateStringType "1" o-- "*" OvalMitreOrgOvalNddStateElementType
     EntityStateStringType "1" o-- "*" OvalMitreOrgOvalNddStateElementType
     EntityStateAnySimpleType "1" o-- "*" OvalMitreOrgOvalNddStateElementType
@@ -13491,8 +13476,8 @@ classDiagram
     ObjectType <|-- OvalMitreOrgOvalPatchObjectElementType
     StateType <|-- OvalMitreOrgOvalPatchState
     StateType <|-- OvalMitreOrgOvalPatchStateElementType
-    EntityStateStringType "1" o-- "*" OvalMitreOrgOvalPatchStateElementType
-    EntityStateBoolType "1" o-- "*" OvalMitreOrgOvalPatchStateElementType
+    EntityStateIntType "1" o-- "*" OvalMitreOrgOvalPatchStateElementType
+    EntityStateIntType "1" o-- "*" OvalMitreOrgOvalPatchStateElementType
     TestType <|-- OvalMitreOrgOvalPatchTest
     TestType <|-- OvalMitreOrgOvalPatchTestElementType
     ObjectRefType "1" o-- "*" OvalMitreOrgOvalPatchTestElementType
@@ -13504,22 +13489,17 @@ classDiagram
     StateType <|-- OvalMitreOrgOvalProcess58StateElementType
     EntityStateStringType "1" o-- "*" OvalMitreOrgOvalProcess58StateElementType
     EntityStateStringType "1" o-- "*" OvalMitreOrgOvalProcess58StateElementType
-    EntityStateStringType "1" o-- "*" OvalMitreOrgOvalProcess58StateElementType
     EntityStateIntType "1" o-- "*" OvalMitreOrgOvalProcess58StateElementType
     EntityStateIntType "1" o-- "*" OvalMitreOrgOvalProcess58StateElementType
     EntityStateIntType "1" o-- "*" OvalMitreOrgOvalProcess58StateElementType
     EntityStateIntType "1" o-- "*" OvalMitreOrgOvalProcess58StateElementType
     EntityStateIntType "1" o-- "*" OvalMitreOrgOvalProcess58StateElementType
-    EntityStateIntType "1" o-- "*" OvalMitreOrgOvalProcess58StateElementType
-    EntityStateStringType "1" o-- "*" OvalMitreOrgOvalProcess58StateElementType
     EntityStateStringType "1" o-- "*" OvalMitreOrgOvalProcess58StateElementType
     EntityStateStringType "1" o-- "*" OvalMitreOrgOvalProcess58StateElementType
     EntityStateIntType "1" o-- "*" OvalMitreOrgOvalProcess58StateElementType
     EntityStateBoolType "1" o-- "*" OvalMitreOrgOvalProcess58StateElementType
-    EntityStateIntType "1" o-- "*" OvalMitreOrgOvalProcess58StateElementType
-    EntityStateCapabilityType "1" o-- "*" OvalMitreOrgOvalProcess58StateElementType
     EntityStateStringType "1" o-- "*" OvalMitreOrgOvalProcess58StateElementType
-    EntityStateIntType "1" o-- "*" OvalMitreOrgOvalProcess58StateElementType
+    EntityStateStringType "1" o-- "*" OvalMitreOrgOvalProcess58StateElementType
     TestType <|-- OvalMitreOrgOvalProcess58Test
     TestType <|-- OvalMitreOrgOvalProcess58TestElementType
     ObjectRefType "1" o-- "*" OvalMitreOrgOvalProcess58TestElementType
@@ -13529,8 +13509,6 @@ classDiagram
     StateType <|-- OvalMitreOrgOvalProcessState
     StateType <|-- OvalMitreOrgOvalProcessStateElementType
     EntityStateStringType "1" o-- "*" OvalMitreOrgOvalProcessStateElementType
-    EntityStateStringType "1" o-- "*" OvalMitreOrgOvalProcessStateElementType
-    EntityStateIntType "1" o-- "*" OvalMitreOrgOvalProcessStateElementType
     EntityStateIntType "1" o-- "*" OvalMitreOrgOvalProcessStateElementType
     EntityStateIntType "1" o-- "*" OvalMitreOrgOvalProcessStateElementType
     EntityStateIntType "1" o-- "*" OvalMitreOrgOvalProcessStateElementType
@@ -13538,8 +13516,6 @@ classDiagram
     EntityStateIntType "1" o-- "*" OvalMitreOrgOvalProcessStateElementType
     EntityStateStringType "1" o-- "*" OvalMitreOrgOvalProcessStateElementType
     EntityStateStringType "1" o-- "*" OvalMitreOrgOvalProcessStateElementType
-    EntityStateStringType "1" o-- "*" OvalMitreOrgOvalProcessStateElementType
-    EntityStateIntType "1" o-- "*" OvalMitreOrgOvalProcessStateElementType
     TestType <|-- OvalMitreOrgOvalProcessTest
     TestType <|-- OvalMitreOrgOvalProcessTestElementType
     ObjectRefType "1" o-- "*" OvalMitreOrgOvalProcessTestElementType
@@ -13688,9 +13664,14 @@ classDiagram
     StateType <|-- OvalMitreOrgOvalVersionStateElementType
     EntityStateStringType "1" o-- "*" OvalMitreOrgOvalVersionStateElementType
     EntityStateStringType "1" o-- "*" OvalMitreOrgOvalVersionStateElementType
-    EntityStateVersionType "1" o-- "*" OvalMitreOrgOvalVersionStateElementType
     EntityStateIntType "1" o-- "*" OvalMitreOrgOvalVersionStateElementType
-    EntityStateStringType "1" o-- "*" OvalMitreOrgOvalVersionStateElementType
+    EntityStateIntType "1" o-- "*" OvalMitreOrgOvalVersionStateElementType
+    EntityStateJunosReleaseTypeType "1" o-- "*" OvalMitreOrgOvalVersionStateElementType
+    EntityStateIntType "1" o-- "*" OvalMitreOrgOvalVersionStateElementType
+    EntityStateIntType "1" o-- "*" OvalMitreOrgOvalVersionStateElementType
+    EntityStateIntType "1" o-- "*" OvalMitreOrgOvalVersionStateElementType
+    EntityStateIntType "1" o-- "*" OvalMitreOrgOvalVersionStateElementType
+    EntityStateIntType "1" o-- "*" OvalMitreOrgOvalVersionStateElementType
     TestType <|-- OvalMitreOrgOvalVersionTest
     TestType <|-- OvalMitreOrgOvalVersionTestElementType
     ObjectRefType "1" o-- "*" OvalMitreOrgOvalVersionTestElementType
@@ -14230,8 +14211,8 @@ classDiagram
     TestType <|-- RegkeyeffectiverightsTestElementType
     ObjectRefType "1" o-- "*" RegkeyeffectiverightsTestElementType
     EntityStateAnySimpleType <|-- ReleaseElementType
-    EntityStateAnySimpleType <|-- ReleaseElementType1
-    EntityObjectAnySimpleType <|-- ReleaseElementType2
+    EntityObjectAnySimpleType <|-- ReleaseElementType1
+    EntityStateAnySimpleType <|-- ReleaseElementType2
     EntityStateAnySimpleType <|-- ReleaseElementType3
     EntityObjectAnySimpleType <|-- ReleaseElementType4
     EntityStateAnySimpleType <|-- ReleaseElementType5
@@ -15243,8 +15224,8 @@ classDiagram
     TestType <|-- VariantTest
     TestType <|-- VariantTestElementType
     ObjectRefType "1" o-- "*" VariantTestElementType
-    EntityStateAnySimpleType <|-- VersionElementType1
-    EntityObjectAnySimpleType <|-- VersionElementType2
+    EntityObjectAnySimpleType <|-- VersionElementType1
+    EntityStateAnySimpleType <|-- VersionElementType2
     EntityStateAnySimpleType <|-- VersionElementType3
     EntityStateAnySimpleType <|-- VersionElementType4
     EntityObjectAnySimpleType <|-- VersionElementType5

@@ -11,9 +11,6 @@ import (
 	"strings"
 
 	xmlschemaoval_definitions_5 "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/oval/xmlschema/oval-definitions-5"
-	xmlschemaoval_results_5 "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/oval/xmlschema/oval-results-5"
-	xmlschemaoval_system_characteristics_5 "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/oval/xmlschema/oval-system-characteristics-5"
-	pkg_200009xmldsig "github.com/aequo-labs/forgexml-scap/internal/generated/org/w3/2000/09/xmldsig"
 )
 
 // GenericElement represents unknown/extension elements not defined in XSD
@@ -171,69 +168,9 @@ func replicateXmlnsPlacement(xmlOutput string, elementsWithXmlns map[string]stri
 	return result
 }
 
-// EntityStateWifiAuthAlgorithmType represents the XSD type 'EntityStateWifiAuthAlgorithmType'
+// Camera_testElementType represents the XSD type 'Camera_testElementType'
 // XSD complex type (W3C XSD §3.4)
-type EntityStateWifiAuthAlgorithmType struct {
-	xmlschemaoval_definitions_5.EntityStateStringType // XSD extension base
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// EntityStateWifiKeyMgmtType represents the XSD type 'EntityStateWifiKeyMgmtType'
-// XSD complex type (W3C XSD §3.4)
-type EntityStateWifiKeyMgmtType struct {
-	xmlschemaoval_definitions_5.EntityStateStringType // XSD extension base
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Certificate_testElementType represents the XSD type 'Certificate_testElementType'
-// XSD complex type (W3C XSD §3.4)
-type Certificate_testElementType struct {
-	xmlschemaoval_results_5.TestType // XSD extension base
-	// Object represents XSD element 'object'
-	Object xmlschemaoval_definitions_5.ObjectRefType `xml:"object"`
-	// State represents XSD element 'state'
-	// minOccurs=0, maxOccurs=-1
-	State []xmlschemaoval_definitions_5.StateRefType `xml:"state,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Systemdetails_testElementType represents the XSD type 'Systemdetails_testElementType'
-// XSD complex type (W3C XSD §3.4)
-type Systemdetails_testElementType struct {
-	xmlschemaoval_results_5.TestType // XSD extension base
-	// Object represents XSD element 'object'
-	Object xmlschemaoval_definitions_5.ObjectRefType `xml:"object"`
-	// State represents XSD element 'state'
-	// minOccurs=0, maxOccurs=-1
-	State []xmlschemaoval_definitions_5.StateRefType `xml:"state,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Password_objectElementType represents the XSD type 'Password_objectElementType'
-// XSD complex type (W3C XSD §3.4)
-type Password_objectElementType struct {
-	pkg_200009xmldsig.ObjectType // XSD extension base
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Password_testElementType represents the XSD type 'Password_testElementType'
-// XSD complex type (W3C XSD §3.4)
-type Password_testElementType struct {
+type Camera_testElementType struct {
 	xmlschemaoval_definitions_5.TestType // XSD extension base
 	// Object represents XSD element 'object'
 	Object xmlschemaoval_definitions_5.ObjectRefType `xml:"object"`
@@ -249,85 +186,17 @@ type Password_testElementType struct {
 // Wifi_objectElementType represents the XSD type 'Wifi_objectElementType'
 // XSD complex type (W3C XSD §3.4)
 type Wifi_objectElementType struct {
-	xmlschemaoval_system_characteristics_5.ObjectType // XSD extension base
+	xmlschemaoval_definitions_5.ObjectType // XSD extension base
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// EntityStateWifiCurrentStatusType represents the XSD type 'EntityStateWifiCurrentStatusType'
+// Certificate_testElementType represents the XSD type 'Certificate_testElementType'
 // XSD complex type (W3C XSD §3.4)
-type EntityStateWifiCurrentStatusType struct {
-	xmlschemaoval_definitions_5.EntityStateStringType // XSD extension base
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Appmanager_objectElementType represents the XSD type 'Appmanager_objectElementType'
-// XSD complex type (W3C XSD §3.4)
-type Appmanager_objectElementType struct {
-	pkg_200009xmldsig.ObjectType // XSD extension base
-	// Set represents XSD element 'set'
-	Set *xmlschemaoval_definitions_5.SetElement `xml:"set,omitempty"`
-	// Package_name represents XSD element 'package_name'
-	Package_name xmlschemaoval_definitions_5.EntityObjectStringType `xml:"package_name"`
-	// Signing_certificate represents XSD element 'signing_certificate'
-	Signing_certificate xmlschemaoval_definitions_5.EntityObjectBinaryType `xml:"signing_certificate"`
-	// Filter represents XSD element 'filter'
-	// minOccurs=0, maxOccurs=-1
-	Filter []xmlschemaoval_definitions_5.FilterElement `xml:"filter,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Encryption_objectElementType represents the XSD type 'Encryption_objectElementType'
-// XSD complex type (W3C XSD §3.4)
-type Encryption_objectElementType struct {
-	pkg_200009xmldsig.ObjectType // XSD extension base
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Certificate_stateElementType represents the XSD type 'Certificate_stateElementType'
-// XSD complex type (W3C XSD §3.4)
-type Certificate_stateElementType struct {
-	xmlschemaoval_definitions_5.StateType // XSD extension base
-	// Trusted_certificate represents XSD element 'trusted_certificate'
-	// minOccurs=0, maxOccurs=-1
-	Trusted_certificate []xmlschemaoval_definitions_5.EntityStateBinaryType `xml:"trusted_certificate,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Wifi_stateElementType represents the XSD type 'Wifi_stateElementType'
-// XSD complex type (W3C XSD §3.4)
-type Wifi_stateElementType struct {
-	xmlschemaoval_definitions_5.StateType // XSD extension base
-	// Wifi_status represents XSD element 'wifi_status'
-	// minOccurs=0, maxOccurs=1
-	Wifi_status *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"wifi_status,omitempty"`
-	// Network_availability_notification represents XSD element 'network_availability_notification'
-	// minOccurs=0, maxOccurs=1
-	Network_availability_notification *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"network_availability_notification,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Locationservice_testElementType represents the XSD type 'Locationservice_testElementType'
-// XSD complex type (W3C XSD §3.4)
-type Locationservice_testElementType struct {
-	xmlschemaoval_results_5.TestType // XSD extension base
+type Certificate_testElementType struct {
+	xmlschemaoval_definitions_5.TestType // XSD extension base
 	// Object represents XSD element 'object'
 	Object xmlschemaoval_definitions_5.ObjectRefType `xml:"object"`
 	// State represents XSD element 'state'
@@ -339,20 +208,10 @@ type Locationservice_testElementType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// EntityStateWifiProtocolType represents the XSD type 'EntityStateWifiProtocolType'
+// Network_testElementType represents the XSD type 'Network_testElementType'
 // XSD complex type (W3C XSD §3.4)
-type EntityStateWifiProtocolType struct {
-	xmlschemaoval_definitions_5.EntityStateStringType // XSD extension base
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Bluetooth_testElementType represents the XSD type 'Bluetooth_testElementType'
-// XSD complex type (W3C XSD §3.4)
-type Bluetooth_testElementType struct {
-	xmlschemaoval_results_5.TestType // XSD extension base
+type Network_testElementType struct {
+	xmlschemaoval_definitions_5.TestType // XSD extension base
 	// Object represents XSD element 'object'
 	Object xmlschemaoval_definitions_5.ObjectRefType `xml:"object"`
 	// State represents XSD element 'state'
@@ -364,30 +223,80 @@ type Bluetooth_testElementType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// Devicesettings_objectElementType represents the XSD type 'Devicesettings_objectElementType'
+// Telephony_stateElementType represents the XSD type 'Telephony_stateElementType'
 // XSD complex type (W3C XSD §3.4)
-type Devicesettings_objectElementType struct {
-	xmlschemaoval_definitions_5.ObjectType // XSD extension base
+type Telephony_stateElementType struct {
+	xmlschemaoval_definitions_5.StateType // XSD extension base
+	// Network_type represents XSD element 'network_type'
+	// minOccurs=0, maxOccurs=1
+	Network_type *EntityStateNetworkType `xml:"network_type,omitempty"`
+	// Sim_country_iso represents XSD element 'sim_country_iso'
+	// minOccurs=0, maxOccurs=1
+	Sim_country_iso *xmlschemaoval_definitions_5.EntityStateStringType `xml:"sim_country_iso,omitempty"`
+	// Sim_operator_code represents XSD element 'sim_operator_code'
+	// minOccurs=0, maxOccurs=1
+	Sim_operator_code *xmlschemaoval_definitions_5.EntityStateStringType `xml:"sim_operator_code,omitempty"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// Certificate_objectElementType represents the XSD type 'Certificate_objectElementType'
+// Telephony_testElementType represents the XSD type 'Telephony_testElementType'
 // XSD complex type (W3C XSD §3.4)
-type Certificate_objectElementType struct {
-	xmlschemaoval_definitions_5.ObjectType // XSD extension base
+type Telephony_testElementType struct {
+	xmlschemaoval_definitions_5.TestType // XSD extension base
+	// Object represents XSD element 'object'
+	Object xmlschemaoval_definitions_5.ObjectRefType `xml:"object"`
+	// State represents XSD element 'state'
+	// minOccurs=0, maxOccurs=-1
+	State []xmlschemaoval_definitions_5.StateRefType `xml:"state,omitempty"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// Camera_objectElementType represents the XSD type 'Camera_objectElementType'
+// Bluetooth_stateElementType represents the XSD type 'Bluetooth_stateElementType'
 // XSD complex type (W3C XSD §3.4)
-type Camera_objectElementType struct {
-	pkg_200009xmldsig.ObjectType // XSD extension base
+type Bluetooth_stateElementType struct {
+	xmlschemaoval_definitions_5.StateType // XSD extension base
+	// Discoverable represents XSD element 'discoverable'
+	// minOccurs=0, maxOccurs=1
+	Discoverable *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"discoverable,omitempty"`
+	// Current_status represents XSD element 'current_status'
+	// minOccurs=0, maxOccurs=1
+	Current_status *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"current_status,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// EntityStateKeyguardDisabledFeaturesType represents the XSD type 'EntityStateKeyguardDisabledFeaturesType'
+// XSD complex type (W3C XSD §3.4)
+type EntityStateKeyguardDisabledFeaturesType struct {
+	xmlschemaoval_definitions_5.EntityStateStringType // XSD extension base
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// EntityStateNetworkType represents the XSD type 'EntityStateNetworkType'
+// XSD complex type (W3C XSD §3.4)
+type EntityStateNetworkType struct {
+	xmlschemaoval_definitions_5.EntityStateStringType // XSD extension base
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// EntityStateWifiKeyMgmtType represents the XSD type 'EntityStateWifiKeyMgmtType'
+// XSD complex type (W3C XSD §3.4)
+type EntityStateWifiKeyMgmtType struct {
+	xmlschemaoval_definitions_5.EntityStateStringType // XSD extension base
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -440,10 +349,76 @@ type Systemdetails_stateElementType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// Bluetooth_objectElementType represents the XSD type 'Bluetooth_objectElementType'
+// Locationservice_objectElementType represents the XSD type 'Locationservice_objectElementType'
 // XSD complex type (W3C XSD §3.4)
-type Bluetooth_objectElementType struct {
-	xmlschemaoval_system_characteristics_5.ObjectType // XSD extension base
+type Locationservice_objectElementType struct {
+	xmlschemaoval_definitions_5.ObjectType // XSD extension base
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// Password_objectElementType represents the XSD type 'Password_objectElementType'
+// XSD complex type (W3C XSD §3.4)
+type Password_objectElementType struct {
+	xmlschemaoval_definitions_5.ObjectType // XSD extension base
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// EntityStateEncryptionStatusType represents the XSD type 'EntityStateEncryptionStatusType'
+// XSD complex type (W3C XSD §3.4)
+type EntityStateEncryptionStatusType struct {
+	xmlschemaoval_definitions_5.EntityStateStringType // XSD extension base
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// Systemdetails_testElementType represents the XSD type 'Systemdetails_testElementType'
+// XSD complex type (W3C XSD §3.4)
+type Systemdetails_testElementType struct {
+	xmlschemaoval_definitions_5.TestType // XSD extension base
+	// Object represents XSD element 'object'
+	Object xmlschemaoval_definitions_5.ObjectRefType `xml:"object"`
+	// State represents XSD element 'state'
+	// minOccurs=0, maxOccurs=-1
+	State []xmlschemaoval_definitions_5.StateRefType `xml:"state,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// Devicesettings_stateElementType represents the XSD type 'Devicesettings_stateElementType'
+// XSD complex type (W3C XSD §3.4)
+type Devicesettings_stateElementType struct {
+	xmlschemaoval_definitions_5.StateType // XSD extension base
+	// Adb_enabled represents XSD element 'adb_enabled'
+	// minOccurs=0, maxOccurs=1
+	Adb_enabled *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"adb_enabled,omitempty"`
+	// Allow_mock_location represents XSD element 'allow_mock_location'
+	// minOccurs=0, maxOccurs=1
+	Allow_mock_location *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_mock_location,omitempty"`
+	// Install_non_market_apps represents XSD element 'install_non_market_apps'
+	// minOccurs=0, maxOccurs=1
+	Install_non_market_apps *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"install_non_market_apps,omitempty"`
+	// Device_admin represents XSD element 'device_admin'
+	// minOccurs=0, maxOccurs=-1
+	Device_admin []xmlschemaoval_definitions_5.EntityStateStringType `xml:"device_admin,omitempty"`
+	// Auto_time represents XSD element 'auto_time'
+	// minOccurs=0, maxOccurs=1
+	Auto_time *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"auto_time,omitempty"`
+	// Auto_time_zone represents XSD element 'auto_time_zone'
+	// minOccurs=0, maxOccurs=1
+	Auto_time_zone *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"auto_time_zone,omitempty"`
+	// Usb_mass_storage_enabled represents XSD element 'usb_mass_storage_enabled'
+	// minOccurs=0, maxOccurs=1
+	Usb_mass_storage_enabled *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"usb_mass_storage_enabled,omitempty"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -493,25 +468,99 @@ type Wifinetwork_stateElementType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// Bluetooth_stateElementType represents the XSD type 'Bluetooth_stateElementType'
+// Appmanager_stateElementType represents the XSD type 'Appmanager_stateElementType'
 // XSD complex type (W3C XSD §3.4)
-type Bluetooth_stateElementType struct {
+type Appmanager_stateElementType struct {
 	xmlschemaoval_definitions_5.StateType // XSD extension base
-	// Discoverable represents XSD element 'discoverable'
+	// Application_name represents XSD element 'application_name'
 	// minOccurs=0, maxOccurs=1
-	Discoverable *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"discoverable,omitempty"`
+	Application_name *xmlschemaoval_definitions_5.EntityStateStringType `xml:"application_name,omitempty"`
+	// Uid represents XSD element 'uid'
+	// minOccurs=0, maxOccurs=1
+	Uid *xmlschemaoval_definitions_5.EntityStateStringType `xml:"uid,omitempty"`
+	// Gid represents XSD element 'gid'
+	// minOccurs=0, maxOccurs=-1
+	Gid []xmlschemaoval_definitions_5.EntityStateStringType `xml:"gid,omitempty"`
+	// Package_name represents XSD element 'package_name'
+	// minOccurs=0, maxOccurs=1
+	Package_name *xmlschemaoval_definitions_5.EntityStateStringType `xml:"package_name,omitempty"`
+	// Data_directory represents XSD element 'data_directory'
+	// minOccurs=0, maxOccurs=1
+	Data_directory *xmlschemaoval_definitions_5.EntityStateStringType `xml:"data_directory,omitempty"`
+	// Version represents XSD element 'version'
+	// minOccurs=0, maxOccurs=1
+	Version *xmlschemaoval_definitions_5.EntityStateStringType `xml:"version,omitempty"`
 	// Current_status represents XSD element 'current_status'
 	// minOccurs=0, maxOccurs=1
 	Current_status *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"current_status,omitempty"`
+	// Permission represents XSD element 'permission'
+	// minOccurs=0, maxOccurs=1
+	Permission *xmlschemaoval_definitions_5.EntityStateStringType `xml:"permission,omitempty"`
+	// Native_lib_dir represents XSD element 'native_lib_dir'
+	// minOccurs=0, maxOccurs=1
+	Native_lib_dir *xmlschemaoval_definitions_5.EntityStateStringType `xml:"native_lib_dir,omitempty"`
+	// Signing_certificate represents XSD element 'signing_certificate'
+	// minOccurs=0, maxOccurs=-1
+	Signing_certificate []xmlschemaoval_definitions_5.EntityStateBinaryType `xml:"signing_certificate,omitempty"`
+	// First_install_time represents XSD element 'first_install_time'
+	// minOccurs=0, maxOccurs=1
+	First_install_time *xmlschemaoval_definitions_5.EntityStateIntType `xml:"first_install_time,omitempty"`
+	// Last_update_time represents XSD element 'last_update_time'
+	// minOccurs=0, maxOccurs=1
+	Last_update_time *xmlschemaoval_definitions_5.EntityStateIntType `xml:"last_update_time,omitempty"`
+	// Package_file_location represents XSD element 'package_file_location'
+	// minOccurs=0, maxOccurs=1
+	Package_file_location *xmlschemaoval_definitions_5.EntityStateStringType `xml:"package_file_location,omitempty"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// EntityStateKeyguardDisabledFeaturesType represents the XSD type 'EntityStateKeyguardDisabledFeaturesType'
+// Locationservice_stateElementType represents the XSD type 'Locationservice_stateElementType'
 // XSD complex type (W3C XSD §3.4)
-type EntityStateKeyguardDisabledFeaturesType struct {
+type Locationservice_stateElementType struct {
+	xmlschemaoval_definitions_5.StateType // XSD extension base
+	// Gps_enabled represents XSD element 'gps_enabled'
+	// minOccurs=0, maxOccurs=1
+	Gps_enabled *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"gps_enabled,omitempty"`
+	// Network_enabled represents XSD element 'network_enabled'
+	// minOccurs=0, maxOccurs=1
+	Network_enabled *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"network_enabled,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// Bluetooth_testElementType represents the XSD type 'Bluetooth_testElementType'
+// XSD complex type (W3C XSD §3.4)
+type Bluetooth_testElementType struct {
+	xmlschemaoval_definitions_5.TestType // XSD extension base
+	// Object represents XSD element 'object'
+	Object xmlschemaoval_definitions_5.ObjectRefType `xml:"object"`
+	// State represents XSD element 'state'
+	// minOccurs=0, maxOccurs=-1
+	State []xmlschemaoval_definitions_5.StateRefType `xml:"state,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// Encryption_objectElementType represents the XSD type 'Encryption_objectElementType'
+// XSD complex type (W3C XSD §3.4)
+type Encryption_objectElementType struct {
+	xmlschemaoval_definitions_5.ObjectType // XSD extension base
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// EntityStatePasswordQualityType represents the XSD type 'EntityStatePasswordQualityType'
+// XSD complex type (W3C XSD §3.4)
+type EntityStatePasswordQualityType struct {
 	xmlschemaoval_definitions_5.EntityStateStringType // XSD extension base
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
@@ -519,10 +568,276 @@ type EntityStateKeyguardDisabledFeaturesType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// EntityStateNetworkType represents the XSD type 'EntityStateNetworkType'
+// EntityStateWifiPairwiseCipherType represents the XSD type 'EntityStateWifiPairwiseCipherType'
 // XSD complex type (W3C XSD §3.4)
-type EntityStateNetworkType struct {
+type EntityStateWifiPairwiseCipherType struct {
 	xmlschemaoval_definitions_5.EntityStateStringType // XSD extension base
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// Camera_stateElementType represents the XSD type 'Camera_stateElementType'
+// XSD complex type (W3C XSD §3.4)
+type Camera_stateElementType struct {
+	xmlschemaoval_definitions_5.StateType // XSD extension base
+	// Camera_disabled_policy represents XSD element 'camera_disabled_policy'
+	// minOccurs=0, maxOccurs=1
+	Camera_disabled_policy *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"camera_disabled_policy,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// Devicesettings_objectElementType represents the XSD type 'Devicesettings_objectElementType'
+// XSD complex type (W3C XSD §3.4)
+type Devicesettings_objectElementType struct {
+	xmlschemaoval_definitions_5.ObjectType // XSD extension base
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// Appmanager_objectElementType represents the XSD type 'Appmanager_objectElementType'
+// XSD complex type (W3C XSD §3.4)
+type Appmanager_objectElementType struct {
+	xmlschemaoval_definitions_5.ObjectType // XSD extension base
+	// Set represents XSD element 'set'
+	Set *xmlschemaoval_definitions_5.SetElement `xml:"set,omitempty"`
+	// Package_name represents XSD element 'package_name'
+	Package_name xmlschemaoval_definitions_5.EntityObjectStringType `xml:"package_name"`
+	// Signing_certificate represents XSD element 'signing_certificate'
+	Signing_certificate xmlschemaoval_definitions_5.EntityObjectBinaryType `xml:"signing_certificate"`
+	// Filter represents XSD element 'filter'
+	// minOccurs=0, maxOccurs=-1
+	Filter []xmlschemaoval_definitions_5.FilterElement `xml:"filter,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// Telephony_objectElementType represents the XSD type 'Telephony_objectElementType'
+// XSD complex type (W3C XSD §3.4)
+type Telephony_objectElementType struct {
+	xmlschemaoval_definitions_5.ObjectType // XSD extension base
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// Encryption_stateElementType represents the XSD type 'Encryption_stateElementType'
+// XSD complex type (W3C XSD §3.4)
+type Encryption_stateElementType struct {
+	xmlschemaoval_definitions_5.StateType // XSD extension base
+	// Encryption_policy_enabled represents XSD element 'encryption_policy_enabled'
+	// minOccurs=0, maxOccurs=1
+	Encryption_policy_enabled *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"encryption_policy_enabled,omitempty"`
+	// Encryption_status represents XSD element 'encryption_status'
+	// minOccurs=0, maxOccurs=1
+	Encryption_status *EntityStateEncryptionStatusType `xml:"encryption_status,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// EntityStateWifiProtocolType represents the XSD type 'EntityStateWifiProtocolType'
+// XSD complex type (W3C XSD §3.4)
+type EntityStateWifiProtocolType struct {
+	xmlschemaoval_definitions_5.EntityStateStringType // XSD extension base
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// Camera_objectElementType represents the XSD type 'Camera_objectElementType'
+// XSD complex type (W3C XSD §3.4)
+type Camera_objectElementType struct {
+	xmlschemaoval_definitions_5.ObjectType // XSD extension base
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// Bluetooth_objectElementType represents the XSD type 'Bluetooth_objectElementType'
+// XSD complex type (W3C XSD §3.4)
+type Bluetooth_objectElementType struct {
+	xmlschemaoval_definitions_5.ObjectType // XSD extension base
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// Locationservice_testElementType represents the XSD type 'Locationservice_testElementType'
+// XSD complex type (W3C XSD §3.4)
+type Locationservice_testElementType struct {
+	xmlschemaoval_definitions_5.TestType // XSD extension base
+	// Object represents XSD element 'object'
+	Object xmlschemaoval_definitions_5.ObjectRefType `xml:"object"`
+	// State represents XSD element 'state'
+	// minOccurs=0, maxOccurs=-1
+	State []xmlschemaoval_definitions_5.StateRefType `xml:"state,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// Network_stateElementType represents the XSD type 'Network_stateElementType'
+// XSD complex type (W3C XSD §3.4)
+type Network_stateElementType struct {
+	xmlschemaoval_definitions_5.StateType // XSD extension base
+	// Airplane_mode represents XSD element 'airplane_mode'
+	// minOccurs=0, maxOccurs=1
+	Airplane_mode *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"airplane_mode,omitempty"`
+	// Nfc_enabled represents XSD element 'nfc_enabled'
+	// minOccurs=0, maxOccurs=1
+	Nfc_enabled *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"nfc_enabled,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// Password_testElementType represents the XSD type 'Password_testElementType'
+// XSD complex type (W3C XSD §3.4)
+type Password_testElementType struct {
+	xmlschemaoval_definitions_5.TestType // XSD extension base
+	// Object represents XSD element 'object'
+	Object xmlschemaoval_definitions_5.ObjectRefType `xml:"object"`
+	// State represents XSD element 'state'
+	// minOccurs=0, maxOccurs=-1
+	State []xmlschemaoval_definitions_5.StateRefType `xml:"state,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// Wifinetwork_objectElementType represents the XSD type 'Wifinetwork_objectElementType'
+// XSD complex type (W3C XSD §3.4)
+type Wifinetwork_objectElementType struct {
+	xmlschemaoval_definitions_5.ObjectType // XSD extension base
+	// Set represents XSD element 'set'
+	Set *xmlschemaoval_definitions_5.SetElement `xml:"set,omitempty"`
+	// Ssid represents XSD element 'ssid'
+	Ssid xmlschemaoval_definitions_5.EntityObjectStringType `xml:"ssid"`
+	// Filter represents XSD element 'filter'
+	// minOccurs=0, maxOccurs=-1
+	Filter []xmlschemaoval_definitions_5.FilterElement `xml:"filter,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// Appmanager_testElementType represents the XSD type 'Appmanager_testElementType'
+// XSD complex type (W3C XSD §3.4)
+type Appmanager_testElementType struct {
+	xmlschemaoval_definitions_5.TestType // XSD extension base
+	// Object represents XSD element 'object'
+	Object xmlschemaoval_definitions_5.ObjectRefType `xml:"object"`
+	// State represents XSD element 'state'
+	// minOccurs=0, maxOccurs=-1
+	State []xmlschemaoval_definitions_5.StateRefType `xml:"state,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// EntityStateWifiGroupCipherType represents the XSD type 'EntityStateWifiGroupCipherType'
+// XSD complex type (W3C XSD §3.4)
+type EntityStateWifiGroupCipherType struct {
+	xmlschemaoval_definitions_5.EntityStateStringType // XSD extension base
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// Systemdetails_objectElementType represents the XSD type 'Systemdetails_objectElementType'
+// XSD complex type (W3C XSD §3.4)
+type Systemdetails_objectElementType struct {
+	xmlschemaoval_definitions_5.ObjectType // XSD extension base
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// Wifi_testElementType represents the XSD type 'Wifi_testElementType'
+// XSD complex type (W3C XSD §3.4)
+type Wifi_testElementType struct {
+	xmlschemaoval_definitions_5.TestType // XSD extension base
+	// Object represents XSD element 'object'
+	Object xmlschemaoval_definitions_5.ObjectRefType `xml:"object"`
+	// State represents XSD element 'state'
+	// minOccurs=0, maxOccurs=-1
+	State []xmlschemaoval_definitions_5.StateRefType `xml:"state,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// Network_objectElementType represents the XSD type 'Network_objectElementType'
+// XSD complex type (W3C XSD §3.4)
+type Network_objectElementType struct {
+	xmlschemaoval_definitions_5.ObjectType // XSD extension base
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// Certificate_objectElementType represents the XSD type 'Certificate_objectElementType'
+// XSD complex type (W3C XSD §3.4)
+type Certificate_objectElementType struct {
+	xmlschemaoval_definitions_5.ObjectType // XSD extension base
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// EntityStateWifiAuthAlgorithmType represents the XSD type 'EntityStateWifiAuthAlgorithmType'
+// XSD complex type (W3C XSD §3.4)
+type EntityStateWifiAuthAlgorithmType struct {
+	xmlschemaoval_definitions_5.EntityStateStringType // XSD extension base
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// EntityStateWifiCurrentStatusType represents the XSD type 'EntityStateWifiCurrentStatusType'
+// XSD complex type (W3C XSD §3.4)
+type EntityStateWifiCurrentStatusType struct {
+	xmlschemaoval_definitions_5.EntityStateStringType // XSD extension base
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// Encryption_testElementType represents the XSD type 'Encryption_testElementType'
+// XSD complex type (W3C XSD §3.4)
+type Encryption_testElementType struct {
+	xmlschemaoval_definitions_5.TestType // XSD extension base
+	// Object represents XSD element 'object'
+	Object xmlschemaoval_definitions_5.ObjectRefType `xml:"object"`
+	// State represents XSD element 'state'
+	// minOccurs=0, maxOccurs=-1
+	State []xmlschemaoval_definitions_5.StateRefType `xml:"state,omitempty"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -587,114 +902,31 @@ type Password_stateElementType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// Devicesettings_testElementType represents the XSD type 'Devicesettings_testElementType'
+// Wifi_stateElementType represents the XSD type 'Wifi_stateElementType'
 // XSD complex type (W3C XSD §3.4)
-type Devicesettings_testElementType struct {
-	xmlschemaoval_results_5.TestType // XSD extension base
-	// Object represents XSD element 'object'
-	Object xmlschemaoval_definitions_5.ObjectRefType `xml:"object"`
-	// State represents XSD element 'state'
-	// minOccurs=0, maxOccurs=-1
-	State []xmlschemaoval_definitions_5.StateRefType `xml:"state,omitempty"`
+type Wifi_stateElementType struct {
+	xmlschemaoval_definitions_5.StateType // XSD extension base
+	// Wifi_status represents XSD element 'wifi_status'
+	// minOccurs=0, maxOccurs=1
+	Wifi_status *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"wifi_status,omitempty"`
+	// Network_availability_notification represents XSD element 'network_availability_notification'
+	// minOccurs=0, maxOccurs=1
+	Network_availability_notification *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"network_availability_notification,omitempty"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// Appmanager_testElementType represents the XSD type 'Appmanager_testElementType'
+// Devicesettings_testElementType represents the XSD type 'Devicesettings_testElementType'
 // XSD complex type (W3C XSD §3.4)
-type Appmanager_testElementType struct {
+type Devicesettings_testElementType struct {
 	xmlschemaoval_definitions_5.TestType // XSD extension base
 	// Object represents XSD element 'object'
 	Object xmlschemaoval_definitions_5.ObjectRefType `xml:"object"`
 	// State represents XSD element 'state'
 	// minOccurs=0, maxOccurs=-1
 	State []xmlschemaoval_definitions_5.StateRefType `xml:"state,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Devicesettings_stateElementType represents the XSD type 'Devicesettings_stateElementType'
-// XSD complex type (W3C XSD §3.4)
-type Devicesettings_stateElementType struct {
-	xmlschemaoval_definitions_5.StateType // XSD extension base
-	// Adb_enabled represents XSD element 'adb_enabled'
-	// minOccurs=0, maxOccurs=1
-	Adb_enabled *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"adb_enabled,omitempty"`
-	// Allow_mock_location represents XSD element 'allow_mock_location'
-	// minOccurs=0, maxOccurs=1
-	Allow_mock_location *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_mock_location,omitempty"`
-	// Install_non_market_apps represents XSD element 'install_non_market_apps'
-	// minOccurs=0, maxOccurs=1
-	Install_non_market_apps *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"install_non_market_apps,omitempty"`
-	// Device_admin represents XSD element 'device_admin'
-	// minOccurs=0, maxOccurs=-1
-	Device_admin []xmlschemaoval_definitions_5.EntityStateStringType `xml:"device_admin,omitempty"`
-	// Auto_time represents XSD element 'auto_time'
-	// minOccurs=0, maxOccurs=1
-	Auto_time *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"auto_time,omitempty"`
-	// Auto_time_zone represents XSD element 'auto_time_zone'
-	// minOccurs=0, maxOccurs=1
-	Auto_time_zone *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"auto_time_zone,omitempty"`
-	// Usb_mass_storage_enabled represents XSD element 'usb_mass_storage_enabled'
-	// minOccurs=0, maxOccurs=1
-	Usb_mass_storage_enabled *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"usb_mass_storage_enabled,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// EntityStatePasswordQualityType represents the XSD type 'EntityStatePasswordQualityType'
-// XSD complex type (W3C XSD §3.4)
-type EntityStatePasswordQualityType struct {
-	xmlschemaoval_definitions_5.EntityStateStringType // XSD extension base
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// EntityStateWifiGroupCipherType represents the XSD type 'EntityStateWifiGroupCipherType'
-// XSD complex type (W3C XSD §3.4)
-type EntityStateWifiGroupCipherType struct {
-	xmlschemaoval_definitions_5.EntityStateStringType // XSD extension base
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Network_stateElementType represents the XSD type 'Network_stateElementType'
-// XSD complex type (W3C XSD §3.4)
-type Network_stateElementType struct {
-	xmlschemaoval_definitions_5.StateType // XSD extension base
-	// Airplane_mode represents XSD element 'airplane_mode'
-	// minOccurs=0, maxOccurs=1
-	Airplane_mode *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"airplane_mode,omitempty"`
-	// Nfc_enabled represents XSD element 'nfc_enabled'
-	// minOccurs=0, maxOccurs=1
-	Nfc_enabled *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"nfc_enabled,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Wifinetwork_objectElementType represents the XSD type 'Wifinetwork_objectElementType'
-// XSD complex type (W3C XSD §3.4)
-type Wifinetwork_objectElementType struct {
-	xmlschemaoval_system_characteristics_5.ObjectType // XSD extension base
-	// Set represents XSD element 'set'
-	Set *xmlschemaoval_definitions_5.SetElement `xml:"set,omitempty"`
-	// Ssid represents XSD element 'ssid'
-	Ssid xmlschemaoval_definitions_5.EntityObjectStringType `xml:"ssid"`
-	// Filter represents XSD element 'filter'
-	// minOccurs=0, maxOccurs=-1
-	Filter []xmlschemaoval_definitions_5.FilterElement `xml:"filter,omitempty"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -716,248 +948,13 @@ type Wifinetwork_testElementType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// Locationservice_stateElementType represents the XSD type 'Locationservice_stateElementType'
+// Certificate_stateElementType represents the XSD type 'Certificate_stateElementType'
 // XSD complex type (W3C XSD §3.4)
-type Locationservice_stateElementType struct {
+type Certificate_stateElementType struct {
 	xmlschemaoval_definitions_5.StateType // XSD extension base
-	// Gps_enabled represents XSD element 'gps_enabled'
-	// minOccurs=0, maxOccurs=1
-	Gps_enabled *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"gps_enabled,omitempty"`
-	// Network_enabled represents XSD element 'network_enabled'
-	// minOccurs=0, maxOccurs=1
-	Network_enabled *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"network_enabled,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Network_objectElementType represents the XSD type 'Network_objectElementType'
-// XSD complex type (W3C XSD §3.4)
-type Network_objectElementType struct {
-	xmlschemaoval_system_characteristics_5.ObjectType // XSD extension base
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// EntityStateEncryptionStatusType represents the XSD type 'EntityStateEncryptionStatusType'
-// XSD complex type (W3C XSD §3.4)
-type EntityStateEncryptionStatusType struct {
-	xmlschemaoval_definitions_5.EntityStateStringType // XSD extension base
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// EntityStateWifiPairwiseCipherType represents the XSD type 'EntityStateWifiPairwiseCipherType'
-// XSD complex type (W3C XSD §3.4)
-type EntityStateWifiPairwiseCipherType struct {
-	xmlschemaoval_definitions_5.EntityStateStringType // XSD extension base
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Telephony_stateElementType represents the XSD type 'Telephony_stateElementType'
-// XSD complex type (W3C XSD §3.4)
-type Telephony_stateElementType struct {
-	xmlschemaoval_definitions_5.StateType // XSD extension base
-	// Network_type represents XSD element 'network_type'
-	// minOccurs=0, maxOccurs=1
-	Network_type *EntityStateNetworkType `xml:"network_type,omitempty"`
-	// Sim_country_iso represents XSD element 'sim_country_iso'
-	// minOccurs=0, maxOccurs=1
-	Sim_country_iso *xmlschemaoval_definitions_5.EntityStateStringType `xml:"sim_country_iso,omitempty"`
-	// Sim_operator_code represents XSD element 'sim_operator_code'
-	// minOccurs=0, maxOccurs=1
-	Sim_operator_code *xmlschemaoval_definitions_5.EntityStateStringType `xml:"sim_operator_code,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Locationservice_objectElementType represents the XSD type 'Locationservice_objectElementType'
-// XSD complex type (W3C XSD §3.4)
-type Locationservice_objectElementType struct {
-	xmlschemaoval_system_characteristics_5.ObjectType // XSD extension base
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Encryption_stateElementType represents the XSD type 'Encryption_stateElementType'
-// XSD complex type (W3C XSD §3.4)
-type Encryption_stateElementType struct {
-	xmlschemaoval_definitions_5.StateType // XSD extension base
-	// Encryption_policy_enabled represents XSD element 'encryption_policy_enabled'
-	// minOccurs=0, maxOccurs=1
-	Encryption_policy_enabled *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"encryption_policy_enabled,omitempty"`
-	// Encryption_status represents XSD element 'encryption_status'
-	// minOccurs=0, maxOccurs=1
-	Encryption_status *EntityStateEncryptionStatusType `xml:"encryption_status,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Telephony_testElementType represents the XSD type 'Telephony_testElementType'
-// XSD complex type (W3C XSD §3.4)
-type Telephony_testElementType struct {
-	xmlschemaoval_results_5.TestType // XSD extension base
-	// Object represents XSD element 'object'
-	Object xmlschemaoval_definitions_5.ObjectRefType `xml:"object"`
-	// State represents XSD element 'state'
+	// Trusted_certificate represents XSD element 'trusted_certificate'
 	// minOccurs=0, maxOccurs=-1
-	State []xmlschemaoval_definitions_5.StateRefType `xml:"state,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Encryption_testElementType represents the XSD type 'Encryption_testElementType'
-// XSD complex type (W3C XSD §3.4)
-type Encryption_testElementType struct {
-	xmlschemaoval_results_5.TestType // XSD extension base
-	// Object represents XSD element 'object'
-	Object xmlschemaoval_definitions_5.ObjectRefType `xml:"object"`
-	// State represents XSD element 'state'
-	// minOccurs=0, maxOccurs=-1
-	State []xmlschemaoval_definitions_5.StateRefType `xml:"state,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Appmanager_stateElementType represents the XSD type 'Appmanager_stateElementType'
-// XSD complex type (W3C XSD §3.4)
-type Appmanager_stateElementType struct {
-	xmlschemaoval_definitions_5.StateType // XSD extension base
-	// Application_name represents XSD element 'application_name'
-	// minOccurs=0, maxOccurs=1
-	Application_name *xmlschemaoval_definitions_5.EntityStateStringType `xml:"application_name,omitempty"`
-	// Uid represents XSD element 'uid'
-	// minOccurs=0, maxOccurs=1
-	Uid *xmlschemaoval_definitions_5.EntityStateStringType `xml:"uid,omitempty"`
-	// Gid represents XSD element 'gid'
-	// minOccurs=0, maxOccurs=-1
-	Gid []xmlschemaoval_definitions_5.EntityStateStringType `xml:"gid,omitempty"`
-	// Package_name represents XSD element 'package_name'
-	// minOccurs=0, maxOccurs=1
-	Package_name *xmlschemaoval_definitions_5.EntityStateStringType `xml:"package_name,omitempty"`
-	// Data_directory represents XSD element 'data_directory'
-	// minOccurs=0, maxOccurs=1
-	Data_directory *xmlschemaoval_definitions_5.EntityStateStringType `xml:"data_directory,omitempty"`
-	// Version represents XSD element 'version'
-	// minOccurs=0, maxOccurs=1
-	Version *xmlschemaoval_definitions_5.EntityStateStringType `xml:"version,omitempty"`
-	// Current_status represents XSD element 'current_status'
-	// minOccurs=0, maxOccurs=1
-	Current_status *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"current_status,omitempty"`
-	// Permission represents XSD element 'permission'
-	// minOccurs=0, maxOccurs=1
-	Permission *xmlschemaoval_definitions_5.EntityStateStringType `xml:"permission,omitempty"`
-	// Native_lib_dir represents XSD element 'native_lib_dir'
-	// minOccurs=0, maxOccurs=1
-	Native_lib_dir *xmlschemaoval_definitions_5.EntityStateStringType `xml:"native_lib_dir,omitempty"`
-	// Signing_certificate represents XSD element 'signing_certificate'
-	// minOccurs=0, maxOccurs=-1
-	Signing_certificate []xmlschemaoval_definitions_5.EntityStateBinaryType `xml:"signing_certificate,omitempty"`
-	// First_install_time represents XSD element 'first_install_time'
-	// minOccurs=0, maxOccurs=1
-	First_install_time *xmlschemaoval_definitions_5.EntityStateIntType `xml:"first_install_time,omitempty"`
-	// Last_update_time represents XSD element 'last_update_time'
-	// minOccurs=0, maxOccurs=1
-	Last_update_time *xmlschemaoval_definitions_5.EntityStateIntType `xml:"last_update_time,omitempty"`
-	// Package_file_location represents XSD element 'package_file_location'
-	// minOccurs=0, maxOccurs=1
-	Package_file_location *xmlschemaoval_definitions_5.EntityStateStringType `xml:"package_file_location,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Camera_testElementType represents the XSD type 'Camera_testElementType'
-// XSD complex type (W3C XSD §3.4)
-type Camera_testElementType struct {
-	xmlschemaoval_results_5.TestType // XSD extension base
-	// Object represents XSD element 'object'
-	Object xmlschemaoval_definitions_5.ObjectRefType `xml:"object"`
-	// State represents XSD element 'state'
-	// minOccurs=0, maxOccurs=-1
-	State []xmlschemaoval_definitions_5.StateRefType `xml:"state,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Camera_stateElementType represents the XSD type 'Camera_stateElementType'
-// XSD complex type (W3C XSD §3.4)
-type Camera_stateElementType struct {
-	xmlschemaoval_definitions_5.StateType // XSD extension base
-	// Camera_disabled_policy represents XSD element 'camera_disabled_policy'
-	// minOccurs=0, maxOccurs=1
-	Camera_disabled_policy *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"camera_disabled_policy,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Systemdetails_objectElementType represents the XSD type 'Systemdetails_objectElementType'
-// XSD complex type (W3C XSD §3.4)
-type Systemdetails_objectElementType struct {
-	pkg_200009xmldsig.ObjectType // XSD extension base
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Network_testElementType represents the XSD type 'Network_testElementType'
-// XSD complex type (W3C XSD §3.4)
-type Network_testElementType struct {
-	xmlschemaoval_results_5.TestType // XSD extension base
-	// Object represents XSD element 'object'
-	Object xmlschemaoval_definitions_5.ObjectRefType `xml:"object"`
-	// State represents XSD element 'state'
-	// minOccurs=0, maxOccurs=-1
-	State []xmlschemaoval_definitions_5.StateRefType `xml:"state,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Telephony_objectElementType represents the XSD type 'Telephony_objectElementType'
-// XSD complex type (W3C XSD §3.4)
-type Telephony_objectElementType struct {
-	xmlschemaoval_definitions_5.ObjectType // XSD extension base
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Wifi_testElementType represents the XSD type 'Wifi_testElementType'
-// XSD complex type (W3C XSD §3.4)
-type Wifi_testElementType struct {
-	xmlschemaoval_results_5.TestType // XSD extension base
-	// Object represents XSD element 'object'
-	Object xmlschemaoval_definitions_5.ObjectRefType `xml:"object"`
-	// State represents XSD element 'state'
-	// minOccurs=0, maxOccurs=-1
-	State []xmlschemaoval_definitions_5.StateRefType `xml:"state,omitempty"`
+	Trusted_certificate []xmlschemaoval_definitions_5.EntityStateBinaryType `xml:"trusted_certificate,omitempty"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD

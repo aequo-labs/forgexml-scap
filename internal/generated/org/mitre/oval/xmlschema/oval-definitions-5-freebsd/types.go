@@ -168,6 +168,38 @@ func replicateXmlnsPlacement(xmlOutput string, elementsWithXmlns map[string]stri
 	return result
 }
 
+// Portinfo_testElementType represents the XSD type 'Portinfo_testElementType'
+// XSD complex type (W3C XSD §3.4)
+type Portinfo_testElementType struct {
+	xmlschemaoval_definitions_5.TestType // XSD extension base
+	// Object represents XSD element 'object'
+	Object xmlschemaoval_definitions_5.ObjectRefType `xml:"object"`
+	// State represents XSD element 'state'
+	// minOccurs=0, maxOccurs=-1
+	State []xmlschemaoval_definitions_5.StateRefType `xml:"state,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// Portinfo_objectElementType represents the XSD type 'Portinfo_objectElementType'
+// XSD complex type (W3C XSD §3.4)
+type Portinfo_objectElementType struct {
+	xmlschemaoval_definitions_5.ObjectType // XSD extension base
+	// Set represents XSD element 'set'
+	Set *xmlschemaoval_definitions_5.SetElement `xml:"set,omitempty"`
+	// Pkginst represents XSD element 'pkginst'
+	Pkginst xmlschemaoval_definitions_5.EntityObjectStringType `xml:"pkginst"`
+	// Filter represents XSD element 'filter'
+	// minOccurs=0, maxOccurs=-1
+	Filter []xmlschemaoval_definitions_5.FilterElement `xml:"filter,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
 // Portinfo_stateElementType represents the XSD type 'Portinfo_stateElementType'
 // XSD complex type (W3C XSD §3.4)
 type Portinfo_stateElementType struct {
@@ -203,38 +235,6 @@ type VersionElementType struct {
 	// Datatype represents XSD attribute 'datatype'
 	// use="optional"
 	Datatype *string `xml:"datatype,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Portinfo_testElementType represents the XSD type 'Portinfo_testElementType'
-// XSD complex type (W3C XSD §3.4)
-type Portinfo_testElementType struct {
-	xmlschemaoval_definitions_5.TestType // XSD extension base
-	// Object represents XSD element 'object'
-	Object xmlschemaoval_definitions_5.ObjectRefType `xml:"object"`
-	// State represents XSD element 'state'
-	// minOccurs=0, maxOccurs=-1
-	State []xmlschemaoval_definitions_5.StateRefType `xml:"state,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Portinfo_objectElementType represents the XSD type 'Portinfo_objectElementType'
-// XSD complex type (W3C XSD §3.4)
-type Portinfo_objectElementType struct {
-	xmlschemaoval_definitions_5.ObjectType // XSD extension base
-	// Set represents XSD element 'set'
-	Set *xmlschemaoval_definitions_5.SetElement `xml:"set,omitempty"`
-	// Pkginst represents XSD element 'pkginst'
-	Pkginst xmlschemaoval_definitions_5.EntityObjectStringType `xml:"pkginst"`
-	// Filter represents XSD element 'filter'
-	// minOccurs=0, maxOccurs=-1
-	Filter []xmlschemaoval_definitions_5.FilterElement `xml:"filter,omitempty"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD

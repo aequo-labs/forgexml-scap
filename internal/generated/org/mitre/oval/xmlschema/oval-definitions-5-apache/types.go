@@ -11,8 +11,6 @@ import (
 	"strings"
 
 	xmlschemaoval_definitions_5 "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/oval/xmlschema/oval-definitions-5"
-	xmlschemaoval_results_5 "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/oval/xmlschema/oval-results-5"
-	xmlschemaoval_system_characteristics_5 "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/oval/xmlschema/oval-system-characteristics-5"
 )
 
 // GenericElement represents unknown/extension elements not defined in XSD
@@ -192,7 +190,7 @@ type Httpd_stateElementType struct {
 // Httpd_testElementType represents the XSD type 'Httpd_testElementType'
 // XSD complex type (W3C XSD §3.4)
 type Httpd_testElementType struct {
-	xmlschemaoval_results_5.TestType // XSD extension base
+	xmlschemaoval_definitions_5.TestType // XSD extension base
 	// Object represents XSD element 'object'
 	Object xmlschemaoval_definitions_5.ObjectRefType `xml:"object"`
 	// State represents XSD element 'state'
@@ -207,7 +205,7 @@ type Httpd_testElementType struct {
 // Httpd_objectElementType represents the XSD type 'Httpd_objectElementType'
 // XSD complex type (W3C XSD §3.4)
 type Httpd_objectElementType struct {
-	xmlschemaoval_system_characteristics_5.ObjectType // XSD extension base
+	xmlschemaoval_definitions_5.ObjectType // XSD extension base
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD

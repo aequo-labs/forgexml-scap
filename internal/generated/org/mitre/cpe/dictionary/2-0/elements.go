@@ -16,10 +16,6 @@ import (
 type CpeListElement struct {
 	XMLName  xml.Name `xml:"http://cpe.mitre.org/dictionary/2.0 cpe-list"`
 	ListType          // Embedded complex type
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 	// nsDeclarations stores namespace prefix->URI mappings for perfect round-trip
 	nsDeclarations map[string]string `xml:"-"`
 	// nsDefaultNamespace stores the default namespace for perfect round-trip
@@ -201,10 +197,6 @@ func LoadCpeListFromFile(path string) (*CpeListElement, error) {
 type CpeItemElement struct {
 	XMLName  xml.Name `xml:"http://cpe.mitre.org/dictionary/2.0 cpe-item"`
 	ItemType          // Embedded complex type
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 	// nsDeclarations stores namespace prefix->URI mappings for perfect round-trip
 	nsDeclarations map[string]string `xml:"-"`
 	// nsDefaultNamespace stores the default namespace for perfect round-trip

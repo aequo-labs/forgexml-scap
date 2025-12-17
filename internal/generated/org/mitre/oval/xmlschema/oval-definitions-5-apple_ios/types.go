@@ -11,8 +11,6 @@ import (
 	"strings"
 
 	xmlschemaoval_definitions_5 "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/oval/xmlschema/oval-definitions-5"
-	xmlschemaoval_results_5 "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/oval/xmlschema/oval-results-5"
-	pkg_200009xmldsig "github.com/aequo-labs/forgexml-scap/internal/generated/org/w3/2000/09/xmldsig"
 )
 
 // GenericElement represents unknown/extension elements not defined in XSD
@@ -185,6 +183,66 @@ type Globalrestrictions_testElementType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
+// Passcodepolicy_objectElementType represents the XSD type 'Passcodepolicy_objectElementType'
+// XSD complex type (W3C XSD §3.4)
+type Passcodepolicy_objectElementType struct {
+	xmlschemaoval_definitions_5.ObjectType // XSD extension base
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// Passcodepolicy_stateElementType represents the XSD type 'Passcodepolicy_stateElementType'
+// XSD complex type (W3C XSD §3.4)
+type Passcodepolicy_stateElementType struct {
+	xmlschemaoval_definitions_5.StateType // XSD extension base
+	// Allow_simple represents XSD element 'allow_simple'
+	// minOccurs=0, maxOccurs=1
+	Allow_simple *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_simple,omitempty"`
+	// Force_pin represents XSD element 'force_pin'
+	// minOccurs=0, maxOccurs=1
+	Force_pin *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"force_pin,omitempty"`
+	// Max_failed_attempts represents XSD element 'max_failed_attempts'
+	// minOccurs=0, maxOccurs=1
+	Max_failed_attempts *xmlschemaoval_definitions_5.EntityStateIntType `xml:"max_failed_attempts,omitempty"`
+	// Max_inactivity represents XSD element 'max_inactivity'
+	// minOccurs=0, maxOccurs=1
+	Max_inactivity *xmlschemaoval_definitions_5.EntityStateIntType `xml:"max_inactivity,omitempty"`
+	// Max_pin_age_in_days represents XSD element 'max_pin_age_in_days'
+	// minOccurs=0, maxOccurs=1
+	Max_pin_age_in_days *xmlschemaoval_definitions_5.EntityStateIntType `xml:"max_pin_age_in_days,omitempty"`
+	// Min_complex_chars represents XSD element 'min_complex_chars'
+	// minOccurs=0, maxOccurs=1
+	Min_complex_chars *xmlschemaoval_definitions_5.EntityStateIntType `xml:"min_complex_chars,omitempty"`
+	// Min_length represents XSD element 'min_length'
+	// minOccurs=0, maxOccurs=1
+	Min_length *xmlschemaoval_definitions_5.EntityStateIntType `xml:"min_length,omitempty"`
+	// Require_alphanumeric represents XSD element 'require_alphanumeric'
+	// minOccurs=0, maxOccurs=1
+	Require_alphanumeric *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"require_alphanumeric,omitempty"`
+	// Pin_history represents XSD element 'pin_history'
+	// minOccurs=0, maxOccurs=1
+	Pin_history *xmlschemaoval_definitions_5.EntityStateIntType `xml:"pin_history,omitempty"`
+	// Max_grace_period represents XSD element 'max_grace_period'
+	// minOccurs=0, maxOccurs=1
+	Max_grace_period *xmlschemaoval_definitions_5.EntityStateIntType `xml:"max_grace_period,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// Globalrestrictions_objectElementType represents the XSD type 'Globalrestrictions_objectElementType'
+// XSD complex type (W3C XSD §3.4)
+type Globalrestrictions_objectElementType struct {
+	xmlschemaoval_definitions_5.ObjectType // XSD extension base
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
 // Passcodepolicy_testElementType represents the XSD type 'Passcodepolicy_testElementType'
 // XSD complex type (W3C XSD §3.4)
 type Passcodepolicy_testElementType struct {
@@ -203,7 +261,7 @@ type Passcodepolicy_testElementType struct {
 // Profile_testElementType represents the XSD type 'Profile_testElementType'
 // XSD complex type (W3C XSD §3.4)
 type Profile_testElementType struct {
-	xmlschemaoval_results_5.TestType // XSD extension base
+	xmlschemaoval_definitions_5.TestType // XSD extension base
 	// Object represents XSD element 'object'
 	Object xmlschemaoval_definitions_5.ObjectRefType `xml:"object"`
 	// State represents XSD element 'state'
@@ -218,7 +276,7 @@ type Profile_testElementType struct {
 // Profile_objectElementType represents the XSD type 'Profile_objectElementType'
 // XSD complex type (W3C XSD §3.4)
 type Profile_objectElementType struct {
-	pkg_200009xmldsig.ObjectType // XSD extension base
+	xmlschemaoval_definitions_5.ObjectType // XSD extension base
 	// Set represents XSD element 'set'
 	Set *xmlschemaoval_definitions_5.SetElement `xml:"set,omitempty"`
 	// Identifier represents XSD element 'identifier'
@@ -228,6 +286,46 @@ type Profile_objectElementType struct {
 	// Filter represents XSD element 'filter'
 	// minOccurs=0, maxOccurs=-1
 	Filter []xmlschemaoval_definitions_5.FilterElement `xml:"filter,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// Profile_stateElementType represents the XSD type 'Profile_stateElementType'
+// XSD complex type (W3C XSD §3.4)
+type Profile_stateElementType struct {
+	xmlschemaoval_definitions_5.StateType // XSD extension base
+	// Has_removal_passcode represents XSD element 'has_removal_passcode'
+	// minOccurs=0, maxOccurs=1
+	Has_removal_passcode *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"has_removal_passcode,omitempty"`
+	// Is_encrypted represents XSD element 'is_encrypted'
+	// minOccurs=0, maxOccurs=1
+	Is_encrypted *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"is_encrypted,omitempty"`
+	// Payload represents XSD element 'payload'
+	// minOccurs=0, maxOccurs=1
+	Payload *xmlschemaoval_definitions_5.EntityStateRecordType `xml:"payload,omitempty"`
+	// Description represents XSD element 'description'
+	// minOccurs=0, maxOccurs=1
+	Description *xmlschemaoval_definitions_5.EntityStateStringType `xml:"description,omitempty"`
+	// Display_name represents XSD element 'display_name'
+	// minOccurs=0, maxOccurs=1
+	Display_name *xmlschemaoval_definitions_5.EntityStateStringType `xml:"display_name,omitempty"`
+	// Identifier represents XSD element 'identifier'
+	// minOccurs=0, maxOccurs=1
+	Identifier *xmlschemaoval_definitions_5.EntityStateStringType `xml:"identifier,omitempty"`
+	// Organization represents XSD element 'organization'
+	// minOccurs=0, maxOccurs=1
+	Organization *xmlschemaoval_definitions_5.EntityStateStringType `xml:"organization,omitempty"`
+	// Removal_disallowed represents XSD element 'removal_disallowed'
+	// minOccurs=0, maxOccurs=1
+	Removal_disallowed *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"removal_disallowed,omitempty"`
+	// Uuid represents XSD element 'uuid'
+	// minOccurs=0, maxOccurs=1
+	Uuid *xmlschemaoval_definitions_5.EntityStateStringType `xml:"uuid,omitempty"`
+	// Version represents XSD element 'version'
+	// minOccurs=0, maxOccurs=1
+	Version *xmlschemaoval_definitions_5.EntityStateIntType `xml:"version,omitempty"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -358,106 +456,6 @@ type Globalrestrictions_stateElementType struct {
 	// Safari_allow_auto_fill represents XSD element 'safari_allow_auto_fill'
 	// minOccurs=0, maxOccurs=1
 	Safari_allow_auto_fill *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"safari_allow_auto_fill,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Globalrestrictions_objectElementType represents the XSD type 'Globalrestrictions_objectElementType'
-// XSD complex type (W3C XSD §3.4)
-type Globalrestrictions_objectElementType struct {
-	xmlschemaoval_definitions_5.ObjectType // XSD extension base
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Passcodepolicy_objectElementType represents the XSD type 'Passcodepolicy_objectElementType'
-// XSD complex type (W3C XSD §3.4)
-type Passcodepolicy_objectElementType struct {
-	xmlschemaoval_definitions_5.ObjectType // XSD extension base
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Passcodepolicy_stateElementType represents the XSD type 'Passcodepolicy_stateElementType'
-// XSD complex type (W3C XSD §3.4)
-type Passcodepolicy_stateElementType struct {
-	xmlschemaoval_definitions_5.StateType // XSD extension base
-	// Allow_simple represents XSD element 'allow_simple'
-	// minOccurs=0, maxOccurs=1
-	Allow_simple *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"allow_simple,omitempty"`
-	// Force_pin represents XSD element 'force_pin'
-	// minOccurs=0, maxOccurs=1
-	Force_pin *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"force_pin,omitempty"`
-	// Max_failed_attempts represents XSD element 'max_failed_attempts'
-	// minOccurs=0, maxOccurs=1
-	Max_failed_attempts *xmlschemaoval_definitions_5.EntityStateIntType `xml:"max_failed_attempts,omitempty"`
-	// Max_inactivity represents XSD element 'max_inactivity'
-	// minOccurs=0, maxOccurs=1
-	Max_inactivity *xmlschemaoval_definitions_5.EntityStateIntType `xml:"max_inactivity,omitempty"`
-	// Max_pin_age_in_days represents XSD element 'max_pin_age_in_days'
-	// minOccurs=0, maxOccurs=1
-	Max_pin_age_in_days *xmlschemaoval_definitions_5.EntityStateIntType `xml:"max_pin_age_in_days,omitempty"`
-	// Min_complex_chars represents XSD element 'min_complex_chars'
-	// minOccurs=0, maxOccurs=1
-	Min_complex_chars *xmlschemaoval_definitions_5.EntityStateIntType `xml:"min_complex_chars,omitempty"`
-	// Min_length represents XSD element 'min_length'
-	// minOccurs=0, maxOccurs=1
-	Min_length *xmlschemaoval_definitions_5.EntityStateIntType `xml:"min_length,omitempty"`
-	// Require_alphanumeric represents XSD element 'require_alphanumeric'
-	// minOccurs=0, maxOccurs=1
-	Require_alphanumeric *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"require_alphanumeric,omitempty"`
-	// Pin_history represents XSD element 'pin_history'
-	// minOccurs=0, maxOccurs=1
-	Pin_history *xmlschemaoval_definitions_5.EntityStateIntType `xml:"pin_history,omitempty"`
-	// Max_grace_period represents XSD element 'max_grace_period'
-	// minOccurs=0, maxOccurs=1
-	Max_grace_period *xmlschemaoval_definitions_5.EntityStateIntType `xml:"max_grace_period,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Profile_stateElementType represents the XSD type 'Profile_stateElementType'
-// XSD complex type (W3C XSD §3.4)
-type Profile_stateElementType struct {
-	xmlschemaoval_definitions_5.StateType // XSD extension base
-	// Has_removal_passcode represents XSD element 'has_removal_passcode'
-	// minOccurs=0, maxOccurs=1
-	Has_removal_passcode *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"has_removal_passcode,omitempty"`
-	// Is_encrypted represents XSD element 'is_encrypted'
-	// minOccurs=0, maxOccurs=1
-	Is_encrypted *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"is_encrypted,omitempty"`
-	// Payload represents XSD element 'payload'
-	// minOccurs=0, maxOccurs=1
-	Payload *xmlschemaoval_definitions_5.EntityStateRecordType `xml:"payload,omitempty"`
-	// Description represents XSD element 'description'
-	// minOccurs=0, maxOccurs=1
-	Description *xmlschemaoval_definitions_5.EntityStateStringType `xml:"description,omitempty"`
-	// Display_name represents XSD element 'display_name'
-	// minOccurs=0, maxOccurs=1
-	Display_name *xmlschemaoval_definitions_5.EntityStateStringType `xml:"display_name,omitempty"`
-	// Identifier represents XSD element 'identifier'
-	// minOccurs=0, maxOccurs=1
-	Identifier *xmlschemaoval_definitions_5.EntityStateStringType `xml:"identifier,omitempty"`
-	// Organization represents XSD element 'organization'
-	// minOccurs=0, maxOccurs=1
-	Organization *xmlschemaoval_definitions_5.EntityStateStringType `xml:"organization,omitempty"`
-	// Removal_disallowed represents XSD element 'removal_disallowed'
-	// minOccurs=0, maxOccurs=1
-	Removal_disallowed *xmlschemaoval_definitions_5.EntityStateBoolType `xml:"removal_disallowed,omitempty"`
-	// Uuid represents XSD element 'uuid'
-	// minOccurs=0, maxOccurs=1
-	Uuid *xmlschemaoval_definitions_5.EntityStateStringType `xml:"uuid,omitempty"`
-	// Version represents XSD element 'version'
-	// minOccurs=0, maxOccurs=1
-	Version *xmlschemaoval_definitions_5.EntityStateIntType `xml:"version,omitempty"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD

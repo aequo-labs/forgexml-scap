@@ -169,106 +169,11 @@ func replicateXmlnsPlacement(xmlOutput string, elementsWithXmlns map[string]stri
 	return result
 }
 
-// EntityItemFieldType represents the XSD type 'EntityItemFieldType'
+// EntityItemSimpleBaseType represents the XSD type 'EntityItemSimpleBaseType'
 // XSD complex type (W3C XSD §3.4)
-type EntityItemFieldTypeWithAttrs struct {
+// abstract="true"
+type EntityItemSimpleBaseType struct {
 	Value string `xml:",chardata"` // XSD simple content
-	// Name represents XSD attribute 'name'
-	// use="required"
-	Name string `xml:"name,attr"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// EntityItemFieldType is an alias for EntityItemFieldTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
-type EntityItemFieldType = EntityItemFieldTypeWithAttrs
-
-// EntityItemVersionType represents the XSD type 'EntityItemVersionType'
-// XSD complex type (W3C XSD §3.4)
-type EntityItemVersionType struct {
-	EntityItemSimpleBaseType // XSD extension base
-	// Datatype represents XSD attribute 'datatype'
-	// use="required"
-	Datatype xmlschemaoval_common_5.SimpleDatatypeEnumeration `xml:"datatype,attr"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// EntityItemEVRStringType represents the XSD type 'EntityItemEVRStringType'
-// XSD complex type (W3C XSD §3.4)
-type EntityItemEVRStringType struct {
-	EntityItemSimpleBaseType // XSD extension base
-	// Datatype represents XSD attribute 'datatype'
-	// use="required"
-	Datatype xmlschemaoval_common_5.SimpleDatatypeEnumeration `xml:"datatype,attr"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// ReferenceType represents the XSD type 'ReferenceType'
-// XSD complex type (W3C XSD §3.4)
-type ReferenceType struct {
-	// Item_ref represents XSD attribute 'item_ref'
-	// use="required"
-	Item_ref xmlschemaoval_common_5.ItemIDPattern `xml:"item_ref,attr"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// EntityItemBinaryType represents the XSD type 'EntityItemBinaryType'
-// XSD complex type (W3C XSD §3.4)
-type EntityItemBinaryType struct {
-	EntityItemSimpleBaseType // XSD extension base
-	// Datatype represents XSD attribute 'datatype'
-	// use="required"
-	Datatype xmlschemaoval_common_5.SimpleDatatypeEnumeration `xml:"datatype,attr"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// EntityItemIntType represents the XSD type 'EntityItemIntType'
-// XSD complex type (W3C XSD §3.4)
-type EntityItemIntType struct {
-	EntityItemSimpleBaseType // XSD extension base
-	// Datatype represents XSD attribute 'datatype'
-	// use="required"
-	Datatype xmlschemaoval_common_5.SimpleDatatypeEnumeration `xml:"datatype,attr"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// EntityItemFilesetRevisionType represents the XSD type 'EntityItemFilesetRevisionType'
-// XSD complex type (W3C XSD §3.4)
-type EntityItemFilesetRevisionType struct {
-	EntityItemSimpleBaseType // XSD extension base
-	// Datatype represents XSD attribute 'datatype'
-	// use="required"
-	Datatype xmlschemaoval_common_5.SimpleDatatypeEnumeration `xml:"datatype,attr"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// EntityItemIPAddressType represents the XSD type 'EntityItemIPAddressType'
-// XSD complex type (W3C XSD §3.4)
-type EntityItemIPAddressType struct {
-	EntityItemSimpleBaseType // XSD extension base
-	// Datatype represents XSD attribute 'datatype'
-	// use="required"
-	Datatype string `xml:"datatype,attr"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -288,12 +193,13 @@ type EntityItemRecordType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// InterfacesType represents the XSD type 'InterfacesType'
+// EntityItemVersionType represents the XSD type 'EntityItemVersionType'
 // XSD complex type (W3C XSD §3.4)
-type InterfacesType struct {
-	// Interface represents XSD element 'interface'
-	// minOccurs=0, maxOccurs=-1
-	Interface []InterfaceType `xml:"interface,omitempty"`
+type EntityItemVersionType struct {
+	EntityItemSimpleBaseType // XSD extension base
+	// Datatype represents XSD attribute 'datatype'
+	// use="required"
+	Datatype xmlschemaoval_common_5.SimpleDatatypeEnumeration `xml:"datatype,attr"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -312,20 +218,9 @@ type SystemDataType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// EntityItemSimpleBaseType represents the XSD type 'EntityItemSimpleBaseType'
+// EntityItemIntType represents the XSD type 'EntityItemIntType'
 // XSD complex type (W3C XSD §3.4)
-// abstract="true"
-type EntityItemSimpleBaseType struct {
-	Value string `xml:",chardata"` // XSD simple content
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// EntityItemBoolType represents the XSD type 'EntityItemBoolType'
-// XSD complex type (W3C XSD §3.4)
-type EntityItemBoolType struct {
+type EntityItemIntType struct {
 	EntityItemSimpleBaseType // XSD extension base
 	// Datatype represents XSD attribute 'datatype'
 	// use="required"
@@ -336,19 +231,38 @@ type EntityItemBoolType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// SystemInfoType represents the XSD type 'SystemInfoType'
+// EntityItemIOSVersionType represents the XSD type 'EntityItemIOSVersionType'
 // XSD complex type (W3C XSD §3.4)
-type SystemInfoType struct {
-	// Os_name represents XSD element 'os_name'
-	Os_name string `xml:"os_name"`
-	// Os_version represents XSD element 'os_version'
-	Os_version string `xml:"os_version"`
-	// Architecture represents XSD element 'architecture'
-	Architecture string `xml:"architecture"`
-	// Primary_host_name represents XSD element 'primary_host_name'
-	Primary_host_name string `xml:"primary_host_name"`
-	// Interfaces represents XSD element 'interfaces'
-	Interfaces InterfacesType `xml:"interfaces"`
+type EntityItemIOSVersionType struct {
+	EntityItemSimpleBaseType // XSD extension base
+	// Datatype represents XSD attribute 'datatype'
+	// use="required"
+	Datatype xmlschemaoval_common_5.SimpleDatatypeEnumeration `xml:"datatype,attr"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// FlagEnumeration represents the XSD type 'FlagEnumeration'
+// XSD simple type (W3C XSD §4.1)
+// enumeration="error"
+// enumeration="complete"
+// enumeration="incomplete"
+// enumeration="does not exist"
+// enumeration="not collected"
+// enumeration="not applicable"
+type FlagEnumeration string
+
+// InterfaceType represents the XSD type 'InterfaceType'
+// XSD complex type (W3C XSD §3.4)
+type InterfaceType struct {
+	// Interface_name represents XSD element 'interface_name'
+	Interface_name string `xml:"interface_name"`
+	// Ip_address represents XSD element 'ip_address'
+	Ip_address string `xml:"ip_address"`
+	// Mac_address represents XSD element 'mac_address'
+	Mac_address string `xml:"mac_address"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -388,6 +302,129 @@ type ObjectType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
+// EntityItemBoolType represents the XSD type 'EntityItemBoolType'
+// XSD complex type (W3C XSD §3.4)
+type EntityItemBoolType struct {
+	EntityItemSimpleBaseType // XSD extension base
+	// Datatype represents XSD attribute 'datatype'
+	// use="required"
+	Datatype xmlschemaoval_common_5.SimpleDatatypeEnumeration `xml:"datatype,attr"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// EntityItemFloatType represents the XSD type 'EntityItemFloatType'
+// XSD complex type (W3C XSD §3.4)
+type EntityItemFloatType struct {
+	EntityItemSimpleBaseType // XSD extension base
+	// Datatype represents XSD attribute 'datatype'
+	// use="required"
+	Datatype xmlschemaoval_common_5.SimpleDatatypeEnumeration `xml:"datatype,attr"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// EntityItemStringType represents the XSD type 'EntityItemStringType'
+// XSD complex type (W3C XSD §3.4)
+type EntityItemStringType struct {
+	EntityItemSimpleBaseType // XSD extension base
+	// Datatype represents XSD attribute 'datatype'
+	// use="optional"
+	Datatype *xmlschemaoval_common_5.SimpleDatatypeEnumeration `xml:"datatype,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// ReferenceType represents the XSD type 'ReferenceType'
+// XSD complex type (W3C XSD §3.4)
+type ReferenceType struct {
+	// Item_ref represents XSD attribute 'item_ref'
+	// use="required"
+	Item_ref xmlschemaoval_common_5.ItemIDPattern `xml:"item_ref,attr"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// InterfacesType represents the XSD type 'InterfacesType'
+// XSD complex type (W3C XSD §3.4)
+type InterfacesType struct {
+	// Interface represents XSD element 'interface'
+	// minOccurs=0, maxOccurs=-1
+	Interface []InterfaceType `xml:"interface,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// EntityItemBinaryType represents the XSD type 'EntityItemBinaryType'
+// XSD complex type (W3C XSD §3.4)
+type EntityItemBinaryType struct {
+	EntityItemSimpleBaseType // XSD extension base
+	// Datatype represents XSD attribute 'datatype'
+	// use="required"
+	Datatype xmlschemaoval_common_5.SimpleDatatypeEnumeration `xml:"datatype,attr"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// EntityItemFieldType represents the XSD type 'EntityItemFieldType'
+// XSD complex type (W3C XSD §3.4)
+type EntityItemFieldTypeWithAttrs struct {
+	Value string `xml:",chardata"` // XSD simple content
+	// Name represents XSD attribute 'name'
+	// use="required"
+	Name string `xml:"name,attr"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// EntityItemFieldType is an alias for EntityItemFieldTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
+type EntityItemFieldType = EntityItemFieldTypeWithAttrs
+
+// StatusEnumeration represents the XSD type 'StatusEnumeration'
+// XSD simple type (W3C XSD §4.1)
+// enumeration="error"
+// enumeration="exists"
+// enumeration="does not exist"
+// enumeration="not collected"
+type StatusEnumeration string
+
+// EntityItemComplexBaseType represents the XSD type 'EntityItemComplexBaseType'
+// XSD complex type (W3C XSD §3.4)
+// abstract="true"
+type EntityItemComplexBaseType struct {
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// EntityItemIPAddressType represents the XSD type 'EntityItemIPAddressType'
+// XSD complex type (W3C XSD §3.4)
+type EntityItemIPAddressType struct {
+	EntityItemSimpleBaseType // XSD extension base
+	// Datatype represents XSD attribute 'datatype'
+	// use="required"
+	Datatype string `xml:"datatype,attr"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
 // EntityItemIPAddressStringType represents the XSD type 'EntityItemIPAddressStringType'
 // XSD complex type (W3C XSD §3.4)
 type EntityItemIPAddressStringType struct {
@@ -395,19 +432,6 @@ type EntityItemIPAddressStringType struct {
 	// Datatype represents XSD attribute 'datatype'
 	// use="optional"
 	Datatype *string `xml:"datatype,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// EntityItemIOSVersionType represents the XSD type 'EntityItemIOSVersionType'
-// XSD complex type (W3C XSD §3.4)
-type EntityItemIOSVersionType struct {
-	EntityItemSimpleBaseType // XSD extension base
-	// Datatype represents XSD attribute 'datatype'
-	// use="required"
-	Datatype xmlschemaoval_common_5.SimpleDatatypeEnumeration `xml:"datatype,attr"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -436,62 +460,13 @@ type Oval_system_characteristicsElementType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// FlagEnumeration represents the XSD type 'FlagEnumeration'
-// XSD simple type (W3C XSD §4.1)
-// enumeration="error"
-// enumeration="complete"
-// enumeration="incomplete"
-// enumeration="does not exist"
-// enumeration="not collected"
-// enumeration="not applicable"
-type FlagEnumeration string
-
-// VariableValueType represents the XSD type 'VariableValueType'
+// EntityItemEVRStringType represents the XSD type 'EntityItemEVRStringType'
 // XSD complex type (W3C XSD §3.4)
-type VariableValueTypeWithAttrs struct {
-	Value string `xml:",chardata"` // XSD simple content
-	// Variable_id represents XSD attribute 'variable_id'
+type EntityItemEVRStringType struct {
+	EntityItemSimpleBaseType // XSD extension base
+	// Datatype represents XSD attribute 'datatype'
 	// use="required"
-	Variable_id xmlschemaoval_common_5.VariableIDPattern `xml:"variable_id,attr"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// VariableValueType is an alias for VariableValueTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
-type VariableValueType = VariableValueTypeWithAttrs
-
-// EntityItemComplexBaseType represents the XSD type 'EntityItemComplexBaseType'
-// XSD complex type (W3C XSD §3.4)
-// abstract="true"
-type EntityItemComplexBaseType struct {
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// EntityItemAnySimpleType represents the XSD type 'EntityItemAnySimpleType'
-// XSD complex type (W3C XSD §3.4)
-type EntityItemAnySimpleType struct {
-	EntityItemSimpleBaseType // XSD extension base
-	// Datatype represents XSD attribute 'datatype'
-	// use="optional"
-	Datatype *xmlschemaoval_common_5.SimpleDatatypeEnumeration `xml:"datatype,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// EntityItemStringType represents the XSD type 'EntityItemStringType'
-// XSD complex type (W3C XSD §3.4)
-type EntityItemStringType struct {
-	EntityItemSimpleBaseType // XSD extension base
-	// Datatype represents XSD attribute 'datatype'
-	// use="optional"
-	Datatype *xmlschemaoval_common_5.SimpleDatatypeEnumeration `xml:"datatype,attr,omitempty"`
+	Datatype xmlschemaoval_common_5.SimpleDatatypeEnumeration `xml:"datatype,attr"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -511,15 +486,19 @@ type EntityItemDebianEVRStringType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// InterfaceType represents the XSD type 'InterfaceType'
+// SystemInfoType represents the XSD type 'SystemInfoType'
 // XSD complex type (W3C XSD §3.4)
-type InterfaceType struct {
-	// Interface_name represents XSD element 'interface_name'
-	Interface_name string `xml:"interface_name"`
-	// Ip_address represents XSD element 'ip_address'
-	Ip_address string `xml:"ip_address"`
-	// Mac_address represents XSD element 'mac_address'
-	Mac_address string `xml:"mac_address"`
+type SystemInfoType struct {
+	// Os_name represents XSD element 'os_name'
+	Os_name string `xml:"os_name"`
+	// Os_version represents XSD element 'os_version'
+	Os_version string `xml:"os_version"`
+	// Architecture represents XSD element 'architecture'
+	Architecture string `xml:"architecture"`
+	// Primary_host_name represents XSD element 'primary_host_name'
+	Primary_host_name string `xml:"primary_host_name"`
+	// Interfaces represents XSD element 'interfaces'
+	Interfaces InterfacesType `xml:"interfaces"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -538,27 +517,6 @@ type CollectedObjectsType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// EntityItemFloatType represents the XSD type 'EntityItemFloatType'
-// XSD complex type (W3C XSD §3.4)
-type EntityItemFloatType struct {
-	EntityItemSimpleBaseType // XSD extension base
-	// Datatype represents XSD attribute 'datatype'
-	// use="required"
-	Datatype xmlschemaoval_common_5.SimpleDatatypeEnumeration `xml:"datatype,attr"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// StatusEnumeration represents the XSD type 'StatusEnumeration'
-// XSD simple type (W3C XSD §4.1)
-// enumeration="error"
-// enumeration="exists"
-// enumeration="does not exist"
-// enumeration="not collected"
-type StatusEnumeration string
-
 // ItemType represents the XSD type 'ItemType'
 // XSD complex type (W3C XSD §3.4)
 type ItemType struct {
@@ -576,3 +534,45 @@ type ItemType struct {
 	// UnknownAttrs captures any attributes not defined in XSD
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
+
+// EntityItemAnySimpleType represents the XSD type 'EntityItemAnySimpleType'
+// XSD complex type (W3C XSD §3.4)
+type EntityItemAnySimpleType struct {
+	EntityItemSimpleBaseType // XSD extension base
+	// Datatype represents XSD attribute 'datatype'
+	// use="optional"
+	Datatype *xmlschemaoval_common_5.SimpleDatatypeEnumeration `xml:"datatype,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// EntityItemFilesetRevisionType represents the XSD type 'EntityItemFilesetRevisionType'
+// XSD complex type (W3C XSD §3.4)
+type EntityItemFilesetRevisionType struct {
+	EntityItemSimpleBaseType // XSD extension base
+	// Datatype represents XSD attribute 'datatype'
+	// use="required"
+	Datatype xmlschemaoval_common_5.SimpleDatatypeEnumeration `xml:"datatype,attr"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// VariableValueType represents the XSD type 'VariableValueType'
+// XSD complex type (W3C XSD §3.4)
+type VariableValueTypeWithAttrs struct {
+	Value string `xml:",chardata"` // XSD simple content
+	// Variable_id represents XSD attribute 'variable_id'
+	// use="required"
+	Variable_id xmlschemaoval_common_5.VariableIDPattern `xml:"variable_id,attr"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// VariableValueType is an alias for VariableValueTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
+type VariableValueType = VariableValueTypeWithAttrs

@@ -16,10 +16,6 @@ import (
 type Deprecated_infoElement struct {
 	XMLName            xml.Name `xml:"http://oval.mitre.org/XMLSchema/oval-common-5 deprecated_info"`
 	DeprecatedInfoType          // Embedded complex type
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 	// nsDeclarations stores namespace prefix->URI mappings for perfect round-trip
 	nsDeclarations map[string]string `xml:"-"`
 	// nsDefaultNamespace stores the default namespace for perfect round-trip
@@ -201,10 +197,6 @@ func LoadDeprecated_infoFromFile(path string) (*Deprecated_infoElement, error) {
 type Element_mappingElement struct {
 	XMLName        xml.Name `xml:"http://oval.mitre.org/XMLSchema/oval-common-5 element_mapping"`
 	ElementMapType          // Embedded complex type
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 	// nsDeclarations stores namespace prefix->URI mappings for perfect round-trip
 	nsDeclarations map[string]string `xml:"-"`
 	// nsDefaultNamespace stores the default namespace for perfect round-trip
@@ -386,10 +378,6 @@ func LoadElement_mappingFromFile(path string) (*Element_mappingElement, error) {
 type NotesElement struct {
 	XMLName   xml.Name `xml:"http://oval.mitre.org/XMLSchema/oval-common-5 notes"`
 	NotesType          // Embedded complex type
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 	// nsDeclarations stores namespace prefix->URI mappings for perfect round-trip
 	nsDeclarations map[string]string `xml:"-"`
 	// nsDefaultNamespace stores the default namespace for perfect round-trip

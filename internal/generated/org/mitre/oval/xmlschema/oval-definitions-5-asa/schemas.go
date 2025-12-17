@@ -18,8 +18,8 @@ type PackageMetadata struct {
 
 // Metadata provides schema information for this package
 var Metadata = PackageMetadata{
-	Namespace:   "http://oval.mitre.org/XMLSchema/oval-definitions-5#asa",
-	SourceXSD:   "asa-definitions-schema.xsd",
+	Namespace: "http://oval.mitre.org/XMLSchema/oval-definitions-5#asa",
+	SourceXSD: "asa-definitions-schema.xsd",
 	SchemaFiles: []string{
 		"/home/mmcnew/repos/forgexml-scap/schemas/oval/5.11.2/aix-definitions-schema.xsd",
 		"/home/mmcnew/repos/forgexml-scap/schemas/oval/5.11.2/aix-system-characteristics-schema.xsd",

@@ -11,7 +11,6 @@ import (
 	"strings"
 
 	dictionary2_0 "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/cpe/dictionary/2-0"
-	language2_0 "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/cpe/language/2-0"
 	xmlschemaoval_common_5 "github.com/aequo-labs/forgexml-scap/internal/generated/org/mitre/oval/xmlschema/oval-common-5"
 	pkg_200009xmldsig "github.com/aequo-labs/forgexml-scap/internal/generated/org/w3/2000/09/xmldsig"
 )
@@ -183,128 +182,47 @@ type TestsType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// ObjectsType represents the XSD type 'ObjectsType'
+// ValueType represents the XSD type 'ValueType'
 // XSD complex type (W3C XSD §3.4)
-type ObjectsType struct {
-	// Object represents XSD element 'object'
-	// minOccurs=1, maxOccurs=-1
-	Object []ObjectType `xml:"object"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// DefinitionsType represents the XSD type 'DefinitionsType'
-// XSD complex type (W3C XSD §3.4)
-type DefinitionsType struct {
-	// Definition represents XSD element 'definition'
-	// minOccurs=1, maxOccurs=-1
-	Definition []*DefinitionType `xml:"definition"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// EntityStateFloatType represents the XSD type 'EntityStateFloatType'
-// XSD complex type (W3C XSD §3.4)
-type EntityStateFloatType struct {
-	EntityStateSimpleBaseType // XSD extension base
-	// Datatype represents XSD attribute 'datatype'
-	// use="required"
-	Datatype xmlschemaoval_common_5.SimpleDatatypeEnumeration `xml:"datatype,attr"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Constant_variableElementType represents the XSD type 'Constant_variableElementType'
-// XSD complex type (W3C XSD §3.4)
-type Constant_variableElementType struct {
-	VariableType // XSD extension base
-	// Value represents XSD element 'value'
-	// minOccurs=1, maxOccurs=-1
-	Value []ValueType `xml:"value"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Local_variableElementType represents the XSD type 'Local_variableElementType'
-// XSD complex type (W3C XSD §3.4)
-type Local_variableElementType struct {
-	VariableType // XSD extension base
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// DateTimeFormatEnumeration represents the XSD type 'DateTimeFormatEnumeration'
-// XSD simple type (W3C XSD §4.1)
-// enumeration="year_month_day"
-// enumeration="month_day_year"
-// enumeration="day_month_year"
-// enumeration="win_filetime"
-// enumeration="seconds_since_epoch"
-// enumeration="cim_datetime"
-type DateTimeFormatEnumeration string
-
-// AffectedType represents the XSD type 'AffectedType'
-// XSD complex type (W3C XSD §3.4)
-type AffectedType struct {
-	// Platform represents XSD element 'platform'
-	// minOccurs=0, maxOccurs=-1
-	Platform []string `xml:"platform,omitempty"`
-	// Product represents XSD element 'product'
-	// minOccurs=0, maxOccurs=-1
-	Product []string `xml:"product,omitempty"`
-	// Family represents XSD attribute 'family'
-	// use="required"
-	Family xmlschemaoval_common_5.FamilyEnumeration `xml:"family,attr"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// StateRefType represents the XSD type 'StateRefType'
-// XSD complex type (W3C XSD §3.4)
-type StateRefType struct {
-	// State_ref represents XSD attribute 'state_ref'
-	// use="required"
-	State_ref xmlschemaoval_common_5.StateIDPattern `xml:"state_ref,attr"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// RestrictionType represents the XSD type 'RestrictionType'
-// XSD complex type (W3C XSD §3.4)
-type RestrictionTypeWithAttrs struct {
+type ValueType struct {
 	Value string `xml:",chardata"` // XSD simple content
-	// Operation represents XSD attribute 'operation'
-	// use="required"
-	Operation xmlschemaoval_common_5.OperationEnumeration `xml:"operation,attr"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// RestrictionType is an alias for RestrictionTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
-type RestrictionType = RestrictionTypeWithAttrs
-
-// EndFunctionType represents the XSD type 'EndFunctionType'
+// VariableComponentType represents the XSD type 'VariableComponentType'
 // XSD complex type (W3C XSD §3.4)
-type EndFunctionType struct {
-	// Character represents XSD attribute 'character'
+type VariableComponentType struct {
+	// Var_ref represents XSD attribute 'var_ref'
 	// use="required"
-	Character string `xml:"character,attr"`
+	Var_ref xmlschemaoval_common_5.VariableIDPattern `xml:"var_ref,attr"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// SplitFunctionType represents the XSD type 'SplitFunctionType'
+// XSD complex type (W3C XSD §3.4)
+type SplitFunctionType struct {
+	// Delimiter represents XSD attribute 'delimiter'
+	// use="required"
+	Delimiter string `xml:"delimiter,attr"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// EntityObjectAnySimpleType represents the XSD type 'EntityObjectAnySimpleType'
+// XSD complex type (W3C XSD §3.4)
+type EntityObjectAnySimpleType struct {
+	EntitySimpleBaseType // XSD extension base
+	// Datatype represents XSD attribute 'datatype'
+	// use="optional"
+	Datatype *xmlschemaoval_common_5.SimpleDatatypeEnumeration `xml:"datatype,attr,omitempty"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -324,26 +242,133 @@ type EntityObjectBinaryType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// EntityStateIPAddressType represents the XSD type 'EntityStateIPAddressType'
+// SetElementType represents the XSD type 'SetElementType'
 // XSD complex type (W3C XSD §3.4)
-type EntityStateIPAddressType struct {
-	EntityStateSimpleBaseType // XSD extension base
-	// Datatype represents XSD attribute 'datatype'
-	// use="required"
-	Datatype string `xml:"datatype,attr"`
+type SetElementType struct {
+	// Set represents XSD element 'set'
+	// minOccurs=1, maxOccurs=2
+	Set []SetElement `xml:"set"`
+	// Object_reference represents XSD element 'object_reference'
+	// minOccurs=1, maxOccurs=2
+	Object_reference []xmlschemaoval_common_5.ObjectIDPattern `xml:"object_reference"`
+	// Filter represents XSD element 'filter'
+	// minOccurs=0, maxOccurs=-1
+	Filter []FilterElement `xml:"filter,omitempty"`
+	// Set_operator represents XSD attribute 'set_operator'
+	// use="optional"
+	Set_operator *SetOperatorEnumeration `xml:"set_operator,attr,omitempty"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// NotesElementType represents the XSD type 'NotesElementType'
+// Oval_definitionsElementType represents the XSD type 'Oval_definitionsElementType'
 // XSD complex type (W3C XSD §3.4)
-type NotesElementType struct {
-	xmlschemaoval_common_5.NotesType // XSD extension base
-	// Note represents XSD element 'note'
-	// minOccurs=0, maxOccurs=-1
-	Note []string `xml:"note,omitempty"`
+type Oval_definitionsElementType struct {
+	// Generator represents XSD element 'generator'
+	Generator xmlschemaoval_common_5.GeneratorType `xml:"generator"`
+	// Definitions represents XSD element 'definitions'
+	// minOccurs=0, maxOccurs=1
+	Definitions *DefinitionsType `xml:"definitions,omitempty"`
+	// Tests represents XSD element 'tests'
+	// minOccurs=0, maxOccurs=1
+	Tests *TestsType `xml:"tests,omitempty"`
+	// Objects represents XSD element 'objects'
+	// minOccurs=0, maxOccurs=1
+	Objects *ObjectsType `xml:"objects,omitempty"`
+	// States represents XSD element 'states'
+	// minOccurs=0, maxOccurs=1
+	States *StatesType `xml:"states,omitempty"`
+	// Variables represents XSD element 'variables'
+	// minOccurs=0, maxOccurs=1
+	Variables *VariablesType `xml:"variables,omitempty"`
+	// Signature represents XSD element 'Signature'
+	// minOccurs=0, maxOccurs=1
+	Signature *pkg_200009xmldsig.SignatureType `xml:"Signature,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// EntityObjectStringType represents the XSD type 'EntityObjectStringType'
+// XSD complex type (W3C XSD §3.4)
+type EntityObjectStringType struct {
+	EntitySimpleBaseType // XSD extension base
+	// Datatype represents XSD attribute 'datatype'
+	// use="optional"
+	Datatype *xmlschemaoval_common_5.SimpleDatatypeEnumeration `xml:"datatype,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// EntityStateSimpleBaseType represents the XSD type 'EntityStateSimpleBaseType'
+// XSD complex type (W3C XSD §3.4)
+// abstract="true"
+type EntityStateSimpleBaseType struct {
+	EntitySimpleBaseType // XSD extension base
+	// Entity_check represents XSD attribute 'entity_check'
+	// use="optional"
+	Entity_check *xmlschemaoval_common_5.CheckEnumeration `xml:"entity_check,attr,omitempty"`
+	// Check_existence represents XSD attribute 'check_existence'
+	// use="optional"
+	Check_existence *xmlschemaoval_common_5.ExistenceEnumeration `xml:"check_existence,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// ObjectRefType represents the XSD type 'ObjectRefType'
+// XSD complex type (W3C XSD §3.4)
+type ObjectRefType struct {
+	// Object_ref represents XSD attribute 'object_ref'
+	// use="required"
+	Object_ref xmlschemaoval_common_5.ObjectIDPattern `xml:"object_ref,attr"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// PossibleValueType represents the XSD type 'PossibleValueType'
+// XSD complex type (W3C XSD §3.4)
+type PossibleValueTypeWithAttrs struct {
+	Value string `xml:",chardata"` // XSD simple content
+	// Hint represents XSD attribute 'hint'
+	// use="required"
+	Hint string `xml:"hint,attr"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// PossibleValueType is an alias for PossibleValueTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
+type PossibleValueType = PossibleValueTypeWithAttrs
+
+// EntityStateIntType represents the XSD type 'EntityStateIntType'
+// XSD complex type (W3C XSD §3.4)
+type EntityStateIntType struct {
+	EntityStateSimpleBaseType // XSD extension base
+	// Datatype represents XSD attribute 'datatype'
+	// use="required"
+	Datatype xmlschemaoval_common_5.SimpleDatatypeEnumeration `xml:"datatype,attr"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// DefinitionsType represents the XSD type 'DefinitionsType'
+// XSD complex type (W3C XSD §3.4)
+type DefinitionsType struct {
+	// Definition represents XSD element 'definition'
+	// minOccurs=1, maxOccurs=-1
+	Definition []*DefinitionType `xml:"definition"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -365,222 +390,6 @@ type ExtendDefinitionType struct {
 	// Comment represents XSD attribute 'comment'
 	// use="optional"
 	Comment *xmlschemaoval_common_5.NonEmptyStringType `xml:"comment,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// ObjectRefType represents the XSD type 'ObjectRefType'
-// XSD complex type (W3C XSD §3.4)
-type ObjectRefType struct {
-	// Object_ref represents XSD attribute 'object_ref'
-	// use="required"
-	Object_ref xmlschemaoval_common_5.ObjectIDPattern `xml:"object_ref,attr"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// LiteralComponentType represents the XSD type 'LiteralComponentType'
-// XSD complex type (W3C XSD §3.4)
-type LiteralComponentTypeWithAttrs struct {
-	Value string `xml:",chardata"` // XSD simple content
-	// Datatype represents XSD attribute 'datatype'
-	// use="optional"
-	Datatype *xmlschemaoval_common_5.SimpleDatatypeEnumeration `xml:"datatype,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// LiteralComponentType is an alias for LiteralComponentTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
-type LiteralComponentType = LiteralComponentTypeWithAttrs
-
-// VariableComponentType represents the XSD type 'VariableComponentType'
-// XSD complex type (W3C XSD §3.4)
-type VariableComponentType struct {
-	// Var_ref represents XSD attribute 'var_ref'
-	// use="required"
-	Var_ref xmlschemaoval_common_5.VariableIDPattern `xml:"var_ref,attr"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// EntityObjectIPAddressStringType represents the XSD type 'EntityObjectIPAddressStringType'
-// XSD complex type (W3C XSD §3.4)
-type EntityObjectIPAddressStringType struct {
-	EntitySimpleBaseType // XSD extension base
-	// Datatype represents XSD attribute 'datatype'
-	// use="optional"
-	Datatype *string `xml:"datatype,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// CriterionType represents the XSD type 'CriterionType'
-// XSD complex type (W3C XSD §3.4)
-type CriterionType struct {
-	// Applicability_check represents XSD attribute 'applicability_check'
-	// use="optional"
-	Applicability_check *bool `xml:"applicability_check,attr,omitempty"`
-	// Test_ref represents XSD attribute 'test_ref'
-	// use="required"
-	Test_ref xmlschemaoval_common_5.TestIDPattern `xml:"test_ref,attr"`
-	// Negate represents XSD attribute 'negate'
-	// use="optional"
-	Negate *bool `xml:"negate,attr,omitempty"`
-	// Comment represents XSD attribute 'comment'
-	// use="optional"
-	Comment *xmlschemaoval_common_5.NonEmptyStringType `xml:"comment,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// ObjectComponentType represents the XSD type 'ObjectComponentType'
-// XSD complex type (W3C XSD §3.4)
-type ObjectComponentType struct {
-	// Object_ref represents XSD attribute 'object_ref'
-	// use="required"
-	Object_ref xmlschemaoval_common_5.ObjectIDPattern `xml:"object_ref,attr"`
-	// Item_field represents XSD attribute 'item_field'
-	// use="required"
-	Item_field xmlschemaoval_common_5.NonEmptyStringType `xml:"item_field,attr"`
-	// Record_field represents XSD attribute 'record_field'
-	// use="optional"
-	Record_field *xmlschemaoval_common_5.NonEmptyStringType `xml:"record_field,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// EntityObjectStringType represents the XSD type 'EntityObjectStringType'
-// XSD complex type (W3C XSD §3.4)
-type EntityObjectStringType struct {
-	EntitySimpleBaseType // XSD extension base
-	// Datatype represents XSD attribute 'datatype'
-	// use="optional"
-	Datatype *xmlschemaoval_common_5.SimpleDatatypeEnumeration `xml:"datatype,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// EntityStateAnySimpleType represents the XSD type 'EntityStateAnySimpleType'
-// XSD complex type (W3C XSD §3.4)
-type EntityStateAnySimpleType struct {
-	EntityStateSimpleBaseType // XSD extension base
-	// Datatype represents XSD attribute 'datatype'
-	// use="optional"
-	Datatype *xmlschemaoval_common_5.SimpleDatatypeEnumeration `xml:"datatype,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// EntityStateBinaryType represents the XSD type 'EntityStateBinaryType'
-// XSD complex type (W3C XSD §3.4)
-type EntityStateBinaryType struct {
-	EntityStateSimpleBaseType // XSD extension base
-	// Datatype represents XSD attribute 'datatype'
-	// use="required"
-	Datatype xmlschemaoval_common_5.SimpleDatatypeEnumeration `xml:"datatype,attr"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// SetOperatorEnumeration represents the XSD type 'SetOperatorEnumeration'
-// XSD simple type (W3C XSD §4.1)
-// enumeration="COMPLEMENT"
-// enumeration="INTERSECTION"
-// enumeration="UNION"
-type SetOperatorEnumeration string
-
-// ArithmeticFunctionType represents the XSD type 'ArithmeticFunctionType'
-// XSD complex type (W3C XSD §3.4)
-type ArithmeticFunctionType struct {
-	// Arithmetic_operation represents XSD attribute 'arithmetic_operation'
-	// use="required"
-	Arithmetic_operation ArithmeticEnumeration `xml:"arithmetic_operation,attr"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// EntityObjectVersionType represents the XSD type 'EntityObjectVersionType'
-// XSD complex type (W3C XSD §3.4)
-type EntityObjectVersionType struct {
-	EntitySimpleBaseType // XSD extension base
-	// Datatype represents XSD attribute 'datatype'
-	// use="required"
-	Datatype xmlschemaoval_common_5.SimpleDatatypeEnumeration `xml:"datatype,attr"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// FilterElementType represents the XSD type 'FilterElementType'
-// XSD complex type (W3C XSD §3.4)
-type FilterElementTypeWithAttrs struct {
-	Value xmlschemaoval_common_5.StateIDPattern `xml:",chardata"` // XSD simple content
-	// Action represents XSD attribute 'action'
-	// use="optional"
-	Action *FilterActionEnumeration `xml:"action,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// FilterElementType is an alias for FilterElementTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
-type FilterElementType = FilterElementTypeWithAttrs
-
-// ArithmeticEnumeration represents the XSD type 'ArithmeticEnumeration'
-// XSD simple type (W3C XSD §4.1)
-// enumeration="add"
-// enumeration="multiply"
-type ArithmeticEnumeration string
-
-// EntityStateRecordType represents the XSD type 'EntityStateRecordType'
-// XSD complex type (W3C XSD §3.4)
-type EntityStateRecordType struct {
-	EntityStateComplexBaseType // XSD extension base
-	// Field represents XSD element 'field'
-	// minOccurs=0, maxOccurs=-1
-	Field []EntityStateFieldTypeWithAttrs `xml:"field,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// ReferenceType represents the XSD type 'ReferenceType'
-// XSD complex type (W3C XSD §3.4)
-type ReferenceType struct {
-	// Source represents XSD attribute 'source'
-	// use="required"
-	Source string `xml:"source,attr"`
-	// Ref_id represents XSD attribute 'ref_id'
-	// use="required"
-	Ref_id string `xml:"ref_id,attr"`
-	// Ref_url represents XSD attribute 'ref_url'
-	// use="optional"
-	Ref_url *string `xml:"ref_url,attr,omitempty"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -610,52 +419,13 @@ type TestType struct {
 	Check xmlschemaoval_common_5.CheckEnumeration `xml:"check,attr"`
 	// State_operator represents XSD attribute 'state_operator'
 	// use="optional"
-	State_operator *language2_0.OperatorEnumeration `xml:"state_operator,attr,omitempty"`
+	State_operator *xmlschemaoval_common_5.OperatorEnumeration `xml:"state_operator,attr,omitempty"`
 	// Comment represents XSD attribute 'comment'
 	// use="required"
 	Comment xmlschemaoval_common_5.NonEmptyStringType `xml:"comment,attr"`
 	// Deprecated represents XSD attribute 'deprecated'
 	// use="optional"
 	Deprecated *bool `xml:"deprecated,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// ObjectType represents the XSD type 'ObjectType'
-// XSD complex type (W3C XSD §3.4)
-type ObjectType struct {
-	// Signature represents XSD element 'Signature'
-	// minOccurs=0, maxOccurs=1
-	Signature *pkg_200009xmldsig.SignatureType `xml:"Signature,omitempty"`
-	// Notes represents XSD element 'notes'
-	// minOccurs=0, maxOccurs=1
-	Notes *NotesElement `xml:"notes,omitempty"`
-	// Id represents XSD attribute 'id'
-	// use="required"
-	Id xmlschemaoval_common_5.ObjectIDPattern `xml:"id,attr"`
-	// Version represents XSD attribute 'version'
-	// use="required"
-	Version uint64 `xml:"version,attr"`
-	// Comment represents XSD attribute 'comment'
-	// use="optional"
-	Comment *xmlschemaoval_common_5.NonEmptyStringType `xml:"comment,attr,omitempty"`
-	// Deprecated represents XSD attribute 'deprecated'
-	// use="optional"
-	Deprecated *bool `xml:"deprecated,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// StatesType represents the XSD type 'StatesType'
-// XSD complex type (W3C XSD §3.4)
-type StatesType struct {
-	// State represents XSD element 'state'
-	// minOccurs=1, maxOccurs=-1
-	State []StateType `xml:"state"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -692,12 +462,152 @@ type VariableType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// BeginFunctionType represents the XSD type 'BeginFunctionType'
+// EntityObjectFieldType represents the XSD type 'EntityObjectFieldType'
 // XSD complex type (W3C XSD §3.4)
-type BeginFunctionType struct {
-	// Character represents XSD attribute 'character'
+type EntityObjectFieldTypeWithAttrs struct {
+	Value string `xml:",chardata"` // XSD simple content
+	// Name represents XSD attribute 'name'
 	// use="required"
-	Character string `xml:"character,attr"`
+	Name string `xml:"name,attr"`
+	// Entity_check represents XSD attribute 'entity_check'
+	// use="optional"
+	Entity_check *xmlschemaoval_common_5.CheckEnumeration `xml:"entity_check,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// EntityObjectFieldType is an alias for EntityObjectFieldTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
+type EntityObjectFieldType = EntityObjectFieldTypeWithAttrs
+
+// External_variableElementType represents the XSD type 'External_variableElementType'
+// XSD complex type (W3C XSD §3.4)
+type External_variableElementType struct {
+	VariableType // XSD extension base
+	// Possible_value represents XSD element 'possible_value'
+	Possible_value []PossibleValueTypeWithAttrs `xml:"possible_value,omitempty"`
+	// Possible_restriction represents XSD element 'possible_restriction'
+	Possible_restriction []PossibleRestrictionType `xml:"possible_restriction,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// DefinitionType represents the XSD type 'DefinitionType'
+// XSD complex type (W3C XSD §3.4)
+type DefinitionType struct {
+	// Signature represents XSD element 'Signature'
+	// minOccurs=0, maxOccurs=1
+	Signature *pkg_200009xmldsig.SignatureType `xml:"Signature,omitempty"`
+	// Metadata represents XSD element 'metadata'
+	Metadata MetadataType `xml:"metadata"`
+	// Notes represents XSD element 'notes'
+	// minOccurs=0, maxOccurs=1
+	Notes *dictionary2_0.NotesType `xml:"notes,omitempty"`
+	// Criteria represents XSD element 'criteria'
+	// minOccurs=0, maxOccurs=1
+	Criteria *CriteriaType `xml:"criteria,omitempty"`
+	// Id represents XSD attribute 'id'
+	// use="required"
+	Id xmlschemaoval_common_5.DefinitionIDPattern `xml:"id,attr"`
+	// Version represents XSD attribute 'version'
+	// use="required"
+	Version uint64 `xml:"version,attr"`
+	// Class represents XSD attribute 'class'
+	// use="required"
+	Class xmlschemaoval_common_5.ClassEnumeration `xml:"class,attr"`
+	// Deprecated represents XSD attribute 'deprecated'
+	// use="optional"
+	Deprecated *bool `xml:"deprecated,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// StateType represents the XSD type 'StateType'
+// XSD complex type (W3C XSD §3.4)
+type StateType struct {
+	// Signature represents XSD element 'Signature'
+	// minOccurs=0, maxOccurs=1
+	Signature *pkg_200009xmldsig.SignatureType `xml:"Signature,omitempty"`
+	// Notes represents XSD element 'notes'
+	// minOccurs=0, maxOccurs=1
+	Notes *xmlschemaoval_common_5.NotesType `xml:"notes,omitempty"`
+	// Id represents XSD attribute 'id'
+	// use="required"
+	Id xmlschemaoval_common_5.StateIDPattern `xml:"id,attr"`
+	// Version represents XSD attribute 'version'
+	// use="required"
+	Version uint64 `xml:"version,attr"`
+	// Operator represents XSD attribute 'operator'
+	// use="optional"
+	Operator *xmlschemaoval_common_5.OperatorEnumeration `xml:"operator,attr,omitempty"`
+	// Comment represents XSD attribute 'comment'
+	// use="optional"
+	Comment *xmlschemaoval_common_5.NonEmptyStringType `xml:"comment,attr,omitempty"`
+	// Deprecated represents XSD attribute 'deprecated'
+	// use="optional"
+	Deprecated *bool `xml:"deprecated,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// ConcatFunctionType represents the XSD type 'ConcatFunctionType'
+// XSD complex type (W3C XSD §3.4)
+type ConcatFunctionType struct {
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// TimeDifferenceFunctionType represents the XSD type 'TimeDifferenceFunctionType'
+// XSD complex type (W3C XSD §3.4)
+type TimeDifferenceFunctionType struct {
+	// Format_1 represents XSD attribute 'format_1'
+	// use="optional"
+	Format_1 *DateTimeFormatEnumeration `xml:"format_1,attr,omitempty"`
+	// Format_2 represents XSD attribute 'format_2'
+	// use="optional"
+	Format_2 *DateTimeFormatEnumeration `xml:"format_2,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// ObjectComponentType represents the XSD type 'ObjectComponentType'
+// XSD complex type (W3C XSD §3.4)
+type ObjectComponentType struct {
+	// Object_ref represents XSD attribute 'object_ref'
+	// use="required"
+	Object_ref xmlschemaoval_common_5.ObjectIDPattern `xml:"object_ref,attr"`
+	// Item_field represents XSD attribute 'item_field'
+	// use="required"
+	Item_field xmlschemaoval_common_5.NonEmptyStringType `xml:"item_field,attr"`
+	// Record_field represents XSD attribute 'record_field'
+	// use="optional"
+	Record_field *xmlschemaoval_common_5.NonEmptyStringType `xml:"record_field,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// SubstringFunctionType represents the XSD type 'SubstringFunctionType'
+// XSD complex type (W3C XSD §3.4)
+type SubstringFunctionType struct {
+	// Substring_start represents XSD attribute 'substring_start'
+	// use="required"
+	Substring_start int32 `xml:"substring_start,attr"`
+	// Substring_length represents XSD attribute 'substring_length'
+	// use="required"
+	Substring_length int32 `xml:"substring_length,attr"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -717,84 +627,34 @@ type EntityObjectRecordType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// SetElementType represents the XSD type 'SetElementType'
+// EntityStateAnySimpleType represents the XSD type 'EntityStateAnySimpleType'
 // XSD complex type (W3C XSD §3.4)
-type SetElementType struct {
-	// Set represents XSD element 'set'
-	// minOccurs=1, maxOccurs=2
-	Set []SetElement `xml:"set"`
-	// Object_reference represents XSD element 'object_reference'
-	// minOccurs=1, maxOccurs=2
-	Object_reference []xmlschemaoval_common_5.ObjectIDPattern `xml:"object_reference"`
-	// Filter represents XSD element 'filter'
-	// minOccurs=0, maxOccurs=-1
-	Filter []FilterElement `xml:"filter,omitempty"`
-	// Set_operator represents XSD attribute 'set_operator'
-	// use="optional"
-	Set_operator *SetOperatorEnumeration `xml:"set_operator,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// GlobToRegexFunctionType represents the XSD type 'GlobToRegexFunctionType'
-// XSD complex type (W3C XSD §3.4)
-type GlobToRegexFunctionType struct {
-	// Glob_noescape represents XSD attribute 'glob_noescape'
-	// use="optional"
-	Glob_noescape *bool `xml:"glob_noescape,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// EntityObjectFloatType represents the XSD type 'EntityObjectFloatType'
-// XSD complex type (W3C XSD §3.4)
-type EntityObjectFloatType struct {
-	EntitySimpleBaseType // XSD extension base
+type EntityStateAnySimpleType struct {
+	EntityStateSimpleBaseType // XSD extension base
 	// Datatype represents XSD attribute 'datatype'
+	// use="optional"
+	Datatype *xmlschemaoval_common_5.SimpleDatatypeEnumeration `xml:"datatype,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// CriterionType represents the XSD type 'CriterionType'
+// XSD complex type (W3C XSD §3.4)
+type CriterionType struct {
+	// Applicability_check represents XSD attribute 'applicability_check'
+	// use="optional"
+	Applicability_check *bool `xml:"applicability_check,attr,omitempty"`
+	// Test_ref represents XSD attribute 'test_ref'
 	// use="required"
-	Datatype xmlschemaoval_common_5.SimpleDatatypeEnumeration `xml:"datatype,attr"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// Oval_definitionsElementType represents the XSD type 'Oval_definitionsElementType'
-// XSD complex type (W3C XSD §3.4)
-type Oval_definitionsElementType struct {
-	// Generator represents XSD element 'generator'
-	Generator dictionary2_0.GeneratorType `xml:"generator"`
-	// Definitions represents XSD element 'definitions'
-	// minOccurs=0, maxOccurs=1
-	Definitions *DefinitionsType `xml:"definitions,omitempty"`
-	// Tests represents XSD element 'tests'
-	// minOccurs=0, maxOccurs=1
-	Tests *TestsType `xml:"tests,omitempty"`
-	// Objects represents XSD element 'objects'
-	// minOccurs=0, maxOccurs=1
-	Objects *ObjectsType `xml:"objects,omitempty"`
-	// States represents XSD element 'states'
-	// minOccurs=0, maxOccurs=1
-	States *StatesType `xml:"states,omitempty"`
-	// Variables represents XSD element 'variables'
-	// minOccurs=0, maxOccurs=1
-	Variables *VariablesType `xml:"variables,omitempty"`
-	// Signature represents XSD element 'Signature'
-	// minOccurs=0, maxOccurs=1
-	Signature *pkg_200009xmldsig.SignatureType `xml:"Signature,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// ConcatFunctionType represents the XSD type 'ConcatFunctionType'
-// XSD complex type (W3C XSD §3.4)
-type ConcatFunctionType struct {
+	Test_ref xmlschemaoval_common_5.TestIDPattern `xml:"test_ref,attr"`
+	// Negate represents XSD attribute 'negate'
+	// use="optional"
+	Negate *bool `xml:"negate,attr,omitempty"`
+	// Comment represents XSD attribute 'comment'
+	// use="optional"
+	Comment *xmlschemaoval_common_5.NonEmptyStringType `xml:"comment,attr,omitempty"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -810,22 +670,9 @@ type EscapeRegexFunctionType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// EntityObjectAnySimpleType represents the XSD type 'EntityObjectAnySimpleType'
+// EntityStateBoolType represents the XSD type 'EntityStateBoolType'
 // XSD complex type (W3C XSD §3.4)
-type EntityObjectAnySimpleType struct {
-	EntitySimpleBaseType // XSD extension base
-	// Datatype represents XSD attribute 'datatype'
-	// use="optional"
-	Datatype *xmlschemaoval_common_5.SimpleDatatypeEnumeration `xml:"datatype,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// EntityStateDebianEVRStringType represents the XSD type 'EntityStateDebianEVRStringType'
-// XSD complex type (W3C XSD §3.4)
-type EntityStateDebianEVRStringType struct {
+type EntityStateBoolType struct {
 	EntityStateSimpleBaseType // XSD extension base
 	// Datatype represents XSD attribute 'datatype'
 	// use="required"
@@ -836,131 +683,13 @@ type EntityStateDebianEVRStringType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// EntityStateIOSVersionType represents the XSD type 'EntityStateIOSVersionType'
+// EntityStateFloatType represents the XSD type 'EntityStateFloatType'
 // XSD complex type (W3C XSD §3.4)
-type EntityStateIOSVersionType struct {
+type EntityStateFloatType struct {
 	EntityStateSimpleBaseType // XSD extension base
 	// Datatype represents XSD attribute 'datatype'
-	// use="optional"
-	Datatype *string `xml:"datatype,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// External_variableElementType represents the XSD type 'External_variableElementType'
-// XSD complex type (W3C XSD §3.4)
-type External_variableElementType struct {
-	VariableType // XSD extension base
-	// Possible_value represents XSD element 'possible_value'
-	Possible_value []PossibleValueTypeWithAttrs `xml:"possible_value,omitempty"`
-	// Possible_restriction represents XSD element 'possible_restriction'
-	Possible_restriction []PossibleRestrictionType `xml:"possible_restriction,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// EntityObjectIntType represents the XSD type 'EntityObjectIntType'
-// XSD complex type (W3C XSD §3.4)
-type EntityObjectIntType struct {
-	EntitySimpleBaseType // XSD extension base
-	// Datatype represents XSD attribute 'datatype'
 	// use="required"
 	Datatype xmlschemaoval_common_5.SimpleDatatypeEnumeration `xml:"datatype,attr"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// EntitySimpleBaseType represents the XSD type 'EntitySimpleBaseType'
-// XSD complex type (W3C XSD §3.4)
-// abstract="true"
-type EntitySimpleBaseType struct {
-	Value string `xml:",chardata"` // XSD simple content
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// EntityObjectBoolType represents the XSD type 'EntityObjectBoolType'
-// XSD complex type (W3C XSD §3.4)
-type EntityObjectBoolType struct {
-	EntitySimpleBaseType // XSD extension base
-	// Datatype represents XSD attribute 'datatype'
-	// use="required"
-	Datatype xmlschemaoval_common_5.SimpleDatatypeEnumeration `xml:"datatype,attr"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// FilterActionEnumeration represents the XSD type 'FilterActionEnumeration'
-// XSD simple type (W3C XSD §4.1)
-// enumeration="exclude"
-// enumeration="include"
-type FilterActionEnumeration string
-
-// MetadataType represents the XSD type 'MetadataType'
-// XSD complex type (W3C XSD §3.4)
-type MetadataType struct {
-	// Title represents XSD element 'title'
-	Title string `xml:"title"`
-	// Affected represents XSD element 'affected'
-	// minOccurs=0, maxOccurs=-1
-	Affected []AffectedType `xml:"affected,omitempty"`
-	// Reference represents XSD element 'reference'
-	// minOccurs=0, maxOccurs=-1
-	Reference []ReferenceType `xml:"reference,omitempty"`
-	// Description represents XSD element 'description'
-	Description string `xml:"description"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// StateType represents the XSD type 'StateType'
-// XSD complex type (W3C XSD §3.4)
-type StateType struct {
-	// Signature represents XSD element 'Signature'
-	// minOccurs=0, maxOccurs=1
-	Signature *pkg_200009xmldsig.SignatureType `xml:"Signature,omitempty"`
-	// Notes represents XSD element 'notes'
-	// minOccurs=0, maxOccurs=1
-	Notes *NotesElement `xml:"notes,omitempty"`
-	// Id represents XSD attribute 'id'
-	// use="required"
-	Id xmlschemaoval_common_5.StateIDPattern `xml:"id,attr"`
-	// Version represents XSD attribute 'version'
-	// use="required"
-	Version uint64 `xml:"version,attr"`
-	// Operator represents XSD attribute 'operator'
-	// use="optional"
-	Operator *language2_0.OperatorEnumeration `xml:"operator,attr,omitempty"`
-	// Comment represents XSD attribute 'comment'
-	// use="optional"
-	Comment *xmlschemaoval_common_5.NonEmptyStringType `xml:"comment,attr,omitempty"`
-	// Deprecated represents XSD attribute 'deprecated'
-	// use="optional"
-	Deprecated *bool `xml:"deprecated,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// SplitFunctionType represents the XSD type 'SplitFunctionType'
-// XSD complex type (W3C XSD §3.4)
-type SplitFunctionType struct {
-	// Delimiter represents XSD attribute 'delimiter'
-	// use="required"
-	Delimiter string `xml:"delimiter,attr"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -993,91 +722,13 @@ type EntityStateVersionType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// UniqueFunctionType represents the XSD type 'UniqueFunctionType'
+// EntityStateIOSVersionType represents the XSD type 'EntityStateIOSVersionType'
 // XSD complex type (W3C XSD §3.4)
-type UniqueFunctionType struct {
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// EntityComplexBaseType represents the XSD type 'EntityComplexBaseType'
-// XSD complex type (W3C XSD §3.4)
-// abstract="true"
-type EntityComplexBaseType struct {
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// EntityObjectIPAddressType represents the XSD type 'EntityObjectIPAddressType'
-// XSD complex type (W3C XSD §3.4)
-type EntityObjectIPAddressType struct {
-	EntitySimpleBaseType // XSD extension base
-	// Datatype represents XSD attribute 'datatype'
-	// use="required"
-	Datatype string `xml:"datatype,attr"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// PossibleValueType represents the XSD type 'PossibleValueType'
-// XSD complex type (W3C XSD §3.4)
-type PossibleValueTypeWithAttrs struct {
-	Value string `xml:",chardata"` // XSD simple content
-	// Hint represents XSD attribute 'hint'
-	// use="required"
-	Hint string `xml:"hint,attr"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// PossibleValueType is an alias for PossibleValueTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
-type PossibleValueType = PossibleValueTypeWithAttrs
-
-// EntityStateComplexBaseType represents the XSD type 'EntityStateComplexBaseType'
-// XSD complex type (W3C XSD §3.4)
-// abstract="true"
-type EntityStateComplexBaseType struct {
-	EntityComplexBaseType // XSD extension base
-	// Entity_check represents XSD attribute 'entity_check'
-	// use="optional"
-	Entity_check *xmlschemaoval_common_5.CheckEnumeration `xml:"entity_check,attr,omitempty"`
-	// Check_existence represents XSD attribute 'check_existence'
-	// use="optional"
-	Check_existence *xmlschemaoval_common_5.ExistenceEnumeration `xml:"check_existence,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// EntityStateIPAddressStringType represents the XSD type 'EntityStateIPAddressStringType'
-// XSD complex type (W3C XSD §3.4)
-type EntityStateIPAddressStringType struct {
+type EntityStateIOSVersionType struct {
 	EntityStateSimpleBaseType // XSD extension base
 	// Datatype represents XSD attribute 'datatype'
 	// use="optional"
 	Datatype *string `xml:"datatype,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// EntityStateStringType represents the XSD type 'EntityStateStringType'
-// XSD complex type (W3C XSD §3.4)
-type EntityStateStringType struct {
-	EntityStateSimpleBaseType // XSD extension base
-	// Datatype represents XSD attribute 'datatype'
-	// use="optional"
-	Datatype *xmlschemaoval_common_5.SimpleDatatypeEnumeration `xml:"datatype,attr,omitempty"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
@@ -1103,6 +754,80 @@ type EntityStateFieldTypeWithAttrs struct {
 // EntityStateFieldType is an alias for EntityStateFieldTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
 type EntityStateFieldType = EntityStateFieldTypeWithAttrs
 
+// EndFunctionType represents the XSD type 'EndFunctionType'
+// XSD complex type (W3C XSD §3.4)
+type EndFunctionType struct {
+	// Character represents XSD attribute 'character'
+	// use="required"
+	Character string `xml:"character,attr"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// EntityStateIPAddressStringType represents the XSD type 'EntityStateIPAddressStringType'
+// XSD complex type (W3C XSD §3.4)
+type EntityStateIPAddressStringType struct {
+	EntityStateSimpleBaseType // XSD extension base
+	// Datatype represents XSD attribute 'datatype'
+	// use="optional"
+	Datatype *string `xml:"datatype,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// Constant_variableElementType represents the XSD type 'Constant_variableElementType'
+// XSD complex type (W3C XSD §3.4)
+type Constant_variableElementType struct {
+	VariableType // XSD extension base
+	// Value represents XSD element 'value'
+	// minOccurs=1, maxOccurs=-1
+	Value []ValueType `xml:"value"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// FilterActionEnumeration represents the XSD type 'FilterActionEnumeration'
+// XSD simple type (W3C XSD §4.1)
+// enumeration="exclude"
+// enumeration="include"
+type FilterActionEnumeration string
+
+// ReferenceType represents the XSD type 'ReferenceType'
+// XSD complex type (W3C XSD §3.4)
+type ReferenceType struct {
+	// Source represents XSD attribute 'source'
+	// use="required"
+	Source string `xml:"source,attr"`
+	// Ref_id represents XSD attribute 'ref_id'
+	// use="required"
+	Ref_id string `xml:"ref_id,attr"`
+	// Ref_url represents XSD attribute 'ref_url'
+	// use="optional"
+	Ref_url *string `xml:"ref_url,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// ObjectsType represents the XSD type 'ObjectsType'
+// XSD complex type (W3C XSD §3.4)
+type ObjectsType struct {
+	// Object represents XSD element 'object'
+	// minOccurs=1, maxOccurs=-1
+	Object []ObjectType `xml:"object"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
 // VariablesType represents the XSD type 'VariablesType'
 // XSD complex type (W3C XSD §3.4)
 type VariablesType struct {
@@ -1121,183 +846,104 @@ type VariablesType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// PossibleRestrictionType represents the XSD type 'PossibleRestrictionType'
+// RestrictionType represents the XSD type 'RestrictionType'
 // XSD complex type (W3C XSD §3.4)
-type PossibleRestrictionType struct {
-	// Restriction represents XSD element 'restriction'
-	// minOccurs=1, maxOccurs=-1
-	Restriction []RestrictionTypeWithAttrs `xml:"restriction,omitempty"`
-	// Operator represents XSD attribute 'operator'
-	// use="optional"
-	Operator *language2_0.OperatorEnumeration `xml:"operator,attr,omitempty"`
-	// Hint represents XSD attribute 'hint'
-	// use="required"
-	Hint string `xml:"hint,attr"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// ValueType represents the XSD type 'ValueType'
-// XSD complex type (W3C XSD §3.4)
-type ValueType struct {
+type RestrictionTypeWithAttrs struct {
 	Value string `xml:",chardata"` // XSD simple content
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// SubstringFunctionType represents the XSD type 'SubstringFunctionType'
-// XSD complex type (W3C XSD §3.4)
-type SubstringFunctionType struct {
-	// Substring_start represents XSD attribute 'substring_start'
+	// Operation represents XSD attribute 'operation'
 	// use="required"
-	Substring_start int32 `xml:"substring_start,attr"`
-	// Substring_length represents XSD attribute 'substring_length'
+	Operation xmlschemaoval_common_5.OperationEnumeration `xml:"operation,attr"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// RestrictionType is an alias for RestrictionTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
+type RestrictionType = RestrictionTypeWithAttrs
+
+// ArithmeticFunctionType represents the XSD type 'ArithmeticFunctionType'
+// XSD complex type (W3C XSD §3.4)
+type ArithmeticFunctionType struct {
+	// Arithmetic_operation represents XSD attribute 'arithmetic_operation'
 	// use="required"
-	Substring_length int32 `xml:"substring_length,attr"`
+	Arithmetic_operation ArithmeticEnumeration `xml:"arithmetic_operation,attr"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// TimeDifferenceFunctionType represents the XSD type 'TimeDifferenceFunctionType'
+// EntityObjectFloatType represents the XSD type 'EntityObjectFloatType'
 // XSD complex type (W3C XSD §3.4)
-type TimeDifferenceFunctionType struct {
-	// Format_1 represents XSD attribute 'format_1'
-	// use="optional"
-	Format_1 *DateTimeFormatEnumeration `xml:"format_1,attr,omitempty"`
-	// Format_2 represents XSD attribute 'format_2'
-	// use="optional"
-	Format_2 *DateTimeFormatEnumeration `xml:"format_2,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// RegexCaptureFunctionType represents the XSD type 'RegexCaptureFunctionType'
-// XSD complex type (W3C XSD §3.4)
-type RegexCaptureFunctionType struct {
-	// Pattern represents XSD attribute 'pattern'
-	// use="optional"
-	Pattern *string `xml:"pattern,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// CountFunctionType represents the XSD type 'CountFunctionType'
-// XSD complex type (W3C XSD §3.4)
-type CountFunctionType struct {
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// EntityObjectFieldType represents the XSD type 'EntityObjectFieldType'
-// XSD complex type (W3C XSD §3.4)
-type EntityObjectFieldTypeWithAttrs struct {
-	Value string `xml:",chardata"` // XSD simple content
-	// Name represents XSD attribute 'name'
-	// use="required"
-	Name string `xml:"name,attr"`
-	// Entity_check represents XSD attribute 'entity_check'
-	// use="optional"
-	Entity_check *xmlschemaoval_common_5.CheckEnumeration `xml:"entity_check,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// EntityObjectFieldType is an alias for EntityObjectFieldTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
-type EntityObjectFieldType = EntityObjectFieldTypeWithAttrs
-
-// DefinitionType represents the XSD type 'DefinitionType'
-// XSD complex type (W3C XSD §3.4)
-type DefinitionType struct {
-	// Signature represents XSD element 'Signature'
-	// minOccurs=0, maxOccurs=1
-	Signature *pkg_200009xmldsig.SignatureType `xml:"Signature,omitempty"`
-	// Metadata represents XSD element 'metadata'
-	Metadata MetadataType `xml:"metadata"`
-	// Notes represents XSD element 'notes'
-	// minOccurs=0, maxOccurs=1
-	Notes *NotesElement `xml:"notes,omitempty"`
-	// Criteria represents XSD element 'criteria'
-	// minOccurs=0, maxOccurs=1
-	Criteria *CriteriaType `xml:"criteria,omitempty"`
-	// Id represents XSD attribute 'id'
-	// use="required"
-	Id xmlschemaoval_common_5.DefinitionIDPattern `xml:"id,attr"`
-	// Version represents XSD attribute 'version'
-	// use="required"
-	Version uint64 `xml:"version,attr"`
-	// Class represents XSD attribute 'class'
-	// use="required"
-	Class xmlschemaoval_common_5.ClassEnumeration `xml:"class,attr"`
-	// Deprecated represents XSD attribute 'deprecated'
-	// use="optional"
-	Deprecated *bool `xml:"deprecated,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// CriteriaType represents the XSD type 'CriteriaType'
-// XSD complex type (W3C XSD §3.4)
-type CriteriaType struct {
-	// Criteria represents XSD element 'criteria'
-	Criteria []*CriteriaType `xml:"criteria,omitempty"`
-	// Criterion represents XSD element 'criterion'
-	Criterion []CriterionType `xml:"criterion,omitempty"`
-	// Extend_definition represents XSD element 'extend_definition'
-	Extend_definition []ExtendDefinitionType `xml:"extend_definition,omitempty"`
-	// Applicability_check represents XSD attribute 'applicability_check'
-	// use="optional"
-	Applicability_check *bool `xml:"applicability_check,attr,omitempty"`
-	// Operator represents XSD attribute 'operator'
-	// use="optional"
-	Operator *language2_0.OperatorEnumeration `xml:"operator,attr,omitempty"`
-	// Negate represents XSD attribute 'negate'
-	// use="optional"
-	Negate *bool `xml:"negate,attr,omitempty"`
-	// Comment represents XSD attribute 'comment'
-	// use="optional"
-	Comment *xmlschemaoval_common_5.NonEmptyStringType `xml:"comment,attr,omitempty"`
-	// UnknownElements captures any elements not defined in XSD
-	UnknownElements []GenericElement `xml:",any,omitempty"`
-	// UnknownAttrs captures any attributes not defined in XSD
-	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
-}
-
-// EntityStateSimpleBaseType represents the XSD type 'EntityStateSimpleBaseType'
-// XSD complex type (W3C XSD §3.4)
-// abstract="true"
-type EntityStateSimpleBaseType struct {
+type EntityObjectFloatType struct {
 	EntitySimpleBaseType // XSD extension base
-	// Entity_check represents XSD attribute 'entity_check'
-	// use="optional"
-	Entity_check *xmlschemaoval_common_5.CheckEnumeration `xml:"entity_check,attr,omitempty"`
-	// Check_existence represents XSD attribute 'check_existence'
-	// use="optional"
-	Check_existence *xmlschemaoval_common_5.ExistenceEnumeration `xml:"check_existence,attr,omitempty"`
+	// Datatype represents XSD attribute 'datatype'
+	// use="required"
+	Datatype xmlschemaoval_common_5.SimpleDatatypeEnumeration `xml:"datatype,attr"`
 	// UnknownElements captures any elements not defined in XSD
 	UnknownElements []GenericElement `xml:",any,omitempty"`
 	// UnknownAttrs captures any attributes not defined in XSD
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// EntityStateBoolType represents the XSD type 'EntityStateBoolType'
+// EntityStateStringType represents the XSD type 'EntityStateStringType'
 // XSD complex type (W3C XSD §3.4)
-type EntityStateBoolType struct {
+type EntityStateStringType struct {
+	EntityStateSimpleBaseType // XSD extension base
+	// Datatype represents XSD attribute 'datatype'
+	// use="optional"
+	Datatype *xmlschemaoval_common_5.SimpleDatatypeEnumeration `xml:"datatype,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// LiteralComponentType represents the XSD type 'LiteralComponentType'
+// XSD complex type (W3C XSD §3.4)
+type LiteralComponentTypeWithAttrs struct {
+	Value string `xml:",chardata"` // XSD simple content
+	// Datatype represents XSD attribute 'datatype'
+	// use="optional"
+	Datatype *xmlschemaoval_common_5.SimpleDatatypeEnumeration `xml:"datatype,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// LiteralComponentType is an alias for LiteralComponentTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
+type LiteralComponentType = LiteralComponentTypeWithAttrs
+
+// GlobToRegexFunctionType represents the XSD type 'GlobToRegexFunctionType'
+// XSD complex type (W3C XSD §3.4)
+type GlobToRegexFunctionType struct {
+	// Glob_noescape represents XSD attribute 'glob_noescape'
+	// use="optional"
+	Glob_noescape *bool `xml:"glob_noescape,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// EntityStateIPAddressType represents the XSD type 'EntityStateIPAddressType'
+// XSD complex type (W3C XSD §3.4)
+type EntityStateIPAddressType struct {
+	EntityStateSimpleBaseType // XSD extension base
+	// Datatype represents XSD attribute 'datatype'
+	// use="required"
+	Datatype string `xml:"datatype,attr"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// EntityStateBinaryType represents the XSD type 'EntityStateBinaryType'
+// XSD complex type (W3C XSD §3.4)
+type EntityStateBinaryType struct {
 	EntityStateSimpleBaseType // XSD extension base
 	// Datatype represents XSD attribute 'datatype'
 	// use="required"
@@ -1308,9 +954,9 @@ type EntityStateBoolType struct {
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
 
-// EntityStateIntType represents the XSD type 'EntityStateIntType'
+// EntityStateDebianEVRStringType represents the XSD type 'EntityStateDebianEVRStringType'
 // XSD complex type (W3C XSD §3.4)
-type EntityStateIntType struct {
+type EntityStateDebianEVRStringType struct {
 	EntityStateSimpleBaseType // XSD extension base
 	// Datatype represents XSD attribute 'datatype'
 	// use="required"
@@ -1333,3 +979,356 @@ type EntityStateFileSetRevisionType struct {
 	// UnknownAttrs captures any attributes not defined in XSD
 	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
 }
+
+// AffectedType represents the XSD type 'AffectedType'
+// XSD complex type (W3C XSD §3.4)
+type AffectedType struct {
+	// Platform represents XSD element 'platform'
+	// minOccurs=0, maxOccurs=-1
+	Platform []string `xml:"platform,omitempty"`
+	// Product represents XSD element 'product'
+	// minOccurs=0, maxOccurs=-1
+	Product []string `xml:"product,omitempty"`
+	// Family represents XSD attribute 'family'
+	// use="required"
+	Family xmlschemaoval_common_5.FamilyEnumeration `xml:"family,attr"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// PossibleRestrictionType represents the XSD type 'PossibleRestrictionType'
+// XSD complex type (W3C XSD §3.4)
+type PossibleRestrictionType struct {
+	// Restriction represents XSD element 'restriction'
+	// minOccurs=1, maxOccurs=-1
+	Restriction []RestrictionTypeWithAttrs `xml:"restriction,omitempty"`
+	// Operator represents XSD attribute 'operator'
+	// use="optional"
+	Operator *xmlschemaoval_common_5.OperatorEnumeration `xml:"operator,attr,omitempty"`
+	// Hint represents XSD attribute 'hint'
+	// use="required"
+	Hint string `xml:"hint,attr"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// UniqueFunctionType represents the XSD type 'UniqueFunctionType'
+// XSD complex type (W3C XSD §3.4)
+type UniqueFunctionType struct {
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// CountFunctionType represents the XSD type 'CountFunctionType'
+// XSD complex type (W3C XSD §3.4)
+type CountFunctionType struct {
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// EntitySimpleBaseType represents the XSD type 'EntitySimpleBaseType'
+// XSD complex type (W3C XSD §3.4)
+// abstract="true"
+type EntitySimpleBaseType struct {
+	Value string `xml:",chardata"` // XSD simple content
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// EntityComplexBaseType represents the XSD type 'EntityComplexBaseType'
+// XSD complex type (W3C XSD §3.4)
+// abstract="true"
+type EntityComplexBaseType struct {
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// RegexCaptureFunctionType represents the XSD type 'RegexCaptureFunctionType'
+// XSD complex type (W3C XSD §3.4)
+type RegexCaptureFunctionType struct {
+	// Pattern represents XSD attribute 'pattern'
+	// use="optional"
+	Pattern *string `xml:"pattern,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// EntityObjectIPAddressStringType represents the XSD type 'EntityObjectIPAddressStringType'
+// XSD complex type (W3C XSD §3.4)
+type EntityObjectIPAddressStringType struct {
+	EntitySimpleBaseType // XSD extension base
+	// Datatype represents XSD attribute 'datatype'
+	// use="optional"
+	Datatype *string `xml:"datatype,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// EntityObjectBoolType represents the XSD type 'EntityObjectBoolType'
+// XSD complex type (W3C XSD §3.4)
+type EntityObjectBoolType struct {
+	EntitySimpleBaseType // XSD extension base
+	// Datatype represents XSD attribute 'datatype'
+	// use="required"
+	Datatype xmlschemaoval_common_5.SimpleDatatypeEnumeration `xml:"datatype,attr"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// MetadataType represents the XSD type 'MetadataType'
+// XSD complex type (W3C XSD §3.4)
+type MetadataType struct {
+	// Title represents XSD element 'title'
+	Title string `xml:"title"`
+	// Affected represents XSD element 'affected'
+	// minOccurs=0, maxOccurs=-1
+	Affected []AffectedType `xml:"affected,omitempty"`
+	// Reference represents XSD element 'reference'
+	// minOccurs=0, maxOccurs=-1
+	Reference []ReferenceType `xml:"reference,omitempty"`
+	// Description represents XSD element 'description'
+	Description string `xml:"description"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// CriteriaType represents the XSD type 'CriteriaType'
+// XSD complex type (W3C XSD §3.4)
+type CriteriaType struct {
+	// Criteria represents XSD element 'criteria'
+	Criteria []*CriteriaType `xml:"criteria,omitempty"`
+	// Criterion represents XSD element 'criterion'
+	Criterion []CriterionType `xml:"criterion,omitempty"`
+	// Extend_definition represents XSD element 'extend_definition'
+	Extend_definition []ExtendDefinitionType `xml:"extend_definition,omitempty"`
+	// Applicability_check represents XSD attribute 'applicability_check'
+	// use="optional"
+	Applicability_check *bool `xml:"applicability_check,attr,omitempty"`
+	// Operator represents XSD attribute 'operator'
+	// use="optional"
+	Operator *xmlschemaoval_common_5.OperatorEnumeration `xml:"operator,attr,omitempty"`
+	// Negate represents XSD attribute 'negate'
+	// use="optional"
+	Negate *bool `xml:"negate,attr,omitempty"`
+	// Comment represents XSD attribute 'comment'
+	// use="optional"
+	Comment *xmlschemaoval_common_5.NonEmptyStringType `xml:"comment,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// BeginFunctionType represents the XSD type 'BeginFunctionType'
+// XSD complex type (W3C XSD §3.4)
+type BeginFunctionType struct {
+	// Character represents XSD attribute 'character'
+	// use="required"
+	Character string `xml:"character,attr"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// DateTimeFormatEnumeration represents the XSD type 'DateTimeFormatEnumeration'
+// XSD simple type (W3C XSD §4.1)
+// enumeration="year_month_day"
+// enumeration="month_day_year"
+// enumeration="day_month_year"
+// enumeration="win_filetime"
+// enumeration="seconds_since_epoch"
+// enumeration="cim_datetime"
+type DateTimeFormatEnumeration string
+
+// SetOperatorEnumeration represents the XSD type 'SetOperatorEnumeration'
+// XSD simple type (W3C XSD §4.1)
+// enumeration="COMPLEMENT"
+// enumeration="INTERSECTION"
+// enumeration="UNION"
+type SetOperatorEnumeration string
+
+// StateRefType represents the XSD type 'StateRefType'
+// XSD complex type (W3C XSD §3.4)
+type StateRefType struct {
+	// State_ref represents XSD attribute 'state_ref'
+	// use="required"
+	State_ref xmlschemaoval_common_5.StateIDPattern `xml:"state_ref,attr"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// StatesType represents the XSD type 'StatesType'
+// XSD complex type (W3C XSD §3.4)
+type StatesType struct {
+	// State represents XSD element 'state'
+	// minOccurs=1, maxOccurs=-1
+	State []StateType `xml:"state"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// EntityStateRecordType represents the XSD type 'EntityStateRecordType'
+// XSD complex type (W3C XSD §3.4)
+type EntityStateRecordType struct {
+	EntityStateComplexBaseType // XSD extension base
+	// Field represents XSD element 'field'
+	// minOccurs=0, maxOccurs=-1
+	Field []EntityStateFieldTypeWithAttrs `xml:"field,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// NotesElementType represents the XSD type 'NotesElementType'
+// XSD complex type (W3C XSD §3.4)
+type NotesElementType struct {
+	dictionary2_0.NotesType // XSD extension base
+	// Note represents XSD element 'note'
+	// minOccurs=0, maxOccurs=-1
+	Note []string `xml:"note,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// ArithmeticEnumeration represents the XSD type 'ArithmeticEnumeration'
+// XSD simple type (W3C XSD §4.1)
+// enumeration="add"
+// enumeration="multiply"
+type ArithmeticEnumeration string
+
+// EntityObjectIPAddressType represents the XSD type 'EntityObjectIPAddressType'
+// XSD complex type (W3C XSD §3.4)
+type EntityObjectIPAddressType struct {
+	EntitySimpleBaseType // XSD extension base
+	// Datatype represents XSD attribute 'datatype'
+	// use="required"
+	Datatype string `xml:"datatype,attr"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// EntityObjectIntType represents the XSD type 'EntityObjectIntType'
+// XSD complex type (W3C XSD §3.4)
+type EntityObjectIntType struct {
+	EntitySimpleBaseType // XSD extension base
+	// Datatype represents XSD attribute 'datatype'
+	// use="required"
+	Datatype xmlschemaoval_common_5.SimpleDatatypeEnumeration `xml:"datatype,attr"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// EntityStateComplexBaseType represents the XSD type 'EntityStateComplexBaseType'
+// XSD complex type (W3C XSD §3.4)
+// abstract="true"
+type EntityStateComplexBaseType struct {
+	EntityComplexBaseType // XSD extension base
+	// Entity_check represents XSD attribute 'entity_check'
+	// use="optional"
+	Entity_check *xmlschemaoval_common_5.CheckEnumeration `xml:"entity_check,attr,omitempty"`
+	// Check_existence represents XSD attribute 'check_existence'
+	// use="optional"
+	Check_existence *xmlschemaoval_common_5.ExistenceEnumeration `xml:"check_existence,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// ObjectType represents the XSD type 'ObjectType'
+// XSD complex type (W3C XSD §3.4)
+type ObjectType struct {
+	// Signature represents XSD element 'Signature'
+	// minOccurs=0, maxOccurs=1
+	Signature *pkg_200009xmldsig.SignatureType `xml:"Signature,omitempty"`
+	// Notes represents XSD element 'notes'
+	// minOccurs=0, maxOccurs=1
+	Notes *NotesElement `xml:"notes,omitempty"`
+	// Id represents XSD attribute 'id'
+	// use="required"
+	Id xmlschemaoval_common_5.ObjectIDPattern `xml:"id,attr"`
+	// Version represents XSD attribute 'version'
+	// use="required"
+	Version uint64 `xml:"version,attr"`
+	// Comment represents XSD attribute 'comment'
+	// use="optional"
+	Comment *xmlschemaoval_common_5.NonEmptyStringType `xml:"comment,attr,omitempty"`
+	// Deprecated represents XSD attribute 'deprecated'
+	// use="optional"
+	Deprecated *bool `xml:"deprecated,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// EntityObjectVersionType represents the XSD type 'EntityObjectVersionType'
+// XSD complex type (W3C XSD §3.4)
+type EntityObjectVersionType struct {
+	EntitySimpleBaseType // XSD extension base
+	// Datatype represents XSD attribute 'datatype'
+	// use="required"
+	Datatype xmlschemaoval_common_5.SimpleDatatypeEnumeration `xml:"datatype,attr"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// Local_variableElementType represents the XSD type 'Local_variableElementType'
+// XSD complex type (W3C XSD §3.4)
+type Local_variableElementType struct {
+	VariableType // XSD extension base
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// FilterElementType represents the XSD type 'FilterElementType'
+// XSD complex type (W3C XSD §3.4)
+type FilterElementTypeWithAttrs struct {
+	Value xmlschemaoval_common_5.StateIDPattern `xml:",chardata"` // XSD simple content
+	// Action represents XSD attribute 'action'
+	// use="optional"
+	Action *FilterActionEnumeration `xml:"action,attr,omitempty"`
+	// UnknownElements captures any elements not defined in XSD
+	UnknownElements []GenericElement `xml:",any,omitempty"`
+	// UnknownAttrs captures any attributes not defined in XSD
+	UnknownAttrs []xml.Attr `xml:",any,attr,omitempty"`
+}
+
+// FilterElementType is an alias for FilterElementTypeWithAttrs (maintains compatibility after rename to avoid conflicts)
+type FilterElementType = FilterElementTypeWithAttrs

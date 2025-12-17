@@ -1,7 +1,62 @@
 {{define "tree-content"}}
-<div class="columns is-gapless" style="height: calc(100vh - 52px);">
+<style>
+    .split-container {
+        display: flex;
+        height: calc(100vh - 52px);
+        overflow: hidden;
+    }
+    .tree-panel-resizable {
+        min-width: 200px;
+        max-width: 60%;
+        width: 300px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+    .splitter {
+        width: 6px;
+        background: linear-gradient(to right, #e0e0e0, #f0f0f0, #e0e0e0);
+        cursor: col-resize;
+        flex-shrink: 0;
+        position: relative;
+        transition: background 0.2s;
+    }
+    .splitter:hover, .splitter.dragging {
+        background: linear-gradient(to right, #3273dc, #4a90e2, #3273dc);
+    }
+    .splitter::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 2px;
+        height: 30px;
+        background: #999;
+        border-radius: 1px;
+    }
+    .splitter:hover::before, .splitter.dragging::before {
+        background: #fff;
+    }
+    .content-panel-resizable {
+        flex: 1;
+        overflow: hidden;
+        min-width: 300px;
+    }
+    .tree-panel-resizable .panel {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+    }
+    .tree-panel-resizable .tree-container {
+        flex: 1;
+        overflow: auto;
+    }
+</style>
+<div class="split-container">
     <!-- Tree Panel -->
-    <div class="column is-3 tree-panel">
+    <div class="tree-panel-resizable" id="tree-panel">
         <div class="panel">
             <p class="panel-heading">
                 <span class="icon"><i class="fas fa-sitemap"></i></span>
@@ -39,8 +94,11 @@
         </div>
     </div>
 
+    <!-- Resizable Splitter -->
+    <div class="splitter" id="splitter"></div>
+
     <!-- Content Panel -->
-    <div class="column is-9 content-panel">
+    <div class="content-panel-resizable" id="content-panel">
         <div class="box" id="element-details" style="height: 100%; overflow-y: auto;">
             <div class="has-text-centered has-text-grey" id="no-selection">
                 <span class="icon is-large">
@@ -163,11 +221,15 @@
     </div>
 </div>
 
-<script src="/static/js/components/virtual-tree.js"></script>
+<!-- jQuery and Fancytree for tree view with lazy loading -->
+<script src="/static/js/vendor/jquery-3.7.1.min.js"></script>
+<script src="/static/js/vendor/jquery.fancytree-all-deps.min.js"></script>
+<link rel="stylesheet" href="/static/css/fancytree/ui.fancytree.min.css">
 <script src="/app-static/js/tree-config.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     let selectedPath = null;
+    let fancyTree = null;
     
     // Navigation history for Previous/Next buttons
     const navigationHistory = [];
@@ -224,23 +286,138 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('error-modal').classList.add('is-active');
     }
     
-    // Initialize tree
-    const tree = new VirtualTreeView({
-        container: document.getElementById('tree-container'),
-        itemHeight: 28,
-        fetchData: async (parentId, offset, limit) => {
-            const url = parentId ? `/api/tree/children?path=${encodeURIComponent(parentId)}` : '/api/tree/root';
-            const response = await fetch(url);
-            const nodes = await response.json();
-            // VirtualTreeView expects {nodes: [], total: N} format
-            return { nodes: nodes, total: nodes.length };
+    // Convert API node format to Fancytree format
+    function convertToFancytreeNode(apiNode) {
+        return {
+            title: apiNode.label || apiNode.id || apiNode.type || 'Unknown',
+            key: apiNode.path || apiNode.id,
+            lazy: apiNode.hasChildren !== false, // Assume has children unless explicitly false
+            folder: apiNode.hasChildren !== false,
+            data: {
+                path: apiNode.path || apiNode.id,
+                type: apiNode.type,
+                label: apiNode.label
+            }
+        };
+    }
+    
+    // Initialize Fancytree with lazy loading
+    $("#tree-container").fancytree({
+        extensions: ["filter"],
+        quicksearch: true,
+        source: {
+            url: "/api/tree/root",
+            cache: false
         },
-        onSelect: async (node) => {
-            selectedPath = node.path;
-            await loadElementDetails(node.path);
+        postProcess: function(event, data) {
+            // Convert API response to Fancytree format
+            const nodes = data.response;
+            data.result = nodes.map(convertToFancytreeNode);
+        },
+        lazyLoad: function(event, data) {
+            // Lazy load children when node is expanded
+            const node = data.node;
+            const path = node.data.path || node.key;
+            
+            // Use a deferred that Fancytree can properly handle
+            const dfd = $.Deferred();
+            $.ajax({
+                url: `/api/tree/children?path=${encodeURIComponent(path)}`,
+                dataType: "json"
+            }).done(function(response) {
+                console.log('LazyLoad response:', response);
+                console.log('First item:', response[0]);
+                const nodes = response.map(function(apiNode) {
+                    const converted = {
+                        title: apiNode.label || apiNode.id || apiNode.type || 'Unknown',
+                        key: apiNode.path || apiNode.id,
+                        lazy: apiNode.hasChildren !== false,
+                        folder: apiNode.hasChildren !== false,
+                        data: {
+                            path: apiNode.path || apiNode.id,
+                            type: apiNode.type,
+                            label: apiNode.label
+                        }
+                    };
+                    console.log('Converted node:', converted);
+                    return converted;
+                });
+                console.log('Resolved nodes:', nodes);
+                dfd.resolve(nodes);
+            }).fail(function(xhr, status, error) {
+                console.error('Failed to load children:', error);
+                dfd.reject();
+            });
+            data.result = dfd.promise();
+        },
+        activate: function(event, data) {
+            // Node selected/clicked
+            const node = data.node;
+            const path = node.data.path || node.key;
+            selectedPath = path;
+            loadElementDetails(path);
+        },
+        filter: {
+            autoApply: true,
+            autoExpand: true,
+            counter: true,
+            fuzzy: false,
+            hideExpandedCounter: true,
+            hideExpanders: false,
+            highlight: true,
+            leavesOnly: false,
+            nodata: true,
+            mode: "hide"
+        },
+        init: function(event, data) {
+            fancyTree = data.tree;
+            window.fancyTree = fancyTree; // Expose for debugging
         }
     });
-    tree.initialize();
+    
+    // Tree wrapper object for compatibility with existing code
+    const tree = {
+        initialize: function() {
+            if (fancyTree) {
+                fancyTree.reload();
+            }
+        },
+        expandAll: function() {
+            if (fancyTree) {
+                fancyTree.expandAll();
+            }
+        },
+        collapseAll: function() {
+            if (fancyTree) {
+                fancyTree.expandAll(false);
+            }
+        },
+        filter: function(searchText) {
+            if (fancyTree) {
+                if (searchText) {
+                    fancyTree.filterNodes(searchText, {autoExpand: true});
+                } else {
+                    fancyTree.clearFilter();
+                }
+            }
+        },
+        selectNode: function(path) {
+            if (fancyTree) {
+                const node = fancyTree.getNodeByKey(path);
+                if (node) {
+                    node.setActive();
+                    node.makeVisible();
+                }
+            }
+        },
+        getStats: function() {
+            if (fancyTree) {
+                const filterInfo = fancyTree.filterNodes.count;
+                return { totalNodes: filterInfo || 0 };
+            }
+            return { totalNodes: 0 };
+        }
+    };
     window.tree = tree; // Expose for debugging
 
     // Load element details
@@ -465,7 +642,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('expand-all').addEventListener('click', () => tree.expandAll());
     document.getElementById('collapse-all').addEventListener('click', () => tree.collapseAll());
     
-    // Search with tree sync
+    // Search with Fancytree filter
     let searchTimeout;
     const searchInput = document.getElementById('tree-search');
     const searchCount = document.getElementById('search-count');
@@ -484,7 +661,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     function clearSearch() {
         searchInput.value = '';
-        tree.filter('');
+        if (fancyTree) {
+            fancyTree.clearFilter();
+        }
         updateSearchUI('', 0);
     }
     
@@ -493,66 +672,31 @@ document.addEventListener('DOMContentLoaded', function() {
         const searchText = this.value.trim();
         
         searchTimeout = setTimeout(async () => {
-            // Apply filter to tree
-            tree.filter(searchText);
+            if (!fancyTree) return;
             
             if (searchText) {
-                // Get filtered/visible nodes and auto-select first match
-                const stats = tree.getStats();
-                const matchCount = stats ? stats.totalNodes : 0;
+                // Apply Fancytree filter
+                const matchCount = fancyTree.filterNodes(searchText, {autoExpand: true});
                 updateSearchUI(searchText, matchCount);
                 
+                // Auto-select first match
                 if (matchCount > 0) {
-                    // Find first matching node in the flattened visible list
-                    const firstMatch = findFirstMatchingNode(searchText);
+                    const firstMatch = fancyTree.findFirst(function(node) {
+                        return node.match === true;
+                    });
                     if (firstMatch) {
-                        selectedPath = firstMatch.path;
-                        await loadElementDetails(firstMatch.path);
+                        firstMatch.setActive();
+                        const path = firstMatch.data.path || firstMatch.key;
+                        selectedPath = path;
+                        await loadElementDetails(path);
                     }
                 }
             } else {
+                fancyTree.clearFilter();
                 updateSearchUI('', 0);
             }
         }, 300);
     });
-    
-    // Helper to find first node matching search text
-    function findFirstMatchingNode(searchText) {
-        const searchLower = searchText.toLowerCase();
-        
-        // Try to access tree's internal flatNodes first (faster for large trees)
-        const flatNodes = tree.treeView?.flatNodes || [];
-        
-        for (const node of flatNodes) {
-            const label = (node.label || '').toLowerCase();
-            const id = (node.id || '').toLowerCase();
-            const path = (node.path || '').toLowerCase();
-            if (label.includes(searchLower) || id.includes(searchLower) || path.includes(searchLower)) {
-                return node;
-            }
-        }
-        
-        // Fallback: recursively search nodes array
-        const nodes = tree.treeView?.nodes || [];
-        
-        function searchNodes(nodeList) {
-            for (const node of nodeList || []) {
-                const label = (node.label || '').toLowerCase();
-                const id = (node.id || '').toLowerCase();
-                const path = (node.path || '').toLowerCase();
-                if (label.includes(searchLower) || id.includes(searchLower) || path.includes(searchLower)) {
-                    return node;
-                }
-                if (node.children) {
-                    const found = searchNodes(node.children);
-                    if (found) return found;
-                }
-            }
-            return null;
-        }
-        
-        return searchNodes(nodes);
-    }
     
     // Clear search on Escape key or clear button click
     searchInput.addEventListener('keydown', function(e) {
@@ -674,22 +818,84 @@ document.addEventListener('DOMContentLoaded', function() {
             this.closest('.modal').classList.remove('is-active');
         });
     });
+
+    // Splitter drag functionality
+    const splitter = document.getElementById('splitter');
+    const treePanel = document.getElementById('tree-panel');
+    const contentPanel = document.getElementById('content-panel');
+    
+    if (splitter && treePanel && contentPanel) {
+        let isDragging = false;
+        let startX, startWidth;
+        
+        // Load saved width from localStorage
+        const savedWidth = localStorage.getItem('treePanelWidth');
+        if (savedWidth) {
+            treePanel.style.width = savedWidth + 'px';
+        }
+        
+        splitter.addEventListener('mousedown', function(e) {
+            isDragging = true;
+            startX = e.clientX;
+            startWidth = treePanel.offsetWidth;
+            splitter.classList.add('dragging');
+            document.body.style.cursor = 'col-resize';
+            document.body.style.userSelect = 'none';
+            e.preventDefault();
+        });
+        
+        document.addEventListener('mousemove', function(e) {
+            if (!isDragging) return;
+            
+            const diff = e.clientX - startX;
+            let newWidth = startWidth + diff;
+            
+            // Enforce min/max constraints
+            const minWidth = 200;
+            const maxWidth = window.innerWidth * 0.6;
+            newWidth = Math.max(minWidth, Math.min(maxWidth, newWidth));
+            
+            treePanel.style.width = newWidth + 'px';
+        });
+        
+        document.addEventListener('mouseup', function() {
+            if (isDragging) {
+                isDragging = false;
+                splitter.classList.remove('dragging');
+                document.body.style.cursor = '';
+                document.body.style.userSelect = '';
+                
+                // Save width to localStorage
+                localStorage.setItem('treePanelWidth', treePanel.offsetWidth);
+                
+                // Trigger resize event for any components that need it
+                window.dispatchEvent(new Event('resize'));
+            }
+        });
+        
+        // Double-click to reset to default width
+        splitter.addEventListener('dblclick', function() {
+            treePanel.style.width = '300px';
+            localStorage.setItem('treePanelWidth', 300);
+            window.dispatchEvent(new Event('resize'));
+        });
+    }
 });
 </script>
 
 <style>
-.tree-panel {
-    border-right: 1px solid #dbdbdb;
+/* Resizable tree panel styles */
+.tree-panel-resizable {
     background: #f5f5f5;
 }
-.tree-panel .panel {
+.tree-panel-resizable .panel {
     height: 100%;
     margin: 0;
     border-radius: 0;
     box-shadow: none;
     background: inherit;
 }
-.tree-panel .panel-heading {
+.tree-panel-resizable .panel-heading {
     background: #00d1b2;
     color: white;
 }
@@ -697,31 +903,98 @@ document.addEventListener('DOMContentLoaded', function() {
     height: calc(100% - 140px);
     overflow-y: auto;
 }
-.content-panel {
+
+/* Fancytree styling overrides */
+ul.fancytree-container {
+    font-family: inherit;
+    font-size: inherit;
+    border: none;
+    background: transparent;
+    padding: 0.5rem;
+}
+.fancytree-node {
+    padding: 2px 0;
+}
+.fancytree-title {
+    font-size: 0.9rem;
+}
+.fancytree-active .fancytree-title {
+    background-color: #3273dc !important;
+    color: white !important;
+    border-color: #3273dc !important;
+}
+.fancytree-node:hover .fancytree-title {
+    background-color: #e8f4ff;
+    border-color: #b5d5ff;
+}
+.fancytree-match .fancytree-title {
+    font-weight: bold;
+}
+span.fancytree-node.fancytree-match {
+    background-color: #fffde7;
+}
+.content-panel-resizable {
     padding: 1rem;
+    overflow-y: auto;
+}
+.content-panel-resizable .box {
+    height: 100%;
     overflow-y: auto;
 }
 
 /* Dark mode styles for tree panel */
-html.dark-mode .tree-panel {
-    border-right-color: #4a4a4a;
+html.dark-mode .tree-panel-resizable {
     background: var(--card-bg, #3a3a3a);
 }
-html.dark-mode .tree-panel .panel-block {
+html.dark-mode .tree-panel-resizable .panel-block {
     background: var(--card-bg, #3a3a3a);
     border-color: #4a4a4a;
 }
-html.dark-mode .tree-panel .panel-heading {
+html.dark-mode .tree-panel-resizable .panel-heading {
     background: #00947e;
     border-color: #4a4a4a;
 }
-html.dark-mode .tree-panel .input {
+html.dark-mode .tree-panel-resizable .input {
     background-color: #2c2c2c;
     border-color: #4a4a4a;
     color: #f5f5f5;
 }
-html.dark-mode .tree-panel .input::placeholder {
+html.dark-mode .tree-panel-resizable .input::placeholder {
     color: #888;
+}
+
+/* Dark mode splitter styles */
+html.dark-mode .splitter {
+    background: linear-gradient(to right, #4a4a4a, #555, #4a4a4a);
+}
+html.dark-mode .splitter:hover, html.dark-mode .splitter.dragging {
+    background: linear-gradient(to right, #3273dc, #4a90e2, #3273dc);
+}
+html.dark-mode .splitter::before {
+    background: #888;
+}
+
+/* Dark mode Fancytree styles */
+html.dark-mode ul.fancytree-container {
+    background-color: transparent;
+}
+html.dark-mode .fancytree-title {
+    color: #f5f5f5;
+}
+html.dark-mode .fancytree-active .fancytree-title {
+    background-color: #3273dc !important;
+    color: white !important;
+}
+html.dark-mode .fancytree-node:hover .fancytree-title {
+    background-color: #4a4a4a;
+    border-color: #666;
+}
+html.dark-mode span.fancytree-node.fancytree-match {
+    background-color: #4a4020;
+}
+html.dark-mode .fancytree-expander,
+html.dark-mode .fancytree-icon {
+    filter: invert(0.8);
 }
 
 /* Children list view styles */

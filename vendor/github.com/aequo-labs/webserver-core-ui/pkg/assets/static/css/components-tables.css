@@ -333,3 +333,15 @@ html.dark-mode .data-table tbody tr:hover {
     margin-bottom: 0;
 }
 
+
+/* Vertical alignment for table cells - ensures buttons center in multi-line rows */
+.table td,
+.data-table td {
+    vertical-align: middle;
+}
+
+/* Ensure buttons container is also vertically centered */
+.table td .buttons,
+.data-table td .buttons {
+    align-items: center;
+}

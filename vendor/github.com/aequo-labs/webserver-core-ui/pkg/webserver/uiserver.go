@@ -32,6 +32,8 @@ type UIServer struct {
 	docsDir          string           // Directory within docsFS containing docs
 	settingsURL      string           // URL for settings page (default: /config)
 	pageDataEnricher PageDataEnricher // Optional callback to enrich page data
+	licenseManager   *LicenseManager  // Optional license manager
+	authManager      *AuthManager     // Optional authentication manager
 }
 
 // PageData represents the standard data structure for templates
@@ -53,6 +55,7 @@ type PageData struct {
 	ShowStatusIndicator bool
 	ShowAbout           bool       // Show about icon in navbar
 	ShowDocs            bool       // Show docs link in navbar/about page
+	ShowLicenseManager  bool       // Show license manager icon in navbar
 	AboutInfo           *AboutInfo // Application-specific about information
 	SettingsURL         string     // URL for settings page (default: /config)
 	ShowLogin           bool
@@ -147,8 +150,11 @@ func (s *UIServer) loadBaseTemplates() error {
 		"templates/includes/js-includes.gohtml",
 		"templates/includes/flash-messages.gohtml",
 		"templates/includes/about-content.gohtml",
+		"templates/includes/license-modal.gohtml",
 		"templates/docs/doc-index-content.gohtml",
 		"templates/docs/doc-view-content.gohtml",
+		"templates/auth/login.gohtml",
+		"templates/auth/setup.gohtml",
 		// Note: page-scripts.gohtml removed to avoid conflicts with page-specific scripts
 	}
 
@@ -166,6 +172,13 @@ func (s *UIServer) loadBaseTemplates() error {
 			templateName = filename[len("templates/includes/"):]
 		} else if strings.HasPrefix(filename, "templates/docs/") {
 			templateName = filename[len("templates/docs/"):]
+		} else if strings.HasPrefix(filename, "templates/auth/") {
+			// Auth templates use {{define}} internally, just parse them
+			_, err = s.templates.Parse(string(data))
+			if err != nil {
+				return err
+			}
+			continue
 		} else {
 			templateName = filename[len("templates/"):]
 		}
@@ -202,6 +215,12 @@ func (s *UIServer) setupBaseAPI() {
 	// Theme switching endpoint for programmatic theme changes
 	s.Router().HandleFunc("POST /api/theme/toggle", s.themeToggleHandler)
 	s.Router().HandleFunc("POST /api/theme/set", s.themeSetHandler)
+
+	// License management endpoints (only if license manager is configured)
+	s.Router().HandleFunc("GET /api/license/status", s.licenseStatusHandler)
+	s.Router().HandleFunc("POST /api/license/install", s.licenseInstallHandler)
+	s.Router().HandleFunc("POST /api/license/activate", s.licenseActivateHandler)
+	s.Router().HandleFunc("POST /api/license/deactivate", s.licenseDeactivateHandler)
 }
 
 // statusHandler provides a default status endpoint
@@ -272,6 +291,238 @@ func (s *UIServer) themeSetHandler(w http.ResponseWriter, r *http.Request) {
 		"theme":   request.Theme,
 	}
 	json.NewEncoder(w).Encode(response)
+}
+
+// licenseStatusHandler returns the current license status
+func (s *UIServer) licenseStatusHandler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+
+	if s.licenseManager == nil {
+		json.NewEncoder(w).Encode(LicenseStatus{
+			Licensed: false,
+			Message:  "License management not configured",
+		})
+		return
+	}
+
+	// In proxy mode, fetch status from backend
+	if s.licenseManager.IsProxyMode() {
+		status, err := s.licenseManager.ProxyGetStatus()
+		if err != nil {
+			s.logger.Error("Failed to fetch license status from backend", "error", err)
+			json.NewEncoder(w).Encode(LicenseStatus{
+				Licensed: false,
+				Message:  "Failed to fetch license status: " + err.Error(),
+			})
+			return
+		}
+		json.NewEncoder(w).Encode(status)
+		return
+	}
+
+	status := s.licenseManager.GetStatus()
+	json.NewEncoder(w).Encode(status)
+}
+
+// licenseInstallHandler installs a license by key
+func (s *UIServer) licenseInstallHandler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+
+	if s.licenseManager == nil {
+		w.WriteHeader(http.StatusServiceUnavailable)
+		json.NewEncoder(w).Encode(map[string]interface{}{
+			"success": false,
+			"error":   "License management not configured",
+		})
+		return
+	}
+
+	var request struct {
+		LicenseKey string `json:"licenseKey"`
+	}
+
+	if err := json.NewDecoder(r.Body).Decode(&request); err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		json.NewEncoder(w).Encode(map[string]interface{}{
+			"success": false,
+			"error":   "Invalid request body",
+		})
+		return
+	}
+
+	if request.LicenseKey == "" {
+		w.WriteHeader(http.StatusBadRequest)
+		json.NewEncoder(w).Encode(map[string]interface{}{
+			"success": false,
+			"error":   "License key is required",
+		})
+		return
+	}
+
+	// In proxy mode, forward to backend
+	var err error
+	if s.licenseManager.IsProxyMode() {
+		err = s.licenseManager.ProxyInstallLicense(request.LicenseKey)
+	} else {
+		err = s.licenseManager.InstallLicense(request.LicenseKey)
+	}
+
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		json.NewEncoder(w).Encode(map[string]interface{}{
+			"success": false,
+			"error":   err.Error(),
+		})
+		return
+	}
+
+	json.NewEncoder(w).Encode(map[string]interface{}{
+		"success": true,
+		"message": "License installed successfully",
+	})
+}
+
+// licenseActivateHandler activates the license for this machine
+func (s *UIServer) licenseActivateHandler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+
+	if s.licenseManager == nil {
+		w.WriteHeader(http.StatusServiceUnavailable)
+		json.NewEncoder(w).Encode(map[string]interface{}{
+			"success": false,
+			"error":   "License management not configured",
+		})
+		return
+	}
+
+	// In proxy mode, forward to backend
+	var err error
+	if s.licenseManager.IsProxyMode() {
+		err = s.licenseManager.ProxyActivate()
+	} else {
+		err = s.licenseManager.Activate()
+	}
+
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		json.NewEncoder(w).Encode(map[string]interface{}{
+			"success": false,
+			"error":   err.Error(),
+		})
+		return
+	}
+
+	json.NewEncoder(w).Encode(map[string]interface{}{
+		"success": true,
+		"message": "License activated successfully",
+	})
+}
+
+// licenseDeactivateHandler deactivates the license for this machine
+func (s *UIServer) licenseDeactivateHandler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+
+	if s.licenseManager == nil {
+		w.WriteHeader(http.StatusServiceUnavailable)
+		json.NewEncoder(w).Encode(map[string]interface{}{
+			"success": false,
+			"error":   "License management not configured",
+		})
+		return
+	}
+
+	// In proxy mode, forward to backend
+	var err error
+	if s.licenseManager.IsProxyMode() {
+		err = s.licenseManager.ProxyDeactivate()
+	} else {
+		err = s.licenseManager.Deactivate()
+	}
+
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		json.NewEncoder(w).Encode(map[string]interface{}{
+			"success": false,
+			"error":   err.Error(),
+		})
+		return
+	}
+
+	json.NewEncoder(w).Encode(map[string]interface{}{
+		"success": true,
+		"message": "License deactivated successfully",
+	})
+}
+
+// SetLicenseManager configures the license manager for this server
+// This enables the license management API endpoints and navbar icon
+func (s *UIServer) SetLicenseManager(config LicenseConfig) {
+	s.licenseManager = NewLicenseManager(&config, s.logger)
+	s.logger.Debug("License manager configured", "product", config.ProductName, "server", config.LicenseServer)
+}
+
+// GetLicenseManager returns the license manager (may be nil)
+func (s *UIServer) GetLicenseManager() *LicenseManager {
+	return s.licenseManager
+}
+
+// HasLicenseManager returns true if a license manager is configured
+func (s *UIServer) HasLicenseManager() bool {
+	return s.licenseManager != nil
+}
+
+// SetAuthManager configures the authentication manager for this server
+// This enables authentication, session management, and login/logout functionality
+func (s *UIServer) SetAuthManager(config AuthConfig) {
+	s.authManager = NewAuthManager(&config, s.logger)
+	s.logger.Debug("Auth manager configured", "enabled", config.Enabled, "method", config.AuthMethod)
+
+	// Register auth routes if enabled
+	if config.Enabled {
+		s.setupAuthRoutes()
+	}
+}
+
+// GetAuthManager returns the auth manager (may be nil)
+func (s *UIServer) GetAuthManager() *AuthManager {
+	return s.authManager
+}
+
+// HasAuthManager returns true if an auth manager is configured
+func (s *UIServer) HasAuthManager() bool {
+	return s.authManager != nil
+}
+
+// IsAuthenticated checks if the current request is authenticated
+func (s *UIServer) IsAuthenticated(r *http.Request) bool {
+	if s.authManager == nil || !s.authManager.IsEnabled() {
+		return true // No auth = always authenticated
+	}
+	return s.authManager.session != nil && s.authManager.session.IsAuthenticated(r)
+}
+
+// setupAuthRoutes registers the authentication routes
+func (s *UIServer) setupAuthRoutes() {
+	// Auth status API
+	s.Router().HandleFunc("GET /api/auth/status", s.authStatusHandler)
+
+	// Local auth routes
+	if s.authManager.IsLocalAuthEnabled() {
+		s.Router().HandleFunc("GET /login", s.loginPageHandler)
+		s.Router().HandleFunc("POST /api/auth/login", s.loginHandler)
+	}
+
+	// Logout route (always available when auth is enabled)
+	s.Router().HandleFunc("POST /api/auth/logout", s.logoutHandler)
+	s.Router().HandleFunc("GET /logout", s.logoutHandler)
+
+	// Setup routes if enabled
+	if s.authManager.config.SetupEnabled {
+		s.Router().HandleFunc("GET /setup", s.setupPageHandler)
+		s.Router().HandleFunc("POST /api/setup", s.setupHandler)
+	}
+
+	// OAuth routes are registered in auth_oauth.go when OAuth is enabled
 }
 
 // AddTemplatesFromFS adds templates from an embedded filesystem
@@ -439,9 +690,10 @@ func (s *UIServer) GetBasePageData(activeNavItem string) PageData {
 		ShowStatusIndicator: true,
 		ShowAbout:           s.aboutInfo != nil,
 		ShowDocs:            s.docsFS != nil,
+		ShowLicenseManager:  s.licenseManager != nil,
 		AboutInfo:           s.aboutInfo,
 		SettingsURL:         s.GetSettingsURL(),
-		ShowLogin:           false,
+		ShowLogin:           s.authManager != nil && s.authManager.IsEnabled(),
 		IsAuthenticated:     false,
 		Username:            "",
 		DomainCSS:           []string{},
@@ -452,6 +704,33 @@ func (s *UIServer) GetBasePageData(activeNavItem string) PageData {
 		NeedsMermaid:        false,
 		NeedsPanZoom:        false,
 	}
+}
+
+// GetBasePageDataWithRequest returns a PageData struct with auth status populated from the request session
+// Use this instead of GetBasePageData when you have access to the http.Request
+func (s *UIServer) GetBasePageDataWithRequest(r *http.Request, activeNavItem string) PageData {
+	data := s.GetBasePageData(activeNavItem)
+
+	// Populate auth fields from session if auth manager is configured
+	if s.authManager != nil && s.authManager.IsEnabled() && s.authManager.session != nil {
+		if sessionData, ok := s.authManager.session.GetAuthenticatedUser(r); ok {
+			data.IsAuthenticated = true
+			data.Username = sessionData.Username
+			if data.Username == "" {
+				data.Username = sessionData.Name
+			}
+			if data.Username == "" {
+				data.Username = sessionData.Email
+			}
+		}
+
+		// Get theme preference from session
+		theme := s.authManager.session.GetThemePreference(r)
+		data.ThemeMode = theme
+		data.ThemePreference = theme
+	}
+
+	return data
 }
 
 // SetAboutInfo configures the application-specific about information

@@ -11,6 +11,9 @@
 {{- if .ShowNavigation}}
 {{- template "navigation" .}}
 {{- end}}
+{{- if .ShowLicenseManager}}
+{{- template "license-modal" .}}
+{{- end}}
     <main class="main-content">
 {{- template "flash-messages" .}}
         <div class="container">

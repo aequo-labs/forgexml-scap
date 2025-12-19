@@ -39,6 +39,15 @@
             </div>
 {{- end}}
 {{- template "theme-toggle" .}}
+{{- if .ShowLicenseManager}}
+            <div class="navbar-item">
+                <button id="license-button" class="button is-ghost" data-tooltip="License" style="background: transparent; border: none;">
+                    <span class="icon">
+                        <i id="license-icon" class="fas fa-key has-text-warning"></i>
+                    </span>
+                </button>
+            </div>
+{{- end}}
 {{- if .ShowAbout}}
             <div class="navbar-item">
                 <button id="about-button" class="button is-ghost" data-tooltip="About" style="background: transparent; border: none;">
@@ -50,36 +59,35 @@
 {{- end}}
 {{- if .ShowSettings}}
             <div class="navbar-item">
-                <a class="button is-ghost" href="{{if .SettingsURL}}{{.SettingsURL}}{{else}}/config{{end}}" data-tooltip="Settings">
+                <button id="settings-button" class="button is-ghost" data-tooltip="Settings" data-settings-url="{{if .SettingsURL}}{{.SettingsURL}}{{else}}/config{{end}}" style="background: transparent; border: none;">
                     <span class="icon">
                         <i class="fas fa-cog"></i>
                     </span>
-                </a>
+                </button>
             </div>
 {{- end}}
 {{- if .ShowLogin}}
 {{- if .IsAuthenticated}}
-            <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link">
+            <div class="navbar-item has-dropdown is-hoverable navbar-user-icon is-authenticated">
+                <a class="navbar-link" role="button">
                     <span class="icon">
                         <i class="fas fa-user"></i>
                     </span>
-                    <span>{{.Username}}</span>
+                    <span class="username-display">{{.Username}}</span>
                 </a>
-                <div class="navbar-dropdown">
+                <div class="navbar-dropdown is-right">
                     <a class="navbar-item" href="/profile">Profile</a>
-                    <a class="navbar-item" href="/settings">Settings</a>
                     <hr class="navbar-divider">
-                    <a class="navbar-item" href="/logout">Logout</a>
+                    <a class="navbar-item logout-btn" href="#" data-auth="logout" role="button">Logout</a>
                 </div>
             </div>
 {{- else}}
-            <div class="navbar-item">
-                <a class="button is-ghost" href="/login" data-tooltip="Login">
+            <div class="navbar-item navbar-user-icon is-unauthenticated">
+                <button class="button is-ghost login-btn" data-auth="login" data-tooltip="Login" style="background: transparent; border: none;">
                     <span class="icon">
                         <i class="fas fa-user"></i>
                     </span>
-                </a>
+                </button>
             </div>
 {{- end}}
 {{- end}}
@@ -88,6 +96,7 @@
 </nav>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
+    // Navbar burger toggle for mobile
     const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
     if ($navbarBurgers.length > 0) {
         $navbarBurgers.forEach(el => {
@@ -97,6 +106,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 el.classList.toggle('is-active');
                 $target.classList.toggle('is-active');
             });
+        });
+    }
+
+    // Login button click handler (navigates via JS to avoid href in status bar)
+    const loginBtn = document.querySelector('[data-auth="login"]');
+    if (loginBtn) {
+        loginBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.location.href = '/login';
         });
     }
 });

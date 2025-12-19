@@ -327,3 +327,9 @@ html.dark-mode .data-table tbody tr:hover {
     margin-right: 0;
 }
 
+/* Fix vertical alignment - Bulma buttons have margin-bottom that misaligns in table cells */
+.table td .buttons .button,
+.data-table td .buttons .button {
+    margin-bottom: 0;
+}
+

@@ -1,0 +1,175 @@
+{{define "license-modal"}}
+<!-- License Management Modal -->
+<div id="license-modal" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">
+                <span class="icon-text">
+                    <span class="icon"><i class="fas fa-key"></i></span>
+                    <span>License Management</span>
+                </span>
+            </p>
+            <button class="delete" aria-label="close" onclick="closeLicenseModal()"></button>
+        </header>
+        <section class="modal-card-body">
+            <!-- Loading State -->
+            <div id="license-loading" class="has-text-centered py-5">
+                <span class="icon is-large">
+                    <i class="fas fa-spinner fa-pulse fa-2x"></i>
+                </span>
+                <p class="mt-3">Loading license information...</p>
+            </div>
+            
+            <!-- License Content (hidden until loaded) -->
+            <div id="license-content" style="display: none;">
+                <!-- License Status Section -->
+                <div id="license-status-section" class="mb-5">
+                    <div id="license-status-licensed" class="notification is-success is-light" style="display: none;">
+                        <div class="is-flex is-align-items-center">
+                            <span class="icon is-medium mr-3">
+                                <i class="fas fa-check-circle fa-lg"></i>
+                            </span>
+                            <div>
+                                <p class="has-text-weight-bold">Licensed</p>
+                                <p class="is-size-7" id="license-status-message"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="license-status-unlicensed" class="notification is-warning is-light" style="display: none;">
+                        <div class="is-flex is-align-items-center">
+                            <span class="icon is-medium mr-3">
+                                <i class="fas fa-exclamation-triangle fa-lg"></i>
+                            </span>
+                            <div>
+                                <p class="has-text-weight-bold">Unlicensed</p>
+                                <p class="is-size-7">Enter a license key below to activate this application.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="license-status-expired" class="notification is-danger is-light" style="display: none;">
+                        <div class="is-flex is-align-items-center">
+                            <span class="icon is-medium mr-3">
+                                <i class="fas fa-times-circle fa-lg"></i>
+                            </span>
+                            <div>
+                                <p class="has-text-weight-bold">License Expired</p>
+                                <p class="is-size-7" id="license-expired-message"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- License Details Section (shown when licensed) -->
+                <div id="license-details-section" style="display: none;">
+                    <h6 class="title is-6 mb-3">
+                        <span class="icon-text">
+                            <span class="icon"><i class="fas fa-info-circle"></i></span>
+                            <span>License Details</span>
+                        </span>
+                    </h6>
+                    <table class="table is-fullwidth is-narrow">
+                        <tbody>
+                            <tr>
+                                <td class="has-text-weight-semibold" style="width: 140px;">License ID</td>
+                                <td><code id="license-id"></code></td>
+                            </tr>
+                            <tr>
+                                <td class="has-text-weight-semibold">Licensee</td>
+                                <td id="license-customer"></td>
+                            </tr>
+                            <tr>
+                                <td class="has-text-weight-semibold">Product</td>
+                                <td id="license-product"></td>
+                            </tr>
+                            <tr>
+                                <td class="has-text-weight-semibold">Type</td>
+                                <td><span id="license-type" class="tag is-info"></span></td>
+                            </tr>
+                            <tr>
+                                <td class="has-text-weight-semibold">Expires</td>
+                                <td id="license-expiry"></td>
+                            </tr>
+                            <tr>
+                                <td class="has-text-weight-semibold">Machine ID</td>
+                                <td><code id="license-machine-id" class="is-size-7"></code></td>
+                            </tr>
+                            <tr>
+                                <td class="has-text-weight-semibold">Activation</td>
+                                <td>
+                                    <span id="license-activated" class="tag is-success" style="display: none;">
+                                        <span class="icon is-small"><i class="fas fa-check"></i></span>
+                                        <span>Activated</span>
+                                    </span>
+                                    <span id="license-not-activated" class="tag is-warning" style="display: none;">
+                                        <span class="icon is-small"><i class="fas fa-exclamation"></i></span>
+                                        <span>Not Activated</span>
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <!-- Features Section -->
+                    <div id="license-features-section" class="mt-4" style="display: none;">
+                        <h6 class="title is-6 mb-3">
+                            <span class="icon-text">
+                                <span class="icon"><i class="fas fa-list-check"></i></span>
+                                <span>Licensed Features</span>
+                            </span>
+                        </h6>
+                        <div id="license-features" class="tags"></div>
+                    </div>
+                </div>
+
+                <!-- Install License Section -->
+                <div id="license-install-section" class="mt-5">
+                    <h6 class="title is-6 mb-3">
+                        <span class="icon-text">
+                            <span class="icon"><i class="fas fa-download"></i></span>
+                            <span id="install-section-title">Install License</span>
+                        </span>
+                    </h6>
+                    <div class="field has-addons">
+                        <div class="control is-expanded">
+                            <input id="license-key-input" class="input" type="text" placeholder="Enter license key (e.g., AL-PRODUCT-TYPE-abc123-X)">
+                        </div>
+                        <div class="control">
+                            <button id="license-install-btn" class="button is-primary" onclick="installLicense()">
+                                <span class="icon"><i class="fas fa-download"></i></span>
+                                <span>Install</span>
+                            </button>
+                        </div>
+                    </div>
+                    <p class="help">Enter your license key to download and install the license from the license server.</p>
+                </div>
+
+                <!-- Error Message -->
+                <div id="license-error" class="notification is-danger mt-4" style="display: none;">
+                    <button class="delete" onclick="hideLicenseError()"></button>
+                    <span id="license-error-message"></span>
+                </div>
+
+                <!-- Success Message -->
+                <div id="license-success" class="notification is-success mt-4" style="display: none;">
+                    <button class="delete" onclick="hideLicenseSuccess()"></button>
+                    <span id="license-success-message"></span>
+                </div>
+            </div>
+        </section>
+        <footer class="modal-card-foot is-justify-content-flex-end">
+            <div class="buttons">
+                <button id="license-activate-btn" class="button is-success" onclick="activateLicense()" style="display: none;">
+                    <span class="icon"><i class="fas fa-check"></i></span>
+                    <span>Activate</span>
+                </button>
+                <button id="license-deactivate-btn" class="button is-warning mr-2" onclick="deactivateLicense()" style="display: none;">
+                    <span class="icon"><i class="fas fa-times"></i></span>
+                    <span>Deactivate</span>
+                </button>
+                <button class="button" onclick="closeLicenseModal()">Close</button>
+            </div>
+        </footer>
+    </div>
+</div>
+{{end}}

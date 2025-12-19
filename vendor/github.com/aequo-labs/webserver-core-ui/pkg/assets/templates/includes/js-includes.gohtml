@@ -1,6 +1,9 @@
 {{define "js-includes" -}}
 <script src="/static/js/core/loading-overlay.js"></script>
 <script src="/static/js/core/theme-switch.js"></script>
+{{- if .ShowLicenseManager}}
+<script src="/static/js/core/license-modal.js"></script>
+{{- end}}
 {{- if .ShowStatusIndicator}}
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -47,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
 {{- if .NeedsPanZoom}}
 <script src="/static/js/vendor/svg-pan-zoom.min.js"></script>
 {{- end}}
-{{- if .IsAuthenticated}}
+{{- if .ShowLogin}}
 <script src="/static/js/core/auth.js"></script>
 {{- end}}
 {{- end}}

@@ -139,6 +139,15 @@ function initTheme() {
         });
     }
     
+    // Set up settings button (uses data attribute to prevent hover URL text)
+    const settingsBtn = document.getElementById('settings-button');
+    if (settingsBtn) {
+        settingsBtn.addEventListener('click', () => {
+            const settingsUrl = settingsBtn.getAttribute('data-settings-url') || '/config';
+            window.location.href = settingsUrl;
+        });
+    }
+    
     // Listen for system theme changes
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
         // Only auto-switch if user hasn't explicitly set a preference

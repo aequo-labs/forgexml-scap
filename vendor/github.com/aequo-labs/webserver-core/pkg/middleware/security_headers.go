@@ -3,7 +3,13 @@ package middleware
 import (
 	"fmt"
 	"net/http"
+	"strings"
 )
+
+// contains checks if a string contains a substring
+func contains(s, substr string) bool {
+	return strings.Contains(s, substr)
+}
 
 // SecurityHeadersConfig holds configuration for security headers middleware
 type SecurityHeadersConfig struct {
@@ -25,7 +31,7 @@ type SecurityHeadersConfig struct {
 func DefaultSecurityHeadersConfig() SecurityHeadersConfig {
 	return SecurityHeadersConfig{
 		UseTLS:                false,
-		ContentSecurityPolicy: "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'",
+		ContentSecurityPolicy: "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; frame-ancestors 'self'",
 		PermissionsPolicy:     "geolocation=(), microphone=(), camera=()",
 		EnableHSTS:            true,
 		HSTSMaxAge:            31536000, // 1 year
@@ -39,13 +45,16 @@ func SecurityHeadersMiddleware(config SecurityHeadersConfig) func(http.Handler) 
 		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			// Core security headers
 			w.Header().Set("X-Content-Type-Options", "nosniff")
-			w.Header().Set("X-Frame-Options", "DENY")
-			w.Header().Set("X-XSS-Protection", "1; mode=block")
 			w.Header().Set("Referrer-Policy", "strict-origin-when-cross-origin")
 
-			// Content Security Policy
-			if config.ContentSecurityPolicy != "" {
-				w.Header().Set("Content-Security-Policy", config.ContentSecurityPolicy)
+			// Content Security Policy with frame-ancestors (replaces X-Frame-Options)
+			csp := config.ContentSecurityPolicy
+			if csp != "" {
+				// Add frame-ancestors if not already present
+				if !contains(csp, "frame-ancestors") {
+					csp += "; frame-ancestors 'self'"
+				}
+				w.Header().Set("Content-Security-Policy", csp)
 			}
 
 			// Permissions Policy

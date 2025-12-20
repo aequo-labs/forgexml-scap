@@ -65,8 +65,8 @@ func GetStandardFuncMap() template.FuncMap {
 		"formatPercent": func(v float64) string {
 			return fmt.Sprintf("%.1f%%", v*100)
 		},
-		"toUpper":   strings.ToUpper,
-		"toLower":   strings.ToLower,
+		"toUpper": strings.ToUpper,
+		"toLower": strings.ToLower,
 		"truncate": func(s string, length int) string {
 			if len(s) <= length {
 				return s
@@ -144,7 +144,7 @@ func addCommas(s string) string {
 		negative = true
 		s = s[1:]
 	}
-	
+
 	// Add commas from right to left
 	n := len(s)
 	if n <= 3 {
@@ -153,7 +153,7 @@ func addCommas(s string) string {
 		}
 		return s
 	}
-	
+
 	// Build result with commas
 	result := ""
 	for i := 0; i < n; i++ {
@@ -162,7 +162,7 @@ func addCommas(s string) string {
 		}
 		result += string(s[i])
 	}
-	
+
 	if negative {
 		return "-" + result
 	}

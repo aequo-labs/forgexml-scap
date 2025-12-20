@@ -12,8 +12,8 @@ type BasicAuthConfig struct {
 	Username      string
 	Password      string
 	Realm         string
-	SkipPaths     []string // Paths to skip authentication
-	SkipPrefixes  []string // Path prefixes to skip authentication
+	SkipPaths     []string              // Paths to skip authentication
+	SkipPrefixes  []string              // Path prefixes to skip authentication
 	OnAuthFailure func(r *http.Request) // Called when authentication fails (for rate limiting/lockout)
 	OnAuthSuccess func(r *http.Request) // Called when authentication succeeds (to reset failure counters)
 }

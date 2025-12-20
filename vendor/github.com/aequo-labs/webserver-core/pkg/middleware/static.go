@@ -32,7 +32,7 @@ func StaticFileHandler(fileSystem fs.FS) http.Handler {
 		case ".ico":
 			w.Header().Set("Content-Type", "image/x-icon")
 		}
-		
+
 		// Serve the file using the standard file server
 		http.FileServer(http.FS(fileSystem)).ServeHTTP(w, r)
 	})

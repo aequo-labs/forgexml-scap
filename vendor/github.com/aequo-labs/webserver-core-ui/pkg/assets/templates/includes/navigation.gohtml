@@ -33,16 +33,16 @@
         <div class="navbar-end">
 {{- if .ShowStatusIndicator}}
             <div class="navbar-item">
-                <div class="status-indicator" id="status-indicator" data-tooltip="Server Status">
-                    <span class="status-dot" id="status-dot"></span>
+                <div class="status-indicator" id="status-indicator" title="Server Status" aria-label="Server connection status" data-tooltip="Server Status">
+                    <span class="status-dot" id="status-dot" aria-hidden="true"></span>
                 </div>
             </div>
 {{- end}}
 {{- template "theme-toggle" .}}
 {{- if or .ShowLicenseManager .ShowAbout .ShowSettings}}
             <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link nav-hamburger-menu" href="#" onclick="return false;" style="background: transparent;">
-                    <span class="icon">
+                <a class="navbar-link nav-hamburger-menu" href="#" onclick="return false;" title="More options" aria-label="More options menu" style="background: transparent;">
+                    <span class="icon" aria-hidden="true">
                         <i class="fas fa-ellipsis-h"></i>
                     </span>
                 </a>

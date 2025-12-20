@@ -10,7 +10,8 @@ require (
 require (
 	cloud.google.com/go/compute/metadata v0.3.0 // indirect
 	github.com/aequo-labs/legcheck v0.4.0 // indirect
-	github.com/aequo-labs/webserver-core v1.20.1 // indirect
+	github.com/aequo-labs/webserver-core v1.21.1 // indirect
+	github.com/dustin/go-humanize v1.0.1 // indirect
 	github.com/gorilla/securecookie v1.1.2 // indirect
 	github.com/gorilla/sessions v1.4.0 // indirect
 	github.com/tdewolff/minify/v2 v2.24.7 // indirect

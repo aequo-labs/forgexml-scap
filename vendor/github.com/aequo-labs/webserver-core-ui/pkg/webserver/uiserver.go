@@ -13,6 +13,7 @@ import (
 	"github.com/aequo-labs/webserver-core-ui/pkg/assets"
 	"github.com/aequo-labs/webserver-core-ui/pkg/docs"
 	"github.com/aequo-labs/webserver-core/pkg/logging"
+	"github.com/aequo-labs/webserver-core/pkg/middleware"
 	"github.com/aequo-labs/webserver-core/pkg/server"
 	templatefuncs "github.com/aequo-labs/webserver-core/pkg/template"
 )
@@ -120,6 +121,10 @@ func NewUIServer(logger *logging.Logger) (*UIServer, error) {
 
 	// Setup optional middleware (gzip, minification) - must be called before adding routes
 	s.Server.SetupOptionalMiddleware()
+
+	// Setup security headers middleware with sensible defaults
+	securityConfig := middleware.DefaultSecurityHeadersConfig()
+	s.Server.UseMiddleware(middleware.SecurityHeadersMiddleware(securityConfig))
 
 	// Load base templates
 	if err := s.loadBaseTemplates(); err != nil {

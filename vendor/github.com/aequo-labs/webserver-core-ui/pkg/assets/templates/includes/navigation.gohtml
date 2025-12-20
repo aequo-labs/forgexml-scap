@@ -39,31 +39,39 @@
             </div>
 {{- end}}
 {{- template "theme-toggle" .}}
+{{- if or .ShowLicenseManager .ShowAbout .ShowSettings}}
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link nav-hamburger-menu" href="#" onclick="return false;" style="background: transparent;">
+                    <span class="icon">
+                        <i class="fas fa-ellipsis-h"></i>
+                    </span>
+                </a>
+                <div class="navbar-dropdown is-right">
 {{- if .ShowLicenseManager}}
-            <div class="navbar-item">
-                <button id="license-button" class="button is-ghost" data-tooltip="License" style="background: transparent; border: none;">
-                    <span class="icon">
-                        <i id="license-icon" class="fas fa-key has-text-warning"></i>
-                    </span>
-                </button>
-            </div>
-{{- end}}
-{{- if .ShowAbout}}
-            <div class="navbar-item">
-                <button id="about-button" class="button is-ghost" data-tooltip="About" style="background: transparent; border: none;">
-                    <span class="icon">
-                        <i class="fas fa-info-circle"></i>
-                    </span>
-                </button>
-            </div>
+                    <a class="navbar-item" id="license-button" href="#" role="button">
+                        <span class="icon">
+                            <i id="license-icon" class="fas fa-key has-text-warning"></i>
+                        </span>
+                        <span>License</span>
+                    </a>
 {{- end}}
 {{- if .ShowSettings}}
-            <div class="navbar-item">
-                <button id="settings-button" class="button is-ghost" data-tooltip="Settings" data-settings-url="{{if .SettingsURL}}{{.SettingsURL}}{{else}}/config{{end}}" style="background: transparent; border: none;">
-                    <span class="icon">
-                        <i class="fas fa-cog"></i>
-                    </span>
-                </button>
+                    <a class="navbar-item" id="settings-button" href="#" role="button" data-settings-url="{{if .SettingsURL}}{{.SettingsURL}}{{else}}/config{{end}}">
+                        <span class="icon">
+                            <i class="fas fa-cog"></i>
+                        </span>
+                        <span>Settings</span>
+                    </a>
+{{- end}}
+{{- if .ShowAbout}}
+                    <a class="navbar-item" id="about-button" href="#" role="button">
+                        <span class="icon">
+                            <i class="fas fa-info-circle"></i>
+                        </span>
+                        <span>About</span>
+                    </a>
+{{- end}}
+                </div>
             </div>
 {{- end}}
 {{- if .ShowLogin}}

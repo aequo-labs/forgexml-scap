@@ -346,3 +346,39 @@
 .page-actions .buttons {
     margin-right: 1rem;
 }
+
+/* Navbar hamburger menu for utility icons (License, Settings, About) */
+.nav-hamburger-menu {
+    padding: 0.5rem 0.75rem !important;
+}
+
+.nav-hamburger-menu .icon {
+    font-size: 1.25rem;
+}
+
+/* Navbar dropdown styling - ensure proper colors in both themes */
+.navbar.is-dark .navbar-dropdown {
+    background-color: var(--bg-color, #fff);
+    border-top: 2px solid var(--primary-color, #3273dc);
+}
+
+.navbar.is-dark .navbar-dropdown .navbar-item {
+    color: var(--text-color, #363636);
+}
+
+.navbar.is-dark .navbar-dropdown .navbar-item:hover {
+    background-color: var(--bg-color-hover, #f5f5f5);
+    color: var(--text-color, #363636);
+}
+
+/* Style dropdown items with icons */
+.navbar-dropdown .navbar-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.navbar-dropdown .navbar-item .icon {
+    width: 1.5rem;
+    text-align: center;
+}

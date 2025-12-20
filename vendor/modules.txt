@@ -11,7 +11,7 @@ github.com/aequo-labs/webserver-core/pkg/logging
 github.com/aequo-labs/webserver-core/pkg/middleware
 github.com/aequo-labs/webserver-core/pkg/server
 github.com/aequo-labs/webserver-core/pkg/template
-# github.com/aequo-labs/webserver-core-ui v1.12.4 => /home/mmcnew/repos/webserver-core-ui
+# github.com/aequo-labs/webserver-core-ui v1.12.5 => /home/mmcnew/repos/webserver-core-ui
 ## explicit; go 1.24.0
 github.com/aequo-labs/webserver-core-ui/pkg/assets
 github.com/aequo-labs/webserver-core-ui/pkg/docs

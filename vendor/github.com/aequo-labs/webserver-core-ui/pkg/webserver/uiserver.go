@@ -151,6 +151,7 @@ func (s *UIServer) loadBaseTemplates() error {
 		"templates/includes/flash-messages.gohtml",
 		"templates/includes/about-content.gohtml",
 		"templates/includes/license-modal.gohtml",
+		"templates/includes/confirm-modal.gohtml",
 		"templates/docs/doc-index-content.gohtml",
 		"templates/docs/doc-view-content.gohtml",
 		"templates/auth/login.gohtml",

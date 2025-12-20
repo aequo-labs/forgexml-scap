@@ -356,6 +356,11 @@
     font-size: 1.25rem;
 }
 
+/* Hide the default Bulma dropdown chevron on hamburger menu */
+.nav-hamburger-menu::after {
+    display: none !important;
+}
+
 /* Navbar dropdown styling - ensure proper colors in both themes */
 .navbar.is-dark .navbar-dropdown {
     background-color: var(--bg-color, #fff);

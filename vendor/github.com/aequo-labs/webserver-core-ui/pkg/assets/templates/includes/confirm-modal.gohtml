@@ -1,0 +1,29 @@
+{{define "confirm-modal"}}
+<!-- Reusable Confirmation Modal -->
+<div id="confirm-modal" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-card" style="max-width: 450px;">
+        <header class="modal-card-head">
+            <p class="modal-card-title" id="confirm-modal-title">
+                <span class="icon-text">
+                    <span class="icon"><i id="confirm-modal-icon" class="fas fa-question-circle"></i></span>
+                    <span id="confirm-modal-title-text">Confirm</span>
+                </span>
+            </p>
+            <button class="delete" aria-label="close" onclick="closeConfirmModal()"></button>
+        </header>
+        <section class="modal-card-body">
+            <p id="confirm-modal-message">Are you sure?</p>
+        </section>
+        <footer class="modal-card-foot is-justify-content-flex-end">
+            <div class="buttons">
+                <button class="button" onclick="closeConfirmModal()">Cancel</button>
+                <button id="confirm-modal-confirm-btn" class="button is-primary" onclick="confirmModalAction()">
+                    <span class="icon"><i id="confirm-modal-btn-icon" class="fas fa-check"></i></span>
+                    <span id="confirm-modal-btn-text">Confirm</span>
+                </button>
+            </div>
+        </footer>
+    </div>
+</div>
+{{end}}

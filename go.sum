@@ -2,8 +2,8 @@ cloud.google.com/go/compute/metadata v0.3.0 h1:Tz+eQXMEqDIKRsmY3cHTL6FVaynIjX2Qx
 cloud.google.com/go/compute/metadata v0.3.0/go.mod h1:zFmK7XCadkQkj6TtorcaGlCW1hT1fIilQDwofLpJ20k=
 github.com/aequo-labs/legcheck v0.4.0 h1:qtjnSEdwNvOHFd+Fo6Lu7yqPhCBrA/Jh2GXv8SaTiw8=
 github.com/aequo-labs/legcheck v0.4.0/go.mod h1:2daylcpUFiCYlaHTGVIvH4yVYIK2pnTIpmiAma/mErg=
-github.com/aequo-labs/webserver-core v1.21.1 h1:nTc6eerK5jD9UyqL5RfgUZaGrBAe16W0jaDP0wBcs64=
-github.com/aequo-labs/webserver-core v1.21.1/go.mod h1:ZeByIgcPer0Hl+sFUeGYxkN1Qouh4fq+l5Aj1L2NyHM=
+github.com/aequo-labs/webserver-core v1.21.2 h1:3IQzD33wZDmUK5FAyAGDSa1LJI3n0ipBsGbp6Y8J9To=
+github.com/aequo-labs/webserver-core v1.21.2/go.mod h1:ZeByIgcPer0Hl+sFUeGYxkN1Qouh4fq+l5Aj1L2NyHM=
 github.com/chromedp/cdproto v0.0.0-20250803210736-d308e07a266d h1:ZtA1sedVbEW7EW80Iz2GR3Ye6PwbJAJXjv7D74xG6HU=
 github.com/chromedp/cdproto v0.0.0-20250803210736-d308e07a266d/go.mod h1:NItd7aLkcfOA/dcMXvl8p1u+lQqioRMq/SqDp71Pb/k=
 github.com/chromedp/chromedp v0.14.0 h1:/xE5m6wEBwivhalHwlCOyYfBcAJNwg4nLw96QiCfYr0=

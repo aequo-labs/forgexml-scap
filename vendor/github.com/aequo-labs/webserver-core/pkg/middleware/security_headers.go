@@ -28,10 +28,18 @@ type SecurityHeadersConfig struct {
 }
 
 // DefaultSecurityHeadersConfig returns sensible defaults for security headers
+// The default CSP allows common CDN sources used by web applications
 func DefaultSecurityHeadersConfig() SecurityHeadersConfig {
 	return SecurityHeadersConfig{
-		UseTLS:                false,
-		ContentSecurityPolicy: "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; frame-ancestors 'self'",
+		UseTLS: false,
+		// CSP allows self + common CDNs (jsdelivr, cdnjs, unpkg) for scripts and styles
+		ContentSecurityPolicy: "default-src 'self'; " +
+			"script-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://unpkg.com; " +
+			"style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://unpkg.com https://fonts.googleapis.com; " +
+			"img-src 'self' data: https:; " +
+			"font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; " +
+			"connect-src 'self'; " +
+			"frame-ancestors 'self'",
 		PermissionsPolicy:     "geolocation=(), microphone=(), camera=()",
 		EnableHSTS:            true,
 		HSTSMaxAge:            31536000, // 1 year

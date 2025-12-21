@@ -861,6 +861,12 @@ html.dark-mode a {
         border: none !important;
     }
 
+    html.dark-mode .tag.is-light {
+        background-color: rgba(128, 128, 128, 0.2) !important;
+        color: #b0b0b0 !important; /* Gray text for inactive state */
+        border: 1px solid rgba(128, 128, 128, 0.3) !important;
+    }
+
     /* Portfolio card - improved contrast */
     html.dark-mode .portfolio-card {
         background: var(--card-bg);

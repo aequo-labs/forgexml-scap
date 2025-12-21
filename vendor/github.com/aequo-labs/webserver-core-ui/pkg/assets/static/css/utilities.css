@@ -212,9 +212,9 @@
 .cursor-move { cursor: move !important; }
 
 /* User select utilities */
-.user-select-all { user-select: all !important; }
-.user-select-auto { user-select: auto !important; }
-.user-select-none { user-select: none !important; }
+.user-select-all { -webkit-user-select: all !important; user-select: all !important; }
+.user-select-auto { -webkit-user-select: auto !important; user-select: auto !important; }
+.user-select-none { -webkit-user-select: none !important; user-select: none !important; }
 
 /* Visibility utilities */
 .visible { visibility: visible !important; }
@@ -458,3 +458,23 @@ html.dark-mode #delete-modal .modal-background {
     background: black !important;
     opacity: 0.55 !important;
 }
+
+/* Background utilities */
+.bg-transparent { background: transparent !important; background-color: transparent !important; }
+
+/* Border utilities */
+.border-none { border: none !important; }
+
+/* Width utilities */
+.w-140 { width: 140px !important; }
+.w-200 { width: 200px !important; }
+
+/* Common combined utilities */
+.btn-ghost-transparent { background: transparent !important; border: none !important; }
+
+/* Display utilities for JS-controlled visibility */
+.d-none { display: none !important; }
+.d-block { display: block !important; }
+.d-flex { display: flex !important; }
+.d-inline { display: inline !important; }
+.d-inline-block { display: inline-block !important; }

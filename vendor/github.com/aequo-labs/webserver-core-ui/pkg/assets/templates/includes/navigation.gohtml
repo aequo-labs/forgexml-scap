@@ -41,7 +41,7 @@
 {{- template "theme-toggle" .}}
 {{- if or .ShowLicenseManager .ShowAbout .ShowSettings}}
             <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link nav-hamburger-menu" href="#" onclick="return false;" title="More options" aria-label="More options menu" style="background: transparent;">
+                <a class="navbar-link nav-hamburger-menu" href="#" onclick="return false;" title="More options" aria-label="More options menu" class="bg-transparent">
                     <span class="icon" aria-hidden="true">
                         <i class="fas fa-ellipsis-h"></i>
                     </span>
@@ -91,7 +91,7 @@
             </div>
 {{- else}}
             <div class="navbar-item navbar-user-icon is-unauthenticated">
-                <button class="button is-ghost login-btn" data-auth="login" data-tooltip="Login" aria-label="Login" title="Login" style="background: transparent; border: none;">
+                <button class="button is-ghost login-btn" data-auth="login" data-tooltip="Login" aria-label="Login" title="Login" class="btn-ghost-transparent">
                     <span class="icon" aria-hidden="true">
                         <i class="fas fa-user"></i>
                     </span>

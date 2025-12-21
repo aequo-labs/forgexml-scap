@@ -1,6 +1,6 @@
 {{define "flash-messages" -}}
 {{- if .FlashMessages}}
-<div class="section" style="padding-top: 1rem; padding-bottom: 0;">
+<div class="section" class="pt-3 pb-0">
 {{- range .FlashMessages}}
     <div class="notification {{.Type}} is-light">
         <button class="delete" aria-label="Dismiss notification"></button>

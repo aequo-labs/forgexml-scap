@@ -469,6 +469,9 @@ html.dark-mode #delete-modal .modal-background {
 .w-140 { width: 140px !important; }
 .w-200 { width: 200px !important; }
 
+/* Max-width pixel utilities */
+.max-w-450 { max-width: 450px !important; }
+
 /* Common combined utilities */
 .btn-ghost-transparent { background: transparent !important; border: none !important; }
 
@@ -478,3 +481,140 @@ html.dark-mode #delete-modal .modal-background {
 .d-flex { display: flex !important; }
 .d-inline { display: inline !important; }
 .d-inline-block { display: inline-block !important; }
+
+
+/* Additional width utilities */
+.w-700 { width: 700px !important; }
+.max-w-95 { max-width: 95% !important; }
+
+/* Theme-aware card backgrounds */
+.theme-card-header-bg { background-color: var(--card-bg) !important; }
+.theme-card-content-bg { background-color: var(--bg-lighter) !important; }
+
+/* Padding utilities */
+.p-1rem { padding: 1rem !important; }
+
+/* Modal width utilities */
+.modal-card-wide { width: 700px !important; max-width: 95% !important; }
+.modal-card-xl { width: 90% !important; max-width: 1200px !important; }
+
+
+/* Gap utilities for flexbox */
+.gap-1 { gap: 0.5rem !important; }
+.gap-2 { gap: 1rem !important; }
+
+/* Compact box padding */
+.box-compact { padding: 0.75rem 1rem !important; margin-bottom: 0 !important; }
+
+/* Font size utilities */
+.fs-sm { font-size: 0.85rem !important; }
+
+/* Chart container */
+.chart-container { position: relative !important; height: 150px !important; }
+
+
+/* Z-index for modal layering */
+.z-100 { z-index: 100 !important; }
+
+/* Max-height with overflow for scrollable containers */
+.max-h-200 { max-height: 200px !important; }
+.scrollable-y { overflow-y: auto !important; }
+
+/* Error modal header background */
+.modal-head-danger { background-color: #f14668 !important; }
+
+/* Modal footer justify end */
+.modal-foot-end { justify-content: flex-end !important; }
+
+
+/* Loading overlay styles (used by loading-overlay.js) */
+.loading-overlay {
+    display: none;
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+}
+
+.loading-overlay.is-active {
+    display: block;
+    pointer-events: auto;
+}
+
+.loading-overlay-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+}
+
+.loading-overlay-content .loading-spinner {
+    margin: 0 auto;
+}
+
+.loading-overlay-content p {
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+
+/* Tab pane animation classes (used by tab-system.js) */
+.tab-pane-hidden {
+    display: none !important;
+}
+
+.tab-pane-fade {
+    opacity: 0;
+    transition: opacity 150ms ease;
+}
+
+.tab-pane-fade.is-visible {
+    opacity: 1;
+}
+
+.tab-pane-slide {
+    transform: translateX(-100%);
+    transition: transform 300ms ease;
+}
+
+.tab-pane-slide.is-visible {
+    transform: translateX(0);
+}
+
+.tab-pane-slide-enter {
+    transform: translateX(100%);
+}
+
+
+/* Color input styling */
+.input-color {
+    width: 60px !important;
+    padding: 2px !important;
+}
+
+/* Monospace textarea for code/templates */
+.textarea-code {
+    font-family: monospace !important;
+    font-size: 12px !important;
+}
+
+/* Preview container for iframes */
+.preview-container {
+    height: calc(100vh - 350px);
+    min-height: 500px;
+    overflow: auto;
+    padding: 0 !important;
+}
+
+/* Full-size borderless iframe */
+.iframe-full {
+    width: 100%;
+    height: 100%;
+    border: none;
+}

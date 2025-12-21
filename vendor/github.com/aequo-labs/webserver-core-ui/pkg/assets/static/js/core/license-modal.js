@@ -84,8 +84,8 @@ function updateLicenseUI() {
     const loadingEl = document.getElementById('license-loading');
     
     // Hide loading, show content
-    if (loadingEl) loadingEl.style.display = 'none';
-    if (contentEl) contentEl.style.display = 'block';
+    hideElement(loadingEl);
+    showElement(contentEl);
     
     // Update status section
     const licensedEl = document.getElementById('license-status-licensed');
@@ -96,15 +96,15 @@ function updateLicenseUI() {
     const installTitle = document.getElementById('install-section-title');
     
     // Hide all status notifications first
-    if (licensedEl) licensedEl.style.display = 'none';
-    if (unlicensedEl) unlicensedEl.style.display = 'none';
-    if (expiredEl) expiredEl.style.display = 'none';
+    hideElement(licensedEl);
+    hideElement(unlicensedEl);
+    hideElement(expiredEl);
     
     if (licenseState.licensed) {
         if (licenseState.expired) {
             // Expired license
             if (expiredEl) {
-                expiredEl.style.display = 'block';
+                showElement(expiredEl);
                 const expiredMsg = document.getElementById('license-expired-message');
                 if (expiredMsg) {
                     expiredMsg.textContent = `License expired on ${formatDate(licenseState.expiryDate)}. Please renew your license.`;
@@ -113,7 +113,7 @@ function updateLicenseUI() {
         } else {
             // Valid license
             if (licensedEl) {
-                licensedEl.style.display = 'block';
+                showElement(licensedEl);
                 const statusMsg = document.getElementById('license-status-message');
                 if (statusMsg) {
                     statusMsg.textContent = licenseState.message || `Valid until ${formatDate(licenseState.expiryDate)}`;
@@ -122,34 +122,34 @@ function updateLicenseUI() {
         }
         
         // Show license details
-        if (detailsEl) detailsEl.style.display = 'block';
+        showElement(detailsEl);
         updateLicenseDetails();
         
         // Show action buttons
-        if (actionBtns) actionBtns.style.display = 'flex';
+        showElement(actionBtns);
         updateActionButtons();
         
         // Change install section title
         if (installTitle) installTitle.textContent = 'Replace License';
     } else {
         // Unlicensed
-        if (unlicensedEl) unlicensedEl.style.display = 'block';
-        if (detailsEl) detailsEl.style.display = 'none';
-        if (actionBtns) actionBtns.style.display = 'none';
+        showElement(unlicensedEl);
+        hideElement(detailsEl);
+        hideElement(actionBtns);
         if (installTitle) installTitle.textContent = 'Install License';
         
         // Show machine ID even when unlicensed
         if (licenseState.machineId) {
             if (detailsEl) {
-                detailsEl.style.display = 'block';
+                showElement(detailsEl);
                 // Hide most details, just show machine ID
                 const rows = detailsEl.querySelectorAll('tr');
                 rows.forEach(row => {
                     const label = row.querySelector('td:first-child');
                     if (label && label.textContent !== 'Machine ID') {
-                        row.style.display = 'none';
+                        hideElement(row);
                     } else {
-                        row.style.display = '';
+                        showElement(row);
                     }
                 });
             }
@@ -176,7 +176,7 @@ function updateLicenseDetails() {
     const detailsEl = document.getElementById('license-details-section');
     if (detailsEl) {
         const rows = detailsEl.querySelectorAll('tr');
-        rows.forEach(row => row.style.display = '');
+        rows.forEach(row => showElement(row));
     }
     
     if (idEl) idEl.textContent = licenseState.licenseId;
@@ -188,23 +188,23 @@ function updateLicenseDetails() {
     
     // Activation status
     if (licenseState.activated) {
-        if (activatedEl) activatedEl.style.display = 'inline-flex';
-        if (notActivatedEl) notActivatedEl.style.display = 'none';
+        showElement(activatedEl);
+        hideElement(notActivatedEl);
     } else {
-        if (activatedEl) activatedEl.style.display = 'none';
-        if (notActivatedEl) notActivatedEl.style.display = 'inline-flex';
+        hideElement(activatedEl);
+        showElement(notActivatedEl);
     }
     
     // Features
     if (licenseState.features && licenseState.features.length > 0) {
-        if (featuresSection) featuresSection.style.display = 'block';
+        showElement(featuresSection);
         if (featuresEl) {
             featuresEl.innerHTML = licenseState.features.map(feature => 
                 `<span class="tag is-info is-light">${escapeHtml(feature)}</span>`
             ).join('');
         }
     } else {
-        if (featuresSection) featuresSection.style.display = 'none';
+        hideElement(featuresSection);
     }
 }
 
@@ -215,15 +215,15 @@ function updateActionButtons() {
     
     if (licenseState.licensed && !licenseState.expired) {
         if (licenseState.activated) {
-            if (activateBtn) activateBtn.style.display = 'none';
-            if (deactivateBtn) deactivateBtn.style.display = 'inline-flex';
+            hideElement(activateBtn);
+            showElement(deactivateBtn);
         } else {
-            if (activateBtn) activateBtn.style.display = 'inline-flex';
-            if (deactivateBtn) deactivateBtn.style.display = 'none';
+            showElement(activateBtn);
+            hideElement(deactivateBtn);
         }
     } else {
-        if (activateBtn) activateBtn.style.display = 'none';
-        if (deactivateBtn) deactivateBtn.style.display = 'none';
+        hideElement(activateBtn);
+        hideElement(deactivateBtn);
     }
 }
 
@@ -420,34 +420,34 @@ function showLicenseLoading(show) {
     const loadingEl = document.getElementById('license-loading');
     const contentEl = document.getElementById('license-content');
     
-    if (loadingEl) loadingEl.style.display = show ? 'block' : 'none';
-    if (contentEl) contentEl.style.display = show ? 'none' : 'block';
+    setElementVisible(loadingEl, show);
+    setElementVisible(contentEl, !show);
 }
 
 function showLicenseError(message) {
     const errorEl = document.getElementById('license-error');
     const msgEl = document.getElementById('license-error-message');
     
-    if (errorEl) errorEl.style.display = 'block';
+    showElement(errorEl);
     if (msgEl) msgEl.textContent = message;
 }
 
 function hideLicenseError() {
     const errorEl = document.getElementById('license-error');
-    if (errorEl) errorEl.style.display = 'none';
+    hideElement(errorEl);
 }
 
 function showLicenseSuccess(message) {
     const successEl = document.getElementById('license-success');
     const msgEl = document.getElementById('license-success-message');
     
-    if (successEl) successEl.style.display = 'block';
+    showElement(successEl);
     if (msgEl) msgEl.textContent = message;
 }
 
 function hideLicenseSuccess() {
     const successEl = document.getElementById('license-success');
-    if (successEl) successEl.style.display = 'none';
+    hideElement(successEl);
 }
 
 function formatDate(dateStr) {
@@ -468,6 +468,25 @@ function escapeHtml(text) {
     const div = document.createElement('div');
     div.textContent = text;
     return div.innerHTML;
+}
+
+// Helper functions for class-based visibility (avoids inline styles)
+function showElement(el) {
+    if (el) el.classList.remove('d-none');
+}
+
+function hideElement(el) {
+    if (el) el.classList.add('d-none');
+}
+
+function setElementVisible(el, visible) {
+    if (el) {
+        if (visible) {
+            el.classList.remove('d-none');
+        } else {
+            el.classList.add('d-none');
+        }
+    }
 }
 
 // Close modal when clicking outside

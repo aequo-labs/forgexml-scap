@@ -8,32 +8,16 @@
         if (!document.getElementById('loading-overlay')) {
             const overlay = document.createElement('div');
             overlay.id = 'loading-overlay';
-            overlay.style.display = 'none';
-            overlay.style.pointerEvents = 'none';
-            overlay.style.position = 'fixed';
-            overlay.style.top = '0';
-            overlay.style.left = '0';
-            overlay.style.width = '100%';
-            overlay.style.height = '100%';
-            overlay.style.backgroundColor = 'rgba(0,0,0,0.5)';
-            overlay.style.zIndex = '9999';
+            overlay.className = 'loading-overlay';
             
             const spinnerContainer = document.createElement('div');
-            spinnerContainer.style.position = 'absolute';
-            spinnerContainer.style.top = '50%';
-            spinnerContainer.style.left = '50%';
-            spinnerContainer.style.transform = 'translate(-50%, -50%)';
-            spinnerContainer.style.textAlign = 'center';
-            spinnerContainer.style.color = 'white';
+            spinnerContainer.className = 'loading-overlay-content';
             
             const spinner = document.createElement('div');
             spinner.className = 'loading-spinner';
-            spinner.style.margin = '0 auto';
             
             const loadingText = document.createElement('p');
             loadingText.textContent = 'Loading...';
-            loadingText.style.marginTop = '20px';
-            loadingText.style.fontSize = '18px';
             
             spinnerContainer.appendChild(spinner);
             spinnerContainer.appendChild(loadingText);
@@ -47,8 +31,7 @@
     function hideOverlay() {
         const overlay = document.getElementById('loading-overlay');
         if (overlay) {
-            overlay.style.display = 'none';
-            overlay.style.pointerEvents = 'none';
+            overlay.classList.remove('is-active');
         }
         
         // Clear any existing timer
@@ -67,8 +50,7 @@
         
         const overlay = document.getElementById('loading-overlay');
         if (overlay) {
-            overlay.style.display = 'block';
-            overlay.style.pointerEvents = 'auto';
+            overlay.classList.add('is-active');
         }
         
         return null;

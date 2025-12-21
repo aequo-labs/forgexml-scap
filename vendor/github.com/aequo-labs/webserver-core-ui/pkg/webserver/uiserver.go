@@ -231,7 +231,7 @@ func (s *UIServer) setupBaseAPI() {
 
 // statusHandler provides a default status endpoint
 func (s *UIServer) statusHandler(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Content-Type", "application/json; charset=utf-8")
 	status := map[string]interface{}{
 		"status":    "healthy",
 		"timestamp": time.Now().Format(time.RFC3339),
@@ -241,7 +241,7 @@ func (s *UIServer) statusHandler(w http.ResponseWriter, r *http.Request) {
 
 // themePreferenceHandler provides a basic theme preference endpoint
 func (s *UIServer) themePreferenceHandler(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Content-Type", "application/json; charset=utf-8")
 
 	if r.Method == "GET" {
 		// Default to light theme
@@ -260,7 +260,7 @@ func (s *UIServer) themePreferenceHandler(w http.ResponseWriter, r *http.Request
 
 // themeToggleHandler toggles between light and dark themes
 func (s *UIServer) themeToggleHandler(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Content-Type", "application/json; charset=utf-8")
 
 	// For this basic implementation, we'll just return success
 	// In a real implementation, you might check current theme and toggle it
@@ -274,7 +274,7 @@ func (s *UIServer) themeToggleHandler(w http.ResponseWriter, r *http.Request) {
 
 // themeSetHandler sets a specific theme
 func (s *UIServer) themeSetHandler(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Content-Type", "application/json; charset=utf-8")
 
 	var request struct {
 		Theme string `json:"theme"`
@@ -301,7 +301,7 @@ func (s *UIServer) themeSetHandler(w http.ResponseWriter, r *http.Request) {
 
 // licenseStatusHandler returns the current license status
 func (s *UIServer) licenseStatusHandler(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Content-Type", "application/json; charset=utf-8")
 
 	if s.licenseManager == nil {
 		json.NewEncoder(w).Encode(LicenseStatus{
@@ -332,7 +332,7 @@ func (s *UIServer) licenseStatusHandler(w http.ResponseWriter, r *http.Request) 
 
 // licenseInstallHandler installs a license by key
 func (s *UIServer) licenseInstallHandler(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Content-Type", "application/json; charset=utf-8")
 
 	if s.licenseManager == nil {
 		w.WriteHeader(http.StatusServiceUnavailable)
@@ -390,7 +390,7 @@ func (s *UIServer) licenseInstallHandler(w http.ResponseWriter, r *http.Request)
 
 // licenseActivateHandler activates the license for this machine
 func (s *UIServer) licenseActivateHandler(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Content-Type", "application/json; charset=utf-8")
 
 	if s.licenseManager == nil {
 		w.WriteHeader(http.StatusServiceUnavailable)
@@ -426,7 +426,7 @@ func (s *UIServer) licenseActivateHandler(w http.ResponseWriter, r *http.Request
 
 // licenseDeactivateHandler deactivates the license for this machine
 func (s *UIServer) licenseDeactivateHandler(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Content-Type", "application/json; charset=utf-8")
 
 	if s.licenseManager == nil {
 		w.WriteHeader(http.StatusServiceUnavailable)

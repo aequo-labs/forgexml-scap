@@ -32,7 +32,7 @@
                     {{if .LocalEnabled}}
                     <form id="login-form" method="POST" action="/api/auth/login">
                         <div class="field">
-                            <label class="label">Username</label>
+                            <label class="label" for="username">Username</label>
                             <div class="control has-icons-left">
                                 <input class="input" type="text" name="username" id="username" placeholder="Username" required autofocus>
                                 <span class="icon is-small is-left">
@@ -45,7 +45,7 @@
                         </div>
 
                         <div class="field">
-                            <label class="label">Password</label>
+                            <label class="label" for="password">Password</label>
                             <div class="control has-icons-left">
                                 <input class="input" type="password" name="password" id="password" placeholder="Password" required>
                                 <span class="icon is-small is-left">

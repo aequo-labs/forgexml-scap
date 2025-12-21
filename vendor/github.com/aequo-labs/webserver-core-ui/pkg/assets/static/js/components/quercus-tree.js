@@ -192,9 +192,9 @@
                     this._searchTree(event.target.value);
                     // Show/hide clear button based on input value
                     if (event.target.value.length > 0) {
-                        clearButton.style.display = 'block';
+                        clearButton.classList.remove('d-none');
                     } else {
-                        clearButton.style.display = 'none';
+                        clearButton.classList.add('d-none');
                     }
                 });
 
@@ -202,12 +202,12 @@
                 clearButton.addEventListener('click', () => {
                     this.treeSearchInput.value = ''; // Clear the input field
                     this._searchTree(''); // Trigger search with empty string
-                    clearButton.style.display = 'none'; // Hide the clear button
+                    clearButton.classList.add('d-none'); // Hide the clear button
                 });
 
                 // Initially hide the clear button if the input is empty
                 if (this.treeSearchInput.value.length === 0) {
-                    clearButton.style.display = 'none';
+                    clearButton.classList.add('d-none');
                 }
             }
 

@@ -93,7 +93,7 @@ func (am *AuthManager) RequireAuth(next http.HandlerFunc) http.HandlerFunc {
 		if am.session == nil || !am.session.IsAuthenticated(r) {
 			// Check if this is an API request
 			if strings.HasPrefix(r.URL.Path, "/api/") {
-				w.Header().Set("Content-Type", "application/json")
+				w.Header().Set("Content-Type", "application/json; charset=utf-8")
 				w.WriteHeader(http.StatusUnauthorized)
 				w.Write([]byte(`{"error":"unauthorized","message":"Authentication required"}`))
 				return

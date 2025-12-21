@@ -250,17 +250,17 @@ class TabSystem {
     hidePane(pane) {
         switch (this.options.animation) {
             case 'fade':
-                pane.style.opacity = '0';
+                pane.classList.remove('is-visible');
                 setTimeout(() => {
                     pane.classList.remove('is-active');
-                    pane.style.display = 'none';
+                    pane.classList.add('tab-pane-hidden');
                 }, 150);
                 break;
             case 'slide':
-                pane.style.transform = 'translateX(-100%)';
+                pane.classList.remove('is-visible');
                 setTimeout(() => {
                     pane.classList.remove('is-active');
-                    pane.style.display = 'none';
+                    pane.classList.add('tab-pane-hidden');
                 }, 300);
                 break;
             default:
@@ -272,19 +272,19 @@ class TabSystem {
     showPane(pane) {
         switch (this.options.animation) {
             case 'fade':
-                pane.style.display = 'block';
-                pane.classList.add('is-active');
+                pane.classList.remove('tab-pane-hidden');
+                pane.classList.add('is-active', 'tab-pane-fade');
                 // Force reflow
                 pane.offsetHeight;
-                pane.style.opacity = '1';
+                pane.classList.add('is-visible');
                 break;
             case 'slide':
-                pane.style.display = 'block';
-                pane.style.transform = 'translateX(100%)';
-                pane.classList.add('is-active');
+                pane.classList.remove('tab-pane-hidden');
+                pane.classList.add('is-active', 'tab-pane-slide', 'tab-pane-slide-enter');
                 // Force reflow
                 pane.offsetHeight;
-                pane.style.transform = 'translateX(0)';
+                pane.classList.remove('tab-pane-slide-enter');
+                pane.classList.add('is-visible');
                 break;
             default:
                 pane.classList.add('is-active');

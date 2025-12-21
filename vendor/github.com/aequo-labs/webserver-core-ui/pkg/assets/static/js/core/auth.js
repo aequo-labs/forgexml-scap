@@ -107,10 +107,18 @@
         const logoutBtn = document.querySelector('.logout-btn, [data-auth="logout"]');
 
         if (loginBtn) {
-            loginBtn.style.display = authState.authenticated ? 'none' : '';
+            if (authState.authenticated) {
+                loginBtn.classList.add('d-none');
+            } else {
+                loginBtn.classList.remove('d-none');
+            }
         }
         if (logoutBtn) {
-            logoutBtn.style.display = authState.authenticated ? '' : 'none';
+            if (authState.authenticated) {
+                logoutBtn.classList.remove('d-none');
+            } else {
+                logoutBtn.classList.add('d-none');
+            }
         }
 
         // Dispatch custom event for other scripts to react

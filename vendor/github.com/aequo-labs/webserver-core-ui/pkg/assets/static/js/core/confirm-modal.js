@@ -147,7 +147,7 @@ function showAlertModal(title, message, icon) {
 
     // Hide confirm button, only show close
     const confirmBtn = document.getElementById('confirm-modal-confirm-btn');
-    if (confirmBtn) confirmBtn.style.display = 'none';
+    if (confirmBtn) confirmBtn.classList.add('d-none');
 
     // Show modal
     modal.classList.add('is-active');
@@ -155,7 +155,7 @@ function showAlertModal(title, message, icon) {
     // Reset button visibility on close
     const originalClose = closeConfirmModal;
     closeConfirmModal = function() {
-        if (confirmBtn) confirmBtn.style.display = '';
+        if (confirmBtn) confirmBtn.classList.remove('d-none');
         closeConfirmModal = originalClose;
         originalClose();
     };

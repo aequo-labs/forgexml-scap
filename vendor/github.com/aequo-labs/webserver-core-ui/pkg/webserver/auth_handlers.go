@@ -10,7 +10,7 @@ import (
 
 // authStatusHandler returns the current authentication status
 func (s *UIServer) authStatusHandler(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Content-Type", "application/json; charset=utf-8")
 
 	status := AuthStatus{
 		Authenticated: false,
@@ -90,7 +90,7 @@ func (s *UIServer) loginPageHandler(w http.ResponseWriter, r *http.Request) {
 
 // loginHandler handles local login form submission
 func (s *UIServer) loginHandler(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Content-Type", "application/json; charset=utf-8")
 
 	if s.authManager == nil || !s.authManager.IsEnabled() {
 		w.WriteHeader(http.StatusServiceUnavailable)
@@ -239,7 +239,7 @@ func (s *UIServer) logoutHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Check if this is an API request
 	if r.Header.Get("Accept") == "application/json" || r.Header.Get("Content-Type") == "application/json" {
-		w.Header().Set("Content-Type", "application/json")
+		w.Header().Set("Content-Type", "application/json; charset=utf-8")
 		json.NewEncoder(w).Encode(map[string]interface{}{
 			"success":  true,
 			"redirect": s.authManager.config.LogoutRedirect,
@@ -283,7 +283,7 @@ func (s *UIServer) setupPageHandler(w http.ResponseWriter, r *http.Request) {
 
 // setupHandler handles the setup form submission
 func (s *UIServer) setupHandler(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Content-Type", "application/json; charset=utf-8")
 
 	// Check if setup is already complete
 	if s.authManager != nil && !s.authManager.IsSetupNeeded() {

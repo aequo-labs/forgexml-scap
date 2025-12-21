@@ -75,11 +75,11 @@ function updateToggleButton(theme) {
     
     if (lightIcon && darkIcon) {
         if (theme === 'dark') {
-            lightIcon.style.display = 'inline';
-            darkIcon.style.display = 'none';
+            lightIcon.classList.remove('d-none');
+            darkIcon.classList.add('d-none');
         } else {
-            lightIcon.style.display = 'none';
-            darkIcon.style.display = 'inline';
+            lightIcon.classList.add('d-none');
+            darkIcon.classList.remove('d-none');
         }
     }
 }

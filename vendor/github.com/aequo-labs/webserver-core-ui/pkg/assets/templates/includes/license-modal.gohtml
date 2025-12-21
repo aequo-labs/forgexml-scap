@@ -25,7 +25,7 @@
             <div id="license-content" class="d-none">
                 <!-- License Status Section -->
                 <div id="license-status-section" class="mb-5">
-                    <div id="license-status-licensed" class="notification is-success is-light" class="d-none">
+                    <div id="license-status-licensed" class="notification is-success is-light d-none">
                         <div class="is-flex is-align-items-center">
                             <span class="icon is-medium mr-3">
                                 <i class="fas fa-check-circle fa-lg"></i>
@@ -36,7 +36,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="license-status-unlicensed" class="notification is-warning is-light" class="d-none">
+                    <div id="license-status-unlicensed" class="notification is-warning is-light d-none">
                         <div class="is-flex is-align-items-center">
                             <span class="icon is-medium mr-3">
                                 <i class="fas fa-exclamation-triangle fa-lg"></i>
@@ -47,7 +47,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="license-status-expired" class="notification is-danger is-light" class="d-none">
+                    <div id="license-status-expired" class="notification is-danger is-light d-none">
                         <div class="is-flex is-align-items-center">
                             <span class="icon is-medium mr-3">
                                 <i class="fas fa-times-circle fa-lg"></i>
@@ -71,7 +71,7 @@
                     <table class="table is-fullwidth is-narrow">
                         <tbody>
                             <tr>
-                                <td class="has-text-weight-semibold" class="w-140">License ID</td>
+                                <td class="has-text-weight-semibold w-140">License ID</td>
                                 <td><code id="license-id"></code></td>
                             </tr>
                             <tr>
@@ -97,11 +97,11 @@
                             <tr>
                                 <td class="has-text-weight-semibold">Activation</td>
                                 <td>
-                                    <span id="license-activated" class="tag is-success" class="d-none">
+                                    <span id="license-activated" class="tag is-success d-none">
                                         <span class="icon is-small"><i class="fas fa-check"></i></span>
                                         <span>Activated</span>
                                     </span>
-                                    <span id="license-not-activated" class="tag is-warning" class="d-none">
+                                    <span id="license-not-activated" class="tag is-warning d-none">
                                         <span class="icon is-small"><i class="fas fa-exclamation"></i></span>
                                         <span>Not Activated</span>
                                     </span>
@@ -111,7 +111,7 @@
                     </table>
 
                     <!-- Features Section -->
-                    <div id="license-features-section" class="mt-4" class="d-none">
+                    <div id="license-features-section" class="mt-4 d-none">
                         <h6 class="title is-6 mb-3">
                             <span class="icon-text">
                                 <span class="icon"><i class="fas fa-list-check"></i></span>
@@ -148,13 +148,13 @@
                 </div>
 
                 <!-- Error Message -->
-                <div id="license-error" class="notification is-danger is-light mt-4" class="d-none">
+                <div id="license-error" class="notification is-danger is-light mt-4 d-none">
                     <button class="delete" aria-label="Dismiss error" onclick="hideLicenseError()"></button>
                     <span id="license-error-message"></span>
                 </div>
 
                 <!-- Success Message -->
-                <div id="license-success" class="notification is-success mt-4" class="d-none">
+                <div id="license-success" class="notification is-success mt-4 d-none">
                     <button class="delete" aria-label="Dismiss message" onclick="hideLicenseSuccess()"></button>
                     <span id="license-success-message"></span>
                 </div>
@@ -162,11 +162,11 @@
         </section>
         <footer class="modal-card-foot is-justify-content-flex-end">
             <div class="buttons">
-                <button id="license-activate-btn" class="button is-success" onclick="activateLicense()" class="d-none">
+                <button id="license-activate-btn" class="button is-success d-none" onclick="activateLicense()">
                     <span class="icon"><i class="fas fa-check"></i></span>
                     <span>Activate</span>
                 </button>
-                <button id="license-deactivate-btn" class="button is-warning mr-2" onclick="deactivateLicense()" class="d-none">
+                <button id="license-deactivate-btn" class="button is-warning mr-2 d-none" onclick="deactivateLicense()">
                     <span class="icon"><i class="fas fa-times"></i></span>
                     <span>Deactivate</span>
                 </button>

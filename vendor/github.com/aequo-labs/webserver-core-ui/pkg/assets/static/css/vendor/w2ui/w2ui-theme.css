@@ -1,0 +1,267 @@
+/* ==============================================
+   W2UI Grid Theme Overrides
+   Integrates w2ui with application theming system
+   ============================================== */
+
+/* Base grid styling - inherit app font */
+.w2ui-grid-box,
+.w2ui-grid-box * {
+    font-family: inherit !important;
+}
+
+.w2ui-grid-box {
+    font-size: 0.875rem;
+    background-color: var(--bg-color) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 4px;
+}
+
+/* Header styling */
+.w2ui-grid-header {
+    background-color: var(--table-header-bg, var(--bg-color-secondary)) !important;
+    border-bottom: 2px solid var(--border-color) !important;
+}
+
+.w2ui-col-header {
+    background-color: var(--table-header-bg, var(--bg-color-secondary)) !important;
+    color: var(--text-color) !important;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.025em;
+    border: none !important;
+}
+
+/* Grid body and records */
+.w2ui-grid-body,
+.w2ui-grid-records {
+    background-color: var(--bg-color) !important;
+}
+
+/* Remove ALL borders between cells */
+.w2ui-grid-data,
+.w2ui-grid-box td,
+.w2ui-grid-box .w2ui-grid-data {
+    border: none !important;
+    border-bottom: none !important;
+    border-right: none !important;
+    border-left: none !important;
+    border-top: none !important;
+}
+
+/* Row styling */
+.w2ui-grid-data {
+    cursor: pointer;
+    color: var(--text-color) !important;
+    padding: 0.75rem 0.5rem !important;
+    vertical-align: middle !important;
+    line-height: 1.4 !important;
+}
+
+/* Alternating row colors */
+.w2ui-grid-box tr.w2ui-even td,
+.w2ui-grid-box tr.w2ui-even .w2ui-grid-data {
+    background-color: var(--bg-color) !important;
+}
+
+.w2ui-grid-box tr.w2ui-odd td,
+.w2ui-grid-box tr.w2ui-odd .w2ui-grid-data {
+    background-color: var(--table-row-even, var(--secondary-bg-color)) !important;
+}
+
+/* Hover effect */
+.w2ui-grid-box tr:hover td,
+.w2ui-grid-box tr:hover .w2ui-grid-data {
+    background-color: var(--hover-background-color, var(--bg-color-hover)) !important;
+}
+
+/* Toolbar styling */
+.w2ui-grid-toolbar {
+    background: var(--bg-color-secondary, var(--card-bg)) !important;
+    border-bottom: 1px solid var(--border-color) !important;
+    padding: 0.5rem;
+}
+
+.w2ui-tb-button {
+    color: var(--text-color) !important;
+    border-radius: 4px;
+    padding: 6px 10px;
+}
+
+.w2ui-tb-button:hover {
+    background: var(--hover-background-color, var(--bg-color-hover)) !important;
+}
+
+.w2ui-tb-button .fas,
+.w2ui-tb-button .fa {
+    font-size: 14px;
+}
+
+/* Footer styling */
+.w2ui-grid-footer {
+    background: var(--bg-color-secondary, var(--card-bg)) !important;
+    border-top: 1px solid var(--border-color) !important;
+    color: var(--text-color) !important;
+    font-size: 0.8rem;
+}
+
+/* Input fields */
+.w2ui-grid-box input,
+.w2ui-grid-box select,
+.w2ui-grid-box .w2ui-select {
+    background-color: var(--input-bg) !important;
+    color: var(--input-text) !important;
+    border: 1px solid var(--input-border) !important;
+    border-radius: 4px;
+}
+
+.w2ui-grid-box input:focus {
+    border-color: var(--primary-color) !important;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(var(--primary-color-rgb), 0.2);
+}
+
+/* ==============================================
+   Advanced Search Overlay Theming
+   ============================================== */
+.w2ui-overlay,
+.w2ui-overlay-body {
+    background: var(--bg-color) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-color) !important;
+    border-radius: 4px;
+}
+
+.w2ui-overlay input,
+.w2ui-overlay select,
+.w2ui-overlay .w2ui-field input,
+.w2ui-overlay .w2ui-field select {
+    background-color: var(--input-bg) !important;
+    color: var(--input-text) !important;
+    border: 1px solid var(--input-border) !important;
+    border-radius: 4px;
+    padding: 0.5rem;
+}
+
+.w2ui-overlay label,
+.w2ui-overlay .w2ui-field label {
+    color: var(--text-color) !important;
+}
+
+.w2ui-overlay button,
+.w2ui-overlay .w2ui-btn {
+    background-color: var(--primary-color) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+.w2ui-overlay button:hover,
+.w2ui-overlay .w2ui-btn:hover {
+    background-color: var(--primary-color-dark) !important;
+}
+
+/* Menu items in overlay */
+.w2ui-menu,
+.w2ui-menu-item {
+    background: var(--bg-color) !important;
+    color: var(--text-color) !important;
+}
+
+.w2ui-menu-item:hover {
+    background: var(--hover-background-color, var(--bg-color-hover)) !important;
+}
+
+/* Search panel inside grid */
+.w2ui-grid-searches {
+    background: var(--bg-color-secondary, var(--card-bg)) !important;
+    border-bottom: 1px solid var(--border-color) !important;
+    padding: 0.75rem;
+}
+
+.w2ui-grid-searches table,
+.w2ui-grid-searches label,
+.w2ui-grid-searches td {
+    color: var(--text-color) !important;
+}
+
+/* ==============================================
+   Action Button Styling
+   ============================================== */
+.w2ui-grid-box td:last-child {
+    text-align: center !important;
+}
+
+.w2ui-grid-box .button.is-small {
+    min-width: 28px !important;
+    width: 28px !important;
+    height: 28px !important;
+    padding: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    line-height: 1 !important;
+    vertical-align: middle !important;
+}
+
+.w2ui-grid-box .button.is-small .icon {
+    margin: 0 !important;
+    width: auto !important;
+    height: auto !important;
+}
+
+/* ==============================================
+   Row Height Consistency
+   ============================================== */
+.w2ui-grid-box tr {
+    height: auto !important;
+}
+
+.w2ui-grid-data div {
+    line-height: 1.4;
+}
+
+/* ==============================================
+   Status Badge Styles (for grid content)
+   ============================================== */
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.status-badge.status-active {
+    background-color: rgba(var(--success-color-rgb), 0.15);
+    color: var(--success-color);
+}
+
+.status-badge.status-warning {
+    background-color: rgba(var(--warning-color-rgb), 0.15);
+    color: var(--warning-color);
+}
+
+.status-badge.status-expired {
+    background-color: rgba(var(--danger-color-rgb), 0.15);
+    color: var(--danger-color);
+}
+
+.status-badge.status-invalid {
+    background-color: var(--bg-color-secondary);
+    color: var(--text-muted);
+}
+
+/* ==============================================
+   Utility Classes
+   ============================================== */
+.text-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

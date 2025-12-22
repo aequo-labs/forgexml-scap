@@ -250,7 +250,6 @@ class VirtualDataGrid {
     }
 
     createRowElement(row, index) {
-    createRowElement(row, index) {
         const rowDiv = document.createElement('div');
         rowDiv.className = 'grid-row';
         rowDiv.dataset.rowId = row.id || row.ID || index;

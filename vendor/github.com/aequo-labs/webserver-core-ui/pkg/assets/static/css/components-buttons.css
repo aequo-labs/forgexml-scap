@@ -263,6 +263,37 @@
     margin-right: 0.5rem !important;
 }
 
+/* Outlined button styles - ensure colored text and border */
+.button.is-success.is-outlined {
+    background-color: transparent !important;
+    border-color: var(--success-color) !important;
+    color: var(--success-color) !important;
+}
+
+.button.is-info.is-outlined {
+    background-color: transparent !important;
+    border-color: var(--info-color) !important;
+    color: var(--info-color) !important;
+}
+
+.button.is-primary.is-outlined {
+    background-color: transparent !important;
+    border-color: var(--primary-color) !important;
+    color: var(--primary-color) !important;
+}
+
+.button.is-warning.is-outlined {
+    background-color: transparent !important;
+    border-color: var(--warning-color) !important;
+    color: var(--warning-color) !important;
+}
+
+.button.is-danger.is-outlined {
+    background-color: transparent !important;
+    border-color: var(--danger-color) !important;
+    color: var(--danger-color) !important;
+}
+
 /* Enhanced button hover consistency from theme-test */
 .button.is-success:hover {
     background-color: transparent !important;

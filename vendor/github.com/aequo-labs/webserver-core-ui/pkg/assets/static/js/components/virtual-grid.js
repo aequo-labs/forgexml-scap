@@ -250,9 +250,10 @@ class VirtualDataGrid {
     }
 
     createRowElement(row, index) {
+    createRowElement(row, index) {
         const rowDiv = document.createElement('div');
         rowDiv.className = 'grid-row';
-        rowDiv.dataset.rowId = row.id;
+        rowDiv.dataset.rowId = row.id || row.ID || index;
         rowDiv.dataset.index = index;
         
         // Add even/odd class for styling
@@ -276,6 +277,16 @@ class VirtualDataGrid {
             rowDiv.classList.add('selected');
         }
         
+        // Add row click handler if provided
+        if (this.options.onRowClick) {
+            rowDiv.style.cursor = 'pointer';
+            rowDiv.addEventListener('click', (e) => {
+                // Don't trigger row click if clicking on a link or button
+                if (e.target.closest('a, button')) return;
+                this.options.onRowClick(row, index, e);
+            });
+        }
+        
         this.getVisibleColumns().forEach(col => {
             const width = this.columnWidths.get(col.id);
             const cell = document.createElement('div');
@@ -292,15 +303,21 @@ class VirtualDataGrid {
             `;
             
             const value = row[col.id];
-            cell.textContent = this.formatCellValue(value, col);
-            cell.title = cell.textContent;
+            
+            // Check if column has custom render function
+            if (typeof col.render === 'function') {
+                cell.innerHTML = col.render(value, row, index);
+                cell.style.whiteSpace = 'normal'; // Allow wrapping for custom HTML
+            } else {
+                cell.textContent = this.formatCellValue(value, col);
+                cell.title = cell.textContent;
+            }
             
             rowDiv.appendChild(cell);
         });
         
         return rowDiv;
     }
-
     createPlaceholderRow(index) {
         const rowDiv = document.createElement('div');
         rowDiv.className = 'grid-row loading';

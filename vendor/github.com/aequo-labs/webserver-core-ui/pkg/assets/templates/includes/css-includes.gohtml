@@ -1,32 +1,33 @@
 {{define "css-includes" -}}
+{{- $v := .Version -}}
 <!-- Bulma CSS Framework -->
-<link rel="stylesheet" href="/static/css/bulma.min.css">
+<link rel="stylesheet" href="/static/css/bulma.min.css{{if $v}}?v={{$v}}{{end}}">
 <!-- Bulma Framework Overrides -->
-<link rel="stylesheet" href="/static/css/bulma-overrides.css">
+<link rel="stylesheet" href="/static/css/bulma-overrides.css{{if $v}}?v={{$v}}{{end}}">
 <!-- Bulma Modal Component (missing from minified version) -->
-<link rel="stylesheet" href="/static/css/modal.css">
+<link rel="stylesheet" href="/static/css/modal.css{{if $v}}?v={{$v}}{{end}}">
 <!-- FontAwesome for icons -->
-<link rel="stylesheet" href="/static/css/fontawesome.min.css">
+<link rel="stylesheet" href="/static/css/fontawesome.min.css{{if $v}}?v={{$v}}{{end}}">
 <!-- Theme CSS files - only one active based on user preference -->
-<link rel="stylesheet" href="/static/css/light-mode.css" id="light-theme" {{if eq .ThemePreference "dark"}} disabled{{end}}>
-<link rel="stylesheet" href="/static/css/dark-mode.css" id="dark-theme" {{if ne .ThemePreference "dark"}} disabled{{end}}>
-<link rel="stylesheet" href="/static/css/theme-toggle.css">
+<link rel="stylesheet" href="/static/css/light-mode.css{{if $v}}?v={{$v}}{{end}}" id="light-theme" {{if eq .ThemePreference "dark"}} disabled{{end}}>
+<link rel="stylesheet" href="/static/css/dark-mode.css{{if $v}}?v={{$v}}{{end}}" id="dark-theme" {{if ne .ThemePreference "dark"}} disabled{{end}}>
+<link rel="stylesheet" href="/static/css/theme-toggle.css{{if $v}}?v={{$v}}{{end}}">
 <!-- Core CSS Modules -->
-<link rel="stylesheet" href="/static/css/core-base.css">
-<link rel="stylesheet" href="/static/css/layout.css">
-<link rel="stylesheet" href="/static/css/utilities.css">
+<link rel="stylesheet" href="/static/css/core-base.css{{if $v}}?v={{$v}}{{end}}">
+<link rel="stylesheet" href="/static/css/layout.css{{if $v}}?v={{$v}}{{end}}">
+<link rel="stylesheet" href="/static/css/utilities.css{{if $v}}?v={{$v}}{{end}}">
 <!-- Component CSS Modules -->
-<link rel="stylesheet" href="/static/css/components-buttons.css">
-<link rel="stylesheet" href="/static/css/components-forms.css">
-<link rel="stylesheet" href="/static/css/components-tables.css">
-<link rel="stylesheet" href="/static/css/components-cards.css">
-<link rel="stylesheet" href="/static/css/components-tags.css">
+<link rel="stylesheet" href="/static/css/components-buttons.css{{if $v}}?v={{$v}}{{end}}">
+<link rel="stylesheet" href="/static/css/components-forms.css{{if $v}}?v={{$v}}{{end}}">
+<link rel="stylesheet" href="/static/css/components-tables.css{{if $v}}?v={{$v}}{{end}}">
+<link rel="stylesheet" href="/static/css/components-cards.css{{if $v}}?v={{$v}}{{end}}">
+<link rel="stylesheet" href="/static/css/components-tags.css{{if $v}}?v={{$v}}{{end}}">
 <!-- Feature CSS Modules -->
-<link rel="stylesheet" href="/static/css/charts.css">
-<link rel="stylesheet" href="/static/css/dashboard-components.css">
-<link rel="stylesheet" href="/static/css/domain-specific.css">
+<link rel="stylesheet" href="/static/css/charts.css{{if $v}}?v={{$v}}{{end}}">
+<link rel="stylesheet" href="/static/css/dashboard-components.css{{if $v}}?v={{$v}}{{end}}">
+<link rel="stylesheet" href="/static/css/domain-specific.css{{if $v}}?v={{$v}}{{end}}">
 <!-- Responsive & Media Queries -->
-<link rel="stylesheet" href="/static/css/responsive.css">
+<link rel="stylesheet" href="/static/css/responsive.css{{if $v}}?v={{$v}}{{end}}">
 {{- if .DomainCSS}}
 {{- range .DomainCSS}}
 <link rel="stylesheet" href="{{.}}">

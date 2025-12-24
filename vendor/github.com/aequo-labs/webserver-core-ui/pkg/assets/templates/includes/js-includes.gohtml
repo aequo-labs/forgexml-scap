@@ -1,9 +1,10 @@
 {{define "js-includes" -}}
-<script src="/static/js/core/loading-overlay.js"></script>
-<script src="/static/js/core/theme-switch.js"></script>
-<script src="/static/js/core/confirm-modal.js"></script>
+{{- $v := .Version -}}
+<script src="/static/js/core/loading-overlay.js{{if $v}}?v={{$v}}{{end}}"></script>
+<script src="/static/js/core/theme-switch.js{{if $v}}?v={{$v}}{{end}}"></script>
+<script src="/static/js/core/confirm-modal.js{{if $v}}?v={{$v}}{{end}}"></script>
 {{- if .ShowLicenseManager}}
-<script src="/static/js/core/license-modal.js"></script>
+<script src="/static/js/core/license-modal.js{{if $v}}?v={{$v}}{{end}}"></script>
 {{- end}}
 {{- if .ShowStatusIndicator}}
 <script>
@@ -36,22 +37,22 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 {{- end}}
 {{- if .NeedsCharts}}
-<script src="/static/js/charts/echarts.min.js"></script>
-<script src="/static/js/charts/echarts-gl.min.js"></script>
-<script src="/static/js/charts/echarts-liquidfill.min.js"></script>
-<script src="/static/js/charts/echarts-wordcloud.min.js"></script>
+<script src="/static/js/charts/echarts.min.js{{if $v}}?v={{$v}}{{end}}"></script>
+<script src="/static/js/charts/echarts-gl.min.js{{if $v}}?v={{$v}}{{end}}"></script>
+<script src="/static/js/charts/echarts-liquidfill.min.js{{if $v}}?v={{$v}}{{end}}"></script>
+<script src="/static/js/charts/echarts-wordcloud.min.js{{if $v}}?v={{$v}}{{end}}"></script>
 {{- end}}
 {{- if .NeedsExport}}
-<script src="/static/js/vendor/html2canvas.min.js"></script>
-<script src="/static/js/vendor/jszip.min.js"></script>
+<script src="/static/js/vendor/html2canvas.min.js{{if $v}}?v={{$v}}{{end}}"></script>
+<script src="/static/js/vendor/jszip.min.js{{if $v}}?v={{$v}}{{end}}"></script>
 {{- end}}
 {{- if .NeedsMermaid}}
-<script src="/static/js/core/mermaid.min.js"></script>
+<script src="/static/js/core/mermaid.min.js{{if $v}}?v={{$v}}{{end}}"></script>
 {{- end}}
 {{- if .NeedsPanZoom}}
-<script src="/static/js/vendor/svg-pan-zoom.min.js"></script>
+<script src="/static/js/vendor/svg-pan-zoom.min.js{{if $v}}?v={{$v}}{{end}}"></script>
 {{- end}}
 {{- if .ShowLogin}}
-<script src="/static/js/core/auth.js"></script>
+<script src="/static/js/core/auth.js{{if $v}}?v={{$v}}{{end}}"></script>
 {{- end}}
 {{- end}}

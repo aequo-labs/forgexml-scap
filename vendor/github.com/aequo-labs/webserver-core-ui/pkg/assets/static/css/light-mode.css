@@ -1304,3 +1304,98 @@ html:not(.dark-mode) li code {
     border-radius: 4px !important;
     font-size: 0.9em !important;
 }
+
+
+/* ============================================
+   CUSTOMER NAME & STACKED INFO CONTRAST FIXES
+   ============================================ */
+
+/* Fix has-text-grey contrast in light mode - used for customer emails, secondary text */
+html:not(.dark-mode) .has-text-grey,
+html:not(.dark-mode) .stacked-secondary,
+html:not(.dark-mode) .grid-cell .has-text-grey,
+html:not(.dark-mode) .grid-row .has-text-grey {
+    color: #4a4a4a !important; /* Darker gray for better contrast */
+}
+
+/* Customer name styling in virtual grid */
+html:not(.dark-mode) .stacked-info .stacked-primary,
+html:not(.dark-mode) .stacked-info .stacked-primary strong {
+    color: #1a1a2e !important; /* Very dark for customer names */
+}
+
+html:not(.dark-mode) .stacked-info .stacked-secondary,
+html:not(.dark-mode) .stacked-info .stacked-secondary small {
+    color: #4a4a4a !important; /* Dark gray for emails */
+}
+
+/* Grid cell text must be visible in light mode */
+html:not(.dark-mode) .grid-cell,
+html:not(.dark-mode) .grid-cell * {
+    color: var(--text-color, #333333);
+}
+
+html:not(.dark-mode) .grid-cell strong {
+    color: #1a1a2e !important;
+}
+
+html:not(.dark-mode) .grid-cell small {
+    color: #4a4a4a !important;
+}
+
+/* ============================================
+   FOOTER PRODUCT NAME CONTRAST FIX
+   ============================================ */
+
+/* Footer text and product name should be visible in light mode */
+html:not(.dark-mode) .footer {
+    background-color: var(--footer-bg, #f5f7fa);
+    color: #4a4a4a !important; /* Darker footer text */
+}
+
+html:not(.dark-mode) .footer strong {
+    color: #1a1a2e !important; /* Very dark for product name */
+    font-weight: 700;
+}
+
+html:not(.dark-mode) .footer p {
+    color: #4a4a4a !important;
+}
+
+html:not(.dark-mode) .footer a {
+    color: var(--primary-color, #3273dc);
+}
+
+html:not(.dark-mode) .footer a:hover {
+    color: var(--primary-color-dark, #2160c4);
+}
+
+
+/* Bulma striped and hoverable table fixes for light mode */
+html:not(.dark-mode) .table.is-striped tbody tr:not(.is-selected):nth-child(even) {
+    background-color: var(--table-row-even, #f9fafc) !important;
+}
+
+html:not(.dark-mode) .table.is-striped tbody tr:not(.is-selected):nth-child(odd) {
+    background-color: #ffffff !important;
+}
+
+html:not(.dark-mode) .table.is-hoverable tbody tr:not(.is-selected):hover {
+    background-color: var(--hover-background-color, #f0f0f0) !important;
+}
+
+html:not(.dark-mode) .table.is-hoverable tbody tr:not(.is-selected):hover td {
+    color: var(--text-color, #363636) !important;
+}
+
+/* Dashboard recent licenses table - ensure text visibility */
+html:not(.dark-mode) .table td,
+html:not(.dark-mode) .table td strong,
+html:not(.dark-mode) .table td small {
+    color: var(--text-color, #363636) !important;
+}
+
+html:not(.dark-mode) .table td .has-text-grey,
+html:not(.dark-mode) .table td small.has-text-grey {
+    color: #4a4a4a !important;
+}

@@ -117,3 +117,49 @@
 .title.is-spaced + .subtitle {
     margin-top: 0.75rem !important;
 }
+
+
+/* ============================================
+   CODE ELEMENT STYLING - Override Bulma's default red code color
+   ============================================ */
+
+/* Light mode code styling - uses dark text on light background */
+/* Using multiple selectors for maximum specificity */
+html:not(.dark-mode) code,
+html:not(.dark-mode) .table code,
+html:not(.dark-mode) .table.is-fullwidth code,
+html:not(.dark-mode) .table.is-striped code,
+html:not(.dark-mode) .table.is-hoverable code,
+html:not(.dark-mode) .table-container code,
+html:not(.dark-mode) .card code,
+html:not(.dark-mode) .card-content code,
+html:not(.dark-mode) tbody code,
+html:not(.dark-mode) tbody td code,
+html:not(.dark-mode) tr code,
+html:not(.dark-mode) td code {
+    background-color: #e8ecf1 !important;
+    color: #1a1a2e !important;
+    padding: 0.15em 0.4em !important;
+    border-radius: 4px !important;
+    font-size: 0.9em !important;
+}
+
+/* Dark mode code styling - uses light text on dark background */
+html.dark-mode code,
+html.dark-mode .table code,
+html.dark-mode .table.is-fullwidth code,
+html.dark-mode .table.is-striped code,
+html.dark-mode .table.is-hoverable code,
+html.dark-mode .table-container code,
+html.dark-mode .card code,
+html.dark-mode .card-content code,
+html.dark-mode tbody code,
+html.dark-mode tbody td code,
+html.dark-mode tr code,
+html.dark-mode td code {
+    background-color: #2d3748 !important;
+    color: #e2e8f0 !important;
+    padding: 0.15em 0.4em !important;
+    border-radius: 4px !important;
+    font-size: 0.9em !important;
+}

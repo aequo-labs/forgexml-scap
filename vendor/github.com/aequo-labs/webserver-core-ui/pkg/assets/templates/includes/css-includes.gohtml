@@ -27,13 +27,14 @@
 <link rel="stylesheet" href="/static/css/domain-specific.css">
 <!-- Responsive & Media Queries -->
 <link rel="stylesheet" href="/static/css/responsive.css">
-{{- if .NeedsW2ui}}
-<link rel="stylesheet" href="/static/css/vendor/w2ui/w2ui.min.css">
-<link rel="stylesheet" href="/static/css/vendor/w2ui/w2ui-theme.css">
-{{- end}}
 {{- if .DomainCSS}}
 {{- range .DomainCSS}}
 <link rel="stylesheet" href="{{.}}">
 {{- end}}
 {{- end}}
+<!-- Critical code element styling - must be last to override Bulma -->
+<style>
+html:not(.dark-mode) code { background-color: #e8ecf1 !important; color: #1a1a2e !important; }
+html.dark-mode code { background-color: #2d3748 !important; color: #e2e8f0 !important; }
+</style>
 {{- end}}

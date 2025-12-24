@@ -103,7 +103,7 @@ func requireAuth(w http.ResponseWriter, realm string) {
 		realm = "Protected Area"
 	}
 	w.Header().Set("WWW-Authenticate", `Basic realm="`+realm+`"`)
-	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Content-Type", "application/json; charset=utf-8")
 	w.WriteHeader(http.StatusUnauthorized)
 	w.Write([]byte(`{"success": false, "error": "Authentication required", "code": 401}`))
 }
@@ -153,7 +153,7 @@ func APIKeyAuthMiddleware(config APIKeyAuthConfig) func(http.Handler) http.Handl
 
 // requireAPIKey sends a 401 Unauthorized response for API key auth
 func requireAPIKey(w http.ResponseWriter, headerName string) {
-	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Content-Type", "application/json; charset=utf-8")
 	w.WriteHeader(http.StatusUnauthorized)
 	w.Write([]byte(`{"success": false, "error": "Valid API key required in ` + headerName + ` header", "code": 401}`))
 }

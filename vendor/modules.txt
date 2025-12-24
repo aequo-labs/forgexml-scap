@@ -4,14 +4,14 @@ cloud.google.com/go/compute/metadata
 # github.com/aequo-labs/legcheck v0.4.0
 ## explicit; go 1.24.0
 github.com/aequo-labs/legcheck/pkg/license
-# github.com/aequo-labs/webserver-core v1.21.4
+# github.com/aequo-labs/webserver-core v1.21.10
 ## explicit; go 1.24.0
 github.com/aequo-labs/webserver-core/pkg/https
 github.com/aequo-labs/webserver-core/pkg/logging
 github.com/aequo-labs/webserver-core/pkg/middleware
 github.com/aequo-labs/webserver-core/pkg/server
 github.com/aequo-labs/webserver-core/pkg/template
-# github.com/aequo-labs/webserver-core-ui v1.15.9 => /home/mmcnew/repos/webserver-core-ui
+# github.com/aequo-labs/webserver-core-ui v1.15.19 => /home/mmcnew/repos/webserver-core-ui
 ## explicit; go 1.24.0
 github.com/aequo-labs/webserver-core-ui/pkg/assets
 github.com/aequo-labs/webserver-core-ui/pkg/docs

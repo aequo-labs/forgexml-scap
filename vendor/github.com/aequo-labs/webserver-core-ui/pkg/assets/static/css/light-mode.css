@@ -81,7 +81,7 @@
     --button-background-color: #f5f5f5;
     --button-hover-background-color: #eeeeee;
     --code-background-color: #f5f5f5;
-    --code-text-color: #dd1144;
+    --code-text-color: #1a1a2e;
     --input-background-color: #ffffff;
     --input-focus-border-color: #3273dc;
     --input-focus-shadow-color: rgba(50, 115, 220, 0.25);
@@ -851,6 +851,38 @@ html:not(.dark-mode) .icon .fab {
     margin-left: 0;
 }
 
+/* Code element styling for light mode - fixes red text on License IDs, versions, keys */
+html:not(.dark-mode) code,
+html:not(.dark-mode) code:not([class]) {
+    background-color: #f5f7fa !important;
+    color: #1a1a2e !important;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-family: 'Courier New', Consolas, Monaco, monospace;
+    font-size: 0.875em;
+}
+
+html:not(.dark-mode) table code,
+html:not(.dark-mode) .table code {
+    background-color: #f5f7fa !important;
+    color: #1a1a2e !important;
+}
+
+html:not(.dark-mode) td code,
+html:not(.dark-mode) th code,
+html:not(.dark-mode) tbody code {
+    background-color: #f5f7fa !important;
+    color: #1a1a2e !important;
+}
+
+/* Override Bulma's default code color */
+html:not(.dark-mode) .content code,
+html:not(.dark-mode) .box code,
+html:not(.dark-mode) .card code {
+    background-color: #f5f7fa !important;
+    color: #1a1a2e !important;
+}
+
 /* Code box styling for light mode */
 html:not(.dark-mode) .code-box {
     background-color: var(--code-bg);
@@ -865,4 +897,410 @@ html:not(.dark-mode) .code-box {
     word-wrap: break-word;
     max-height: 400px;
     overflow: auto;
+}
+
+
+/* VirtualDataGrid light mode support */
+html:not(.dark-mode) .grid-row {
+    background-color: var(--bg-color, #ffffff) !important;
+    color: var(--text-color, #333333) !important;
+}
+
+html:not(.dark-mode) .grid-row.grid-row-striped,
+html:not(.dark-mode) .grid-row.grid-row-odd {
+    background-color: var(--table-row-even, #f9fafc) !important;
+}
+
+html:not(.dark-mode) .grid-row:hover {
+    background-color: var(--hover-background-color, #f5f5f5) !important;
+}
+
+html:not(.dark-mode) .grid-header {
+    background-color: var(--table-header-bg, #f5f7fa) !important;
+}
+
+html:not(.dark-mode) .grid-header-cell {
+    background-color: var(--table-header-bg, #f5f7fa) !important;
+    color: var(--text-color, #333333) !important;
+}
+
+html:not(.dark-mode) .grid-footer {
+    background-color: var(--table-header-bg, #f5f7fa) !important;
+    color: var(--text-color, #333333) !important;
+}
+
+html:not(.dark-mode) .grid-cell {
+    color: var(--text-color, #333333) !important;
+}
+
+html:not(.dark-mode) .grid-cell code {
+    background-color: var(--code-bg, #f5f7fa) !important;
+    color: var(--code-text, #1a1a2e) !important;
+}
+
+
+/* License ID display - light mode */
+html:not(.dark-mode) .license-id-display {
+    font-family: 'Courier New', Consolas, Monaco, monospace;
+    font-size: 0.85em;
+    padding: 0.2em 0.5em;
+    background-color: var(--bg-lighter, #e8ecf1);
+    color: var(--primary-color, #3273dc);
+    border-radius: 4px;
+    border: 1px solid var(--border-color, #e1e4e8);
+}
+
+/* Stacked info styling - for any two-line stacked content */
+.stacked-info,
+.stacked-dates {
+    line-height: 1.3;
+}
+
+.stacked-info .stacked-primary,
+.stacked-dates .date-created {
+    font-weight: 500;
+}
+
+.stacked-info .stacked-secondary,
+.stacked-dates .date-expires {
+    font-size: 0.85em;
+}
+
+/* Fix table hover in light mode - ensure it's not black */
+html:not(.dark-mode) .table.is-hoverable tbody tr:hover,
+html:not(.dark-mode) .table tbody tr:hover {
+    background-color: rgba(50, 115, 220, 0.05) !important;
+    color: var(--text-color) !important;
+}
+
+html:not(.dark-mode) .table.is-hoverable tbody tr:hover td,
+html:not(.dark-mode) .table tbody tr:hover td {
+    color: var(--text-color) !important;
+}
+
+/* Fix navbar burger hover in light mode */
+html:not(.dark-mode) .navbar-burger:hover {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    color: var(--navbar-text, #ffffff) !important;
+}
+
+html:not(.dark-mode) .navbar-burger span {
+    background-color: var(--navbar-text, #ffffff) !important;
+}
+
+/* Fix tabs in light mode */
+html:not(.dark-mode) .tabs a {
+    color: var(--text-color, #333333);
+    border-bottom-color: var(--border-color, #dbdbdb);
+}
+
+html:not(.dark-mode) .tabs a:hover {
+    color: var(--primary-color, #3273dc);
+    border-bottom-color: var(--primary-color, #3273dc);
+}
+
+html:not(.dark-mode) .tabs li.is-active a {
+    color: var(--primary-color, #3273dc);
+    border-bottom-color: var(--primary-color, #3273dc);
+}
+
+html:not(.dark-mode) .tabs.is-boxed a {
+    background-color: var(--bg-lighter, #f5f5f5);
+    border-color: var(--border-color, #dbdbdb);
+}
+
+html:not(.dark-mode) .tabs.is-boxed li.is-active a {
+    background-color: var(--card-bg, #ffffff);
+    border-bottom-color: transparent;
+}
+
+/* VirtualDataGrid scrollbar styling for light mode */
+html:not(.dark-mode) .grid-viewport::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+html:not(.dark-mode) .grid-viewport::-webkit-scrollbar-track {
+    background: var(--bg-lighter, #f5f5f5);
+    border-radius: 5px;
+}
+
+html:not(.dark-mode) .grid-viewport::-webkit-scrollbar-thumb {
+    background: var(--border-color, #dbdbdb);
+    border-radius: 5px;
+}
+
+html:not(.dark-mode) .grid-viewport::-webkit-scrollbar-thumb:hover {
+    background: #b5b5b5;
+}
+
+
+/* Title and subtitle contrast fixes for light mode */
+html:not(.dark-mode) .title,
+html:not(.dark-mode) h1.title,
+html:not(.dark-mode) h2.title,
+html:not(.dark-mode) h3.title,
+html:not(.dark-mode) h4.title,
+html:not(.dark-mode) h5.title,
+html:not(.dark-mode) h6.title {
+    color: #1a1a2e !important; /* Very dark blue-black for high contrast */
+}
+
+html:not(.dark-mode) .subtitle,
+html:not(.dark-mode) p.subtitle {
+    color: #4a4a4a !important; /* Dark gray for good contrast on light backgrounds */
+}
+
+/* Page title section styling */
+html:not(.dark-mode) .page-title .title {
+    color: #1a1a2e !important;
+}
+
+html:not(.dark-mode) .page-title .subtitle {
+    color: #4a4a4a !important;
+}
+
+/* Content area text - ensure proper contrast */
+html:not(.dark-mode) .content,
+html:not(.dark-mode) .content p,
+html:not(.dark-mode) .content li {
+    color: var(--text-color, #333333);
+}
+
+/* Section headers */
+html:not(.dark-mode) .section-title,
+html:not(.dark-mode) .box-title,
+html:not(.dark-mode) .panel-heading {
+    color: #1a1a2e !important;
+}
+
+/* Modal titles */
+html:not(.dark-mode) .modal-card-title {
+    color: #1a1a2e !important;
+}
+
+/* Card titles in light mode */
+html:not(.dark-mode) .card .title,
+html:not(.dark-mode) .box .title {
+    color: #1a1a2e !important;
+}
+
+
+/* ============================================
+   NAVBAR MOBILE MENU - LIGHT MODE FIXES
+   ============================================ */
+
+/* Mobile navbar menu background when expanded */
+html:not(.dark-mode) .navbar-menu {
+    background-color: var(--navbar-bg, #3273dc) !important;
+}
+
+html:not(.dark-mode) .navbar-menu.is-active {
+    background-color: var(--navbar-bg, #3273dc) !important;
+}
+
+/* All navbar items in mobile menu */
+html:not(.dark-mode) .navbar-menu .navbar-item {
+    color: var(--navbar-text, #ffffff) !important;
+    background-color: transparent !important;
+}
+
+html:not(.dark-mode) .navbar-menu .navbar-item:hover,
+html:not(.dark-mode) .navbar-menu .navbar-item:focus {
+    background-color: rgba(255, 255, 255, 0.15) !important;
+    color: var(--navbar-text, #ffffff) !important;
+}
+
+html:not(.dark-mode) .navbar-menu .navbar-item.is-active {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    color: var(--navbar-text, #ffffff) !important;
+}
+
+/* Navbar dropdown in light mode */
+html:not(.dark-mode) .navbar-dropdown {
+    background-color: #ffffff !important;
+    border-top: 2px solid var(--primary-color, #3273dc) !important;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1) !important;
+}
+
+html:not(.dark-mode) .navbar-dropdown .navbar-item {
+    color: var(--text-color, #333333) !important;
+    background-color: transparent !important;
+}
+
+html:not(.dark-mode) .navbar-dropdown .navbar-item .icon,
+html:not(.dark-mode) .navbar-dropdown .navbar-item i,
+html:not(.dark-mode) .navbar-dropdown .navbar-item .fas,
+html:not(.dark-mode) .navbar-dropdown .navbar-item .far,
+html:not(.dark-mode) .navbar-dropdown .navbar-item .fab {
+    color: var(--text-color, #333333) !important;
+}
+
+html:not(.dark-mode) .navbar-dropdown .navbar-item:hover,
+html:not(.dark-mode) .navbar-dropdown .navbar-item:focus {
+    background-color: var(--bg-lighter, #f5f5f5) !important;
+    color: var(--primary-color, #3273dc) !important;
+}
+
+html:not(.dark-mode) .navbar-dropdown .navbar-item:hover .icon,
+html:not(.dark-mode) .navbar-dropdown .navbar-item:hover i,
+html:not(.dark-mode) .navbar-dropdown .navbar-item:focus .icon,
+html:not(.dark-mode) .navbar-dropdown .navbar-item:focus i {
+    color: var(--primary-color, #3273dc) !important;
+}
+
+/* Navbar divider in dropdown */
+html:not(.dark-mode) .navbar-divider {
+    background-color: var(--border-color, #e1e4e8) !important;
+}
+
+/* Navbar link with dropdown arrow */
+html:not(.dark-mode) .navbar-link:not(.is-arrowless)::after {
+    border-color: var(--navbar-text, #ffffff) !important;
+}
+
+html:not(.dark-mode) .navbar-dropdown .navbar-link:not(.is-arrowless)::after {
+    border-color: var(--text-color, #333333) !important;
+}
+
+/* Fix navbar end items */
+html:not(.dark-mode) .navbar-end .navbar-item {
+    color: var(--navbar-text, #ffffff) !important;
+}
+
+html:not(.dark-mode) .navbar-end .navbar-item:hover {
+    background-color: rgba(255, 255, 255, 0.15) !important;
+    color: var(--navbar-text, #ffffff) !important;
+}
+
+
+/* ============================================
+   GLOBAL SCROLLBAR STYLING - LIGHT MODE
+   ============================================ */
+
+/* Global scrollbar styling for all elements in light mode */
+html:not(.dark-mode) ::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+html:not(.dark-mode) ::-webkit-scrollbar-track {
+    background: var(--bg-lighter, #e8ecf1);
+    border-radius: 6px;
+}
+
+html:not(.dark-mode) ::-webkit-scrollbar-thumb {
+    background: var(--border-color, #c0c4cc);
+    border-radius: 6px;
+    border: 2px solid var(--bg-lighter, #e8ecf1);
+}
+
+html:not(.dark-mode) ::-webkit-scrollbar-thumb:hover {
+    background: #a0a4ac;
+}
+
+html:not(.dark-mode) ::-webkit-scrollbar-corner {
+    background: var(--bg-lighter, #e8ecf1);
+}
+
+/* Firefox scrollbar styling */
+html:not(.dark-mode) * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-color, #c0c4cc) var(--bg-lighter, #e8ecf1);
+}
+
+/* Body and main containers */
+html:not(.dark-mode) body::-webkit-scrollbar,
+html:not(.dark-mode) .main-content::-webkit-scrollbar,
+html:not(.dark-mode) .container::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+html:not(.dark-mode) body::-webkit-scrollbar-track,
+html:not(.dark-mode) .main-content::-webkit-scrollbar-track,
+html:not(.dark-mode) .container::-webkit-scrollbar-track {
+    background: var(--bg-lighter, #e8ecf1);
+}
+
+html:not(.dark-mode) body::-webkit-scrollbar-thumb,
+html:not(.dark-mode) .main-content::-webkit-scrollbar-thumb,
+html:not(.dark-mode) .container::-webkit-scrollbar-thumb {
+    background: var(--border-color, #c0c4cc);
+    border-radius: 6px;
+    border: 2px solid var(--bg-lighter, #e8ecf1);
+}
+
+html:not(.dark-mode) body::-webkit-scrollbar-thumb:hover,
+html:not(.dark-mode) .main-content::-webkit-scrollbar-thumb:hover,
+html:not(.dark-mode) .container::-webkit-scrollbar-thumb:hover {
+    background: #a0a4ac;
+}
+
+/* Modal and overflow containers */
+html:not(.dark-mode) .modal-card-body::-webkit-scrollbar,
+html:not(.dark-mode) .table-container::-webkit-scrollbar,
+html:not(.dark-mode) pre::-webkit-scrollbar,
+html:not(.dark-mode) code::-webkit-scrollbar,
+html:not(.dark-mode) textarea::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+html:not(.dark-mode) .modal-card-body::-webkit-scrollbar-track,
+html:not(.dark-mode) .table-container::-webkit-scrollbar-track,
+html:not(.dark-mode) pre::-webkit-scrollbar-track,
+html:not(.dark-mode) code::-webkit-scrollbar-track,
+html:not(.dark-mode) textarea::-webkit-scrollbar-track {
+    background: var(--bg-lightest, #f9fafc);
+    border-radius: 5px;
+}
+
+html:not(.dark-mode) .modal-card-body::-webkit-scrollbar-thumb,
+html:not(.dark-mode) .table-container::-webkit-scrollbar-thumb,
+html:not(.dark-mode) pre::-webkit-scrollbar-thumb,
+html:not(.dark-mode) code::-webkit-scrollbar-thumb,
+html:not(.dark-mode) textarea::-webkit-scrollbar-thumb {
+    background: var(--border-color, #dbdbdb);
+    border-radius: 5px;
+}
+
+html:not(.dark-mode) .modal-card-body::-webkit-scrollbar-thumb:hover,
+html:not(.dark-mode) .table-container::-webkit-scrollbar-thumb:hover,
+html:not(.dark-mode) pre::-webkit-scrollbar-thumb:hover,
+html:not(.dark-mode) code::-webkit-scrollbar-thumb:hover,
+html:not(.dark-mode) textarea::-webkit-scrollbar-thumb:hover {
+    background: #b5b5b5;
+}
+
+
+/* ============================================
+   CRITICAL CODE ELEMENT FIX - HIGHEST PRIORITY
+   Fixes red/pink code text in light mode
+   ============================================ */
+
+/* Override Bulma's default code color which uses #dd1144 */
+html:not(.dark-mode) code,
+html:not(.dark-mode) code:not([class]),
+html:not(.dark-mode) pre code,
+html:not(.dark-mode) .table code,
+html:not(.dark-mode) table code,
+html:not(.dark-mode) tbody code,
+html:not(.dark-mode) td code,
+html:not(.dark-mode) th code,
+html:not(.dark-mode) .content code,
+html:not(.dark-mode) .box code,
+html:not(.dark-mode) .card code,
+html:not(.dark-mode) .section code,
+html:not(.dark-mode) .container code,
+html:not(.dark-mode) article code,
+html:not(.dark-mode) div code,
+html:not(.dark-mode) p code,
+html:not(.dark-mode) span code,
+html:not(.dark-mode) li code {
+    background-color: #e8ecf1 !important;
+    color: #1a1a2e !important;
+    padding: 0.15em 0.4em !important;
+    border-radius: 4px !important;
+    font-size: 0.9em !important;
 }

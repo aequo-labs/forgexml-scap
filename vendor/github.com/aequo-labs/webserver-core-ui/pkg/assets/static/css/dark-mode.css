@@ -1573,3 +1573,52 @@ html.dark-mode .panel-tabs a.is-active {
 html.dark-mode .panel-icon {
     color: var(--text-muted) !important;
 }
+
+
+/* VirtualDataGrid dark mode support */
+html.dark-mode .grid-header {
+    background-color: var(--table-header-bg) !important;
+    border-bottom-color: var(--table-border) !important;
+}
+
+html.dark-mode .grid-header-cell {
+    background-color: var(--table-header-bg) !important;
+    color: var(--text-color) !important;
+}
+
+html.dark-mode .grid-row {
+    border-bottom-color: var(--table-border) !important;
+    background-color: transparent !important;
+}
+
+html.dark-mode .grid-row.grid-row-striped,
+html.dark-mode .grid-row.grid-row-odd {
+    background-color: #333333 !important;
+}
+
+html.dark-mode .grid-row:hover {
+    background-color: #4a5568 !important;
+}
+
+html.dark-mode .grid-cell {
+    color: var(--text-color) !important;
+}
+
+html.dark-mode .grid-footer {
+    background-color: var(--table-header-bg) !important;
+    border-top-color: var(--table-border) !important;
+    color: var(--text-color) !important;
+}
+
+/* License ID display - dark mode */
+html.dark-mode .license-id-display {
+    font-family: 'Courier New', Consolas, Monaco, monospace;
+    font-size: 0.85em;
+    padding: 0.2em 0.5em;
+    background-color: var(--bg-darker, #2d2d2d);
+    color: var(--primary-color, #6cb2eb);
+    border-radius: 4px;
+    border: 1px solid var(--border-color, #444);
+}
+
+/* Stacked dates styling - dark mode inherits from light mode base styles */

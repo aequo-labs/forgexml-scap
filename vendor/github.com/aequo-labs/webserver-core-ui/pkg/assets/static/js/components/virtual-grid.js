@@ -67,25 +67,37 @@ class VirtualDataGrid {
 
     setupDOM() {
         const container = this.options.container;
-        container.innerHTML = `
-            <div class="grid-header"></div>
-            <div class="grid-viewport">
-                <div class="grid-body"></div>
-            </div>
-        `;
+        const footerHeight = 36;
         
-        this.header = container.querySelector('.grid-header');
-        this.viewport = container.querySelector('.grid-viewport');
-        this.body = container.querySelector('.grid-body');
+        // Clear container
+        container.innerHTML = '';
         
-        this.containerHeight = this.options.container.offsetHeight - this.options.headerHeight;
+        // Create header
+        this.header = document.createElement('div');
+        this.header.className = 'grid-header';
+        container.appendChild(this.header);
+        
+        // Create viewport with body inside
+        this.viewport = document.createElement('div');
+        this.viewport.className = 'grid-viewport';
+        this.body = document.createElement('div');
+        this.body.className = 'grid-body';
+        this.viewport.appendChild(this.body);
+        container.appendChild(this.viewport);
+        
+        // Create footer
+        this.footer = document.createElement('div');
+        this.footer.className = 'grid-footer';
+        container.appendChild(this.footer);
+        
+        this.containerHeight = this.options.container.offsetHeight - this.options.headerHeight - footerHeight;
         this.containerWidth = this.options.container.offsetWidth;
         
         this.header.style.cssText = `
             height: ${this.options.headerHeight}px;
             overflow: hidden;
-            border-bottom: 2px solid var(--bulma-border);
-            background: var(--bulma-scheme-main-bis);
+            border-bottom: 2px solid var(--table-border, #dbdbdb);
+            background: var(--table-header-bg, #f5f5f5);
             position: relative;
         `;
         
@@ -98,6 +110,18 @@ class VirtualDataGrid {
         this.body.style.cssText = `
             position: relative;
             min-height: 100%;
+        `;
+        
+        this.footer.style.cssText = `
+            height: ${footerHeight}px;
+            padding: 0.5em 0.75em;
+            border-top: 1px solid var(--table-border, #dbdbdb);
+            background: var(--table-header-bg, #f5f5f5);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.875em;
+            color: var(--text-color, #363636);
         `;
     }
 
@@ -181,6 +205,7 @@ class VirtualDataGrid {
         
         this.renderHeader();
         this.renderRows();
+        this.renderFooter();
         
         this.renderTime = Math.round(performance.now() - startTime);
     }
@@ -197,24 +222,34 @@ class VirtualDataGrid {
             position: relative;
         `;
         
-        this.getVisibleColumns().forEach(col => {
+        const columns = this.getVisibleColumns();
+        columns.forEach((col, colIndex) => {
             const width = this.columnWidths.get(col.id);
             const headerCell = document.createElement('div');
             headerCell.className = 'grid-header-cell';
             headerCell.dataset.columnId = col.id;
+            // Determine alignment - default left, but can be overridden per column
+            const alignment = col.align || 'left';
+            const justifyContent = alignment === 'right' ? 'flex-end' : alignment === 'center' ? 'center' : 'flex-start';
+            
+            // Add right border for column divider (except last column)
+            const borderRight = colIndex < columns.length - 1 ? 'border-right: 1px solid var(--table-border, #dbdbdb);' : '';
+            
             headerCell.style.cssText = `
-                width: ${width}px;
-                padding: 0.75em;
-                border-right: 1px solid var(--bulma-table-cell-border-color, #dbdbdb);
+                width: ${col.flex ? 'auto' : width + 'px'};
+                flex: ${col.flex || 'none'};
+                min-width: ${col.minWidth || width}px;
+                padding: 0.5em 0.75em;
                 display: flex;
                 align-items: center;
-                justify-content: space-between;
+                justify-content: ${justifyContent};
                 cursor: ${this.options.sortable ? 'pointer' : 'default'};
                 position: relative;
                 user-select: none;
                 font-weight: 700;
-                background-color: var(--bulma-table-head-background-color, transparent);
-                color: var(--bulma-table-head-color, #363636);
+                background-color: var(--table-header-bg, #f5f5f5);
+                color: var(--text-color, #363636);
+                ${borderRight}
             `;
             
             headerCell.textContent = col.label;
@@ -226,10 +261,55 @@ class VirtualDataGrid {
                 headerCell.appendChild(sortIcon);
             }
             
+            // Add resize handle (except for last column)
+            if (colIndex < columns.length - 1) {
+                const resizeHandle = document.createElement('div');
+                resizeHandle.className = 'grid-resize-handle';
+                resizeHandle.style.cssText = `
+                    position: absolute;
+                    right: 0;
+                    top: 0;
+                    bottom: 0;
+                    width: 6px;
+                    cursor: col-resize;
+                    background: transparent;
+                    z-index: 10;
+                `;
+                resizeHandle.addEventListener('mousedown', (e) => this.startResize(e, col.id));
+                headerCell.appendChild(resizeHandle);
+            }
+            
             headerRow.appendChild(headerCell);
         });
         
         this.header.appendChild(headerRow);
+    }
+    
+    startResize(e, columnId) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        const startX = e.clientX;
+        const startWidth = this.columnWidths.get(columnId);
+        
+        const onMouseMove = (moveEvent) => {
+            const diff = moveEvent.clientX - startX;
+            const newWidth = Math.max(50, startWidth + diff); // Minimum 50px
+            this.columnWidths.set(columnId, newWidth);
+            this.render();
+        };
+        
+        const onMouseUp = () => {
+            document.removeEventListener('mousemove', onMouseMove);
+            document.removeEventListener('mouseup', onMouseUp);
+            document.body.style.cursor = '';
+            document.body.style.userSelect = '';
+        };
+        
+        document.addEventListener('mousemove', onMouseMove);
+        document.addEventListener('mouseup', onMouseUp);
+        document.body.style.cursor = 'col-resize';
+        document.body.style.userSelect = 'none';
     }
 
     renderRows() {
@@ -249,17 +329,34 @@ class VirtualDataGrid {
         }
     }
 
+    renderFooter() {
+        const loadedCount = this.windowData.length;
+        const totalCount = this.totalRows;
+        const windowStart = this.windowStartRow + 1;
+        const windowEnd = Math.min(this.windowStartRow + loadedCount, totalCount);
+        
+        this.footer.innerHTML = `
+            <div class="grid-footer-left">
+                <span class="has-text-weight-semibold">${totalCount.toLocaleString()}</span> total records
+            </div>
+            <div class="grid-footer-right">
+                Showing <span class="has-text-weight-semibold">${windowStart.toLocaleString()}</span> - <span class="has-text-weight-semibold">${windowEnd.toLocaleString()}</span>
+                &nbsp;|&nbsp;
+                <span class="has-text-weight-semibold">${loadedCount.toLocaleString()}</span> loaded in memory
+            </div>
+        `;
+    }
+
     createRowElement(row, index) {
         const rowDiv = document.createElement('div');
         rowDiv.className = 'grid-row';
         rowDiv.dataset.rowId = row.id || row.ID || index;
         rowDiv.dataset.index = index;
         
-        // Add even/odd class for styling
-        if (index % 2 === 0) {
-            rowDiv.classList.add('grid-row-even');
-        } else {
-            rowDiv.classList.add('grid-row-odd');
+        // Determine if this is a striped row (like Bulma table.is-striped)
+        const isStriped = index % 2 === 1;
+        if (isStriped) {
+            rowDiv.classList.add('grid-row-striped');
         }
         
         rowDiv.style.cssText = `
@@ -269,12 +366,27 @@ class VirtualDataGrid {
             width: 100%;
             display: flex;
             align-items: center;
-            border-bottom: 1px solid var(--bulma-border-weak);
+            border-bottom: 1px solid var(--table-border, #dbdbdb);
+            transition: background-color 0.15s ease;
         `;
         
         if (this.selectedRows.has(row.id)) {
             rowDiv.classList.add('selected');
+            rowDiv.style.backgroundColor = 'var(--table-row-even, #f9fafc)';
         }
+        
+        // Store original background for hover restore
+        const originalBg = rowDiv.style.backgroundColor;
+        
+        // Add hover effect (like Bulma table.is-hoverable)
+        rowDiv.addEventListener('mouseenter', () => {
+            rowDiv.style.backgroundColor = 'var(--table-row-even, #f9fafc)';
+        });
+        rowDiv.addEventListener('mouseleave', () => {
+            if (!this.selectedRows.has(row.id)) {
+                rowDiv.style.backgroundColor = originalBg;
+            }
+        });
         
         // Add row click handler if provided
         if (this.options.onRowClick) {
@@ -291,14 +403,26 @@ class VirtualDataGrid {
             const cell = document.createElement('div');
             cell.className = 'grid-cell';
             cell.dataset.columnId = col.id;
+            
+            // Determine alignment - default left, but can be overridden per column
+            const alignment = col.align || 'left';
+            const textAlign = alignment;
+            const justifyContent = alignment === 'right' ? 'flex-end' : alignment === 'center' ? 'center' : 'flex-start';
+            
             cell.style.cssText = `
-                width: ${width}px;
-                padding: 0.75em;
-                border-right: 1px solid var(--bulma-table-cell-border-color, #dbdbdb);
+                width: ${col.flex ? 'auto' : width + 'px'};
+                flex: ${col.flex || 'none'};
+                min-width: ${col.minWidth || width}px;
+                padding: 0.5em 0.75em;
                 overflow: hidden;
                 text-overflow: ellipsis;
                 white-space: nowrap;
-                vertical-align: top;
+                vertical-align: middle;
+                color: var(--text-color, inherit);
+                text-align: ${textAlign};
+                display: flex;
+                align-items: center;
+                justify-content: ${justifyContent};
             `;
             
             const value = row[col.id];
@@ -321,6 +445,7 @@ class VirtualDataGrid {
         const rowDiv = document.createElement('div');
         rowDiv.className = 'grid-row loading';
         rowDiv.dataset.index = index;
+        const isStriped = index % 2 === 1;
         rowDiv.style.cssText = `
             position: absolute;
             top: ${index * this.options.rowHeight}px;
@@ -328,8 +453,8 @@ class VirtualDataGrid {
             width: 100%;
             display: flex;
             align-items: center;
-            border-bottom: 1px solid var(--bulma-border-weak);
-            background-color: var(--bulma-scheme-main-ter);
+            border-bottom: 1px solid var(--table-border, #dbdbdb);
+            background-color: ${isStriped ? 'var(--table-row-even, #f9fafc)' : 'transparent'};
             opacity: 0.7;
         `;
         
@@ -339,10 +464,9 @@ class VirtualDataGrid {
             cell.className = 'grid-cell loading-cell';
             cell.style.cssText = `
                 width: ${width}px;
-                padding: 0.75em;
-                border-right: 1px solid var(--bulma-table-cell-border-color, #dbdbdb);
+                padding: 0.5em 0.75em;
                 overflow: hidden;
-                vertical-align: top;
+                vertical-align: middle;
             `;
             
             const skeleton = document.createElement('div');

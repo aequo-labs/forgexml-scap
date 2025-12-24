@@ -267,14 +267,24 @@ class VirtualDataGrid {
                 resizeHandle.className = 'grid-resize-handle';
                 resizeHandle.style.cssText = `
                     position: absolute;
-                    right: 0;
+                    right: -5px;
                     top: 0;
                     bottom: 0;
-                    width: 6px;
+                    width: 10px;
                     cursor: col-resize;
                     background: transparent;
                     z-index: 10;
+                    transition: background-color 0.15s ease;
                 `;
+                // Add hover effect to show resize handle
+                resizeHandle.addEventListener('mouseenter', () => {
+                    resizeHandle.style.backgroundColor = 'var(--primary-color, #3273dc)';
+                    resizeHandle.style.opacity = '0.5';
+                });
+                resizeHandle.addEventListener('mouseleave', () => {
+                    resizeHandle.style.backgroundColor = 'transparent';
+                    resizeHandle.style.opacity = '1';
+                });
                 resizeHandle.addEventListener('mousedown', (e) => this.startResize(e, col.id));
                 headerCell.appendChild(resizeHandle);
             }

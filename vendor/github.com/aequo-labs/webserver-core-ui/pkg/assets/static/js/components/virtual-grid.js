@@ -300,7 +300,19 @@ class VirtualDataGrid {
         e.stopPropagation();
         
         const startX = e.clientX;
-        const startWidth = this.columnWidths.get(columnId);
+        
+        // Get the actual rendered width from the header cell for flex columns
+        const headerCell = this.header.querySelector(`[data-column-id="${columnId}"]`);
+        let startWidth = this.columnWidths.get(columnId);
+        if (headerCell) {
+            startWidth = headerCell.getBoundingClientRect().width;
+        }
+        
+        // Find the column config and clear flex when manually resizing
+        const col = this.options.columns.find(c => c.id === columnId);
+        if (col && col.flex) {
+            col.flex = 0; // Clear flex so column becomes fixed-width after resize
+        }
         
         const onMouseMove = (moveEvent) => {
             const diff = moveEvent.clientX - startX;

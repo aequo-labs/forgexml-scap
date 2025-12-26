@@ -891,6 +891,31 @@ html.dark-mode a {
         border: 1px solid rgba(128, 128, 128, 0.3) !important;
     }
 
+    /* Combined tag colors - is-light variants should keep their semantic colors */
+    html.dark-mode .tag.is-success.is-light {
+        background-color: rgba(var(--success-color-rgb), 0.2) !important;
+        color: #5dd687 !important; /* Green for success */
+        border: none !important;
+    }
+
+    html.dark-mode .tag.is-warning.is-light {
+        background-color: rgba(var(--warning-color-rgb), 0.2) !important;
+        color: #ffd83a !important; /* Yellow for warning */
+        border: none !important;
+    }
+
+    html.dark-mode .tag.is-danger.is-light {
+        background-color: rgba(var(--danger-color-rgb), 0.2) !important;
+        color: #ff6b84 !important; /* Red for danger */
+        border: none !important;
+    }
+
+    html.dark-mode .tag.is-info.is-light {
+        background-color: rgba(var(--info-color-rgb), 0.2) !important;
+        color: #4fb3d4 !important; /* Cyan for info */
+        border: none !important;
+    }
+
     /* Portfolio card - improved contrast */
     html.dark-mode .portfolio-card {
         background: var(--card-bg);

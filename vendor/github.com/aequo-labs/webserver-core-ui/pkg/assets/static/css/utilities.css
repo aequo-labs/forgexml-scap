@@ -607,12 +607,12 @@ html.dark-mode #delete-modal .modal-background {
     font-size: 12px !important;
 }
 
-/* Preview container for iframes */
+/* Preview container for iframes - base styles only, modal.css overrides with !important */
 .preview-container {
     height: calc(100vh - 350px);
-    min-height: 500px;
-    overflow: auto;
-    padding: 0 !important;
+    min-height: 300px;
+    overflow: hidden;
+    padding: 0;
 }
 
 /* Full-size borderless iframe */

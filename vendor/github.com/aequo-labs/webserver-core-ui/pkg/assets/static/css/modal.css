@@ -244,3 +244,38 @@ html.dark-mode .modal-card-body {
 /* These MUST come after the default styles to take precedence */
 
 /* Modal transparency moved to utilities.css for higher precedence */
+
+/* Extra-large modal for template editing */
+@media screen and (min-width: 769px) {
+  .modal-card.modal-card-xl {
+    width: 95%;
+    max-width: 1400px;
+  }
+}
+
+/* Preview container for template editing */
+.preview-container {
+  height: 400px;
+  max-height: 50vh;
+  padding: 0;
+  overflow: hidden;
+}
+
+.iframe-full {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Code textarea styling */
+.textarea-code {
+  font-family: monospace;
+  font-size: 0.85rem;
+}
+
+/* Color input styling */
+.input-color {
+  width: 60px;
+  padding: 2px;
+  cursor: pointer;
+}

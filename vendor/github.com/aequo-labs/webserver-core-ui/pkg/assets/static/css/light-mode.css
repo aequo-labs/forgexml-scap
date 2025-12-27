@@ -1495,3 +1495,132 @@ html:not(.dark-mode) .box .title.has-text-primary,
 html:not(.dark-mode) .card .title.has-text-primary {
     color: #00d1b2 !important; /* Bulma primary */
 }
+
+
+/* ============================================
+   DOCUMENTATION PAGE LIGHT MODE FIXES
+   ============================================ */
+
+/* Documentation content area - ensure proper light mode styling */
+html:not(.dark-mode) .doc-content,
+html:not(.dark-mode) .content.doc-content {
+    color: #363636;
+}
+
+/* Documentation headings */
+html:not(.dark-mode) .doc-content h1,
+html:not(.dark-mode) .doc-content h2,
+html:not(.dark-mode) .doc-content h3,
+html:not(.dark-mode) .doc-content h4,
+html:not(.dark-mode) .doc-content h5,
+html:not(.dark-mode) .doc-content h6 {
+    color: #1a1a2e !important;
+}
+
+/* Documentation links - use proper blue color with good contrast */
+html:not(.dark-mode) .doc-content a,
+html:not(.dark-mode) .doc-content a:link,
+html:not(.dark-mode) .doc-content a:visited {
+    color: #2563eb !important; /* Blue with good contrast */
+    text-decoration: underline;
+}
+
+html:not(.dark-mode) .doc-content a:hover,
+html:not(.dark-mode) .doc-content a:focus {
+    color: #1d4ed8 !important; /* Darker blue on hover */
+}
+
+/* Links inside code blocks - override any pink/magenta styling */
+html:not(.dark-mode) .doc-content code a,
+html:not(.dark-mode) .doc-content pre a,
+html:not(.dark-mode) .doc-content a code {
+    color: #2563eb !important;
+}
+
+/* Documentation code blocks - inline code */
+html:not(.dark-mode) .doc-content code {
+    background-color: #e8ecf1 !important;
+    color: #1a1a2e !important;
+    padding: 0.15em 0.4em !important;
+    border-radius: 4px !important;
+}
+
+/* Documentation pre blocks - code blocks */
+html:not(.dark-mode) .doc-content pre {
+    background-color: #f5f5f5 !important;
+    color: #1a1a2e !important;
+    border: 1px solid #dbdbdb;
+    border-radius: 6px;
+    padding: 1em;
+}
+
+html:not(.dark-mode) .doc-content pre code {
+    background-color: transparent !important;
+    padding: 0 !important;
+    color: #1a1a2e !important;
+}
+
+/* Documentation blockquotes */
+html:not(.dark-mode) .doc-content blockquote {
+    background-color: #f9fafc;
+    border-left: 4px solid #3273dc;
+    color: #4a4a4a;
+}
+
+/* Documentation tables */
+html:not(.dark-mode) .doc-content table {
+    background-color: #ffffff;
+}
+
+html:not(.dark-mode) .doc-content table th {
+    background-color: #f5f7fa;
+    color: #1a1a2e !important;
+    border-color: #dbdbdb;
+}
+
+html:not(.dark-mode) .doc-content table td {
+    color: #363636 !important;
+    border-color: #dbdbdb;
+}
+
+html:not(.dark-mode) .doc-content table tr:nth-child(even) {
+    background-color: #f9fafc;
+}
+
+/* Documentation lists */
+html:not(.dark-mode) .doc-content ul,
+html:not(.dark-mode) .doc-content ol,
+html:not(.dark-mode) .doc-content li {
+    color: #363636;
+}
+
+/* Documentation horizontal rules */
+html:not(.dark-mode) .doc-content hr {
+    background-color: #dbdbdb;
+}
+
+/* Documentation strong/bold text */
+html:not(.dark-mode) .doc-content strong,
+html:not(.dark-mode) .doc-content b {
+    color: #1a1a2e;
+}
+
+/* Docs index page styling */
+html:not(.dark-mode) .docs-list a,
+html:not(.dark-mode) .doc-list a {
+    color: #2563eb !important;
+}
+
+html:not(.dark-mode) .docs-list a:hover,
+html:not(.dark-mode) .doc-list a:hover {
+    color: #1d4ed8 !important;
+}
+
+/* Fix any Bulma .content overrides for links */
+html:not(.dark-mode) .content a:not(.button):not(.tag) {
+    color: #2563eb;
+}
+
+html:not(.dark-mode) .content a:not(.button):not(.tag):hover {
+    color: #1d4ed8;
+}

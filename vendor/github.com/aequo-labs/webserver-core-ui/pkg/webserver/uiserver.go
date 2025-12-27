@@ -932,6 +932,11 @@ func (s *UIServer) handleDocView(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// If the path doesn't have a recognized extension, try appending .md
+	if !strings.HasSuffix(docPath, ".md") && !strings.HasSuffix(docPath, ".mermaid") {
+		docPath = docPath + ".md"
+	}
+
 	// Read the file
 	content, err := fs.ReadFile(s.docsFS, docPath)
 	if err != nil {
